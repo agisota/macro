@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: Web module
+status: stable
+groma:
+  id: search-buckets
+  parent: macro-web
+  code:
+    - scanner: typescript
+      file: apps/web/src/lib/graphql-cache/worker/browser-test/search-buckets.ts
+  technology: SolidJS
+description: Part of the signed-in client
+---
+
+Real production host/WASM/OPFS. Synthetic data only: no hosted data or auth.

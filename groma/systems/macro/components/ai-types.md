@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: spreadsheet
+status: stable
+groma:
+  id: ai-types
+  parent: macro
+  code:
+    - scanner: typescript
+      file: packages/spreadsheet/src/ai-types.ts
+  technology: TypeScript
+description: Shared package spreadsheet
+---
+
+A cell's new input: text or a formula starting with =, a number, TRUE or FALSE, or null to empty the cell.

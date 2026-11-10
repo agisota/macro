@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: spreadsheet
+status: stable
+groma:
+  id: formula-pieces
+  parent: macro
+  code:
+    - scanner: typescript
+      file: packages/spreadsheet/src/formula-pieces.ts
+  technology: TypeScript
+description: Shared package spreadsheet
+---
+
+A lexical piece of an Excel A1 formula, enough to find references safely.

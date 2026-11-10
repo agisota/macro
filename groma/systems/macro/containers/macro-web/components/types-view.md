@@ -1,0 +1,17 @@
+---
+type: C4 Component
+title: Web module
+status: stable
+groma:
+  id: types-view
+  parent: macro-web
+  code:
+    - scanner: typescript
+      file: apps/web/src/lib/core/types/view.ts
+    - scanner: typescript
+      file: apps/web/src/lib/core/types/index.ts
+  technology: SolidJS
+description: Part of the signed-in client
+---
+
+equal to DefaultView type for default view, otherwise a uuid type

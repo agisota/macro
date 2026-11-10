@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: Web module
+status: stable
+groma:
+  id: imagedocumentcard
+  parent: macro-web
+  code:
+    - scanner: typescript
+      file: apps/web/src/lib/core/component/ImageDocumentCard.tsx
+  technology: SolidJS
+description: Part of the signed-in client
+---
+
+Replaces the default pending label.

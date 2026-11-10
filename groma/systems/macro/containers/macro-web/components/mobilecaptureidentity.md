@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: Web module
+status: stable
+groma:
+  id: mobilecaptureidentity
+  parent: macro-web
+  code:
+    - scanner: typescript
+      file: apps/web/src/lib/analytics/mobileCaptureIdentity.ts
+  technology: SolidJS
+description: Part of the signed-in client
+---
+
+Identity payload for the phone email-capture flow.  The marketing site has a copy in `apps/marketing/src/app/utils/utilMobileCaptureIdentity.ts`. Keep the two in step: the site cannot import the app.

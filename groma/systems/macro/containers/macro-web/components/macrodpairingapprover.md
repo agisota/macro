@@ -1,0 +1,16 @@
+---
+type: C4 Component
+title: Web module
+status: stable
+groma:
+  id: macrodpairingapprover
+  parent: macro-web
+  code:
+    - scanner: typescript
+      file: apps/web/src/lib/tauri/MacrodPairingApprover.tsx
+      symbol: MacrodPairingApprover
+  technology: SolidJS
+description: Part of the signed-in client
+---
+
+Approves every pairing code the bundled macrod daemon opens, with the signed-in session, wherever the user is in the app. The daemon re-pairs on its own (an expired credential, a supervisor restart), and nobody types a code on the desktop app, so approval cannot wait for Settings

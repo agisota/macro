@@ -1,0 +1,19 @@
+---
+type: C4 Component
+title: Development tooling
+status: stable
+groma:
+  id: typedoc
+  parent: generate
+  code:
+    - scanner: typescript
+      file: packages/code-mode-sdk/scripts/typedoc.ts
+    - scanner: typescript
+      file: packages/code-mode-sdk/scripts/generate.ts
+    - scanner: typescript
+      file: packages/code-mode-sdk/scripts/catalog.ts
+      symbol: entityDirectories
+description: Not a product runtime
+---
+
+Test, script, or generator. Excluded from future scans. Kept only because a scan had already stored it.

@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: spreadsheet
+status: stable
+groma:
+  id: table-storage
+  parent: macro
+  code:
+    - scanner: typescript
+      file: packages/spreadsheet/src/table-storage.ts
+  technology: TypeScript
+description: Shared package spreadsheet
+---
+
+A stored table entry: its key holds the sheet and table ids, its value the table without its id.

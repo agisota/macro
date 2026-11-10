@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: spreadsheet
+status: stable
+groma:
+  id: structured-references
+  parent: macro
+  code:
+    - scanner: typescript
+      file: packages/spreadsheet/src/structured-references.ts
+  technology: TypeScript
+description: Shared package spreadsheet
+---
+
+A table as formulas see it: where its cells are and its column names.

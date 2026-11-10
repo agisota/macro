@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: spreadsheet
+status: stable
+groma:
+  id: table-filters
+  parent: macro
+  code:
+    - scanner: typescript
+      file: packages/spreadsheet/src/table-filters.ts
+  technology: TypeScript
+description: Shared package spreadsheet
+---
+
+What a filter tests in a cell: its displayed text, and its number when it holds one.

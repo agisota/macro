@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: observability
+status: stable
+groma:
+  id: span
+  parent: macro
+  code:
+    - scanner: typescript
+      file: packages/observability/src/span.ts
+  technology: TypeScript
+description: Shared package observability
+---
+
+An explicit context retained across a queue/authentication boundary; owns no span.

@@ -1,0 +1,15 @@
+---
+type: C4 Component
+title: spreadsheet
+status: stable
+groma:
+  id: cell-mentions
+  parent: macro
+  code:
+    - scanner: typescript
+      file: packages/spreadsheet/src/cell-mentions.ts
+  technology: TypeScript
+description: Shared package spreadsheet
+---
+
+The existing Macro mention encoding; ordinary cell text is never Markdown.
