@@ -10,6 +10,7 @@ groma:
       file: packages/spreadsheet/src/typed-number.ts
       symbol: typedNumber
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

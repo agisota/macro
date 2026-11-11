@@ -10,6 +10,7 @@ groma:
       file: packages/spreadsheet/src/spreadsheet-schema.ts
       symbol: SPREADSHEET_LORO_SCHEMA
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

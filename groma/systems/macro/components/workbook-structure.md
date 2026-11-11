@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/spreadsheet/src/workbook-structure.ts
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

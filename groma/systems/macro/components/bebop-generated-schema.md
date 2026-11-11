@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: services/sync-service/bebop/generated/schema.ts
   technology: TypeScript
+  group: Service helpers
 description: Scanned helper for sync-service
 ---
 

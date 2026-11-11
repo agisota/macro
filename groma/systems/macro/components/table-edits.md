@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/spreadsheet/src/table-edits.ts
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

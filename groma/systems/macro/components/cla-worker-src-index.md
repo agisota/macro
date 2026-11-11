@@ -10,6 +10,7 @@ groma:
       file: services/cla-worker/src/index.ts
       symbol: Env
   technology: TypeScript
+  group: Service helpers
 description: Scanned helper for cla-worker
 ---
 

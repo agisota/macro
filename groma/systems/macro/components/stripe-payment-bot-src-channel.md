@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: services/bots/goalert-bot/src/worker.ts
   technology: Cloudflare Workers
+  group: Service helpers
 description: Posts Stripe payment events into Macro channels
 ---
 

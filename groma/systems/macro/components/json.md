@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: packages/loro-mirror/src/schema/validators.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package loro-mirror
 ---
 

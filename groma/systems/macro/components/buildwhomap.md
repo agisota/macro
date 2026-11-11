@@ -10,6 +10,7 @@ groma:
       file: packages/lexical-core/utils/buildWhoMap.ts
       symbol: buildWhoMap
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

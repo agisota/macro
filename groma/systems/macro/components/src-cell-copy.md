@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/spreadsheet/src/cell-copy.ts
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

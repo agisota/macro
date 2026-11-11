@@ -79,6 +79,7 @@ groma:
       file: services/lexical-service/src/endpoints/plaintext.ts
       symbol: PlaintextEndpoint
   technology: TypeScript
+  group: Service helpers
 description: Scanned helper for lexical-service
 ---
 

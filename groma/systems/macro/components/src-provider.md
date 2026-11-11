@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/observability/src/provider.ts
   technology: TypeScript
+  group: Observability
 description: Shared package observability
 ---
 

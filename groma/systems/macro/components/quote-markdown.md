@@ -10,6 +10,7 @@ groma:
       file: packages/lexical-core/utils/quote-markdown.ts
       symbol: quoteMarkdown
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

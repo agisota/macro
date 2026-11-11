@@ -10,6 +10,7 @@ groma:
       file: packages/spreadsheet/src/scratch-formula.ts
       symbol: qualifyScratchFormula
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

@@ -10,6 +10,7 @@ groma:
       file: packages/spreadsheet/src/document-validation.ts
       symbol: validateSpreadsheetDocument
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

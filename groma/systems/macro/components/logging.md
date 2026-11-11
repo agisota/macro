@@ -10,6 +10,7 @@ groma:
       file: packages/observability/src/logging.ts
       symbol: Logging
   technology: TypeScript
+  group: Observability
 description: Shared package observability
 ---
 

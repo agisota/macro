@@ -10,6 +10,7 @@ groma:
       file: packages/lexical-core/utils/applyDiffs.ts
       symbol: applyDiffs
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

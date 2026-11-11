@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/machine/vitest.config.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package machine
 ---
 

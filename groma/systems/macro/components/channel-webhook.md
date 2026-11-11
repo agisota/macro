@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/sdk/examples/channel-webhook.ts
   technology: TypeScript
+  group: Macro SDK pieces
 description: Shared package sdk
 ---
 

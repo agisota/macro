@@ -10,6 +10,7 @@ groma:
       file: packages/lexical-core/utils/markdown-mentions.ts
       symbol: extractChannelMentionsFromMarkdown
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

@@ -16,6 +16,7 @@ groma:
     - scanner: typescript
       file: packages/collaboration/src/sync-service/socket.ts
   technology: TypeScript, Loro
+  group: Collaboration runtime
 description: Loro sync, awareness, and the sync-service socket
 ---
 

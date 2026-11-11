@@ -10,6 +10,7 @@ groma:
       file: packages/observability/src/web.ts
       symbol: createWebTracingProvider
   technology: TypeScript
+  group: Observability
 description: Shared package observability
 ---
 

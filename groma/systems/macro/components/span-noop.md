@@ -10,6 +10,7 @@ groma:
       file: packages/observability/src/span-noop.ts
       symbol: NOOP_SPAN
   technology: TypeScript
+  group: Observability
 description: Shared package observability
 ---
 

@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: packages/graphics/src/browser/rich-text.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package graphics
 ---
 

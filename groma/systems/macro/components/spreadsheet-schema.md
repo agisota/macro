@@ -132,6 +132,7 @@ groma:
       file: services/ai-editing-worker/src/canvas/test-fixtures.ts
       symbol: liveScene
   technology: TypeScript
+  group: Service helpers
 description: Scanned helper for ai-editing-worker
 ---
 

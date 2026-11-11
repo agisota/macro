@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/sdk/generated/storage/index.ts
   technology: TypeScript
+  group: Macro SDK pieces
 description: Shared package sdk
 ---
 

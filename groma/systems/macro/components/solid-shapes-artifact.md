@@ -48,6 +48,7 @@ groma:
       file: packages/graphics/src/solid/dot-grid-view.tsx
       symbol: DotGrid
   technology: TypeScript
+  group: Shared packages
 description: Shared package graphics
 ---
 

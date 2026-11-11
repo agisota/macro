@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/loro-mirror/src/index.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package loro-mirror
 ---
 

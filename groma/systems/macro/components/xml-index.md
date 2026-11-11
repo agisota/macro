@@ -13,6 +13,7 @@ groma:
     - scanner: typescript
       file: packages/lexical-core/transformers/xml/codecs.ts
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

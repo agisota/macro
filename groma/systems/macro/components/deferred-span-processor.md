@@ -10,6 +10,7 @@ groma:
       file: packages/observability/src/deferred-span-processor.ts
       symbol: DeferredSpanProcessor
   technology: TypeScript
+  group: Observability
 description: Shared package observability
 ---
 

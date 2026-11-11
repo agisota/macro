@@ -10,6 +10,7 @@ groma:
       file: packages/spreadsheet/src/fill-series.ts
       symbol: inferFillSeries
   technology: TypeScript
+  group: Spreadsheet engine
 description: Shared package spreadsheet
 ---
 

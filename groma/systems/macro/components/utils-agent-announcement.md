@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/lexical-core/utils/agent-announcement.ts
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

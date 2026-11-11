@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/code-mode-sdk/vitest.config.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package code-mode-sdk
 ---
 

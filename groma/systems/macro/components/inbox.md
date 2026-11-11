@@ -24,6 +24,7 @@ groma:
     - scanner: typescript
       file: crates/routine_program/src/catalog/updates.ts
       symbol: main
+  group: Unscanned Rust helpers
 description: Scanned source
 ---
 

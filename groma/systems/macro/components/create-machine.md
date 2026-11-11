@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/machine/src/create-machine.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package machine
 ---
 

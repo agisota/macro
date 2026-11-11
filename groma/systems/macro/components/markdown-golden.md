@@ -10,6 +10,7 @@ groma:
       file: packages/lexical-core/markdown-golden.ts
       symbol: getMarkdownGoldenBytes
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

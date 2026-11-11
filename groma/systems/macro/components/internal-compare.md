@@ -18,6 +18,7 @@ groma:
       file: packages/collaboration/src/internal/palette.ts
       symbol: getRandomPaletteColor
   technology: TypeScript, Loro
+  group: Collaboration runtime
 description: Loro sync, awareness, and the sync-service socket
 ---
 

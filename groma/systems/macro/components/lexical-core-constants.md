@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/lexical-core/constants.ts
   technology: Lexical
+  group: Lexical nodes
 description: Shared editor nodes and Markdown conversion
 ---
 

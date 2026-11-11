@@ -15,6 +15,7 @@ groma:
     - scanner: typescript
       file: packages/sdk/src/calls/telemetry.ts
   technology: TypeScript
+  group: Macro SDK pieces
 description: Shared package sdk
 ---
 

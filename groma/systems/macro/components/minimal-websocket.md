@@ -86,6 +86,7 @@ groma:
       file: packages/collaboration/src/websocket/core/queue/ring-queue.ts
       symbol: RingQueue
   technology: TypeScript, Loro
+  group: Collaboration runtime
 description: Loro sync, awareness, and the sync-service socket
 ---
 

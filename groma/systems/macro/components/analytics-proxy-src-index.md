@@ -10,6 +10,7 @@ groma:
       file: services/analytics-proxy/src/index.ts
       symbol: app
   technology: Cloudflare Workers
+  group: Service helpers
 description: Forwards browser analytics without exposing server keys
 ---
 

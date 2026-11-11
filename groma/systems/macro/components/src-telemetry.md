@@ -10,6 +10,7 @@ groma:
       file: packages/observability/src/telemetry.ts
       symbol: Telemetry
   technology: TypeScript
+  group: Observability
 description: Shared package observability
 ---
 

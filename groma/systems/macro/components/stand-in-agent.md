@@ -8,6 +8,7 @@ groma:
   code:
     - scanner: python
       file: crates/coding_agent_worker/e2e/stand_in_agent.py
+  group: Unscanned Rust helpers
 description: Scanned source
 ---
 

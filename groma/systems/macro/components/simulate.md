@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: packages/machine/src/simulate.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package machine
 ---
 

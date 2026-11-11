@@ -29,6 +29,7 @@ groma:
     - scanner: typescript
       file: packages/graphics/src/loro/schema.ts
   technology: TypeScript
+  group: Shared packages
 description: Shared package graphics
 ---
 

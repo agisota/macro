@@ -10,6 +10,7 @@ groma:
       file: crates/code_execution/src/outbound/deno/bootstrap.mjs
     - scanner: javascript
       file: crates/code_execution/src/outbound/deno/timers.mjs
+  group: Unscanned Rust helpers
 description: Scanned source
 ---
 
