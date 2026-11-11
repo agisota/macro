@@ -46,9 +46,6 @@ groma:
       file: apps/web/src/features/universal-input/use-universal-input.ts
       symbol: useUniversalInputEnabled
     - scanner: typescript
-      file: apps/web/src/features/universal-input/queries/create-chat.ts
-      symbol: createInputChat
-    - scanner: typescript
       file: apps/web/src/features/universal-input/views/message-draft.tsx
       symbol: MessageDraft
     - scanner: typescript

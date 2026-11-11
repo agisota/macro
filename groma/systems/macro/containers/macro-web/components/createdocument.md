@@ -36,8 +36,6 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/ChannelMessageMutations.tsx
     - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/component/debug/attachments.ts
-    - scanner: typescript
       file: apps/web/src/lib/core/component/AI/signal/speed.ts
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/constant/index.ts
@@ -61,9 +59,6 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/debug/stream/StreamStatus.tsx
       symbol: StreamStatus
-    - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/util/deriveName.ts
-      symbol: deriveChatName
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/message/AssistantMessage.tsx
       symbol: AssistantMessage
@@ -108,9 +103,6 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/ReadContent.tsx
       symbol: readContentHandler
-    - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/hook/useEntityDropAttachment.ts
-      symbol: useEntityDropAttachment
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/ListTags.tsx
       symbol: listTagsHandler
@@ -165,9 +157,6 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/SendConfirmedEmail.tsx
       symbol: sendConfirmedEmailHandler
-    - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/component/tool/calendar/ChatCompose.tsx
-      symbol: CalendarChatCompose
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/util/stream/types.ts
     - scanner: typescript
@@ -254,9 +243,6 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/ListAgentUpdates.tsx
     - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/component/debug/Attachment.tsx
-      symbol: DebugAttachments
-    - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/calendar/event-form-adapter.ts
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/email/DraftComposer.tsx
@@ -295,9 +281,6 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/util/index.ts
     - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/component/debug/HttpStream.tsx
-      symbol: HttpStreamDebug
-    - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/SelfKnowledge.tsx
       symbol: selfKnowledgeHandler
     - scanner: typescript
@@ -312,15 +295,13 @@ groma:
       symbol: parseLegacyGeneratedImage
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/input/buildRequest.ts
+      symbol: ChatSendInput
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/util/stream/index.ts
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/input/modelCatalog.ts
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/CodeMode.tsx
-    - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/constant/openEntitiesPrompt.ts
-      symbol: getOpenEntitiesPrompt
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/debug/stream/StreamDebugger.tsx
     - scanner: typescript
@@ -337,8 +318,6 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/ReadThread.tsx
       symbol: readThreadHandler
-    - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/signal/pendingSend.ts
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/AgentSessionActions.tsx
     - scanner: typescript
@@ -388,9 +367,6 @@ groma:
       file: apps/web/src/lib/core/component/AI/component/tool/Spreadsheet.tsx
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/tool/SendEmail.tsx
-    - scanner: typescript
-      file: apps/web/src/lib/core/component/AI/constant/prompts.ts
-      symbol: useAdditionalInstructions
     - scanner: typescript
       file: apps/web/src/lib/core/component/AI/component/input/ModelCatalogPicker.tsx
     - scanner: typescript

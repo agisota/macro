@@ -97,8 +97,6 @@ groma:
       file: apps/web/src/features/home/use-home-recommendations.ts
       symbol: useHomeRecommendations
     - scanner: typescript
-      file: apps/web/src/features/home/home-chat-input.tsx
-    - scanner: typescript
       file: apps/web/src/features/home/queries/home-search.ts
       symbol: buildHomeSearchRequest
     - scanner: typescript

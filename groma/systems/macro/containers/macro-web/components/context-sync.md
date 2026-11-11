@@ -83,6 +83,6 @@ File apps/web/src/lib/queries/contacts/context-sync.ts. It belongs to Data queri
 
 | Source | Target | Description | Technology |
 | --- | --- | --- | --- |
-| [apps/web/src/lib/queries/contacts/alias-window.ts](../../../../../../apps/web/src/lib/queries/contacts/alias-window.ts) | [apps/web/src/features/crm/record-adapter.ts](../../../../../../apps/web/src/features/crm/record-adapter.ts) | Invokes supplied callbacks: hasMore, loadMore, search | typescript |
+| [apps/web/src/lib/queries/contacts/alias-window.ts](../../../../../../apps/web/src/lib/queries/contacts/alias-window.ts) | [apps/web/src/features/crm/record-adapter.ts](../../../../../../apps/web/src/features/crm/record-adapter.ts) | Invokes supplied callbacks: email, hasMore, loadMore, search | typescript |
 | [apps/web/src/lib/queries/contacts/directory-query.ts](../../../../../../apps/web/src/lib/queries/contacts/directory-query.ts) | [apps/web/src/lib/core/context/quickAccess/QuickAccessSource.tsx](../../../../../../apps/web/src/lib/core/context/quickAccess/QuickAccessSource.tsx) | Invokes supplied callback: policy | typescript |
 | [apps/web/src/lib/queries/contacts/recipient-window.ts](../../../../../../apps/web/src/lib/queries/contacts/recipient-window.ts) | [apps/web/src/features/email-view/queries/use-email-participant-suggestions.ts](../../../../../../apps/web/src/features/email-view/queries/use-email-participant-suggestions.ts) | Invokes supplied callbacks: includeSelf, search, selfId, senderDomain | typescript |

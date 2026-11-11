@@ -171,9 +171,6 @@ groma:
       symbol: PushService
     - scanner: kotlin
       file: apps/web/tauri/callkit_plugin/android/src/main/java/com/macro/call/CallPlugin.kt
-    - scanner: typescript
-      file: apps/web/src/observability/generated/bundle-reloads.ts
-      symbol: BundleReloadDiagnostics
     - scanner: swift
       file: apps/web/tauri/callkit_plugin/ios/Sources/RingStatePoller.swift
     - scanner: kotlin

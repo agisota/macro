@@ -8,9 +8,6 @@ groma:
   code:
     - scanner: typescript
       file: apps/web/src/features/chat/ChatWithAgentButton.tsx
-    - scanner: typescript
-      file: apps/web/src/features/chat/SoupChatInput.tsx
-      symbol: SoupChatInput
   technology: SolidJS
   group: Messages
 description: '"Chat with agent" handoff, not the channel transcript.'

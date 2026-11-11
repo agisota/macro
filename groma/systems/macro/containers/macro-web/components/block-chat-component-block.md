@@ -14,6 +14,7 @@ groma:
       symbol: pendingLocationParamsSignal
     - scanner: typescript
       file: apps/web/src/features/block-chat/blockClient.ts
+      symbol: BlockChatSpec
     - scanner: typescript
       file: apps/web/src/features/block-chat/signal/chatBlockData.ts
       symbol: chatBlockData
