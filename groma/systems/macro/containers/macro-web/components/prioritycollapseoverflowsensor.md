@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/priority-collapse/PriorityCollapseOverflowSensor.tsx
   technology: SolidJS
-description: PriorityCollapseOverflowSensor inside the signed-in client.
+  group: App shell
+description: Collapses only after every real collapse item has already given up its space
 ---
 
 Collapses only after every real collapse item has already given up its space.

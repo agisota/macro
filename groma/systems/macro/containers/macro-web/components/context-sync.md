@@ -73,10 +73,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/contacts/context-publisher.ts
   technology: SolidJS
-description: Context sync inside the signed-in client.
+  group: Data queries
+description: Context sync in Data queries.
 ---
 
-Lifecycle/scheduling only. Publisher owns batch admission and uncertain-write recovery.
+File apps/web/src/lib/queries/contacts/context-sync.ts. It belongs to Data queries, not a separate application.
 
 ## Derived relationships
 

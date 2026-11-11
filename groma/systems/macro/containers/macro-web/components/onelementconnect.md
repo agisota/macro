@@ -240,10 +240,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/util/scroll-intent.ts
   technology: SolidJS
-description: OnElementConnect inside the signed-in client.
+  group: Workspace core
+description: Calls `callback` once `element` is in the document, under the caller's Solid owner
 ---
 
-Calls `callback` once `element` is in the document, under the caller's Solid owner. A ref runs before its element is attached, so the solid-primitives version almost always calls back from a ResizeObserver with no owner: `onCleanup` there never runs, and computations created ther
+Calls `callback` once `element` is in the document, under the caller's Solid owner. A ref runs before its element is attached, so the solid-primitives version almost always calls back from a ResizeObserver with no owner: `onCleanup` there never runs, and computations created there (including reads of `cond && value` props) are never disposed.
 
 ## Derived relationships
 

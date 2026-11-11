@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/NotificationsModal.tsx
       symbol: NotificationsDrawer
   technology: SolidJS
-description: NotificationsModal inside the signed-in client.
+  group: Workspace core
+description: NotificationsModal in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/NotificationsModal.tsx.
+File apps/web/src/lib/core/component/NotificationsModal.tsx. It belongs to Workspace core, not a separate application.

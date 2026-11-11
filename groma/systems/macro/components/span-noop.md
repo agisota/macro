@@ -11,7 +11,7 @@ groma:
       symbol: NOOP_SPAN
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: A span that records nothing, for code that runs outside any trace
 ---
 
 A span that records nothing, for code that runs outside any trace.

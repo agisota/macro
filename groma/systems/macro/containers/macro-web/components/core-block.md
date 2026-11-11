@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/block.ts
   technology: SolidJS
+  group: Workspace core
 description: Represents a block name which is one of the predefined block types in {@link BlockRegistry}.
 ---
 

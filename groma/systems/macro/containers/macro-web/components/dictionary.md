@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/i18n/dictionary.ts
   technology: SolidJS
-description: Dictionary inside the signed-in client.
+  group: Interface language
+description: The full message catalog; English defines its shape
 ---
 
 The full message catalog; English defines its shape.

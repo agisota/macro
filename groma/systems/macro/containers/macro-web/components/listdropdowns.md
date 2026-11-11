@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/ListDropdowns.tsx
   technology: SolidJS
-description: ListDropdowns inside the signed-in client.
+  group: View shell
+description: Drawn in place of `label`, which still drives search
 ---
 
 Drawn in place of `label`, which still drives search.

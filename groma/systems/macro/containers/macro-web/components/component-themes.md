@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Themes.tsx
   technology: SolidJS
-description: Themes inside the signed-in client.
+  group: Workspace core
+description: 'SCUFFED THEMING: accent theme would work significantly better if we had multiple accent lightness values, instead of relying on calculations'
 ---
 
 SCUFFED THEMING: accent theme would work significantly better if we had multiple accent lightness values, instead of relying on calculations e.g. this would fail if accent color was too light it would be better if we also defined --accent-l-surface, --accent-l-contrast

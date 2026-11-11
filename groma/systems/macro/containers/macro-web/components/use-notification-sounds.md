@@ -32,6 +32,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/notification-sounds/core/categories.ts
   technology: SolidJS
+  group: Shell
 description: Notification sound playback and tab claim.
 ---
 

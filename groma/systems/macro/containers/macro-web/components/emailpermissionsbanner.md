@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/EmailPermissionsBanner.tsx
       symbol: EmailPermissionsBanner
   technology: SolidJS
-description: EmailPermissionsBanner inside the signed-in client.
+  group: Workspace core
+description: EmailPermissionsBanner in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/EmailPermissionsBanner.tsx.
+File apps/web/src/lib/core/component/EmailPermissionsBanner.tsx. It belongs to Workspace core, not a separate application.

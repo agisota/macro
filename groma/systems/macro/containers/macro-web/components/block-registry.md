@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/block-registry.ts
   technology: SolidJS
-description: Block registry inside the signed-in client.
+  group: Workspace core
+description: Block types accepted by the application
 ---
 
 Block types accepted by the application. Keep this module free of BlockLoader imports.

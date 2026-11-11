@@ -147,6 +147,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-connection/generated/schemas/toWebsocketMessageOneOfFourAllOf.ts
       symbol: ToWebsocketMessageOneOfFourAllOf
   technology: WebSocket
+  group: Service clients
 description: Browser client for presence and fanout
 ---
 

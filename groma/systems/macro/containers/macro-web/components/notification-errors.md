@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/tauri/notification-errors.ts
       symbol: MacOSNotificationUpdateRequiredError
   technology: SolidJS
-description: Notification errors inside the signed-in client.
+  group: Desktop shell
+description: Keep the existing class name for callers; both desktop senders use this error
 ---
 
 Keep the existing class name for callers; both desktop senders use this error.

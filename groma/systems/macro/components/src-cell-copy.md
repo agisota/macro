@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/cell-copy.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Cell copy in Spreadsheet engine.
 ---
 
-Library code in packages/spreadsheet. Not a separately deployed service.
+File packages/spreadsheet/src/cell-copy.ts. It belongs to Spreadsheet engine, not a separate application.

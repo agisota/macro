@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/workbook-structure.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: 'Trim partially deleted ranges before IronCalc turns a deleted endpoint into #REF'
 ---
 
 Trim partially deleted ranges before IronCalc turns a deleted endpoint into #REF.

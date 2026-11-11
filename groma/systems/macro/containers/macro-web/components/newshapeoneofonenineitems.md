@@ -10122,6 +10122,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-storage/generated/schemas/externalChatRichContentOneOfOnethreeAllOf.ts
       symbol: ExternalChatRichContentOneOfOnethreeAllOf
   technology: TypeScript
+  group: Service clients
 description: Generated and handwritten client for the workspace graph
 ---
 

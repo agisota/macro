@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/i18n/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Interface language
+description: Index in Interface language.
 ---
 
-Source under apps/web/src/lib/i18n/index.ts.
+File apps/web/src/lib/i18n/index.ts. It belongs to Interface language, not a separate application.

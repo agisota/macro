@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-sort.tsx
       symbol: AnimatedSortIcon
   technology: SolidJS
-description: Wide sort inside the signed-in client.
+  group: Icons
+description: Wide sort in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-sort.tsx.
+File apps/web/src/components/icon/wide-sort.tsx. It belongs to Icons, not a separate application.

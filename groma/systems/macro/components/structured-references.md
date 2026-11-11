@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/structured-references.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: 'A table as formulas see it: where its cells are and its column names'
 ---
 
 A table as formulas see it: where its cells are and its column names.

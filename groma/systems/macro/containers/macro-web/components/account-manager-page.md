@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/features/account-manager/account-manager-page.tsx
       symbol: AccountManagerPage
   technology: SolidJS
+  group: Settings
 description: Account-manager grant review page.
 ---
 

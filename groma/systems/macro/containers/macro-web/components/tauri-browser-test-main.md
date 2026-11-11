@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/browser-test/main.ts
   technology: SolidJS
-description: Main inside the signed-in client.
+  group: Development tooling
+description: Main in Development tooling.
 ---
 
-Source under apps/web/src/lib/tauri/browser-test/main.ts.
+File apps/web/src/lib/tauri/browser-test/main.ts. It belongs to Development tooling, not a separate application.

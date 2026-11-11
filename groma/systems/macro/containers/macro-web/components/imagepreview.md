@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/ImagePreview.tsx
       symbol: ImagePreview
   technology: SolidJS
-description: ImagePreview inside the signed-in client.
+  group: Workspace core
+description: ImagePreview in Workspace core.
 ---
 
-@deprecated Prefer the composable media primitives in `@channel/Media`. Keep this only for legacy callers until they are migrated.
+File apps/web/src/lib/core/component/ImagePreview.tsx. It belongs to Workspace core, not a separate application.

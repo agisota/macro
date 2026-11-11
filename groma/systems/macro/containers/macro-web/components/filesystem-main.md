@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/main.ts
   technology: SolidJS
-description: Main inside the signed-in client.
+  group: Local files
+description: Main in Local files.
 ---
 
-Source under apps/web/src/lib/filesystem/main.ts.
+File apps/web/src/lib/filesystem/main.ts. It belongs to Local files, not a separate application.

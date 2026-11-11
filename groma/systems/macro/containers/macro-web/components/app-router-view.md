@@ -51,6 +51,7 @@ groma:
       file: apps/web/src/observability/boot.ts
       symbol: startBootTrace
   technology: SolidJS
+  group: App shell
 description: 'Before any await: the desktop link''s ad parameters have to be stored before signup navigates away to the identity provider.'
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/diff-view/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Diffs
+description: Index in Diffs.
 ---
 
-Source under apps/web/src/components/diff-view/index.ts.
+File apps/web/src/components/diff-view/index.ts. It belongs to Diffs, not a separate application.

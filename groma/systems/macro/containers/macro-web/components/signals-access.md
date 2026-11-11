@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/access.ts
   technology: SolidJS
-description: Access inside the signed-in client.
+  group: Workspace state
+description: A fixed value or a reactive accessor that returns it
 ---
 
 A fixed value or a reactive accessor that returns it.

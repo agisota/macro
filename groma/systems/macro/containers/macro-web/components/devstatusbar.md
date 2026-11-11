@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/features/devtools/DevStatusBar.tsx
       symbol: DevStatusBar
   technology: SolidJS
+  group: Development tooling
 description: Dev status bar and hotkey debugger.
 ---
 

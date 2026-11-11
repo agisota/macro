@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/optimistic-resolvers.ts
       symbol: soupOptimisticResolvers
   technology: SolidJS
-description: Optimistic resolvers inside the signed-in client.
+  group: Data queries
+description: Local mutation semantics
 ---
 
 Local mutation semantics. Only predicted fields enter the optimistic layer.

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-noise.tsx
       symbol: AnimatedNoiseIcon
   technology: SolidJS
-description: Wide noise inside the signed-in client.
+  group: Icons
+description: Wide noise in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-noise.tsx.
+File apps/web/src/components/icon/wide-noise.tsx. It belongs to Icons, not a separate application.

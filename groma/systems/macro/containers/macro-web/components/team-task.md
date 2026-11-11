@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/storage/team-task.ts
       symbol: useTeamTaskQuery
   technology: SolidJS
-description: Team task inside the signed-in client.
+  group: Data queries
+description: Cached callbacks outlive the caller; only the resolved slug enters them
 ---
 
 Cached callbacks outlive the caller; only the resolved slug enters them.

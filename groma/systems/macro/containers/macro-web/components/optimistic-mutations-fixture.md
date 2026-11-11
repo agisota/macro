@@ -11,7 +11,8 @@ groma:
     - scanner: typescript
       file: apps/web/tests/functional/optimistic-mutations/data.ts
   technology: SolidJS
-description: Fixture inside the signed-in client.
+  group: Development tooling
+description: Fixture in Development tooling.
 ---
 
-Another document for the renameEntities field: it reaches the field resolver through its own variables, response alias, and narrower selection.
+File apps/web/tests/functional/optimistic-mutations/fixture.tsx. It belongs to Development tooling, not a separate application.

@@ -23,10 +23,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/people/host.ts
   technology: SolidJS
-description: Protocol inside the signed-in client.
+  group: GraphQL cache
+description: Protocol in GraphQL cache.
 ---
 
-Bound label count/bytes before crossing the host boundary.
+File apps/web/src/lib/graphql-cache/people/protocol.ts. It belongs to GraphQL cache, not a separate application.
 
 ## Derived relationships
 

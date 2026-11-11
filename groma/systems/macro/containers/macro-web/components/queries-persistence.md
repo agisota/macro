@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/persistence.ts
   technology: SolidJS
-description: Persistence inside the signed-in client.
+  group: Data queries
+description: Builds a versioned persistence key for IDB database naming
 ---
 
 Builds a versioned persistence key for IDB database naming.

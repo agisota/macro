@@ -107,6 +107,7 @@ groma:
       file: apps/web/src/features/email-thread/core/draft-preview.ts
       symbol: draftPreviewText
   technology: SolidJS
+  group: Email
 description: Thread completion, read state, and invitation rendering.
 ---
 

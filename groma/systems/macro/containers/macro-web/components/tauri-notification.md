@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/tauri/notification.ts
       symbol: createTauriNotificationInterface
   technology: SolidJS
-description: Notification inside the signed-in client.
+  group: Desktop shell
+description: The notification plugin always reports permission as granted on desktop
 ---
 
 The notification plugin always reports permission as granted on desktop. Read the actual OS authorization on macOS instead.

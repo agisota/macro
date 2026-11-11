@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/cell-mentions.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: The existing Macro mention encoding; ordinary cell text is never Markdown
 ---
 
 The existing Macro mention encoding; ordinary cell text is never Markdown.

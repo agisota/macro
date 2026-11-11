@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/email-compose/core/mailto.ts
   technology: SolidJS
+  group: Email
 description: Route-backed new email composer.
 ---
 

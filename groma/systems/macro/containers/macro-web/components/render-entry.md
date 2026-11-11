@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-canvas/views/render-entry.tsx
   technology: SolidJS
+  group: Canvas
 description: Canvas Next scene editor and legacy JSON migration.
 ---
 

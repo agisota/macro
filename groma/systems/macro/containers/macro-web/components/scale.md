@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/command/browser-test/scale.ts
   technology: SolidJS
+  group: Development tooling
 description: Command-K menu and create launcher.
 ---
 

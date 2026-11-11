@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/UnderlineTabs.tsx
   technology: SolidJS
-description: UnderlineTabs inside the signed-in client.
+  group: Workspace core
+description: The mobile share sheet's tab bar; everything else uses `Tabs` from `@ui`
 ---
 
 The mobile share sheet's tab bar; everything else uses `Tabs` from `@ui`.

@@ -44,6 +44,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-static-files/generated/schemas/putFileResponse.ts
       symbol: PutFileResponse
   technology: TypeScript
+  group: Service clients
 description: Client for the service static files host
 ---
 

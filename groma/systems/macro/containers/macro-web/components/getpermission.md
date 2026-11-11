@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/filesystem/getPermission.ts
       symbol: verifyHandlePermission
   technology: SolidJS
-description: GetPermission inside the signed-in client.
+  group: Local files
+description: GetPermission in Local files.
 ---
 
-Source under apps/web/src/lib/filesystem/getPermission.ts.
+File apps/web/src/lib/filesystem/getPermission.ts. It belongs to Local files, not a separate application.

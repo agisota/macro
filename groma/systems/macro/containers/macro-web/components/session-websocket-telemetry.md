@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/lib/service-clients/session-websocket-telemetry.ts
       symbol: createSessionWebsocketTelemetry
   technology: TypeScript
+  group: Service clients
 description: Client for the session websocket telemetry.ts host
 ---
 

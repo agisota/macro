@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/ResponsiveBlockToolbar.tsx
   technology: SolidJS
-description: ResponsiveBlockToolbar inside the signed-in client.
+  group: App shell
+description: ResponsiveBlockToolbar in App shell.
 ---
 
-Menu section this tool renders in when shown in the title file menu.
+File apps/web/src/components/app/ResponsiveBlockToolbar.tsx. It belongs to App shell, not a separate application.

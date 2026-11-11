@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/fileFilter.ts
   technology: SolidJS
-description: FileFilter inside the signed-in client.
+  group: Local files
+description: FileFilter in Local files.
 ---
 
-com
+File apps/web/src/lib/filesystem/fileFilter.ts. It belongs to Local files, not a separate application.

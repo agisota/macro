@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/calendar-points.ts
   technology: SolidJS
-description: Calendar points inside the signed-in client.
+  group: Development tooling
+description: Real production worker/WASM/OPFS with synthetic calendar records only
 ---
 
 Real production worker/WASM/OPFS with synthetic calendar records only.

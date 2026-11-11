@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/ai-editing-worker/client.ts
   technology: HTTP
+  group: Service clients
 description: Browser client for the editing worker
 ---
 

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/gantt-header.tsx
       symbol: GanttHeader
   technology: SolidJS
-description: Gantt header inside the signed-in client.
+  group: Gantt
+description: Gantt header in Gantt.
 ---
 
-The drawer starts below the header; reserve only its toggle in the timeline band.
+File apps/web/src/components/gantt/gantt-header.tsx. It belongs to Gantt, not a separate application.

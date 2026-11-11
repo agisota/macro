@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/DocumentDownloadButton.tsx
       symbol: DocumentDownloadButton
   technology: SolidJS
-description: DocumentDownloadButton inside the signed-in client.
+  group: Workspace core
+description: Downloads a linked file without opening its viewer or loading it on hover
 ---
 
 Downloads a linked file without opening its viewer or loading it on hover.

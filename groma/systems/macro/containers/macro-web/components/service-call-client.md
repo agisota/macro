@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/service-call/client.ts
   technology: HTTP
+  group: Service clients
 description: Fetches a call token from document storage
 ---
 

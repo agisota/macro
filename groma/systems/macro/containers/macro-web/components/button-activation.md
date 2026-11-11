@@ -40,7 +40,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/utils/file-tree.ts
   technology: SolidJS
-description: Button activation inside the signed-in client.
+  group: UI primitives
+description: Kobalte supplies disabled semantics; non-native actions still need activation guards
 ---
 
 Kobalte supplies disabled semantics; non-native actions still need activation guards.

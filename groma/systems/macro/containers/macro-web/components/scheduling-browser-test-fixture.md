@@ -12,7 +12,7 @@ groma:
       file: apps/web/src/features/scheduling/browser-test/calendars.tsx
       symbol: FixtureCalendars
   technology: SolidJS
-  group: Calendar
+  group: Development tooling
 description: Scheduling links and public booking host data.
 ---
 

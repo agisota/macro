@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/scripts/generate-graphql-cache-entity-resolver-schema.ts
   technology: SolidJS
-description: Generate graphql cache entity resolver schema inside the signed-in client.
+  group: Development tooling
+description: Input recursion is bounded so an SDL cycle or unexpectedly deep input shape fails generation instead of silently producing incomplete argume
 ---
 
 Input recursion is bounded so an SDL cycle or unexpectedly deep input shape fails generation instead of silently producing incomplete argument paths.

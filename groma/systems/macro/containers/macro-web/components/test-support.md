@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/people/test-support.ts
   technology: SolidJS
-description: Test support inside the signed-in client.
+  group: GraphQL cache
+description: Explicit older-host capability for fixtures that do not exercise backfill
 ---
 
 Explicit older-host capability for fixtures that do not exercise backfill.

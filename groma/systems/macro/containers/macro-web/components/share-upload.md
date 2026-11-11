@@ -13,6 +13,7 @@ groma:
       file: apps/web/src/lib/queries/channel/unread-presence.ts
       symbol: createChannelUnreadQuery
   technology: SolidJS
+  group: Data queries
 description: Bounded unread evidence for the sidebar, independent of the full feed.
 ---
 

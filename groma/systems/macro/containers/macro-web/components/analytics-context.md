@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/analytics-context.tsx
   technology: SolidJS
-description: Analytics context inside the signed-in client.
+  group: Product analytics
+description: Analytics context in Product analytics.
 ---
 
-Source under apps/web/src/lib/analytics/analytics-context.tsx.
+File apps/web/src/lib/analytics/analytics-context.tsx. It belongs to Product analytics, not a separate application.

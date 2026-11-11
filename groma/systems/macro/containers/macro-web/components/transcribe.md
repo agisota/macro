@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/dictation/transcribe.ts
   technology: SolidJS
-description: Transcribe inside the signed-in client.
+  group: Data queries
+description: Wait out the server's Retry-After, but never less than exponential backoff
 ---
 
 Wait out the server's Retry-After, but never less than exponential backoff.

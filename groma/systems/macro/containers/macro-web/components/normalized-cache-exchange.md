@@ -51,7 +51,8 @@ groma:
       file: apps/web/src/lib/graphql-cache/exchange/deferred-query-rereads.ts
       symbol: createDeferredQueryRereads
   technology: SolidJS
-description: Normalized cache exchange inside the signed-in client.
+  group: GraphQL cache
+description: urql exchange backed by the normalized wasm cache (via a `CacheHost`)
 ---
 
-urql exchange backed by the normalized wasm cache (via a `CacheHost`).  Differences from `@urql/exchange-graphcache`: - cache reads are **async** (the cache is disk-backed, possibly in another worker/process). Cache-first misses enter the network queue after reading; cache-and-ne
+urql exchange backed by the normalized wasm cache (via a `CacheHost`).  Differences from `@urql/exchange-graphcache`: - cache reads are **async** (the cache is disk-backed, possibly in another worker/process). Cache-first misses enter the network queue after reading; cache-and-network queries start the network without waiting for storage; - invalidation is push-based: the host emits "these operation keys must re-exec

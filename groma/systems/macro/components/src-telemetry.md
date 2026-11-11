@@ -11,7 +11,7 @@ groma:
       symbol: Telemetry
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Initialize providers once, with an optional buffer while enablement resolves
 ---
 
 Initialize providers once, with an optional buffer while enablement resolves.

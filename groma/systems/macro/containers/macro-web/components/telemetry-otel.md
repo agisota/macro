@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/graphql-cache/telemetry-otel.ts
       symbol: createOtelCacheTelemetrySink
   technology: SolidJS
-description: Telemetry otel inside the signed-in client.
+  group: GraphQL cache
+description: Privacy-safe OpenTelemetry adapter
 ---
 
 Privacy-safe OpenTelemetry adapter. It uses the anonymous span API so the browser provider cannot enrich cache metrics with `usr.id`.

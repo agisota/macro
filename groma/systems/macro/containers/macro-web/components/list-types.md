@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/types.ts
   technology: SolidJS
-description: Types inside the signed-in client.
+  group: Lists
+description: Stable identity used by the headless list primitives
 ---
 
 Stable identity used by the headless list primitives.

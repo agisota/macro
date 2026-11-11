@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/graphql-cache/rollout-observability.ts
       symbol: recordBrowserTursoCacheNavigation
   technology: SolidJS
-description: Rollout observability inside the signed-in client.
+  group: GraphQL cache
+description: Records the navigation control/treatment point without starting cache I/O
 ---
 
 Records the navigation control/treatment point without starting cache I/O.

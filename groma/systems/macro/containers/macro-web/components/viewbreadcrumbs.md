@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/ViewBreadcrumbs.tsx
   technology: SolidJS
+  group: View shell
 description: Owns mounted breadcrumb item registrations.
 ---
 

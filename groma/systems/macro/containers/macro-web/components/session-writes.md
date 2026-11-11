@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/session-writes.ts
   technology: SolidJS
-description: Session writes inside the signed-in client.
+  group: GraphQL cache
+description: REST responses can arrive after logout or native account replacement
 ---
 
 REST responses can arrive after logout or native account replacement. Track their durable cache mutations so a wipe cannot overtake an admitted write.

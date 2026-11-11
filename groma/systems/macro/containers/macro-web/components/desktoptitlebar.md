@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/components/app/DesktopTitleBar.tsx
       symbol: DesktopTitleBar
   technology: SolidJS
+  group: App shell
 description: Room to split the active split toward `side`; with none active, room at the end.
 ---
 

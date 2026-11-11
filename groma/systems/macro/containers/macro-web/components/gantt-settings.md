@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/gantt-settings.tsx
       symbol: GanttSettings
   technology: SolidJS
-description: Gantt settings inside the signed-in client.
+  group: Gantt
+description: Period changes zoom; grid settings only change calendar decoration, and hours zoom draws its own
 ---
 
 Period changes zoom; grid settings only change calendar decoration, and hours zoom draws its own.

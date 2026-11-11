@@ -11,6 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/split-panel/SplitPanel.tsx
   technology: SolidJS
+  group: App shell
 description: Presentation-only frame for one split.  Children stay in the consumer's DOM order. The root provides only the vertical panel boundary; consumers decide which ch
 ---
 

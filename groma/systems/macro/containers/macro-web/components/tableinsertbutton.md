@@ -770,7 +770,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/menu/MentionsMenu/index.ts
   technology: SolidJS
-description: TableInsertButton inside the signed-in client.
+  group: Workspace core
+description: How close (px) the pointer must be to a row/column border for the button to show
 ---
 
 How close (px) the pointer must be to a row/column border for the button to show.

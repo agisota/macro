@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/drag-drop/create-pointer-auto-scroll.ts
       symbol: createPointerAutoScroll
   technology: SolidJS
-description: Create pointer auto scroll inside the signed-in client.
+  group: Drag and drop
+description: Scroll a drag surface at frame rate, even while its pointer is stationary
 ---
 
 Scroll a drag surface at frame rate, even while its pointer is stationary.

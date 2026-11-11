@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-signal.tsx
       symbol: AnimatedSignalIcon
   technology: SolidJS
-description: Wide signal inside the signed-in client.
+  group: Icons
+description: Wide signal in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-signal.tsx.
+File apps/web/src/components/icon/wide-signal.tsx. It belongs to Icons, not a separate application.

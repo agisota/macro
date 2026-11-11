@@ -21,6 +21,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/calls-view/core/call-filters.ts
   technology: SolidJS
+  group: Calls
 description: Call detail content and hosted Calls navigation.
 ---
 

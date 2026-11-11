@@ -162,6 +162,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/channels-view/types.ts
   technology: SolidJS
+  group: Messages
 description: Channel list pane and channel detail route.
 ---
 

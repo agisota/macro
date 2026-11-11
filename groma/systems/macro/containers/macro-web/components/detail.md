@@ -60,7 +60,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/channel/activity.ts
   technology: SolidJS
-description: Detail inside the signed-in client.
+  group: Data queries
+description: Detail in Data queries.
 ---
 
-A conversation and its complete unread edge. Activation readers revalidate on every open; display-only readers can reuse the cache. Its variables match the open channel's unread navigation, so both share one request.
+File apps/web/src/lib/queries/channel/detail.ts. It belongs to Data queries, not a separate application.

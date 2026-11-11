@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/task-status.tsx
   technology: SolidJS
-description: Task status inside the signed-in client.
+  group: Development tooling
+description: Task status in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/task-status.tsx.
+File apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/task-status.tsx. It belongs to Development tooling, not a separate application.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/trace-parent-exchange.ts
   technology: SolidJS
-description: Trace parent exchange inside the signed-in client.
+  group: GraphQL client
+description: Operation context key for the trace a query's request should join
 ---
 
 Operation context key for the trace a query's request should join.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/create-selection-state.ts
   technology: SolidJS
-description: Create selection state inside the signed-in client.
+  group: Lists
+description: ID-only selection state
 ---
 
 ID-only selection state. Item payloads are always derived from current data.

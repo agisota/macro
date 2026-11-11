@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/components/entity-detail/DocumentTitleHoverCard.tsx
       symbol: DocumentTitleHoverCard
   technology: SolidJS
+  group: Entity detail
 description: Shared document header metadata, loaded only while the title card is open.
 ---
 

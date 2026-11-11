@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-group-drag.tsx
   technology: SolidJS
+  group: Gantt
 description: Continue a pointer gesture another control began as a move between groups.
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/userCardActions.tsx
   technology: SolidJS
-description: UserCardActions inside the signed-in client.
+  group: Workspace core
+description: UserCardActions in Workspace core.
 ---
 
-The person a user card describes.
+File apps/web/src/lib/core/component/userCardActions.tsx. It belongs to Workspace core, not a separate application.

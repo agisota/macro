@@ -31,7 +31,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/split-layout/split-below-intent.ts
   technology: SolidJS
-description: MobileSplitContainer inside the signed-in client.
+  group: App shell
+description: MobileSplitContainer in App shell.
 ---
 
-Two fixed slots hold the front pane and the one behind it. A pane keeps its slot while it changes role, so going forward or back never moves or remounts it.
+File apps/web/src/components/app/split-layout/mobile/MobileSplitContainer.tsx. It belongs to App shell, not a separate application.

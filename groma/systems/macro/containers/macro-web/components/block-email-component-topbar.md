@@ -16,6 +16,7 @@ groma:
       file: apps/web/src/features/block-email/component/Block.tsx
       symbol: BlockEmail
   technology: SolidJS
+  group: Email
 description: '`email` block; thread fetch stays in the component.'
 ---
 

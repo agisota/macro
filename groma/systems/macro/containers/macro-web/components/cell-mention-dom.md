@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/cell-text-editor/cell-mention-dom.ts
   technology: SolidJS
-description: Cell mention dom inside the signed-in client.
+  group: App shell
+description: Match the grid, where date chips relabel themselves as days pass
 ---
 
 Match the grid, where date chips relabel themselves as days pass.

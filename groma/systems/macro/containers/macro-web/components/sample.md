@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/settings/browser-test/signatures/fixture.tsx
   technology: SolidJS
+  group: Development tooling
 description: Settings shell, tabs, team, and integrations page.
 ---
 

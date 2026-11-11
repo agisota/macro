@@ -13,6 +13,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/soup/graphql/browser-test/runtime.ts
   technology: SolidJS
+  group: Development tooling
 description: 'Only application composition is replaced: the query source, exchange, fragments, worker and persisted cache all run their production implementations.'
 ---
 

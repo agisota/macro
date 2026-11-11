@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/machine/src/index.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package machine
+  group: State machine
+description: Index in State machine.
 ---
 
-Library code in packages/machine. Not a separately deployed service.
+File packages/machine/src/index.ts. It belongs to State machine, not a separate application.

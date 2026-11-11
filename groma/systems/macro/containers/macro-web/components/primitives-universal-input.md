@@ -100,6 +100,7 @@ groma:
       file: apps/web/src/features/universal-input/views/task-draft.tsx
       symbol: TaskDraft
   technology: SolidJS
+  group: Shell
 description: Cross-entity composer input.
 ---
 

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/primitives/infinite-scroll-sentinel.ts
       symbol: useInfiniteScrollSentinel
   technology: SolidJS
-description: Infinite scroll sentinel inside the signed-in client.
+  group: Workspace core
+description: Ref to the sentinel element placed at the bottom of the list
 ---
 
 Ref to the sentinel element placed at the bottom of the list.

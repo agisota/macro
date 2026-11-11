@@ -61,6 +61,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/calendar/sync.ts
   technology: SolidJS
+  group: Data queries
 description: A viewer-scoped roster read avoids the legacy current-team singleton cache.
 ---
 

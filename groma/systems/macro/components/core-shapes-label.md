@@ -107,8 +107,8 @@ groma:
       file: packages/graphics/src/core/backend.ts
       symbol: GraphicsBackend
   technology: TypeScript
-  group: Shared packages
-description: Shared package graphics
+  group: Graphics
+description: A shape-owned annotation, not an independently selectable scene node
 ---
 
 A shape-owned annotation, not an independently selectable scene node.

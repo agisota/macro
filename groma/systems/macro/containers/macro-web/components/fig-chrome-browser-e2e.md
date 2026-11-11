@@ -1870,6 +1870,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/calendar-view/browser-test/event-details.browser.e2e.ts
   technology: SolidJS
+  group: Development tooling
 description: '`.fig` viewer block.'
 ---
 

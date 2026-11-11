@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/pr-mention.tsx
   technology: SolidJS
+  group: Development tooling
 description: Sent from a Macro composer, which writes the resolved label to the node.
 ---
 

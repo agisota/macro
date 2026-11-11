@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/kanban/kanban-board.tsx
       symbol: KanbanBoard
   technology: SolidJS
-description: Kanban board inside the signed-in client.
+  group: Kanban
+description: Kanban board in Kanban.
 ---
 
-Source under apps/web/src/components/kanban/kanban-board.tsx.
+File apps/web/src/components/kanban/kanban-board.tsx. It belongs to Kanban, not a separate application.

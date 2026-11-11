@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/components/drag-drop/create-drag-auto-scroll.ts
       symbol: createDragAutoScroll
   technology: SolidJS
+  group: Drag and drop
 description: The marker opts a board into nested scrolling without changing other surfaces.
 ---
 

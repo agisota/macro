@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/HarnessIcon.tsx
       symbol: HarnessIcon
   technology: SolidJS
-description: HarnessIcon inside the signed-in client.
+  group: Workspace core
+description: Provider mark for a harness, with a generic connection icon for unknown slugs
 ---
 
 Provider mark for a harness, with a generic connection icon for unknown slugs.

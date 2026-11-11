@@ -12,7 +12,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/slack-import/index.ts
   technology: SolidJS
-description: Keys inside the signed-in client.
+  group: Data queries
+description: Keys in Data queries.
 ---
 
-Source under apps/web/src/lib/queries/slack-import/keys.ts.
+File apps/web/src/lib/queries/slack-import/keys.ts. It belongs to Data queries, not a separate application.

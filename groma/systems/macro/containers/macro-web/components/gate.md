@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/gate.ts
       symbol: queryReadyGate
   technology: SolidJS
-description: Gate inside the signed-in client.
+  group: Data queries
+description: A query surface built on a TanStack query, such as a feature contract
 ---
 
 A query surface built on a TanStack query, such as a feature contract.

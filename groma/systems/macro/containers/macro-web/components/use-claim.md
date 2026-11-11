@@ -34,7 +34,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/solid/router.tsx
   technology: SolidJS
-description: Use claim inside the signed-in client.
+  group: Split layout
+description: Registers a resource this view shows outside a pane route, such as an inline preview, so opening it elsewhere activates this pane instead
 ---
 
 Registers a resource this view shows outside a pane route, such as an inline preview, so opening it elsewhere activates this pane instead.

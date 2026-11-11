@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-fileCode.tsx
       symbol: AnimatedFileCodeIcon
   technology: SolidJS
-description: Wide fileCode inside the signed-in client.
+  group: Icons
+description: Wide fileCode in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-fileCode.tsx.
+File apps/web/src/components/icon/wide-fileCode.tsx. It belongs to Icons, not a separate application.

@@ -542,6 +542,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-calendar/generated/schemas/updateCalendarEventRequestTime.ts
       symbol: UpdateCalendarEventRequestTime
   technology: TypeScript
+  group: Service clients
 description: Client for the service calendar host
 ---
 

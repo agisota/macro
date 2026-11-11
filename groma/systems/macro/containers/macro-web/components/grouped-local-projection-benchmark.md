@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/soup/graphql/grouped-local-projection.benchmark.ts
       symbol: runGroupedSoupBenchmark
   technology: SolidJS
-description: Grouped local projection.benchmark inside the signed-in client.
+  group: Data queries
+description: Grouped local projection.benchmark in Data queries.
 ---
 
-Source under apps/web/src/lib/queries/soup/graphql/grouped-local-projection.benchmark.ts.
+File apps/web/src/lib/queries/soup/graphql/grouped-local-projection.benchmark.ts. It belongs to Data queries, not a separate application.

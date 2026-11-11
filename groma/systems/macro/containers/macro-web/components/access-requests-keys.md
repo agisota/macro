@@ -12,6 +12,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/access-requests/requests.ts
   technology: SolidJS
+  group: Data queries
 description: 'When an observer reads the state again: `mount` on every mount, since a cached state can predate an access change; `caller` only when the caller asks, for one t'
 ---
 

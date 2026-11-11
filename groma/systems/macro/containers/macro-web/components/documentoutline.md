@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/DocumentOutline.tsx
   technology: SolidJS
-description: DocumentOutline inside the signed-in client.
+  group: App shell
+description: The compact outline rail shared by documents and form builders
 ---
 
 The compact outline rail shared by documents and form builders.

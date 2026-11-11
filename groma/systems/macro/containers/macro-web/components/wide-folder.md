@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-folder.tsx
       symbol: AnimatedFolderIcon
   technology: SolidJS
-description: Wide folder inside the signed-in client.
+  group: Icons
+description: Wide folder in Icons.
 ---
 
-${maskId} .mask-shape {
+File apps/web/src/components/icon/wide-folder.tsx. It belongs to Icons, not a separate application.

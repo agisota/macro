@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/team-invitations/invite-modal.tsx
   technology: SolidJS
+  group: Shell
 description: '`/team-invite` acceptance page.'
 ---
 

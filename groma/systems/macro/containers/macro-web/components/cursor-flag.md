@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/cursor/flag.ts
       symbol: useCursorAgentsAccess
   technology: SolidJS
-description: Flag inside the signed-in client.
+  group: Workspace core
+description: Whether the built-in Cursor mention is included in this user's rollout
 ---
 
 Whether the built-in Cursor mention is included in this user's rollout.

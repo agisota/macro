@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/app-sidebar/sidebar-search-menu.tsx
       symbol: SidebarSearchMenu
   technology: SolidJS
-description: Sidebar search menu inside the signed-in client.
+  group: App shell
+description: Shared discovery menu for the expanded sidebar and compact rail
 ---
 
 Shared discovery menu for the expanded sidebar and compact rail.

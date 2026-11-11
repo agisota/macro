@@ -14,7 +14,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/call/meetings.ts
   technology: SolidJS
-description: Call inside the signed-in client.
+  group: Data queries
+description: Call in Data queries.
 ---
 
-Fresh lookups keep recovery from re-creating a call that already ended.
+File apps/web/src/lib/queries/call/call.ts. It belongs to Data queries, not a separate application.

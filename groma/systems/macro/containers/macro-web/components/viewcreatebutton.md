@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/view-shell/ViewCreateButton.tsx
       symbol: ViewCreateButton
   technology: SolidJS
-description: ViewCreateButton inside the signed-in client.
+  group: View shell
+description: Shared desktop New action, including polymorphic dropdown triggers
 ---
 
 Shared desktop New action, including polymorphic dropdown triggers.

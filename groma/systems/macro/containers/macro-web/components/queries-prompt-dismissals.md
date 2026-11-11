@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/prompt-dismissals.ts
   technology: SolidJS
-description: Prompt dismissals inside the signed-in client.
+  group: Data queries
+description: Sidebar prompts the user dismissed, stored server-side so a dismissal holds on every device
 ---
 
 Sidebar prompts the user dismissed, stored server-side so a dismissal holds on every device. Dismissing updates the cache optimistically; a failed write refetches the server's answer.

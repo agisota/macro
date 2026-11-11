@@ -19,7 +19,8 @@ groma:
       file: apps/web/src/components/app/sidebar-next/use-nav-item-gates.ts
       symbol: useNavItemGates
   technology: SolidJS
-description: Nav items inside the signed-in client.
+  group: App shell
+description: Nav items in App shell.
 ---
 
-A SidebarRail nav button's definition: a `SidebarItem` plus the filled icon the button switches to while its view is active. Both are required here, unlike `SidebarItem['icon']` — a rail button is nothing but its glyph.
+File apps/web/src/components/app/sidebar-next/nav-items.ts. It belongs to App shell, not a separate application.

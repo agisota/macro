@@ -15,7 +15,8 @@ groma:
       file: apps/web/src/components/app/tab-layout/open-in-tab-middleware.ts
       symbol: openInNewTabMiddleware
   technology: SolidJS
-description: DesktopTabStrip inside the signed-in client.
+  group: App shell
+description: Tabs scroll once they shrink to their minimum width; keep the active one visible
 ---
 
 Tabs scroll once they shrink to their minimum width; keep the active one visible.

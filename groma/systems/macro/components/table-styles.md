@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/table-styles.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: The Office theme's accent colors, which Excel's table styles use
 ---
 
 The Office theme's accent colors, which Excel's table styles use.

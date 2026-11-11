@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/harness.ts
   technology: SolidJS
-description: Harness inside the signed-in client.
+  group: Development tooling
+description: Harness in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/harness.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/harness.ts. It belongs to Development tooling, not a separate application.

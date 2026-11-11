@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/reminders/email-followup.ts
   technology: SolidJS
+  group: Data queries
 description: Scheduling and delivery both change reminder membership and inbox position.
 ---
 

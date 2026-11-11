@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/use-list-detail-navigation.ts
   technology: SolidJS
+  group: Lists
 description: Where the open entity sat when it was opened. Next and previous step from there even after it moves (a reply draft lifts a thread to the top of Signal) or leave
 ---
 

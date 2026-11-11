@@ -321,6 +321,7 @@ groma:
       file: apps/web/src/features/settings/Tags.tsx
       symbol: Tags
   technology: SolidJS
+  group: Settings
 description: Settings shell, tabs, team, and integrations page.
 ---
 

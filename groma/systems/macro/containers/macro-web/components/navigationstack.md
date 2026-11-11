@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/navigation-stack/NavigationStack.tsx
   technology: SolidJS
-description: NavigationStack inside the signed-in client.
+  group: App shell
+description: Whether `navigate` would open inline; callers with a split path ask first
 ---
 
 Whether `navigate` would open inline; callers with a split path ask first.

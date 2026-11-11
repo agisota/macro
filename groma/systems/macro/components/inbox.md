@@ -25,7 +25,7 @@ groma:
       file: crates/routine_program/src/catalog/updates.ts
       symbol: main
   group: Unscanned Rust helpers
-description: Scanned source
+description: The labels the owner made in the inbox this email arrived in
 ---
 
 The labels the owner made in the inbox this email arrived in.

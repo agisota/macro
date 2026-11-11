@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/sidebar-promotion/browser-test/promotions.tsx
   technology: SolidJS
+  group: Development tooling
 description: Shared promo card for view sidebars.
 ---
 

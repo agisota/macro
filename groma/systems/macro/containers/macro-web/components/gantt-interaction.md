@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-interaction.ts
   technology: SolidJS
-description: Gantt interaction inside the signed-in client.
+  group: Gantt
+description: A bar's start and inclusive end day; a timed bar's `end` is its exact edge
 ---
 
 A bar's start and inclusive end day; a timed bar's `end` is its exact edge.

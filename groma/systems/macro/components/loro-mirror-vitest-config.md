@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/loro-mirror/vitest.config.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package loro-mirror
+  group: Loro mirror
+description: Vitest.config in Loro mirror.
 ---
 
-Library code in packages/loro-mirror. Not a separately deployed service.
+File packages/loro-mirror/vitest.config.ts. It belongs to Loro mirror, not a separate application.

@@ -452,7 +452,8 @@ groma:
       file: apps/web/src/lib/core/component/AI/component/tool/SetFavorite.tsx
       symbol: setFavoriteHandler
   technology: SolidJS
-description: CreateDocument inside the signed-in client.
+  group: Workspace core
+description: CreateDocument in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/AI/component/tool/CreateDocument.tsx.
+File apps/web/src/lib/core/component/AI/component/tool/CreateDocument.tsx. It belongs to Workspace core, not a separate application.

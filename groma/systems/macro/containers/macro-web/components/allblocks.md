@@ -47,7 +47,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/constant/permissions.ts
   technology: SolidJS
-description: AllBlocks inside the signed-in client.
+  group: Workspace core
+description: AllBlocks in Workspace core.
 ---
 
-Every block needs a module. `write` (DOCX) is the collaborative DOCX editor when it is enabled; otherwise `verifyBlockName` resolves it to `pdf`.
+File apps/web/src/lib/core/constant/allBlocks.ts. It belongs to Workspace core, not a separate application.

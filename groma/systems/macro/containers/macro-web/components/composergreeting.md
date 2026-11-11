@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/ComposerGreeting.tsx
       symbol: ComposerGreeting
   technology: SolidJS
-description: ComposerGreeting inside the signed-in client.
+  group: Workspace core
+description: The shared brand treatment for empty conversation greetings
 ---
 
 The shared brand treatment for empty conversation greetings.

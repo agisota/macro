@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/utils/favorites.ts
   technology: SolidJS
-description: Favorites inside the signed-in client.
+  group: Workspace core
+description: Icon and legacy block name for a favorite; hosted details use their own route
 ---
 
 Icon and legacy block name for a favorite; hosted details use their own route.

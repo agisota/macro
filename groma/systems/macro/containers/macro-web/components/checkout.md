@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/onboarding/core/email-accounts.ts
   technology: SolidJS
+  group: Shell
 description: Desktop onboarding steps after signup.
 ---
 

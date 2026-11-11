@@ -11,7 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/crm/browser-test/archive/preview-adapters.ts
   technology: SolidJS
-  group: CRM
+  group: Development tooling
 description: Customers workspace.
 ---
 

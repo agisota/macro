@@ -258,6 +258,7 @@ groma:
       file: apps/web/src/features/scheduling/primitives/create-bookings-view.ts
       symbol: createBookingsView
   technology: SolidJS
+  group: Calendar
 description: Scheduling links and public booking host data.
 ---
 

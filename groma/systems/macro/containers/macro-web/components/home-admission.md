@@ -136,6 +136,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/home/home-facets.ts
   technology: SolidJS
+  group: Shell
 description: Landing list, chat start, and inline previews.
 ---
 

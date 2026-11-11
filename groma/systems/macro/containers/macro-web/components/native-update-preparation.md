@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/tauri/native-update-preparation.ts
       symbol: createNativeUpdatePreparation
   technology: SolidJS
-description: Native update preparation inside the signed-in client.
+  group: Desktop shell
+description: Owned by one Tauri provider; editors register saves while they are mounted
 ---
 
 Owned by one Tauri provider; editors register saves while they are mounted.

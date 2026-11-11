@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-plus.tsx
       symbol: AnimatedPlusIcon
   technology: SolidJS
-description: Wide plus inside the signed-in client.
+  group: Icons
+description: Wide plus in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-plus.tsx.
+File apps/web/src/components/icon/wide-plus.tsx. It belongs to Icons, not a separate application.

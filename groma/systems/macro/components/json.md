@@ -17,8 +17,8 @@ groma:
     - scanner: typescript
       file: packages/loro-mirror/src/schema/validators.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package loro-mirror
+  group: Loro mirror
+description: Reject unsupported values before a batch can write any CRDT operations
 ---
 
 Reject unsupported values before a batch can write any CRDT operations.

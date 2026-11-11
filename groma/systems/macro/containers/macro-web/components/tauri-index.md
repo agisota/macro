@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Desktop shell
+description: Index in Desktop shell.
 ---
 
-Source under apps/web/src/lib/tauri/index.ts.
+File apps/web/src/lib/tauri/index.ts. It belongs to Desktop shell, not a separate application.

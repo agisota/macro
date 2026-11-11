@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/invalidate-on-reconnect.ts
       symbol: useInvalidateQueriesOnReconnect
   technology: SolidJS
-description: Invalidate on reconnect inside the signed-in client.
+  group: Data queries
+description: Marks cached queries as stale and automatically refetches active queries in the background
 ---
 
 Marks cached queries as stale and automatically refetches active queries in the background

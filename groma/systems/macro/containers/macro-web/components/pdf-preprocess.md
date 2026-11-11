@@ -44,7 +44,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/document-processing-types/jobTypes/pdf/convert.ts
   technology: SolidJS
-description: Preprocess inside the signed-in client.
+  group: Documents
+description: Preprocess in Documents.
 ---
 
-There are 2 types of Preprocess events. PreprocessInit - used to initialize the upload job prior to creating a new pdf file PreprocessInvoke - invokes preprocess and retrieves the preprocess results. PreprocessInvoke takes a document id and document version id and runs the pdf se
+File apps/web/src/lib/document-processing-types/jobTypes/pdf/preprocess.ts. It belongs to Documents, not a separate application.

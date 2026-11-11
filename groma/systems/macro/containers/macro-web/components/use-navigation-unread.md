@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/use-navigation-unread.ts
       symbol: useNavigationUnread
   technology: SolidJS
-description: Use navigation unread inside the signed-in client.
+  group: App shell
+description: 'Module scope: cached query meta outlives the hook that registered it'
 ---
 
 Module scope: cached query meta outlives the hook that registered it.

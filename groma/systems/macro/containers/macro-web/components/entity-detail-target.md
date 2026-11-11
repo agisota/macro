@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/entity-detail/entity-detail-target.ts
   technology: SolidJS
-description: Entity detail target inside the signed-in client.
+  group: Entity detail
+description: Entity detail target in Entity detail.
 ---
 
-Source under apps/web/src/components/entity-detail/entity-detail-target.ts.
+File apps/web/src/components/entity-detail/entity-detail-target.ts. It belongs to Entity detail, not a separate application.

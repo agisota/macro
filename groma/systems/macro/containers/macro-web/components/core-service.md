@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/service.ts
   technology: SolidJS
-description: Service inside the signed-in client.
+  group: Workspace core
+description: Defines the types of actors that can interact with the service
 ---
 
 Defines the types of actors that can interact with the service.

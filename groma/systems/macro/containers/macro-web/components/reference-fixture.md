@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-canvas/browser-test/reference.fixture.tsx
   technology: SolidJS
+  group: Development tooling
 description: Canvas Next scene editor and legacy JSON migration.
 ---
 

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/PreviewPanel.tsx
   technology: SolidJS
+  group: App shell
 description: See {@link PreviewPanelProps.focusRequest}.
 ---
 

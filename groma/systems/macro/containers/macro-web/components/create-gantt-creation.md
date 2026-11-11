@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/create-gantt-creation.ts
   technology: SolidJS
-description: Create gantt creation inside the signed-in client.
+  group: Gantt
+description: A range drawn or dragged on the chart
 ---
 
 A range drawn or dragged on the chart. All day, it spans the local days `start` to `end` inclusive, each at local midnight; otherwise it runs between the two instants.

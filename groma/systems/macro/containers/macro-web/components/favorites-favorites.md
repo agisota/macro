@@ -17,7 +17,8 @@ groma:
       file: apps/web/src/lib/queries/favorites/mutation.ts
       symbol: FavoriteMutationCallbacks
   technology: SolidJS
-description: Favorites inside the signed-in client.
+  group: Data queries
+description: Favorites in Data queries.
 ---
 
-Maps a frontend entity to the backend favorites entity type, or undefined for entity kinds that cannot be favorited.
+File apps/web/src/lib/queries/favorites/favorites.ts. It belongs to Data queries, not a separate application.

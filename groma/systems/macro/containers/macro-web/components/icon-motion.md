@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/system/icon-motion.ts
       symbol: installIconMotion
   technology: SolidJS
-description: Icon motion inside the signed-in client.
+  group: Icons
+description: Interaction feedback for the original Macro icon family
 ---
 
 Interaction feedback for the original Macro icon family. No action is delayed.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/time-range.ts
   technology: SolidJS
-description: Time range inside the signed-in client.
+  group: Date and time
+description: Time range in Date and time.
 ---
 
-`<input type="datetime-local">` value.
+File apps/web/src/components/date-time-range/time-range.ts. It belongs to Date and time, not a separate application.

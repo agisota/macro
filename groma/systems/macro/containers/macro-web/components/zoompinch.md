@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Zoompinch.tsx
   technology: SolidJS
-description: Zoompinch inside the signed-in client.
+  group: Workspace core
+description: Zoompinch in Workspace core.
 ---
 
-Called on every transform update.
+File apps/web/src/lib/core/component/Zoompinch.tsx. It belongs to Workspace core, not a separate application.

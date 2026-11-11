@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban-board-types.ts
   technology: SolidJS
-description: Kanban board types inside the signed-in client.
+  group: Kanban
+description: Query-free column identity and the host-ordered item IDs
 ---
 
 Query-free column identity and the host-ordered item IDs.

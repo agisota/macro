@@ -27,7 +27,8 @@ groma:
       file: apps/web/src/lib/core/component/Lightbox/LightboxToolbar.tsx
       symbol: LightboxToolbar
   technology: SolidJS
-description: CreateGestures inside the signed-in client.
+  group: Workspace core
+description: 'Routes pointer input across the lightbox''s three gesture systems: the zoompinch engine (pan/pinch while zoomed in), single-finger swipes (ga'
 ---
 
-Routes pointer input across the lightbox's three gesture systems: the zoompinch engine (pan/pinch while zoomed in), single-finger swipes (gallery nav + swipe-to-dismiss while zoomed out), and the inertial fling on release. Also wires desktop keyboard nav and mouse drag / click-to
+Routes pointer input across the lightbox's three gesture systems: the zoompinch engine (pan/pinch while zoomed in), single-finger swipes (gallery

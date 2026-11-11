@@ -12,7 +12,8 @@ groma:
       file: apps/web/src/lib/queries/email/message-source.ts
       symbol: getEmailMessageEml
   technology: SolidJS
-description: Read receipts inside the signed-in client.
+  group: Data queries
+description: The viewer's tracked sent messages in one thread, keyed by message id
 ---
 
 The viewer's tracked sent messages in one thread, keyed by message id.

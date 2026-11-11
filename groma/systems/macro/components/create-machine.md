@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/machine/src/create-machine.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package machine
+  group: State machine
+description: Maximum events processed in one synchronous drain before assuming a cycle
 ---
 
 Maximum events processed in one synchronous drain before assuming a cycle.

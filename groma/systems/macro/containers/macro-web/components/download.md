@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/filesystem/download.ts
       symbol: downloadFile
   technology: SolidJS
-description: Download inside the signed-in client.
+  group: Local files
+description: Hands a Blob to the platform's save flow
 ---
 
 Hands a Blob to the platform's save flow. Browsers download immediately; Android opens a save dialog. `saved` is false when the user cancels or the save fails; failures are already reported with a toast, so callers only need the outcome to decide what happens next.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/create-layout-animation.ts
   technology: SolidJS
-description: Create layout animation inside the signed-in client.
+  group: Drag and drop
+description: Unique placement, including the lane for cards with several placements
 ---
 
 Unique placement, including the lane for cards with several placements.

@@ -30,6 +30,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/saved-views/views/saved-view-dialogs.tsx
   technology: SolidJS
+  group: Shell
 description: Saved-view queries, dialogs, and list chrome.
 ---
 

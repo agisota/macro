@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/FileDownloadHeader.tsx
       symbol: FileDownloadHeader
   technology: SolidJS
-description: FileDownloadHeader inside the signed-in client.
+  group: App shell
+description: Shared by Drive previews and standalone file blocks
 ---
 
 Shared by Drive previews and standalone file blocks.

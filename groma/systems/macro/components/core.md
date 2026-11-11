@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/core.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Core in Observability.
 ---
 
-Library code in packages/observability. Not a separately deployed service.
+File packages/observability/src/core.ts. It belongs to Observability, not a separate application.

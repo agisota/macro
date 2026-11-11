@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/providers.ts
   technology: SolidJS
-description: Providers inside the signed-in client.
+  group: Product analytics
+description: Providers in Product analytics.
 ---
 
-Google Analytics
+File apps/web/src/lib/analytics/providers.ts. It belongs to Product analytics, not a separate application.

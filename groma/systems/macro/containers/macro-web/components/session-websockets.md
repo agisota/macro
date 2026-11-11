@@ -15,7 +15,8 @@ groma:
       file: apps/web/src/lib/core/auth/login-events.ts
       symbol: publishLoginSuccess
   technology: SolidJS
-description: Session websockets inside the signed-in client.
+  group: Workspace core
+description: Macro IDs can contain email addresses
 ---
 
 Macro IDs can contain email addresses. Keep only an opaque identifier, and suppress the runtime's raw user-ID enrichment for this entire trace.

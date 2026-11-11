@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/source.ts
   technology: SolidJS
-description: Source inside the signed-in client.
+  group: Workspace core
+description: Source in Workspace core.
 ---
 
-UUID
+File apps/web/src/lib/core/source.ts. It belongs to Workspace core, not a separate application.

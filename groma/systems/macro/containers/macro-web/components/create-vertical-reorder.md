@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/create-vertical-reorder.ts
   technology: SolidJS
-description: Create vertical reorder inside the signed-in client.
+  group: Drag and drop
+description: The indicator's offset within its positioned container
 ---
 
 The indicator's offset within its positioned container.

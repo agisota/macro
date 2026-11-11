@@ -160,6 +160,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/soup/graphql/done-session.ts
   technology: SolidJS
+  group: Data queries
 description: Cache writes keep this list current. Grouped lists leave it out.
 ---
 

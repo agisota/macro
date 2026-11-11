@@ -11,7 +11,7 @@ groma:
       symbol: Logging
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Logging in Observability.
 ---
 
-provider: LoggerProvider | undefined;
+File packages/observability/src/logging.ts. It belongs to Observability, not a separate application.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/menu/MentionsMenu/browser-test/item-bin.tsx
   technology: SolidJS
-description: Item bin inside the signed-in client.
+  group: Development tooling
+description: Item bin in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/LexicalMarkdown/component/menu/MentionsMenu/browser-test/item-bin.tsx.
+File apps/web/src/lib/core/component/LexicalMarkdown/component/menu/MentionsMenu/browser-test/item-bin.tsx. It belongs to Development tooling, not a separate application.

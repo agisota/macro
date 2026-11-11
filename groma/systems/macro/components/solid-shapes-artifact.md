@@ -48,8 +48,8 @@ groma:
       file: packages/graphics/src/solid/dot-grid-view.tsx
       symbol: DotGrid
   technology: TypeScript
-  group: Shared packages
-description: Shared package graphics
+  group: Graphics
+description: Hosts run artifact HTML in their own sandbox; graphics never executes it
 ---
 
 Hosts run artifact HTML in their own sandbox; graphics never executes it.

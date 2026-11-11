@@ -19,7 +19,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/pptx-engine/protocol.ts
   technology: SolidJS
-description: Wasm module inside the signed-in client.
+  group: Workspace core
+description: Typed surface of the generated wasm package (`pptx_engine`), loaded dynamically so the repo type-checks without the generated artifacts
 ---
 
-Typed surface of the generated wasm package (`pptx_engine`), loaded dynamically so the repo type-checks without the generated artifacts.  Build the package with: just build-pptx-engine-wasm which runs wasm-pack over crates/pptx_engine into src/lib/core/pptx-engine/wasm/ (gitignor
+Typed surface of the generated wasm package (`pptx_engine`), loaded dynamically so the repo type-checks without the generated artifacts.  Build the package with: just build-pptx-engine-wasm which runs wasm-pack over crates/pptx_engine into src/lib/core/pptx-engine/wasm/ (gitignored).

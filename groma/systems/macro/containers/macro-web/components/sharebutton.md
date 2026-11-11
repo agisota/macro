@@ -23,6 +23,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/TopBar/linkShare.ts
   technology: SolidJS
+  group: Workspace core
 description: Define levels of truncation for top bar.  @example  const context = useContext(BarContext);
 ---
 

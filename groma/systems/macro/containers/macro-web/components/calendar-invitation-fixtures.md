@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/email-message/core/calendar-invitation-fixtures.ts
   technology: SolidJS
+  group: Email
 description: Per-message attachment and render adapters.
 ---
 

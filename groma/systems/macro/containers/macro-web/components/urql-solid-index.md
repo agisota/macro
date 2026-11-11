@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: GraphQL client
+description: Application-local Solid bindings for urql query operations
 ---
 
 Application-local Solid bindings for urql query operations.

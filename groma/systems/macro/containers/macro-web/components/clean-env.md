@@ -9,7 +9,8 @@ groma:
     - scanner: javascript
       file: apps/web/scripts/clean-env.js
   technology: SolidJS
-description: Clean env inside the signed-in client.
+  group: Development tooling
+description: Clean env in Development tooling.
 ---
 
-Source under apps/web/scripts/clean-env.js.
+File apps/web/scripts/clean-env.js. It belongs to Development tooling, not a separate application.

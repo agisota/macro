@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/view-shell/tour.ts
       symbol: VIEW_SHELL_TOUR
   technology: SolidJS
-description: Tour inside the signed-in client.
+  group: View shell
+description: Parts every view shell registers for tours
 ---
 
-Parts every view shell registers for tours. They resolve per split, so a step can point at "this view's sidebar" without the view tagging it. `sidebarToggle` is the expand control shown while the sidebar is collapsed, the natural entry for a step whose target lives in the sidebar
+Parts every view shell registers for tours. They resolve per split, so a step can point at "this view's sidebar" without the view tagging it. `sidebarToggle` is the expand control shown while the sidebar is collapsed, the natural entry for a step whose target lives in the sidebar.

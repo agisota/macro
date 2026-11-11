@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/time-input.tsx
   technology: SolidJS
-description: Time input inside the signed-in client.
+  group: Date and time
+description: Time input in Date and time.
 ---
 
-Accessible name, e.g. `Start time`.
+File apps/web/src/components/date-time-range/time-input.tsx. It belongs to Date and time, not a separate application.

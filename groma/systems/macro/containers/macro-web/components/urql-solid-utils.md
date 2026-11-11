@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/utils.ts
   technology: SolidJS
-description: Utils inside the signed-in client.
+  group: GraphQL client
+description: Normalizes observer and selector failures to urql's public error type
 ---
 
 Normalizes observer and selector failures to urql's public error type.

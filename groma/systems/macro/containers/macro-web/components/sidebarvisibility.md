@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/sidebarVisibility.ts
   technology: SolidJS
-description: SidebarVisibility inside the signed-in client.
+  group: App shell
+description: SidebarVisibility in App shell.
 ---
 
-Source under apps/web/src/components/app/sidebarVisibility.ts.
+File apps/web/src/components/app/sidebarVisibility.ts. It belongs to App shell, not a separate application.

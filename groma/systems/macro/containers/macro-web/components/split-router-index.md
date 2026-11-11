@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Split layout
+description: Index in Split layout.
 ---
 
-Source under apps/web/src/lib/split-router/index.ts.
+File apps/web/src/lib/split-router/index.ts. It belongs to Split layout, not a separate application.

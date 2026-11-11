@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-profile.tsx
       symbol: AnimatedProfileIcon
   technology: SolidJS
-description: Wide profile inside the signed-in client.
+  group: Icons
+description: Wide profile in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-profile.tsx.
+File apps/web/src/components/icon/wide-profile.tsx. It belongs to Icons, not a separate application.

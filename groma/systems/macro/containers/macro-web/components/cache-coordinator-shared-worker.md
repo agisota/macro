@@ -39,7 +39,10 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/coordinator-router.ts
   technology: SolidJS
-description: Cache.coordinator.shared worker inside the signed-in client.
+  group: GraphQL cache
+description: Cache.coordinator.shared worker in GraphQL cache.
 ---
+
+File apps/web/src/lib/graphql-cache/worker/cache.coordinator.shared-worker.ts. It belongs to GraphQL cache, not a separate application.
 
 <reference lib="webworker" />

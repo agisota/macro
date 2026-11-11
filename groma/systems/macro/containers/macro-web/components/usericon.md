@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/UserIcon.tsx
   technology: SolidJS
-description: UserIcon inside the signed-in client.
+  group: Workspace core
+description: Already-resolved name; avoids retaining this row in the global name store
 ---
 
 Already-resolved name; avoids retaining this row in the global name store.

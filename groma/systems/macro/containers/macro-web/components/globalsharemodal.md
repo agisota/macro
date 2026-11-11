@@ -12,6 +12,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/sharing/global-share-modal/shareable-entity.ts
   technology: SolidJS
+  group: Settings
 description: Global share modal and native share sheet.
 ---
 

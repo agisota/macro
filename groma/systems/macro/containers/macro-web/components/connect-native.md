@@ -36,7 +36,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/pipedream/oauth-popup.ts
   technology: SolidJS
-description: Connect native inside the signed-in client.
+  group: Workspace core
+description: 'Run consent in a browser: native popup interception breaks iframe OAuth'
 ---
 
 Run consent in a browser: native popup interception breaks iframe OAuth.

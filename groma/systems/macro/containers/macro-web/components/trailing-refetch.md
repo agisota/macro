@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/trailing-refetch.ts
       symbol: createTrailingRefetch
   technology: SolidJS
-description: Trailing refetch inside the signed-in client.
+  group: Data queries
+description: Coalesce a burst, then repeat if another invalidation arrives during the read
 ---
 
 Coalesce a burst, then repeat if another invalidation arrives during the read.

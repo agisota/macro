@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/use-list-interactions.ts
   technology: SolidJS
-description: Use list interactions inside the signed-in client.
+  group: Lists
+description: Minimal scrolling contract implemented by virtualized list handles
 ---
 
 Minimal scrolling contract implemented by virtualized list handles.

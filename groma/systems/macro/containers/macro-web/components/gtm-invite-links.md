@@ -12,7 +12,8 @@ groma:
       file: apps/web/src/lib/queries/gtm-invite/keys.ts
       symbol: gtmInviteKeys
   technology: SolidJS
-description: Links inside the signed-in client.
+  group: Data queries
+description: 'Queries and mutations for GTM invite links: the staff dashboard (create, list, revoke), the public welcome page (resolve), and the signup ha'
 ---
 
 Queries and mutations for GTM invite links: the staff dashboard (create, list, revoke), the public welcome page (resolve), and the signup handoff (redeem, then the offer the plan step shows).

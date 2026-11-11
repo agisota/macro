@@ -9,10 +9,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/Layout.tsx
   technology: SolidJS
-description: Layout inside the signed-in client.
+  group: App shell
+description: Layout in App shell.
 ---
 
-Source under apps/web/src/components/app/Layout.tsx.
+File apps/web/src/components/app/Layout.tsx. It belongs to App shell, not a separate application.
 
 ## Relationships
 

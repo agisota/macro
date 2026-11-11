@@ -19,7 +19,8 @@ groma:
       file: apps/web/src/lib/queries/bots/bot-id.ts
       symbol: isHexHyphenatedId
   technology: SolidJS
-description: Bots inside the signed-in client.
+  group: Data queries
+description: PATCH /bots/{bot_id} leaves every omitted field unchanged
 ---
 
 PATCH /bots/{bot_id} leaves every omitted field unchanged.

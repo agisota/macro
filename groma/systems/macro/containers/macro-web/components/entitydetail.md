@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/entity-detail/EntityDetail.tsx
   technology: SolidJS
+  group: Entity detail
 description: PDF.js and its viewer are only needed once a PDF is opened.
 ---
 

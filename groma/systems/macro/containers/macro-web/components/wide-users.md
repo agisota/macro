@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-users.tsx
       symbol: AnimatedUsersIcon
   technology: SolidJS
-description: Wide users inside the signed-in client.
+  group: Icons
+description: Wide users in Icons.
 ---
 
-behind person nods a beat later
+File apps/web/src/components/icon/wide-users.tsx. It belongs to Icons, not a separate application.

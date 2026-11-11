@@ -55,7 +55,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/auth/codex.ts
   technology: SolidJS
-description: Stripe checkout inside the signed-in client.
+  group: Data queries
+description: Confirm introductory eligibility before advertising or requesting a trial
 ---
 
 Confirm introductory eligibility before advertising or requesting a trial.

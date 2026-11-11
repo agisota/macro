@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/mail-reconciliation.ts
   technology: SolidJS
-description: Mail reconciliation inside the signed-in client.
+  group: Development tooling
+description: Mail reconciliation in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/mail-reconciliation.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/mail-reconciliation.ts. It belongs to Development tooling, not a separate application.

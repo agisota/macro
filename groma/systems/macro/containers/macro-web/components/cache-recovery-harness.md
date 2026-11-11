@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/graphql-cache/worker/browser-test/cache-recovery-harness.ts
       symbol: CACHE_MUTATING_REQUEST_KINDS
   technology: SolidJS
-description: Cache recovery harness inside the signed-in client.
+  group: Development tooling
+description: Cache recovery harness in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/cache-recovery-harness.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/cache-recovery-harness.ts. It belongs to Development tooling, not a separate application.

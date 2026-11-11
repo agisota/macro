@@ -18,7 +18,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/workers/slack-import/archive-reader.ts
   technology: SolidJS
-description: Ndjson parts inside the signed-in client.
+  group: Workspace core
+description: Ndjson parts in Workspace core.
 ---
 
-One bounded part plus the cursor's bounded page, never an array of parts/descriptors. Resuming the iterator is the consumer's acknowledgement; no prefetch runs during yield. The incremental manifest hash follows ConversationSeal::from_descriptors in Rust.
+File apps/web/src/lib/workers/slack-import/ndjson-parts.ts. It belongs to Workspace core, not a separate application.

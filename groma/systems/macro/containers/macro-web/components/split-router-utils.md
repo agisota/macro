@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/utils.ts
   technology: SolidJS
-description: Utils inside the signed-in client.
+  group: Split layout
+description: Bounded identifier that is safe to use as an ordinary object key
 ---
 
 Bounded identifier that is safe to use as an ordinary object key.

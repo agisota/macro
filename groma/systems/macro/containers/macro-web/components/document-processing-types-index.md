@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/document-processing-types/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Documents
+description: Index in Documents.
 ---
 
-Generic job types
+File apps/web/src/lib/document-processing-types/index.ts. It belongs to Documents, not a separate application.

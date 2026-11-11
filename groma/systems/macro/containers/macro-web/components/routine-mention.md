@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/routine-mention.tsx
   technology: SolidJS
-description: Routine mention inside the signed-in client.
+  group: Development tooling
+description: The viewer can read the routine, so its chip opens it
 ---
 
 The viewer can read the routine, so its chip opens it.

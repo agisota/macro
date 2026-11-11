@@ -10,7 +10,7 @@ groma:
       file: packages/sdk/src/raw.ts
   technology: TypeScript
   group: Macro SDK pieces
-description: Shared package sdk
+description: Raw in Macro SDK pieces.
 ---
 
-Library code in packages/sdk. Not a separately deployed service.
+File packages/sdk/src/raw.ts. It belongs to Macro SDK pieces, not a separate application.

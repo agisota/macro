@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-task.tsx
       symbol: AnimatedTaskIcon
   technology: SolidJS
-description: Wide task inside the signed-in client.
+  group: Icons
+description: Wide task in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-task.tsx.
+File apps/web/src/components/icon/wide-task.tsx. It belongs to Icons, not a separate application.

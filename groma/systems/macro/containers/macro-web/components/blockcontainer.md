@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/BlockContainer.tsx
       symbol: BlockContainer
   technology: SolidJS
-description: BlockContainer inside the signed-in client.
+  group: Workspace core
+description: BlockContainer in Workspace core.
 ---
 
-TODO: handle nested state
+File apps/web/src/lib/core/component/BlockContainer.tsx. It belongs to Workspace core, not a separate application.

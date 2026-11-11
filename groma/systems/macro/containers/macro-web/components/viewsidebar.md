@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/ViewSidebar.tsx
   technology: SolidJS
-description: ViewSidebar inside the signed-in client.
+  group: View shell
+description: ViewSidebar in View shell.
 ---
 
-View controls (e.g. filters) in the right group, before search.
+File apps/web/src/components/view-shell/ViewSidebar.tsx. It belongs to View shell, not a separate application.

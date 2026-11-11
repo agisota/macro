@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/tab.ts
   technology: SolidJS
+  group: Development tooling
 description: The harness intentionally releases liveness early and discards a callback result that no caller consumes.
 ---
 

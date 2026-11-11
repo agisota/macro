@@ -15,7 +15,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/foundations/controls.docs.tsx
   technology: SolidJS
-description: Typography.docs inside the signed-in client.
+  group: UI primitives
+description: Typography.docs in UI primitives.
 ---
 
-region demo:sizes
+File apps/web/src/components/ui/foundations/typography.docs.tsx. It belongs to UI primitives, not a separate application.

@@ -73,6 +73,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-unfurl/generated/schemas/vecItemOneOfFaviconUrl.ts
       symbol: VecItemOneOfFaviconUrl
   technology: TypeScript
+  group: Service clients
 description: Client for the service unfurl host
 ---
 

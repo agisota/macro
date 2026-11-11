@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/types.ts
   technology: SolidJS
-description: Types inside the signed-in client.
+  group: GraphQL client
+description: Options shared by enabled and disabled urql queries
 ---
 
 Options shared by enabled and disabled urql queries.

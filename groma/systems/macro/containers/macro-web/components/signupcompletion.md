@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/analytics/signupCompletion.ts
       symbol: trackSignupCompletion
   technology: SolidJS
-description: SignupCompletion inside the signed-in client.
+  group: Product analytics
+description: Signup-completion tracking
 ---
 
-Signup-completion tracking.  `sign_up` used to fire only from the /signup page, *before* redirecting to SSO — so it counted intent rather than created accounts, and missed everyone who signed up through the regular SSO sign-in (which is where the website sends people). The ad-pla
+Signup-completion tracking.  `sign_up` used to fire only from the /signup page, *before* redirecting to SSO — so it counted intent rather than created accounts, and missed everyone who signed up through the regular SSO sign-in (which is where the website sends people). The ad-platform conversions were even further off: they fired when the (now optional) interactive tutorial modal closed.  The authoritative signup eve

@@ -99,6 +99,7 @@ groma:
       file: apps/web/src/features/changes/components/ChangesReadyCard.tsx
       symbol: ChangesReadyCard
   technology: SolidJS
+  group: Shell
 description: File tree and diff pane with optional review notes.
 ---
 

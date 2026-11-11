@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/list/ListViewport.tsx
       symbol: ListViewport
   technology: SolidJS
-description: ListViewport inside the signed-in client.
+  group: Lists
+description: Shared virtual row engine for unified lists
 ---
 
 Shared virtual row engine for unified lists. Controllers own focus and paging.

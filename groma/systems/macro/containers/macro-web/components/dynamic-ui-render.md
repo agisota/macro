@@ -50,6 +50,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/dynamic-ui/widgets/Cards.tsx
   technology: SolidJS
+  group: Shell
 description: Agent dashboard widgets.
 ---
 

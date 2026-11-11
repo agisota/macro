@@ -40,7 +40,8 @@ groma:
       file: apps/web/src/components/app/sidebar-next/unread-dot.tsx
       symbol: SidebarUnreadDot
   technology: SolidJS
-description: Search bar button inside the signed-in client.
+  group: App shell
+description: Search and command-menu discovery in the compact rail
 ---
 
 Search and command-menu discovery in the compact rail.

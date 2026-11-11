@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/entity/browser-test/participants.tsx
   technology: SolidJS
+  group: Development tooling
 description: Workspace UI for entity
 ---
 

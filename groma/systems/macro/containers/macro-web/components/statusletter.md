@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/diff-view/StatusLetter.tsx
       symbol: StatusLetter
   technology: SolidJS
-description: StatusLetter inside the signed-in client.
+  group: Diffs
+description: The one-letter change status, coloured like the diff it describes
 ---
 
 The one-letter change status, coloured like the diff it describes.

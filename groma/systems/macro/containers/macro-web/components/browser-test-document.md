@@ -11,6 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-database/browser-test/document-data.ts
   technology: SolidJS
+  group: Development tooling
 description: '`database` block; 404 when the rollout is off.'
 ---
 

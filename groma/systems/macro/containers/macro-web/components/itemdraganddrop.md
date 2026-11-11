@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/ItemDragAndDrop.tsx
   technology: SolidJS
-description: ItemDragAndDrop inside the signed-in client.
+  group: App shell
+description: ItemDragAndDrop in App shell.
 ---
 
-Optional for composed entity rows rendered outside the draggable workspace.
+File apps/web/src/components/app/ItemDragAndDrop.tsx. It belongs to App shell, not a separate application.

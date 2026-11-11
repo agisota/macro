@@ -10,7 +10,7 @@ groma:
       file: packages/sdk/examples/sse-events.ts
   technology: TypeScript
   group: Macro SDK pieces
-description: Shared package sdk
+description: Sse events in Macro SDK pieces.
 ---
 
-Library code in packages/sdk. Not a separately deployed service.
+File packages/sdk/examples/sse-events.ts. It belongs to Macro SDK pieces, not a separate application.

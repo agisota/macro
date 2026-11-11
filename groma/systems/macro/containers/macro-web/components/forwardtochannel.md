@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/ForwardToChannel.tsx
       symbol: ForwardToChannel
   technology: SolidJS
-description: ForwardToChannel inside the signed-in client.
+  group: Workspace core
+description: ForwardToChannel in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/ForwardToChannel.tsx.
+File apps/web/src/lib/core/component/ForwardToChannel.tsx. It belongs to Workspace core, not a separate application.

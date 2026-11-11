@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-call.tsx
       symbol: AnimatedCallIcon
   technology: SolidJS
-description: Wide call inside the signed-in client.
+  group: Icons
+description: Wide call in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-call.tsx.
+File apps/web/src/components/icon/wide-call.tsx. It belongs to Icons, not a separate application.

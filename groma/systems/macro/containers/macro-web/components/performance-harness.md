@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/graphql-cache/worker/browser-test/performance-harness.ts
       symbol: CacheWasmPerformanceSample
   technology: SolidJS
-description: Performance harness inside the signed-in client.
+  group: Development tooling
+description: Performance harness in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/performance-harness.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/performance-harness.ts. It belongs to Development tooling, not a separate application.

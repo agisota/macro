@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/firstPartyBotMark.ts
   technology: SolidJS
-description: FirstPartyBotMark inside the signed-in client.
+  group: Workspace core
+description: The brand mark a first-party bot wears wherever an avatar is drawn
 ---
 
 The brand mark a first-party bot wears wherever an avatar is drawn.

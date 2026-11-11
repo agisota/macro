@@ -1,0 +1,11 @@
+---
+type: C4 Component
+title: Utils
+status: stable
+groma:
+  id: email-service-src-utils
+  parent: email-service
+  code:
+    - scanner: rust
+      file: services/email_service/src/utils.rs
+---

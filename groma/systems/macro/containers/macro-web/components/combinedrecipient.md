@@ -34,7 +34,8 @@ groma:
       file: apps/web/src/lib/core/user/inboxOnly.ts
       symbol: useIsConnectedSecondaryInbox
   technology: SolidJS
-description: CombinedRecipient inside the signed-in client.
+  group: Workspace core
+description: this type is extracted from the user's message info
 ---
 
 this type is extracted from the user's message info

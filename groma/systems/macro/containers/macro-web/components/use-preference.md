@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/preferences/use-preference.ts
   technology: SolidJS
-description: Use preference inside the signed-in client.
+  group: Workspace core
+description: Value used when no saved preference exists yet
 ---
 
 Value used when no saved preference exists yet.

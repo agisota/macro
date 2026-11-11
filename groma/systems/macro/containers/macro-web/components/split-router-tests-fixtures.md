@@ -11,6 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/split-layout/browser-test/fixture.tsx
   technology: SolidJS
+  group: Development tooling
 description: 'Declared out of order on purpose: matching must rank by specificity.'
 ---
 

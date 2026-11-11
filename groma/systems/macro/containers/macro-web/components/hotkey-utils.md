@@ -21,7 +21,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/hotkey/getCommands.ts
   technology: SolidJS
-description: Utils inside the signed-in client.
+  group: Workspace core
+description: Utils in Workspace core.
 ---
 
-Removes hotkey commands from the global token map when their scope is destroyed.
+File apps/web/src/lib/core/hotkey/utils.ts. It belongs to Workspace core, not a separate application.

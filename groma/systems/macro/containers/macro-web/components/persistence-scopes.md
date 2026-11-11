@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/persistence-scopes.ts
   technology: SolidJS
-description: Persistence scopes inside the signed-in client.
+  group: Data queries
+description: Legacy unscoped payloads and disabled (unknown-account) queries cannot establish ownership, so neither is eligible for persistence
 ---
 
 Legacy unscoped payloads and disabled (unknown-account) queries cannot establish ownership, so neither is eligible for persistence.

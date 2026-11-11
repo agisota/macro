@@ -10,7 +10,7 @@ groma:
       file: packages/observability/vitest.config.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Vitest.config in Observability.
 ---
 
-Library code in packages/observability. Not a separately deployed service.
+File packages/observability/vitest.config.ts. It belongs to Observability, not a separate application.

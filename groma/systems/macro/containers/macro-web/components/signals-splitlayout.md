@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/splitLayout.ts
   technology: SolidJS
-description: SplitLayout inside the signed-in client.
+  group: Workspace state
+description: Primary global split manager for the app
 ---
 
 Primary global split manager for the app.

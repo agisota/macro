@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/onboarding.ts
   technology: SolidJS
-description: Onboarding inside the signed-in client.
+  group: Data queries
+description: Queries and mutations for the onboarding flow row
 ---
 
 Queries and mutations for the onboarding flow row.  The server observes connections itself: reading the state starts any due import gather runs, and connector OAuth completions reconcile instantly via a server hook. All import state lives in `@queries/import`.

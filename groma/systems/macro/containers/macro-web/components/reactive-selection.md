@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/reactive-selection.ts
   technology: SolidJS
-description: Reactive selection inside the signed-in client.
+  group: GraphQL client
+description: Selectors also observe field updates that retain the query's object identity
 ---
 
 Selectors also observe field updates that retain the query's object identity.

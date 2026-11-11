@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban-types.ts
   technology: SolidJS
-description: Kanban types inside the signed-in client.
+  group: Kanban
+description: A column change leaves card order to the caller (for example, a sorted view)
 ---
 
 A column change leaves card order to the caller (for example, a sorted view).

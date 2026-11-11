@@ -16,6 +16,7 @@ groma:
       file: apps/web/src/lib/queries/external-chats/keys.ts
       symbol: externalChatsKeys
   technology: SolidJS
+  group: Data queries
 description: Decoded chat operations. Production decodes generated DSS types before this seam.
 ---
 

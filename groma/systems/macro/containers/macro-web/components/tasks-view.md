@@ -158,6 +158,7 @@ groma:
       file: apps/web/src/features/tasks-view/project-detail-search.ts
       symbol: projectDetailSearch
   technology: SolidJS
+  group: Tasks
 description: Task list, board, Gantt, and project navigation host.
 ---
 

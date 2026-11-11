@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/CreateMenuItem.tsx
   technology: SolidJS
-description: CreateMenuItem inside the signed-in client.
+  group: View shell
+description: Icon, title, and wrapping description shared by every creation choice
 ---
 
 Icon, title, and wrapping description shared by every creation choice.

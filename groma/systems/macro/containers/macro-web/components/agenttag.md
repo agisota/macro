@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/AgentTag.tsx
       symbol: AgentTag
   technology: SolidJS
-description: AgentTag inside the signed-in client.
+  group: Workspace core
+description: Marks a name as an agent rather than a person
 ---
 
 Marks a name as an agent rather than a person.

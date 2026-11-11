@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/crm/browser-test/visibility.tsx
   technology: SolidJS
+  group: Development tooling
 description: Customers workspace.
 ---
 

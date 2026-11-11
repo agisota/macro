@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/provider.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: A runtime-specific OpenTelemetry tracer provider
 ---
 
 A runtime-specific OpenTelemetry tracer provider.

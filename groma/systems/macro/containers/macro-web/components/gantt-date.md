@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-date.ts
   technology: SolidJS
-description: Gantt date inside the signed-in client.
+  group: Gantt
+description: '`hour` is the zoom past `day` that a chart showing hours reaches'
 ---
 
 `hour` is the zoom past `day` that a chart showing hours reaches.

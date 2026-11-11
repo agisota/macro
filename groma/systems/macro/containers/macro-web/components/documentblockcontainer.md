@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/DocumentBlockContainer.tsx
       symbol: DocumentBlockContainer
   technology: SolidJS
-description: DocumentBlockContainer inside the signed-in client.
+  group: Workspace core
+description: DocumentBlockContainer in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/DocumentBlockContainer.tsx.
+File apps/web/src/lib/core/component/DocumentBlockContainer.tsx. It belongs to Workspace core, not a separate application.

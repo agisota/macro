@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-fileMd.tsx
       symbol: AnimatedFileMdIcon
   technology: SolidJS
-description: Wide fileMd inside the signed-in client.
+  group: Icons
+description: Wide fileMd in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-fileMd.tsx.
+File apps/web/src/components/icon/wide-fileMd.tsx. It belongs to Icons, not a separate application.

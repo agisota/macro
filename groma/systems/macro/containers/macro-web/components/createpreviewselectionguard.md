@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/createPreviewSelectionGuard.ts
   technology: SolidJS
-description: CreatePreviewSelectionGuard inside the signed-in client.
+  group: App shell
+description: A live row, or the block target a route already resolved it to
 ---
 
 A live row, or the block target a route already resolved it to.

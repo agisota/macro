@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/table-filters.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: 'What a filter tests in a cell: its displayed text, and its number when it holds one'
 ---
 
 What a filter tests in a cell: its displayed text, and its number when it holds one.

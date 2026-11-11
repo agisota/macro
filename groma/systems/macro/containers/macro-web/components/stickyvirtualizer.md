@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/list/StickyVirtualizer.tsx
       symbol: StickyVirtualizer
   technology: SolidJS
-description: StickyVirtualizer inside the signed-in client.
+  group: Lists
+description: Persistent viewport chrome, distinct from the in-flow startMargin
 ---
 
 Persistent viewport chrome, distinct from the in-flow startMargin.

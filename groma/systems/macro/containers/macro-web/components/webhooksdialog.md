@@ -14,6 +14,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-database/core/webhook-example.ts
   technology: SolidJS
+  group: Files
 description: '`database` block; 404 when the rollout is off.'
 ---
 

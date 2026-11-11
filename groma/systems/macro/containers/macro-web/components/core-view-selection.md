@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/database/core/view-selection.ts
   technology: SolidJS
+  group: Files
 description: Host-agnostic database grid.
 ---
 

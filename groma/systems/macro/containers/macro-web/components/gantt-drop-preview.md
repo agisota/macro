@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/gantt-drop-preview.tsx
       symbol: GanttDropPreview
   technology: SolidJS
-description: Gantt drop preview inside the signed-in client.
+  group: Gantt
+description: A non-interactive, date-preserving outline at the destination's sorted row
 ---
 
 A non-interactive, date-preserving outline at the destination's sorted row.

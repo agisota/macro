@@ -856,6 +856,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/channel/Bots/MintCredential.tsx
   technology: SolidJS
+  group: Messages
 description: Channel message surface, calls, and create-channel modal.
 ---
 

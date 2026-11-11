@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/date-time-range-fields.tsx
   technology: SolidJS
-description: Date time range fields inside the signed-in client.
+  group: Date and time
+description: Date time range fields in Date and time.
 ---
 
-`YYYY-MM-DD`, or empty.
+File apps/web/src/components/date-time-range/date-time-range-fields.tsx. It belongs to Date and time, not a separate application.

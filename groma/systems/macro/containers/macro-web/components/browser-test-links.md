@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/links.tsx
   technology: SolidJS
-description: Links inside the signed-in client.
+  group: Development tooling
+description: Links in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/links.tsx.
+File apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/links.tsx. It belongs to Development tooling, not a separate application.

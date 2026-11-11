@@ -20,6 +20,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/integrations/mcp-setup/MacroMcpSetupModal.tsx
   technology: SolidJS
+  group: Settings
 description: Linear import and Macro MCP setup modal.
 ---
 

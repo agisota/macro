@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-md/comments/browser-test/collab.tsx
   technology: SolidJS
+  group: Development tooling
 description: Markdown notebook block.
 ---
 

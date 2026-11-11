@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/worker.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Cloudflare Workers entry
 ---
 
 Cloudflare Workers entry. Importing @microlabs/otel-cf-workers loads the `cloudflare:workers` module at module scope, so this stays in its own entry and must only be imported from code that runs in workerd.

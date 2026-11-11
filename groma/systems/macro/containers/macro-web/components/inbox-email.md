@@ -107,6 +107,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/email/graphql/compose.ts
   technology: SolidJS
+  group: Data queries
 description: Persisted independently of the optimistic layer, including after rejection.
 ---
 

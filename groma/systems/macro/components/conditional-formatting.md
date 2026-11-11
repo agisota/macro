@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/conditional-formatting.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: 'How conditional formatting changes a cell, as the engine evaluated it: the matching rules'' formats, and a data bar or an icon'
 ---
 
 How conditional formatting changes a cell, as the engine evaluated it: the matching rules' formats, and a data bar or an icon. Colors are #RRGGBB.

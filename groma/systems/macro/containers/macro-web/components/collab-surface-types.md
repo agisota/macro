@@ -25,7 +25,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/collab-surface/CollabMarkdownEditor.tsx
   technology: SolidJS
-description: Types inside the signed-in client.
+  group: Workspace core
+description: Session ownership is independent of whether the host is a block or a native view
 ---
 
 Session ownership is independent of whether the host is a block or a native view.

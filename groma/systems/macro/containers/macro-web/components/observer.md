@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/observer.ts
   technology: SolidJS
-description: Observer inside the signed-in client.
+  group: GraphQL client
+description: Query options accepted by the shared Solid observer adapter
 ---
 
 Query options accepted by the shared Solid observer adapter.

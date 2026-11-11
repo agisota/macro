@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-diagram.tsx
       symbol: AnimatedDiagramIcon
   technology: SolidJS
-description: Wide diagram inside the signed-in client.
+  group: Icons
+description: scale from the square-end so the arms stretch/shrink to the diamond
 ---
 
 scale from the square-end so the arms stretch/shrink to the diamond

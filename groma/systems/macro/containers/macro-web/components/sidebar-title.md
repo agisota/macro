@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/browser-test/sidebar-title.tsx
   technology: SolidJS
-description: Sidebar title inside the signed-in client.
+  group: Development tooling
+description: Sidebar title in Development tooling.
 ---
 
-Source under apps/web/src/components/view-shell/browser-test/sidebar-title.tsx.
+File apps/web/src/components/view-shell/browser-test/sidebar-title.tsx. It belongs to Development tooling, not a separate application.

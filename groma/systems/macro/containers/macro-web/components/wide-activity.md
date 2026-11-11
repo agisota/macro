@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-activity.tsx
       symbol: AnimatedActivityIcon
   technology: SolidJS
-description: Wide activity inside the signed-in client.
+  group: Icons
+description: Activity (pulse/EKG) icon
 ---
 
 Activity (pulse/EKG) icon. On trigger the pulse line redraws itself left-to-right, like a live heartbeat trace.

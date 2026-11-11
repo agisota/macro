@@ -11,7 +11,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/store/cacheChatInput.ts
   technology: SolidJS
-description: CacheChannelInput inside the signed-in client.
+  group: Workspace core
+description: CacheChannelInput in Workspace core.
 ---
 
-Define constants
+File apps/web/src/lib/core/store/cacheChannelInput.ts. It belongs to Workspace core, not a separate application.

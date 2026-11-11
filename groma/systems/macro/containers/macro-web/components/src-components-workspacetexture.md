@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/WorkspaceTexture.tsx
       symbol: WorkspaceTexture
   technology: SolidJS
-description: WorkspaceTexture inside the signed-in client.
+  group: App shell
+description: Shared grain and accent dots for workspace previews
 ---
 
 Shared grain and accent dots for workspace previews.

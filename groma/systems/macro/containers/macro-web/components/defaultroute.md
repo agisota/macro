@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/constants/defaultRoute.ts
       symbol: DEFAULT_ROUTE
   technology: SolidJS
-description: DefaultRoute inside the signed-in client.
+  group: Workspace core
+description: DefaultRoute in Workspace core.
 ---
 
-Source under apps/web/src/lib/constants/defaultRoute.ts.
+File apps/web/src/lib/constants/defaultRoute.ts. It belongs to Workspace core, not a separate application.

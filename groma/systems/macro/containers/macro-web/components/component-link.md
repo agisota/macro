@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Link.tsx
   technology: SolidJS
-description: Link inside the signed-in client.
+  group: Workspace core
+description: Video embed component for services like Loom and Supercut
 ---
 
 Video embed component for services like Loom and Supercut.

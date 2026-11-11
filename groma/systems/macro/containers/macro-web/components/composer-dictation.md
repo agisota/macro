@@ -29,6 +29,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/dictation/browser/audio-recorder.ts
   technology: SolidJS
+  group: Shell
 description: Dictation availability gate.
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/blockMethodRegistry.ts
   technology: SolidJS
-description: BlockMethodRegistry inside the signed-in client.
+  group: Workspace core
+description: BlockMethodRegistry in Workspace core.
 ---
 
-Base type for all block method specs
+File apps/web/src/lib/core/blockMethodRegistry.ts. It belongs to Workspace core, not a separate application.

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/vitest.config.ts
   technology: SolidJS
+  group: Workspace core
 description: Prebundling transition dependencies creates a second Solid runtime.
 ---
 

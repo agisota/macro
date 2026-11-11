@@ -9,10 +9,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ForwardMessageComposer.tsx
   technology: SolidJS
-description: ForwardMessageComposer inside the signed-in client.
+  group: Workspace core
+description: ForwardMessageComposer in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/ForwardMessageComposer.tsx.
+File apps/web/src/lib/core/component/ForwardMessageComposer.tsx. It belongs to Workspace core, not a separate application.
 
 ## Derived relationships
 

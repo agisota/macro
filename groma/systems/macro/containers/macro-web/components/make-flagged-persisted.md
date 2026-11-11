@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/preferences/make-flagged-persisted.ts
       symbol: makeFlaggedPersisted
   technology: SolidJS
-description: Make flagged persisted inside the signed-in client.
+  group: Workspace core
+description: Whether persistence should currently be active
 ---
 
 Whether persistence should currently be active.

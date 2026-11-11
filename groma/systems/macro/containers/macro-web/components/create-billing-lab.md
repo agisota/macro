@@ -19,6 +19,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/billing-lab/core/billing-simulation.ts
   technology: SolidJS
+  group: Development tooling
 description: Dev-only billing preview, no Stripe credentials.
 ---
 

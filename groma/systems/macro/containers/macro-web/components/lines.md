@@ -15,7 +15,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/diff-view/model/patch.ts
   technology: SolidJS
-description: Lines inside the signed-in client.
+  group: Diffs
+description: Lines of a file's diff that a host picks, or hangs its own content under (review notes, comments)
 ---
 
 Lines of a file's diff that a host picks, or hangs its own content under (review notes, comments). The view places the content; the host decides what it says.

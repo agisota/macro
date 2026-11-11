@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/sheet-tables.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Conditions a column filter can test, as Google Sheets offers them
 ---
 
 Conditions a column filter can test, as Google Sheets offers them.

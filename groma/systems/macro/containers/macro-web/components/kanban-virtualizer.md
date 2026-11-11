@@ -9,10 +9,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban-virtualizer.ts
   technology: SolidJS
-description: Kanban virtualizer inside the signed-in client.
+  group: Kanban
+description: Kanban virtualizer in Kanban.
 ---
 
-Keep the drag source mounted even when its column or card leaves the viewport.
+File apps/web/src/components/kanban/kanban-virtualizer.ts. It belongs to Kanban, not a separate application.
 
 ## Derived relationships
 

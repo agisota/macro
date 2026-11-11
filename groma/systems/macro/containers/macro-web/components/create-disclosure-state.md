@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/create-disclosure-state.ts
   technology: SolidJS
-description: Create disclosure state inside the signed-in client.
+  group: Lists
+description: Whether unknown keys are expanded
 ---
 
 Whether unknown keys are expanded. Defaults to false.

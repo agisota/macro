@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/utils/create-render-queue.ts
       symbol: createRenderQueue
   technology: SolidJS
-description: Create render queue inside the signed-in client.
+  group: Workspace core
+description: Coalesces keyed render work and yields between jobs
 ---
 
 Coalesces keyed render work and yields between jobs.

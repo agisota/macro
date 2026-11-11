@@ -15,6 +15,7 @@ groma:
       file: apps/web/src/features/sharing/native-share-sheet/createNativeShareSend.ts
       symbol: createNativeShareSend
   technology: SolidJS
+  group: Settings
 description: Global share modal and native share sheet.
 ---
 

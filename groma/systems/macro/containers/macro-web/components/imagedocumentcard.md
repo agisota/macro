@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ImageDocumentCard.tsx
   technology: SolidJS
-description: ImageDocumentCard inside the signed-in client.
+  group: Workspace core
+description: ImageDocumentCard in Workspace core.
 ---
 
-Replaces the default pending label.
+File apps/web/src/lib/core/component/ImageDocumentCard.tsx. It belongs to Workspace core, not a separate application.

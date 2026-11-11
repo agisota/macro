@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/pipedream-connectors.ts
   technology: SolidJS
+  group: Data queries
 description: Stable placeholder for `neverSuspend` consumers (see below).
 ---
 

@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/workbook-metadata.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Excel layout and definitions retained independently from editable cell maps
 ---
 
 Excel layout and definitions retained independently from editable cell maps.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/tabLayout.ts
   technology: SolidJS
-description: TabLayout inside the signed-in client.
+  group: Workspace state
+description: The desktop tab manager, set while tabs are enabled (macOS desktop app)
 ---
 
 The desktop tab manager, set while tabs are enabled (macOS desktop app). Published globally like `globalSplitManager`, because the title bar, global hotkeys, and the router middleware live outside the owning provider.

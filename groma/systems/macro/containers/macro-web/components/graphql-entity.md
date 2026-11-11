@@ -36,6 +36,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/properties/in-flight-options.ts
   technology: SolidJS
+  group: Data queries
 description: Builds the input used to load one entity's properties.
 ---
 

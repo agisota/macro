@@ -11,7 +11,7 @@ groma:
       symbol: inferFillSeries
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Serial 60 is Excel's fictitious leap day; leave that sequence numeric
 ---
 
 Serial 60 is Excel's fictitious leap day; leave that sequence numeric.

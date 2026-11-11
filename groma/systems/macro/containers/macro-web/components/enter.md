@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/property/browser-test/enter.tsx
   technology: SolidJS
+  group: Development tooling
 description: Property icon, text, chips, and empty glyphs.
 ---
 

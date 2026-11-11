@@ -14,6 +14,7 @@ groma:
       file: apps/web/src/lib/queries/user-api-keys/keys.ts
       symbol: userApiKeyKeys
   technology: SolidJS
+  group: Data queries
 description: Matches `user_api_key::domain::models::MAX_KEY_NAME_LEN`. Matches `user_api_key::domain::service::MAX_KEYS_PER_USER`.
 ---
 

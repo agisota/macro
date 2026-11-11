@@ -78,6 +78,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/auth/core/post-auth-target.ts
   technology: SolidJS
+  group: Shell
 description: Sign-in, signup, and reauthentication prompts.
 ---
 

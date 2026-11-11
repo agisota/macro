@@ -11,7 +11,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/types/index.ts
   technology: SolidJS
-description: View inside the signed-in client.
+  group: Workspace core
+description: equal to DefaultView type for default view, otherwise a uuid type
 ---
 
 equal to DefaultView type for default view, otherwise a uuid type

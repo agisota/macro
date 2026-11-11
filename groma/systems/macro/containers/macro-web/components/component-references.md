@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/References.tsx
       symbol: References
   technology: SolidJS
-description: References inside the signed-in client.
+  group: Workspace core
+description: References in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/References.tsx.
+File apps/web/src/lib/core/component/References.tsx. It belongs to Workspace core, not a separate application.

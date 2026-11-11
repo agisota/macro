@@ -13,7 +13,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/database-sql/create-database-sql-query.ts
   technology: SolidJS
-description: Graphql source inside the signed-in client.
+  group: Data queries
+description: 'The engine''s browser row source: tables are read as Soup database rows through the normalized cache, newest first'
 ---
 
 The engine's browser row source: tables are read as Soup database rows through the normalized cache, newest first. People joins accept only bounded explicit keys and read them from local Turso; an unbounded directory request is refused.

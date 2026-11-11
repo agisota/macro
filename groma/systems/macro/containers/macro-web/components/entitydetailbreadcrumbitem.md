@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/entity-detail/EntityDetailBreadcrumbItem.tsx
       symbol: EntityDetailBreadcrumbItem
   technology: SolidJS
-description: EntityDetailBreadcrumbItem inside the signed-in client.
+  group: Entity detail
+description: EntityDetailBreadcrumbItem in Entity detail.
 ---
 
-Source under apps/web/src/components/entity-detail/EntityDetailBreadcrumbItem.tsx.
+File apps/web/src/components/entity-detail/EntityDetailBreadcrumbItem.tsx. It belongs to Entity detail, not a separate application.

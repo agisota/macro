@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ItemPreview.tsx
   technology: SolidJS
-description: ItemPreview inside the signed-in client.
+  group: Workspace core
+description: ItemPreview in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/ItemPreview.tsx.
+File apps/web/src/lib/core/component/ItemPreview.tsx. It belongs to Workspace core, not a separate application.

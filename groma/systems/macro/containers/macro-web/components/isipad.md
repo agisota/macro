@@ -16,7 +16,8 @@ groma:
       file: apps/web/src/lib/core/mobile/IosPushNotificationModal.tsx
       symbol: IosPushNotificationModal
   technology: SolidJS
-description: IsIpad inside the signed-in client.
+  group: Workspace core
+description: Whether we're running in the native iOS app on an iPad
 ---
 
-Whether we're running in the native iOS app on an iPad.  `getPlatform()` reports `'ios'` for iPhone and iPad alike, so this asks the native side for `UIDevice.current.userInterfaceIdiom`. iOS apps running on an Apple Silicon Mac report the iPad idiom too, and are excluded nativel
+Whether we're running in the native iOS app on an iPad.  `getPlatform()` reports `'ios'` for iPhone and iPad alike, so this asks the native side for `UIDevice.current.userInterfaceIdiom`. iOS apps running on an Apple Silicon Mac report the iPad idiom too, and are excluded natively.  The idiom can't change at runtime, so the result is cached.

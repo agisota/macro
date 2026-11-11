@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/spreadsheet-document.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Rows and columns a new sheet starts with
 ---
 
 Rows and columns a new sheet starts with.

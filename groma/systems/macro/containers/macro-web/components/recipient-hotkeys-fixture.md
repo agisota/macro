@@ -12,6 +12,7 @@ groma:
       file: apps/web/src/features/email-message/tests/messages.ts
       symbol: message
   technology: SolidJS
+  group: Development tooling
 description: Route-backed new email composer.
 ---
 

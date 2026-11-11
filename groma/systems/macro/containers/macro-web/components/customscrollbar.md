@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/CustomScrollbar.tsx
       symbol: CustomScrollbar
   technology: SolidJS
-description: CustomScrollbar inside the signed-in client.
+  group: Workspace core
+description: How long a label is visible for
 ---
 
 How long a label is visible for. Set to `Infinity` to keep the label visible at all times

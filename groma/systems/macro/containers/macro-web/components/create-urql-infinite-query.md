@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/urql-solid/create-urql-infinite-query.ts
       symbol: createUrqlInfiniteQuery
   technology: SolidJS
-description: Create urql infinite query inside the signed-in client.
+  group: GraphQL client
+description: Creates a live, paginated Solid binding over an urql infinite observer
 ---
 
 Creates a live, paginated Solid binding over an urql infinite observer.

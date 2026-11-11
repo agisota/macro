@@ -17,8 +17,8 @@ groma:
     - scanner: typescript
       file: packages/graphics/src/browser/rich-text.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package graphics
+  group: Graphics
+description: Endpoint capture is independent of shape drawing and document history
 ---
 
 Endpoint capture is independent of shape drawing and document history.

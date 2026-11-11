@@ -62,7 +62,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/agent-session/queue-sync.ts
   technology: SolidJS
-description: Share permissions inside the signed-in client.
+  group: Data queries
+description: The shared share dialog owns loading and refreshing these permissions
 ---
 
 The shared share dialog owns loading and refreshing these permissions.

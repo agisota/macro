@@ -18,6 +18,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/paywall/PaywallComponent.tsx
   technology: SolidJS
+  group: Settings
 description: Plan upgrade dialog and checkout return listener.
 ---
 

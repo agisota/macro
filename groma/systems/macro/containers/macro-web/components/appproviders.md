@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/AppProviders.tsx
       symbol: AppProviders
   technology: SolidJS
-description: AppProviders inside the signed-in client.
+  group: App shell
+description: AppProviders in App shell.
 ---
 
-Source under apps/web/src/components/app/AppProviders.tsx.
+File apps/web/src/components/app/AppProviders.tsx. It belongs to App shell, not a separate application.

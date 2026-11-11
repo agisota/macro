@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/create-reorder.ts
   technology: SolidJS
-description: Create reorder inside the signed-in client.
+  group: Drag and drop
+description: Where a dragged item lands, as a reorder along one axis reports it
 ---
 
 Where a dragged item lands, as a reorder along one axis reports it.

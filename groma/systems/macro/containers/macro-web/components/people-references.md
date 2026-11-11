@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/people-references.ts
   technology: SolidJS
-description: People references inside the signed-in client.
+  group: Development tooling
+description: Real app host wrapper, coordinator and WASM/OPFS
 ---
 
 Real app host wrapper, coordinator and WASM/OPFS. Only server data is synthetic.

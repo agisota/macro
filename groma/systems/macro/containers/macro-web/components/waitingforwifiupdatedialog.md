@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/WaitingForWifiUpdateDialog.tsx
   technology: SolidJS
-description: WaitingForWifiUpdateDialog inside the signed-in client.
+  group: Desktop shell
+description: 'Device-wide: the update waiting for Wi-Fi belongs to the install'
 ---
 
 Device-wide: the update waiting for Wi-Fi belongs to the install.

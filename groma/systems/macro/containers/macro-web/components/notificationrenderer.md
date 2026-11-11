@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/NotificationRenderer.tsx
       symbol: NotificationRenderer
   technology: SolidJS
-description: NotificationRenderer inside the signed-in client.
+  group: Workspace core
+description: NotificationRenderer in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/NotificationRenderer.tsx.
+File apps/web/src/lib/core/component/NotificationRenderer.tsx. It belongs to Workspace core, not a separate application.

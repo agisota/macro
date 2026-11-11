@@ -109,6 +109,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/activity/core/feed-rows.ts
   technology: SolidJS
+  group: Shell
 description: You/Team activity feed.
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/telemetry-relay.ts
   technology: SolidJS
-description: Telemetry relay inside the signed-in client.
+  group: GraphQL cache
+description: Relays typed worker observations through exactly one live browser page
 ---
 
 Relays typed worker observations through exactly one live browser page. Leadership is a fixed, scope-free Web Lock; no cache or identity key crosses the telemetry channel.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/cache-lifecycle-harness.ts
   technology: SolidJS
-description: Cache lifecycle harness inside the signed-in client.
+  group: Development tooling
+description: Cache lifecycle harness in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/cache-lifecycle-harness.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/cache-lifecycle-harness.ts. It belongs to Development tooling, not a separate application.

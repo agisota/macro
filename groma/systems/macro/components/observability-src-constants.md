@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/constants.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: The sampling class that exported a span, on every span in a classed trace
 ---
 
 The sampling class that exported a span, on every span in a classed trace.

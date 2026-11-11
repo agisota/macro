@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/data-validation.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Document colors, light enough for dark chip text
 ---
 
 Document colors, light enough for dark chip text. New choices take them in turn.

@@ -20,6 +20,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-contacts/generated/schemas/addContactRequest.ts
       symbol: AddContactRequest
   technology: TypeScript
+  group: Service clients
 description: Client for the service contacts host
 ---
 

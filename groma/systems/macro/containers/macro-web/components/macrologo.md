@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/MacroLogo.tsx
       symbol: MacroLogo
   technology: SolidJS
-description: MacroLogo inside the signed-in client.
+  group: Workspace core
+description: MacroLogo in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/MacroLogo.tsx.
+File apps/web/src/lib/core/component/MacroLogo.tsx. It belongs to Workspace core, not a separate application.

@@ -31,6 +31,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/connector-import/components/provider-row.tsx
   technology: SolidJS
+  group: Shell
 description: Pipedream-backed import promotions.
 ---
 

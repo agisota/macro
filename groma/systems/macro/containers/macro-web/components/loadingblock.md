@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/LoadingBlock.tsx
       symbol: LoadingBlock
   technology: SolidJS
-description: LoadingBlock inside the signed-in client.
+  group: Workspace core
+description: LoadingBlock in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/LoadingBlock.tsx.
+File apps/web/src/lib/core/component/LoadingBlock.tsx. It belongs to Workspace core, not a separate application.

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/previewTarget.ts
   technology: SolidJS
+  group: App shell
 description: Selections that render inline through a block.
 ---
 

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/email-message/browser-test/invitation.tsx
   technology: SolidJS
+  group: Development tooling
 description: Per-message attachment and render adapters.
 ---
 

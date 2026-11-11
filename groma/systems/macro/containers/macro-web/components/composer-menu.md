@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/directive/browser-test/composer-menu.tsx
   technology: SolidJS
+  group: Development tooling
 description: 'A composer near the bottom (above a dock) or near the top of a phone screen. Its menu opens with one row, as a list filtered by a stale term does, and grows to '
 ---
 

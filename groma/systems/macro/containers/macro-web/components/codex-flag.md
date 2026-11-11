@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/codex/flag.ts
       symbol: useCodexAgentsAccess
   technology: SolidJS
-description: Flag inside the signed-in client.
+  group: Workspace core
+description: Codex surfaces require both the agent rollout and the Codex rollout
 ---
 
 Codex surfaces require both the agent rollout and the Codex rollout.

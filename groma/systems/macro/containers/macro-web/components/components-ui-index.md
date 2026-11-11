@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: UI primitives
+description: Index in UI primitives.
 ---
 
-Source under apps/web/src/components/ui/index.ts.
+File apps/web/src/components/ui/index.ts. It belongs to UI primitives, not a separate application.

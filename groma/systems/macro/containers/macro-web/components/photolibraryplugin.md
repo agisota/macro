@@ -188,10 +188,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/observability/generated/native-diagnostics.ts
   technology: SolidJS
-description: PhotoLibraryPlugin inside the signed-in client.
+  group: App shell
+description: PhotoLibraryPlugin in App shell.
 ---
 
-A lingering delegate whose picker is no longer on screen means the previous session ended without a delegate callback (the
+File apps/web/tauri/photo_library_plugin/ios/Sources/PhotoLibraryPlugin.swift. It belongs to App shell, not a separate application.
 
 ## Derived relationships
 

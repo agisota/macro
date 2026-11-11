@@ -25,8 +25,8 @@ groma:
       file: packages/loro-mirror/src/core/tree-validation.ts
       symbol: validateProposedTrees
   technology: TypeScript
-  group: Shared packages
-description: Shared package loro-mirror
+  group: Loro mirror
+description: State management functionality for Loro Mirror
 ---
 
 State management functionality for Loro Mirror

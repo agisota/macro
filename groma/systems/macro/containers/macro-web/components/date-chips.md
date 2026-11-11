@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/date-chips.tsx
   technology: SolidJS
-description: Date chips inside the signed-in client.
+  group: Development tooling
+description: Date chips in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/date-chips.tsx.
+File apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/date-chips.tsx. It belongs to Development tooling, not a separate application.

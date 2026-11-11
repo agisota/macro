@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/email/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Workspace core
+description: Compatibility entry point for the editor's HTML decorator and quoted replies
 ---
 
 Compatibility entry point for the editor's HTML decorator and quoted replies. The implementation lives in the framework-independent renderer package.

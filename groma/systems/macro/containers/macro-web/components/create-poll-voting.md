@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-form/core/tally.ts
   technology: SolidJS
+  group: Files
 description: Form editor, sharing, and respond page host.
 ---
 

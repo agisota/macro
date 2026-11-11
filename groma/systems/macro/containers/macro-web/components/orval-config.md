@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/orval.config.ts
   technology: TypeScript
+  group: Service clients
 description: Client for the orval.config.ts host
 ---
 

@@ -42,6 +42,7 @@ groma:
       file: apps/web/src/lib/split-router/router/url-navigation.ts
       symbol: createUrlNavigation
   technology: SolidJS
+  group: Split layout
 description: 'One navigation at a time as a state machine: each pane has one, and so do URL navigations. Pure: `runner.ts` does each phase''s work and reports it; this module '
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/production-takeover-harness.ts
   technology: SolidJS
-description: Production takeover harness inside the signed-in client.
+  group: Development tooling
+description: Tabs of three simulated builds share one scope and coordinator script URL
 ---
 
 Tabs of three simulated builds share one scope and coordinator script URL. Each build must run its own coordinator over the one database. The newer build must take the database over without wiping it, and send the older build's tabs on; an even older build must be turned away.

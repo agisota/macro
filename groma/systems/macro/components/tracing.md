@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/tracing.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: The class whose sampling decision keeps this span when it starts outside an exported trace
 ---
 
 The class whose sampling decision keeps this span when it starts outside an exported trace. Without one it is always kept.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/browser-test/harness.tsx
   technology: SolidJS
-description: Harness inside the signed-in client.
+  group: Development tooling
+description: Harness in Development tooling.
 ---
 
-Observe each new result before inspecting the shared ASTs.
+File apps/web/src/lib/urql-solid/browser-test/harness.tsx. It belongs to Development tooling, not a separate application.

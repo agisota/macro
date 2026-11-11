@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/agent-session-mention.tsx
   technology: SolidJS
-description: Agent session mention inside the signed-in client.
+  group: Development tooling
+description: Agent session mention in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/agent-session-mention.tsx.
+File apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/agent-session-mention.tsx. It belongs to Development tooling, not a separate application.

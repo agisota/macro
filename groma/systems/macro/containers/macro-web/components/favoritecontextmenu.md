@@ -16,6 +16,7 @@ groma:
       file: apps/web/src/features/favorites/FavoriteUnreadIndicator.tsx
       symbol: FavoriteUnreadIndicator
   technology: SolidJS
+  group: Shell
 description: Favorite unread indicator.
 ---
 

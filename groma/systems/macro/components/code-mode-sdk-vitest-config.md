@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/code-mode-sdk/vitest.config.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package code-mode-sdk
+  group: Code mode SDK
+description: Vitest.config in Code mode SDK.
 ---
 
-Library code in packages/code-mode-sdk. Not a separately deployed service.
+File packages/code-mode-sdk/vitest.config.ts. It belongs to Code mode SDK, not a separate application.

@@ -45,7 +45,8 @@ groma:
       file: apps/web/src/components/app/mobile/MobileCreateButton.tsx
       symbol: MobileCreateButton
   technology: SolidJS
-description: FloatRegion inside the signed-in client.
+  group: App shell
+description: Higher wins; ties go to the most recently mounted contributor
 ---
 
 Higher wins; ties go to the most recently mounted contributor. Default 0. Pass an accessor to change priority reactively without remounting.

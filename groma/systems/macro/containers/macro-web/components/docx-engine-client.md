@@ -17,7 +17,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/docx-engine/types.ts
   technology: SolidJS
-description: Client inside the signed-in client.
+  group: Workspace core
+description: 'The DOCX engine as the app calls it: async functions, worker behind them'
 ---
 
 The DOCX engine as the app calls it: async functions, worker behind them.  One worker per tab, started on first use and kept, so the wasm module is compiled once however many documents are open. Each open document is addressed by a caller-chosen `docKey`.

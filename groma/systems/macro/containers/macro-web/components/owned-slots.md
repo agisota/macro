@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/list/owned-slots.ts
       symbol: listOwnedSlotName
   technology: SolidJS
-description: Owned slots inside the signed-in client.
+  group: Lists
+description: Owned slots in Lists.
 ---
 
-Source under apps/web/src/components/list/owned-slots.ts.
+File apps/web/src/components/list/owned-slots.ts. It belongs to Lists, not a separate application.

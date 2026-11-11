@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LoadingSpinner.tsx
   technology: SolidJS
-description: LoadingSpinner inside the signed-in client.
+  group: Workspace core
+description: LoadingSpinner in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/LoadingSpinner.tsx.
+File apps/web/src/lib/core/component/LoadingSpinner.tsx. It belongs to Workspace core, not a separate application.

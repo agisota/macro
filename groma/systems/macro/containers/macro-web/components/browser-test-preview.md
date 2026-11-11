@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/preview.tsx
   technology: SolidJS
-description: Preview inside the signed-in client.
+  group: Development tooling
+description: Preview in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/preview.tsx.
+File apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/preview.tsx. It belongs to Development tooling, not a separate application.

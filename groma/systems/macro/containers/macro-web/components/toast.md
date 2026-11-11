@@ -18,6 +18,7 @@ groma:
       file: apps/web/src/lib/core/component/Toast/create-mobile-toast-swipe.ts
       symbol: createMobileToastSwipe
   technology: SolidJS
+  group: Workspace core
 description: A single entry in the actions row — icon and label rendered as a button
 ---
 

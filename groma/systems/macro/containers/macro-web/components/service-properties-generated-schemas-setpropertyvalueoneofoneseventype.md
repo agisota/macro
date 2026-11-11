@@ -458,6 +458,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-properties/generated/schemas/entityProperty.ts
       symbol: EntityProperty
   technology: TypeScript
+  group: Service clients
 description: Client for the service properties host
 ---
 

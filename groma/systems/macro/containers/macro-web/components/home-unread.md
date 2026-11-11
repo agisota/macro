@@ -16,6 +16,7 @@ groma:
       file: apps/web/src/features/home/components/HomeEntityDetailRouteView.tsx
       symbol: HomeEntityDetailRouteView
   technology: SolidJS
+  group: Shell
 description: Landing list, chat start, and inline previews.
 ---
 

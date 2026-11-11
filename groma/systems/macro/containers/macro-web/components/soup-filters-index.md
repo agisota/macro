@@ -77,6 +77,7 @@ groma:
       file: apps/web/src/features/soup/SoupEntityActionDrawerManager.tsx
       symbol: MaybeSoupEntityActionDrawerManager
   technology: SolidJS
+  group: Shell
 description: Soup list actions, filters, and context menus.
 ---
 

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt.tsx
   technology: SolidJS
+  group: Gantt
 description: 'Shows times of day: zoom continues past days into hours, and a range drawn at hours zoom is timed rather than whole days.'
 ---
 

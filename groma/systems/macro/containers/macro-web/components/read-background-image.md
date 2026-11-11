@@ -12,7 +12,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/media/background-effect.ts
   technology: SolidJS
-description: Read background image inside the signed-in client.
+  group: Workspace core
+description: Bound custom images before storing the same background preference as calls
 ---
 
 Bound custom images before storing the same background preference as calls.

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/urql-solid/create-base-query.ts
       symbol: createBaseQuery
   technology: SolidJS
-description: Create base query inside the signed-in client.
+  group: GraphQL client
+description: Bridges a framework-neutral urql observer into one reactive Solid store
 ---
 
 Bridges a framework-neutral urql observer into one reactive Solid store.

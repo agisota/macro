@@ -848,6 +848,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-auth/generated/schemas/createInProgressLinkResponse.ts
       symbol: CreateInProgressLinkResponse
   technology: TypeScript
+  group: Service clients
 description: Session, link, and billing client for the auth host
 ---
 

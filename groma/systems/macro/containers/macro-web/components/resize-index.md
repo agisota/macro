@@ -15,6 +15,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Resize/solver.ts
   technology: SolidJS
+  group: Workspace core
 description: 'TODO (seamus): next version should use these to as default sizes instead of current behavior which is hard-coded "1fr"'
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/sticky-header.ts
   technology: SolidJS
-description: Sticky header inside the signed-in client.
+  group: Lists
+description: Find the last header at or before an offset without scanning every row
 ---
 
 Find the last header at or before an offset without scanning every row.

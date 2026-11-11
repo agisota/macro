@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/utils.ts
   technology: SolidJS
-description: Utils inside the signed-in client.
+  group: Data queries
+description: Standard mutation callback types matching TanStack Query's mutation options
 ---
 
 Standard mutation callback types matching TanStack Query's mutation options. Use this to ensure consistent callback signatures across mutations.

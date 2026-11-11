@@ -11,7 +11,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/client/folderUploadPaths.ts
   technology: SolidJS
-description: ZipWorkerClient inside the signed-in client.
+  group: Workspace core
+description: 'NOTE: you can expect a 30-40% decrease in folder size when zipped'
 ---
 
 NOTE: you can expect a 30-40% decrease in folder size when zipped

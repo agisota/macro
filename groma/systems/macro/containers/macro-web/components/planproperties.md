@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/planProperties.ts
   technology: SolidJS
-description: PlanProperties inside the signed-in client.
+  group: Product analytics
+description: PlanProperties in Product analytics.
 ---
 
-The product plan exposed to PostHog.
+File apps/web/src/lib/analytics/planProperties.ts. It belongs to Product analytics, not a separate application.

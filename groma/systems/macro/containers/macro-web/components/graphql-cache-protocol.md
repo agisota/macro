@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/protocol.ts
   technology: SolidJS
-description: Protocol inside the signed-in client.
+  group: GraphQL cache
+description: Explicit local entities resolved atomically from a committed mutation response
 ---
 
 Explicit local entities resolved atomically from a committed mutation response.

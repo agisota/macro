@@ -386,6 +386,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/next-soup/filters/query-filters.ts
   technology: SolidJS
+  group: Shell
 description: Shared list navigation and several pane routes.
 ---
 

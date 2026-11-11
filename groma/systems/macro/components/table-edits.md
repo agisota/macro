@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/table-edits.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: A sheet as the workbook-wide table operations read it
 ---
 
 A sheet as the workbook-wide table operations read it.

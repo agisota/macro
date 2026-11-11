@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/BundleUpdateProgressBar.tsx
       symbol: BundleUpdateProgressBar
   technology: SolidJS
-description: BundleUpdateProgressBar inside the signed-in client.
+  group: App shell
+description: BundleUpdateProgressBar in App shell.
 ---
 
-Source under apps/web/src/components/app/BundleUpdateProgressBar.tsx.
+File apps/web/src/components/app/BundleUpdateProgressBar.tsx. It belongs to App shell, not a separate application.

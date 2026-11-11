@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/github-stars.ts
       symbol: useGithubStarsQuery
   technology: SolidJS
-description: Github stars inside the signed-in client.
+  group: Data queries
+description: Shared across onboarding mounts; this public request needs no sign-in
 ---
 
 Shared across onboarding mounts; this public request needs no sign-in.

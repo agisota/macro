@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/create-gantt-pan.ts
       symbol: createGanttPan
   technology: SolidJS
-description: Create gantt pan inside the signed-in client.
+  group: Gantt
+description: Owns one middle-button gesture; calendar geometry stays with Gantt
 ---
 
 Owns one middle-button gesture; calendar geometry stays with Gantt.Root.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/list-views.ts
   technology: SolidJS
-description: List views inside the signed-in client.
+  group: Workspace core
+description: List views in Workspace core.
 ---
 
-External linked accounts (WhatsApp); a settings-like view, not an entity list.
+File apps/web/src/lib/constants/list-views.ts. It belongs to Workspace core, not a separate application.

@@ -28,7 +28,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/heic/index.ts
   technology: SolidJS
-description: Utils inside the signed-in client.
+  group: Workspace core
+description: Utility functions for file type detection
 ---
 
 Utility functions for file type detection

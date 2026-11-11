@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/machine/src/solid.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package machine
+  group: State machine
+description: 'Read and narrow the reactive snapshot: `machine'
 ---
 
 Read and narrow the reactive snapshot: `machine.matches('flashing')`.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/DocumentPreviewSkeleton.tsx
   technology: SolidJS
-description: DocumentPreviewSkeleton inside the signed-in client.
+  group: Workspace core
+description: Shared by preview cards and their async boundaries; no document data required
 ---
 
 Shared by preview cards and their async boundaries; no document data required.

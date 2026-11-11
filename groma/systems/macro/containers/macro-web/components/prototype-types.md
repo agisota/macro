@@ -31,7 +31,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/fig-engine/client.ts
   technology: SolidJS
-description: Prototype types inside the signed-in client.
+  group: Workspace core
+description: A page's prototype as the engine reads it (`inspect/prototype
 ---
 
 A page's prototype as the engine reads it (`inspect/prototype.rs`): flows, the frames that are screens, and every layer with interactions. Enum values are Figma's names.

@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/span.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: An explicit context retained across a queue/authentication boundary; owns no span
 ---
 
 An explicit context retained across a queue/authentication boundary; owns no span.

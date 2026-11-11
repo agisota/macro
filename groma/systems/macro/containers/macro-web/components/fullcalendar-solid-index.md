@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/fullcalendar-solid/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Workspace core
+description: Index in Workspace core.
 ---
 
-Source under apps/web/src/lib/fullcalendar-solid/index.ts.
+File apps/web/src/lib/fullcalendar-solid/index.ts. It belongs to Workspace core, not a separate application.

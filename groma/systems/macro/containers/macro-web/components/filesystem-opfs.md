@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/opfs.ts
   technology: SolidJS
-description: Opfs inside the signed-in client.
+  group: Local files
+description: If making breaking changes to the OPFS structure / format, increment this
 ---
 
 If making breaking changes to the OPFS structure / format, increment this

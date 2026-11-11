@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/FatalError.tsx
       symbol: FatalError
   technology: SolidJS
-description: FatalError inside the signed-in client.
+  group: App shell
+description: FatalError in App shell.
 ---
 
-Source under apps/web/src/components/app/FatalError.tsx.
+File apps/web/src/components/app/FatalError.tsx. It belongs to App shell, not a separate application.

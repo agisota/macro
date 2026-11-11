@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-context.ts
   technology: SolidJS
-description: Gantt context inside the signed-in client.
+  group: Gantt
+description: Gantt context in Gantt.
 ---
 
-The current time to the minute.
+File apps/web/src/components/gantt/gantt-context.ts. It belongs to Gantt, not a separate application.

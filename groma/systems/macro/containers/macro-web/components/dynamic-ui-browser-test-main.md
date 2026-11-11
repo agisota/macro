@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/dynamic-ui/browser-test/main.tsx
   technology: SolidJS
+  group: Development tooling
 description: Agent dashboard widgets.
 ---
 

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/filesystem/read.ts
       symbol: readFileFromHandle
   technology: SolidJS
-description: Read inside the signed-in client.
+  group: Local files
+description: Read in Local files.
 ---
 
-Source under apps/web/src/lib/filesystem/read.ts.
+File apps/web/src/lib/filesystem/read.ts. It belongs to Local files, not a separate application.

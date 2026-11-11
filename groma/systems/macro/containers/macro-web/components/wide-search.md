@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-search.tsx
       symbol: AnimatedSearchIcon
   technology: SolidJS
-description: Wide search inside the signed-in client.
+  group: Icons
+description: Wide search in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-search.tsx.
+File apps/web/src/components/icon/wide-search.tsx. It belongs to Icons, not a separate application.

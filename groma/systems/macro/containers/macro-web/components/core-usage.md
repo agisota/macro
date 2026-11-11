@@ -45,6 +45,7 @@ groma:
       file: apps/web/src/features/usage/queries/usage-summary.ts
       symbol: toUsageSummary
   technology: SolidJS
+  group: Settings
 description: Usage settings screen.
 ---
 

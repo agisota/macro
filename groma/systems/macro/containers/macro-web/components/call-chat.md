@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/channel/Call/chat/browser-test/call-chat.tsx
   technology: SolidJS
+  group: Development tooling
 description: Channel message surface, calls, and create-channel modal.
 ---
 

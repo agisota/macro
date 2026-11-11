@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-preview.tsx
       symbol: AnimatedPreviewIcon
   technology: SolidJS
-description: Wide preview inside the signed-in client.
+  group: Icons
+description: Eye icon with pupil animation - pupil slides left and right
 ---
 
 Eye icon with pupil animation - pupil slides left and right

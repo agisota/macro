@@ -11,7 +11,7 @@ groma:
       symbol: qualifyScratchFormula
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Evaluate on a private sheet without occupying or overwriting a source cell
 ---
 
 Evaluate on a private sheet without occupying or overwriting a source cell. Token positions are Unicode scalar offsets, and may include leading space.

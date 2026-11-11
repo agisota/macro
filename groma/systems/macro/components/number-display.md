@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/number-display.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: A number as a cell with Macro's own format shows it
 ---
 
 A number as a cell with Macro's own format shows it.

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/notification-sounds/browser-test/fixture.tsx
   technology: SolidJS
+  group: Development tooling
 description: Notification sound playback and tab claim.
 ---
 

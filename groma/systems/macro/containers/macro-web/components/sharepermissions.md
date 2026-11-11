@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/SharePermissions.tsx
   technology: SolidJS
-description: SharePermissions inside the signed-in client.
+  group: Workspace core
+description: SharePermissions in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/SharePermissions.tsx.
+File apps/web/src/lib/core/component/SharePermissions.tsx. It belongs to Workspace core, not a separate application.

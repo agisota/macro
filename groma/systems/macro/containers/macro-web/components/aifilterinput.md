@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/AiFilterInput.tsx
   technology: SolidJS
-description: AiFilterInput inside the signed-in client.
+  group: View shell
+description: '`applied` may carry a `note` explaining any part of the request left unmapped'
 ---
 
 `applied` may carry a `note` explaining any part of the request left unmapped.

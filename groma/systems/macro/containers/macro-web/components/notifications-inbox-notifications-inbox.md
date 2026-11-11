@@ -105,6 +105,7 @@ groma:
       file: apps/web/src/features/notifications-inbox/components/inbox-filter-drawer.tsx
       symbol: InboxFilterDrawer
   technology: SolidJS
+  group: Shell
 description: Notifications pane, including an inline calendar preview.
 ---
 

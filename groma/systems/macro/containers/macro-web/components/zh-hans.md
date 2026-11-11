@@ -105,7 +105,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/i18n/locales/pl.ts
   technology: SolidJS
-description: Zh Hans inside the signed-in client.
+  group: Interface language
+description: Zh Hans in Interface language.
 ---
 
-Source under apps/web/src/lib/i18n/locales/zh-Hans.ts.
+File apps/web/src/lib/i18n/locales/zh-Hans.ts. It belongs to Interface language, not a separate application.

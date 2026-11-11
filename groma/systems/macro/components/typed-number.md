@@ -11,7 +11,7 @@ groma:
       symbol: typedNumber
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: A typed number, percentage, currency amount, date (ISO or month/day/year) or time as Excel's value
 ---
 
 A typed number, percentage, currency amount, date (ISO or month/day/year) or time as Excel's value.

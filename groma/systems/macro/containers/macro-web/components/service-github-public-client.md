@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-github-public/client.ts
       symbol: getMacroGithubStars
   technology: HTTP
+  group: Service clients
 description: Reads the public star count
 ---
 

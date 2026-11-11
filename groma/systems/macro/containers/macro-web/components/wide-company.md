@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-company.tsx
       symbol: AnimatedCompanyIcon
   technology: SolidJS
-description: Wide company inside the signed-in client.
+  group: Icons
+description: Origin at each L's bottom point so scaling grows them upward only
 ---
 
 Origin at each L's bottom point so scaling grows them upward only

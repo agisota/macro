@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/persistence/per-query-idb.ts
   technology: SolidJS
-description: Per query idb inside the signed-in client.
+  group: Data queries
+description: Clear durable entries and fence pending/in-flight writes
 ---
 
 Clear durable entries and fence pending/in-flight writes.

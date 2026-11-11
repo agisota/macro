@@ -13,6 +13,7 @@ groma:
       file: apps/web/src/features/devtools/HotkeyDebugger.tsx
       symbol: HotkeyDebugger
   technology: SolidJS
+  group: Development tooling
 description: Dev status bar and hotkey debugger.
 ---
 

@@ -11,7 +11,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/app-sidebar/sidebar.tsx
   technology: SolidJS
-description: Go to leader inside the signed-in client.
+  group: App shell
+description: Whether the "g" leader key is currently awaiting a destination key
 ---
 
 Whether the "g" leader key is currently awaiting a destination key.

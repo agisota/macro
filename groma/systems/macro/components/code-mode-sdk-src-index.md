@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/code-mode-sdk/src/index.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package code-mode-sdk
+  group: Code mode SDK
+description: Package the actual public SDK; no tool-name proxy or alternate SDK API
 ---
 
 Package the actual public SDK; no tool-name proxy or alternate SDK API.

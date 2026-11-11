@@ -13,7 +13,8 @@ groma:
     - scanner: typescript
       file: apps/web/tests/native/generate-fixtures.ts
   technology: SolidJS
-description: Mail inside the signed-in client.
+  group: Development tooling
+description: Subset of the canonical Rust-encoded Mail fixtures
 ---
 
-Subset of the canonical Rust-encoded Mail fixtures. These are API records, not cache writes or precomputed filter results. Keep the capsule facts intact.
+Subset of the canonical Rust-encoded Mail fixtures. These are API records,

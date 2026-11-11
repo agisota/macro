@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/scripts/generate-cache-people-schema.ts
   technology: SolidJS
-description: Generate cache people schema inside the signed-in client.
+  group: Development tooling
+description: Generate cache people schema in Development tooling.
 ---
 
-The generic generator erases oneOf to z.any(). Our Rust enums have disjoint literal tags, so a typed union has identical validation.
+File apps/web/scripts/generate-cache-people-schema.ts. It belongs to Development tooling, not a separate application.

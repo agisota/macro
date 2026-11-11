@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-sidebar.tsx
       symbol: AnimatedSidebarIcon
   technology: SolidJS
-description: Wide sidebar inside the signed-in client.
+  group: Icons
+description: Wide sidebar in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-sidebar.tsx.
+File apps/web/src/components/icon/wide-sidebar.tsx. It belongs to Icons, not a separate application.

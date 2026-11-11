@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/activity/push-registry.ts
   technology: SolidJS
-description: Push registry inside the signed-in client.
+  group: Data queries
+description: Null means every mounted activity query needs a fresh authorized read
 ---
 
 Null means every mounted activity query needs a fresh authorized read.

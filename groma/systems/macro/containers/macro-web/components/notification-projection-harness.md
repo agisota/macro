@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/notification-projection-harness.ts
   technology: SolidJS
-description: Notification projection harness inside the signed-in client.
+  group: Development tooling
+description: Notification projection harness in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/notification-projection-harness.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/notification-projection-harness.ts. It belongs to Development tooling, not a separate application.

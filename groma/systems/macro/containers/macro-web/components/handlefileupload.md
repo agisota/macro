@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/utils/handleFileUpload.ts
       symbol: useHandleFileUpload
   technology: SolidJS
-description: HandleFileUpload inside the signed-in client.
+  group: Workspace core
+description: HandleFileUpload in Workspace core.
 ---
 
-Refetch soup for folders once pending uploads are done, and show a success toast with an action to open the created folder/project.
+File apps/web/src/lib/utils/handleFileUpload.ts. It belongs to Workspace core, not a separate application.

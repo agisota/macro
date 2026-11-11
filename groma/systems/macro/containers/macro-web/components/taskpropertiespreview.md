@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/TaskPropertiesPreview.tsx
   technology: SolidJS
+  group: Workspace core
 description: One data owner for status and details; non-task cards are a passthrough.
 ---
 

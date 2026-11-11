@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/store-array-updaters.ts
   technology: SolidJS
-description: Store array updaters inside the signed-in client.
+  group: Workspace state
+description: Creates an updater that appends a value only when it is not already present
 ---
 
 Creates an updater that appends a value only when it is not already present. Pass it directly to a Solid signal setter or store path setter.  @example setState('items', addUnique(item));

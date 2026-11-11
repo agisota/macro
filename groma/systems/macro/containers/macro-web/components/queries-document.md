@@ -239,7 +239,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-canvas/core/excalidraw.ts
   technology: SolidJS
-  group: Files
+  group: Canvas
 description: Canvas Next scene editor and legacy JSON migration.
 ---
 

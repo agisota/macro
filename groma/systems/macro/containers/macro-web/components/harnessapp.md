@@ -9,7 +9,8 @@ groma:
     - scanner: swift
       file: apps/web/tauri/callkit_plugin/ios/Tests/OverlayHarness/HarnessApp.swift
   technology: SolidJS
-description: HarnessApp inside the signed-in client.
+  group: Development tooling
+description: Runs the production overlay without authentication, a backend, or a call
 ---
 
 Runs the production overlay without authentication, a backend, or a call. A physical device can use this same screen to stress the gesture lifecycle.

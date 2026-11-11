@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban-collision.ts
   technology: SolidJS
-description: Kanban collision inside the signed-in client.
+  group: Kanban
+description: Kanban collision in Kanban.
 ---
 
-Source under apps/web/src/components/kanban/kanban-collision.ts.
+File apps/web/src/components/kanban/kanban-collision.ts. It belongs to Kanban, not a separate application.

@@ -27,7 +27,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/agent-session/prompt-telemetry.ts
   technology: SolidJS
-description: Render telemetry inside the signed-in client.
+  group: Workspace core
+description: Observe actual answer DOM; raw fold text may still be Markdown scaffolding
 ---
 
 Observe actual answer DOM; raw fold text may still be Markdown scaffolding.

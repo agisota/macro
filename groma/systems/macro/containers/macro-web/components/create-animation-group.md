@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/utils/create-animation-group.ts
   technology: SolidJS
-description: Create animation group inside the signed-in client.
+  group: Workspace core
+description: One interruptible WAAPI group
 ---
 
 One interruptible WAAPI group. Callers capture keyframes before starting a replacement and own presence, geometry, and disposal policy.

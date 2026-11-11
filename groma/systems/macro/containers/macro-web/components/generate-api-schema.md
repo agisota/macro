@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/scripts/generate-api-schema.ts
   technology: SolidJS
-description: Generate api schema inside the signed-in client.
+  group: Development tooling
+description: 'Usage: bun run scripts/generate-api-schema'
 ---
 
-Usage: bun run scripts/generate-api-schema.ts <service-name> // generate for specific service bun run scripts/generate-api-schema.ts               // generate for all services bun run scripts/generate-api-schema.ts --check       // verify types are up to date (for CI) bun run scr
+Usage: bun run scripts/generate-api-schema.ts <service-name> // generate for specific service bun run scripts/generate-api-schema.ts               // generate for all services bun run scripts/generate-api-schema.ts --check       // verify types are up to date (for CI) bun run scripts/generate-api-schema.ts --print-cargo-bins // print the `--bin` args phase 1 builds (for CI)  This script generates OpenAPI schemas by r

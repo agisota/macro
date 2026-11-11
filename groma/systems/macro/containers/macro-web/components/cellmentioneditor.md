@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/cell-text-editor/CellMentionEditor.tsx
       symbol: CellMentionEditor
   technology: SolidJS
-description: CellMentionEditor inside the signed-in client.
+  group: App shell
+description: CellMentionEditor in App shell.
 ---
 
-Source under apps/web/src/components/cell-text-editor/CellMentionEditor.tsx.
+File apps/web/src/components/cell-text-editor/CellMentionEditor.tsx. It belongs to App shell, not a separate application.

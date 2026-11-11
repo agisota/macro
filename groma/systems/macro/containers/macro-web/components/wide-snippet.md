@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-snippet.tsx
       symbol: AnimatedSnippetIcon
   technology: SolidJS
-description: Wide snippet inside the signed-in client.
+  group: Icons
+description: Wide snippet in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-snippet.tsx.
+File apps/web/src/components/icon/wide-snippet.tsx. It belongs to Icons, not a separate application.

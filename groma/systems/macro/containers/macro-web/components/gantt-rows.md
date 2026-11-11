@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-rows.tsx
   technology: SolidJS
-description: Gantt rows inside the signed-in client.
+  group: Gantt
+description: Gantt rows in Gantt.
 ---
 
-Consecutive sidebar rows with the same key form one visual panel.
+File apps/web/src/components/gantt/gantt-rows.tsx. It belongs to Gantt, not a separate application.

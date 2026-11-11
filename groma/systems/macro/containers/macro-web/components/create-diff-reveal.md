@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/diff-view/create-diff-reveal.ts
       symbol: createDiffReveal
   technology: SolidJS
-description: Create diff reveal inside the signed-in client.
+  group: Diffs
+description: Queues each file body when its card approaches the stack viewport
 ---
 
 Queues each file body when its card approaches the stack viewport.

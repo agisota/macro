@@ -50,6 +50,7 @@ groma:
       file: apps/web/src/features/tutorial/lessons/create-entity.tsx
       symbol: createEntityLesson
   technology: SolidJS
+  group: Shell
 description: Interactive onboarding modal and sandbox lessons.
 ---
 

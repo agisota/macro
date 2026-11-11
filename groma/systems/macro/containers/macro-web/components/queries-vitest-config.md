@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/vitest.config.ts
   technology: SolidJS
-description: Vitest.config inside the signed-in client.
+  group: Data queries
+description: Vitest.config in Data queries.
 ---
 
-Source under apps/web/src/lib/queries/vitest.config.ts.
+File apps/web/src/lib/queries/vitest.config.ts. It belongs to Data queries, not a separate application.

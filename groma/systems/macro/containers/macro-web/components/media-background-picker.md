@@ -11,6 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/media/media-device-picker.tsx
   technology: SolidJS
+  group: Workspace core
 description: A device kind's radio rows; `selected` '' is the system default.
 ---
 

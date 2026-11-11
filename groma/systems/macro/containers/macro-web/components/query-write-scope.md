@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/query-write-scope.ts
   technology: SolidJS
-description: Query write scope inside the signed-in client.
+  group: Development tooling
+description: Production host + WASM/OPFS, with synthetic responses only
 ---
 
 Production host + WASM/OPFS, with synthetic responses only. No auth or hosted data is required. Exercise the same scoped subscriber used by Quick Access.

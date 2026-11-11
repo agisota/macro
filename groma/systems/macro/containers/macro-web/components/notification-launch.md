@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/notification-launch.ts
   technology: SolidJS
-description: Notification launch inside the signed-in client.
+  group: Desktop shell
+description: Keep every tap usable even when navigation or its acknowledgment stalls
 ---
 
 Keep every tap usable even when navigation or its acknowledgment stalls.

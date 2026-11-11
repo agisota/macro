@@ -12,7 +12,8 @@ groma:
     - scanner: typescript
       file: apps/web/tests/functional/whatsapp-linked/fixture.tsx
   technology: SolidJS
-description: Split header fixture inside the signed-in client.
+  group: Development tooling
+description: Slot host for isolated conversation interactions; production owns the split frame
 ---
 
 Slot host for isolated conversation interactions; production owns the split frame.

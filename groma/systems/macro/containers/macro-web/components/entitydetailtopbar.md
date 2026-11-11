@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/entity-detail/EntityDetailTopBar.tsx
       symbol: EntityDetailTopBar
   technology: SolidJS
-description: EntityDetailTopBar inside the signed-in client.
+  group: Entity detail
+description: Header actions drop their labels first, at `@max-[600px]/split-header`
 ---
 
 Header actions drop their labels first, at `@max-[600px]/split-header`.

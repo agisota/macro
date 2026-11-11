@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/service-scheduled-action/generated/client.ts
   technology: TypeScript
+  group: Service clients
 description: Client for the service scheduled action host
 ---
 

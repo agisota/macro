@@ -26,6 +26,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/local-runtime/components/setup-checklist.tsx
   technology: SolidJS
+  group: Agents
 description: Desktop macrod pairing and first-run setup prompt.
 ---
 

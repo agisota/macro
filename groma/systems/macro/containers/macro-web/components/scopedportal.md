@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ScopedPortal.tsx
   technology: SolidJS
-description: ScopedPortal inside the signed-in client.
+  group: Workspace core
+description: Portal with some extra scoping logic
 ---
 
-Portal with some extra scoping logic. If passed a specific mount prop or no props at all – it is just a regular solid Portal. @param props.scope - The scope of the portal. If 'local' it will mount to the closest element with the '.portal-scope' class. If 'block' it will mount to
+Portal with some extra scoping logic. If passed a specific mount prop or no props at all – it is just a regular solid Portal. @param props.scope - The scope of the portal. If 'local' it will mount to the closest element with the '.portal-scope' class. If 'block' it will mount to the containing block element. If 'global' it will mount to the document body. @returns

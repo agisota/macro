@@ -12,6 +12,7 @@ groma:
       file: apps/web/src/features/command/mobile/MobileSearchInput.tsx
       symbol: MobileSearchInput
   technology: SolidJS
+  group: Shell
 description: Command-K menu and create launcher.
 ---
 

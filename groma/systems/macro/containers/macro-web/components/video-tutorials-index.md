@@ -36,6 +36,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/video-tutorials/core/tutorial-id.ts
   technology: SolidJS
+  group: Shell
 description: Tutorial catalog and embeddable tutorial rows.
 ---
 

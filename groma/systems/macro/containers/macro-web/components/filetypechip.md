@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/FileTypeChip.tsx
       symbol: FileTypeChip
   technology: SolidJS
-description: FileTypeChip inside the signed-in client.
+  group: Workspace core
+description: FileTypeChip in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/FileTypeChip.tsx.
+File apps/web/src/lib/core/component/FileTypeChip.tsx. It belongs to Workspace core, not a separate application.

@@ -31,6 +31,7 @@ groma:
       file: apps/web/src/lib/core/directive/fileSelector.ts
       symbol: fileSelector
   technology: SolidJS
+  group: Workspace core
 description: CSS class added while the touch highlight is active.
 ---
 

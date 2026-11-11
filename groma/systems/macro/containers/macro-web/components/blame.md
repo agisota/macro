@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/blame.ts
       symbol: useNodeBlameQuery
   technology: SolidJS
-description: Blame inside the signed-in client.
+  group: Data queries
+description: Blame in Data queries.
 ---
 
-Source under apps/web/src/lib/queries/blame.ts.
+File apps/web/src/lib/queries/blame.ts. It belongs to Data queries, not a separate application.

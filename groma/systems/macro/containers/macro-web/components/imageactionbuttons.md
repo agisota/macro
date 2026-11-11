@@ -15,7 +15,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ImageActions/index.ts
   technology: SolidJS
-description: ImageActionButtons inside the signed-in client.
+  group: Workspace core
+description: Copy + download buttons for a single image, driven by `createImageActions`
 ---
 
 Copy + download buttons for a single image, driven by `createImageActions`.

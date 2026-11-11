@@ -13,7 +13,8 @@ groma:
       file: apps/web/src/lib/core/component/GeneralizedPopup/Popup.tsx
       symbol: GeneralizedPopup
   technology: SolidJS
-description: PopupPositioner inside the signed-in client.
+  group: Workspace core
+description: Reference element the popup is positioned against
 ---
 
 Reference element the popup is positioned against.

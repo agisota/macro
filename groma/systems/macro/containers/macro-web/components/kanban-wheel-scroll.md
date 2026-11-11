@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/kanban/kanban-wheel-scroll.ts
       symbol: createKanbanWheelScroll
   technology: SolidJS
-description: Kanban wheel scroll inside the signed-in client.
+  group: Kanban
+description: Keep wheel momentum with its original scroll viewport while columns move under the pointer
 ---
 
 Keep wheel momentum with its original scroll viewport while columns move under the pointer.

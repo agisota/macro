@@ -10,10 +10,10 @@ groma:
       file: packages/spreadsheet/src/table-columns.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Table columns in Spreadsheet engine.
 ---
 
-Library code in packages/spreadsheet. Not a separately deployed service.
+File packages/spreadsheet/src/table-columns.ts. It belongs to Spreadsheet engine, not a separate application.
 
 ## Derived relationships
 

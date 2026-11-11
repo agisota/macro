@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/goal-seek.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: A formula cell and the numeric cell Goal Seek is allowed to change
 ---
 
 A formula cell and the numeric cell Goal Seek is allowed to change.

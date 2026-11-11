@@ -25,7 +25,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/host/retirable-host.ts
   technology: SolidJS
-description: Noop host inside the signed-in client.
+  group: GraphQL cache
+description: CacheHost used when the platform cannot run the shared cache engine, or after a page stops using it
 ---
 
 CacheHost used when the platform cannot run the shared cache engine, or after a page stops using it. It never stores data. Its disabled marker makes the exchange bypass optimistic persistence and forward mutations directly.

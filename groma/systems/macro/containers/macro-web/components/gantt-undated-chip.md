@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/gantt-undated-chip.tsx
       symbol: GanttUndatedChip
   technology: SolidJS
-description: Gantt undated chip inside the signed-in client.
+  group: Gantt
+description: The widest a chip draws, kept clear of the chart's right edge
 ---
 
 The widest a chip draws, kept clear of the chart's right edge.

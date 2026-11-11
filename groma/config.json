@@ -154,7 +154,8 @@
     "/services/convert_service/load-test/**",
     "/services/convert_service/helpers/**",
     "/crates/email_formatting/preview_digest.py",
-    "/crates/invite_email/preview_invite.py"
+    "/crates/invite_email/preview_invite.py",
+    "/crates/universal_input/eval/**"
   ],
   "automaticUpdates": true
 }

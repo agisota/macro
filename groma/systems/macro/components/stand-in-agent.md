@@ -9,7 +9,7 @@ groma:
     - scanner: python
       file: crates/coding_agent_worker/e2e/stand_in_agent.py
   group: Unscanned Rust helpers
-description: Scanned source
+description: Stand in agent in Unscanned Rust helpers.
 ---
 
-Well under the shortest update handoff, so `output-in-gap` always sees frames written while nothing was reading; at 20 ms a fast handoff could fall between two ticks and fail the test.
+File crates/coding_agent_worker/e2e/stand_in_agent.py. It belongs to Unscanned Rust helpers, not a separate application.

@@ -31,7 +31,8 @@ groma:
       file: apps/web/src/lib/queries/agents/keys.ts
       symbol: agentKeys
   technology: SolidJS
-description: Agents inside the signed-in client.
+  group: Data queries
+description: '`Agent` plus the macrod harness binding the backend now returns; the field is not yet in the generated schema'
 ---
 
 `Agent` plus the macrod harness binding the backend now returns; the field is not yet in the generated schema.

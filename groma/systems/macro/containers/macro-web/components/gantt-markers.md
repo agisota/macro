@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-markers.tsx
   technology: SolidJS
+  group: Gantt
 description: An end on a day boundary is exclusive; a timed end is in its day.
 ---
 

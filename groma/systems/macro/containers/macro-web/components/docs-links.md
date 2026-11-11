@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/docs-links.ts
   technology: SolidJS
-description: Docs links inside the signed-in client.
+  group: Workspace core
+description: Base URL for the public documentation site
 ---
 
 Base URL for the public documentation site.

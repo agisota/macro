@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/error.ts
   technology: SolidJS
-description: Error inside the signed-in client.
+  group: Local files
+description: Error in Local files.
 ---
 
-Source under apps/web/src/lib/filesystem/error.ts.
+File apps/web/src/lib/filesystem/error.ts. It belongs to Local files, not a separate application.

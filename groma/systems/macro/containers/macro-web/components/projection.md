@@ -14,7 +14,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/ai/homeRecommendations.ts
   technology: SolidJS
-description: Projection inside the signed-in client.
+  group: Data queries
+description: Gateway push sent when a projection materialization finishes (or errors)
 ---
 
 Gateway push sent when a projection materialization finishes (or errors). Mirrors `ProjectionStateResponse` plus the routing discriminators.

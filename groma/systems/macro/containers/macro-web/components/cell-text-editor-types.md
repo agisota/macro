@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/cell-text-editor/types.ts
       symbol: CellTextEditorProps
   technology: SolidJS
-description: Types inside the signed-in client.
+  group: App shell
+description: Types in App shell.
 ---
 
-Source under apps/web/src/components/cell-text-editor/types.ts.
+File apps/web/src/components/cell-text-editor/types.ts. It belongs to App shell, not a separate application.

@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/lib/filesystem/open.ts
       symbol: openFromDisk
   technology: SolidJS
+  group: Local files
 description: Returns a FileHandle referencing a file the user wishes to open handle should be used to lookup data from cache or "readFromHandle" e.g. ```typescript const han
 ---
 

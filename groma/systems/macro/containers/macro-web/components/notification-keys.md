@@ -29,6 +29,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/notification/type-preferences.ts
   technology: SolidJS
+  group: Data queries
 description: '@deprecated Use `useMutedEntitiesQuery`.'
 ---
 

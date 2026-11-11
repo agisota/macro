@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/Notifications.tsx
       symbol: Notifications
   technology: SolidJS
-description: Notifications inside the signed-in client.
+  group: Workspace core
+description: Notifications in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/Notifications.tsx.
+File apps/web/src/lib/core/component/Notifications.tsx. It belongs to Workspace core, not a separate application.

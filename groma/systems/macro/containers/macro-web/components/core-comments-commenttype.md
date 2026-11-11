@@ -32,7 +32,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/comments/Thread.tsx
   technology: SolidJS
-description: CommentType inside the signed-in client.
+  group: Workspace core
+description: Comments are messages with UUIDs; drafts carry numeric or prefixed sentinel ids until the server assigns one
 ---
 
 Comments are messages with UUIDs; drafts carry numeric or prefixed sentinel ids until the server assigns one.

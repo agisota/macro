@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-chat.tsx
       symbol: AnimatedChatIcon
   technology: SolidJS
-description: Wide chat inside the signed-in client.
+  group: Icons
+description: Wide chat in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-chat.tsx.
+File apps/web/src/components/icon/wide-chat.tsx. It belongs to Icons, not a separate application.

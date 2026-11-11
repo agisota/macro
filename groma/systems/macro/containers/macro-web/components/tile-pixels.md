@@ -20,7 +20,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/ai-engine/types.ts
   technology: SolidJS
-description: Tile pixels inside the signed-in client.
+  group: Workspace core
+description: 'Tiles are drawn on the pasteboard color, so they are opaque: coarse stand-ins under a sharper tile never show through its empty parts, and t'
 ---
 
 Tiles are drawn on the pasteboard color, so they are opaque: coarse stand-ins under a sharper tile never show through its empty parts, and the canvas can composite without alpha.

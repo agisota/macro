@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/context.tsx
   technology: SolidJS
-description: Context inside the signed-in client.
+  group: GraphQL client
+description: Props for the application-local urql client provider
 ---
 
 Props for the application-local urql client provider.

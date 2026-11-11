@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/ai-workbook.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Ai workbook in Spreadsheet engine.
 ---
 
-Library code in packages/spreadsheet. Not a separately deployed service.
+File packages/spreadsheet/src/ai-workbook.ts. It belongs to Spreadsheet engine, not a separate application.

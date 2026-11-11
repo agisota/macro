@@ -47,7 +47,8 @@ groma:
       file: apps/web/src/lib/core/context/quickAccess/debug/QuickAccessAll.tsx
       symbol: QuickAccessAll
   technology: SolidJS
-description: CreateContext inside the signed-in client.
+  group: Workspace core
+description: Creates a context provider that throws if used outside of provider tree
 ---
 
-Creates a context provider that throws if used outside of provider tree. Thin wrapper around solid-primitives createContextProvider.  @param name - Name of the context (used in error messages) @param factory - Factory function that creates the context value @returns Tuple of [Pro
+Creates a context provider that throws if used outside of provider tree. Thin wrapper around solid-primitives createContextProvider.  @param name - Name of the context (used in error messages) @param factory - Factory function that creates the context value @returns Tuple of [Provider, useContext] where useContext throws if undefined

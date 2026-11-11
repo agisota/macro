@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/CircleSpinner.tsx
       symbol: CircleSpinner
   technology: SolidJS
-description: CircleSpinner inside the signed-in client.
+  group: Workspace core
+description: CircleSpinner in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/CircleSpinner.tsx.
+File apps/web/src/lib/core/component/CircleSpinner.tsx. It belongs to Workspace core, not a separate application.

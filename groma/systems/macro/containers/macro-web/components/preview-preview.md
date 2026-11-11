@@ -33,10 +33,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/preview/index.ts
   technology: SolidJS
-description: Preview inside the signed-in client.
+  group: Data queries
+description: Preview in Data queries.
 ---
 
-DEBUG VARS
+File apps/web/src/lib/queries/preview/preview.ts. It belongs to Data queries, not a separate application.
 
 ## Derived relationships
 

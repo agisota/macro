@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/signals/signals.ts
   technology: SolidJS
-description: Signals inside the signed-in client.
+  group: UI primitives
+description: Globally enables or disables the appearance of tooltips across the app
 ---
 
 Globally enables or disables the appearance of tooltips across the app. Persisted to localStorage so the preference survives reloads.

@@ -15,7 +15,8 @@ groma:
       file: apps/web/src/lib/queries/harnesses/connections.ts
       symbol: useHarnessConnectionStatus
   technology: SolidJS
-description: Harnesses inside the signed-in client.
+  group: Data queries
+description: Harnesses in Data queries.
 ---
 
-Cached callbacks outlive the hooks; keep hook scope out of these closures.
+File apps/web/src/lib/queries/harnesses/harnesses.ts. It belongs to Data queries, not a separate application.

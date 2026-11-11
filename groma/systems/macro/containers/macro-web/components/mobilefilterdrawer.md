@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/components/view-shell/MobileFilterDrawer.tsx
       symbol: MobileFilterDrawer
   technology: SolidJS
+  group: View shell
 description: Overlays the bottom of the scroll content, immediately above the footer.
 ---
 

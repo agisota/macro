@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/rollout-policy.ts
   technology: SolidJS
-description: Rollout policy inside the signed-in client.
+  group: GraphQL cache
+description: Whether the caller must retain the existing native cache path
 ---
 
 Whether the caller must retain the existing native cache path.

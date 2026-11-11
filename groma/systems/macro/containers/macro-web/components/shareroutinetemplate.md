@@ -668,6 +668,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-scheduled-action/generated/schemas/actionTriggerOneOfSeven.ts
       symbol: ActionTriggerOneOfSeven
   technology: TypeScript
+  group: Service clients
 description: Client for the service scheduled action host
 ---
 

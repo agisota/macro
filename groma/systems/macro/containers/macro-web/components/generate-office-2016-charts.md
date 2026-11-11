@@ -9,6 +9,7 @@ groma:
     - scanner: python
       file: apps/web/src/features/block-spreadsheet/core/xlsx-fixtures/generate-office-2016-charts.py
   technology: SolidJS
+  group: Files
 description: Spreadsheet block and IronCalc evaluation.
 ---
 

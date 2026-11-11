@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/list-data-source.ts
   technology: SolidJS
-description: List data source inside the signed-in client.
+  group: Lists
+description: Reactive data and loading controls consumed by a list independently of its query implementation
 ---
 
 Reactive data and loading controls consumed by a list independently of its query implementation.

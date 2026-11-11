@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/features/reminders/email-reminder-status.tsx
       symbol: EmailReminderStatus
   technology: SolidJS
+  group: Email
 description: Email reminder schedule and composer dialog.
 ---
 

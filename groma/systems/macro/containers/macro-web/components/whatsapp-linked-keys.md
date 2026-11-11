@@ -14,7 +14,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/whatsapp-linked/operation.ts
   technology: SolidJS
-description: Keys inside the signed-in client.
+  group: Data queries
+description: 'Deliberately absent from persisted query scopes: pairing material lives only in memory while its dialog is open'
 ---
 
 Deliberately absent from persisted query scopes: pairing material lives only in memory while its dialog is open.

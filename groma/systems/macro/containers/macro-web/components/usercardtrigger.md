@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/UserCardTrigger.tsx
       symbol: UserCardTrigger
   technology: SolidJS
-description: UserCardTrigger inside the signed-in client.
+  group: Workspace core
+description: The person the card describes
 ---
 
 The person the card describes. Read when the card opens.

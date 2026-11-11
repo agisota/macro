@@ -1360,6 +1360,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/service-cognition/import.ts
   technology: TypeScript
+  group: Service clients
 description: Agent and import client for the cognition host
 ---
 

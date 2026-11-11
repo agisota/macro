@@ -12,7 +12,8 @@ groma:
       file: apps/web/src/lib/queries/channel-labels/keys.ts
       symbol: channelLabelKeys
   technology: SolidJS
-description: Channel labels inside the signed-in client.
+  group: Data queries
+description: Channel labels in Data queries.
 ---
 
-Shared labels for team members; account-private labels otherwise.
+File apps/web/src/lib/queries/channel-labels/channel-labels.ts. It belongs to Data queries, not a separate application.

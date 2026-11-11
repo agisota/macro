@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-sliders.tsx
       symbol: AnimatedSlidersIcon
   technology: SolidJS
-description: Wide sliders inside the signed-in client.
+  group: Icons
+description: Wide sliders in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-sliders.tsx.
+File apps/web/src/components/icon/wide-sliders.tsx. It belongs to Icons, not a separate application.

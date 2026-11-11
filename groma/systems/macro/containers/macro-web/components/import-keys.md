@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/import/keys.ts
       symbol: importKeys
   technology: SolidJS
-description: Keys inside the signed-in client.
+  group: Data queries
+description: Discovery runs plus visible ledger rows
 ---
 
 Discovery runs plus visible ledger rows.

@@ -72,7 +72,8 @@ groma:
       file: apps/web/src/lib/core/mobile/NativeAppUpdateRequiredDialog.tsx
       symbol: NativeAppUpdateRequiredDialog
   technology: SolidJS
-description: IsMobile inside the signed-in client.
+  group: Workspace core
+description: Returns true if the device is likely in a mobile context
 ---
 
 Returns true if the device is likely in a mobile context. This checks for both a narrow screen width AND a primarily touch-based device. Use this for behavior that should differ on phones vs tablets/desktops.

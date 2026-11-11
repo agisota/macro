@@ -36,7 +36,8 @@ groma:
       file: apps/web/src/lib/queries/messages/subscription.ts
       symbol: useMessageSubscription
   technology: SolidJS
-description: Document messages inside the signed-in client.
+  group: Data queries
+description: Positioning annotations needs every root, but never fetches every root's replies
 ---
 
 Positioning annotations needs every root, but never fetches every root's replies.

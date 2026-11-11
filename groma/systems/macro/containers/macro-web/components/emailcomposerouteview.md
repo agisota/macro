@@ -15,6 +15,7 @@ groma:
       file: apps/web/src/features/email-view/use-email-detail-list-navigation.ts
       symbol: useEmailDetailListNavigation
   technology: SolidJS
+  group: Email
 description: Inbox list, reader, saved views, and mail route host.
 ---
 

@@ -12,7 +12,8 @@ groma:
       file: apps/web/src/components/diff-view/pierre/PierreFileDiff.tsx
       symbol: PierreFileDiff
   technology: SolidJS
-description: Theme inside the signed-in client.
+  group: Diffs
+description: 'What every Pierre diff in the app shares: Macro''s light/dark state as a signal, and the CSS variables Pierre reads inside its shadow DOM'
 ---
 
 What every Pierre diff in the app shares: Macro's light/dark state as a signal, and the CSS variables Pierre reads inside its shadow DOM.

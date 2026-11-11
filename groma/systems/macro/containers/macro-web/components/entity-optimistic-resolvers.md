@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/lib/queries/entity-optimistic-resolvers.ts
       symbol: entityOptimisticResolvers
   technology: SolidJS
+  group: Data queries
 description: Sharing changes must retain their authoritative permission/error result.
 ---
 

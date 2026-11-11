@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/parking-harness.ts
   technology: SolidJS
-description: Parking harness inside the signed-in client.
+  group: Development tooling
+description: Parking harness in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/parking-harness.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/parking-harness.ts. It belongs to Development tooling, not a separate application.

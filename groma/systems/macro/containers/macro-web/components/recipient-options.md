@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/recipient-options.ts
   technology: SolidJS
-description: Recipient options inside the signed-in client.
+  group: Workspace core
+description: Recipient options in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/recipient-options.ts.
+File apps/web/src/lib/core/component/recipient-options.ts. It belongs to Workspace core, not a separate application.

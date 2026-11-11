@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/gantt-zoom-controls.tsx
       symbol: GanttZoomControls
   technology: SolidJS
-description: Gantt zoom controls inside the signed-in client.
+  group: Gantt
+description: Compose beside Gantt
 ---
 
 Compose beside Gantt.Chart so the controls stay fixed while the calendar scrolls.

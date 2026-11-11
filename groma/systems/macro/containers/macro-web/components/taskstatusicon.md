@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/TaskStatusIcon.tsx
       symbol: TaskStatusIcon
   technology: SolidJS
+  group: Workspace core
 description: Task identity reflects its live status, including lightweight preview seeds.
 ---
 

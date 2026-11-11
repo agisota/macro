@@ -10,10 +10,11 @@ groma:
       file: apps/web/src/components/entity-detail/use-list-navigation-hotkeys.ts
       symbol: useListNavigationHotkeys
   technology: SolidJS
-description: Use list navigation hotkeys inside the signed-in client.
+  group: Entity detail
+description: Use list navigation hotkeys in Entity detail.
 ---
 
-Source under apps/web/src/components/entity-detail/use-list-navigation-hotkeys.ts.
+File apps/web/src/components/entity-detail/use-list-navigation-hotkeys.ts. It belongs to Entity detail, not a separate application.
 
 ## Derived relationships
 

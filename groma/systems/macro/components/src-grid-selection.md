@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/grid-selection.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Grid selection in Spreadsheet engine.
 ---
 
-Library code in packages/spreadsheet. Not a separately deployed service.
+File packages/spreadsheet/src/grid-selection.ts. It belongs to Spreadsheet engine, not a separate application.

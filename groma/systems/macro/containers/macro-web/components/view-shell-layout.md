@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/view-shell-layout.ts
   technology: SolidJS
-description: View shell layout inside the signed-in client.
+  group: View shell
+description: Whether automatic container resizing should preserve the user-resized width (or `width` before resizing)
 ---
 
 Whether automatic container resizing should preserve the user-resized width (or `width` before resizing). Set to false with a main `preferredWidth` to let the aside yield first.

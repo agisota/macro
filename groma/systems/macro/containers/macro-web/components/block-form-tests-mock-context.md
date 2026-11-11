@@ -13,6 +13,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-form/tests/fake-collaboration.ts
   technology: SolidJS
+  group: Development tooling
 description: Form editor, sharing, and respond page host.
 ---
 

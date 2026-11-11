@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Emoji/browser-test/emoji-picker.tsx
   technology: SolidJS
-description: Emoji picker inside the signed-in client.
+  group: Development tooling
+description: Emoji picker in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/Emoji/browser-test/emoji-picker.tsx.
+File apps/web/src/lib/core/component/Emoji/browser-test/emoji-picker.tsx. It belongs to Development tooling, not a separate application.

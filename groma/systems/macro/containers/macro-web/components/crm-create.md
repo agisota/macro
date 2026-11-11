@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/crm/crm-create.tsx
   technology: SolidJS
+  group: CRM
 description: Customers workspace.
 ---
 

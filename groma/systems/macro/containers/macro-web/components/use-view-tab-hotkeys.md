@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/use-view-tab-hotkeys.ts
   technology: SolidJS
-description: Use view tab hotkeys inside the signed-in client.
+  group: View shell
+description: Tabs that Tab and Shift+Tab cycle through; defaults to `ids`
 ---
 
 Tabs that Tab and Shift+Tab cycle through; defaults to `ids`.

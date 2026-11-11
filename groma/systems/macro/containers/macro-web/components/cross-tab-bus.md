@@ -12,7 +12,8 @@ groma:
       file: apps/web/src/lib/core/cross-tab/tab-leader.ts
       symbol: createTabLeaderSignal
   technology: SolidJS
-description: Cross tab bus inside the signed-in client.
+  group: Workspace core
+description: 'Minimal cross-tab message bus: BroadcastChannel is the primary transport, with a localStorage `storage` event as fallback for embedded brows'
 ---
 
-Minimal cross-tab message bus: BroadcastChannel is the primary transport, with a localStorage `storage` event as fallback for embedded browsers where BroadcastChannel is missing or unreliable.  This is fan-out only — every subscribing tab sees every message. For a long-lived "exa
+Minimal cross-tab message bus: BroadcastChannel is the primary transport, with a localStorage `storage` event as fallback for embedded browsers where BroadcastChannel is missing or unreliable.  This is fan-out only — every subscribing tab sees every message. For a long-lived "exactly one tab owns this job" responsibility use the lock-based election in `tab-leader.ts` instead; an election that needs custom ranking or

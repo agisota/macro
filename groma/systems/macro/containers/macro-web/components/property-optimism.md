@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/tasks-view/browser-test/property-optimism.tsx
   technology: SolidJS
+  group: Development tooling
 description: Task list, board, Gantt, and project navigation host.
 ---
 

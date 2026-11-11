@@ -12,7 +12,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/cognition/chat-data.ts
   technology: SolidJS
-description: Keys inside the signed-in client.
+  group: Data queries
+description: 'Scoped under `entity` so `invalidateQueries({ queryKey: [''entity''] })` (fired from the move/rename mutations) refreshes it'
 ---
 
 Scoped under `entity` so `invalidateQueries({ queryKey: ['entity'] })` (fired from the move/rename mutations) refreshes it.

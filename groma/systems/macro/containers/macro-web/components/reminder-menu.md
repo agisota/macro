@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/reminders/browser-test/reminder-menu.tsx
   technology: SolidJS
+  group: Development tooling
 description: Email reminder schedule and composer dialog.
 ---
 

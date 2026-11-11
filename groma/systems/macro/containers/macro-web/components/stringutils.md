@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/stringUtils.ts
   technology: SolidJS
-description: StringUtils inside the signed-in client.
+  group: Local files
+description: removes a file extension from given path or file name
 ---
 
 removes a file extension from given path or file name

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-contact.tsx
       symbol: AnimatedContactIcon
   technology: SolidJS
-description: Wide contact inside the signed-in client.
+  group: Icons
+description: Wide contact in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-contact.tsx.
+File apps/web/src/components/icon/wide-contact.tsx. It belongs to Icons, not a separate application.

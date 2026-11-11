@@ -19,7 +19,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/side-panel/FileSidePanelSections.tsx
   technology: SolidJS
-description: Context inside the signed-in client.
+  group: App shell
+description: Render order — lower numbers appear first
 ---
 
 Render order — lower numbers appear first. Sections without an explicit order render after ordered ones, in their registration order.

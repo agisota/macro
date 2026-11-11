@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/ShareTargetProvider.tsx
   technology: SolidJS
-description: ShareTargetProvider inside the signed-in client.
+  group: Desktop shell
+description: ShareTargetProvider in Desktop shell.
 ---
 
-Source under apps/web/src/lib/tauri/ShareTargetProvider.tsx.
+File apps/web/src/lib/tauri/ShareTargetProvider.tsx. It belongs to Desktop shell, not a separate application.

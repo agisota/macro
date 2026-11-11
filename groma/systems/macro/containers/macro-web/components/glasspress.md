@@ -40,7 +40,8 @@ groma:
       file: apps/web/src/components/app/mobile/MobilePageCreateButton.tsx
       symbol: MobilePageCreateButton
   technology: SolidJS
-description: GlassPress inside the signed-in client.
+  group: App shell
+description: Round controls grow 28%; wide surfaces expand their paint by up to 6px per edge
 ---
 
 Round controls grow 28%; wide surfaces expand their paint by up to 6px per edge.

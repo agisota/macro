@@ -75,6 +75,7 @@ groma:
       file: apps/web/src/features/email-message/components/collapsed-message.tsx
       symbol: CollapsedMessage
   technology: SolidJS
+  group: Email
 description: Per-message attachment and render adapters.
 ---
 

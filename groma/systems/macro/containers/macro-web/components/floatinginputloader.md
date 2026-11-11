@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/FloatingInputLoader.tsx
       symbol: FloatingInputLoader
   technology: SolidJS
-description: FloatingInputLoader inside the signed-in client.
+  group: Workspace core
+description: FloatingInputLoader in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/FloatingInputLoader.tsx.
+File apps/web/src/lib/core/component/FloatingInputLoader.tsx. It belongs to Workspace core, not a separate application.

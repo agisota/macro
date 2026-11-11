@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Product analytics
+description: Index in Product analytics.
 ---
 
-Source under apps/web/src/lib/analytics/index.ts.
+File apps/web/src/lib/analytics/index.ts. It belongs to Product analytics, not a separate application.

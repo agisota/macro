@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LiveIndicators.tsx
   technology: SolidJS
+  group: Workspace core
 description: Session hosts can supply their resolved identity without a legacy block.
 ---
 

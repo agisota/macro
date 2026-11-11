@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/authorization.ts
       symbol: createQueryAuthorization
   technology: SolidJS
-description: Authorization inside the signed-in client.
+  group: Data queries
+description: A cache hit cannot restore access after the server has denied this read
 ---
 
 A cache hit cannot restore access after the server has denied this read.

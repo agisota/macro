@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/entity-icon-sizes.ts
       symbol: ICON_SIZE_CLASSES
   technology: SolidJS
-description: Entity icon sizes inside the signed-in client.
+  group: Workspace core
+description: Entity icon sizes in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/entity-icon-sizes.ts.
+File apps/web/src/lib/core/component/entity-icon-sizes.ts. It belongs to Workspace core, not a separate application.

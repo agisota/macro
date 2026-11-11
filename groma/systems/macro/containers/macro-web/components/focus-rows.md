@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/email-view/browser-test/focus-rows.tsx
   technology: SolidJS
+  group: Development tooling
 description: Inbox list, reader, saved views, and mail route host.
 ---
 

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/view-shell/create-sidebar-motion.ts
       symbol: createSidebarMotion
   technology: SolidJS
-description: Create sidebar motion inside the signed-in client.
+  group: View shell
+description: Animate the solver's settled layout without changing its resize preferences
 ---
 
 Animate the solver's settled layout without changing its resize preferences.

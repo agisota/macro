@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/graphql-soup-rollout-harness.ts
   technology: SolidJS
-description: Graphql soup rollout harness inside the signed-in client.
+  group: Development tooling
+description: Graphql soup rollout harness in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/graphql-soup-rollout-harness.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/graphql-soup-rollout-harness.ts. It belongs to Development tooling, not a separate application.

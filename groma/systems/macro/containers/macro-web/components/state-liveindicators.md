@@ -12,7 +12,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/state/clipboard.ts
   technology: SolidJS
-description: LiveIndicators inside the signed-in client.
+  group: Workspace core
+description: LiveIndicators in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/state/liveIndicators.ts.
+File apps/web/src/lib/core/state/liveIndicators.ts. It belongs to Workspace core, not a separate application.

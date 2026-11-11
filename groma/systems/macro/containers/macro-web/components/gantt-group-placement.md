@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-group-placement.ts
   technology: SolidJS
-description: Gantt group placement inside the signed-in client.
+  group: Gantt
+description: Group membership stays consumer-owned; insertion follows the consumer's existing sort
 ---
 
 Group membership stays consumer-owned; insertion follows the consumer's existing sort.

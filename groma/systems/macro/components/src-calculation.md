@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/calculation.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Calculation in Spreadsheet engine.
 ---
 
-Library code in packages/spreadsheet. Not a separately deployed service.
+File packages/spreadsheet/src/calculation.ts. It belongs to Spreadsheet engine, not a separate application.

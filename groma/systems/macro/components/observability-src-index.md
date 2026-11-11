@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/index.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Index in Observability.
 ---
 
-Library code in packages/observability. Not a separately deployed service.
+File packages/observability/src/index.ts. It belongs to Observability, not a separate application.

@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/machine/vitest.config.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package machine
+  group: State machine
+description: Vitest.config in State machine.
 ---
 
-Library code in packages/machine. Not a separately deployed service.
+File packages/machine/vitest.config.ts. It belongs to State machine, not a separate application.

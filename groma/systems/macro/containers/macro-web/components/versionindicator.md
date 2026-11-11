@@ -78,6 +78,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-sync/generated/http/schemas/documentMetadata.ts
       symbol: DocumentMetadata
   technology: WebSocket
+  group: Service clients
 description: Browser client for document sync rooms
 ---
 

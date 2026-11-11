@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/TauriProvider.tsx
   technology: SolidJS
-description: TauriProvider inside the signed-in client.
+  group: Desktop shell
+description: TauriProvider in Desktop shell.
 ---
 
-Source under apps/web/src/lib/tauri/TauriProvider.tsx.
+File apps/web/src/lib/tauri/TauriProvider.tsx. It belongs to Desktop shell, not a separate application.

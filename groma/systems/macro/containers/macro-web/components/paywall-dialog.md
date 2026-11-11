@@ -22,6 +22,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/paywall/components/ai-usage-limit-dialog.tsx
   technology: SolidJS
+  group: Settings
 description: Plan upgrade dialog and checkout return listener.
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/diff-view/collapse.ts
   technology: SolidJS
-description: Collapse inside the signed-in client.
+  group: Diffs
+description: Which files show their diff
 ---
 
 Which files show their diff. A host that persists it supplies its own.

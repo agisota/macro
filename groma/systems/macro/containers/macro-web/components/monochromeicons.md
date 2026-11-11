@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/ui/utils/monochromeIcons.ts
       symbol: initMonochromeIcons
   technology: SolidJS
-description: MonochromeIcons inside the signed-in client.
+  group: UI primitives
+description: MonochromeIcons in UI primitives.
 ---
 
-Source under apps/web/src/components/ui/utils/monochromeIcons.ts.
+File apps/web/src/components/ui/utils/monochromeIcons.ts. It belongs to UI primitives, not a separate application.

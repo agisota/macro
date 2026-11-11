@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/quotes.tsx
   technology: SolidJS
-description: Quotes inside the signed-in client.
+  group: Development tooling
+description: Quotes in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/quotes.tsx.
+File apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/quotes.tsx. It belongs to Development tooling, not a separate application.

@@ -12,7 +12,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/UploadProgress/uploadProgress.ts
   technology: SolidJS
-description: UploadProgressIndicator inside the signed-in client.
+  group: Workspace core
+description: Compact, non-dismissable indicator for every upload in flight
 ---
 
 Compact, non-dismissable indicator for every upload in flight.

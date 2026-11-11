@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/loro-mirror/src/index.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package loro-mirror
+  group: Loro mirror
+description: Loro Mirror Core A TypeScript state management library that automatically syncs application state with loro-crdt
 ---
 
 Loro Mirror Core A TypeScript state management library that automatically syncs application state with loro-crdt

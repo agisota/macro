@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/native-updates.ts
   technology: SolidJS
-description: Native updates inside the signed-in client.
+  group: Desktop shell
+description: Native updates in Desktop shell.
 ---
 
-Desktop lifecycle integration, scoped to the Tauri provider.
+File apps/web/src/lib/tauri/native-updates.ts. It belongs to Desktop shell, not a separate application.

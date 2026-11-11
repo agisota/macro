@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-clip.tsx
   technology: SolidJS
-description: Gantt clip inside the signed-in client.
+  group: Gantt
+description: The transformed parent owns positioning; native sticky clipping excludes the label column
 ---
 
 The transformed parent owns positioning; native sticky clipping excludes the label column.

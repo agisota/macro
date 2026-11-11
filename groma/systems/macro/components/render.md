@@ -8,4 +8,8 @@ groma:
   code:
     - scanner: typescript
       file: packages/sdk-docs/src/render.ts
+  group: Macro SDK pieces
+description: TypeDoc owns signatures, visibility, inherited members and wire type rendering
 ---
+
+TypeDoc owns signatures, visibility, inherited members and wire type rendering.

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban.tsx
   technology: SolidJS
-description: Kanban inside the signed-in client.
+  group: Kanban
+description: Kanban in Kanban.
 ---
 
-In cross-column mode, report pointer placement instead of host sorting.
+File apps/web/src/components/kanban/kanban.tsx. It belongs to Kanban, not a separate application.

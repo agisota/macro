@@ -831,6 +831,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-notification/generated/schemas/channelMessageSendMetadataAllOfSender.ts
       symbol: ChannelMessageSendMetadataAllOfSender
   technology: TypeScript
+  group: Service clients
 description: Client for the service notification host
 ---
 

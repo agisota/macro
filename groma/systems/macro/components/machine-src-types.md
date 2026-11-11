@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/machine/src/types.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package machine
+  group: State machine
+description: Types in State machine.
 ---
 
-Cleanup for a scope or subscription.
+File packages/machine/src/types.ts. It belongs to State machine, not a separate application.

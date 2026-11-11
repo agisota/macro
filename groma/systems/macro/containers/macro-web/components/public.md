@@ -11,6 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/scheduling/public-booking.tsx
   technology: SolidJS
+  group: Calendar
 description: Scheduling links and public booking host data.
 ---
 

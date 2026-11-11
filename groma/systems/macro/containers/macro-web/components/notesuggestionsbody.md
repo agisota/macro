@@ -1465,6 +1465,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-agent-harness/generated/schemas/agentModelsStatusDto.ts
       symbol: AgentModelsStatusDto
   technology: TypeScript
+  group: Service clients
 description: Client for the service agent harness host
 ---
 

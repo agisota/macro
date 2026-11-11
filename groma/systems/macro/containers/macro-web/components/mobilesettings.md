@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/features/settings/MobileSettings.tsx
       symbol: MobileSettings
   technology: SolidJS
+  group: Settings
 description: Settings shell, tabs, team, and integrations page.
 ---
 

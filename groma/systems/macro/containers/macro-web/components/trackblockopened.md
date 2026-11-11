@@ -39,6 +39,7 @@ groma:
       file: apps/web/src/lib/core/internal/loadBlockData.ts
       symbol: loadBlockDataAfterComponentPreload
   technology: SolidJS
+  group: Workspace core
 description: Item types we want recorded in UserHistory on open. CRM types aren't CloudStorageItemType (they're not stored in document_storage), but the history endpoint acc
 ---
 

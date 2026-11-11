@@ -13,7 +13,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/tab-layout/tab-persistence.ts
   technology: SolidJS
-description: Tab manager inside the signed-in client.
+  group: App shell
+description: Tab manager in App shell.
 ---
 
-How an inactive tab comes back: its panes still mounted (parked), a kept capture of a layout that is not mounted, or a saved URL.
+File apps/web/src/components/app/tab-layout/tab-manager.ts. It belongs to App shell, not a separate application.

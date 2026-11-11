@@ -28,7 +28,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/routes/layout-param.ts
   technology: SolidJS
-description: Queries inside the signed-in client.
+  group: Split layout
+description: Params of the first `depth` matches, with descendants overriding ancestors
 ---
 
 Params of the first `depth` matches, with descendants overriding ancestors.

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/persistence/recoverable-idb.ts
       symbol: RecoverableIDB
   technology: SolidJS
-description: Recoverable idb inside the signed-in client.
+  group: Workspace core
+description: Errors WebKit raises when it suspends or drops a connection under a running transaction
 ---
 
 Errors WebKit raises when it suspends or drops a connection under a running transaction.

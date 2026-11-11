@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/tests/e2e/fixtures/slack-import.tsx
   technology: SolidJS
-description: Slack import inside the signed-in client.
+  group: Development tooling
+description: Real dialog/controller/ZIP worker, deterministic fake server
 ---
 
 Real dialog/controller/ZIP worker, deterministic fake server. Serialization and server authorization are independently covered by adapter and PostgreSQL tests.

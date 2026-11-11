@@ -21,6 +21,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/gtm-invite/core/invite-link.ts
   technology: SolidJS
+  group: Shell
 description: GTM invite welcome and staff invite-link portal.
 ---
 

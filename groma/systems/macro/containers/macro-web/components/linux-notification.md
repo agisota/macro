@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/tauri/linux-notification.ts
       symbol: showLinuxNotification
   technology: SolidJS
-description: Linux notification inside the signed-in client.
+  group: Desktop shell
+description: Do not let a navigation error interrupt Tauri's channel-end bookkeeping
 ---
 
 Do not let a navigation error interrupt Tauri's channel-end bookkeeping.

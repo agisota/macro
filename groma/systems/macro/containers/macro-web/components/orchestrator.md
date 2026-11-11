@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/orchestrator.tsx
   technology: SolidJS
-description: Orchestrator inside the signed-in client.
+  group: Workspace core
+description: Orchestrator in Workspace core.
 ---
 
-A block consists of a type and an id
+File apps/web/src/lib/core/orchestrator.tsx. It belongs to Workspace core, not a separate application.

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/list-images.tsx
   technology: SolidJS
+  group: Development tooling
 description: Where a tap at the end of the item's text puts the caret.
 ---
 

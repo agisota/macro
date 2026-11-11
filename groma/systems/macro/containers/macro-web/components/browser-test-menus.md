@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/i18n/browser-test/menus.tsx
   technology: SolidJS
-description: Menus inside the signed-in client.
+  group: Development tooling
+description: Menus rendered with the production primitives and content widths, in the language from `?lang=`, so long translations and CJK text can be ch
 ---
 
 Menus rendered with the production primitives and content widths, in the language from `?lang=`, so long translations and CJK text can be checked for clipping without a signed-in app.

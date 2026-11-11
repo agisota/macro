@@ -11,7 +11,7 @@ groma:
     - scanner: javascript
       file: crates/code_execution/src/outbound/deno/timers.mjs
   group: Unscanned Rust helpers
-description: Scanned source
+description: 'Trusted bootstrap: credentials arrive once on stdin, then user code is imported dynamically so module reads are checked against the scratch-'
 ---
 
 Trusted bootstrap: credentials arrive once on stdin, then user code is imported dynamically so module reads are checked against the scratch-only read grant.

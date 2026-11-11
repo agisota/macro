@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: GraphQL cache
+description: Normalized GraphQL cache — JS glue
 ---
 
 Normalized GraphQL cache — JS glue. Design doc: apps/web/docs/graphql-normalized-cache-plan.md  The reactive document query, `createLiveQuery`, is imported from `./solid/create-live-query`; it is not re-exported here.

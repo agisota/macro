@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/InitialInteractiveOnboardingModal.tsx
       symbol: InitialInteractiveOnboardingModal
   technology: SolidJS
-description: InitialInteractiveOnboardingModal inside the signed-in client.
+  group: App shell
+description: Only first-time mobile web users see it, and only once it opens
 ---
 
 Only first-time mobile web users see it, and only once it opens.

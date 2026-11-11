@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/signal/tabTitle.ts
   technology: SolidJS
-description: TabTitle inside the signed-in client.
+  group: Workspace core
+description: TabTitle in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/signal/tabTitle.ts.
+File apps/web/src/lib/core/signal/tabTitle.ts. It belongs to Workspace core, not a separate application.

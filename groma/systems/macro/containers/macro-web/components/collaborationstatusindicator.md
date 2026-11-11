@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/CollaborationStatusIndicator.tsx
   technology: SolidJS
-description: CollaborationStatusIndicator inside the signed-in client.
+  group: App shell
+description: CollaborationStatusIndicator in App shell.
 ---
 
-Source under apps/web/src/components/app/CollaborationStatusIndicator.tsx.
+File apps/web/src/components/app/CollaborationStatusIndicator.tsx. It belongs to App shell, not a separate application.

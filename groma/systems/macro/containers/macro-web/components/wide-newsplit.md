@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-newSplit.tsx
       symbol: AnimatedNewSplitIcon
   technology: SolidJS
-description: Wide newSplit inside the signed-in client.
+  group: Icons
+description: Wide newSplit in Icons.
 ---
 
-}
+File apps/web/src/components/icon/wide-newSplit.tsx. It belongs to Icons, not a separate application.

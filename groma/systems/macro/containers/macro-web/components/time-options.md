@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/time-options.ts
   technology: SolidJS
-description: Time options inside the signed-in client.
+  group: Date and time
+description: Time options in Date and time.
 ---
 
-Granularity of every time picker.
+File apps/web/src/components/date-time-range/time-options.ts. It belongs to Date and time, not a separate application.

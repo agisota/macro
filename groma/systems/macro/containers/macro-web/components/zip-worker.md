@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/workers/folder-upload/zip-worker.js
       symbol: zipFiles
   technology: SolidJS
-description: Zip worker inside the signed-in client.
+  group: Workspace core
+description: Zip worker in Workspace core.
 ---
 
-Explicit folder entries keep empty folders in the upload.
+File apps/web/src/lib/workers/folder-upload/zip-worker.js. It belongs to Workspace core, not a separate application.

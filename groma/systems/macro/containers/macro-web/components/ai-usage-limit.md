@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/ai-usage-limit.ts
   technology: TypeScript
+  group: Service clients
 description: Client for the ai usage limit.ts host
 ---
 

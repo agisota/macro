@@ -12,10 +12,11 @@ groma:
       file: apps/web/src/components/diff-view/comments/CommentThread.tsx
       symbol: CommentThread
   technology: SolidJS
-description: Create diff comments inside the signed-in client.
+  group: Diffs
+description: Comments under diff lines, for `DiffView
 ---
 
-Comments under diff lines, for `DiffView.Stack`: groups a host's items by the line they hang from (the last line of their range, like GitHub), holds the one comment being written, and lights the lines of the thread with focus. The host renders what each line shows; `CommentThread
+Comments under diff lines, for `DiffView.Stack`: groups a host's items by the line they hang from (the last line of their range, like GitHub), holds the one comment being written, and lights the lines of the thread with focus. The host renders what each line shows; `CommentThread` has the parts for GitHub-style threads.  Pierre re-creates a line's element when rows before it change and on every Unified/Split switch,
 
 ## Derived relationships
 

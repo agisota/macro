@@ -20,6 +20,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/panes/history.ts
   technology: SolidJS
+  group: Split layout
 description: 'Where a pane placed at `insertAt` among `decided` goes in `current`: after the same pane as before, behind panes opened since, so concurrent opens keep their or'
 ---
 

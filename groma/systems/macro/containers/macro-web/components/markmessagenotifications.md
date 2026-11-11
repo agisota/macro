@@ -110,6 +110,7 @@ groma:
       file: apps/web/src/features/notifications/notification-preview.ts
       symbol: NOTIFICATION_LABEL_BY_TYPE
   technology: SolidJS
+  group: Shell
 description: Notification platform, navigation, and read/done helpers.
 ---
 

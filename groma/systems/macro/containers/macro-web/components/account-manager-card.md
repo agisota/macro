@@ -16,6 +16,7 @@ groma:
       file: apps/web/src/features/account-manager/account-manager-request-button.tsx
       symbol: AccountManagerRequestButton
   technology: SolidJS
+  group: Settings
 description: Account-manager grant review page.
 ---
 

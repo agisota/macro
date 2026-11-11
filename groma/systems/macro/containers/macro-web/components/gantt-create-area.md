@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/gantt-create-area.tsx
       symbol: GanttCreateArea
   technology: SolidJS
-description: Gantt create area inside the signed-in client.
+  group: Gantt
+description: Available space opens a host-owned composer without writing an entity
 ---
 
 Available space opens a host-owned composer without writing an entity. At hours zoom on a chart showing hours, the drawn range is timed, in quarter hours.

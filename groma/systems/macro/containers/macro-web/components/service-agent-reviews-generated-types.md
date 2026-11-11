@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/service-agent-reviews/generated/types.ts
   technology: TypeScript
+  group: Service clients
 description: Client for the service agent reviews host
 ---
 

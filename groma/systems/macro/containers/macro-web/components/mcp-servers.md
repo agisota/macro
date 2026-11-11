@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/mcp-servers.ts
   technology: SolidJS
-description: Mcp servers inside the signed-in client.
+  group: Data queries
+description: Stable placeholder for `neverSuspend` consumers (see below)
 ---
 
 Stable placeholder for `neverSuspend` consumers (see below).

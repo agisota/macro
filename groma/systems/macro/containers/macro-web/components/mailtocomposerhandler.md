@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/mailtoComposerHandler.ts
       symbol: registerMailtoComposerHandler
   technology: SolidJS
-description: MailtoComposerHandler inside the signed-in client.
+  group: App shell
+description: Opens a `mailto:` URL in the in-app email composer, prefilling the recipients
 ---
 
 Opens a `mailto:` URL in the in-app email composer, prefilling the recipients. Returns false — so `openExternalUrl` falls through to opening the URL normally (the OS mail client) — when the URL isn't a mailto or the split manager isn't ready yet.

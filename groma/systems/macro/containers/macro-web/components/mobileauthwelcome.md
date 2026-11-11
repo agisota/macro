@@ -22,6 +22,7 @@ groma:
       file: apps/web/src/features/mobile-onboarding/MobileOnboarding.tsx
       symbol: MobileOnboarding
   technology: SolidJS
+  group: Shell
 description: Native/mobile onboarding stepper.
 ---
 

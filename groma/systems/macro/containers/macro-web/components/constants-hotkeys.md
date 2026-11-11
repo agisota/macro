@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/hotkeys.ts
   technology: SolidJS
-description: Hotkeys inside the signed-in client.
+  group: Workspace core
+description: Leader key for vim-style "go to" commands (g + key sequences)
 ---
 
 Leader key for vim-style "go to" commands (g + key sequences)

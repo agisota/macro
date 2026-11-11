@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ForwardMessageComposer/browser-test/fixture.tsx
   technology: SolidJS
-description: Fixture inside the signed-in client.
+  group: Development tooling
+description: Fixture in Development tooling.
 ---
 
-Source under apps/web/src/lib/core/component/ForwardMessageComposer/browser-test/fixture.tsx.
+File apps/web/src/lib/core/component/ForwardMessageComposer/browser-test/fixture.tsx. It belongs to Development tooling, not a separate application.

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/tauri/androidShares.ts
       symbol: useAndroidShares
   technology: SolidJS
-description: AndroidShares inside the signed-in client.
+  group: Desktop shell
+description: The native queue is acknowledged only after cancel/send, including across login
 ---
 
 The native queue is acknowledged only after cancel/send, including across login.

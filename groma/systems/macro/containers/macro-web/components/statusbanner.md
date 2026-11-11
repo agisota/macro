@@ -18,6 +18,7 @@ groma:
       file: apps/web/src/features/system-status/primitives/use-banner-status.ts
       symbol: useBannerStatus
   technology: SolidJS
+  group: Shell
 description: Status banner and staff status dashboard.
 ---
 

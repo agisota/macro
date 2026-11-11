@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/RecipientSelector.tsx
   technology: SolidJS
+  group: Workspace core
 description: Chips mount under the cursor when a recipient is picked via keyboard;
 ---
 

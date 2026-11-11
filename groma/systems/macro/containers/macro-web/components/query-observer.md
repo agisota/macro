@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/query-observer.ts
   technology: SolidJS
+  group: GraphQL client
 description: Observer for one live urql query source.
 ---
 

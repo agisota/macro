@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/unavailable-mention.tsx
   technology: SolidJS
+  group: Development tooling
 description: The previews answer as the API does for an item deleted (or a meeting cancelled) since it was mentioned, or one the viewer can't open.
 ---
 

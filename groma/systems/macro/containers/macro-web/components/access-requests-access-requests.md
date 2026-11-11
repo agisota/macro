@@ -53,6 +53,7 @@ groma:
       file: apps/web/src/features/access-requests/core/visit.ts
       symbol: createVisitReview
   technology: SolidJS
+  group: Settings
 description: Share requests, direct access, and denied-route access requests.
 ---
 

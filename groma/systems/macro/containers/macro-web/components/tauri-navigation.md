@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/tauri/navigation.ts
       symbol: useTauriNavigationEffect
   technology: SolidJS
-description: Navigation inside the signed-in client.
+  group: Desktop shell
+description: Navigation in Desktop shell.
 ---
 
-this must be used as a child of router
+File apps/web/src/lib/tauri/navigation.ts. It belongs to Desktop shell, not a separate application.

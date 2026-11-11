@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/collaboration/browser-test/large-undo.tsx
   technology: SolidJS
-description: Large undo inside the signed-in client.
+  group: Development tooling
+description: The collaborative markdown editor (`CollabProvider`, sync engine, Loro undo manager) over a large document and a sync source that accepts ev
 ---
 
 The collaborative markdown editor (`CollabProvider`, sync engine, Loro undo manager) over a large document and a sync source that accepts every update locally, so undo can be timed without a backend.

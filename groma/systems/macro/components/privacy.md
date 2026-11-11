@@ -10,7 +10,7 @@ groma:
       file: packages/observability/src/privacy.ts
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Marks telemetry whose contract forbids user identity enrichment
 ---
 
 Marks telemetry whose contract forbids user identity enrichment.

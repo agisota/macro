@@ -29,8 +29,8 @@ groma:
     - scanner: typescript
       file: packages/graphics/src/loro/schema.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package graphics
+  group: Graphics
+description: Host bookkeeping is durable but must not become a scene undo step
 ---
 
 Host bookkeeping is durable but must not become a scene undo step.

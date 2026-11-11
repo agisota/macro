@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-inbox.tsx
       symbol: AnimatedInboxIcon
   technology: SolidJS
-description: Wide inbox inside the signed-in client.
+  group: Icons
+description: 'Butt caps: a round cap centered on the hinge would balloon into'
 ---
 
 Butt caps: a round cap centered on the hinge would balloon into

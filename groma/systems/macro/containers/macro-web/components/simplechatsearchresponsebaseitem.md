@@ -1186,6 +1186,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-search/generated/models/calendarEventSearchTime.ts
       symbol: CalendarEventSearchTime
   technology: TypeScript
+  group: Service clients
 description: Client for the service search host
 ---
 

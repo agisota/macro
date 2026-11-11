@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/components/view-shell/ListSkeleton.tsx
       symbol: ListSkeleton
   technology: SolidJS
+  group: View shell
 description: Decorative list geometry; the caller owns loading and pagination state.
 ---
 

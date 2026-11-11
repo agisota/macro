@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/gantt/create-gantt-reschedule.ts
       symbol: createGanttReschedule
   technology: SolidJS
-description: Create gantt reschedule inside the signed-in client.
+  group: Gantt
+description: How far a mouse moves before a press becomes a drag
 ---
 
 How far a mouse moves before a press becomes a drag.

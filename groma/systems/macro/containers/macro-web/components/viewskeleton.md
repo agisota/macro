@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/view-shell/ViewSkeleton.tsx
       symbol: ViewSkeleton
   technology: SolidJS
-description: ViewSkeleton inside the signed-in client.
+  group: View shell
+description: Shimmering rows, the shape of a list that hasn't loaded
 ---
 
 Shimmering rows, the shape of a list that hasn't loaded.

@@ -103,6 +103,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/split-layout/split-router/app-route-shell.tsx
   technology: SolidJS
+  group: App shell
 description: Interpret a matched app route as an entity without importing eager view routes.
 ---
 

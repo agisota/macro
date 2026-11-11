@@ -13,6 +13,7 @@ groma:
       file: apps/web/src/features/team-invitations/TeamInviteLinkAcceptance.tsx
       symbol: TeamInviteLinkAcceptance
   technology: SolidJS
+  group: Shell
 description: '`/team-invite` acceptance page.'
 ---
 

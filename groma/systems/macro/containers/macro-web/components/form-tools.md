@@ -95,6 +95,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/storage/skill-description.ts
   technology: SolidJS
+  group: Data queries
 description: Folder row returned by the GraphQL `user.folders` query.
 ---
 

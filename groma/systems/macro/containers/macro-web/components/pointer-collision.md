@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/pointer-collision.ts
       symbol: createPointerCollisionDetector
   technology: SolidJS
-description: Pointer collision inside the signed-in client.
+  group: App shell
+description: Hit-test visible DOM nodes so scrolling, clipping and layout changes are honored
 ---
 
 Hit-test visible DOM nodes so scrolling, clipping and layout changes are honored.

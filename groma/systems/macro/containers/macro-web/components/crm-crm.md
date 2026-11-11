@@ -502,6 +502,7 @@ groma:
       file: apps/web/src/features/crm/components/record-visibility-action.tsx
       symbol: RecordVisibilityAction
   technology: SolidJS
+  group: CRM
 description: Customers workspace.
 ---
 

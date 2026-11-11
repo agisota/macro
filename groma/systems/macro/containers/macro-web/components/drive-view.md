@@ -179,6 +179,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/drive-view/context/drive-context.tsx
   technology: SolidJS
+  group: Files
 description: Drive folders, tabs, and document detail.
 ---
 

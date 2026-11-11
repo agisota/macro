@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/table-groups.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: How a group by view summarizes a column, as Google Sheets offers
 ---
 
 How a group by view summarizes a column, as Google Sheets offers.

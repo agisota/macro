@@ -32,6 +32,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/ui-gallery/source.ts
   technology: SolidJS
+  group: Development tooling
 description: Debug UI gallery.
 ---
 

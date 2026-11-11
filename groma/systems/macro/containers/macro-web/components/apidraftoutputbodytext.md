@@ -1306,6 +1306,7 @@ groma:
       file: apps/web/src/lib/service-clients/service-email/generated/schemas/apiDraftContactInfoPhotoUrl.ts
       symbol: ApiDraftContactInfoPhotoUrl
   technology: TypeScript
+  group: Service clients
 description: Mailbox client for the Macro email host
 ---
 

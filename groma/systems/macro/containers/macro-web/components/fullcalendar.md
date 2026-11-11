@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/fullcalendar-solid/FullCalendar.tsx
   technology: SolidJS
-description: FullCalendar inside the signed-in client.
+  group: Workspace core
+description: FullCalendar in Workspace core.
 ---
 
-Content accepted by FullCalendar's Solid-aware rendering hooks.  Return values follow Solid JSX semantics. FullCalendar's framework-neutral `true`, `{ html }`, and `{ domNodes }` forms are intentionally not supported; omit or unmount a content registration to restore FullCalendar
+File apps/web/src/lib/fullcalendar-solid/FullCalendar.tsx. It belongs to Workspace core, not a separate application.

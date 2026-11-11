@@ -16,10 +16,10 @@ groma:
       file: packages/sdk/src/calls/telemetry.ts
   technology: TypeScript
   group: Macro SDK pieces
-description: Shared package sdk
+description: Node in Macro SDK pieces.
 ---
 
-Library code in packages/sdk. Not a separately deployed service.
+File packages/sdk/src/calls/node.ts. It belongs to Macro SDK pieces, not a separate application.
 
 ## Relationships
 

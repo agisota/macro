@@ -17,7 +17,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/history/types.ts
   technology: SolidJS
-description: Shared inside the signed-in client.
+  group: Split layout
+description: Where the adapters keep their slice of `history
 ---
 
 Where the adapters keep their slice of `history.state`.

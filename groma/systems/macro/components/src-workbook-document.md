@@ -10,10 +10,10 @@ groma:
       file: packages/spreadsheet/src/workbook-document.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Workbook document in Spreadsheet engine.
 ---
 
-Library code in packages/spreadsheet. Not a separately deployed service.
+File packages/spreadsheet/src/workbook-document.ts. It belongs to Spreadsheet engine, not a separate application.
 
 ## Derived relationships
 

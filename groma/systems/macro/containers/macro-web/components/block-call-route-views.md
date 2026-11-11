@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/features/block-call/route-views.tsx
       symbol: CallDetailRouteView
   technology: SolidJS
+  group: Calls
 description: '`call` block; description string is empty.'
 ---
 

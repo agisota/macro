@@ -13,7 +13,8 @@ groma:
       file: apps/web/src/lib/queries/auth/tutorial.ts
       symbol: useCompleteTutorialMutation
   technology: SolidJS
-description: Agent setup inside the signed-in client.
+  group: Data queries
+description: Mints an agent's SDK token, replacing any earlier one
 ---
 
 Mints an agent's SDK token, replacing any earlier one. Never retried automatically: overlapping attempts could revoke each other's token.

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/useNavigatedFromJK.ts
       symbol: useNavigatedFromJK
   technology: SolidJS
-description: UseNavigatedFromJK inside the signed-in client.
+  group: App shell
+description: UseNavigatedFromJK in App shell.
 ---
 
-Source under apps/web/src/components/app/useNavigatedFromJK.ts.
+File apps/web/src/components/app/useNavigatedFromJK.ts. It belongs to App shell, not a separate application.

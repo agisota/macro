@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/lifecycle.ts
   technology: SolidJS
-description: Lifecycle inside the signed-in client.
+  group: GraphQL cache
+description: Factories capture the original backend/scope and only accept typed safe-to- reopen failures
 ---
 
 Factories capture the original backend/scope and only accept typed safe-to- reopen failures. A different current host is never a repair substitute.

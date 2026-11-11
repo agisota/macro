@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/browser-test/creation-and-toasts.tsx
   technology: SolidJS
-description: Creation and toasts inside the signed-in client.
+  group: Development tooling
+description: Creation and toasts in Development tooling.
 ---
 
-Source under apps/web/src/components/view-shell/browser-test/creation-and-toasts.tsx.
+File apps/web/src/components/view-shell/browser-test/creation-and-toasts.tsx. It belongs to Development tooling, not a separate application.

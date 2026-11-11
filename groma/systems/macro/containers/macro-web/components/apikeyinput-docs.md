@@ -229,10 +229,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/components/Spinner.docs.tsx
   technology: SolidJS
-description: ApiKeyInput.docs inside the signed-in client.
+  group: UI primitives
+description: ApiKeyInput.docs in UI primitives.
 ---
 
-region demo:new
+File apps/web/src/components/ui/components/ApiKeyInput.docs.tsx. It belongs to UI primitives, not a separate application.
 
 ## Derived relationships
 

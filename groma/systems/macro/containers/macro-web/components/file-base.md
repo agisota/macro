@@ -16,7 +16,8 @@ groma:
       file: apps/web/src/lib/filesystem/file/ephemeral.ts
       symbol: EphemeralFile
   technology: SolidJS
-description: Base inside the signed-in client.
+  group: Local files
+description: typed as any since it has not been implemented yet
 ---
 
 typed as any since it has not been implemented yet

@@ -17,7 +17,10 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/agent-fold/wasm-module.ts
   technology: SolidJS
-description: Fold.worker inside the signed-in client.
+  group: Workspace core
+description: Fold.worker in Workspace core.
 ---
+
+File apps/web/src/lib/core/agent-fold/fold.worker.ts. It belongs to Workspace core, not a separate application.
 
 <reference lib="webworker" />

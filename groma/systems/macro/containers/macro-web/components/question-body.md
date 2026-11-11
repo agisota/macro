@@ -103,6 +103,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-form/components/builder/live-text-input.tsx
   technology: SolidJS
+  group: Files
 description: Form editor, sharing, and respond page host.
 ---
 

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/HeaderActionButton.tsx
       symbol: HeaderActionButton
   technology: SolidJS
-description: HeaderActionButton inside the signed-in client.
+  group: App shell
+description: Shared geometry for labeled actions in a block's header
 ---
 
 Shared geometry for labeled actions in a block's header.

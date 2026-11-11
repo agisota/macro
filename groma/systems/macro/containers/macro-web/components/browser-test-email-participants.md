@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/email-participants.ts
   technology: SolidJS
-description: Email participants inside the signed-in client.
+  group: Development tooling
+description: Email participants in Development tooling.
 ---
 
-Source under apps/web/src/lib/graphql-cache/worker/browser-test/email-participants.ts.
+File apps/web/src/lib/graphql-cache/worker/browser-test/email-participants.ts. It belongs to Development tooling, not a separate application.

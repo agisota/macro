@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/routerBase.ts
   technology: SolidJS
-description: RouterBase inside the signed-in client.
+  group: Workspace core
+description: Strip the router base from a `location
 ---
 
 Strip the router base from a `location.pathname` (which includes it, e.g. `/app/home`) so it can be compared to — and reused with — the base-relative paths that `navigate()` and route definitions use.

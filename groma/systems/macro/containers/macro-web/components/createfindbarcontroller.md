@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/createFindBarController.ts
   technology: SolidJS
-description: CreateFindBarController inside the signed-in client.
+  group: Workspace core
+description: When false, `previous()` stops at index 1
 ---
 
 When false, `previous()` stops at index 1. Defaults to true.

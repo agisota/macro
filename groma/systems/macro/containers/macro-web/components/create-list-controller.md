@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/create-list-controller.ts
   technology: SolidJS
-description: Create list controller inside the signed-in client.
+  group: Lists
+description: Logical identity used for selection and bulk actions
 ---
 
 Logical identity used for selection and bulk actions. Defaults to the rendered item key. Multiple rendered occurrences may share this key.

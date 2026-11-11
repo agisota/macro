@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/mutation-observer.ts
   technology: SolidJS
+  group: GraphQL client
 description: Framework-neutral observer for imperative urql mutations.
 ---
 

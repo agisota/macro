@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/scripts/ui-audit.ts
   technology: SolidJS
-description: Ui audit inside the signed-in client.
+  group: Development tooling
+description: Adoption audit for the `@ui` component library
 ---
 
-!/usr/bin/env bun  Adoption audit for the `@ui` component library.  Answers three questions across `apps/web/src`: 1. How much is each component actually used? 2. How often is a usage reskinned with utility classes? Layout classes are expected; classes that repaint or resize a co
+Adoption audit for the `@ui` component library.  Answers three questions across `apps/web/src`: 1. How much is each component actually used? 2. How often is a usage reskinned with utility classes? Layout classes are expected; classes that repaint or resize a component mean its own API did not cover the need, and that is the signal worth chasing. 3. How many primitives are still hand-rolled (`<button>`) instead of tak

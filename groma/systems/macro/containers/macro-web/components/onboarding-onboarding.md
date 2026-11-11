@@ -155,6 +155,7 @@ groma:
       file: apps/web/src/features/onboarding/primitives/tools.ts
       symbol: orderOnboardingTools
   technology: SolidJS
+  group: Shell
 description: Desktop onboarding steps after signup.
 ---
 

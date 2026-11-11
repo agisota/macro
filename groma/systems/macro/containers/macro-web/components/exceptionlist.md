@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/exceptionList.ts
   technology: SolidJS
-description: ExceptionList inside the signed-in client.
+  group: Product analytics
+description: 'PostHog''s `$exception_list`: the thrown error first, then its causes'
 ---
 
 PostHog's `$exception_list`: the thrown error first, then its causes.

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/channel/Input/browser-test/mention-ranking.tsx
   technology: SolidJS
+  group: Development tooling
 description: Channel message surface, calls, and create-channel modal.
 ---
 

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban-board-content.tsx
   technology: SolidJS
+  group: Kanban
 description: Dashed end-of-board panel for an action beyond the existing lanes.
 ---
 

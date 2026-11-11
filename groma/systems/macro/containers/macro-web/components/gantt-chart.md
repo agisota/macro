@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/components/gantt/gantt-chart.tsx
       symbol: GanttChart
   technology: SolidJS
+  group: Gantt
 description: Wheel events continue at a clamped edge even when no scroll event fires.
 ---
 

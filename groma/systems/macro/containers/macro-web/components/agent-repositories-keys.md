@@ -16,6 +16,7 @@ groma:
       file: apps/web/src/lib/queries/agent-repositories/branches.ts
       symbol: useAgentRepositoryBranchesQuery
   technology: SolidJS
+  group: Data queries
 description: 'The GitHub repositories the signed-in user can hand a coding session: every repository under an installation of Macro''s GitHub App they or their teams made. The'
 ---
 

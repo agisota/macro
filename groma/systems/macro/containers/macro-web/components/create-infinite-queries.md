@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/lib/queries/create-infinite-queries.ts
       symbol: createInfiniteQueries
   technology: SolidJS
+  group: Data queries
 description: Cached callbacks outlive the per-key root. They wrap only the caller's function values, never the config lookup or this helper's scope.
 ---
 

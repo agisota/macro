@@ -17,6 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/tours/core/view-tour.ts
   technology: SolidJS
+  group: Shell
 description: View tour overlay and video steps.
 ---
 

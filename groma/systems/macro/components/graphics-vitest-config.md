@@ -9,8 +9,8 @@ groma:
     - scanner: typescript
       file: packages/graphics/vitest.config.ts
   technology: TypeScript
-  group: Shared packages
-description: Shared package graphics
+  group: Graphics
+description: Vitest.config in Graphics.
 ---
 
-Library code in packages/graphics. Not a separately deployed service.
+File packages/graphics/vitest.config.ts. It belongs to Graphics, not a separate application.

@@ -29,6 +29,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/signal/load.ts
   technology: SolidJS
+  group: Workspace core
 description: Whether the tab is on screen, focused or not (e.g. beside a focused window) Whether the tab is currently focused
 ---
 

@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/database/browser-test/grid.tsx
   technology: SolidJS
+  group: Development tooling
 description: Host-agnostic database grid.
 ---
 

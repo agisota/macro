@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/crm/browser-test/pipelines.tsx
   technology: SolidJS
+  group: Development tooling
 description: Customers workspace.
 ---
 

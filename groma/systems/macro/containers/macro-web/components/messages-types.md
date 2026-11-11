@@ -35,7 +35,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/messages/configured-message-editor.ts
   technology: SolidJS
-description: Types inside the signed-in client.
+  group: Workspace core
+description: A reaction as the row shows it; `names` names reactors outside Macro (an external chat's people), by their id in `users`
 ---
 
 A reaction as the row shows it; `names` names reactors outside Macro (an external chat's people), by their id in `users`.

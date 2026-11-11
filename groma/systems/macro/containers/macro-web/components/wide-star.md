@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/icon/wide-star.tsx
       symbol: AnimatedStarIcon
   technology: SolidJS
-description: Wide star inside the signed-in client.
+  group: Icons
+description: Wide star in Icons.
 ---
 
-Source under apps/web/src/components/icon/wide-star.tsx.
+File apps/web/src/components/icon/wide-star.tsx. It belongs to Icons, not a separate application.

@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: packages/email-renderer/playwright.config.ts
   technology: TypeScript
-  group: Shared packages
+  group: Email renderer library
 description: Prepares one HTML or plaintext mail body
 ---
 

@@ -11,7 +11,7 @@ groma:
       symbol: createWebTracingProvider
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Creates the browser OpenTelemetry provider used by the web application
 ---
 
 Creates the browser OpenTelemetry provider used by the web application.

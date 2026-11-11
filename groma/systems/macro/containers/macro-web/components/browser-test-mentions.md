@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/block-agent/browser-test/mentions.tsx
   technology: SolidJS
+  group: Development tooling
 description: '`agent` block and pending-session id.'
 ---
 

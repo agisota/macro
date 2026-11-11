@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/utils/favicon.ts
   technology: SolidJS
-description: Favicon inside the signed-in client.
+  group: Workspace core
+description: Favicon in Workspace core.
 ---
 
-escapes a color value for use in SVG
+File apps/web/src/lib/utils/favicon.ts. It belongs to Workspace core, not a separate application.

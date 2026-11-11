@@ -15,6 +15,7 @@ groma:
       file: apps/web/src/features/block-database/queries/starter-database.ts
       symbol: useStarterDatabase
   technology: SolidJS
+  group: Files
 description: '`database` block; 404 when the rollout is off.'
 ---
 

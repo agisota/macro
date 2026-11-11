@@ -26,6 +26,7 @@ groma:
       file: apps/web/src/features/sidebar-promotion/primitives/last-known.ts
       symbol: createLastKnown
   technology: SolidJS
+  group: Shell
 description: Shared promo card for view sidebars.
 ---
 

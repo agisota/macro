@@ -99,6 +99,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/theme/utils/resolvedThemeColors.ts
   technology: SolidJS
+  group: Settings
 description: Theme ids and theme application helpers.
 ---
 

@@ -290,6 +290,7 @@ groma:
       file: apps/web/src/features/entity/views/PrAgentSessionsChip.tsx
       symbol: PrAgentSessionsChip
   technology: SolidJS
+  group: Shell
 description: Workspace UI for entity
 ---
 

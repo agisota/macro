@@ -9,10 +9,11 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/priority-collapse/createPriorityCollapser.ts
   technology: SolidJS
-description: CreatePriorityCollapser inside the signed-in client.
+  group: App shell
+description: CreatePriorityCollapser in App shell.
 ---
 
-Lower numbers collapse first.
+File apps/web/src/components/priority-collapse/createPriorityCollapser.ts. It belongs to App shell, not a separate application.
 
 ## Derived relationships
 

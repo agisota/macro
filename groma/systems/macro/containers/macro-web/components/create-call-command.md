@@ -115,6 +115,7 @@ groma:
       file: apps/web/src/features/command/mobile/use-mobile-search-category.ts
       symbol: useMobileSearchCategory
   technology: SolidJS
+  group: Shell
 description: Command-K menu and create launcher.
 ---
 

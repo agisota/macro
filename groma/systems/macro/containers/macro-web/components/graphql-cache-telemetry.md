@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/telemetry.ts
   technology: SolidJS
-description: Telemetry inside the signed-in client.
+  group: GraphQL cache
+description: Fixed cache telemetry names
 ---
 
 Fixed cache telemetry names. Dashboards must not accept ad-hoc names.

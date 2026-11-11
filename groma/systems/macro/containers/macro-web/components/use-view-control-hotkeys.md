@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/use-view-control-hotkeys.ts
   technology: SolidJS
-description: Use view control hotkeys inside the signed-in client.
+  group: View shell
+description: Registers shortcuts that open a view's search, filter, and sort controls
 ---
 
 Registers shortcuts that open a view's search, filter, and sort controls.

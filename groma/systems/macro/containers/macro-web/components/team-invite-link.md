@@ -22,7 +22,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/team/teams.ts
   technology: SolidJS
-description: Invite link inside the signed-in client.
+  group: Data queries
+description: The team's invite link token, or null when the team has none
 ---
 
 The team's invite link token, or null when the team has none.

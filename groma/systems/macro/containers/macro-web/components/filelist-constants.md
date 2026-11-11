@@ -20,7 +20,8 @@ groma:
       file: apps/web/src/lib/core/component/FileList/TruncatedText.tsx
       symbol: TruncatedText
   technology: SolidJS
-description: Constants inside the signed-in client.
+  group: Workspace core
+description: Constants in Workspace core.
 ---
 
-Standard size options
+File apps/web/src/lib/core/component/FileList/constants.tsx. It belongs to Workspace core, not a separate application.

@@ -13,7 +13,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/natural-time/wasm-module.ts
   technology: SolidJS
-description: Create natural time inside the signed-in client.
+  group: Workspace core
+description: The natural_time reader as it loads
 ---
 
 The natural_time reader as it loads. A failed load is tried again by the next caller.

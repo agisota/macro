@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/SearchBar.tsx
   technology: SolidJS
-description: SearchBar inside the signed-in client.
+  group: View shell
+description: Called after Escape blurs the field without clearing its value
 ---
 
 Called after Escape blurs the field without clearing its value. The view can restore keyboard focus to its list.

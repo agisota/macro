@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/drag-drop/drag-preview.ts
       symbol: cloneDragPreview
   technology: SolidJS
-description: Drag preview inside the signed-in client.
+  group: Drag and drop
+description: A snapshot of `node` at its exact size, inert and hidden from assistive technology
 ---
 
 A snapshot of `node` at its exact size, inert and hidden from assistive technology.

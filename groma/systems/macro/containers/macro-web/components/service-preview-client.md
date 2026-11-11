@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/service-clients/service-preview/client.ts
   technology: TypeScript
+  group: Service clients
 description: Client for the service preview host
 ---
 

@@ -11,7 +11,7 @@ groma:
       symbol: DeferredSpanProcessor
   technology: TypeScript
   group: Observability
-description: Shared package observability
+description: Keep early spans in memory; never construct an exporter before consent
 ---
 
 Keep early spans in memory; never construct an exporter before consent.

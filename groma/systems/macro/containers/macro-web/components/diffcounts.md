@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/diff-view/DiffCounts.tsx
       symbol: DiffCounts
   technology: SolidJS
-description: DiffCounts inside the signed-in client.
+  group: Diffs
+description: Added and deleted line totals, hidden when both are zero
 ---
 
 Added and deleted line totals, hidden when both are zero.

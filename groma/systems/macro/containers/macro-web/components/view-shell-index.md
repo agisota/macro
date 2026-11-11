@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/index.ts
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: View shell
+description: Index in View shell.
 ---
 
-Source under apps/web/src/components/view-shell/index.ts.
+File apps/web/src/components/view-shell/index.ts. It belongs to View shell, not a separate application.

@@ -66,6 +66,7 @@ groma:
       file: apps/web/src/features/meetings/components/next-meeting-badge-pill.tsx
       symbol: NextMeetingBadgePill
   technology: SolidJS
+  group: Calls
 description: Meeting route and session provider.
 ---
 

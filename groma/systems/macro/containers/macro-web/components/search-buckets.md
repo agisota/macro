@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/search-buckets.ts
   technology: SolidJS
-description: Search buckets inside the signed-in client.
+  group: Development tooling
+description: Real production host/WASM/OPFS
 ---
 
 Real production host/WASM/OPFS. Synthetic data only: no hosted data or auth.

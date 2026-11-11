@@ -18,7 +18,8 @@ groma:
       file: apps/web/src/lib/queries/attention-feed/attention-feed-entity.ts
       symbol: attentionFeedSoupItem
   technology: SolidJS
-description: Live attention feed inside the signed-in client.
+  group: Data queries
+description: First delay before following a feed again after its live stream ended
 ---
 
 First delay before following a feed again after its live stream ended.

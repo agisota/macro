@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/pivot-layout.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Where a pivot table shows its values, for GETPIVOTDATA, on its sheet
 ---
 
 Where a pivot table shows its values, for GETPIVOTDATA, on its sheet.

@@ -13,7 +13,8 @@ groma:
       file: apps/web/src/lib/core/component/DatePicker/DatePickerUI.tsx
       symbol: DatePickerUI
   technology: SolidJS
-description: Index inside the signed-in client.
+  group: Workspace core
+description: Index in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/DatePicker/index.tsx.
+File apps/web/src/lib/core/component/DatePicker/index.tsx. It belongs to Workspace core, not a separate application.

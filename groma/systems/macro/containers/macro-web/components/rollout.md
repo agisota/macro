@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/graphql-cache/rollout.ts
       symbol: getBrowserTursoCacheRolloutDecision
   technology: SolidJS
-description: Rollout inside the signed-in client.
+  group: GraphQL cache
+description: Resolves the current gate without constructing a browser cache resource
 ---
 
 Resolves the current gate without constructing a browser cache resource.

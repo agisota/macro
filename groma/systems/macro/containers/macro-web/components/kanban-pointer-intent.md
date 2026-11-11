@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/kanban/kanban-pointer-intent.ts
       symbol: createKanbanPointerIntent
   technology: SolidJS
-description: Kanban pointer intent inside the signed-in client.
+  group: Kanban
+description: Gate previews during fast travel; a stationary pointer settles after 100 ms
 ---
 
 Gate previews during fast travel; a stationary pointer settles after 100 ms.

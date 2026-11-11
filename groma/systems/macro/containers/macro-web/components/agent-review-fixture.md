@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/email-compose/browser-test/agent-review-fixture.tsx
   technology: SolidJS
+  group: Development tooling
 description: Route-backed new email composer.
 ---
 

@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-hours.tsx
   technology: SolidJS
-description: Gantt hours inside the signed-in client.
+  group: Gantt
+description: The working day an hours chart leaves unshaded
 ---
 
 The working day an hours chart leaves unshaded.

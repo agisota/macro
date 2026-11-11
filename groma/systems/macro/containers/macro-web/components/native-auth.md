@@ -27,7 +27,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/auth/authorize-github.ts
   technology: SolidJS
-description: Native auth inside the signed-in client.
+  group: Workspace core
+description: Where the hosted flow sends the desktop app's session code
 ---
 
-Where the hosted flow sends the desktop app's session code. The deep-link bridge turns `macro:///login?token=...` into a `/login` router navigation, and that route redeems the code — so it is pinned here rather than derived from the page the user signed in from, which is usually
+Where the hosted flow sends the desktop app's session code. The deep-link bridge turns `macro:///login?token=...` into a `/login` router navigation, and that route redeems the code — so it is pinned here rather than derived from the page the user signed in from, which is usually `/welcome` and ignores the code entirely.

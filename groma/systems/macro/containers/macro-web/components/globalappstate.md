@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/GlobalAppState.tsx
   technology: SolidJS
-description: GlobalAppState inside the signed-in client.
+  group: App shell
+description: GlobalAppState in App shell.
 ---
 
-Source under apps/web/src/components/app/GlobalAppState.tsx.
+File apps/web/src/components/app/GlobalAppState.tsx. It belongs to App shell, not a separate application.

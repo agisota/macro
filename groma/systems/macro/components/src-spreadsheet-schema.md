@@ -11,7 +11,7 @@ groma:
       symbol: SPREADSHEET_LORO_SCHEMA
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Root maps have stable identities even when two peers first edit an empty cell concurrently
 ---
 
 Root maps have stable identities even when two peers first edit an empty cell concurrently. Separate properties also let formatting and value edits merge independently. Calculated values are deliberately never persisted.

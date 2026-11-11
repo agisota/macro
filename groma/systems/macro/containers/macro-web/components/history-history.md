@@ -18,7 +18,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/history/graphql.ts
   technology: SolidJS
-description: History inside the signed-in client.
+  group: Data queries
+description: History in Data queries.
 ---
 
-re-export history item type from this file
+File apps/web/src/lib/queries/history/history.ts. It belongs to Data queries, not a separate application.

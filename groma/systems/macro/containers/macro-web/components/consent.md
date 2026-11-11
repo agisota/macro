@@ -22,7 +22,8 @@ groma:
       file: apps/web/src/lib/core/email-link/OutlookBetaBadge.tsx
       symbol: OutlookBetaBadge
   technology: SolidJS
-description: Consent inside the signed-in client.
+  group: Workspace core
+description: Repair the capabilities an inbox used before its Google grant expired
 ---
 
 Repair the capabilities an inbox used before its Google grant expired.

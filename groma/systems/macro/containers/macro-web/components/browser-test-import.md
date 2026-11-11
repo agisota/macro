@@ -9,6 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/connector-import/browser-test/import.tsx
   technology: SolidJS
+  group: Development tooling
 description: Pipedream-backed import promotions.
 ---
 

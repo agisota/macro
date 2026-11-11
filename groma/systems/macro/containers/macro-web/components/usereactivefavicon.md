@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/components/app/useReactiveFavicon.ts
       symbol: useReactiveFavicon
   technology: SolidJS
-description: UseReactiveFavicon inside the signed-in client.
+  group: App shell
+description: Publish time
 ---
 
 Publish time. Not read by subscribers; it makes each payload unique so the bus's storage fallback fires (see `cross-tab-bus.ts`). Optional so payloads from tabs still on a pre-bus bundle, which omit it, parse.

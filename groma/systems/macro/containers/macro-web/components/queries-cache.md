@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/queries/cache.ts
       symbol: partitionByQueryCache
   technology: SolidJS
-description: Cache inside the signed-in client.
+  group: Data queries
+description: Cache in Data queries.
 ---
 
-Source under apps/web/src/lib/queries/cache.ts.
+File apps/web/src/lib/queries/cache.ts. It belongs to Data queries, not a separate application.

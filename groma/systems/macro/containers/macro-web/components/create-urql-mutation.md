@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/urql-solid/create-urql-mutation.ts
       symbol: createUrqlMutation
   technology: SolidJS
-description: Create urql mutation inside the signed-in client.
+  group: GraphQL client
+description: Creates reactive state for imperative urql mutation executions
 ---
 
 Creates reactive state for imperative urql mutation executions.

@@ -10,7 +10,8 @@ groma:
       file: apps/web/src/lib/core/component/FileDownload.tsx
       symbol: FileDownloadButton
   technology: SolidJS
-description: FileDownload inside the signed-in client.
+  group: Workspace core
+description: FileDownload in Workspace core.
 ---
 
-Source under apps/web/src/lib/core/component/FileDownload.tsx.
+File apps/web/src/lib/core/component/FileDownload.tsx. It belongs to Workspace core, not a separate application.

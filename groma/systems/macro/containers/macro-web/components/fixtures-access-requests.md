@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/tests/e2e/fixtures/access-requests.tsx
   technology: SolidJS
-description: Access requests inside the signed-in client.
+  group: Development tooling
+description: Real Share controls with an injected deterministic source
 ---
 
 Real Share controls with an injected deterministic source. Authorization, persistence, race handling and grant propagation have PostgreSQL coverage.

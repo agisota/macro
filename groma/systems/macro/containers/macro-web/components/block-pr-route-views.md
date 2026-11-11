@@ -10,6 +10,7 @@ groma:
       file: apps/web/src/features/block-pr/route-views.tsx
       symbol: PrDetailRouteView
   technology: SolidJS
+  group: Tasks
 description: '`pr` block; diff stack stays lazy.'
 ---
 

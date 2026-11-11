@@ -10,7 +10,7 @@ groma:
       file: packages/spreadsheet/src/sheet-drawings.ts
   technology: TypeScript
   group: Spreadsheet engine
-description: Shared package spreadsheet
+description: Sheet drawings in Spreadsheet engine.
 ---
 
-Drawings a sheet holds, at most.
+File packages/spreadsheet/src/sheet-drawings.ts. It belongs to Spreadsheet engine, not a separate application.

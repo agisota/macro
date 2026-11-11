@@ -9,7 +9,8 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/VerticalScrollIndicators.tsx
   technology: SolidJS
-description: VerticalScrollIndicators inside the signed-in client.
+  group: Workspace core
+description: Fade start color for `appearance="gradient"`
 ---
 
 Fade start color for `appearance="gradient"`. Defaults to surface.

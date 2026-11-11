@@ -320,6 +320,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/features/property/tags/useSoupResolvedTags.ts
   technology: SolidJS
+  group: Shell
 description: Property icon, text, chips, and empty glyphs.
 ---
 
