@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: compare
+title: Compare
 status: stable
 groma:
   id: eval-compare
@@ -8,7 +8,4 @@ groma:
   code:
     - scanner: python
       file: crates/universal_input/eval/compare.py
-description: Scanned source
 ---
-
-Owned file crates/universal_input/eval/compare.py.

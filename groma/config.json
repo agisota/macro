@@ -141,7 +141,20 @@
     "/vendor/**",
     "/apps/web/scripts/**",
     "/apps/marketing/scripts/**",
-    "/apps/docs/scripts/**"
+    "/apps/docs/scripts/**",
+    "/packages/sdk/scripts/**",
+    "/packages/sdk-docs/scripts/**",
+    "/packages/code-mode-sdk/scripts/**",
+    "/packages/collaboration/scripts/**",
+    "/crates/**/scripts/**",
+    "/crates/**/e2e/**",
+    "/services/websocket-service/**",
+    "/services/transcription/**",
+    "/services/ai-editing-worker/scripts/**",
+    "/services/convert_service/load-test/**",
+    "/services/convert_service/helpers/**",
+    "/crates/email_formatting/preview_digest.py",
+    "/crates/invite_email/preview_invite.py"
   ],
   "automaticUpdates": true
 }
