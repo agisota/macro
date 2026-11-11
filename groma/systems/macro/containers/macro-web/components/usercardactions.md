@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: UserCardActions
 status: stable
 groma:
   id: usercardactions
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/userCardActions.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: UserCardActions inside the signed-in client.
 ---
 
 The person a user card describes.

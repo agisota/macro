@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Notification client.gen
 status: stable
 groma:
   id: notification-client-gen

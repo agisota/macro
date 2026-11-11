@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Codex flag
 status: stable
 groma:
   id: codex-flag
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/codex/flag.ts
       symbol: useCodexAgentsAccess
   technology: SolidJS
-description: Part of the signed-in client
+description: Flag inside the signed-in client.
 ---
 
 Codex surfaces require both the agent rollout and the Codex rollout.

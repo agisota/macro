@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block agent
+title: Browser test mentions
 status: stable
 groma:
   id: browser-test-mentions

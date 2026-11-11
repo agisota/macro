@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt date
 status: stable
 groma:
   id: gantt-date
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-date.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt date inside the signed-in client.
 ---
 
 `hour` is the zoom past `day` that a chart showing hours reaches.

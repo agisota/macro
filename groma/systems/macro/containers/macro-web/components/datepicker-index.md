@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DatePicker index
 status: stable
 groma:
   id: datepicker-index
@@ -13,7 +13,7 @@ groma:
       file: apps/web/src/lib/core/component/DatePicker/DatePickerUI.tsx
       symbol: DatePickerUI
   technology: SolidJS
-description: Part of the signed-in client
+description: Index inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/DatePicker/index.tsx.

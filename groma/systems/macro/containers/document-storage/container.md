@@ -1,7 +1,7 @@
 ---
 type: C4 Container
 title: Document storage
-description: Script or entry the scanner promoted to a container
+description: Workspace graph API
 status: draft
 groma:
   id: document-storage
@@ -9,4 +9,4 @@ groma:
   technology: Rust, ECS, Postgres
 ---
 
-Groma created this container from an entry named Document storage. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+HTTP API for documents, channels, tasks, CRM, databases, and calls. Slack import and upload finalizers belong to this service. Rust source is not owned by the scan.

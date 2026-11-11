@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: BlockContainer
 status: stable
 groma:
   id: blockcontainer
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/BlockContainer.tsx
       symbol: BlockContainer
   technology: SolidJS
-description: Part of the signed-in client
+description: BlockContainer inside the signed-in client.
 ---
 
 TODO: handle nested state

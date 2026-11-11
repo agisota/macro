@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Unfurl index
 status: stable
 groma:
   id: unfurl-index

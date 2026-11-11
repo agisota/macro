@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Verify aliases
 status: stable
 groma:
   id: verify-aliases

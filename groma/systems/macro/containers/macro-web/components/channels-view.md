@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channels view
+title: Channels view channels view
 status: stable
 groma:
   id: channels-view

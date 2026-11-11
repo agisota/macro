@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Table filters
 status: stable
 groma:
   id: table-filters

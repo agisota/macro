@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Observability vitest.config
 status: stable
 groma:
   id: observability-vitest-config

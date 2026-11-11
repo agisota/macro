@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: PasteNode
 status: stable
 groma:
   id: nodes-pastenode

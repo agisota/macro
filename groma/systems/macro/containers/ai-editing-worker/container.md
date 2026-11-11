@@ -1,7 +1,7 @@
 ---
 type: C4 Container
 title: AI editing worker
-description: Script or entry the scanner promoted to a container
+description: Browser-facing document edits
 status: draft
 groma:
   id: ai-editing-worker
@@ -9,4 +9,4 @@ groma:
   technology: Hono, Cloudflare Workers
 ---
 
-Groma created this container from an entry named AI editing worker. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+Cloudflare Worker. The web client POSTs /edit with a document permission token. This draft is the service boundary; the scanned worker files sit on the traces container.

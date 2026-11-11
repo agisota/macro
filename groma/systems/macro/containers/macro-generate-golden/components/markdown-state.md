@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Markdown state
 status: stable
 groma:
   id: markdown-state

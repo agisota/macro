@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: graphics
+title: Label
 status: stable
 groma:
   id: core-shapes-label

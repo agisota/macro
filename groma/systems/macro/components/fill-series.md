@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Fill series
 status: stable
 groma:
   id: fill-series

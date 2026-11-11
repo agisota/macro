@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Entity
+title: Graphql entity
 status: stable
 groma:
   id: graphql-entity

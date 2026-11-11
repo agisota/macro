@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Layout
 status: stable
 groma:
   id: forms-layout

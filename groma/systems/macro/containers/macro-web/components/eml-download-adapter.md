@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email message
+title: Eml download adapter
 status: stable
 groma:
   id: eml-download-adapter

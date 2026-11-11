@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Sheet drawings
 status: stable
 groma:
   id: sheet-drawings

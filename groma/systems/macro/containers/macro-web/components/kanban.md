@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Kanban
 status: stable
 groma:
   id: kanban
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Kanban inside the signed-in client.
 ---
 
 In cross-column mode, report pointer placement instead of host sorting.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email view
+title: Email view email view
 status: stable
 groma:
   id: email-view

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Utils mentions
 status: stable
 groma:
   id: utils-mentions

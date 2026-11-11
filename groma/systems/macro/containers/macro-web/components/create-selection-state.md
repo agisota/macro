@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create selection state
 status: stable
 groma:
   id: create-selection-state
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/create-selection-state.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create selection state inside the signed-in client.
 ---
 
 ID-only selection state. Item payloads are always derived from current data.

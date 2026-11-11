@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Collab surface types
 status: stable
 groma:
   id: collab-surface-types
@@ -25,7 +25,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/collab-surface/CollabMarkdownEditor.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Types inside the signed-in client.
 ---
 
 Session ownership is independent of whether the host is a block or a native view.

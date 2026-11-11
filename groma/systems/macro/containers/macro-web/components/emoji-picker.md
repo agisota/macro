@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Emoji picker
 status: stable
 groma:
   id: emoji-picker
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Emoji/browser-test/emoji-picker.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Emoji picker inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/Emoji/browser-test/emoji-picker.tsx.

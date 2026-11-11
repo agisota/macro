@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Tasks view
+title: Browser test project grouping
 status: stable
 groma:
   id: project-grouping

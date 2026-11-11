@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Component Notifications
 status: stable
 groma:
   id: component-notifications
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/Notifications.tsx
       symbol: Notifications
   technology: SolidJS
-description: Part of the signed-in client
+description: Notifications inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/Notifications.tsx.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Contacts index
 status: stable
 groma:
   id: contacts-index

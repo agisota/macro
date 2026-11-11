@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Property
+title: Browser test enter
 status: stable
 groma:
   id: enter

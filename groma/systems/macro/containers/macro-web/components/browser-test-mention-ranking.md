@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channel
+title: Mention ranking
 status: stable
 groma:
   id: browser-test-mention-ranking

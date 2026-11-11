@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ListHeader
 status: stable
 groma:
   id: listheader
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/ListHeader.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ListHeader inside the signed-in client.
 ---
 
 Islands and controls after the title; omit for a title-only header.

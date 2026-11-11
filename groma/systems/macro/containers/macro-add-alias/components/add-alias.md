@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Add alias
 status: stable
 groma:
   id: add-alias

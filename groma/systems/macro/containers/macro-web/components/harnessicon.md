@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: HarnessIcon
 status: stable
 groma:
   id: harnessicon
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/HarnessIcon.tsx
       symbol: HarnessIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: HarnessIcon inside the signed-in client.
 ---
 
 Provider mark for a harness, with a generic connection icon for unknown slugs.

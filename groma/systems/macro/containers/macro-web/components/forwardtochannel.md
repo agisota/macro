@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ForwardToChannel
 status: stable
 groma:
   id: forwardtochannel
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/ForwardToChannel.tsx
       symbol: ForwardToChannel
   technology: SolidJS
-description: Part of the signed-in client
+description: ForwardToChannel inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/ForwardToChannel.tsx.

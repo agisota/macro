@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ViewSidebar
 status: stable
 groma:
   id: viewsidebar
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/ViewSidebar.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ViewSidebar inside the signed-in client.
 ---
 
 View controls (e.g. filters) in the right group, before search.

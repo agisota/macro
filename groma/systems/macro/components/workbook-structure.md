@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Workbook structure
 status: stable
 groma:
   id: workbook-structure

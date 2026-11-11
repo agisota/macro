@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Document messages
 status: stable
 groma:
   id: document-messages
@@ -36,7 +36,7 @@ groma:
       file: apps/web/src/lib/queries/messages/subscription.ts
       symbol: useMessageSubscription
   technology: SolidJS
-description: Part of the signed-in client
+description: Document messages inside the signed-in client.
 ---
 
 Positioning annotations needs every root, but never fetches every root's replies.

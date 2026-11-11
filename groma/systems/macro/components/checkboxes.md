@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Checkboxes
 status: stable
 groma:
   id: checkboxes

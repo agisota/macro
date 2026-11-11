@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: LanguageSupport
 status: stable
 groma:
   id: utils-languagesupport

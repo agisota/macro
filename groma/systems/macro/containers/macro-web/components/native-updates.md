@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Native updates
 status: stable
 groma:
   id: native-updates
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/native-updates.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Native updates inside the signed-in client.
 ---
 
 Desktop lifecycle integration, scoped to the Tauri provider.

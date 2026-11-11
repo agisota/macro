@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Privacy
 status: stable
 groma:
   id: privacy

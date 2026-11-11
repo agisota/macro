@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Kanban types
 status: stable
 groma:
   id: kanban-types
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban-types.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Kanban types inside the signed-in client.
 ---
 
 A column change leaves card order to the caller (for example, a sorted view).

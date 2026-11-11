@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: NavigationStack
 status: stable
 groma:
   id: navigationstack
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/navigation-stack/NavigationStack.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: NavigationStack inside the signed-in client.
 ---
 
 Whether `navigate` would open inline; callers with a split path ask first.

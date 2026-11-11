@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: GetPermission
 status: stable
 groma:
   id: getpermission
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/filesystem/getPermission.ts
       symbol: verifyHandlePermission
   technology: SolidJS
-description: Part of the signed-in client
+description: GetPermission inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/filesystem/getPermission.ts.

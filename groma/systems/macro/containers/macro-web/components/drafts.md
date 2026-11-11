@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block md
+title: Browser test drafts
 status: stable
 groma:
   id: drafts

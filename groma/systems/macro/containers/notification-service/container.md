@@ -1,7 +1,7 @@
 ---
 type: C4 Container
 title: Notification service
-description: Script or entry the scanner promoted to a container
+description: Inbox, push, and mail digest
 status: draft
 groma:
   id: notification-service
@@ -9,4 +9,4 @@ groma:
   technology: Rust, ECS
 ---
 
-Groma created this container from an entry named Notification service. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+Fanout for inbox items and push. Rust source is not owned.

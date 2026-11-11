@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Src constants
 status: stable
 groma:
   id: observability-src-constants

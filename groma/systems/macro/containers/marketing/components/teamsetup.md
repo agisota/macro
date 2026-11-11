@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Signup introduction
+title: Components TeamSetup
 status: stable
 groma:
   id: teamsetup

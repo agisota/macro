@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Notion markdown
 status: stable
 groma:
   id: notion-markdown

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Reply target
 status: stable
 groma:
   id: reply-target

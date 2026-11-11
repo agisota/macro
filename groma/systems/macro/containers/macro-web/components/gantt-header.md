@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt header
 status: stable
 groma:
   id: gantt-header
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/gantt/gantt-header.tsx
       symbol: GanttHeader
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt header inside the signed-in client.
 ---
 
 The drawer starts below the header; reserve only its toggle in the timeline band.

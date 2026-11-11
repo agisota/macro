@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Github stars
 status: stable
 groma:
   id: github-stars
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/github-stars.ts
       symbol: useGithubStarsQuery
   technology: SolidJS
-description: Part of the signed-in client
+description: Github stars inside the signed-in client.
 ---
 
 Shared across onboarding mounts; this public request needs no sign-in.

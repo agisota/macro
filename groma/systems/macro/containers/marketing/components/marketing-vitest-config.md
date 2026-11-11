@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: Vitest.config
 status: stable
 groma:
   id: marketing-vitest-config

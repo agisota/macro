@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Generate
 status: stable
 groma:
   id: sdk-scripts-generate

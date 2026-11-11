@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Account manager
+title: Account manager account manager page
 status: stable
 groma:
   id: account-manager-page

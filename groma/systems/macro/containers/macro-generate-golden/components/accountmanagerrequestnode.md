@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: AccountManagerRequestNode
 status: stable
 groma:
   id: accountmanagerrequestnode

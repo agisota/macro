@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Generate api schema
 status: stable
 groma:
   id: generate-api-schema
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/scripts/generate-api-schema.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Generate api schema inside the signed-in client.
 ---
 
 Usage: bun run scripts/generate-api-schema.ts <service-name> // generate for specific service bun run scripts/generate-api-schema.ts               // generate for all services bun run scripts/generate-api-schema.ts --check       // verify types are up to date (for CI) bun run scr

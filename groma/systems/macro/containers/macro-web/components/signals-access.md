@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Access
 status: stable
 groma:
   id: signals-access
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/access.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Access inside the signed-in client.
 ---
 
 A fixed value or a reactive accessor that returns it.

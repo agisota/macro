@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Channel probe
 status: stable
 groma:
   id: channel-probe

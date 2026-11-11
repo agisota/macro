@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Node
 status: stable
 groma:
   id: node

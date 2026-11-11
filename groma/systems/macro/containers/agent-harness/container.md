@@ -1,7 +1,7 @@
 ---
 type: C4 Container
 title: Agent harness
-description: Script or entry the scanner promoted to a container
+description: Agent sessions and workspace MCP
 status: draft
 groma:
   id: agent-harness
@@ -9,4 +9,4 @@ groma:
   technology: Rust, ECS
 ---
 
-Groma created this container from an entry named Agent harness. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+The ECS process for agent sessions and coding-agent runtimes. Trigger and MCP auth proxy are modules of this binary. Rust source is not owned.

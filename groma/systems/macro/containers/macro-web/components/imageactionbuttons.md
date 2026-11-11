@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ImageActionButtons
 status: stable
 groma:
   id: imageactionbuttons
@@ -15,7 +15,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ImageActions/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: ImageActionButtons inside the signed-in client.
 ---
 
 Copy + download buttons for a single image, driven by `createImageActions`.

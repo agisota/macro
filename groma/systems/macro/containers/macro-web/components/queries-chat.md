@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Queries chat
 status: stable
 groma:
   id: queries-chat
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/chat.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Chat inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/queries/chat.ts.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Markdown loro snapshot
 status: stable
 groma:
   id: markdown-loro-snapshot

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Ai workbook
 status: stable
 groma:
   id: ai-workbook

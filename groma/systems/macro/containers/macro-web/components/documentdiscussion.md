@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block md
+title: Component DocumentDiscussion
 status: stable
 groma:
   id: documentdiscussion

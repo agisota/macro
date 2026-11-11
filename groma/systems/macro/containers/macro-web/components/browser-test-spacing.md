@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channel
+title: Spacing
 status: stable
 groma:
   id: browser-test-spacing

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block spreadsheet
+title: Components DateFormatDialog
 status: stable
 groma:
   id: dateformatdialog

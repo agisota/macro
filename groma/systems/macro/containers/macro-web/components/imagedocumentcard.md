@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ImageDocumentCard
 status: stable
 groma:
   id: imagedocumentcard
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ImageDocumentCard.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ImageDocumentCard inside the signed-in client.
 ---
 
 Replaces the default pending label.

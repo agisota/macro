@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Date chips
 status: stable
 groma:
   id: date-chips
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/date-chips.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Date chips inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/date-chips.tsx.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Agent chat reply
 status: stable
 groma:
   id: agent-chat-reply

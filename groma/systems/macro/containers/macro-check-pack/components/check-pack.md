@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Check pack
 status: stable
 groma:
   id: check-pack

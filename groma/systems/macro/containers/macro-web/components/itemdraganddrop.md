@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ItemDragAndDrop
 status: stable
 groma:
   id: itemdraganddrop
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/ItemDragAndDrop.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ItemDragAndDrop inside the signed-in client.
 ---
 
 Optional for composed entity rows rendered outside the draggable workspace.

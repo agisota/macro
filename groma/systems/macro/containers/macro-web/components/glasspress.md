@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: GlassPress
 status: stable
 groma:
   id: glasspress
@@ -40,7 +40,7 @@ groma:
       file: apps/web/src/components/app/mobile/MobilePageCreateButton.tsx
       symbol: MobilePageCreateButton
   technology: SolidJS
-description: Part of the signed-in client
+description: GlassPress inside the signed-in client.
 ---
 
 Round controls grow 28%; wide surfaces expand their paint by up to 6px per edge.

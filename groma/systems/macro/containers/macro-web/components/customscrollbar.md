@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CustomScrollbar
 status: stable
 groma:
   id: customscrollbar
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/CustomScrollbar.tsx
       symbol: CustomScrollbar
   technology: SolidJS
-description: Part of the signed-in client
+description: CustomScrollbar inside the signed-in client.
 ---
 
 How long a label is visible for. Set to `Infinity` to keep the label visible at all times

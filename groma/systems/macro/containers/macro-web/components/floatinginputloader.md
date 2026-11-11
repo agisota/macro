@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FloatingInputLoader
 status: stable
 groma:
   id: floatinginputloader
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/FloatingInputLoader.tsx
       symbol: FloatingInputLoader
   technology: SolidJS
-description: Part of the signed-in client
+description: FloatingInputLoader inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/FloatingInputLoader.tsx.

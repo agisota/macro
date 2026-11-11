@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Providers
 status: stable
 groma:
   id: analytics-providers
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/providers.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Providers inside the signed-in client.
 ---
 
 Google Analytics

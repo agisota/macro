@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: CommentNode
 status: stable
 groma:
   id: commentnode

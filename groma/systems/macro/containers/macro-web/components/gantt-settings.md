@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt settings
 status: stable
 groma:
   id: gantt-settings
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/gantt/gantt-settings.tsx
       symbol: GanttSettings
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt settings inside the signed-in client.
 ---
 
 Period changes zoom; grid settings only change calendar decoration, and hours zoom draws its own.

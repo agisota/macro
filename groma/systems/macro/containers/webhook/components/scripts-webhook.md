@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Webhook
 status: stable
 groma:
   id: scripts-webhook

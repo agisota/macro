@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Settings
+title: Settings browser test fixture
 status: stable
 groma:
   id: settings-browser-test-fixture

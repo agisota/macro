@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: machine
+title: Src types
 status: stable
 groma:
   id: machine-src-types

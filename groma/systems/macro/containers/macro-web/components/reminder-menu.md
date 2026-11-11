@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Reminders
+title: Browser test reminder menu
 status: stable
 groma:
   id: reminder-menu

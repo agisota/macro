@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Calendar types.gen
 status: stable
 groma:
   id: calendar-types-gen

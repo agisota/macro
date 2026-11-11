@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Markdown mentions
 status: stable
 groma:
   id: utils-markdown-mentions

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block canvas
+title: Browser test artifact.fixture
 status: stable
 groma:
   id: artifact-fixture

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Scheduled action index
 status: stable
 groma:
   id: scheduled-action-index

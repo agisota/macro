@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Generate corpus
 status: stable
 groma:
   id: generate-corpus

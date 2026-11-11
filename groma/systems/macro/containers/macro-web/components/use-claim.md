@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Use claim
 status: stable
 groma:
   id: use-claim
@@ -34,7 +34,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/solid/router.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Use claim inside the signed-in client.
 ---
 
 Registers a resource this view shows outside a pane route, such as an inline preview, so opening it elsewhere activates this pane instead.

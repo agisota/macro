@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Image
 status: stable
 groma:
   id: transformers-image

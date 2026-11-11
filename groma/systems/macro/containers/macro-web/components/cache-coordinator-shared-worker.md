@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cache.coordinator.shared worker
 status: stable
 groma:
   id: cache-coordinator-shared-worker
@@ -39,7 +39,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/coordinator-router.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Cache.coordinator.shared worker inside the signed-in client.
 ---
 
 <reference lib="webworker" />

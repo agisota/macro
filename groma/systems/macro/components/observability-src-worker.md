@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Worker
 status: stable
 groma:
   id: observability-src-worker

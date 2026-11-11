@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Team task
 status: stable
 groma:
   id: team-task
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/storage/team-task.ts
       symbol: useTeamTaskQuery
   technology: SolidJS
-description: Part of the signed-in client
+description: Team task inside the signed-in client.
 ---
 
 Cached callbacks outlive the caller; only the resolved slug enters them.

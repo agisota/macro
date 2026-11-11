@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channel
+title: Call chat
 status: stable
 groma:
   id: call-chat

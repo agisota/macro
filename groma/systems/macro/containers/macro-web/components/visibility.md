@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Crm
+title: Visibility
 status: stable
 groma:
   id: visibility

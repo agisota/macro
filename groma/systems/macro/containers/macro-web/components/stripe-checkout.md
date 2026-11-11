@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Stripe checkout
 status: stable
 groma:
   id: stripe-checkout
@@ -55,7 +55,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/auth/codex.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Stripe checkout inside the signed-in client.
 ---
 
 Confirm introductory eligibility before advertising or requesting a trial.

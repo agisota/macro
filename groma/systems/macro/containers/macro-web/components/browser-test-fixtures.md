@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Fixtures
+title: Browser test fixtures
 status: stable
 groma:
   id: browser-test-fixtures

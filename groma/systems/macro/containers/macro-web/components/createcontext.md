@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CreateContext
 status: stable
 groma:
   id: createcontext
@@ -47,7 +47,7 @@ groma:
       file: apps/web/src/lib/core/context/quickAccess/debug/QuickAccessAll.tsx
       symbol: QuickAccessAll
   technology: SolidJS
-description: Part of the signed-in client
+description: CreateContext inside the signed-in client.
 ---
 
 Creates a context provider that throws if used outside of provider tree. Thin wrapper around solid-primitives createContextProvider.  @param name - Name of the context (used in error messages) @param factory - Factory function that creates the context value @returns Tuple of [Pro

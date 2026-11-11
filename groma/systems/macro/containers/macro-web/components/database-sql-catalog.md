@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Catalog
 status: stable
 groma:
   id: database-sql-catalog
@@ -22,7 +22,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/database-sql/profile.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Catalog inside the signed-in client.
 ---
 
 Open databases as the schema the engine's `buildCatalog` reads, as the server maps its own.

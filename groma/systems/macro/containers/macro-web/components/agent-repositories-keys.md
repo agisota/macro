@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Keys
+title: Agent repositories keys
 status: stable
 groma:
   id: agent-repositories-keys

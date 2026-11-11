@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create render queue
 status: stable
 groma:
   id: utils-create-render-queue
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/utils/create-render-queue.ts
       symbol: createRenderQueue
   technology: SolidJS
-description: Part of the signed-in client
+description: Create render queue inside the signed-in client.
 ---
 
 Coalesces keyed render work and yields between jobs.

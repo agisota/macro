@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Keys
+title: Access requests keys
 status: stable
 groma:
   id: access-requests-keys

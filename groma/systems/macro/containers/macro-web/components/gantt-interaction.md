@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt interaction
 status: stable
 groma:
   id: gantt-interaction
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-interaction.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt interaction inside the signed-in client.
 ---
 
 A bar's start and inclusive end day; a timed bar's `end` is its exact edge.

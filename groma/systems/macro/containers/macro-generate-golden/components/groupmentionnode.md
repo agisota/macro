@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: GroupMentionNode
 status: stable
 groma:
   id: groupmentionnode

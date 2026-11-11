@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Vertical insertion
 status: stable
 groma:
   id: vertical-insertion
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/drag-drop/vertical-insertion.ts
       symbol: verticalInsertion
   technology: SolidJS
-description: Part of the signed-in client
+description: Vertical insertion inside the signed-in client.
 ---
 
 `horizontalInsertion` turned on its side: where a dragged item lands in a top-to-bottom column, `boundary` being the y coordinate it lands on.

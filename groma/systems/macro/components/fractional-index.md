@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Fractional index
 status: stable
 groma:
   id: fractional-index

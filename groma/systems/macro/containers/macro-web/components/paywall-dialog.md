@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Paywall
+title: Components paywall dialog
 status: stable
 groma:
   id: paywall-dialog

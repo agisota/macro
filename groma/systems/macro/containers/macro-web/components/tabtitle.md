@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: TabTitle
 status: stable
 groma:
   id: tabtitle
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/signal/tabTitle.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: TabTitle inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/signal/tabTitle.ts.

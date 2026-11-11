@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: graphics
+title: Artifact
 status: stable
 groma:
   id: solid-shapes-artifact

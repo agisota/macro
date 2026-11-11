@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Drive view
+title: Drive view drive view
 status: stable
 groma:
   id: drive-view

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: CustomTransformers
 status: stable
 groma:
   id: customtransformers

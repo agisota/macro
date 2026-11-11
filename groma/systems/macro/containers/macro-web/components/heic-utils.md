@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Heic utils
 status: stable
 groma:
   id: heic-utils
@@ -28,7 +28,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/heic/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Utils inside the signed-in client.
 ---
 
 Utility functions for file type detection

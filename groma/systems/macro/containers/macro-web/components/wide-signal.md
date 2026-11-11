@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide signal
 status: stable
 groma:
   id: wide-signal
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-signal.tsx
       symbol: AnimatedSignalIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide signal inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-signal.tsx.

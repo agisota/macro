@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Cognition index
 status: stable
 groma:
   id: cognition-index

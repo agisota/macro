@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Mail projection harness
 status: stable
 groma:
   id: mail-projection-harness
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/mail-projection-harness.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Mail projection harness inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/mail-projection-harness.ts.

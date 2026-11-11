@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Layout
 status: stable
 groma:
   id: app-layout
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/Layout.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Layout inside the signed-in client.
 ---
 
 Source under apps/web/src/components/app/Layout.tsx.

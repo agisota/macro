@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Generate image
 status: stable
 groma:
   id: generate-image

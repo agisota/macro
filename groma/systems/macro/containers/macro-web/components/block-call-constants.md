@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block call
+title: Block call constants
 status: stable
 groma:
   id: block-call-constants

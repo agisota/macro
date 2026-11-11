@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Build
 status: stable
 groma:
   id: build

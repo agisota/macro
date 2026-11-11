@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Mcp servers
 status: stable
 groma:
   id: mcp-servers
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/mcp-servers.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Mcp servers inside the signed-in client.
 ---
 
 Stable placeholder for `neverSuspend` consumers (see below).

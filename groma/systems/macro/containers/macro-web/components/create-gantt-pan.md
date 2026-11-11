@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create gantt pan
 status: stable
 groma:
   id: create-gantt-pan
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/gantt/create-gantt-pan.ts
       symbol: createGanttPan
   technology: SolidJS
-description: Part of the signed-in client
+description: Create gantt pan inside the signed-in client.
 ---
 
 Owns one middle-button gesture; calendar geometry stays with Gantt.Root.

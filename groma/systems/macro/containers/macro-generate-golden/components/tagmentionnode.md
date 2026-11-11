@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: TagMentionNode
 status: stable
 groma:
   id: tagmentionnode

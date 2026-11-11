@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block canvas
+title: Views render entry
 status: stable
 groma:
   id: render-entry

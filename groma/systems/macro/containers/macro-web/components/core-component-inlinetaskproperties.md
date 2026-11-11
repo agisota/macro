@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: InlineTaskProperties
 status: stable
 groma:
   id: core-component-inlinetaskproperties
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/InlineTaskProperties.tsx
       symbol: InlineTaskProperties
   technology: SolidJS
-description: Part of the signed-in client
+description: InlineTaskProperties inside the signed-in client.
 ---
 
 Inline task badges use their preview's edges; only REST previews fetch separately. Status is omitted: the mention's leading `TaskStatusIcon` already shows it.

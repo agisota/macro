@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Local portmap
 status: stable
 groma:
   id: local-portmap

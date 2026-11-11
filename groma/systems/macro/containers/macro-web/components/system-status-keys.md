@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Keys
+title: System status keys
 status: stable
 groma:
   id: system-status-keys

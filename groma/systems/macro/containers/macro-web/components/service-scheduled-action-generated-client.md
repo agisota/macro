@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: service scheduled action
+title: Generated client
 status: stable
 groma:
   id: service-scheduled-action-generated-client

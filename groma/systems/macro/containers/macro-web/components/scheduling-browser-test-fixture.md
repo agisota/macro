@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Scheduling
+title: Scheduling browser test fixture
 status: stable
 groma:
   id: scheduling-browser-test-fixture

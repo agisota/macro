@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Sanitize recording
 status: stable
 groma:
   id: sanitize-recording

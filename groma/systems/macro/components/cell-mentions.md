@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Cell mentions
 status: stable
 groma:
   id: cell-mentions

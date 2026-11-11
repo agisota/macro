@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: Platform
 status: stable
 groma:
   id: ui-platform

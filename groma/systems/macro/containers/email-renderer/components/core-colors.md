@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email renderer
+title: Core colors
 status: stable
 groma:
   id: core-colors

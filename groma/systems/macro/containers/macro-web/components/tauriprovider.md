@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: TauriProvider
 status: stable
 groma:
   id: tauriprovider
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/TauriProvider.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: TauriProvider inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/tauri/TauriProvider.tsx.

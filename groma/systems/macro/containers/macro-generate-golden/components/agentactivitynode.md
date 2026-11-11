@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: AgentActivityNode
 status: stable
 groma:
   id: agentactivitynode

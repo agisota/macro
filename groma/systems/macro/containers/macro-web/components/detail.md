@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Detail
 status: stable
 groma:
   id: detail
@@ -60,7 +60,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/channel/activity.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Detail inside the signed-in client.
 ---
 
 A conversation and its complete unread edge. Activation readers revalidate on every open; display-only readers can reuse the cache. Its variables match the open channel's unread navigation, so both share one request.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: EntityDetailTopBar
 status: stable
 groma:
   id: entitydetailtopbar
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/entity-detail/EntityDetailTopBar.tsx
       symbol: EntityDetailTopBar
   technology: SolidJS
-description: Part of the signed-in client
+description: EntityDetailTopBar inside the signed-in client.
 ---
 
 Header actions drop their labels first, at `@max-[600px]/split-header`.

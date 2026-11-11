@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CacheChannelInput
 status: stable
 groma:
   id: cachechannelinput
@@ -11,7 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/store/cacheChatInput.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: CacheChannelInput inside the signed-in client.
 ---
 
 Define constants

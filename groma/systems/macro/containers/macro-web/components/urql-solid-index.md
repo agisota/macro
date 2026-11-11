@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Urql solid index
 status: stable
 groma:
   id: urql-solid-index
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Index inside the signed-in client.
 ---
 
 Application-local Solid bindings for urql query operations.

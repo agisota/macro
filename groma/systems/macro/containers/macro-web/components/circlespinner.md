@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CircleSpinner
 status: stable
 groma:
   id: circlespinner
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/CircleSpinner.tsx
       symbol: CircleSpinner
   technology: SolidJS
-description: Part of the signed-in client
+description: CircleSpinner inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/CircleSpinner.tsx.

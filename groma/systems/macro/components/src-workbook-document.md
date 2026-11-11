@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Workbook document
 status: stable
 groma:
   id: src-workbook-document

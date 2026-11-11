@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Storage index
 status: stable
 groma:
   id: storage-index

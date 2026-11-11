@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Cognition client
+title: Service cognition onboarding
 status: stable
 groma:
   id: service-cognition-onboarding

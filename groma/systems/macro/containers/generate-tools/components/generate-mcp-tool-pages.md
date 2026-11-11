@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Generate mcp tool pages
 status: stable
 groma:
   id: generate-mcp-tool-pages

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: AllBlocks
 status: stable
 groma:
   id: allblocks
@@ -47,7 +47,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/constant/permissions.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: AllBlocks inside the signed-in client.
 ---
 
 Every block needs a module. `write` (DOCX) is the collaborative DOCX editor when it is enabled; otherwise `verifyBlockName` resolves it to `pdf`.

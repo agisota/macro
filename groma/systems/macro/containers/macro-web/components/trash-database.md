@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block database
+title: Trash database
 status: stable
 groma:
   id: trash-database

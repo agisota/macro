@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Agent harness core utils.gen
 status: stable
 groma:
   id: agent-harness-core-utils-gen

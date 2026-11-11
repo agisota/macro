@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide sort
 status: stable
 groma:
   id: wide-sort
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-sort.tsx
       symbol: AnimatedSortIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide sort inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-sort.tsx.

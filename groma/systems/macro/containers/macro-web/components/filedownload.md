@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FileDownload
 status: stable
 groma:
   id: filedownload
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/FileDownload.tsx
       symbol: FileDownloadButton
   technology: SolidJS
-description: Part of the signed-in client
+description: FileDownload inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/FileDownload.tsx.

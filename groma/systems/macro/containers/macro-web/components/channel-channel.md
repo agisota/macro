@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channel
+title: Channel channel
 status: stable
 groma:
   id: channel-channel

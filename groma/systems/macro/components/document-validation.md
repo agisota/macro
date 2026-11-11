@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Document validation
 status: stable
 groma:
   id: document-validation

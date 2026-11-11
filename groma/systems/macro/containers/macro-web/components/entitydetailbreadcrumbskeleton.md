@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: EntityDetailBreadcrumbSkeleton
 status: stable
 groma:
   id: entitydetailbreadcrumbskeleton
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/entity-detail/EntityDetailBreadcrumbSkeleton.tsx
       symbol: EntityDetailBreadcrumbSkeleton
   technology: SolidJS
-description: Part of the signed-in client
+description: EntityDetailBreadcrumbSkeleton inside the signed-in client.
 ---
 
 Source under apps/web/src/components/entity-detail/EntityDetailBreadcrumbSkeleton.tsx.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Favorites
+title: Favorites FavoriteContextMenu
 status: stable
 groma:
   id: favoritecontextmenu

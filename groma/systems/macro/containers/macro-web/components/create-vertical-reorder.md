@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create vertical reorder
 status: stable
 groma:
   id: create-vertical-reorder
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/create-vertical-reorder.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create vertical reorder inside the signed-in client.
 ---
 
 The indicator's offset within its positioned container.

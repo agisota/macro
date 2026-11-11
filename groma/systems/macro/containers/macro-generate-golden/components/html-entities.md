@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Html entities
 status: stable
 groma:
   id: html-entities

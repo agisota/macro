@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Button activation
 status: stable
 groma:
   id: button-activation
@@ -40,7 +40,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/utils/file-tree.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Button activation inside the signed-in client.
 ---
 
 Kobalte supplies disabled semantics; non-native actions still need activation guards.

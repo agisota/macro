@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Scheduling
+title: Queries public
 status: stable
 groma:
   id: public

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide folder
 status: stable
 groma:
   id: wide-folder
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-folder.tsx
       symbol: AnimatedFolderIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide folder inside the signed-in client.
 ---
 
 ${maskId} .mask-shape {

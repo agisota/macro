@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: code-mode-sdk
+title: Code mode sdk src index
 status: stable
 groma:
   id: code-mode-sdk-src-index

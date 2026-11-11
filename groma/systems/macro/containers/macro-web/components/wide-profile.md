@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide profile
 status: stable
 groma:
   id: wide-profile
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-profile.tsx
       symbol: AnimatedProfileIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide profile inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-profile.tsx.

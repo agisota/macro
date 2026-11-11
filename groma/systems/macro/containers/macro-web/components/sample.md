@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Settings
+title: Sample
 status: stable
 groma:
   id: sample

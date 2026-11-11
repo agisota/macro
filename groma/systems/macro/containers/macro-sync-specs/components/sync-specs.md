@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Sync specs
 status: stable
 groma:
   id: sync-specs

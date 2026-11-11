@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Read background image
 status: stable
 groma:
   id: read-background-image
@@ -12,7 +12,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/media/background-effect.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Read background image inside the signed-in client.
 ---
 
 Bound custom images before storing the same background preference as calls.

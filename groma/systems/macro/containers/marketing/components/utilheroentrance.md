@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: UtilHeroEntrance
 status: stable
 groma:
   id: utilheroentrance

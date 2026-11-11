@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: UserMentionNode
 status: stable
 groma:
   id: usermentionnode

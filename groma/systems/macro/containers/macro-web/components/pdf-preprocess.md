@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Preprocess
 status: stable
 groma:
   id: pdf-preprocess
@@ -44,7 +44,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/document-processing-types/jobTypes/pdf/convert.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Preprocess inside the signed-in client.
 ---
 
 There are 2 types of Preprocess events. PreprocessInit - used to initialize the upload job prior to creating a new pdf file PreprocessInvoke - invokes preprocess and retrieves the preprocess results. PreprocessInvoke takes a document id and document version id and runs the pdf se

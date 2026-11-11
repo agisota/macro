@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cutover harness
 status: stable
 groma:
   id: cutover-harness
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/cutover-harness.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Cutover harness inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/cutover-harness.ts.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Unfurl core utils.gen
 status: stable
 groma:
   id: unfurl-core-utils-gen

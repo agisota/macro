@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channels view
+title: Channels view use has active call
 status: stable
 groma:
   id: use-has-active-call

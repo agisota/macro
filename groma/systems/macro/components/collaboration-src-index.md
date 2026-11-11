@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Collaboration src index
 status: stable
 groma:
   id: collaboration-src-index

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Navigation
 status: stable
 groma:
   id: tauri-navigation
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/tauri/navigation.ts
       symbol: useTauriNavigationEffect
   technology: SolidJS
-description: Part of the signed-in client
+description: Navigation inside the signed-in client.
 ---
 
 this must be used as a child of router

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Docx engine client
 status: stable
 groma:
   id: docx-engine-client
@@ -17,7 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/docx-engine/types.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Client inside the signed-in client.
 ---
 
 The DOCX engine as the app calls it: async functions, worker behind them.  One worker per tab, started on first use and kept, so the wasm module is compiled once however many documents are open. Each open document is addressed by a caller-chosen `docKey`.

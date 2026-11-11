@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DocumentBlockContainer
 status: stable
 groma:
   id: documentblockcontainer
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/DocumentBlockContainer.tsx
       symbol: DocumentBlockContainer
   technology: SolidJS
-description: Part of the signed-in client
+description: DocumentBlockContainer inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/DocumentBlockContainer.tsx.

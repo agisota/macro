@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Shared
 status: stable
 groma:
   id: history-shared
@@ -17,7 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/history/types.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Shared inside the signed-in client.
 ---
 
 Where the adapters keep their slice of `history.state`.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Slack import keys
 status: stable
 groma:
   id: slack-import-keys
@@ -12,7 +12,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/slack-import/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Keys inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/queries/slack-import/keys.ts.

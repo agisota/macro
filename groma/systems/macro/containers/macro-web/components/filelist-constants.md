@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Constants
 status: stable
 groma:
   id: filelist-constants
@@ -20,7 +20,7 @@ groma:
       file: apps/web/src/lib/core/component/FileList/TruncatedText.tsx
       symbol: TruncatedText
   technology: SolidJS
-description: Part of the signed-in client
+description: Constants inside the signed-in client.
 ---
 
 Standard size options

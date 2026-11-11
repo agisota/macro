@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: IsIpad
 status: stable
 groma:
   id: isipad
@@ -16,7 +16,7 @@ groma:
       file: apps/web/src/lib/core/mobile/IosPushNotificationModal.tsx
       symbol: IosPushNotificationModal
   technology: SolidJS
-description: Part of the signed-in client
+description: IsIpad inside the signed-in client.
 ---
 
 Whether we're running in the native iOS app on an iPad.  `getPlatform()` reports `'ios'` for iPhone and iPad alike, so this asks the native side for `UIDevice.current.userInterfaceIdiom`. iOS apps running on an Apple Silicon Mac report the iPad idiom too, and are excluded nativel

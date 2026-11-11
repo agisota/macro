@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Structured references
 status: stable
 groma:
   id: structured-references

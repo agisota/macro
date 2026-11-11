@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Meetings
+title: Context new meeting
 status: stable
 groma:
   id: context-new-meeting

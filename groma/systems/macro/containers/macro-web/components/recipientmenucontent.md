@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: RecipientMenuContent
 status: stable
 groma:
   id: recipientmenucontent
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/RecipientMenuContent.tsx
       symbol: RecipientMenuContent
   technology: SolidJS
-description: Part of the signed-in client
+description: RecipientMenuContent inside the signed-in client.
 ---
 
 Kobalte's default dismissal schedules a second close. It can arrive after the user refocuses and types a new query, cancelling the new window.

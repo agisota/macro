@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Use preference
 status: stable
 groma:
   id: use-preference
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/preferences/use-preference.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Use preference inside the signed-in client.
 ---
 
 Value used when no saved preference exists yet.

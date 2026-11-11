@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: PhotoLibraryPlugin
 status: stable
 groma:
   id: photolibraryplugin
@@ -188,7 +188,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/observability/generated/native-diagnostics.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: PhotoLibraryPlugin inside the signed-in client.
 ---
 
 A lingering delegate whose picker is no longer on screen means the previous session ended without a delegate callback (the

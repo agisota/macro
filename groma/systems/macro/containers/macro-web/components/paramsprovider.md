@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ParamsProvider
 status: stable
 groma:
   id: paramsprovider
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ParamsProvider.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ParamsProvider inside the signed-in client.
 ---
 
 Use a version-bumping pattern to trigger successive reactive updates when calling goToLocationFromParams multiple times even with same values.

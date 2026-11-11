@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FileDropOverlay
 status: stable
 groma:
   id: filedropoverlay
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/FileDropOverlay.tsx
       symbol: FileDropOverlay
   technology: SolidJS
-description: Part of the signed-in client
+description: FileDropOverlay inside the signed-in client.
 ---
 
 A themed file drop overlay for use with the fileDrop directive.

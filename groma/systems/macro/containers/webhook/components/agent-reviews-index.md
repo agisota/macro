@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Agent reviews index
 status: stable
 groma:
   id: agent-reviews-index

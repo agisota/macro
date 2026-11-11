@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Update manifest
 status: stable
 groma:
   id: update-manifest

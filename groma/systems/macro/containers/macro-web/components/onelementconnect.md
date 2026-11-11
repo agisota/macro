@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: OnElementConnect
 status: stable
 groma:
   id: onelementconnect
@@ -240,7 +240,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/util/scroll-intent.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: OnElementConnect inside the signed-in client.
 ---
 
 Calls `callback` once `element` is in the document, under the caller's Solid owner. A ref runs before its element is attached, so the solid-primitives version almost always calls back from a ResizeObserver with no owner: `onCleanup` there never runs, and computations created ther

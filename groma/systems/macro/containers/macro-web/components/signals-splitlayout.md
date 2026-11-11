@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: SplitLayout
 status: stable
 groma:
   id: signals-splitlayout
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/splitLayout.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: SplitLayout inside the signed-in client.
 ---
 
 Primary global split manager for the app.

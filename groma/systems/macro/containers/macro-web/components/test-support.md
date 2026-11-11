@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Test support
 status: stable
 groma:
   id: test-support
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/people/test-support.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Test support inside the signed-in client.
 ---
 
 Explicit older-host capability for fixtures that do not exercise backfill.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Video
 status: stable
 groma:
   id: transformers-video

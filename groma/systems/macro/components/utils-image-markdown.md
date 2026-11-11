@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Image markdown
 status: stable
 groma:
   id: utils-image-markdown

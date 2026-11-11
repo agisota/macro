@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Vitest.config
+title: Core vitest.config
 status: stable
 groma:
   id: core-vitest-config

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Authorization
 status: stable
 groma:
   id: queries-authorization
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/authorization.ts
       symbol: createQueryAuthorization
   technology: SolidJS
-description: Part of the signed-in client
+description: Authorization inside the signed-in client.
 ---
 
 A cache hit cannot restore access after the server has denied this read.

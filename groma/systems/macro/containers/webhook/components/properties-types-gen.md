@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Properties types.gen
 status: stable
 groma:
   id: properties-types-gen

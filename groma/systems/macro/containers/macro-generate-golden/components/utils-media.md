@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Media
 status: stable
 groma:
   id: utils-media

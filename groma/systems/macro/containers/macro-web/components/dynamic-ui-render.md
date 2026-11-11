@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Dynamic ui
+title: Dynamic ui render
 status: stable
 groma:
   id: dynamic-ui-render

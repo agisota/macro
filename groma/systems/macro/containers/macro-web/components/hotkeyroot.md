@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: HotkeyRoot
 status: stable
 groma:
   id: hotkeyroot
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/hotkeyRoot.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: HotkeyRoot inside the signed-in client.
 ---
 
 Subscribe to keypress events. Automatically cleans up on unmount.

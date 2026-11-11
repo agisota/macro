@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create layout animation
 status: stable
 groma:
   id: create-layout-animation
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/create-layout-animation.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create layout animation inside the signed-in client.
 ---
 
 Unique placement, including the lane for cards with several placements.

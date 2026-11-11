@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: SearchBar
 status: stable
 groma:
   id: view-shell-searchbar
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/SearchBar.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: SearchBar inside the signed-in client.
 ---
 
 Called after Escape blurs the field without clearing its value. The view can restore keyboard focus to its list.

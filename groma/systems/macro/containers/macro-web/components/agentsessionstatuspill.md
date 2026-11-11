@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: AgentSessionStatusPill
 status: stable
 groma:
   id: agentsessionstatuspill
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/AgentSessionStatusPill.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: AgentSessionStatusPill inside the signed-in client.
 ---
 
 The session's status as a quiet dot + label pill. Pure: the status shape mirrors the wire's `SessionStatusDto`.

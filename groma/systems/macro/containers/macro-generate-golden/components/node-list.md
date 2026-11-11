@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Node list
 status: stable
 groma:
   id: node-list

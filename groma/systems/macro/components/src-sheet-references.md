@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Sheet references
 status: stable
 groma:
   id: src-sheet-references

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CreateMenuItem
 status: stable
 groma:
   id: createmenuitem
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/CreateMenuItem.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: CreateMenuItem inside the signed-in client.
 ---
 
 Icon, title, and wrapping description shared by every creation choice.

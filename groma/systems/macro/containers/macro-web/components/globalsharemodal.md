@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Sharing
+title: Global share modal GlobalShareModal
 status: stable
 groma:
   id: globalsharemodal

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Drag preview
 status: stable
 groma:
   id: drag-preview
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/drag-drop/drag-preview.ts
       symbol: cloneDragPreview
   technology: SolidJS
-description: Part of the signed-in client
+description: Drag preview inside the signed-in client.
 ---
 
 A snapshot of `node` at its exact size, inert and hidden from assistive technology.

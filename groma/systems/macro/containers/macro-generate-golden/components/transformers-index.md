@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Transformers index
 status: stable
 groma:
   id: transformers-index

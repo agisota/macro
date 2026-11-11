@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Typed number
 status: stable
 groma:
   id: typed-number

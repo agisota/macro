@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Reindex with alias swap
 status: stable
 groma:
   id: reindex-with-alias-swap

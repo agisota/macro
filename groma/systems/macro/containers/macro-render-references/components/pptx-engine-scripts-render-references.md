@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Render references
 status: stable
 groma:
   id: pptx-engine-scripts-render-references

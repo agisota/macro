@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Graphql cache protocol
 status: stable
 groma:
   id: graphql-cache-protocol
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/protocol.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Protocol inside the signed-in client.
 ---
 
 Explicit local entities resolved atomically from a committed mutation response.

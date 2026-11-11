@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: People references
 status: stable
 groma:
   id: people-references
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/people-references.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: People references inside the signed-in client.
 ---
 
 Real app host wrapper, coordinator and WASM/OPFS. Only server data is synthetic.

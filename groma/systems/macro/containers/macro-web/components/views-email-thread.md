@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email thread
+title: Views email thread
 status: stable
 groma:
   id: views-email-thread

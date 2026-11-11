@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Agent harness index
 status: stable
 groma:
   id: agent-harness-index

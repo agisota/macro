@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide diagram
 status: stable
 groma:
   id: wide-diagram
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-diagram.tsx
       symbol: AnimatedDiagramIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide diagram inside the signed-in client.
 ---
 
 scale from the square-end so the arms stretch/shrink to the diamond

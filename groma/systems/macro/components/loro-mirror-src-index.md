@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: loro-mirror
+title: Loro mirror src index
 status: stable
 groma:
   id: loro-mirror-src-index

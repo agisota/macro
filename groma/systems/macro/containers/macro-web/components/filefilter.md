@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FileFilter
 status: stable
 groma:
   id: filefilter
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/fileFilter.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: FileFilter inside the signed-in client.
 ---
 
 com

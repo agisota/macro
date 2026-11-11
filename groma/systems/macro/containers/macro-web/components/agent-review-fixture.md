@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email compose
+title: Browser test agent review fixture
 status: stable
 groma:
   id: agent-review-fixture

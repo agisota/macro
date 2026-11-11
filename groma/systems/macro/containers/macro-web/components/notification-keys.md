@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Keys
+title: Notification keys
 status: stable
 groma:
   id: notification-keys

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Push registry
 status: stable
 groma:
   id: push-registry
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/activity/push-registry.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Push registry inside the signed-in client.
 ---
 
 Null means every mounted activity query needs a fresh authorized read.

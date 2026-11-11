@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block form
+title: Primitives create poll voting
 status: stable
 groma:
   id: create-poll-voting

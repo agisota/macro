@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Traces
 status: stable
 groma:
   id: scripts-traces

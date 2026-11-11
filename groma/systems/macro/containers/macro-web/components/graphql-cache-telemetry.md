@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Telemetry
 status: stable
 groma:
   id: graphql-cache-telemetry
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/telemetry.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Telemetry inside the signed-in client.
 ---
 
 Fixed cache telemetry names. Dashboards must not accept ad-hoc names.

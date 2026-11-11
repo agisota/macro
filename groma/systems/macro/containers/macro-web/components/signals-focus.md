@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Focus
 status: stable
 groma:
   id: signals-focus
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/focus.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Focus inside the signed-in client.
 ---
 
 A listener passed `setDirty` itself would store the event, whose target keeps a removed view alive until the next focus change.

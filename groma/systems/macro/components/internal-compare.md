@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Compare
 status: stable
 groma:
   id: internal-compare

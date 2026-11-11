@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: graphics
+title: Backend
 status: stable
 groma:
   id: loro-backend

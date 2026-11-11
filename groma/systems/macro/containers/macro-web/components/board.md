@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Crm
+title: Board
 status: stable
 groma:
   id: board

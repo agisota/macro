@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: I18n index
 status: stable
 groma:
   id: i18n-index
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/i18n/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Index inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/i18n/index.ts.

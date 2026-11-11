@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide fileMd
 status: stable
 groma:
   id: wide-filemd
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-fileMd.tsx
       symbol: AnimatedFileMdIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide fileMd inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-fileMd.tsx.

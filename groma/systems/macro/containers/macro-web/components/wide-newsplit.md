@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide newSplit
 status: stable
 groma:
   id: wide-newsplit
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-newSplit.tsx
       symbol: AnimatedNewSplitIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide newSplit inside the signed-in client.
 ---
 
 }

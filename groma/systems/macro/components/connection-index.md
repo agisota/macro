@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Connection index
 status: stable
 groma:
   id: connection-index

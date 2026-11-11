@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email view
+title: Components EmailComposeRouteView
 status: stable
 groma:
   id: emailcomposerouteview

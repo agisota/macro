@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create urql query
 status: stable
 groma:
   id: create-urql-query
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/urql-solid/create-urql-query.ts
       symbol: createUrqlQuery
   technology: SolidJS
-description: Part of the signed-in client
+description: Create urql query inside the signed-in client.
 ---
 
 Creates a live Solid binding over one urql query observer.  New single-document reads use `createLiveQuery`, a document-first wrapper over this binding. Existing callers are already live and need no migration.

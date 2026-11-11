@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide task
 status: stable
 groma:
   id: wide-task
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-task.tsx
       symbol: AnimatedTaskIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide task inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-task.tsx.

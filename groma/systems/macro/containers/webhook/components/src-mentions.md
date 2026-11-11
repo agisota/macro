@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Mentions
 status: stable
 groma:
   id: src-mentions

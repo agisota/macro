@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Keys
+title: Reminders keys
 status: stable
 groma:
   id: reminders-keys

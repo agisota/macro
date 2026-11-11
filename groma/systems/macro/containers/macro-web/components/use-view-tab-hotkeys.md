@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Use view tab hotkeys
 status: stable
 groma:
   id: use-view-tab-hotkeys
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/use-view-tab-hotkeys.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Use view tab hotkeys inside the signed-in client.
 ---
 
 Tabs that Tab and Shift+Tab cycle through; defaults to `ids`.

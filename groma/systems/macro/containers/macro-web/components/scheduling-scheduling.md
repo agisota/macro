@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Scheduling
+title: Scheduling scheduling
 status: stable
 groma:
   id: scheduling-scheduling

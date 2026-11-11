@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: SceneComputer
 status: stable
 groma:
   id: scenecomputer

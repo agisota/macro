@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Theme
+title: Themes defineLegacyDefaultTheme
 status: stable
 groma:
   id: definelegacydefaulttheme

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Filesystem main
 status: stable
 groma:
   id: filesystem-main
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/main.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Main inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/filesystem/main.ts.

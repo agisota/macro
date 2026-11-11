@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block database
+title: Api
 status: stable
 groma:
   id: browser-test-api

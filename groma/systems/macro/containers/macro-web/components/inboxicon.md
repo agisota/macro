@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: InboxIcon
 status: stable
 groma:
   id: inboxicon
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/inboxIcon.ts
       symbol: inboxIconProps
   technology: SolidJS
-description: Part of the signed-in client
+description: InboxIcon inside the signed-in client.
 ---
 
 Resolve an inbox's identity from its own address, not the link's macro_id: an own secondary inbox shares the parent account's macro_id, so keying on the address gives each inbox its own name and icon.

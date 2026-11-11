@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block form
+title: Builder question body
 status: stable
 groma:
   id: question-body

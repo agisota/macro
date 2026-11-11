@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: StatusLetter
 status: stable
 groma:
   id: statusletter
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/diff-view/StatusLetter.tsx
       symbol: StatusLetter
   technology: SolidJS
-description: Part of the signed-in client
+description: StatusLetter inside the signed-in client.
 ---
 
 The one-letter change status, coloured like the diff it describes.

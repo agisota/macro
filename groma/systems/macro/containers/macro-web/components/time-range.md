@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Time range
 status: stable
 groma:
   id: time-range
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/time-range.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Time range inside the signed-in client.
 ---
 
 `<input type="datetime-local">` value.

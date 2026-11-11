@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt drop preview
 status: stable
 groma:
   id: gantt-drop-preview
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/gantt/gantt-drop-preview.tsx
       symbol: GanttDropPreview
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt drop preview inside the signed-in client.
 ---
 
 A non-interactive, date-preserving outline at the destination's sorted row.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ExceptionList
 status: stable
 groma:
   id: exceptionlist
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/exceptionList.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: ExceptionList inside the signed-in client.
 ---
 
 PostHog's `$exception_list`: the thrown error first, then its causes.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: machine
+title: Machine vitest.config
 status: stable
 groma:
   id: machine-vitest-config

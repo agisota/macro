@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: EmailPermissionsBanner
 status: stable
 groma:
   id: emailpermissionsbanner
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/EmailPermissionsBanner.tsx
       symbol: EmailPermissionsBanner
   technology: SolidJS
-description: Part of the signed-in client
+description: EmailPermissionsBanner inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/EmailPermissionsBanner.tsx.

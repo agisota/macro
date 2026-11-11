@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Quote markdown
 status: stable
 groma:
   id: quote-markdown

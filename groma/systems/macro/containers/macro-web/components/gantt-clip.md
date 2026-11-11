@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt clip
 status: stable
 groma:
   id: gantt-clip
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-clip.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt clip inside the signed-in client.
 ---
 
 The transformed parent owns positioning; native sticky clipping excludes the label column.

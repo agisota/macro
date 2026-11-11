@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide inbox
 status: stable
 groma:
   id: wide-inbox
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-inbox.tsx
       symbol: AnimatedInboxIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide inbox inside the signed-in client.
 ---
 
 Butt caps: a round cap centered on the hinge would balloon into

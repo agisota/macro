@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block canvas
+title: Queries document
 status: stable
 groma:
   id: queries-document

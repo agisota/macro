@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Client index
 status: stable
 groma:
   id: auth-client-index

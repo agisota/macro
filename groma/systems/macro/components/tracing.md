@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Tracing
 status: stable
 groma:
   id: tracing

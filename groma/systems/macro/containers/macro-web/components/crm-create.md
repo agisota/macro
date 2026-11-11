@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Crm
+title: Crm create
 status: stable
 groma:
   id: crm-create

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Devtools
+title: Debug ProjectionPlayground
 status: stable
 groma:
   id: projectionplayground

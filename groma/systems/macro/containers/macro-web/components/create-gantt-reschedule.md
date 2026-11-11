@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create gantt reschedule
 status: stable
 groma:
   id: create-gantt-reschedule
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/gantt/create-gantt-reschedule.ts
       symbol: createGanttReschedule
   technology: SolidJS
-description: Part of the signed-in client
+description: Create gantt reschedule inside the signed-in client.
 ---
 
 How far a mouse moves before a press becomes a drag.

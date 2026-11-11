@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Reminders
+title: Reminders email reminder status
 status: stable
 groma:
   id: email-reminder-status

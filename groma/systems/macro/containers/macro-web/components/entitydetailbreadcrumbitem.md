@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: EntityDetailBreadcrumbItem
 status: stable
 groma:
   id: entitydetailbreadcrumbitem
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/entity-detail/EntityDetailBreadcrumbItem.tsx
       symbol: EntityDetailBreadcrumbItem
   technology: SolidJS
-description: Part of the signed-in client
+description: EntityDetailBreadcrumbItem inside the signed-in client.
 ---
 
 Source under apps/web/src/components/entity-detail/EntityDetailBreadcrumbItem.tsx.

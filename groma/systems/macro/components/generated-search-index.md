@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Search index
 status: stable
 groma:
   id: generated-search-index

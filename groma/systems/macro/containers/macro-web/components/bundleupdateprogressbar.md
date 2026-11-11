@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: BundleUpdateProgressBar
 status: stable
 groma:
   id: bundleupdateprogressbar
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/BundleUpdateProgressBar.tsx
       symbol: BundleUpdateProgressBar
   technology: SolidJS
-description: Part of the signed-in client
+description: BundleUpdateProgressBar inside the signed-in client.
 ---
 
 Source under apps/web/src/components/app/BundleUpdateProgressBar.tsx.

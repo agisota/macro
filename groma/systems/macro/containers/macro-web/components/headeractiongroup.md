@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: HeaderActionGroup
 status: stable
 groma:
   id: headeractiongroup
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/HeaderActionGroup.tsx
       symbol: HeaderActionGroup
   technology: SolidJS
-description: Part of the signed-in client
+description: HeaderActionGroup inside the signed-in client.
 ---
 
 A desktop header island: related actions share the secondary raised frame. Their segments stay flat. Touch renders actions without a frame, and a nested group reuses its parent's frame. An island with no actions renders nothing, so conditional children need no wrapper.  @do Group

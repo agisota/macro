@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cross tab bus
 status: stable
 groma:
   id: cross-tab-bus
@@ -12,7 +12,7 @@ groma:
       file: apps/web/src/lib/core/cross-tab/tab-leader.ts
       symbol: createTabLeaderSignal
   technology: SolidJS
-description: Part of the signed-in client
+description: Cross tab bus inside the signed-in client.
 ---
 
 Minimal cross-tab message bus: BroadcastChannel is the primary transport, with a localStorage `storage` event as fallback for embedded browsers where BroadcastChannel is missing or unreliable.  This is fan-out only — every subscribing tab sees every message. For a long-lived "exa

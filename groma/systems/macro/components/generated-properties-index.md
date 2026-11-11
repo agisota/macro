@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Properties index
 status: stable
 groma:
   id: generated-properties-index

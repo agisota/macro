@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Queries
 status: stable
 groma:
   id: routes-queries
@@ -28,7 +28,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/routes/layout-param.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Queries inside the signed-in client.
 ---
 
 Params of the first `depth` matches, with descendants overriding ancestors.

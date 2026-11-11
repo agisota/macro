@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create sidebar motion
 status: stable
 groma:
   id: create-sidebar-motion
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/view-shell/create-sidebar-motion.ts
       symbol: createSidebarMotion
   technology: SolidJS
-description: Part of the signed-in client
+description: Create sidebar motion inside the signed-in client.
 ---
 
 Animate the solver's settled layout without changing its resize preferences.

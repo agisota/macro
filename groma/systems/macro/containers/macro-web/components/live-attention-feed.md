@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Live attention feed
 status: stable
 groma:
   id: live-attention-feed
@@ -18,7 +18,7 @@ groma:
       file: apps/web/src/lib/queries/attention-feed/attention-feed-entity.ts
       symbol: attentionFeedSoupItem
   technology: SolidJS
-description: Part of the signed-in client
+description: Live attention feed inside the signed-in client.
 ---
 
 First delay before following a feed again after its live stream ended.

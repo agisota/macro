@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Zh Hans
 status: stable
 groma:
   id: zh-hans
@@ -105,7 +105,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/i18n/locales/pl.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Zh Hans inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/i18n/locales/zh-Hans.ts.

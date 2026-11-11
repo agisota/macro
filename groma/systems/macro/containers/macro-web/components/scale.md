@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Command
+title: Browser test scale
 status: stable
 groma:
   id: scale

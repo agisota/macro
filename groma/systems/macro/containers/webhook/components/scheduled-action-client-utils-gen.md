@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Scheduled action client utils.gen
 status: stable
 groma:
   id: scheduled-action-client-utils-gen

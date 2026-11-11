@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CommentType
 status: stable
 groma:
   id: core-comments-commenttype
@@ -32,7 +32,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/comments/Thread.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: CommentType inside the signed-in client.
 ---
 
 Comments are messages with UUIDs; drafts carry numeric or prefixed sentinel ids until the server assigns one.

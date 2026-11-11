@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FileDownloadHeader
 status: stable
 groma:
   id: filedownloadheader
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/FileDownloadHeader.tsx
       symbol: FileDownloadHeader
   technology: SolidJS
-description: Part of the signed-in client
+description: FileDownloadHeader inside the signed-in client.
 ---
 
 Shared by Drive previews and standalone file blocks.

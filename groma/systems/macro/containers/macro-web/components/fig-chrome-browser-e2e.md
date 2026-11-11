@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block fig
+title: Browser test fig chrome.browser.e2e
 status: stable
 groma:
   id: fig-chrome-browser-e2e

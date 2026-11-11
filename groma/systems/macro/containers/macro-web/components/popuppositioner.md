@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: PopupPositioner
 status: stable
 groma:
   id: popuppositioner
@@ -13,7 +13,7 @@ groma:
       file: apps/web/src/lib/core/component/GeneralizedPopup/Popup.tsx
       symbol: GeneralizedPopup
   technology: SolidJS
-description: Part of the signed-in client
+description: PopupPositioner inside the signed-in client.
 ---
 
 Reference element the popup is positioned against.

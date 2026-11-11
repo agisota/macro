@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Goal seek
 status: stable
 groma:
   id: goal-seek

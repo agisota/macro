@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide call
 status: stable
 groma:
   id: wide-call
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-call.tsx
       symbol: AnimatedCallIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide call inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-call.tsx.

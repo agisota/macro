@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Database
+title: Context database
 status: stable
 groma:
   id: context-database

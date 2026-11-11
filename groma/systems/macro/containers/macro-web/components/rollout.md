@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Rollout
 status: stable
 groma:
   id: rollout
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/graphql-cache/rollout.ts
       symbol: getBrowserTursoCacheRolloutDecision
   technology: SolidJS
-description: Part of the signed-in client
+description: Rollout inside the signed-in client.
 ---
 
 Resolves the current gate without constructing a browser cache resource.

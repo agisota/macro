@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Calendar index
 status: stable
 groma:
   id: calendar-index

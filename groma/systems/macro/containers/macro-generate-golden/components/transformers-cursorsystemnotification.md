@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: CursorSystemNotification
 status: stable
 groma:
   id: transformers-cursorsystemnotification

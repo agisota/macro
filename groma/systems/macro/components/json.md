@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: loro-mirror
+title: Schema json
 status: stable
 groma:
   id: json

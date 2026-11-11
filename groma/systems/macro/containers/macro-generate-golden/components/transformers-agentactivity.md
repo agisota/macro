@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: AgentActivity
 status: stable
 groma:
   id: transformers-agentactivity

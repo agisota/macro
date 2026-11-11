@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Generate graphql cache entity resolver schema
 status: stable
 groma:
   id: generate-graphql-cache-entity-resolver-schema
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/scripts/generate-graphql-cache-entity-resolver-schema.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Generate graphql cache entity resolver schema inside the signed-in client.
 ---
 
 Input recursion is bounded so an SDL cycle or unexpectedly deep input shape fails generation instead of silently producing incomplete argument paths.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Table columns
 status: stable
 groma:
   id: src-table-columns

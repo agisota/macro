@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block database
+title: Rename
 status: stable
 groma:
   id: browser-test-rename

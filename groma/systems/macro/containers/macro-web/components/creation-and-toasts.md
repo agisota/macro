@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Creation and toasts
 status: stable
 groma:
   id: creation-and-toasts
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/browser-test/creation-and-toasts.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Creation and toasts inside the signed-in client.
 ---
 
 Source under apps/web/src/components/view-shell/browser-test/creation-and-toasts.tsx.

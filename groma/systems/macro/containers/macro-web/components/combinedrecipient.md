@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CombinedRecipient
 status: stable
 groma:
   id: combinedrecipient
@@ -34,7 +34,7 @@ groma:
       file: apps/web/src/lib/core/user/inboxOnly.ts
       symbol: useIsConnectedSecondaryInbox
   technology: SolidJS
-description: Part of the signed-in client
+description: CombinedRecipient inside the signed-in client.
 ---
 
 this type is extracted from the user's message info

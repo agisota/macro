@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Whatsapp linked keys
 status: stable
 groma:
   id: whatsapp-linked-keys
@@ -14,7 +14,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/whatsapp-linked/operation.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Keys inside the signed-in client.
 ---
 
 Deliberately absent from persisted query scopes: pairing material lives only in memory while its dialog is open.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: VerifyDemo
 status: stable
 groma:
   id: verifydemo

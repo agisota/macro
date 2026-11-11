@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: ThemeUtils
 status: stable
 groma:
   id: lib-theme-utils-themeutils

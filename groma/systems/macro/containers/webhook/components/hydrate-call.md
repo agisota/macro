@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Call
 status: stable
 groma:
   id: hydrate-call

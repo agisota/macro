@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Sampling
 status: stable
 groma:
   id: src-sampling

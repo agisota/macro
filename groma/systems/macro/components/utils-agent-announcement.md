@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Agent announcement
 status: stable
 groma:
   id: utils-agent-announcement

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Typography.docs
 status: stable
 groma:
   id: typography-docs
@@ -15,7 +15,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/foundations/controls.docs.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Typography.docs inside the signed-in client.
 ---
 
 region demo:sizes

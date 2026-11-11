@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: List types
 status: stable
 groma:
   id: list-types
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/types.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Types inside the signed-in client.
 ---
 
 Stable identity used by the headless list primitives.

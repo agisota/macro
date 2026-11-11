@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Urql solid types
 status: stable
 groma:
   id: urql-solid-types
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/types.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Types inside the signed-in client.
 ---
 
 Options shared by enabled and disabled urql queries.

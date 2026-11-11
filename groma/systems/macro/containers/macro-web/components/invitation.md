@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email message
+title: Invitation
 status: stable
 groma:
   id: invitation

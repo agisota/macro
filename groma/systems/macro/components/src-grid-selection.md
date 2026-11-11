@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Grid selection
 status: stable
 groma:
   id: src-grid-selection

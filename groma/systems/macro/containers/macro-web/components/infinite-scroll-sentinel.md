@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Infinite scroll sentinel
 status: stable
 groma:
   id: infinite-scroll-sentinel
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/primitives/infinite-scroll-sentinel.ts
       symbol: useInfiniteScrollSentinel
   technology: SolidJS
-description: Part of the signed-in client
+description: Infinite scroll sentinel inside the signed-in client.
 ---
 
 Ref to the sentinel element placed at the bottom of the list.

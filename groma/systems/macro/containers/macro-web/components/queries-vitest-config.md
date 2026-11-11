@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Queries vitest.config
 status: stable
 groma:
   id: queries-vitest-config
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/vitest.config.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Vitest.config inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/queries/vitest.config.ts.

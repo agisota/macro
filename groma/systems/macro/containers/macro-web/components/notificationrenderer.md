@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: NotificationRenderer
 status: stable
 groma:
   id: notificationrenderer
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/NotificationRenderer.tsx
       symbol: NotificationRenderer
   technology: SolidJS
-description: Part of the signed-in client
+description: NotificationRenderer inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/NotificationRenderer.tsx.

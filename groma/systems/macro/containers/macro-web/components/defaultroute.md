@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DefaultRoute
 status: stable
 groma:
   id: defaultroute
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/constants/defaultRoute.ts
       symbol: DEFAULT_ROUTE
   technology: SolidJS
-description: Part of the signed-in client
+description: DefaultRoute inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/constants/defaultRoute.ts.

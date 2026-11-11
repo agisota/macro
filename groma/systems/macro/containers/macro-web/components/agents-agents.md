@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Agents
 status: stable
 groma:
   id: agents-agents
@@ -31,7 +31,7 @@ groma:
       file: apps/web/src/lib/queries/agents/keys.ts
       symbol: agentKeys
   technology: SolidJS
-description: Part of the signed-in client
+description: Agents inside the signed-in client.
 ---
 
 `Agent` plus the macrod harness binding the backend now returns; the field is not yet in the generated schema.

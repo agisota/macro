@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: Verify seo
 status: stable
 groma:
   id: verify-seo

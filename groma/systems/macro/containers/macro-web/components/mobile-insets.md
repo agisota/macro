@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Crm
+title: Mobile insets
 status: stable
 groma:
   id: mobile-insets

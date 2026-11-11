@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DiffStats
 status: stable
 groma:
   id: diffstats
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/diff-view/DiffStats.tsx
       symbol: DiffStats
   technology: SolidJS
-description: Part of the signed-in client
+description: DiffStats inside the signed-in client.
 ---
 
 Line totals and five textured squares showing their relative proportions.

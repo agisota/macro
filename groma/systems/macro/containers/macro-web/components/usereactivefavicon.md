@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: UseReactiveFavicon
 status: stable
 groma:
   id: usereactivefavicon
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/useReactiveFavicon.ts
       symbol: useReactiveFavicon
   technology: SolidJS
-description: Part of the signed-in client
+description: UseReactiveFavicon inside the signed-in client.
 ---
 
 Publish time. Not read by subscribers; it makes each payload unique so the bus's storage fallback fires (see `cross-tab-bus.ts`). Optional so payloads from tabs still on a pre-bus bundle, which omit it, parse.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: View shell index
 status: stable
 groma:
   id: view-shell-index
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Index inside the signed-in client.
 ---
 
 Source under apps/web/src/components/view-shell/index.ts.

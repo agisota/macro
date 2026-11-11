@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DocumentPreview
 status: stable
 groma:
   id: component-documentpreview
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/DocumentPreview.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: DocumentPreview inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/DocumentPreview.tsx.

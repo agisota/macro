@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Crm
+title: Stage requirements
 status: stable
 groma:
   id: browser-test-stage-requirements

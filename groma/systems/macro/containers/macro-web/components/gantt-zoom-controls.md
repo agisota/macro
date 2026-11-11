@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt zoom controls
 status: stable
 groma:
   id: gantt-zoom-controls
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/gantt/gantt-zoom-controls.tsx
       symbol: GanttZoomControls
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt zoom controls inside the signed-in client.
 ---
 
 Compose beside Gantt.Chart so the controls stay fixed while the calendar scrolls.

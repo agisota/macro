@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Command
+title: Command create call command
 status: stable
 groma:
   id: create-call-command

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email renderer
+title: Viewer main
 status: stable
 groma:
   id: viewer-main

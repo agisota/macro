@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Database
+title: Core view selection
 status: stable
 groma:
   id: core-view-selection

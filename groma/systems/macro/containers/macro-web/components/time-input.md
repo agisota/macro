@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Time input
 status: stable
 groma:
   id: time-input
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/time-input.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Time input inside the signed-in client.
 ---
 
 Accessible name, e.g. `Start time`.

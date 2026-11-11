@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Utils index
 status: stable
 groma:
   id: lexical-core-utils-index

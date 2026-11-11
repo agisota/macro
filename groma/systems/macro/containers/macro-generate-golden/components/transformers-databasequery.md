@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: DatabaseQuery
 status: stable
 groma:
   id: transformers-databasequery

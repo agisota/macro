@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Cell copy
 status: stable
 groma:
   id: src-cell-copy

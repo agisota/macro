@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Reminders
+title: Core email row reminder
 status: stable
 groma:
   id: email-row-reminder

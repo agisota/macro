@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Projection
 status: stable
 groma:
   id: projection
@@ -14,7 +14,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/ai/homeRecommendations.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Projection inside the signed-in client.
 ---
 
 Gateway push sent when a projection materialization finishes (or errors). Mirrors `ProjectionStateResponse` plus the routing discriminators.

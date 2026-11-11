@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Persistence
 status: stable
 groma:
   id: queries-persistence
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/persistence.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Persistence inside the signed-in client.
 ---
 
 Builds a versioned persistence key for IDB database naming.

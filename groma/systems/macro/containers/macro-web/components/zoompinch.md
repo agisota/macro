@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Zoompinch
 status: stable
 groma:
   id: zoompinch
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Zoompinch.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Zoompinch inside the signed-in client.
 ---
 
 Called on every transform update.

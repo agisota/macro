@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Owned slots
 status: stable
 groma:
   id: owned-slots
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/list/owned-slots.ts
       symbol: listOwnedSlotName
   technology: SolidJS
-description: Part of the signed-in client
+description: Owned slots inside the signed-in client.
 ---
 
 Source under apps/web/src/components/list/owned-slots.ts.

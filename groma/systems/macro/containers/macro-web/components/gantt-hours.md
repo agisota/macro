@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt hours
 status: stable
 groma:
   id: gantt-hours
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-hours.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt hours inside the signed-in client.
 ---
 
 The working day an hours chart leaves unshaded.

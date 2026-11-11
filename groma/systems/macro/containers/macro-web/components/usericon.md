@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: UserIcon
 status: stable
 groma:
   id: usericon
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/UserIcon.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: UserIcon inside the signed-in client.
 ---
 
 Already-resolved name; avoids retaining this row in the global name store.

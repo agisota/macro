@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Email index
 status: stable
 groma:
   id: generated-email-index

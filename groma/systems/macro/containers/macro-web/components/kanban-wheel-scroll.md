@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Kanban wheel scroll
 status: stable
 groma:
   id: kanban-wheel-scroll
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/kanban/kanban-wheel-scroll.ts
       symbol: createKanbanWheelScroll
   technology: SolidJS
-description: Part of the signed-in client
+description: Kanban wheel scroll inside the signed-in client.
 ---
 
 Keep wheel momentum with its original scroll viewport while columns move under the pointer.

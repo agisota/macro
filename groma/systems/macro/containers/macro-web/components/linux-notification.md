@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Linux notification
 status: stable
 groma:
   id: linux-notification
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/tauri/linux-notification.ts
       symbol: showLinuxNotification
   technology: SolidJS
-description: Part of the signed-in client
+description: Linux notification inside the signed-in client.
 ---
 
 Do not let a navigation error interrupt Tauri's channel-end bookkeeping.

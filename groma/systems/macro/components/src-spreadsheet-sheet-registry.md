@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Spreadsheet sheet registry
 status: stable
 groma:
   id: src-spreadsheet-sheet-registry

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: DiffTextNode
 status: stable
 groma:
   id: difftextnode

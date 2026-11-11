@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Render telemetry
 status: stable
 groma:
   id: render-telemetry
@@ -27,7 +27,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/agent-session/prompt-telemetry.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Render telemetry inside the signed-in client.
 ---
 
 Observe actual answer DOM; raw fold text may still be Markdown scaffolding.

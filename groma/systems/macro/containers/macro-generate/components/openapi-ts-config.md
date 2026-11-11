@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Openapi ts.config
 status: stable
 groma:
   id: openapi-ts-config

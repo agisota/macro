@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Time options
 status: stable
 groma:
   id: time-options
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/time-options.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Time options inside the signed-in client.
 ---
 
 Granularity of every time picker.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block agent
+title: Ui AnimatedNumber
 status: stable
 groma:
   id: animatednumber

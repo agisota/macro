@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Boot shell
 status: stable
 groma:
   id: boot-shell
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/boot-shell.ts
       symbol: dismissBootShell
   technology: SolidJS
-description: Part of the signed-in client
+description: Boot shell inside the signed-in client.
 ---
 
 Fades out the frame index.html paints before any JS runs. The first route shell to mount calls it, so the screen goes straight from the boot shell to the real shell without a blank frame in between.

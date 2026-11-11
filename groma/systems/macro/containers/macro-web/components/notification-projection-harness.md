@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Notification projection harness
 status: stable
 groma:
   id: notification-projection-harness
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/notification-projection-harness.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Notification projection harness inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/notification-projection-harness.ts.

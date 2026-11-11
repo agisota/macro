@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ShareTargetProvider
 status: stable
 groma:
   id: sharetargetprovider
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/ShareTargetProvider.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ShareTargetProvider inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/tauri/ShareTargetProvider.tsx.

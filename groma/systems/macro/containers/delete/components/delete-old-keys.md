@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Delete old keys
 status: stable
 groma:
   id: delete-old-keys

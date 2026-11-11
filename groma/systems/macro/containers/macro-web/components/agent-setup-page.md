@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Agent setup
+title: Agent setup agent setup page
 status: stable
 groma:
   id: agent-setup-page

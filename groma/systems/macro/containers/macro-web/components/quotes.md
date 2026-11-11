@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Quotes
 status: stable
 groma:
   id: quotes
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/quotes.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Quotes inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/LexicalMarkdown/component/core/browser-test/quotes.tsx.

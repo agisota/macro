@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: IconSystemGallery
 status: stable
 groma:
   id: iconsystemgallery
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/system/IconSystemGallery.tsx
       symbol: IconSystemGallery
   technology: SolidJS
-description: Part of the signed-in client
+description: IconSystemGallery inside the signed-in client.
 ---
 
 This module is reached only through the lazy icon-gallery debug route. Keep the specimen catalog out of production icon imports and app startup.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Onboarding
+title: Onboarding onboarding
 status: stable
 groma:
   id: onboarding-onboarding

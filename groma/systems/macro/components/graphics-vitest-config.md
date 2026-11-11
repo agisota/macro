@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: graphics
+title: Graphics vitest.config
 status: stable
 groma:
   id: graphics-vitest-config

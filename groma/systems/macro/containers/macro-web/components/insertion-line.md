@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Insertion line
 status: stable
 groma:
   id: insertion-line
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/insertion-line.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Insertion line inside the signed-in client.
 ---
 
 Where a horizontal reorder lands; place it in the row's positioned container.

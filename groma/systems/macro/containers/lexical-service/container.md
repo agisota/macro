@@ -1,7 +1,7 @@
 ---
 type: C4 Container
 title: Lexical service
-description: Script or entry the scanner promoted to a container
+description: Document conversion API
 status: draft
 groma:
   id: lexical-service
@@ -9,4 +9,4 @@ groma:
   technology: Bun, ECS
 ---
 
-Groma created this container from an entry named Lexical service. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+Bun service behind the gateway /lexical prefix. Scanned TypeScript helpers are not the whole service.

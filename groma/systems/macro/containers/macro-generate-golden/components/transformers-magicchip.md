@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: MagicChip
 status: stable
 groma:
   id: transformers-magicchip

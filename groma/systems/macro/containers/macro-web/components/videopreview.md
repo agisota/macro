@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: VideoPreview
 status: stable
 groma:
   id: videopreview
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/VideoPreview.tsx
       symbol: VideoPreview
   technology: SolidJS
-description: Part of the signed-in client
+description: VideoPreview inside the signed-in client.
 ---
 
 @deprecated Prefer the composable media primitives in `@channel/Media`. Keep this only for legacy callers until they are migrated.

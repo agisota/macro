@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Config
 status: stable
 groma:
   id: sdk-src-config

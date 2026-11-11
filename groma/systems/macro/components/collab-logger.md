@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Logger
 status: stable
 groma:
   id: collab-logger

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Generate schema
 status: stable
 groma:
   id: generate-schema

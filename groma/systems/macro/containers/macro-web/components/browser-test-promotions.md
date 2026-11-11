@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Sidebar promotion
+title: Browser test promotions
 status: stable
 groma:
   id: browser-test-promotions

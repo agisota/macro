@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Optimistic resolvers
 status: stable
 groma:
   id: queries-optimistic-resolvers
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/optimistic-resolvers.ts
       symbol: soupOptimisticResolvers
   technology: SolidJS
-description: Part of the signed-in client
+description: Optimistic resolvers inside the signed-in client.
 ---
 
 Local mutation semantics. Only predicted fields enter the optimistic layer.

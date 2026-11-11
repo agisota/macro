@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Services
 status: stable
 groma:
   id: sdk-services

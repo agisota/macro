@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Preview preview
 status: stable
 groma:
   id: preview-preview
@@ -33,7 +33,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/preview/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Preview inside the signed-in client.
 ---
 
 DEBUG VARS

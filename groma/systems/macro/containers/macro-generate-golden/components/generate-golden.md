@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Generate golden
 status: stable
 groma:
   id: generate-golden

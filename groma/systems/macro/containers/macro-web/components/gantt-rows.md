@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gantt rows
 status: stable
 groma:
   id: gantt-rows
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/gantt-rows.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Gantt rows inside the signed-in client.
 ---
 
 Consecutive sidebar rows with the same key form one visual panel.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block email
+title: Component EmailThreadLoadGate
 status: stable
 groma:
   id: emailthreadloadgate

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Channel webhook
 status: stable
 groma:
   id: channel-webhook

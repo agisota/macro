@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: VerticalScrollIndicators
 status: stable
 groma:
   id: verticalscrollindicators
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/VerticalScrollIndicators.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: VerticalScrollIndicators inside the signed-in client.
 ---
 
 Fade start color for `appearance="gradient"`. Defaults to surface.

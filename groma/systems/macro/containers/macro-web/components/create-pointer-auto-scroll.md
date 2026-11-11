@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create pointer auto scroll
 status: stable
 groma:
   id: create-pointer-auto-scroll
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/drag-drop/create-pointer-auto-scroll.ts
       symbol: createPointerAutoScroll
   technology: SolidJS
-description: Part of the signed-in client
+description: Create pointer auto scroll inside the signed-in client.
 ---
 
 Scroll a drag surface at frame rate, even while its pointer is stationary.

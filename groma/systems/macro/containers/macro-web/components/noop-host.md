@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Noop host
 status: stable
 groma:
   id: noop-host
@@ -25,7 +25,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/host/retirable-host.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Noop host inside the signed-in client.
 ---
 
 CacheHost used when the platform cannot run the shared cache engine, or after a page stops using it. It never stores data. Its disabled marker makes the exchange bypass optimistic persistence and forward mutations directly.

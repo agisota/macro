@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Error
 status: stable
 groma:
   id: error
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/error.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Error inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/filesystem/error.ts.

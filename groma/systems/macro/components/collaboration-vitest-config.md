@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Vitest.config
 status: stable
 groma:
   id: collaboration-vitest-config

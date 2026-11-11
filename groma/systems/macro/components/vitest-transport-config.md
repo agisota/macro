@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Vitest.transport.config
 status: stable
 groma:
   id: vitest-transport-config

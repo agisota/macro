@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Call
 status: stable
 groma:
   id: call-call
@@ -14,7 +14,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/call/meetings.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Call inside the signed-in client.
 ---
 
 Fresh lookups keep recovery from re-creating a call that already ended.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Per query idb
 status: stable
 groma:
   id: per-query-idb
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/persistence/per-query-idb.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Per query idb inside the signed-in client.
 ---
 
 Clear durable entries and fence pending/in-flight writes.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: LoadingSpinner
 status: stable
 groma:
   id: loadingspinner
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LoadingSpinner.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: LoadingSpinner inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/LoadingSpinner.tsx.

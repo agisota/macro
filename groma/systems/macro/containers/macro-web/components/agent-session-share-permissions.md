@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Agent session share permissions
 status: stable
 groma:
   id: agent-session-share-permissions
@@ -62,7 +62,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/agent-session/queue-sync.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Share permissions inside the signed-in client.
 ---
 
 The shared share dialog owns loading and refreshing these permissions.

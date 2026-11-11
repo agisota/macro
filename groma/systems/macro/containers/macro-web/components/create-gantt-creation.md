@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create gantt creation
 status: stable
 groma:
   id: create-gantt-creation
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/gantt/create-gantt-creation.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create gantt creation inside the signed-in client.
 ---
 
 A range drawn or dragged on the chart. All day, it spans the local days `start` to `end` inclusive, each at local midnight; otherwise it runs between the two instants.

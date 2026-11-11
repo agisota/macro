@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Core types.gen
 status: stable
 groma:
   id: cognition-core-types-gen

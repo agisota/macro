@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ForwardMessageComposer
 status: stable
 groma:
   id: forwardmessagecomposer
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ForwardMessageComposer.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ForwardMessageComposer inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/ForwardMessageComposer.tsx.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ForwardMessageComposer browser test fixture
 status: stable
 groma:
   id: forwardmessagecomposer-browser-test-fixture
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/ForwardMessageComposer/browser-test/fixture.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Fixture inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/ForwardMessageComposer/browser-test/fixture.tsx.

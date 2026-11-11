@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Keys
+title: Share keys
 status: stable
 groma:
   id: share-keys

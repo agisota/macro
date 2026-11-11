@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Hotkeys
 status: stable
 groma:
   id: constants-hotkeys
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/hotkeys.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Hotkeys inside the signed-in client.
 ---
 
 Leader key for vim-style "go to" commands (g + key sequences)

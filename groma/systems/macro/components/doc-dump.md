@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Doc dump
 status: stable
 groma:
   id: doc-dump

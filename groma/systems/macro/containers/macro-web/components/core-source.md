@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Source
 status: stable
 groma:
   id: core-source
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/source.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Source inside the signed-in client.
 ---
 
 UUID

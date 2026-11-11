@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Transformers
 status: stable
 groma:
   id: notion-transformers

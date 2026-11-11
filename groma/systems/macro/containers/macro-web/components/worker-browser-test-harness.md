@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Worker browser test harness
 status: stable
 groma:
   id: worker-browser-test-harness
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/harness.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Harness inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/harness.ts.

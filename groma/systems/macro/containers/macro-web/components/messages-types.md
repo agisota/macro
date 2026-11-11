@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Messages types
 status: stable
 groma:
   id: messages-types
@@ -35,7 +35,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/messages/configured-message-editor.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Types inside the signed-in client.
 ---
 
 A reaction as the row shows it; `names` names reactors outside Macro (an external chat's people), by their id in `users`.

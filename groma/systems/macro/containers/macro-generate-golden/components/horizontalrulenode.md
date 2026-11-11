@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: HorizontalRuleNode
 status: stable
 groma:
   id: horizontalrulenode

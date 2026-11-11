@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Push api
 status: stable
 groma:
   id: push-api
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/push-api.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Push api inside the signed-in client.
 ---
 
 One member per lifecycle type so a handler that returns early on them narrows the rest to NotificationEvent.

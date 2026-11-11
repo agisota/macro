@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email view
+title: Browser test focus rows
 status: stable
 groma:
   id: focus-rows

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: machine
+title: Src simulate
 status: stable
 groma:
   id: simulate

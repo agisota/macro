@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Split header fixture
 status: stable
 groma:
   id: split-header-fixture
@@ -12,7 +12,7 @@ groma:
     - scanner: typescript
       file: apps/web/tests/functional/whatsapp-linked/fixture.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Split header fixture inside the signed-in client.
 ---
 
 Slot host for isolated conversation interactions; production owns the split frame.

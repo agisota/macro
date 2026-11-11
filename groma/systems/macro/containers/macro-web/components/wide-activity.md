@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide activity
 status: stable
 groma:
   id: wide-activity
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-activity.tsx
       symbol: AnimatedActivityIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide activity inside the signed-in client.
 ---
 
 Activity (pulse/EKG) icon. On trigger the pulse line redraws itself left-to-right, like a live heartbeat trace.

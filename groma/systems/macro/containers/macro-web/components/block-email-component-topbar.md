@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block email
+title: Component TopBar
 status: stable
 groma:
   id: block-email-component-topbar

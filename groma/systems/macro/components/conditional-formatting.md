@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Conditional formatting
 status: stable
 groma:
   id: conditional-formatting

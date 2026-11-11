@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Sidebar title
 status: stable
 groma:
   id: sidebar-title
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/browser-test/sidebar-title.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Sidebar title inside the signed-in client.
 ---
 
 Source under apps/web/src/components/view-shell/browser-test/sidebar-title.tsx.

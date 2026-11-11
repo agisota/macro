@@ -1,7 +1,7 @@
 ---
 type: C4 Container
 title: Object storage
-description: Script or entry the scanner promoted to a container
+description: Uploaded bytes and mail blobs
 status: draft
 groma:
   id: object-storage
@@ -9,4 +9,4 @@ groma:
   technology: S3
 ---
 
-Groma created this container from an entry named Object storage. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+S3 buckets used by mail, document storage, and the file service. Sync snapshots are R2, not this bucket.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Orchestrator
 status: stable
 groma:
   id: orchestrator
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/orchestrator.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Orchestrator inside the signed-in client.
 ---
 
 A block consists of a type and an id

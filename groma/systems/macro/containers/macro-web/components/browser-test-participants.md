@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Entity
+title: Browser test participants
 status: stable
 groma:
   id: browser-test-participants

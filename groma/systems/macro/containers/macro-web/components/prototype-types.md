@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Prototype types
 status: stable
 groma:
   id: prototype-types
@@ -31,7 +31,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/fig-engine/client.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Prototype types inside the signed-in client.
 ---
 
 A page's prototype as the engine reads it (`inspect/prototype.rs`): flows, the frames that are screens, and every layer with interactions. Enum values are Figma's names.

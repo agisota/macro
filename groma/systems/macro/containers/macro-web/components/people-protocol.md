@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: People protocol
 status: stable
 groma:
   id: people-protocol
@@ -23,7 +23,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/people/host.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Protocol inside the signed-in client.
 ---
 
 Bound label count/bytes before crossing the host boundary.

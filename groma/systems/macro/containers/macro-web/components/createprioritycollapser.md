@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CreatePriorityCollapser
 status: stable
 groma:
   id: createprioritycollapser
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/priority-collapse/createPriorityCollapser.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: CreatePriorityCollapser inside the signed-in client.
 ---
 
 Lower numbers collapse first.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: MacroLogo
 status: stable
 groma:
   id: macrologo
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/MacroLogo.tsx
       symbol: MacroLogo
   technology: SolidJS
-description: Part of the signed-in client
+description: MacroLogo inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/MacroLogo.tsx.

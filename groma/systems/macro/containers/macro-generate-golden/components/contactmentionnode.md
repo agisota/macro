@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: ContactMentionNode
 status: stable
 groma:
   id: contactmentionnode

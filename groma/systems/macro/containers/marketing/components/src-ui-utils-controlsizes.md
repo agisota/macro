@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: ControlSizes
 status: stable
 groma:
   id: src-ui-utils-controlsizes

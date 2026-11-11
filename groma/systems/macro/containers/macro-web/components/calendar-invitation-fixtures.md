@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email message
+title: Calendar invitation fixtures
 status: stable
 groma:
   id: calendar-invitation-fixtures

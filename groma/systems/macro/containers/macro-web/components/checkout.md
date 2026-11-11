@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Onboarding
+title: Core checkout
 status: stable
 groma:
   id: checkout

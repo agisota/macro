@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Database
+title: Browser test grid
 status: stable
 groma:
   id: grid

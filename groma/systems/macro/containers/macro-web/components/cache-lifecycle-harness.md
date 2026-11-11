@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cache lifecycle harness
 status: stable
 groma:
   id: cache-lifecycle-harness
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/cache-lifecycle-harness.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Cache lifecycle harness inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/cache-lifecycle-harness.ts.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: View
 status: stable
 groma:
   id: types-view
@@ -11,7 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/types/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: View inside the signed-in client.
 ---
 
 equal to DefaultView type for default view, otherwise a uuid type

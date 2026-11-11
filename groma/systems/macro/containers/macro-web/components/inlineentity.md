@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Entity
+title: Composed InlineEntity
 status: stable
 groma:
   id: inlineentity

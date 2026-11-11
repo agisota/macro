@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Context sync
 status: stable
 groma:
   id: context-sync
@@ -73,7 +73,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/contacts/context-publisher.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Context sync inside the signed-in client.
 ---
 
 Lifecycle/scheduling only. Publisher owns batch admission and uncertain-write recovery.

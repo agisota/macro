@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Notification index
 status: stable
 groma:
   id: notification-index

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Parsers
 status: stable
 groma:
   id: parsers

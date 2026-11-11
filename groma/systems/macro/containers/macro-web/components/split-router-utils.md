@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Split router utils
 status: stable
 groma:
   id: split-router-utils
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/split-router/utils.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Utils inside the signed-in client.
 ---
 
 Bounded identifier that is safe to use as an ordinary object key.

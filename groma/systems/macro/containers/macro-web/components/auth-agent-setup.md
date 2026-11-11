@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Auth agent setup
 status: stable
 groma:
   id: auth-agent-setup
@@ -13,7 +13,7 @@ groma:
       file: apps/web/src/lib/queries/auth/tutorial.ts
       symbol: useCompleteTutorialMutation
   technology: SolidJS
-description: Part of the signed-in client
+description: Agent setup inside the signed-in client.
 ---
 
 Mints an agent's SDK token, replacing any earlier one. Never retried automatically: overlapping attempts could revoke each other's token.

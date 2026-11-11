@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Namespace
 status: stable
 groma:
   id: agents-namespace

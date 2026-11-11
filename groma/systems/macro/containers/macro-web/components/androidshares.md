@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: AndroidShares
 status: stable
 groma:
   id: androidshares
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/tauri/androidShares.ts
       symbol: useAndroidShares
   technology: SolidJS
-description: Part of the signed-in client
+description: AndroidShares inside the signed-in client.
 ---
 
 The native queue is acknowledged only after cancel/send, including across login.

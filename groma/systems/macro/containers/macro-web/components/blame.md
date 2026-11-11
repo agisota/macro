@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Blame
 status: stable
 groma:
   id: blame
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/blame.ts
       symbol: useNodeBlameQuery
   technology: SolidJS
-description: Part of the signed-in client
+description: Blame inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/queries/blame.ts.

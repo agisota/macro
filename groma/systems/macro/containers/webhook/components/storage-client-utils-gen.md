@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Storage client utils.gen
 status: stable
 groma:
   id: storage-client-utils-gen

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: Verify standalone
 status: stable
 groma:
   id: verify-standalone

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create base query
 status: stable
 groma:
   id: create-base-query
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/urql-solid/create-base-query.ts
       symbol: createBaseQuery
   technology: SolidJS
-description: Part of the signed-in client
+description: Create base query inside the signed-in client.
 ---
 
 Bridges a framework-neutral urql observer into one reactive Solid store.

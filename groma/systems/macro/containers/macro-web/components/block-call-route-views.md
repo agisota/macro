@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block call
+title: Block call route views
 status: stable
 groma:
   id: block-call-route-views

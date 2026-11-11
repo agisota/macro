@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Invite link
 status: stable
 groma:
   id: team-invite-link
@@ -22,7 +22,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/team/teams.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Invite link inside the signed-in client.
 ---
 
 The team's invite link token, or null when the team has none.

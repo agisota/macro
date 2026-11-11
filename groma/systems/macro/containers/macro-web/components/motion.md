@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email message
+title: Motion
 status: stable
 groma:
   id: motion

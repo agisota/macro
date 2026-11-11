@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Queries utils
 status: stable
 groma:
   id: queries-utils
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/utils.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Utils inside the signed-in client.
 ---
 
 Standard mutation callback types matching TanStack Query's mutation options. Use this to ensure consistent callback signatures across mutations.

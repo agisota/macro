@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Side panel context
 status: stable
 groma:
   id: side-panel-context
@@ -19,7 +19,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/side-panel/FileSidePanelSections.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Context inside the signed-in client.
 ---
 
 Render order — lower numbers appear first. Sections without an explicit order render after ordered ones, in their registration order.

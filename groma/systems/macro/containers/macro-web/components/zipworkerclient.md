@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ZipWorkerClient
 status: stable
 groma:
   id: zipworkerclient
@@ -11,7 +11,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/client/folderUploadPaths.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: ZipWorkerClient inside the signed-in client.
 ---
 
 NOTE: you can expect a 30-40% decrease in folder size when zipped

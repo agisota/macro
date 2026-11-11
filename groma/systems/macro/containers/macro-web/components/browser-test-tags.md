@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Property
+title: Browser test tags
 status: stable
 groma:
   id: browser-test-tags

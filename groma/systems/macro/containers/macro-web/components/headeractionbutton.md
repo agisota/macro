@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: HeaderActionButton
 status: stable
 groma:
   id: headeractionbutton
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/HeaderActionButton.tsx
       symbol: HeaderActionButton
   technology: SolidJS
-description: Part of the signed-in client
+description: HeaderActionButton inside the signed-in client.
 ---
 
 Shared geometry for labeled actions in a block's header.

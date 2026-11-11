@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Fixtures
+title: Tests fixtures
 status: stable
 groma:
   id: split-router-tests-fixtures

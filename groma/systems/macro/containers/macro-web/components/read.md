@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Read
 status: stable
 groma:
   id: read
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/filesystem/read.ts
       symbol: readFileFromHandle
   technology: SolidJS
-description: Part of the signed-in client
+description: Read inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/filesystem/read.ts.

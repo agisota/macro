@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channel
+title: Call thread
 status: stable
 groma:
   id: call-thread

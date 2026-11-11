@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email renderer
+title: Browser colors
 status: stable
 groma:
   id: browser-colors

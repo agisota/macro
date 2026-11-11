@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Search core utils.gen
 status: stable
 groma:
   id: search-core-utils-gen

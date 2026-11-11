@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Consolidate agent config
 status: stable
 groma:
   id: consolidate-agent-config

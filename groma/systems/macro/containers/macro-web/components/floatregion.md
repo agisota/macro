@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FloatRegion
 status: stable
 groma:
   id: floatregion
@@ -45,7 +45,7 @@ groma:
       file: apps/web/src/components/app/mobile/MobileCreateButton.tsx
       symbol: MobileCreateButton
   technology: SolidJS
-description: Part of the signed-in client
+description: FloatRegion inside the signed-in client.
 ---
 
 Higher wins; ties go to the most recently mounted contributor. Default 0. Pass an accessor to change priority reactively without remounting.

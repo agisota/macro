@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Favorites favorites
 status: stable
 groma:
   id: favorites-favorites
@@ -17,7 +17,7 @@ groma:
       file: apps/web/src/lib/queries/favorites/mutation.ts
       symbol: FavoriteMutationCallbacks
   technology: SolidJS
-description: Part of the signed-in client
+description: Favorites inside the signed-in client.
 ---
 
 Maps a frontend entity to the backend favorites entity type, or undefined for entity kinds that cannot be favorited.

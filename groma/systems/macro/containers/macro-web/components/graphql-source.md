@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Graphql source
 status: stable
 groma:
   id: graphql-source
@@ -13,7 +13,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/database-sql/create-database-sql-query.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Graphql source inside the signed-in client.
 ---
 
 The engine's browser row source: tables are read as Soup database rows through the normalized cache, newest first. People joins accept only bounded explicit keys and read them from local Turso; an unbounded directory request is refused.

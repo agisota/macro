@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Search buckets
 status: stable
 groma:
   id: search-buckets
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/search-buckets.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Search buckets inside the signed-in client.
 ---
 
 Real production host/WASM/OPFS. Synthetic data only: no hosted data or auth.

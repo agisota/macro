@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Index
+title: Resize index
 status: stable
 groma:
   id: resize-index

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block fig
+title: Core clipboard
 status: stable
 groma:
   id: block-fig-core-clipboard

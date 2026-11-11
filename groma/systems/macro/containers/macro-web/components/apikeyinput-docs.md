@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ApiKeyInput.docs
 status: stable
 groma:
   id: apikeyinput-docs
@@ -229,7 +229,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/components/Spinner.docs.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: ApiKeyInput.docs inside the signed-in client.
 ---
 
 region demo:new

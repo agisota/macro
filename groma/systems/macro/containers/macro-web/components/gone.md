@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gone
 status: stable
 groma:
   id: gone
@@ -16,7 +16,7 @@ groma:
       file: apps/web/src/lib/core/component/AccessErrorViews/NotFound.tsx
       symbol: NotFound
   technology: SolidJS
-description: Part of the signed-in client
+description: Gone inside the signed-in client.
 ---
 
 @description This is the view for when a user tries to access an item that returns a 410 indicating it was not successfully uploaded.

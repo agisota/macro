@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Kanban board
 status: stable
 groma:
   id: kanban-board
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/kanban/kanban-board.tsx
       symbol: KanbanBoard
   technology: SolidJS
-description: Part of the signed-in client
+description: Kanban board inside the signed-in client.
 ---
 
 Source under apps/web/src/components/kanban/kanban-board.tsx.

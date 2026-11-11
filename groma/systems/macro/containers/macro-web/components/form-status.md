@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block form
+title: Core form status
 status: stable
 groma:
   id: form-status

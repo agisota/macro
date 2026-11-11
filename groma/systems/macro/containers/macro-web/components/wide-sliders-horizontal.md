@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide sliders horizontal
 status: stable
 groma:
   id: wide-sliders-horizontal
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-sliders-horizontal.tsx
       symbol: AnimatedSlidersHorizontalIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide sliders horizontal inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-sliders-horizontal.tsx.

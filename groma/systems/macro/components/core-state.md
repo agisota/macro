@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: loro-mirror
+title: Core state
 status: stable
 groma:
   id: core-state

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block database
+title: Starter database
 status: stable
 groma:
   id: views-starter-database

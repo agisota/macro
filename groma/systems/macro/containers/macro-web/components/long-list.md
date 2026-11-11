@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Entity
+title: Browser test long list
 status: stable
 groma:
   id: long-list

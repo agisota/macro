@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: DecoratorRegistry
 status: stable
 groma:
   id: decoratorregistry

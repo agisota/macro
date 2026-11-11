@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Home
+title: Queries home admission
 status: stable
 groma:
   id: home-admission

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Rollout observability
 status: stable
 groma:
   id: rollout-observability
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/graphql-cache/rollout-observability.ts
       symbol: recordBrowserTursoCacheNavigation
   technology: SolidJS
-description: Part of the signed-in client
+description: Rollout observability inside the signed-in client.
 ---
 
 Records the navigation control/treatment point without starting cache I/O.

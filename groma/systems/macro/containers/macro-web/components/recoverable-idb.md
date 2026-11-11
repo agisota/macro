@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Recoverable idb
 status: stable
 groma:
   id: recoverable-idb
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/persistence/recoverable-idb.ts
       symbol: RecoverableIDB
   technology: SolidJS
-description: Part of the signed-in client
+description: Recoverable idb inside the signed-in client.
 ---
 
 Errors WebKit raises when it suspends or drops a connection under a running transaction.

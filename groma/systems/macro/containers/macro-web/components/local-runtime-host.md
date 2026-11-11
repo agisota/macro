@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Local runtime
+title: Local runtime local runtime host
 status: stable
 groma:
   id: local-runtime-host

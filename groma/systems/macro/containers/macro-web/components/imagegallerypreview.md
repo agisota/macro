@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ImageGalleryPreview
 status: stable
 groma:
   id: imagegallerypreview
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/ImageGalleryPreview.tsx
       symbol: ImageGalleryPreview
   technology: SolidJS
-description: Part of the signed-in client
+description: ImageGalleryPreview inside the signed-in client.
 ---
 
 @deprecated Prefer the composable media primitives in `@channel/Media`. Keep this only for legacy callers until they are migrated.

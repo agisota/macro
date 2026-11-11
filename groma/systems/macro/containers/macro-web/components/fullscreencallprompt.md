@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channel
+title: FullScreenCallPrompt
 status: stable
 groma:
   id: fullscreencallprompt

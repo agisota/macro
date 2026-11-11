@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: machine
+title: Solid
 status: stable
 groma:
   id: solid

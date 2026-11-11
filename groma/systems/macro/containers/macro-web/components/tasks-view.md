@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Tasks view
+title: Tasks view tasks view
 status: stable
 groma:
   id: tasks-view

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Notification sounds
+title: Notification sounds use notification sounds
 status: stable
 groma:
   id: use-notification-sounds

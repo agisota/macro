@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: History
 status: stable
 groma:
   id: history-history
@@ -18,7 +18,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/history/graphql.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: History inside the signed-in client.
 ---
 
 re-export history item type from this file

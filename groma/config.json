@@ -124,6 +124,7 @@
       ]
     }
   ],
+  "workSources": [],
   "exclude": [
     "**/*.test.ts",
     "**/*.test.tsx",
@@ -142,5 +143,5 @@
     "/apps/marketing/scripts/**",
     "/apps/docs/scripts/**"
   ],
-  "workSources": []
+  "automaticUpdates": true
 }

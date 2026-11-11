@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Devtools
+title: Devtools DevStatusBar
 status: stable
 groma:
   id: devstatusbar

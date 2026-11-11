@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create reorder
 status: stable
 groma:
   id: create-reorder
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/create-reorder.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create reorder inside the signed-in client.
 ---
 
 Where a dragged item lands, as a reorder along one axis reports it.

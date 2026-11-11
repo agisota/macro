@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ComposerGreeting
 status: stable
 groma:
   id: composergreeting
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/ComposerGreeting.tsx
       symbol: ComposerGreeting
   technology: SolidJS
-description: Part of the signed-in client
+description: ComposerGreeting inside the signed-in client.
 ---
 
 The shared brand treatment for empty conversation greetings.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Use view control hotkeys
 status: stable
 groma:
   id: use-view-control-hotkeys
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/use-view-control-hotkeys.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Use view control hotkeys inside the signed-in client.
 ---
 
 Registers shortcuts that open a view's search, filter, and sort controls.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Markdown golden
 status: stable
 groma:
   id: markdown-golden

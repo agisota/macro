@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Harness
+title: Channel browser test harness
 status: stable
 groma:
   id: channel-browser-test-harness

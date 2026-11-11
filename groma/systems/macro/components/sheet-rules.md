@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Sheet rules
 status: stable
 groma:
   id: sheet-rules

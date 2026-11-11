@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Local runtime
+title: Primitives local runtime setup
 status: stable
 groma:
   id: primitives-local-runtime-setup

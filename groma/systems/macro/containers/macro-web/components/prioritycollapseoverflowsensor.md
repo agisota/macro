@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: PriorityCollapseOverflowSensor
 status: stable
 groma:
   id: prioritycollapseoverflowsensor
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/priority-collapse/PriorityCollapseOverflowSensor.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: PriorityCollapseOverflowSensor inside the signed-in client.
 ---
 
 Collapses only after every real collapse item has already given up its space.

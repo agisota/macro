@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cell mention dom
 status: stable
 groma:
   id: cell-mention-dom
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/cell-text-editor/cell-mention-dom.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Cell mention dom inside the signed-in client.
 ---
 
 Match the grid, where date chips relabel themselves as days pass.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Client client.gen
 status: stable
 groma:
   id: email-client-client-gen

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Slack import
+title: Slack import slack import
 status: stable
 groma:
   id: slack-import-slack-import

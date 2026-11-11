@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Link
 status: stable
 groma:
   id: component-link
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/Link.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Link inside the signed-in client.
 ---
 
 Video embed component for services like Loom and Supercut.

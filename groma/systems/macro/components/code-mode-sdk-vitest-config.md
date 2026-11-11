@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: code-mode-sdk
+title: Code mode sdk vitest.config
 status: stable
 groma:
   id: code-mode-sdk-vitest-config

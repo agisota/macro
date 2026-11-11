@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CreateGestures
 status: stable
 groma:
   id: creategestures
@@ -27,7 +27,7 @@ groma:
       file: apps/web/src/lib/core/component/Lightbox/LightboxToolbar.tsx
       symbol: LightboxToolbar
   technology: SolidJS
-description: Part of the signed-in client
+description: CreateGestures inside the signed-in client.
 ---
 
 Routes pointer input across the lightbox's three gesture systems: the zoompinch engine (pan/pinch while zoomed in), single-finger swipes (gallery nav + swipe-to-dismiss while zoomed out), and the inertial fling on release. Also wires desktop keyboard nav and mouse drag / click-to

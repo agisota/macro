@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Convert stdio recording
 status: stable
 groma:
   id: convert-stdio-recording

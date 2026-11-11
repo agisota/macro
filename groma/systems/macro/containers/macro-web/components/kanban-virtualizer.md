@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Kanban virtualizer
 status: stable
 groma:
   id: kanban-virtualizer
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/kanban/kanban-virtualizer.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Kanban virtualizer inside the signed-in client.
 ---
 
 Keep the drag source mounted even when its column or card leaves the viewport.

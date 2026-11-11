@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Cognition client
+title: Schemas toolActivityActionOneOfOnefivePropertyName
 status: stable
 groma:
   id: toolactivityactiononeofonefivepropertyname

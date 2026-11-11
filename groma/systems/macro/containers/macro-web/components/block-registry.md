@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Block registry
 status: stable
 groma:
   id: block-registry
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/block-registry.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Block registry inside the signed-in client.
 ---
 
 Block types accepted by the application. Keep this module free of BlockLoader imports.

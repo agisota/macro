@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Spreadsheet schema
 status: stable
 groma:
   id: src-spreadsheet-schema

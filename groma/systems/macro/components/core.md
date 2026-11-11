@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Core
 status: stable
 groma:
   id: core

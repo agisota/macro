@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Session websockets
 status: stable
 groma:
   id: session-websockets
@@ -15,7 +15,7 @@ groma:
       file: apps/web/src/lib/core/auth/login-events.ts
       symbol: publishLoginSuccess
   technology: SolidJS
-description: Part of the signed-in client
+description: Session websockets inside the signed-in client.
 ---
 
 Macro IDs can contain email addresses. Keep only an opaque identifier, and suppress the runtime's raw user-ID enrichment for this entire trace.

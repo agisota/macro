@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: machine
+title: Machine src index
 status: stable
 groma:
   id: machine-src-index

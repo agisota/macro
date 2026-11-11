@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: AnimalClock
 status: stable
 groma:
   id: animalclock

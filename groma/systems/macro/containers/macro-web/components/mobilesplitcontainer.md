@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: MobileSplitContainer
 status: stable
 groma:
   id: mobilesplitcontainer
@@ -31,7 +31,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/split-layout/split-below-intent.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: MobileSplitContainer inside the signed-in client.
 ---
 
 Two fixed slots hold the front pane and the one behind it. A pane keeps its slot while it changes role, so going forward or back never moves or remounts it.

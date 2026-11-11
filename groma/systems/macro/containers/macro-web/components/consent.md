@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Consent
 status: stable
 groma:
   id: consent
@@ -22,7 +22,7 @@ groma:
       file: apps/web/src/lib/core/email-link/OutlookBetaBadge.tsx
       symbol: OutlookBetaBadge
   technology: SolidJS
-description: Part of the signed-in client
+description: Consent inside the signed-in client.
 ---
 
 Repair the capabilities an inbox used before its Google grant expired.

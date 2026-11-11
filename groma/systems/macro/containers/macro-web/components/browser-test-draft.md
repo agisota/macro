@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Channel
+title: Draft
 status: stable
 groma:
   id: browser-test-draft

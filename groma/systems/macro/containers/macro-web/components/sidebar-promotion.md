@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Sidebar promotion
+title: Sidebar promotion sidebar promotion
 status: stable
 groma:
   id: sidebar-promotion

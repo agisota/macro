@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: DesktopDownloads
 status: stable
 groma:
   id: desktopdownloads

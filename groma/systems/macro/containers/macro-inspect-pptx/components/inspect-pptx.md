@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Inspect pptx
 status: stable
 groma:
   id: inspect-pptx

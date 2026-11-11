@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Transformers auto link
 status: stable
 groma:
   id: transformers-auto-link

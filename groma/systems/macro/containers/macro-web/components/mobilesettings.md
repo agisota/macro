@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Settings
+title: MobileSettings
 status: stable
 groma:
   id: mobilesettings

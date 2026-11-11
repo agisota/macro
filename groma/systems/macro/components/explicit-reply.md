@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Explicit reply
 status: stable
 groma:
   id: explicit-reply

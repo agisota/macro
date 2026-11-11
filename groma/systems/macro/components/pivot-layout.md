@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Pivot layout
 status: stable
 groma:
   id: pivot-layout

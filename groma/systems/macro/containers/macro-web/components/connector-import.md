@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Connector import
+title: Connector import connector import
 status: stable
 groma:
   id: connector-import

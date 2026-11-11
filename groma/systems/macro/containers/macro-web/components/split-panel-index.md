@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Index
+title: Split panel index
 status: stable
 groma:
   id: split-panel-index

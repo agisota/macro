@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CreateFindBarController
 status: stable
 groma:
   id: createfindbarcontroller
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/createFindBarController.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: CreateFindBarController inside the signed-in client.
 ---
 
 When false, `previous()` stops at index 1. Defaults to true.

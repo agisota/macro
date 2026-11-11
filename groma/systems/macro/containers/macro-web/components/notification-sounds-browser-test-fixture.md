@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Notification sounds
+title: Notification sounds browser test fixture
 status: stable
 groma:
   id: notification-sounds-browser-test-fixture

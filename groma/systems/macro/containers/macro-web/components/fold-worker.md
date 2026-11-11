@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Fold.worker
 status: stable
 groma:
   id: fold-worker
@@ -17,7 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/agent-fold/wasm-module.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Fold.worker inside the signed-in client.
 ---
 
 <reference lib="webworker" />

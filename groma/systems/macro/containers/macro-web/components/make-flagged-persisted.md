@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Make flagged persisted
 status: stable
 groma:
   id: make-flagged-persisted
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/preferences/make-flagged-persisted.ts
       symbol: makeFlaggedPersisted
   technology: SolidJS
-description: Part of the signed-in client
+description: Make flagged persisted inside the signed-in client.
 ---
 
 Whether persistence should currently be active.

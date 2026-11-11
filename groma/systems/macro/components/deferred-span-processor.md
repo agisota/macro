@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Deferred span processor
 status: stable
 groma:
   id: deferred-span-processor

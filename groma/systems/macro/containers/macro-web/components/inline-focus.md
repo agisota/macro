@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Property
+title: Browser test inline focus
 status: stable
 groma:
   id: inline-focus

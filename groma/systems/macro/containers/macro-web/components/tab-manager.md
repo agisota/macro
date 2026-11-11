@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Tab manager
 status: stable
 groma:
   id: tab-manager
@@ -13,7 +13,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/app/tab-layout/tab-persistence.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Tab manager inside the signed-in client.
 ---
 
 How an inactive tab comes back: its panes still mounted (parked), a kept capture of a layout that is not mounted, or a saved URL.

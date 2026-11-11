@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FileTypeChip
 status: stable
 groma:
   id: filetypechip
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/FileTypeChip.tsx
       symbol: FileTypeChip
   technology: SolidJS
-description: Part of the signed-in client
+description: FileTypeChip inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/FileTypeChip.tsx.

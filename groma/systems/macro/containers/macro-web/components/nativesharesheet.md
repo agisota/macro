@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Sharing
+title: Native share sheet NativeShareSheet
 status: stable
 groma:
   id: nativesharesheet

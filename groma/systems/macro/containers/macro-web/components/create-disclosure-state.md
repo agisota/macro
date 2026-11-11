@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create disclosure state
 status: stable
 groma:
   id: create-disclosure-state
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/create-disclosure-state.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create disclosure state inside the signed-in client.
 ---
 
 Whether unknown keys are expanded. Defaults to false.

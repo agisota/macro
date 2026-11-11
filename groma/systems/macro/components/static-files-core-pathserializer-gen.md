@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: PathSerializer.gen
 status: stable
 groma:
   id: static-files-core-pathserializer-gen

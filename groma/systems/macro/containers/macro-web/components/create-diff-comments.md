@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create diff comments
 status: stable
 groma:
   id: create-diff-comments
@@ -12,7 +12,7 @@ groma:
       file: apps/web/src/components/diff-view/comments/CommentThread.tsx
       symbol: CommentThread
   technology: SolidJS
-description: Part of the signed-in client
+description: Create diff comments inside the signed-in client.
 ---
 
 Comments under diff lines, for `DiffView.Stack`: groups a host's items by the line they hang from (the last line of their range, like GitHub), holds the one comment being written, and lights the lines of the thread with focus. The host renders what each line shows; `CommentThread

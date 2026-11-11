@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Messages browser test fixture
 status: stable
 groma:
   id: messages-browser-test-fixture
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/messages/browser-test/fixture.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Fixture inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/messages/browser-test/fixture.ts.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Use list navigation hotkeys
 status: stable
 groma:
   id: use-list-navigation-hotkeys
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/entity-detail/use-list-navigation-hotkeys.ts
       symbol: useListNavigationHotkeys
   technology: SolidJS
-description: Part of the signed-in client
+description: Use list navigation hotkeys inside the signed-in client.
 ---
 
 Source under apps/web/src/components/entity-detail/use-list-navigation-hotkeys.ts.

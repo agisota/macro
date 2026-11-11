@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block pr
+title: Block pr route views
 status: stable
 groma:
   id: block-pr-route-views

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Notification
 status: stable
 groma:
   id: tauri-notification
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/tauri/notification.ts
       symbol: createTauriNotificationInterface
   technology: SolidJS
-description: Part of the signed-in client
+description: Notification inside the signed-in client.
 ---
 
 The notification plugin always reports permission as granted on desktop. Read the actual OS authorization on macOS instead.

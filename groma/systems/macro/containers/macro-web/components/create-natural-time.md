@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create natural time
 status: stable
 groma:
   id: create-natural-time
@@ -13,7 +13,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/natural-time/wasm-module.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create natural time inside the signed-in client.
 ---
 
 The natural_time reader as it loads. A failed load is tried again by the next caller.

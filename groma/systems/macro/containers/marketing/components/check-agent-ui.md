@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: Check agent ui
 status: stable
 groma:
   id: check-agent-ui

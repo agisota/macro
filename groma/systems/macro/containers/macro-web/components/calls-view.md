@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Calls view
+title: Views calls view
 status: stable
 groma:
   id: calls-view

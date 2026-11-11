@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Connector import
+title: Browser test import
 status: stable
 groma:
   id: browser-test-import

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide fileCode
 status: stable
 groma:
   id: wide-filecode
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-fileCode.tsx
       symbol: AnimatedFileCodeIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide fileCode inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-fileCode.tsx.

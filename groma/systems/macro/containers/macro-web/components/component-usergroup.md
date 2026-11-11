@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: UserGroup
 status: stable
 groma:
   id: component-usergroup
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/UserGroup.tsx
       symbol: UserGroup
   technology: SolidJS
-description: Part of the signed-in client
+description: UserGroup inside the signed-in client.
 ---
 
 Displays a group of user avatars in an overlapping style with an overflow indicator.  Uses --avatar-group-separator CSS variable for ring color (defaults to --color-surface). Parent containers can override to match hover backgrounds:  @example <div class="hover:bg-hover hover:[--

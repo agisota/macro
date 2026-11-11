@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide users
 status: stable
 groma:
   id: wide-users
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-users.tsx
       symbol: AnimatedUsersIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide users inside the signed-in client.
 ---
 
 behind person nods a beat later

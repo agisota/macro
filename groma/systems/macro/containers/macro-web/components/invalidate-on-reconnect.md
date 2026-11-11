@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Invalidate on reconnect
 status: stable
 groma:
   id: invalidate-on-reconnect
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/invalidate-on-reconnect.ts
       symbol: useInvalidateQueriesOnReconnect
   technology: SolidJS
-description: Part of the signed-in client
+description: Invalidate on reconnect inside the signed-in client.
 ---
 
 Marks cached queries as stale and automatically refetches active queries in the background

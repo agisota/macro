@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Signup introduction
+title: Core onboardingHandoff
 status: stable
 groma:
   id: onboardinghandoff

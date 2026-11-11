@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: LoadingBlock
 status: stable
 groma:
   id: loadingblock
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/LoadingBlock.tsx
       symbol: LoadingBlock
   technology: SolidJS
-description: Part of the signed-in client
+description: LoadingBlock inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/LoadingBlock.tsx.

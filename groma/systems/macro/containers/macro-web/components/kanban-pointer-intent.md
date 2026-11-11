@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Kanban pointer intent
 status: stable
 groma:
   id: kanban-pointer-intent
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/kanban/kanban-pointer-intent.ts
       symbol: createKanbanPointerIntent
   technology: SolidJS
-description: Part of the signed-in client
+description: Kanban pointer intent inside the signed-in client.
 ---
 
 Gate previews during fast travel; a stationary pointer settles after 100 ms.

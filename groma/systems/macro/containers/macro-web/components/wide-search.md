@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide search
 status: stable
 groma:
   id: wide-search
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-search.tsx
       symbol: AnimatedSearchIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide search inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-search.tsx.

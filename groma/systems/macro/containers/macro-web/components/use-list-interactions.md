@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Use list interactions
 status: stable
 groma:
   id: use-list-interactions
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/use-list-interactions.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Use list interactions inside the signed-in client.
 ---
 
 Minimal scrolling contract implemented by virtualized list handles.

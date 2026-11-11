@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: StringUtils
 status: stable
 groma:
   id: stringutils
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/filesystem/stringUtils.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: StringUtils inside the signed-in client.
 ---
 
 removes a file extension from given path or file name

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Connect native
 status: stable
 groma:
   id: connect-native
@@ -36,7 +36,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/pipedream/oauth-popup.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Connect native inside the signed-in client.
 ---
 
 Run consent in a browser: native popup interception breaks iframe OAuth.

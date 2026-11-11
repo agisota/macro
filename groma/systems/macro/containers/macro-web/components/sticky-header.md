@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Sticky header
 status: stable
 groma:
   id: sticky-header
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/list/sticky-header.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Sticky header inside the signed-in client.
 ---
 
 Find the last header at or before an offset without scanning every row.

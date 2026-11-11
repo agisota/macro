@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide company
 status: stable
 groma:
   id: wide-company
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-company.tsx
       symbol: AnimatedCompanyIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide company inside the signed-in client.
 ---
 
 Origin at each L's bottom point so scaling grows them upward only

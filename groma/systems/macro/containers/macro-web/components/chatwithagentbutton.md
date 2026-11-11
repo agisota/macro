@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Chat
+title: Chat ChatWithAgentButton
 status: stable
 groma:
   id: chatwithagentbutton

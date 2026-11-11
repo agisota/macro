@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Settings
+title: Billing settings
 status: stable
 groma:
   id: billing-settings

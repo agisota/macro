@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Docs links
 status: stable
 groma:
   id: docs-links
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/constants/docs-links.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Docs links inside the signed-in client.
 ---
 
 Base URL for the public documentation site.

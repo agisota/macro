@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: BuildWhoMap
 status: stable
 groma:
   id: buildwhomap

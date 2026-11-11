@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Canvas text
 status: stable
 groma:
   id: canvas-text

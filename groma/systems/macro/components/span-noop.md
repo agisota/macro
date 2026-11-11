@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Span noop
 status: stable
 groma:
   id: span-noop

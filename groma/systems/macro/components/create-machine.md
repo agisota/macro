@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: machine
+title: Create machine
 status: stable
 groma:
   id: create-machine

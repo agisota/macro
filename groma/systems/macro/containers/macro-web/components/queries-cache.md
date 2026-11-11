@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cache
 status: stable
 groma:
   id: queries-cache
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/cache.ts
       symbol: partitionByQueryCache
   technology: SolidJS
-description: Part of the signed-in client
+description: Cache inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/queries/cache.ts.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide sidebar
 status: stable
 groma:
   id: wide-sidebar
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-sidebar.tsx
       symbol: AnimatedSidebarIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide sidebar inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-sidebar.tsx.

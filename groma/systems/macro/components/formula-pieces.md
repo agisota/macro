@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Formula pieces
 status: stable
 groma:
   id: formula-pieces

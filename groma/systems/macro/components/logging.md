@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Logging
 status: stable
 groma:
   id: logging

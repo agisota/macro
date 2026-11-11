@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email compose
+title: Core mailto
 status: stable
 groma:
   id: mailto

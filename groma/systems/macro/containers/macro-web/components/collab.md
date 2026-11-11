@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block md
+title: Browser test collab
 status: stable
 groma:
   id: collab

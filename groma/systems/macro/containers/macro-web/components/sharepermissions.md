@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: SharePermissions
 status: stable
 groma:
   id: sharepermissions
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/SharePermissions.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: SharePermissions inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/SharePermissions.tsx.

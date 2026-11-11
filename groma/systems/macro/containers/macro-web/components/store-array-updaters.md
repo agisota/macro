@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Store array updaters
 status: stable
 groma:
   id: store-array-updaters
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/signals/store-array-updaters.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Store array updaters inside the signed-in client.
 ---
 
 Creates an updater that appends a value only when it is not already present. Pass it directly to a Solid signal setter or store path setter.  @example setState('items', addUnique(item));

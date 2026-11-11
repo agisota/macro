@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Observer
 status: stable
 groma:
   id: observer
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/observer.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Observer inside the signed-in client.
 ---
 
 Query options accepted by the shared Solid observer adapter.

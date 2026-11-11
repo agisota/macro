@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Config
 status: stable
 groma:
   id: observability-src-config

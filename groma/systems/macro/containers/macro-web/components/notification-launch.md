@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Notification launch
 status: stable
 groma:
   id: notification-launch
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/notification-launch.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Notification launch inside the signed-in client.
 ---
 
 Keep every tap usable even when navigation or its acknowledgment stalls.

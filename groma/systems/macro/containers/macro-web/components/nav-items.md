@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Nav items
 status: stable
 groma:
   id: nav-items
@@ -19,7 +19,7 @@ groma:
       file: apps/web/src/components/app/sidebar-next/use-nav-item-gates.ts
       symbol: useNavItemGates
   technology: SolidJS
-description: Part of the signed-in client
+description: Nav items inside the signed-in client.
 ---
 
 A SidebarRail nav button's definition: a `SidebarItem` plus the filled icon the button switches to while its view is active. Both are required here, unlike `SidebarItem['icon']` — a rail button is nothing but its glyph.

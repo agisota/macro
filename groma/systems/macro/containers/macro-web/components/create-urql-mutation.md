@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create urql mutation
 status: stable
 groma:
   id: create-urql-mutation
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/urql-solid/create-urql-mutation.ts
       symbol: createUrqlMutation
   technology: SolidJS
-description: Part of the signed-in client
+description: Create urql mutation inside the signed-in client.
 ---
 
 Creates reactive state for imperative urql mutation executions.

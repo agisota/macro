@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: NotificationsModal
 status: stable
 groma:
   id: notificationsmodal
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/NotificationsModal.tsx
       symbol: NotificationsDrawer
   technology: SolidJS
-description: Part of the signed-in client
+description: NotificationsModal inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/NotificationsModal.tsx.

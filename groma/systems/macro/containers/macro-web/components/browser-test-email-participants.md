@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Email participants
 status: stable
 groma:
   id: browser-test-email-participants
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/email-participants.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Email participants inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/email-participants.ts.

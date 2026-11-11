@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Index
 status: stable
 groma:
   id: migrate-s3-keys-extensionless-index

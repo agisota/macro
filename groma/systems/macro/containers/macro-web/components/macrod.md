@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Macrod
 status: stable
 groma:
   id: macrod
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/tauri/macrod.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Macrod inside the signed-in client.
 ---
 
 Bridge to the bundled macrod daemon (the local agent runtime) supervised by the desktop app's main process. Desktop only: callers gate on `isDesktopPlatform()` before touching anything here.

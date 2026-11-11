@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Search bar button
 status: stable
 groma:
   id: search-bar-button
@@ -40,7 +40,7 @@ groma:
       file: apps/web/src/components/app/sidebar-next/unread-dot.tsx
       symbol: SidebarUnreadDot
   technology: SolidJS
-description: Part of the signed-in client
+description: Search bar button inside the signed-in client.
 ---
 
 Search and command-menu discovery in the compact rail.

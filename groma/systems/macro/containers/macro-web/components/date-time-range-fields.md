@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Date time range fields
 status: stable
 groma:
   id: date-time-range-fields
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/date-time-range/date-time-range-fields.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Date time range fields inside the signed-in client.
 ---
 
 `YYYY-MM-DD`, or empty.

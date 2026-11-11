@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Account managers
 status: stable
 groma:
   id: account-managers
@@ -12,7 +12,7 @@ groma:
       file: apps/web/src/lib/queries/account-managers/keys.ts
       symbol: accountManagerKeys
   technology: SolidJS
-description: Part of the signed-in client
+description: Account managers inside the signed-in client.
 ---
 
 The other account changes this grant, so a cached status can be wrong when a card or the approval link opens.

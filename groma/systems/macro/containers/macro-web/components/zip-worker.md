@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Zip worker
 status: stable
 groma:
   id: zip-worker
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/workers/folder-upload/zip-worker.js
       symbol: zipFiles
   technology: SolidJS
-description: Part of the signed-in client
+description: Zip worker inside the signed-in client.
 ---
 
 Explicit folder entries keep empty folders in the upload.

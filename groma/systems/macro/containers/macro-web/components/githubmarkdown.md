@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block pr
+title: Util githubMarkdown
 status: stable
 groma:
   id: githubmarkdown

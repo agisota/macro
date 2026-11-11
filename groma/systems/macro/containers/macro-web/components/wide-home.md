@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide home
 status: stable
 groma:
   id: wide-home
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-home.tsx
       symbol: AnimatedHomeIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide home inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-home.tsx.

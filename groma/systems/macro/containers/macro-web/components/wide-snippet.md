@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Wide snippet
 status: stable
 groma:
   id: wide-snippet
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/icon/wide-snippet.tsx
       symbol: AnimatedSnippetIcon
   technology: SolidJS
-description: Part of the signed-in client
+description: Wide snippet inside the signed-in client.
 ---
 
 Source under apps/web/src/components/icon/wide-snippet.tsx.

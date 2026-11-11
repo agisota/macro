@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Utils auto link
 status: stable
 groma:
   id: utils-auto-link

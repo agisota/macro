@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Sse events
 status: stable
 groma:
   id: sse-events

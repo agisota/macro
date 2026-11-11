@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Table groups
 status: stable
 groma:
   id: table-groups

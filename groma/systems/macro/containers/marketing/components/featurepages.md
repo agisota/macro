@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: FeaturePages
 status: stable
 groma:
   id: featurepages

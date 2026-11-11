@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block database
+title: WebhooksDialog
 status: stable
 groma:
   id: webhooksdialog

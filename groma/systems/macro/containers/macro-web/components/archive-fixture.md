@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Crm
+title: Archive fixture
 status: stable
 groma:
   id: archive-fixture

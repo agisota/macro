@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Client
 status: stable
 groma:
   id: utils-client

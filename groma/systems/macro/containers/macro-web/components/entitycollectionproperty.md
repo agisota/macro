@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Property
+title: Properties EntityCollectionProperty
 status: stable
 groma:
   id: entitycollectionproperty

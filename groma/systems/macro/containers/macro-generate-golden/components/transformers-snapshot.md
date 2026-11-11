@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Snapshot
 status: stable
 groma:
   id: transformers-snapshot

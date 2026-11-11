@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Tasks view
+title: Browser test property optimism
 status: stable
 groma:
   id: property-optimism

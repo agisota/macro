@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Recipient options
 status: stable
 groma:
   id: recipient-options
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/recipient-options.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Recipient options inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/recipient-options.ts.

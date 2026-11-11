@@ -1,12 +1,12 @@
 ---
 type: C4 Container
 title: Authentication service
-description: Script or entry the scanner promoted to a container
+description: Login, teams, and billing sessions
 status: draft
 groma:
   id: authentication-service
   parent: macro
-  technology: Rust, ECS, FusionAuth
+  technology: Rust, ECS
 ---
 
-Groma created this container from an entry named Authentication service. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+FusionAuth login, API keys, and Stripe checkout routes. The browser calls this host, not FusionAuth directly. Rust source is not owned.

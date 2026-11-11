@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: ViewCreateButton
 status: stable
 groma:
   id: viewcreatebutton
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/view-shell/ViewCreateButton.tsx
       symbol: ViewCreateButton
   technology: SolidJS
-description: Part of the signed-in client
+description: ViewCreateButton inside the signed-in client.
 ---
 
 Shared desktop New action, including polymorphic dropdown triggers.

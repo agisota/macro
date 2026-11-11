@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Number display
 status: stable
 groma:
   id: number-display

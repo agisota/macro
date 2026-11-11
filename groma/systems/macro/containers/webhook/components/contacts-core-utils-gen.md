@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Contacts core utils.gen
 status: stable
 groma:
   id: contacts-core-utils-gen

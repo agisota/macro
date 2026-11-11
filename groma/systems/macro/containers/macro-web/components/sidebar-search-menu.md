@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Sidebar search menu
 status: stable
 groma:
   id: sidebar-search-menu
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/app-sidebar/sidebar-search-menu.tsx
       symbol: SidebarSearchMenu
   technology: SolidJS
-description: Part of the signed-in client
+description: Sidebar search menu inside the signed-in client.
 ---
 
 Shared discovery menu for the expanded sidebar and compact rail.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Agent session mention
 status: stable
 groma:
   id: agent-session-mention
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/agent-session-mention.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Agent session mention inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/LexicalMarkdown/component/decorator/browser-test/agent-session-mention.tsx.

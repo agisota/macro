@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Crm
+title: Editor
 status: stable
 groma:
   id: browser-test-editor

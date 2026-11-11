@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Development tooling
+title: Scan
 status: stable
 groma:
   id: scan

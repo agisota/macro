@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email compose
+title: Browser test recipient hotkeys fixture
 status: stable
 groma:
   id: recipient-hotkeys-fixture

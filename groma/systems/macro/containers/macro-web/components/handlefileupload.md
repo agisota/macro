@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: HandleFileUpload
 status: stable
 groma:
   id: handlefileupload
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/utils/handleFileUpload.ts
       symbol: useHandleFileUpload
   technology: SolidJS
-description: Part of the signed-in client
+description: HandleFileUpload inside the signed-in client.
 ---
 
 Refetch soup for folders once pending uploads are done, and show a success toast with an action to open the created folder/project.

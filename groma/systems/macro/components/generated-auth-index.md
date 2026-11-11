@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Auth index
 status: stable
 groma:
   id: generated-auth-index

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: Header
 status: stable
 groma:
   id: src-components-header

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: PlanProperties
 status: stable
 groma:
   id: planproperties
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/analytics/planProperties.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: PlanProperties inside the signed-in client.
 ---
 
 The product plan exposed to PostHog.

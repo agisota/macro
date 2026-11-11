@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: App
 status: stable
 groma:
   id: main-app

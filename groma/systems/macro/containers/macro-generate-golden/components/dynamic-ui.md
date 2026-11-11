@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Dynamic ui
 status: stable
 groma:
   id: dynamic-ui

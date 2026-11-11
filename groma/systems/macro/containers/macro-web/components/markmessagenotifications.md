@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Notifications
+title: Components MarkMessageNotifications
 status: stable
 groma:
   id: markmessagenotifications

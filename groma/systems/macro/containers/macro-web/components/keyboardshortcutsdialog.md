@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: KeyboardShortcutsDialog
 status: stable
 groma:
   id: keyboardshortcutsdialog
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/KeyboardShortcutsDialog.tsx
       symbol: toggleKeyboardShortcuts
   technology: SolidJS
-description: Part of the signed-in client
+description: KeyboardShortcutsDialog inside the signed-in client.
 ---
 
 Source under apps/web/src/components/app/KeyboardShortcutsDialog.tsx.

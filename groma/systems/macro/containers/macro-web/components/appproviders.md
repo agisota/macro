@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: AppProviders
 status: stable
 groma:
   id: appproviders
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/AppProviders.tsx
       symbol: AppProviders
   technology: SolidJS
-description: Part of the signed-in client
+description: AppProviders inside the signed-in client.
 ---
 
 Source under apps/web/src/components/app/AppProviders.tsx.

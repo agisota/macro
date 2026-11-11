@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Ui index
 status: stable
 groma:
   id: components-ui-index
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/ui/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Index inside the signed-in client.
 ---
 
 Source under apps/web/src/components/ui/index.ts.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Account manager
+title: Account manager account manager card
 status: stable
 groma:
   id: account-manager-card

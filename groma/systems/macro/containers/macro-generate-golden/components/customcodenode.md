@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: CustomCodeNode
 status: stable
 groma:
   id: customcodenode

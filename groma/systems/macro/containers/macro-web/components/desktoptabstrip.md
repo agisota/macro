@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DesktopTabStrip
 status: stable
 groma:
   id: desktoptabstrip
@@ -15,7 +15,7 @@ groma:
       file: apps/web/src/components/app/tab-layout/open-in-tab-middleware.ts
       symbol: openInNewTabMiddleware
   technology: SolidJS
-description: Part of the signed-in client
+description: DesktopTabStrip inside the signed-in client.
 ---
 
 Tabs scroll once they shrink to their minimum width; keep the active one visible.

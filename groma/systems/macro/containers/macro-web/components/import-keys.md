@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Import keys
 status: stable
 groma:
   id: import-keys
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/import/keys.ts
       symbol: importKeys
   technology: SolidJS
-description: Part of the signed-in client
+description: Keys inside the signed-in client.
 ---
 
 Discovery runs plus visible ledger rows.

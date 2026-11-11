@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Harnesses
 status: stable
 groma:
   id: harnesses
@@ -15,7 +15,7 @@ groma:
       file: apps/web/src/lib/queries/harnesses/connections.ts
       symbol: useHarnessConnectionStatus
   technology: SolidJS
-description: Part of the signed-in client
+description: Harnesses inside the signed-in client.
 ---
 
 Cached callbacks outlive the hooks; keep hook scope out of these closures.

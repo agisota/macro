@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cursor flag
 status: stable
 groma:
   id: cursor-flag
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/cursor/flag.ts
       symbol: useCursorAgentsAccess
   technology: SolidJS
-description: Part of the signed-in client
+description: Flag inside the signed-in client.
 ---
 
 Whether the built-in Cursor mention is included in this user's rollout.

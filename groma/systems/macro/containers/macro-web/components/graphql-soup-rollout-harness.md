@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Graphql soup rollout harness
 status: stable
 groma:
   id: graphql-soup-rollout-harness
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/graphql-soup-rollout-harness.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Graphql soup rollout harness inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/graphql-soup-rollout-harness.ts.

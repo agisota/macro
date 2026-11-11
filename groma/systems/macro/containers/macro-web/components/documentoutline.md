@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DocumentOutline
 status: stable
 groma:
   id: documentoutline
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/DocumentOutline.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: DocumentOutline inside the signed-in client.
 ---
 
 The compact outline rail shared by documents and form builders.

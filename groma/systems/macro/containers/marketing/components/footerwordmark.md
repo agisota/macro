@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Marketing page
+title: FooterWordmark
 status: stable
 groma:
   id: footerwordmark

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Native update preparation
 status: stable
 groma:
   id: native-update-preparation
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/tauri/native-update-preparation.ts
       symbol: createNativeUpdatePreparation
   technology: SolidJS
-description: Part of the signed-in client
+description: Native update preparation inside the signed-in client.
 ---
 
 Owned by one Tauri provider; editors register saves while they are mounted.

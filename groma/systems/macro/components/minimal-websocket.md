@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Minimal websocket
 status: stable
 groma:
   id: minimal-websocket

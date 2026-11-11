@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block spreadsheet
+title: Xlsx fixtures generate office 2016 charts
 status: stable
 groma:
   id: generate-office-2016-charts

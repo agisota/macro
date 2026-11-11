@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: FatalError
 status: stable
 groma:
   id: fatalerror
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/FatalError.tsx
       symbol: FatalError
   technology: SolidJS
-description: Part of the signed-in client
+description: FatalError inside the signed-in client.
 ---
 
 Source under apps/web/src/components/app/FatalError.tsx.

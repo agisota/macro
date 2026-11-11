@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Psd engine wasm module
 status: stable
 groma:
   id: psd-engine-wasm-module
@@ -17,7 +17,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/psd-engine/client.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Wasm module inside the signed-in client.
 ---
 
 Typed surface of the generated wasm package (`psd_engine`), loaded dynamically so the repo type-checks without the generated artifacts.  Build the package with: just build-psd-engine-wasm which runs wasm-pack over crates/psd_engine into src/lib/core/psd-engine/wasm/ (gitignored).

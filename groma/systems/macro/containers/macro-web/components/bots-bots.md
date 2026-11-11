@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Bots
 status: stable
 groma:
   id: bots-bots
@@ -19,7 +19,7 @@ groma:
       file: apps/web/src/lib/queries/bots/bot-id.ts
       symbol: isHexHyphenatedId
   technology: SolidJS
-description: Part of the signed-in client
+description: Bots inside the signed-in client.
 ---
 
 PATCH /bots/{bot_id} leaves every omitted field unchanged.

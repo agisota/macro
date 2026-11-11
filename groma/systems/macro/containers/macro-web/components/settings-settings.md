@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Settings
+title: Settings settings
 status: stable
 groma:
   id: settings-settings

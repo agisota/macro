@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: UseNavigatedFromJK
 status: stable
 groma:
   id: usenavigatedfromjk
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/app/useNavigatedFromJK.ts
       symbol: useNavigatedFromJK
   technology: SolidJS
-description: Part of the signed-in client
+description: UseNavigatedFromJK inside the signed-in client.
 ---
 
 Source under apps/web/src/components/app/useNavigatedFromJK.ts.

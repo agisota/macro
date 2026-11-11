@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: StickyVirtualizer
 status: stable
 groma:
   id: stickyvirtualizer
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/list/StickyVirtualizer.tsx
       symbol: StickyVirtualizer
   technology: SolidJS
-description: Part of the signed-in client
+description: StickyVirtualizer inside the signed-in client.
 ---
 
 Persistent viewport chrome, distinct from the in-flow startMargin.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: DiffCounts
 status: stable
 groma:
   id: diffcounts
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/diff-view/DiffCounts.tsx
       symbol: DiffCounts
   technology: SolidJS
-description: Part of the signed-in client
+description: DiffCounts inside the signed-in client.
 ---
 
 Added and deleted line totals, hidden when both are zero.

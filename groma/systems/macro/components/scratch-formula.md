@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Scratch formula
 status: stable
 groma:
   id: scratch-formula

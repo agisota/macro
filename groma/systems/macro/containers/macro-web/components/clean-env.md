@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Clean env
 status: stable
 groma:
   id: clean-env
@@ -9,7 +9,7 @@ groma:
     - scanner: javascript
       file: apps/web/scripts/clean-env.js
   technology: SolidJS
-description: Part of the signed-in client
+description: Clean env inside the signed-in client.
 ---
 
 Source under apps/web/scripts/clean-env.js.

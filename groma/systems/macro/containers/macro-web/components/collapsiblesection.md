@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CollapsibleSection
 status: stable
 groma:
   id: collapsiblesection
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/view-shell/CollapsibleSection.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: CollapsibleSection inside the signed-in client.
 ---
 
 Content owns presence so exit motion finishes before it unmounts.

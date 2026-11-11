@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: service scheduled action
+title: Schemas shareRoutineTemplate
 status: stable
 groma:
   id: shareroutinetemplate

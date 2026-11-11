@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create horizontal reorder
 status: stable
 groma:
   id: create-horizontal-reorder
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/components/drag-drop/create-horizontal-reorder.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Create horizontal reorder inside the signed-in client.
 ---
 
 The indicator's offset within its positioned container.

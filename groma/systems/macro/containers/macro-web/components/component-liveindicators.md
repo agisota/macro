@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: LiveIndicators
+title: Component LiveIndicators
 status: stable
 groma:
   id: component-liveindicators

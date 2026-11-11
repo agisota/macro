@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: CreateDocument
 status: stable
 groma:
   id: createdocument
@@ -452,7 +452,7 @@ groma:
       file: apps/web/src/lib/core/component/AI/component/tool/SetFavorite.tsx
       symbol: setFavoriteHandler
   technology: SolidJS
-description: Part of the signed-in client
+description: CreateDocument inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/AI/component/tool/CreateDocument.tsx.

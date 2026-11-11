@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: TableInsertButton
 status: stable
 groma:
   id: tableinsertbutton
@@ -770,7 +770,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/LexicalMarkdown/component/menu/MentionsMenu/index.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: TableInsertButton inside the signed-in client.
 ---
 
 How close (px) the pointer must be to a row/column border for the button to show.

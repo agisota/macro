@@ -1,7 +1,7 @@
 ---
 type: C4 Container
 title: Email service
-description: Script or entry the scanner promoted to a container
+description: Mailbox API and Gmail sync
 status: draft
 groma:
   id: email-service
@@ -9,4 +9,4 @@ groma:
   technology: Rust, ECS
 ---
 
-Groma created this container from an entry named Email service. It is not a separate deployed product. Product modules live on the web client, marketing site, SDK, or a named worker.
+HTTP API for mail plus the Gmail and Outlook sync workers deployed with it. Rust on ECS. The TypeScript scan does not own these files, so this box stays a draft.

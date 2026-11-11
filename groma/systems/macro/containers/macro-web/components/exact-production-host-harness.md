@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Exact production host harness
 status: stable
 groma:
   id: exact-production-host-harness
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/graphql-cache/worker/browser-test/exact-production-host-harness.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Exact production host harness inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/graphql-cache/worker/browser-test/exact-production-host-harness.ts.

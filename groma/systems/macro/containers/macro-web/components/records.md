@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Block database
+title: Records
 status: stable
 groma:
   id: records

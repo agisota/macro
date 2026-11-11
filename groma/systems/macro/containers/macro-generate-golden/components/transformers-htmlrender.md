@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: HtmlRender
 status: stable
 groma:
   id: transformers-htmlrender

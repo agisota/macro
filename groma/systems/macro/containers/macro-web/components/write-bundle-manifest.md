@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Write bundle manifest
 status: stable
 groma:
   id: write-bundle-manifest
@@ -9,7 +9,7 @@ groma:
     - scanner: javascript
       file: apps/web/scripts/write-bundle-manifest.mjs
   technology: SolidJS
-description: Part of the signed-in client
+description: Write bundle manifest inside the signed-in client.
 ---
 
 Source under apps/web/scripts/write-bundle-manifest.mjs.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Queries client
 status: stable
 groma:
   id: queries-client
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/queries/client.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Client inside the signed-in client.
 ---
 
 Auth failures are terminal within a session — fetchWithToken already refreshes and retries the token internally, so a query-level retry just repeats the doomed request.

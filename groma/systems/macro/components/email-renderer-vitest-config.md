@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Email renderer
+title: Email renderer vitest.config
 status: stable
 groma:
   id: email-renderer-vitest-config

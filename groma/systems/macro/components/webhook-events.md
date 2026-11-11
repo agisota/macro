@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: sdk
+title: Webhook events
 status: stable
 groma:
   id: webhook-events

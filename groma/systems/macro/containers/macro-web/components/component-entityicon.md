@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: EntityIcon
 status: stable
 groma:
   id: component-entityicon
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/component/EntityIcon.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: EntityIcon inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/core/component/EntityIcon.tsx.

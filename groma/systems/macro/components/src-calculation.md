@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Calculation
 status: stable
 groma:
   id: src-calculation

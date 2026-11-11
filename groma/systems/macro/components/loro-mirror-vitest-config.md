@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: loro-mirror
+title: Loro mirror vitest.config
 status: stable
 groma:
   id: loro-mirror-vitest-config

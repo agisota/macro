@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Cell text editor types
 status: stable
 groma:
   id: cell-text-editor-types
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/cell-text-editor/types.ts
       symbol: CellTextEditorProps
   technology: SolidJS
-description: Part of the signed-in client
+description: Types inside the signed-in client.
 ---
 
 Source under apps/web/src/components/cell-text-editor/types.ts.

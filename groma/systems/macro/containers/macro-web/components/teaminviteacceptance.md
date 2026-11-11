@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Team invitations
+title: Team invitations TeamInviteAcceptance
 status: stable
 groma:
   id: teaminviteacceptance

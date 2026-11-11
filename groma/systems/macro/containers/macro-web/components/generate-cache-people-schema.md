@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Generate cache people schema
 status: stable
 groma:
   id: generate-cache-people-schema
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/scripts/generate-cache-people-schema.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Generate cache people schema inside the signed-in client.
 ---
 
 The generic generator erases oneOf to z.any(). Our Rust enums have disjoint literal tags, so a typed union has identical validation.

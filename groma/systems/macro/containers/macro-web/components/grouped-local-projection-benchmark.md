@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Grouped local projection.benchmark
 status: stable
 groma:
   id: grouped-local-projection-benchmark
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/queries/soup/graphql/grouped-local-projection.benchmark.ts
       symbol: runGroupedSoupBenchmark
   technology: SolidJS
-description: Part of the signed-in client
+description: Grouped local projection.benchmark inside the signed-in client.
 ---
 
 Source under apps/web/src/lib/queries/soup/graphql/grouped-local-projection.benchmark.ts.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Command
+title: Command FavoritesCommands
 status: stable
 groma:
   id: favoritescommands

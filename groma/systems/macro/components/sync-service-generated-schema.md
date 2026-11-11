@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Collaboration runtime
+title: Schema
 status: stable
 groma:
   id: sync-service-generated-schema

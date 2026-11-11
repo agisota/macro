@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: RecipientSourceControls
 status: stable
 groma:
   id: recipientsourcecontrols
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/lib/core/component/RecipientSourceControls.tsx
       symbol: RecipientSourceControls
   technology: SolidJS
-description: Part of the signed-in client
+description: RecipientSourceControls inside the signed-in client.
 ---
 
 Pagination remains available even when a bounded local window has no rows.

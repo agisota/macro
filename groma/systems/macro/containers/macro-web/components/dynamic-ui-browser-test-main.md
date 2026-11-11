@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Dynamic ui
+title: Dynamic ui browser test main
 status: stable
 groma:
   id: dynamic-ui-browser-test-main

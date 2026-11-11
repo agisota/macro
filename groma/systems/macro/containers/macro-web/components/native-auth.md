@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Native auth
 status: stable
 groma:
   id: native-auth
@@ -27,7 +27,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/core/auth/authorize-github.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Native auth inside the signed-in client.
 ---
 
 Where the hosted flow sends the desktop app's session code. The deep-link bridge turns `macro:///login?token=...` into a `/login` router navigation, and that route redeems the code — so it is pinned here rather than derived from the page the user signed in from, which is usually

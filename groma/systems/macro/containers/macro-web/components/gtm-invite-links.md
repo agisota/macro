@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Gtm invite links
 status: stable
 groma:
   id: gtm-invite-links
@@ -12,7 +12,7 @@ groma:
       file: apps/web/src/lib/queries/gtm-invite/keys.ts
       symbol: gtmInviteKeys
   technology: SolidJS
-description: Part of the signed-in client
+description: Links inside the signed-in client.
 ---
 
 Queries and mutations for GTM invite links: the staff dashboard (create, list, revoke), the public welcome page (resolve), and the signup handoff (redeem, then the offer the plan step shows).

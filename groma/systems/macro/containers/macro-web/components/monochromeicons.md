@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: MonochromeIcons
 status: stable
 groma:
   id: monochromeicons
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/ui/utils/monochromeIcons.ts
       symbol: initMonochromeIcons
   technology: SolidJS
-description: Part of the signed-in client
+description: MonochromeIcons inside the signed-in client.
 ---
 
 Source under apps/web/src/components/ui/utils/monochromeIcons.ts.

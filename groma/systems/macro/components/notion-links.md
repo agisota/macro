@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Lexical core
+title: Links
 status: stable
 groma:
   id: notion-links

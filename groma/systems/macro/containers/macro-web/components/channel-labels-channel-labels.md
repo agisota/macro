@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Channel labels
 status: stable
 groma:
   id: channel-labels-channel-labels
@@ -12,7 +12,7 @@ groma:
       file: apps/web/src/lib/queries/channel-labels/keys.ts
       symbol: channelLabelKeys
   technology: SolidJS
-description: Part of the signed-in client
+description: Channel labels inside the signed-in client.
 ---
 
 Shared labels for team members; account-private labels otherwise.

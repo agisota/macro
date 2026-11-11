@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Dictionary
 status: stable
 groma:
   id: dictionary
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/i18n/dictionary.ts
   technology: SolidJS
-description: Part of the signed-in client
+description: Dictionary inside the signed-in client.
 ---
 
 The full message catalog; English defines its shape.

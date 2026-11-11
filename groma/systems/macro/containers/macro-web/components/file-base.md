@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Base
 status: stable
 groma:
   id: file-base
@@ -16,7 +16,7 @@ groma:
       file: apps/web/src/lib/filesystem/file/ephemeral.ts
       symbol: EphemeralFile
   technology: SolidJS
-description: Part of the signed-in client
+description: Base inside the signed-in client.
 ---
 
 typed as any since it has not been implemented yet

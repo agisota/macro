@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: observability
+title: Observability src index
 status: stable
 groma:
   id: observability-src-index

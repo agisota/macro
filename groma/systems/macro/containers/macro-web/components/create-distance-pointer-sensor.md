@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Create distance pointer sensor
 status: stable
 groma:
   id: create-distance-pointer-sensor
@@ -10,7 +10,7 @@ groma:
       file: apps/web/src/components/drag-drop/create-distance-pointer-sensor.ts
       symbol: createDistancePointerSensor
   technology: SolidJS
-description: Part of the signed-in client
+description: Create distance pointer sensor inside the signed-in client.
 ---
 
 The stock pointer sensor activates after 250ms or 10px. This one has no timer.

@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Share permissions
+title: External chats share permissions
 status: stable
 groma:
   id: external-chats-share-permissions

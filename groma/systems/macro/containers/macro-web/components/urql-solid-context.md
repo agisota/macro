@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: Web module
+title: Urql solid context
 status: stable
 groma:
   id: urql-solid-context
@@ -9,7 +9,7 @@ groma:
     - scanner: typescript
       file: apps/web/src/lib/urql-solid/context.tsx
   technology: SolidJS
-description: Part of the signed-in client
+description: Context inside the signed-in client.
 ---
 
 Props for the application-local urql client provider.

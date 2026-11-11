@@ -1,6 +1,6 @@
 ---
 type: C4 Component
-title: spreadsheet
+title: Table edits
 status: stable
 groma:
   id: table-edits
