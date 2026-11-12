@@ -3,7 +3,7 @@
     {
       "group": "First Steps",
       "pages": [
-        "index",
+        "switch-to-macro",
         "changelog/introduction"
       ]
     },
