@@ -34,6 +34,11 @@ pub struct Config {
     /// Disabled is the reader-only rollout stage: existing ROX links still load.
     #[macro_config_default(false)]
     pub rox_mailbox_writes_enabled: bool,
+    /// Stop claiming Outlook import work (first imports and re-imports) while
+    /// true; live changes keep importing. Read at startup, so a change takes
+    /// effect when the pubsub workers restart.
+    #[macro_config_default(false)]
+    pub outlook_imports_paused: bool,
     /// Send Gmail label writes as `ModifyMessageLabelsBatch` queue messages.
     /// Enable only after every email-service pubsub worker runs a release that
     /// decodes them; older workers delete the batch form. Off, each message is

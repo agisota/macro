@@ -112,6 +112,23 @@ fn swagger_ui() -> Router {
         )
 }
 
+fn computer_router_state(
+    state: &ApiContext,
+) -> hosted_runtimes::inbound::axum_router::ComputerRouterState<
+    hosted_runtimes::outbound::pg::PgComputerRepo,
+    crate::outbound::computer_billing::TeamComputerBilling<crate::api::context::TeamsServiceType>,
+    hosted_runtimes::domain::service::SystemClock,
+    crate::api::context::EntityAccessServiceType,
+    crate::api::context::AuthorizationService,
+    hosted_runtimes::outbound::pg::PgComputerRepo,
+> {
+    hosted_runtimes::inbound::axum_router::ComputerRouterState {
+        service: state.computer_service.clone(),
+        entity_access_service: state.entity_access_service.clone(),
+        authorization_state: state.authorization_state.clone(),
+    }
+}
+
 fn api_router(state: ApiContext) -> Router {
     // `enterprise_router` applies its own state and returns a `Router`, so it is
     // built up front and merged into the stateful router once it is finished.
@@ -128,7 +145,15 @@ fn api_router(state: ApiContext) -> Router {
                 inner: state.native_app_service.clone(),
             },
         ))
-        .nest("/internal", internal::router())
+        .nest(
+            "/internal",
+            internal::router().merge(team_agents::inbound::axum_router::agent_enrollment_router(
+                team_agents::inbound::axum_router::AgentEnrollmentRouterState {
+                    service: state.team_agents_service.clone(),
+                    authorization_state: state.authorization_state.clone(),
+                },
+            )),
+        )
         .nest("/permissions", permissions::router())
         .nest("/login", login::router(state.clone()))
         .nest("/logout", logout::router())
@@ -153,6 +178,19 @@ fn api_router(state: ApiContext) -> Router {
             teams::inbound::axum_router::teams_router(
                 teams::inbound::axum_router::TeamRouterState {
                     service: state.teams_service.clone(),
+                    entity_access_service: state.entity_access_service.clone(),
+                    authorization_state: state.authorization_state.clone(),
+                },
+            ),
+        )
+        .merge(hosted_runtimes::inbound::axum_router::team_router(
+            computer_router_state(&state),
+        ))
+        .nest(
+            "/team_agents",
+            team_agents::inbound::axum_router::team_agents_router(
+                team_agents::inbound::axum_router::TeamAgentsRouterState {
+                    service: state.team_agents_service.clone(),
                     entity_access_service: state.entity_access_service.clone(),
                     authorization_state: state.authorization_state.clone(),
                 },
