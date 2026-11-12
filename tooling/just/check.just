@@ -133,6 +133,69 @@ check *ARGS:
     if [ "$fail" -ne 0 ]; then echo "FAIL"; exit 1; fi
     echo "OK"
 
+# Reproduces the required PR checks locally, in CI's order, stopping at the
+# first failure. Use it before pushing anything broad or mechanical (dependency
+# bumps, upstream merges, renames): `just check` is diff-scoped, so a green
+# `just check full` still says nothing about crates and files you did not touch,
+# while CI lints the whole workspace.
+#
+#   just ci          check + clippy matrix + cargo deny + generated workflows + ast-grep
+#   just ci tests    also the Rust test suite (needs the test databases:
+#                    `just setup_test_envs && just initialize_dbs && just setup_test_template`)
+#
+# Unlike `check`, this does not accumulate failures: the first red step is the
+# one CI would report, and stopping there keeps the log readable.
+#
+# Re-run CI's required PR checks locally; the first failure stops the run.
+ci *ARGS:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd {{ justfile_directory() }}
+
+    case "{{ ARGS }}" in
+      ""|tests) ;;
+      *) echo "usage: just ci [tests]" >&2; exit 2 ;;
+    esac
+
+    echo "── check full (fmt, shear, biome, oxlint, ast-grep, PII, tsc, clippy)"
+    # Still worth running first: it covers the non-Rust gates CI runs as separate
+    # jobs (biome/oxlint/tsc/PII) and fails faster on a trivial formatting miss.
+    just check full
+
+    echo "── clippy matrix (workspace, sync_service, soup without outbound)"
+    # The four invocations CI's clippy job runs for the `all` package selection
+    # live in tooling/just/rust.just, so local and CI flags cannot drift.
+    just clippy
+
+    echo "── cargo deny check"
+    cargo deny check
+
+    echo "── generated workflows and kafka topics are up to date"
+    cargo run --manifest-path tooling/xtask/Cargo.toml -- workflows --check
+
+    echo "── ast-grep (whole repo, no diff filter — same as CI)"
+    bunx --yes @ast-grep/cli@0.44.1 scan
+
+    if [ "{{ ARGS }}" = "tests" ]; then
+      echo "── cargo nextest (workspace, sync_service excluded)"
+      # CI's own test script, so the flags cannot drift: --all-features,
+      # --no-tests=pass, 32 test threads, no debug info. RUST_PACKAGES=all is the
+      # whole-workspace selection. Unlike the clippy job, CI compiles queries
+      # against live Postgres here, so SQLX_OFFLINE must stay unset.
+      # `-C link-arg=-fuse-ld=mold` from CI is Linux-only and is dropped.
+      RUST_PACKAGES=all \
+        NEXTEST_TEST_THREADS="${NEXTEST_TEST_THREADS:-32}" \
+        CARGO_PROFILE_DEV_DEBUG=0 CARGO_PROFILE_TEST_DEBUG=0 \
+        bash tooling/xtask/crates/xtask_workflows/src/workflows/scripts/run_tests.sh
+    fi
+
+    echo
+    if [ "{{ ARGS }}" = "tests" ]; then
+      echo "CI checks OK (including the Rust test suite)"
+    else
+      echo "CI checks OK (Rust test suite skipped — run 'just ci tests')"
+    fi
+
 #   just pr-privacy                                  commits since origin/main
 #   PR_TITLE="fix(x): ..." just pr-privacy body.md   plus the PR title and body
 #
