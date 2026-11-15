@@ -47,3 +47,9 @@
 **/.vscode
 **/*.swp
 **/*.swo
+
+# Source directories named `build` are code, not compiled output: the blanket
+# `**/build` above would otherwise strip them from the build context and the
+# crate fails with "file not found for module".
+!crates/ai_engine/src/build
+!crates/ai_engine/src/build/**
