@@ -170,7 +170,7 @@ function promptForEmailAccess(scopes: ConsentScopes | undefined) {
       titleColor: 'var(--color-failure)',
       dismissLabel: t('common.maybeLater'),
       content: () =>
-        "Macro connects an account's email and calendar together, so keep the email permissions checked. The account was not connected.",
+        "Rox connects an account's email and calendar together, so keep the email permissions checked. The account was not connected.",
       actions: [
         {
           label: 'Try again',

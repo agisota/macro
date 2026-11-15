@@ -59,7 +59,7 @@ export async function sendEmailCode(input: {
       }),
     }
   ).catch(() => undefined);
-  if (!response) return { t: 'failed', message: 'Unable to reach Macro.' };
+  if (!response) return { t: 'failed', message: 'Unable to reach Rox.' };
   if (!response.ok) return { t: 'failed', message: await response.text() };
 
   // 202: the address must sign in through its organization's identity provider.
