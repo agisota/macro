@@ -81,6 +81,46 @@ fn generated_services_have_bounded_console_logs_in_every_mode() {
     }
 }
 
+/// Pins the generated knob that keeps `document_storage_service` from aborting
+/// with a `tokio-rt-worker` stack overflow on a local debug binary, and that no
+/// other service gets its own (stack budget stays the default elsewhere).
+#[test]
+fn only_document_storage_gets_the_16_mib_worker_stack() {
+    for mode in [Mode::Local, Mode::Dev] {
+        let instance = Instance::derive(Some("stack-test"), None).unwrap();
+        let mut services = IndexMap::new();
+        for svc in services_for_mode(mode) {
+            services.insert(
+                svc.compose_name.to_string(),
+                Some(dct::Service {
+                    environment: rust_service_env(svc.compose_name, &[]),
+                    ..Default::default()
+                }),
+            );
+        }
+        let compose = dct::Compose {
+            services: dct::Services(services),
+            ..Default::default()
+        };
+        let mut value = serde_yaml::to_value(compose).unwrap();
+        apply_tags(&mut value, mode, &instance);
+
+        let stack = value["services"][DOCUMENT_STORAGE_SERVICE]["environment"]["RUST_MIN_STACK"]
+            .as_str()
+            .unwrap_or_default();
+        assert_eq!(stack, DOCUMENT_STORAGE_STACK, "mode {mode:?}");
+
+        for svc in services_for_mode(mode).filter(|s| s.compose_name != DOCUMENT_STORAGE_SERVICE) {
+            let env = &value["services"][svc.compose_name]["environment"];
+            assert!(
+                env["RUST_MIN_STACK"].is_null(),
+                "{} must keep the default worker stack",
+                svc.compose_name
+            );
+        }
+    }
+}
+
 #[test]
 fn fusionauth_kickstart_is_privately_relabelled_and_replaces_inherited_mounts() {
     for name in [None, Some("selinux-test")] {

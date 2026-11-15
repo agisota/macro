@@ -116,16 +116,16 @@ pub fn generate(
 
     // 1. Rust services → runtime image + mounted binaries.
     for svc in services_for_mode(mode) {
-        let mut environment = vec![("PORT", "8080")];
+        let mut extra = Vec::new();
         if sidecars.outlook_emulator
             && svc.compose_name == microsoft_emulator::AUTHENTICATION_SERVICE
         {
-            environment.extend(microsoft_emulator::authentication_service_env());
+            extra.extend(microsoft_emulator::authentication_service_env());
         }
         let mut s = dct::Service {
             image: Some(runtime_image.clone()),
             volumes: mounts.iter().cloned().map(dct::Volumes::Simple).collect(),
-            environment: kv(&environment),
+            environment: rust_service_env(svc.compose_name, &extra),
             ..Default::default()
         };
         let ports = published_ports(mode, instance, svc);
@@ -801,6 +801,23 @@ fn override_in_place(service: &mut serde_yaml::Mapping, field: &str) {
     if let Some(existing) = service.remove(field) {
         service.insert(field.into(), override_tag(existing));
     }
+}
+
+/// The compose service that overflows the default tokio worker stack on a local
+/// debug binary; see the `RUST_MIN_STACK` note in docs/development/running-locally.md.
+const DOCUMENT_STORAGE_SERVICE: &str = "document_storage_service";
+const DOCUMENT_STORAGE_STACK: &str = "16777216";
+
+/// Environment for a generated runtime-image service. Only
+/// `document_storage_service` gets the 16 MiB worker stack documented in
+/// docs/development/running-locally.md; every other service keeps the default.
+fn rust_service_env(compose_name: &str, extra: &[(&str, &str)]) -> dct::Environment {
+    let mut pairs = vec![("PORT", "8080")];
+    if compose_name == DOCUMENT_STORAGE_SERVICE {
+        pairs.push(("RUST_MIN_STACK", DOCUMENT_STORAGE_STACK));
+    }
+    pairs.extend_from_slice(extra);
+    kv(&pairs)
 }
 
 fn kv(pairs: &[(&str, &str)]) -> dct::Environment {
