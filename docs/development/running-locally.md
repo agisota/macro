@@ -207,12 +207,15 @@ To touch only the affected services, keep the instance's generated env/Compose f
 and recreate them with the same Compose project/files and
 `up -d --no-deps --no-build <service>`.
 
-If a local debug service aborts with `tokio-rt-worker` stack overflow, give only
-that service `RUST_MIN_STACK=16777216` in an additional local Compose override,
-then recreate it with the same project, generated environment, and volumes.
-Keep this runtime override outside feature commits. Verify the request that
-triggered the crash, not just the health endpoint: document storage can start
-successfully and then exhaust the default worker stack on a Soup request.
+If a local debug service aborts with `tokio-rt-worker` stack overflow, check the
+generated per-instance override first: `local::gen_compose` already sets
+`RUST_MIN_STACK=16777216` for `document_storage_service`, the only service that
+needs it. Regenerate with `cargo x gen-compose --instance <name>`, then recreate
+that service with the same project, generated environment, and volumes. A
+hand-written override for any other service stays outside feature commits. Verify
+the request that triggered the crash, not just the health endpoint: document
+storage can start successfully and then exhaust the default worker stack on a
+Soup request.
 
 On SELinux hosts, FusionAuth can become healthy while silently skipping an
 unreadable kickstart. The generated per-instance kickstart directory uses

@@ -88,7 +88,7 @@ pub fn generate(
         let mut s = dct::Service {
             image: Some(RUNTIME_IMAGE_TAG.to_string()),
             volumes: mounts.iter().cloned().map(dct::Volumes::Simple).collect(),
-            environment: kv(&[("PORT", "8080")]),
+            environment: rust_service_env(svc.compose_name),
             ..Default::default()
         };
         let ports = published_ports(mode, instance, svc);
@@ -611,6 +611,22 @@ fn override_in_place(service: &mut serde_yaml::Mapping, field: &str) {
     if let Some(existing) = service.remove(field) {
         service.insert(field.into(), override_tag(existing));
     }
+}
+
+/// The compose service that overflows the default tokio worker stack on a local
+/// debug binary; see the `RUST_MIN_STACK` note in docs/development/running-locally.md.
+const DOCUMENT_STORAGE_SERVICE: &str = "document_storage_service";
+const DOCUMENT_STORAGE_STACK: &str = "16777216";
+
+/// Environment for a generated runtime-image service. Only
+/// `document_storage_service` gets the 16 MiB worker stack documented in
+/// docs/development/running-locally.md; every other service keeps the default.
+fn rust_service_env(compose_name: &str) -> dct::Environment {
+    let mut pairs = vec![("PORT", "8080")];
+    if compose_name == DOCUMENT_STORAGE_SERVICE {
+        pairs.push(("RUST_MIN_STACK", DOCUMENT_STORAGE_STACK));
+    }
+    kv(&pairs)
 }
 
 fn kv(pairs: &[(&str, &str)]) -> dct::Environment {
