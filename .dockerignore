@@ -1,6 +1,7 @@
 # Version-control and local-agent state
 .git
 .jj
+.delta
 .agents
 .cursor
 .claude/.local
