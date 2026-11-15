@@ -11,7 +11,7 @@ export function ssoFallbackNotice(error: string | undefined) {
     .with(
       'admin_consent_required',
       () =>
-        'Your organization needs an admin to approve Macro. Continue with your email instead.'
+        'Your organization needs an admin to approve Rox. Continue with your email instead.'
     )
     .with(
       'cancelled',

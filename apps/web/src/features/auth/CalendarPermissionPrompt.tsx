@@ -66,7 +66,7 @@ export function CalendarPermissionPrompt() {
       color: 'var(--color-accent)',
       dismissLabel: t('common.notNow'),
       content(): string {
-        return `Macro can now sync your calendar. Grant calendar access for ${link.email_address} to turn it on.`;
+        return `Rox can now sync your calendar. Grant calendar access for ${link.email_address} to turn it on.`;
       },
       actions: [
         {

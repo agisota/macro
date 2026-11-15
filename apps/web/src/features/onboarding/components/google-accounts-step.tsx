@@ -85,7 +85,7 @@ export function GoogleAccountsStep(props: GoogleAccountsStepProps) {
             fallback={
               props.importMode
                 ? 'Optional: import an external inbox to read, send, and organize email and manage its calendars. Your Rox address and native Drive remain yours without it. Your password stays with Google, and you can disconnect anytime.'
-                : 'Connect through Google to read, send, and organize email and manage your calendars in Macro. Agents ask for your approval before sending email. Your password stays with Google, and you can disconnect anytime.'
+                : 'Connect through Google to read, send, and organize email and manage your calendars in Rox. Agents ask for your approval before sending email. Your password stays with Google, and you can disconnect anytime.'
             }
           >
             <Match when={withMicrosoft()}>
@@ -102,8 +102,8 @@ export function GoogleAccountsStep(props: GoogleAccountsStepProps) {
               </span>
             </Match>
             <Match when={personal()}>
-              Add a personal account for email and calendar in Macro. This is
-              optional; your Macro sign-in stays the same. Agents ask for
+              Add a personal account for email and calendar in Rox. This is
+              optional; your Rox sign-in stays the same. Agents ask for
               approval before sending email, and you can disconnect anytime.
             </Match>
           </Switch>

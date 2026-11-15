@@ -77,7 +77,7 @@ export function SignupJourneyView(props: {
             legal={
               journey.step() === 'work' ? (
                 <>
-                  Your work email becomes your Macro sign-in. By continuing, you
+                  Your work email becomes your Rox sign-in. By continuing, you
                   agree to our{' '}
                   <a href="/terms" class="underline underline-offset-2">
                     terms

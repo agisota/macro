@@ -31,7 +31,7 @@ describe('mobile-web sign-up', () => {
     );
     const { fake } = setup();
     submit(' Visitor@Example.com ');
-    await screen.findByText('Macro is better on desktop.');
+    await screen.findByText('Rox is better on desktop.');
     const calls = fake.calls();
     expect(calls).toEqual(
       expect.arrayContaining([
