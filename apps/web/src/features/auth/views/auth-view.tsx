@@ -178,6 +178,7 @@ function EmailStep(props: { login: EmailLogin }) {
       email={props.login.email()}
       handle={props.login.handle()}
       signup={props.login.isSignup()}
+      handleRequired={props.login.handleRequired()}
       password={props.login.password()}
       passwordRequired={props.login.passwordRequired()}
       sending={props.login.sending()}

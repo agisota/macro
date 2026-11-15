@@ -50,6 +50,11 @@ export function createEmailLogin(
   const [handle, setHandle] = createSignal('');
   const [password, setPassword] = createSignal('');
   const [passwordRequired, setPasswordRequired] = createSignal(false);
+  /**
+   * The service answered that this address is new, so a handle is needed even
+   * though the screen is a sign-in. Cleared once a code goes out.
+   */
+  const [handleRequired, setHandleRequired] = createSignal(false);
   const [sending, setSending] = createSignal(false);
   const [sendError, setSendError] = createSignal<string | undefined>(
     options.fallbackNotice
@@ -125,7 +130,10 @@ export function createEmailLogin(
   const send = async (): Promise<boolean> => {
     const address = email().trim();
     if (sending() || !address) return false;
-    if (options.intent !== 'login' && !isAllowedHandle(handle())) {
+    // Signup always takes a handle; sign-in asks for one once the service says
+    // the address is new.
+    const needsHandle = options.intent !== 'login' || handleRequired();
+    if (needsHandle && !isAllowedHandle(handle())) {
       setSendError(
         'Choose 3–32 lowercase letters, numbers, dots, underscores, or hyphens. Reserved names and consecutive dots are not allowed.'
       );
@@ -137,12 +145,13 @@ export function createEmailLogin(
     try {
       const result = await context.sendEmailCode({
         email: address,
-        handle: options.intent === 'login' ? undefined : handle(),
+        handle: needsHandle ? handle() : undefined,
         password: passwordRequired() ? password() : undefined,
         isAgent: options.intent === 'agent-signup',
       });
       switch (result.t) {
         case 'code-sent':
+          setHandleRequired(false);
           setEmail(address);
           setCode('');
           setStep('verify');
@@ -154,6 +163,12 @@ export function createEmailLogin(
           return true;
         case 'password-required':
           setPasswordRequired(true);
+          return false;
+        case 'handle-required':
+          // Not an error the person can fix by retrying: the form grows a
+          // handle field and the next submit carries it.
+          setHandleRequired(true);
+          setSendError();
           return false;
         case 'signed-in':
           await finish();
@@ -177,9 +192,14 @@ export function createEmailLogin(
     email,
     handle,
     setHandle,
+    handleRequired,
     isSignup: () => options.intent !== 'login',
     setEmail: (address: string) => {
-      if (address !== email()) resetAttempt();
+      if (address !== email()) {
+        resetAttempt();
+        // A different address may already have an account.
+        setHandleRequired(false);
+      }
       return setEmail(address);
     },
     password,
