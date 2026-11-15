@@ -22,6 +22,8 @@ export type SendCodeResult =
   | { t: 'code-sent'; autoCode?: string }
   /** This address signs in with a password; ask for it and send again. */
   | { t: 'password-required' }
+  /** The address is new and a handle is needed to create its account. */
+  | { t: 'handle-required' }
   /** A password login finished without a code. */
   | { t: 'signed-in' }
   /** The address belongs to an SSO domain; the page is navigating there. */

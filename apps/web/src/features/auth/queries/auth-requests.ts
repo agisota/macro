@@ -24,6 +24,9 @@ async function isPasswordLogin(email: string) {
 const referralCode = () =>
   new URL(window.location.href).searchParams.get('referral_code');
 
+/** The service's 400 for an unknown address sent without a signup handle. */
+const HANDLE_REQUIRED = 'handle is required';
+
 /** Starts passwordless sign-in, or signs in a password account directly. */
 export async function sendEmailCode(input: {
   email: string;
@@ -60,7 +63,16 @@ export async function sendEmailCode(input: {
     }
   ).catch(() => undefined);
   if (!response) return { t: 'failed', message: 'Unable to reach Rox.' };
-  if (!response.ok) return { t: 'failed', message: await response.text() };
+  if (!response.ok) {
+    const message = await response.text();
+    // An unknown address needs a handle; the form asks for one and resends.
+    if (
+      response.status === 400 &&
+      message.trim().toLowerCase().includes(HANDLE_REQUIRED)
+    )
+      return { t: 'handle-required' };
+    return { t: 'failed', message };
+  }
 
   // 202: the address must sign in through its organization's identity provider.
   if (response.status === 202) {
