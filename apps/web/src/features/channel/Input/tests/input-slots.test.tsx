@@ -374,7 +374,10 @@ vi.mock('@queries/messages/typing', () => ({
   usePostTypingUpdateMutation: () => ({ mutate: vi.fn() }),
 }));
 
-import { MACRO_AGENT_PRINCIPAL_ID } from '@core/constant/macroAgent';
+import {
+  MACRO_AGENT_NAME,
+  MACRO_AGENT_PRINCIPAL_ID,
+} from '@core/constant/macroAgent';
 import { MACRO_NEW_PRINCIPAL_ID } from '@core/constant/macroNew';
 import { codexMentionUser, cursorMentionUser } from '../../macroAi';
 import { ThreadReplyChannelInput } from '../../Thread/ThreadReplyChannelInput';
@@ -554,7 +557,9 @@ describe('Input slots', () => {
       ));
       const users = editorMocks.mentionUsers?.() ?? [];
       expect(
-        users.filter((user) => user.name === 'Macro').map((user) => user.id)
+        users
+          .filter((user) => user.name === MACRO_AGENT_NAME)
+          .map((user) => user.id)
       ).toEqual([enabled ? MACRO_NEW_PRINCIPAL_ID : MACRO_AGENT_PRINCIPAL_ID]);
       expect(users.map((user) => user.id)).toEqual(
         expect.arrayContaining(['bot|owned', 'bot|team'])
@@ -565,24 +570,28 @@ describe('Input slots', () => {
   it('offers a single Macro mention, aimed by the agents rollout', () => {
     render(() => <ChannelInput input={baseInput} />);
     expect(
-      editorMocks.mentionUsers?.().filter((user) => user.name === 'Macro')
+      editorMocks.mentionUsers?.().filter(
+        (user) => user.name === MACRO_AGENT_NAME
+      )
     ).toEqual([
       {
         id: MACRO_AGENT_PRINCIPAL_ID,
-        name: 'Macro',
-        email: 'Macro',
+        name: MACRO_AGENT_NAME,
+        email: MACRO_AGENT_NAME,
       },
     ]);
 
     editorMocks.agentsEnabled = true;
     render(() => <ChannelInput input={baseInput} />);
     expect(
-      editorMocks.mentionUsers?.().filter((user) => user.name === 'Macro')
+      editorMocks.mentionUsers?.().filter(
+        (user) => user.name === MACRO_AGENT_NAME
+      )
     ).toEqual([
       {
         id: MACRO_NEW_PRINCIPAL_ID,
-        name: 'Macro',
-        email: 'Macro',
+        name: MACRO_AGENT_NAME,
+        email: MACRO_AGENT_NAME,
       },
     ]);
   });

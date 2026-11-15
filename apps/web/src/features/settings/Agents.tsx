@@ -1,3 +1,4 @@
+import { displayName } from '@core/constant/brand';
 import { useOpenAgentDm } from '@app/features/agent-dms/open-agent-dm';
 import {
   type AgentKind,
@@ -486,7 +487,7 @@ function summarizeAgent(
 }
 
 function whereItRunsLabel(id: string, harness?: ConnectedHarness): string {
-  if (id === 'in-memory') return 'In Macro';
+  if (id === 'in-memory') return `In ${displayName}`;
   if (id === 'cursor') return 'In Cursor';
   // Any other id is a registered macrod harness uuid; if it is not in the
   // connected list any more, the harness has been removed.
@@ -966,7 +967,7 @@ function AgentEditorPage(props: {
                 <p class="mt-0.5 text-xs text-ink-extra-muted">
                   {apiKeyLocked()
                     ? apiKeyHelp(provider())
-                    : 'Runs on Macro usage unless you add one.'}
+                    : `Runs on ${displayName} usage unless you add one.`}
                 </p>
               </div>
               <Show when={!apiKeyLocked()}>
@@ -1281,8 +1282,8 @@ function AgentEditorPage(props: {
                   <legend class="sr-only">Where it runs</legend>
                   <WhereItRunsOption
                     value="in-memory"
-                    title="In Macro"
-                    description="Fast and built in. Uses Macro tools and your connected apps."
+                    title={`In ${displayName}`}
+                    description={`Fast and built in. Uses ${displayName} tools and your connected apps.`}
                     icon={<MacroLogo />}
                     checked={harnessId() === IN_MEMORY_HARNESS.id}
                     onSelect={() => handleHarnessChange(IN_MEMORY_HARNESS.id)}
