@@ -201,6 +201,34 @@ fn roxds_directory_lives_in_home_or_the_windows_user_profile() {
 }
 
 #[test]
+fn a_pre_rename_directory_keeps_the_installed_config() {
+    let home = tempfile::tempdir().expect("temp dir");
+    let home_path = home.path().to_str().expect("utf-8 home");
+    let current = home.path().join(".roxd");
+    let previous = home.path().join(".macrod");
+
+    // Nothing installed: a fresh install writes the current directory.
+    assert_eq!(
+        roxd_directory_in_home(Some(home_path), None),
+        Some(current.clone())
+    );
+
+    // A machine the old release paired keeps serving from its old directory.
+    std::fs::create_dir(&previous).expect("old directory");
+    assert_eq!(
+        roxd_directory_in_home(Some(home_path), None),
+        Some(previous)
+    );
+
+    // Once the current directory exists the daemon uses it again.
+    std::fs::create_dir(&current).expect("current directory");
+    assert_eq!(
+        roxd_directory_in_home(Some(home_path), None),
+        Some(current)
+    );
+}
+
+#[test]
 fn a_second_lock_on_one_config_is_refused_until_the_first_is_released() {
     let directory = tempfile::tempdir().expect("temp dir");
     let path = directory.path().join("roxd.toml");

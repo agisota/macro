@@ -347,7 +347,7 @@ fn profiles_renders_an_aligned_table() {
 
     assert_eq!(
         rendered,
-        "PROFILE    ROXD   HARNESS                               CONFIG\n\
+        "PROFILE    ROXD     HARNESS                               CONFIG\n\
          (default)  stopped  no config                             /home/someone/.roxd/roxd.toml\n\
          work       running  00000000-0000-0000-0000-0000004a125a  /home/someone/.roxd/profiles/work.toml\n"
     );

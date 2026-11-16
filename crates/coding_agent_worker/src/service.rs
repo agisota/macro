@@ -1,6 +1,6 @@
 //! Headless mode for embedders: the serving core without the terminal panel.
 //!
-//! The Macro desktop app bundles roxd and manages it as a child process.
+//! The Rox desktop app bundles roxd and manages it as a child process.
 //! `roxd service` is the contract between them: setup flags configure
 //! `roxd.toml` (the same `~/.roxd/roxd.toml` the TUI uses, or the
 //! `--profile` it names, locked while serving) without a TUI, state changes

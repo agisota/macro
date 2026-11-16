@@ -275,6 +275,8 @@ fn web_setting_in(table: &toml::Table) -> Option<&'static str> {
 
 /// roxd's directory, `~/.roxd` (`%USERPROFILE%\.roxd` on Windows):
 /// the default config, named profiles, adapter installs, and Herdr storage.
+/// An install carried over from `~/.macrod` stays there (see
+/// [`roxd_directory_in_home`]).
 pub fn roxd_directory() -> Option<PathBuf> {
     let home = environment::Home::new();
     let user_profile = environment::Userprofile::new();
@@ -285,12 +287,22 @@ pub fn roxd_directory() -> Option<PathBuf> {
 }
 
 /// `HOME` wins; `USERPROFILE` is the fallback Windows needs.
+///
+/// A directory left by the release named after the daemon's old binary
+/// (`~/.macrod`) still holds that install's pairing, profiles and adapters.
+/// Rebasing it onto `~/.roxd` would silently unpair every machine that
+/// upgrades, so the old directory keeps serving until a `~/.roxd` exists.
 fn roxd_directory_in_home(home: Option<&str>, user_profile: Option<&str>) -> Option<PathBuf> {
-    [home, user_profile]
+    let home = [home, user_profile]
         .into_iter()
         .flatten()
-        .find(|directory| !directory.is_empty())
-        .map(|home| PathBuf::from(home).join(".roxd"))
+        .find(|directory| !directory.is_empty())?;
+    let current = PathBuf::from(home).join(".roxd");
+    if current.exists() {
+        return Some(current);
+    }
+    let previous = PathBuf::from(home).join(".macrod");
+    Some(if previous.exists() { previous } else { current })
 }
 
 /// An exclusive hold on one config: one roxd serves one harness.

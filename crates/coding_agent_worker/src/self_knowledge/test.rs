@@ -13,13 +13,13 @@ fn renders_every_enabled_capability() {
         section,
         format!(
             "<roxd-runtime>\n\
-             You are running through roxd {}, the Macro agent daemon on the operator's own {} machine. \
-             Macro users reach you from Macro (channels, documents, agent sessions); each prompt arrives \
-             through roxd, and your replies stream back to Macro.\n\
+             You are running through roxd {}, the Rox agent daemon on the operator's own {} machine. \
+             Rox users reach you from Rox (channels, documents, agent sessions); each prompt arrives \
+             through roxd, and your replies stream back to Rox.\n\
              - Workspace: you work in `/home/operator/code` on the operator's machine. Changes there are real.\n\
-             - MCP servers forwarded from Macro: macro, linear. Use them to read and act in the Macro workspace; \
-             for questions about Macro itself, call its SelfKnowledge tool.\n\
-             - Permission bypass: Macro approves your tool permission requests automatically; \
+             - MCP servers forwarded from Rox: macro, linear. Use them to read and act in the Rox workspace; \
+             for questions about Rox itself, call its SelfKnowledge tool.\n\
+             - Permission bypass: Rox approves your tool permission requests automatically; \
              no one is asked before you run commands or edit files.\n\
              </roxd-runtime>",
             env!("CARGO_PKG_VERSION"),

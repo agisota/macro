@@ -85,7 +85,7 @@ impl Dispatcher {
                     )
                     .await
                     .map_err(|error| {
-                        DispatchError::Workspace(format!("select a repository in Macro: {error}"))
+                        DispatchError::Workspace(format!("select a repository in Rox: {error}"))
                     })?;
                     &inferred
                 }

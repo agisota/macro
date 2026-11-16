@@ -123,7 +123,7 @@ enum Command {
         #[arg(last = true)]
         agent_args: Vec<String>,
     },
-    /// Run headless, managed by an embedding app such as the Macro desktop
+    /// Run headless, managed by an embedding app such as the Rox desktop
     /// app: no terminal panel, state changes as JSON lines on stdout, and
     /// shutdown on SIGTERM, Ctrl-C, or stdin closing.
     Service {
@@ -145,7 +145,7 @@ enum Command {
         #[arg(long)]
         workspace: Option<std::path::PathBuf>,
     },
-    /// Join this Macro computer to Macro at first boot: write the config,
+    /// Join this Rox computer to Rox at first boot: write the config,
     /// and claim the pre-approved pairing.
     #[cfg(unix)]
     Enroll {

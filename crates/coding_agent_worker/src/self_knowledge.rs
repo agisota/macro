@@ -120,9 +120,9 @@ pub(crate) fn render(facts: &SessionFacts) -> String {
     let mut lines = vec![
         "<roxd-runtime>".to_owned(),
         format!(
-            "You are running through roxd {}, the Macro agent daemon on the operator's own {} machine. \
-             Macro users reach you from Macro (channels, documents, agent sessions); each prompt arrives \
-             through roxd, and your replies stream back to Macro.",
+            "You are running through roxd {}, the Rox agent daemon on the operator's own {} machine. \
+             Rox users reach you from Rox (channels, documents, agent sessions); each prompt arrives \
+             through roxd, and your replies stream back to Rox.",
             env!("CARGO_PKG_VERSION"),
             std::env::consts::OS,
         ),
@@ -135,14 +135,14 @@ pub(crate) fn render(facts: &SessionFacts) -> String {
     }
     if !facts.mcp_servers.is_empty() {
         lines.push(format!(
-            "- MCP servers forwarded from Macro: {}. Use them to read and act in the Macro workspace; \
-             for questions about Macro itself, call its SelfKnowledge tool.",
+            "- MCP servers forwarded from Rox: {}. Use them to read and act in the Rox workspace; \
+             for questions about Rox itself, call its SelfKnowledge tool.",
             facts.mcp_servers.join(", ")
         ));
     }
     if facts.permission_bypass {
         lines.push(
-            "- Permission bypass: Macro approves your tool permission requests automatically; \
+            "- Permission bypass: Rox approves your tool permission requests automatically; \
              no one is asked before you run commands or edit files."
                 .to_owned(),
         );
