@@ -1,0 +1,17 @@
+{
+  "crm.people": "Клиенты",
+  "crm.searchPeople": "Поиск клиентов",
+  "crm.person": "Человек",
+  "crm.company": "Компания",
+  "crm.lastContacted": "Последний контакт",
+  "crm.import": "Импорт клиентов",
+  "crm.importCompaniesTitle": "Импорт клиентов",
+  "crm.importCompaniesDescription": "Загрузите CSV с колонкой домена и, при необходимости, колонкой имени или компании, например экспорт CRM Rox. Проверьте компании, прежде чем импортировать их в CRM команды.",
+  "crm.importUploadCsv": "Загрузить CSV",
+  "crm.importUploadCsvDescription": "Импорт компаний из выгрузки таблицы.",
+  "crm.importChooseFile": "Выбрать файл",
+  "crm.importChangeFile": "Сменить файл",
+  "crm.importNoFile": "Файл не выбран",
+  "crm.importClose": "Закрыть",
+  "crm.importCompaniesAction": "Импортировать компании"
+}
