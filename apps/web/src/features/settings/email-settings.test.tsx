@@ -32,6 +32,13 @@ vi.mock('@queries/email/settings', () => ({
   useUpdateEmailSettingsMutation: () => ({ isPending: false, mutate: vi.fn() }),
 }));
 vi.mock('./Email', () => ({ EmailCard: () => null }));
+vi.mock('./email-rox-mailbox', () => ({
+  RoxMailboxSettings: () => {
+    const row = document.createElement('section');
+    row.textContent = 'Rox mailbox';
+    return row;
+  },
+}));
 vi.mock('./SignatureSection', () => ({
   SignatureSection: (props: {
     link: { email_address: string };

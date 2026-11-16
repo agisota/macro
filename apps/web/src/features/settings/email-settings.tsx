@@ -14,6 +14,7 @@ import type { Link as EmailLink } from '@service-email/generated/schemas';
 import { Button, ToggleSwitch } from '@ui';
 import { For, Show, Suspense } from 'solid-js';
 import { EmailCard } from './Email';
+import { RoxMailboxSettings } from './email-rox-mailbox';
 import {
   SettingsCard,
   SettingsPage,
@@ -46,6 +47,7 @@ export function EmailSettings() {
           <EmailCard />
         </Suspense>
       </SettingsSection>
+      <RoxMailboxSettings />
       <Show when={signatures().enabled}>
         <SettingsSection
           title="Signatures"
