@@ -66,7 +66,7 @@ export function SystemStatusDashboard() {
 function Gate(props: { body: string }) {
   return (
     <div class="flex flex-col gap-1 rounded-xl border border-edge p-6">
-      <h2 class="text-base font-semibold">Macro staff only</h2>
+      <h2 class="text-base font-semibold">Rox staff only</h2>
       <p class="text-sm text-ink-muted">{props.body}</p>
     </div>
   );

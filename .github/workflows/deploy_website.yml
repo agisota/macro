@@ -77,7 +77,7 @@ jobs:
       with:
         playwright: 'true'
     - name: Type-check and test
-      run: env -u LD_LIBRARY_PATH -u BASH_ENV bun run type-check && env -u LD_LIBRARY_PATH -u BASH_ENV bun run test -- --maxWorkers=2
+      run: env -u LD_LIBRARY_PATH -u BASH_ENV bun run type-check && env -u LD_LIBRARY_PATH -u BASH_ENV bun run test
       working-directory: apps/marketing
     - name: Build
       run: env -u LD_LIBRARY_PATH -u BASH_ENV bun run build

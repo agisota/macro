@@ -121,7 +121,7 @@ function archiveEntries(
   // Imports drop macros with a warning; Macro's own exports must never
   // contain them.
   if (!allowMacros && [...names].some(isMacroPart))
-    throw new Error('Workbooks written by Macro must not contain macros.');
+    throw new Error('Workbooks written by Rox must not contain macros.');
   return { entries, centralStart };
 }
 
