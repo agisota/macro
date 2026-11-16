@@ -1,0 +1,3 @@
+{
+  "websocketClientDisconnected": "Не удалось отправить сообщение в WebSocket, клиент, скорее всего, отключился"
+}
