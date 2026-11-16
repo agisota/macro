@@ -312,7 +312,7 @@ fn entries_round_trip_every_property() {
                 actions: Arc::from([crate::model::Action {
                     connection: "URL".into(),
                     destination: None,
-                    url: Some("https://macro.com".into()),
+                    url: Some("https://rox.one".into()),
                     open_in_new_tab: Some(true),
                     ..crate::model::Action::navigate(Guid::default())
                 }]),

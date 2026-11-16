@@ -53,7 +53,7 @@ const OBSERVED_WORKFLOWS: &[&str] = &[
     "Reusable Deploy Service",
     "Reusable Preview Service",
     "SDK Check",
-    "Test macrod update",
+    "Test roxd update",
     "Web App Pr Checks",
     "cargo deny check",
     "cargo workspace dependency check",

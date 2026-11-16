@@ -109,7 +109,7 @@ describe('useSsoLogin', () => {
   it.each([
     { host: proxyAuthHost, localStack: false, mobile: 'true' },
     { host: 'https://localhost:28009/auth', localStack: true, mobile: 'true' },
-    { host: 'https://gateway.macro.com/auth', localStack: false, mobile: null },
+    { host: 'https://gateway.rox.one/auth', localStack: false, mobile: null },
   ])(
     'redirects browser SSO through $host',
     async ({ host, localStack, mobile }) => {
@@ -173,7 +173,7 @@ describe('useSsoLogin', () => {
   // they do against hosted services.
   const shellHosts = [
     { host: proxyAuthHost, localStack: false },
-    { host: 'https://gateway.macro.com/auth', localStack: false },
+    { host: 'https://gateway.rox.one/auth', localStack: false },
     { host: 'https://localhost:28009/auth', localStack: true },
   ];
 

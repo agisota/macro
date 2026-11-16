@@ -412,13 +412,13 @@ export type AgentDmProfile = {
 };
 
 /**
- * The runtime an agent runs on: a harness slug and, for `macrod`, the
+ * The runtime an agent runs on: a harness slug and, for `roxd`, the
  * registered harness serving it. Travel together because one without the
  * other is never a valid choice.
  */
 export type AgentHarnessSelection = {
     /**
-     * Harness slug, e.g. `in-memory`, `cursor`, or `macrod`.
+     * Harness slug, e.g. `in-memory`, `cursor`, or `roxd`.
      */
     harness: string;
     harness_id?: null | HarnessId;
@@ -7481,7 +7481,7 @@ export type DocumentTextContent = {
 };
 
 /**
- * Events that can be published to [`MacroDocumentsTopic`].
+ * Events that can be published to [`RoxDocumentsTopic`].
  */
 export type DocumentTopicEvent = {
     event_type: 'document.created';
@@ -12732,7 +12732,7 @@ export type Harness = {
      */
     id: HarnessId;
     /**
-     * Runtime kind. Currently always `macrod`.
+     * Runtime kind. Currently always `roxd`.
      */
     kind: string;
     /**
@@ -19580,7 +19580,7 @@ export type SoupForeignEntity = {
 };
 
 /**
- * A paired runtime (a macrod machine), listed only by attention feeds: its
+ * A paired runtime (a roxd machine), listed only by attention feeds: its
  * access requests and removals are notifications filed under it, and it has
  * no page of its own, so Settings → Machines opens it.
  */

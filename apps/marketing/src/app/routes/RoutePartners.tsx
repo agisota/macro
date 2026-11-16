@@ -13,9 +13,9 @@ import { setPageSeo } from '../utils/utilSeo';
 import '../../routes/posts/posts-shell.css';
 import './partners-hero.css';
 
-const SUPPORT_EMAIL = 'support@macro.com';
+const SUPPORT_EMAIL = 'support@rox.one';
 const KICKOFF_URL =
-  'https://macro.com/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/partnerships-program';
+  'https://rox.one/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/partnerships-program';
 
 const partnerFaq: FaqItem[] = [
   {
@@ -118,7 +118,7 @@ function PartnerCtaBar() {
       </a>
       <a
         class="partners-action partners-action-secondary"
-        href="mailto:partner@macro.com"
+        href="mailto:partner@rox.one"
       >
         Get in touch
       </a>

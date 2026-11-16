@@ -1,12 +1,12 @@
 # Website
 
 Pulumi project `website-infra` (stacks `macro-inc/dev`, `macro-inc/prod`). It
-publishes `apps/marketing/dist` to S3 and owns the macro.com CloudFront
+publishes `apps/marketing/dist` to S3 and owns the rox.one CloudFront
 distribution: the public site, `/app` routing to the web-app stack, `/.well-known`
 OIDC, `resources*` to Ghost, and the `www`/`chat`/signed-in-root redirects in
 `wwwRedirect/handler.js`.
 
-The legacy `chat.macro.com` / `chat-dev.macro.com` redirect hostnames are disabled
+The legacy `chat.rox.one` / `chat-dev.rox.one` redirect hostnames are disabled
 by default. Set `website-infra:enableChatRedirect` to `true` for a stack only after
 its `certArn` covers the corresponding hostname. This enables both the CloudFront
 alias and its Route 53 record; leaving it disabled removes both. CloudFront
@@ -49,7 +49,7 @@ contacting AWS and checks the policies attached to the app's actual behavior.
 
 ## Apex TXT
 
-The prod stack owns the whole TXT set at `macro.com` (SPF, site verifications), as
+The prod stack owns the whole TXT set at `rox.one` (SPF, site verifications), as
 one resource, retained on delete. Add a value by adding it to the list in
 `index.ts`; anything not listed is removed from DNS on the next prod deploy. The
 set predates this stack, so it needs adopting into state once, after the code is on
@@ -63,7 +63,7 @@ From the repo root:
 cd infra/stacks/website
 pulumi import --stack macro-inc/prod --generate-code=false --yes --file <(echo '{"resources":[{
   "type": "aws:route53/record:Record", "name": "apex-txt",
-  "id": "Z0766278GIHB3CVV9CIL_macro.com_TXT", "version": "6.83.4"}]}')
+  "id": "Z0766278GIHB3CVV9CIL_rox.one_TXT", "version": "6.83.4"}]}')
 pulumi preview --stack macro-inc/prod --diff
 ```
 
@@ -85,7 +85,7 @@ production dispatch with `preview_only=false`.
 To preview locally:
 
 ```sh
-cd apps/marketing && VITE_APP_BASE_URL=https://dev.macro.com bun run build
+cd apps/marketing && VITE_APP_BASE_URL=https://dev.rox.one bun run build
 cd ../../infra/stacks/website && bun run preview:dev
 ```
 

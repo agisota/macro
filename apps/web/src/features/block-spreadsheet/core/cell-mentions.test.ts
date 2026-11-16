@@ -26,8 +26,8 @@ beforeAll(() =>
 );
 const person = encodeCellMention({
   type: 'user',
-  userId: 'macro|test@macro.com',
-  email: 'test@macro.com',
+  userId: 'macro|test@rox.one',
+  email: 'test@rox.one',
   displayName: 'Taylor',
 });
 describe('spreadsheet mention source', () => {
@@ -85,7 +85,7 @@ describe('spreadsheet mention source', () => {
       end: 10,
       query: 'tay',
     });
-    expect(cellMentionQuery('test@macro.com', 14)).toBeUndefined();
+    expect(cellMentionQuery('test@rox.one', 14)).toBeUndefined();
     expect(cellMentionQuery('="@tay"', 6)).toBeUndefined();
     expect(cellMentionQuery(person, 20)).toBeUndefined();
     expect(cellMentionQuery(person + ' @', person.length + 2)?.query).toBe('');

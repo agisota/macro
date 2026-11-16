@@ -90,8 +90,8 @@ const MINUTES_PER_WEEK: u64 = 60 * 24 * 7;
 
 fn frontend_host(env: Environment) -> Url {
     let host = match env {
-        Environment::Production => "https://macro.com".to_string(),
-        Environment::Develop => "https://dev.macro.com".to_string(),
+        Environment::Production => "https://rox.one".to_string(),
+        Environment::Develop => "https://dev.rox.one".to_string(),
         Environment::Local => {
             #[expect(clippy::disallowed_methods, reason = "Only used when running locally")]
             let port = std::env::var("FRONTEND_PORT").unwrap_or_else(|_| "3000".to_string());
@@ -123,9 +123,9 @@ impl NotificationExtEmail for InviteToMacro {
             .sender_name
             .as_deref()
             .or(self.sender_email.as_deref())
-            .unwrap_or("A Macro user");
+            .unwrap_or("A Rox user");
         EmailContent::new(
-            format!("{} has invited you to join Macro", sender),
+            format!("{} has invited you to join Rox", sender),
             self.render()
                 .expect("InviteToMacro template render failed in format_email"),
         )
@@ -213,7 +213,7 @@ impl NotificationTitle for ChannelInviteMetadata {
         &self,
         _sender_id: Option<MacroUserIdStr<'_>>,
     ) -> Result<String, rootcause::Report> {
-        Ok("Open macro to continue".to_string())
+        Ok("Open Rox to continue".to_string())
     }
 }
 
@@ -221,7 +221,7 @@ impl NotificationExtEmail for ChannelInviteMetadata {
     fn format_email(&self) -> EmailContent {
         let sender = self.sender_display();
         let subject = if self.is_direct_message {
-            format!("{sender} sent you a message on Macro")
+            format!("{sender} sent you a message on Rox")
         } else {
             format!("{sender} has invited you to join #{}", self.channel_name)
         };
@@ -344,7 +344,7 @@ pub struct InviteToTeamMetadata {
 #[derive(Serialize, Deserialize, Debug, Clone, Copy, Default, PartialEq, Eq, ToSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum InviteePlan {
-    /// Macro's free plan. Invites sent before the plan was recorded read as
+    /// Rox's free plan. Invites sent before the plan was recorded read as
     /// this, which stays true: joining a team never costs the invitee anything.
     #[default]
     Free,
@@ -399,13 +399,13 @@ impl InviteToTeamMetadata {
                 "Pro is included: {team} covers your seat, so you get every AI model and agent at no cost to you."
             ),
             InviteePlan::Free => format!(
-                "Free to join: there's nothing to pay. Accept the invite to start working with {team} in Macro."
+                "Free to join: there's nothing to pay. Accept the invite to start working with {team} in Rox."
             ),
         };
         let url = self.invite_url();
 
         format!(
-            "{inviter} invited you to the {team} team on Macro. Macro brings your documents, \
+            "{inviter} invited you to the {team} team on Rox. Rox brings your documents, \
              tasks, and conversations together in one place.\n\n\
              {plan}\n\n\
              Accept the invite by signing in or signing up with this email address:\n\
@@ -432,7 +432,7 @@ impl NotificationExtEmail for InviteToTeamMetadata {
     fn format_email(&self) -> EmailContent {
         EmailContent {
             subject: format!(
-                "{}{} invited you to join {} on Macro",
+                "{}{} invited you to join {} on Rox",
                 if self.reminder { "Reminder: " } else { "" },
                 self.inviter(),
                 self.team_name
@@ -442,7 +442,7 @@ impl NotificationExtEmail for InviteToTeamMetadata {
                 .expect("InviteToTeamMetadata template render failed in format_email"),
             text: Some(self.text_body()),
             // An address as a display name reads as spoofing to mail filters, so an inviter
-            // without a name leaves Macro's own sender name in place.
+            // without a name leaves Rox's own sender name in place.
             from_name: self.inviter_display_name(),
             reply_to: Some(EmailStr(self.invited_by.email_part()).into_owned()),
         }

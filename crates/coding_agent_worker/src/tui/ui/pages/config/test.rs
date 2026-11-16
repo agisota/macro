@@ -24,8 +24,8 @@ fn screen(app: &App, width: u16, height: u16) -> String {
 #[test]
 fn short_config_keeps_selected_settings_and_web_owned_values_visible() {
     let directory = tempfile::tempdir().unwrap();
-    let path = directory.path().join("macrod.toml");
-    std::fs::write(&path, include_str!("../../../../../default.macrod.toml")).unwrap();
+    let path = directory.path().join("roxd.toml");
+    std::fs::write(&path, include_str!("../../../../../default.roxd.toml")).unwrap();
     let selection = ConfigSelection {
         path: path.clone(),
         profile: None,
@@ -39,7 +39,7 @@ fn short_config_keeps_selected_settings_and_web_owned_values_visible() {
         team_agent_user_id: None,
         claude_mode: ClaudeMode::MacroCredits,
         id: HarnessId::TEST_A,
-        kind: "macrod".to_owned(),
+        kind: "roxd".to_owned(),
         name: "Desk".to_owned(),
         owner: HarnessOwner::User {
             user_id: "macro|user".to_owned(),
@@ -62,7 +62,7 @@ fn short_config_keeps_selected_settings_and_web_owned_values_visible() {
             );
             assert!(screen.contains("without approval"));
             assert!(screen.contains("teammates can command agents"));
-            assert!(screen.contains("https://macro.com/app/settings/runtimes"));
+            assert!(screen.contains("https://rox.one/app/settings/runtimes"));
         }
     }
     screen(&app, 20, 10);
@@ -71,8 +71,8 @@ fn short_config_keeps_selected_settings_and_web_owned_values_visible() {
 #[test]
 fn unpaired_config_points_at_the_web_settings() {
     let directory = tempfile::tempdir().unwrap();
-    let path = directory.path().join("macrod.toml");
-    std::fs::write(&path, include_str!("../../../../../default.macrod.toml")).unwrap();
+    let path = directory.path().join("roxd.toml");
+    std::fs::write(&path, include_str!("../../../../../default.roxd.toml")).unwrap();
     let selection = ConfigSelection {
         path: path.clone(),
         profile: None,
@@ -82,6 +82,6 @@ fn unpaired_config_points_at_the_web_settings() {
 
     let screen = screen(&app, 100, 24);
     assert!(screen.contains("paired and reachable"));
-    assert!(screen.contains("https://macro.com/app/settings/runtimes"));
+    assert!(screen.contains("https://rox.one/app/settings/runtimes"));
     assert!(!screen.contains("without approval"));
 }

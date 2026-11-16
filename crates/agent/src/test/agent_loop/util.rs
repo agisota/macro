@@ -38,7 +38,7 @@ pub(crate) fn test_loop() -> AgentLoop {
 
 /// A stable test user id.
 pub(crate) fn test_user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("test@macro.com").expect("valid user id")
+    MacroUserIdStr::try_from_email("test@rox.one").expect("valid user id")
 }
 
 /// The usage context every test session runs under.

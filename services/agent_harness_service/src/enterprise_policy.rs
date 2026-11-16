@@ -19,7 +19,7 @@ impl TeamDirectory for EnterpriseTeams {
     }
 }
 
-/// Production agent-session admission over MacroDB and the owning teams repository.
+/// Production agent-session admission over RoxDB and the owning teams repository.
 pub fn runtime_policy(
     pool: PgPool,
 ) -> RuntimePolicy<enterprise::outbound::PgEnterpriseRepository, EnterpriseTeams> {

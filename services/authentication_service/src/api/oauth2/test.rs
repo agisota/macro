@@ -6,9 +6,9 @@ fn callback_original_url_allows_trusted_destinations() {
         "macro://login",
         "tauri://localhost/app/login",
         "http://localhost/app/login",
-        "https://dev.macro.com/app/login",
-        "https://macro.com/app/login",
-        "https://www.macro.com/app/inbox-link-callback",
+        "https://dev.rox.one/app/login",
+        "https://rox.one/app/login",
+        "https://www.rox.one/app/inbox-link-callback",
     ] {
         assert!(
             validate_original_url(Some(original_url)).is_ok(),
@@ -21,10 +21,10 @@ fn callback_original_url_allows_trusted_destinations() {
 fn callback_original_url_rejects_untrusted_destinations() {
     for original_url in [
         "https://evil.example.com/phish",
-        "https://macro.com.example.com/phish",
-        "https://www.macro.com.example.com/phish",
-        "http://macro.com/phish",
-        "http://www.macro.com/phish",
+        "https://rox.one.example.com/phish",
+        "https://www.rox.one.example.com/phish",
+        "http://rox.one/phish",
+        "http://www.rox.one/phish",
         "javascript:alert('redirected')",
     ] {
         assert!(
@@ -39,7 +39,7 @@ fn callback_original_url_rejects_untrusted_destinations() {
 
 #[test]
 fn callback_original_url_validates_decoded_destination() {
-    let trusted_url = urlencoding::encode("https://www.macro.com/app/inbox-link-callback");
+    let trusted_url = urlencoding::encode("https://www.rox.one/app/inbox-link-callback");
     assert!(validate_original_url(Some(&trusted_url)).is_ok());
 
     let encoded_url = urlencoding::encode("https://evil.example.com/phish");
@@ -77,7 +77,7 @@ fn link_state(provider: LinkProvider, exp: i64) -> AccountLinkState {
         identity_provider_id: "idp-for-linking".into(),
         link_id: Uuid::parse_str("0192b8a0-6a2e-7c3e-9b1f-4d5e6f708192").unwrap(),
         fusion_user_id: Uuid::parse_str("8c06ab3e-693c-45a7-8f92-1b5a5bf876ac").unwrap(),
-        original_url: Some("https://macro.com/app/inbox-link-callback".into()),
+        original_url: Some("https://rox.one/app/inbox-link-callback".into()),
         exp,
     }
 }
@@ -115,7 +115,7 @@ fn outlook_authorization_state_round_trips_through_callback_with_pkce_and_nonce(
         "client-id".into(),
         "client-secret".into(),
         "https://auth.example.com".into(),
-        "https://macro.com/app".into(),
+        "https://rox.one/app".into(),
         "google-client-id".into(),
         "google-client-secret".into(),
     )
@@ -237,7 +237,7 @@ fn callback_accepts_unsigned_state_only_for_sign_in() {
 
     // The pre-signing wire format: an attacker-chosen link_id in plain JSON.
     let forged = format!(
-        r#"{{"identity_provider_id":"google-gmail","link_id":"{}","original_url":"https://macro.com/app"}}"#,
+        r#"{{"identity_provider_id":"google-gmail","link_id":"{}","original_url":"https://rox.one/app"}}"#,
         Uuid::now_v7()
     );
     assert_eq!(
@@ -318,7 +318,7 @@ fn callback_accepts_signed_admin_consent_state_for_its_provider() {
     let consent = AdminConsentState {
         kind: AdminConsentKind::AdminConsent,
         provider: LinkProvider::Microsoft,
-        original_url: "https://macro.com/app/inbox-link-callback".into(),
+        original_url: "https://rox.one/app/inbox-link-callback".into(),
     };
     let token = sign_admin_consent_state(&consent, &key()).unwrap();
 
@@ -356,7 +356,7 @@ fn admin_consent_return_redirects_to_the_app_with_the_outcome() {
     let consent = AdminConsentState {
         kind: AdminConsentKind::AdminConsent,
         provider: LinkProvider::Microsoft,
-        original_url: "https://macro.com/app/inbox-link-callback?view=all".into(),
+        original_url: "https://rox.one/app/inbox-link-callback?view=all".into(),
     };
 
     let granted = admin_consent_outcome(

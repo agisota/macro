@@ -60,9 +60,9 @@ mod views;
 
 use fakes::*;
 
-const OWNER: &str = "macro|owner@macro.com";
-const VIEWER: &str = "macro|viewer@macro.com";
-const STRANGER: &str = "macro|stranger@macro.com";
+const OWNER: &str = "macro|owner@rox.one";
+const VIEWER: &str = "macro|viewer@rox.one";
+const STRANGER: &str = "macro|stranger@rox.one";
 
 fn user(id: &'static str) -> MacroUserIdStr<'static> {
     MacroUserIdStr::parse_from_str(id).expect("valid user id")

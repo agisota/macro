@@ -68,7 +68,7 @@ in front of FusionAuth, which doesn't support DCR itself.
 ## Checks
 
 - `cargo test -p mcp_auth_proxy --all-features` (`SQLX_OFFLINE` unset; the
-  Postgres adapter tests need a migrated local MacroDB).
+  Postgres adapter tests need a migrated local RoxDB).
 
 ## Shared listener
 

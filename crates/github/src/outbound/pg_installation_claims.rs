@@ -1,4 +1,4 @@
-//! Installation claims read from MacroDB.
+//! Installation claims read from RoxDB.
 
 use macro_user_id::user_id::MacroUserIdStr;
 use sqlx::PgPool;
@@ -15,7 +15,7 @@ pub struct PgGithubInstallationClaims {
 }
 
 impl PgGithubInstallationClaims {
-    /// Create the adapter over the MacroDB pool.
+    /// Create the adapter over the RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

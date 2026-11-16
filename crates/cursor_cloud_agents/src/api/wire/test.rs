@@ -167,10 +167,10 @@ fn me_reads_user_and_service_account_shapes() {
         "apiKeyName": "wolf's key",
         "userId": 42,
         "createdAt": "2026-04-13T18:30:00.000Z",
-        "userEmail": "wolf@macro.com",
+        "userEmail": "wolf@rox.one",
     }))
     .expect("user key");
-    assert_eq!(user.user_email.as_deref(), Some("wolf@macro.com"));
+    assert_eq!(user.user_email.as_deref(), Some("wolf@rox.one"));
 
     let service: MeResponse = serde_json::from_value(serde_json::json!({
         "apiKeyName": "Production Service Account",

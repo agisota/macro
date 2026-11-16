@@ -789,7 +789,7 @@ bun scripts/android-assetlinks.ts 'AA:BB:...32-byte-SHA256-fingerprint...'
 ```
 
 Publish the resulting JSON at `https://<host>/.well-known/assetlinks.json` for each
-intended host: `macro.com`, `dev.macro.com`, `staging.macro.com`. This repository
+intended host: `rox.one`, `dev.rox.one`, `staging.rox.one`. This repository
 does not automatically publish the source file to those domain roots. Production needs
 the **Play App Signing** fingerprint, not merely the upload key; keep debug
 certificates on the development host. Builds do not publish domain associations.
@@ -804,7 +804,7 @@ After installing an APK signed with an associated certificate:
 ```sh
 adb shell pm verify-app-links --re-verify com.macro.workspace.mobile
 adb shell pm get-app-links com.macro.workspace.mobile
-adb shell am start -W -a android.intent.action.VIEW -c android.intent.category.DEFAULT -c android.intent.category.BROWSABLE -d 'https://dev.macro.com/app/task/TASK_ID'
+adb shell am start -W -a android.intent.action.VIEW -c android.intent.category.DEFAULT -c android.intent.category.BROWSABLE -d 'https://dev.rox.one/app/task/TASK_ID'
 ```
 
 Adding `-p com.macro.workspace.mobile` tests routing but does not prove domain verification.

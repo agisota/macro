@@ -1,4 +1,4 @@
-use macro_event_topics::{MacroDocumentsTopic, MacroExampleTopic, Topic};
+use macro_event_topics::{RoxDocumentsTopic, MacroExampleTopic, Topic};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use uuid::Uuid;
@@ -126,7 +126,7 @@ fn consumer_specific_enum_decodes_by_topic() {
 pub struct DocumentsTopicEvent;
 
 impl TopicEvent for DocumentsTopicEvent {
-    type Topic = MacroDocumentsTopic;
+    type Topic = RoxDocumentsTopic;
 
     const SCHEMA_VERSION: u8 = 1;
 }
@@ -180,7 +180,7 @@ impl MessageParts for TestMessage {
 fn exposes_each_declared_topic_in_order() {
     assert_eq!(
         DeclaredMacroEvent::topics(),
-        [MacroExampleTopic::TOPIC_STR, MacroDocumentsTopic::TOPIC_STR,]
+        [MacroExampleTopic::TOPIC_STR, RoxDocumentsTopic::TOPIC_STR,]
     );
 }
 
@@ -207,7 +207,7 @@ fn decodes_each_declared_topic_into_its_enum_variant() {
 
     let documents_payload = serde_json::to_vec(&Event::new(DocumentsTopicEvent)).unwrap();
     let documents_message = MessageWrapper::<_, DeclaredMacroEvent>::new(TestMessage {
-        topic: MacroDocumentsTopic::TOPIC_STR,
+        topic: RoxDocumentsTopic::TOPIC_STR,
         key: Some("documents-key"),
         payload: Some(documents_payload),
     });

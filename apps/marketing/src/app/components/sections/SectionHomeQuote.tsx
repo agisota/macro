@@ -65,8 +65,8 @@ const tweetCardChrome = {
 } as const;
 const tweetQuote = {
   beforeMention: 'Every startup should be using ',
-  mention: '@macrodotcom',
-  mentionHref: 'https://x.com/macrodotcom',
+  mention: '@roxdotone',
+  mentionHref: 'https://x.com/roxdotone',
   afterMention:
     ' man like for $40 you can get Notion, Slack, Linear, Zoom and the fastest UI i have ever seen for navigating Gmail like a StarCraft grandmaster',
   name: 'Panat',

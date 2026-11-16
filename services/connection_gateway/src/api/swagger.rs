@@ -32,7 +32,7 @@ impl Modify for SecurityAddon {
 #[openapi(
         modifiers(&SecurityAddon),
         info(
-            terms_of_service = "https://macro.com/terms",
+            terms_of_service = "https://rox.one/terms",
         ),
         paths(
             message::send_message_handler,

@@ -1217,8 +1217,8 @@ fn dedupe_task_ids(task_ids: Vec<MacroTaskId>) -> Vec<MacroTaskId> {
 /// Creates a macro task comment given the document name and id
 fn create_macro_task_comment_link(name: &str, id: &str) -> String {
     let url = match macro_env::Environment::new_or_prod() {
-        macro_env::Environment::Production => "https://macro.com/app/task",
-        macro_env::Environment::Develop => "https://dev.macro.com/app/task",
+        macro_env::Environment::Production => "https://rox.one/app/task",
+        macro_env::Environment::Develop => "https://dev.rox.one/app/task",
         macro_env::Environment::Local => {
             let port = FrontendPort::new()
                 .map(|port| port.to_string())

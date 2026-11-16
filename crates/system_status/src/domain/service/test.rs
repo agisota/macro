@@ -8,7 +8,7 @@ use crate::domain::{
 };
 
 fn staff() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::parse_from_str("macro|oncall@macro.com").unwrap()
+    MacroUserIdStr::parse_from_str("macro|oncall@rox.one").unwrap()
 }
 
 fn degraded(message: &str) -> SystemStatus {

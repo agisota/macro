@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT fire_at FROM hosted_runtime_timer WHERE computer_id = $1 AND kind = 'macrod_missing'",
+  "query": "SELECT fire_at FROM hosted_runtime_timer WHERE computer_id = $1 AND kind = 'roxd_missing'",
   "describe": {
     "columns": [
       {

@@ -1,5 +1,5 @@
 //! The persistent update log: one JSON line per self-update event in
-//! `~/.macrod/logs/update.log`, so an operator can confirm what the updater
+//! `~/.roxd/logs/update.log`, so an operator can confirm what the updater
 //! did after the panel that showed it has restarted. Versions, sizes and
 //! outcomes only: never tokens, prompts, or agent output.
 
@@ -92,7 +92,7 @@ pub struct UpdateLog {
 }
 
 impl UpdateLog {
-    /// `~/.macrod/logs/update.log` (`%USERPROFILE%` on Windows), when the
+    /// `~/.roxd/logs/update.log` (`%USERPROFILE%` on Windows), when the
     /// home directory is known.
     pub fn for_user() -> Option<Self> {
         let home = environment::Home::new().and_then(|home| home.value().map(PathBuf::from));
@@ -101,7 +101,7 @@ impl UpdateLog {
             environment::Userprofile::new().and_then(|home| home.value().map(PathBuf::from))
         });
         Some(Self::at(
-            home?.join(".macrod").join("logs").join("update.log"),
+            home?.join(".roxd").join("logs").join("update.log"),
             MAX_BYTES,
         ))
     }

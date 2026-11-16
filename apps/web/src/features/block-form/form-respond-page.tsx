@@ -25,7 +25,7 @@ function RespondFooter() {
       <p>Never submit passwords through Rox Forms.</p>
       <p>
         <a
-          href="mailto:abuse@macro.com?subject=Report%20a%20form"
+          href="mailto:abuse@rox.one?subject=Report%20a%20form"
           class="hover:underline"
         >
           Report this form

@@ -48,7 +48,7 @@ use model_entity::{AppearanceColor, AppearanceIcon, EntityAppearance};
     info(
         title = "scheduled_action",
         description = "API for managing scheduled actions",
-        terms_of_service = "https://macro.com/terms",
+        terms_of_service = "https://rox.one/terms",
     ),
     paths(
         crate::inbound::axum_router::health,

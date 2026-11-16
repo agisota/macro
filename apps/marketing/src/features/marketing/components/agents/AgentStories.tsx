@@ -6,7 +6,7 @@ import { createSignal, For, onCleanup, Show } from 'solid-js';
 import { ProductDemo } from '../product/ProductPage';
 import './agent-stories.css';
 
-const MCP_URL = 'https://mcp-server.macro.com/mcp';
+const MCP_URL = 'https://mcp-server.rox.one/mcp';
 const MCP_CONFIG = JSON.stringify(
   { mcpServers: { macro: { type: 'http', url: MCP_URL } } },
   null,

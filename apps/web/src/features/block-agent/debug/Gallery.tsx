@@ -335,7 +335,7 @@ const TOOL_REPLAY_PARTS: MessagePart[] = [
     status: 'failed',
     detail: {
       kind: 'fetch',
-      output: 'Could not reach status.macro.com/api: connection refused.',
+      output: 'Could not reach status.rox.one/api: connection refused.',
     },
   },
   {
@@ -726,13 +726,13 @@ const FIXTURE_MESSAGE: FoldedMessage = {
           messages: [
             {
               id: '01a0b16e-95d9-79a8-ace0-2dc075b7d49f',
-              sender: 'macro|gab@macro.com',
+              sender: 'macro|gab@rox.one',
               text: 'references for agents so i know where they were dispatched from',
               sentAt: '2026-09-17T22:41:03Z',
             },
             {
               id: '01a0b17a-db3f-75d1-86d9-0d8e86b5106b',
-              sender: 'macro|gab@macro.com',
+              sender: 'macro|gab@rox.one',
               text: 'would be nice to be able to scroll context/copy the entire thing',
               sentAt: '2026-09-17T22:47:19Z',
             },
@@ -979,7 +979,7 @@ function PromptAuthorDemo() {
       />
       <Message
         message={prompt(
-          'macro|wolf@macro.com',
+          'macro|wolf@rox.one',
           'And run the snapshot tests after.'
         )}
         inFlight={false}

@@ -1,4 +1,4 @@
-//! `agent_repos` rows in MacroDB.
+//! `agent_repos` rows in RoxDB.
 
 use macro_user_id::user_id::MacroUserIdStr;
 use sqlx::PgPool;
@@ -24,7 +24,7 @@ pub enum PgRepoRepositoryError {
     SizeOutOfRange(u64),
 }
 
-/// [`RepoRepository`] over MacroDB.
+/// [`RepoRepository`] over RoxDB.
 #[derive(Clone)]
 pub struct PgRepoRepository {
     pool: PgPool,

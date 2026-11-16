@@ -169,7 +169,7 @@ async fn await_turns(engine: &ScriptedEngine, prompt: &str) {
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id")
 }
 
 fn manager(repo: &InMemoryAgentSessionRepo, engine: Arc<ScriptedEngine>) -> InMemAgentManager {

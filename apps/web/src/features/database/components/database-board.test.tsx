@@ -55,7 +55,7 @@ describe('database board', () => {
         rows={[
           {
             rowId: 'launch',
-            cells: { title: 'Launch project', owner: 'macro|sam@macro.com' },
+            cells: { title: 'Launch project', owner: 'macro|sam@rox.one' },
           },
           { rowId: 'loose', cells: { title: 'Loose end', owner: null } },
         ]}
@@ -74,12 +74,12 @@ describe('database board', () => {
           lanes: [
             { key: { kind: 'none' }, hidden: false, cards: ['loose'] },
             {
-              key: { kind: 'user', id: 'macro|ana@macro.com' },
+              key: { kind: 'user', id: 'macro|ana@rox.one' },
               hidden: false,
               cards: [],
             },
             {
-              key: { kind: 'user', id: 'macro|sam@macro.com' },
+              key: { kind: 'user', id: 'macro|sam@rox.one' },
               hidden: false,
               cards: ['launch'],
             },
@@ -107,19 +107,19 @@ describe('database board', () => {
         .getAllByRole('region')
         .filter((lane) => lane.hasAttribute('data-kanban-lane'))
         .map((lane) => lane.getAttribute('aria-label'))
-    ).toEqual(['ana@macro.com lane', 'sam@macro.com lane']);
+    ).toEqual(['ana@rox.one lane', 'sam@rox.one lane']);
     expect(screen.queryByRole('button', { name: 'New group' })).toBeNull();
     const trigger = screen.getByRole('button', { name: 'Move Launch project' });
     trigger.focus();
     fireEvent.keyDown(trigger, { key: 'Enter' });
     fireEvent.keyDown(
-      await screen.findByRole('menuitem', { name: 'ana@macro.com' }),
+      await screen.findByRole('menuitem', { name: 'ana@rox.one' }),
       { key: 'Enter' }
     );
     await waitFor(() =>
       expect(onMove).toHaveBeenCalledWith(
         'launch',
-        { kind: 'user', id: 'macro|ana@macro.com' },
+        { kind: 'user', id: 'macro|ana@rox.one' },
         undefined
       )
     );

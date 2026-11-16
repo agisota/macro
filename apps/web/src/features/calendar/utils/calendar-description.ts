@@ -44,7 +44,7 @@ export function parseMacroAppLink(
   const origins = new Set([
     window.location.origin,
     getWebOrigin(),
-    'https://macro.com',
+    'https://rox.one',
   ]);
   if (!origins.has(url.origin)) return undefined;
   const match = APP_LINK_PATTERN.exec(url.pathname);

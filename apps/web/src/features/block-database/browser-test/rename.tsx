@@ -7,7 +7,7 @@ import { Show, Suspense } from 'solid-js';
 import { render } from 'solid-js/web';
 import { DatabaseProvider } from '../../database/context/database';
 import { DatabaseRecords } from '../../database/views/database-records';
-import { createMacroDatabaseApi, editorTable } from '../queries/editor-api';
+import { createRoxDatabaseApi, editorTable } from '../queries/editor-api';
 
 // Real schema query, mutation adapter, controller and headers; only row reads
 // are local. Playwright intercepts the schema service to control response order.
@@ -25,7 +25,7 @@ function RenameFixture() {
       <Show when={table()}>
         {(_schema) => (
           <DatabaseProvider
-            api={createMacroDatabaseApi('db', queryClient)}
+            api={createRoxDatabaseApi('db', queryClient)}
             tableId="tasks"
             view={view}
             capabilities={{ editRows: true, editColumns: true }}

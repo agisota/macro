@@ -46,9 +46,9 @@ const CHARS_BEFORE_HIGHLIGHT: usize = 200;
 
 /// Merges adjacent highlight spans separated only by `@` into a single span.
 /// The `plain` highlighter wraps each matched token individually, so a hit on
-/// `hutch@macro.com` comes back as
-/// `<macro_em>hutch</macro_em>@<macro_em>macro.com</macro_em>`. Merging across
-/// `@` renders it as `<macro_em>hutch@macro.com</macro_em>`, which reads as
+/// `hutch@rox.one` comes back as
+/// `<macro_em>hutch</macro_em>@<macro_em>rox.one</macro_em>`. Merging across
+/// `@` renders it as `<macro_em>hutch@rox.one</macro_em>`, which reads as
 /// one email address.
 pub(crate) fn merge_highlights_across_at(fragment: &str) -> String {
     fragment.replace(&format!("{CLOSE_TAG}@{OPEN_TAG}"), "@")

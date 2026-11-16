@@ -9,7 +9,7 @@ storage and provider operations.
 
 ## Integration
 
-Apply MacroDB migrations `20260918164303_calendar_scheduling.sql` and
+Apply RoxDB migrations `20260918164303_calendar_scheduling.sql` and
 `20260918175703_scheduling_recovery.sql`, then deploy the
 updated calendar service with its existing `CALENDAR_SYNC_ENABLED` setting enabled.
 The migration uses PostgreSQL multiranges (PostgreSQL 14+) and `btree_gist` for

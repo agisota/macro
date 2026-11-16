@@ -3521,7 +3521,7 @@ async fn active_execution_turn_excludes_stopped_archived_and_deleted_sessions(po
 async fn a_turn_keeps_its_prompters_tab_and_only_theirs(pool: PgPool) {
     use crate::domain::model::{PrompterKind, TurnPrompter, UiClientId};
     use agent_runtime_protocol::domain::action::AgentActionId;
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let repo = test_repo(&pool);
     let owner = MacroUserIdStr::try_from_email("owner@example.com").unwrap();
@@ -3569,7 +3569,7 @@ async fn system_action_history_and_loads_retain_trusted_provenance(pool: PgPool)
         action::{AgentAction, AgentActionId},
         notification::{Notification, NotificationEvent},
     };
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let action_id = AgentActionId::mint();
     let request = AgentAction::notification(vec![Notification {

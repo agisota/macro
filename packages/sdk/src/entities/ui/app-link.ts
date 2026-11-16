@@ -2,7 +2,7 @@ import { MacroError } from '../../utils';
 import type { MacroClient } from '../../utils/client';
 
 /** Hosts a Macro app link may name, besides the client's own web app. */
-const MACRO_HOSTS = ['macro.com', 'dev.macro.com', 'staging.macro.com'];
+const MACRO_HOSTS = ['rox.one', 'dev.rox.one', 'staging.rox.one'];
 
 /**
  * A Macro app link, reduced to the app path it opens: a list view such as
@@ -18,7 +18,7 @@ export class AppLink {
   ) {}
 
   /**
-   * Parse a Macro app link (`https://macro.com/app/...`). Throws on anything
+   * Parse a Macro app link (`https://rox.one/app/...`). Throws on anything
    * else: another site, a path outside `/app`, or a link with a fragment.
    */
   static parse(client: MacroClient, url: string): AppLink {

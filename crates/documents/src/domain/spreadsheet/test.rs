@@ -6,7 +6,7 @@ use models_permissions::share_permission::access_level::AccessLevel;
 const DOCUMENT: &str = "019fd3b9-3c6c-7c05-89c2-a27f0121813b";
 const SECRET: &str = "local-spreadsheet-test-secret";
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|sheets@macro.com".to_owned()).unwrap()
+    MacroUserIdStr::try_from("macro|sheets@rox.one".to_owned()).unwrap()
 }
 fn receipt<T: RequiredPermission>(access_level: AccessLevel) -> EntityAccessReceipt<T> {
     EntityAccessReceipt::try_new_authenticated_user(
@@ -61,8 +61,8 @@ async fn reads_mint_only_view_access_and_preserve_delegated_actor() {
                 macro_sync_service_jwt::decode(token.as_str(), SECRET).unwrap();
             assert_eq!(claims["document_id"], DOCUMENT);
             assert_eq!(claims["access_level"], "view");
-            assert_eq!(claims["user_id"], "macro|sheets@macro.com");
-            assert_eq!(claims["actor"], "macro|ai@macro.com");
+            assert_eq!(claims["user_id"], "macro|sheets@rox.one");
+            assert_eq!(claims["actor"], "macro|ai@rox.one");
             Box::pin(async { Ok(response()) })
         });
     let service = SpreadsheetService::new(
@@ -75,7 +75,7 @@ async fn reads_mint_only_view_access_and_preserve_delegated_actor() {
             receipt(AccessLevel::View),
             SpreadsheetCaller::Agent {
                 user: &user(),
-                actor: "macro|ai@macro.com",
+                actor: "macro|ai@rox.one",
             },
             request(),
         )
@@ -102,7 +102,7 @@ async fn edits_forward_exact_revision_with_edit_token() {
             receipt(AccessLevel::Edit),
             SpreadsheetCaller::Agent {
                 user: &user(),
-                actor: "macro|ai@macro.com",
+                actor: "macro|ai@rox.one",
             },
             "seen".into(),
             vec![SpreadsheetOperation::AddSheet {
@@ -123,7 +123,7 @@ async fn imported_files_cannot_enter_native_spreadsheet_worker() {
             receipt(AccessLevel::View),
             SpreadsheetCaller::Agent {
                 user: &user(),
-                actor: "macro|ai@macro.com",
+                actor: "macro|ai@rox.one",
             },
             request(),
         )
@@ -144,7 +144,7 @@ async fn read_receipt_cannot_smuggle_an_edit_request() {
             receipt(AccessLevel::View),
             SpreadsheetCaller::Agent {
                 user: &user(),
-                actor: "macro|ai@macro.com",
+                actor: "macro|ai@rox.one",
             },
             SpreadsheetRequest::Edit {
                 expected_revision: "r".into(),
@@ -169,7 +169,7 @@ async fn missing_revision_or_empty_batch_never_calls_ports() {
                 receipt(AccessLevel::Edit),
                 SpreadsheetCaller::Agent {
                     user: &user(),
-                    actor: "macro|ai@macro.com",
+                    actor: "macro|ai@rox.one",
                 },
                 "".into(),
                 vec![]
@@ -183,7 +183,7 @@ async fn missing_revision_or_empty_batch_never_calls_ports() {
                 receipt(AccessLevel::Edit),
                 SpreadsheetCaller::Agent {
                     user: &user(),
-                    actor: "macro|ai@macro.com",
+                    actor: "macro|ai@rox.one",
                 },
                 "r".into(),
                 vec![]
@@ -472,7 +472,7 @@ async fn sdk_edits_name_the_receipts_user_and_bot() {
             let claims: serde_json::Value =
                 macro_sync_service_jwt::decode(token.as_str(), SECRET).unwrap();
             assert_eq!(claims["access_level"], "edit");
-            assert_eq!(claims["user_id"], "macro|sheets@macro.com");
+            assert_eq!(claims["user_id"], "macro|sheets@rox.one");
             assert_eq!(claims["actor"], "bot|00000000-0000-0000-0000-00000000a1a1");
             Box::pin(async { Ok(response()) })
         });
@@ -505,7 +505,7 @@ async fn sdk_reads_by_a_user_carry_no_actor() {
             let claims: serde_json::Value =
                 macro_sync_service_jwt::decode(token.as_str(), SECRET).unwrap();
             assert_eq!(claims["access_level"], "view");
-            assert_eq!(claims["user_id"], "macro|sheets@macro.com");
+            assert_eq!(claims["user_id"], "macro|sheets@rox.one");
             assert!(claims.get("actor").is_none());
             Box::pin(async { Ok(response()) })
         });

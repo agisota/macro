@@ -76,7 +76,7 @@ vi.mock('@app/features/database-query/database-query', () => ({
             </tr>
           </tbody>
         </table>
-        <a href="https://macro.com">Party Planner</a>
+        <a href="https://rox.one">Party Planner</a>
       </div>
     );
   },

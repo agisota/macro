@@ -2,8 +2,8 @@ import { t } from '@app/lib/i18n';
 import { useKeyedPersistentToasts } from '@core/component/Toast/useKeyedPersistentToasts';
 import { fireAndForget } from '@core/util/fireAndForget';
 import DesktopIcon from '@icon/system/regular/desktop.svg';
-import { MacrodPairingApprover } from '@macro/tauri/MacrodPairingApprover';
-import { macrodInspect, macrodSupport } from '@macro/tauri/macrod';
+import { RoxdPairingApprover } from '@macro/tauri/RoxdPairingApprover';
+import { roxdInspect, roxdSupport } from '@macro/tauri/roxd';
 import { createSignal, onMount, Show } from 'solid-js';
 import { LocalRuntimeSetup } from './local-runtime-setup';
 import { LocalRuntimeSetupDialog } from './views/local-runtime-setup-dialog';
@@ -26,12 +26,12 @@ export function LocalRuntimeHost() {
   onMount(() => {
     fireAndForget(
       (async () => {
-        const support = await macrodSupport();
+        const support = await roxdSupport();
         if (!support.supported) {
           setProbe({ needsSetup: false });
           return;
         }
-        const inspection = await macrodInspect();
+        const inspection = await roxdInspect();
         setProbe({
           needsSetup: !inspection.exists,
           defaultWorkspace: support.defaultWorkspace ?? undefined,
@@ -69,7 +69,7 @@ export function LocalRuntimeHost() {
 
   return (
     <>
-      <MacrodPairingApprover />
+      <RoxdPairingApprover />
       <LocalRuntimeSetupDialog
         open={dialogOpen()}
         onClose={() => setDialogOpen(false)}

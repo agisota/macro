@@ -113,7 +113,7 @@ fn agent_updates_take_the_sdk_items_as_they_serialize() {
         "widgets": [{
             "type": "agentUpdates",
             "items": [{
-                "session": { "id": "session-1", "url": "https://macro.com/app/agent/session-1" },
+                "session": { "id": "session-1", "url": "https://rox.one/app/agent/session-1" },
                 "sessionName": "Signing",
                 "harness": "opencode",
                 "pullRequestUrl": "https://github.com/o/r/pull/1",

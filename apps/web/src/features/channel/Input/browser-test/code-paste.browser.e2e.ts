@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const channelUrl =
-  'https://dev.macro.com/app/channel/0195ceb6-ec2e-7023-80e4-6e084fa6cccd';
+  'https://dev.rox.one/app/channel/0195ceb6-ec2e-7023-80e4-6e084fa6cccd';
 const markdown = '# heading\n- item **bold**';
 
 test('pastes Macro links and Markdown into a code block verbatim', async ({

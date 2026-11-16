@@ -40,7 +40,7 @@ fn payload_json(token: &str) -> String {
 #[test]
 fn payload_round_trips_deterministically() {
     let payload = state(
-        Some("https://macro.com/app/inbox-link-callback"),
+        Some("https://rox.one/app/inbox-link-callback"),
         NOW + 3_600,
     );
 
@@ -239,7 +239,7 @@ fn admin_consent_state() -> AdminConsentState {
     AdminConsentState {
         kind: AdminConsentKind::AdminConsent,
         provider: LinkProvider::Microsoft,
-        original_url: "https://macro.com/app/inbox-link-callback".into(),
+        original_url: "https://rox.one/app/inbox-link-callback".into(),
     }
 }
 
@@ -264,7 +264,7 @@ fn signed_kinds_cannot_be_confused() {
     // An admin-consent payload without its tag is neither kind.
     let untagged = serde_json::json!({
         "provider": "microsoft",
-        "original_url": "https://macro.com/app/inbox-link-callback",
+        "original_url": "https://rox.one/app/inbox-link-callback",
     });
     let token = sign_raw_payload(&serde_json::to_vec(&untagged).unwrap());
     assert_eq!(

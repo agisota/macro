@@ -1,9 +1,9 @@
 import { isTauri } from './platform';
 
 const Hosts = {
-  Prod: 'macro.com',
-  Dev: 'dev.macro.com',
-  Staging: 'staging.macro.com',
+  Prod: 'rox.one',
+  Dev: 'dev.rox.one',
+  Staging: 'staging.rox.one',
   Localhost: 'localhost',
   // The webview's own origin under the http asset scheme (e.g. Windows/Android),
   // where `window.location.hostname` is `tauri.localhost` rather than `localhost`.
@@ -13,7 +13,7 @@ const Hosts = {
 function cleanHostname(hostname: string): string {
   // Strip only a leading `www.` (parity with the Rust `strip_prefix("www.")`);
   // a bare `replace('www.', '')` would also collapse a mid-string occurrence,
-  // e.g. `macro.www.com` -> `macro.com`, letting a foreign host masquerade as
+  // e.g. `macro.www.com` -> `rox.one`, letting a foreign host masquerade as
   // a Macro one.
   return hostname.toLowerCase().replace(/^www\./, '');
 }
@@ -32,8 +32,8 @@ export function isValidMacroAppHostname(hostname: string): boolean {
   }
   // On Tauri, window.location.hostname is 'localhost' (custom tauri:// scheme)
   // or 'tauri.localhost' (http asset scheme, e.g. Windows/Android), but Macro
-  // links are built with the real web origin (macro.com, dev.macro.com, or
-  // staging.macro.com). Accept any recognized Macro host when running inside
+  // links are built with the real web origin (rox.one, dev.rox.one, or
+  // staging.rox.one). Accept any recognized Macro host when running inside
   // the native Tauri app (mirrors APP_LINK_HOSTS on the Rust side).
   if (
     isTauri() &&
@@ -54,7 +54,7 @@ type InternalAppLink = {
 
 /**
  * Parses an absolute URL pointing at the Macro web app (e.g.
- * `https://macro.com/app/channel/<id>?message=<id>`) into a router path, query
+ * `https://rox.one/app/channel/<id>?message=<id>`) into a router path, query
  * and fragment; a booking receipt link keeps its private token in the fragment.
  * Returns null for anything that is not a Macro `/app` URL.
  *

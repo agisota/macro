@@ -68,9 +68,9 @@ vi.mock('@service-agent-harness/client', () => ({
 vi.mock('@core/user', () => ({
   tryMacroId: (id: string) => (id.startsWith('macro|') ? id : undefined),
   getDisplayName: (id: string) =>
-    id === 'macro|alice@macro.com' ? 'Alice Owner' : '',
+    id === 'macro|alice@rox.one' ? 'Alice Owner' : '',
 }));
-let viewer = 'macro|alice@macro.com';
+let viewer = 'macro|alice@rox.one';
 vi.mock('@core/context/user', () => ({ useUserId: () => () => viewer }));
 vi.mock('@core/component/Toast/Toast', () => ({
   toast: { failure: vi.fn(), success: vi.fn() },
@@ -106,7 +106,7 @@ const prompt: FoldedMessage = {
   agentSessionId: 'session',
   key: '0:user',
   turn: 0,
-  author: { kind: 'user', userId: 'macro|wolf@macro.com' },
+  author: { kind: 'user', userId: 'macro|wolf@rox.one' },
   parts: [{ kind: 'text', text: 'Say hi' }],
   stop: null,
   pending: false,
@@ -179,7 +179,7 @@ describe('createMagicChipModel', () => {
       isErr: () => false,
       value: {
         status: { kind: 'disconnected' },
-        ownerId: 'macro|alice@macro.com',
+        ownerId: 'macro|alice@rox.one',
         canEdit: true,
       },
     });
@@ -637,7 +637,7 @@ describe('createMagicChipModel', () => {
       isErr: () => false,
       value: {
         status: { kind: 'disconnected' },
-        ownerId: 'macro|alice@macro.com',
+        ownerId: 'macro|alice@rox.one',
         canEdit: false,
       },
     });
@@ -678,7 +678,7 @@ describe('createMagicChipModel', () => {
             serverSlug: 'macro',
             serverName: 'Macro',
             toolName: 'GetThread',
-            requestedBy: 'macro|bob@macro.com',
+            requestedBy: 'macro|bob@rox.one',
           },
         ],
       } as unknown as SessionMetadata,
@@ -688,7 +688,7 @@ describe('createMagicChipModel', () => {
       isErr: () => false,
       value: {
         status: { kind: 'disconnected' },
-        ownerId: 'macro|alice@macro.com',
+        ownerId: 'macro|alice@rox.one',
         canEdit: true,
       },
     });
@@ -707,9 +707,9 @@ describe('createMagicChipModel', () => {
     };
 
     expect(await action()).toBe('Wants to read your email');
-    viewer = 'macro|bob@macro.com';
+    viewer = 'macro|bob@rox.one';
     expect(await action()).toBe("Wants to read the owner's email");
-    viewer = 'macro|alice@macro.com';
+    viewer = 'macro|alice@rox.one';
   });
 
   it("a question from a later turn is not this chip's, and the live metadata moves it", async () => {

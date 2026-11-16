@@ -37,7 +37,7 @@ pretty names, provider icons, and relevant paid/free/database defaults. Search
 for the retired ID in callers and tests rather than assuming a particular input
 component contains it. Keep the frontend catalog aligned with the backend.
 
-Check the pricing setup under `crates/ai_billing` and MacroDB pricing migrations;
+Check the pricing setup under `crates/ai_billing` and RoxDB pricing migrations;
 a new provider ID needs the corresponding pricing configuration.
 
 When retiring a model, migrate saved selections as well. Routines

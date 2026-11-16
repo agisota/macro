@@ -13,7 +13,7 @@ pub struct Config {
     pub internal_auth_key: String,
     /// Path to the file containing unused UUIDs.
     pub unused_uuids_file: String,
-    /// URL prefix to reconstruct full destination URLs (e.g., "https://static-file-service-dev.macro.com/file/").
+    /// URL prefix to reconstruct full destination URLs (e.g., "https://static-file-service-dev.rox.one/file/").
     pub destination_url_prefix: String,
     /// Number of files to include in each bulk delete request.
     pub bulk_batch_size: usize,

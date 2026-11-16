@@ -89,7 +89,7 @@ function validateBucket(bucket: string): void {
 }
 
 function build(): void {
-  console.log('\nBuilding app (same as dev.macro.com)...\n');
+  console.log('\nBuilding app (same as dev.rox.one)...\n');
   execSync('bun run build:dev', {
     cwd: resolve(import.meta.dir, '../..'),
     stdio: 'inherit',
@@ -138,7 +138,7 @@ function deploy(previewId: string): void {
   // Upload current bytes, publish assets/index, and only then prune old keys.
   publishPreviewAssets(previewId);
 
-  const previewUrl = `https://${previewId}.preview.macro.com`;
+  const previewUrl = `https://${previewId}.preview.rox.one`;
   console.log(`\nPreview deployed: ${previewUrl}\n`);
 }
 

@@ -215,10 +215,10 @@ export function ConnectedRuntimesSection(props: {
 }
 
 /**
- * One paired macrod runtime: its dot and name, a meta line (access, waiting
+ * One paired roxd runtime: its dot and name, a meta line (access, waiting
  * requests, last connection), and actions at the top right that move onto
  * their own line on narrow rows. Its name, sharing and options live here on
- * the web; macrod.toml on the machine holds only machine-local config.
+ * the web; roxd.toml on the machine holds only machine-local config.
  */
 function PairedRuntimeRow(props: {
   harness: RegisteredHarness;

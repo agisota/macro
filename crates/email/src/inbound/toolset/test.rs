@@ -158,23 +158,23 @@ fn resolve_inbox_selector_defaults_to_caller_primary() {
     // The delegated inbox is primary for its own account but must not be chosen
     // as the caller's default — only is_primary AND owned by the caller counts.
     let inboxes = vec![
-        make_link("macro|gabtest2@macro.com", "gabtest2@macro.com", true),
-        make_link("macro|gab@macro.com", "gabtest1@macro.com", false),
-        make_link("macro|gab@macro.com", "gab@macro.com", true),
+        make_link("macro|gabtest2@rox.one", "gabtest2@rox.one", true),
+        make_link("macro|gab@rox.one", "gabtest1@rox.one", false),
+        make_link("macro|gab@rox.one", "gab@rox.one", true),
     ];
-    let link = resolve_inbox_selector(&inboxes, "macro|gab@macro.com", None).unwrap();
-    assert_eq!(link.email_address.0.as_ref(), "gab@macro.com");
+    let link = resolve_inbox_selector(&inboxes, "macro|gab@rox.one", None).unwrap();
+    assert_eq!(link.email_address.0.as_ref(), "gab@rox.one");
 }
 
 #[test]
 fn resolve_inbox_selector_matches_address_case_insensitively() {
     let inboxes = vec![
-        make_link("macro|gab@macro.com", "gab@macro.com", true),
-        make_link("macro|gabtest2@macro.com", "gabtest2@macro.com", true),
+        make_link("macro|gab@rox.one", "gab@rox.one", true),
+        make_link("macro|gabtest2@rox.one", "gabtest2@rox.one", true),
     ];
-    let link = resolve_inbox_selector(&inboxes, "macro|gab@macro.com", Some("GabTest2@macro.com"))
+    let link = resolve_inbox_selector(&inboxes, "macro|gab@rox.one", Some("GabTest2@rox.one"))
         .unwrap();
-    assert_eq!(link.email_address.0.as_ref(), "gabtest2@macro.com");
+    assert_eq!(link.email_address.0.as_ref(), "gabtest2@rox.one");
 }
 
 #[test]
@@ -212,9 +212,9 @@ fn tool_sender_policy_deserializes_snake_case_values() {
 
 #[test]
 fn resolve_inbox_selector_rejects_unknown_address() {
-    let inboxes = vec![make_link("macro|gab@macro.com", "gab@macro.com", true)];
+    let inboxes = vec![make_link("macro|gab@rox.one", "gab@rox.one", true)];
     // Avoid `unwrap_err` so the test does not require `Link: Debug`.
-    let err = resolve_inbox_selector(&inboxes, "macro|gab@macro.com", Some("nope@macro.com"))
+    let err = resolve_inbox_selector(&inboxes, "macro|gab@rox.one", Some("nope@rox.one"))
         .err()
         .expect("unknown inbox address should error");
     assert!(

@@ -3,7 +3,7 @@ use super::*;
 
 fn harness(args: &[&str]) -> Harness {
     Harness {
-        command: "/bin/macrod".to_owned(),
+        command: "/bin/roxd".to_owned(),
         args: args.iter().map(|arg| (*arg).to_owned()).collect(),
         env: Default::default(),
     }

@@ -28,7 +28,7 @@ fn message_with_oversized_fields(link_id: Uuid, thread_db_id: Uuid) -> message::
         thread_db_id,
         provider_thread_id: Some("prov1".to_string()),
         replying_to_id: None,
-        global_id: Some("<oversized@macro.com>".to_string()),
+        global_id: Some("<oversized@rox.one>".to_string()),
         link_id,
         subject: Some("unsubscribe".to_string()),
         snippet: None,
@@ -43,7 +43,7 @@ fn message_with_oversized_fields(link_id: Uuid, thread_db_id: Uuid) -> message::
         scheduled_send_time: None,
         has_attachments: true,
         from: Some(ContactInfo {
-            email: "user1@macro.com".to_string(),
+            email: "user1@rox.one".to_string(),
             name: Some("f".repeat(400)),
             photo_url: None,
         }),
@@ -54,7 +54,7 @@ fn message_with_oversized_fields(link_id: Uuid, thread_db_id: Uuid) -> message::
                 photo_url: None,
             },
             ContactInfo {
-                email: "recipient@macro.com".to_string(),
+                email: "recipient@rox.one".to_string(),
                 name: Some("n".repeat(400)),
                 photo_url: None,
             },
@@ -122,7 +122,7 @@ async fn oversized_provider_values_do_not_block_the_message_insert(
     .fetch_all(&pool)
     .await?;
     assert_eq!(recipients.len(), 1);
-    assert_eq!(recipients[0].email_address, "recipient@macro.com");
+    assert_eq!(recipients[0].email_address, "recipient@rox.one");
     assert_eq!(
         recipients[0].name.as_deref().map(|n| n.chars().count()),
         Some(255)
@@ -134,7 +134,7 @@ async fn oversized_provider_values_do_not_block_the_message_insert(
     )
     .fetch_all(&pool)
     .await?;
-    assert_eq!(contacts, vec!["recipient@macro.com", "user1@macro.com"]);
+    assert_eq!(contacts, vec!["recipient@rox.one", "user1@rox.one"]);
 
     let attachment = sqlx::query!(
         r#"
@@ -158,7 +158,7 @@ async fn oversized_provider_values_do_not_block_the_message_insert(
     Ok(())
 }
 
-pub(crate) const PARENT_GLOBAL_ID: &str = "<parent@macro.com>";
+pub(crate) const PARENT_GLOBAL_ID: &str = "<parent@rox.one>";
 
 fn contact(email: &str) -> ContactInfo {
     ContactInfo {
@@ -209,7 +209,7 @@ impl SyncedMessage<'_> {
             is_draft: false,
             scheduled_send_time: None,
             has_attachments: false,
-            from: Some(contact("sender@macro.com")),
+            from: Some(contact("sender@rox.one")),
             to: self.to.iter().copied().map(contact).collect(),
             cc: self.cc.iter().copied().map(contact).collect(),
             bcc: vec![],
@@ -377,7 +377,7 @@ async fn resyncing_an_unchanged_message_writes_nothing(pool: Pool<Postgres>) -> 
         provider_id: "parent",
         global_id: PARENT_GLOBAL_ID,
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &["INBOX"],
         body: "parent body",
@@ -388,10 +388,10 @@ async fn resyncing_an_unchanged_message_writes_nothing(pool: Pool<Postgres>) -> 
     let body = large_body();
     let reply = SyncedMessage {
         provider_id: "reply",
-        global_id: "<reply@macro.com>",
+        global_id: "<reply@rox.one>",
         in_reply_to: Some(PARENT_GLOBAL_ID),
-        to: &["user1@macro.com"],
-        cc: &["cc@macro.com"],
+        to: &["user1@rox.one"],
+        cc: &["cc@rox.one"],
         labels: &["INBOX", "UNREAD"],
         body: &body,
     };
@@ -460,9 +460,9 @@ async fn changed_flag_updates_the_row_without_rewriting_body_toast(
     let body = large_body();
     let synced = SyncedMessage {
         provider_id: "toasted",
-        global_id: "<toasted@macro.com>",
+        global_id: "<toasted@rox.one>",
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &[],
         body: &body,
@@ -529,10 +529,10 @@ async fn resync_with_changed_labels_and_recipients_replaces_only_the_changes(
 
     let synced = SyncedMessage {
         provider_id: "relabelled",
-        global_id: "<relabelled@macro.com>",
+        global_id: "<relabelled@rox.one>",
         in_reply_to: None,
-        to: &["user1@macro.com"],
-        cc: &["old-cc@macro.com"],
+        to: &["user1@rox.one"],
+        cc: &["old-cc@rox.one"],
         labels: &["INBOX", "UNREAD"],
         body: "body",
     };
@@ -542,7 +542,7 @@ async fn resync_with_changed_labels_and_recipients_replaces_only_the_changes(
     let before = row_versions(&pool, message_id).await?;
 
     let mut resync = SyncedMessage {
-        cc: &["new-cc@macro.com"],
+        cc: &["new-cc@rox.one"],
         labels: &["INBOX"],
         ..synced
     }
@@ -557,13 +557,13 @@ async fn resync_with_changed_labels_and_recipients_replaces_only_the_changes(
             .iter()
             .map(|(email, kind, _)| (email.as_str(), kind.as_str()))
             .collect::<Vec<_>>(),
-        vec![("new-cc@macro.com", "CC"), ("user1@macro.com", "TO")]
+        vec![("new-cc@rox.one", "CC"), ("user1@rox.one", "TO")]
     );
     let kept_to = |versions: &RowVersions| {
         versions
             .recipients
             .iter()
-            .find(|(email, _, _)| email == "user1@macro.com")
+            .find(|(email, _, _)| email == "user1@rox.one")
             .cloned()
     };
     assert_eq!(kept_to(&after), kept_to(&before));
@@ -585,9 +585,9 @@ async fn resync_without_gmail_labels_removes_stored_labels_except_pending_ones(
     seed_labels(&pool, link_id).await?;
     let synced = SyncedMessage {
         provider_id: "archived-in-gmail",
-        global_id: "<archived-in-gmail@macro.com>",
+        global_id: "<archived-in-gmail@rox.one>",
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &["INBOX"],
         body: "body",
@@ -651,9 +651,9 @@ async fn resync_keeps_labels_with_a_pending_gmail_write(
     seed_labels(&pool, link_id).await?;
     let synced = SyncedMessage {
         provider_id: "archived",
-        global_id: "<archived@macro.com>",
+        global_id: "<archived@rox.one>",
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &["INBOX"],
         body: "body",
@@ -752,9 +752,9 @@ async fn resync_keeps_a_write_made_and_confirmed_while_gmail_was_fetched(
     seed_labels(&pool, link_id).await?;
     let synced = SyncedMessage {
         provider_id: "fetched-before-the-write",
-        global_id: "<fetched-before-the-write@macro.com>",
+        global_id: "<fetched-before-the-write@rox.one>",
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &["INBOX"],
         body: "body",

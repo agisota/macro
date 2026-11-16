@@ -63,7 +63,7 @@ const TILES: Record<TutorialId, Tile> = {
   },
   calls: { icon: PhoneCallIcon, from: '--color-lime', to: '--color-green' },
   agents: { icon: AgentIcon, from: '--color-purple', to: '--color-pink' },
-  macrod: { icon: LaptopIcon, from: '--color-cyan', to: '--color-violet' },
+  roxd: { icon: LaptopIcon, from: '--color-cyan', to: '--color-violet' },
   github: {
     icon: GitPullRequestIcon,
     from: '--color-purple',

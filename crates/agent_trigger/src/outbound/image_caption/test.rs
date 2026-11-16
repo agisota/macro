@@ -6,7 +6,7 @@ use macro_uuid::Uuid;
 use std::sync::Mutex;
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::parse_from_str("macro|image-caption-test@macro.com")
+    MacroUserIdStr::parse_from_str("macro|image-caption-test@rox.one")
         .expect("valid user id")
         .into_owned()
 }

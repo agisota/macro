@@ -6,7 +6,7 @@ use strum::IntoEnumIterator as _;
 use super::*;
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::parse_from_str("macro|nightly@macro.com")
+    MacroUserIdStr::parse_from_str("macro|nightly@rox.one")
         .unwrap()
         .into_owned()
 }

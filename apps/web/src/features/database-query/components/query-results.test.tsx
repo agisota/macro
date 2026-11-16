@@ -192,7 +192,7 @@ describe('question result display', () => {
           { type: 'number', value: 1200 },
           { type: 'bool', value: true },
           { type: 'options', value: ['maybe'] },
-          { type: 'entities', value: ['macro|ada@macro.com'] },
+          { type: 'entities', value: ['macro|ada@rox.one'] },
           { type: 'entities', value: ['doc-1'] },
           { type: 'entities', value: ['task-1'] },
           { type: 'entities', value: ['v1', 'v2', 'v3', 'v4', 'v5'] },
@@ -234,7 +234,7 @@ describe('question result display', () => {
       '1,200',
       '',
       'Maybe',
-      'USER macro|ada@macro.com',
+      'USER macro|ada@rox.one',
       'DOCUMENT doc-1',
       'TASK task-1',
       'Bakery, Florist, Band +2',
@@ -264,7 +264,7 @@ describe('question result display', () => {
       ],
       rows: [
         [
-          { type: 'entities', value: ['macro|ada@macro.com'] },
+          { type: 'entities', value: ['macro|ada@rox.one'] },
           { type: 'date', value: '2025-07-19T00:00:00+00:00' },
           { type: 'text', value: '2025-07-19' },
         ],
@@ -280,7 +280,7 @@ describe('question result display', () => {
     ));
     const cells = Array.from(result.getByRole('table').querySelectorAll('td'));
     expect(cells.map((cell) => cell.textContent)).toEqual([
-      'macro|ada@macro.com',
+      'macro|ada@rox.one',
       'Jul 19, 2025',
       '2025-07-19',
     ]);

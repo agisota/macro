@@ -212,7 +212,7 @@ async fn gateway_with(
 ) -> (Router, AgentSession, Arc<RecordingUsage>) {
     let repo = InMemoryAgentSessionRepo::new();
     let mut session = test_agent_session(AgentSessionId::new());
-    session.harness = "macrod".into();
+    session.harness = "roxd".into();
     repo.insert_session(session.clone());
     repo.set_egress_token_hash(session.id, &SessionToken::new("session-secret").hash())
         .await
@@ -499,7 +499,7 @@ mod brain_route {
     use macro_user_id::{cowlike::CowLike, user_id::MacroUserIdStr};
 
     const AGENT: &str = "macro|sam-rivera-abc123@agents.macro.invalid";
-    const CREATOR: &str = "macro|admin@macro.com";
+    const CREATOR: &str = "macro|admin@rox.one";
     const TEAM: uuid::Uuid = uuid::Uuid::from_u128(0x0193_a1b2_0000_7000_8000_0000_0000_00aa);
 
     /// Knows exactly one agent key.

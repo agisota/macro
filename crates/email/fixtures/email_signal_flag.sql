@@ -18,7 +18,7 @@
 --   draft must send it back out of the inbox (is_signal stays true via the
 --   SENT label, but inbox_visible/latest_inbound_message_ts reset).
 -- Thread e207 (is_signal=true, stale on purpose): unlabeled message from
---   Macro's own digest sender (no-reply@notification.macro.com) — Macro
+--   Macro's own digest sender (no-reply@notification.rox.one) — Macro
 --   notification emails are never signal, so update_thread_metadata must
 --   clear it, and marking the sender important must not promote it.
 
@@ -30,7 +30,7 @@ INSERT INTO email_contacts (id, link_id, email_address, created_at, updated_at)
 VALUES ('00000000-0000-0000-0000-0000000ce001', '00000000-0000-0000-0000-000000000e01', 'plain@example.com', NOW(), NOW()),
        ('00000000-0000-0000-0000-0000000ce002', '00000000-0000-0000-0000-000000000e01', 'promo@newsletter.com', NOW(), NOW()),
        ('00000000-0000-0000-0000-0000000ce003', '00000000-0000-0000-0000-000000000e01', 'other@example.com', NOW(), NOW()),
-       ('00000000-0000-0000-0000-0000000ce004', '00000000-0000-0000-0000-000000000e01', 'no-reply@notification.macro.com', NOW(), NOW());
+       ('00000000-0000-0000-0000-0000000ce004', '00000000-0000-0000-0000-000000000e01', 'no-reply@notification.rox.one', NOW(), NOW());
 
 INSERT INTO email_labels (id, link_id, provider_label_id, name, created_at)
 VALUES ('00000000-0000-0000-0000-0000000be001', '00000000-0000-0000-0000-000000000e01', 'CATEGORY_PROMOTIONS', 'CATEGORY_PROMOTIONS', NOW()),

@@ -58,13 +58,13 @@ it('shows the actual saved URL and paused state after execution', () => {
           eventTypeId: crypto.randomUUID(),
           revision: 1,
           draft,
-          url: 'https://macro.com/app/book/profile/intro',
+          url: 'https://rox.one/app/book/profile/intro',
         },
       }}
     />
   ));
   expect(view.getByRole('link', { name: 'Intro' }).getAttribute('href')).toBe(
-    'https://macro.com/app/book/profile/intro'
+    'https://rox.one/app/book/profile/intro'
   );
   expect(view.getByText(/Paused/)).toBeTruthy();
 });
@@ -90,7 +90,7 @@ it('keeps historical booking results readable without inventing confirmation', (
     eventTypeId: crypto.randomUUID(),
     revision: 1,
     draft: oldDraft,
-    url: 'https://macro.com/app/book/profile/intro',
+    url: 'https://rox.one/app/book/profile/intro',
   };
   const response = deserializeToolResponse({
     id: 'old',
@@ -149,7 +149,7 @@ it('ignores draft-only time-off annotations when parsing booking settings', () =
   const response = deserializeToolResponse({
     id: 'read-settings',
     name: 'ReadBookingSettings',
-    json: { profile, pageUrl: 'https://macro.com/app/book/profile' },
+    json: { profile, pageUrl: 'https://rox.one/app/book/profile' },
   });
   expect(response.isOk()).toBe(true);
   if (response.isOk())

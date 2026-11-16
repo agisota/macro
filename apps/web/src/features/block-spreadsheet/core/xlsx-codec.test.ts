@@ -603,7 +603,7 @@ describe('Excel workbook files', () => {
     sheet.getCell('A4').value = { richText: [{ text: 'literal' }] };
     sheet.getCell('A5').value = {
       text: '=literal',
-      hyperlink: 'https://macro.com',
+      hyperlink: 'https://rox.one',
     };
     sheet.getCell('A6').value = '=SUM(A1:A2)';
     sheet.getCell('A7').value = { formula: 'TEXT(A1,"0.0")', result: '12.0' };
@@ -652,7 +652,7 @@ describe('Excel workbook files', () => {
     sheet.getRow(2).hidden = true;
     sheet.getCell('C1').value = {
       text: 'Macro',
-      hyperlink: 'https://macro.com',
+      hyperlink: 'https://rox.one',
     };
     sheet.getCell('C2').value = {
       richText: [{ text: 'bold', font: { bold: true } }, { text: ' plain' }],

@@ -4,8 +4,8 @@ config:
     fusionauth-instance:authentication-service-domain: http://authentication-service:8080
     fusionauth-instance:fusionauth-license-key-secret-key: fusionauth-license-key-dev
     fusionauth-instance:smtp-user-secret-key: smtp-user
-    fusionauth-instance:fusionauth-issuer: local.macro.com
-    fusionauth-instance:default-from-email: auth-local@macro.com
+    fusionauth-instance:fusionauth-issuer: local.rox.one
+    fusionauth-instance:default-from-email: auth-local@rox.one
     fusionauth:host: http://localhost:9011
     fusionauth-instance:fusionauth-signing-key-id: d7d09513-a3f5-401c-9685-34ab6c552453
     fusionauth-instance:google-client-id-secret-key: google-client-id-dev

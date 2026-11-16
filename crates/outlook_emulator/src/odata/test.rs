@@ -11,13 +11,13 @@ fn the_filters_the_client_sends_parse() {
 
     let property = parse(
         "$filter",
-        "singleValueExtendedProperties/Any(ep: ep/id eq 'String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name MacroDraftId' and ep/value eq 'abc')",
+        "singleValueExtendedProperties/Any(ep: ep/id eq 'String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name RoxDraftId' and ep/value eq 'abc')",
     )
     .unwrap();
     assert_eq!(
         property.filter,
         Some(Filter::Property {
-            id: "String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name MacroDraftId".into(),
+            id: "String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name RoxDraftId".into(),
             value: "abc".into(),
         })
     );

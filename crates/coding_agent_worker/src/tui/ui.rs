@@ -1,4 +1,4 @@
-//! Rendering for the macrod control panel. Pure: reads [`App`], draws frames.
+//! Rendering for the roxd control panel. Pure: reads [`App`], draws frames.
 
 #[cfg(unix)]
 mod herdr_pane;

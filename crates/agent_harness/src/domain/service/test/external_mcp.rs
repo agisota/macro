@@ -12,7 +12,7 @@ async fn external_binding_preserves_an_explicit_agent_mcp_selection() {
     let mut request = open_external_request("/home/operator/code");
     request.profile = Some(agent_session::domain::ports::ManagedAgentProfile {
         model: String::new(),
-        harness: harness_id::MACROD_HARNESS_SLUG.to_owned(),
+        harness: harness_id::ROXD_HARNESS_SLUG.to_owned(),
         instructions: String::new(),
         mcp_servers: selection.clone(),
     });
@@ -47,7 +47,7 @@ async fn an_external_open_provisions_nothing_and_prompts_nobody() {
     let mut request = open_external_request("/home/operator/code");
     request.profile = Some(agent_session::domain::ports::ManagedAgentProfile {
         model: String::new(),
-        harness: harness_id::MACROD_HARNESS_SLUG.to_owned(),
+        harness: harness_id::ROXD_HARNESS_SLUG.to_owned(),
         instructions: INSTRUCTIONS.to_owned(),
         mcp_servers: AgentMcpServers::OwnerConnections,
     });

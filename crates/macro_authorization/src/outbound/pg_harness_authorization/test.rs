@@ -20,7 +20,7 @@ async fn insert_harness_token(
     sqlx::query!(
         r#"
         INSERT INTO harnesses (id, kind, name, owner_user_id, team_id, created_by)
-        VALUES ($1, 'macrod', 'Authorization harness', $2, $3, $4)
+        VALUES ($1, 'roxd', 'Authorization harness', $2, $3, $4)
         "#,
         harness_id,
         owner_user_id,

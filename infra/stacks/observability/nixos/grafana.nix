@@ -38,8 +38,8 @@
     auth_url = "https://accounts.google.com/o/oauth2/v2/auth";
     token_url = "https://oauth2.googleapis.com/token";
     api_url = "https://openidconnect.googleapis.com/v1/userinfo";
-    allowed_domains = "macro.com";
-    hosted_domain = "macro.com";
+    allowed_domains = "rox.one";
+    hosted_domain = "rox.one";
     validate_hd = true;
     use_pkce = true;
     use_refresh_token = true;

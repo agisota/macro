@@ -23,7 +23,7 @@ pub struct PgCallCrmLinker<S> {
 }
 
 impl<S: SystemPropertiesService> PgCallCrmLinker<S> {
-    /// Create a linker over the shared MacroDB pool.
+    /// Create a linker over the shared RoxDB pool.
     pub fn new(pool: PgPool, system_properties: S) -> Self {
         Self {
             pool,

@@ -49,15 +49,15 @@ vi.mock('@app/features/local-runtime/local-runtime-setup', () => ({
 }));
 let currentUser: () => string | undefined = () => 'user-1';
 vi.mock('@core/context/user', () => ({ useUserId: () => currentUser }));
-vi.mock('@macro/tauri/macrod', () => ({
-  macrodSupport: async () => ({
+vi.mock('@macro/tauri/roxd', () => ({
+  roxdSupport: async () => ({
     supported: mocks.supported,
     defaultWorkspace: '/Users/me/Macro',
   }),
-  macrodInspect: () =>
+  roxdInspect: () =>
     mocks.inspect ?? Promise.resolve({ paired: mocks.paired }),
-  macrodStatus: async () => ({ phase: mocks.statusPhase }),
-  onMacrodStatus: (callback: (status: { phase: string }) => void) => {
+  roxdStatus: async () => ({ phase: mocks.statusPhase }),
+  onRoxdStatus: (callback: (status: { phase: string }) => void) => {
     mocks.onStatus = callback;
     return mocks.listen ?? Promise.resolve(mocks.unlisten);
   },

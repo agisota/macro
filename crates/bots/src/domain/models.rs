@@ -321,7 +321,7 @@ pub struct Agent {
     pub instructions: String,
     /// Harness used to run the agent.
     pub harness: String,
-    /// Registered harness the agent runs on, when `harness` is `macrod`.
+    /// Registered harness the agent runs on, when `harness` is `roxd`.
     pub harness_id: Option<HarnessId>,
     /// Model selected specifically for this agent.
     pub default_model: String,
@@ -361,7 +361,7 @@ pub enum AgentStoppedReason {
 pub struct CreateAgentRequest {
     /// Team owner. Omit for a private, user-owned agent.
     pub team_id: Option<Uuid>,
-    /// Registered harness to run on. Required when `harness` is `macrod`,
+    /// Registered harness to run on. Required when `harness` is `roxd`,
     /// forbidden otherwise.
     #[serde(default)]
     pub harness_id: Option<HarnessId>,
@@ -402,7 +402,7 @@ pub struct CreateAgentRequest {
 pub struct UpdateAgentRequest {
     /// Team owner. Omit to make the agent private to the caller.
     pub team_id: Option<Uuid>,
-    /// Registered harness to run on. Required when `harness` is `macrod`,
+    /// Registered harness to run on. Required when `harness` is `roxd`,
     /// forbidden otherwise.
     #[serde(default)]
     pub harness_id: Option<HarnessId>,
@@ -440,16 +440,16 @@ pub struct UpdateAgentRequest {
 #[cfg(test)]
 mod test;
 
-/// The runtime an agent runs on: a harness slug and, for `macrod`, the
+/// The runtime an agent runs on: a harness slug and, for `roxd`, the
 /// registered harness serving it. Travel together because one without the
 /// other is never a valid choice.
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 #[cfg_attr(feature = "inbound", derive(utoipa::ToSchema))]
 #[serde(deny_unknown_fields)]
 pub struct AgentHarnessSelection {
-    /// Harness slug, e.g. `in-memory`, `cursor`, or `macrod`.
+    /// Harness slug, e.g. `in-memory`, `cursor`, or `roxd`.
     pub harness: String,
-    /// Registered harness to run on. Required when `harness` is `macrod`,
+    /// Registered harness to run on. Required when `harness` is `roxd`,
     /// forbidden otherwise.
     #[serde(default)]
     pub harness_id: Option<HarnessId>,

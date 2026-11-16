@@ -1,7 +1,7 @@
 use super::*;
 
 const EXAMPLE: &str = include_str!("../../config.example.toml");
-const DEFAULT: &str = include_str!("../../default.macrod.toml");
+const DEFAULT: &str = include_str!("../../default.roxd.toml");
 
 #[test]
 fn the_example_config_parses() {
@@ -16,13 +16,13 @@ fn macro_defaults_to_production() {
     let config: Config = toml::from_str(DEFAULT).expect("default config parses");
     assert_eq!(
         config.macro_api.api_url,
-        "https://gateway.macro.com/agent-harness"
+        "https://gateway.rox.one/agent-harness"
     );
     assert_eq!(
         config.macro_api.storage_url,
-        "https://gateway.macro.com/dss"
+        "https://gateway.rox.one/dss"
     );
-    assert_eq!(config.macro_api.web_url, "https://macro.com/app");
+    assert_eq!(config.macro_api.web_url, "https://rox.one/app");
     assert!(config.harness.args.contains(&"acp".to_owned()));
 }
 
@@ -34,7 +34,7 @@ fn a_partial_macro_table_overrides_only_its_keys() {
     .expect("partial macro table parses");
     assert_eq!(
         config.macro_api.api_url,
-        "https://gateway.macro.com/agent-harness"
+        "https://gateway.rox.one/agent-harness"
     );
     assert_eq!(config.macro_api.web_url, "http://localhost:3000/app");
 }
@@ -63,10 +63,10 @@ fn malformed_bearer_token_is_not_valid() {
     assert!(!credentials.is_valid());
 }
 
-/// Load `contents` from a real file, as macrod does.
+/// Load `contents` from a real file, as roxd does.
 fn load(contents: &str) -> Result<Config, ConfigError> {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     std::fs::write(&path, contents).expect("write config");
     Config::load(&path)
 }
@@ -165,45 +165,45 @@ fn the_gateway_url_is_the_api_base_with_a_websocket_scheme() {
 
     let secure = MacroApi {
         egress_url: None,
-        api_url: "https://gateway.macro.com/agent-harness/".to_owned(),
-        storage_url: "https://gateway.macro.com/dss".to_owned(),
-        web_url: "https://macro.com/app/".to_owned(),
+        api_url: "https://gateway.rox.one/agent-harness/".to_owned(),
+        storage_url: "https://gateway.rox.one/dss".to_owned(),
+        web_url: "https://rox.one/app/".to_owned(),
     };
     assert_eq!(
         secure.gateway_url(),
-        "wss://gateway.macro.com/agent-harness/runtime/ws",
+        "wss://gateway.rox.one/agent-harness/runtime/ws",
     );
     assert_eq!(
         secure.pairing_approval_url("KX7M-4QHD"),
-        "https://macro.com/app/settings/runtimes?pair=KX7M-4QHD",
+        "https://rox.one/app/settings/runtimes?pair=KX7M-4QHD",
     );
     assert_eq!(
         secure.settings_url(),
-        "https://macro.com/app/settings/runtimes"
+        "https://rox.one/app/settings/runtimes"
     );
 }
 
 #[test]
-fn macrods_directory_lives_in_home_or_the_windows_user_profile() {
+fn roxds_directory_lives_in_home_or_the_windows_user_profile() {
     assert_eq!(
-        macrod_directory_in_home(Some("/home/eric"), Some("C:\\Users\\eric")),
-        Some(PathBuf::from("/home/eric").join(".macrod"))
+        roxd_directory_in_home(Some("/home/eric"), Some("C:\\Users\\eric")),
+        Some(PathBuf::from("/home/eric").join(".roxd"))
     );
     assert_eq!(
-        macrod_directory_in_home(None, Some("C:\\Users\\eric")),
-        Some(PathBuf::from("C:\\Users\\eric").join(".macrod"))
+        roxd_directory_in_home(None, Some("C:\\Users\\eric")),
+        Some(PathBuf::from("C:\\Users\\eric").join(".roxd"))
     );
     assert_eq!(
-        macrod_directory_in_home(Some(""), Some("C:\\Users\\eric")),
-        Some(PathBuf::from("C:\\Users\\eric").join(".macrod"))
+        roxd_directory_in_home(Some(""), Some("C:\\Users\\eric")),
+        Some(PathBuf::from("C:\\Users\\eric").join(".roxd"))
     );
-    assert_eq!(macrod_directory_in_home(None, None), None);
+    assert_eq!(roxd_directory_in_home(None, None), None);
 }
 
 #[test]
 fn a_second_lock_on_one_config_is_refused_until_the_first_is_released() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
 
     let held = lock(&path).expect("first lock");
     let error = lock(&path).expect_err("second lock is refused");
@@ -211,7 +211,7 @@ fn a_second_lock_on_one_config_is_refused_until_the_first_is_released() {
     assert!(
         error
             .to_string()
-            .contains("another macrod is already running")
+            .contains("another roxd is already running")
     );
 
     drop(held);
@@ -221,13 +221,13 @@ fn a_second_lock_on_one_config_is_refused_until_the_first_is_released() {
 #[test]
 fn probing_a_config_reports_whether_it_is_served_without_taking_it() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
 
     assert!(!is_served(&path).expect("probe without a lock file"));
-    assert!(!directory.path().join("macrod.toml.lock").exists());
+    assert!(!directory.path().join("roxd.toml.lock").exists());
 
-    // A lock file nobody holds, as a stopped macrod leaves it.
-    std::fs::write(directory.path().join("macrod.toml.lock"), "").expect("lock file");
+    // A lock file nobody holds, as a stopped roxd leaves it.
+    std::fs::write(directory.path().join("roxd.toml.lock"), "").expect("lock file");
     assert!(!is_served(&path).expect("probe an unheld lock file"));
 
     let _held = lock(&path).expect("the probe left the lock free");

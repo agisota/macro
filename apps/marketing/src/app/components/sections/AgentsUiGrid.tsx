@@ -657,7 +657,7 @@ function PermissionsPanel() {
 // MCP / Platform — terminal connect card + tool tags. Simple card, no spotlight needed.
 function McpPanel() {
   const compact = () => viewportWidth() < 700;
-  const MCP_ENDPOINT = 'https://mcp-server.macro.com/mcp';
+  const MCP_ENDPOINT = 'https://mcp-server.rox.one/mcp';
   const connectors = ['Notion', 'Slack', 'Linear', 'GitHub', 'Drive'];
   const agentTools = [
     'Search',

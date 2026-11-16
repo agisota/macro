@@ -6,11 +6,11 @@ fn agent() -> MacroUserIdStr<'static> {
 
 #[test]
 fn the_clone_url_is_the_agents_repo_under_the_base() {
-    let base = AgentGitServiceUrl::from_static("https://dev-gateway.macro.com/agent-git");
+    let base = AgentGitServiceUrl::from_static("https://dev-gateway.rox.one/agent-git");
     assert_eq!(
         clone_url(&base, &agent()).unwrap(),
         format!(
-            "https://dev-gateway.macro.com/agent-git/{}.git",
+            "https://dev-gateway.rox.one/agent-git/{}.git",
             agent().as_ref()
         )
     );

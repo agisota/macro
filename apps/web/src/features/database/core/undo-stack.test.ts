@@ -68,7 +68,7 @@ describe('the database undo stack', () => {
       settle(stack, 'undo', entry, {
         kind: 'refused',
         reason: 'row_edited_since',
-        by: 'macro|julia@macro.com',
+        by: 'macro|julia@rox.one',
       })
     ).toEqual({ undo: [], redo: [] });
     expect(
@@ -99,7 +99,7 @@ describe('an undo’s outcomes', () => {
         {
           kind: 'partial',
           skipped: [
-            { row: 'maria', column: 'rsvp', by: 'macro|julia@macro.com' },
+            { row: 'maria', column: 'rsvp', by: 'macro|julia@rox.one' },
           ],
           changes: [{ change: 7, table: 'guests', version: 5 }],
         },
@@ -107,7 +107,7 @@ describe('an undo’s outcomes', () => {
     ).toEqual({
       kind: 'undone',
       changes: [7],
-      skipped: [{ row: 'maria', column: 'rsvp', by: 'macro|julia@macro.com' }],
+      skipped: [{ row: 'maria', column: 'rsvp', by: 'macro|julia@rox.one' }],
     });
   });
 
@@ -117,13 +117,13 @@ describe('an undo’s outcomes', () => {
         {
           kind: 'refused',
           reason: 'row_edited_since',
-          by: 'macro|julia@macro.com',
+          by: 'macro|julia@rox.one',
         },
       ])
     ).toEqual({
       kind: 'refused',
       reason: 'row_edited_since',
-      by: 'macro|julia@macro.com',
+      by: 'macro|julia@rox.one',
     });
   });
 });

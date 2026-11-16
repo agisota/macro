@@ -63,7 +63,7 @@ const record = (
 		return {
 			id: "meet",
 			title: async () => "Standup",
-			webUrl: async () => over.url ?? "https://macro.com/app/meet/join/share",
+			webUrl: async () => over.url ?? "https://rox.one/app/meet/join/share",
 		};
 	},
 });
@@ -362,7 +362,7 @@ test("a meeting whose link has no token has none, and a channel call with no cha
 			calls: {
 				active: async () => [
 					record("m", "standalone", counts, {
-						url: "https://macro.com/app/meet/join/",
+						url: "https://rox.one/app/meet/join/",
 					}),
 				],
 			},
@@ -382,9 +382,9 @@ test("a meeting whose link has no token has none, and a channel call with no cha
 });
 
 test("tokenOf is the decoded end of a meeting's link", () => {
-	expect(tokenOf("https://macro.com/app/meet/join/share")).toBe("share");
-	expect(tokenOf("https://macro.com/app/meet/join/a%2Fb%20c")).toBe("a/b c");
-	expect(tokenOf("https://macro.com/app/meet/join/")).toBe("");
+	expect(tokenOf("https://rox.one/app/meet/join/share")).toBe("share");
+	expect(tokenOf("https://rox.one/app/meet/join/a%2Fb%20c")).toBe("a/b c");
+	expect(tokenOf("https://rox.one/app/meet/join/")).toBe("");
 	expect(tokenOf("")).toBe("");
 });
 

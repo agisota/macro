@@ -274,7 +274,7 @@ export class StaticFileService extends pulumi.ComponentResource {
         api: lb,
         stackName: stack,
         customDomain: {
-          aliases: [`${SERVICE_DOMAIN_NAME}.macro.com`],
+          aliases: [`${SERVICE_DOMAIN_NAME}.rox.one`],
           certificateArn: MACRO_SUBDOMAIN_CERT,
         },
         notFoundPage: notFound,

@@ -1,11 +1,11 @@
-# Boots the guest module in a NixOS test VM and checks the macrod contract,
+# Boots the guest module in a NixOS test VM and checks the roxd contract,
 # the agent tools, nix-ld, and the agent teammate's units and computer use. Incus enrollment cannot
-# run here, so macrod-enroll must fail with its readable reason. Then a
+# run here, so roxd-enroll must fail with its readable reason. Then a
 # second image boots from the same data disk, as an image update does.
 {
   pkgs,
   guest,
-  macrod,
+  roxd,
   harnessd,
 }:
 let
@@ -20,7 +20,7 @@ let
   dataDisk = {
     macro.box.dataDisk = "/dev/disk/by-id/virtio-data";
     # No Incus here; do not wait the full minute for its socket.
-    systemd.services.macrod-enroll.environment.MACRO_INCUS_SOCKET_WAIT = "3";
+    systemd.services.roxd-enroll.environment.MACRO_INCUS_SOCKET_WAIT = "3";
     virtualisation.fileSystems."/home" = {
       device = "/dev/disk/by-id/virtio-data";
       fsType = "ext4";
@@ -28,7 +28,7 @@ let
       neededForBoot = true;
     };
   };
-  # A fake agent environment as `macrod enroll` writes it (systemd's quoted
+  # A fake agent environment as `roxd enroll` writes it (systemd's quoted
   # KEY="value" lines). Macro itself is
   # unreachable; the repo is the in-VM git server.
   agentEnvironment =
@@ -69,7 +69,7 @@ pkgs.testers.runNixOSTest {
       guest
       dataDisk
     ];
-    macro.box.macrod = macrod;
+    macro.box.roxd = roxd;
     macro.box.harnessd.package = harnessd;
     virtualisation.memorySize = 4096;
     virtualisation.cores = 4;
@@ -88,7 +88,7 @@ pkgs.testers.runNixOSTest {
       guest
       dataDisk
     ];
-    macro.box.macrod = macrod;
+    macro.box.roxd = roxd;
     macro.box.harnessd.package = harnessd;
     virtualisation.memorySize = 4096;
     virtualisation.diskSize = 4096;
@@ -107,7 +107,7 @@ pkgs.testers.runNixOSTest {
   nodes.agent = {
     imports = [ guest ];
     macro.box = {
-      inherit macrod;
+      inherit roxd;
       harnessd.package = harnessd;
       agentMode = true;
       dataDisk = null;
@@ -132,34 +132,34 @@ pkgs.testers.runNixOSTest {
       machine.wait_for_unit("multi-user.target")
 
       with subtest("enrollment fails with a reason when Incus is missing"):
-          machine.wait_until_fails("systemctl is-active --quiet macrod-enroll.service")
-          machine.succeed("journalctl -u macrod-enroll.service | grep -F '/dev/incus/sock is missing'")
+          machine.wait_until_fails("systemctl is-active --quiet roxd-enroll.service")
+          machine.succeed("journalctl -u roxd-enroll.service | grep -F '/dev/incus/sock is missing'")
 
-      with subtest("macrod runs as macro after enrollment"):
-          after = machine.succeed("systemctl show macrod.service --property=After --value")
-          assert "macrod-enroll.service" in after, after
-          machine.succeed("[ $(systemctl show macrod.service --property=User --value) = macro ]")
-          machine.succeed("[ $(systemctl show macrod.service --property=Restart --value) = always ]")
-          machine.succeed("[ $(systemctl show macrod.service --property=WorkingDirectory --value) = /home/macro/work ]")
+      with subtest("roxd runs as macro after enrollment"):
+          after = machine.succeed("systemctl show roxd.service --property=After --value")
+          assert "roxd-enroll.service" in after, after
+          machine.succeed("[ $(systemctl show roxd.service --property=User --value) = macro ]")
+          machine.succeed("[ $(systemctl show roxd.service --property=Restart --value) = always ]")
+          machine.succeed("[ $(systemctl show roxd.service --property=WorkingDirectory --value) = /home/macro/work ]")
 
-      with subtest("an enrollment that succeeds late still starts macrod"):
-          machine.succeed("[ $(systemctl show macrod.service --property=ConditionResult --value) = no ]")
-          assert "macrod-enroll.service" not in machine.succeed("systemctl show macrod.service --property=Requires --value")
+      with subtest("an enrollment that succeeds late still starts roxd"):
+          machine.succeed("[ $(systemctl show roxd.service --property=ConditionResult --value) = no ]")
+          assert "roxd-enroll.service" not in machine.succeed("systemctl show roxd.service --property=Requires --value")
           # The next retry succeeds, as one does once the socket shows up.
           machine.succeed(
-              "mkdir -p /run/systemd/system/macrod-enroll.service.d && "
-              + "printf '[Service]\\nExecStartPre=\\nExecStart=\\nExecStart=/bin/sh -c \"printf x > /var/lib/macrod/enrolled\"\\n' "
-              + "> /run/systemd/system/macrod-enroll.service.d/late.conf && systemctl daemon-reload"
+              "mkdir -p /run/systemd/system/roxd-enroll.service.d && "
+              + "printf '[Service]\\nExecStartPre=\\nExecStart=\\nExecStart=/bin/sh -c \"printf x > /var/lib/roxd/enrolled\"\\n' "
+              + "> /run/systemd/system/roxd-enroll.service.d/late.conf && systemctl daemon-reload"
           )
-          machine.wait_for_unit("macrod-enroll.service")
-          machine.wait_until_succeeds("[ -n \"$(systemctl show macrod.service --property=InvocationID --value)\" ]")
-          machine.succeed("rm -r /run/systemd/system/macrod-enroll.service.d && systemctl daemon-reload")
+          machine.wait_for_unit("roxd-enroll.service")
+          machine.wait_until_succeeds("[ -n \"$(systemctl show roxd.service --property=InvocationID --value)\" ]")
+          machine.succeed("rm -r /run/systemd/system/roxd-enroll.service.d && systemctl daemon-reload")
 
       with subtest("Claude Code's ACP adapter needs no install"):
-          environment = machine.succeed("systemctl show macrod-enroll.service --property=Environment --value").strip()
+          environment = machine.succeed("systemctl show roxd-enroll.service --property=Environment --value").strip()
           machine.succeed(
               f"systemd-run --quiet --wait --pipe --collect --property='Environment={environment}' "
-              + "macrod detect-agents | jq --exit-status "
+              + "roxd detect-agents | jq --exit-status "
               + "'any(.agents[]; .id == \"claude-code\" and .needs_install == false)'"
           )
 
@@ -184,17 +184,17 @@ pkgs.testers.runNixOSTest {
           machine.succeed("findmnt --noheadings --output SOURCE /home | grep -F /dev/vd")
           machine.succeed("su - macro -c 'echo token > ~/.claude/.credentials.json && echo notes > ~/work/notes.txt'")
           # What a successful enrollment leaves behind.
-          machine.succeed("printf 'mc-01900000000070008000000000000001\\n1\\n' > /var/lib/macrod/enrolled")
+          machine.succeed("printf 'mc-01900000000070008000000000000001\\n1\\n' > /var/lib/roxd/enrolled")
           machine.shutdown()
 
           updated.wait_for_unit("multi-user.target")
           updated.succeed("grep -Fx v2 /etc/macro-box-image")
           updated.succeed("su - macro -c 'grep -Fx token ~/.claude/.credentials.json && grep -Fx notes ~/work/notes.txt'")
-          updated.succeed("grep -Fx mc-01900000000070008000000000000001 /var/lib/macrod/enrolled")
+          updated.succeed("grep -Fx mc-01900000000070008000000000000001 /var/lib/roxd/enrolled")
           # Enrollment runs on every boot; with a marker and no source the
-          # check passes and leaves `macrod enroll` to keep the enrollment.
-          updated.wait_until_succeeds("systemctl show macrod-enroll.service --property=ExecStartPre | grep -F 'status=0/0'")
-          updated.fail("journalctl -b -u macrod-enroll.service | grep -F 'macrod-enroll: '")
+          # check passes and leaves `roxd enroll` to keep the enrollment.
+          updated.wait_until_succeeds("systemctl show roxd-enroll.service --property=ExecStartPre | grep -F 'status=0/0'")
+          updated.fail("journalctl -b -u roxd-enroll.service | grep -F 'roxd-enroll: '")
           updated.succeed("systemctl cat docker.service | grep -o -- '--config-file=[^ ]*' | cut -d= -f2 | xargs jq --exit-status '.\"data-root\" == \"/home/.system/docker\"'")
 
       with subtest("in agent mode macro has no sudo or docker"):
@@ -262,14 +262,14 @@ pkgs.testers.runNixOSTest {
           )
           agent.wait_for_open_port(8080)
           # Enrollment writes the file; the path unit starts the agent.
-          agent.succeed("install -m 0600 -o macro -g macro ${credentialedAgentEnvironment} /var/lib/macrod/agent.env")
+          agent.succeed("install -m 0600 -o macro -g macro ${credentialedAgentEnvironment} /var/lib/roxd/agent.env")
           agent.wait_until_succeeds("journalctl -u macro-agent.service | grep -F 'MACRO_REPO_URL must be an HTTP(S) URL without credentials'")
           agent.fail("test -e /home/macro/agent/workspace")
           # Rejected before git sends any request.
           agent.fail("test -e /srv/git/traceparents")
 
       with subtest("a rewritten agent environment restarts the agent, which clones and runs"):
-          agent.succeed("install -m 0600 -o macro -g macro ${goodAgentEnvironment} /var/lib/macrod/agent.env")
+          agent.succeed("install -m 0600 -o macro -g macro ${goodAgentEnvironment} /var/lib/roxd/agent.env")
           agent.wait_until_succeeds("journalctl -u macro-agent.service | grep -F 'starting the runtime at'")
           agent.wait_until_succeeds("pgrep -u macro -f 'bun /home/macro/agent/workspace/cli.ts run'")
           agent.succeed("[ $(systemctl show macro-agent.service --property=User --value) = macro ]")
@@ -286,8 +286,8 @@ pkgs.testers.runNixOSTest {
           helper = agent.succeed(f"{git} config --get-all credential.helper | tail -n 1").strip()
           program, credentials = helper.removeprefix("!").split(" ")
           assert credentials == "/run/credentials/macro-agent.service/agent.env", credentials
-          agent.succeed(f"printf 'protocol=http\\nhost=127.0.0.1:8080\\npath=repo.git\\n\\n' | {program} /var/lib/macrod/agent.env get | grep -Fx password=test-token")
-          agent.succeed(f"[ -z \"$(printf 'protocol=http\\nhost=other.invalid\\npath=repo.git\\n\\n' | {program} /var/lib/macrod/agent.env get)\" ]")
+          agent.succeed(f"printf 'protocol=http\\nhost=127.0.0.1:8080\\npath=repo.git\\n\\n' | {program} /var/lib/roxd/agent.env get | grep -Fx password=test-token")
+          agent.succeed(f"[ -z \"$(printf 'protocol=http\\nhost=other.invalid\\npath=repo.git\\n\\n' | {program} /var/lib/roxd/agent.env get)\" ]")
           # agent.env is a credential, not process environment.
           pid = agent.succeed("systemctl show macro-agent.service --property=MainPID --value").strip()
           agent.fail(f"tr '\\0' '\\n' < /proc/{pid}/environ | grep -F MACRO_API_KEY")
@@ -321,7 +321,7 @@ pkgs.testers.runNixOSTest {
           agent.wait_for_open_port(9222)
           agent.succeed("su - macro -c 'curl --fail --silent http://127.0.0.1:9222/json/version'")
           print(agent.succeed("ss -ltnH '( sport = :5900 or sport = :9222 )'"))
-          agent.succeed("su - macro -c 'mkdir -p ~/.macrod && echo macrod-secret > ~/.macrod/escape-probe'")
+          agent.succeed("su - macro -c 'mkdir -p ~/.roxd && echo roxd-secret > ~/.roxd/escape-probe'")
           openbox = agent.succeed("systemctl show macro-agent-openbox.service --property=MainPID --value").strip()
           # The agent's unit, and what Openbox's menu would start.
           for name, target in [("agent", pid), ("openbox", openbox)]:
@@ -330,7 +330,7 @@ pkgs.testers.runNixOSTest {
               # macro's user manager and session bus aren't in its view.
               agent.fail(f"{inside} ${pkgs.systemd}/bin/systemd-run --user --pipe --wait true")
               agent.fail(f"{inside} test -e /run/user/1000/bus")
-              agent.fail(f"{inside} test -e /home/macro/.macrod/escape-probe")
+              agent.fail(f"{inside} test -e /home/macro/.roxd/escape-probe")
               # macro's display, by socket or VNC, and its DevTools.
               status, refused = agent.execute(f"{inside} {xclip} -display :0 -o 2>&1")
               assert status != 0 and "open display" in refused, refused
@@ -342,7 +342,7 @@ pkgs.testers.runNixOSTest {
                   agent.succeed(f"{inside} ${pkgs.bash}/bin/bash -c 'exec 3<>/dev/tcp/127.0.0.1/{port}'")
           # Its browser can't open macro's files or DevTools either.
           browse = "${pkgs.bun}/bin/bun ${./files/test-browser-escape.ts}"
-          assert "macrod-secret" not in agent.succeed(f"{browse} file:///home/macro/.macrod/escape-probe")
+          assert "roxd-secret" not in agent.succeed(f"{browse} file:///home/macro/.roxd/escape-probe")
           assert "webSocketDebuggerUrl" not in agent.succeed(f"{browse} http://127.0.0.1:9222/json/list")
           assert "Browser" in agent.succeed(f"{browse} http://127.0.0.1:9223/json/version")
 
@@ -381,7 +381,7 @@ pkgs.testers.runNixOSTest {
           agent.wait_until_succeeds(f"[ $(systemctl show macro-agent.service --property=InvocationID --value) != {before} ]")
 
       with subtest("removing the agent environment stops the agent"):
-          agent.succeed("rm /var/lib/macrod/agent.env")
+          agent.succeed("rm /var/lib/roxd/agent.env")
           agent.wait_until_fails("systemctl is-active --quiet macro-agent.service")
     '';
 }

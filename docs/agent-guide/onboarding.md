@@ -3,7 +3,7 @@
 ## Resume link
 
 Lifecycle emails return someone to the step they left with
-`https://macro.com/app/onboarding?step={lastOnboardingStep}`. `step` is one
+`https://rox.one/app/onboarding?step={lastOnboardingStep}`. `step` is one
 of `welcome`, `vision`, `security`, `work`, `personal`, `tools`, `team`,
 `plan`, or `routines`. Any other value is ignored. A Stripe checkout return still opens the
 plan step, and a Google sign-up return still opens work email. Saved progress
@@ -25,7 +25,7 @@ and opens the sign-up step; authentication is still required. After signing in,
 and opens the original destination or Home, so reloading does not restart setup.
 The button uses the same completion and retry path as finishing normally.
 
-Deployed builds keep **Bypass** restricted to `@macro.com` accounts; other
+Deployed builds keep **Bypass** restricted to `@rox.one` accounts; other
 accounts still follow the existing onboarding flow.
 
 ## Team setup — `/app/onboarding`

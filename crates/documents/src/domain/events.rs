@@ -11,7 +11,7 @@ use activity::Actor;
 use chrono::{DateTime, Utc};
 use document_sub_type::DocumentSubType;
 use macro_event_broker::{Event, MacroEvent, TopicEvent};
-use macro_event_topics::MacroDocumentsTopic;
+use macro_event_topics::RoxDocumentsTopic;
 use macro_user_id::user_id::MacroUserIdStr;
 use model::document::FileType;
 use model_owner::Owner;
@@ -250,7 +250,7 @@ pub struct DocumentCopiedMetadata {
     pub sub_type: Option<DocumentSubType>,
 }
 
-/// Events that can be published to [`MacroDocumentsTopic`].
+/// Events that can be published to [`RoxDocumentsTopic`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(tag = "event_type", content = "metadata")]
@@ -282,12 +282,12 @@ pub enum DocumentTopicEvent {
 }
 
 impl TopicEvent for DocumentTopicEvent {
-    type Topic = MacroDocumentsTopic;
+    type Topic = RoxDocumentsTopic;
 
     const SCHEMA_VERSION: u8 = 1;
 }
 
-/// Publishable event for [`MacroDocumentsTopic`], keyed by document id.
+/// Publishable event for [`RoxDocumentsTopic`], keyed by document id.
 pub struct DocumentMacroEvent {
     key: String,
     event: Event<DocumentTopicEvent>,

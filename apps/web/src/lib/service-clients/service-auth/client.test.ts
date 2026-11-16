@@ -134,8 +134,8 @@ describe('subscription checkout conflicts', () => {
     const result = await authServiceClient.createCheckoutSessionV2({
       plan: 'premium',
       onboardingTrial: true,
-      successUrl: 'https://macro.com/app',
-      cancelUrl: 'https://macro.com/app',
+      successUrl: 'https://rox.one/app',
+      cancelUrl: 'https://rox.one/app',
     });
     expect(result._unsafeUnwrapErr()[0]).toEqual({ code: 'CONFLICT', message });
   });

@@ -10,7 +10,7 @@ fn id(value: u128) -> InitiativeId {
 }
 fn actor() -> Option<InitiativeEventActor> {
     Some(InitiativeEventActor {
-        actor: Actor::try_from("macro|teo@macro.com".to_string()).unwrap(),
+        actor: Actor::try_from("macro|teo@rox.one".to_string()).unwrap(),
         on_behalf_of: None,
     })
 }

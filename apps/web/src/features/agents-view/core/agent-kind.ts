@@ -6,7 +6,7 @@ import type { AgentsMode } from './mode';
 
 /**
  * What an agent is for. A coder writes code: it takes a repository and runs on
- * a coding runtime (Cursor's cloud agents, or a macrod daemon on someone's
+ * a coding runtime (Cursor's cloud agents, or a roxd daemon on someone's
  * machine). Every other agent chats from Macro's own in-memory harness.
  *
  * The kind is not stored on the agent — the harness decides it, because only a

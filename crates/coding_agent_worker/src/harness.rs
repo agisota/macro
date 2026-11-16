@@ -313,7 +313,7 @@ async fn hand_off(
     self_knowledge: &mut SelfKnowledge,
     computer: Option<&Arc<Computer>>,
 ) -> Option<crate::handoff::HandedOffAgent> {
-    let span = tracing::info_span!("macrod.update.handoff");
+    let span = tracing::info_span!("roxd.update.handoff");
     let _entered = span.enter();
     agent.stop_reading();
     while let Some(line) = agent.next_line().await {

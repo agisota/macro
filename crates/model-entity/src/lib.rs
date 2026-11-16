@@ -70,7 +70,7 @@ pub enum EntityType {
     CrmPipeline,
     /// The entity is a reminder set by a user
     Reminder,
-    /// A registered runtime: a computer running macrod. Shared with people and
+    /// A registered runtime: a computer running roxd. Shared with people and
     /// teams, never with channels or the public.
     Harness,
     /// The entity is an AI skill: either a skill document or a built-in

@@ -82,9 +82,9 @@ impl Timings {
 
 /// What a replica is built from.
 pub struct ReplicaDeps<Kms> {
-    /// Pooled MacroDB connections for reads and fenced writes.
+    /// Pooled RoxDB connections for reads and fenced writes.
     pub pool: PgPool,
-    /// Direct (non-pooled) MacroDB connection options for the advisory locks
+    /// Direct (non-pooled) RoxDB connection options for the advisory locks
     /// and `LISTEN`.
     pub lock_options: PgConnectOptions,
     /// Wraps and unwraps account data keys.

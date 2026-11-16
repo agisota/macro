@@ -105,14 +105,14 @@ vi.mock('@queries/external-chats', () => ({
       {
         id: 'group-1',
         name: 'Design Crit',
-        ownerId: 'macro|gab@macro.com',
+        ownerId: 'macro|gab@rox.one',
         unreadCount: 0,
         canSend: true,
       },
       {
         id: 'group-2',
         name: 'Launch Room',
-        ownerId: 'macro|gab@macro.com',
+        ownerId: 'macro|gab@rox.one',
         unreadCount: 0,
         canSend: true,
       },
@@ -120,7 +120,7 @@ vi.mock('@queries/external-chats', () => ({
       {
         id: 'group-3',
         name: 'Design Review',
-        ownerId: 'macro|ana@macro.com',
+        ownerId: 'macro|ana@rox.one',
         unreadCount: 0,
         canSend: false,
       },
@@ -154,8 +154,8 @@ vi.mock('@core/context/quickAccess', () => ({
   }),
 }));
 vi.mock('@core/context/user', () => ({
-  useEmail: () => () => 'gab@macro.com',
-  useUserId: () => () => 'macro|gab@macro.com',
+  useEmail: () => () => 'gab@rox.one',
+  useUserId: () => () => 'macro|gab@rox.one',
 }));
 vi.mock('@core/constant/allBlocks', () => ({
   fileTypeToBlockName: () => 'md',
@@ -212,9 +212,9 @@ const mockNoEmails = () =>
     loadMore: async () => {},
   });
 const manyUsers: IUser[] = Array.from({ length: 20 }, (_, i) => ({
-  id: `macro|person${i}@macro.com`,
+  id: `macro|person${i}@rox.one`,
   name: `Person ${i}`,
-  email: `person${i}@macro.com`,
+  email: `person${i}@rox.one`,
 }));
 
 afterEach(() => {
@@ -241,9 +241,9 @@ it('keeps matching category and row nodes mounted across typing and updated peop
   vi.useFakeTimers();
   Element.prototype.scrollIntoView = vi.fn();
   const seamus: IUser = {
-    id: 'macro|seamus@macro.com',
+    id: 'macro|seamus@rox.one',
     name: 'Seamus Edson',
-    email: 'seamus@macro.com',
+    email: 'seamus@rox.one',
   };
   const [users, setUsers] = createSignal([seamus]);
   const menu = createMenuOperations();
@@ -261,17 +261,17 @@ it('keeps matching category and row nodes mounted across typing and updated peop
     />
   ));
   const heading = screen.getByText('People');
-  const row = screen.getByTitle('Seamus Edson seamus@macro.com');
+  const row = screen.getByTitle('Seamus Edson seamus@rox.one');
   for (const term of ['seam', 'seamu', 'seam', 'sea']) {
     menu.setSearchTerm(term);
     await vi.advanceTimersByTimeAsync(100);
     expect(screen.getByText('People')).toBe(heading);
-    expect(screen.getByTitle('Seamus Edson seamus@macro.com')).toBe(row);
+    expect(screen.getByTitle('Seamus Edson seamus@rox.one')).toBe(row);
   }
   const updated = { ...seamus, name: 'Seamus Updated' };
   setUsers([updated]);
   expect(screen.getByText('People')).toBe(heading);
-  expect(screen.getByTitle('Seamus Updated seamus@macro.com')).toBe(row);
+  expect(screen.getByTitle('Seamus Updated seamus@rox.one')).toBe(row);
   fireEvent.click(row);
   expect(onPick).toHaveBeenCalledWith(
     expect.objectContaining({ data: updated })
@@ -287,9 +287,9 @@ it.each([false, true])(
     Element.prototype.scrollIntoView = vi.fn();
     const sort = vi.spyOn(mobileSort, 'sortMobileMentions');
     const seamus: IUser = {
-      id: 'macro|seamus@macro.com',
+      id: 'macro|seamus@rox.one',
       name: 'Seamus Edson',
-      email: 'seamus@macro.com',
+      email: 'seamus@rox.one',
     };
     const [users, setUsers] = createSignal([seamus]);
     const readUsers = vi.fn(users);
@@ -317,7 +317,7 @@ it.each([false, true])(
     expect(sort).not.toHaveBeenCalled();
 
     menu.openMenu();
-    expect(screen.getByTitle('Seamus Edson seamus@macro.com')).toBeTruthy();
+    expect(screen.getByTitle('Seamus Edson seamus@rox.one')).toBeTruthy();
     expect(readUsers).toHaveBeenCalled();
     expect(readEntities).toHaveBeenCalled();
     if (mobile) expect(sort).toHaveBeenCalled();
@@ -335,7 +335,7 @@ it.each([false, true])(
     expect(sort).not.toHaveBeenCalled();
 
     menu.openMenu();
-    expect(screen.getByTitle('Seamus Updated seamus@macro.com')).toBeTruthy();
+    expect(screen.getByTitle('Seamus Updated seamus@rox.one')).toBeTruthy();
     fireEvent.keyDown(document, { key: 'Enter' });
     await vi.advanceTimersByTimeAsync(0);
     expect(onPick).toHaveBeenCalledWith(
@@ -779,14 +779,14 @@ it('picks the highlighted mention on Enter at once, even while typing continues'
   mockNoEmails();
   Element.prototype.scrollIntoView = vi.fn();
   const ana: IUser = {
-    id: 'macro|ana@macro.com',
+    id: 'macro|ana@rox.one',
     name: 'Ana Lima',
-    email: 'ana@macro.com',
+    email: 'ana@rox.one',
   };
   const bo: IUser = {
-    id: 'macro|bo@macro.com',
+    id: 'macro|bo@rox.one',
     name: 'Bo Chen',
-    email: 'bo@macro.com',
+    email: 'bo@rox.one',
   };
   const menu = createMenuOperations();
   menu.setSearchTerm('bo');
@@ -803,7 +803,7 @@ it('picks the highlighted mention on Enter at once, even while typing continues'
     />
   ));
   await vi.advanceTimersByTimeAsync(100);
-  expect(screen.getByTitle('Bo Chen bo@macro.com')).toBeTruthy();
+  expect(screen.getByTitle('Bo Chen bo@rox.one')).toBeTruthy();
 
   // Typed past the listed term and pressed Enter within the debounce, then
   // kept typing: the pick is for the typed text and is not lost.

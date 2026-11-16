@@ -19,8 +19,8 @@ function card(overrides: Partial<ToolApprovalCardProps>) {
   const view = render(() => (
     <ToolApprovalCard
       action="read your email"
-      requester="julia@macro.com"
-      owner="wolf@macro.com"
+      requester="julia@rox.one"
+      owner="wolf@rox.one"
       canApprove={false}
       canCancel={false}
       {...handlers}
@@ -35,7 +35,7 @@ describe('ToolApprovalCard', () => {
     const { getByText, onApprove, onDeny } = card({ canApprove: true });
     expect(getByText('Approval needed')).toBeTruthy();
     expect(
-      getByText('julia@macro.com asked the agent to read your email.')
+      getByText('julia@rox.one asked the agent to read your email.')
     ).toBeTruthy();
     fireEvent.click(getByText('Approve'));
     fireEvent.click(getByText('Decline'));
@@ -50,7 +50,7 @@ describe('ToolApprovalCard', () => {
     });
     expect(
       getByText(
-        'Always allow lets julia@macro.com use your Linear account in this session without asking you.'
+        'Always allow lets julia@rox.one use your Linear account in this session without asking you.'
       )
     ).toBeTruthy();
     fireEvent.click(getByText('Always allow'));
@@ -61,7 +61,7 @@ describe('ToolApprovalCard', () => {
     const { getByText } = card({
       canApprove: true,
       ownTurn: true,
-      requester: 'wolf@macro.com',
+      requester: 'wolf@rox.one',
       action: 'use your Google Drive account (trash file)',
       standing: 'use your Google Drive account',
     });
@@ -84,7 +84,7 @@ describe('ToolApprovalCard', () => {
 
   it('shows everyone else who it waits for, with a way out for editors', () => {
     const { getByText, queryByText, onCancel } = card({ canCancel: true });
-    expect(getByText('Waiting for wolf@macro.com to approve')).toBeTruthy();
+    expect(getByText('Waiting for wolf@rox.one to approve')).toBeTruthy();
     expect(queryByText('Approve')).toBeNull();
     expect(queryByText('Always allow')).toBeNull();
     fireEvent.click(getByText('Cancel'));

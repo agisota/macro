@@ -9,8 +9,8 @@ use super::PgFavoritesRepo;
 use crate::domain::models::FavoriteFilter;
 use crate::domain::ports::FavoritesRepo;
 
-const USER_A: &str = "macro|user-a@macro.com";
-const USER_B: &str = "macro|user-b@macro.com";
+const USER_A: &str = "macro|user-a@rox.one";
+const USER_B: &str = "macro|user-b@rox.one";
 
 fn user(id: &str) -> MacroUserIdStr<'_> {
     MacroUserIdStr::parse_from_str(id).expect("valid user id")
@@ -212,7 +212,7 @@ async fn list_favorites_skips_agent_sessions_that_no_longer_exist(pool: PgPool) 
     sqlx::query(
         r#"
         INSERT INTO agent_session (id, owner_id, bot_id, model, harness, repo_url, workspace)
-        VALUES ($1, $2, $3, 'claude', 'macrod', 'https://github.com/example/example', '/workspace')
+        VALUES ($1, $2, $3, 'claude', 'roxd', 'https://github.com/example/example', '/workspace')
         "#,
     )
     .bind(live_session)

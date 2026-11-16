@@ -30,4 +30,4 @@ else the team's, else the browser's when offered, else English.
 ## Checks
 
 - `cargo test -p user_language --all-features` (`SQLX_OFFLINE` unset; requires
-  local MacroDB).
+  local RoxDB).

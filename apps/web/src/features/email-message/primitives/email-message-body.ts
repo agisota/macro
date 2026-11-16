@@ -55,7 +55,7 @@ export function createEmailMessageBody(
       showFullContent: props.showFullContent,
       normalizeFonts:
         props.isPersonal &&
-        !props.message.from?.email?.toLowerCase().endsWith('@macro.com'),
+        !props.message.from?.email?.toLowerCase().endsWith('@rox.one'),
       hiddenPixels: hiddenPixels(),
     }),
     undefined,

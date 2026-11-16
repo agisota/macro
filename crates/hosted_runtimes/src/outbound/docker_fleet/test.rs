@@ -73,7 +73,7 @@ fn create_runs_systemd_with_the_enrollment_directory_mounted_read_only() {
             "--mount",
             "type=volume,source=macro-computer-01900000-0000-7000-8000-000000000001-home,target=/home,volume-label=macro.computer_id=01900000-0000-7000-8000-000000000001,volume-label=macro.control_plane=test-a",
             "--mount",
-            "type=volume,source=macro-computer-01900000-0000-7000-8000-000000000001-macrod,target=/var/lib/macrod,volume-label=macro.computer_id=01900000-0000-7000-8000-000000000001,volume-label=macro.control_plane=test-a",
+            "type=volume,source=macro-computer-01900000-0000-7000-8000-000000000001-roxd,target=/var/lib/roxd,volume-label=macro.computer_id=01900000-0000-7000-8000-000000000001,volume-label=macro.control_plane=test-a",
             "macro-box:latest",
         ]
     );
@@ -112,7 +112,7 @@ fn volume_removal_names_both_volumes_and_tolerates_missing_ones() {
             "rm",
             "--force",
             "macro-computer-01900000-0000-7000-8000-000000000001-home",
-            "macro-computer-01900000-0000-7000-8000-000000000001-macrod",
+            "macro-computer-01900000-0000-7000-8000-000000000001-roxd",
         ]
     );
 }

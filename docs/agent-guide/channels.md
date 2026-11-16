@@ -166,7 +166,7 @@ repeat with a plus-addressed DM recipient to check the email-name fallback.
 
 ## Private conversations with an agent
 
-Agent DM discovery is on in development builds (dev.macro.com and `bun run dev`)
+Agent DM discovery is on in development builds (dev.rox.one and `bun run dev`)
 and off in production; there is no PostHog flag. Override it with
 `VITE_ENABLE_AGENT_DMS=true` or `false` before starting Vite or building the
 frontend. Disabling discovery does not delete existing conversations or cancel
@@ -761,7 +761,7 @@ prompted, held for that owner’s approval reads `Waiting for approval`; only th
 Coding agents use `macro_internal.set_pull_request` to register an existing or
 new GitHub PR with their session. Macro Internal MCP is hosted by the harness
 service at `/mcp/internal` on its egress listener, separately from workspace MCP.
-Cursor, sandbox, and macrod sessions receive session-scoped credentials; the
+Cursor, sandbox, and roxd sessions receive session-scoped credentials; the
 model supplies only the URL. The tool records the link, not the GitHub PR itself,
 and returns the session's `/app/agent/<id>` URL.
 Macro Internal MCP's server instructions ask coding agents to register PRs with

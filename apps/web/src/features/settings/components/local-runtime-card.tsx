@@ -5,15 +5,15 @@ import { isDesktopPlatform } from '@core/util/platform';
 import LaptopIcon from '@icon/system/regular/laptop.svg';
 import SpinnerIcon from '@icon/system/regular/spinner-gap.svg';
 import {
-  type MacrodStatus as MacrodSnapshot,
-  type MacrodSupport,
-  macrodInspect,
-  macrodStart,
-  macrodStatus,
-  macrodStop,
-  macrodSupport,
-  onMacrodStatus,
-} from '@macro/tauri/macrod';
+  type RoxdStatus as RoxdSnapshot,
+  type RoxdSupport,
+  roxdInspect,
+  roxdStart,
+  roxdStatus,
+  roxdStop,
+  roxdSupport,
+  onRoxdStatus,
+} from '@macro/tauri/roxd';
 import { useAgentsQuery } from '@queries/agents/agents';
 import type { UnlistenFn } from '@tauri-apps/api/event';
 import { Button } from '@ui';
@@ -36,10 +36,10 @@ function errorMessage(error: unknown, fallback: string): string {
 }
 
 /**
- * One-click local runtime on the desktop app: the bundled macrod daemon is
+ * One-click local runtime on the desktop app: the bundled roxd daemon is
  * configured, paired, and supervised without the user touching a terminal.
  * Setup runs through the shared `LocalRuntimeSetupPanel`, which also creates
- * an agent on the runtime; the app-wide `MacrodPairingApprover` approves the
+ * an agent on the runtime; the app-wide `RoxdPairingApprover` approves the
  * daemon's pairing code, so no code is ever typed.
  */
 export function LocalRuntimeCard() {
@@ -48,15 +48,15 @@ export function LocalRuntimeCard() {
   if (!isDesktopPlatform()) return null;
 
   const agentsQuery = useAgentsQuery();
-  const [support, setSupport] = createSignal<MacrodSupport>();
-  const [snapshot, setSnapshot] = createSignal<MacrodSnapshot>();
+  const [support, setSupport] = createSignal<RoxdSupport>();
+  const [snapshot, setSnapshot] = createSignal<RoxdSnapshot>();
   /** Whether a config already exists on disk (daemon may be stopped). */
   const [configured, setConfigured] = createSignal(false);
   /** The setup panel, and the running daemon it finishes when set. */
-  const [setup, setSetup] = createSignal<{ running?: MacrodSnapshot }>();
+  const [setup, setSetup] = createSignal<{ running?: RoxdSnapshot }>();
   const [busy, setBusy] = createSignal(false);
 
-  const handleStatus = (next: MacrodSnapshot) => {
+  const handleStatus = (next: RoxdSnapshot) => {
     setSnapshot(next);
     if (next.phase === 'running') setConfigured(true);
   };
@@ -67,22 +67,22 @@ export function LocalRuntimeCard() {
     const probe = async () => {
       try {
         const [supportInfo, current] = await Promise.all([
-          macrodSupport(),
-          macrodStatus(),
+          roxdSupport(),
+          roxdStatus(),
         ]);
         if (disposed) return;
         setSupport(supportInfo);
         handleStatus(current);
         if (!supportInfo.supported) return;
-        unlisten = await onMacrodStatus(handleStatus);
+        unlisten = await onRoxdStatus(handleStatus);
         if (disposed) {
           fireAndForget(unlisten(), 'local-runtime-card');
           return;
         }
-        const inspection = await macrodInspect();
+        const inspection = await roxdInspect();
         if (!disposed && inspection.exists) setConfigured(true);
       } catch (error) {
-        console.error('could not probe the bundled macrod daemon', error);
+        console.error('could not probe the bundled roxd daemon', error);
       }
     };
     fireAndForget(probe(), 'local-runtime-card');
@@ -104,7 +104,7 @@ export function LocalRuntimeCard() {
     if (busy()) return;
     setBusy(true);
     try {
-      await macrodStart({});
+      await roxdStart({});
     } catch (error) {
       toast.failure(errorMessage(error, 'Could not start this computer'));
     } finally {
@@ -116,7 +116,7 @@ export function LocalRuntimeCard() {
     if (busy()) return;
     setBusy(true);
     try {
-      await macrodStop();
+      await roxdStop();
     } catch (error) {
       toast.failure(errorMessage(error, 'Could not stop this computer'));
     } finally {

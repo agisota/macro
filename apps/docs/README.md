@@ -1,6 +1,6 @@
 # Rox Docs
 
-These are the canonical guides used by the public website at `macro.com/docs`.
+These are the canonical guides used by the public website at `rox.one/docs`.
 The website in `apps/marketing` compiles the MDX, owns the navigation and styling,
 and publishes the guides, screenshots, videos, and Markdown in the same build as
 the product pages. Do not maintain a separate copy of the content in marketing.
@@ -53,7 +53,7 @@ website build runs this check automatically.
 Deploy and verify the website **before** publishing the Mintlify redirect config.
 The old host must continue serving redirects after the migration: do not delete
 its Mintlify project or DNS record. To retire Mintlify hosting later, first move
-these same redirect rules to a replacement host with a valid `docs.macro.com`
+these same redirect rules to a replacement host with a valid `docs.rox.one`
 certificate. Publishing redirect records and changing DNS require the separately
 authorized cutover; neither is performed by local checks. After publishing,
 check the old hostname itself for 308 responses and follow every sitemap URL to

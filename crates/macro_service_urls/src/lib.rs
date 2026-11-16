@@ -227,8 +227,8 @@ impl ServiceUrlVarErr {
 ///         #[derive(Debug, Clone)]
 ///         pub struct DocumentStorageServiceUrl {
 ///             local: "http://localhost:8086",
-///             dev: "https://dev-gateway.macro.com/dss",
-///             prod: "https://gateway.macro.com/dss",
+///             dev: "https://dev-gateway.rox.one/dss",
+///             prod: "https://gateway.rox.one/dss",
 ///         }
 ///     }
 ///
@@ -497,62 +497,62 @@ service_url! {
         /// Main app URL.
         pub AppServiceUrl {
             local: "http://localhost:3000",
-            dev: "https://dev.macro.com",
-            prod: "https://macro.com",
+            dev: "https://dev.rox.one",
+            prod: "https://rox.one",
         },
         /// Authentication service API URL.
         pub AuthServiceUrl {
             local: "http://localhost:8080",
-            dev: "https://dev-gateway.macro.com/auth",
-            prod: "https://gateway.macro.com/auth",
+            dev: "https://dev-gateway.rox.one/auth",
+            prod: "https://gateway.rox.one/auth",
         },
         /// Document storage service API URL.
         pub DocumentStorageServiceUrl {
             local: "http://localhost:8086",
-            dev: "https://dev-gateway.macro.com/dss",
-            prod: "https://gateway.macro.com/dss",
+            dev: "https://dev-gateway.rox.one/dss",
+            prod: "https://gateway.rox.one/dss",
         },
         /// Convert service API URL.
         pub ConvertServiceUrl {
             local: "http://localhost:8080",
-            dev: "https://dev-gateway.macro.com/convert",
-            prod: "https://gateway.macro.com/convert",
+            dev: "https://dev-gateway.rox.one/convert",
+            prod: "https://gateway.rox.one/convert",
         },
         /// Search processing service API URL.
         pub SearchProcessingServiceUrl {
             local: "http://localhost:8092",
-            dev: "https://dev-gateway.macro.com/search-processing",
-            prod: "https://gateway.macro.com/search-processing",
+            dev: "https://dev-gateway.rox.one/search-processing",
+            prod: "https://gateway.rox.one/search-processing",
         },
         /// Connection gateway HTTP API URL.
         pub ConnectionGatewayUrl {
             local: "http://localhost:8082",
-            dev: "https://dev-gateway.macro.com/connection-gateway",
-            prod: "https://gateway.macro.com/connection-gateway",
+            dev: "https://dev-gateway.rox.one/connection-gateway",
+            prod: "https://gateway.rox.one/connection-gateway",
         },
         /// Connection gateway WebSocket URL.
         pub ConnectionGatewayWebsocketUrl {
             local: "ws://localhost:8082",
-            dev: "wss://dev-gateway.macro.com/connection-gateway",
-            prod: "wss://gateway.macro.com/connection-gateway",
+            dev: "wss://dev-gateway.rox.one/connection-gateway",
+            prod: "wss://gateway.rox.one/connection-gateway",
         },
         /// Document cognition service API URL.
         pub DocumentCognitionServiceUrl {
             local: "http://localhost:8101/cognition",
-            dev: "https://dev-gateway.macro.com/cognition",
-            prod: "https://gateway.macro.com/cognition",
+            dev: "https://dev-gateway.rox.one/cognition",
+            prod: "https://gateway.rox.one/cognition",
         },
         /// Notification service API URL.
         pub NotificationServiceUrl {
             local: "http://localhost:8089",
-            dev: "https://dev-gateway.macro.com/notification",
-            prod: "https://gateway.macro.com/notification",
+            dev: "https://dev-gateway.rox.one/notification",
+            prod: "https://gateway.rox.one/notification",
         },
         /// Static file service/CDN URL.
         pub StaticFileServiceUrl {
             local: "http://localhost:8100",
-            dev: "https://static-file-service-dev.macro.com",
-            prod: "https://static-file-service.macro.com",
+            dev: "https://static-file-service-dev.rox.one",
+            prod: "https://static-file-service.rox.one",
         },
         /// Browser-facing static file base that file links are stamped with.
         /// [`StaticFileServiceUrl`] is the address services call; on a local
@@ -560,8 +560,8 @@ service_url! {
         /// in-network while browsers go through the frontend proxy.
         pub StaticFilePublicUrl {
             local: "http://localhost:8100",
-            dev: "https://static-file-service-dev.macro.com",
-            prod: "https://static-file-service.macro.com",
+            dev: "https://static-file-service-dev.rox.one",
+            prod: "https://static-file-service.rox.one",
         },
         /// Public API gateway origin: every service's API under its path
         /// prefix (`/auth`, `/dss`, `/cognition`, `/agent-harness`, ...), as
@@ -569,41 +569,41 @@ service_url! {
         /// proxy, which mirrors the gateway's prefixes.
         pub ApiGatewayUrl {
             local: "https://localhost:8090",
-            dev: "https://dev-gateway.macro.com",
-            prod: "https://gateway.macro.com",
+            dev: "https://dev-gateway.rox.one",
+            prod: "https://gateway.rox.one",
         },
         /// Agent harness service API URL. Serves the agent-session control
         /// routes, which run in the process that owns the live sessions.
         pub AgentHarnessServiceUrl {
             local: "http://localhost:8101",
-            dev: "https://dev-gateway.macro.com/agent-harness",
-            prod: "https://gateway.macro.com/agent-harness",
+            dev: "https://dev-gateway.rox.one/agent-harness",
+            prod: "https://gateway.rox.one/agent-harness",
         },
         /// Scheduled action service API URL.
         pub ScheduledActionServiceUrl {
             local: "http://localhost:8101/scheduled-action",
-            dev: "https://dev-gateway.macro.com/scheduled-action",
-            prod: "https://gateway.macro.com/scheduled-action",
+            dev: "https://dev-gateway.rox.one/scheduled-action",
+            prod: "https://gateway.rox.one/scheduled-action",
         },
         /// Sandbox-facing agent harness egress proxy URL.
         /// Override the local default when sandbox clients need a Docker-network
         /// address or a public tunnel rather than the host's loopback address.
         pub AgentHarnessEgressUrl {
             local: "http://localhost:8102",
-            dev: "https://dev-gateway.macro.com/agent-harness-egress",
-            prod: "https://gateway.macro.com/agent-harness-egress",
+            dev: "https://dev-gateway.rox.one/agent-harness-egress",
+            prod: "https://gateway.rox.one/agent-harness-egress",
         },
         /// Macro MCP service base URL. Append `/mcp` for its transport endpoint.
         pub McpServiceUrl {
             local: "http://localhost:8101",
-            dev: "https://dev-gateway.macro.com/mcp",
-            prod: "https://gateway.macro.com/mcp",
+            dev: "https://dev-gateway.rox.one/mcp",
+            prod: "https://gateway.rox.one/mcp",
         },
         /// Public MCP OAuth issuer and callback base, distinct from gateway transport routing.
         pub McpPublicUrl {
             local: "http://localhost:8101",
-            dev: "https://mcp-server-dev.macro.com",
-            prod: "https://mcp-server.macro.com",
+            dev: "https://mcp-server-dev.rox.one",
+            prod: "https://mcp-server.rox.one",
         },
         /// ChatGPT MCP server base URL (a Cloudflare Worker). Append `/mcp` for
         /// its transport endpoint, which is also its RFC 8707 resource: the
@@ -616,60 +616,60 @@ service_url! {
         /// Public integration callback base, preserving registered OAuth redirect URIs.
         pub CognitionPublicUrl {
             local: "http://localhost:8101/cognition",
-            dev: "https://document-cognition-dev.macro.com",
-            prod: "https://document-cognition.macro.com",
+            dev: "https://document-cognition-dev.rox.one",
+            prod: "https://document-cognition.rox.one",
         },
         /// Macro Connect API base URL: Macro's OAuth broker for MCP connectors.
         pub ConnectApiUrl {
             local: "http://localhost:8080",
-            dev: "https://connect-dev.macro.com",
-            prod: "https://connect.macro.com",
+            dev: "https://connect-dev.rox.one",
+            prod: "https://connect.rox.one",
         },
         /// Link unfurl service API URL.
         pub UnfurlServiceUrl {
             local: "http://localhost:8095",
-            dev: "https://dev-gateway.macro.com/unfurl",
-            prod: "https://gateway.macro.com/unfurl",
+            dev: "https://dev-gateway.rox.one/unfurl",
+            prod: "https://gateway.rox.one/unfurl",
         },
         /// Contacts service API URL.
         pub ContactsServiceUrl {
             local: "http://localhost:8083",
-            dev: "https://dev-gateway.macro.com/contacts",
-            prod: "https://gateway.macro.com/contacts",
+            dev: "https://dev-gateway.rox.one/contacts",
+            prod: "https://gateway.rox.one/contacts",
         },
         /// Email service API URL.
         pub EmailServiceUrl {
             local: "http://localhost:8087",
-            dev: "https://dev-gateway.macro.com/email",
-            prod: "https://gateway.macro.com/email",
+            dev: "https://dev-gateway.rox.one/email",
+            prod: "https://gateway.rox.one/email",
         },
         /// Calendar service API URL. The calendar write authority once
         /// `calendar_service` owns provider mutations; its API is mounted at
         /// the root and under the `/calendar` gateway prefix.
         pub CalendarServiceUrl {
             local: "http://localhost:8088",
-            dev: "https://dev-gateway.macro.com/calendar",
-            prod: "https://gateway.macro.com/calendar",
+            dev: "https://dev-gateway.rox.one/calendar",
+            prod: "https://gateway.rox.one/calendar",
         },
         /// Agent workspace repos: smart-HTTP clone/push of each agent's repo
         /// and the internal create/delete API, served by the agent harness
         /// under the `/agent-git` gateway prefix.
         pub AgentGitServiceUrl {
             local: "http://localhost:8101/agent-git",
-            dev: "https://dev-gateway.macro.com/agent-git",
-            prod: "https://gateway.macro.com/agent-git",
+            dev: "https://dev-gateway.rox.one/agent-git",
+            prod: "https://gateway.rox.one/agent-git",
         },
         /// Image proxy service API URL.
         pub ImageProxyServiceUrl {
             local: "http://localhost:8097",
-            dev: "https://dev-gateway.macro.com/image-proxy",
-            prod: "https://gateway.macro.com/image-proxy",
+            dev: "https://dev-gateway.rox.one/image-proxy",
+            prod: "https://gateway.rox.one/image-proxy",
         },
         /// Lexical conversion service API URL.
         pub LexicalServiceUrl {
             local: "http://localhost:8096",
-            dev: "https://dev-gateway.macro.com/lexical",
-            prod: "https://gateway.macro.com/lexical",
+            dev: "https://dev-gateway.rox.one/lexical",
+            prod: "https://gateway.rox.one/lexical",
         },
         /// Sync service API URL.
         pub SyncServiceUrl {
@@ -809,7 +809,7 @@ service_url! {
     /// Control and internal MCP surface of the live preview service.
     pub struct PreviewGatewayUrl {
         local: "http://localhost:8101/preview",
-        dev: "https://dev-gateway.macro.com/preview",
-        prod: "https://gateway.macro.com/preview",
+        dev: "https://dev-gateway.rox.one/preview",
+        prod: "https://gateway.rox.one/preview",
     }
 }

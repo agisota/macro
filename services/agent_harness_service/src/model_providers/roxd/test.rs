@@ -20,7 +20,7 @@ impl ForwardedCommands for NoCommands {
 }
 
 struct Peer {
-    models: MacrodModels,
+    models: RoxdModels,
     registry: Arc<RuntimeRegistry<GatewaySender>>,
     consumer: tokio::task::JoinHandle<anyhow::Result<()>>,
 }
@@ -38,7 +38,7 @@ async fn peer() -> Peer {
         .unwrap_or_else(|| "redis://127.0.0.1:6379".to_owned());
     let redis = redis::Client::open(url).unwrap();
     let registry = RuntimeRegistry::new();
-    let models = MacrodModels::new(Arc::clone(&registry), redis.clone(), Duration::from_secs(2));
+    let models = RoxdModels::new(Arc::clone(&registry), redis.clone(), Duration::from_secs(2));
     let (ready, mut readiness) = tokio::sync::watch::channel(false);
     let consumer = tokio::spawn(crate::runtime_commands::consume_runtime_commands(
         redis,

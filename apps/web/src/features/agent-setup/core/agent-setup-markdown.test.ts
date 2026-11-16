@@ -10,7 +10,7 @@ const COPY = new Proxy({} as AgentSetupCopy, {
 });
 
 describe('agentSetupMarkdown', () => {
-  it('sends the agent through macrod setup with clickable docs and source', () => {
+  it('sends the agent through roxd setup with clickable docs and source', () => {
     const markdown = agentSetupMarkdown({
       copy: COPY,
       apiKey: 'token',
@@ -19,7 +19,7 @@ describe('agentSetupMarkdown', () => {
     });
 
     expect(markdown).toContain(
-      '--config ~/.macrod/agent.toml --agent <agent id>'
+      '--config ~/.roxd/agent.toml --agent <agent id>'
     );
     expect(markdown).toContain("harnesses.pairing('<code>').approve()");
     expect(
@@ -28,7 +28,7 @@ describe('agentSetupMarkdown', () => {
       )
     ).toEqual(
       expect.arrayContaining([
-        'https://docs.macro.com/AI/bring-your-own',
+        'https://docs.rox.one/AI/bring-your-own',
         'https://github.com/macro-inc/macro/tree/main/crates/coding_agent_worker',
       ])
     );

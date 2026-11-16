@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Re-resolve package-lock.json for the ACP adapter version macrod pins in
+# Re-resolve package-lock.json for the ACP adapter version roxd pins in
 # crates/coding_agent_worker/src/tui/agent_catalog/claude_code.rs.
 set -euo pipefail
 

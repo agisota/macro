@@ -66,7 +66,7 @@ fn macro_new_id_is_stable_and_distinct_from_macro() {
 
 #[test]
 fn rejects_non_bot_storage_string() {
-    assert!(BotIdStr::parse_from_str("macro|teo@macro.com").is_err());
+    assert!(BotIdStr::parse_from_str("macro|teo@rox.one").is_err());
 }
 
 #[test]

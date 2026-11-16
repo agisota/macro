@@ -50,7 +50,7 @@ export const agentsTour = defineViewTour({
       ...openRoster,
       title: 'Coding agents work on code',
       description:
-        'Coding agents run in Cursor or on a machine you pair with macrod. Connect them here, then choose where each agent runs when you create it.',
+        'Coding agents run in Cursor or on a machine you pair with roxd. Connect them here, then choose where each agent runs when you create it.',
     },
     {
       target: AGENTS_TOUR.agentList,

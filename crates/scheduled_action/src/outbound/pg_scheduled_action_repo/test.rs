@@ -19,8 +19,8 @@ use crate::domain::models::{
 };
 use crate::domain::ports::ScheduledActionRepo;
 
-pub(crate) const USER_A: &str = "macro|sched-a@macro.com";
-pub(crate) const USER_B: &str = "macro|sched-b@macro.com";
+pub(crate) const USER_A: &str = "macro|sched-a@rox.one";
+pub(crate) const USER_B: &str = "macro|sched-b@rox.one";
 const DAILY_9AM: &str = "0 0 9 * * *";
 
 fn user(id: &'static str) -> MacroUserIdStr<'static> {
@@ -1245,7 +1245,7 @@ async fn backfill_owner_grants_is_idempotent_and_fails_closed(pool: PgPool) {
     sqlx::query!(
         r#"
         INSERT INTO entity (id, entity_type, owner_type, owner_id)
-        VALUES ($1, 'scheduled_action', 'user', 'macro|other-owner@macro.com')
+        VALUES ($1, 'scheduled_action', 'user', 'macro|other-owner@rox.one')
         "#,
         conflict_id,
     )

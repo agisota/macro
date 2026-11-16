@@ -11,8 +11,8 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { RecipientSelector } from './RecipientSelector';
 
 vi.mock('@core/context/user', () => ({
-  useEmail: () => () => 'me@macro.com',
-  useUserId: () => () => 'macro|me@macro.com',
+  useEmail: () => () => 'me@rox.one',
+  useUserId: () => () => 'macro|me@rox.one',
 }));
 vi.mock('@core/user/dmActivity', () => ({
   useAugmentUserWithDmActivity: () => (user: unknown) => user,
@@ -105,17 +105,17 @@ it.each(inboxes)(
   async ({ address }) => {
     const selector = renderSelector(
       [
-        user('teo+123456@macro.com', 'Teo QA', recent),
-        contact('teo@macro.com', 'Teo Snyder'),
+        user('teo+123456@rox.one', 'Teo QA', recent),
+        contact('teo@rox.one', 'Teo Snyder'),
       ],
       address
     );
-    fireEvent.input(selector.input, { target: { value: 'teo@macro.com' } });
+    fireEvent.input(selector.input, { target: { value: 'teo@rox.one' } });
     await selector.suggestions();
     fireEvent.keyDown(selector.input, { key: 'Enter' });
 
     await waitFor(() =>
-      expect(selector.selectedEmails()).toEqual(['teo@macro.com'])
+      expect(selector.selectedEmails()).toEqual(['teo@rox.one'])
     );
   }
 );
@@ -124,15 +124,15 @@ it.each(inboxes)(
   'commits a typed address no one is saved under in a $provider inbox on Enter',
   async ({ address }) => {
     const selector = renderSelector(
-      [user('teo+123456@macro.com', 'Teo QA', recent)],
+      [user('teo+123456@rox.one', 'Teo QA', recent)],
       address
     );
-    fireEvent.input(selector.input, { target: { value: 'teo@macro.com' } });
+    fireEvent.input(selector.input, { target: { value: 'teo@rox.one' } });
     await selector.suggestions();
     fireEvent.keyDown(selector.input, { key: 'Enter' });
 
     await waitFor(() =>
-      expect(selector.selectedEmails()).toEqual(['teo@macro.com'])
+      expect(selector.selectedEmails()).toEqual(['teo@rox.one'])
     );
   }
 );
@@ -176,9 +176,9 @@ it.each(inboxes)(
   async ({ address }) => {
     const selector = renderSelector(
       [
-        user('eric.ngabo@macro.com', 'Eric Ngabo', recent),
-        user('ligaba.t@macro.com', 'Ligaba Tesfaye', recent),
-        user('gabriel@macro.com', 'Gabriel Ortiz', recent),
+        user('eric.ngabo@rox.one', 'Eric Ngabo', recent),
+        user('ligaba.t@rox.one', 'Ligaba Tesfaye', recent),
+        user('gabriel@rox.one', 'Gabriel Ortiz', recent),
         contact('tickets@omegabus.example', 'Omegabus Lines'),
         contact('orders@vagabond.example', 'Vagabond Cafe'),
         contact('gab@contoso.example', 'Gab Rowan'),
@@ -201,7 +201,7 @@ it.each(inboxes)(
     const domain = address.split('@')[1];
     const selector = renderSelector(
       [
-        user('sam@macro.com', 'Sam Lee'),
+        user('sam@rox.one', 'Sam Lee'),
         contact(`riley@${domain}`, 'Riley Park'),
       ],
       address

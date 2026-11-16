@@ -22,7 +22,7 @@ it.each([
         path.join(root, '.env'),
         `VITE_APP_BASE_URL=${configuredOrigin}`
       );
-    const expectedOrigin = configuredOrigin ?? 'https://macro.com';
+    const expectedOrigin = configuredOrigin ?? 'https://rox.one';
     const config = {
       configFile: false as const,
       root,

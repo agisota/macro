@@ -197,7 +197,7 @@ const securityHeadersPolicy = new aws.cloudfront.ResponseHeadersPolicy(
   }
 );
 
-// Booking links open in a dialog on the website, so macro.com may frame them.
+// Booking links open in a dialog on the website, so rox.one may frame them.
 // Otherwise the same headers as the shared app policy, which denies framing.
 const bookingPageHeadersPolicy = new aws.cloudfront.ResponseHeadersPolicy(
   `booking-page-headers-${stack}`,

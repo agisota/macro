@@ -87,7 +87,7 @@ listings, and calls all go through Connect, with no Pipedream fallback.
 
 ## Checks
 
-- `cargo test -p pipedream_mcp` (`SQLX_OFFLINE` unset; requires local MacroDB).
+- `cargo test -p pipedream_mcp` (`SQLX_OFFLINE` unset; requires local RoxDB).
 
 ## Related
 

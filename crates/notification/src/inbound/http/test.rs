@@ -717,7 +717,7 @@ impl NotificationReader for PresignedTestService {
 
 const HMAC_KEY: &[u8] = b"test-key";
 
-const LEGACY_NOTIFICATION_ORIGIN: &str = "https://notifications.macro.com";
+const LEGACY_NOTIFICATION_ORIGIN: &str = "https://notifications.rox.one";
 
 fn presigned_router() -> Router {
     let hmac_key = Hmac::<Sha256>::new_from_slice(HMAC_KEY).unwrap();
@@ -771,7 +771,7 @@ async fn presigned_disable_succeeds_without_jwt() {
     let uri = signed_disable_uri("test_type", "macro|user@example.com");
 
     let resp = router
-        .oneshot(presigned_get(&uri, "notifications.macro.com"))
+        .oneshot(presigned_get(&uri, "notifications.rox.one"))
         .await
         .unwrap();
 
@@ -790,7 +790,7 @@ async fn presigned_disable_succeeds_with_valid_hmac() {
     let uri = signed_disable_uri("test_type", "macro|user@example.com");
 
     let resp = router
-        .oneshot(presigned_get(&uri, "notifications.macro.com"))
+        .oneshot(presigned_get(&uri, "notifications.rox.one"))
         .await
         .unwrap();
 
@@ -801,13 +801,13 @@ async fn presigned_disable_succeeds_with_valid_hmac() {
 async fn presigned_disable_succeeds_on_gateway_prefix() {
     let router = presigned_router();
     let uri = signed_disable_uri_at(
-        "https://gateway.macro.com/notification",
+        "https://gateway.rox.one/notification",
         "test_type",
         "macro|user@example.com",
     );
 
     let resp = router
-        .oneshot(presigned_get(&uri, "gateway.macro.com"))
+        .oneshot(presigned_get(&uri, "gateway.rox.one"))
         .await
         .unwrap();
 

@@ -3,7 +3,7 @@ import { config } from "dotenv";
 // Load environment variables from .env file
 config();
 
-const FUSIONAUTH_DOMAIN = process.env.FUSIONAUTH_DOMAIN ?? "https://fusionauth-dev.macro.com";
+const FUSIONAUTH_DOMAIN = process.env.FUSIONAUTH_DOMAIN ?? "https://fusionauth-dev.rox.one";
 
 async function generateAccessToken(): Promise<string> {
   const refreshToken = process.env.REFRESH_TOKEN;

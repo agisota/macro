@@ -80,7 +80,7 @@ describe('RuntimePairingPage', () => {
     const codeInput = within(dialog).getByLabelText('Pairing code');
     expect(codeInput).toHaveProperty('value', '');
     expect(
-      screen.queryByRole('img', { name: /Example macrod terminal/ })
+      screen.queryByRole('img', { name: /Example roxd terminal/ })
     ).toBeNull();
     fireEvent.input(codeInput, { target: { value: 'kx7m-4qhd' } });
     expect(codeInput).toHaveProperty('value', 'KX7M-4QHD');
@@ -91,7 +91,7 @@ describe('RuntimePairingPage', () => {
     ).toBeNull();
     expect(within(dialog).getByText('KX7M-4QHD')).toBeTruthy();
     expect(
-      within(dialog).getByText(/Confirm this matches the code macrod printed/)
+      within(dialog).getByText(/Confirm this matches the code roxd printed/)
     ).toBeTruthy();
     expect(within(dialog).getByText('Dev laptop')).toBeTruthy();
     expect(within(dialog).getByText('erics-mbp.local')).toBeTruthy();
@@ -192,7 +192,7 @@ describe('RuntimePairingPage', () => {
     await waitFor(() => {
       expect(
         within(dialog).getByText(
-          'Machine connected. macrod will finish pairing automatically.'
+          'Machine connected. roxd will finish pairing automatically.'
         )
       ).toBeTruthy();
     });

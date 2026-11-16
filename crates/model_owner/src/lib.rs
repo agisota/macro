@@ -8,8 +8,8 @@
 //! ```
 //! use model_owner::{Owner, OwnerType};
 //!
-//! let owner = Owner::parse(OwnerType::User, "macro|hutch@macro.com").unwrap();
-//! assert_eq!(owner.principal_id(), "macro|hutch@macro.com");
+//! let owner = Owner::parse(OwnerType::User, "macro|hutch@rox.one").unwrap();
+//! assert_eq!(owner.principal_id(), "macro|hutch@rox.one");
 //! ```
 
 use std::fmt::{Display, Formatter, Result as FmtResult};

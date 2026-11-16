@@ -1,4 +1,4 @@
-//! Rendering for `macrod herdr-pane`. Pure: reads [`PaneView`], draws frames.
+//! Rendering for `roxd herdr-pane`. Pure: reads [`PaneView`], draws frames.
 
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Direction, Layout, Rect};

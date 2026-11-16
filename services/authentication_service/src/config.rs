@@ -196,7 +196,7 @@ pub struct Config {
     pub loops_api_key: LoopsApiKey,
     /// JSON array of exact non-Macro email addresses allowed to sign up in Develop.
     ///
-    /// All `@macro.com` email addresses are allowed by the Develop policy automatically.
+    /// All `@rox.one` email addresses are allowed by the Develop policy automatically.
     pub development_signup_allowlist_json: DevelopmentSignupAllowlistJson,
     /// Whether Develop allows every public signup without reading
     /// `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON`. Production and Local ignore it.

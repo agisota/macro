@@ -357,7 +357,7 @@ describe('@ trigger position', () => {
     harness.editor.read(() => {});
     harness.editor.dispatchCommand(INSERT_USER_MENTION_COMMAND, {
       userId: 'user-1',
-      email: 'jo@macro.com',
+      email: 'jo@rox.one',
       displayName: 'Jo',
     });
     harness.editor.read(() => {});

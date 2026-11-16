@@ -47,7 +47,7 @@ admin_exists = subprocess.run(
 if not admin_exists:
     # `add-user` takes the password only as an argument; this runs once, on first boot.
     subprocess.run(
-        [goalert, 'add-user', '--admin', '--user', 'admin', '--email', 'admin@macro.com',
+        [goalert, 'add-user', '--admin', '--user', 'admin', '--email', 'admin@rox.one',
          '--pass', (credentials / 'goalert_admin_password').read_text()],
         env=environment, check=True,
     )

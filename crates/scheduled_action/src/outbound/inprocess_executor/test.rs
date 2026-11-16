@@ -62,7 +62,7 @@ fn legacy_history_and_responses_remain_readable() {
     assert!(response.resource.is_none());
     assert_eq!(response.chat_id.as_deref(), Some("transcript"));
     let update: ScheduledActionUpdate = serde_json::from_value(json!({
-        "type":"started", "owner":"macro|runner@macro.com",
+        "type":"started", "owner":"macro|runner@rox.one",
         "action_id":macro_uuid::generate_uuid_v7(), "chat_id":"transcript"
     }))
     .unwrap();

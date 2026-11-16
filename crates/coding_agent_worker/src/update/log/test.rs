@@ -11,7 +11,7 @@ fn lines(path: &Path) -> Vec<serde_json::Value> {
 #[test]
 fn each_event_is_one_json_line() {
     let root = tempfile::tempdir().unwrap();
-    let path = root.path().join(".macrod/logs/update.log");
+    let path = root.path().join(".roxd/logs/update.log");
     let log = UpdateLog::at(path.clone(), MAX_BYTES);
 
     log.record(&UpdateEvent::Startup {
@@ -66,7 +66,7 @@ fn the_log_is_private_to_its_owner() {
     use std::os::unix::fs::PermissionsExt as _;
 
     let root = tempfile::tempdir().unwrap();
-    let path = root.path().join(".macrod/logs/update.log");
+    let path = root.path().join(".roxd/logs/update.log");
     UpdateLog::at(path.clone(), MAX_BYTES).record(&UpdateEvent::Startup {
         version: "v2026.10.27.1".to_owned(),
         from_handoff: true,

@@ -4,7 +4,7 @@ use crate::domain::period::{PeriodEvidence, SubscriptionActivity};
 use chrono::{DateTime, Duration};
 use macro_db_migrator::MACRO_DB_MIGRATIONS;
 use roles_and_permissions::domain::service::UserRolesAndPermissionsServiceImpl;
-use roles_and_permissions::outbound::pgpool::MacroDB;
+use roles_and_permissions::outbound::pgpool::RoxDB;
 use sqlx::PgPool;
 use teams::outbound::team_repo::TeamRepositoryImpl;
 
@@ -39,7 +39,7 @@ async fn setup_entitlement_test(pool: &PgPool) {
 async fn only_a_paying_team_bills_its_members_seats(pool: PgPool) {
     setup_entitlement_test(&pool).await;
     let entitlements = RolesTeamsEntitlementSource::new(
-        UserRolesAndPermissionsServiceImpl::new(MacroDB::new(pool.clone())),
+        UserRolesAndPermissionsServiceImpl::new(RoxDB::new(pool.clone())),
         TeamRepositoryImpl::new(pool),
     );
 
@@ -67,8 +67,8 @@ async fn enterprise_team_still_bills_member_seats(pool: PgPool) {
     setup_entitlement_test(&pool).await;
     let entitlements = RolesTeamsEntitlementSource::new(
         UserRolesAndPermissionsServiceImpl::new(
-            MacroDB::new(pool.clone()),
-            MacroDB::new(pool.clone()),
+            RoxDB::new(pool.clone()),
+            RoxDB::new(pool.clone()),
         ),
         TeamRepositoryImpl::new(pool),
     );
@@ -95,7 +95,7 @@ async fn enterprise_team_still_bills_member_seats(pool: PgPool) {
 async fn a_canceled_team_does_not_block_a_members_personal_subscription(pool: PgPool) {
     setup_entitlement_test(&pool).await;
     let entitlements = RolesTeamsEntitlementSource::new(
-        UserRolesAndPermissionsServiceImpl::new(MacroDB::new(pool.clone())),
+        UserRolesAndPermissionsServiceImpl::new(RoxDB::new(pool.clone())),
         TeamRepositoryImpl::new(pool),
     );
     let at = DateTime::from_timestamp(1_800_000_000, 0).unwrap();

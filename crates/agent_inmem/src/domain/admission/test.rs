@@ -5,7 +5,7 @@ use macro_user_id::user_id::MacroUserIdStr;
 
 #[tokio::test]
 async fn turns_use_the_trusted_owner_and_agent_session_feature() {
-    let owner = Owner::User(MacroUserIdStr::try_from_email("owner@macro.com").unwrap());
+    let owner = Owner::User(MacroUserIdStr::try_from_email("owner@rox.one").unwrap());
     for result in [
         Ok(()),
         Err(AiAdmissionError::Denied(DenyReason::AllowanceExhausted)),
@@ -18,7 +18,7 @@ async fn turns_use_the_trusted_owner_and_agent_session_feature() {
         );
         assert_eq!(
             *admission.calls.lock().unwrap(),
-            vec![("macro|owner@macro.com".to_owned(), AiFeature::AgentSession)]
+            vec![("macro|owner@rox.one".to_owned(), AiFeature::AgentSession)]
         );
     }
     assert_eq!(
@@ -44,14 +44,14 @@ async fn unsupported_owners_are_not_substituted_with_system_identity() {
 
 #[tokio::test]
 async fn turns_admit_as_the_feature_the_session_was_opened_with() {
-    let owner = Owner::User(MacroUserIdStr::try_from_email("owner@macro.com").unwrap());
+    let owner = Owner::User(MacroUserIdStr::try_from_email("owner@rox.one").unwrap());
     let admission = TestAdmission::new(Ok(()));
     let feature = session_feature(SessionBilling::NonBillable);
     assert_eq!(admit_turn(&admission, &owner, feature).await, Ok(()));
     assert_eq!(
         *admission.calls.lock().unwrap(),
         vec![(
-            "macro|owner@macro.com".to_owned(),
+            "macro|owner@rox.one".to_owned(),
             AiFeature::NonBillableAgentSession
         )]
     );

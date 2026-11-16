@@ -93,7 +93,7 @@ export class UiNamespace {
   }
 
   /**
-   * Parse a Macro app link (`https://macro.com/app/...`), such as a list view
+   * Parse a Macro app link (`https://rox.one/app/...`), such as a list view
    * or a link the user pasted, for `open`. Throws on anything else.
    */
   link(url: string): AppLink {

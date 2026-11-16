@@ -78,7 +78,7 @@ pub(crate) fn render_quickstart(
                 Style::new().fg(THEME.accent_text).bg(ACCENT).bold(),
             ),
             Span::raw("  "),
-            Span::styled("Welcome to macrod.", Style::new().bold()),
+            Span::styled("Welcome to roxd.", Style::new().bold()),
         ]),
         Line::styled("Let's get your harness connected.", Style::new().fg(DIM)),
     ];

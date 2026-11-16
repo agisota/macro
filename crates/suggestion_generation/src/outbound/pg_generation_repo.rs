@@ -41,7 +41,7 @@ pub enum PgGenerationRepoError {
     Decode(&'static str),
 }
 
-/// [`GenerationRepo`] on MacroDB.
+/// [`GenerationRepo`] on RoxDB.
 #[derive(Clone)]
 pub struct PgGenerationRepo {
     pool: PgPool,

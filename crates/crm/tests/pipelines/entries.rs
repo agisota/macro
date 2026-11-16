@@ -11,7 +11,7 @@ async fn entries_list_referencing_rows_from_visible_live_pipelines(pool: PgPool)
     let (s, db, a, team, company) = fixture(&pool).await;
     // Source ids are cached per user across this binary's parallel tests, so
     // a teammate shared with other tests could see another test's teams.
-    let teammate = format!("macro|entries-{}@macro.com", Uuid::now_v7());
+    let teammate = format!("macro|entries-{}@rox.one", Uuid::now_v7());
     let teammate_id = Uuid::now_v7();
     sqlx::query!(
         "INSERT INTO macro_user (id, username, email, stripe_customer_id) VALUES ($1,$2,$2,$2)",

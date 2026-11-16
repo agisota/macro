@@ -26,9 +26,9 @@ async fn bulk_user_upsert_raises_viewers_and_adds_strangers_but_leaves_the_owner
     pool: Pool<Postgres>,
 ) {
     let session_id = Uuid::from_u128(0x77777777_7777_7777_7777_777777777779);
-    let owner = MacroUserIdStr::try_from_email("owner@macro.com").unwrap();
-    let viewer = MacroUserIdStr::try_from_email("viewer@macro.com").unwrap();
-    let stranger = MacroUserIdStr::try_from_email("stranger@macro.com").unwrap();
+    let owner = MacroUserIdStr::try_from_email("owner@rox.one").unwrap();
+    let viewer = MacroUserIdStr::try_from_email("viewer@rox.one").unwrap();
+    let stranger = MacroUserIdStr::try_from_email("stranger@rox.one").unwrap();
     let mut tx = pool.begin().await.unwrap();
     for (user, level) in [(&owner, AccessLevel::Owner), (&viewer, AccessLevel::View)] {
         insert_entity_access_for_test(
@@ -741,10 +741,10 @@ async fn delete_user_entity_access_rows_removes_targeted_direct_grants_only(pool
     let initiative_id = Uuid::from_u128(0x0b01);
     let other_initiative_id = Uuid::from_u128(0x0b02);
     let root_project_id = ROOT_PROJECT_ID.to_string();
-    let owner = MacroUserIdStr::try_from_email("owner@macro.com").unwrap();
-    let alice = MacroUserIdStr::try_from_email("alice@macro.com").unwrap();
-    let bob = MacroUserIdStr::try_from_email("bob@macro.com").unwrap();
-    let carol = MacroUserIdStr::try_from_email("carol@macro.com").unwrap();
+    let owner = MacroUserIdStr::try_from_email("owner@rox.one").unwrap();
+    let alice = MacroUserIdStr::try_from_email("alice@rox.one").unwrap();
+    let bob = MacroUserIdStr::try_from_email("bob@rox.one").unwrap();
+    let carol = MacroUserIdStr::try_from_email("carol@rox.one").unwrap();
 
     let mut tx = pool.begin().await.unwrap();
     for (user, access_level, granted_from_project_id) in [
@@ -834,12 +834,12 @@ async fn delete_user_entity_access_rows_removes_targeted_direct_grants_only(pool
             ("team", "team-1", AccessLevel::Edit, None),
             (
                 "user",
-                "macro|bob@macro.com",
+                "macro|bob@rox.one",
                 AccessLevel::Edit,
                 Some(root_project_id.as_str()),
             ),
-            ("user", "macro|carol@macro.com", AccessLevel::View, None),
-            ("user", "macro|owner@macro.com", AccessLevel::Owner, None),
+            ("user", "macro|carol@rox.one", AccessLevel::View, None),
+            ("user", "macro|owner@rox.one", AccessLevel::Owner, None),
         ]
     );
 
@@ -847,22 +847,22 @@ async fn delete_user_entity_access_rows_removes_targeted_direct_grants_only(pool
         fetch_entity_access_rows(&pool, &other_initiative_id, EntityType::Initiative).await;
     assert_eq!(
         grants(&other_entity_rows),
-        vec![("user", "macro|alice@macro.com", AccessLevel::Edit, None)]
+        vec![("user", "macro|alice@rox.one", AccessLevel::Edit, None)]
     );
 
     let other_type_rows =
         fetch_entity_access_rows(&pool, &initiative_id, EntityType::Document).await;
     assert_eq!(
         grants(&other_type_rows),
-        vec![("user", "macro|alice@macro.com", AccessLevel::Edit, None)]
+        vec![("user", "macro|alice@rox.one", AccessLevel::Edit, None)]
     );
 }
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn delete_user_entity_access_rows_without_user_ids_keeps_every_row(pool: Pool<Postgres>) {
     let initiative_id = Uuid::from_u128(0x0b03);
-    let owner = MacroUserIdStr::try_from_email("owner@macro.com").unwrap();
-    let alice = MacroUserIdStr::try_from_email("alice@macro.com").unwrap();
+    let owner = MacroUserIdStr::try_from_email("owner@rox.one").unwrap();
+    let alice = MacroUserIdStr::try_from_email("alice@rox.one").unwrap();
 
     let mut tx = pool.begin().await.unwrap();
     for (user, access_level) in [(&owner, AccessLevel::Owner), (&alice, AccessLevel::Edit)] {
@@ -887,8 +887,8 @@ async fn delete_user_entity_access_rows_without_user_ids_keeps_every_row(pool: P
     assert_eq!(
         grants(&rows),
         vec![
-            ("user", "macro|alice@macro.com", AccessLevel::Edit, None),
-            ("user", "macro|owner@macro.com", AccessLevel::Owner, None),
+            ("user", "macro|alice@rox.one", AccessLevel::Edit, None),
+            ("user", "macro|owner@rox.one", AccessLevel::Owner, None),
         ]
     );
 }
@@ -898,7 +898,7 @@ async fn delete_user_entity_access_rows_keeps_team_and_channel_grants_that_share
     pool: Pool<Postgres>,
 ) {
     let initiative_id = Uuid::from_u128(0x0b04);
-    let alice = MacroUserIdStr::try_from_email("alice@macro.com").unwrap();
+    let alice = MacroUserIdStr::try_from_email("alice@rox.one").unwrap();
 
     let mut tx = pool.begin().await.unwrap();
     for (source_type, access_level) in [
@@ -942,7 +942,7 @@ const OWNER_TEAM_ID: Uuid = Uuid::from_u128(0x0000000a_0000_0000_0000_0000000000
 const BOT_PRINCIPAL: &str = "bot|0000000b-0000-0000-0000-00000000000b";
 
 fn user_owner() -> Owner {
-    Owner::User(MacroUserIdStr::try_from_email("owner@macro.com").unwrap())
+    Owner::User(MacroUserIdStr::try_from_email("owner@rox.one").unwrap())
 }
 
 async fn grant_owner_committed(pool: &Pool<Postgres>, entity_id: &Uuid, owner: &Owner) {
@@ -985,7 +985,7 @@ async fn owner_grant_raises_direct_edit_to_owner_and_leaves_other_principals(poo
         &mut tx,
         &entity_id,
         EntityType::Document,
-        "macro|viewer@macro.com",
+        "macro|viewer@rox.one",
         EntityAccessSourceType::User,
         AccessLevel::View,
         None,
@@ -1013,7 +1013,7 @@ async fn owner_grant_raises_direct_edit_to_owner_and_leaves_other_principals(poo
     assert!(owner_row.updated_at > before_updated_at);
     let viewer_row = rows
         .iter()
-        .find(|row| row.source_id == "macro|viewer@macro.com")
+        .find(|row| row.source_id == "macro|viewer@rox.one")
         .unwrap();
     assert_eq!(viewer_row.access_level, AccessLevel::View);
 }
@@ -1063,7 +1063,7 @@ async fn owner_grant_leaves_project_inherited_rows_untouched(pool: Pool<Postgres
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn owner_grant_maps_user_bot_and_team_to_their_access_source(pool: Pool<Postgres>) {
     let cases = [
-        (user_owner(), "user", "macro|owner@macro.com".to_owned()),
+        (user_owner(), "user", "macro|owner@rox.one".to_owned()),
         (
             Owner::parse(OwnerType::Bot, BOT_PRINCIPAL).unwrap(),
             "bot",

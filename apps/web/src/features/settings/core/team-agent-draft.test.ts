@@ -76,7 +76,7 @@ describe('team agent draft', () => {
       jobDescription: 'x'.repeat(4000),
       personality: 'y'.repeat(4001),
       size: 'standard',
-      avatarUrl: 'https://static.macro.com/file/avatar',
+      avatarUrl: 'https://static.rox.one/file/avatar',
       purchaseKey: 'purchase-1',
     };
 

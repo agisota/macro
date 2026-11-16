@@ -7,7 +7,7 @@ use macro_env_var::env_vars;
 
 env_vars! {
     /// The connection URL for the Macro database.
-    pub struct MacroDbUrl;
+    pub struct RoxDbUrl;
     /// Comma-separated Kafka bootstrap servers for the macro event broker.
     pub struct KafkaBrokers;
 }
@@ -20,14 +20,14 @@ pub struct Config {
     #[macro_config_default(Environment::new_or_prod())]
     pub environment: Environment,
     /// The connection URL for the Macro database.
-    pub macro_db_url: MacroDbUrl,
+    pub macro_db_url: RoxDbUrl,
     /// Kafka bootstrap servers; the worker reads `macro.email`.
     pub kafka_brokers: KafkaBrokers,
     /// Authenticates the worker's pushes to the connection gateway.
     pub internal_api_key: InternalApiKey,
     /// TypeSafe credential for Jev. While it is unset the worker classifies nothing.
     pub typesafe_api_key: jev::outbound::TypesafeApiKey,
-    /// Comma-separated inbox domains to classify, e.g. `macro.com`. Mail from
+    /// Comma-separated inbox domains to classify, e.g. `rox.one`. Mail from
     /// any other inbox never leaves the system. Empty classifies nothing.
     #[macro_config_default(String::new())]
     pub focus_enabled_email_domains: String,

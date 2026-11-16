@@ -16,7 +16,7 @@
             "name": "computer_timer_kind",
             "kind": {
               "Enum": [
-                "macrod_missing",
+                "roxd_missing",
                 "restart_due",
                 "power_on_retry",
                 "capacity_changed",

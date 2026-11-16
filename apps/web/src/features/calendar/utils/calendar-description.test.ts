@@ -49,8 +49,8 @@ describe('sanitizeCalendarDescription', () => {
     expect(sanitizeCalendarDescription('Join https://zoom.us/j/123 now')).toBe(
       '<p>Join <a href="https://zoom.us/j/123">https://zoom.us/j/123</a> now</p>'
     );
-    expect(sanitizeCalendarDescription('See macro.com for details')).toBe(
-      '<p>See <a href="https://macro.com">macro.com</a> for details</p>'
+    expect(sanitizeCalendarDescription('See rox.one for details')).toBe(
+      '<p>See <a href="https://rox.one">rox.one</a> for details</p>'
     );
     expect(
       sanitizeCalendarDescription('one https://a.com two https://b.com')
@@ -140,7 +140,7 @@ describe('sanitizeCalendarDescription', () => {
 
   it('keeps mention display text without identity attributes', () => {
     const safe = sanitizeCalendarDescription(
-      '<p>ping <span data-user-mention="true" data-user-id="macro|auth0|u_123" data-email="teo@macro.com" data-display-name="Teo Nys">Teo Nys</span>' +
+      '<p>ping <span data-user-mention="true" data-user-id="macro|auth0|u_123" data-email="teo@rox.one" data-display-name="Teo Nys">Teo Nys</span>' +
         ' re <span data-contact-mention="true" data-contact-id="c_456" data-email-or-domain="glycotech.com" data-is-company="true">GlycoTech</span></p>'
     );
     expect(safe).toBe('<p>ping Teo Nys re GlycoTech</p>');
@@ -168,13 +168,13 @@ describe('calendarDescriptionToEditorHtml', () => {
       parseMacroAppLink(`https://evil.example/app/md/${DOCUMENT_ID}`)
     ).toBeUndefined();
     expect(
-      parseMacroAppLink(`https://macro.com/app/task/${DOCUMENT_ID}`)
+      parseMacroAppLink(`https://rox.one/app/task/${DOCUMENT_ID}`)
     ).toEqual({ blockName: 'task', documentId: DOCUMENT_ID });
     expect(parseMacroAppLink('not a url')).toBeUndefined();
   });
 
   it('leaves app pages that are not entities as ordinary links', () => {
-    const href = `https://macro.com/app/booking/${DOCUMENT_ID}#token`;
+    const href = `https://rox.one/app/booking/${DOCUMENT_ID}#token`;
     expect(parseMacroAppLink(href)).toBeUndefined();
     const html = calendarDescriptionToEditorHtml(
       `<a href="${href}">Manage</a>`
@@ -197,7 +197,7 @@ describe('exportCalendarDescription', () => {
     const editor = makeEditor();
     setEditorStateFromHtml(
       editor,
-      `<p>ping <span data-user-mention="true" data-user-id="macro|auth0|u_123" data-email="teo@macro.com" data-display-name="Teo Nys">Teo Nys</span>` +
+      `<p>ping <span data-user-mention="true" data-user-id="macro|auth0|u_123" data-email="teo@rox.one" data-display-name="Teo Nys">Teo Nys</span>` +
         ` about <span data-document-mention="true" data-document-id="${DOCUMENT_ID}" data-document-name="August Cycle Planning" data-block-name="md">August Cycle Planning</span></p>`
     );
     expect(exportCalendarDescription(editor)).toBe(

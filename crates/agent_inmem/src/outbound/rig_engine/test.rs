@@ -562,7 +562,7 @@ async fn a_summary_turns_closed_opener_has_no_verdict() {
 fn opening_transcript_leaves_out_the_hidden_agent_context() {
     let messages = vec![agent::types::ChatMessage {
         content: agent::types::ChatMessageContent::Text(
-            "<m-agent-context>{\"version\":1,\"text\":\"<session owner=\\\"wolf@macro.com\\\"/>\"}</m-agent-context>\n\nwhat is going on in my workspace".to_owned(),
+            "<m-agent-context>{\"version\":1,\"text\":\"<session owner=\\\"wolf@rox.one\\\"/>\"}</m-agent-context>\n\nwhat is going on in my workspace".to_owned(),
         ),
         role: agent::types::Role::User,
         attachments: None,

@@ -102,10 +102,10 @@ describe('grid values as cell values', () => {
         value: 12.5,
       })
     );
-    expect(cellValue(column('LINK'), 'https://macro.com')).toEqual(
+    expect(cellValue(column('LINK'), 'https://rox.one')).toEqual(
       ok({
         type: 'link',
-        value: ['https://macro.com'],
+        value: ['https://rox.one'],
       })
     );
     expect(cellValue(column('DATE'), '2026-09-30')).toEqual(

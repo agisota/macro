@@ -424,7 +424,7 @@ impl Launcher {
 }
 
 fn socket_path() -> PathBuf {
-    std::env::temp_dir().join(format!("macrod-herdr-{}.sock", std::process::id()))
+    std::env::temp_dir().join(format!("roxd-herdr-{}.sock", std::process::id()))
 }
 
 fn restrict_to_owner(socket: &Path) -> std::io::Result<()> {
@@ -432,11 +432,11 @@ fn restrict_to_owner(socket: &Path) -> std::io::Result<()> {
     std::fs::set_permissions(socket, std::fs::Permissions::from_mode(0o600))
 }
 
-/// `macrod herdr-pane --socket …`, before the session argument.
+/// `roxd herdr-pane --socket …`, before the session argument.
 fn pane_command(socket: &Path) -> Vec<String> {
     let exe = std::env::current_exe()
         .map(|exe| exe.to_string_lossy().into_owned())
-        .unwrap_or_else(|_| "macrod".to_owned());
+        .unwrap_or_else(|_| "roxd".to_owned());
     vec![
         exe,
         "herdr-pane".to_owned(),
@@ -519,7 +519,7 @@ async fn steer(inner: &Inner, session: &str, request: FromPane) -> Result<(), St
     let target = inner.lock().control_target(session);
     let Some((macro_session, owner)) = target else {
         return Err(
-            "this session was not opened by this macrod run; steer it from Macro".to_owned(),
+            "this session was not opened by this roxd run; steer it from Macro".to_owned(),
         );
     };
     inner

@@ -30,7 +30,7 @@ port. Also sends invite-to-Macro emails.
 
 ## Checks
 
-- `cargo test -p referral` (`SQLX_OFFLINE` unset; requires local MacroDB).
+- `cargo test -p referral` (`SQLX_OFFLINE` unset; requires local RoxDB).
 
 ## Related
 

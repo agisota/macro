@@ -3,7 +3,7 @@
 ## What it is
 
 Belongs to agent sessions: registration for user-run agent harnesses
-(macrod), called machines in the product. Owns device-code pairing (create,
+(roxd), called machines in the product. Owns device-code pairing (create,
 approve, claim), the usable list and teammate directory the UI renders, team
 access, residents, revocation, and the bound-agent listing the daemon reconciles
 its webhook feed from.
@@ -22,7 +22,7 @@ Neither its owner (`delete_harness`) nor its own daemon (`delete_self`) may
 delete a computer's harness: both get `HarnessError::ComputerHarness` (409);
 releasing the computer retires it.
 `hosted_pairing_claimed(pairing_id)` reads the durable pairing claim for the
-fleet generation gate, including the interval before macrod connects. Hosted
+fleet generation gate, including the interval before roxd connects. Hosted
 claims take the same `hosted-enrollment:<computer UUID>` advisory guard as
 fleet Create before the harness lock, then recheck the presented device-secret
 hash while claiming. A claim waiting through rotation cannot use its old secret.

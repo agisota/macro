@@ -7,7 +7,7 @@ fn harness(id: HarnessId, connected: bool) -> Harness {
     Harness {
         allow_permission_bypass: false,
         id,
-        kind: "macrod".into(),
+        kind: "roxd".into(),
         name: "Private runtime behind a shared persona".into(),
         owner: HarnessOwner::User {
             user_id: "macro|persona-owner@example.com".into(),
@@ -40,9 +40,9 @@ async fn authorized_shared_personas_need_no_permission_to_list_their_private_har
             .unwrap(),
         ..Default::default()
     };
-    assert!(connections.available("macrod", Some(HarnessId::TEST_A)));
-    assert!(!connections.available("macrod", Some(HarnessId::TEST_B)));
-    assert!(!connections.available("macrod", None));
+    assert!(connections.available("roxd", Some(HarnessId::TEST_A)));
+    assert!(!connections.available("roxd", Some(HarnessId::TEST_B)));
+    assert!(!connections.available("roxd", None));
 }
 
 #[tokio::test]
@@ -62,8 +62,8 @@ async fn disconnected_and_deleted_runtime_bindings_are_unavailable() {
             .unwrap(),
         ..Default::default()
     };
-    assert!(!connections.available("macrod", Some(HarnessId::TEST_A)));
-    assert!(!connections.available("macrod", Some(HarnessId::TEST_B)));
+    assert!(!connections.available("roxd", Some(HarnessId::TEST_A)));
+    assert!(!connections.available("roxd", Some(HarnessId::TEST_B)));
 }
 
 #[test]

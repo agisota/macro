@@ -52,7 +52,7 @@ depended-on crates in the backend.
 ## Checks
 
 - `cargo test -p entity_access` (`SQLX_OFFLINE` unset; requires local
-  MacroDB — `just setup_macrodb`).
+  RoxDB — `just setup_macrodb`).
 
 The message sender extractor maps signed user `agent_id` attribution to a bot
 receipt scoped to that same user and organization only for new posts. Reads,

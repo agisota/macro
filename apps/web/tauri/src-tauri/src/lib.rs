@@ -68,8 +68,8 @@ impl AppEnvironment {
 
     fn auth_service_url(self) -> &'static str {
         match self {
-            Self::Development => "https://dev-gateway.macro.com/auth/",
-            Self::Production => "https://gateway.macro.com/auth/",
+            Self::Development => "https://dev-gateway.rox.one/auth/",
+            Self::Production => "https://gateway.rox.one/auth/",
         }
     }
 
@@ -81,8 +81,8 @@ impl AppEnvironment {
 
     fn web_origin(self) -> &'static str {
         match self {
-            Self::Development => "https://dev.macro.com",
-            Self::Production => "https://macro.com",
+            Self::Development => "https://dev.rox.one",
+            Self::Production => "https://rox.one",
         }
     }
 }
@@ -134,7 +134,7 @@ static EMBEDDED_DOCUMENTS: &[&str] = &["https://pipedream.com/_static/connect.ht
 /// these are routed through the SPA router instead of loading the remote
 /// site in the webview. Keep in parity with the deep-link hosts in
 /// tauri.conf.json.
-static APP_LINK_HOSTS: &[&str] = &["macro.com", "dev.macro.com", "staging.macro.com"];
+static APP_LINK_HOSTS: &[&str] = &["rox.one", "dev.rox.one", "staging.rox.one"];
 
 type Type = std::sync::OnceLock<
     Box<dyn Fn(&str, http::Request<Vec<u8>>, tauri::UriSchemeResponder) + Send + Sync + 'static>,
@@ -470,17 +470,17 @@ pub fn run_with(builder: tauri::Builder<AppRuntime>, configure_window: Configure
             flush_launch_deep_link,
             staged_upload::upload_staged_file_to_presigned_url,
             #[cfg(desktop)]
-            desktop::macrod::macrod_support,
+            desktop::roxd::roxd_support,
             #[cfg(desktop)]
-            desktop::macrod::macrod_detect_agents,
+            desktop::roxd::roxd_detect_agents,
             #[cfg(desktop)]
-            desktop::macrod::macrod_inspect,
+            desktop::roxd::roxd_inspect,
             #[cfg(desktop)]
-            desktop::macrod::macrod_start,
+            desktop::roxd::roxd_start,
             #[cfg(desktop)]
-            desktop::macrod::macrod_stop,
+            desktop::roxd::roxd_stop,
             #[cfg(desktop)]
-            desktop::macrod::macrod_status,
+            desktop::roxd::roxd_status,
             #[cfg(desktop)]
             desktop::pasteboard::stage_desktop_pasteboard_files,
         ])
@@ -511,8 +511,8 @@ pub fn run_with(builder: tauri::Builder<AppRuntime>, configure_window: Configure
             cleanup_stale_staged_files(&app.handle());
             #[cfg(desktop)]
             {
-                app.manage(desktop::macrod::MacrodState::default());
-                desktop::macrod::autostart(&app.handle());
+                app.manage(desktop::roxd::RoxdState::default());
+                desktop::roxd::autostart(&app.handle());
             }
 
             Ok(())
@@ -595,10 +595,10 @@ pub fn run_with(builder: tauri::Builder<AppRuntime>, configure_window: Configure
         }
         RunEvent::Exit => {
             #[cfg(desktop)]
-            if let Some(state) = app_handle.try_state::<desktop::macrod::MacrodState>() {
+            if let Some(state) = app_handle.try_state::<desktop::roxd::RoxdState>() {
                 // The daemon also exits on its own when its stdin pipe
                 // closes with this process; the kill is the fast path.
-                desktop::macrod::kill_now(&state);
+                desktop::roxd::kill_now(&state);
             }
             if let Some(state) = app_handle.try_state::<graphql_cache_plugin::CacheState>() {
                 state
@@ -624,8 +624,8 @@ fn merge_header_callback<R: Runtime>(url: String, headers: &mut HeaderMap, handl
     // Origin for auth, so set it to our web origin unconditionally — independent of
     // whether cookie state is available.
     match parsed_url.host_str() {
-        Some("services.macro.com")
-        | Some("services-dev.macro.com")
+        Some("services.rox.one")
+        | Some("services-dev.rox.one")
         | Some("macroverse.workers.dev") => {
             headers.insert(
                 ORIGIN,

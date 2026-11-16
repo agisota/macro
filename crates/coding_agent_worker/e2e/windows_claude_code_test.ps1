@@ -1,4 +1,4 @@
-# Claude Code installed from npm, served by macrod on Windows: `detect-agents`
+# Claude Code installed from npm, served by roxd on Windows: `detect-agents`
 # offers it, `service --agent claude-code` installs the ACP adapter through
 # npm's `.cmd` shim and points it at the binary behind `claude.cmd`, and the
 # adapter it configured opens an ACP session, which starts Claude Code itself.
@@ -13,7 +13,7 @@ $ErrorActionPreference = 'Stop'
 $work = Join-Path ([IO.Path]::GetTempPath()) ([Guid]::NewGuid())
 $npmPrefix = Join-Path $work 'npm'
 $workspace = Join-Path $work 'workspace'
-$config = Join-Path $work 'macrod.toml'
+$config = Join-Path $work 'roxd.toml'
 New-Item -ItemType Directory -Path $npmPrefix, $workspace | Out-Null
 
 function Check($condition, $message) {
@@ -42,8 +42,8 @@ function Read-Json-Lines($process, $seconds, $last) {
 }
 
 try {
-    Expand-Archive (Join-Path $Releases "macrod-$Version-windows-x86_64.zip") $work
-    $macrod = Join-Path $work 'macrod.exe'
+    Expand-Archive (Join-Path $Releases "roxd-$Version-windows-x86_64.zip") $work
+    $roxd = Join-Path $work 'roxd.exe'
 
     # A global npm install, laid out as in %APPDATA%\npm: `claude`, `claude.cmd`
     # and `claude.ps1` side by side.
@@ -51,9 +51,9 @@ try {
     Check ($LASTEXITCODE -eq 0) 'npm installs Claude Code'
     $env:Path = "$npmPrefix;$env:Path"
     $env:USERPROFILE = $work
-    $env:MACROD_NO_UPDATE = '1'
+    $env:ROXD_NO_UPDATE = '1'
 
-    $detected = (& $macrod detect-agents | ConvertFrom-Json).agents
+    $detected = (& $roxd detect-agents | ConvertFrom-Json).agents
     Check (@($detected | Where-Object id -eq 'claude-code').Count -eq 1) 'detect-agents offers Claude Code'
 
     @"
@@ -70,7 +70,7 @@ path = "."
 "@ | Set-Content $config
     # The service reports a fatal error as an event and exits once its stdin
     # closes, like it does under the desktop app.
-    $service = [Diagnostics.ProcessStartInfo]::new($macrod)
+    $service = [Diagnostics.ProcessStartInfo]::new($roxd)
     foreach ($argument in 'service', '--config', $config, '--agent', 'claude-code', '--workspace', $workspace) {
         $service.ArgumentList.Add($argument)
     }

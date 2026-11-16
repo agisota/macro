@@ -9,7 +9,7 @@ import {
 const computerHarness: Harness = {
   allow_permission_bypass: false,
   id: 'harness-ada',
-  kind: 'macrod',
+  kind: 'roxd',
   name: "Ada's computer",
   owner: { type: 'user', user_id: 'macro|ada@agents.macro.invalid' },
   access: 'owner',
@@ -31,13 +31,13 @@ const pairedHarness: Harness = {
 };
 
 describe('agentComputerHarness', () => {
-  it("finds the runtime macrod enrolled on the agent's computer", () => {
+  it("finds the runtime roxd enrolled on the agent's computer", () => {
     expect(
       agentComputerHarness('computer-ada', [pairedHarness, computerHarness])
     ).toBe(computerHarness);
   });
 
-  it('has none before the computer is bought or before macrod enrolls', () => {
+  it('has none before the computer is bought or before roxd enrolls', () => {
     expect(
       agentComputerHarness(null, [pairedHarness, computerHarness])
     ).toBeUndefined();

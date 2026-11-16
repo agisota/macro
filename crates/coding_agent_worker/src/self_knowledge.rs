@@ -1,4 +1,4 @@
-//! Tells each new session's agent what macrod is and what it can do from
+//! Tells each new session's agent what roxd is and what it can do from
 //! here. The first `session/prompt` of a session the agent created gains a
 //! leading text block describing this runtime; loaded and resumed sessions
 //! already carry it from their first turn. General Macro guidance stays in
@@ -118,11 +118,11 @@ fn session_facts(params: &Value) -> SessionFacts {
 /// The runtime section, listing only what this session actually has.
 pub(crate) fn render(facts: &SessionFacts) -> String {
     let mut lines = vec![
-        "<macrod-runtime>".to_owned(),
+        "<roxd-runtime>".to_owned(),
         format!(
-            "You are running through macrod {}, the Macro agent daemon on the operator's own {} machine. \
+            "You are running through roxd {}, the Macro agent daemon on the operator's own {} machine. \
              Macro users reach you from Macro (channels, documents, agent sessions); each prompt arrives \
-             through macrod, and your replies stream back to Macro.",
+             through roxd, and your replies stream back to Macro.",
             env!("CARGO_PKG_VERSION"),
             std::env::consts::OS,
         ),
@@ -147,6 +147,6 @@ pub(crate) fn render(facts: &SessionFacts) -> String {
                 .to_owned(),
         );
     }
-    lines.push("</macrod-runtime>".to_owned());
+    lines.push("</roxd-runtime>".to_owned());
     lines.join("\n")
 }

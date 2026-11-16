@@ -1,7 +1,7 @@
 {
 	"num_connections": 20,
 	"request_per_connection": 1,
-	"base_url": "dev-gateway.macro.com/cognition",
+	"base_url": "dev-gateway.rox.one/cognition",
 	"connection_timeout": 60,
 	"ramp_up_duration": 15,
 	"delay_between_connections": 50

@@ -89,11 +89,11 @@ fn show_jumps_need_no_relationship() {
 fn addresses_replace_and_remove_cleanly() {
     let mut pres = two_slides();
     link_text(&mut pres, "#slide=257", None).unwrap();
-    link_text(&mut pres, "mailto:team@macro.com", Some("Write to us")).unwrap();
+    link_text(&mut pres, "mailto:team@rox.one", Some("Write to us")).unwrap();
     assert_eq!(
         run_link(&mut pres),
         (
-            Some("mailto:team@macro.com".into()),
+            Some("mailto:team@rox.one".into()),
             Some("Write to us".into())
         )
     );
@@ -132,17 +132,17 @@ fn shapes_take_links_of_their_own() {
         let s = &outline.shapes[0];
         (s.link.clone(), s.link_tip.clone())
     };
-    set(&mut pres, "https://macro.com", Some("Macro"));
+    set(&mut pres, "https://rox.one", Some("Macro"));
     assert_eq!(
         shape_link(&mut pres),
-        (Some("https://macro.com".into()), Some("Macro".into()))
+        (Some("https://rox.one".into()), Some("Macro".into()))
     );
     // The text itself is not linked.
     assert_eq!(run_link(&mut pres), (None, None));
     let mut reopened = Presentation::open(pres.save().unwrap()).unwrap();
     assert_eq!(
         shape_link(&mut reopened),
-        (Some("https://macro.com".into()), Some("Macro".into()))
+        (Some("https://rox.one".into()), Some("Macro".into()))
     );
     set(&mut reopened, "#lastslide", None);
     assert_eq!(shape_link(&mut reopened), (Some("#lastslide".into()), None));
@@ -177,7 +177,7 @@ fn link_regions_cover_linked_text_then_linked_shapes() {
             EditOp::SetShapeLink {
                 slide: 256,
                 shapes: vec![2],
-                link: "https://macro.com".into(),
+                link: "https://rox.one".into(),
                 tip: None,
             },
         ],
@@ -188,7 +188,7 @@ fn link_regions_cover_linked_text_then_linked_shapes() {
     assert_eq!(regions.len(), 2, "{regions:?}");
     let (text, shape) = (&regions[0], &regions[1]);
     assert_eq!((text.shape, text.link.as_str()), (2, "#slide=257"));
-    assert_eq!((shape.shape, shape.link.as_str()), (2, "https://macro.com"));
+    assert_eq!((shape.shape, shape.link.as_str()), (2, "https://rox.one"));
     // The shape region is the text box: 3,000,000 EMU wide at the origin,
     // shrunk to its one line of text.
     let [x0, y0, x1, _, _, y2, ..] = shape.quad;

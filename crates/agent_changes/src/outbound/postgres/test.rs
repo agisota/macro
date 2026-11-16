@@ -46,7 +46,7 @@ async fn seed_session(pool: &PgPool) -> AgentSessionId {
     sqlx::query!(
         r#"
         INSERT INTO agent_session (id, owner_id, bot_id, model, harness, repo_url, workspace, name)
-        VALUES ($1, $2, $3, 'claude', 'macrod', 'https://github.com/example/example', '/workspace', 'Changes')
+        VALUES ($1, $2, $3, 'claude', 'roxd', 'https://github.com/example/example', '/workspace', 'Changes')
         "#,
         session.as_uuid(),
         OWNER,

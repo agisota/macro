@@ -33,7 +33,7 @@ export default function GmailRateLimitsPost() {
       <article>
         <p class="grl-lede">
           When we set out to add a{' '}
-          <a href="https://macro.com/email/">first-class email client</a> to Rox
+          <a href="https://rox.one/email/">first-class email client</a> to Rox
           last year, we started with Gmail support.
         </p>
         <p>

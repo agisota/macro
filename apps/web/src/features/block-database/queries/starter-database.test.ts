@@ -4,7 +4,7 @@ import { useStarterDatabase } from './starter-database';
 
 const mocks = vi.hoisted(() => ({
   flag: { enabled: true, loading: false },
-  userId: 'macro|new@macro.com' as string | undefined,
+  userId: 'macro|new@rox.one' as string | undefined,
   databases: { isSuccess: true, data: [] as unknown[] | undefined },
   ensureStarter: vi.fn(),
   invalidateQueries: vi.fn().mockResolvedValue(undefined),
@@ -49,7 +49,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   localStorage.clear();
   mocks.flag = { enabled: true, loading: false };
-  mocks.userId = 'macro|new@macro.com';
+  mocks.userId = 'macro|new@rox.one';
   mocks.databases = { isSuccess: true, data: [] };
   mocks.ensureStarter.mockResolvedValue({
     created: true,
@@ -71,7 +71,7 @@ describe('starter onboarding', () => {
     mocks.flag.enabled = true;
     mocks.userId = undefined;
     expect(enabled()).toBe(false);
-    mocks.userId = 'macro|new@macro.com';
+    mocks.userId = 'macro|new@rox.one';
     Object.assign(mocks.databases, { isSuccess: false, data: undefined });
     expect(enabled()).toBe(false);
     Object.assign(mocks.databases, { isSuccess: true, data: [{}] });

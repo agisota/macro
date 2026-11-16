@@ -22,7 +22,7 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://macro.com',
+  getWebOrigin: () => 'https://rox.one',
 }));
 vi.mock('@core/component/Toast/Toast', () => ({
   toast: { failure: mocks.failure, alert: mocks.alert },
@@ -95,7 +95,7 @@ const savedEvent: CalendarEvent = {
   calendarId: 'calendar-1',
   calendar: { id: 'calendar-1', name: 'Calendar', color: '#336699' },
   visibleCalendars: [],
-  location: 'https://macro.com/app/meet/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF',
+  location: 'https://rox.one/app/meet/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF',
 };
 
 beforeEach(() => {

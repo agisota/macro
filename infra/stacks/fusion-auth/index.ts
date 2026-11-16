@@ -33,12 +33,12 @@ const database = new Database('fusionauth-db', {
 });
 
 export const fusionAuthDatabaseEndpoint =
-  stack !== 'prod' ? database.endpoint : 'fusionauthdb-prod.macro.com';
+  stack !== 'prod' ? database.endpoint : 'fusionauthdb-prod.rox.one';
 
-// Due to a very silly storage encryption oversight, we hard code the db url in prod to be `fusionauthdb-prod.macro.com`
+// Due to a very silly storage encryption oversight, we hard code the db url in prod to be `fusionauthdb-prod.rox.one`
 let DATABASE_URL: pulumi.Output<string> | string = '';
 if (stack === 'prod') {
-  DATABASE_URL = 'jdbc:postgresql://fusionauthdb-prod.macro.com/fusionauth';
+  DATABASE_URL = 'jdbc:postgresql://fusionauthdb-prod.rox.one/fusionauth';
 } else {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   DATABASE_URL = database.endpoint!.apply(

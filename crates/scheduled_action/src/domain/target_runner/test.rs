@@ -32,7 +32,7 @@ use model_entity::EntityType;
 use routine_program::RoutineProgram;
 use tokio_util::{sync::CancellationToken, task::TaskTracker};
 
-const USER: &str = "macro|routine@macro.com";
+const USER: &str = "macro|routine@rox.one";
 
 struct NoModelAdmission;
 
@@ -299,8 +299,8 @@ async fn model_targets_use_macro_sessions_with_the_selected_model() {
             name: action.name.clone(),
             owner: trigger_context::ContextPerson {
                 id: USER.into(),
-                name: "routine@macro.com".into(),
-                email: Some("routine@macro.com".into()),
+                name: "routine@rox.one".into(),
+                email: Some("routine@rox.one".into()),
             },
             instructions: "Do this task".into(),
             triggers: Vec::new(),

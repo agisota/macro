@@ -17,14 +17,14 @@ describe('CORS middleware tests', async () => {
       'http://localhost:20010',
       'http://localhost:60000',
       'http://host.local:3000',
-      'https://dev.macro.com',
-      'https://staging.macro.com',
-      'https://www.macro.com',
-      'https://macro.com',
+      'https://dev.rox.one',
+      'https://staging.rox.one',
+      'https://www.rox.one',
+      'https://rox.one',
       'capacitor://localhost',
-      'https://apollo-testing.macro.com',
-      'https://my-feature-branch.preview.macro.com',
-      'https://fix-123.preview.macro.com',
+      'https://apollo-testing.rox.one',
+      'https://my-feature-branch.preview.rox.one',
+      'https://fix-123.preview.rox.one',
     ];
 
     const token = getTokenForDocument('test-doc', 'test-user', 'owner');
@@ -57,7 +57,7 @@ describe('CORS middleware tests', async () => {
       {
         method: 'OPTIONS',
         headers: {
-          Origin: 'https://dev.macro.com',
+          Origin: 'https://dev.rox.one',
           'Access-Control-Request-Method': 'GET',
           'Access-Control-Request-Headers': 'authorization, content-type',
         },
@@ -68,7 +68,7 @@ describe('CORS middleware tests', async () => {
 
     // Check preflight response headers
     expect(response.headers.get('Access-Control-Allow-Origin')).toBe(
-      'https://dev.macro.com'
+      'https://dev.rox.one'
     );
     expect(response.headers.get('Access-Control-Allow-Credentials')).toBe(
       'true'
@@ -94,11 +94,11 @@ describe('CORS middleware tests', async () => {
     const disallowedOrigins = [
       'https://malicious.com',
       'http://localhost:8080',
-      'https://evil.macro.com',
-      'https://fake-dashboard.macro.com',
-      'http://evil.preview.macro.com', // HTTP not allowed for preview
-      'https://preview.macro.com', // Must have subdomain
-      'https://evil.preview.macro.com.attacker.com', // Suffix attack
+      'https://evil.rox.one',
+      'https://fake-dashboard.rox.one',
+      'http://evil.preview.rox.one', // HTTP not allowed for preview
+      'https://preview.rox.one', // Must have subdomain
+      'https://evil.preview.rox.one.attacker.com', // Suffix attack
     ];
 
     const token = getTokenForDocument('test-doc', 'test-user', 'owner');
@@ -122,7 +122,7 @@ describe('CORS middleware tests', async () => {
 
   test('should allow all HTTP methods for whitelisted origins', async () => {
     const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
-    const origin = 'https://dev.macro.com';
+    const origin = 'https://dev.rox.one';
 
     for (const method of methods) {
       const response = await mf.dispatchFetch(
@@ -150,7 +150,7 @@ describe('CORS middleware tests', async () => {
       {
         method: 'OPTIONS',
         headers: {
-          Origin: 'https://dev.macro.com',
+          Origin: 'https://dev.rox.one',
           'Access-Control-Request-Method': 'GET',
           'Access-Control-Request-Headers': 'authorization',
         },
@@ -173,7 +173,7 @@ describe('CORS middleware tests', async () => {
       {
         method: 'OPTIONS',
         headers: {
-          Origin: 'https://dev.macro.com',
+          Origin: 'https://dev.rox.one',
           'Access-Control-Request-Method': 'GET',
           'Access-Control-Request-Headers': 'authorization,traceparent',
         },
@@ -201,7 +201,7 @@ describe('CORS middleware tests', async () => {
       {
         headers: {
           Authorization: 'Bearer ' + token,
-          Origin: 'https://dev.macro.com',
+          Origin: 'https://dev.rox.one',
           'Content-Type': 'application/json',
         },
       }
@@ -214,7 +214,7 @@ describe('CORS middleware tests', async () => {
     expect(metadata.id).toBe('cors-test-doc');
 
     expect(response.headers.get('Access-Control-Allow-Origin')).toBe(
-      'https://dev.macro.com'
+      'https://dev.rox.one'
     );
     expect(response.headers.get('Access-Control-Allow-Credentials')).toBe(
       'true'

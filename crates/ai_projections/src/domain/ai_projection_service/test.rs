@@ -319,7 +319,7 @@ impl AiProjectionRepository for MockRepo {
 }
 
 fn user_id() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::parse_from_str("macro|test@macro.com")
+    MacroUserIdStr::parse_from_str("macro|test@rox.one")
         .unwrap()
         .into_owned()
 }
@@ -390,7 +390,7 @@ async fn upsert_projection_creates_cold_target_instance_for_user() {
 
     assert_eq!(target_projection.ai_projection_id, "inbox/important");
     // The user target id is resolved from the authenticated user.
-    assert_eq!(target_projection.target_id, "macro|test@macro.com");
+    assert_eq!(target_projection.target_id, "macro|test@rox.one");
     assert_eq!(target_projection.status, ProjectionStatus::Cold);
     assert_eq!(target_projection.prompt_hash, test_hash());
     assert_eq!(repo.created_target_projections.lock().unwrap().len(), 1);
@@ -418,7 +418,7 @@ async fn upsert_projection_enqueues_materialization_for_cold_instance() {
     let enqueued = queue.enqueued.lock().unwrap();
     assert_eq!(enqueued.len(), 1);
     assert_eq!(enqueued[0].ai_projection_id, "inbox/important");
-    assert_eq!(enqueued[0].target_id, "macro|test@macro.com");
+    assert_eq!(enqueued[0].target_id, "macro|test@rox.one");
     assert_eq!(enqueued[0].prompt_hash, test_hash());
 }
 
@@ -451,7 +451,7 @@ async fn upsert_projection_passes_model_and_schema_into_version_hash() {
 async fn upsert_projection_returns_ready_instance_without_regenerating() {
     let ready = UserAiProjection {
         ai_projection_id: "inbox/important".to_string(),
-        target_id: "macro|test@macro.com".to_string(),
+        target_id: "macro|test@rox.one".to_string(),
         prompt_hash: test_hash(),
         status: ProjectionStatus::Ready,
         result: Some("cached".to_string()),
@@ -487,7 +487,7 @@ async fn upsert_projection_returns_ready_instance_without_regenerating() {
 async fn upsert_projection_regenerate_marks_refreshing_and_enqueues() {
     let ready = UserAiProjection {
         ai_projection_id: "inbox/important".to_string(),
-        target_id: "macro|test@macro.com".to_string(),
+        target_id: "macro|test@rox.one".to_string(),
         prompt_hash: test_hash(),
         status: ProjectionStatus::Ready,
         result: Some("cached".to_string()),
@@ -575,7 +575,7 @@ async fn upsert_projection_await_returns_error_state_on_generation_failure() {
 fn materialize_message() -> AiProjectionQueueMessage {
     AiProjectionQueueMessage {
         ai_projection_id: "inbox/important".to_string(),
-        target_id: "macro|test@macro.com".to_string(),
+        target_id: "macro|test@rox.one".to_string(),
         prompt_hash: test_hash(),
     }
 }
@@ -600,7 +600,7 @@ async fn materialize_generates_stores_result_and_notifies() {
     // The generator ran for the target user with the projection's prompt.
     let calls = generator.calls.lock().unwrap();
     assert_eq!(calls.len(), 1);
-    assert_eq!(calls[0].0, "macro|test@macro.com");
+    assert_eq!(calls[0].0, "macro|test@rox.one");
     assert_eq!(calls[0].1, TEST_PROMPT);
 
     // The result was stored and the instance ended ready.

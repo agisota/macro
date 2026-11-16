@@ -72,7 +72,7 @@ fn stored_attachment_type(entity_type: &str) -> &str {
 }
 
 impl PgMessageRepository {
-    /// Create a repository using the shared MacroDB pool.
+    /// Create a repository using the shared RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self {
             pool,

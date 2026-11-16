@@ -30,7 +30,7 @@ fn rejects_non_local_and_out_of_range_origins() {
 
 #[test]
 fn allows_static_origins() {
-    assert!(is_allowed_origin("https://macro.com"));
+    assert!(is_allowed_origin("https://rox.one"));
     assert!(is_allowed_origin("tauri://localhost"));
 }
 
@@ -50,7 +50,7 @@ async fn preflight_is_cacheable_for_two_hours() {
     let preflight = Request::builder()
         .method(Method::OPTIONS)
         .uri("/items/soup/graphql")
-        .header(header::ORIGIN, "https://macro.com")
+        .header(header::ORIGIN, "https://rox.one")
         .header(header::ACCESS_CONTROL_REQUEST_METHOD, "POST")
         .header(header::ACCESS_CONTROL_REQUEST_HEADERS, "content-type")
         .body(Body::empty())

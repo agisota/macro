@@ -1432,8 +1432,8 @@ Layout and test hooks:
   whole link around the caret; at a bare caret it inserts the "Text to
   display" (`pptx-link-text`) as linked text. With shapes selected (not their
   text) it links the shapes themselves. Link to: Web Page or File
-  (`pptx-link-kind-web`, address `pptx-link-address`; `macro.com` becomes
-  `https://macro.com`), Place in This Document (`pptx-link-kind-place`:
+  (`pptx-link-kind-web`, address `pptx-link-address`; `rox.one` becomes
+  `https://rox.one`), Place in This Document (`pptx-link-kind-place`:
   `pptx-link-place-nextslide` and the other jumps, or
   `pptx-link-place-slide-<n>`, with a preview `pptx-link-preview`), or E-mail
   Address (`pptx-link-kind-email`, `pptx-link-email`, `pptx-link-subject`).

@@ -368,7 +368,7 @@ async fn a_computers_effects_run_one_at_a_time_in_order(pool: PgPool) {
     host(&repo, "runtime-dev-1", 31, 7, 3).await;
     let id = bought(&repo, 1).await.id;
     changed(&repo, id, Event::InstanceStarted, now()).await;
-    changed(&repo, id, Event::MacrodConnected, now()).await;
+    changed(&repo, id, Event::RoxdConnected, now()).await;
     changed(&repo, id, Event::PowerOff, now()).await;
     changed(&repo, id, Event::PowerOn, now()).await;
 
@@ -414,7 +414,7 @@ async fn a_replaced_timer_does_not_fire(pool: PgPool) {
         .await
         .unwrap();
     assert_eq!(due.len(), 1);
-    assert_eq!(due[0].kind, TimerKind::MacrodMissing);
+    assert_eq!(due[0].kind, TimerKind::RoxdMissing);
 
     let mut stale = due[0].clone();
     stale.fire_at -= Duration::seconds(1);

@@ -75,21 +75,21 @@ fn access(levels: Vec<(MacroUserIdStr<'static>, AccessLevel)>) -> &'static Fixed
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    user("owner@macro.com")
+    user("owner@rox.one")
 }
 
 #[tokio::test]
 async fn an_editor_shares_the_session_with_everyone_they_mention() {
     let access = access(vec![
         (owner(), AccessLevel::Owner),
-        (user("a@macro.com"), AccessLevel::Edit),
+        (user("a@rox.one"), AccessLevel::Edit),
     ]);
     let mentions = LexicalPromptMentions::new(
         FixedMentions(Ok(vec![
-            user("b@macro.com").to_string(),
-            user("c@macro.com").to_string(),
-            user("a@macro.com").to_string(),
-            user("b@macro.com").to_string(),
+            user("b@rox.one").to_string(),
+            user("c@rox.one").to_string(),
+            user("a@rox.one").to_string(),
+            user("b@rox.one").to_string(),
         ])),
         access,
     );
@@ -97,17 +97,17 @@ async fn an_editor_shares_the_session_with_everyone_they_mention() {
     let users = mentions
         .share_with_mentioned(
             AgentSessionId::TEST_A,
-            Some(&user("a@macro.com")),
-            "<m-user-mention>{\"userId\":\"macro|b@macro.com\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|c@macro.com\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|a@macro.com\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|b@macro.com\"}</m-user-mention>",
+            Some(&user("a@rox.one")),
+            "<m-user-mention>{\"userId\":\"macro|b@rox.one\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|c@rox.one\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|a@rox.one\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|b@rox.one\"}</m-user-mention>",
         )
         .await
         .expect("mentions resolve");
 
     // b and c were strangers to the session; a is the author and is skipped.
-    assert_eq!(users, vec![user("b@macro.com"), user("c@macro.com")]);
+    assert_eq!(users, vec![user("b@rox.one"), user("c@rox.one")]);
     assert_eq!(
         access.granted(),
-        vec![vec![user("b@macro.com"), user("c@macro.com")]]
+        vec![vec![user("b@rox.one"), user("c@rox.one")]]
     );
 }
 
@@ -115,23 +115,23 @@ async fn an_editor_shares_the_session_with_everyone_they_mention() {
 async fn a_viewer_amplifies_nobody_and_only_existing_viewers_are_named() {
     let access = access(vec![
         (owner(), AccessLevel::Owner),
-        (user("a@macro.com"), AccessLevel::View),
-        (user("b@macro.com"), AccessLevel::View),
+        (user("a@rox.one"), AccessLevel::View),
+        (user("b@rox.one"), AccessLevel::View),
     ]);
     let mentions = LexicalPromptMentions::new(
         FixedMentions(Ok(vec![
-            user("b@macro.com").to_string(),
-            user("c@macro.com").to_string(),
+            user("b@rox.one").to_string(),
+            user("c@rox.one").to_string(),
         ])),
         access,
     );
 
     let users = mentions
-        .share_with_mentioned(AgentSessionId::TEST_A, Some(&user("a@macro.com")), "<m-user-mention>{\"userId\":\"macro|b@macro.com\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|c@macro.com\"}</m-user-mention>")
+        .share_with_mentioned(AgentSessionId::TEST_A, Some(&user("a@rox.one")), "<m-user-mention>{\"userId\":\"macro|b@rox.one\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|c@rox.one\"}</m-user-mention>")
         .await
         .expect("mentions resolve");
 
-    assert_eq!(users, vec![user("b@macro.com")]);
+    assert_eq!(users, vec![user("b@rox.one")]);
     assert!(access.granted().is_empty());
 }
 
@@ -140,14 +140,14 @@ async fn a_prompt_with_no_user_behind_it_shares_nothing() {
     let access = access(vec![(owner(), AccessLevel::Owner)]);
     let mentions = LexicalPromptMentions::new(
         FixedMentions(Ok(vec![
-            user("owner@macro.com").to_string(),
-            user("c@macro.com").to_string(),
+            user("owner@rox.one").to_string(),
+            user("c@rox.one").to_string(),
         ])),
         access,
     );
 
     let users = mentions
-        .share_with_mentioned(AgentSessionId::TEST_A, None, "<m-user-mention>{\"userId\":\"macro|owner@macro.com\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|c@macro.com\"}</m-user-mention>")
+        .share_with_mentioned(AgentSessionId::TEST_A, None, "<m-user-mention>{\"userId\":\"macro|owner@rox.one\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|c@rox.one\"}</m-user-mention>")
         .await
         .expect("mentions resolve");
 
@@ -219,17 +219,17 @@ async fn ids_that_are_not_macro_users_are_skipped() {
     let mentions = LexicalPromptMentions::new(
         FixedMentions(Ok(vec![
             "not-a-user-id".to_owned(),
-            user("a@macro.com").to_string(),
+            user("a@rox.one").to_string(),
         ])),
         access,
     );
 
     let users = mentions
-        .share_with_mentioned(AgentSessionId::TEST_A, Some(&owner()), "<m-user-mention>{\"userId\":\"macro|junk@macro.com\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|a@macro.com\"}</m-user-mention>")
+        .share_with_mentioned(AgentSessionId::TEST_A, Some(&owner()), "<m-user-mention>{\"userId\":\"macro|junk@rox.one\"}</m-user-mention> <m-user-mention>{\"userId\":\"macro|a@rox.one\"}</m-user-mention>")
         .await
         .expect("mentions resolve");
 
-    assert_eq!(users, vec![user("a@macro.com")]);
+    assert_eq!(users, vec![user("a@rox.one")]);
 }
 
 #[tokio::test]
@@ -243,7 +243,7 @@ async fn a_lexical_failure_is_an_error_not_an_empty_answer() {
         .share_with_mentioned(
             AgentSessionId::TEST_A,
             Some(&owner()),
-            "<m-user-mention>{\"userId\":\"macro|a@macro.com\"}</m-user-mention>",
+            "<m-user-mention>{\"userId\":\"macro|a@rox.one\"}</m-user-mention>",
         )
         .await
         .expect_err("the failure surfaces");

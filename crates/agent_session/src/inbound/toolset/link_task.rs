@@ -21,7 +21,7 @@ use crate::domain::session_task::LinkedTask;
 pub struct LinkTask {
     /// The task to link.
     #[schemars(
-        description = "Macro task id, MACRO-<id> reference, or task link, e.g. https://macro.com/app/task/<id>"
+        description = "Macro task id, MACRO-<id> reference, or task link, e.g. https://rox.one/app/task/<id>"
     )]
     pub task: String,
 }

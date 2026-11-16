@@ -1,11 +1,11 @@
-//! `Test macrod update` — macrod's self-update and installers, end to end, on
+//! `Test roxd update` — roxd's self-update and installers, end to end, on
 //! Linux, macOS, and Windows.
 //!
-//! Each job builds macrod twice from the checkout, as two fake release tags,
+//! Each job builds roxd twice from the checkout, as two fake release tags,
 //! and runs `crates/coding_agent_worker/e2e/` against a local release mirror:
 //! the hot handoff and its negative cases plus the shell installer on Linux
 //! and macOS, and the launcher layout plus `install.ps1` on Windows. Nothing
-//! is published. Runs on pull requests that touch macrod, and on demand.
+//! is published. Runs on pull requests that touch roxd, and on demand.
 
 use gh_workflow::{Event, Job, Level, Permissions, Run, Step, Workflow, WorkflowCall};
 use xtask_paths::RepoGlob;
@@ -22,12 +22,12 @@ const V2: &str = "v2000.1.1.2";
 /// Files whose change makes `PR CI` call this workflow.
 pub const PATHS: &[RepoGlob<'static>] = &[
     xtask_paths::repo_glob!("crates/coding_agent_worker/**"),
-    xtask_paths::repo_glob!(".github/workflows/test_macrod_update.yml"),
+    xtask_paths::repo_glob!(".github/workflows/test_roxd_update.yml"),
 ];
 
 /// Build the workflow.
-pub fn test_macrod_update() -> Workflow {
-    Workflow::new("Test macrod update")
+pub fn test_roxd_update() -> Workflow {
+    Workflow::new("Test roxd update")
         .permissions(Permissions {
             contents: Some(Level::Read),
             ..Default::default()
@@ -44,7 +44,7 @@ pub fn test_macrod_update() -> Workflow {
 fn linux_job() -> Job {
     Job::default()
         .timeout_minutes(20u32)
-        .name("macrod update (linux)")
+        .name("roxd update (linux)")
         .runs_on(runners::Runner::RustCi.to_string())
         .add_step(steps::checkout(false, false))
         .add_step(steps::mount_cache_volume())
@@ -71,7 +71,7 @@ fn linux_job() -> Job {
 fn macos_job() -> Job {
     Job::default()
         .timeout_minutes(10u32)
-        .name("macrod update (macos)")
+        .name("roxd update (macos)")
         // These runners have no compiler cache, and the test only needs a working
         // binary, so debug info is pure cost.
         .add_env(("CARGO_PROFILE_DEV_DEBUG", "0"))
@@ -96,7 +96,7 @@ fn macos_job() -> Job {
 fn windows_job() -> Job {
     Job::default()
         .timeout_minutes(20u32)
-        .name("macrod update (windows)")
+        .name("roxd update (windows)")
         // These runners have no compiler cache, and the test only needs a working
         // binary, so debug info is pure cost.
         .add_env(("CARGO_PROFILE_DEV_DEBUG", "0"))

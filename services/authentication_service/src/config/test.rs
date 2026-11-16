@@ -359,7 +359,7 @@ fn develop_config_enforces_allowlist_unless_bypassed() {
                 policy.authorize_public_email(UNLISTED_PUBLIC_EMAIL),
                 Err(SignupPolicyDenial::PublicEmailNotAllowed)
             );
-            assert_eq!(policy.authorize_public_email("new.user@macro.com"), Ok(()));
+            assert_eq!(policy.authorize_public_email("new.user@rox.one"), Ok(()));
             assert_eq!(
                 policy.authorize_public_email("allowed.user@example.test"),
                 Ok(())

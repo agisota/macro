@@ -277,7 +277,7 @@ export const I_DOCUMENT_MENTION: TextMatchTransformer = {
 function cleanHostname(rawHostname: string): string {
   const hostname = rawHostname.replace('www.', '').toLowerCase();
   if (hostname === 'localhost') {
-    return 'dev.macro.com';
+    return 'dev.rox.one';
   }
   return hostname;
 }
@@ -822,7 +822,7 @@ export const I_BOOKING_LINK_MENTION: TextMatchTransformer = {
         profileId,
         slug: typeof data.slug === 'string' ? data.slug : undefined,
         label: typeof data.label === 'string' ? data.label : undefined,
-        url: url || `https://macro.com/app/book/${profileId}`,
+        url: url || `https://rox.one/app/book/${profileId}`,
       });
       node.replace(bookingMentionNode);
     } catch (e) {

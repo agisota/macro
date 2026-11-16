@@ -43,7 +43,7 @@ resource-row transaction.
 ## Checks
 
 - `cargo test -p entity_registry_db_utils` (`SQLX_OFFLINE` unset; requires
-  local MacroDB — `just setup_macrodb`).
+  local RoxDB — `just setup_macrodb`).
 
 ## Gotchas
 

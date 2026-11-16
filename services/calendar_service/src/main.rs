@@ -302,12 +302,12 @@ async fn main() -> anyhow::Result<()> {
             calendar_mutation_service.clone(),
             meeting_links.clone(),
             match config.environment {
-                Environment::Production => Some("https://macro.com".into()),
-                Environment::Develop => Some("https://dev.macro.com".into()),
+                Environment::Production => Some("https://rox.one".into()),
+                Environment::Develop => Some("https://dev.rox.one".into()),
                 Environment::Local => None,
             },
         ),
-        calendar_scheduling::outbound::macro_services::MacroDirectory(
+        calendar_scheduling::outbound::macro_services::RoxDirectory(
             teams::outbound::team_repo::TeamRepositoryImpl::new(db.clone()),
         ),
     ));

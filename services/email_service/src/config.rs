@@ -7,7 +7,7 @@ use secretsmanager_client::LocalOrRemoteSecret;
 env_vars! {
     pub struct EmailServiceCloudfrontSignerPrivateKey;
     pub struct KafkaBrokers;
-    pub struct MacroDbUrl;
+    pub struct RoxDbUrl;
     pub struct RedisUri;
     pub struct GmailGcpQueue;
     #[derive(Debug)]
@@ -47,7 +47,7 @@ pub struct Config {
     pub gmail_label_write_batches_enabled: bool,
     /// The connection URL for the macrodb instance this application should use.
     /// For deployed applications, this is a secret stored in AWS Secrets Manager.
-    pub macro_db_url: MacroDbUrl,
+    pub macro_db_url: RoxDbUrl,
 
     /// The port to listen for HTTP requests on.
     #[macro_config_default(8080)]

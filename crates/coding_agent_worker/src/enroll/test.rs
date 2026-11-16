@@ -122,7 +122,7 @@ async fn enrollment_reads_from_a_file_and_the_incus_guest_api() {
 #[tokio::test]
 async fn a_retried_enrollment_keeps_its_credential_and_points_at_the_overrides() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let config = directory.path().join("macrod.toml");
+    let config = directory.path().join("roxd.toml");
     let workspace = directory.path().join("work");
     // What the first attempt left behind: a claimed credential, and a
     // storage URL nothing listens on, so a second claim would fail.
@@ -195,11 +195,11 @@ pairing_id = "00000000-0000-0000-0000-00000000000a"
 #[tokio::test]
 async fn an_enrolled_computer_is_left_alone() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let marker = directory.path().join("var/lib/macrod/enrolled");
+    let marker = directory.path().join("var/lib/roxd/enrolled");
     std::fs::create_dir_all(marker.parent().unwrap()).unwrap();
     std::fs::write(&marker, "done").unwrap();
     // The enrollment is never read again; only the existing config's uid is needed.
-    let config = directory.path().join("macrod.toml");
+    let config = directory.path().join("roxd.toml");
     std::fs::write(&config, "existing config").unwrap();
     let host = FakeHost::default();
     run_enroll_with_host(
@@ -236,7 +236,7 @@ async fn the_claim_joins_the_setup_trace() {
         .mount(&server)
         .await;
     let directory = tempfile::tempdir().expect("temp dir");
-    let config = directory.path().join("macrod.toml");
+    let config = directory.path().join("roxd.toml");
     std::fs::write(
         &config,
         format!(
@@ -271,12 +271,12 @@ path = "/"
 #[tokio::test]
 async fn a_marker_as_new_as_the_enrollment_is_left_alone() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let marker = directory.path().join("var/lib/macrod/enrolled");
+    let marker = directory.path().join("var/lib/roxd/enrolled");
     std::fs::create_dir_all(marker.parent().unwrap()).unwrap();
     std::fs::write(&marker, "00000000-0000-0000-0000-00000000000c\n1\n").unwrap();
     let source = directory.path().join("enrollment.json");
     std::fs::write(&source, ENROLLMENT_JSON).unwrap();
-    let config = directory.path().join("macrod.toml");
+    let config = directory.path().join("roxd.toml");
     std::fs::write(&config, "existing config").unwrap();
     run_enroll_with_host(
         EnrollOptions {
@@ -312,13 +312,13 @@ async fn a_newer_generation_enrolls_again_and_claims_its_pairing() {
         .mount(&server)
         .await;
     let directory = tempfile::tempdir().expect("temp dir");
-    let marker = directory.path().join("var/lib/macrod/enrolled");
+    let marker = directory.path().join("var/lib/roxd/enrolled");
     std::fs::create_dir_all(marker.parent().unwrap()).unwrap();
     std::fs::write(&marker, "00000000-0000-0000-0000-00000000000c\n1\n").unwrap();
     let home_file = directory.path().join("work/notes.txt");
     std::fs::create_dir_all(home_file.parent().unwrap()).unwrap();
     std::fs::write(&home_file, "keep me").unwrap();
-    let config = directory.path().join("macrod.toml");
+    let config = directory.path().join("roxd.toml");
     std::fs::write(
         &config,
         r#"
@@ -373,8 +373,8 @@ pairing_id = "00000000-0000-0000-0000-00000000000a"
 #[test]
 fn an_agent_computer_gets_its_brains_environment_file() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let config = directory.path().join("macrod.toml");
-    let env_path = directory.path().join("var/lib/macrod/agent.env");
+    let config = directory.path().join("roxd.toml");
+    let env_path = directory.path().join("var/lib/roxd/agent.env");
     let agent: hosted_runtimes::domain::agent::AgentEnrollment = serde_json::from_str(
         r#"{
             "agent_user_id": "macro|sam-rivera-abc123@agents.macro.invalid",
@@ -417,7 +417,7 @@ fn an_agent_computer_gets_its_brains_environment_file() {
 #[test]
 fn a_computer_without_an_agent_has_no_brain_environment() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let config = directory.path().join("macrod.toml");
+    let config = directory.path().join("roxd.toml");
     let env_path = directory.path().join("agent.env");
     std::fs::write(&env_path, "MACRO_API_KEY=\"stale\"\n").unwrap();
 

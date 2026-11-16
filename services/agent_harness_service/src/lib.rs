@@ -177,7 +177,7 @@ use mcp_client::domain::models::AesKey;
 use mcp_client::outbound::NativeServerStore;
 use mcp_client::outbound::pg_server_repo::PgServerRepo;
 use model_providers::{
-    CursorModels, InMemoryModels, MacrodModels, PgKnownModels, VisibleHarnessAccess,
+    CursorModels, InMemoryModels, RoxdModels, PgKnownModels, VisibleHarnessAccess,
 };
 use permission_policy::PgPermissionPolicySource;
 use pipedream_mcp::outbound::api::{PipedreamClient, PipedreamConfig};
@@ -1053,7 +1053,7 @@ pub async fn run() -> anyhow::Result<()> {
     // Cold attaches (fresh spawns and post-restart resumes) rebuild
     // their model context from the same log every frame lands in.
     let frames = Arc::new(LogFrameSource::new(session_repo.clone()));
-    let permissions_repo = roles_and_permissions::outbound::pgpool::MacroDB::new(pool.clone());
+    let permissions_repo = roles_and_permissions::outbound::pgpool::RoxDB::new(pool.clone());
     let inmem_model_access: Arc<dyn agent_inmem::domain::model_access::InMemModelAccess> = Arc::new(
         agent_inmem::domain::model_access::PermissionModelAccess::new(
             roles_and_permissions::domain::service::UserRolesAndPermissionsServiceImpl::new(
@@ -1395,7 +1395,7 @@ pub async fn run() -> anyhow::Result<()> {
     // the harness loads once it exists below.
     let (live_sessions, mut live_session_reports) = tokio::sync::mpsc::unbounded_channel();
     // Macro computers: the fleet operator (when this deployment drives a
-    // fleet) and presence that turns macrod connects into lifecycle events.
+    // fleet) and presence that turns roxd connects into lifecycle events.
     let computer_operator = computers::operator(
         &config,
         computer_fleet,
@@ -1671,8 +1671,8 @@ pub async fn run() -> anyhow::Result<()> {
         }
     });
     let model_probe_timeout = std::time::Duration::from_secs(10);
-    let macrod_models =
-        MacrodModels::new(Arc::clone(&runtimes), redis.clone(), model_probe_timeout);
+    let roxd_models =
+        RoxdModels::new(Arc::clone(&runtimes), redis.clone(), model_probe_timeout);
 
     // Capture only the session's linked GitHub pull request, for every harness.
     let changes_extractor = PullRequestChanges::new(GithubPullRequestChangesetStore::new(
@@ -1739,7 +1739,7 @@ pub async fn run() -> anyhow::Result<()> {
         ),
     ));
     held_tool_calls.bind(harness.clone());
-    let runtime_command_models = macrod_models.clone();
+    let runtime_command_models = roxd_models.clone();
     let runtime_command_redis = redis.clone();
     let runtime_command_harness = harness.clone();
     let runtime_command_runtimes = Arc::clone(&runtimes);
@@ -1808,7 +1808,7 @@ pub async fn run() -> anyhow::Result<()> {
                         Arc::clone(&inmem_model_access),
                     ),
                     CursorModels::new(cursor_keys.clone(), cursor_api_base_url()),
-                    macrod_models.clone(),
+                    roxd_models.clone(),
                     model_probe_timeout,
                 ),
             ),
@@ -1823,7 +1823,7 @@ pub async fn run() -> anyhow::Result<()> {
             inmem_model_access,
         ),
         CursorModels::new(cursor_keys, cursor_api_base_url()),
-        macrod_models,
+        roxd_models,
         PgKnownModels::new(pool.clone()),
         model_probe_timeout,
     ));

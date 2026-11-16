@@ -350,7 +350,7 @@ fn test_importance_true_excludes_depriority_unless_priority() -> anyhow::Result<
         must_not[1],
         json!({
             "wildcard": {
-                "sender": { "value": "*@notification.macro.com", "case_insensitive": true }
+                "sender": { "value": "*@notification.rox.one", "case_insensitive": true }
             }
         })
     );
@@ -397,7 +397,7 @@ fn test_importance_false_filters_to_depriority_only() -> anyhow::Result<()> {
         should[1],
         json!({
             "wildcard": {
-                "sender": { "value": "*@notification.macro.com", "case_insensitive": true }
+                "sender": { "value": "*@notification.rox.one", "case_insensitive": true }
             }
         })
     );

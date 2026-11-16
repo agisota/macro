@@ -107,10 +107,10 @@ async fn corrupt_row_does_not_abort_fleet_scans(pool: PgPool) {
     assert_eq!(timers[0].computer_id.as_uuid(), Uuid::from_u128(101));
 
     for id in [bad_id, Uuid::from_u128(101)] {
-        sqlx::query!("INSERT INTO hosted_runtime_timer (computer_id, kind, fire_at) VALUES ($1, 'macrod_missing', $2)", id, now()).execute(&pool).await.unwrap();
+        sqlx::query!("INSERT INTO hosted_runtime_timer (computer_id, kind, fire_at) VALUES ($1, 'roxd_missing', $2)", id, now()).execute(&pool).await.unwrap();
     }
-    repo.postpone_macrod_timers(host.id, due).await.unwrap();
-    let corrupt_timer = sqlx::query_scalar!("SELECT fire_at FROM hosted_runtime_timer WHERE computer_id = $1 AND kind = 'macrod_missing'", bad_id).fetch_one(&pool).await.unwrap();
+    repo.postpone_roxd_timers(host.id, due).await.unwrap();
+    let corrupt_timer = sqlx::query_scalar!("SELECT fire_at FROM hosted_runtime_timer WHERE computer_id = $1 AND kind = 'roxd_missing'", bad_id).fetch_one(&pool).await.unwrap();
     assert_eq!(corrupt_timer, now());
 
     // Broken lifecycle JSON must still retain the guest's ownership identity.

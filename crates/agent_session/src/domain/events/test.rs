@@ -5,7 +5,7 @@ use macro_user_id::cowlike::CowLike;
 use serde_json::json;
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::parse_from_str("macro|owner@macro.com")
+    MacroUserIdStr::parse_from_str("macro|owner@rox.one")
         .expect("valid user id")
         .into_owned()
 }
@@ -93,7 +93,7 @@ fn one_of_each() -> Vec<AgentSessionLifecycleEvent> {
             action_id: action_id(),
             mentioned_by: Some(owner()),
             mentioned: vec![
-                MacroUserIdStr::parse_from_str("macro|reviewer@macro.com")
+                MacroUserIdStr::parse_from_str("macro|reviewer@rox.one")
                     .expect("valid user id")
                     .into_owned(),
             ],

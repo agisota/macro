@@ -26,7 +26,7 @@ impl EntityPropertyReader for TestReader {
         scope: GraphqlPropertyDefinitionScope,
         for_entity_type: Option<models_properties::EntityType>,
     ) -> Result<Vec<PropertyDefinition>, rootcause::Report> {
-        assert_eq!(user_id.as_ref(), "macro|viewer@macro.com");
+        assert_eq!(user_id.as_ref(), "macro|viewer@rox.one");
         assert_eq!(scope, GraphqlPropertyDefinitionScope::System);
         assert_eq!(
             for_entity_type,
@@ -52,7 +52,7 @@ impl EntityPropertyReader for TestReader {
         user_id: &MacroUserIdStr<'static>,
         property_definition_ids: &[Uuid],
     ) -> Result<HashMap<Uuid, Vec<PropertyOption>>, rootcause::Report> {
-        assert_eq!(user_id.as_ref(), "macro|viewer@macro.com");
+        assert_eq!(user_id.as_ref(), "macro|viewer@rox.one");
         self.0.fetch_add(1, Ordering::Relaxed);
         let now = chrono::Utc::now();
         Ok(property_definition_ids
@@ -120,7 +120,7 @@ impl Query {
 fn schema(calls: Arc<AtomicUsize>) -> Schema<Query, EmptyMutation, EmptySubscription> {
     Schema::build(Query, EmptyMutation, EmptySubscription)
         .data(entity_properties_loader(
-            MacroUserIdStr::parse_from_str("macro|viewer@macro.com").expect("valid user"),
+            MacroUserIdStr::parse_from_str("macro|viewer@rox.one").expect("valid user"),
             TestReader(calls),
         ))
         .finish()
@@ -186,7 +186,7 @@ async fn invisible_definition_error_is_not_returned_as_an_empty_option_list() {
 
 #[tokio::test]
 async fn schema_only_reader_fails_closed_if_executed() {
-    let user = MacroUserIdStr::parse_from_str("macro|viewer@macro.com").expect("valid user");
+    let user = MacroUserIdStr::parse_from_str("macro|viewer@rox.one").expect("valid user");
     assert!(
         NoOpEntityPropertyReader
             .get_definitions(&user, GraphqlPropertyDefinitionScope::All, None)

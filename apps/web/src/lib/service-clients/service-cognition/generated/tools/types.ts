@@ -228,7 +228,7 @@ export type DiscussionParentType =
 /**
  * The runtimes an agent can be moved onto.
  */
-export type AgentHarnessOption = 'in-memory' | 'cursor' | 'macrod';
+export type AgentHarnessOption = 'in-memory' | 'cursor' | 'roxd';
 /**
  * Where an agent can be mentioned.
  */
@@ -6180,11 +6180,11 @@ export interface ConfigureAgent {
    */
   instructions?: string | null;
   /**
-   * Runtime to move the agent onto. `macrod` also needs harnessId; the other runtimes must not have one. The current model may not exist on the new runtime, so usually pass defaultModel with it. Omit to keep the current runtime.
+   * Runtime to move the agent onto. `roxd` also needs harnessId; the other runtimes must not have one. The current model may not exist on the new runtime, so usually pass defaultModel with it. Omit to keep the current runtime.
    */
   harness?: AgentHarnessOption | null;
   /**
-   * Id of the registered self-hosted harness, required when harness is `macrod` and forbidden otherwise.
+   * Id of the registered self-hosted harness, required when harness is `roxd` and forbidden otherwise.
    */
   harnessId?: string | null;
   /**
@@ -6250,11 +6250,11 @@ export interface AgentSummary {
    */
   instructions: string;
   /**
-   * Harness slug: `in-memory`, `cursor`, or `macrod`.
+   * Harness slug: `in-memory`, `cursor`, or `roxd`.
    */
   harness: string;
   /**
-   * Registered harness the agent runs on when `harness` is `macrod`.
+   * Registered harness the agent runs on when `harness` is `roxd`.
    */
   harnessId?: string | null;
   /**
@@ -15460,7 +15460,7 @@ export interface SearchToolsResponse {
   already_available?: string[];
 }
 /**
- * Learn what Macro is and how it works. Call this whenever the user asks an open-ended question about Macro itself — what it is, what it's for, what it can do, or how to do something in Macro — instead of answering from memory (your training data may be stale). Takes no arguments. Returns an overview of Macro and a map of links into the official docs at docs.macro.com; every docs page is readable as Markdown (append `.md` to its URL), so follow up with WebFetch on the relevant page for details and cite it.
+ * Learn what Macro is and how it works. Call this whenever the user asks an open-ended question about Macro itself — what it is, what it's for, what it can do, or how to do something in Macro — instead of answering from memory (your training data may be stale). Takes no arguments. Returns an overview of Macro and a map of links into the official docs at docs.rox.one; every docs page is readable as Markdown (append `.md` to its URL), so follow up with WebFetch on the relevant page for details and cite it.
  */
 export type SelfKnowledge = {};
 /**
@@ -15468,7 +15468,7 @@ export type SelfKnowledge = {};
  */
 export interface SelfKnowledgeResponse {
   /**
-   * An overview of Macro and a routing map into the docs at docs.macro.com.
+   * An overview of Macro and a routing map into the docs at docs.rox.one.
    */
   about: string;
 }

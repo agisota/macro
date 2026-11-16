@@ -41,7 +41,7 @@ The threat model is the crate doc comment in `src/lib.rs`.
 ## Checks
 
 - `cargo test -p whatsapp_store_pg` with `SQLX_OFFLINE` unset and
-  `DATABASE_URL` on a database with the MacroDB migrations applied.
+  `DATABASE_URL` on a database with the RoxDB migrations applied.
 - `cargo clippy -p whatsapp_store_pg --all-targets --features fake-kms`
 
 ## Gotchas

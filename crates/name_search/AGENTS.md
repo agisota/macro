@@ -36,7 +36,7 @@ highlighting.
 
 ## Checks
 
-- `cargo test -p name_search` (`SQLX_OFFLINE` unset; requires local MacroDB).
+- `cargo test -p name_search` (`SQLX_OFFLINE` unset; requires local RoxDB).
 - `nix develop --command just prepare_db` from the repo root if SQLx cache
   metadata is stale.
 

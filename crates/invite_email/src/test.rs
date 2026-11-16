@@ -14,7 +14,7 @@ fn call_invitation_links_directly_to_guest_join_and_escapes_titles() {
             .body
             .contains("/app/meet/join/server-issued-test-token")
     );
-    assert!(email.body.contains("No Macro account needed"));
+    assert!(email.body.contains("No Rox account needed"));
     assert!(!email.body.contains("/signup"));
     assert!(!email.body.contains("<script>"));
     assert!(email.subject.contains("host@example.com"));
@@ -40,7 +40,7 @@ fn colleague_joined_is_an_organization_notice_that_links_to_signup() {
             .body
             .contains("Alice Example (alice@example.com) set up the")
     );
-    assert!(email.body.contains("<strong>Acme</strong> team on Macro"));
+    assert!(email.body.contains("<strong>Acme</strong> team on Rox"));
     assert!(
         email
             .body
@@ -57,7 +57,7 @@ fn colleague_joined_is_an_organization_notice_that_links_to_signup() {
     assert!(email.body.contains(">Join Acme</a"));
     assert!(!email.body.contains("referral_code"));
     // The notice is not framed as someone signing up.
-    assert!(!email.body.contains("joined Macro"));
+    assert!(!email.body.contains("joined Rox"));
 }
 
 #[test]
@@ -188,12 +188,12 @@ fn dm_invite_names_the_sender_not_the_recipient() {
     let email = invite.format_email();
     assert_eq!(
         email.subject,
-        "sender@example.com sent you a message on Macro"
+        "sender@example.com sent you a message on Rox"
     );
     assert!(
         email
             .body
-            .contains("sender@example.com sent you a message on Macro.")
+            .contains("sender@example.com sent you a message on Rox.")
     );
     assert!(email.body.contains("Hey"));
     assert!(email.body.contains(">View message</a"));
@@ -231,7 +231,7 @@ fn named_channel_invite_keeps_channel_wording_with_or_without_a_message() {
             email.subject,
             "sender@example.com has invited you to join #general"
         );
-        assert!(email.body.contains("<strong>#general</strong> on Macro."));
+        assert!(email.body.contains("<strong>#general</strong> on Rox."));
         assert!(email.body.contains(">Join channel</a"));
         assert!(!email.body.contains("sent you a message"));
         assert_eq!(
@@ -312,7 +312,7 @@ fn make_invite() -> InviteToMacro {
 }
 
 #[test]
-fn invitation_logos_keep_the_png_aspect_ratio() {
+fn invitation_headers_use_the_rox_text_wordmark() {
     let team_invite = InviteToTeamMetadata {
         team_name: "Acme".to_string(),
         team_id: Uuid::nil(),
@@ -332,9 +332,9 @@ fn invitation_logos_keep_the_png_aspect_ratio() {
         make_colleague_joined().format_email(),
     ] {
         let body = email.body.split_whitespace().collect::<Vec<_>>().join(" ");
-        assert!(body.contains(
-            r#"src="https://static-file-service.macro.com/file/b911aba9-94a6-435c-aa16-8404739f13b0" width="54" height="36""#
-        ));
+        assert!(body.contains(r#"<a href="https://rox.one""#));
+        assert!(body.contains("<span>Rox</span>"));
+        assert!(!body.contains("b911aba9-94a6-435c-aa16-8404739f13b0"));
     }
 }
 
@@ -348,8 +348,8 @@ fn referral_url_does_not_panic() {
 fn get_url_all_environments() {
     let code = ReferralCode("CODE".to_string());
     let cases = [
-        (Environment::Production, "macro.com"),
-        (Environment::Develop, "dev.macro.com"),
+        (Environment::Production, "rox.one"),
+        (Environment::Develop, "dev.rox.one"),
         (Environment::Local, "localhost"),
     ];
     for (env, expected_host) in cases {
@@ -365,7 +365,7 @@ fn format_email_with_sender_name() {
     let invite = make_invite();
     let referral_url = invite.referral_url().to_string();
     let email = invite.format_email();
-    assert_eq!(email.subject, "Test User has invited you to join Macro");
+    assert_eq!(email.subject, "Test User has invited you to join Rox");
     assert!(
         email.body.contains(&referral_url),
         "email body should contain the referral URL"
@@ -381,7 +381,7 @@ fn format_email_falls_back_to_email_when_no_name() {
     let email = invite.format_email();
     assert_eq!(
         email.subject,
-        "sender@example.com has invited you to join Macro"
+        "sender@example.com has invited you to join Rox"
     );
     assert!(email.body.contains("sender@example.com"));
 }
@@ -394,7 +394,7 @@ fn format_email_falls_back_to_generic_when_no_name_or_email() {
         ..make_invite()
     };
     let email = invite.format_email();
-    assert_eq!(email.subject, "A Macro user has invited you to join Macro");
+    assert_eq!(email.subject, "A Rox user has invited you to join Rox");
 }
 
 #[test]
@@ -503,9 +503,9 @@ fn team_invite_names_the_inviter_and_the_team() {
 
     assert_eq!(
         invite.format_email().subject,
-        "Alice Example invited you to join Acme on Macro"
+        "Alice Example invited you to join Acme on Rox"
     );
-    assert!(text.contains("Join Acme on Macro </h1>"));
+    assert!(text.contains("Join Acme on Rox </h1>"));
     assert!(text.contains(
         r#"<strong style="color: #222222">Alice Example</strong> (alice@example.com) invited you to the <strong style="color: #222222">Acme</strong> team."#
     ));
@@ -523,7 +523,7 @@ fn team_invite_falls_back_to_the_inviter_address_without_a_usable_name() {
 
         assert_eq!(
             email.subject,
-            "alice@example.com invited you to join Acme on Macro"
+            "alice@example.com invited you to join Acme on Rox"
         );
         assert!(email.from_name.is_none());
         assert_eq!(
@@ -538,7 +538,7 @@ fn team_invite_falls_back_to_the_inviter_address_without_a_usable_name() {
             email
                 .text
                 .unwrap()
-                .starts_with("alice@example.com invited you to the Acme team on Macro.")
+                .starts_with("alice@example.com invited you to the Acme team on Rox.")
         );
     }
 }
@@ -569,7 +569,7 @@ fn team_invite_escapes_and_caps_the_inviter_name() {
     assert_eq!(name.chars().count(), 64);
     assert_eq!(
         email.subject,
-        format!("{name} invited you to join Acme on Macro")
+        format!("{name} invited you to join Acme on Rox")
     );
     assert_eq!(email.from_name.as_deref(), Some(name.as_str()));
     assert!(!email.body.contains("<b>Alice</b>"));
@@ -584,11 +584,11 @@ fn team_invite_text_part_names_the_inviter_team_plan_and_link() {
 
     assert!(
         text.starts_with(
-            "Alice Example (alice@example.com) invited you to the Acme team on Macro."
+            "Alice Example (alice@example.com) invited you to the Acme team on Rox."
         )
     );
     assert!(text.contains(
-        "Free to join: there's nothing to pay. Accept the invite to start working with Acme in Macro."
+        "Free to join: there's nothing to pay. Accept the invite to start working with Acme in Rox."
     ));
     assert!(text.contains(&format!("this email address:\n{url}\n")));
     assert!(!text.contains('<'));
@@ -613,7 +613,7 @@ fn team_invites_queued_before_inviter_names_fall_back_to_the_address() {
     assert!(parsed.inviter_name.is_none());
     assert_eq!(
         parsed.format_email().subject,
-        "alice@example.com invited you to join Acme on Macro"
+        "alice@example.com invited you to join Acme on Rox"
     );
 }
 
@@ -630,7 +630,7 @@ fn team_invite_promises_pro_only_when_the_team_covers_the_seat() {
 
     let free = team_invite_text(&make_team_invite(InviteePlan::Free));
     assert!(free.contains("Free to join"));
-    assert!(free.contains("Accept the invite to start working with Acme in Macro."));
+    assert!(free.contains("Accept the invite to start working with Acme in Rox."));
     assert!(!free.contains("Pro is included"));
     assert!(!free.contains("covers your seat"));
 }
@@ -668,7 +668,7 @@ fn team_invite_escapes_the_team_name() {
     let body = invite.format_email().body;
 
     assert!(!body.contains("<script>"));
-    assert!(body.contains("Join &#60;script&#62;alert(1)&#60;/script&#62; on Macro"));
+    assert!(body.contains("Join &#60;script&#62;alert(1)&#60;/script&#62; on Rox"));
 }
 
 #[test]
@@ -716,11 +716,11 @@ fn team_invite_reminder_says_so_in_the_subject() {
     };
     assert_eq!(
         reminder.format_email().subject,
-        "Reminder: Alice Example invited you to join Acme on Macro"
+        "Reminder: Alice Example invited you to join Acme on Rox"
     );
     assert_eq!(
         make_team_invite(InviteePlan::Free).format_email().subject,
-        "Alice Example invited you to join Acme on Macro"
+        "Alice Example invited you to join Acme on Rox"
     );
 }
 

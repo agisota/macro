@@ -1,4 +1,4 @@
-//! Names people from MacroDB profiles and bots from the bots repository.
+//! Names people from RoxDB profiles and bots from the bots repository.
 
 #[cfg(test)]
 mod test;
@@ -62,7 +62,7 @@ pub struct PgPeopleDirectory<Bots> {
 }
 
 impl<Bots> PgPeopleDirectory<Bots> {
-    /// Compose MacroDB, for user names, with the bots repository.
+    /// Compose RoxDB, for user names, with the bots repository.
     pub fn new(pool: PgPool, bots: Bots) -> Self {
         Self { pool, bots }
     }

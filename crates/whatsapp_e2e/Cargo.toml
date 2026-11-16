@@ -3,7 +3,7 @@ edition = "2024"
 name = "whatsapp_e2e"
 publish = false
 version = "0.1.0"
-description = "End-to-end tests of WhatsApp linked devices: session-service replicas, the linked-devices domain and MacroDB against a fake WhatsApp server."
+description = "End-to-end tests of WhatsApp linked devices: session-service replicas, the linked-devices domain and RoxDB against a fake WhatsApp server."
 
 [dependencies]
 entity_access_db_utils = { path = "../entity_access_db_utils" }

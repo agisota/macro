@@ -53,7 +53,7 @@ impl ReadReceiptToken {
     }
 }
 
-/// Absolute URL every Macro pixel starts with, e.g. `https://gateway.macro.com/email/opens/`.
+/// Absolute URL every Macro pixel starts with, e.g. `https://gateway.rox.one/email/opens/`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PixelUrlPrefix(String);
 

@@ -73,7 +73,7 @@ account that isn't a new agent continues to `/app/team-invite?id=<id>`.
 After the code or Google sign-in, an agent skips onboarding and goes to
 `/app/agent-setup`, a markdown page with the SDK token as plain page text, the
 product and SDK docs links, how to set a name and profile picture, install and pair
-`macrod`, and create more tokens, and a link to the app. The app shell sends an unconfirmed agent back here. An
+`roxd`, and create more tokens, and a link to the app. The app shell sends an unconfirmed agent back here. An
 invited agent also joins the inviting team at this point; if that fails, the page
 says so and the invite stays pending: reloading tries again, and the emailed invite
 link still works after confirming. Each reload before following the link to
@@ -86,7 +86,7 @@ signup page, or signing in with SSO outside it, reverts the account to a person 
 it holds a token, has confirmed setup, or has a pending agent invite.
 
 Production Google/SSO and inbox/calendar connections may return to either
-`https://macro.com` or `https://www.macro.com`. Verify connections from both hosts;
+`https://rox.one` or `https://www.rox.one`. Verify connections from both hosts;
 the web inbox link flow returns to `/app/inbox-link-callback` on the originating host.
 
 On desktop, connecting a Gmail or Outlook account, reconnecting one, or enabling
@@ -123,7 +123,7 @@ failure toast.
 ## Signup in Develop
 
 With `DEVELOPMENT_BYPASS_SIGNUP_ALLOWLIST` off (the default), Develop creates new
-accounts only for `@macro.com` addresses and the addresses on the Develop signup
+accounts only for `@rox.one` addresses and the addresses on the Develop signup
 allowlist; turning the bypass on admits every address. With the bypass off, a
 code request for any other new address gets a
 generic `403`, and FusionAuth aborts any other provider sign-up. Existing
@@ -154,17 +154,17 @@ placeholder data, or a later query reset.
 
 ## CI deploy-preview authentication
 
-PR previews at `https://<id>.preview.macro.com/app` use the dev backend and
-its shared `.macro.com` HttpOnly cookies (`dev-macro-access-token` and
+PR previews at `https://<id>.preview.rox.one/app` use the dev backend and
+its shared `.rox.one` HttpOnly cookies (`dev-macro-access-token` and
 `dev-macro-refresh-token`). The `login` hint is host-only and `macro:login`
 localStorage is origin-scoped, so a fresh preview has neither. Preview startup
 must check identity anyway; the hostname is not proof of authentication.
 Account queries and WebSockets still wait for a confirmed authenticated user.
 
-Verify in a browser signed into `https://dev.macro.com`: open a fresh preview
+Verify in a browser signed into `https://dev.rox.one`: open a fresh preview
 hostname (or clear only that preview's localStorage and `login` hint, keeping
 the shared dev cookies). It should request
-`https://dev-gateway.macro.com/auth/user/legacy_user_permissions` and enter the
+`https://dev-gateway.rox.one/auth/user/legacy_user_permissions` and enter the
 signed-in app without another login. Repeat in a clean browser context: the
 identity check should fail without starting account services, and a public
 document should remain readable. Ordinary signed-out public links without a

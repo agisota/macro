@@ -334,9 +334,9 @@ before enabling broad production ingestion.
 Production URLs are `https://grafana.macro-internal.com` and `https://otlp.macro-internal.com`;
 dev uses `grafana-dev.macro-internal.com` and `otlp-dev.macro-internal.com`.
 
-Grafana uses a **Google Workspace OAuth client**. Every member of the `macro.com`
+Grafana uses a **Google Workspace OAuth client**. Every member of the `rox.one`
 Workspace may sign in and receives Grafana server administrator and organization
-administrator access. Google hosted-domain validation and the `macro.com` domain
+administrator access. Google hosted-domain validation and the `rox.one` domain
 restriction reject accounts outside that Workspace, including personal Google
 accounts. ID-token signature validation, PKCE and refresh-token checking are enabled.
 Workspace administrators must enforce MFA. No password login, default admin or
@@ -399,7 +399,7 @@ DNS-validated regional ACM certificate. Region validation rejects `us-east-1`.
 1. Use a Google OAuth Web client managed by the company. For a new dedicated
    client, choose an **Internal** consent audience. When reusing the application
    client, preserve its existing audience and redirect URIs; Grafana independently
-   enforces the `macro.com` Workspace restriction. Add the exact redirect URI
+   enforces the `rox.one` Workspace restriction. Add the exact redirect URI
    `https://grafana-dev.macro-internal.com/login/google` for dev or
    `https://grafana.macro-internal.com/login/google` for prod. Prefer separate clients
    and secrets per environment. Confirm Workspace MFA enforcement.
@@ -442,7 +442,7 @@ an explicit migration and recovery plan for its protected storage.
 
 Before enabling application traffic, validate all of these against AWS:
 
-- A `macro.com` Workspace member can log in with server and organization admin
+- A `rox.one` Workspace member can log in with server and organization admin
   access. A different Workspace domain and personal Google accounts cannot log in.
 - All three data sources pass their health checks. A small OTLP fixture appears
   in logs, traces and metrics with the expected `service.name`.
@@ -739,8 +739,8 @@ Production telemetry monitors remain in Datadog. Complete the live dashboard and
 monitor inventory before claiming parity; repository definitions may have drifted.
 
 The `Macro team email` contact point publishes through SNS using the host role,
-without SMTP credentials. The configured topic already has wolf@macro.com and
-teo@macro.com subscriptions; each recipient must confirm their SNS subscription.
+without SMTP credentials. The configured topic already has wolf@rox.one and
+teo@rox.one subscriptions; each recipient must confirm their SNS subscription.
 Test the contact point and verify receipt before relying on notifications.
 
 User-data schema 6 adds `oncallHost`. Deploy it together with the image that
@@ -788,7 +788,7 @@ server; see [MCP servers](../../../docs/development/mcp-servers.md#goalert).
   `https://oncall.macro-internal.com/api/v2/identity/providers/oidc/callback`.
   GoAlert cannot restrict OIDC to a domain, so that client must keep the
   Internal audience. The basic-auth `admin` login is the break-glass account.
-- Every `@macro.com` account is a GoAlert admin from its first sign-in:
+- Every `@rox.one` account is a GoAlert admin from its first sign-in:
   `goalert/workspace-admins.sql` installs a trigger on GoAlert's `users` table
   on every start. Other accounts stay plain users.
 - The ALB sends the on-call host to its own target group, health-checked at

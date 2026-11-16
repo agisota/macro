@@ -3,7 +3,7 @@
 //! macro-box image the Docker fleet runs.
 //!
 //! - `docker`: computers are privileged `macro-box` containers on this
-//!   machine's daemon, joined to the instance's `services` network so macrod
+//!   machine's daemon, joined to the instance's `services` network so roxd
 //!   dials the stack in-network. The harness already mounts the Docker socket
 //!   for local sandboxes; it also gets the enrollment directory at the same
 //!   absolute path, because the daemon resolves the bind sources it creates.
@@ -48,10 +48,10 @@ pub const INCUS_PORT: u16 = 8443;
 /// Label `hosted_runtimes::outbound::docker_fleet` puts on every computer.
 pub const COMPUTER_ID_LABEL: &str = "macro.computer_id";
 
-/// The `OVERRIDE_*` service URLs macrod's enrollment needs, with the host port
-/// a box dials over Tailscale. The app origin has no port: macrod
+/// The `OVERRIDE_*` service URLs roxd's enrollment needs, with the host port
+/// a box dials over Tailscale. The app origin has no port: roxd
 /// only prints links to it, which open in the developer's browser.
-const MACROD_SERVICES: &[(&str, Option<Port>)] = &[
+const ROXD_SERVICES: &[(&str, Option<Port>)] = &[
     ("OVERRIDE_API_GATEWAY_URL", Some(Port::ComputerGateway)),
     (
         "OVERRIDE_AGENT_HARNESS_EGRESS_URL",
@@ -163,7 +163,7 @@ impl Computers {
 
     /// Unique service host ports the runtime may dial on the devbox tailnet.
     pub fn service_ports(&self) -> Vec<u16> {
-        MACROD_SERVICES
+        ROXD_SERVICES
             .iter()
             .filter_map(|(_, port)| port.map(|port| self.instance.port(port)))
             .fold(Vec::new(), |mut ports, port| {
@@ -204,7 +204,7 @@ impl Computers {
     }
 
     fn docker_env(&self, env: &BTreeMap<String, String>) -> Result<BTreeMap<String, String>> {
-        let overrides = MACROD_SERVICES
+        let overrides = ROXD_SERVICES
             .iter()
             .map(|(name, _)| {
                 let url = if *name == "OVERRIDE_API_GATEWAY_URL" {
@@ -248,7 +248,7 @@ impl Computers {
         image: &str,
         agent_image: &str,
     ) -> Result<BTreeMap<String, String>> {
-        let overrides = MACROD_SERVICES
+        let overrides = ROXD_SERVICES
             .iter()
             .map(|(name, port)| {
                 let url = match port {

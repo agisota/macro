@@ -152,7 +152,7 @@ in
             description = "Macro computer VM";
             config = {
               "security.secureboot" = "false";
-              # /dev/incus inside the guest, so macrod can read user.* keys.
+              # /dev/incus inside the guest, so roxd can read user.* keys.
               "security.guestapi" = "true";
             };
             devices = {

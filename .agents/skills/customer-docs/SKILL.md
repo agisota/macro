@@ -1,7 +1,7 @@
 ---
 name: customer-docs
 description: >-
-  Write or edit Rox's customer documentation in apps/docs (docs.macro.com,
+  Write or edit Rox's customer documentation in apps/docs (docs.rox.one,
   Mintlify MDX). Use when adding or changing a docs page, product guide, or
   getting-started steps. Block is a proper noun and is always capitalized.
 ---

@@ -56,7 +56,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" />
                 <data android:scheme="http" />
-                <data android:host="macro.com" />
+                <data android:host="rox.one" />
                 <data android:path="/app" />
                 
                 <data android:pathPrefix="/app/" />
@@ -68,7 +68,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" />
                 <data android:scheme="http" />
-                <data android:host="dev.macro.com" />
+                <data android:host="dev.rox.one" />
                 <data android:path="/app" />
                 
                 <data android:pathPrefix="/app/" />
@@ -80,7 +80,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" />
                 <data android:scheme="http" />
-                <data android:host="staging.macro.com" />
+                <data android:host="staging.rox.one" />
                 <data android:path="/app" />
                 
                 <data android:pathPrefix="/app/" />

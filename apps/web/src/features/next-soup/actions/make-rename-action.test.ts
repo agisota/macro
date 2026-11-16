@@ -13,7 +13,7 @@ vi.mock('../utils', () => ({
 
 import { makeRenameAction } from './make-rename-action';
 
-const ME = 'macro|me@macro.com';
+const ME = 'macro|me@rox.one';
 const OTHER = 'macro|other@example.com';
 
 const entity = (

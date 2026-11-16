@@ -6,7 +6,7 @@ import {
   removeCalendarMacroCall,
 } from './macro-call-link';
 
-const URL = 'https://macro.com/app/meet/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF';
+const URL = 'https://rox.one/app/meet/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF';
 const SETUP_URL = URL.replace('/meet/', '/meet/join/');
 
 describe('Rox calendar call links', () => {
@@ -26,8 +26,8 @@ describe('Rox calendar call links', () => {
   it('recognizes setup links and UUID links alongside saved legacy invitations', () => {
     for (const url of [
       SETUP_URL,
-      'https://macro.com/app/meet/join/01955c94-2576-7f3a-9d60-173d74b7f812',
-      'https://macro.com/meet/join/01955c94-2576-7f3a-9d60-173d74b7f812',
+      'https://rox.one/app/meet/join/01955c94-2576-7f3a-9d60-173d74b7f812',
+      'https://rox.one/meet/join/01955c94-2576-7f3a-9d60-173d74b7f812',
       URL,
     ]) {
       expect(
@@ -38,15 +38,15 @@ describe('Rox calendar call links', () => {
 
   it('rejects lookalike sites, credentials, unsafe protocols and malformed routes', () => {
     for (const candidate of [
-      URL.replace('macro.com', 'macro.com.evil.test'),
-      URL.replace('macro.com', 'macro.com@evil.test'),
+      URL.replace('rox.one', 'rox.one.evil.test'),
+      URL.replace('rox.one', 'rox.one@evil.test'),
       URL.replace('https:', 'javascript:'),
       URL.replace('https:', 'http:'),
       `${URL}/extra`,
-      'https://macro.com/app/meet/short',
-      'https://macro.com/app/meet/new',
-      'https://macro.com/app/meet/join',
-      'https://macro.com/app/meet/join/short',
+      'https://rox.one/app/meet/short',
+      'https://rox.one/app/meet/new',
+      'https://rox.one/app/meet/join',
+      'https://rox.one/app/meet/join/short',
       `${SETUP_URL}/extra`,
     ]) {
       expect(macroCallUrl(candidate)).toBeUndefined();

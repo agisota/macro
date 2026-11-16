@@ -83,7 +83,7 @@ describe('Slack import staging protections', () => {
       'DELETE',
       'HEAD',
     ]);
-    expect(rule.allowedOrigins).toContain('https://macro.com');
+    expect(rule.allowedOrigins).toContain('https://rox.one');
     expect(rule.allowedOrigins).toContain('http://localhost:*');
     expect(rule.allowedOrigins).toContain('https://localhost:*');
     expect(rule.allowedOrigins).not.toContain('*');

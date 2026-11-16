@@ -11,7 +11,7 @@ async fn insert_harness(pool: &PgPool) -> HarnessId {
     sqlx::query!(
         r#"
         INSERT INTO harnesses (id, kind, name, owner_user_id, created_by)
-        VALUES ($1, 'macrod', 'Laptop', $2, $2)
+        VALUES ($1, 'roxd', 'Laptop', $2, $2)
         "#,
         id,
         OWNER,
@@ -40,7 +40,7 @@ async fn insert_bot(pool: &PgPool, harness: HarnessId) -> Uuid {
         r#"
         INSERT INTO agent_configs
             (bot_id, instructions, harness, default_model, channel_scope, is_coding, harness_id)
-        VALUES ($1, '', 'macrod', 'default', 'all', true, $2)
+        VALUES ($1, '', 'roxd', 'default', 'all', true, $2)
         "#,
         id,
         harness.as_uuid(),
@@ -57,7 +57,7 @@ async fn insert_session(pool: &PgPool, bot: Uuid, acp_session_id: &str) -> Agent
         r#"
         INSERT INTO agent_session
             (id, owner_id, bot_id, model, harness, workspace, for_warming, acp_session_id)
-        VALUES ($1, $2, $3, 'default', 'macrod', '/srv/agent', false, $4)
+        VALUES ($1, $2, $3, 'default', 'roxd', '/srv/agent', false, $4)
         "#,
         id,
         OWNER,

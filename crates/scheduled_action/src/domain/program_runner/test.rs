@@ -16,7 +16,7 @@ use crate::domain::{
     models::{ActionKind, ExecutionResource, ExecutionResourceType, RunVisibility},
 };
 
-pub(crate) const OWNER: &str = "macro|routine@macro.com";
+pub(crate) const OWNER: &str = "macro|routine@rox.one";
 
 /// Records agent steps; prepares like the real runner, without a session.
 #[derive(Default)]

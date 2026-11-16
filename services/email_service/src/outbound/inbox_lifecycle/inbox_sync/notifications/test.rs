@@ -4,13 +4,13 @@ use std::collections::HashSet;
 fn value(realtime: bool, apns: bool) -> InboxSyncNotification {
     InboxSyncNotification {
         sender: Some("Sender".into()),
-        to_email: "staff@macro.com".into(),
+        to_email: "staff@rox.one".into(),
         thread_id: Uuid::nil(),
         subject: "Subject".into(),
         snippet: "Snippet".into(),
         sender_id: Some(MacroUserIdStr::try_from("macro|sender@example.com".to_owned()).unwrap()),
         recipients: HashSet::from([
-            MacroUserIdStr::try_from("macro|staff@macro.com".to_owned()).unwrap()
+            MacroUserIdStr::try_from("macro|staff@rox.one".to_owned()).unwrap()
         ]),
         realtime,
         apns,

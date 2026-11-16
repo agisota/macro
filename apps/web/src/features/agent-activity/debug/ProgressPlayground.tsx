@@ -264,7 +264,7 @@ const FETCH_FAILED = tool(
   'Fetch',
   {
     kind: 'fetch',
-    output: 'Could not reach status.macro.com/api: connection refused.',
+    output: 'Could not reach status.rox.one/api: connection refused.',
   },
   'failed'
 );

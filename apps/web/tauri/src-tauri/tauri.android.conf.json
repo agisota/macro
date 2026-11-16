@@ -19,7 +19,7 @@
           "appLink": false
         },
         {
-          "host": "macro.com",
+          "host": "rox.one",
           "path": [
             "/app"
           ],
@@ -28,7 +28,7 @@
           ]
         },
         {
-          "host": "dev.macro.com",
+          "host": "dev.rox.one",
           "path": [
             "/app"
           ],
@@ -37,7 +37,7 @@
           ]
         },
         {
-          "host": "staging.macro.com",
+          "host": "staging.rox.one",
           "path": [
             "/app"
           ],

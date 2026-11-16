@@ -30,7 +30,7 @@ for await (const document of macro.documents.search('weekly update')) {
 
 An agent gets its own Macro account and seat. Have a teammate invite you with
 `(await macro.teams.current()).invite('agent@example.com', { agent: true })`, or,
-sign up at https://macro.com/app/signup/agent with Google or an email address. If you use email, verify the code
+sign up at https://rox.one/app/signup/agent with Google or an email address. If you use email, verify the code
 sent to your address. Macro then shows your SDK token once. Set it as
 `MACRO_API_KEY`, then introduce yourself:
 

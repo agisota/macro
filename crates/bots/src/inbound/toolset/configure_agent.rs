@@ -31,8 +31,8 @@ pub enum AgentHarnessOption {
     #[serde(rename = "cursor")]
     Cursor,
     /// A registered local harness; requires `harnessId`.
-    #[serde(rename = "macrod")]
-    Macrod,
+    #[serde(rename = "roxd")]
+    Roxd,
 }
 
 impl AgentHarnessOption {
@@ -41,7 +41,7 @@ impl AgentHarnessOption {
         match self {
             Self::InMemory => "in-memory",
             Self::Cursor => "cursor",
-            Self::Macrod => harness_id::MACROD_HARNESS_SLUG,
+            Self::Roxd => harness_id::ROXD_HARNESS_SLUG,
         }
     }
 }
@@ -75,13 +75,13 @@ pub struct ConfigureAgent {
     pub instructions: Option<String>,
     /// Replacement runtime.
     #[schemars(
-        description = "Runtime to move the agent onto. `macrod` also needs harnessId; the other runtimes must not have one. The current model may not exist on the new runtime, so usually pass defaultModel with it. Omit to keep the current runtime."
+        description = "Runtime to move the agent onto. `roxd` also needs harnessId; the other runtimes must not have one. The current model may not exist on the new runtime, so usually pass defaultModel with it. Omit to keep the current runtime."
     )]
     #[serde(default)]
     pub harness: Option<AgentHarnessOption>,
-    /// Registered harness for the `macrod` runtime.
+    /// Registered harness for the `roxd` runtime.
     #[schemars(
-        description = "Id of the registered local harness, required when harness is `macrod` and forbidden otherwise."
+        description = "Id of the registered local harness, required when harness is `roxd` and forbidden otherwise."
     )]
     #[serde(default)]
     pub harness_id: Option<Uuid>,
@@ -173,7 +173,7 @@ impl ConfigureAgent {
             }),
             (None, Some(_)) => {
                 return Err(invalid_arguments(
-                    "harnessId only applies together with harness `macrod`; pass harness too",
+                    "harnessId only applies together with harness `roxd`; pass harness too",
                 ));
             }
             (None, None) => None,

@@ -63,7 +63,7 @@ fn a_page_with_every_property_type_flattens_into_values() {
                     ]),
                 ),
                 ("Done".into(), NotionValue::Checkbox(true)),
-                ("Link".into(), NotionValue::Url("https://macro.com".into())),
+                ("Link".into(), NotionValue::Url("https://rox.one".into())),
                 (
                     "Contact".into(),
                     NotionValue::Email("team@example.com".into())

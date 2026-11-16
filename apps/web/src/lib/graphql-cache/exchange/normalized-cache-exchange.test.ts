@@ -2275,7 +2275,7 @@ describe('normalizedCacheExchange', () => {
         ops$,
         map((op) => ({
           operation: op,
-          data: { user: { id: 'macro|sean@macro.com' } },
+          data: { user: { id: 'macro|sean@rox.one' } },
           error: undefined,
           extensions: undefined,
           stale: false,
@@ -2293,7 +2293,7 @@ describe('normalizedCacheExchange', () => {
     await tick();
 
     expect(host.writes).toHaveLength(1);
-    expect(host.writes[0]?.identity).toBe('macro|sean@macro.com');
+    expect(host.writes[0]?.identity).toBe('macro|sean@rox.one');
   });
 
   it('re-executes each affected active operation once as a prioritized cache read', async () => {

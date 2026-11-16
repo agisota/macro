@@ -1,14 +1,14 @@
 import type {
-  MacrodDetectedAgent,
-  MacrodStartOptions,
-  MacrodStatus,
-} from '@macro/tauri/macrod';
+  RoxdDetectedAgent,
+  RoxdStartOptions,
+  RoxdStatus,
+} from '@macro/tauri/roxd';
 import type { LoadAgentModelsResponse } from '@service-agent-harness/generated/schemas';
 import { match } from 'ts-pattern';
 
 /**
  * One-click local runtime setup on the desktop app: find a coding agent
- * installed on this computer, connect the bundled macrod daemon to the
+ * installed on this computer, connect the bundled roxd daemon to the
  * user's account, and create a Macro agent that runs on it.
  */
 
@@ -24,7 +24,7 @@ export type ReadyAgent = {
 
 export type SetupState =
   | { kind: 'idle' }
-  | { kind: 'running'; step: SetupStep; phase?: MacrodStatus['phase'] }
+  | { kind: 'running'; step: SetupStep; phase?: RoxdStatus['phase'] }
   | { kind: 'no-agents' }
   | { kind: 'failed'; step: SetupStep; message: string }
   | { kind: 'ready'; agent: ReadyAgent; workspace: string | null };
@@ -61,15 +61,15 @@ export type NewLocalAgent = {
  * the agent queries; tests pass fakes.
  */
 export type SetupCapabilities = {
-  detectAgents: () => Promise<MacrodDetectedAgent[]>;
-  startDaemon: (options: MacrodStartOptions) => Promise<MacrodStatus>;
+  detectAgents: () => Promise<RoxdDetectedAgent[]>;
+  startDaemon: (options: RoxdStartOptions) => Promise<RoxdStatus>;
   /**
    * Resolves with the daemon's status once it is running; rejects on an
    * error phase or when it never gets there.
    */
   waitForRunning: (
-    onPhase: (phase: MacrodStatus['phase']) => void
-  ) => Promise<MacrodStatus>;
+    onPhase: (phase: RoxdStatus['phase']) => void
+  ) => Promise<RoxdStatus>;
   /** Let agents on this runtime bypass permission requests (the web setting). */
   allowPermissionBypass: (harnessId: string) => Promise<void>;
   listAgents: () => Promise<BoundAgent[]>;
@@ -93,9 +93,9 @@ const AGENT_PREFERENCE = [
 
 /** The agents setup offers, preferred first. */
 export function offeredAgents(
-  detected: readonly MacrodDetectedAgent[]
-): MacrodDetectedAgent[] {
-  const rank = (agent: MacrodDetectedAgent) => {
+  detected: readonly RoxdDetectedAgent[]
+): RoxdDetectedAgent[] {
+  const rank = (agent: RoxdDetectedAgent) => {
     const index = AGENT_PREFERENCE.indexOf(agent.id);
     return index === -1 ? AGENT_PREFERENCE.length : index;
   };

@@ -473,7 +473,7 @@ export type DatabaseEntity = EntityBase & {
 };
 
 /**
- * A paired runtime (a macrod machine). Only the notifications inbox lists it,
+ * A paired runtime (a roxd machine). Only the notifications inbox lists it,
  * for the access notifications filed under it; it opens in Settings → Machines.
  */
 export type HarnessEntity = EntityBase & {

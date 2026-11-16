@@ -510,7 +510,7 @@ async fn creation_retries_repair_reservation_for_both_primary_key_and_thread_con
         HarnessDefaults::new(SessionDefaults {
             bot_id: BotId::TEST_A,
             model: "fixed".into(),
-            harness: "macrod".into(),
+            harness: "roxd".into(),
             repo_url: None,
         }),
         RecordingLifecyclePublisher::new(),

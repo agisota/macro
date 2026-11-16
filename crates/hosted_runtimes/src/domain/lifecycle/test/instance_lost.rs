@@ -8,8 +8,8 @@ fn state(phase: Phase, power: Power, billing: Billing) -> ComputerState {
         billing,
         billing_changed_at: now() - Duration::days(30),
         power,
-        macrod_connected: true,
-        macrod_misses: 0,
+        roxd_connected: true,
+        roxd_misses: 0,
         recent_crashes: vec![],
         power_on_requested: true,
         capacity_wait: None,
@@ -60,7 +60,7 @@ fn loss_recreates_every_billed_phase_according_to_power_and_capacity() {
                         next.power_on_requested,
                         power == Power::On && !host_has_room
                     );
-                    assert!(!next.macrod_connected);
+                    assert!(!next.roxd_connected);
                     assert_eq!(
                         effects,
                         vec![Effect::Create {
@@ -97,7 +97,7 @@ fn instance_lost_after_billing_ended_destroys_the_data_volume() {
         effects,
         vec![Effect::Destroy { host: HOST }, Effect::RevokeHarness]
     );
-    assert!(!next.macrod_connected);
+    assert!(!next.roxd_connected);
     assert!(!next.power_on_requested);
 }
 

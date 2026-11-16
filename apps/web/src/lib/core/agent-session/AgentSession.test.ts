@@ -305,7 +305,7 @@ describe('AgentSession', () => {
 
     const result = await live.issue(
       { type: 'prompt', prompt: 'hi' },
-      { userId: 'macro|wolf@macro.com' }
+      { userId: 'macro|wolf@rox.one' }
     );
 
     expect(result.isOk()).toBe(true);
@@ -315,7 +315,7 @@ describe('AgentSession', () => {
     expect(speculation).toMatchObject({
       kind: 'speculated',
       action: { type: 'prompt', prompt: 'hi' },
-      userId: 'macro|wolf@macro.com',
+      userId: 'macro|wolf@rox.one',
     });
     const actionId = (speculation as { actionId: string }).actionId;
     // The POST carries the speculated id so the harness can accept it.
@@ -1452,7 +1452,7 @@ describe('AgentSession', () => {
 
       await live.issue(
         { type: 'prompt', prompt: 'hi' },
-        { userId: 'macro|wolf@macro.com' }
+        { userId: 'macro|wolf@rox.one' }
       );
       await settle();
       const actionId = (
@@ -1470,7 +1470,7 @@ describe('AgentSession', () => {
             agentSessionId: SESSION,
             key: '1:user',
             turn: 1,
-            author: { kind: 'user', userId: 'macro|wolf@macro.com' },
+            author: { kind: 'user', userId: 'macro|wolf@rox.one' },
             requestId: actionId,
             parts: [{ kind: 'text', text: 'hi' }],
             stop: null,

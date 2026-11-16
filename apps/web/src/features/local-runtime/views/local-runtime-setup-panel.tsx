@@ -4,7 +4,7 @@ import { fireAndForget } from '@core/util/fireAndForget';
 import CaretDownIcon from '@icon/system/regular/caret-down.svg';
 import CheckCircleIcon from '@icon/system/regular/check-circle.svg';
 import SpinnerIcon from '@icon/system/regular/spinner-gap.svg';
-import type { MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdStatus } from '@macro/tauri/roxd';
 import { Button, cn, ToggleSwitch } from '@ui';
 import {
   createSignal,
@@ -45,7 +45,7 @@ export function LocalRuntimeSetupPanel(props: {
    * A daemon that already runs but has no agent yet: setup skips straight to
    * creating one.
    */
-  running?: MacrodStatus;
+  running?: RoxdStatus;
   /** Start right away rather than waiting for the Set up button. */
   autoStart?: boolean;
   onClose?: () => void;

@@ -1879,8 +1879,8 @@ export function SummaryGraphic() {
             </span>
             <For
               each={[
-                { n: 'teo@macro.com', i: 'TN' },
-                { n: 'aidan@macro.com', i: 'AH' },
+                { n: 'teo@rox.one', i: 'TN' },
+                { n: 'aidan@rox.one', i: 'AH' },
               ]}
             >
               {(p) => (
@@ -2968,7 +2968,7 @@ const faqItems: { q: string; a: JSX.Element }[] = [
         Yes. Rox is fully open source under the AGPLv3 (as of May 31 2026), not
         "open core." Video is powered by LiveKit. To build on Rox under a
         different license, contact{' '}
-        <a href="mailto:licensing@macro.com">licensing@macro.com</a>.
+        <a href="mailto:licensing@rox.one">licensing@rox.one</a>.
       </>
     ),
   },

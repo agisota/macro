@@ -67,7 +67,7 @@ impl ConversationLease for PgReplyLease {
 }
 
 impl PgConversationTurnStore {
-    /// Construct at the composition root from MacroDB.
+    /// Construct at the composition root from RoxDB.
     pub fn new(pool: PgPool) -> Self {
         let slots = (pool.options().get_max_connections() as usize / 4).clamp(1, 16);
         Self {

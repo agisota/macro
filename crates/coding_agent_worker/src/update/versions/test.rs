@@ -57,7 +57,7 @@ fn pruning_keeps_the_launched_version_and_any_being_staged() {
         .map(|entry| entry.unwrap().file_name().into_string().unwrap())
         .collect();
     left.sort();
-    // A running macrod may be writing the partial version right now.
+    // A running roxd may be writing the partial version right now.
     assert_eq!(left, ["scratch", "v2026.10.10.1", "v2026.10.11.0.partial"]);
 }
 
@@ -82,18 +82,18 @@ fn a_staged_version_is_launchable_only_once_committed() {
 
 #[test]
 fn a_core_finds_its_installation_and_a_plain_binary_starts_one() {
-    let core = Path::new("/apps/macrod")
+    let core = Path::new("/apps/roxd")
         .join(VERSIONS_DIRECTORY)
         .join("v2026.10.10.1")
         .join(CORE_EXECUTABLE);
     assert_eq!(
         Versions::of_executable(&core).directory(),
-        Path::new("/apps/macrod").join(VERSIONS_DIRECTORY)
+        Path::new("/apps/roxd").join(VERSIONS_DIRECTORY)
     );
 
-    let plain = Path::new("/apps/macrod/macrod.exe");
+    let plain = Path::new("/apps/roxd/roxd.exe");
     assert_eq!(
         Versions::of_executable(plain).directory(),
-        Path::new("/apps/macrod").join(VERSIONS_DIRECTORY)
+        Path::new("/apps/roxd").join(VERSIONS_DIRECTORY)
     );
 }

@@ -9,7 +9,7 @@ const content = `Rox
 
 Last updated: July 8, 2025
 
-Welcome to Coparse, Inc. dba Macro ("Rox", "us", "we" or "our"). Please read these Terms of Service (the "Terms") carefully because they govern your use of our websites including Macro.com and any other websites that we may later own or operate (each, a "Site," and collectively, the "Sites"); our mobile and desktop applications ("Apps"), our application program interfaces ("APIs"), our software development kits ("SDKs") and our collaboration tools and other products and services we may later own or operate (collectively, with the Sites, Apps, APIs, and SDKs, the "Services").
+Welcome to ROX ONE, PUBLIC BENEFIT COMPANY ("Rox", "us", "we" or "our"). Please read these Terms of Service (the "Terms") carefully because they govern your use of our websites including rox.one and any other websites that we may later own or operate (each, a "Site," and collectively, the "Sites"); our mobile and desktop applications ("Apps"), our application program interfaces ("APIs"), our software development kits ("SDKs") and our collaboration tools and other products and services we may later own or operate (collectively, with the Sites, Apps, APIs, and SDKs, the "Services").
 
 ARBITRATION NOTICE:
 
@@ -61,7 +61,7 @@ Subject to the terms and conditions of these Terms, we hereby grant you a limite
 
 ### 5.1. Pricing
 
-Certain Services are offered under different pricing plans, the limits and features of which are available via the Pricing link in the footer of www.Macro.com. Your rights and obligations with respect to certain Services will be based in part on the pricing plan you choose.
+Certain Services are offered under different pricing plans, the limits and features of which are available via the Pricing link in the footer of www.rox.one. Your rights and obligations with respect to certain Services will be based in part on the pricing plan you choose.
 
 ### 5.2. Payment Terms
 
@@ -117,7 +117,7 @@ EACH PROVISION OF THESE TERMS THAT PROVIDES FOR A LIMITATION OF LIABILITY, DISCL
 
 We may terminate your access to and use of the Services, at our sole discretion, at any time and without notice or liability to you, provided that if Rox freezes your account or cancels your subscription and the termination is not due to your breach of these Terms, Rox will provide you a pro rata refund of pre-paid unused fees unless, in our reasonable estimation, we are not legally permitted to do so (in which case any refund rights are null and void).
 
-You may cease use of the Services at any time. If you are paying for a Subscription, you may terminate your Subscription through the process in Section 5.4. You may also cancel your Rox account at any time by sending an email to contact@macro.com.
+You may cease use of the Services at any time. If you are paying for a Subscription, you may terminate your Subscription through the process in Section 5.4. You may also cancel your Rox account at any time by sending an email to contact@rox.one.
 
 Upon any termination, discontinuation, or cancellation of Services or your Rox account, the following provisions of these Terms will survive: Service Terms, Charges and Payment (to the extent you owe any fees at the time of termination); Confidentiality; provisions related to permissions to access User Content (to the extent applicable); Warranty Disclaimers; Indemnity; Limitations of Liability; Termination; and the Miscellaneous provisions under Section 11. Furthermore, we may remove or delete your User Content within a reasonable period of time after the termination or cancellation of Services or your Rox account.
 
@@ -131,7 +131,7 @@ The terms set forth on Exhibit A apply to any App accessed through or downloaded
 
 ### 11.3. Privacy Policy
 
-Our Privacy Policy (macro.com/privacy) governs how we collect, use and disclose information from the Services.
+Our Privacy Policy (rox.one/privacy) governs how we collect, use and disclose information from the Services.
 
 ### 11.4. Copyright and IP Policy
 
@@ -139,7 +139,7 @@ Rox respects copyright law and expects its users to do the same.
 
 ### 11.5. Trademark Guidelines
 
-Rox's Trademark Guidelines apply to any use by You of Rox's Marks. If You or your Authorized Users use Rox's Marks, You will comply with, and will ensure your Authorized Users comply with, Rox's Trademark Guidelines, available by request from support@macro.com.
+Rox's Trademark Guidelines apply to any use by You of Rox's Marks. If You or your Authorized Users use Rox's Marks, You will comply with, and will ensure your Authorized Users comply with, Rox's Trademark Guidelines, available by request from support@rox.one.
 
 ### 11.6. Force Majeure
 

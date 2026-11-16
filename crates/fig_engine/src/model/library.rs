@@ -10,7 +10,7 @@ pub const MACRO_PLUGIN: &str = "macro";
 
 /// Macro's values on a node (`pluginData` under [`MACRO_PLUGIN`]): key and
 /// value, in order.
-pub type MacroData = Arc<[(Arc<str>, Arc<str>)]>;
+pub type RoxData = Arc<[(Arc<str>, Arc<str>)]>;
 
 /// An asset's library details. In a library file a published asset is
 /// `publishable` and has a `version` and the `published_version` it last

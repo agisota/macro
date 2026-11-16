@@ -195,7 +195,7 @@ export function Harness(
             title="Machines"
             description="Providers and machines your agents can run on."
             signpost={
-              <TutorialPill tutorial="macrod" class="mt-1 self-start" />
+              <TutorialPill tutorial="roxd" class="mt-1 self-start" />
             }
             onBack={props.onBack}
             backLabel={props.backLabel ?? 'Agents'}
@@ -531,7 +531,7 @@ function HarnessRemoveDialog(props: {
         <Panel.Body class="p-5">
           <Dialog.Description class="text-sm leading-5 text-ink-muted">
             Agents using this machine will stop running until it's reconnected.
-            macrod on it will need to pair again.
+            roxd on it will need to pair again.
           </Dialog.Description>
         </Panel.Body>
         <Panel.Footer class="justify-end gap-2 px-5 py-3">

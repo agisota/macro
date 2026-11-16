@@ -67,7 +67,7 @@ tools/HTTP/GraphQL surfaces over them.
 
 ## Checks
 
-- `cargo test -p crm` (`SQLX_OFFLINE` unset; needs a local MacroDB — see
+- `cargo test -p crm` (`SQLX_OFFLINE` unset; needs a local RoxDB — see
   `.agents/rules/rust/guardrails.md`). After query/migration changes, run
   `nix develop --command just prepare_db` from the repository root.
 - After tool input or description changes, regenerate frontend tool types and

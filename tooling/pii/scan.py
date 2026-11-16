@@ -37,7 +37,7 @@ SAFE_DOMAINS = frozenset(
         "example.org",
         "example.net",
         "example.edu",
-        "macro.com",
+        "rox.one",
         "localhost",
         "invalid",
         "test",

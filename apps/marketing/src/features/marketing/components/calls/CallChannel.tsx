@@ -419,7 +419,7 @@ export function ChannelParticipants(props: { people: CallPerson[] }) {
                 {homepagePeople[person].name}
               </span>
               <span class="truncate text-xs text-ink-muted">
-                {person}@macro.com
+                {person}@rox.one
               </span>
             </span>
           </div>

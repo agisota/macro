@@ -2,7 +2,7 @@ import { openAgentComposer } from '@app/features/agents-view/primitives/open-com
 import { createRecentAgentSelections } from '@app/features/block-agent/context/recent-agent-selections';
 import { useSplitLayout } from '@components/app/split-layout/layout';
 import { useUserId } from '@core/context/user';
-import type { MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdStatus } from '@macro/tauri/roxd';
 import type { ReadyAgent } from './core/setup';
 import { useSetupCapabilities } from './queries/setup-capabilities';
 import { LocalRuntimeSetupPanel } from './views/local-runtime-setup-panel';
@@ -13,7 +13,7 @@ import { LocalRuntimeSetupPanel } from './views/local-runtime-setup-panel';
  */
 export function LocalRuntimeSetup(props: {
   defaultWorkspace?: string;
-  running?: MacrodStatus;
+  running?: RoxdStatus;
   autoStart?: boolean;
   onClose?: () => void;
 }) {

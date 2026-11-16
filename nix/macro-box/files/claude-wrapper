@@ -1,6 +1,6 @@
 # `claude` on a Macro computer. With a Claude sign-in (harnessd's credential
 # file), sessions run on the customer's Claude plan: the Macro gateway env
-# macrod gives every session is dropped so credentials never mix. Without
+# roxd gives every session is dropped so credentials never mix. Without
 # one, nothing changes and the session runs on Macro credits.
 credential=@credential@
 if [ -e "$credential" ]; then

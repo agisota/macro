@@ -14,8 +14,8 @@ fn request() -> CheckoutRequest<'static> {
         user_id: MacroUserIdStr::parse_from_str("macro|test@example.com").unwrap(),
         plan: SeatPlan::Premium,
         onboarding_trial: true,
-        success_url: "https://macro.com/app/onboarding?subscriptionSuccess=true".into(),
-        cancel_url: "https://macro.com/app/onboarding?subscriptionCancel=true".into(),
+        success_url: "https://rox.one/app/onboarding?subscriptionSuccess=true".into(),
+        cancel_url: "https://rox.one/app/onboarding?subscriptionCancel=true".into(),
         discount: None,
         metadata: HashMap::new(),
     }

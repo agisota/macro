@@ -2,17 +2,17 @@ use super::*;
 
 #[test]
 fn user_round_trip() {
-    let owner = Owner::parse(OwnerType::User, "macro|hutch@macro.com").unwrap();
+    let owner = Owner::parse(OwnerType::User, "macro|hutch@rox.one").unwrap();
 
     assert_eq!(owner.owner_type(), OwnerType::User);
-    assert_eq!(owner.principal_id(), "macro|hutch@macro.com");
+    assert_eq!(owner.principal_id(), "macro|hutch@rox.one");
     assert_eq!(
-        Owner::from_principal_str("macro|hutch@macro.com").unwrap(),
+        Owner::from_principal_str("macro|hutch@rox.one").unwrap(),
         owner
     );
     assert_eq!(
         serde_json::to_value(&owner).unwrap(),
-        serde_json::Value::String("macro|hutch@macro.com".to_string())
+        serde_json::Value::String("macro|hutch@rox.one".to_string())
     );
 }
 
@@ -56,7 +56,7 @@ fn parse_rejects_bot_principal_as_user() {
 
 #[test]
 fn parse_rejects_user_principal_as_bot() {
-    assert!(Owner::parse(OwnerType::Bot, "macro|hutch@macro.com").is_err());
+    assert!(Owner::parse(OwnerType::Bot, "macro|hutch@rox.one").is_err());
 }
 
 #[test]
@@ -106,9 +106,9 @@ fn owner_type_lowercase_round_trips() {
 
 #[test]
 fn is_user_matches_only_that_user() {
-    let owner = Owner::from_principal_str("macro|hutch@macro.com").unwrap();
-    let same = MacroUserIdStr::parse_from_str("macro|hutch@macro.com").unwrap();
-    let other = MacroUserIdStr::parse_from_str("macro|other@macro.com").unwrap();
+    let owner = Owner::from_principal_str("macro|hutch@rox.one").unwrap();
+    let same = MacroUserIdStr::parse_from_str("macro|hutch@rox.one").unwrap();
+    let other = MacroUserIdStr::parse_from_str("macro|other@rox.one").unwrap();
 
     assert!(owner.is_user(&same));
     assert!(!owner.is_user(&other));
@@ -121,7 +121,7 @@ fn is_user_matches_only_that_user() {
 
 #[test]
 fn as_user_is_only_the_user_kind() {
-    let user = MacroUserIdStr::parse_from_str("macro|hutch@macro.com").unwrap();
+    let user = MacroUserIdStr::parse_from_str("macro|hutch@rox.one").unwrap();
 
     assert_eq!(Owner::User(user.clone()).as_user(), Some(&user));
     assert_eq!(
@@ -141,7 +141,7 @@ fn as_user_is_only_the_user_kind() {
 #[test]
 fn display_equals_principal_id() {
     for principal in [
-        "macro|hutch@macro.com",
+        "macro|hutch@rox.one",
         "bot|00000000-0000-0000-0000-00000000a1a1",
         "01234567-89ab-cdef-0123-456789abcdef",
     ] {
@@ -154,7 +154,7 @@ fn display_equals_principal_id() {
 #[test]
 fn from_principal_str_classifies_by_prefix() {
     assert_eq!(
-        Owner::from_principal_str("macro|hutch@macro.com")
+        Owner::from_principal_str("macro|hutch@rox.one")
             .unwrap()
             .owner_type(),
         OwnerType::User

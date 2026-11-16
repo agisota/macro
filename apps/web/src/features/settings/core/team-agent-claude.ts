@@ -10,7 +10,7 @@ import { match } from 'ts-pattern';
 export type AgentClaudeState = 'loading' | 'credits' | 'signed_in' | 'expired';
 
 /**
- * The runtime on an agent teammate's computer. macrod creates it when the
+ * The runtime on an agent teammate's computer. roxd creates it when the
  * computer first connects, so there is none before then.
  */
 export function agentComputerHarness(

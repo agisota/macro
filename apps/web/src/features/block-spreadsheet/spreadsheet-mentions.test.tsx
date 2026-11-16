@@ -35,7 +35,7 @@ afterEach(cleanup);
 
 it('turns a routine link into a rendered mention chip instead of exposing its encoding', () => {
   const value = linkMentions(
-    'https://macro.com/app/routines/routine-1',
+    'https://rox.one/app/routines/routine-1',
     () => ({
       block: 'routine',
       id: 'routine-1',

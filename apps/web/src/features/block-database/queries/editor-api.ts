@@ -30,7 +30,7 @@ export function editorTable(table: TableDetail): DatabaseTableSchema {
 }
 
 /** The Macro app's implementation of the same API an embedded host supplies. */
-export function createMacroDatabaseApi(
+export function createRoxDatabaseApi(
   databaseId: string,
   client: QueryClient
 ): DatabaseApi {

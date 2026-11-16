@@ -59,7 +59,7 @@ Notify service), so one incident pages once. Keep thresholds and windows in sync
 anomaly monitor reads `macro.logs.errors`, a log-based metric declared in
 `regressions.ts`, because log monitors have no anomaly function.
 
-Each of those files also declares a dashboard (MacroDB, Redis, Queue,
+Each of those files also declares a dashboard (RoxDB, Redis, Queue,
 Regression alerts, Outlook sync, Routine suggestions, Computer capacity, and Search and database saturation) with one graph per monitor, titled like the monitor, its
 critical and warning thresholds drawn as markers; anomaly graphs show the band
 instead. Every prod monitor's message links to its dashboard. Change a query or

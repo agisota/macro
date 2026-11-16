@@ -243,7 +243,7 @@ fn cookie_block(instance: &Instance) -> String {
 
 /// Shared-dev gateway origin for Local-only inventory prefixes under `run-dev`.
 /// Keep the path (no strip) — gateway tenants are mounted under this prefix.
-const DEV_GATEWAY_ORIGIN: &str = "https://dev-gateway.macro.com";
+const DEV_GATEWAY_ORIGIN: &str = "https://dev-gateway.rox.one";
 
 /// Generate the reverse-proxy routes for every inventoried service that exposes
 /// a path prefix. The inventory is the single source, so adding a service's

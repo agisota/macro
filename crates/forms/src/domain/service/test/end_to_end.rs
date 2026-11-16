@@ -23,7 +23,7 @@ use crate::domain::models::{
 };
 use crate::domain::ports::{CreateFormCommand, CreateSource, FormsService};
 
-const CONTRACTOR_RESPONDENT: &str = "macro|contractor@macro.com";
+const CONTRACTOR_RESPONDENT: &str = "macro|contractor@rox.one";
 
 const TEAM: ColumnId = ColumnId::from_uuid(Uuid::from_u128(0x7ea));
 const START_DATE: ColumnId = ColumnId::from_uuid(Uuid::from_u128(0x57a));

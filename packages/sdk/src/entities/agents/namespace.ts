@@ -16,7 +16,7 @@ export type CodingAgent = {
   description: string | undefined;
   /** Saved guidance on its repositories and specialties; empty for built-ins. */
   instructions: string;
-  /** Runtime its sessions run on, e.g. `cursor` or `macrod`. */
+  /** Runtime its sessions run on, e.g. `cursor` or `roxd`. */
   harness: string;
   /** Default model, absent when the runtime chooses. */
   model: string | undefined;

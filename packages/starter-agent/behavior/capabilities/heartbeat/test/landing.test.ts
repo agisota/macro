@@ -2,7 +2,7 @@ import { expect, test } from 'bun:test';
 import { githubLanding } from '../live.ts';
 
 const hosted =
-  'https://gateway.macro.com/agent-git/macro%7Cagent%40example.com.git';
+  'https://gateway.rox.one/agent-git/macro%7Cagent%40example.com.git';
 
 test('a hosted agent always lands through its own check, never GitHub', () => {
   expect(githubLanding({ token: false, pushUrl: hosted })).toBeUndefined();

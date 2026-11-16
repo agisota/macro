@@ -1,10 +1,10 @@
-import type { MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdStatus } from '@macro/tauri/roxd';
 import { createRoot } from 'solid-js';
 import { describe, expect, it, vi } from 'vitest';
 import type { NewLocalAgent, SetupCapabilities } from '../core/setup';
 import { createLocalRuntimeSetup } from './local-runtime-setup';
 
-const RUNNING: MacrodStatus = {
+const RUNNING: RoxdStatus = {
   phase: 'running',
   agentId: 'claude-code',
   agentName: 'Claude Code',

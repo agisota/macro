@@ -7,8 +7,8 @@ fn empty_service() -> AuthenticatedToolService<()> {
     AuthenticatedToolService::new(
         Arc::new(AsyncToolCollection::new()),
         (),
-        "https://macro.com".to_owned(),
-        url::Url::parse("https://static-file-service.macro.com").unwrap(),
+        "https://rox.one".to_owned(),
+        url::Url::parse("https://static-file-service.rox.one").unwrap(),
         McpAnalytics::disabled(),
     )
 }
@@ -42,7 +42,7 @@ async fn server_info_advertises_the_web_app_favicon() {
     };
 
     // The same file the web app's <link rel="icon"> points at.
-    assert_eq!(icon.src, "https://macro.com/app/macro-favicon.svg");
+    assert_eq!(icon.src, "https://rox.one/app/macro-favicon.svg");
     assert_eq!(icon.mime_type.as_deref(), Some("image/svg+xml"));
     assert_eq!(icon.sizes.as_deref(), Some(["any".to_owned()].as_slice()));
 }
@@ -86,7 +86,7 @@ async fn server_instructions_link_items_as_urls_not_mention_tags() {
 
     // MCP responses must link items with plain URLs built from the app base URL.
     assert!(
-        instructions.contains("https://macro.com/app/"),
+        instructions.contains("https://rox.one/app/"),
         "instructions should build item links from the app base url"
     );
     // And must steer the model away from the in-app mention markup.
@@ -194,7 +194,7 @@ fn additive_tools_set_neither_hint() {
 
 #[test]
 fn authenticated_user_id_is_read_from_http_request_parts() {
-    let expected_user_id = MacroUserIdStr::try_from_email("User@macro.com").unwrap();
+    let expected_user_id = MacroUserIdStr::try_from_email("User@rox.one").unwrap();
     let mut parts = http::Request::new(()).into_parts().0;
     parts.extensions.insert(expected_user_id.clone());
 
@@ -448,8 +448,8 @@ mod code_mode {
         AuthenticatedToolService::new(
             catalog(),
             (),
-            "https://macro.com".to_owned(),
-            url::Url::parse("https://static-file-service.macro.com").unwrap(),
+            "https://rox.one".to_owned(),
+            url::Url::parse("https://static-file-service.rox.one").unwrap(),
             McpAnalytics::disabled(),
         )
     }

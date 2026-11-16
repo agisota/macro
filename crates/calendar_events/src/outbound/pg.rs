@@ -59,7 +59,7 @@ pub struct PgCalendarRepository {
 }
 
 impl PgCalendarRepository {
-    /// Construct a repository from the shared MacroDB pool.
+    /// Construct a repository from the shared RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

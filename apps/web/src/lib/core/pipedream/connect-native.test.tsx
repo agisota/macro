@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
 }));
 vi.mock('@tauri-apps/api/core', () => ({ invoke: mocks.open }));
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://dev.macro.com',
+  getWebOrigin: () => 'https://dev.rox.one',
 }));
 
 beforeEach(() => vi.stubGlobal('scrollTo', vi.fn()));
@@ -33,7 +33,7 @@ describe('native browser connection dialog', () => {
     expect(mocks.open.mock.calls[0][0]).toBe('plugin:opener|open_url');
     const url = new URL(mocks.open.mock.calls[0][1].url);
     expect(url.origin + url.pathname).toBe(
-      'https://dev.macro.com/app/pipedream-connect.html'
+      'https://dev.rox.one/app/pipedream-connect.html'
     );
     expect(url.search).toBe('');
     const params = new URLSearchParams(url.hash.slice(1));

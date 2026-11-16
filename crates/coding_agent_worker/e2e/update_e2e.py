@@ -1,26 +1,26 @@
-"""End-to-end test of macrod's self-update on Linux and macOS.
+"""End-to-end test of roxd's self-update on Linux and macOS.
 
-Installs release v1 of macrod with install.sh from a local mirror, runs it in
+Installs release v1 of roxd with install.sh from a local mirror, runs it in
 a pseudo-terminal against a fake runtime gateway with a stand-in ACP agent,
-publishes v2 to the mirror, and checks that macrod replaced itself in place:
-same macrod pid, same agent pid, the agent's background child alive, and no
+publishes v2 to the mirror, and checks that roxd replaced itself in place:
+same roxd pid, same agent pid, the agent's background child alive, and no
 gap in the agent's numbered frames across the two gateway connections.
 
-Two more update cases cover macrod's half of the gap between the old image
+Two more update cases cover roxd's half of the gap between the old image
 closing its gateway socket and the new one dialing: `prompt-in-gap` sends a
-prompt on the closing socket after macrod has said it is disconnecting and
+prompt on the closing socket after roxd has said it is disconnecting and
 checks it is answered exactly once, on the new connection; `output-in-gap`
 checks agent output written while no socket is up reaches the gateway. The
 fake gateway accepts any frame on any connection; the real harness service
-keys request ids and sessions per connection, so these show macrod loses
+keys request ids and sessions per connection, so these show roxd loses
 nothing, not that the service keeps a session across the reconnect.
 
-Negative cases run the same way and check that macrod keeps running v1:
+Negative cases run the same way and check that roxd keeps running v1:
 `bad-checksum`, `failing-smoke-test`, `opt-out` and `opt-out-config`.
 
     python3 update_e2e.py --releases DIR --v1 TAG --v2 TAG [--case NAME]
 
-DIR holds macrod-<tag>-<os>-<arch>.tar.gz (+ .sha256) for both tags, as the
+DIR holds roxd-<tag>-<os>-<arch>.tar.gz (+ .sha256) for both tags, as the
 release workflow publishes them.
 """
 
@@ -75,7 +75,7 @@ class Mirror:
         self.url = f"http://127.0.0.1:{self.server.server_address[1]}"
 
     def archive_name(self, tag):
-        return f"macrod-{tag}-{platform_slug()}.tar.gz"
+        return f"roxd-{tag}-{platform_slug()}.tar.gz"
 
     def publish(self, tag, archive=None, checksum=None):
         """Make `tag` the latest release, from the built archive or a given one."""
@@ -92,11 +92,11 @@ class Mirror:
 
 
 def broken_archive():
-    """A release archive whose macrod cannot even print its version."""
+    """A release archive whose roxd cannot even print its version."""
     script = b"#!/bin/sh\nexit 1\n"
     buffer = io.BytesIO()
     with tarfile.open(fileobj=buffer, mode="w:gz") as archive:
-        info = tarfile.TarInfo("macrod")
+        info = tarfile.TarInfo("roxd")
         info.size = len(script)
         info.mode = 0o755
         archive.addfile(info, io.BytesIO(script))
@@ -107,9 +107,9 @@ def broken_archive():
 
 
 class Gateway:
-    """The runtime gateway: accepts macrod's WebSocket and records ticks.
+    """The runtime gateway: accepts roxd's WebSocket and records ticks.
 
-    With `prompt_on_disconnect`, it answers macrod's `disconnected` event by
+    With `prompt_on_disconnect`, it answers roxd's `disconnected` event by
     sending a `session/prompt` on that same, closing socket.
     """
 
@@ -262,8 +262,8 @@ def installed_version(binary):
 
 
 def update_log(home):
-    """The events in macrod's update log, without their timestamps."""
-    path = os.path.join(home, ".macrod", "logs", "update.log")
+    """The events in roxd's update log, without their timestamps."""
+    path = os.path.join(home, ".roxd", "logs", "update.log")
     assert os.stat(path).st_mode & 0o777 == 0o600, "the update log is private"
     events = []
     with open(path) as log:
@@ -286,7 +286,7 @@ def assert_in_order(events, expected):
 
 def run_case(case, releases, v1, v2):
     print(f"== {case}", flush=True)
-    work = tempfile.mkdtemp(prefix="macrod-e2e-")
+    work = tempfile.mkdtemp(prefix="roxd-e2e-")
     home = os.path.join(work, "home")
     os.makedirs(home)
     mirror_root = os.path.join(work, "mirror")
@@ -299,20 +299,20 @@ def run_case(case, releases, v1, v2):
         "PATH": os.environ["PATH"],
         "SHELL": "/bin/bash",
         "TERM": "xterm-256color",
-        "MACROD_UPDATE_SOURCE": mirror.url,
-        "MACROD_UPDATE_CHECK_SECONDS": "1",
+        "ROXD_UPDATE_SOURCE": mirror.url,
+        "ROXD_UPDATE_CHECK_SECONDS": "1",
         "RUST_LOG": "info",
     }
     subprocess.run(["sh", INSTALLER], env=env, check=True)
-    binary = os.path.join(home, ".local", "bin", "macrod")
+    binary = os.path.join(home, ".local", "bin", "roxd")
     assert installed_version(binary) == v1, "install.sh installs the latest release"
 
     gateway = Gateway(prompt_on_disconnect=case == "prompt-in-gap")
     base = f"http://127.0.0.1:{gateway.port}"
     workspace = os.path.join(work, "workspace")
     os.makedirs(workspace)
-    os.makedirs(os.path.join(home, ".macrod"))
-    with open(os.path.join(home, ".macrod", "macrod.toml"), "w") as config:
+    os.makedirs(os.path.join(home, ".roxd"))
+    with open(os.path.join(home, ".roxd", "roxd.toml"), "w") as config:
         config.write(f"""
 [macro]
 api_url = "{base}"
@@ -333,7 +333,7 @@ path = "{workspace}"
         if case == "opt-out-config":
             config.write("\n[update]\nauto = false\n")
     if case == "opt-out":
-        env["MACROD_NO_UPDATE"] = "1"
+        env["ROXD_NO_UPDATE"] = "1"
 
     pid, terminal = pty.fork()
     if pid == 0:
@@ -361,7 +361,7 @@ path = "{workspace}"
 
         if case in UPDATE_CASES:
             mirror.publish(v2)
-            wait_for("the updated macrod's connection", lambda: gateway.snapshot()[0] >= 2, 120)
+            wait_for("the updated roxd's connection", lambda: gateway.snapshot()[0] >= 2, 120)
             wait_for(
                 "ticks on the second connection",
                 lambda: sum(1 for t in gateway.snapshot()[1] if t[0] == 2) >= 100,
@@ -372,11 +372,11 @@ path = "{workspace}"
             assert numbers == list(range(len(numbers))), f"frames lost or repeated: {numbers}"
             assert {t[2] for t in ticks} == {agent_pid}, "one agent process across the update"
             assert alive(agent_pid) and alive(child_pid), "the agent and its child kept running"
-            assert alive(pid), "macrod is running"
+            assert alive(pid), "roxd is running"
             assert installed_version(binary) == v2, "the installed binary is v2"
             if platform.system() == "Linux":
                 exe = os.readlink(f"/proc/{pid}/exe")
-                assert exe == os.path.realpath(binary), f"macrod runs {exe}"
+                assert exe == os.path.realpath(binary), f"roxd runs {exe}"
             assert_in_order(
                 update_log(home),
                 [
@@ -402,7 +402,7 @@ path = "{workspace}"
                 assert disconnected_at[1] < opened_at[2], "the old socket said it was disconnecting first"
                 print(f"   {len(in_gap)} frames written during the {gap[1] - gap[0]:.2f}s gap all arrived on the new socket")
             print(
-                f"   macrod pid {pid} kept, agent pid {agent_pid} kept, child {child_pid} alive, "
+                f"   roxd pid {pid} kept, agent pid {agent_pid} kept, child {child_pid} alive, "
                 f"{len(numbers)} frames 0..{numbers[-1]} over {connections} connections, now {v2}"
             )
         else:
@@ -415,11 +415,11 @@ path = "{workspace}"
             # Several check intervals, each of which would have updated.
             time.sleep(8)
             connections, ticks = gateway.snapshot()
-            assert connections == 1, f"macrod reconnected {connections - 1} times"
-            assert alive(pid), "macrod is still running"
+            assert connections == 1, f"roxd reconnected {connections - 1} times"
+            assert alive(pid), "roxd is still running"
             assert installed_version(binary) == v1, "the installed binary is still v1"
             assert {t[2] for t in ticks} == {agent_pid}
-            leftovers = [name for name in os.listdir(os.path.dirname(binary)) if name.startswith(".macrod")]
+            leftovers = [name for name in os.listdir(os.path.dirname(binary)) if name.startswith(".roxd")]
             assert not leftovers, f"staging left {leftovers}"
             events = update_log(home)
             assert not [e for e in events if e["event"] == "apply"], f"nothing was applied: {events}"

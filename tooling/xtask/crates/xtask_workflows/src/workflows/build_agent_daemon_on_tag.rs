@@ -1,4 +1,4 @@
-//! `Build Agent Daemon on Tag` — self-contained `macrod` binaries for Linux,
+//! `Build Agent Daemon on Tag` — self-contained `roxd` binaries for Linux,
 //! macOS, and Windows, attached to the release its tag names.
 //!
 //! Unlike everything else this repo builds, the daemon runs on a machine we
@@ -235,14 +235,14 @@ fn windows_job(target: &DaemonTarget) -> Job {
         .add_step(upload_step(target))
 }
 
-/// The release tag is compiled in: `macrod --version` prints it and the
+/// The release tag is compiled in: `roxd --version` prints it and the
 /// self-updater compares it with the latest release.
 fn build_step(target: &DaemonTarget, script: &str) -> Step<Run> {
     Step::new("Build daemon")
         .run(script)
         .shell("bash")
         .add_env(("TARGET", target.triple))
-        .add_env(("MACROD_RELEASE_TAG", "${{ steps.metadata.outputs.tag }}"))
+        .add_env(("ROXD_RELEASE_TAG", "${{ steps.metadata.outputs.tag }}"))
 }
 
 fn package_step(target: &DaemonTarget) -> Step<Run> {
@@ -259,7 +259,7 @@ fn package_step(target: &DaemonTarget) -> Step<Run> {
 fn upload_step(target: &DaemonTarget) -> Step<gh_workflow::Use> {
     steps::upload_artifact(
         &format!(
-            "macrod-{}-${{{{ steps.metadata.outputs.safe_tag }}}}",
+            "roxd-{}-${{{{ steps.metadata.outputs.safe_tag }}}}",
             target.slug
         ),
         xtask_paths::runtime_path!("artifacts/*"),

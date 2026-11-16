@@ -48,7 +48,7 @@ export function BillingSettingsView(props: {
           For questions about billing,{' '}
           <a
             class="text-link hover:text-link-hover visited:text-link-visited inline-flex items-center"
-            href="mailto:support@macro.com"
+            href="mailto:support@rox.one"
           >
             contact us
             <EnvelopeIcon class="size-4 inline mx-1" />

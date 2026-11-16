@@ -1,7 +1,7 @@
 //! Admin-only HTTP API for querying AI cost and re-pricing models.
 //!
 //! Every route is restricted to Macro admins — callers whose user id resolves
-//! to an `@macro.com` email.
+//! to an `@rox.one` email.
 
 use super::models::UsageSummary;
 use crate::domain::{AiFeature, ModelPricing, UsageApiParams, UsageError, UsageService};

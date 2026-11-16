@@ -985,7 +985,7 @@ async fn bind_agent(
     .await
     .unwrap();
     sqlx::query!(
-        "INSERT INTO agent_configs (bot_id, instructions, harness, default_model, channel_scope, harness_id, is_coding) VALUES ($1, 'prompt', 'macrod', 'default', 'all', $2, $3)",
+        "INSERT INTO agent_configs (bot_id, instructions, harness, default_model, channel_scope, harness_id, is_coding) VALUES ($1, 'prompt', 'roxd', 'default', 'all', $2, $3)",
         bot_id,
         runtime.entity_id,
         is_coding,

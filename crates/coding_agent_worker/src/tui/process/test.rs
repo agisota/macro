@@ -4,7 +4,7 @@ const TABLE: &str = "\
     1     0 /sbin/launchd
   400     1 /usr/sbin/sshd
   500   400 /opt/homebrew/bin/fish
-  600   500 /Users/eric/.cargo/bin/macrod
+  600   500 /Users/eric/.cargo/bin/roxd
   601   600 /usr/local/bin/claude
   602   600 pbcopy
   700     1 ps

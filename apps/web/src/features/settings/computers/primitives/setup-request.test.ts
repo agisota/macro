@@ -10,7 +10,7 @@ it('links to Settings → Machines with the computer to resume', () => {
   expect(path).toBe(
     '/settings/runtimes?computerSetup=0190f3a1-0000-7000-8000-000000000c01'
   );
-  const search = new URL(path, 'https://macro.com/app').searchParams;
+  const search = new URL(path, 'https://rox.one/app').searchParams;
   expect(parseComputerSetupParam(search.get(COMPUTER_SETUP_PARAM))).toBe(
     '0190f3a1-0000-7000-8000-000000000c01'
   );

@@ -6,7 +6,7 @@ export const APP_BASE_URL = resolveAppBaseUrl(
 
 export const GOOGLE_SSO_URL =
   import.meta.env.VITE_GOOGLE_SSO_URL ||
-  'https://gateway.macro.com/auth/login/sso?idp_name=google_gmail';
+  'https://gateway.rox.one/auth/login/sso?idp_name=google_gmail';
 
 // Auth-service base URL, used for the unauthenticated endpoints the site calls
 // directly (mobile email capture). Derived from the sign-in URL so a stack that
@@ -22,7 +22,7 @@ const resolveAuthServiceBaseUrl = (): string => {
       .replace(/\/$/, '');
     return `${url.origin}${authBasePath}`;
   } catch {
-    return 'https://gateway.macro.com/auth';
+    return 'https://gateway.rox.one/auth';
   }
 };
 

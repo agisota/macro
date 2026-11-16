@@ -2041,8 +2041,8 @@ fn new_mcp_servers_resume_a_live_session_before_its_next_prompt() {
                 "headers": [],
             }],
             "_meta": {
-                "macro.com/agentSessionId": AgentSessionId::TEST_A.to_string(),
-                "macro.com/permissionPolicy": "autoAccept",
+                "rox.one/agentSessionId": AgentSessionId::TEST_A.to_string(),
+                "rox.one/permissionPolicy": "autoAccept",
             },
         }))
     );

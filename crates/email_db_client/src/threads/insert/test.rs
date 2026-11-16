@@ -186,17 +186,17 @@ async fn resyncing_an_unchanged_thread_rewrites_no_messages(
         provider_id: "thread-parent",
         global_id: PARENT_GLOBAL_ID,
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &[],
         body: "parent body",
     };
     let reply = SyncedMessage {
         provider_id: "thread-reply",
-        global_id: "<reply@macro.com>",
+        global_id: "<reply@rox.one>",
         in_reply_to: Some(PARENT_GLOBAL_ID),
-        to: &["sender@macro.com"],
-        cc: &["cc@macro.com"],
+        to: &["sender@rox.one"],
+        cc: &["cc@rox.one"],
         labels: &[],
         body: "reply body",
     };
@@ -262,9 +262,9 @@ async fn synced_threads_record_whether_they_have_received_mail(
     let link_id = Uuid::parse_str("00000000-0000-0000-0000-000000000001")?;
     let ts = chrono::DateTime::<Utc>::from_timestamp(1_790_000_000, 0).expect("valid timestamp");
     for (provider_id, to, is_sent, expected) in [
-        ("sent-only", "user1@macro.com", true, false),
-        ("sent-to-self", "sender@macro.com", true, true),
-        ("received", "user1@macro.com", false, true),
+        ("sent-only", "user1@rox.one", true, false),
+        ("sent-to-self", "sender@rox.one", true, true),
+        ("received", "user1@rox.one", false, true),
     ] {
         let thread_db_id = Uuid::now_v7();
         let mut message = SyncedMessage {
@@ -359,7 +359,7 @@ async fn oversized_provider_values_do_not_block_the_thread_insert(
             scheduled_send_time: None,
             has_attachments: false,
             from: Some(ContactInfo {
-                email: "user1@macro.com".to_string(),
+                email: "user1@rox.one".to_string(),
                 name: Some("f".repeat(400)),
                 photo_url: None,
             }),
@@ -412,17 +412,17 @@ fn backfilled_messages(link_id: Uuid) -> Vec<message::Message> {
         provider_id: "backfill-parent",
         global_id: PARENT_GLOBAL_ID,
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &[],
         body: "parent body",
     };
     let reply = SyncedMessage {
         provider_id: "backfill-reply",
-        global_id: "<backfill-reply@macro.com>",
+        global_id: "<backfill-reply@rox.one>",
         in_reply_to: Some(PARENT_GLOBAL_ID),
-        to: &["sender@macro.com"],
-        cc: &["cc@macro.com"],
+        to: &["sender@rox.one"],
+        cc: &["cc@rox.one"],
         labels: &[],
         body: "reply body",
     };
@@ -590,18 +590,18 @@ async fn whole_thread_resync_recomputes_thread_state_from_stored_labels(
     .await?;
     let archived = SyncedMessage {
         provider_id: "pending-archive",
-        global_id: "<pending-archive@macro.com>",
+        global_id: "<pending-archive@rox.one>",
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &["INBOX"],
         body: "archived body",
     };
     let reply = SyncedMessage {
         provider_id: "new-reply",
-        global_id: "<new-reply@macro.com>",
+        global_id: "<new-reply@rox.one>",
         in_reply_to: None,
-        to: &["user1@macro.com"],
+        to: &["user1@rox.one"],
         cc: &[],
         labels: &["INBOX"],
         body: "reply body",

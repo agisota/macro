@@ -1,11 +1,11 @@
-//! Management of the bundled macrod daemon: the local agent runtime that
+//! Management of the bundled roxd daemon: the local agent runtime that
 //! lets users run coding agents on this machine.
 //!
-//! The desktop app ships the `macrod` binary next to its own executable and
-//! supervises it as a child process in `macrod service` mode. That mode
+//! The desktop app ships the `roxd` binary next to its own executable and
+//! supervises it as a child process in `roxd service` mode. That mode
 //! reports state changes as one JSON object per line on stdout; this module
-//! folds those lines into a [`MacrodStatus`] snapshot, re-emits every change
-//! to the webview as a `macrod-status` event, and exposes commands to detect
+//! folds those lines into a [`RoxdStatus`] snapshot, re-emits every change
+//! to the webview as a `roxd-status` event, and exposes commands to detect
 //! installed agents, start or stop the daemon, and read the snapshot.
 //!
 //! Once started, the daemon is kept up: an unexpected exit (a crash, a lost
@@ -15,7 +15,7 @@
 //!
 //! GUI apps on macOS inherit launchd's minimal environment, where
 //! user-installed CLIs (`claude`, `codex`, `npm`) and the credentials and
-//! config their shells export are invisible. Every macrod invocation runs with
+//! config their shells export are invisible. Every roxd invocation runs with
 //! the user's interactive login-shell environment, so detection and agent
 //! authentication match what a terminal would see.
 
@@ -28,8 +28,8 @@ use serde::{Deserialize, Serialize};
 use tauri::{AppHandle, Emitter, Manager};
 use tokio::io::AsyncBufReadExt as _;
 
-/// The webview event carrying each [`MacrodStatus`] change.
-const STATUS_EVENT: &str = "macrod-status";
+/// The webview event carrying each [`RoxdStatus`] change.
+const STATUS_EVENT: &str = "roxd-status";
 
 /// The first restart delay after an unexpected exit; doubles per consecutive
 /// failure up to [`RESTART_MAX_DELAY`].
@@ -46,7 +46,7 @@ fn restart_delay(attempt: u32) -> Duration {
 /// Where the daemon lifecycle currently stands.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "kebab-case")]
-pub(crate) enum MacrodPhase {
+pub(crate) enum RoxdPhase {
     Stopped,
     Starting,
     InstallingAdapter,
@@ -55,7 +55,7 @@ pub(crate) enum MacrodPhase {
     Error,
 }
 
-impl Default for MacrodPhase {
+impl Default for RoxdPhase {
     fn default() -> Self {
         Self::Stopped
     }
@@ -64,8 +64,8 @@ impl Default for MacrodPhase {
 /// The daemon state snapshot the frontend renders from.
 #[derive(Debug, Clone, Default, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct MacrodStatus {
-    pub(crate) phase: MacrodPhase,
+pub(crate) struct RoxdStatus {
+    pub(crate) phase: RoxdPhase,
     /// Agent preset id from the service config, e.g. `claude-code`.
     pub(crate) agent_id: Option<String>,
     /// Human-readable agent name from the service config.
@@ -82,7 +82,7 @@ pub(crate) struct MacrodStatus {
     pub(crate) last_error: Option<String>,
 }
 
-impl MacrodStatus {
+impl RoxdStatus {
     /// Fold one service event line into this snapshot.
     fn apply(&mut self, event: &serde_json::Value) {
         let text = |key: &str| {
@@ -97,10 +97,10 @@ impl MacrodStatus {
                 self.agent_name = text("agent_name");
                 self.workspace = text("workspace");
             }
-            Some("installing_adapter") => self.phase = MacrodPhase::InstallingAdapter,
-            Some("adapter_installed") => self.phase = MacrodPhase::Starting,
+            Some("installing_adapter") => self.phase = RoxdPhase::InstallingAdapter,
+            Some("adapter_installed") => self.phase = RoxdPhase::Starting,
             Some("pairing") => {
-                self.phase = MacrodPhase::Pairing;
+                self.phase = RoxdPhase::Pairing;
                 self.pairing_code = text("code");
                 self.pairing_expires_at = text("expires_at");
             }
@@ -110,11 +110,11 @@ impl MacrodStatus {
                 self.harness_id = text("harness_id");
             }
             Some("running") => {
-                self.phase = MacrodPhase::Running;
+                self.phase = RoxdPhase::Running;
                 self.harness_id = text("harness_id");
             }
             Some("fatal") => {
-                self.phase = MacrodPhase::Error;
+                self.phase = RoxdPhase::Error;
                 self.last_error = text("message");
             }
             _ => {}
@@ -124,7 +124,7 @@ impl MacrodStatus {
 
 /// The supervised daemon, managed as Tauri state.
 #[derive(Default)]
-pub(crate) struct MacrodState {
+pub(crate) struct RoxdState {
     inner: Arc<Mutex<Inner>>,
 }
 
@@ -132,7 +132,7 @@ pub(crate) struct MacrodState {
 struct Inner {
     /// The live child; `None` once it exited or was stopped.
     child: Option<tokio::process::Child>,
-    status: MacrodStatus,
+    status: RoxdStatus,
     /// Increments per start so a stale reader task cannot clobber a newer run.
     generation: u64,
     /// Whether the daemon should be up: set by a start, cleared by a stop.
@@ -142,9 +142,9 @@ struct Inner {
     restarts: u32,
 }
 
-fn emit_status(app: &AppHandle, status: &MacrodStatus) {
+fn emit_status(app: &AppHandle, status: &RoxdStatus) {
     if let Err(error) = app.emit(STATUS_EVENT, status) {
-        tracing::warn!(?error, "failed to emit macrod status");
+        tracing::warn!(?error, "failed to emit roxd status");
     }
 }
 
@@ -269,9 +269,9 @@ fn login_shell_path() -> Option<&'static str> {
         .filter(|path| !path.is_empty())
 }
 
-/// The `PATH` macrod runs with: login shell first, then this process's own,
+/// The `PATH` roxd runs with: login shell first, then this process's own,
 /// then well-known install locations, deduplicated in order.
-fn macrod_path_env() -> String {
+fn roxd_path_env() -> String {
     let mut directories: Vec<String> = Vec::new();
     let mut push = |value: &str| {
         for directory in std::env::split_paths(value) {
@@ -298,15 +298,15 @@ fn macrod_path_env() -> String {
     directories.join(if cfg!(windows) { ";" } else { ":" })
 }
 
-/// Locate the macrod binary: an explicit override, the bundled copy next to
+/// Locate the roxd binary: an explicit override, the bundled copy next to
 /// this executable, the resource directory, then the development `PATH`.
-fn macrod_binary(app: &AppHandle) -> Option<PathBuf> {
+fn roxd_binary(app: &AppHandle) -> Option<PathBuf> {
     let name = if cfg!(windows) {
-        "macrod.exe"
+        "roxd.exe"
     } else {
-        "macrod"
+        "roxd"
     };
-    if let Ok(path) = std::env::var("MACROD_PATH") {
+    if let Ok(path) = std::env::var("ROXD_PATH") {
         let path = PathBuf::from(path);
         if path.is_file() {
             return Some(path);
@@ -328,14 +328,14 @@ fn macrod_binary(app: &AppHandle) -> Option<PathBuf> {
     {
         return Some(path);
     }
-    std::env::split_paths(&macrod_path_env())
+    std::env::split_paths(&roxd_path_env())
         .map(|directory| directory.join(name))
         .find(|path| path.is_file())
 }
 
-fn macrod_command(app: &AppHandle) -> Result<tokio::process::Command, String> {
+fn roxd_command(app: &AppHandle) -> Result<tokio::process::Command, String> {
     let binary =
-        macrod_binary(app).ok_or_else(|| "macrod is not bundled with this build".to_owned())?;
+        roxd_binary(app).ok_or_else(|| "roxd is not bundled with this build".to_owned())?;
     let mut command = tokio::process::Command::new(binary);
     command.envs(
         login_shell_env()
@@ -343,7 +343,7 @@ fn macrod_command(app: &AppHandle) -> Result<tokio::process::Command, String> {
             .filter(|(name, _)| !SHELL_ONLY_VARS.contains(&name.as_str()))
             .map(|(name, value)| (name.as_str(), value.as_str())),
     );
-    command.env("PATH", macrod_path_env());
+    command.env("PATH", roxd_path_env());
     if crate::AppEnvironment::current() == crate::AppEnvironment::Development {
         // A config created by this daemon must target the dev deployment,
         // like the webview it pairs with.
@@ -357,9 +357,9 @@ fn macrod_command(app: &AppHandle) -> Result<tokio::process::Command, String> {
     Ok(command)
 }
 
-/// Run a one-shot macrod query and parse its stdout as JSON.
-async fn macrod_query(app: &AppHandle, args: &[&str]) -> Result<serde_json::Value, String> {
-    let output = macrod_command(app)?
+/// Run a one-shot roxd query and parse its stdout as JSON.
+async fn roxd_query(app: &AppHandle, args: &[&str]) -> Result<serde_json::Value, String> {
+    let output = roxd_command(app)?
         .args(args)
         .stdin(Stdio::null())
         .stdout(Stdio::piped())
@@ -367,24 +367,24 @@ async fn macrod_query(app: &AppHandle, args: &[&str]) -> Result<serde_json::Valu
         .kill_on_drop(true)
         .output()
         .await
-        .map_err(|error| format!("could not run macrod: {error}"))?;
+        .map_err(|error| format!("could not run roxd: {error}"))?;
     if !output.status.success() {
         let stderr = String::from_utf8_lossy(&output.stderr);
         return Err(format!(
-            "macrod {} failed: {}",
+            "roxd {} failed: {}",
             args.join(" "),
             stderr.trim().lines().last().unwrap_or("no output")
         ));
     }
     serde_json::from_slice(&output.stdout)
-        .map_err(|error| format!("macrod {} returned invalid JSON: {error}", args.join(" ")))
+        .map_err(|error| format!("roxd {} returned invalid JSON: {error}", args.join(" ")))
 }
 
 /// Whether this build can run a local agent runtime, and the daemon facts the
 /// setup flow pre-fills from.
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct MacrodSupport {
+pub(crate) struct RoxdSupport {
     /// Whether the bundled daemon exists on this platform and build.
     supported: bool,
     /// Suggested workspace directory for a first-time setup.
@@ -392,29 +392,29 @@ pub(crate) struct MacrodSupport {
 }
 
 #[tauri::command]
-pub(crate) fn macrod_support(app: AppHandle) -> MacrodSupport {
-    let supported = macrod_binary(&app).is_some();
+pub(crate) fn roxd_support(app: AppHandle) -> RoxdSupport {
+    let supported = roxd_binary(&app).is_some();
     let default_workspace = app
         .path()
         .home_dir()
         .ok()
         .map(|home| home.join("Macro").to_string_lossy().into_owned());
-    MacrodSupport {
+    RoxdSupport {
         supported,
         default_workspace,
     }
 }
 
-/// The ACP agents installed on this machine, from `macrod detect-agents`.
+/// The ACP agents installed on this machine, from `roxd detect-agents`.
 #[tauri::command]
-pub(crate) async fn macrod_detect_agents(app: AppHandle) -> Result<serde_json::Value, String> {
-    macrod_query(&app, &["detect-agents"]).await
+pub(crate) async fn roxd_detect_agents(app: AppHandle) -> Result<serde_json::Value, String> {
+    roxd_query(&app, &["detect-agents"]).await
 }
 
-/// The service config's state, from `macrod inspect`.
+/// The service config's state, from `roxd inspect`.
 #[tauri::command]
-pub(crate) async fn macrod_inspect(app: AppHandle) -> Result<serde_json::Value, String> {
-    macrod_query(&app, &["inspect"]).await
+pub(crate) async fn roxd_inspect(app: AppHandle) -> Result<serde_json::Value, String> {
+    roxd_query(&app, &["inspect"]).await
 }
 
 /// Setup choices for a first-time (or re-) configuration. All optional: a
@@ -423,7 +423,7 @@ pub(crate) async fn macrod_inspect(app: AppHandle) -> Result<serde_json::Value, 
 /// here; fields an older web bundle still sends are ignored.
 #[derive(Debug, Clone, Default, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct MacrodStartOptions {
+pub(crate) struct RoxdStartOptions {
     agent: Option<String>,
     workspace: Option<String>,
 }
@@ -431,14 +431,14 @@ pub(crate) struct MacrodStartOptions {
 /// Start (or restart) the supervised daemon and remember to auto-start it on
 /// the next app launch.
 #[tauri::command]
-pub(crate) async fn macrod_start(
+pub(crate) async fn roxd_start(
     app: AppHandle,
-    state: tauri::State<'_, MacrodState>,
-    options: MacrodStartOptions,
-) -> Result<MacrodStatus, String> {
+    state: tauri::State<'_, RoxdState>,
+    options: RoxdStartOptions,
+) -> Result<RoxdStatus, String> {
     stop_child(&state.inner).await;
     {
-        let mut inner = state.inner.lock().expect("macrod state lock");
+        let mut inner = state.inner.lock().expect("roxd state lock");
         inner.wanted = true;
         inner.restarts = 0;
     }
@@ -449,16 +449,16 @@ pub(crate) async fn macrod_start(
     Ok(status)
 }
 
-/// Spawn `macrod service` and attach its readers. With `resume`, this is a
+/// Spawn `roxd service` and attach its readers. With `resume`, this is a
 /// supervisor restart after that generation exited: it spawns nothing
 /// (returns `None`) when a start or stop has happened since.
 fn launch(
     app: &AppHandle,
     state: &Arc<Mutex<Inner>>,
-    options: &MacrodStartOptions,
+    options: &RoxdStartOptions,
     resume: Option<u64>,
-) -> Result<Option<MacrodStatus>, String> {
-    let mut command = macrod_command(app)?;
+) -> Result<Option<RoxdStatus>, String> {
+    let mut command = roxd_command(app)?;
     command.arg("service");
     if let Some(agent) = &options.agent {
         command.args(["--agent", agent]);
@@ -474,30 +474,30 @@ fn launch(
 
     // Spawn under the lock so a concurrent start or stop cannot interleave
     // with a supervisor restart.
-    let mut inner = state.lock().expect("macrod state lock");
+    let mut inner = state.lock().expect("roxd state lock");
     if resume.is_some_and(|generation| inner.generation != generation || !inner.wanted) {
         return Ok(None);
     }
     let mut child = command
         .spawn()
-        .map_err(|error| format!("could not start macrod: {error}"))?;
+        .map_err(|error| format!("could not start roxd: {error}"))?;
     let stdout = child
         .stdout
         .take()
-        .ok_or_else(|| "macrod started without stdout".to_owned())?;
+        .ok_or_else(|| "roxd started without stdout".to_owned())?;
     if let Some(stderr) = child.stderr.take() {
         tauri::async_runtime::spawn(async move {
             let mut lines = tokio::io::BufReader::new(stderr).lines();
             while let Ok(Some(line)) = lines.next_line().await {
-                tracing::debug!(target: "macrod", "{line}");
+                tracing::debug!(target: "roxd", "{line}");
             }
         });
     }
     inner.child = Some(child);
     inner.generation += 1;
-    inner.status = MacrodStatus {
-        phase: MacrodPhase::Starting,
-        ..MacrodStatus::default()
+    inner.status = RoxdStatus {
+        phase: RoxdPhase::Starting,
+        ..RoxdStatus::default()
     };
     tauri::async_runtime::spawn(read_events(
         app.clone(),
@@ -513,30 +513,30 @@ fn launch(
 /// another failure and schedules the next attempt.
 fn schedule_restart(app: AppHandle, state: Arc<Mutex<Inner>>, generation: u64) {
     let attempt = {
-        let mut inner = state.lock().expect("macrod state lock");
+        let mut inner = state.lock().expect("roxd state lock");
         inner.restarts += 1;
         inner.restarts
     };
     let delay = restart_delay(attempt);
-    tracing::warn!(target: "macrod", attempt, ?delay, "macrod exited unexpectedly; restarting");
+    tracing::warn!(target: "roxd", attempt, ?delay, "roxd exited unexpectedly; restarting");
     tauri::async_runtime::spawn(async move {
         tokio::time::sleep(delay).await;
         match launch(
             &app,
             &state,
-            &MacrodStartOptions::default(),
+            &RoxdStartOptions::default(),
             Some(generation),
         ) {
             Ok(Some(status)) => emit_status(&app, &status),
             Ok(None) => {}
             Err(error) => {
-                tracing::warn!(target: "macrod", "macrod restart failed: {error}");
+                tracing::warn!(target: "roxd", "roxd restart failed: {error}");
                 let status = {
-                    let mut inner = state.lock().expect("macrod state lock");
+                    let mut inner = state.lock().expect("roxd state lock");
                     if inner.generation != generation || !inner.wanted {
                         return;
                     }
-                    inner.status.phase = MacrodPhase::Error;
+                    inner.status.phase = RoxdPhase::Error;
                     inner.status.last_error = Some(error);
                     inner.status.clone()
                 };
@@ -557,16 +557,16 @@ async fn read_events(
     let mut lines = tokio::io::BufReader::new(stdout).lines();
     while let Ok(Some(line)) = lines.next_line().await {
         let Ok(event) = serde_json::from_str::<serde_json::Value>(&line) else {
-            tracing::warn!(target: "macrod", "unparseable service event: {line}");
+            tracing::warn!(target: "roxd", "unparseable service event: {line}");
             continue;
         };
         let status = {
-            let mut inner = inner.lock().expect("macrod state lock");
+            let mut inner = inner.lock().expect("roxd state lock");
             if inner.generation != generation {
                 return;
             }
             inner.status.apply(&event);
-            if inner.status.phase == MacrodPhase::Running {
+            if inner.status.phase == RoxdPhase::Running {
                 inner.restarts = 0;
             }
             inner.status.clone()
@@ -576,16 +576,16 @@ async fn read_events(
     // stdout closed: the daemon exited. Keep an error phase so the user sees
     // why; otherwise show it as starting again, or stopped when unwanted.
     let (status, restart) = {
-        let mut inner = inner.lock().expect("macrod state lock");
+        let mut inner = inner.lock().expect("roxd state lock");
         if inner.generation != generation {
             return;
         }
         inner.child = None;
-        if inner.status.phase != MacrodPhase::Error {
+        if inner.status.phase != RoxdPhase::Error {
             inner.status.phase = if inner.wanted {
-                MacrodPhase::Starting
+                RoxdPhase::Starting
             } else {
-                MacrodPhase::Stopped
+                RoxdPhase::Stopped
             };
         }
         (inner.status.clone(), inner.wanted)
@@ -598,16 +598,16 @@ async fn read_events(
 
 /// Stop the supervised daemon and stop auto-starting it.
 #[tauri::command]
-pub(crate) async fn macrod_stop(
+pub(crate) async fn roxd_stop(
     app: AppHandle,
-    state: tauri::State<'_, MacrodState>,
-) -> Result<MacrodStatus, String> {
+    state: tauri::State<'_, RoxdState>,
+) -> Result<RoxdStatus, String> {
     set_autostart(&app, false);
-    state.inner.lock().expect("macrod state lock").wanted = false;
+    state.inner.lock().expect("roxd state lock").wanted = false;
     stop_child(&state.inner).await;
     let status = {
-        let mut inner = state.inner.lock().expect("macrod state lock");
-        inner.status = MacrodStatus::default();
+        let mut inner = state.inner.lock().expect("roxd state lock");
+        inner.status = RoxdStatus::default();
         inner.status.clone()
     };
     emit_status(&app, &status);
@@ -616,19 +616,19 @@ pub(crate) async fn macrod_stop(
 
 /// The current snapshot, for a webview that (re)mounted after events fired.
 #[tauri::command]
-pub(crate) fn macrod_status(state: tauri::State<'_, MacrodState>) -> MacrodStatus {
+pub(crate) fn roxd_status(state: tauri::State<'_, RoxdState>) -> RoxdStatus {
     state
         .inner
         .lock()
-        .expect("macrod state lock")
+        .expect("roxd state lock")
         .status
         .clone()
 }
 
 /// Kill the child synchronously; the app is exiting and cannot await.
-pub(crate) fn kill_now(state: &MacrodState) {
+pub(crate) fn kill_now(state: &RoxdState) {
     let child = {
-        let mut inner = state.inner.lock().expect("macrod state lock");
+        let mut inner = state.inner.lock().expect("roxd state lock");
         inner.wanted = false;
         inner.generation += 1;
         inner.child.take()
@@ -641,7 +641,7 @@ pub(crate) fn kill_now(state: &MacrodState) {
 /// Kill the child, invalidating any reader still attached to it.
 async fn stop_child(inner: &Arc<Mutex<Inner>>) {
     let child = {
-        let mut inner = inner.lock().expect("macrod state lock");
+        let mut inner = inner.lock().expect("roxd state lock");
         inner.generation += 1;
         inner.child.take()
     };
@@ -665,7 +665,7 @@ fn autostart_marker(app: &AppHandle) -> Option<PathBuf> {
     app.path()
         .app_config_dir()
         .ok()
-        .map(|directory| directory.join("macrod.json"))
+        .map(|directory| directory.join("roxd.json"))
 }
 
 #[derive(Debug, Default, Serialize, Deserialize)]
@@ -685,7 +685,7 @@ fn set_autostart(app: &AppHandle, autostart: bool) {
         &path,
         serde_json::to_vec(&marker).expect("marker is plain data"),
     ) {
-        tracing::warn!(?error, "failed to persist macrod autostart marker");
+        tracing::warn!(?error, "failed to persist roxd autostart marker");
     }
 }
 
@@ -704,25 +704,25 @@ fn stopped_by_user(app: &AppHandle) -> bool {
 pub(crate) fn autostart(app: &AppHandle) {
     let app = app.clone();
     tauri::async_runtime::spawn(async move {
-        if stopped_by_user(&app) || macrod_binary(&app).is_none() {
+        if stopped_by_user(&app) || roxd_binary(&app).is_none() {
             return;
         }
-        let configured = match macrod_query(&app, &["inspect"]).await {
+        let configured = match roxd_query(&app, &["inspect"]).await {
             Ok(inspection) => inspection
                 .get("exists")
                 .and_then(serde_json::Value::as_bool)
                 .unwrap_or(false),
             Err(error) => {
-                tracing::warn!(target: "macrod", "autostart inspect failed: {error}");
+                tracing::warn!(target: "roxd", "autostart inspect failed: {error}");
                 false
             }
         };
         if !configured {
             return;
         }
-        let state = app.state::<MacrodState>();
-        if let Err(error) = macrod_start(app.clone(), state, MacrodStartOptions::default()).await {
-            tracing::warn!(target: "macrod", "autostart failed: {error}");
+        let state = app.state::<RoxdState>();
+        if let Err(error) = roxd_start(app.clone(), state, RoxdStartOptions::default()).await {
+            tracing::warn!(target: "roxd", "autostart failed: {error}");
         }
     });
 }

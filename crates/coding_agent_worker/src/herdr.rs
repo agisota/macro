@@ -1,18 +1,18 @@
 //! Native [herdr](https://herdr.dev) integration.
 //!
-//! Started from inside herdr, macrod drives the herdr it lives in: either a
+//! Started from inside herdr, roxd drives the herdr it lives in: either a
 //! herdr 0.9 pane (`HERDR_ENV=1`) or a herdr-core terminal shown by the herdr
 //! app (`HC_TERMINAL_ID`; see [`cli`]). Every ACP session it serves opens its
-//! own tab in macrod's workspace or space, rooted at the directory macrod was started
-//! from. The tab runs `macrod herdr-pane`, a live terminal view of the session
+//! own tab in roxd's workspace or space, rooted at the directory roxd was started
+//! from. The tab runs `roxd herdr-pane`, a live terminal view of the session
 //! fed from the harness's ACP wire, from which the session can be prompted,
 //! interrupted, and have its permission requests answered. herdr's sidebar
 //! shows each session as an agent that is working, blocked, or done.
 //!
-//! The harness still runs under macrod and every session still belongs to
+//! The harness still runs under roxd and every session still belongs to
 //! Macro: windows steer through the same control API the web app uses.
 //!
-//! With `macrod herdr-acp` as the harness, the window instead hosts the real
+//! With `roxd herdr-acp` as the harness, the window instead hosts the real
 //! Claude Code or Codex TUI, driven over ACP by that adapter (see
 //! [`acp_agent`]).
 
@@ -39,13 +39,13 @@ use crate::config::Harness;
 /// herdr-core's CLI, which its installer puts on PATH.
 const CORE_COMMAND: &str = "hc";
 
-/// Whether the harness is `macrod herdr-acp`, which opens its own herdr
+/// Whether the harness is `roxd herdr-acp`, which opens its own herdr
 /// windows for real agent TUIs, so no session needs a viewer window.
 pub(crate) fn drives_herdr(harness: &Harness) -> bool {
     harness.args.first().map(String::as_str) == Some(acp_agent::SUBCOMMAND)
 }
 
-/// The TUI a `macrod herdr-acp` harness runs, if the harness is one.
+/// The TUI a `roxd herdr-acp` harness runs, if the harness is one.
 pub(crate) fn herdr_agent(harness: &Harness) -> Option<acp_agent::TuiAgent> {
     if !drives_herdr(harness) {
         return None;
@@ -87,28 +87,28 @@ pub(crate) fn instance_directory(id: impl std::fmt::Display) -> rootcause::Resul
     let home = environment::Home::new()
         .and_then(|value| value.value().map(PathBuf::from))
         .ok_or_else(|| rootcause::report!("HOME is required for Herdr storage"))?;
-    Ok(home.join(".macrod/herdr").join(id.to_string()))
+    Ok(home.join(".roxd/herdr").join(id.to_string()))
 }
 
-/// The herdr macrod was started in.
+/// The herdr roxd was started in.
 #[derive(Debug, Clone)]
 pub(crate) enum HerdrSession {
     /// A pane of herdr 0.9 or earlier.
     Legacy {
         /// The `herdr` binary attached to that session.
         bin: PathBuf,
-        /// The workspace macrod's pane belongs to; new windows open there.
+        /// The workspace roxd's pane belongs to; new windows open there.
         workspace_id: Option<String>,
     },
     /// A herdr-core terminal, usually shown by the herdr app.
     Core {
-        /// macrod's own terminal address, e.g. `t3`.
+        /// roxd's own terminal address, e.g. `t3`.
         terminal: String,
     },
 }
 
 impl HerdrSession {
-    /// The herdr macrod is running inside, if any. herdr-core comes first:
+    /// The herdr roxd is running inside, if any. herdr-core comes first:
     /// a core started from an old herdr pane passes `HERDR_ENV` on to its
     /// terminals.
     pub(crate) fn detect() -> Option<Self> {
@@ -147,7 +147,7 @@ impl HerdrSession {
         }
     }
 
-    /// Whether panes report their own status (OSC 7501) instead of macrod
+    /// Whether panes report their own status (OSC 7501) instead of roxd
     /// reporting it for them.
     pub(crate) fn panes_report_status(&self) -> bool {
         matches!(self, Self::Core { .. })

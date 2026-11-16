@@ -21,7 +21,7 @@ vi.mock('@queries/soup/normalized-cache', () => ({
   invalidateAllSoup: vi.fn(),
 }));
 vi.mock('@core/context/user', () => ({
-  useEmail: () => () => 'login@macro.com',
+  useEmail: () => () => 'login@rox.one',
   useIsAuthenticated: () => () => true,
   useUserId: () => () => VIEWER,
 }));

@@ -1,4 +1,4 @@
-//! Implementation of [`AiProjectionRepository`] backed by MacroDB.
+//! Implementation of [`AiProjectionRepository`] backed by RoxDB.
 
 use macro_user_id::user_id::MacroUserIdStr;
 use sqlx::PgPool;

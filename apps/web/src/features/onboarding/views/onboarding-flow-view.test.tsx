@@ -799,7 +799,7 @@ describe('onboarding flow', () => {
   });
 
   it.each([
-    { account: 'staff', email: 'wolf@macro.com', local: false },
+    { account: 'staff', email: 'wolf@rox.one', local: false },
     { account: 'local non-staff', email: 'tester@example.com', local: true },
   ])(
     'lets $account accounts complete setup with Bypass',

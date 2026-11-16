@@ -11,7 +11,7 @@ vi.mock(
 
 import { makeArchiveSessionAction } from './make-archive-session-action';
 
-const ME = 'macro|me@macro.com';
+const ME = 'macro|me@rox.one';
 
 const session = (overrides: Partial<EntityData> = {}) =>
   ({

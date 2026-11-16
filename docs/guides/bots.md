@@ -3,7 +3,7 @@
 A bot is a Macro account for a program, such as a release job or a webhook
 relay. It posts to channels under its own name. This guide creates one in the
 app, then uses it from TypeScript with
-[`@macro-inc/sdk`](https://sdk.macro.com).
+[`@macro-inc/sdk`](https://sdk.rox.one).
 
 ## 1. Create the bot
 
@@ -89,7 +89,7 @@ the token in `x-macro-bot-token` and `x-macro-bot-scope: user`.
 
 ## More
 
-- [SDK documentation](https://sdk.macro.com): authentication, threads,
+- [SDK documentation](https://sdk.rox.one): authentication, threads,
   mentions, edits and every other entity.
 - [Bots settings walkthrough](../agent-guide/settings.md#bots) for driving the
   page in a browser.

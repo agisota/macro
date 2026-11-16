@@ -1,6 +1,6 @@
-"""Memory soak of the macrod control panel on Linux.
+"""Memory soak of the roxd control panel on Linux.
 
-Runs `macrod` (the panel) in a pseudo-terminal against a fake storage
+Runs `roxd` (the panel) in a pseudo-terminal against a fake storage
 service, samples its resident memory for MINUTES, and fails when it is still
 growing after the first third. The panel re-reads the dashboard every 3 s for
 as long as it is open, so memory a refresh leaves behind adds up within
@@ -32,7 +32,7 @@ NOW = "2026-11-09T00:00:00Z"
 HARNESS = {
     "allow_permission_bypass": False,
     "id": HARNESS_ID,
-    "kind": "macrod",
+    "kind": "roxd",
     "name": "soak",
     "owner": {"type": "user", "user_id": "macro|soak@example.com"},
     "created_by": "macro|soak@example.com",
@@ -113,7 +113,7 @@ def resident_kb(pid):
                     return int(line.split()[1])
     except FileNotFoundError:
         pass
-    raise AssertionError(f"macrod {pid} exited before the soak finished")
+    raise AssertionError(f"roxd {pid} exited before the soak finished")
 
 
 def main():
@@ -129,12 +129,12 @@ def main():
     threading.Thread(target=server.serve_forever, daemon=True).start()
     base = f"http://127.0.0.1:{server.server_address[1]}"
 
-    work = tempfile.mkdtemp(prefix="macrod-soak-")
+    work = tempfile.mkdtemp(prefix="roxd-soak-")
     home = os.path.join(work, "home")
     workspace = os.path.join(work, "workspace")
     os.makedirs(workspace)
-    os.makedirs(os.path.join(home, ".macrod"))
-    with open(os.path.join(home, ".macrod", "macrod.toml"), "w") as config:
+    os.makedirs(os.path.join(home, ".roxd"))
+    with open(os.path.join(home, ".roxd", "roxd.toml"), "w") as config:
         config.write(f"""
 [macro]
 api_url = "{base}"
@@ -159,7 +159,7 @@ auto = false
         "HOME": home,
         "PATH": os.environ["PATH"],
         "TERM": "xterm-256color",
-        "MACROD_NO_UPDATE": "1",
+        "ROXD_NO_UPDATE": "1",
     }
 
     pid, terminal = pty.fork()
@@ -198,7 +198,7 @@ auto = false
         )
         assert Storage.reads > 0, "the panel never read the dashboard"
         assert growth_mb <= args.max_growth_mb, (
-            f"macrod grew {growth_mb:.1f} MB after warming up (limit {args.max_growth_mb} MB)"
+            f"roxd grew {growth_mb:.1f} MB after warming up (limit {args.max_growth_mb} MB)"
         )
     finally:
         try:

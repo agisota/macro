@@ -25,7 +25,7 @@ patterns in older code.
 | `apps/`, `packages/` | Other apps and shared frontend packages. |
 | `services/` | Deployable services and workers; Rust package names come from each `Cargo.toml`. |
 | `crates/` | Reusable backend libraries, domain services, and adapters. |
-| `crates/macro_db_client/migrations/` | MacroDB PostgreSQL migrations. |
+| `crates/macro_db_client/migrations/` | RoxDB PostgreSQL migrations. |
 | `infra/` | Deployment definitions and local infrastructure. |
 | `agent-teammates/` | Agents that work in Macro as their own users: the `muppet` library and a `starter-agent` template. Outside the root workspace and its checks. |
 | `packages/muppet/`, `packages/starter-agent/` | The hosted agent teammate runtime, in the root workspace: the muppet library and the template each agent's repository starts from (`docs/design/agent-teammates.md`). |

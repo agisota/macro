@@ -3,7 +3,7 @@ use crate::config::Harness;
 use crate::herdr::acp_agent::TuiAgent;
 
 /// A coding agent's own TUI, one herdr tab per session, driven over ACP by
-/// `macrod herdr-acp`. Offered only when macrod itself runs inside herdr.
+/// `roxd herdr-acp`. Offered only when roxd itself runs inside herdr.
 pub(super) struct HerdrTui(pub(super) TuiAgent);
 
 impl AgentPreset for HerdrTui {
@@ -36,7 +36,7 @@ impl AgentPreset for HerdrTui {
         }
         let Ok(exe) = std::env::current_exe() else {
             return Availability::Unavailable {
-                missing: vec!["macrod"],
+                missing: vec!["roxd"],
             };
         };
         let args = vec![

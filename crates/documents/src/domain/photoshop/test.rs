@@ -11,7 +11,7 @@ const DOCUMENT: &str = "019fd3b9-3c6c-7c05-89c2-a27f01218141";
 
 fn receipt<T: RequiredPermission>(access_level: AccessLevel) -> EntityAccessReceipt<T> {
     EntityAccessReceipt::try_new_authenticated_user(
-        MacroUserIdStr::try_from("macro|photoshop@macro.com".to_owned()).unwrap(),
+        MacroUserIdStr::try_from("macro|photoshop@rox.one".to_owned()).unwrap(),
         Entity {
             entity_id: DOCUMENT.to_owned(),
             entity_type: EntityType::Document,

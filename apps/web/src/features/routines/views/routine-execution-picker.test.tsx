@@ -89,7 +89,7 @@ const managed: PersistedAgentLike = {
 };
 const external: PersistedAgentLike = {
   bot: { id: externalId, name: 'Local worker', handle: 'worker' },
-  harness: 'macrod',
+  harness: 'roxd',
   harness_id: 'workstation',
   default_model: 'local-default',
 };
@@ -366,13 +366,13 @@ describe('routine execution picker', () => {
       'Its machine is disconnected'
     );
     let trigger = openPicker();
-    // A disconnected macrod agent stays clickable: selecting it is the
+    // A disconnected roxd agent stays clickable: selecting it is the
     // reconnect path (opens Settings → Runtimes) rather than a dead row.
     const reconnect = screen.getByRole('menuitem', { name: /Local worker/ });
     expect(reconnect.getAttribute('aria-disabled')).not.toBe('true');
     expect(reconnect.textContent).toContain('Reconnect machine');
     fireEvent.keyDown(reconnect, { key: 'Enter' });
-    expect(onConnect.mock.calls[0][0].harness).toBe('macrod');
+    expect(onConnect.mock.calls[0][0].harness).toBe('roxd');
     await expectClosed(trigger);
     trigger = openPicker();
     const connect = screen.getByRole('menuitem', { name: /Connect Cursor/ });

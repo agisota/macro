@@ -466,7 +466,7 @@ function DocumentCardInner(props: DocumentCardDecoratorProps) {
     try {
       let hostname = window.location.hostname.replace('www.', '').toLowerCase();
       if (hostname === 'localhost') {
-        hostname = 'dev.macro.com';
+        hostname = 'dev.rox.one';
       }
       let link = `https://${hostname}/app/${props.blockName}/${props.documentId}`;
 

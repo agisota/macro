@@ -269,7 +269,7 @@ export function WorkspaceAgents(props: {
                     </h2>
                     <p class="text-sm text-ink-muted leading-relaxed">
                       Your agent, on your machine. Connect a runtime with
-                      macrod, then give your agent instructions and a place in
+                      roxd, then give your agent instructions and a place in
                       your workspace.
                     </p>
                   </div>

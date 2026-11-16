@@ -107,7 +107,7 @@ const MAILS: Mail[] = [
     ts: 99,
     who: 'Nina Castellano',
     initials: 'NC',
-    from: 'nina@macro.com',
+    from: 'nina@rox.one',
     subject: 'Design review for the new onboarding',
     preview:
       'Left notes in the Figma, mostly around the empty states and the second step of the flow — copy feels dense for first-time users right now.',
@@ -161,7 +161,7 @@ const MAILS: Mail[] = [
     ts: 95,
     who: 'Ben Aldridge',
     initials: 'BA',
-    from: 'ben@macro.com',
+    from: 'ben@rox.one',
     subject: 'Re: Q3 roadmap draft',
     preview:
       'Thanks for putting the roadmap together — the sequencing mostly reads right. One thing on the timeline: can we pull the billing work forward a sprint so it lands before the freeze?',

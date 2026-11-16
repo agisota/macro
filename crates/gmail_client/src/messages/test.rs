@@ -214,7 +214,7 @@ async fn sent_lookup_encodes_message_id_and_includes_sent_trash() {
     let server = MockServer::start().await;
     Mock::given(method("GET"))
         .and(path("/users/me/messages"))
-        .and(query_param("q", "rfc822msgid:<attempt+123@macro.com>"))
+        .and(query_param("q", "rfc822msgid:<attempt+123@rox.one>"))
         .and(query_param("labelIds", "SENT"))
         .and(query_param("includeSpamTrash", "true"))
         .and(query_param("maxResults", "2"))
@@ -225,7 +225,7 @@ async fn sent_lookup_encodes_message_id_and_includes_sent_trash() {
         .expect(1)
         .mount(&server)
         .await;
-    let found = find_sent_message(&client(&server), "token", "attempt+123@macro.com")
+    let found = find_sent_message(&client(&server), "token", "attempt+123@rox.one")
         .await
         .unwrap()
         .unwrap();
@@ -247,7 +247,7 @@ async fn sent_lookup_rejects_multiple_matches_and_incomplete_pages() {
             .mount(&server)
             .await;
         assert!(
-            find_sent_message(&client(&server), "token", "attempt@macro.com")
+            find_sent_message(&client(&server), "token", "attempt@rox.one")
                 .await
                 .is_err()
         );
@@ -263,7 +263,7 @@ async fn sent_lookup_distinguishes_no_match_from_search_failure() {
         .mount(&empty)
         .await;
     assert!(
-        find_sent_message(&client(&empty), "token", "attempt@macro.com")
+        find_sent_message(&client(&empty), "token", "attempt@rox.one")
             .await
             .unwrap()
             .is_none()
@@ -276,7 +276,7 @@ async fn sent_lookup_distinguishes_no_match_from_search_failure() {
             .expect(1)
             .mount(&server)
             .await;
-        let error = find_sent_message(&client(&server), "token", "attempt@macro.com")
+        let error = find_sent_message(&client(&server), "token", "attempt@rox.one")
             .await
             .unwrap_err();
         assert_eq!(error.status().unwrap().as_u16(), status);

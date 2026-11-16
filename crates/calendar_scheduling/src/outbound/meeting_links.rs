@@ -34,7 +34,7 @@ pub struct HttpMeetingLinks {
 impl HttpMeetingLinks {
     /// `document_storage_url` is the document storage origin, including a
     /// gateway prefix such as `/dss`. `app_origin` is the browser origin
-    /// join links are built on, for example `https://macro.com`.
+    /// join links are built on, for example `https://rox.one`.
     pub fn new(
         document_storage_url: impl Into<String>,
         app_origin: impl Into<String>,

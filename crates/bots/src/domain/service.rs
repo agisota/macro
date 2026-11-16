@@ -211,7 +211,7 @@ fn validate_agent_fields(
     }
 }
 
-/// Check a runtime someone chose. The `macrod` slug and a registered harness
+/// Check a runtime someone chose. The `roxd` slug and a registered harness
 /// travel together: the slug selects the external runtime path, the id says
 /// whose daemon serves it. A binding a patch leaves alone is not re-checked,
 /// so an agent whose harness was deleted stays editable until it is rebound.
@@ -221,12 +221,12 @@ fn validate_runtime(harness: &str, harness_id: Option<HarnessId>) -> Result<(), 
             "agent harness must not be empty".to_string(),
         ));
     }
-    match (harness == harness_id::MACROD_HARNESS_SLUG, harness_id) {
+    match (harness == harness_id::ROXD_HARNESS_SLUG, harness_id) {
         (true, None) => Err(BotError::BadRequest(
-            "agents on the macrod harness must reference a registered harness".to_string(),
+            "agents on the roxd harness must reference a registered harness".to_string(),
         )),
         (false, Some(_)) => Err(BotError::BadRequest(
-            "harness_id applies only to the macrod harness".to_string(),
+            "harness_id applies only to the roxd harness".to_string(),
         )),
         _ => Ok(()),
     }

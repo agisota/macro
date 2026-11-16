@@ -1,4 +1,4 @@
-# The Windows self-update end to end, with a real running macrod: install v1
+# The Windows self-update end to end, with a real running roxd: install v1
 # with install.ps1 from an HTTP mirror, start the control panel, publish a v2
 # whose checksum is wrong and check nothing is installed, then publish v2 and
 # check the running v1 downloads, verifies and installs it beside itself
@@ -15,7 +15,7 @@ $ErrorActionPreference = 'Stop'
 $installer = Join-Path $PSScriptRoot '..\install\install.ps1'
 $work = Join-Path ([IO.Path]::GetTempPath()) ([Guid]::NewGuid())
 $mirror = Join-Path $work 'mirror'
-$installDir = Join-Path $work 'macrod'
+$installDir = Join-Path $work 'roxd'
 $runDir = Join-Path $work 'run'
 $requests = Join-Path $work 'requests.log'
 New-Item -ItemType Directory -Path $mirror, $runDir | Out-Null
@@ -25,7 +25,7 @@ function Check($condition, $message) {
     if (-not $condition) { throw "FAIL: $message" }
     Write-Host "ok: $message"
 }
-function Archive($tag) { "macrod-$tag-windows-x86_64.zip" }
+function Archive($tag) { "roxd-$tag-windows-x86_64.zip" }
 function Publish($tag, $checksum) {
     $name = Archive $tag
     Copy-Item (Join-Path $Releases $name) $mirror -Force
@@ -47,7 +47,7 @@ function Requests-For($name) {
 }
 # The update log's events in order, timestamps dropped.
 function Update-Log {
-    Get-Content (Join-Path $env:HOME '.macrod\logs\update.log') | ForEach-Object { $_ | ConvertFrom-Json }
+    Get-Content (Join-Path $env:HOME '.roxd\logs\update.log') | ForEach-Object { $_ | ConvertFrom-Json }
 }
 # Each expected event appears in this order, with these fields.
 function Check-Log-In-Order($expected) {
@@ -63,12 +63,12 @@ function Check-Log-In-Order($expected) {
     }
 }
 function Cores {
-    @(Get-CimInstance Win32_Process -Filter "Name = 'macrod-core.exe'" |
+    @(Get-CimInstance Win32_Process -Filter "Name = 'roxd-core.exe'" |
         Where-Object { $_.ExecutablePath -like "$installDir*" })
 }
 
 # The mirror over HTTP, logging every request path, so the log shows what
-# the running macrod fetched.
+# the running roxd fetched.
 $listener = [Net.HttpListener]::new()
 $port = Get-Random -Minimum 20000 -Maximum 40000
 $listener.Prefixes.Add("http://127.0.0.1:$port/")
@@ -96,16 +96,16 @@ $userPathBefore = [Environment]::GetEnvironmentVariable('Path', 'User')
 $processes = @()
 try {
     Publish $V1
-    $env:MACROD_UPDATE_SOURCE = $mirrorUrl
-    $env:MACROD_INSTALL_DIR = $installDir
+    $env:ROXD_UPDATE_SOURCE = $mirrorUrl
+    $env:ROXD_INSTALL_DIR = $installDir
     & $installer
-    $launcher = Join-Path $installDir 'macrod.exe'
-    Check ((& $launcher --version) -eq "macrod $V1") "install.ps1 installed $V1 from the HTTP mirror"
+    $launcher = Join-Path $installDir 'roxd.exe'
+    Check ((& $launcher --version) -eq "roxd $V1") "install.ps1 installed $V1 from the HTTP mirror"
 
-    # macrod keeps ~/.macrod (its config and update log) under HOME when it
+    # roxd keeps ~/.roxd (its config and update log) under HOME when it
     # is set.
     $env:HOME = Join-Path $work 'home'
-    $config = Join-Path $env:HOME '.macrod\macrod.toml'
+    $config = Join-Path $env:HOME '.roxd\roxd.toml'
     New-Item -ItemType Directory -Force (Split-Path $config) | Out-Null
     # A paired-looking config against an unreachable deployment: the panel
     # serves nothing, but it runs, and its update check runs.
@@ -125,7 +125,7 @@ path = "."
 harness_id = "00000000-0000-0000-0000-0000004a125a"
 token = "mhns_windows_update_test"
 "@ | Set-Content $config
-    $env:MACROD_UPDATE_CHECK_SECONDS = '2'
+    $env:ROXD_UPDATE_CHECK_SECONDS = '2'
 
     # Its own console, as a user starts it from a terminal. (PowerShell
     # names are case-insensitive: $v1 would overwrite the $V1 tag.)
@@ -133,7 +133,7 @@ token = "mhns_windows_update_test"
     $processes += $firstLaunch
     Wait-For "the $V1 core to start" { (Cores).Count -eq 1 } 30
     $v1Core = (Cores)[0]
-    Check ($v1Core.ExecutablePath -like "*\versions\$V1\macrod-core.exe") "the launcher started $V1 (pid $($v1Core.ProcessId), $($v1Core.ExecutablePath))"
+    Check ($v1Core.ExecutablePath -like "*\versions\$V1\roxd-core.exe") "the launcher started $V1 (pid $($v1Core.ProcessId), $($v1Core.ExecutablePath))"
     Wait-For "$V1 to check the mirror" { (Requests-For 'latest.json') -ge 1 } 30
     Write-Host "running $V1 checked the mirror"
 
@@ -147,10 +147,10 @@ token = "mhns_windows_update_test"
 
     # The real release: downloaded, verified, installed beside the running v1.
     Publish $V2
-    Wait-For "$V1 to install $V2" { Test-Path (Join-Path $installDir "versions\$V2\macrod-core.exe") } 60
+    Wait-For "$V1 to install $V2" { Test-Path (Join-Path $installDir "versions\$V2\roxd-core.exe") } 60
     Check (-not (Test-Path (Join-Path $installDir "versions\$V2.partial"))) "$V2 was committed, not left partial"
-    $installedVersion = & (Join-Path $installDir "versions\$V2\macrod-core.exe") --version
-    Check ($installedVersion -eq "macrod $V2") "the installed core is $V2 ($installedVersion)"
+    $installedVersion = & (Join-Path $installDir "versions\$V2\roxd-core.exe") --version
+    Check ($installedVersion -eq "roxd $V2") "the installed core is $V2 ($installedVersion)"
     Check (-not $firstLaunch.HasExited) "$V1 keeps running after installing $V2"
     $running = Cores
     Check ($running.Count -eq 1 -and $running[0].ProcessId -eq $v1Core.ProcessId) "the session process is still $V1 (pid $($v1Core.ProcessId)) until the next launch"
@@ -161,12 +161,12 @@ token = "mhns_windows_update_test"
     # The next launch runs v2 and prunes v1.
     Stop-Process -Id $v1Core.ProcessId -Force
     Wait-For "$V1 to exit" { $firstLaunch.HasExited } 30
-    Check ((& $launcher --version) -eq "macrod $V2") "after the update the launcher runs $V2"
+    Check ((& $launcher --version) -eq "roxd $V2") "after the update the launcher runs $V2"
     $secondLaunch = Start-Process -FilePath $launcher -WorkingDirectory $runDir -PassThru
     $processes += $secondLaunch
     Wait-For "the $V2 core to start" { (Cores).Count -eq 1 } 30
     $v2Core = (Cores)[0]
-    Check ($v2Core.ExecutablePath -like "*\versions\$V2\macrod-core.exe") "the next launch started $V2 (pid $($v2Core.ProcessId), $($v2Core.ExecutablePath))"
+    Check ($v2Core.ExecutablePath -like "*\versions\$V2\roxd-core.exe") "the next launch started $V2 (pid $($v2Core.ProcessId), $($v2Core.ExecutablePath))"
     Wait-For "the launcher to prune $V1" { -not (Test-Path (Join-Path $installDir "versions\$V1")) } 30
     Check $true "the launcher pruned $V1"
     Check-Log-In-Order @(
@@ -178,7 +178,7 @@ token = "mhns_windows_update_test"
         @{ event = 'startup'; version = $V2; from_handoff = $false }
     )
     Write-Host '--- update log ---'
-    Get-Content (Join-Path $env:HOME '.macrod\logs\update.log') | ForEach-Object { Write-Host $_ }
+    Get-Content (Join-Path $env:HOME '.roxd\logs\update.log') | ForEach-Object { Write-Host $_ }
     Write-Host "self-update $V1 -> $V2 passed"
 } catch {
     Write-Host "error: $_"

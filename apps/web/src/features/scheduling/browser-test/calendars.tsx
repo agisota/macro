@@ -19,7 +19,7 @@ export function FixtureCalendars(props: { notify: (message: string) => void }) {
     },
     {
       id: 'fixture-work',
-      email: 'alex@macro.com',
+      email: 'alex@rox.one',
       needsPermission: false,
       canManage: true,
       calendars: [

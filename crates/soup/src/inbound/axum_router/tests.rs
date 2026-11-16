@@ -1420,7 +1420,7 @@ async fn it_can_filter_chat_owners() {
 },
 "chat_filters": {
 "owners": [
-"macro|rahul@macro.com"
+"macro|rahul@rox.one"
 ]
 },
 "emailView": "all",
@@ -1454,7 +1454,7 @@ async fn it_can_filter_chat_owners() {
     let filter: EntityFilters = serde_json::from_value(arg.filter).unwrap();
     assert_eq!(
         filter.chat_filters.owners,
-        vec!["macro|rahul@macro.com".to_string()]
+        vec!["macro|rahul@rox.one".to_string()]
     );
 }
 

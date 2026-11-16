@@ -23,7 +23,7 @@ Part of a three-step workflow to identify and clean up unused SFS files:
 ## Environment Variables
 
 ### Required
-- `DATABASE_URL`: PostgreSQL connection string for the MacroDB database
+- `DATABASE_URL`: PostgreSQL connection string for the RoxDB database
 
 ### Optional
 - `USED_UUIDS_FILE`: Path to file containing used UUIDs (default: `used_sfs_uuids.txt`)

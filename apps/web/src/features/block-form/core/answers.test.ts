@@ -213,7 +213,7 @@ describe('validation', () => {
     };
     const value: FormCellValue = {
       type: 'link',
-      value: ['blob:https://macro.com/preview-file'],
+      value: ['blob:https://rox.one/preview-file'],
     };
     expect(answerProblem(question, column, value, 'preview')).toBeUndefined();
     expect(answerProblem(question, column, value)).toBe(

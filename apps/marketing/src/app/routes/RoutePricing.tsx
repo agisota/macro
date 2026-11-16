@@ -189,7 +189,7 @@ const faqItems: Array<{ q: string; a: JSX.Element }> = [
         from BSL to the AGPLv3, a copyleft license, meaning derivative works
         must also be open source. To build on Rox under a different (e.g.
         closed-source) license, contact{' '}
-        <a href="mailto:licensing@macro.com">licensing@macro.com</a>.
+        <a href="mailto:licensing@rox.one">licensing@rox.one</a>.
       </>
     ),
   },

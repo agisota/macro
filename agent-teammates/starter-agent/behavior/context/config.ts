@@ -75,6 +75,6 @@ export const config = ({
 	owner: settings.owner,
 	identity: { name: settings.name, email: settings.email },
 	timeZone: settings.timeZone,
-	gateway: "wss://gateway.macro.com/connection-gateway/",
+	gateway: "wss://gateway.rox.one/connection-gateway/",
 	keep: { logDays: 30, logLines: 5000, historyLines: 1000 },
 });

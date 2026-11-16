@@ -2,7 +2,7 @@ At Rox we use Rox to manage the development of Rox. Tasks are one of the most im
 
 For us this process often starts in our Bug Reports channel. Someone reports a bug that they found, and the responsible party creates a task, directly in response to the message—either using the `/task` action in the input, or by pressing the task button in the message hover menu. Doing either of these takes no more than a few seconds.
 
-![](https://static-file-service.macro.com/file/33390b5d-076c-42bd-9cb4-43a1ee503b55)
+![](https://static-file-service.rox.one/file/33390b5d-076c-42bd-9cb4-43a1ee503b55)
 
 Now there is a bidirectional link between the initial report and the task itself, so that no matter where conversation happens, the context never gets lost.
 
@@ -12,7 +12,7 @@ Other times, tasks will be assigned to you. When a task is assigned to you it sh
 
 Sometimes we'll write up documents describing new features. We can then ask the Rox agent to create tasks based on the document and assign them to people.
 
-![](https://static-file-service.macro.com/file/742a705b-ef81-4f2b-aab8-b4358292e1a3)
+![](https://static-file-service.rox.one/file/742a705b-ef81-4f2b-aab8-b4358292e1a3)
 
 Managing task status happens automatically, using the GitHub integration. As you create, review, and merge branches, the task automatically moves to “In Progress,” “In Review,” or “Done,” and the task records which pull request is associated with it.
 

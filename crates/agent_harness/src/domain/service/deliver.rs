@@ -119,7 +119,7 @@ where
                     session_id,
                 )));
             };
-            if session.harness == harness_id::MACROD_HARNESS_SLUG {
+            if session.harness == harness_id::ROXD_HARNESS_SLUG {
                 attachment = attachment.initial_model(session.model.clone());
             }
             let egress = self

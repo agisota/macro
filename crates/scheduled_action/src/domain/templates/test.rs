@@ -75,7 +75,7 @@ fn owner_receipt(user: MacroUserIdStr<'static>, id: Uuid) -> EntityAccessReceipt
 }
 
 fn other_user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|activator@macro.com".to_owned()).unwrap()
+    MacroUserIdStr::try_from("macro|activator@rox.one".to_owned()).unwrap()
 }
 
 async fn create_routine(actions: &TestService) -> Uuid {

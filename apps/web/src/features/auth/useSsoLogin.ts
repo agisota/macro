@@ -116,7 +116,7 @@ async function nativeSsoLogin(
 }
 
 /**
- * The hosted OAuth callback sets cookies on macro.com. A proxied browser, and
+ * The hosted OAuth callback sets cookies on rox.one. A proxied browser, and
  * every native shell, needs the session-code handoff to establish cookies
  * locally instead. A local stack's callback runs on the auth service's own
  * port, where its cookies would reach every stack on the machine, so its proxy

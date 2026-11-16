@@ -30,8 +30,8 @@ use crate::{
 };
 
 const THREAD_ID: &str = "thread-1";
-const DEFAULT_INTERNAL_USER_ID: &str = "macro|INTERNAL@macro.com";
-const NORMALIZED_DEFAULT_INTERNAL_USER_ID: &str = "macro|internal@macro.com";
+const DEFAULT_INTERNAL_USER_ID: &str = "macro|INTERNAL@rox.one";
+const NORMALIZED_DEFAULT_INTERNAL_USER_ID: &str = "macro|internal@rox.one";
 
 type ViewExtractor =
     ThreadAccessLevelExtractor<ViewAccessLevel, FakeEntityAccessService, FakeAuthorizationService>;

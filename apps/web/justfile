@@ -191,7 +191,7 @@ build-tauri: build-wasm
     bun scripts/cache-wasm/cli.ts package-dist --dist dist
     bun scripts/cache-wasm/cli.ts remove-sidecar --dist dist
 
-# As build-tauri, but MODE=development so the bundle talks to dev.macro.com.
+# As build-tauri, but MODE=development so the bundle talks to dev.rox.one.
 # Used by `ios-build-sim`: a PR preview must never be wired to production.
 [private]
 build-tauri-dev: build-cache-wasm build-agent-fold-wasm

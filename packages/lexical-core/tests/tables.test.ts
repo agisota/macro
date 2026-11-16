@@ -673,7 +673,7 @@ describe('video link transformer', () => {
     const editor = createTestEditor();
     await importMarkdown(
       editor,
-      '[Screen Recording 2026-10-06 at 4.03.28 PM.mov](https://static-file-service.macro.com/file/3d7ab8c8-05b7-477f-aa83-7dd514219867)'
+      '[Screen Recording 2026-10-06 at 4.03.28 PM.mov](https://static-file-service.rox.one/file/3d7ab8c8-05b7-477f-aa83-7dd514219867)'
     );
 
     editor.getEditorState().read(() => {
@@ -681,7 +681,7 @@ describe('video link transformer', () => {
       const video = root.getChildren().find($isVideoNode);
       expect(video).toBeDefined();
       expect(video!.getUrl()).toBe(
-        'https://static-file-service.macro.com/file/3d7ab8c8-05b7-477f-aa83-7dd514219867'
+        'https://static-file-service.rox.one/file/3d7ab8c8-05b7-477f-aa83-7dd514219867'
       );
     });
   });
@@ -726,7 +726,7 @@ describe('video link transformer', () => {
     const editor = createTestEditor();
     await importMarkdown(
       editor,
-      '[Report.pdf](https://static-file-service.macro.com/file/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee)'
+      '[Report.pdf](https://static-file-service.rox.one/file/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee)'
     );
 
     editor.getEditorState().read(() => {
@@ -734,7 +734,7 @@ describe('video link transformer', () => {
       expect($getRoot().getTextContent()).toContain('Report.pdf');
     });
     expect(exportMarkdown(editor)).toContain(
-      'static-file-service.macro.com/file/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'
+      'static-file-service.rox.one/file/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'
     );
   });
 

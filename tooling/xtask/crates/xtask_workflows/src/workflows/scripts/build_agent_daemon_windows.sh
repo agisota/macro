@@ -6,7 +6,7 @@ set -euo pipefail
 # See build_agent_daemon_linux.sh for why sqlx runs offline.
 export SQLX_OFFLINE=true
 
-# Link the C runtime into the binary. Without this, macrod.exe needs the Visual
+# Link the C runtime into the binary. Without this, roxd.exe needs the Visual
 # C++ redistributable's vcruntime DLLs, which a user's machine may not have.
 # With an explicit --target, RUSTFLAGS reach only target code, and the cc and
 # cmake builds of the C dependencies follow it to the static runtime.

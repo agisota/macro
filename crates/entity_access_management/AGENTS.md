@@ -42,7 +42,7 @@ events — adding/removing an entity from a project, and moving a project.
 ## Checks
 
 - `cargo test -p entity_access_management` (`SQLX_OFFLINE` unset; requires
-  local MacroDB — `just setup_macrodb`).
+  local RoxDB — `just setup_macrodb`).
 
 ## Related
 

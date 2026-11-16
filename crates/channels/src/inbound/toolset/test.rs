@@ -1882,7 +1882,7 @@ async fn read_channel_messages_names_each_sender_as_the_app_does() {
         Uuid::now_v7(),
         vec![],
     );
-    reply.sender_id = Sender::new_from_user(person("gab@macro.com"));
+    reply.sender_id = Sender::new_from_user(person("gab@rox.one"));
     let mut bot_message = channel_message(
         channel_id,
         Sender::new_from_bot(bot_id::MACRO_AI_BOT_ID),
@@ -1898,19 +1898,19 @@ async fn read_channel_messages_names_each_sender_as_the_app_does() {
             bot_message,
             channel_message(
                 channel_id,
-                Sender::new_from_user(person("no-name@macro.com")),
+                Sender::new_from_user(person("no-name@rox.one")),
                 vec![],
             ),
             channel_message(
                 channel_id,
-                Sender::new_from_user(person("gab@macro.com")),
+                Sender::new_from_user(person("gab@rox.one")),
                 vec![reply],
             ),
         ],
         ..Default::default()
     };
     let service = ToolTestChannelService {
-        user_names: HashMap::from([(person("gab@macro.com"), "Pine Martin".to_string())]),
+        user_names: HashMap::from([(person("gab@rox.one"), "Pine Martin".to_string())]),
         ..Default::default()
     };
     let context = ChannelToolContext::new(
@@ -1926,14 +1926,14 @@ async fn read_channel_messages_names_each_sender_as_the_app_does() {
 
     let json = serde_json::to_value(&response).expect("serializable");
     let named = &json["messages"][0];
-    assert_eq!(named["senderId"], "macro|gab@macro.com");
+    assert_eq!(named["senderId"], "macro|gab@rox.one");
     assert_eq!(named["senderName"], "Pine Martin");
     assert_eq!(
         named["thread"]["preview"][0]["senderName"], "Pine Martin",
         "a preview reply names its sender too"
     );
     let unnamed = &json["messages"][1];
-    assert_eq!(unnamed["senderId"], "macro|no-name@macro.com");
+    assert_eq!(unnamed["senderId"], "macro|no-name@rox.one");
     assert!(
         unnamed.get("senderName").is_none(),
         "a person without a profile name is known by the id alone"
@@ -1947,13 +1947,13 @@ async fn read_channel_messages_reads_without_names_when_the_lookup_fails() {
     let messages = RecordingMessages {
         timeline: vec![channel_message(
             channel_id,
-            Sender::new_from_user(person("gab@macro.com")),
+            Sender::new_from_user(person("gab@rox.one")),
             vec![],
         )],
         ..Default::default()
     };
     let service = ToolTestChannelService {
-        user_names: HashMap::from([(person("gab@macro.com"), "Pine Martin".to_string())]),
+        user_names: HashMap::from([(person("gab@rox.one"), "Pine Martin".to_string())]),
         fail_user_names: true,
         ..Default::default()
     };

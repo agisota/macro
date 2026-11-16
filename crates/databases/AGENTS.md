@@ -52,7 +52,7 @@ service with Axum, agent-tool and Postgres adapters.
 ## Checks
 
 - `cargo test -p databases --features postgres,inbound,ai_tools,gateway,entity_mutation`
-  (`SQLX_OFFLINE` unset; needs a migrated local MacroDB).
+  (`SQLX_OFFLINE` unset; needs a migrated local RoxDB).
 
 ## Gotchas
 

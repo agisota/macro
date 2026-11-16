@@ -114,7 +114,7 @@ fn validate_profile_picture_upload(
 }
 
 /// Reserves storage for a new profile picture. Static file storage has no
-/// MacroDB, so it cannot check API keys; this route lets key holders upload.
+/// RoxDB, so it cannot check API keys; this route lets key holders upload.
 #[utoipa::path(
     post,
     path = "/user/profile_picture/file",

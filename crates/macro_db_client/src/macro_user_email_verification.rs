@@ -90,7 +90,7 @@ mod tests {
             VALUES ($1, $2, $3, $4)
         "#,
             &macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?,
-            "test@macro.com",
+            "test@rox.one",
             "cus_123",
             "u1",
         )
@@ -103,7 +103,7 @@ mod tests {
             VALUES ($1, $2, $3, $4)
         "#,
             &macro_uuid::string_to_uuid("22222222-2222-2222-2222-222222222222")?,
-            "test2@macro.com",
+            "test2@rox.one",
             "cus_124",
             "u2",
         )
@@ -111,7 +111,7 @@ mod tests {
         .await?;
 
         let macro_user_id = macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?;
-        let email = "test@macro.com".to_string();
+        let email = "test@rox.one".to_string();
         let is_verified = false;
 
         upsert_macro_user_email_verification(
@@ -126,7 +126,7 @@ mod tests {
             get_macro_user_email_verification(&pool, &macro_user_id.to_string(), &email).await?,
             Some(MacroUserEmailVerification {
                 macro_user_id: macro_user_id.clone(),
-                email: "test@macro.com".to_string(),
+                email: "test@rox.one".to_string(),
                 is_verified: false,
             })
         );
@@ -139,7 +139,7 @@ mod tests {
             get_macro_user_email_verification(&pool, &macro_user_id.to_string(), &email).await?,
             Some(MacroUserEmailVerification {
                 macro_user_id: macro_user_id.clone(),
-                email: "test@macro.com".to_string(),
+                email: "test@rox.one".to_string(),
                 is_verified: true,
             })
         );
@@ -162,7 +162,7 @@ mod tests {
             .await?,
             Some(MacroUserEmailVerification {
                 macro_user_id: macro_uuid::string_to_uuid("22222222-2222-2222-2222-222222222222")?,
-                email: "test@macro.com".to_string(),
+                email: "test@rox.one".to_string(),
                 is_verified: true,
             })
         );

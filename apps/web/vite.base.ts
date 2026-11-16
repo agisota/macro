@@ -822,8 +822,8 @@ function defineEnv(mode: string, command: string) {
     // index.html preconnects to the API gateway; keep in sync with servers.ts.
     'import.meta.env.GATEWAY_ORIGIN': JSON.stringify(
       mode === 'development'
-        ? 'https://dev-gateway.macro.com'
-        : 'https://gateway.macro.com'
+        ? 'https://dev-gateway.rox.one'
+        : 'https://gateway.rox.one'
     ),
     'import.meta.env.__LOCAL_DOCKER__': process.env.LOCAL_DOCKER === 'true',
     'import.meta.env.__LOCAL_JWT__': JSON.stringify(process.env.LOCAL_JWT),

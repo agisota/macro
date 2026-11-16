@@ -1,6 +1,6 @@
-//! `macrod herdr-pane`: one ACP session's live window inside herdr.
+//! `roxd herdr-pane`: one ACP session's live window inside herdr.
 //!
-//! The window attaches to its macrod over the local socket, replays what the
+//! The window attaches to its roxd over the local socket, replays what the
 //! session has done so far, then follows it live: prompts, streamed agent
 //! output, thoughts, tool calls, plans. Typing prompts the session and Esc
 //! interrupts it, both carried to the session through Macro by the daemon.
@@ -214,7 +214,7 @@ impl PaneView {
         }
     }
 
-    /// Fold one message from macrod in.
+    /// Fold one message from roxd in.
     pub(crate) fn apply(&mut self, message: ToPane) {
         match message {
             ToPane::Hello { session, web_url } => {
@@ -245,7 +245,7 @@ impl PaneView {
         self.connected = false;
         self.permission = None;
         self.transcript.entries.push(Entry::Notice {
-            text: "macrod stopped; this window no longer follows the session. ctrl+c closes it."
+            text: "roxd stopped; this window no longer follows the session. ctrl+c closes it."
                 .to_owned(),
             error: true,
         });
@@ -316,12 +316,12 @@ async fn send(write: &mut OwnedWriteHalf, message: &FromPane) -> std::io::Result
     write.write_all(line.as_bytes()).await
 }
 
-/// Attach to `session` on the macrod listening at `socket` and show it
+/// Attach to `session` on the roxd listening at `socket` and show it
 /// until the user quits.
 pub async fn run_herdr_pane(socket: &Path, session: &str) -> rootcause::Result<()> {
     let stream = UnixStream::connect(socket)
         .await
-        .context("could not reach macrod; is it still running?")?;
+        .context("could not reach roxd; is it still running?")?;
     let (read, mut write) = stream.into_split();
     send(
         &mut write,

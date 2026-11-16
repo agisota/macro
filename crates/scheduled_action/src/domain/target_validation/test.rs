@@ -7,7 +7,7 @@ use serde_json::json;
 use std::sync::Mutex;
 
 pub(crate) const BOT: &str = "01960000-0000-7000-8000-000000000001";
-pub(crate) const OWNER: &str = "macro|routine-owner@macro.com";
+pub(crate) const OWNER: &str = "macro|routine-owner@rox.one";
 
 #[derive(Default)]
 pub(crate) struct Sessions {
@@ -169,7 +169,7 @@ async fn authorizes_owner_and_override_without_starting_external_runtime() {
         assert_eq!(call.bot_id.to_string(), BOT);
         assert_eq!(call.model.as_deref(), model);
     }
-    let foreign = MacroUserIdStr::parse_from_str("macro|other@macro.com").unwrap();
+    let foreign = MacroUserIdStr::parse_from_str("macro|other@rox.one").unwrap();
     let error = validator
         .validate_task(&agent_task(), &foreign)
         .await

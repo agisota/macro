@@ -68,13 +68,13 @@ VALUES ('00000000-0000-0000-0000-0000000b0004', '00000000-0000-0000-0000-0000000
         true, false, NOW() - INTERVAL '10 days', NOW() - INTERVAL '10 days');
 
 ------------------------------------------------------------
--- Link 5: INTERNAL @macro.com link (should NEVER be deleted)
--- Old link with no history, but has @macro.com in macro_id
+-- Link 5: INTERNAL @rox.one link (should NEVER be deleted)
+-- Old link with no history, but has @rox.one in macro_id
 ------------------------------------------------------------
 
 INSERT INTO email_links (id, macro_id, fusionauth_user_id, email_address, provider, is_sync_active, created_at, updated_at)
-VALUES ('00000000-0000-0000-0000-000000000005', 'internal@macro.com', '00000000-0000-0000-0000-0000000a0005',
-        'internal@macro.com', 'GMAIL', true, NOW() - INTERVAL '200 days', NOW() - INTERVAL '200 days');
+VALUES ('00000000-0000-0000-0000-000000000005', 'internal@rox.one', '00000000-0000-0000-0000-0000000a0005',
+        'internal@rox.one', 'GMAIL', true, NOW() - INTERVAL '200 days', NOW() - INTERVAL '200 days');
 
 -- Thread for link 5
 INSERT INTO email_threads (id, link_id, inbox_visible, is_read, created_at, updated_at)

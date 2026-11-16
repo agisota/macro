@@ -27,7 +27,7 @@ pub mod targets;
 #[cfg(test)]
 mod test;
 
-/// Postgres-backed import repository (MacroDB).
+/// Postgres-backed import repository (RoxDB).
 #[derive(Clone)]
 pub struct PgImportRepo {
     pool: PgPool,
@@ -36,7 +36,7 @@ pub struct PgImportRepo {
 }
 
 impl PgImportRepo {
-    /// Build the repository on the MacroDB pool.
+    /// Build the repository on the RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self {
             pool,

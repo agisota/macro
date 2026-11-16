@@ -25,7 +25,7 @@ jobs:
       tauri_lockfiles: ${{ steps.filter.outputs.tauri_lockfiles }}
       sdk: ${{ steps.filter.outputs.sdk }}
       observability_image: ${{ steps.filter.outputs.observability_image }}
-      macrod_update: ${{ steps.filter.outputs.macrod_update }}
+      roxd_update: ${{ steps.filter.outputs.roxd_update }}
     timeout-minutes: 5
     steps:
     - name: Take the request
@@ -531,9 +531,9 @@ jobs:
             - 'infra/stacks/observability/nixos/**'
             - 'infra/stacks/observability/assets/**'
             - '.github/workflows/observability_image.yml'
-          macrod_update:
+          roxd_update:
             - 'crates/coding_agent_worker/**'
-            - '.github/workflows/test_macrod_update.yml'
+            - '.github/workflows/test_roxd_update.yml'
   cloud-storage:
     needs:
     - start
@@ -607,12 +607,12 @@ jobs:
     name: Observability image
     uses: ./.github/workflows/observability_image.yml
     secrets: inherit
-  macrod-update:
+  roxd-update:
     needs:
     - start
-    if: needs.start.outputs.macrod_update == 'true'
-    name: macrod update
-    uses: ./.github/workflows/test_macrod_update.yml
+    if: needs.start.outputs.roxd_update == 'true'
+    name: roxd update
+    uses: ./.github/workflows/test_roxd_update.yml
     secrets: inherit
   gate:
     needs:
@@ -628,7 +628,7 @@ jobs:
     - tauri-lockfiles
     - sdk
     - observability-image
-    - macrod-update
+    - roxd-update
     if: '!cancelled() && needs.start.result != ''skipped'''
     name: CI gate
     runs-on: namespace-profile-linux-tiny-no-cache

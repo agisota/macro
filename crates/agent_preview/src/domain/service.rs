@@ -130,8 +130,8 @@ impl Settings {
             || !host(&self.ssh_host)
             || self.ssh_port == 0
             || self.https_port == 0
-            || self.domain == "macro.com"
-            || self.domain.ends_with(".macro.com")
+            || self.domain == "rox.one"
+            || self.domain.ends_with(".rox.one")
             || self.domain == app_host
             // Neither may sit under the other: every non-gateway cookie is
             // forwarded upstream, so a shared parent hands the app's cookies to

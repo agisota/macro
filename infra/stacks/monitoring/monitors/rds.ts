@@ -1,4 +1,4 @@
-// MacroDB / RDS health.
+// RoxDB / RDS health.
 //
 // Adopted from monitors created by hand in the Datadog UI. Do not edit a
 // monitor here and in the UI at the same time — this file wins on deploy.
@@ -28,7 +28,7 @@ ${notify({ pages: true })}`,
 
 // https://us5.datadoghq.com/monitors/1062636
 adopted('macrodb-low-burst-balance', {
-  name: '[PROD] MacroDB Low Burst Balance',
+  name: '[PROD] RoxDB Low Burst Balance',
   type: 'query alert',
   query: 'avg(last_1h):avg:aws.rds.burst_balance{name:macro-db-prod} <= 10',
   message: `macro-db-prod burst balance is at {{value}}%.

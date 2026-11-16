@@ -47,8 +47,8 @@ reference, replacing any obsolete inline harness value under that name. The
 AI tool context uses the separate `_SECRET_NAME` setting for the same key.
 
 Stable public origins now come from `macro_service_urls`: `McpPublicUrl` is the
-original `https://mcp-server[-dev].macro.com` server base and `CognitionPublicUrl`
-is the original `https://document-cognition[-dev].macro.com` integration callback
+original `https://mcp-server[-dev].rox.one` server base and `CognitionPublicUrl`
+is the original `https://document-cognition[-dev].rox.one` integration callback
 base. Keep these distinct from internal gateway API routes. The shared gateway
 forwards MCP paths unchanged and prepends `/cognition` for the cognition host;
 registered OAuth redirects and browser URLs are unchanged.

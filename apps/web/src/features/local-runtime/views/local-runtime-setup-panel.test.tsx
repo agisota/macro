@@ -1,4 +1,4 @@
-import type { MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdStatus } from '@macro/tauri/roxd';
 import { fireEvent, render, screen } from '@solidjs/testing-library';
 import { describe, expect, it, vi } from 'vitest';
 import type {
@@ -8,7 +8,7 @@ import type {
 } from '../core/setup';
 import { LocalRuntimeSetupPanel } from './local-runtime-setup-panel';
 
-const RUNNING: MacrodStatus = {
+const RUNNING: RoxdStatus = {
   phase: 'running',
   agentId: 'claude-code',
   agentName: 'Claude Code',

@@ -13,7 +13,7 @@ use std::sync::Mutex;
 use url::Url;
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id")
 }
 
 fn empty_body() -> ProxyBody {
@@ -1287,7 +1287,7 @@ async fn preview_uses_only_the_authenticated_session_token_at_a_fixed_destinatio
 }
 
 fn asker() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("asker@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("asker@rox.one").expect("a valid user id")
 }
 
 /// A grant whose running turn `prompter` prompted.

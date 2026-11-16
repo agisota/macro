@@ -111,7 +111,7 @@ const SETTINGS: Setting[] = [
     tab: 'Harness',
     title: 'Run agents on this computer',
     keywords:
-      'local runtime macrod this computer machine claude code codex desktop daemon',
+      'local runtime roxd this computer machine claude code codex desktop daemon',
   },
   {
     tab: 'Account',

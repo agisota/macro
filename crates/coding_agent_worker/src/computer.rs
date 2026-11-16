@@ -1,10 +1,10 @@
-//! What macrod does differently on a Macro computer: every Claude Code
+//! What roxd does differently on a Macro computer: every Claude Code
 //! session starts with Macro's Anthropic gateway in its environment, derived
 //! from the session's `macro_internal` MCP server, and first-party traffic
 //! goes through the computer's egress route. The env reaches Claude Code
 //! through the ACP adapter's `_meta.claudeCode.options.env`.
 //!
-//! Sign-in is not macrod's: harnessd on the computer owns it, and the image's
+//! Sign-in is not roxd's: harnessd on the computer owns it, and the image's
 //! `claude` wrapper swaps the gateway for the computer's own Claude
 //! credential when there is one.
 
@@ -17,7 +17,7 @@ use crate::config::MacroApi;
 #[cfg(test)]
 mod test;
 
-/// `agent_harness::domain::model::INTERNAL_MCP_NAME`, which macrod cannot
+/// `agent_harness::domain::model::INTERNAL_MCP_NAME`, which roxd cannot
 /// depend on.
 const INTERNAL_MCP_NAME: &str = "macro_internal";
 /// The `macro_internal` MCP server's path, and the gateway's in its place.
@@ -27,7 +27,7 @@ const ANTHROPIC_GATEWAY_PATH: &str = "/anthropic";
 const SESSION_METHODS: &[&str] = &["session/new", "session/load", "session/resume"];
 
 /// Written last by enrollment; only machines bearing it are Macro computers.
-pub const ENROLLED_MARKER: &str = "/var/lib/macrod/enrolled";
+pub const ENROLLED_MARKER: &str = "/var/lib/roxd/enrolled";
 
 /// Whether this machine is an enrolled Macro computer.
 pub fn is_macro_computer() -> bool {

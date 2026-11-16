@@ -16,7 +16,7 @@ export const followupPrompt =
 export const followupDraft = {
   subject: 'Re: Thursday demo',
   to: 'Ava Chen <ava@parlorstudio.example>',
-  cc: 'Julia <julia@macro.com>',
+  cc: 'Julia <julia@rox.one>',
   body: 'Hi Ava,\n\nThursday at 9 works. The folder-upload fix has merged, and Teo is checking the production release. I’ll confirm once it’s ready to try.\n\nJulia can help with setup. Could you send her the names of the people joining?\n\nSee you Thursday,\nJacob',
 };
 export const followupPr: DemoPullRequest = {
@@ -40,9 +40,9 @@ export const followupCall: SampleCall = {
   duration: 420,
   people: ['jacob', 'julia', 'teo'],
   participantEmails: {
-    jacob: 'jacob@macro.com',
-    julia: 'julia@macro.com',
-    teo: 'teo@macro.com',
+    jacob: 'jacob@rox.one',
+    julia: 'julia@rox.one',
+    teo: 'teo@rox.one',
   },
   poster: [
     { person: 'jacob', video: false },

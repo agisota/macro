@@ -3,7 +3,7 @@
   "info": {
     "title": "notification_service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -1880,7 +1880,7 @@
           "harnessId": {
             "type": ["string", "null"],
             "format": "uuid",
-            "description": "The computer's harness, once macrod has connected."
+            "description": "The computer's harness, once roxd has connected."
           },
           "outcome": {
             "$ref": "#/components/schemas/ComputerSetupOutcome",
@@ -1892,7 +1892,7 @@
         "oneOf": [
           {
             "type": "object",
-            "description": "macrod connected for the first time: the computer is ready.",
+            "description": "roxd connected for the first time: the computer is ready.",
             "required": ["kind"],
             "properties": {
               "kind": {

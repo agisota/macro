@@ -2,7 +2,7 @@
 
 ## What it is
 
-Macro computers: hosted VMs a team buys, each running macrod so it shows up
+Macro computers: hosted VMs a team buys, each running roxd so it shows up
 in Settings → Runtimes like a paired machine. This crate owns the computer
 lifecycle, capacity, purchase/billing orchestration and the fleet ports.
 
@@ -20,10 +20,10 @@ read it before changing behaviour.
 
 - `src/domain/lifecycle.rs` + `lifecycle/test.rs`: states, events, effects, invariants.
 - `src/domain/service.rs`: the team-facing `ComputerService` (purchase, offers, list, power, retry, cancel, release).
-- `src/domain/enrollment.rs`: the first-boot contract with `macrod enroll`.
+- `src/domain/enrollment.rs`: the first-boot contract with `roxd enroll`.
 - `src/domain/image.rs`: versioned images and the root/data disk split.
 - `src/domain/operator.rs`: the control plane (fleet effects, timers, reconcile,
-  macrod presence); wired in `services/agent_harness_service/src/computers.rs`.
+  roxd presence); wired in `services/agent_harness_service/src/computers.rs`.
 - `src/inbound/axum_router.rs`: `/team/computers*`, mounted by
   authentication_service.
 - `src/outbound/pg/agents.rs`: `ComputerAgents`, also alone as
@@ -36,7 +36,7 @@ read it before changing behaviour.
 
 - Owns: computer rows, hosts, outbox, timers, lifecycle, size catalog.
 - Not here: harness rows and pairing → `crates/harnesses`; the subscription's
-  seat logic → `crates/teams`; macrod enrollment → `crates/coding_agent_worker`.
+  seat logic → `crates/teams`; roxd enrollment → `crates/coding_agent_worker`.
 - Sizes are this crate's own; do not reuse `agent_harness`'s `SandboxSize`.
 
 ## Boundaries
@@ -72,7 +72,7 @@ read it before changing behaviour.
   alerts key on it.
 - `NotifySetup` tells the buyer how first setup ended through the
   `ports::SetupNotices` port (adapter: agent_harness_service
-  `computers/setup_notice.rs`): `Ready` on the first macrod connection,
+  `computers/setup_notice.rs`): `Ready` on the first roxd connection,
   `Failed` on each give-up before it (keyed by `failed_at`, so a retried
   attempt notifies again). It never fails the computer when it cannot be sent.
   `SetupNotice.agent` names the agent teammate an agent computer runs

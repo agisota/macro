@@ -79,7 +79,7 @@ describe('pipeline CSV', () => {
           cells: {
             company: 'acme-id',
             stage: 'Lead',
-            owner: 'macro|jane@macro.com',
+            owner: 'macro|jane@rox.one',
             revenue: 1250.5,
             close: '2026-11-01T00:00:00Z',
             tags: '["Enterprise","Inbound"]',
@@ -110,7 +110,7 @@ describe('pipeline CSV', () => {
             column: 'owner',
             value: {
               type: 'entities',
-              value: [{ entityType: 'USER', entityId: 'macro|jane@macro.com' }],
+              value: [{ entityType: 'USER', entityId: 'macro|jane@rox.one' }],
             },
           },
           { column: 'revenue', value: { type: 'number', value: 1250.5 } },

@@ -26,6 +26,6 @@ fn is_case_insensitive() {
 
 #[test]
 fn allows_company_domains() {
-    assert!(!is_generic_email_domain("macro.com"));
+    assert!(!is_generic_email_domain("rox.one"));
     assert!(!is_generic_email_domain("acme.dev"));
 }

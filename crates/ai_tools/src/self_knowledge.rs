@@ -10,7 +10,7 @@ use crate::ToolServiceContext;
 ///
 /// Modeled on the Claude Code self-knowledge skill: rather than baking a large
 /// product description into the system prompt, the model calls this tool to pull
-/// in an overview plus a routing map into the live docs at docs.macro.com. Every
+/// in an overview plus a routing map into the live docs at docs.rox.one. Every
 /// docs page is also served as plain Markdown (append `.md` to its URL), so the
 /// model can read any page with the WebFetch tool — no special docs integration
 /// is needed.
@@ -46,47 +46,47 @@ channels.
 1. **Accuracy over guessing.** Your training data may be outdated or wrong about
    Macro. When a user asks what Macro is, what a feature does, or how to do
    something in Macro, treat the official docs as the source of truth.
-2. **Read the docs.** Macro's docs are published at docs.macro.com. Every page is
+2. **Read the docs.** Macro's docs are published at docs.rox.one. Every page is
    also served as plain Markdown — append `.md` to the page URL — so you can read
    it with the WebFetch tool (`macro.web.fetch()` in code mode).
 3. **Cite the docs.** Link the user to the specific docs page you used, but always
    link the human-facing page, never the raw Markdown. The `.md` form is only for
    your own WebFetch reads; when you show a user a link, drop the trailing `.md`
-   and strip any query string. Read `https://docs.macro.com/getting-started.md`,
-   but link `https://docs.macro.com/getting-started`. Never route a user to a
+   and strip any query string. Read `https://docs.rox.one/getting-started.md`,
+   but link `https://docs.rox.one/getting-started`. Never route a user to a
    `.md` URL or to one carrying tracking parameters (e.g. `?_gl=…`) — surface only
    the clean route.
 
 ## How to find the right page
 
-- **Full index of every page:** https://docs.macro.com/llms.txt — fetch this
+- **Full index of every page:** https://docs.rox.one/llms.txt — fetch this
   first when you are unsure which page covers the question, then open the page it
   points to.
 - Any page is readable as Markdown by appending `.md`, e.g.
-  https://docs.macro.com/product/tasks.md. To link that page for a user, use the
-  route without the suffix: https://docs.macro.com/product/tasks
+  https://docs.rox.one/product/tasks.md. To link that page for a user, use the
+  route without the suffix: https://docs.rox.one/product/tasks
 
 ### Quick links (fetch with a trailing `.md`; link users to the route without it)
 
-- Get started: https://docs.macro.com/getting-started.md
-- Products (https://docs.macro.com/product/<name>.md): email, channels, tasks,
+- Get started: https://docs.rox.one/getting-started.md
+- Products (https://docs.rox.one/product/<name>.md): email, channels, tasks,
   docs, canvas, calls, crm, folders, agents, inbox, search, snippets,
   unified-memory
-- Concepts (https://docs.macro.com/concepts/<name>.md): blocks, mentions,
+- Concepts (https://docs.rox.one/concepts/<name>.md): blocks, mentions,
   properties
-- AI & MCP: https://docs.macro.com/AI/mcp/overview.md ·
-  tool reference https://docs.macro.com/AI/mcp/tools/index.md ·
-  recipes https://docs.macro.com/AI/recipes.md
-- Account: https://docs.macro.com/account/billing.md ·
-  https://docs.macro.com/account/teams.md
-- Other (https://docs.macro.com/<name>.md): permissions, keyboard-shortcuts,
+- AI & MCP: https://docs.rox.one/AI/mcp/overview.md ·
+  tool reference https://docs.rox.one/AI/mcp/tools/index.md ·
+  recipes https://docs.rox.one/AI/recipes.md
+- Account: https://docs.rox.one/account/billing.md ·
+  https://docs.rox.one/account/teams.md
+- Other (https://docs.rox.one/<name>.md): permissions, keyboard-shortcuts,
   faq, switch-to-macro, apps, support, integrations/github
-- Changelog: https://docs.macro.com/changelog/introduction.md
+- Changelog: https://docs.rox.one/changelog/introduction.md
 
 ## Workflow for "what is Macro / how do I…" questions
 
 1. Identify what the user is asking about (a block, a concept, billing, etc.).
-2. Fetch the relevant docs.macro.com `.md` page with WebFetch (or llms.txt first
+2. Fetch the relevant docs.rox.one `.md` page with WebFetch (or llms.txt first
    if you are unsure which page to read).
 3. Answer concisely, grounded in the docs, and link the page you used — as the
    clean route, without the `.md` suffix or any query string.
@@ -94,7 +94,7 @@ channels.
    details, see <URL>." (again, a clean route, never a `.md` or tracking URL)."##;
 
 /// `selfKnowledge` returns an overview of Macro plus a routing map into the live
-/// docs at docs.macro.com. It takes no arguments and does no I/O — it hands the
+/// docs at docs.rox.one. It takes no arguments and does no I/O — it hands the
 /// model a curated about-page so it can answer "what is Macro / how do I…"
 /// questions accurately instead of guessing from stale training data, and then
 /// read specific docs pages with WebFetch for detail.
@@ -106,7 +106,7 @@ Learn what Macro is and how it works. Call this whenever the user asks an open-e
 question about Macro itself — what it is, what it's for, what it can do, or how to do \
 something in Macro — instead of answering from memory (your training data may be stale). \
 Takes no arguments. Returns an overview of Macro and a map of links into the official \
-docs at docs.macro.com; every docs page is readable as Markdown (append `.md` to its URL), \
+docs at docs.rox.one; every docs page is readable as Markdown (append `.md` to its URL), \
 so follow up with WebFetch on the relevant page for details and cite it."
 )]
 pub struct SelfKnowledge {}
@@ -114,7 +114,7 @@ pub struct SelfKnowledge {}
 /// The response for the [`SelfKnowledge`] tool: a single Markdown about-page.
 #[derive(Debug, Serialize, JsonSchema)]
 pub struct SelfKnowledgeResponse {
-    /// An overview of Macro and a routing map into the docs at docs.macro.com.
+    /// An overview of Macro and a routing map into the docs at docs.rox.one.
     pub about: String,
 }
 

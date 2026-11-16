@@ -40,7 +40,7 @@ by policy.
 - Add a new axum policy: add the `AuthorizationPolicy` impl + its narrowed
   output type in `src/inbound/axum.rs` → document it in the `lib.rs` table →
   re-export both from `lib.rs`.
-- Wire a new service with MacroDB: `PgBotAuthorizer` + `PgUserApiKeyAuthorizer`
+- Wire a new service with RoxDB: `PgBotAuthorizer` + `PgUserApiKeyAuthorizer`
   (feature `postgres`) in the composition root — see `calendar_service` or
   any service in `services/` for the pattern.
 

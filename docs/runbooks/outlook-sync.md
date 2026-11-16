@@ -141,6 +141,6 @@ as `effect` instead and don't count here.
   `persistence` by their database error kind or SQLSTATE: lock timeouts and
   serialization failures point at contention; connection errors at the pool or
   the database.
-- Follow the [MacroDB runbook](macrodb.md) for locks, connections and load.
-- Levers: as in the MacroDB runbook. Each deferral retries after 30 seconds,
+- Follow the [RoxDB runbook](macrodb.md) for locks, connections and load.
+- Levers: as in the RoxDB runbook. Each deferral retries after 30 seconds,
   doubling for a message that keeps failing.

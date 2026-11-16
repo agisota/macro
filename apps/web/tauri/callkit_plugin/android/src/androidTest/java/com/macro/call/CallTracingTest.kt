@@ -96,7 +96,7 @@ class CallTracingTest {
                     put("callId", id); put("channelId", "trace-test-channel")
                     put("channelName", "Private channel marker"); put("callerName", "Private caller marker")
                     put("livekitServerUrl", "wss://unused.invalid"); put("livekitToken", "secret-token-marker")
-                    put("ringStatusUrl", "https://unavailable-call-test.macro.com/status")
+                    put("ringStatusUrl", "https://unavailable-call-test.rox.one/status")
                     headers.forEach { (key, value) -> put(key, value) }
                 }
                 Calls.receive(context, mapOf("recipientId" to "trace-test-recipient", "payload" to payload.toString()), System.currentTimeMillis())
@@ -150,7 +150,7 @@ class CallTracingTest {
                 val nextPayload = JSONObject().apply {
                     put("callId", nextId); put("channelId", "trace-test-channel")
                     put("channelName", "Private channel marker"); put("livekitServerUrl", "wss://unused.invalid")
-                    put("livekitToken", "secret-token-marker"); put("ringStatusUrl", "https://unavailable-call-test.macro.com/status")
+                    put("livekitToken", "secret-token-marker"); put("ringStatusUrl", "https://unavailable-call-test.rox.one/status")
                     headers.forEach { (key, value) -> put(key, value) }
                 }
                 Calls.receive(context, mapOf("recipientId" to "trace-test-recipient", "payload" to nextPayload.toString()), System.currentTimeMillis())
@@ -171,7 +171,7 @@ class CallTracingTest {
                 val nextPayload = JSONObject().apply {
                     put("callId", UUID.randomUUID().toString()); put("channelId", "trace-test-channel")
                     put("livekitServerUrl", "wss://unused.invalid"); put("livekitToken", "secret-token-marker")
-                    put("ringStatusUrl", "https://unavailable-call-test.macro.com/status")
+                    put("ringStatusUrl", "https://unavailable-call-test.rox.one/status")
                     headers.forEach { (key, value) -> put(key, value) }
                 }
                 Calls.receive(context, mapOf("recipientId" to "trace-test-recipient", "payload" to nextPayload.toString()), System.currentTimeMillis())

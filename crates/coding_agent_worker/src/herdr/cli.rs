@@ -1,8 +1,8 @@
-//! The one outbound door into the herdr macrod was started in. Two herdrs
-//! exist and macrod drives either:
+//! The one outbound door into the herdr roxd was started in. Two herdrs
+//! exist and roxd drives either:
 //!
 //! - herdr 0.9 and earlier ([`legacy`]): the `herdr` multiplexer CLI, talking
-//!   to the session socket herdr injected into macrod's pane;
+//!   to the session socket herdr injected into roxd's pane;
 //! - herdr-core with the herdr app ([`hc`]): the `hc` CLI, whose terminals
 //!   the app shows as tabs.
 //!
@@ -149,7 +149,7 @@ impl HerdrCli {
         }
     }
 
-    /// Drive the herdr-core that runs `terminal`, macrod's own terminal.
+    /// Drive the herdr-core that runs `terminal`, roxd's own terminal.
     pub(crate) fn core(bin: impl Into<PathBuf>, terminal: impl Into<String>) -> Self {
         Self {
             backend: Backend::Core(hc::Core {

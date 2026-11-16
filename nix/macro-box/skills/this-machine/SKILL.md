@@ -7,7 +7,7 @@ description: Facts about this Macro computer (users, services, display, ports, w
 
 - NixOS VM. You are `macro` (passwordless sudo); home `/home/macro`,
   work in `/home/macro/work`. The disk persists across restarts.
-- System services: `macrod` (connects this machine to Macro; do not stop it),
+- System services: `roxd` (connects this machine to Macro; do not stop it),
   `docker`. Persona agents may have their own user and service; leave them
   alone unless asked.
 - User services (`systemctl --user`): `macro-display` (Xvnc `:0`, VNC on
@@ -23,5 +23,5 @@ description: Facts about this Macro computer (users, services, display, ports, w
   Python) run through nix-ld; `#!/bin/bash` and `#!/usr/bin/env` shebangs
   work. To build against C libraries, use
   `nix shell nixpkgs#pkg-config nixpkgs#<library>.dev`.
-- The system (macrod, Claude Code, Chromium, herdr, Node) is part of the
+- The system (roxd, Claude Code, Chromium, herdr, Node) is part of the
   image; do not try to upgrade it in place.

@@ -35,7 +35,7 @@ use crate::inbound::axum_router::{GtmInviteRouterState, gtm_invite_router};
 
 const STAFF_JWT: &str = "staff";
 const OUTSIDER_JWT: &str = "outsider";
-const STAFF_USER_ID: &str = "macro|valentina@macro.com";
+const STAFF_USER_ID: &str = "macro|valentina@rox.one";
 const OUTSIDER_USER_ID: &str = "macro|ada@startup.io";
 
 #[derive(Clone)]
@@ -94,7 +94,7 @@ fn sample_link() -> InviteLink {
         recipient_email: Some("ada@startup.io".into()),
         note: None,
         promo_code: "1MF".parse().unwrap(),
-        created_by: MacroUserIdStr::try_from_email("valentina@macro.com").unwrap(),
+        created_by: MacroUserIdStr::try_from_email("valentina@rox.one").unwrap(),
         created_at: now,
         expires_at: now + Duration::hours(48),
         revoked_at: None,

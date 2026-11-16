@@ -56,9 +56,9 @@ import {
 describe('GraphQL Soup websocket auth', () => {
   it('maps HTTP protocols and appends encoded bearer auth', () => {
     expect(
-      buildGraphqlSoupWebSocketUrl('https://gateway.macro.com/dss', 'token+/=')
+      buildGraphqlSoupWebSocketUrl('https://gateway.rox.one/dss', 'token+/=')
     ).toBe(
-      'wss://gateway.macro.com/dss/items/soup/graphql/ws?macro-api-token=token%2B%2F%3D'
+      'wss://gateway.rox.one/dss/items/soup/graphql/ws?macro-api-token=token%2B%2F%3D'
     );
     expect(buildGraphqlSoupWebSocketUrl('http://localhost:8086')).toBe(
       'ws://localhost:8086/items/soup/graphql/ws'
@@ -69,14 +69,14 @@ describe('GraphQL Soup websocket auth', () => {
     const refreshCookieAuth = vi.fn().mockResolvedValue(ok(undefined));
     const getApiToken = vi.fn();
     const resolveUrl = createGraphqlSoupWebSocketUrlResolver({
-      dssHost: 'https://gateway.macro.com/dss',
+      dssHost: 'https://gateway.rox.one/dss',
       bearerTokenAuth: false,
       getApiToken,
       refreshCookieAuth,
     });
 
     await expect(resolveUrl()).resolves.toBe(
-      'wss://gateway.macro.com/dss/items/soup/graphql/ws'
+      'wss://gateway.rox.one/dss/items/soup/graphql/ws'
     );
     expect(refreshCookieAuth).toHaveBeenCalledOnce();
     expect(getApiToken).not.toHaveBeenCalled();
@@ -89,7 +89,7 @@ describe('GraphQL Soup websocket auth', () => {
       .mockResolvedValueOnce('second');
     const refreshCookieAuth = vi.fn();
     const resolveUrl = createGraphqlSoupWebSocketUrlResolver({
-      dssHost: 'https://gateway.macro.com/dss',
+      dssHost: 'https://gateway.rox.one/dss',
       bearerTokenAuth: true,
       getApiToken,
       refreshCookieAuth,
@@ -103,7 +103,7 @@ describe('GraphQL Soup websocket auth', () => {
   it('retries a cookie refresh lost to an outage but not a rejected session', async () => {
     const resolverFor = (code: string) =>
       createGraphqlSoupWebSocketUrlResolver({
-        dssHost: 'https://gateway.macro.com/dss',
+        dssHost: 'https://gateway.rox.one/dss',
         bearerTokenAuth: false,
         getApiToken: vi.fn(),
         refreshCookieAuth: vi.fn().mockResolvedValue(err([{ code }])),

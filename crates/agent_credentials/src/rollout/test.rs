@@ -5,7 +5,7 @@ use macro_user_id::cowlike::CowLike;
 use super::*;
 
 const AGENT: &str = "macro|sam-rivera-abc123@agents.macro.invalid";
-const CREATOR: &str = "macro|admin@macro.com";
+const CREATOR: &str = "macro|admin@rox.one";
 
 fn user(id: &str) -> MacroUserIdStr<'static> {
     MacroUserIdStr::parse_from_str(id).unwrap().into_owned()

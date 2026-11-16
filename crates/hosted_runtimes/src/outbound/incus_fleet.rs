@@ -1,7 +1,7 @@
 //! [`Fleet`] on one Incus host: each computer is a VM from a versioned
 //! `macro-box/<version>` image (`macro-box-agent/<version>` for an agent
 //! teammate's computer), carrying its [`Enrollment`] in the
-//! [`INCUS_ENROLLMENT_KEY`] config key that macrod reads through `/dev/incus`.
+//! [`INCUS_ENROLLMENT_KEY`] config key that roxd reads through `/dev/incus`.
 //!
 //! Each VM has a root disk of [`ROOT_DISK_GIB`] from the image, and a custom
 //! block volume `<instance>-data` (disk device `data`, the rest of the
@@ -319,8 +319,8 @@ impl Fleet for IncusFleet {
                                 &[
                                     "systemctl",
                                     "restart",
-                                    "macrod-enroll.service",
-                                    "macrod.service",
+                                    "roxd-enroll.service",
+                                    "roxd.service",
                                 ],
                             )
                             .await?;
@@ -430,12 +430,12 @@ impl Fleet for IncusFleet {
         Ok(())
     }
 
-    #[tracing::instrument(name = "incus_fleet.restart_macrod", skip(self), err)]
-    async fn restart_macrod(&self, computer_id: ComputerId) -> Result<(), IncusFleetError> {
+    #[tracing::instrument(name = "incus_fleet.restart_roxd", skip(self), err)]
+    async fn restart_roxd(&self, computer_id: ComputerId) -> Result<(), IncusFleetError> {
         self.client
             .exec(
                 &instance_name(computer_id),
-                &["systemctl", "restart", "macrod"],
+                &["systemctl", "restart", "roxd"],
             )
             .await?;
         Ok(())

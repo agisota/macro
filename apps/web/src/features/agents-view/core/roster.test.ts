@@ -78,8 +78,8 @@ describe('buildAgentRoster', () => {
             owner: { type: 'team', team_id: 't1' },
           },
         }),
-        persisted({ harness: 'macrod', harness_id: 'h1' }),
-        persisted({ harness: 'macrod', harness_id: 'gone' }),
+        persisted({ harness: 'roxd', harness_id: 'h1' }),
+        persisted({ harness: 'roxd', harness_id: 'gone' }),
       ],
     });
     const saved = roster.slice(2);
@@ -113,7 +113,7 @@ describe('buildAgentRoster', () => {
       runtimes: [
         { id: 'h1', name: 'Agent Box', connected: false, computer_id: 'c1' },
       ],
-      agents: [persisted({ harness: 'macrod', harness_id: 'h1' })],
+      agents: [persisted({ harness: 'roxd', harness_id: 'h1' })],
     });
     const agent = roster[2];
     expect(agent?.poweredOff).toBe(true);
@@ -128,16 +128,16 @@ describe('buildAgentRoster', () => {
         group.agents.map((item) => item.id),
       ])
     ).toEqual([
-      ['Your agents', ['bot-macrod']],
+      ['Your agents', ['bot-roxd']],
       ['Needs connection', [CURSOR_BOT_ID]],
     ]);
   });
 
-  it('can start a saved agent on a connected macrod runtime from here', () => {
+  it('can start a saved agent on a connected roxd runtime from here', () => {
     const roster = buildAgentRoster({
       ...EMPTY,
       runtimes: [{ id: 'h1', name: 'wolf-laptop', connected: true }],
-      agents: [persisted({ harness: 'macrod', harness_id: 'h1' })],
+      agents: [persisted({ harness: 'roxd', harness_id: 'h1' })],
     });
     expect(roster.at(-1)?.runtime).toEqual({
       label: 'wolf-laptop',
@@ -152,7 +152,7 @@ describe('buildAgentRoster', () => {
       const roster = buildAgentRoster({
         ...EMPTY,
         runtimes: [{ id: 'h1', name: 'box', connected: true, access }],
-        agents: [persisted({ harness: 'macrod', harness_id: 'h1' })],
+        agents: [persisted({ harness: 'roxd', harness_id: 'h1' })],
       });
       expect(roster.at(-1)?.needsRuntimeAccess).toBe(true);
       expect(roster.at(-1)?.connectLabel).toBe('Request access');
@@ -164,7 +164,7 @@ describe('buildAgentRoster', () => {
       ...EMPTY,
       runtimes: [{ id: 'h1', name: 'box', connected: true, access: 'none' }],
       agents: [
-        persisted({ harness: 'macrod', harness_id: 'h1', is_coding: false }),
+        persisted({ harness: 'roxd', harness_id: 'h1', is_coding: false }),
       ],
     });
     expect(resident.at(-1)?.needsRuntimeAccess).toBe(false);
@@ -172,7 +172,7 @@ describe('buildAgentRoster', () => {
     const user = buildAgentRoster({
       ...EMPTY,
       runtimes: [{ id: 'h1', name: 'box', connected: true, access: 'user' }],
-      agents: [persisted({ harness: 'macrod', harness_id: 'h1' })],
+      agents: [persisted({ harness: 'roxd', harness_id: 'h1' })],
     });
     expect(user.at(-1)?.needsRuntimeAccess).toBe(false);
   });
@@ -184,7 +184,7 @@ describe('rosterForAgentPicker and kindForBot', () => {
     agents: [
       persisted({ harness: 'in-memory' }),
       persisted({ harness: 'cursor' }),
-      persisted({ harness: 'macrod' }),
+      persisted({ harness: 'roxd' }),
       persisted({ harness: 'sandbox' }),
       persisted({ harness: 'codex-cloud' }),
       persisted({ harness: 'future-runtime' }),
@@ -212,7 +212,7 @@ describe('rosterForAgentPicker and kindForBot', () => {
       CURSOR_BOT_ID,
       'bot-in-memory',
       'bot-cursor',
-      'bot-macrod',
+      'bot-roxd',
       'bot-sandbox',
       'bot-codex-cloud',
       'bot-future-runtime',

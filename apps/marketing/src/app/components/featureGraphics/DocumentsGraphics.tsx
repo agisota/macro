@@ -4786,7 +4786,7 @@ const faqItems: { q: string; a: JSX.Element }[] = [
       <>
         Yes. Rox is fully open source under the AGPLv3 (as of May 31 2026), not
         "open core." To build on Rox under a different license, contact{' '}
-        <a href="mailto:licensing@macro.com">licensing@macro.com</a>.
+        <a href="mailto:licensing@rox.one">licensing@rox.one</a>.
       </>
     ),
   },

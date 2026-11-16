@@ -18,7 +18,7 @@ use macro_db_migrator::MACRO_DB_MIGRATIONS;
 use sqlx::PgPool;
 use uuid::Uuid;
 
-const OWNER: &str = "macro|user@macro.com";
+const OWNER: &str = "macro|user@rox.one";
 
 /// A consumer provider; no reserved example domain is one.
 const PERSONAL_DOMAIN: &str = "gmail.com";
@@ -34,7 +34,7 @@ async fn team_with_mailbox(pool: &PgPool) -> anyhow::Result<(Uuid, Uuid, Service
     let team = Uuid::now_v7();
     seed_team(pool, team, OWNER).await?;
     enable_crm_for_team(pool, team).await?;
-    let link = insert_email_link(pool, OWNER, "user@macro.com").await?;
+    let link = insert_email_link(pool, OWNER, "user@rox.one").await?;
     consent_to_mailbox(pool, team, link).await?;
     let repo = CompaniesRepositoryImpl::new(pool.clone());
     Ok((
@@ -59,7 +59,7 @@ async fn sync(
         .populate_contact(
             &team,
             &link,
-            "user@macro.com",
+            "user@rox.one",
             email,
             Some("Synced Name"),
             now - Duration::days(1),

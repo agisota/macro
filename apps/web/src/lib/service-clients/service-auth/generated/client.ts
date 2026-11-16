@@ -8270,7 +8270,7 @@ export const putProfilePictureFile = async (
 
 /**
  * @summary Reserves storage for a new profile picture. Static file storage has no
-MacroDB, so it cannot check API keys; this route lets key holders upload.
+RoxDB, so it cannot check API keys; this route lets key holders upload.
  */
 export type createProfilePictureUploadResponse200 = {
   data: ProfilePictureUpload;

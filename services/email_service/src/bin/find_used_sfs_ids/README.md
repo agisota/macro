@@ -20,10 +20,10 @@ Part of a three-step workflow to identify and clean up unused SFS files:
 ## Environment Variables
 
 ### Required
-- `DATABASE_URL`: PostgreSQL connection string for the MacroDB database
+- `DATABASE_URL`: PostgreSQL connection string for the RoxDB database
 
 ### Optional
-- `SFS_DOMAIN`: The domain to search for (default: `static-file-service.macro.com`)
+- `SFS_DOMAIN`: The domain to search for (default: `static-file-service.rox.one`)
 - `MESSAGE_IDS_FILE`: Path to store/load message IDs (default: `message_ids.txt`)
 - `USED_UUIDS_FILE`: Path to store found UUIDs (default: `used_sfs_uuids.txt`)
 - `FETCH_BATCH_SIZE`: Number of messages to fetch from DB per query (default: `1000`)
@@ -40,7 +40,7 @@ cargo run --bin find_used_sfs_ids
 ### With Custom Configuration
 ```bash
 export DATABASE_URL="postgresql://user:pass@localhost/macrodb"
-export SFS_DOMAIN="static-file-service-dev.macro.com"
+export SFS_DOMAIN="static-file-service-dev.rox.one"
 export USED_UUIDS_FILE="custom_used_uuids.txt"
 cargo run --bin find_used_sfs_ids
 ```
@@ -100,7 +100,7 @@ Typical performance:
 
 Loading configuration...
 Configuration:
-  SFS Domain: static-file-service.macro.com
+  SFS Domain: static-file-service.rox.one
   Message IDs file: message_ids.txt
   Used UUIDs file: used_sfs_uuids.txt
   Fetch batch size: 1000

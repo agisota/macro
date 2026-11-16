@@ -15,7 +15,7 @@ fn imported_author_is_indexed_separately_from_content_and_identity() {
                 org_id: None,
                 message_id,
                 thread_id: thread,
-                sender_id: "macro|system@macro.com".into(),
+                sender_id: "macro|system@rox.one".into(),
                 imported_author: author.map(str::to_owned),
                 content: " Historical content ".into(),
                 created_at: chrono::DateTime::from_timestamp_millis(1_600_000_000_123).unwrap(),
@@ -26,7 +26,7 @@ fn imported_author_is_indexed_separately_from_content_and_identity() {
         })
         .unwrap();
         assert_eq!(args.imported_author.as_deref(), author);
-        assert_eq!(args.sender_id, "macro|system@macro.com");
+        assert_eq!(args.sender_id, "macro|system@rox.one");
         assert_eq!(args.content, "Historical content");
         assert_eq!(args.thread_id, thread.unwrap_or(message_id).to_string());
         assert_eq!(args.mentions, ["user|macro|reader@example.com"]);

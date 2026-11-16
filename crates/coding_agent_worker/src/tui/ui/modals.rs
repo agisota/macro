@@ -30,7 +30,7 @@ pub(super) fn agent_groups<'a>(
             lines.push(if herdr {
                 section("Herdr", "each session in its own tab", width)
             } else {
-                section("ACP", "headless, driven by macrod", width)
+                section("ACP", "headless, driven by roxd", width)
             });
             previous = Some(herdr);
         }
@@ -195,7 +195,7 @@ pub(super) fn render_pairing(
             "  Open the approval page and confirm the code matches,",
             Style::new().fg(DIM),
         ),
-        Line::styled("  then pair macrod.", Style::new().fg(DIM)),
+        Line::styled("  then pair roxd.", Style::new().fg(DIM)),
         Line::raw(""),
         Line::from(vec![
             Span::raw("  "),
@@ -209,7 +209,7 @@ pub(super) fn render_pairing(
     frame.render_widget(
         Paragraph::new(text)
             .alignment(Alignment::Left)
-            .block(modal("Pair macrod", ACCENT)),
+            .block(modal("Pair roxd", ACCENT)),
         area,
     );
 }

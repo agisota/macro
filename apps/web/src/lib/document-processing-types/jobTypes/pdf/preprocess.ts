@@ -35,7 +35,7 @@ export function preprocess_validate(data: { [name: string]: unknown }) {
  * PreprocessInit - used to initialize the upload job prior to creating a new pdf file
  * PreprocessInvoke - invokes preprocess and retrieves the preprocess results.
  * PreprocessInvoke takes a document id and document version id and runs the pdf service `/preprocess` call on the
- * document, storing the resulting preprocess json inside of MacroDB
+ * document, storing the resulting preprocess json inside of RoxDB
  * `DocumentProcessResult` table. This also creates an entry in
  * `JobToDocumentProcessResult` table that allows the user to retrieve the
  * preprocess response using DSS.

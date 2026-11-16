@@ -20,7 +20,7 @@ vi.mock('@core/util/useCopyLink', () => ({
   },
 }));
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://macro.com',
+  getWebOrigin: () => 'https://rox.one',
 }));
 const forms = vi.hoisted(() => ({
   fetchFormDetail: vi.fn(),
@@ -120,7 +120,7 @@ describe('createFormShareInput', () => {
       userPermissions: Permissions.CAN_EDIT,
     });
     current?.copyLink?.();
-    expect(copied).toEqual(['https://macro.com/app/form/form-1/respond']);
+    expect(copied).toEqual(['https://rox.one/app/form/form-1/respond']);
   });
 
   it('is undefined until the form’s detail has loaded', () => {

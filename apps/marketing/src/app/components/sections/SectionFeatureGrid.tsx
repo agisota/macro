@@ -81,14 +81,14 @@ const desyncVideoUrl = isLocalhost
   ? localDesyncVideoUrl
   : productionDesyncVideoUrl;
 
-const localMacroDemoVideoUrl = '/video/demo-local.mp4';
-const productionMacroDemoVideoUrl = new URL(
+const localRoxDemoVideoUrl = '/video/demo-local.mp4';
+const productionRoxDemoVideoUrl = new URL(
   '/video/demo.m3u8',
   APP_BASE_URL
 ).toString();
-const macroDemoVideoUrl = isLocalhost
-  ? localMacroDemoVideoUrl
-  : productionMacroDemoVideoUrl;
+const roxDemoVideoUrl = isLocalhost
+  ? localRoxDemoVideoUrl
+  : productionRoxDemoVideoUrl;
 
 const comparisonItems = [
   {
@@ -2255,7 +2255,7 @@ export function SectionFeatureGrid(
                   playsinline
                   poster={placeholderChannelsUrl}
                   preload="metadata"
-                  src={macroDemoVideoUrl}
+                  src={roxDemoVideoUrl}
                   style={{
                     'aspect-ratio': '16 / 9',
                     background: 'var(--b1)',

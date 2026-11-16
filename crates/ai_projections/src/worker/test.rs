@@ -11,7 +11,7 @@ fn sqs_message(body: &str) -> Message {
 fn parse_message_deserializes_valid_body() {
     let original = AiProjectionQueueMessage {
         ai_projection_id: "inbox/important".to_string(),
-        target_id: "macro|test@macro.com".to_string(),
+        target_id: "macro|test@rox.one".to_string(),
         prompt_hash: "abc123".to_string(),
     };
     let body = serde_json::to_string(&original).unwrap();

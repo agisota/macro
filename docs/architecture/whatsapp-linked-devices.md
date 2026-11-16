@@ -12,7 +12,7 @@ notifications and attachment storage are in
 ## Processes
 
 ```
-Web app ──REST──▶ DSS ──── MacroDB ◀──── whatsapp_session_service (N replicas)
+Web app ──REST──▶ DSS ──── RoxDB ◀──── whatsapp_session_service (N replicas)
                          rows + NOTIFY      one task + one client per leased account
 ```
 

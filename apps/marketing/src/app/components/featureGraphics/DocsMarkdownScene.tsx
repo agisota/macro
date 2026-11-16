@@ -171,7 +171,7 @@ const MENU_EVERYTHING: MenuSection[] = [
     title: 'People',
     count: 11842,
     rows: [
-      { initials: 'E', label: 'Evan', detail: 'evan@macro.com', active: true },
+      { initials: 'E', label: 'Evan', detail: 'evan@rox.one', active: true },
     ],
   },
   {
@@ -226,13 +226,13 @@ const SCRIPT: Block[] = [
               {
                 initials: 'E',
                 label: 'Evan',
-                detail: 'evan@macro.com',
+                detail: 'evan@rox.one',
                 active: true,
               },
               {
                 avatar: avatarGabriel,
                 label: 'Gabriel Birman',
-                detail: 'gab@macro.com',
+                detail: 'gab@rox.one',
               },
             ],
           },
@@ -259,7 +259,7 @@ const SCRIPT: Block[] = [
               {
                 avatar: avatarJulia,
                 label: 'Julia Westphal',
-                detail: 'julia@macro.com',
+                detail: 'julia@rox.one',
               },
             ],
           },
@@ -414,7 +414,7 @@ const SCRIPT: Block[] = [
               {
                 avatar: avatarGabriel,
                 label: 'Gabriel Birman',
-                detail: 'gab@macro.com',
+                detail: 'gab@rox.one',
               },
             ],
           },

@@ -67,7 +67,7 @@ impl Modify for SecurityAddon {
 #[derive(OpenApi)]
 #[openapi(
     modifiers(&SecurityAddon),
-    info(terms_of_service = "https://macro.com/terms"),
+    info(terms_of_service = "https://rox.one/terms"),
     paths(
         crate::voice_gateway::catalog,
         crate::voice_gateway::sample,

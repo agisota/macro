@@ -12,12 +12,12 @@ fn unsubscribe_url_keeps_gateway_prefix() {
     );
     assert_eq!(
         url.as_str(),
-        "https://gateway.macro.com/notification/user_notifications/preferences/email-digest-notification/disable"
+        "https://gateway.rox.one/notification/user_notifications/preferences/email-digest-notification/disable"
     );
 }
 
 #[test]
-fn digest_logo_keeps_the_png_aspect_ratio() {
+fn digest_header_uses_the_rox_text_wordmark() {
     let unsubscribe_url = SignedUrl::new(
         NotificationServiceUrl::default_for_environment(Environment::Production)
             .parse_url()
@@ -33,9 +33,9 @@ fn digest_logo_keeps_the_png_aspect_ratio() {
     .render()
     .unwrap();
     let html = html.split_whitespace().collect::<Vec<_>>().join(" ");
-    assert!(html.contains(
-        r#"src="https://static-file-service.macro.com/file/b911aba9-94a6-435c-aa16-8404739f13b0" width="54" height="36""#
-    ));
+    assert!(html.contains(r#"<a href="https://rox.one""#));
+    assert!(html.contains("<span>Rox</span>"));
+    assert!(!html.contains("b911aba9-94a6-435c-aa16-8404739f13b0"));
 }
 
 #[test]
@@ -95,7 +95,7 @@ fn signed_unsubscribe_roundtrips_against_request_url() {
     let signed = SignedUrl::new(unsigned, secret.clone());
 
     let reconstructed =
-        signing::public_request_url("https", "gateway.macro.com", signed.as_ref().path()).unwrap();
+        signing::public_request_url("https", "gateway.rox.one", signed.as_ref().path()).unwrap();
     let mut to_verify = reconstructed;
     to_verify.set_query(signed.as_ref().query());
 

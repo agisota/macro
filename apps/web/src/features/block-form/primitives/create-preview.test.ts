@@ -34,7 +34,7 @@ function fakeTab(events: string[]): PreviewTab {
   };
 }
 
-const URL = 'https://macro.com/app/form/form-1/respond?preview=true';
+const URL = 'https://rox.one/app/form/form-1/respond?preview=true';
 
 describe('createPreview', () => {
   it('reserves the tab during the click, then shows the form once column and metadata writes landed and the layout was published', async () => {

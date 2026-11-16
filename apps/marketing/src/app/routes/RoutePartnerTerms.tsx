@@ -9,7 +9,7 @@ const content = `Rox
 
 Effective: August 31, 2026 · Version 1.3
 
-These Rox Partner Program Terms (the "Terms") govern participation in the Rox Partner Program (the "Program") operated by Coparse Inc. d/b/a Rox ("Rox," "we," "us," or "our").
+These Rox Partner Program Terms (the "Terms") govern participation in the Rox Partner Program (the "Program") operated by ROX ONE, PUBLIC BENEFIT COMPANY ("Rox," "we," "us," or "our").
 
 By applying to the Program and electronically accepting these Terms, you or the entity you represent ("Partner" or "you") agree to these Terms.
 
@@ -585,13 +585,13 @@ Headings are for convenience only and do not affect interpretation.
 
 ## 24. Partner Kickoff
 
-After acceptance into the Program, new Partners are encouraged to schedule a Rox Partnerships kickoff call: [Partnerships Program booking page](https://macro.com/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/partnerships-program).
+After acceptance into the Program, new Partners are encouraged to schedule a Rox Partnerships kickoff call: [Partnerships Program booking page](https://rox.one/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/partnerships-program).
 
 The kickoff call may be used to discuss Partner's business, specialties, potential customer opportunities, implementation capabilities, product questions, and ways Rox and Partner can work together.
 
 ## 25. Contact
 
-Questions about the Rox Partner Program may be directed to Rox Partnerships at [partnerships@macro.com](mailto:partnerships@macro.com).
+Questions about the Rox Partner Program may be directed to Rox Partnerships at [partnerships@rox.one](mailto:partnerships@rox.one).
 
 Legal notices relating to these Terms should be directed to 54 W 21st Suite 503, New York NY 10002.`;
 

@@ -10,7 +10,7 @@ import { attachCalendarMacroCall } from '../utils/macro-call-link';
 import { EventContent } from './EventContent';
 
 const CALL_URL =
-  'https://macro.com/app/meet/join/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF';
+  'https://rox.one/app/meet/join/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF';
 
 afterEach(cleanup);
 

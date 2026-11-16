@@ -22,7 +22,7 @@ mod test;
 pub enum SessionTaskError {
     /// The input names no task in a form this accepts.
     #[error(
-        "expected a Macro task id, a MACRO-<id> reference, or a task link like https://macro.com/app/task/<id>"
+        "expected a Macro task id, a MACRO-<id> reference, or a task link like https://rox.one/app/task/<id>"
     )]
     InvalidTaskReference,
     /// The task does not exist, or the session owner cannot view it.

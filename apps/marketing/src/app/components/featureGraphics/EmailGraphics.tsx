@@ -769,7 +769,7 @@ export function HeroAppWindow() {
 const connectedAccounts = [
   {
     photo: avatarJacobWork,
-    name: 'jacob@macro.com',
+    name: 'jacob@rox.one',
     kind: 'Google Workspace',
     count: '3',
   },

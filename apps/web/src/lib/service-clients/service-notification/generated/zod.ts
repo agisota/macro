@@ -2370,7 +2370,7 @@ export const listTypedNotificationsResponse = zod
                             .uuid()
                             .nullish()
                             .describe(
-                              "The computer's harness, once macrod has connected."
+                              "The computer's harness, once roxd has connected."
                             ),
                           outcome: zod
                             .union([
@@ -2379,7 +2379,7 @@ export const listTypedNotificationsResponse = zod
                                   kind: zod.enum(['ready']),
                                 })
                                 .describe(
-                                  'macrod connected for the first time: the computer is ready.'
+                                  'roxd connected for the first time: the computer is ready.'
                                 ),
                               zod
                                 .object({
@@ -4656,7 +4656,7 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                             .uuid()
                             .nullish()
                             .describe(
-                              "The computer's harness, once macrod has connected."
+                              "The computer's harness, once roxd has connected."
                             ),
                           outcome: zod
                             .union([
@@ -4665,7 +4665,7 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                                   kind: zod.enum(['ready']),
                                 })
                                 .describe(
-                                  'macrod connected for the first time: the computer is ready.'
+                                  'roxd connected for the first time: the computer is ready.'
                                 ),
                               zod
                                 .object({
@@ -6892,7 +6892,7 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                             .uuid()
                             .nullish()
                             .describe(
-                              "The computer's harness, once macrod has connected."
+                              "The computer's harness, once roxd has connected."
                             ),
                           outcome: zod
                             .union([
@@ -6901,7 +6901,7 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                                   kind: zod.enum(['ready']),
                                 })
                                 .describe(
-                                  'macrod connected for the first time: the computer is ready.'
+                                  'roxd connected for the first time: the computer is ready.'
                                 ),
                               zod
                                 .object({
@@ -8964,7 +8964,7 @@ export const getTypedNotificationByIdResponse = zod
                     .uuid()
                     .nullish()
                     .describe(
-                      "The computer's harness, once macrod has connected."
+                      "The computer's harness, once roxd has connected."
                     ),
                   outcome: zod
                     .union([
@@ -8973,7 +8973,7 @@ export const getTypedNotificationByIdResponse = zod
                           kind: zod.enum(['ready']),
                         })
                         .describe(
-                          'macrod connected for the first time: the computer is ready.'
+                          'roxd connected for the first time: the computer is ready.'
                         ),
                       zod
                         .object({

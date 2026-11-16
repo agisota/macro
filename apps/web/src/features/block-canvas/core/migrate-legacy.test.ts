@@ -275,7 +275,7 @@ describe('versioned canvas migration', () => {
   it.each([
     { nodes: [shape('duplicate'), shape('duplicate')] },
     { nodes: [shape('unknown', { type: 'future-shape' })] },
-    { nodes: [shape('link', { type: 'link', url: 'https://macro.com' })] },
+    { nodes: [shape('link', { type: 'link', url: 'https://rox.one' })] },
     {
       edges: [
         {

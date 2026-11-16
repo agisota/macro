@@ -65,8 +65,8 @@ pub(super) fn router<A: AgentSessionRepo + 'static>(
     hosts.extend([
         "localhost".into(),
         "127.0.0.1".into(),
-        "gateway.macro.com".into(),
-        "dev-gateway.macro.com".into(),
+        "gateway.rox.one".into(),
+        "dev-gateway.rox.one".into(),
     ]);
     let mut config = StreamableHttpServerConfig::default().with_allowed_hosts(hosts);
     config.legacy_session_mode = false;

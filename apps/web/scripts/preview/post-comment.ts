@@ -53,7 +53,7 @@ function parseArgs(): Args {
 }
 
 export function buildPreviewUrl(previewId: string): string {
-  return `https://${previewId}.preview.macro.com/app`;
+  return `https://${previewId}.preview.rox.one/app`;
 }
 
 export function buildCommentBody(previewId: string, sha: string): string {
@@ -91,7 +91,7 @@ async function main() {
   }>;
 
   const existingComment = comments.find(
-    (c) => c.body?.includes('.preview.macro.com') && c.user?.type === 'Bot'
+    (c) => c.body?.includes('.preview.rox.one') && c.user?.type === 'Bot'
   );
 
   const body = `**Preview:** [${previewUrl}](${previewUrl}) (${shortSha})`;

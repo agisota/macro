@@ -4,7 +4,7 @@ use mcp_client::domain::models::{McpServerRecord, StoredCredentials};
 use std::sync::Mutex;
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|tester@macro.com".to_string()).expect("valid test user id")
+    MacroUserIdStr::try_from("macro|tester@rox.one".to_string()).expect("valid test user id")
 }
 
 fn active_row() -> OnboardingRow {
@@ -161,7 +161,7 @@ async fn completing_records_how_the_flow_ended() {
 fn suggested_team_domain_offers_custom_domains_only() {
     // Custom domain: worth suggesting a domain team — the same judgment
     // the teams service applies when claiming a domain on create.
-    assert_eq!(suggested_team_domain(&user()).as_deref(), Some("macro.com"));
+    assert_eq!(suggested_team_domain(&user()).as_deref(), Some("rox.one"));
 
     // Generic consumer provider: no domain team to suggest.
     let gmail =
@@ -177,7 +177,7 @@ async fn get_state_carries_the_suggested_team_domain() {
     );
 
     let state = service.get_state(user()).await.expect("get_state");
-    assert_eq!(state.suggested_team_domain.as_deref(), Some("macro.com"));
+    assert_eq!(state.suggested_team_domain.as_deref(), Some("rox.one"));
 }
 
 #[test]

@@ -200,7 +200,7 @@ AUTH_KEY=$(aws secretsmanager get-secret-value \
   --secret-id document-storage-service-auth-key-dev \
   --region us-east-1 --query SecretString --output text)
 
-curl -X POST https://search-processing-dev.macro.com/internal/backfill/calls \
+curl -X POST https://search-processing-dev.rox.one/internal/backfill/calls \
   -H "Content-Type: application/json" \
   -H "x-internal-auth-key: $AUTH_KEY" \
   -d '{}'

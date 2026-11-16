@@ -3,7 +3,7 @@
   "info": {
     "title": "document_storage_service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -29459,7 +29459,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness the agent runs on, when `harness` is `macrod`."
+                "description": "Registered harness the agent runs on, when `harness` is `roxd`."
               }
             ]
           },
@@ -29539,12 +29539,12 @@
       },
       "AgentHarnessSelection": {
         "type": "object",
-        "description": "The runtime an agent runs on: a harness slug and, for `macrod`, the\nregistered harness serving it. Travel together because one without the\nother is never a valid choice.",
+        "description": "The runtime an agent runs on: a harness slug and, for `roxd`, the\nregistered harness serving it. Travel together because one without the\nother is never a valid choice.",
         "required": ["harness"],
         "properties": {
           "harness": {
             "type": "string",
-            "description": "Harness slug, e.g. `in-memory`, `cursor`, or `macrod`."
+            "description": "Harness slug, e.g. `in-memory`, `cursor`, or `roxd`."
           },
           "harness_id": {
             "oneOf": [
@@ -29553,7 +29553,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness to run on. Required when `harness` is `macrod`,\nforbidden otherwise."
+                "description": "Registered harness to run on. Required when `harness` is `roxd`,\nforbidden otherwise."
               }
             ]
           }
@@ -36392,7 +36392,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness to run on. Required when `harness` is `macrod`,\nforbidden otherwise."
+                "description": "Registered harness to run on. Required when `harness` is `roxd`,\nforbidden otherwise."
               }
             ]
           },
@@ -39943,7 +39943,7 @@
             }
           }
         ],
-        "description": "Events that can be published to [`MacroDocumentsTopic`]."
+        "description": "Events that can be published to [`RoxDocumentsTopic`]."
       },
       "DocumentUpdatedMetadata": {
         "type": "object",
@@ -48826,7 +48826,7 @@
           },
           "kind": {
             "type": "string",
-            "description": "Runtime kind. Currently always `macrod`."
+            "description": "Runtime kind. Currently always `roxd`."
           },
           "last_connected_at": {
             "type": ["string", "null"],
@@ -59546,7 +59546,7 @@
       },
       "SoupHarness": {
         "type": "object",
-        "description": "A paired runtime (a macrod machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.",
+        "description": "A paired runtime (a roxd machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.",
         "required": ["id", "name", "ownerId", "createdAt", "updatedAt"],
         "properties": {
           "createdAt": {
@@ -63852,7 +63852,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness to run on. Required when `harness` is `macrod`,\nforbidden otherwise."
+                "description": "Registered harness to run on. Required when `harness` is `roxd`,\nforbidden otherwise."
               }
             ]
           },

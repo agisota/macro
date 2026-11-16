@@ -31,7 +31,7 @@ const launch = {
   cells: {
     dates: '2026-03-02T00:00:00.000Z/2026-03-06T00:00:00.000Z',
     stage: 'Build',
-    owner: 'macro|ada@macro.com',
+    owner: 'macro|ada@rox.one',
   },
 };
 const research = {
@@ -43,7 +43,7 @@ const kickoff = {
   cells: {
     dates: '2026-02-23T00:00:00.000Z/2026-02-23T00:00:00.000Z',
     stage: null,
-    owner: 'macro|ada@macro.com',
+    owner: 'macro|ada@rox.one',
   },
 };
 
@@ -191,7 +191,7 @@ describe('a timeline grouped by a person', () => {
         item.kind === 'group' ? `${item.label} (${item.count})` : item.id
       )
     ).toEqual([
-      'ada@macro.com (2)',
+      'ada@rox.one (2)',
       'kickoff',
       'launch',
       'No owner (1)',

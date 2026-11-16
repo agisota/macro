@@ -47,7 +47,7 @@ beforeEach(() => {
   vi.resetAllMocks();
   mocks.fetch.mockResolvedValue([]);
   mocks.authorize.mockImplementation(async (getUrl) => {
-    await getUrl('https://macro.com/app/onboarding');
+    await getUrl('https://rox.one/app/onboarding');
     return true;
   });
 });
@@ -60,7 +60,7 @@ describe('native GitHub onboarding', () => {
       await createOnboardingToolConnect()(github);
       expect(
         status === 'unlinked' ? mocks.init : mocks.reauthenticate
-      ).toHaveBeenCalledWith('https://macro.com/app/onboarding');
+      ).toHaveBeenCalledWith('https://rox.one/app/onboarding');
       expect(mocks.pipedream).not.toHaveBeenCalled();
     }
   );

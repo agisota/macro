@@ -66,7 +66,7 @@ inserted `ccla:<company>` rows.
 ## Hosting
 
 Served at `https://macro-cla.macroverse.workers.dev` like the account's other
-workers — the macro.com DNS zone is on Route 53, so a Cloudflare custom
+workers — the rox.one DNS zone is on Route 53, so a Cloudflare custom
 domain isn't available. If the worker ever moves to a vanity host, update
 together: the OAuth app callback URL, `WORKER_ORIGIN` in
 `tooling/xtask/crates/xtask_workflows/src/workflows/cla.rs` (then regenerate

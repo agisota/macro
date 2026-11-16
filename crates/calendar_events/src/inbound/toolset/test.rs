@@ -408,7 +408,7 @@ impl CalendarOccurrenceService for MockOccurrences {
     }
 }
 
-const MEETING_URL: &str = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+const MEETING_URL: &str = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
 #[derive(Default)]
 struct MockMeetingLinks {

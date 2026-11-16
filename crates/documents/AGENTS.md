@@ -138,7 +138,7 @@ realtime appearance events do not re-ingest history.
 ## Checks
 
 - `cargo test -p documents --all-features` (`SQLX_OFFLINE` unset; needs a
-  migrated local MacroDB for `outbound`/`document_create_adapters` tests).
+  migrated local RoxDB for `outbound`/`document_create_adapters` tests).
 - Point `REDIS_URL` at the local Redis endpoint for editing-session tests;
   the default is `redis://127.0.0.1:6379`.
 - `just -f crates/documents/justfile check` for an all-features `cargo check`.

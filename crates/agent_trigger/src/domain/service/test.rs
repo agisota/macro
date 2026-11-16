@@ -20,7 +20,7 @@ use messages::domain::models::SimpleMention;
 use crate::domain::broker_events::TriggerDecision;
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::parse_from_str("macro|trigger-service-test@macro.com")
+    MacroUserIdStr::parse_from_str("macro|trigger-service-test@rox.one")
         .expect("valid user id")
         .into_owned()
 }
@@ -909,7 +909,7 @@ async fn the_judge_reads_every_live_agent_numbered_in_the_thread() {
                 transcript,
                 "[agent 1] on it\n\
                  [agent 2] me too\n\
-                 [user macro|trigger-service-test@macro.com] hello\n"
+                 [user macro|trigger-service-test@rox.one] hello\n"
             );
             Box::pin(async { Ok(vec![0.9, 0.1]) })
         });
@@ -986,9 +986,9 @@ async fn the_judge_reads_the_thread_around_the_agent() {
         agent_bots(),
         extractor(Ok(None)),
         judge_expecting(
-            "[user macro|trigger-service-test@macro.com] unrelated chatter\n\
+            "[user macro|trigger-service-test@rox.one] unrelated chatter\n\
              [agent 1] on it\n\
-             [user macro|trigger-service-test@macro.com] hello\n",
+             [user macro|trigger-service-test@rox.one] hello\n",
         ),
         history,
     );

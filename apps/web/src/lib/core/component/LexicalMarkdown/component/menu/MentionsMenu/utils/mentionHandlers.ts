@@ -178,7 +178,7 @@ async function handleGroupMentionItem(
 function buildBookingUrl(profileId: string, slug: string): string {
   const hostname = window.location.hostname;
   const cleanHost =
-    hostname === 'localhost' ? 'dev.macro.com' : hostname.replace('www.', '');
+    hostname === 'localhost' ? 'dev.rox.one' : hostname.replace('www.', '');
   return `https://${cleanHost}/app/book/${encodeURIComponent(profileId)}/${encodeURIComponent(slug)}`;
 }
 

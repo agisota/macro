@@ -158,7 +158,7 @@ describe('WhatsApp to Markdown for display', () => {
     expect(
       rendered(
         whatsappToMarkdown(
-          'see https://example.com/a_b_c. or www.macro.com! javascript:alert(1)'
+          'see https://example.com/a_b_c. or www.rox.one! javascript:alert(1)'
         )
       ).nodes
     ).toEqual([
@@ -166,8 +166,8 @@ describe('WhatsApp to Markdown for display', () => {
       'link:https://example.com/a_b_c',
       'text:https://example.com/a_b_c',
       'text:. or ',
-      'link:www.macro.com',
-      'text:www.macro.com',
+      'link:www.rox.one',
+      'text:www.rox.one',
       'text:! javascript:alert(1)',
     ]);
   });

@@ -51,7 +51,7 @@ and kept in sync via the connection gateway.
 ## Checks
 
 - `cargo test -p contacts --all-features -- --test-threads=2` (`SQLX_OFFLINE` unset; `directory-names` covers name precedence/account isolation; the `outbound`/`default`
-  features need a local MacroDB — see `.agents/rules/rust/guardrails.md`).
+  features need a local RoxDB — see `.agents/rules/rust/guardrails.md`).
 
 - `cargo test -p contacts --all-features '::case_lookup::' -- --test-threads=2 --nocapture`: canonical point lookup matches legacy-case IDs exposed by paging, rejects invalid marker/Unicode aliases and other viewers, and seeks the new expression indexes at 100k under custom/generic plans. Directory-name tests also preserve viewer-private labels and normalized identities.
 

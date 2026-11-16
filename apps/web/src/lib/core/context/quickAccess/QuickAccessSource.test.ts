@@ -538,7 +538,7 @@ describe('Quick Access source integration', () => {
     const names = [
       'Seamus snip',
       'seamus todo',
-      'seamus@macro.com taskium',
+      'seamus@rox.one taskium',
       'Some early afternoon music',
     ];
     mocks.history = names.map((name, index) => ({

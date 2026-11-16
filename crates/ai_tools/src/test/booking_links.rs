@@ -5,7 +5,7 @@ use serde_json::{Value, json};
 use std::sync::Arc;
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").unwrap()
+    MacroUserIdStr::try_from_email("owner@rox.one").unwrap()
 }
 use ai_toolset::ToolSet;
 use calendar_scheduling::{
@@ -108,7 +108,7 @@ async fn confirmed_booking_is_saved_and_bookable_without_touching_other_links(po
         .execute(&pool)
         .await
         .unwrap();
-    sqlx::raw_sql("CREATE TABLE \"User\" (id text PRIMARY KEY); CREATE TABLE team (id uuid PRIMARY KEY); INSERT INTO \"User\" VALUES ('macro|owner@macro.com');").execute(&pool).await.unwrap();
+    sqlx::raw_sql("CREATE TABLE \"User\" (id text PRIMARY KEY); CREATE TABLE team (id uuid PRIMARY KEY); INSERT INTO \"User\" VALUES ('macro|owner@rox.one');").execute(&pool).await.unwrap();
     sqlx::raw_sql(include_str!(
         "../../../macro_db_client/migrations/20260918164303_calendar_scheduling.sql"
     ))

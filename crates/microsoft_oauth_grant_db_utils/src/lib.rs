@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! Database utilities for encrypted Microsoft OAuth grants stored in MacroDB.
+//! Database utilities for encrypted Microsoft OAuth grants stored in RoxDB.
 
 use chrono::{DateTime, Utc};
 use sqlx::{Pool, Postgres};
@@ -65,7 +65,7 @@ impl EncryptedMicrosoftOAuthGrant {
     }
 }
 
-/// An encrypted Microsoft OAuth grant as stored in MacroDB.
+/// An encrypted Microsoft OAuth grant as stored in RoxDB.
 pub struct StoredMicrosoftOAuthGrant {
     fusionauth_user_id: String,
     email_address: String,

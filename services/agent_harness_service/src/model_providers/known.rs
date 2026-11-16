@@ -1,12 +1,12 @@
 //! The model configuration each paired runtime last reported, in Postgres.
 
 use agent_client_protocol::schema::v1::SessionConfigOption;
-use agent_harness::domain::model_load::{KnownMacrodModels, KnownModels};
+use agent_harness::domain::model_load::{KnownRoxdModels, KnownModels};
 use harness_id::HarnessId;
 use sqlx::PgPool;
 use sqlx::types::Json;
 
-/// [`KnownMacrodModels`] in `harness_known_models`.
+/// [`KnownRoxdModels`] in `harness_known_models`.
 #[derive(Clone)]
 pub struct PgKnownModels {
     pool: PgPool,
@@ -19,7 +19,7 @@ impl PgKnownModels {
     }
 }
 
-impl KnownMacrodModels for PgKnownModels {
+impl KnownRoxdModels for PgKnownModels {
     async fn last_known(&self, harness: HarnessId) -> Result<Option<KnownModels>, String> {
         let row = sqlx::query!(
             r#"

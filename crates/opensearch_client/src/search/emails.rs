@@ -45,7 +45,7 @@ const EMAIL_KEYWORD_FIELDS: &[&str] = &[
 /// never signal, mirroring the Postgres `is_signal` heuristic. Kept in sync
 /// with `email_utils::MACRO_NOTIFICATION_SENDER_DOMAIN`, which is not imported
 /// so this crate stays free of the email HTML tooling that crate pulls in.
-const MACRO_NOTIFICATION_SENDER_DOMAIN: &str = "notification.macro.com";
+const MACRO_NOTIFICATION_SENDER_DOMAIN: &str = "notification.rox.one";
 
 /// Matches messages whose `sender` is any address at
 /// [`MACRO_NOTIFICATION_SENDER_DOMAIN`].

@@ -54,7 +54,7 @@ topics! {
     /// Public call notifications for webhooks and event streams.
     MacroCallNotificationsTopic => "macro.call_notifications",
     /// Document lifecycle events (created / updated / deleted / copied).
-    MacroDocumentsTopic => "macro.documents",
+    RoxDocumentsTopic => "macro.documents",
     /// Committed GitHub pull request updates.
     MacroGithubPullRequestsTopic => "macro.github_pull_requests",
     /// Every delivery the GitHub App verified, whatever its event.
@@ -97,7 +97,7 @@ topics! {
     /// remove it, and its cluster topic, after that rollout.
     MacroAgentSessionLogTopic => "macro.agent_session_log",
     /// Database lifecycle (created, renamed, trashed, restored, purged) and table-change events.
-    MacroDatabasesTopic => "macro.databases",
+    RoxDatabasesTopic => "macro.databases",
     /// Form lifecycle (created, renamed, trashed, restored, purged), sharing and response events.
     MacroFormsTopic => "macro.forms",
     /// User profile changes, such as a new profile picture.

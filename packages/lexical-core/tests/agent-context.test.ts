@@ -223,8 +223,8 @@ describe('composeAgentContextPrompt', () => {
         thread: {
           rootId: 'a',
           messages: [
-            contextMessage('a', 'julia@macro.com', 'calendar popover scrolls'),
-            contextMessage('a3', 'wolf@macro.com', 'please fix'),
+            contextMessage('a', 'julia@rox.one', 'calendar popover scrolls'),
+            contextMessage('a3', 'wolf@rox.one', 'please fix'),
           ],
           messagesOmitted: false,
         },
@@ -232,14 +232,14 @@ describe('composeAgentContextPrompt', () => {
           {
             rootId: 'b',
             messages: [
-              contextMessage('b', 'teo@macro.com', 'spinner never stops'),
-              contextMessage('b2', 'julia@macro.com', 'same on mobile'),
+              contextMessage('b', 'teo@rox.one', 'spinner never stops'),
+              contextMessage('b2', 'julia@rox.one', 'same on mobile'),
             ],
             messagesOmitted: false,
           },
           {
             rootId: 'c',
-            messages: [contextMessage('c', 'jacob@macro.com', 'lunch?')],
+            messages: [contextMessage('c', 'jacob@rox.one', 'lunch?')],
             messagesOmitted: false,
           },
         ],
@@ -252,16 +252,16 @@ describe('composeAgentContextPrompt', () => {
         '    <note>The prompt was posted as a reply in the thread below. It is about that thread.</note>',
         '  </reply_target>',
         '  <thread root="a">',
-        '    <message id="a" author="julia@macro.com" author_id="macro|julia@macro.com" at="2026-09-25T10:00:00Z">calendar popover scrolls</message>',
-        '    <message id="a3" author="wolf@macro.com" author_id="macro|wolf@macro.com" at="2026-09-25T10:00:00Z" mentioned_you="true">please fix</message>',
+        '    <message id="a" author="julia@rox.one" author_id="macro|julia@rox.one" at="2026-09-25T10:00:00Z">calendar popover scrolls</message>',
+        '    <message id="a3" author="wolf@rox.one" author_id="macro|wolf@rox.one" at="2026-09-25T10:00:00Z" mentioned_you="true">please fix</message>',
         '  </thread>',
         '  <channel_background>',
         '    <note>Other recent messages in this channel, outside the thread above, oldest first. Background only: they are not what the prompt is about.</note>',
         '    <thread root="b">',
-        '      <message id="b" author="teo@macro.com" author_id="macro|teo@macro.com" at="2026-09-25T10:00:00Z">spinner never stops</message>',
-        '      <message id="b2" author="julia@macro.com" author_id="macro|julia@macro.com" at="2026-09-25T10:00:00Z">same on mobile</message>',
+        '      <message id="b" author="teo@rox.one" author_id="macro|teo@rox.one" at="2026-09-25T10:00:00Z">spinner never stops</message>',
+        '      <message id="b2" author="julia@rox.one" author_id="macro|julia@rox.one" at="2026-09-25T10:00:00Z">same on mobile</message>',
         '    </thread>',
-        '    <message id="c" author="jacob@macro.com" author_id="macro|jacob@macro.com" at="2026-09-25T10:00:00Z">lunch?</message>',
+        '    <message id="c" author="jacob@rox.one" author_id="macro|jacob@rox.one" at="2026-09-25T10:00:00Z">lunch?</message>',
         '  </channel_background>',
         '</conversation>',
       ].join('\n')
@@ -277,12 +277,12 @@ describe('composeAgentContextPrompt', () => {
       channel: [
         {
           rootId: 'old',
-          messages: [contextMessage('old2', 'teo@macro.com', 'late reply')],
+          messages: [contextMessage('old2', 'teo@rox.one', 'late reply')],
           messagesOmitted: true,
         },
         {
           rootId: 'p',
-          messages: [contextMessage('p', 'wolf@macro.com', 'what is broken?')],
+          messages: [contextMessage('p', 'wolf@rox.one', 'what is broken?')],
           messagesOmitted: false,
         },
       ],
@@ -297,7 +297,7 @@ describe('composeAgentContextPrompt', () => {
       '    <thread root="old" messages_omitted="true">\n      <note>Some messages of this thread are not shown.</note>'
     );
     expect(text).toContain(
-      '    <message id="p" author="wolf@macro.com" author_id="macro|wolf@macro.com" at="2026-09-25T10:00:00Z" mentioned_you="true">what is broken?</message>'
+      '    <message id="p" author="wolf@rox.one" author_id="macro|wolf@rox.one" at="2026-09-25T10:00:00Z" mentioned_you="true">what is broken?</message>'
     );
   });
 
@@ -310,7 +310,7 @@ describe('composeAgentContextPrompt', () => {
           messageId: 'b2',
           threadId: 'b',
           preview: 'same on mobile',
-          message: contextMessage('b2', 'julia@macro.com', 'same on mobile'),
+          message: contextMessage('b2', 'julia@rox.one', 'same on mobile'),
         },
       })
     ).toBe(
@@ -318,7 +318,7 @@ describe('composeAgentContextPrompt', () => {
         '<conversation>',
         '  <reply_target kind="quote" message="b2" thread="b">',
         '    <note>The prompt quote-replies to this message. It is what the prompt is about.</note>',
-        '    <message id="b2" author="julia@macro.com" author_id="macro|julia@macro.com" at="2026-09-25T10:00:00Z">same on mobile</message>',
+        '    <message id="b2" author="julia@rox.one" author_id="macro|julia@rox.one" at="2026-09-25T10:00:00Z">same on mobile</message>',
         '  </reply_target>',
         '</conversation>',
       ].join('\n')
@@ -384,14 +384,14 @@ describe('composeAgentContextPrompt', () => {
   });
 
   it('names the owner and requester and requires explicit actor selection', () => {
-    const owner = { id: 'macro|wolf@macro.com', name: 'wolf@macro.com' };
+    const owner = { id: 'macro|wolf@rox.one', name: 'wolf@rox.one' };
     const text = composedContext({
       promptMarkdown: 'hi',
       owner,
       sender: owner,
     });
     expect(text).toContain(
-      '<session owner="wolf@macro.com" owner_id="macro|wolf@macro.com">'
+      '<session owner="wolf@rox.one" owner_id="macro|wolf@rox.one">'
     );
     expect(text).toContain('is_owner="true"');
     expect(text).toContain('Choose acting_as explicitly');
@@ -402,13 +402,13 @@ describe('composeAgentContextPrompt', () => {
     const text = composedContext({
       promptMarkdown: 'read my email',
       parent: { type: 'channel', id: 'channel-1' },
-      owner: { id: 'macro|wolf@macro.com', name: 'wolf@macro.com' },
-      sender: { id: 'macro|julia@macro.com', name: 'julia@macro.com' },
+      owner: { id: 'macro|wolf@rox.one', name: 'wolf@rox.one' },
+      sender: { id: 'macro|julia@rox.one', name: 'julia@rox.one' },
     });
     expect(text).toContain(
-      'julia@macro.com sent this prompt. wolf@macro.com owns this session.'
+      'julia@rox.one sent this prompt. wolf@rox.one owns this session.'
     );
-    expect(text).toContain('those calls wait for wolf@macro.com');
+    expect(text).toContain('those calls wait for wolf@rox.one');
     expect(text).toContain('never silently switch accounts');
     expect(text).toContain('<conversation type="channel" id="channel-1">');
   });
@@ -416,7 +416,7 @@ describe('composeAgentContextPrompt', () => {
   it('does not grant a requester account to a turn without a person', () => {
     const text = composedContext({
       promptMarkdown: 'run',
-      owner: { id: 'macro|wolf@macro.com', name: 'wolf@macro.com' },
+      owner: { id: 'macro|wolf@rox.one', name: 'wolf@rox.one' },
     });
     expect(text).toContain('<prompted_by is_owner="false"/>');
     expect(text).toContain('has no requester account');

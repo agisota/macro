@@ -269,7 +269,7 @@ public feature and blog routes, `/download`, and `/start`;
 `/onboarding-preview.html` remains a development review entry. It does not host
 the authenticated `/app/*` routes. In standalone dev and preview servers,
 GET/HEAD navigation to `/app` or `/app/*` redirects to the same path and query
-on `VITE_APP_BASE_URL` (default `https://macro.com`), where signup and the real
+on `VITE_APP_BASE_URL` (default `https://rox.one`), where signup and the real
 app run. Set it to the separate `apps/web` origin for local signup testing. This prevents Vite's
 website fallback from rendering an empty shell for app links. Keep `target="_self"` on the hero and header signup links so the website router cannot intercept the app handoff; phone clicks still open `/mobile-signup`. Verify a real document navigation, not only a changed URL. Production routing
 is unchanged; run `apps/web` separately when testing local signup changes.
@@ -322,13 +322,13 @@ Verify the email link, direct navigation, and readability on desktop and mobile.
 
 See [the migration audit and cutover checklist](seo/MIGRATION.md). The committed
 `seo/migration-baseline.json` records the indexable URLs and schema types on
-macro.com. Keep the baseline when adding pages; do not remove a URL from it to
+rox.one. Keep the baseline when adding pages; do not remove a URL from it to
 silence a regression.
 
 `bun run check:seo` verifies the built metadata, schema, sitemap, internal links,
 signup noindex, and initial JavaScript budget. The deployment probe is
 `bun scripts/verify-seo-live.ts https://candidate-host`.
-`VITE_APP_BASE_URL` sets the expected canonical origin (default `macro.com`).
+`VITE_APP_BASE_URL` sets the expected canonical origin (default `rox.one`).
 
 Publish `apps/marketing/dist/` at the public origin, resolving extensionless
 public paths to `<path>/index.html`. Preserve the existing authenticated
@@ -528,7 +528,7 @@ Retain FAQ class markers so prerendering emits matching FAQPage structured data.
 
 Product heroes put **Watch demo** beside Get started (`ProductHero`'s
 `tutorial`, and the Email hero); the Agents page's Bring your own agent
-section also has one for MacroD. It opens `TutorialVideoDialog`: the app's
+section also has one for RoxD. It opens `TutorialVideoDialog`: the app's
 Block tutorial, paused behind the app's play pill (play disc, presenter, "Watch
 demo · m:ss") until the visitor presses it. Escape and the backdrop close it,
 and focus returns to the button. Titles and lengths in
@@ -536,7 +536,7 @@ and focus returns to the button. Titles and lengths in
 together.
 
 The videos and posters live once, in `public/video/tutorials/` (mp4s through
-Git LFS), and deploy to `macro.com/video/tutorials/`. docs.macro.com embeds
+Git LFS), and deploy to `rox.one/video/tutorials/`. docs.rox.one embeds
 them from there, including Blocks without a page here (Home, Drive, Calendar,
 Scheduling, Spreadsheets, Databases, Canvas). Replacing a video keeps its
 name; the deploy's `--size-only` sync skips a same-size file, and CloudFront
@@ -808,7 +808,7 @@ sidebar collapses. Measure the embedded container, not the browser viewport.
 Check section source panes after resizing, including around 895px browser width.
 
 
-BYOA presents macrod and external MCP as two
+BYOA presents roxd and external MCP as two
 connection paths, stacked in one reading column on desktop and phones. Both setup links
 remain visible. MCP commands reuse `AgentMcpSetup` inside an optional disclosure
 without a fixed-height demo window. Verify each client expands and copies its
@@ -1040,7 +1040,7 @@ recording navigation, transcript seeking, and phone layout. CRM linking remains
 on the CRM page; this scene demonstrates channel-call team sharing only.
 
 In the retained email demo, Austin uses the fictional address `austin@example.com` and
-Julia’s Cc address is `julia@macro.com`. Spreadsheet and pipeline contacts use
+Julia’s Cc address is `julia@rox.one`. Spreadsheet and pipeline contacts use
 their company’s domain; fictional companies use reserved `.example` domains.
 
 The document animation renders saved scheduling links as calendar mentions with a short label, matching Rox’s booking link presentation.
@@ -1072,8 +1072,8 @@ Pickup and drop must preserve the card’s screen-space bounds on phones too.
 
 ### Product copy
 
-Use [Jacob’s product notes](https://macro.com/app/drive/md/019ef55a-ea39-7fef-9014-da8e4b25c845)
-and [CRM notes](https://macro.com/app/drive/md/019f852e-c8b0-7fe1-a228-11be3161b321)
+Use [Jacob’s product notes](https://rox.one/app/drive/md/019ef55a-ea39-7fef-9014-da8e4b25c845)
+and [CRM notes](https://rox.one/app/drive/md/019f852e-c8b0-7fe1-a228-11be3161b321)
 as wording sources for the homepage and feature pages. Check Jacob-authored
 messages for cadence, excluding pasted agent output and automated summaries.
 Prefer concrete actions and examples over generic claims about context or
@@ -1151,7 +1151,7 @@ remain unchanged. Keep the player borderless, with 44px squircle corners
 `corner-shape` support retain rounded corners.
 `ProductHero` keys the player by tutorial ID so switching tutorials resets playback
 and the presenter pill before the next video starts.
-Spreadsheets, Databases, and Canvas use their tutorials in the feature hero. The MacroD tutorial sits in the Agents page’s “Your agent, inside Rox” section.
+Spreadsheets, Databases, and Canvas use their tutorials in the feature hero. The RoxD tutorial sits in the Agents page’s “Your agent, inside Rox” section.
 Company graph, AI tagging, Automatic permissions, Workspace events, and Unified search use `BenefitVideoPoster` (`preview: 'benefit'`): floating product diagrams on black with a soft neutral glow, faint dot texture, and precise callouts. Keep color in the small product accents rather than a surrounding frame. Keep benefit page backgrounds black, with only a faint, localized neutral glow behind diagrams (4% at the hero glow center). Keep the play control below the focal artwork, with a separate control lane on narrow screens. The decorative poster disappears when playback starts. Routines, Skills, and Forms use the shared app-window preview and their own feature wallpaper. Extract Routines at 8s, and Skills and Forms at 3.8s, using the same 1920×1080 frame and window crop as the other features.
 Pages without an app tutorial keep a text hero until a video is available. Keep the titles and durations in `core/tutorial-videos.ts`
 in sync with the app; the Docs tutorial is the 1:15 version focused on @mentions.
@@ -1284,7 +1284,7 @@ On `/replace-apps`, combine the replacement logos and savings calculator into on
 
 `/forms` appears under More features and uses `ProductFormsPage` with the shared hero, presenter video player, linked product names, glass illustrations, and footer. Its 49-second tutorial comes from `macro-inc/meta-ads` PR #62, through the web-optimized assets in `macro-inc/macro` PR #10113. Keep form responses mapped to database rows, booking after accepted submission, and sharing limited to invited people, channels, or anyone with the link. The canonical setup guide is `apps/docs/product/forms.mdx`, embedded on the feature page.
 
-Feature, benefits, and documentation pages share `PageOutline`: the reading column is balanced between site navigation and a quiet section outline on wide screens. Use short topic labels from `page-outline-labels.ts` for feature and benefit sections, keyed to their heading IDs, and label question sections “FAQ”. Keep full headings in the page content. At narrower widths the outline is hidden so the content keeps its space. Sidebar groups use continuous subtle vertical guide lines, with a bright straight active marker and no rounded selection background, matching docs.macro.com. Match the right outline to the left sidebar: inactive links at 60% ink, its heading at 70%, and active or hovered links at full ink. Style “On this page” like the left group headings: 12px type, 1.6 line-height, weight 370, and an 8px gap below. The right outline uses 14px labels, 16px link indentation, and 32px horizontal padding inside a 241px column matching the left sidebar. On wide feature, benefit, and documentation pages, stack Sign Up above Book a demo in a 177px column aligned with the outline; retain the compact horizontal actions on smaller screens.
+Feature, benefits, and documentation pages share `PageOutline`: the reading column is balanced between site navigation and a quiet section outline on wide screens. Use short topic labels from `page-outline-labels.ts` for feature and benefit sections, keyed to their heading IDs, and label question sections “FAQ”. Keep full headings in the page content. At narrower widths the outline is hidden so the content keeps its space. Sidebar groups use continuous subtle vertical guide lines, with a bright straight active marker and no rounded selection background, matching docs.rox.one. Match the right outline to the left sidebar: inactive links at 60% ink, its heading at 70%, and active or hovered links at full ink. Style “On this page” like the left group headings: 12px type, 1.6 line-height, weight 370, and an 8px gap below. The right outline uses 14px labels, 16px link indentation, and 32px horizontal padding inside a 241px column matching the left sidebar. On wide feature, benefit, and documentation pages, stack Sign Up above Book a demo in a 177px column aligned with the outline; retain the compact horizontal actions on smaller screens.
 
 The homepage uses the same wide-screen right rail and stacked signup/demo actions as feature pages. `HomepageResources` has two matching groups: Downloads for iOS, Mac, and Android, followed by Links for GitHub, X / Twitter, LinkedIn, YouTube, and Instagram. Separate the groups by 24px. Display Links as a horizontal row of social icons with accessible names and hover titles, without a star count. Keep Blog and Documentation out of this resource rail. Keep mobile downloads aligned with the native app's store URLs; resolve the Mac installer through `desktopDownloads.ts`, retaining a verified direct fallback when GitHub is unavailable. Below 1440px the resources follow the homepage content.
 

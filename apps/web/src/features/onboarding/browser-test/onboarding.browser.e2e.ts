@@ -337,8 +337,8 @@ test('a personal address refers friends instead of creating a team', async ({
 test('staff can bypass onboarding from any step', async ({ page }) => {
   await openFixture(page, '/?view=flow', {
     viewer: {
-      id: 'macro|wolf@macro.com',
-      email: 'wolf@macro.com',
+      id: 'macro|wolf@rox.one',
+      email: 'wolf@rox.one',
       tutorialComplete: false,
       licensed: false,
     },

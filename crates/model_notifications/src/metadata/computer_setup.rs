@@ -6,7 +6,7 @@ use super::*;
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, ToSchema)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum ComputerSetupOutcome {
-    /// macrod connected for the first time: the computer is ready.
+    /// roxd connected for the first time: the computer is ready.
     Ready,
     /// Setup gave up before the computer was ready.
     Failed {
@@ -34,7 +34,7 @@ pub struct ComputerSetupAgent {
 pub struct ComputerSetupMetadata {
     /// The computer that was set up.
     pub computer_id: Uuid,
-    /// The computer's harness, once macrod has connected.
+    /// The computer's harness, once roxd has connected.
     pub harness_id: Option<Uuid>,
     /// The computer's name when the notice was sent.
     pub computer_name: String,

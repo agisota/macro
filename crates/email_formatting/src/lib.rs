@@ -128,7 +128,7 @@ impl EmailDigestNotification {
 
         Ok(EmailDigestNotification {
             inner_html_string,
-            subject: format!("You have {input_len} new notifications on Macro"),
+            subject: format!("You have {input_len} new notifications on Rox"),
         })
     }
 }

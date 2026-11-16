@@ -38,7 +38,7 @@ fn context() -> ProjectionContext {
         }),
         viewers: HashSet::from([
             owner,
-            MacroUserIdStr::try_from("macro|staff@macro.com".to_owned()).unwrap(),
+            MacroUserIdStr::try_from("macro|staff@rox.one".to_owned()).unwrap(),
         ]),
     }
 }
@@ -68,7 +68,7 @@ fn sent_drafts_trash_and_macro_notifications_do_not_notify() {
     assert!(!should_notify(false, true, current));
     current.in_trash = false;
     current.message.from = Some(ContactInfo {
-        email: "notifications@notification.macro.com".into(),
+        email: "notifications@notification.rox.one".into(),
         ..Default::default()
     });
     assert!(!should_notify(false, true, current));

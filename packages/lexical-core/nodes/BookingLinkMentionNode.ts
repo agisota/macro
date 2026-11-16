@@ -29,7 +29,7 @@ export type BookingLinkMentionInfo = {
 
 /** Pattern to match Macro booking URLs: /app/book/:profile/:slug? */
 const MACRO_BOOKING_URL_PATTERN =
-  /^https?:\/\/(?:www\.)?(?:macro\.com|localhost:\d+|dev\.macro\.com|staging\.macro\.com)\/app\/book\/([^/?#]+)(?:\/([^/?#]+))?(?:[?#].*)?$/;
+  /^https?:\/\/(?:www\.)?(?:rox\.one|localhost:\d+|dev\.rox\.one|staging\.rox\.one)\/app\/book\/([^/?#]+)(?:\/([^/?#]+))?(?:[?#].*)?$/;
 
 /** Check whether a URL is a valid Macro booking link. */
 export function isMacroBookingUrl(url: string): boolean {
@@ -101,7 +101,7 @@ export class BookingLinkMentionNode extends DecoratorNode<
     this.__url =
       url ||
       buildBookingUrl(profileId, slug) ||
-      `https://macro.com/app/book/${profileId}`;
+      `https://rox.one/app/book/${profileId}`;
   }
 
   static importJSON(serializedNode: SerializedBookingLinkMentionNode) {
@@ -254,7 +254,7 @@ function buildBookingUrl(profileId: string, slug?: string): string | undefined {
   if (typeof window === 'undefined') return undefined;
   const hostname = window.location.hostname;
   const cleanHost =
-    hostname === 'localhost' ? 'dev.macro.com' : hostname.replace('www.', '');
+    hostname === 'localhost' ? 'dev.rox.one' : hostname.replace('www.', '');
   const path = slug
     ? `/app/book/${encodeURIComponent(profileId)}/${encodeURIComponent(slug)}`
     : `/app/book/${encodeURIComponent(profileId)}`;

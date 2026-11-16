@@ -307,7 +307,7 @@ it('lists the real MCP command and does not report copy success on failure', asy
   const view = render(() => <AgentMcpDemo />);
   expect(
     view.getByText(
-      'claude mcp add --transport http macro https://mcp-server.macro.com/mcp'
+      'claude mcp add --transport http macro https://mcp-server.rox.one/mcp'
     )
   ).toBeTruthy();
   Object.defineProperty(navigator, 'clipboard', {

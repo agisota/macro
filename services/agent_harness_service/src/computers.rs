@@ -1,5 +1,5 @@
 //! Macro computers' control plane in this process: the fleet operator and
-//! its loops, and macrod presence → lifecycle events.
+//! its loops, and roxd presence → lifecycle events.
 //!
 //! Purchases, billing and the team routes live in authentication_service,
 //! which owns Stripe; both share the `hosted_runtime*` tables.
@@ -189,7 +189,7 @@ pub(crate) async fn operator(
 }
 
 /// One connection per concurrent pass. The control plane gets its own pool
-/// so a burst of session traffic (or macrod reconnecting after a deploy)
+/// so a burst of session traffic (or roxd reconnecting after a deploy)
 /// cannot starve it, and its waits stay short: a pass that cannot get a
 /// connection skips its tick instead of queueing behind the burst.
 const OPERATOR_CONNECTIONS: u32 = 5;
@@ -459,7 +459,7 @@ impl<Service: HarnessService + Send + Sync + 'static> HostedHarnessService for S
 }
 
 /// [`Harnesses`] over the harnesses crate: the buyer owns an approved harness
-/// shared with the team, so macrod claims it without a pairing code. The
+/// shared with the team, so roxd claims it without a pairing code. The
 /// team's default agent on it comes from the bots crate.
 pub struct HostedHarnesses {
     service: Arc<dyn HostedHarnessService>,
@@ -595,7 +595,7 @@ impl<Inner: HarnessPresence> HarnessPresence for ComputerPresence<Inner> {
             }
             if let Some(operator) = &self.operator {
                 operator
-                    .macrod_connected(harness)
+                    .roxd_connected(harness)
                     .await
                     .inspect_err(|error| tracing::error!(%harness, error = ?error, "computer connect event failed"))
                     .ok();
@@ -636,7 +636,7 @@ impl<Inner: HarnessPresence> HarnessPresence for ComputerPresence<Inner> {
             }
             if let Some(operator) = &self.operator {
                 operator
-                    .macrod_disconnected(harness)
+                    .roxd_disconnected(harness)
                     .await
                     .inspect_err(|error| tracing::error!(%harness, error = ?error, "computer disconnect event failed"))
                     .ok();

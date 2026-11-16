@@ -111,7 +111,7 @@ Premium). The `personal_plan` dead-letter monitor pages on-call. Recover:
    dead event (do not skip it):
 
    ```sh
-   curl -sS -X POST "https://gateway.macro.com/auth/internal/stripe_inbox/replay_dead" \
+   curl -sS -X POST "https://gateway.rox.one/auth/internal/stripe_inbox/replay_dead" \
      -H "x-internal-auth-key: $INTERNAL_API_KEY" \
      -H "content-type: application/json" \
      -d '{"consumer": "personal_plan", "skipDeadEvent": false, "limit": 100}'
@@ -120,7 +120,7 @@ Premium). The `personal_plan` dead-letter monitor pages on-call. Recover:
 
    `INTERNAL_API_KEY` is the value of that key in the authentication-service
    Doppler config of the environment; the base URL is `AuthServiceUrl`
-   (`crates/macro_service_urls`), `https://dev-gateway.macro.com/auth` on dev.
+   (`crates/macro_service_urls`), `https://dev-gateway.rox.one/auth` on dev.
 4. Check the dead count is gone: the `stripe inbox dead cursors` log stops
    and the monitor recovers within 30 minutes.
 

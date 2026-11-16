@@ -38,7 +38,7 @@ it.each(['image', 'video'] as const)(
     const [editable, setEditable] = createSignal(true);
     const editor = createEmailEditor();
     let key = '';
-    const url = 'https://files.macro.com/audit';
+    const url = 'https://files.rox.one/audit';
     editor.update(
       () => {
         const node = (kind === 'image' ? $createImageNode : $createVideoNode)({

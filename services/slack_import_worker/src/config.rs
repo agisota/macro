@@ -10,7 +10,7 @@ mod test;
 #[derive(macro_config::MacroConfig)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub struct Config {
-    /// MacroDB connection URL.
+    /// RoxDB connection URL.
     pub database_url: DatabaseUrl,
     /// Immutable temporary archive object bucket.
     pub upload_staging_bucket: String,

@@ -987,7 +987,7 @@ export type Caller = {
 /**
  * Harness names accepted by the capability-discovery endpoint.
  */
-export type CapabilityHarnessDto = 'in-memory' | 'cursor' | 'macrod';
+export type CapabilityHarnessDto = 'in-memory' | 'cursor' | 'roxd';
 
 /**
  * The latest capture attempt.
@@ -1694,7 +1694,7 @@ export type DiscoverAgentCapabilitiesRequest = {
      */
     harness: CapabilityHarnessDto;
     /**
-     * Required for macrod and forbidden for other targets.
+     * Required for roxd and forbidden for other targets.
      */
     harnessId?: string | null;
     /**
@@ -2217,7 +2217,7 @@ export type LoadAgentModelsRequest = {
      */
     harness: ModelHarnessDto;
     /**
-     * Required for macrod and forbidden for other targets.
+     * Required for roxd and forbidden for other targets.
      */
     harnessId?: string | null;
 };
@@ -2333,7 +2333,7 @@ export type MessageSuggestions = {
 /**
  * Harness names accepted by the model discovery endpoint.
  */
-export type ModelHarnessDto = 'in-memory' | 'cursor' | 'macrod';
+export type ModelHarnessDto = 'in-memory' | 'cursor' | 'roxd';
 
 /**
  * Monthly ordinal weekday, such as the first Friday.
@@ -3349,7 +3349,7 @@ export type DiscoverAgentCapabilitiesHandlerErrors = {
      */
     403: unknown;
     /**
-     * Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
+     * Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
      */
     409: CredentialRejectedResponse;
     /**
@@ -3357,7 +3357,7 @@ export type DiscoverAgentCapabilitiesHandlerErrors = {
      */
     502: unknown;
     /**
-     * Macrod probe timed out
+     * Roxd probe timed out
      */
     504: unknown;
 };
@@ -3576,7 +3576,7 @@ export type LoadAgentModelsHandlerErrors = {
      */
     403: unknown;
     /**
-     * Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
+     * Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
      */
     409: CredentialRejectedResponse;
     /**
@@ -3584,7 +3584,7 @@ export type LoadAgentModelsHandlerErrors = {
      */
     502: unknown;
     /**
-     * Macrod probe timed out
+     * Roxd probe timed out
      */
     504: unknown;
 };

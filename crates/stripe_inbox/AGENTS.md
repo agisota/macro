@@ -44,7 +44,7 @@ holds. Design: `docs/architecture/stripe-event-inbox.md`.
 ## Checks
 
 - `cargo test -p stripe_inbox` (`SQLX_OFFLINE` unset; DB tests need a
-  migrated MacroDB).
+  migrated RoxDB).
 
 ## Gotchas
 

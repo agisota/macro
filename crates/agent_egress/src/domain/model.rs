@@ -211,13 +211,13 @@ impl fmt::Debug for UpstreamCredential {
 }
 
 /// The email domain Macro staff live under.
-const STAFF_EMAIL_DOMAIN: &str = "macro.com";
+const STAFF_EMAIL_DOMAIN: &str = "rox.one";
 
 /// Whether a user belongs to the Macro staff domain.
 ///
 /// The proxy is staff-only for now: every credential it stamps spends real
 /// upstream access on the owner's behalf, and until that has earned broader
-/// trust, "owned by somebody @macro.com" is the whole admission policy. In
+/// trust, "owned by somebody @rox.one" is the whole admission policy. In
 /// the domain rather than deployment configuration so it cannot be switched
 /// off by an unset env var.
 pub fn is_macro_staff(user: &MacroUserIdStr<'_>) -> bool {

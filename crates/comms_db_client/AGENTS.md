@@ -16,7 +16,7 @@ channel/document conversations.
 ## Scope
 
 - Owns: `sqlx::query!` call sites over `comms_messages` and related tables.
-- Not here: the table schema itself, or any other MacroDB table → both live in
+- Not here: the table schema itself, or any other RoxDB table → both live in
   `crates/macro_db_client/migrations`; comms_db_client only queries them.
 - Not here: comms domain logic, authorization, or HTTP — those live in the
   callers listed below, not a dedicated comms service.
@@ -40,7 +40,7 @@ channel/document conversations.
 ## Checks
 
 - `cargo test -p comms_db_client` (`SQLX_OFFLINE` unset; requires local
-  MacroDB — `just run_dbs -d` then `sqlx database setup`, per `README.md`).
+  RoxDB — `just run_dbs -d` then `sqlx database setup`, per `README.md`).
 
 ## Gotchas
 

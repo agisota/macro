@@ -1,4 +1,4 @@
-//! Implementation for TeamRepository using MacroDB.
+//! Implementation for TeamRepository using RoxDB.
 use crate::domain::{
     model::{
         AcceptedTeamInvite, CreateTeamError, DueInviteReminder, InviteUsersToTeamError,

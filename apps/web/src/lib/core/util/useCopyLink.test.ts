@@ -33,11 +33,11 @@ it('waits for clipboard success and preserves informational toast detail', async
   writeText.mockReturnValue(
     new Promise<void>((resolve) => (complete = resolve))
   );
-  const result = useCopyLink()('https://macro.com/app/task/task-1', {
+  const result = useCopyLink()('https://rox.one/app/task/task-1', {
     subtext: 'Only people with access can open this link.',
   });
   expect(writeText).toHaveBeenCalledWith(
-    'https://macro.com/app/task/task-1?referral_code=ref-code'
+    'https://rox.one/app/task/task-1?referral_code=ref-code'
   );
   expect(toast.success).not.toHaveBeenCalled();
   complete();
@@ -49,7 +49,7 @@ it('waits for clipboard success and preserves informational toast detail', async
 
 it('returns false on clipboard failure without showing success', async () => {
   writeText.mockRejectedValue(new Error('Clipboard unavailable'));
-  expect(await useCopyLink()('https://macro.com/app/task/task-1')).toBe(false);
+  expect(await useCopyLink()('https://rox.one/app/task/task-1')).toBe(false);
   expect(toast.success).not.toHaveBeenCalled();
   expect(toast.failure).toHaveBeenCalledWith('Could not copy link');
 });
@@ -57,7 +57,7 @@ it('returns false on clipboard failure without showing success', async () => {
 it('keeps silent copies silent', async () => {
   writeText.mockResolvedValue(undefined);
   expect(
-    await useCopyLink()('https://macro.com/app/task/task-1', { silent: true })
+    await useCopyLink()('https://rox.one/app/task/task-1', { silent: true })
   ).toBe(true);
   expect(toast.success).not.toHaveBeenCalled();
 });

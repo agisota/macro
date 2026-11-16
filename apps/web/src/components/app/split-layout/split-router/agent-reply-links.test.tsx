@@ -203,7 +203,7 @@ afterEach(() => {
 });
 
 const HOME = { type: 'component', id: 'home' };
-const NOTES = 'Read [the notes](https://dev.macro.com/app/md/doc-1).';
+const NOTES = 'Read [the notes](https://dev.rox.one/app/md/doc-1).';
 
 describe('links in an agent reply', () => {
   it('opens a Macro document link in a new split', async () => {
@@ -219,7 +219,7 @@ describe('links in an agent reply', () => {
 
   it('opens a Macro list view link in a new split', async () => {
     const { view, contents } = renderSplits(() =>
-      agentReply('See [your tasks](https://dev.macro.com/app/tasks).')
+      agentReply('See [your tasks](https://dev.rox.one/app/tasks).')
     );
 
     fireEvent.click(view.getByText('your tasks'));
@@ -233,7 +233,7 @@ describe('links in an agent reply', () => {
   it('opens a nested Macro route at its full location', async () => {
     const { view, lastRoute } = renderSplits(() =>
       agentReply(
-        'Change it in [appearance settings](https://dev.macro.com/app/settings/appearance).'
+        'Change it in [appearance settings](https://dev.rox.one/app/settings/appearance).'
       )
     );
 
@@ -265,7 +265,7 @@ describe('links in an agent reply', () => {
 
   it('leaves a Macro link no route matches to a browser tab', () => {
     const { view, contents } = renderSplits(() =>
-      agentReply('See [nothing](https://dev.macro.com/app/no-such-view/a/b/c).')
+      agentReply('See [nothing](https://dev.rox.one/app/no-such-view/a/b/c).')
     );
 
     fireEvent.click(view.getByText('nothing'));

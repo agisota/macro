@@ -8,7 +8,7 @@ END;
 $$;
 
 INSERT INTO databases (id, name, owner_id) VALUES
-('019a0000-0000-7000-8000-000000000001', 'Disposable', 'macro|databases-a@macro.com');
+('019a0000-0000-7000-8000-000000000001', 'Disposable', 'macro|databases-a@rox.one');
 INSERT INTO database_tables (id, database_id, name, position) VALUES
 ('019a0000-0000-7000-8000-000000000002', '019a0000-0000-7000-8000-000000000001', 'Contacts', '80');
 INSERT INTO property_definitions (id, database_id, display_name, data_type, is_multi_select) VALUES
@@ -24,7 +24,7 @@ INSERT INTO database_views (id, database_id, table_id, name, position, query, la
 INSERT INTO database_view_positions (view_id, row_id, lane, position) VALUES
 ('019a0000-0000-7000-8000-000000000007', '019a0000-0000-7000-8000-000000000005', '', '80');
 INSERT INTO entity_access (entity_id, entity_type, source_id, source_type, access_level) VALUES
-('019a0000-0000-7000-8000-000000000001', 'database', 'macro|databases-a@macro.com', 'user', 'owner');
+('019a0000-0000-7000-8000-000000000001', 'database', 'macro|databases-a@rox.one', 'user', 'owner');
 WITH change AS (
     INSERT INTO database_changes (database_id, table_id, version, ops, inverse) VALUES
     ('019a0000-0000-7000-8000-000000000001', '019a0000-0000-7000-8000-000000000002', 1, '[]', '{}')
@@ -38,4 +38,4 @@ SELECT id, '019a0000-0000-7000-8000-000000000004', 'create' FROM change;
 INSERT INTO database_queries (id, database_id, definition) VALUES
 ('019a0000-0000-7000-8000-000000000008', '019a0000-0000-7000-8000-000000000001', '{"version":1,"query":"SELECT * FROM Contacts"}');
 INSERT INTO database_starter_seeds (user_id, database_id) VALUES
-('macro|databases-a@macro.com', '019a0000-0000-7000-8000-000000000001');
+('macro|databases-a@rox.one', '019a0000-0000-7000-8000-000000000001');

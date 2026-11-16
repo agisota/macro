@@ -18,9 +18,9 @@ fn allowed_original_urls_are_accepted() {
         "https://tauri.localhost/app/login",
         "http://localhost:3000/app/login",
         "https://localhost/app/login",
-        "https://dev.macro.com/app/login",
-        "https://macro.com/app/login",
-        "https://www.macro.com/app/login",
+        "https://dev.rox.one/app/login",
+        "https://rox.one/app/login",
+        "https://www.rox.one/app/login",
     ] {
         let original_url = Url::parse(original_url).expect("test URL should parse");
         assert!(
@@ -34,12 +34,12 @@ fn allowed_original_urls_are_accepted() {
 fn untrusted_original_urls_are_rejected() {
     for original_url in [
         "https://example.com/app/login",
-        "https://macro.com.example.com/app/login",
-        "https://www.macro.com.example.com/app/login",
-        "https://staging.macro.com/app/login",
-        "http://macro.com/app/login",
-        "http://www.macro.com/app/login",
-        "http://dev.macro.com/app/login",
+        "https://rox.one.example.com/app/login",
+        "https://www.rox.one.example.com/app/login",
+        "https://staging.rox.one/app/login",
+        "http://rox.one/app/login",
+        "http://www.rox.one/app/login",
+        "http://dev.rox.one/app/login",
         "tauri://example.com/app/login",
         "http://127.0.0.1:3000/app/login",
         "javascript:alert('redirected')",

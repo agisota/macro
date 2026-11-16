@@ -26,7 +26,7 @@ pub struct CallServiceMeetingLinks<S: CallService> {
 
 impl<S: CallService> CallServiceMeetingLinks<S> {
     /// Wrap the call service. `app_origin` is the browser origin join links
-    /// are built on, e.g. `https://macro.com`; a trailing slash is ignored.
+    /// are built on, e.g. `https://rox.one`; a trailing slash is ignored.
     pub fn new(service: Arc<S>, app_origin: impl Into<String>) -> Self {
         Self {
             service,

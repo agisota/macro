@@ -2,7 +2,7 @@
 
 use std::sync::Arc;
 
-use crate::model_providers::{MacrodModels, ModelProbeEvent};
+use crate::model_providers::{RoxdModels, ModelProbeEvent};
 
 use agent_harness::domain::service::ForwardedCommands;
 use agent_harness::outbound::forward::{
@@ -31,7 +31,7 @@ pub(crate) async fn consume_runtime_commands<Harness>(
     connected: Arc<dyn Fn(HarnessId) -> bool + Send + Sync>,
     harness_service: Arc<Harness>,
     ready: tokio::sync::watch::Sender<bool>,
-    models: MacrodModels,
+    models: RoxdModels,
 ) -> anyhow::Result<()>
 where
     Harness: ForwardedCommands,

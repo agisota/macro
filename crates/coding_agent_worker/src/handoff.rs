@@ -1,6 +1,6 @@
-//! Handing the running ACP agent from one macrod process image to the next.
+//! Handing the running ACP agent from one roxd process image to the next.
 //!
-//! A self-update on Unix replaces macrod with `execve`. Children survive an
+//! A self-update on Unix replaces roxd with `execve`. Children survive an
 //! `execve`, and so do file descriptors without `FD_CLOEXEC`, so the agent
 //! keeps running and the new image picks up its pipes where the old one
 //! stopped: at a line boundary, with any bytes read past it carried over.
@@ -20,12 +20,12 @@ use rustix::process::Pid;
 mod test;
 
 /// Names the inherited descriptor holding the handoff state.
-pub const HANDOFF_ENV: &str = "MACROD_HANDOFF_FD";
+pub const HANDOFF_ENV: &str = "ROXD_HANDOFF_FD";
 
 mod environment {
     macro_env_var::maybe_env_var! {
-        /// Set only by macrod when it `execve`s into an update.
-        pub struct MacrodHandoffFd;
+        /// Set only by roxd when it `execve`s into an update.
+        pub struct RoxdHandoffFd;
     }
 }
 
@@ -175,7 +175,7 @@ impl Drop for HandedOffAgent {
 /// State this image cannot use falls back to killing the agent, so the
 /// daemon starts a fresh one.
 pub fn take_inherited() -> Option<HandedOffAgent> {
-    let number = environment::MacrodHandoffFd::new()?.value()?.to_owned();
+    let number = environment::RoxdHandoffFd::new()?.value()?.to_owned();
     let Ok(fd) = number.parse::<RawFd>() else {
         tracing::warn!(value = %number, "ignoring a malformed {HANDOFF_ENV}");
         return None;
@@ -193,7 +193,7 @@ pub fn take_inherited() -> Option<HandedOffAgent> {
         Ok(agent) => {
             tracing::info!(
                 pid = agent.pid().as_raw_nonzero().get(),
-                "picked up the running agent from the previous macrod"
+                "picked up the running agent from the previous roxd"
             );
             Some(agent)
         }
@@ -314,7 +314,7 @@ fn adopt(
 
 /// The state in an unlinked file: nothing is left on disk whatever happens.
 fn state_file(state: &[u8]) -> std::io::Result<std::fs::File> {
-    let path = std::env::temp_dir().join(format!(".macrod-handoff-{}", uuid::Uuid::new_v4()));
+    let path = std::env::temp_dir().join(format!(".roxd-handoff-{}", uuid::Uuid::new_v4()));
     let mut file = std::fs::OpenOptions::new()
         .read(true)
         .write(true)

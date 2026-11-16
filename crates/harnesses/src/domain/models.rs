@@ -77,7 +77,7 @@ pub struct Harness {
     pub allow_permission_bypass: bool,
     /// Harness id.
     pub id: HarnessId,
-    /// Runtime kind. Currently always `macrod`.
+    /// Runtime kind. Currently always `roxd`.
     pub kind: String,
     /// Display name.
     pub name: String,
@@ -175,7 +175,7 @@ pub struct CreateHostedPairing {
     pub computer_id: ComputerId,
 }
 
-/// The claim material a Macro computer's macrod enrolls with.
+/// The claim material a Macro computer's roxd enrolls with.
 #[derive(Debug, Clone)]
 pub struct HostedPairing {
     /// Pairing id the device secret claims.

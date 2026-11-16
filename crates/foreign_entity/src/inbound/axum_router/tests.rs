@@ -481,7 +481,7 @@ async fn get_foreign_entity_maps_not_found_to_404() {
 
 const PULL_REQUEST_SOURCE: &str = "github_pull_request";
 const PULL_REQUEST_KEY: &str = "macro/app/pull/42";
-const TEST_USER_ID: &str = "macro|user@macro.com";
+const TEST_USER_ID: &str = "macro|user@rox.one";
 
 fn pull_request_entity() -> ForeignEntity {
     ForeignEntity {

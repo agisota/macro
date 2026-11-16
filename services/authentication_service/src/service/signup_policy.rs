@@ -6,7 +6,7 @@ use std::{collections::HashSet, fmt};
 use macro_user_id::email::Email;
 use serde_json::Value;
 
-const MACRO_EMAIL_DOMAIN: &str = "macro.com";
+const MACRO_EMAIL_DOMAIN: &str = "rox.one";
 
 /// The configured signup admission policy.
 #[derive(Clone, Eq, PartialEq)]
@@ -25,7 +25,7 @@ impl SignupPolicy {
 
     /// Create an exact-address allowlist from a JSON array of email strings.
     ///
-    /// The resulting policy also admits every `@macro.com` address.
+    /// The resulting policy also admits every `@rox.one` address.
     pub fn from_allowlist_json(raw_json: &str) -> Result<Self, SignupPolicyConfigError> {
         let value = serde_json::from_str::<Value>(raw_json)
             .map_err(|_| SignupPolicyConfigError::MalformedJson)?;

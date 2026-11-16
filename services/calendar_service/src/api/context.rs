@@ -31,7 +31,7 @@ pub type SchedulingService = calendar_scheduling::domain::service::Service<
         CalendarMutationSvc,
         calendar_scheduling::outbound::meeting_links::HttpMeetingLinks,
     >,
-    calendar_scheduling::outbound::macro_services::MacroDirectory<
+    calendar_scheduling::outbound::macro_services::RoxDirectory<
         teams::outbound::team_repo::TeamRepositoryImpl,
     >,
 >;

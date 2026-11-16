@@ -83,7 +83,7 @@ esac
 }
 
 #[tokio::test]
-async fn herdr_core_opens_the_agent_as_a_tab_in_macrods_space() {
+async fn herdr_core_opens_the_agent_as_a_tab_in_roxds_space() {
     let root = tempfile::tempdir().unwrap();
     let herdr = HerdrCli::core(fake_hc(root.path()), "t1");
     let args = ["--model".to_owned(), "gpt 5".to_owned()];
@@ -133,7 +133,7 @@ async fn herdr_core_viewers_report_their_own_state() {
     let window = herdr
         .open_viewer(
             Path::new("/work"),
-            &["macrod".to_owned(), "herdr-pane".to_owned()],
+            &["roxd".to_owned(), "herdr-pane".to_owned()],
         )
         .await
         .unwrap();
@@ -145,7 +145,7 @@ async fn herdr_core_viewers_report_their_own_state() {
     assert!(
         calls
             .lines()
-            .any(|call| call.starts_with("run ") && call.ends_with("-- macrod herdr-pane"))
+            .any(|call| call.starts_with("run ") && call.ends_with("-- roxd herdr-pane"))
     );
     assert!(!calls.contains("report"));
 }

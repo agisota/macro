@@ -5,12 +5,12 @@
 //! credentials and returns a typed principal with any authenticated or
 //! verified acting user. [`MacroAuthorizationServiceImpl::new`] requires bot
 //! and user API key authorization to be configured explicitly, just like
-//! internal authorization. Services backed by MacroDB should use
+//! internal authorization. Services backed by RoxDB should use
 //! `PgBotAuthorizer` and, when they accept user API keys,
 //! `PgUserApiKeyAuthorizer`. Services that intentionally reject bot
 //! credentials must pass [`NoBotAuthorizer`]. User API key authorization is
 //! wired with [`PgUserApiKeyAuthorizer`] in every service that already has a
-//! MacroDB pool. Services without MacroDB (`image_proxy_service`,
+//! RoxDB pool. Services without RoxDB (`image_proxy_service`,
 //! `static_file_service`), tests, and schema-only composition roots keep
 //! [`NoUserApiKeyAuthorizer`].
 //!

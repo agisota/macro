@@ -14,7 +14,7 @@ describe('sessionRepositoryUrl', () => {
 
   it('shows the repository of a coding session', () => {
     expect(sessionRepositoryUrl({ harness: 'cursor', repoUrl })).toBe(repoUrl);
-    expect(sessionRepositoryUrl({ harness: 'macrod', repoUrl })).toBe(repoUrl);
+    expect(sessionRepositoryUrl({ harness: 'roxd', repoUrl })).toBe(repoUrl);
   });
 
   it('hides the default repository stamped on a chat session', () => {

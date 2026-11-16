@@ -13,7 +13,7 @@ use crate::{
     outbound::pg_databases_repo::PgDatabasesRepo,
 };
 
-const USER: &str = "macro|starter-database@macro.com";
+const USER: &str = "macro|starter-database@rox.one";
 
 fn viewer() -> Viewer {
     Viewer {

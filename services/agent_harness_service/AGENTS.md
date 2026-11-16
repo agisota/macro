@@ -21,7 +21,7 @@ Pulumi stacks; they do not host extra agent processes.
   crate's own router (`agent_session`, `agent_changes`, `agent_egress`,
   `agent_harness`).
 - `src/model_providers/`: per-harness runtime adapters — `cursor.rs`,
-  `macrod.rs`, `in_memory.rs`.
+  `roxd.rs`, `in_memory.rs`.
 - `src/containers.rs`: Daytona sandbox lifecycle; local Docker opt-in.
 - `src/runtime_gauges.rs`: one task recording, every minute, what the process
   holds per session as OTel gauges (`ahs.harness.workers`,
@@ -89,7 +89,7 @@ Pulumi stacks; they do not host extra agent processes.
   without its agent.
 - `src/computers.rs`: passes shared computer/pairing IDs and validated Macro buyer IDs
   directly between the hosted-runtime and harness services; configures the optional fleet operator, runs fleet effects,
-  timers and reconciliation, and reports macrod presence. `COMPUTERS_FLEET` selects
+  timers and reconciliation, and reports roxd presence. `COMPUTERS_FLEET` selects
   `incus` or local-only `docker`; absence means no attached fleet, emits one startup
   warning and starts no operator. Selected groups remain strictly validated.
   Shutdown stops computer passes through the shared CancellationToken and waits
@@ -107,7 +107,7 @@ Pulumi stacks; they do not host extra agent processes.
   (Claude sign-in included) and every member can run agents on it.
   `src/computers/default_agent.rs` creates the team's `<buyer first name>'s Agent`
   (`Agent` without one, read from `macro_user_info`) coding agent through
-  `BotService::create_agent` as the buyer (macrod harness, `default` model, all
+  `BotService::create_agent` as the buyer (roxd harness, `default` model, all
   channels, owner connections, the bots default of bypassing permissions on a
   computer), skipping a harness `HarnessAssignments::bots_on_harness` already
   lists; the handle is the settings editor's slug, suffixed past handles the
@@ -325,7 +325,7 @@ Pulumi stacks; they do not host extra agent processes.
 
 The composition root wires `PgExternalReplyStore` into the harness and recovers
 unfinished external chat replies alongside conversation recovery every ten seconds.
-Both the backend and macrod's source-message action IDs are required for replies
+Both the backend and roxd's source-message action IDs are required for replies
 from newly triggered external chat turns to finish in their channel threads.
 
 The cancellable, tracked notification worker calls `recover_notifications`
@@ -376,8 +376,8 @@ Local orchestration supplies every value explicitly for each fleet; see
 All feature configs read the same harness `APP_SECRETS_JSON`; the harness
 Doppler validation binary validates each config. Stable public origins resolve
 once at startup through `macro_service_urls`: `McpPublicUrl` preserves the
-`mcp-server[-dev].macro.com` OAuth identity, `CognitionPublicUrl` preserves
-`document-cognition[-dev].macro.com` integration callbacks, and `AppServiceUrl`
+`mcp-server[-dev].rox.one` OAuth identity, `CognitionPublicUrl` preserves
+`document-cognition[-dev].rox.one` integration callbacks, and `AppServiceUrl`
 supplies browser links and preview form origin. Preview control accepts the
 `PreviewGatewayUrl` host (plus app/loopback hosts locally). Use process-level
 `OVERRIDE_*` values for local instances; each computer enrollment carries a
@@ -469,7 +469,7 @@ bridge hostname, preserving Host validation for other origins.
 Hosted computer Claude account requests require the operator-derived
 `FleetAttachment` after the existing rollout and Manage authorization (on a
 computer, the team's owner and admins); no
-attachment answers typed 503 before any command. macrod ingress keeps its
+attachment answers typed 503 before any command. roxd ingress keeps its
 existing authorization.
 Authentication checks the owning hosted host heartbeat per request, so its
 attachment observation can briefly differ from this service's operator presence.

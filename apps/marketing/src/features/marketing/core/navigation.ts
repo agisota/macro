@@ -39,7 +39,7 @@ export const RESOURCE_PAGES = [
 
 /** Rox team booking link: a live demo with whichever host is free. */
 export const DEMO_BOOKING_URL =
-  'https://macro.com/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/macro-demo';
+  'https://rox.one/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/macro-demo';
 
 const MOBILE_SIGNUP_HREF = '/mobile-signup';
 

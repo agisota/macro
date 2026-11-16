@@ -23,8 +23,8 @@ fn titles_are_fitted_to_the_meeting_contract() {
 fn join_links_use_the_setup_route_the_frontend_recognizes() {
     let token = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
     assert_eq!(
-        join_url("https://macro.com", token),
-        format!("https://macro.com/app/meet/join/{token}")
+        join_url("https://rox.one", token),
+        format!("https://rox.one/app/meet/join/{token}")
     );
     assert_eq!(
         join_url("http://localhost:3000".trim_end_matches('/'), token),

@@ -7,7 +7,7 @@ import { Show } from 'solid-js';
 import { afterAll, afterEach, expect, it, vi } from 'vitest';
 
 const mocks = vi.hoisted(() => {
-  vi.stubGlobal('location', new URL('https://branch.preview.macro.com/app'));
+  vi.stubGlobal('location', new URL('https://branch.preview.rox.one/app'));
   return {
     fetch: vi.fn(),
     startAccountServices: vi.fn(),

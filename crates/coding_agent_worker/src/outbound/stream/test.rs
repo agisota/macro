@@ -9,7 +9,7 @@ fn test_client(storage_url: &str) -> EventStreamClient {
             egress_url: None,
             api_url: "http://unused".to_owned(),
             storage_url: storage_url.to_owned(),
-            web_url: "https://macro.com/app".to_owned(),
+            web_url: "https://rox.one/app".to_owned(),
         },
         &HarnessCredentials {
             harness_id: HarnessId::TEST_A,
@@ -21,7 +21,7 @@ fn test_client(storage_url: &str) -> EventStreamClient {
 
 const TEAM_HARNESS: &str = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nConnection: close\r\n\r\n\
      {\"allow_permission_bypass\":false,\"id\":\"00000000-0000-0000-0000-00000000000a\",\
-      \"kind\":\"macrod\",\"name\":\"desk\",\
+      \"kind\":\"roxd\",\"name\":\"desk\",\
       \"owner\":{\"type\":\"user\",\"user_id\":\"macro|owner@example.com\"},\
       \"shared_team_ids\":[\"00000000-0000-0000-0000-000000000007\"],\
       \"created_by\":\"macro|owner@example.com\",\"created_at\":\"2026-11-01T00:00:00Z\",\

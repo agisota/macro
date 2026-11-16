@@ -20,12 +20,12 @@ pub use agent_fold::domain::model::{
 
 /// The `_meta` key on `session/new`, `session/load` and `session/resume`
 /// whose string value is the [`AgentSessionId`] the ACP session serves.
-pub const MACRO_AGENT_SESSION_META_KEY: &str = "macro.com/agentSessionId";
+pub const MACRO_AGENT_SESSION_META_KEY: &str = "rox.one/agentSessionId";
 
 /// The `_meta` key on `session/new`, `session/load` and `session/resume`
 /// whose string value is how the session answers permission requests
 /// (`autoAccept` or `prompt`), so a runtime can tell its agent.
-pub const MACRO_PERMISSION_POLICY_META_KEY: &str = "macro.com/permissionPolicy";
+pub const MACRO_PERMISSION_POLICY_META_KEY: &str = "rox.one/permissionPolicy";
 
 /// Identity of one harness participant, minted fresh at construction.
 ///

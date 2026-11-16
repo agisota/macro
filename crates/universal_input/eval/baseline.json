@@ -2,8 +2,8 @@
   "reference_time": "2026-10-27T12:00:00Z",
   "time_zone": "UTC",
   "people": [
-    { "email": "julia@macro.com", "aliases": ["julia"] },
-    { "email": "teo@macro.com", "aliases": ["teo"] }
+    { "email": "julia@rox.one", "aliases": ["julia"] },
+    { "email": "teo@rox.one", "aliases": ["teo"] }
   ],
   "channels": ["Bug Reports"],
   "search_types": {
@@ -20,7 +20,7 @@
       "id": "channel-message",
       "expect": {
         "intent": "message",
-        "recipients": ["julia@macro.com"],
+        "recipients": ["julia@rox.one"],
         "body": "I'm going to be late"
       },
       "inputs": [
@@ -42,7 +42,7 @@
       "id": "email-body",
       "expect": {
         "intent": "email",
-        "recipients": ["julia@macro.com"],
+        "recipients": ["julia@rox.one"],
         "body": "Can we reschedule the thing tomorrow? Let the investors know."
       },
       "inputs": [
@@ -53,8 +53,8 @@
       "id": "email-cc-and-subject",
       "expect": {
         "intent": "email",
-        "recipients": ["julia@macro.com"],
-        "cc": ["teo@macro.com"],
+        "recipients": ["julia@rox.one"],
+        "cc": ["teo@rox.one"],
         "subject": "Investor Meeting",
         "body": "Let's figure out a good time to get together with the investors. Can you schedule this?"
       },
@@ -76,7 +76,7 @@
       "expect": {
         "intent": "calendar",
         "start": "2026-10-28T08:00",
-        "guests": ["julia@macro.com", "teo@macro.com"]
+        "guests": ["julia@rox.one", "teo@rox.one"]
       },
       "inputs": [
         "investor meeting tomorrow 8am w/ julia and teo",
@@ -133,7 +133,7 @@
       "expect": {
         "intent": "search",
         "search_type": "Channels",
-        "search_from": ["julia@macro.com"],
+        "search_from": ["julia@rox.one"],
         "query": ""
       },
       "inputs": [
@@ -143,12 +143,12 @@
     },
     {
       "id": "search-task-filters",
-      "expect": { "intent": "search", "search_type": "Tasks", "status": ["In Progress"], "priority": ["High"], "assignees": ["julia@macro.com"], "created_by": ["teo@macro.com"], "query": "android" },
+      "expect": { "intent": "search", "search_type": "Tasks", "status": ["In Progress"], "priority": ["High"], "assignees": ["julia@rox.one"], "created_by": ["teo@rox.one"], "query": "android" },
       "inputs": ["search in progress high priority tasks assigned to julia created by teo about android"]
     },
     {
       "id": "search-task-filters-only",
-      "expect": { "intent": "search", "search_type": "Tasks", "priority": ["High"], "assignees": ["julia@macro.com"], "query": "" },
+      "expect": { "intent": "search", "search_type": "Tasks", "priority": ["High"], "assignees": ["julia@rox.one"], "query": "" },
       "inputs": ["search high priority tasks assigned to julia"]
     },
     {

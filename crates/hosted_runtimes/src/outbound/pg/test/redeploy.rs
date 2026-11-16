@@ -1,7 +1,7 @@
 use super::*;
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
-async fn startup_push_only_changes_this_hosts_macrod_timers(pool: PgPool) {
+async fn startup_push_only_changes_this_hosts_roxd_timers(pool: PgPool) {
     insert_team(&pool).await;
     let repo = PgComputerRepo::new(pool.clone(), policy());
     let host = repo
@@ -14,7 +14,7 @@ async fn startup_push_only_changes_this_hosts_macrod_timers(pool: PgPool) {
         .await
         .unwrap();
     let id = bought(&repo, 1).await.id;
-    for kind in [TimerKind::MacrodMissing, TimerKind::RetentionExpired] {
+    for kind in [TimerKind::RoxdMissing, TimerKind::RetentionExpired] {
         sqlx::query!(
             "INSERT INTO hosted_runtime_timer (computer_id, kind, fire_at) VALUES ($1, $2, $3)",
             id.as_uuid(),
@@ -26,11 +26,11 @@ async fn startup_push_only_changes_this_hosts_macrod_timers(pool: PgPool) {
         .unwrap();
     }
     let unrelated_host = HostId::new(Uuid::from_u128(99));
-    repo.postpone_macrod_timers(unrelated_host, now() + Duration::minutes(3))
+    repo.postpone_roxd_timers(unrelated_host, now() + Duration::minutes(3))
         .await
         .unwrap();
     assert_eq!(repo.due_timers(now(), 10).await.unwrap().len(), 2);
-    repo.postpone_macrod_timers(host.id, now() + Duration::minutes(3))
+    repo.postpone_roxd_timers(host.id, now() + Duration::minutes(3))
         .await
         .unwrap();
     let due = repo.due_timers(now(), 10).await.unwrap();

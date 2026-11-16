@@ -10,7 +10,7 @@ INSERT INTO notification_user_device_registration (
 ) VALUES 
     -- iOS device for user1
     ('017d85a8-c7c6-7c40-b4f3-a6c1b3c0d1e2'::uuid,
-    'macro|user1@macro.com',
+    'macro|user1@rox.one',
     'ios_device_token_123',
     'arn:aws:sns:region:account:endpoint/APNS/app/device123',
     'ios',
@@ -20,7 +20,7 @@ INSERT INTO notification_user_device_registration (
 
     -- Android device for user1
     ('017d85a8-c7c6-7c40-b4f3-a6c1b3c0d1e3'::uuid,
-    'macro|user1@macro.com',
+    'macro|user1@rox.one',
     'android_device_token_456',
     'arn:aws:sns:region:account:endpoint/GCM/app/device456',
     'android',
@@ -30,7 +30,7 @@ INSERT INTO notification_user_device_registration (
 
     -- iOS device for user2
     ('017d85a8-c7c6-7c40-b4f3-a6c1b3c0d1e4'::uuid,
-    'macro|user2@macro.com',
+    'macro|user2@rox.one',
     'ios_device_token_789',
     'arn:aws:sns:region:account:endpoint/APNS/app/device789',
     'ios',

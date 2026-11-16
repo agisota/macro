@@ -1,7 +1,7 @@
-//! The daemon's one input: `macrod.toml`, this machine's local config - the
+//! The daemon's one input: `roxd.toml`, this machine's local config - the
 //! harness it runs, its workspace, native Herdr defaults, and the pairing
-//! credential. The TUI and `macrod service` share one file per runtime:
-//! `~/.macrod/macrod.toml`, or a named profile beside it (see
+//! credential. The TUI and `roxd service` share one file per runtime:
+//! `~/.roxd/roxd.toml`, or a named profile beside it (see
 //! [`crate::profiles`]). See `config.example.toml` at the crate root.
 //!
 //! Runtime settings - the name, ownership, and permission bypass - live on the
@@ -42,15 +42,15 @@ pub struct Config {
     pub harness: Harness,
     /// The workspace every session runs against.
     pub workspace: Workspace,
-    /// Native Herdr defaults shared by this macrod instance.
+    /// Native Herdr defaults shared by this roxd instance.
     #[serde(default)]
     pub herdr: HerdrSettings,
-    /// Whether a released macrod keeps itself up to date.
+    /// Whether a released roxd keeps itself up to date.
     #[serde(default)]
     pub update: UpdateSettings,
 }
 
-/// Self-update preferences. `MACROD_NO_UPDATE=1` turns updating off too.
+/// Self-update preferences. `ROXD_NO_UPDATE=1` turns updating off too.
 #[derive(Debug, Clone, Deserialize)]
 #[serde(default, deny_unknown_fields)]
 pub struct UpdateSettings {
@@ -136,9 +136,9 @@ impl Default for MacroApi {
     fn default() -> Self {
         Self {
             egress_url: None,
-            api_url: "https://gateway.macro.com/agent-harness".to_owned(),
-            storage_url: "https://gateway.macro.com/dss".to_owned(),
-            web_url: "https://macro.com/app".to_owned(),
+            api_url: "https://gateway.rox.one/agent-harness".to_owned(),
+            storage_url: "https://gateway.rox.one/dss".to_owned(),
+            web_url: "https://rox.one/app".to_owned(),
         }
     }
 }
@@ -217,7 +217,7 @@ pub enum ConfigError {
     },
     /// The file sets something that is configured on the web now.
     #[error(
-        "{path} sets {key}, which macrod no longer reads: a machine's name, access, and \
+        "{path} sets {key}, which roxd no longer reads: a machine's name, access, and \
          permission bypass are set in Macro at Settings → Machines. Delete {key} from \
          the file."
     )]
@@ -273,27 +273,27 @@ fn web_setting_in(table: &toml::Table) -> Option<&'static str> {
         .then_some("`scope` in [credentials]")
 }
 
-/// macrod's directory, `~/.macrod` (`%USERPROFILE%\.macrod` on Windows):
+/// roxd's directory, `~/.roxd` (`%USERPROFILE%\.roxd` on Windows):
 /// the default config, named profiles, adapter installs, and Herdr storage.
-pub fn macrod_directory() -> Option<PathBuf> {
+pub fn roxd_directory() -> Option<PathBuf> {
     let home = environment::Home::new();
     let user_profile = environment::Userprofile::new();
-    macrod_directory_in_home(
+    roxd_directory_in_home(
         home.as_ref().and_then(|home| home.value()),
         user_profile.as_ref().and_then(|profile| profile.value()),
     )
 }
 
 /// `HOME` wins; `USERPROFILE` is the fallback Windows needs.
-fn macrod_directory_in_home(home: Option<&str>, user_profile: Option<&str>) -> Option<PathBuf> {
+fn roxd_directory_in_home(home: Option<&str>, user_profile: Option<&str>) -> Option<PathBuf> {
     [home, user_profile]
         .into_iter()
         .flatten()
         .find(|directory| !directory.is_empty())
-        .map(|home| PathBuf::from(home).join(".macrod"))
+        .map(|home| PathBuf::from(home).join(".roxd"))
 }
 
-/// An exclusive hold on one config: one macrod serves one harness.
+/// An exclusive hold on one config: one roxd serves one harness.
 /// Released when dropped or when the process exits.
 #[derive(Debug)]
 pub struct ConfigLock {
@@ -304,7 +304,7 @@ pub struct ConfigLock {
 #[derive(Debug, thiserror::Error)]
 pub enum LockError {
     /// Another process holds the lock.
-    #[error("another macrod is already running with {}", path.display())]
+    #[error("another roxd is already running with {}", path.display())]
     Held {
         /// The config being served.
         path: PathBuf,
@@ -328,7 +328,7 @@ fn lock_path(config: &Path) -> PathBuf {
 }
 
 /// Take the advisory lock `<config>.lock` beside `config`, failing fast when
-/// another macrod already holds it.
+/// another roxd already holds it.
 pub fn lock(config: &Path) -> Result<ConfigLock, LockError> {
     let lock_path = lock_path(config);
     let io_error = |source| LockError::Io {
@@ -356,7 +356,7 @@ pub fn lock(config: &Path) -> Result<ConfigLock, LockError> {
     }
 }
 
-/// Whether a macrod is serving `config` right now. Probes the lock and lets
+/// Whether a roxd is serving `config` right now. Probes the lock and lets
 /// go at once; never creates the lock file.
 pub fn is_served(config: &Path) -> std::io::Result<bool> {
     let file = match std::fs::OpenOptions::new()

@@ -18,8 +18,8 @@ pub enum CapabilityHarness {
     InMemory,
     /// The caller's Cursor account.
     Cursor,
-    /// A paired macrod runtime.
-    Macrod,
+    /// A paired roxd runtime.
+    Roxd,
 }
 
 /// One fresh capability-discovery request.
@@ -27,7 +27,7 @@ pub enum CapabilityHarness {
 pub struct DiscoverAgentCapabilities {
     /// Provider to inspect.
     pub harness: CapabilityHarness,
-    /// Paired harness identity, required only for [`CapabilityHarness::Macrod`].
+    /// Paired harness identity, required only for [`CapabilityHarness::Roxd`].
     pub harness_id: Option<HarnessId>,
     /// Selected model, when inspecting a preflight override.
     pub model: Option<String>,
@@ -139,42 +139,42 @@ pub trait AgentCapabilitiesService: Send + Sync + 'static {
 }
 
 /// Domain service coordinating authorization, dispatch, timeout, and projection.
-pub struct AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Macrod> {
+pub struct AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Roxd> {
     access: Access,
     in_memory: InMemory,
     cursor: Cursor,
-    macrod: Macrod,
+    roxd: Roxd,
     timeout: Duration,
 }
 
-impl<Access, InMemory, Cursor, Macrod>
-    AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Macrod>
+impl<Access, InMemory, Cursor, Roxd>
+    AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Roxd>
 {
     /// Build the service from its outbound ports.
     pub fn new(
         access: Access,
         in_memory: InMemory,
         cursor: Cursor,
-        macrod: Macrod,
+        roxd: Roxd,
         timeout: Duration,
     ) -> Self {
         Self {
             access,
             in_memory,
             cursor,
-            macrod,
+            roxd,
             timeout,
         }
     }
 }
 
-impl<Access, InMemory, Cursor, Macrod> AgentCapabilitiesService
-    for AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Macrod>
+impl<Access, InMemory, Cursor, Roxd> AgentCapabilitiesService
+    for AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Roxd>
 where
     Access: HarnessCapabilityAccess,
     InMemory: CapabilityProbe<Target = MacroUserIdStr<'static>>,
     Cursor: CapabilityProbe<Target = MacroUserIdStr<'static>>,
-    Macrod: CapabilityProbe<Target = HarnessId>,
+    Roxd: CapabilityProbe<Target = HarnessId>,
 {
     async fn load(
         &self,
@@ -190,7 +190,7 @@ where
                 self.discover(&self.cursor, &caller, request.model.as_deref())
                     .await
             }
-            (CapabilityHarness::Macrod, Some(harness)) => {
+            (CapabilityHarness::Roxd, Some(harness)) => {
                 let allowed = self
                     .access
                     .can_use(&caller, harness)
@@ -199,21 +199,21 @@ where
                 if !allowed {
                     return Err(DiscoverAgentCapabilitiesError::Forbidden);
                 }
-                self.discover(&self.macrod, &harness, request.model.as_deref())
+                self.discover(&self.roxd, &harness, request.model.as_deref())
                     .await
             }
-            (CapabilityHarness::Macrod, None) => Err(DiscoverAgentCapabilitiesError::BadRequest(
-                "harnessId is required for macrod".to_owned(),
+            (CapabilityHarness::Roxd, None) => Err(DiscoverAgentCapabilitiesError::BadRequest(
+                "harnessId is required for roxd".to_owned(),
             )),
             (_, Some(_)) => Err(DiscoverAgentCapabilitiesError::BadRequest(
-                "harnessId is only valid for macrod".to_owned(),
+                "harnessId is only valid for roxd".to_owned(),
             )),
         }
     }
 }
 
-impl<Access, InMemory, Cursor, Macrod>
-    AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Macrod>
+impl<Access, InMemory, Cursor, Roxd>
+    AgentCapabilitiesServiceImpl<Access, InMemory, Cursor, Roxd>
 {
     async fn discover<Probe: CapabilityProbe>(
         &self,

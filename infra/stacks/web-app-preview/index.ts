@@ -9,7 +9,7 @@ const usEast1Provider = new aws.Provider('us-east-1-provider', {
   region: 'us-east-1',
 });
 
-// Create certificate for *.preview.macro.com
+// Create certificate for *.preview.rox.one
 const previewCert = new aws.acm.Certificate(
   `${BASE_NAME}-cert`,
   {

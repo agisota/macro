@@ -7,7 +7,7 @@
 use macro_env_var::env_vars;
 
 env_vars! {
-/// MacroDB database url
+/// RoxDB database url
 pub struct DatabaseUrl;
 /// MacroCache redis uri
 pub struct RedisUri;

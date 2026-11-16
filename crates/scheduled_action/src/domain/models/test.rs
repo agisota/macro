@@ -258,7 +258,7 @@ fn missing_target_never_uses_stored_instructions_as_a_model() {
 }
 
 const DAILY_9AM: &str = "0 0 9 * * *";
-const USER_PRINCIPAL: &str = "macro|sched-owner@macro.com";
+const USER_PRINCIPAL: &str = "macro|sched-owner@rox.one";
 
 fn action_owned_by(owner: Owner) -> ScheduledAction {
     let now = Utc::now();

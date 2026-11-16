@@ -1,7 +1,7 @@
 //! GenAI spans projected from a live session's ACP frames.
 //!
 //! Every harness a session can run on - a sandboxed OpenCode, a Cursor cloud
-//! agent, Macro's own in-process agent, an external `macrod` - speaks ACP
+//! agent, Macro's own in-process agent, an external `roxd` - speaks ACP
 //! through the [`SessionActor`](super::actors::SessionActor), and the actor
 //! sees every frame in both directions exactly once. So this is the one place
 //! a session's turns and tool calls can be traced the same way for all of

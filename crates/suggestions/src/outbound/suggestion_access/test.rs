@@ -13,7 +13,7 @@ fn target(entity_type: EntityType, entity_id: Uuid) -> Target {
 async fn channel(pool: &PgPool) -> Uuid {
     let id = Uuid::now_v7();
     sqlx::query(
-        "INSERT INTO comms_channels (id, channel_type, owner_id) VALUES ($1, 'private', 'macro|parts@macro.com')",
+        "INSERT INTO comms_channels (id, channel_type, owner_id) VALUES ($1, 'private', 'macro|parts@rox.one')",
     )
     .bind(id)
     .execute(pool)
@@ -26,7 +26,7 @@ async fn channel_message(pool: &PgPool, channel: Uuid) -> Uuid {
     let id = Uuid::now_v7();
     sqlx::query(
         "INSERT INTO comms_messages (id, sender_id, content, parent_entity_type, parent_entity_id)
-         VALUES ($1, 'macro|parts@macro.com', 'hi', 'channel', $2)",
+         VALUES ($1, 'macro|parts@rox.one', 'hi', 'channel', $2)",
     )
     .bind(id)
     .bind(channel.to_string())
@@ -63,7 +63,7 @@ async fn email_link(pool: &PgPool) -> Uuid {
     let id = Uuid::now_v7();
     sqlx::query(
         "INSERT INTO email_links (id, macro_id, fusionauth_user_id, email_address, provider)
-         VALUES ($1, 'macro|parts@macro.com', 'fa', 'parts@macro.com', 'GMAIL')",
+         VALUES ($1, 'macro|parts@rox.one', 'fa', 'parts@rox.one', 'GMAIL')",
     )
     .bind(id)
     .execute(pool)

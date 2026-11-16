@@ -66,7 +66,7 @@ struct Args {
     database_url: String,
 
     /// User who owns the dedicated agent channel the session creates.
-    #[arg(long, default_value = "macro|dev@macro.com")]
+    #[arg(long, default_value = "macro|dev@rox.one")]
     owner: String,
 
     /// Bot the session runs as.

@@ -3,7 +3,7 @@
 ## What it is
 
 Documents feature: Lambda that unzips uploaded `.docx` files from S3 and
-converts their XML parts into a Bill Of Materials (BOM) stored in MacroDB.
+converts their XML parts into a Bill Of Materials (BOM) stored in RoxDB.
 
 ## Start here
 
@@ -27,7 +27,7 @@ converts their XML parts into a Bill Of Materials (BOM) stored in MacroDB.
 
 ## Checks
 
-- `cargo test -p docx_unzip_handler` (`SQLX_OFFLINE` unset; needs local MacroDB
+- `cargo test -p docx_unzip_handler` (`SQLX_OFFLINE` unset; needs local RoxDB
   — `just run_dbs`, `just initialize_dbs`, plus `CREATE EXTENSION IF NOT EXISTS
   "uuid-ossp";` per the README's one-time setup).
 - `nix develop --command just prepare_db` from the repo root after schema/query changes, before `make build`.

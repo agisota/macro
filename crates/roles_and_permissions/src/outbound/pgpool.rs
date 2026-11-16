@@ -13,17 +13,17 @@ use crate::domain::{
     port::UserRolesAndPermissionsRepository,
 };
 
-/// The MacroDB struct is a wrapper around sqlx::PgPool connected to macrodb.
+/// The RoxDB struct is a wrapper around sqlx::PgPool connected to macrodb.
 #[derive(Debug, Clone)]
-pub struct MacroDB {
+pub struct RoxDB {
     /// The underlying sqlx::PgPool connected to macrodb.
     pool: PgPool,
 }
 
-impl MacroDB {
-    /// Create a new instance of MacroDB
-    pub fn new(pool: PgPool) -> MacroDB {
-        MacroDB { pool }
+impl RoxDB {
+    /// Create a new instance of RoxDB
+    pub fn new(pool: PgPool) -> RoxDB {
+        RoxDB { pool }
     }
 
     /// Add roles to the user
@@ -122,7 +122,7 @@ impl From<sqlx::Error> for UserRolesAndPermissionsError {
     }
 }
 
-impl UserRolesAndPermissionsRepository for MacroDB {
+impl UserRolesAndPermissionsRepository for RoxDB {
     #[tracing::instrument(skip(self), err)]
     async fn get_user_roles(
         &self,

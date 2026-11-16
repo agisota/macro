@@ -13,4 +13,4 @@ This crate owns saved-view definitions, revisions, effective team sharing, and l
 
 ## Checks
 
-Run `cargo test -p saved_views` with a local migrated MacroDB and `SQLX_OFFLINE` unset. Run `nix develop --command just prepare_db` after changing SQL or migrations. Never query `team_user` from this crate; the Teams-owned evidence adapter belongs at composition. For migration checks, use a fresh disposable local database. Run each concurrent-index migration separately with `PGOPTIONS="-c lock_timeout=2s"`. Owner departure disables sharing; owner rejoining restores it.
+Run `cargo test -p saved_views` with a local migrated RoxDB and `SQLX_OFFLINE` unset. Run `nix develop --command just prepare_db` after changing SQL or migrations. Never query `team_user` from this crate; the Teams-owned evidence adapter belongs at composition. For migration checks, use a fresh disposable local database. Run each concurrent-index migration separately with `PGOPTIONS="-c lock_timeout=2s"`. Owner departure disables sharing; owner rejoining restores it.

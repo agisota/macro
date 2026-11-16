@@ -35,7 +35,7 @@ vi.mock('@core/util/message-send-motion', () => ({
   messageSendMotion: () => {},
 }));
 const viewerId = vi.hoisted(() => ({
-  current: 'macro|me@macro.com' as string | undefined,
+  current: 'macro|me@rox.one' as string | undefined,
 }));
 vi.mock('@core/context/user', () => ({
   useUserId: () => () => viewerId.current,
@@ -157,7 +157,7 @@ vi.mock('../views/code-execution-record', () => ({
 }));
 
 afterEach(() => {
-  viewerId.current = 'macro|me@macro.com';
+  viewerId.current = 'macro|me@rox.one';
   publishSessionActivity('session', null);
   renderTelemetry.context.mockReset();
   renderTelemetry.observe.mockReset();
@@ -1075,17 +1075,17 @@ describe('Message prompt attribution', () => {
 
   it("names the sender above another participant's prompt", () => {
     const view = render(() => (
-      <Message message={prompt('macro|wolf@macro.com')} inFlight={false} />
+      <Message message={prompt('macro|wolf@rox.one')} inFlight={false} />
     ));
     expect(view.getByTestId('prompt-author').textContent).toBe(
-      'wolf@macro.com'
+      'wolf@rox.one'
     );
     expect(view.getByTestId('bubble').textContent).toBe('Do the thing.');
   });
 
   it("leaves the viewer's own prompt unlabelled", () => {
     const view = render(() => (
-      <Message message={prompt('macro|me@macro.com')} inFlight={false} />
+      <Message message={prompt('macro|me@rox.one')} inFlight={false} />
     ));
     expect(view.queryByTestId('prompt-author')).toBeNull();
     expect(view.getByTestId('bubble')).toBeTruthy();
@@ -1102,7 +1102,7 @@ describe('Message prompt attribution', () => {
   it('leaves a prompt unlabelled while the viewer id is still loading', () => {
     viewerId.current = undefined;
     const view = render(() => (
-      <Message message={prompt('macro|me@macro.com')} inFlight={false} />
+      <Message message={prompt('macro|me@rox.one')} inFlight={false} />
     ));
     expect(view.queryByTestId('prompt-author')).toBeNull();
     expect(view.getByTestId('bubble')).toBeTruthy();
@@ -1118,7 +1118,7 @@ describe('Message prompt attribution', () => {
       <Message
         message={{
           ...message([text(notification)]),
-          author: { kind: 'user', userId: 'macro|wolf@macro.com' },
+          author: { kind: 'user', userId: 'macro|wolf@rox.one' },
         }}
         inFlight={false}
       />
@@ -1190,7 +1190,7 @@ describe('Message prompt footer', () => {
               )
             ),
           ]),
-          author: { kind: 'user', userId: 'macro|me@macro.com' },
+          author: { kind: 'user', userId: 'macro|me@rox.one' },
         }}
         inFlight={false}
       />
@@ -1221,10 +1221,10 @@ describe('Message prompt footer', () => {
         message={{
           ...message([
             text(
-              context('<session owner="Me" owner_id="macro|me@macro.com"/>')
+              context('<session owner="Me" owner_id="macro|me@rox.one"/>')
             ),
           ]),
-          author: { kind: 'user', userId: 'macro|me@macro.com' },
+          author: { kind: 'user', userId: 'macro|me@rox.one' },
           postedAt: '2026-10-15T14:02:00+00:00',
         }}
         inFlight={false}
@@ -1242,7 +1242,7 @@ describe('Message prompt footer', () => {
       <Message
         message={{
           ...message([text('Do the thing.')]),
-          author: { kind: 'user', userId: 'macro|me@macro.com' },
+          author: { kind: 'user', userId: 'macro|me@rox.one' },
           pending: true,
         }}
         inFlight={false}

@@ -124,7 +124,7 @@ pub(crate) struct App {
     pub(crate) spinner: usize,
     pub(crate) logs: LogBuffer,
     pub(crate) daemon: Option<Daemon>,
-    /// The agent the previous macrod handed over, relayed by the first start.
+    /// The agent the previous roxd handed over, relayed by the first start.
     inherited: Option<InheritedAgent>,
     /// A release staged for the next launch (Windows), shown until restart.
     /// The persistent update log the Logs tab points at.

@@ -19,7 +19,7 @@ fn user(email: &str) -> MacroUserIdStr<'static> {
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    user("owner@macro.com")
+    user("owner@rox.one")
 }
 
 fn identity() -> SessionIdentity {
@@ -34,7 +34,7 @@ fn identity() -> SessionIdentity {
             Uuid::from_u128(2),
             Uuid::from_u128(3),
         )),
-        audience: vec![owner(), user("alice@macro.com"), user("bob@macro.com")],
+        audience: vec![owner(), user("alice@rox.one"), user("bob@rox.one")],
         source: agent_session::domain::model::SessionSource::User,
     }
 }
@@ -52,7 +52,7 @@ fn settled(identity: SessionIdentity, turn: u32) -> AgentSessionLifecycleEvent {
         last_turn: Some(TurnSummary {
             turn: TurnId(turn),
             action_id: AgentActionId::mint(),
-            actor: Some(user("alice@macro.com")),
+            actor: Some(user("alice@rox.one")),
             announcement_message_id: Some(Uuid::from_u128(4)),
             stop_reason: "end_turn".to_owned(),
             excerpt: Some("Done.".to_owned()),
@@ -84,7 +84,7 @@ fn settled_notifies_the_whole_audience_under_the_session() {
     assert_eq!(notify.secondary_entity, None);
     assert_eq!(
         notify.recipients,
-        vec![owner(), user("alice@macro.com"), user("bob@macro.com")]
+        vec![owner(), user("alice@rox.one"), user("bob@rox.one")]
     );
     assert_eq!(notify.metadata.turn, 2);
     assert_eq!(notify.metadata.excerpt.as_deref(), Some("Done."));
@@ -158,7 +158,7 @@ fn a_chat_agents_unannounced_turn_still_notifies() {
         last_turn: Some(TurnSummary {
             turn: TurnId(2),
             action_id: AgentActionId::mint(),
-            actor: Some(user("alice@macro.com")),
+            actor: Some(user("alice@rox.one")),
             announcement_message_id: None,
             stop_reason: "end_turn".to_owned(),
             excerpt: Some("Done.".to_owned()),
@@ -168,7 +168,7 @@ fn a_chat_agents_unannounced_turn_still_notifies() {
     let notify = one_settled(plan(&event, false));
     assert_eq!(
         notify.recipients,
-        vec![owner(), user("alice@macro.com"), user("bob@macro.com")]
+        vec![owner(), user("alice@rox.one"), user("bob@rox.one")]
     );
     assert_eq!(notify.metadata.session.announcement_message_id, None);
 }
@@ -272,7 +272,7 @@ fn waiting_for_input_goes_to_the_audience() {
     };
     assert_eq!(
         notify.recipients,
-        vec![owner(), user("alice@macro.com"), user("bob@macro.com")]
+        vec![owner(), user("alice@rox.one"), user("bob@rox.one")]
     );
     assert_eq!(notify.metadata.question, "Which approach?");
     assert_eq!(notify.metadata.turn, 3);
@@ -355,9 +355,9 @@ fn mentioned_notifies_exactly_the_people_named() {
             action_id,
             mentioned_by: Some(owner()),
             mentioned: vec![
-                user("carol@macro.com"),
-                user("alice@macro.com"),
-                user("carol@macro.com"),
+                user("carol@rox.one"),
+                user("alice@rox.one"),
+                user("carol@rox.one"),
             ],
             origin_message_id: None,
         },
@@ -368,7 +368,7 @@ fn mentioned_notifies_exactly_the_people_named() {
     };
     assert_eq!(
         notify.recipients,
-        vec![user("carol@macro.com"), user("alice@macro.com")]
+        vec![user("carol@rox.one"), user("alice@rox.one")]
     );
     assert_eq!(notify.metadata.mentioned_by, Some(owner()));
     assert_eq!(notify.metadata.action_id, action_id.as_uuid());
@@ -405,7 +405,7 @@ fn a_mention_in_a_posted_message_is_already_announced() {
                 identity: identity(),
                 action_id: AgentActionId::mint(),
                 mentioned_by: Some(owner()),
-                mentioned: vec![user("carol@macro.com"), user("alice@macro.com")],
+                mentioned: vec![user("carol@rox.one"), user("alice@rox.one")],
                 origin_message_id: Some(Uuid::from_u128(7)),
             }),
             is_coding,
@@ -467,7 +467,7 @@ fn a_held_code_run_asks_for_work_in_the_workspace() {
     let PlannedNotification::WaitingForInput(notify) = plan_tool_approval(
         &identity(),
         Uuid::from_u128(0xA99),
-        Some(&user("alice@macro.com")),
+        Some(&user("alice@rox.one")),
         "macro",
         "Macro",
         "ExecuteCode",
@@ -486,7 +486,7 @@ fn a_held_tool_call_tells_only_the_owner() {
     let PlannedNotification::WaitingForInput(notify) = plan_tool_approval(
         &identity(),
         approval,
-        Some(&user("alice@macro.com")),
+        Some(&user("alice@rox.one")),
         "macro",
         "Macro",
         "ListEmails",
@@ -515,7 +515,7 @@ fn a_third_party_tool_named_execute_code_keeps_its_server() {
     let PlannedNotification::WaitingForInput(notify) = plan_tool_approval(
         &identity(),
         Uuid::from_u128(0xA99),
-        Some(&user("alice@macro.com")),
+        Some(&user("alice@rox.one")),
         "other",
         "Other Server",
         "ExecuteCode",

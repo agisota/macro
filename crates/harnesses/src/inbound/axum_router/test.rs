@@ -8,7 +8,7 @@ fn harness(connected: bool) -> Harness {
     Harness {
         id: HarnessId::TEST_A,
         allow_permission_bypass: false,
-        kind: "macrod".to_owned(),
+        kind: "roxd".to_owned(),
         name: "desk".to_owned(),
         owner: HarnessOwner::User {
             user_id: "macro|owner@example.com".to_owned(),

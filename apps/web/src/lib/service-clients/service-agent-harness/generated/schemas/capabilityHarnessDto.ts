@@ -15,5 +15,5 @@ export type CapabilityHarnessDto =
 export const CapabilityHarnessDto = {
   'in-memory': 'in-memory',
   cursor: 'cursor',
-  macrod: 'macrod',
+  roxd: 'roxd',
 } as const;

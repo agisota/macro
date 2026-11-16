@@ -17,7 +17,7 @@ type RuntimeLike = Pick<Harness, 'id' | 'connected'>;
 /**
  * The bot ids whose runtime is paired but not currently connected.
  *
- * Only macrod agents can be offline: a built-in or cloud runtime has no
+ * Only roxd agents can be offline: a built-in or cloud runtime has no
  * paired machine behind it, and Cursor reports its own setup state. An agent
  * bound to a harness that is gone entirely (removed, or never visible to this
  * user) counts as offline too — starting it would hang the same way.
@@ -33,7 +33,7 @@ export function offlineAgentBotIds(
     agents
       .filter(
         (agent) =>
-          agent.harness === 'macrod' &&
+          agent.harness === 'roxd' &&
           !(agent.harness_id && connected.has(agent.harness_id))
       )
       .map((agent) => agent.bot.id)

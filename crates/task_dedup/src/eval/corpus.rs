@@ -33,8 +33,8 @@ pub struct CorpusTask {
     /// tasks are title-only.
     #[serde(default)]
     pub body: String,
-    /// Task owner, **anonymized** for prod snapshots: the real `macro|…@macro.com`
-    /// id is replaced with a fictitious `macro|name@macro.com` before the corpus
+    /// Task owner, **anonymized** for prod snapshots: the real `macro|…@rox.one`
+    /// id is replaced with a fictitious `macro|name@rox.one` before the corpus
     /// is written, so no real employee email is committed. `None` for synthetic
     /// tasks.
     #[serde(default, skip_serializing_if = "Option::is_none")]

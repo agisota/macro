@@ -1011,7 +1011,7 @@ describe('agent-led new conversation', () => {
       [
         {
           bot: { id: 'local-agent', name: 'Laptop agent', handle: 'laptop' },
-          harness: 'macrod',
+          harness: 'roxd',
           harness_id: 'laptop',
           default_model: 'default',
         },
@@ -1043,7 +1043,7 @@ describe('agent-led new conversation', () => {
   it('selects a requested agent once the roster has it, and again on every request', async () => {
     const computerAgent: PersistedAgentLike = {
       bot: { id: 'computer-agent', name: "Maya's Agent", handle: 'maya' },
-      harness: 'macrod',
+      harness: 'roxd',
       harness_id: 'computer',
       default_model: 'default',
     };
@@ -1092,7 +1092,7 @@ describe('agent-led new conversation', () => {
       [
         {
           bot: { id: 'paired-agent', name: 'Laptop agent', handle: 'laptop' },
-          harness: 'macrod',
+          harness: 'roxd',
           harness_id: 'offline-machine',
           default_model: 'saved-default',
         },
@@ -1118,13 +1118,13 @@ describe('agent-led new conversation', () => {
         agents: [
           {
             bot: { id: 'reviewer', name: 'Reviewer', handle: 'reviewer' },
-            harness: 'macrod',
+            harness: 'roxd',
             harness_id: 'laptop',
             default_model: 'claude-sonnet-5-5',
           },
           {
             bot: { id: 'offline', name: 'Offline agent', handle: 'offline' },
-            harness: 'macrod',
+            harness: 'roxd',
             harness_id: 'offline',
             default_model: 'default',
           },

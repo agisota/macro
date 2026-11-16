@@ -119,7 +119,7 @@ tools — hexagonal, heavily feature-gated.
 ## Checks
 
 - `cargo test -p email --all-features` (`SQLX_OFFLINE` unset; the `outbound`
-  feature's tests need a local MacroDB — `just setup_macrodb`).
+  feature's tests need a local RoxDB — `just setup_macrodb`).
 - Run root `just check`; boundary-rule changes also run the
   [native ast-grep tests](../../docs/development/style-guide.md#email-backend-boundary-checks).
 

@@ -545,7 +545,7 @@ async fn person_column(seeded: &Seeded, name: &str, multi: bool) -> ColumnId {
                                 column: host,
                                 value: CellValue::Entities(vec![EntityRef {
                                     entity_type: EntityKind::User,
-                                    entity_id: "macro|sam@macro.com".into(),
+                                    entity_id: "macro|sam@rox.one".into(),
                                 }]),
                             }],
                         },
@@ -585,7 +585,7 @@ async fn moving_a_card_to_a_persons_lane_makes_them_its_person() {
         .find(|column| column.id == host)
         .unwrap()
         .property_definition_id;
-    let sams_lane = LaneKey::User("macro|sam@macro.com".try_into().unwrap());
+    let sams_lane = LaneKey::User("macro|sam@rox.one".try_into().unwrap());
 
     let results = seeded
         .service
@@ -634,7 +634,7 @@ async fn moving_a_card_to_a_persons_lane_makes_them_its_person() {
         cell(&seeded.world, alex, definition),
         Some(PropertyValue::EntityRef(vec![
             models_properties::shared::EntityReference {
-                entity_id: "macro|sam@macro.com".into(),
+                entity_id: "macro|sam@rox.one".into(),
                 entity_type: PropertyEntityType::User,
                 specific_message_id: None,
             }
@@ -728,7 +728,7 @@ async fn a_board_takes_only_lanes_its_column_groups_by() {
         (
             move_to(
                 stages.id,
-                LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
             ),
             Some(seeded.status_column.id),
             "\"Status\" groups the board by option; a lane names one of its options, or none",

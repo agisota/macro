@@ -7,7 +7,7 @@
     "directory": "packages/sdk"
   },
   "type": "module",
-  "description": "Libary for interacting with Macro.com",
+  "description": "Libary for interacting with rox.one",
   "main": "./dist/src/macro.js",
   "module": "./dist/src/macro.js",
   "types": "./dist/src/macro.d.ts",

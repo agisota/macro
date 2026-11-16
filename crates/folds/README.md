@@ -14,4 +14,4 @@ Run each package's tests from the repository root.
 Native folds implement `agent_fold::domain::transcript::Fold`. Their fixtures are
 synthetic transcripts with pinned output snapshots, plus sanitized excerpts of
 real transcripts for regressions. Runtime adapters consume the
-same events; there is no separate parsing implementation in macrod.
+same events; there is no separate parsing implementation in roxd.

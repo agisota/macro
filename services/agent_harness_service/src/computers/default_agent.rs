@@ -17,7 +17,7 @@ use uuid::Uuid;
 
 /// Bots' handle limit.
 const MAX_HANDLE_LENGTH: usize = 64;
-/// Claude Code's own model choice, as macrod lists it first.
+/// Claude Code's own model choice, as roxd lists it first.
 const DEFAULT_MODEL: &str = "default";
 
 /// The name a computer's agent gets when its buyer has no first name.
@@ -117,7 +117,7 @@ where
             .collect();
         let handle = unique_handle(&name, &taken);
 
-        // The same defaults the Agents settings editor starts a macrod
+        // The same defaults the Agents settings editor starts a roxd
         // coding agent with. The permission choice is left to bots, which
         // has an agent on a Macro computer run without asking.
         let agent = self
@@ -132,7 +132,7 @@ where
                     description: None,
                     avatar_url: None,
                     instructions: String::new(),
-                    harness: harness_id::MACROD_HARNESS_SLUG.to_owned(),
+                    harness: harness_id::ROXD_HARNESS_SLUG.to_owned(),
                     default_model: DEFAULT_MODEL.to_owned(),
                     channel_scope: AgentChannelScope::All,
                     channel_ids: Vec::new(),

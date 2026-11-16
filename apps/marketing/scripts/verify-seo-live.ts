@@ -11,7 +11,7 @@ assert(
 );
 const origin = new URL(target).origin;
 const canonicalOrigin = (
-  process.env.VITE_APP_BASE_URL || 'https://macro.com'
+  process.env.VITE_APP_BASE_URL || 'https://rox.one'
 ).replace(/\/$/, '');
 const window = new Window();
 const failures: string[] = [];
@@ -71,7 +71,7 @@ for (const previous of indexedRoutes) {
 await check('/robots.txt', (response, body) => {
   assert.equal(response.status, 200);
   assert(body.includes(`Sitemap: ${canonicalOrigin}/sitemap.xml`));
-  if (canonicalOrigin === 'https://macro.com')
+  if (canonicalOrigin === 'https://rox.one')
     assert(!/^Disallow: \/$/m.test(body), 'Production crawling is blocked');
 });
 await check('/sitemap.xml', (response, body) => {

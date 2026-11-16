@@ -1,4 +1,4 @@
-pub(crate) static INVITE_USER_SUBJECT: &str = "Invitation to Macro";
+pub(crate) static INVITE_USER_SUBJECT: &str = "Invitation to Rox";
 
 /// Builds the user invite message
 pub(crate) fn build_user_invite_message(org_name: &str, environment: &str) -> String {

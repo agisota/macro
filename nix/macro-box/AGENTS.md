@@ -2,16 +2,16 @@
 
 ## What it is
 
-The Macro computer guest: a NixOS configuration with macrod, harnessd, Claude Code,
+The Macro computer guest: a NixOS configuration with roxd, harnessd, Claude Code,
 herdr, Chromium on Xvnc + Openbox, Docker and nix-ld. It ships as an Incus
 VM image (for the computers IncusFleet) and a Docker image with systemd as
 PID 1 (for the dev-only DockerFleet).
 
 ## How it works
 
-- `_guest.nix` is the whole machine as one NixOS module: users, the macrod
+- `_guest.nix` is the whole machine as one NixOS module: users, the roxd
   units, the desktop user services, `/etc/skel`, Claude Code settings,
-  packages, Docker, nix-ld and envfs. Options under `macro.box` take macrod
+  packages, Docker, nix-ld and envfs. Options under `macro.box` take roxd
   and harnessd (required), Claude Code, the ACP adapter, chrome-devtools-mcp and the
   enrollment source.
 - `_image.nix` adds nixpkgs' `virtualisation/incus-virtual-machine.nix`:
@@ -28,8 +28,8 @@ PID 1 (for the dev-only DockerFleet).
   the packages below, and the checks.
 - `_claude-agent-acp.nix` builds the Claude Code ACP adapter from
   `claude-agent-acp/package-lock.json` (without the SDK's per-platform Claude
-  binaries); tmpfiles link it where macrod installs adapters,
-  `~macro/.macrod/adapters/<package>@<version>`, so macrod never runs npm.
+  binaries); tmpfiles link it where roxd installs adapters,
+  `~macro/.roxd/adapters/<package>@<version>`, so roxd never runs npm.
 - `_agent.nix` (imported by `_guest.nix`, options `macro.box.agent.*`) runs
   the agent teammate: `packages/starter-agent` on `packages/muppet`.
   `_agent-runtime.nix` builds its `node_modules` from the starter agent's own
@@ -68,32 +68,32 @@ PID 1 (for the dev-only DockerFleet).
 - `nix build .#nixosConfigurations.macro-box.config.system.build.toplevel` →
   the system closure, without packing the disk.
 
-## Contract with macrod and the computers control plane
+## Contract with roxd and the computers control plane
 
-- `macrod-enroll.service` (oneshot, root, `Before=macrod.service`) runs on
-  every boot: `macrod enroll --from $MACRO_ENROLL_FROM --config
-  /home/macro/.macrod/macrod.toml`. `macro.box.enrollFrom` sets the source
-  (`incus`, or `file:<path>`). The marker `/var/lib/macrod/enrolled` holds
+- `roxd-enroll.service` (oneshot, root, `Before=roxd.service`) runs on
+  every boot: `roxd enroll --from $MACRO_ENROLL_FROM --config
+  /home/macro/.roxd/roxd.toml`. `macro.box.enrollFrom` sets the source
+  (`incus`, or `file:<path>`). The marker `/var/lib/roxd/enrolled` holds
   `<computer id>\n<generation>`; a newer generation re-enrolls, and no source
   with a marker means already enrolled. `check-enrollment-source` runs first:
   it waits up to 60 s (`MACRO_INCUS_SOCKET_WAIT`) for `/dev/incus/sock`,
   which incus-agent creates a few seconds after it starts, then fails with a
   reason when there is no source and no marker, and passes when the marker
-  exists, leaving the decision to `macrod enroll`. Enroll
-  writes only `macrod.toml` (owned by `macro`), the credential and the
+  exists, leaving the decision to `roxd enroll`. Enroll
+  writes only `roxd.toml` (owned by `macro`), the credential and the
   marker; it installs no units (`/etc/systemd/system` is read-only on
   NixOS). It restarts on failure every 10 s with no start limit, and its
-  `ExecStartPost` starts macrod, so a retry that succeeds after boot still
+  `ExecStartPost` starts roxd, so a retry that succeeds after boot still
   does. `OnSuccess=` would never fire: with `RemainAfterExit` the unit stays
   active.
-- `macrod.service` runs `macrod service` as `macro` (Claude Code refuses
+- `roxd.service` runs `roxd service` as `macro` (Claude Code refuses
   permission bypass as root), workspace `/home/macro/work`, after
-  `macrod-enroll.service`, which it `Wants` (not `Requires`, so a failed first
+  `roxd-enroll.service`, which it `Wants` (not `Requires`, so a failed first
   attempt does not fail it) and whose marker it needs
   (`ConditionPathExists`). It restarts after 1 s, backing off to 30 s, and
   never hits a start limit.
-- One agent per computer. With an agent, `macrod enroll` writes
-  `/var/lib/macrod/agent.env` (KEY=VALUE, one line each, 0600, owned by
+- One agent per computer. With an agent, `roxd enroll` writes
+  `/var/lib/roxd/agent.env` (KEY=VALUE, one line each, 0600, owned by
   `macro`) and rewrites it on re-enrollment; without one the file is absent.
   `macro-agent.path` (`PathChanged` on it and on the runtime's restart
   marker `~macro/agent/.restart`) restarts `macro-agent.service`, so
@@ -160,7 +160,7 @@ PID 1 (for the dev-only DockerFleet).
   `<state>/claude/credential.json`, is `/home/.system/harnessd` with a data
   disk, else `/var/lib/harnessd` (tmpfiles, macro, 0700). See
   `crates/harnessd/AGENTS.md`.
-- `claude` on PATH (and so macrod's `CLAUDE_CODE_EXECUTABLE`) is
+- `claude` on PATH (and so roxd's `CLAUDE_CODE_EXECUTABLE`) is
   `_claude-wrapper.nix` over `files/claude-wrapper`: when the credential file
   has a token it unsets `ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`,
   `ANTHROPIC_API_KEY` and `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` and
@@ -186,8 +186,8 @@ docker run -d --privileged --cgroupns=private --tmpfs /run --tmpfs /run/lock \
 ```
 
 `--tmpfs /run` keeps systemd from mounting its own `/run` over the
-enrollment bind mount. Without the mount, `macrod-enroll` fails with the
-missing-file message (`docker exec <id> journalctl -u macrod-enroll`).
+enrollment bind mount. Without the mount, `roxd-enroll` fails with the
+missing-file message (`docker exec <id> journalctl -u roxd-enroll`).
 
 ## Importing into an Incus host (runtime-dev-1)
 
@@ -220,9 +220,9 @@ never by `nixos-rebuild` inside the guest. Everything that must survive lives
 on the data disk: an Incus custom block volume attached as disk device `data`
 (`/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_incus_data`, `macro.box.dataDisk`),
 formatted ext4 on first boot, grown with the volume, and mounted at `/home` in
-the initrd. It holds every home (`~macro/work`, `~/.claude`, `~/.macrod`
-with `macrod.toml`, the Chromium profile) and `/home/.system/macrod`, which
-`/var/lib/macrod` links to (the enrollment marker), and Docker's data root `/home/.system/docker`. The root disk,
+the initrd. It holds every home (`~macro/work`, `~/.claude`, `~/.roxd`
+with `roxd.toml`, the Chromium profile) and `/home/.system/roxd`, which
+`/var/lib/roxd` links to (the enrollment marker), and Docker's data root `/home/.system/docker`. The root disk,
 `/etc/passwd` included, comes from the image: users created at runtime and
 `nix profile` installs do not survive. Size the volume for Docker images too.
 
@@ -236,8 +236,8 @@ The control plane, per computer:
    `macro-box/<date>`, and keep the old alias for rollback.
 3. Update: `stop` → `rebuild(instance, new alias)` → `start`. Rebuild keeps
    config (`user.macro.enrollment`), profiles and the data volume.
-   `macrod-enroll` runs, finds the marker on the data disk and no newer
-   generation, and keeps the enrollment; macrod reconnects with its existing
+   `roxd-enroll` runs, finds the marker on the data disk and no newer
+   generation, and keeps the enrollment; roxd reconnects with its existing
    credentials: no new pairing and no Claude login.
 4. Rollback: the same steps with the old alias.
 5. On deletion, `delete` the instance, then `delete_volume`; Incus does not
@@ -259,9 +259,9 @@ The control plane, per computer:
 ## Checks
 
 - `nix build .#checks.x86_64-linux.macro-box` boots `_guest.nix` in a NixOS
-  test VM: enrollment fails with its reason, macrod's ordering and user, a
-  late enrollment still starts macrod,
-  `macrod detect-agents` reports Claude Code with nothing to install, the
+  test VM: enrollment fails with its reason, roxd's ordering and user, a
+  late enrollment still starts roxd,
+  `roxd detect-agents` reports Claude Code with nothing to install, the
   tools are on macro's PATH, a downloaded glibc binary runs through nix-ld,
   and Xvnc and Chromium's CDP port come up. A second image then boots from
   the first one's data disk and keeps the home files, Claude credentials and
@@ -296,7 +296,7 @@ The control plane, per computer:
   agent-stopped's failure count, against local git repositories.
 - `nix build .#checks.x86_64-linux.macro-box-claude-agent-acp` runs ACP
   `initialize` against the adapter. Evaluation fails when its version differs
-  from macrod's pin in `crates/coding_agent_worker/src/tui/agent_catalog/claude_code.rs`;
+  from roxd's pin in `crates/coding_agent_worker/src/tui/agent_catalog/claude_code.rs`;
   run `claude-agent-acp/lock.sh` after changing the pin.
 - `nix build .#macro-box-claude-code`: keeps nixpkgs' binary patching, wrapper
   and version check. `_claude-code.nix` pins the minimum version required by
@@ -324,5 +324,5 @@ The control plane, per computer:
   CPU pinning; dev-only Docker guests still see host totals in `/proc` and
   `nproc`. Do not add lxcfs; Incus VMs see their real CPU and memory limits.
 - No managed `managed-mcp.json`: it takes exclusive control of MCP servers and
-  would block the Macro servers macrod forwards; chrome-devtools is
+  would block the Macro servers roxd forwards; chrome-devtools is
   registered in user scope instead.

@@ -112,7 +112,7 @@ function Inbox(props: { signalNoise?: boolean }) {
                         onChange={(e) => setAccount(e.currentTarget.value)}
                       >
                         <option value="all">All inboxes</option>
-                        <option value="work">jacob@macro.com</option>
+                        <option value="work">jacob@rox.one</option>
                         <option value="personal">jacob@gmail.com</option>
                         <option value="outlook">jacob@outlook.com</option>
                       </select>

@@ -13,7 +13,7 @@ async fn stale_close_preserves_replacement_on_another_replica(pool: PgPool) {
     sqlx::query!(
         r#"
         INSERT INTO harnesses (id, kind, name, owner_user_id, created_by)
-        VALUES ($1, 'macrod', 'Computer', 'macro|owner@example.com', 'macro|owner@example.com')
+        VALUES ($1, 'roxd', 'Computer', 'macro|owner@example.com', 'macro|owner@example.com')
         "#,
         harness.as_uuid(),
     )
@@ -63,7 +63,7 @@ async fn observation_checks_lease_time_after_guard_started(pool: PgPool) {
     sqlx::query!(
         r#"
         INSERT INTO harnesses (id, kind, name, owner_user_id, created_by)
-        VALUES ($1, 'macrod', 'Computer', 'macro|owner@example.com', 'macro|owner@example.com')
+        VALUES ($1, 'roxd', 'Computer', 'macro|owner@example.com', 'macro|owner@example.com')
         "#,
         harness.as_uuid(),
     )

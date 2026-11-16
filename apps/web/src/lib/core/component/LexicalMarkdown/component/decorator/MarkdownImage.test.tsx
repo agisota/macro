@@ -104,7 +104,7 @@ describe('markdown media loading', () => {
       <MarkdownImage
         {...unsetMedia}
         key="image"
-        url="https://files.macro.com/walkthrough.png"
+        url="https://files.rox.one/walkthrough.png"
         alt="walkthrough.png"
       />
     ));
@@ -120,7 +120,7 @@ describe('markdown media loading', () => {
       <MarkdownImage
         {...unsetMedia}
         key="known-image"
-        url="https://files.macro.com/banner.png"
+        url="https://files.rox.one/banner.png"
         alt="banner"
         width={2048}
         height={512}
@@ -152,7 +152,7 @@ describe('markdown media loading', () => {
       <MarkdownVideo
         {...unsetMedia}
         key="video"
-        url="https://files.macro.com/agents_list.mp4"
+        url="https://files.rox.one/agents_list.mp4"
         controls
       />
     ));

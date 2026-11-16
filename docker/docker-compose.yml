@@ -41,7 +41,7 @@ services:
 
   # ============================================================================
   # authentication-service (Port 8080)
-  # Primary auth service - depends on FusionAuth, Redis, MacroDB
+  # Primary auth service - depends on FusionAuth, Redis, RoxDB
   # ============================================================================
   authentication-service:
     <<: [*common-env, *rust-services-image]

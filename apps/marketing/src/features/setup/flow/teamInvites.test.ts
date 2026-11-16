@@ -13,16 +13,16 @@ describe('prefillableTeammates', () => {
     expect(
       prefillableTeammates({
         contacts: [
-          contact('ada@macro.com'),
+          contact('ada@rox.one'),
           contact('grace@other.com'),
-          contact('ada@macro.com'),
-          contact('me@macro.com'),
-          contact('alan@macro.com'),
+          contact('ada@rox.one'),
+          contact('me@rox.one'),
+          contact('alan@rox.one'),
         ],
-        domain: 'macro.com',
-        ownEmail: 'me@macro.com',
+        domain: 'rox.one',
+        ownEmail: 'me@rox.one',
       })
-    ).toEqual(['ada@macro.com', 'alan@macro.com']);
+    ).toEqual(['ada@rox.one', 'alan@rox.one']);
   });
 
   it('pre-adds nothing without a suggested domain', () => {
@@ -37,13 +37,13 @@ describe('prefillableTeammates', () => {
 
   it('caps how many teammates get pre-added', () => {
     const contacts = Array.from({ length: PREFILL_CAP + 3 }, (_, i) =>
-      contact(`teammate${i}@macro.com`)
+      contact(`teammate${i}@rox.one`)
     );
     expect(
       prefillableTeammates({
         contacts,
-        domain: 'macro.com',
-        ownEmail: 'me@macro.com',
+        domain: 'rox.one',
+        ownEmail: 'me@rox.one',
       })
     ).toHaveLength(PREFILL_CAP);
   });
@@ -51,11 +51,11 @@ describe('prefillableTeammates', () => {
 
 describe('removeInviteSlot', () => {
   it('drops the row at the index, keeping one empty row when the last goes', () => {
-    expect(removeInviteSlot(['a@macro.com', 'b@macro.com', ''], 1)).toEqual([
-      'a@macro.com',
+    expect(removeInviteSlot(['a@rox.one', 'b@rox.one', ''], 1)).toEqual([
+      'a@rox.one',
       '',
     ]);
-    expect(removeInviteSlot(['a@macro.com'], 0)).toEqual(['']);
+    expect(removeInviteSlot(['a@rox.one'], 0)).toEqual(['']);
   });
 });
 
@@ -63,17 +63,17 @@ describe('validInviteEmails', () => {
   it('normalizes case before deduplication and self exclusion', () => {
     expect(
       validInviteEmails(
-        ['ADA@MACRO.COM', 'ada@macro.com', 'ME@MACRO.COM'],
-        'me@macro.com'
+        ['ADA@ROX.ONE', 'ada@rox.one', 'ME@ROX.ONE'],
+        'me@rox.one'
       )
-    ).toEqual(['ada@macro.com']);
+    ).toEqual(['ada@rox.one']);
   });
   it('trims, dedupes, and drops blanks, junk, and the user themselves', () => {
     expect(
       validInviteEmails(
-        [' ada@macro.com ', 'ada@macro.com', '', 'nope', 'me@macro.com'],
-        'me@macro.com'
+        [' ada@rox.one ', 'ada@rox.one', '', 'nope', 'me@rox.one'],
+        'me@rox.one'
       )
-    ).toEqual(['ada@macro.com']);
+    ).toEqual(['ada@rox.one']);
   });
 });

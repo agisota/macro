@@ -27,11 +27,11 @@ import { createMemo, ErrorBoundary, type JSX, Show, Suspense } from 'solid-js';
 import { isToolActive, ToolCard } from '../../ui';
 import type { ToolCallCommon, ToolCallContext } from './shared';
 
-type MacroDetail = Extract<ToolDetail, { kind: 'macro' }>;
+type RoxDetail = Extract<ToolDetail, { kind: 'macro' }>;
 type ToolResponse = NamedTool<ToolName, 'response'>;
 
 export function MacroToolCall(props: {
-  detail: MacroDetail;
+  detail: RoxDetail;
   common: ToolCallCommon;
   grouped?: boolean;
   context: ToolCallContext;

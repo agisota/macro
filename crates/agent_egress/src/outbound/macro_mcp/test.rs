@@ -85,7 +85,7 @@ impl McpCredentials for &SpyInner {
 }
 
 fn macro_url() -> Url {
-    Url::parse("https://mcp.macro.com/mcp").expect("url")
+    Url::parse("https://mcp.rox.one/mcp").expect("url")
 }
 
 #[tokio::test]
@@ -107,7 +107,7 @@ async fn answers_macros_own_destination_with_a_minted_token() {
         panic!("Macro's own server is always connected");
     };
 
-    assert_eq!(call.url().as_str(), "https://mcp.macro.com/mcp");
+    assert_eq!(call.url().as_str(), "https://mcp.rox.one/mcp");
     assert!(
         inner.asked.lock().expect("lock").is_empty(),
         "Macro's own destination must never consult the owner's rows"

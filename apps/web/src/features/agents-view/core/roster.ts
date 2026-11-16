@@ -39,7 +39,7 @@ export type PersistedAgentLike = {
   default_model: string;
 };
 
-/** A registered macrod runtime, as far as the roster cares. */
+/** A registered roxd runtime, as far as the roster cares. */
 export type RuntimeLike = {
   id: string;
   name: string;
@@ -109,7 +109,7 @@ export function runtimeLabel(
       return MACRO_HARNESS_NAME;
     case 'cursor':
       return 'Cursor';
-    case 'macrod':
+    case 'roxd':
       return (
         runtimes.find((runtime) => runtime.id === harnessId)?.name ??
         'Disconnected machine'
@@ -130,7 +130,7 @@ function runtimeConnected(
       return true;
     case 'cursor':
       return input.cursorConnected;
-    case 'macrod':
+    case 'roxd':
       return (
         input.runtimes.find((runtime) => runtime.id === harnessId)?.connected ??
         false
@@ -188,8 +188,8 @@ function persistedAgent(
   const runtime = input.runtimes.find((item) => item.id === harnessId);
   // A computer that is away is turned off; there is nothing to reconnect.
   const poweredOff =
-    agent.harness === 'macrod' && !connected && !!runtime?.computer_id;
-  const disconnected = agent.harness === 'macrod' && !connected && !poweredOff;
+    agent.harness === 'roxd' && !connected && !!runtime?.computer_id;
+  const disconnected = agent.harness === 'roxd' && !connected && !poweredOff;
   // A resident answers anyone who can reach it; a coding agent needs the person
   // prompting it to have access to its machine.
   const runtimeAccess = runtime?.access;

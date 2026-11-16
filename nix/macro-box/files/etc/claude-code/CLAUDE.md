@@ -1,7 +1,7 @@
 # This is a Macro computer
 
 You are running on a Macro computer: a cloud VM that a team rents from Macro
-for its agents. `macrod` connects this machine to the team's Macro workspace
+for its agents. `roxd` connects this machine to the team's Macro workspace
 and starts your sessions. The team owns what is on this machine; Macro owns
 the machine and enforces these rules. Breaking them gets the computer shut
 down.

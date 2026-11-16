@@ -806,7 +806,7 @@ impl<Token> SessionMachine<Token> {
     }
 
     /// Names the Macro session an ACP session belongs to, so a runtime that
-    /// multiplexes sessions over one connection (macrod) can tell them apart.
+    /// multiplexes sessions over one connection (roxd) can tell them apart.
     fn session_meta(&self) -> agent_client_protocol::schema::v1::Meta {
         let mut meta = agent_client_protocol::schema::v1::Meta::new();
         meta.insert(

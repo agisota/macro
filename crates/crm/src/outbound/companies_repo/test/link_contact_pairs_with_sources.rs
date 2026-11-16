@@ -16,7 +16,7 @@ async fn keeps_only_pairs_backed_by_a_source_row(pool: PgPool) -> anyhow::Result
     let team_id = Uuid::now_v7();
     let owner_id = "macro|owner@test.com";
     seed_team(&pool, team_id, owner_id).await?;
-    let link_id = insert_email_link(&pool, owner_id, "user@macro.com").await?;
+    let link_id = insert_email_link(&pool, owner_id, "user@rox.one").await?;
     let company_id = insert_company(&pool, team_id, true, &["acme.com"]).await?;
 
     // Tracked by this link.
@@ -46,8 +46,8 @@ async fn does_not_match_a_source_owned_by_a_different_link(pool: PgPool) -> anyh
     let team_id = Uuid::now_v7();
     let owner_id = "macro|owner@test.com";
     seed_team(&pool, team_id, owner_id).await?;
-    let link_a = insert_email_link(&pool, owner_id, "a@macro.com").await?;
-    let link_b = insert_email_link(&pool, owner_id, "b@macro.com").await?;
+    let link_a = insert_email_link(&pool, owner_id, "a@rox.one").await?;
+    let link_b = insert_email_link(&pool, owner_id, "b@rox.one").await?;
     let company_id = insert_company(&pool, team_id, true, &["acme.com"]).await?;
 
     insert_contact_with_source(&pool, company_id, "jane@acme.com", link_a).await?;
@@ -73,7 +73,7 @@ async fn matches_case_insensitively_and_returns_lowercased(pool: PgPool) -> anyh
     let team_id = Uuid::now_v7();
     let owner_id = "macro|owner@test.com";
     seed_team(&pool, team_id, owner_id).await?;
-    let link_id = insert_email_link(&pool, owner_id, "user@macro.com").await?;
+    let link_id = insert_email_link(&pool, owner_id, "user@rox.one").await?;
     let company_id = insert_company(&pool, team_id, true, &["acme.com"]).await?;
 
     insert_contact_with_source(&pool, company_id, "Jane@Acme.com", link_id).await?;

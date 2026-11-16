@@ -6,6 +6,6 @@
  */
 
 /**
- * Required for macrod and forbidden for other targets.
+ * Required for roxd and forbidden for other targets.
  */
 export type DiscoverAgentCapabilitiesRequestHarnessId = string | null;

@@ -10,7 +10,7 @@ use super::{FavoritesServiceImpl, MAX_FAVORITES_PER_COLLECTION};
 use crate::domain::models::{Favorite, FavoriteFilter, FavoritesError};
 use crate::domain::ports::{FavoriteView, FavoritesRepo, FavoritesService};
 
-const USER_ID: &str = "macro|favorites-user@macro.com";
+const USER_ID: &str = "macro|favorites-user@rox.one";
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 enum RepoCall {

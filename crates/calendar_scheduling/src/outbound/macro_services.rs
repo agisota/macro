@@ -438,8 +438,8 @@ where
     }
 }
 /// Membership adapter over the owning teams repository port.
-pub struct MacroDirectory<T>(pub T);
-impl<T: TeamRepository> Directory for MacroDirectory<T> {
+pub struct RoxDirectory<T>(pub T);
+impl<T: TeamRepository> Directory for RoxDirectory<T> {
     async fn user_teams(&self, user: &str) -> Result<Vec<Uuid>, Error> {
         let user = user.try_into().map_err(|_| Error::Forbidden)?;
         self.0

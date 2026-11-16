@@ -12,18 +12,18 @@ fn print_contacts_message(users: HashSet<MacroUserIdStr<'static>>) {
 
 async fn genmsg_add_user_to_group() {
     let mut users: HashSet<MacroUserIdStr<'static>> = [
-        "macro|alice@macro.com",
-        "macro|bob@macro.com",
-        "macro|carol@macro.com",
-        "macro|dave@macro.com",
-        "macro|eve@macro.com",
-        "macro|frank@macro.com",
-        "macro|grace@macro.com",
+        "macro|alice@rox.one",
+        "macro|bob@rox.one",
+        "macro|carol@rox.one",
+        "macro|dave@rox.one",
+        "macro|eve@rox.one",
+        "macro|frank@rox.one",
+        "macro|grace@rox.one",
     ]
     .iter()
     .map(|s| MacroUserIdStr::try_from(s.to_string()).unwrap())
     .collect();
-    users.insert(MacroUserIdStr::try_from("macro|henry@macro.com".to_string()).unwrap());
+    users.insert(MacroUserIdStr::try_from("macro|henry@rox.one".to_string()).unwrap());
     print_contacts_message(users);
 }
 
@@ -38,7 +38,7 @@ async fn genmsg_add_paul() {
     .iter()
     .map(|s| MacroUserIdStr::try_from(s.to_string()).unwrap())
     .collect();
-    users.insert(MacroUserIdStr::try_from("macro|paul@macro.com".to_string()).unwrap());
+    users.insert(MacroUserIdStr::try_from("macro|paul@rox.one".to_string()).unwrap());
     print_contacts_message(users);
 }
 
@@ -48,7 +48,7 @@ async fn genmsg_create_group() {
         "macro|athena@olympus.mountain",
         "macro|mercury@olympus.mountain",
         "macro|neptune@olympus.mountain",
-        "macro|paul@macro.com",
+        "macro|paul@rox.one",
     ]
     .iter()
     .map(|s| MacroUserIdStr::try_from(s.to_string()).unwrap())
@@ -62,7 +62,7 @@ async fn genmsg_add_participants() {
         "macro|enlil@nippur.place",
         "macro|enki@eridu.place",
         "macro|marduk@babylon.place",
-        "macro|paul@macro.com",
+        "macro|paul@rox.one",
         "macro|poseidon@olympus.mountain",
     ]
     .iter()

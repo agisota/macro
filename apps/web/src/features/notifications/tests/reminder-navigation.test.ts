@@ -41,7 +41,7 @@ vi.mock('@core/constant/featureFlags', async (importOriginal) => ({
 }));
 vi.mock('@core/util/url', () => ({
   buildSimpleEntityUrl: ({ type, id }: { type: string; id: string }) =>
-    `https://macro.com/app/${type}/${id}`,
+    `https://rox.one/app/${type}/${id}`,
   openExternalUrl: vi.fn(),
 }));
 vi.mock('@queries/notification/user-notifications', () => ({

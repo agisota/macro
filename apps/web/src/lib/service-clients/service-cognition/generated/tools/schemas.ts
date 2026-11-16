@@ -1135,7 +1135,7 @@ export const ConfigureAgent = z.object({
         const schemas = [
           z.literal('in-memory'),
           z.literal('cursor'),
-          z.literal('macrod'),
+          z.literal('roxd'),
         ];
         const errors = schemas.reduce<z.ZodError[]>(
           (errors, schema) =>

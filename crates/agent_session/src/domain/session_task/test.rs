@@ -141,7 +141,7 @@ fn harness_publishing_to(
         directory,
         linker.clone(),
         realtime.clone(),
-        "https://macro.com/",
+        "https://rox.one/",
     ));
     let pull_requests =
         SessionPullRequestService::new(sessions.clone(), RecordingRealtime::new(), tasks.clone());
@@ -169,8 +169,8 @@ fn parses_task_ids_links_and_macro_references() {
     for input in [
         TASK.to_owned(),
         format!("  {}  ", TASK.to_uppercase()),
-        format!("https://macro.com/app/task/{TASK}"),
-        format!("https://dev.macro.com/app/task/{TASK}/?tab=activity#top"),
+        format!("https://rox.one/app/task/{TASK}"),
+        format!("https://dev.rox.one/app/task/{TASK}/?tab=activity#top"),
         format!("http://localhost:3000/app/task/{TASK}"),
         format!("MACRO-{short}"),
         format!("macro-{short}"),
@@ -182,8 +182,8 @@ fn parses_task_ids_links_and_macro_references() {
         "ENG-42",
         "MACRO-0OIl",
         "not-a-task",
-        &format!("https://macro.com/app/md/{TASK}"),
-        &format!("https://macro.com/app/task/{TASK}/comments"),
+        &format!("https://rox.one/app/md/{TASK}"),
+        &format!("https://rox.one/app/task/{TASK}/comments"),
         &format!("{TASK}x"),
     ] {
         assert!(
@@ -206,7 +206,7 @@ async fn links_a_task_and_answers_its_link_and_reference() {
         .link_task(
             session.id,
             session.owner_user().unwrap(),
-            &format!("https://macro.com/app/task/{TASK}"),
+            &format!("https://rox.one/app/task/{TASK}"),
         )
         .await
         .unwrap();
@@ -216,7 +216,7 @@ async fn links_a_task_and_answers_its_link_and_reference() {
         LinkedTask {
             task_id: TASK.to_owned(),
             title: "Task 6f".to_owned(),
-            url: format!("https://macro.com/app/task/{TASK}"),
+            url: format!("https://rox.one/app/task/{TASK}"),
             reference: "ENG-6f".to_owned(),
             mention: format!(
                 r#"<m-document-mention>{{"documentId":"{TASK}","blockName":"task","documentName":"Task 6f","blockParams":{{}},"collapsed":false}}</m-document-mention>"#
@@ -282,7 +282,7 @@ async fn publishes_a_session_update_only_when_the_task_changes() {
         .link_task(
             session.id,
             owner,
-            &format!("https://macro.com/app/task/{TASK}"),
+            &format!("https://rox.one/app/task/{TASK}"),
         )
         .await
         .unwrap();
@@ -527,7 +527,7 @@ async fn lists_a_tasks_pull_requests() {
 
     let listed = harness
         .tasks
-        .task_pull_requests(&owner, &format!("https://macro.com/app/task/{TASK}"))
+        .task_pull_requests(&owner, &format!("https://rox.one/app/task/{TASK}"))
         .await
         .unwrap();
 

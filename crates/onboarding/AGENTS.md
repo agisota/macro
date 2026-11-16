@@ -29,7 +29,7 @@ onboarding does not start an import.
 
 ## Checks
 
-- `cargo test -p onboarding` (`SQLX_OFFLINE` unset; requires local MacroDB).
+- `cargo test -p onboarding` (`SQLX_OFFLINE` unset; requires local RoxDB).
 
 ## Gotchas
 

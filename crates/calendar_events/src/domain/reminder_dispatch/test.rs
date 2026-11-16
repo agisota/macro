@@ -31,7 +31,7 @@ fn due(n: u8, declined: bool) -> DueCalendarReminder {
     DueCalendarReminder {
         email_address: "calendar-mailbox@example.com".into(),
         firing: firing(n),
-        owner_id: "macro|owner@macro.com".to_string(),
+        owner_id: "macro|owner@rox.one".to_string(),
         title: "Team sync".to_string(),
         time: EventTime::Timed {
             starts_at: instant() + Duration::minutes(10),

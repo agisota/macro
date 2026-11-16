@@ -1,7 +1,7 @@
-//! `macrod herdr-acp`: an ACP agent whose sessions are live coding-agent TUIs
+//! `roxd herdr-acp`: an ACP agent whose sessions are live coding-agent TUIs
 //! (Claude Code or Codex) in herdr windows.
 //!
-//! macrod runs this as its harness like any other ACP agent, so sessions
+//! roxd runs this as its harness like any other ACP agent, so sessions
 //! still open, prompt, stream, and stop through Macro's ACP infrastructure.
 //! Behind the protocol, each session is a real interactive `claude` or
 //! `codex` in its own herdr tab, rooted at the session's working directory:
@@ -51,7 +51,7 @@ mod permission;
 use permission::permission_title;
 use permission::{OpenTool, track_open_tool};
 
-/// The subcommand macrod's harness config names to run this adapter.
+/// The subcommand roxd's harness config names to run this adapter.
 pub(crate) const SUBCOMMAND: &str = "herdr-acp";
 
 const MODEL_CONFIG_ID: &str = "model";
@@ -157,7 +157,7 @@ impl Transcript {
     }
 }
 
-/// How `macrod herdr-acp` runs its agents.
+/// How `roxd herdr-acp` runs its agents.
 #[derive(Debug, Clone, Default)]
 pub(crate) struct AdapterOptions {
     /// Private storage shared with the dispatcher's repository preparation.
@@ -250,7 +250,7 @@ pub async fn run(options: AdapterOptions) -> rootcause::Result<()> {
         .clone()
         .or_else(|| {
             home.as_ref()
-                .map(|home| home.join(".macrod/herdr/standalone"))
+                .map(|home| home.join(".roxd/herdr/standalone"))
         })
         .ok_or_else(|| rootcause::report!("HOME or --state-dir is required"))?;
     let shutdown = CancellationToken::new();
@@ -416,7 +416,7 @@ impl Adapter {
     /// Send a request to the client and wait for its answer.
     async fn call(&self, method: &str, params: Value) -> Option<Value> {
         let id = format!(
-            "macrod-herdr-{}",
+            "roxd-herdr-{}",
             self.next_id.fetch_add(1, Ordering::Relaxed)
         );
         let (tx, rx) = oneshot::channel();
@@ -488,7 +488,7 @@ impl Adapter {
                     "promptCapabilities": {"image": false, "audio": false, "embeddedContext": false},
                 },
                 "authMethods": [],
-                "agentInfo": {"name": "macrod-herdr", "version": env!("CARGO_PKG_VERSION")},
+                "agentInfo": {"name": "roxd-herdr", "version": env!("CARGO_PKG_VERSION")},
             })),
             "session/list" => {
                 let request = serde_json::from_value::<ListSessionsRequest>(params)
@@ -829,7 +829,7 @@ impl Adapter {
         text: &str,
     ) -> Result<&'static str, RpcError> {
         let herdr = self.herdr.as_ref().ok_or_else(|| {
-            RpcError::internal("macrod herdr-acp needs a macrod started inside herdr")
+            RpcError::internal("roxd herdr-acp needs a roxd started inside herdr")
         })?;
         let cancel = CancellationToken::new();
         *lock(&session.cancel) = Some(cancel.clone());
@@ -841,7 +841,7 @@ impl Adapter {
             // for the native turn, which streams and asks for permission
             // meanwhile, and a stop interrupts that turn.
             let wait = tracing::info_span!(
-                "macrod.herdr.prompt_wait",
+                "roxd.herdr.prompt_wait",
                 session_id = %session.id,
                 native_turns = tracing::field::Empty,
                 exit_dismissed = tracing::field::Empty,
@@ -1327,7 +1327,7 @@ impl Adapter {
 /// Esc only leaves insert mode. No press follows a stop, since Esc at an idle
 /// Claude Code prompt opens its rewind menu.
 #[tracing::instrument(
-    name = "macrod.herdr.interrupt",
+    name = "roxd.herdr.interrupt",
     skip(herdr),
     fields(herdr.agent = name, presses, stopped),
     err

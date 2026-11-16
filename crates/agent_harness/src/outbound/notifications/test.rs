@@ -45,7 +45,7 @@ impl NotificationIngress for RecordingIngress {
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").unwrap()
+    MacroUserIdStr::try_from_email("owner@rox.one").unwrap()
 }
 
 fn settled() -> AgentSessionLifecycleEvent {

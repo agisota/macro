@@ -7,7 +7,7 @@ description: Connect AI clients to the Rox MCP server.
 Rox's MCP endpoint is:
 
 ```text
-https://mcp-server.macro.com/mcp
+https://mcp-server.rox.one/mcp
 ```
 
 The server is remote; no local process is required. Authentication happens through Rox's OAuth flow when the client connects. Sign in with Google, a code sent to your email, or a password.
@@ -16,7 +16,7 @@ MCP access is available on every Rox plan, including Free.
 ## Claude Code
 
 ```bash
-claude mcp add --transport http macro https://mcp-server.macro.com/mcp
+claude mcp add --transport http macro https://mcp-server.rox.one/mcp
 ```
 
 Start Claude Code, use the `macro` MCP server, and complete the browser sign-in flow when prompted.
@@ -24,7 +24,7 @@ Start Claude Code, use the `macro` MCP server, and complete the browser sign-in 
 ## Codex CLI
 
 ```bash
-codex mcp add macro --url https://mcp-server.macro.com/mcp
+codex mcp add macro --url https://mcp-server.rox.one/mcp
 ```
 
 Start Codex CLI, invoke the `macro` MCP server, and complete the OAuth login flow in the browser.
@@ -46,7 +46,7 @@ For editors that accept JSON MCP server config, add this under `mcpServers`:
 {
   "macro": {
     "type": "http",
-    "url": "https://mcp-server.macro.com/mcp"
+    "url": "https://mcp-server.rox.one/mcp"
   }
 }
 ```

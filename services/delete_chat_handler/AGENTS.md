@@ -28,7 +28,7 @@ has been marked deleted.
 ## Checks
 
 - `cargo test -p delete_chat_handler` (`SQLX_OFFLINE` unset; requires local
-  MacroDB).
+  RoxDB).
 - `nix develop --command just prepare_db` from the repo root after query changes (local Postgres on `localhost:5432`).
 
 ## Gotchas

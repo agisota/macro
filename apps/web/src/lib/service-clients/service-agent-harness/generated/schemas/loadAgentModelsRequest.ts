@@ -14,6 +14,6 @@ import type { ModelHarnessDto } from './modelHarnessDto';
 export interface LoadAgentModelsRequest {
   /** Provider to probe. */
   harness: ModelHarnessDto;
-  /** Required for macrod and forbidden for other targets. */
+  /** Required for roxd and forbidden for other targets. */
   harnessId?: LoadAgentModelsRequestHarnessId;
 }

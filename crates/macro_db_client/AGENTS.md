@@ -2,7 +2,7 @@
 
 ## What it is
 
-Belongs to shared infrastructure: the database client crate for MacroDB
+Belongs to shared infrastructure: the database client crate for RoxDB
 (Postgres), owning its migrations and most of the compile-time-checked
 queries used across Rust services.
 
@@ -10,13 +10,13 @@ queries used across Rust services.
 
 - `src/lib.rs`: the module list — one module per table/feature area
   (`user.rs`, `document.rs`, `organization.rs`, `team/`, `item_access/`, ...).
-- `migrations/`: MacroDB's SQLx-generated migrations, 500+
-  files; the only place MacroDB schema changes are made.
+- `migrations/`: RoxDB's SQLx-generated migrations, 500+
+  files; the only place RoxDB schema changes are made.
 - `tests/`: cross-table integration tests (e.g. `add_forms.rs`).
 
 ## Scope
 
-- Owns: MacroDB's schema (`migrations/`) and the `sqlx::query!` call sites for
+- Owns: RoxDB's schema (`migrations/`) and the `sqlx::query!` call sites for
   the tables listed in `src/lib.rs`.
 - Not here: domain logic, authorization decisions, or caching built on top of
   these queries — those live in the owning domain crate/service that calls in.
@@ -65,7 +65,7 @@ lists and content save responses retain the stored appearance alongside ordinary
 
 ## Checks
 
-- `cargo test -p macro_db_client` (`SQLX_OFFLINE` unset; requires local MacroDB
+- `cargo test -p macro_db_client` (`SQLX_OFFLINE` unset; requires local RoxDB
   — `just setup_macrodb`).
 - After schema or query changes: `nix develop --command just prepare_db` from
   the repo root, then commit the regenerated root `.sqlx/`.

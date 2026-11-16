@@ -12,7 +12,7 @@ use crate::domain::ports::{
     CalendarDeletionScope, CalendarRsvpScope, CalendarUpdateScope, UnavailableMeetingLinks,
 };
 
-const URL: &str = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef";
+const URL: &str = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef";
 
 fn sample_event() -> CalendarEvent {
     CalendarEvent {

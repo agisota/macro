@@ -9,7 +9,7 @@ use sqlx::{Pool, Postgres};
     fixtures(path = "../../../fixtures", scripts("users"))
 )]
 async fn test_add_roles_to_user(pool: Pool<Postgres>) -> anyhow::Result<()> {
-    let macro_db = MacroDB::new(pool);
+    let macro_db = RoxDB::new(pool);
 
     let roles = vec!["professional_subscriber".to_string()];
 
@@ -71,7 +71,7 @@ async fn test_add_roles_to_user(pool: Pool<Postgres>) -> anyhow::Result<()> {
     fixtures(path = "../../../fixtures", scripts("users"))
 )]
 async fn test_remove_roles_from_user(pool: Pool<Postgres>) -> anyhow::Result<()> {
-    let macro_db = MacroDB::new(pool);
+    let macro_db = RoxDB::new(pool);
 
     let roles = vec!["professional_subscriber".to_string()];
 
@@ -123,7 +123,7 @@ async fn test_remove_roles_from_user(pool: Pool<Postgres>) -> anyhow::Result<()>
     fixtures(path = "../../../fixtures", scripts("users"))
 )]
 async fn test_get_user_roles(pool: Pool<Postgres>) -> anyhow::Result<()> {
-    let macro_db = MacroDB::new(pool);
+    let macro_db = RoxDB::new(pool);
 
     // user@user.com has professional_subscriber and corporate
     let roles = UserRolesAndPermissionsRepository::get_user_roles(
@@ -163,7 +163,7 @@ async fn test_get_user_roles(pool: Pool<Postgres>) -> anyhow::Result<()> {
     fixtures(path = "../../../fixtures", scripts("users"))
 )]
 async fn test_get_user_roles_after_add_and_remove(pool: Pool<Postgres>) -> anyhow::Result<()> {
-    let macro_db = MacroDB::new(pool);
+    let macro_db = RoxDB::new(pool);
 
     // Add a role and verify it shows up
     macro_db

@@ -535,7 +535,7 @@ describe('boostFn functionality', () => {
         id: '2',
         name: 'Bob Smith',
         type: 'item',
-        email: 'bob@macro.com',
+        email: 'bob@rox.one',
         viewedAt: applyDurationToDate(now, { value: -5, unit: 's' }),
       },
       {
@@ -547,7 +547,7 @@ describe('boostFn functionality', () => {
       },
     ];
 
-    const currentUserDomain = 'macro.com';
+    const currentUserDomain = 'rox.one';
     const search = createFreshSearch<MockItemWithEmail>({
       config: {
         fuzzyWeight: 0.8,
@@ -585,12 +585,12 @@ describe('boostFn functionality', () => {
         id: '2',
         name: 'Alicia Smith',
         type: 'item',
-        email: 'alicia@macro.com',
+        email: 'alicia@rox.one',
         viewedAt: applyDurationToDate(now, { value: -1, unit: 's' }),
       },
     ];
 
-    const currentUserDomain = 'macro.com';
+    const currentUserDomain = 'rox.one';
     const search = createFreshSearch<MockItemWithEmail>({
       config: {
         fuzzyWeight: 0.8,
@@ -665,7 +665,7 @@ describe('boostFn functionality', () => {
         id: '1',
         name: 'Design Doc',
         type: 'item',
-        email: 'alice@macro.com',
+        email: 'alice@rox.one',
         viewedAt: applyDurationToDate(now, { value: -1, unit: 's' }),
       },
       {
@@ -684,7 +684,7 @@ describe('boostFn functionality', () => {
         channelBoost: 1.5,
         boostFn: (item) => {
           const itemDomain = item.email?.split('@')[1];
-          return itemDomain === 'macro.com' ? 0.3 : 0;
+          return itemDomain === 'rox.one' ? 0.3 : 0;
         },
       },
       getName: (item) => item.name,

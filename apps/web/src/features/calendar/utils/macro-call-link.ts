@@ -15,8 +15,8 @@ export function macroCallUrl(value: string): string | undefined {
     if (
       (url.protocol !== 'https:' && !(local && url.protocol === 'http:')) ||
       (!local &&
-        url.hostname !== 'macro.com' &&
-        url.hostname !== 'dev.macro.com') ||
+        url.hostname !== 'rox.one' &&
+        url.hostname !== 'dev.rox.one') ||
       url.username ||
       url.password ||
       !/^\/(?:app\/)?meet\/(?:join\/)?[A-Za-z0-9_-]{16,128}\/?$/.test(

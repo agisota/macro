@@ -85,11 +85,11 @@ export default {
   agentsSnippet:
     'Agents in your channels, tasks for agents, RoxD and unified memory',
   agentsLength: '1:05',
-  macrodTitle: 'Learn how to use RoxD',
-  macrodBlock: 'RoxD',
-  macrodSnippet:
+  roxdTitle: 'Learn how to use RoxD',
+  roxdBlock: 'RoxD',
+  roxdSnippet:
     'Connect the coding agent you already use, then @mention it or assign it a task',
-  macrodLength: '1:17',
+  roxdLength: '1:17',
   driveTitle: 'Learn how to use Drive',
   driveBlock: 'Drive',
   driveSnippet:

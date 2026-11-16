@@ -25,7 +25,7 @@ fn get_file_documentation() {}
 #[derive(OpenApi)]
 #[openapi(
     info(
-        terms_of_service = "https://macro.com/terms",
+        terms_of_service = "https://rox.one/terms",
     ),
     paths(
       file::metadata::handle_get_metadata,

@@ -13,7 +13,7 @@ state, sharing, send validation, uploads, notification effects and the
 `/external-chats` routes. `ChatRef.kind` / `external_chat.kind` says group or
 direct (only the owner sends in a direct chat). DSS serves `/whatsapp/*`; the
 WhatsApp session service calls `domain::session::SessionService` in-process.
-They share no HTTP: only MacroDB rows and `NOTIFY` (`external_chat`'s
+They share no HTTP: only RoxDB rows and `NOTIFY` (`external_chat`'s
 `outbound::pg` notify helpers).
 
 ## Start here

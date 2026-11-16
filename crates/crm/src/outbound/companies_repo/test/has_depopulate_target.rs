@@ -13,7 +13,7 @@ async fn true_only_for_a_contact_on_a_tracked_domain(pool: PgPool) -> anyhow::Re
     seed_team(&pool, team_id, owner_id).await?;
     let other_team_id = Uuid::now_v7();
     seed_team(&pool, other_team_id, "macro|other@other.test").await?;
-    let link_id = insert_email_link(&pool, owner_id, "user@macro.com").await?;
+    let link_id = insert_email_link(&pool, owner_id, "user@rox.one").await?;
     let company_id = insert_company(&pool, team_id, true, &["acme.test"]).await?;
     insert_contact_with_source(&pool, company_id, "Jane@Acme.test", link_id).await?;
 
@@ -52,7 +52,7 @@ async fn agrees_with_depopulate_contact(pool: PgPool) -> anyhow::Result<()> {
     let team_id = Uuid::now_v7();
     let owner_id = "macro|owner@owner.test";
     seed_team(&pool, team_id, owner_id).await?;
-    let link_id = insert_email_link(&pool, owner_id, "user@macro.com").await?;
+    let link_id = insert_email_link(&pool, owner_id, "user@rox.one").await?;
     let company_id = insert_company(&pool, team_id, true, &["acme.test"]).await?;
     insert_contact(&pool, company_id, "orphan@acme.test").await?;
 

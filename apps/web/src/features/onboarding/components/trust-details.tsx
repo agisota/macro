@@ -58,7 +58,7 @@ const GOOGLE_QUESTIONS: TrustQuestion[] = [
         account. Revoking access and deleting data already stored in Rox are
         separate actions. You can request account and data deletion as described
         in our{' '}
-        <EvidenceLink href="https://macro.com/privacy/">
+        <EvidenceLink href="https://rox.one/privacy/">
           Privacy Policy
         </EvidenceLink>
         .
@@ -135,11 +135,11 @@ const SECURITY_QUESTIONS: TrustQuestion[] = [
       <>
         Yes. Our security program includes SOC 2, ISO 27001, and Google CASA
         Tier 2, with external audits and penetration testing. Visit our{' '}
-        <EvidenceLink href="https://security.macro.com">
+        <EvidenceLink href="https://security.rox.one">
           Trust Center
         </EvidenceLink>{' '}
         for security information. Our{' '}
-        <EvidenceLink href="https://macro.com/dpa">
+        <EvidenceLink href="https://rox.one/dpa">
           Data Processing Agreement
         </EvidenceLink>{' '}
         describes confidentiality, safeguards, subprocessors, and data return or
@@ -280,11 +280,11 @@ export function OnboardingTrustDetails(props: {
       </div>
       <p class="mt-8 text-xs leading-6 text-ink-extra-muted">
         More detail in our{' '}
-        <EvidenceLink href="https://macro.com/privacy/">
+        <EvidenceLink href="https://rox.one/privacy/">
           Privacy Policy
         </EvidenceLink>{' '}
         and{' '}
-        <EvidenceLink href="https://security.macro.com">
+        <EvidenceLink href="https://security.rox.one">
           Trust Center
         </EvidenceLink>
         .

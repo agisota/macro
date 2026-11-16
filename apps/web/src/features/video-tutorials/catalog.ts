@@ -21,8 +21,8 @@ import githubVideo from './assets/github.mp4';
 import githubPoster from './assets/github-poster.jpg';
 import homeVideo from './assets/home.mp4';
 import homePoster from './assets/home-poster.jpg';
-import macrodVideo from './assets/macrod.mp4';
-import macrodPoster from './assets/macrod-poster.jpg';
+import roxdVideo from './assets/roxd.mp4';
+import roxdPoster from './assets/roxd-poster.jpg';
 import mailVideo from './assets/mail.mp4';
 import mailPoster from './assets/mail-poster.jpg';
 import schedulingVideo from './assets/scheduling.mp4';
@@ -310,22 +310,22 @@ export const TUTORIALS: Partial<Record<TutorialId, Tutorial>> = {
     videoUrl: agentsVideo,
     posterUrl: agentsPoster,
   },
-  macrod: {
-    id: 'macrod',
+  roxd: {
+    id: 'roxd',
     get title() {
-      return t('tutorials.macrodTitle');
+      return t('tutorials.roxdTitle');
     },
     get block() {
-      return t('tutorials.macrodBlock');
+      return t('tutorials.roxdBlock');
     },
     get snippet() {
-      return t('tutorials.macrodSnippet');
+      return t('tutorials.roxdSnippet');
     },
     get length() {
-      return t('tutorials.macrodLength');
+      return t('tutorials.roxdLength');
     },
-    videoUrl: macrodVideo,
-    posterUrl: macrodPoster,
+    videoUrl: roxdVideo,
+    posterUrl: roxdPoster,
   },
   drive: {
     id: 'drive',

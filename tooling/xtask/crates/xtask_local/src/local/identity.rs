@@ -46,7 +46,7 @@ pub const TENANT_ID: &str = "11111111-1111-4111-8111-111111111111";
 pub const CLIENT_SECRET: &str = "c3VwZXItc2VjcmV0LWxvY2FsLWNsaWVudC1zZWNyZXQtMDE";
 
 /// The JWT issuer the tenant emits; `macro_auth` checks `iss` against this.
-pub const ISSUER: &str = "local.macro.com";
+pub const ISSUER: &str = "local.rox.one";
 
 /// Fixed id for the passwordless-login email template the kickstart creates.
 pub const PASSWORDLESS_EMAIL_TEMPLATE_ID: &str = "33333333-3333-4333-8333-333333333333";

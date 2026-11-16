@@ -14,8 +14,8 @@ use std::{
 };
 
 const CLIENT_METADATA_URL: &str =
-    "https://document-cognition.macro.com/mcp/servers/auth/client-metadata";
-const REDIRECT_URI: &str = "https://document-cognition.macro.com/mcp/servers/auth/callback";
+    "https://document-cognition.rox.one/mcp/servers/auth/client-metadata";
+const REDIRECT_URI: &str = "https://document-cognition.rox.one/mcp/servers/auth/callback";
 
 #[derive(Clone, Default)]
 struct FakeServerStore;

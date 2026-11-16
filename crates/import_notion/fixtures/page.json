@@ -36,7 +36,7 @@
       {"name": "mock", "type": "external", "external": {"url": "https://example.com/mock.png"}}
     ]},
     "Done": {"id": "dN", "type": "checkbox", "checkbox": true},
-    "Link": {"id": "lK", "type": "url", "url": "https://macro.com"},
+    "Link": {"id": "lK", "type": "url", "url": "https://rox.one"},
     "Contact": {"id": "cT", "type": "email", "email": "team@example.com"},
     "Phone": {"id": "pH", "type": "phone_number", "phone_number": null},
     "Projects": {"id": "pJ", "type": "relation", "relation": [{"id": "a1b2c3d4-0000-4000-8000-000000000001"}], "has_more": false},

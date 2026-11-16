@@ -119,7 +119,7 @@ async function scriptAuthService(
     failedVoiceSaves?: number;
     /** Invites the server refuses before one goes through. */
     failedCreates?: number;
-    /** Whether macrod on an agent's computer has connected. */
+    /** Whether roxd on an agent's computer has connected. */
     computerConnected?: boolean;
     /** Owners and admins own an agent computer's runtime; others don't see it. */
     viewerOwnsRuntimes?: boolean;
@@ -334,7 +334,7 @@ async function scriptAuthService(
         body: JSON.stringify(body),
       });
 
-    // macrod enrolls each agent's computer as a runtime its admins own.
+    // roxd enrolls each agent's computer as a runtime its admins own.
     if (path.endsWith('/harnesses') && request.method() === 'GET')
       return json(
         200,
@@ -343,7 +343,7 @@ async function scriptAuthService(
               .filter((agent) => agent.status !== 'provisioning')
               .map((agent) => ({
                 id: `harness-${agent.name.toLowerCase()}`,
-                kind: 'macrod',
+                kind: 'roxd',
                 name: agent.name,
                 owner: { type: 'user', user_id: agent.userId },
                 access: 'owner',

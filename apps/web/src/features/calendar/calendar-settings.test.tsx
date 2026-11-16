@@ -65,7 +65,7 @@ it('re-consents the Outlook account whose Connect calendar was clicked', () => {
     {
       id: 'gmail-link',
       macro_id: 'macro|self',
-      email_address: 'teo@macro.com',
+      email_address: 'teo@rox.one',
       provider: 'GMAIL',
       needs_calendar_permission: false,
       needs_reauth: false,
@@ -94,7 +94,7 @@ it('re-consents a lone Gmail account, restoring mail access it lost', () => {
     {
       id: 'gmail-link',
       macro_id: 'macro|self',
-      email_address: 'teo@macro.com',
+      email_address: 'teo@rox.one',
       provider: 'GMAIL',
       needs_calendar_permission: true,
       needs_reauth: true,
@@ -106,7 +106,7 @@ it('re-consents a lone Gmail account, restoring mail access it lost', () => {
     scopes: 'gmail_and_calendar',
     provider: 'GMAIL',
     reconnectLinkId: 'gmail-link',
-    emailAddress: 'teo@macro.com',
+    emailAddress: 'teo@rox.one',
   });
 });
 
@@ -133,7 +133,7 @@ it("saves a calendar's Busy switch to the viewer's availability setting", () => 
     {
       id: 'gmail-link',
       macro_id: 'macro|self',
-      email_address: 'teo@macro.com',
+      email_address: 'teo@rox.one',
       provider: 'GMAIL',
       needs_calendar_permission: false,
       needs_reauth: false,
@@ -145,7 +145,7 @@ it("saves a calendar's Busy switch to the viewer's availability setting", () => 
       name: 'Coworker',
       color: '#654321',
       emailLinkId: 'gmail-link',
-      emailAddress: 'teo@macro.com',
+      emailAddress: 'teo@rox.one',
     },
   ];
   mocks.availability = [

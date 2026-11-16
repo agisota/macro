@@ -323,10 +323,10 @@ pub(crate) fn computer(id: ComputerId, phase: Phase, billing: BillingState) -> C
             power: Power::On,
             billing,
             billing_changed_at: now() - chrono::Duration::days(30),
-            macrod_connected: false,
+            roxd_connected: false,
             provision_traceparent: None,
             setup: None,
-            macrod_misses: 0,
+            roxd_misses: 0,
             recent_crashes: vec![],
             power_on_requested: false,
             capacity_wait: None,
@@ -1388,8 +1388,8 @@ async fn retry_a_computer_that_gave_up_restarts_without_billing() {
         vec![
             Effect::Restart { host: HOST },
             Effect::ScheduleTimer {
-                kind: TimerKind::MacrodMissing,
-                at: now() + crate::domain::lifecycle::MACROD_GRACE,
+                kind: TimerKind::RoxdMissing,
+                at: now() + crate::domain::lifecycle::ROXD_GRACE,
             },
         ]
     );

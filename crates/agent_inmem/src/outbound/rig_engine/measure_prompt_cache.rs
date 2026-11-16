@@ -122,7 +122,7 @@ async fn send(
         native.for_turn(false),
         Arc::clone(&native.deferred),
     ));
-    let user = MacroUserIdStr::try_from_email("cache-measure@macro.com").unwrap();
+    let user = MacroUserIdStr::try_from_email("cache-measure@rox.one").unwrap();
     let usage = UsageContext::new(AiFeature::AgentSession, user);
     let recorded = Arc::new(RecordedUsage::default());
     let metering = agent::MeteringContext::tracking_only(recorded.clone(), usage.clone());

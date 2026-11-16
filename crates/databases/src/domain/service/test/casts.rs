@@ -301,7 +301,7 @@ async fn a_date_cast_with_a_value_that_is_not_a_date_is_refused_and_keeps_the_ce
 #[tokio::test]
 async fn a_link_cast_with_a_value_that_is_not_a_url_is_refused_and_keeps_the_cells() {
     let seeded = seeded().await;
-    let rows = insert_names(&seeded, &["https://macro.com", "macro dot com"]).await;
+    let rows = insert_names(&seeded, &["https://rox.one", "macro dot com"]).await;
     let (cells_before, columns_before, definitions_before) = {
         let w = seeded.world.lock().unwrap();
         (w.cells.clone(), w.columns.clone(), w.definitions.len())
@@ -329,7 +329,7 @@ async fn a_link_cast_with_a_value_that_is_not_a_url_is_refused_and_keeps_the_cel
     let w = seeded.world.lock().unwrap();
     assert_eq!(
         w.cells[&rows[0]][&seeded.name_column.property_definition_id],
-        PropertyValue::Str("https://macro.com".into())
+        PropertyValue::Str("https://rox.one".into())
     );
     assert_eq!(w.cells, cells_before);
     assert_eq!(w.columns, columns_before);
@@ -372,11 +372,11 @@ async fn a_cell_with_two_references_refuses_a_single_reference_and_keeps_both() 
                             value: CellValue::Entities(vec![
                                 EntityRef {
                                     entity_type: EntityKind::User,
-                                    entity_id: "macro|ana@macro.com".into(),
+                                    entity_id: "macro|ana@rox.one".into(),
                                 },
                                 EntityRef {
                                     entity_type: EntityKind::User,
-                                    entity_id: "macro|ben@macro.com".into(),
+                                    entity_id: "macro|ben@rox.one".into(),
                                 },
                             ]),
                         }],
@@ -415,7 +415,7 @@ async fn a_cell_with_two_references_refuses_a_single_reference_and_keeps_both() 
     assert_eq!(
         refusal.reason,
         "1 cell in \"Hosts\" has more than one value: \
-         'macro|ana@macro.com, macro|ben@macro.com'. \
+         'macro|ana@rox.one, macro|ben@rox.one'. \
          Fix it, or add a column of the new type for the values that convert."
     );
     let w = seeded.world.lock().unwrap();
@@ -429,12 +429,12 @@ async fn a_cell_with_two_references_refuses_a_single_reference_and_keeps_both() 
         w.cells[&seeded.row_id][&definition],
         PropertyValue::EntityRef(vec![
             EntityReference {
-                entity_id: "macro|ana@macro.com".into(),
+                entity_id: "macro|ana@rox.one".into(),
                 entity_type: PropertyEntityType::User,
                 specific_message_id: None,
             },
             EntityReference {
-                entity_id: "macro|ben@macro.com".into(),
+                entity_id: "macro|ben@rox.one".into(),
                 entity_type: PropertyEntityType::User,
                 specific_message_id: None,
             },
@@ -567,7 +567,7 @@ async fn changing_a_column_to_its_own_type_changes_nothing() {
 #[tokio::test]
 async fn the_dry_run_answers_every_menu_target_for_a_viewer() {
     let seeded = seeded().await;
-    insert_names(&seeded, &["12", "https://macro.com"]).await;
+    insert_names(&seeded, &["12", "https://rox.one"]).await;
     let target = |data_type: DataType, is_multi_select: bool| ColumnCast {
         data_type,
         is_multi_select,
@@ -625,24 +625,24 @@ async fn the_dry_run_answers_every_menu_target_for_a_viewer() {
                 false,
                 2,
                 Some("2 values aren't numbers"),
-                &["Sam", "https://macro.com"]
+                &["Sam", "https://rox.one"]
             ),
             checked(DataType::SelectString, false, 0, None, &[]),
             checked(DataType::SelectString, true, 0, None, &[]),
             no_values_fit(
                 DataType::Date,
                 "3 values aren't dates",
-                &["Sam", "12", "https://macro.com"]
+                &["Sam", "12", "https://rox.one"]
             ),
             no_values_fit(
                 DataType::DateRange,
                 "3 values aren't date ranges",
-                &["Sam", "12", "https://macro.com"]
+                &["Sam", "12", "https://rox.one"]
             ),
             no_values_fit(
                 DataType::Boolean,
                 "3 values aren't true or false",
-                &["Sam", "12", "https://macro.com"]
+                &["Sam", "12", "https://rox.one"]
             ),
             checked(
                 DataType::Link,

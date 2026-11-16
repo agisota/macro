@@ -10,15 +10,15 @@
 
 -- NOTE:
 -- - All UUIDs are hard-coded so tests can reference them
--- - User email: user@macro.com
+-- - User email: user@rox.one
 
 ------------------------------------------------------------
 -- User Link
 ------------------------------------------------------------
 
 INSERT INTO email_links (id, macro_id, fusionauth_user_id, email_address, provider, is_sync_active, created_at, updated_at)
-VALUES ('00000000-0000-0000-0000-00000000001a', 'macro|user@macro.com', '00000000-0000-0000-0000-00000000001a',
-        'user@macro.com', 'GMAIL', true, NOW(), NOW());
+VALUES ('00000000-0000-0000-0000-00000000001a', 'macro|user@rox.one', '00000000-0000-0000-0000-00000000001a',
+        'user@rox.one', 'GMAIL', true, NOW(), NOW());
 
 -- Link B intentionally has no email_contacts row for its own address.
 INSERT INTO email_links (id, macro_id, fusionauth_user_id, email_address, provider, is_sync_active, created_at, updated_at)
@@ -44,11 +44,11 @@ VALUES ('00000000-0000-0000-0000-0000000a0001',
 -- Contacts
 ------------------------------------------------------------
 
--- Same domain contact (user@macro.com -> same_domain@macro.com)
+-- Same domain contact (user@rox.one -> same_domain@rox.one)
 INSERT INTO email_contacts (id, link_id, email_address, created_at, updated_at)
 VALUES ('00000000-0000-0000-0000-0000000c0001',
         '00000000-0000-0000-0000-00000000001a',
-        'same_domain@macro.com',
+        'same_domain@rox.one',
         NOW(), NOW());
 
 -- Different domain contact
@@ -83,7 +83,7 @@ VALUES ('00000000-0000-0000-0000-0000000c0005',
 INSERT INTO email_contacts (id, link_id, email_address, created_at, updated_at)
 VALUES ('00000000-0000-0000-0000-0000000c0006',
         '00000000-0000-0000-0000-00000000001a',
-        'foo@notmacro.com',
+        'foo@notrox.one',
         NOW(), NOW());
 
 -- Contact with the exact user domain in mixed case
@@ -97,7 +97,7 @@ VALUES ('00000000-0000-0000-0000-0000000c0007',
 INSERT INTO email_contacts (id, link_id, email_address, created_at, updated_at)
 VALUES ('00000000-0000-0000-0000-0000000c0008',
         '00000000-0000-0000-0000-00000000001a',
-        'user@macro.com',
+        'user@rox.one',
         NOW(), NOW()),
        ('00000000-0000-0000-0000-0000000c000a',
         '00000000-0000-0000-0000-00000000001a',
@@ -300,7 +300,7 @@ VALUES ('00000000-0000-0000-0000-0000000e0301',
         '00000000-0000-0000-0000-00000000001a',
         'target-msg-301',
         FALSE,
-        '00000000-0000-0000-0000-0000000c0001', -- from same_domain@macro.com
+        '00000000-0000-0000-0000-0000000c0001', -- from same_domain@rox.one
         '2025-01-02 12:00:00 +00:00',
         true, false, false, false, NOW(), NOW());
 
@@ -527,13 +527,13 @@ VALUES ('00000000-0000-0000-0000-000000aa1301',
 INSERT INTO "macro_user" (id, username, email, stripe_customer_id)
 VALUES ('00000000-0000-0000-0000-00000000001a',
         'user_a',
-        'user@macro.com',
+        'user@rox.one',
         'cus_test123');
 
 -- User for the document owner
 INSERT INTO "User" (id, email, name, macro_user_id)
 VALUES ('00000000-0000-0000-0000-00000000001a',
-        'user@macro.com',
+        'user@rox.one',
         'User A',
         '00000000-0000-0000-0000-00000000001a');
 

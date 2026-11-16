@@ -496,7 +496,7 @@ async fn invite_persists_one_audit_and_does_not_reaudit_a_duplicate(
     let team_repo = TeamRepositoryImpl::new(pool.clone());
     let user_id = MacroUserIdStr::parse_from_str("macro|user@user.com")?;
     let team_id = macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?;
-    let invites = vec![Email::parse_from_str("enterprise-audit@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("enterprise-audit@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
     let invited = team_repo
@@ -537,7 +537,7 @@ async fn test_invite_users_to_team(pool: Pool<Postgres>) -> anyhow::Result<()> {
 
     let team_id = macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?;
 
-    let invites = vec![Email::parse_from_str("new@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("new@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
     let invited = team_repo
@@ -545,10 +545,10 @@ async fn test_invite_users_to_team(pool: Pool<Postgres>) -> anyhow::Result<()> {
         .await?;
 
     assert_eq!(invited.len(), 1);
-    assert_eq!(invited[0].email.as_ref(), "new@macro.com");
+    assert_eq!(invited[0].email.as_ref(), "new@rox.one");
 
     let invites = vec![
-        Email::parse_from_str("invite@macro.com")?.lowercase(),
+        Email::parse_from_str("invite@rox.one")?.lowercase(),
         Email::parse_from_str("user2@user.com")?.lowercase(),
     ];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
@@ -571,15 +571,15 @@ async fn test_get_new_invites_filters_existing_invites(pool: Pool<Postgres>) -> 
     let team_id = macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?;
 
     let invites = vec![
-        Email::parse_from_str("invite@macro.com")?.lowercase(),
-        Email::parse_from_str("fresh@macro.com")?.lowercase(),
+        Email::parse_from_str("invite@rox.one")?.lowercase(),
+        Email::parse_from_str("fresh@rox.one")?.lowercase(),
     ];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
     let new_invites = team_repo.get_new_invites(&team_id, invites).await?;
 
     assert_eq!(new_invites.len(), 1);
-    assert_eq!(new_invites[0].as_ref(), "fresh@macro.com");
+    assert_eq!(new_invites[0].as_ref(), "fresh@rox.one");
 
     Ok(())
 }
@@ -596,14 +596,14 @@ async fn test_get_new_invites_filters_existing_team_members(
 
     let invites = vec![
         Email::parse_from_str("user2@user.com")?.lowercase(),
-        Email::parse_from_str("fresh@macro.com")?.lowercase(),
+        Email::parse_from_str("fresh@rox.one")?.lowercase(),
     ];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
     let new_invites = team_repo.get_new_invites(&team_id, invites).await?;
 
     assert_eq!(new_invites.len(), 1);
-    assert_eq!(new_invites[0].as_ref(), "fresh@macro.com");
+    assert_eq!(new_invites[0].as_ref(), "fresh@rox.one");
 
     Ok(())
 }
@@ -622,7 +622,7 @@ async fn test_get_new_invites_keeps_invites_scoped_to_team(
     sqlx::query!(
         r#"
         INSERT INTO team_invite (id, team_id, email, team_role, invited_by, created_at, last_sent_at)
-        VALUES ($1, $2, 'other-team-only@macro.com', 'member', 'macro|user4@user.com', NOW(), NOW())
+        VALUES ($1, $2, 'other-team-only@rox.one', 'member', 'macro|user4@user.com', NOW(), NOW())
         "#,
         macro_uuid::generate_uuid_v7(),
         other_team_id,
@@ -630,13 +630,13 @@ async fn test_get_new_invites_keeps_invites_scoped_to_team(
     .execute(&pool)
     .await?;
 
-    let invites = vec![Email::parse_from_str("other-team-only@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("other-team-only@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
     let new_invites = team_repo.get_new_invites(&team_id, invites).await?;
 
     assert_eq!(new_invites.len(), 1);
-    assert_eq!(new_invites[0].as_ref(), "other-team-only@macro.com");
+    assert_eq!(new_invites[0].as_ref(), "other-team-only@rox.one");
 
     Ok(())
 }
@@ -652,8 +652,8 @@ async fn test_invite_existing_user_within_rate_limit(pool: Pool<Postgres>) -> an
     let user_id = MacroUserIdStr::parse_from_str("macro|user@user.com")?;
     let team_id = macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?;
 
-    // invite@macro.com already has an invite with last_sent_at = NOW() in the fixture
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    // invite@rox.one already has an invite with last_sent_at = NOW() in the fixture
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
     let invited = team_repo
@@ -680,13 +680,13 @@ async fn test_invite_existing_user_inside_email_rate_limit(
     let team_id = macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?;
 
     sqlx::query!(
-        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '30 minutes' WHERE team_id = $1 AND email = 'invite@macro.com'"#,
+        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '30 minutes' WHERE team_id = $1 AND email = 'invite@rox.one'"#,
         &team_id,
     )
     .execute(&pool)
     .await?;
 
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
     let invited = team_repo
         .invite_users_to_team(&team_id, &user_id, invites, false)
@@ -710,13 +710,13 @@ async fn test_invite_existing_user_after_rate_limit(pool: Pool<Postgres>) -> any
 
     // Push last_sent_at back past the invite email's rate-limit window
     sqlx::query!(
-        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@macro.com'"#,
+        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@rox.one'"#,
         &team_id,
     )
     .execute(&pool)
     .await?;
 
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
     let invited = team_repo
@@ -724,7 +724,7 @@ async fn test_invite_existing_user_after_rate_limit(pool: Pool<Postgres>) -> any
         .await?;
 
     assert_eq!(invited.len(), 1);
-    assert_eq!(invited[0].email.as_ref(), "invite@macro.com");
+    assert_eq!(invited[0].email.as_ref(), "invite@rox.one");
 
     Ok(())
 }
@@ -742,15 +742,15 @@ async fn test_invite_mix_new_and_existing(pool: Pool<Postgres>) -> anyhow::Resul
 
     // Push existing invite past the rate limit window
     sqlx::query!(
-        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@macro.com'"#,
+        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@rox.one'"#,
         &team_id,
     )
     .execute(&pool)
     .await?;
 
     let invites = vec![
-        Email::parse_from_str("brand-new@macro.com")?.lowercase(),
-        Email::parse_from_str("invite@macro.com")?.lowercase(),
+        Email::parse_from_str("brand-new@rox.one")?.lowercase(),
+        Email::parse_from_str("invite@rox.one")?.lowercase(),
     ];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
 
@@ -761,8 +761,8 @@ async fn test_invite_mix_new_and_existing(pool: Pool<Postgres>) -> anyhow::Resul
     assert_eq!(invited.len(), 2);
 
     let emails: Vec<&str> = invited.iter().map(|i| i.email.as_ref()).collect();
-    assert!(emails.contains(&"brand-new@macro.com"));
-    assert!(emails.contains(&"invite@macro.com"));
+    assert!(emails.contains(&"brand-new@rox.one"));
+    assert!(emails.contains(&"invite@rox.one"));
 
     Ok(())
 }
@@ -780,14 +780,14 @@ async fn test_reinvite_updates_last_sent_at(pool: Pool<Postgres>) -> anyhow::Res
 
     // Push past rate limit
     sqlx::query!(
-        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@macro.com'"#,
+        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@rox.one'"#,
         &team_id,
     )
     .execute(&pool)
     .await?;
 
     // First re-invite should succeed
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
     let invited = team_repo
         .invite_users_to_team(&team_id, &user_id, invites, false)
@@ -799,7 +799,7 @@ async fn test_reinvite_updates_last_sent_at(pool: Pool<Postgres>) -> anyhow::Res
     team_repo.mark_invites_sent(&sent_ids).await?;
 
     // Second immediate re-invite should be rate limited
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
     let invited = team_repo
         .invite_users_to_team(&team_id, &user_id, invites, false)
@@ -822,14 +822,14 @@ async fn test_resend_without_mark_sent_stays_eligible(pool: Pool<Postgres>) -> a
 
     // Push past rate limit
     sqlx::query!(
-        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@macro.com'"#,
+        r#"UPDATE team_invite SET last_sent_at = NOW() - INTERVAL '3 days' WHERE team_id = $1 AND email = 'invite@rox.one'"#,
         &team_id,
     )
     .execute(&pool)
     .await?;
 
     // First re-invite returns the invite
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
     let invited = team_repo
         .invite_users_to_team(&team_id, &user_id, invites, false)
@@ -839,7 +839,7 @@ async fn test_resend_without_mark_sent_stays_eligible(pool: Pool<Postgres>) -> a
     // Do NOT call mark_invites_sent (simulating failed notification delivery)
 
     // Second re-invite should still return the invite because last_sent_at was not updated
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
     let invited = team_repo
         .invite_users_to_team(&team_id, &user_id, invites, false)
@@ -889,7 +889,7 @@ async fn test_mark_invites_sent(pool: Pool<Postgres>) -> anyhow::Result<()> {
 
     // The invite should now be rate limited
     let user_id = MacroUserIdStr::parse_from_str("macro|user@user.com")?;
-    let invites = vec![Email::parse_from_str("invite@macro.com")?.lowercase()];
+    let invites = vec![Email::parse_from_str("invite@rox.one")?.lowercase()];
     let invites = non_empty::NonEmpty::new(invites.as_slice())?;
     let invited = team_repo
         .invite_users_to_team(&team_id, &user_id, invites, false)
@@ -947,7 +947,7 @@ async fn test_get_team_invite_by_id(pool: Pool<Postgres>) -> anyhow::Result<()> 
     let invite_id = macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?;
     let team_invite = team_repo.get_team_invite_by_id(&invite_id).await?;
 
-    assert_eq!(team_invite.email.as_ref(), "invite@macro.com");
+    assert_eq!(team_invite.email.as_ref(), "invite@rox.one");
 
     let invite_id = macro_uuid::string_to_uuid("33333333-3333-3333-3333-333333333333")?;
     let err = team_repo
@@ -2055,7 +2055,7 @@ async fn test_allow_non_admin_invites_defaults_true_and_toggles(
 
 const TEAM_1: &str = "11111111-1111-1111-1111-111111111111";
 
-/// Sets the fixture invite to `invite@macro.com` as `days_old` days old, last
+/// Sets the fixture invite to `invite@rox.one` as `days_old` days old, last
 /// emailed `last_sent_days_ago` days ago, with `reminders_sent` reminders.
 ///
 /// `last_sent_at` is `TIMESTAMP(3)`, which rounds to the nearest millisecond,
@@ -2073,7 +2073,7 @@ async fn age_invite(
         SET created_at = NOW() - make_interval(days => $1),
             last_sent_at = date_trunc('milliseconds', NOW() - make_interval(days => $2)),
             reminders_sent = $3
-        WHERE email = 'invite@macro.com'
+        WHERE email = 'invite@rox.one'
         RETURNING last_sent_at <= NOW() - make_interval(days => $2)
         "#,
     )
@@ -2120,7 +2120,7 @@ async fn first_invite_reminder_is_due_after_three_days(pool: Pool<Postgres>) -> 
     let claimed = team_repo.claim_due_invite_reminders(100).await?;
     assert_eq!(claimed.len(), 1);
     let reminder = &claimed[0];
-    assert_eq!(reminder.email, "invite@macro.com");
+    assert_eq!(reminder.email, "invite@rox.one");
     assert_eq!(reminder.reminder_number, 1);
     assert_eq!(reminder.team_name, "team1");
     assert_eq!(reminder.invited_by, "macro|user@user.com");
@@ -2129,7 +2129,7 @@ async fn first_invite_reminder_is_due_after_three_days(pool: Pool<Postgres>) -> 
     // Claiming counted the reminder and restarted the clock.
     assert!(claimed_emails(&team_repo).await?.is_empty());
     let (reminders_sent, recently_sent): (i16, bool) = sqlx::query_as(
-        "SELECT reminders_sent, last_sent_at > NOW() - INTERVAL '1 minute' FROM team_invite WHERE email = 'invite@macro.com'",
+        "SELECT reminders_sent, last_sent_at > NOW() - INTERVAL '1 minute' FROM team_invite WHERE email = 'invite@rox.one'",
     )
     .fetch_one(&pool)
     .await?;
@@ -2166,7 +2166,7 @@ async fn second_invite_reminder_is_the_last(pool: Pool<Postgres>) -> anyhow::Res
     age_invite(&pool, 7, 4, 1).await?;
     assert_eq!(
         claimed_emails(&team_repo).await?,
-        vec![("invite@macro.com".to_string(), 2)]
+        vec![("invite@rox.one".to_string(), 2)]
     );
 
     age_invite(&pool, 13, 6, 2).await?;
@@ -2210,7 +2210,7 @@ async fn invite_reminders_skip_invites_that_cannot_lead_anywhere(
     sqlx::query("DELETE FROM team_invite WHERE email = 'user3@user.com'")
         .execute(&pool)
         .await?;
-    sqlx::query("UPDATE team_invite SET email = 'user3@user.com' WHERE email = 'invite@macro.com'")
+    sqlx::query("UPDATE team_invite SET email = 'user3@user.com' WHERE email = 'invite@rox.one'")
         .execute(&pool)
         .await?;
     sqlx::query("INSERT INTO team_user (team_id, user_id, team_role) VALUES ($1::uuid, 'macro|user3@user.com', 'member')")
@@ -2286,7 +2286,7 @@ async fn invite_reminder_claims_respect_the_limit(pool: Pool<Postgres>) -> anyho
     assert_eq!(first[0].email, "user3@user.com");
     assert_eq!(
         claimed_emails(&team_repo).await?,
-        vec![("invite@macro.com".to_string(), 1)]
+        vec![("invite@rox.one".to_string(), 1)]
     );
     Ok(())
 }

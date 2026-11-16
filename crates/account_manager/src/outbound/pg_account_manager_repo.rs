@@ -31,7 +31,7 @@ pub struct PgAccountManagerRepo {
 }
 
 impl PgAccountManagerRepo {
-    /// Create a repository over the MacroDB pool.
+    /// Create a repository over the RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

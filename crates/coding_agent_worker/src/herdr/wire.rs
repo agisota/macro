@@ -1,4 +1,4 @@
-//! The local protocol between macrod and a `macrod herdr-pane` window:
+//! The local protocol between roxd and a `roxd herdr-pane` window:
 //! newline-delimited JSON over a Unix socket only this user can open.
 
 use serde::{Deserialize, Serialize};
@@ -54,7 +54,7 @@ pub(crate) struct PermissionChoice {
     pub kind: String,
 }
 
-/// macrod to a pane window.
+/// roxd to a pane window.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub(crate) enum ToPane {
@@ -103,7 +103,7 @@ pub(crate) enum ToPane {
     },
 }
 
-/// A pane window to macrod.
+/// A pane window to roxd.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub(crate) enum FromPane {

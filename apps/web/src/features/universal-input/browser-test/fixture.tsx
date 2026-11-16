@@ -125,8 +125,8 @@ function SearchbarFixture() {
                 .append(
                   $createParagraphNode().append(
                     $createUserMentionNode({
-                      userId: 'macro|julia@macro.com',
-                      email: 'julia@macro.com',
+                      userId: 'macro|julia@rox.one',
+                      email: 'julia@rox.one',
                       displayName: 'Julia',
                     }),
                     $createTextNode(' budget')
@@ -288,9 +288,9 @@ export function UniversalInputFixture(
       email: 'john@example.com',
     },
     {
-      id: 'macro|julia@macro.com',
+      id: 'macro|julia@rox.one',
       name: 'Julia Jones',
-      email: 'julia@macro.com',
+      email: 'julia@rox.one',
     },
   ])
     records.push({
@@ -460,10 +460,10 @@ export function UniversalInputFixture(
       email: 'john@example.com',
     },
     {
-      id: 'macro|julia@macro.com',
+      id: 'macro|julia@rox.one',
       kind: 'user' as const,
       label: 'Julia Jones',
-      email: 'julia@macro.com',
+      email: 'julia@rox.one',
     },
   ];
   const actions: InputDisplay = {

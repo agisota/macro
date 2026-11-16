@@ -14,7 +14,7 @@ mod timeline;
 
 pub use media::{fail_attachment_in, queue_publication_in};
 
-/// Repository over MacroDB.
+/// Repository over RoxDB.
 #[derive(Clone)]
 pub struct PgExternalChatRepository {
     pool: PgPool,

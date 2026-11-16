@@ -75,7 +75,7 @@ fn user_toolset() -> AsyncToolCollection<()> {
 }
 
 fn request_context() -> RequestContext {
-    RequestContext::new(MacroUserIdStr::try_from_email("test@macro.com").expect("valid user id"))
+    RequestContext::new(MacroUserIdStr::try_from_email("test@rox.one").expect("valid user id"))
 }
 
 /// An OpenTelemetry pipeline that keeps finished spans in memory, installed as

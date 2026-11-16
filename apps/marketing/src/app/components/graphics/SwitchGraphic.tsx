@@ -5,7 +5,7 @@ import { MODULE_LOGOS } from './moduleLogos';
 /**
  * The "<tool> → Rox" switch graphic that heads each migration section.
  *
- * A themed rebuild of the SVGs on docs.macro.com/switch-to-macro, which bake
+ * A themed rebuild of the SVGs on docs.rox.one/switch-to-macro, which bake
  * in the docs site's fixed dark palette. Here the tiles, ink, and arrow come
  * from the theme variables, so the graphic follows whichever palette the
  * visitor has picked.

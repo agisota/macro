@@ -136,7 +136,7 @@ describe('answers in the app', () => {
       ],
       rows: [
         [
-          { type: 'entities', value: ['macro|ada@macro.com'] },
+          { type: 'entities', value: ['macro|ada@rox.one'] },
           { type: 'entities', value: ['doc-1'] },
         ],
       ],
@@ -164,7 +164,7 @@ describe('answers in the app', () => {
       cells[0]
         .querySelector('[data-testid="person-icon"]')
         ?.getAttribute('data-id')
-    ).toBe('macro|ada@macro.com');
+    ).toBe('macro|ada@rox.one');
     expect(
       cells[1].querySelector('[data-testid="DOCUMENT-doc-1-icon"]')
     ).toBeTruthy();

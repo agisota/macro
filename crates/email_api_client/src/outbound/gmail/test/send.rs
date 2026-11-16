@@ -106,7 +106,7 @@ async fn prepared_dispatch_does_not_retry_provider_failure() {
     let error = repository(&server)
         .send_prepared(
             &AccessToken::new("access-token"),
-            b"Message-ID: <attempt@macro.com>\r\n\r\nbody",
+            b"Message-ID: <attempt@rox.one>\r\n\r\nbody",
             None,
         )
         .await
@@ -178,7 +178,7 @@ async fn recovery_maps_ids_and_search_errors_without_sending() {
         .mount(&server)
         .await;
     let found = repository(&server)
-        .find_sent_message(&AccessToken::new("token"), "attempt@macro.com")
+        .find_sent_message(&AccessToken::new("token"), "attempt@rox.one")
         .await
         .unwrap()
         .unwrap();
@@ -193,7 +193,7 @@ async fn recovery_maps_ids_and_search_errors_without_sending() {
         .await;
     assert!(matches!(
         repository(&server)
-            .find_sent_message(&AccessToken::new("token"), "attempt@macro.com")
+            .find_sent_message(&AccessToken::new("token"), "attempt@rox.one")
             .await,
         Err(crate::domain::models::EmailApiError::RateLimited { .. })
     ));

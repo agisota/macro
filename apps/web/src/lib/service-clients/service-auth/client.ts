@@ -745,7 +745,7 @@ export const authServiceClient = {
   },
 
   // GTM invite links: personal, time-limited signup links Macro staff hand
-  // to prospects. Staff endpoints are gated server-side on a @macro.com account.
+  // to prospects. Staff endpoints are gated server-side on a @rox.one account.
   async createGtmInviteLink(args: CreateGtmInviteLinkRequest) {
     return (
       await fetchWithAuth<GtmInviteLink>(`${authHost}/gtm-invite/links`, {

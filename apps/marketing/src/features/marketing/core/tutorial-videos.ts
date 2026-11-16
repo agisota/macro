@@ -75,7 +75,7 @@ export const TUTORIAL_VIDEOS = {
     title: 'Learn how to use Rox Agents',
     length: '1:05',
   },
-  macrod: {
+  roxd: {
     feature: 'Snippets',
     title: 'Learn how to use RoxD',
     length: '1:17',

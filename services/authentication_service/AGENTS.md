@@ -242,7 +242,7 @@ inputs cannot select an agent, and ordinary user credentials remain unattributed
 - FusionAuth reports a link owner that was deleted as `UserDoesNotExist`. That
   user has no links or grants left, so answer the route's "not linked" outcome
   (404 no grant, 200 for an idempotent removal), not a 500.
-- Develop admits new accounts only for `@macro.com` and allowlisted addresses;
+- Develop admits new accounts only for `@rox.one` and allowlisted addresses;
   `DEVELOPMENT_BYPASS_SIGNUP_ALLOWLIST=true` opens it to everyone. See
   `README.md` before changing signup behavior.
 - Denial responses and policy errors must never disclose configured allowlist

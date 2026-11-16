@@ -57,7 +57,7 @@ function runtime(
   return {
     id,
     allow_permission_bypass: false,
-    kind: 'macrod',
+    kind: 'roxd',
     name,
     owner: { type: 'user', user_id: owner },
     access: 'none',

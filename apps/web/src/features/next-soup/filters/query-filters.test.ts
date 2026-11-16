@@ -160,7 +160,7 @@ describe('filterSoupItemByRequestBody', () => {
   it('only accepts agent sessions when the body opts into them', () => {
     const session = {
       tag: 'agentSession',
-      data: { id: 'session-1', ownerId: 'macro|a@macro.com' },
+      data: { id: 'session-1', ownerId: 'macro|a@rox.one' },
     } as unknown as SoupApiItem;
 
     expect(filterSoupItemByRequestBody(session, {})).toBe(false);
@@ -174,12 +174,12 @@ describe('filterSoupItemByRequestBody', () => {
     ).toBe(true);
     expect(
       filterSoupItemByRequestBody(session, {
-        agent_session_filters: { owners: ['macro|a@macro.com'] },
+        agent_session_filters: { owners: ['macro|a@rox.one'] },
       })
     ).toBe(true);
     expect(
       filterSoupItemByRequestBody(session, {
-        agent_session_filters: { include: true, owners: ['macro|b@macro.com'] },
+        agent_session_filters: { include: true, owners: ['macro|b@rox.one'] },
       })
     ).toBe(false);
   });

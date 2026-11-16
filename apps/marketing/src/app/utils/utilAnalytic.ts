@@ -79,7 +79,7 @@ const initializeGoogleAnalytics = () => {
 // bundle parses (cold-load bouncers were silent when init lived here).
 
 // Same PostHog project + proxy as the app (js/app analytics.ts). The app is
-// served same-origin at macro.com/app/*, so the anonymous distinct_id created
+// served same-origin at rox.one/app/*, so the anonymous distinct_id created
 // here is the same person PostHog sees after signup — ad-landing UTMs become
 // $initial_utm_* on the eventual identified user.
 const initializePosthog = () => {

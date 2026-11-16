@@ -70,7 +70,7 @@ through the same service.
 ## Checks
 
 - `cargo test -p notification --all-features` (`SQLX_OFFLINE` unset; needs local
-  MacroDB and Redis).
+  RoxDB and Redis).
 - For test edits, also run `RUSTFLAGS=-Dwarnings cargo check -p notification
   --all-features --tests` against the live schema. Ordinary clippy does not
   compile test-only code, while CI rejects its warnings.
@@ -100,7 +100,7 @@ through the same service.
   the skipped insert as nothing to deliver, so keep that `rows_affected` check.
   The triggers read `requestId` from the stored metadata, so renaming that field
   needs a migration.
-- Crates on `macrod`'s dependency path (`teams`, `model_notifications`,
+- Crates on `roxd`'s dependency path (`teams`, `model_notifications`,
   `invite_email`) take this crate with `default-features = false`, which keeps
   librdkafka out of the self-hosted daemon; keep it that way.
 - Independent Kafka consumers have no durable group lag. Health logs distinguish

@@ -161,7 +161,7 @@ export class AuthenticationService extends pulumi.ComponentResource {
                 'ses:SendTemplatedEmail',
               ],
               Resource: [
-                `arn:aws:ses:us-east-1:569036502058:identity/macro.com`,
+                `arn:aws:ses:us-east-1:569036502058:identity/rox.one`,
               ],
               Effect: 'Allow',
             },

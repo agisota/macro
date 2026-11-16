@@ -1098,11 +1098,11 @@ fn library_link(m: &MsgRef) -> Option<LibraryLink> {
 }
 
 /// Macro's `pluginData` entries (other plugins' are left in the record).
-fn macro_data(m: &MsgRef) -> Option<library::MacroData> {
+fn macro_data(m: &MsgRef) -> Option<library::RoxData> {
     if !m.has("pluginData") {
         return None;
     }
-    let entries: library::MacroData = m
+    let entries: library::RoxData = m
         .msgs("pluginData")
         .filter(|d| d.str("pluginID") == Some(library::MACRO_PLUGIN))
         .filter_map(|d| Some((d.str("key")?.into(), d.str("value").unwrap_or("").into())))

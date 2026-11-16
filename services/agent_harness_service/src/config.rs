@@ -177,7 +177,7 @@ pub struct Config {
     pub codex_oauth_kms_key_id: CodexOauthKmsKeyId,
     /// Comma-separated Kafka bootstrap servers.
     pub kafka_brokers: KafkaBrokers,
-    /// MacroDB connection string; `agent_sessions` lives here.
+    /// RoxDB connection string; `agent_sessions` lives here.
     pub database_url: DatabaseUrl,
     /// Shared Redis used for cross-replica command forwarding.
     pub redis_uri: RedisUri,

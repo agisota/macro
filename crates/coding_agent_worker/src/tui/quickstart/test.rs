@@ -153,7 +153,7 @@ fn quickstart_renders_the_form_at_small_sizes() {
                 crate::tui::ui::render_quickstart(
                     frame,
                     &setup,
-                    std::path::Path::new("macrod.toml"),
+                    std::path::Path::new("roxd.toml"),
                 )
             })
             .unwrap();
@@ -200,7 +200,7 @@ fn quickstart_groups_herdr_agents_apart_from_headless_ones() {
     let mut terminal = Terminal::new(TestBackend::new(100, 40)).unwrap();
     terminal
         .draw(|frame| {
-            crate::tui::ui::render_quickstart(frame, &setup, std::path::Path::new("macrod.toml"))
+            crate::tui::ui::render_quickstart(frame, &setup, std::path::Path::new("roxd.toml"))
         })
         .unwrap();
     let rows = terminal
@@ -252,7 +252,7 @@ fn quickstart_wraps_a_long_install_error_instead_of_clipping_it() {
                 crate::tui::ui::render_quickstart(
                     frame,
                     &setup,
-                    std::path::Path::new("macrod.toml"),
+                    std::path::Path::new("roxd.toml"),
                 )
             })
             .unwrap();

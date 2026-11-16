@@ -323,8 +323,8 @@ fn server_config(public_host: String, service_host: String) -> StreamableHttpSer
         service_host,
         "localhost".into(),
         "127.0.0.1".into(),
-        "gateway.macro.com".into(),
-        "dev-gateway.macro.com".into(),
+        "gateway.rox.one".into(),
+        "dev-gateway.rox.one".into(),
     ]);
     config.legacy_session_mode = false;
     config.json_response = true;

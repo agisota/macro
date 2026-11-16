@@ -67,7 +67,7 @@ impl UserRolesAndPermissionsService for Permissions {
 
 #[tokio::test]
 async fn permissions_determine_access_and_lookup_errors_fail_closed() {
-    let owner = Owner::User(MacroUserIdStr::try_from_email("owner@macro.com").unwrap());
+    let owner = Owner::User(MacroUserIdStr::try_from_email("owner@rox.one").unwrap());
     for (paid, expected) in [(false, ModelAccess::Free), (true, ModelAccess::Paid)] {
         let policy = PermissionModelAccess::new(Permissions(Some(paid)));
         assert_eq!(policy.access(&owner).await.unwrap(), expected);

@@ -106,7 +106,7 @@ impl SetupAttributes {
 }
 
 /// Export finished setup waits as spans with their recorded start and end,
-/// under the purchase trace, plus the total once macrod first connected.
+/// under the purchase trace, plus the total once roxd first connected.
 pub fn setup_waits<T: Tracer>(
     tracer: &T,
     traceparent: Option<&str>,
@@ -292,7 +292,7 @@ pub fn effect_failed(phase: &str) {
         .add(1, &[KeyValue::new("phase", phase.to_owned())]);
 }
 
-/// Time from reservation to the first macrod connection, without entity metric labels.
+/// Time from reservation to the first roxd connection, without entity metric labels.
 pub fn provisioned(seconds: f64) {
     global::meter("hosted_runtimes")
         .f64_histogram("computer.provisioning.duration")

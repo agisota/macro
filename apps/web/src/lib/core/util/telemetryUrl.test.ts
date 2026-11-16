@@ -9,8 +9,8 @@ import {
 describe('meeting URL telemetry', () => {
   it.each([
     [
-      'https://gateway.macro.com/dss/call/join/secret',
-      'https://gateway.macro.com/dss/call/join/:shareToken',
+      'https://gateway.rox.one/dss/call/join/secret',
+      'https://gateway.rox.one/dss/call/join/:shareToken',
     ],
     ['/call/join/secret/leave', '/call/join/:shareToken/leave'],
     ['/call/meetings/join/secret', '/call/meetings/join/:shareToken'],
@@ -20,14 +20,14 @@ describe('meeting URL telemetry', () => {
       '/call/meetings/invite/:shareToken/users',
     ],
     [
-      'https://macro.com/app/meet/secret?join=true',
-      'https://macro.com/app/meet/:shareToken',
+      'https://rox.one/app/meet/secret?join=true',
+      'https://rox.one/app/meet/:shareToken',
     ],
     ['/meet/secret#fragment', '/meet/:shareToken'],
     ['/meet/join/secret', '/meet/join/:shareToken'],
     [
-      'https://macro.com/app/meet/join/secret?source=calendar',
-      'https://macro.com/app/meet/join/:shareToken',
+      'https://rox.one/app/meet/join/secret?source=calendar',
+      'https://rox.one/app/meet/join/:shareToken',
     ],
   ])('redacts the capability in %s', (input, expected) => {
     expect(telemetryUrl(input)).toBe(expected);
@@ -35,8 +35,8 @@ describe('meeting URL telemetry', () => {
 
   it.each([
     [
-      'https://macro.com/app/team-invite?link=0a1b2c3d-secret',
-      'https://macro.com/app/team-invite?link=:inviteToken',
+      'https://rox.one/app/team-invite?link=0a1b2c3d-secret',
+      'https://rox.one/app/team-invite?link=:inviteToken',
     ],
     [
       '/app/team-invite?utm_source=slack&link=secret#top',
@@ -44,8 +44,8 @@ describe('meeting URL telemetry', () => {
     ],
     ['/app/team-invite?id=invite-id', '/app/team-invite?id=invite-id'],
     [
-      'https://macro.com/app/login?redirect=%2Fteam-invite%3Flink%3Dsecret',
-      'https://macro.com/app/login?redirect=%2Fteam-invite%3Flink%3D:inviteToken',
+      'https://rox.one/app/login?redirect=%2Fteam-invite%3Flink%3Dsecret',
+      'https://rox.one/app/login?redirect=%2Fteam-invite%3Flink%3D:inviteToken',
     ],
     [
       '/app/login?redirect=%2Fteam-invite%3Fsource%3Dslack%26link%3Dsecret&next=1',
@@ -58,21 +58,21 @@ describe('meeting URL telemetry', () => {
   it('redacts team invite link tokens in pageview properties', () => {
     expect(
       redactLinkTokenProperties({
-        $current_url: 'https://macro.com/app/team-invite?link=secret',
+        $current_url: 'https://rox.one/app/team-invite?link=secret',
       })
     ).toEqual({
-      $current_url: 'https://macro.com/app/team-invite?link=:inviteToken',
+      $current_url: 'https://rox.one/app/team-invite?link=:inviteToken',
     });
   });
 
   it.each([
     [
-      'https://auth.macro.com/session/login/fake-session-code',
-      'https://auth.macro.com/session/login/:sessionCode',
+      'https://auth.rox.one/session/login/fake-session-code',
+      'https://auth.rox.one/session/login/:sessionCode',
     ],
     [
-      'https://macro.com/app/login?token=fake-session-code&signed_up=true',
-      'https://macro.com/app/login?token=:sessionCode&signed_up=true',
+      'https://rox.one/app/login?token=fake-session-code&signed_up=true',
+      'https://rox.one/app/login?token=:sessionCode&signed_up=true',
     ],
     [
       'tauri://localhost/#/login?signed_up=true&token=fake-session-code',
@@ -107,7 +107,7 @@ describe('meeting URL telemetry', () => {
 
   it('redacts tokens included in serialized errors and exception messages', () => {
     const message =
-      'Request to https://gateway.macro.com/dss/call/join/secret/leave failed';
+      'Request to https://gateway.rox.one/dss/call/join/secret/leave failed';
     expect(redactLinkTokens(message)).not.toContain('secret');
     expect(redactLinkTokens(JSON.stringify({ message }))).not.toContain(
       'secret'
@@ -116,14 +116,14 @@ describe('meeting URL telemetry', () => {
 
   it('redacts retained landing URLs and referrers in person properties', () => {
     const initialProperties = {
-      $initial_current_url: 'https://macro.com/app/meet/secret?join=true',
+      $initial_current_url: 'https://rox.one/app/meet/secret?join=true',
       $initial_pathname: '/app/meet/secret',
-      $initial_referrer: 'https://macro.com/app/meet/secret',
+      $initial_referrer: 'https://rox.one/app/meet/secret',
       visits: 1,
     };
     const properties = {
-      $current_url: 'https://macro.com/app',
-      $referrer: 'https://macro.com/app/meet/secret',
+      $current_url: 'https://rox.one/app',
+      $referrer: 'https://rox.one/app/meet/secret',
       $set: initialProperties,
       $set_once: initialProperties,
     };
@@ -132,13 +132,13 @@ describe('meeting URL telemetry', () => {
 
     expect(JSON.stringify(sanitized)).not.toContain('secret');
     expect(sanitized.$set).toEqual({
-      $initial_current_url: 'https://macro.com/app/meet/:shareToken?join=true',
+      $initial_current_url: 'https://rox.one/app/meet/:shareToken?join=true',
       $initial_pathname: '/app/meet/:shareToken',
-      $initial_referrer: 'https://macro.com/app/meet/:shareToken',
+      $initial_referrer: 'https://rox.one/app/meet/:shareToken',
       visits: 1,
     });
     expect(sanitized.$set_once).toEqual(sanitized.$set);
-    expect(sanitized.$current_url).toBe('https://macro.com/app');
+    expect(sanitized.$current_url).toBe('https://rox.one/app');
     expect(sanitized.$set).not.toBe(initialProperties);
     expect(properties.$set.$initial_pathname).toBe('/app/meet/secret');
     expect(redactLinkTokenProperties(initialProperties)).toEqual(
@@ -147,7 +147,7 @@ describe('meeting URL telemetry', () => {
   });
 
   it('redacts setup capabilities in serialized messages and retained person properties', () => {
-    const url = 'https://macro.com/app/meet/join/private-token?source=calendar';
+    const url = 'https://rox.one/app/meet/join/private-token?source=calendar';
     const sanitized = redactLinkTokenProperties({
       $current_url: url,
       $set: { $initial_current_url: url },
@@ -155,7 +155,7 @@ describe('meeting URL telemetry', () => {
     });
     expect(JSON.stringify(sanitized)).not.toContain('private-token');
     expect(sanitized.$current_url).toBe(
-      'https://macro.com/app/meet/join/:shareToken?source=calendar'
+      'https://rox.one/app/meet/join/:shareToken?source=calendar'
     );
     expect(
       redactLinkTokens(JSON.stringify({ message: `Failed ${url}` }))

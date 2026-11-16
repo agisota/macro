@@ -1,25 +1,25 @@
 #!/bin/sh
-# Install macrod, Macro's agent daemon, on macOS or Linux:
+# Install roxd, Macro's agent daemon, on macOS or Linux:
 #
 #   curl -fsSL https://raw.githubusercontent.com/macro-inc/macro/main/crates/coding_agent_worker/install/install.sh | sh
 #
-# A running macrod updates itself; run this again to update right away.
+# A running roxd updates itself; run this again to update right away.
 #
 # Options (flags after `sh -s --` when piped, or environment variables):
-#   --no-modify-path / MACROD_NO_MODIFY_PATH=1  leave shell startup files alone
-#   MACROD_VERSION       a release tag to install (v2026.10.18.0); default latest
-#   MACROD_INSTALL_DIR   where the binary goes; default ~/.local/bin
-#   MACROD_UPDATE_SOURCE a mirror (URL or directory) holding latest.json and
+#   --no-modify-path / ROXD_NO_MODIFY_PATH=1  leave shell startup files alone
+#   ROXD_VERSION       a release tag to install (v2026.10.18.0); default latest
+#   ROXD_INSTALL_DIR   where the binary goes; default ~/.local/bin
+#   ROXD_UPDATE_SOURCE a mirror (URL or directory) holding latest.json and
 #                        the release archives, instead of GitHub releases
 
 set -eu
 
 repo="macro-inc/macro"
-install_dir="${MACROD_INSTALL_DIR:-$HOME/.local/bin}"
-version="${MACROD_VERSION:-latest}"
-source="${MACROD_UPDATE_SOURCE:-}"
+install_dir="${ROXD_INSTALL_DIR:-$HOME/.local/bin}"
+version="${ROXD_VERSION:-latest}"
+source="${ROXD_UPDATE_SOURCE:-}"
 modify_path=1
-case "${MACROD_NO_MODIFY_PATH:-}" in
+case "${ROXD_NO_MODIFY_PATH:-}" in
   "" | 0 | false) ;;
   *) modify_path=0 ;;
 esac
@@ -27,7 +27,7 @@ for arg in "$@"; do
   case "$arg" in
     --no-modify-path) modify_path=0 ;;
     *)
-      echo "macrod install: unknown option $arg" >&2
+      echo "roxd install: unknown option $arg" >&2
       exit 2
       ;;
   esac
@@ -35,10 +35,10 @@ done
 
 # The line every startup file gets, and the comment that marks it as ours so
 # a re-run never adds it twice.
-marker="# Added by the macrod installer"
+marker="# Added by the roxd installer"
 
 fail() {
-  echo "macrod install: $*" >&2
+  echo "roxd install: $*" >&2
   exit 1
 }
 
@@ -80,13 +80,13 @@ if [ -n "$source" ]; then
     version=$(sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$work/latest.json" | head -n 1)
     [ -n "$version" ] || fail "$source/latest.json names no tag_name"
   fi
-  asset="macrod-$version-$os-$arch.tar.gz"
+  asset="roxd-$version-$os-$arch.tar.gz"
   url="$source/$asset"
 elif [ "$version" = latest ]; then
-  asset="macrod-$os-$arch.tar.gz"
+  asset="roxd-$os-$arch.tar.gz"
   url="https://github.com/$repo/releases/latest/download/$asset"
 else
-  asset="macrod-$version-$os-$arch.tar.gz"
+  asset="roxd-$version-$os-$arch.tar.gz"
   url="https://github.com/$repo/releases/download/$version/$asset"
 fi
 
@@ -109,13 +109,13 @@ fetch "$url.sha256" "$work/$asset.sha256" ||
   [ -n "$expected" ] && [ "$expected" = "$actual" ]
 ) || fail "checksum mismatch for $asset"
 
-tar -xzf "$work/$asset" -C "$work" macrod
+tar -xzf "$work/$asset" -C "$work" roxd
 mkdir -p "$install_dir"
-# Rename into place: a running macrod keeps its old binary until it restarts.
-install -m 755 "$work/macrod" "$install_dir/.macrod.new"
-mv -f "$install_dir/.macrod.new" "$install_dir/macrod"
+# Rename into place: a running roxd keeps its old binary until it restarts.
+install -m 755 "$work/roxd" "$install_dir/.roxd.new"
+mv -f "$install_dir/.roxd.new" "$install_dir/roxd"
 
-echo "Installed $("$install_dir/macrod" --version) to $install_dir/macrod"
+echo "Installed $("$install_dir/roxd" --version) to $install_dir/roxd"
 
 # Append $2 to the startup file $1 once; say what changed.
 add_to_startup_file() {
@@ -143,7 +143,7 @@ if [ "$modify_path" = 1 ]; then
       fi
       ;;
     fish)
-      add_to_startup_file "${XDG_CONFIG_HOME:-$HOME/.config}/fish/conf.d/macrod.fish" \
+      add_to_startup_file "${XDG_CONFIG_HOME:-$HOME/.config}/fish/conf.d/roxd.fish" \
         "fish_add_path --path \"$install_dir\""
       ;;
     *) add_to_startup_file "$HOME/.profile" "$posix_line" ;;
@@ -151,12 +151,12 @@ if [ "$modify_path" = 1 ]; then
 fi
 
 case ":$PATH:" in
-  *":$install_dir:"*) echo "Run: macrod" ;;
+  *":$install_dir:"*) echo "Run: roxd" ;;
   *)
     if [ "$changed" = 1 ] || [ "$modify_path" = 1 ]; then
-      echo "Open a new terminal, then run: macrod"
+      echo "Open a new terminal, then run: roxd"
     else
-      echo "$install_dir is not on your PATH; run: $install_dir/macrod"
+      echo "$install_dir is not on your PATH; run: $install_dir/roxd"
     fi
     ;;
 esac

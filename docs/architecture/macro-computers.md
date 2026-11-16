@@ -1,6 +1,6 @@
 # Macro computers
 
-How Macro computers work: hosted VMs a team buys, each running macrod so it
+How Macro computers work: hosted VMs a team buys, each running roxd so it
 shows up in Settings → Runtimes like a paired machine. The code lives in
 `crates/hosted_runtimes` (see its `AGENTS.md` for navigation), with the control
 plane wired in `services/agent_harness_service/src/computers.rs` and the routes
@@ -64,7 +64,7 @@ Retention (14 days) and past-due grace (7 days) are the typed
 `lifecycle::BillingPolicy`, from `COMPUTER_RETENTION_DAYS` and
 `COMPUTER_PAST_DUE_GRACE_DAYS` (typed config defaults, same in both services); `PgComputerRepo::new(pool,
 policy)` applies every transition with it (`ComputerRepo::policy`). Keep the
-other lifecycle timings (`MACROD_GRACE`, `RESERVATION_TTL`, leases, polling)
+other lifecycle timings (`ROXD_GRACE`, `RESERVATION_TTL`, leases, polling)
 as named policy constants. Every backoff goes through
 `lifecycle::backoff(Backoff, attempt)` on tokio-retry's `ExponentialBackoff`
 (`CAPACITY_BACKOFF`, `RESTART_BACKOFF`, `BILLING_BACKOFF`, the operator's
@@ -119,15 +119,15 @@ attempt, so a busy database never fails a computer or abandons a removal.
   quarantined.
   `created_by` keeps the purchaser's id without a foreign key, so deleting the
   account is never blocked; harness deletion clears its reference.
-- **Control-plane redeploys**: A missing macrod never reboots a fleet-observed
+- **Control-plane redeploys**: A missing roxd never reboots a fleet-observed
   Running guest. Persist consecutive misses; after three grace periods, page
-  the operator and restart only macrod once per outage. Reconnection resets the
+  the operator and restart only roxd once per outage. Reconnection resets the
   counter; an obsolete daemon-restart effect is ignored. Stopped or missing
   awake guests retain crash/reprovision recovery. Crash-recovery effects use
   idempotent start, so replay after a lost completion cannot reboot a guest.
-  Booting and disconnected Running guests use persisted `MacrodMissing` timer
+  Booting and disconnected Running guests use persisted `RoxdMissing` timer
   rows, never process uptime. On each successful operator registration, one SQL
-  update gives that host's pending macrod timers a fresh three-minute grace;
+  update gives that host's pending roxd timers a fresh three-minute grace;
   stale timer snapshots cannot consume the refreshed rows.
 - **Effect shutdown and leases**: Keep `FOR UPDATE SKIP LOCKED` and ten-minute
   leases. Bound composite fleet calls to seven minutes and the entire leased
@@ -138,7 +138,7 @@ attempt, so a busy database never fails a computer or abandons a removal.
   this batch's unfinished leases with their original deadline to `run_after =
   now`. Preserve recorded retry backoffs and replacement replicas' leases.
   Persist fleet completion, its lifecycle event, effects and timers atomically;
-  preserve a macrod connection observed before creation completion.
+  preserve a roxd connection observed before creation completion.
   SIGKILL cannot release leases; replacements recover them at lease expiry.
   RPC cancellation does not cancel an Incus operation already accepted by the
   host (or a Docker daemon operation). Fleet create/start idempotence and
@@ -261,7 +261,7 @@ attempt, so a busy database never fails a computer or abandons a removal.
   off or release another computer. Waiting computers remain power-manageable.
 - A bought computer's harness starts with "Don't ask before acting" on: the
   harnesses service creates every hosted harness with `allow_permission_bypass`.
-- **Default agent**: the first macrod connection (`enrolled_at` unset) calls
+- **Default agent**: the first roxd connection (`enrolled_at` unset) calls
   `Harnesses::create_default_agent`, which gives the team a coding agent on the
   computer's harness unless one is already bound (`DefaultAgent::{Created { agent_id }, AlreadyBound}`).
   A created agent's bot id is stored as `hosted_runtime.default_agent_id` and
@@ -284,7 +284,7 @@ attempt, so a busy database never fails a computer or abandons a removal.
   harness, the web's `canManageClaude`); others get 403.
 - **Status**: `ComputerService::list(team_id)` →
   `ComputerStatus` with `setup: Option<SetupProgress>` (Billing →
-  Creating → Booting → Connecting → Ready, positions 1–5) until macrod first
+  Creating → Booting → Connecting → Ready, positions 1–5) until roxd first
   connects. A purchase being confirmed (its subscription change not settled,
   possibly waiting on another change in flight) reports status `purchasing`,
   step `billing` (1 of 5); a converted computer starts at Creating.
@@ -309,7 +309,7 @@ attempt, so a busy database never fails a computer or abandons a removal.
 - **Reprovision**: `InstanceLost` recreates the guest from the fleet's
   configured image for it (the agent image for an agent computer) with a fresh pairing for the same harness, on the data
   disk the lost guest left (homes, Claude login and Docker data survive).
-  The new enrollment generation makes `macrod enroll` run again: it claims
+  The new enrollment generation makes `roxd enroll` run again: it claims
   the new pairing and replaces only the enrollment marker and credential.
 - **Data disk**: every computer has one, created with the guest and deleted
   by `Fleet::destroy` after the instance (Incus keeps custom volumes). Incus:
@@ -317,9 +317,9 @@ attempt, so a busy database never fails a computer or abandons a removal.
   in the instance create request, so no instance exists without it. The
   instance sets `migration.stateful=false`: Incus attaches extra disks to a
   stateful VM only from a shared pool, and stop is always a cold shutdown. The guest
-  mounts it at `/home` and keeps `/var/lib/macrod` there. Docker: named
-  volumes `macro-computer-<id>-home` (`/home`) and `-macrod`
-  (`/var/lib/macrod`). Create and destroy are idempotent and leave no volume
+  mounts it at `/home` and keeps `/var/lib/roxd` there. Docker: named
+  volumes `macro-computer-<id>-home` (`/home`) and `-roxd`
+  (`/var/lib/roxd`). Create and destroy are idempotent and leave no volume
   behind a destroyed computer: a retried Create reuses the volume an earlier
   attempt made (Incus reports it as `VolumeCreation::AlreadyExists`, not an error).
 - **Images**: images are versioned aliases (`macro-box/<version>` on Incus,
@@ -339,7 +339,7 @@ attempt, so a busy database never fails a computer or abandons a removal.
   (agent harness, document storage, app and egress URLs) comes from the
   injected `DeploymentSource` for each enrollment and is never stored; the device secret
   is never stored in `hosted_runtime`, outbox effects, timers, or logs, and the
-  fleet copy is removed by `clear_enrollment` after macrod connects.
+  fleet copy is removed by `clear_enrollment` after roxd connects.
   `Effect::Create { host, start, generation: EnrollmentGeneration }` carries no
   issuance material. `hosted_runtime.enrollment_generation` starts at zero and
   is reserved and advanced inside `ComputerRepo::apply`, atomically with the
@@ -349,7 +349,7 @@ attempt, so a busy database never fails a computer or abandons a removal.
   Fleet Create checks the persisted generation and pairing identity before
   polling `FleetEnrollment::issue`: an already-claimed guest completes without
   issuance or re-keying. An unclaimed guest receives a fresh pairing and a
-  restart of the enrollment and macrod units so its enroll oneshot applies the
+  restart of the enrollment and roxd units so its enroll oneshot applies the
   replacement values without rebooting a running guest. A stopped guest starts
   normally. Creation runs under the per-computer enrollment guard
   (`hosted-enrollment:<computer UUID>` advisory key), also taken by the harness
@@ -374,7 +374,7 @@ attempt, so a busy database never fails a computer or abandons a removal.
   user ids or emails on it. The ports (`ClaudeSignIns`, `ClaudeSignInNotices`)
   are implemented in agent_harness_service.
 - **Setup notices**: `transition` emits `Effect::NotifySetup` when first setup
-  ends: `Ready` on the first macrod connection (before `setup.connected_at`
+  ends: `Ready` on the first roxd connection (before `setup.connected_at`
   latches), `Failed` when a not-yet-connected computer gives up, once per
   attempt. The fleet worker sends it to the buyer (`created_by`) through the
   `SetupNotices` port as a `computer_setup` notification; a send that keeps
@@ -458,23 +458,23 @@ One computer's first setup is one trace, rooted at the purchase (Buy computer). 
   both in the state JSON (no column). Older rows have no timeline.
 - Start new worker spans with `telemetry::adopt` before entering them
   (`computer.fleet.work`, `computer.billing.effect`, `computer.timer`,
-  `computer.reconcile.drift`, `computer.macrod.connected`): parented under the
+  `computer.reconcile.drift`, `computer.roxd.connected`): parented under the
   purchase while setup runs, linked to it afterwards, so later power changes
   never grow the setup trace. Already-entered callbacks use `resume` (link).
 - `apply_locked` advances the timeline after each transition and exports the
   waits that ended, with their recorded start and end, through the global
   tracer: `computer.setup.payment` (reservation → conversion),
   `computer.setup.create` (→ guest booting, including outbox and capacity
-  waits), `computer.setup.boot` (→ first macrod connection) and the total
+  waits), `computer.setup.boot` (→ first roxd connection) and the total
   `computer.setup`. They carry `computer_id`, `team_id`, `size`, `host_id`,
   `generation`, `billing_kind` and `capacity_waited`. A rolled-back
   transaction can export a wait that a retry exports again.
-- `Enrollment.traceparent` carries the setup context to macrod; see
+- `Enrollment.traceparent` carries the setup context to roxd; see
   `crates/coding_agent_worker/AGENTS.md`.
 - Fleet work and billing work emit one span per claimed effect, with errors
   marked even when retry scheduling succeeds.
 - Metrics: `computer.setup.phase.duration` (seconds, by `phase`),
-  `computer.setup.duration` (reservation → first macrod connection),
+  `computer.setup.duration` (reservation → first roxd connection),
   `computer.provisioning.duration` (the same total, unlabelled),
   `computer.effect.failures` (by phase) and `computer.incus.reachable` (0/1).
 - Capacity gauges, every reconcile pass: `computer.capacity.allocated` and

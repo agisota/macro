@@ -471,7 +471,7 @@ function Fixture() {
                   hosts: e.hosts,
                   status: e.requiresConfirmation ? 'pending' : 'confirmed',
                   location: e.macroCall
-                    ? 'https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef'
+                    ? 'https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef'
                     : e.googleMeet
                       ? 'Google Meet'
                       : e.location,

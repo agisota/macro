@@ -1407,7 +1407,7 @@
 
         # Keep release builds independent of optional developer tools in the
         # default shell. In particular, adding Hermes there must not make
-        # macrod releases fetch or realize Hermes and its Python/npm closure.
+        # roxd releases fetch or realize Hermes and its Python/npm closure.
         agent-daemon = pkgs.mkShell {
           packages = [
             rustToolchain

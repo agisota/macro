@@ -87,7 +87,7 @@ export const RouteDpa: Component = () => {
           Addendum (DPA) that acts as a supplement for our Cloud Terms of
           Service and Enterprise Agreements where required by applicable data
           protection laws. Please contact{' '}
-          <a href="mailto:sales@macro.com">sales@macro.com</a> for a
+          <a href="mailto:sales@rox.one">sales@rox.one</a> for a
           signature-friendly copy and more information including the Cover Page.
         </p>
 
@@ -831,12 +831,12 @@ export const RouteDpa: Component = () => {
               <tbody>
                 <tr>
                   <th scope="row">Name:</th>
-                  <td>CoParse, Inc. dba Macro</td>
+                  <td>ROX ONE, PUBLIC BENEFIT COMPANY</td>
                 </tr>
                 <tr>
                   <th scope="row">Contact details for data protection:</th>
                   <td>
-                    <a href="mailto:support@macro.com">support@macro.com</a>
+                    <a href="mailto:support@rox.one">support@rox.one</a>
                   </td>
                 </tr>
                 <tr>
@@ -942,7 +942,7 @@ export const RouteDpa: Component = () => {
             Aspects of current technical and organizational measures can be seen
             at Rox’s{' '}
             <a
-              href="http://security.macro.com"
+              href="http://security.rox.one"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -19,7 +19,7 @@
 --   deflate the draft-inflated metadata (inbox_visible,
 --   latest_inbound_message_ts — see the UPDATE at the bottom).
 -- Thread d209 (flag=true, stale on purpose): unlabeled message from Macro's
---   own digest sender (no-reply-dev@notification.macro.com), which is
+--   own digest sender (no-reply-dev@notification.rox.one), which is
 --   explicitly marked important by address — Macro notification emails are
 --   never signal, so sync must clear it despite the label heuristic and the
 --   sender override both saying signal.
@@ -33,12 +33,12 @@ VALUES ('00000000-0000-0000-0000-0000000cd001', '00000000-0000-0000-0000-0000000
        ('00000000-0000-0000-0000-0000000cd002', '00000000-0000-0000-0000-000000000d01', 'promo@newsletter.com', NOW(), NOW()),
        ('00000000-0000-0000-0000-0000000cd003', '00000000-0000-0000-0000-000000000d01', 'vip@corp.com', NOW(), NOW()),
        ('00000000-0000-0000-0000-0000000cd004', '00000000-0000-0000-0000-000000000d01', 'other@corp.com', NOW(), NOW()),
-       ('00000000-0000-0000-0000-0000000cd005', '00000000-0000-0000-0000-000000000d01', 'No-Reply-Dev@Notification.Macro.com', NOW(), NOW());
+       ('00000000-0000-0000-0000-0000000cd005', '00000000-0000-0000-0000-000000000d01', 'No-Reply-Dev@Notification.rox.one', NOW(), NOW());
 
 INSERT INTO email_filters (id, link_id, email_address, email_domain, is_important, created_at)
 VALUES ('00000000-0000-0000-0000-0000000fd001', '00000000-0000-0000-0000-000000000d01', 'vip@corp.com', NULL, true, NOW()),
        ('00000000-0000-0000-0000-0000000fd002', '00000000-0000-0000-0000-000000000d01', NULL, 'corp.com', false, NOW()),
-       ('00000000-0000-0000-0000-0000000fd003', '00000000-0000-0000-0000-000000000d01', 'no-reply-dev@notification.macro.com', NULL, true, NOW());
+       ('00000000-0000-0000-0000-0000000fd003', '00000000-0000-0000-0000-000000000d01', 'no-reply-dev@notification.rox.one', NULL, true, NOW());
 
 INSERT INTO email_labels (id, link_id, provider_label_id, name, created_at)
 VALUES ('00000000-0000-0000-0000-0000000bd001', '00000000-0000-0000-0000-000000000d01', 'TRASH', 'TRASH', NOW()),

@@ -53,7 +53,7 @@ async fn copy_imports_a_channel_shared_event_onto_the_requesters_calendar() {
 
 #[tokio::test]
 async fn copy_leaves_the_meetings_macro_call_out() {
-    let call = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef";
+    let call = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef";
     let (description, location) = crate::domain::meeting_links::attach_macro_call(
         Some("<p>Bring the budget draft</p>"),
         None,
@@ -89,7 +89,7 @@ async fn an_event_file_imports_onto_the_picked_calendar_with_its_join_link() {
     // A forward is a guest deliberately inviting the recipient, so the copy
     // they add keeps the call the file names, unlike a channel share's.
     use crate::domain::ports::CalendarSnapshotImporter;
-    let call = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef";
+    let call = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef";
     let description = format!("Agenda\n\nJoin Macro call: {call}");
     let applied_id = Uuid::now_v7();
     let repo = FakeRepo {

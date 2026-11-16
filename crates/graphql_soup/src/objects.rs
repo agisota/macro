@@ -1197,7 +1197,7 @@ impl<E: SoupEntityEdges> GraphqlSoupDatabaseRow<E> {
 /// GraphQL paired runtime entity.
 pub struct GraphqlSoupHarness<E: SoupEntityEdges>(SoupHarness, E, Option<f64>);
 
-/// A paired runtime (a macrod machine). Only attention feeds list it, for
+/// A paired runtime (a roxd machine). Only attention feeds list it, for
 /// the access notifications filed under it; it opens in Settings → Machines.
 #[Object(name = "GraphqlSoupHarness")]
 impl<E: SoupEntityEdges> GraphqlSoupHarness<E> {

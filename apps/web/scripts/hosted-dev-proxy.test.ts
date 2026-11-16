@@ -18,24 +18,24 @@ afterEach(() => {
 it('maps dev HTTP and WebSocket URLs while preserving production and OAuth hosts', () => {
   vi.stubEnv('VITE_DEV_PROXY', 'true');
   vi.stubGlobal('location', { origin: 'https://coworker:5122' });
-  expect(developmentProxyUrl('https://dev-gateway.macro.com/auth')).toBe(
+  expect(developmentProxyUrl('https://dev-gateway.rox.one/auth')).toBe(
     'https://coworker:5122/__macro_dev/gateway/auth'
   );
   expect(
-    developmentProxyUrl('wss://services-dev.macro.com?token=fixture')
+    developmentProxyUrl('wss://services-dev.rox.one?token=fixture')
   ).toBe('wss://coworker:5122/__macro_dev/websocket?token=fixture');
   expect(
     developmentProxyUrl('https://sync-service-dev3.macroverse.workers.dev/doc')
   ).toBe('https://coworker:5122/__macro_dev/sync/doc');
   for (const url of [
-    'https://gateway.macro.com/auth',
-    'https://fusionauth-dev.macro.com/oauth2/logout',
+    'https://gateway.rox.one/auth',
+    'https://fusionauth-dev.rox.one/oauth2/logout',
   ]) {
     expect(developmentProxyUrl(url)).toBe(url);
   }
   vi.stubEnv('VITE_DEV_PROXY', 'false');
-  expect(developmentProxyUrl('https://dev-gateway.macro.com/auth')).toBe(
-    'https://dev-gateway.macro.com/auth'
+  expect(developmentProxyUrl('https://dev-gateway.rox.one/auth')).toBe(
+    'https://dev-gateway.rox.one/auth'
   );
 });
 
@@ -52,7 +52,7 @@ it('forwards authenticated HTTP and WS over HTTPS, rewrites cookies, and rejects
     res.setHeader('Content-Type', 'application/json');
     res.setHeader(
       'Set-Cookie',
-      'dev-macro-access-token=fixture; Domain=macro.com; Path=/; Secure; HttpOnly; SameSite=None'
+      'dev-macro-access-token=fixture; Domain=rox.one; Path=/; Secure; HttpOnly; SameSite=None'
     );
     res.end(
       JSON.stringify({
@@ -214,7 +214,7 @@ it('keeps HTTP/2 for remote browsers while proxying', async () => {
     res.setHeader('Connection', 'keep-alive');
     res.setHeader(
       'Set-Cookie',
-      'dev-macro-refresh-token=fixture; Domain=macro.com; Path=/; Secure; HttpOnly'
+      'dev-macro-refresh-token=fixture; Domain=rox.one; Path=/; Secure; HttpOnly'
     );
     res.end(JSON.stringify({ path: req.url, origin: req.headers.origin ?? null }));
   });

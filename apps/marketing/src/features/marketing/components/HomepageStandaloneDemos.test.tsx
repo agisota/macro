@@ -51,7 +51,7 @@ describe('standalone website demos', () => {
     ).toBe('Austin Barron <austin@example.com>');
     expect(
       (view.getByRole('textbox', { name: 'Cc' }) as HTMLInputElement).value
-    ).toBe('Julia <julia@macro.com>');
+    ).toBe('Julia <julia@rox.one>');
     expect(
       view.getByRole('textbox', { name: 'Email body' }).textContent
     ).toContain('Thanks for joining the demo');

@@ -10,9 +10,9 @@ use serde_json::Value;
 use super::{AgentInfo, AgentLaunch, HerdrError, Window, run};
 use crate::herdr::wire::AgentState;
 
-/// The agent source macrod reports under. herdr scopes reported state per
+/// The agent source roxd reports under. herdr scopes reported state per
 /// source, so this must not collide with a built-in integration's name.
-const REPORT_SOURCE: &str = "macrod";
+const REPORT_SOURCE: &str = "roxd";
 const REPORT_AGENT: &str = "macro";
 const DISPLAY_AGENT: &str = "Macro agent";
 /// How long a new tab's shell may take to reach its prompt.
@@ -201,7 +201,7 @@ impl Legacy {
         parse_window(&output)
     }
 
-    /// Open a tab in macrod's workspace, switching herdr to it when `focus`.
+    /// Open a tab in roxd's workspace, switching herdr to it when `focus`.
     async fn open_window(
         &self,
         cwd: &Path,

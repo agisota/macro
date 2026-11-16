@@ -11,7 +11,7 @@ use uuid::Uuid;
 
 use super::*;
 
-const OWNER: &str = "macro|reminders-owner@macro.com";
+const OWNER: &str = "macro|reminders-owner@rox.one";
 
 fn now() -> DateTime<Utc> {
     Utc.with_ymd_and_hms(2026, 7, 1, 12, 0, 0)

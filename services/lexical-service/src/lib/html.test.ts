@@ -11,9 +11,9 @@ describe("markdownToHtml", () => {
 	});
 
 	it("keeps link hrefs", () => {
-		const { html } = markdownToHtml("A [runbook](https://macro.com/runbook).");
+		const { html } = markdownToHtml("A [runbook](https://rox.one/runbook).");
 
-		expect(html).toContain('href="https://macro.com/runbook"');
+		expect(html).toContain('href="https://rox.one/runbook"');
 	});
 
 	it("renders tables through the app transformers", () => {

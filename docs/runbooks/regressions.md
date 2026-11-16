@@ -25,7 +25,7 @@ A service's p95 HTTP latency is above its usual band.
 
 - In APM, sort the service's resources by p95 change to find the slow
   endpoint, then open a slow trace and see which span holds the time.
-- Database time points at the [MacroDB runbook](macrodb.md); time waiting for a
+- Database time points at the [RoxDB runbook](macrodb.md); time waiting for a
   pool connection points at pool exhaustion in that service.
 - Levers: roll back the deploy that introduced the slow path; reduce load from
   the caller driving it.

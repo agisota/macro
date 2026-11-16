@@ -73,7 +73,7 @@ export function generatePreviewId(branchOverride?: string): string {
   return `${sanitized}-${nanoid}`;
 }
 
-export const PREVIEW_URL_REGEX = /https:\/\/([a-z0-9-]+)\.preview\.macro\.com/;
+export const PREVIEW_URL_REGEX = /https:\/\/([a-z0-9-]+)\.preview\.rox\.one/;
 
 export function extractPreviewIdFromBody(body: string): string | null {
   const match = body.match(PREVIEW_URL_REGEX);
@@ -101,7 +101,7 @@ async function getExistingPreviewId(pr: number, repo: string, token: string): Pr
   const comments = (await response.json()) as Array<{ body?: string; user?: { type?: string } }>;
 
   const previewComment = comments.find(
-    (c) => c.body?.includes('.preview.macro.com') && c.user?.type === 'Bot'
+    (c) => c.body?.includes('.preview.rox.one') && c.user?.type === 'Bot'
   );
 
   if (previewComment?.body) {

@@ -1,4 +1,4 @@
-//! The latest macrod release on GitHub and this platform's asset in it.
+//! The latest roxd release on GitHub and this platform's asset in it.
 
 use std::time::Duration;
 
@@ -17,7 +17,7 @@ const MIRROR_MANIFEST: &str = "latest.json";
 pub enum ReleaseSource {
     /// The repository's GitHub releases.
     GitHub,
-    /// `MACROD_UPDATE_SOURCE`: a base URL or a local directory holding
+    /// `ROXD_UPDATE_SOURCE`: a base URL or a local directory holding
     /// `latest.json` (GitHub's release object; `tag_name` is enough) and the
     /// release's archives and `.sha256` files beside it, named as on GitHub.
     /// For testing an update without publishing one.
@@ -114,7 +114,7 @@ pub struct PlatformAsset {
 
 impl Release {
     /// The tagged archive for this OS and CPU, e.g.
-    /// `macrod-v2026.10.27.2-linux-x86_64.tar.gz`, and its `.sha256`. The
+    /// `roxd-v2026.10.27.2-linux-x86_64.tar.gz`, and its `.sha256`. The
     /// tagged name rather than the version-less one, so the download cannot
     /// race a newer release.
     pub fn platform_asset(&self, source: &ReleaseSource) -> Option<PlatformAsset> {
@@ -133,7 +133,7 @@ impl Release {
         arch: &str,
         extension: &str,
     ) -> Option<PlatformAsset> {
-        let archive_name = format!("macrod-{}-{os}-{arch}.{extension}", self.tag);
+        let archive_name = format!("roxd-{}-{os}-{arch}.{extension}", self.tag);
         let checksum_name = format!("{archive_name}.sha256");
         let url_of = |name: &str| match source {
             ReleaseSource::GitHub => self
@@ -169,7 +169,7 @@ impl ReleaseClient {
     pub fn new(source: ReleaseSource) -> reqwest::Result<Self> {
         let http = reqwest::Client::builder()
             // GitHub's API rejects requests without a user agent.
-            .user_agent(format!("macrod/{}", super::VERSION))
+            .user_agent(format!("roxd/{}", super::VERSION))
             .timeout(REQUEST_TIMEOUT)
             .build()?;
         Ok(Self { http, source })

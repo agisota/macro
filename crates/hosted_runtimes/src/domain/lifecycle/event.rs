@@ -12,11 +12,11 @@ pub enum Event {
     /// The fleet finished stopping the instance (or created it stopped).
     InstanceStopped,
     /// The guest connected to the harness service.
-    MacrodConnected,
+    RoxdConnected,
     /// The guest disconnected from the harness service.
-    MacrodDisconnected,
-    /// Timer: macrod has been gone for [`MACROD_GRACE`], with a fresh fleet observation.
-    MacrodMissing {
+    RoxdDisconnected,
+    /// Timer: roxd has been gone for [`ROXD_GRACE`], with a fresh fleet observation.
+    RoxdMissing {
         /// Guest status; None means the fleet confirmed the instance is absent.
         instance_status: Option<InstanceStatus>,
     },
@@ -154,8 +154,8 @@ pub enum Rejected {
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum TimerKind {
-    /// Check whether macrod exceeded its connection grace period.
-    MacrodMissing,
+    /// Check whether roxd exceeded its connection grace period.
+    RoxdMissing,
     /// Retry after the crash backoff.
     RestartDue,
     /// Retry a start blocked by host capacity.
@@ -174,7 +174,7 @@ impl TimerKind {
     /// The event a timer delivers when it fires.
     pub fn event(self, instance_status: Option<InstanceStatus>) -> Event {
         match self {
-            Self::MacrodMissing => Event::MacrodMissing { instance_status },
+            Self::RoxdMissing => Event::RoxdMissing { instance_status },
             Self::RestartDue => Event::RestartDue,
             Self::PowerOnRetry => Event::PowerOnRetry,
             Self::CapacityChanged => Event::CapacityChanged,
@@ -214,7 +214,7 @@ pub enum Effect {
         host: HostId,
     },
     /// Restart only the guest connection daemon, preserving the guest and its sessions.
-    RestartMacrod {
+    RestartRoxd {
         /// Host holding the computer.
         host: HostId,
     },
@@ -256,9 +256,9 @@ pub enum Effect {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "outcome", rename_all = "snake_case")]
 pub enum SetupOutcome {
-    /// macrod connected for the first time. Happens once per computer.
+    /// roxd connected for the first time. Happens once per computer.
     Ready,
-    /// Setup gave up before macrod ever connected. A team retry that gives
+    /// Setup gave up before roxd ever connected. A team retry that gives
     /// up again is a new outcome with a later `failed_at`.
     Failed {
         /// Why, as the team sees it.
@@ -278,7 +278,7 @@ impl Effect {
             | Self::Start { .. }
             | Self::Stop { .. }
             | Self::Restart { .. }
-            | Self::RestartMacrod { .. }
+            | Self::RestartRoxd { .. }
             | Self::Destroy { .. }
             | Self::RevokeHarness
             | Self::PageOperator { .. }

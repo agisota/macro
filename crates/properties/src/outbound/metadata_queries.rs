@@ -21,7 +21,7 @@ pub async fn get_document_sub_types(
         return Ok(HashMap::new());
     }
 
-    // Document ids are stored as text in MacroDB. Keep the port strongly
+    // Document ids are stored as text in RoxDB. Keep the port strongly
     // typed and convert only in this outbound adapter.
     let document_ids = document_ids.iter().map(Uuid::to_string).collect::<Vec<_>>();
     let rows = sqlx::query!(

@@ -89,7 +89,7 @@ function calendarItem(event: Partial<CalendarMentionEvent>): PreviewItem {
       occurrenceKey: '2026-09-23T23:00:00+00:00',
       isRecurring: false,
       attendeeCount: 1,
-      organizerEmail: 'gab@macro.com',
+      organizerEmail: 'gab@rox.one',
       updatedAt: '2026-09-23T17:04:00Z',
       viewerEventId: 'viewer-copy',
       ...event,
@@ -217,7 +217,7 @@ describe('calendar mention preview card', () => {
   it('opens description links like the event view does', () => {
     mocks.item = calendarItem({
       description:
-        'See <a href="https://macro.com/app/md/doc-1?line=3">notes</a> and <a href="https://zoom.us/j/1">Zoom</a>',
+        'See <a href="https://rox.one/app/md/doc-1?line=3">notes</a> and <a href="https://zoom.us/j/1">Zoom</a>',
     });
     renderCard();
 
@@ -235,7 +235,7 @@ describe('calendar mention preview card', () => {
 });
 
 describe('calendar mention card for a Macro call', () => {
-  const callUrl = 'https://macro.com/app/meet/join/abcdefghijklmnop';
+  const callUrl = 'https://rox.one/app/meet/join/abcdefghijklmnop';
   const call = {
     location: callUrl,
     description: `<p>Agenda</p><p>Join Macro call: <a href="${callUrl}">${callUrl}</a></p>`,

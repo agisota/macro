@@ -59,7 +59,7 @@ an app connected that way also satisfies the `app.connected` resume check.
 Use `external_mcp_servers` to preserve the host-reachable egress URL override.
 
 External chat replies use `domain/service/external_replies.rs` and the
-`agent_external_replies` journal. Macrod sends the triggering message ID as the
+`agent_external_replies` journal. Roxd sends the triggering message ID as the
 control action ID; the harness joins that completion to its authorized reply
 origin, regardless of arrival order. Recovery reads terminal results from the
 original durable action history when an observer callback was lost, including
@@ -102,7 +102,7 @@ Permanent errors are not retried; others are, with jittered backoff, while the
 runtime stays connected. A session whose load keeps failing stays disconnected
 with its turn unfinished, so every dial tries it again (three attempts, under a
 permit). The `agent.runtime.reattach` span counts eager, lazy,
-skipped, failed and abandoned sessions and retries. macrod's herdr-acp lists
+skipped, failed and abandoned sessions and retries. roxd's herdr-acp lists
 native sessions whose Herdr agent still runs, each with `updatedAt` from its
 transcript's last write, so a session worked on in its Herdr pane within the
 hour is restored at dial time.
@@ -111,7 +111,7 @@ Each session's commands run one at a time on its command worker
 (`service/queue.rs`). After `WORKER_IDLE_TIMEOUT` with nothing queued, the
 worker tries to release its session (`service/idle.rs`) and exits only when
 nothing is left to free (`IdleRelease::holds_nothing`: released, or another
-runtime's session, such as Cursor, a sandboxed coder or an external (macrod)
+runtime's session, such as Cursor, a sandboxed coder or an external (roxd)
 runtime, whose queue copy and `hydrated` mark are forgotten too); a session
 still held keeps its worker, which tries again.
 A try that replayed the log and kept the session, or failed, pushes the next
@@ -163,7 +163,7 @@ Each dial costs a replica a handshake, `session/list` and a reattach, so
 in-memory `DialBudget` (6 dials a minute, as a burst or one every 10 s) and
 refuses the rest before the upgrade with `429` and `Retry-After`. Refusals warn
 and set `agent.runtime.dial_outcome:rate_limited` on the `agent.runtime.dial`
-span. macrod treats a 429 as retryable on its own exponential backoff
+span. roxd treats a 429 as retryable on its own exponential backoff
 (1 s doubling to 30 s) and does not read `Retry-After`.
 
 Harness presence is per connection, because a runtime's redial can land on a

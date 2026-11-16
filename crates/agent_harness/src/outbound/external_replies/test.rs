@@ -23,7 +23,7 @@ async fn completion_before_target_survives_reconnect_and_keeps_the_original_repl
         .await
         .unwrap();
     let action = AgentActionId::from_uuid(macro_uuid::generate_uuid_v7());
-    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace, for_warming) VALUES ($1, $2, $3, 'fixed', 'macrod', '/workspace', false)", session.as_uuid(), user.as_ref(), bot_id::MACRO_NEW_BOT_ID.as_uuid()).execute(&pool).await.unwrap();
+    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace, for_warming) VALUES ($1, $2, $3, 'fixed', 'roxd', '/workspace', false)", session.as_uuid(), user.as_ref(), bot_id::MACRO_NEW_BOT_ID.as_uuid()).execute(&pool).await.unwrap();
     let store = PgExternalReplyStore::new(pool.clone());
     store
         .complete(
@@ -101,7 +101,7 @@ async fn unfinished_and_failed_replies_do_not_starve_later_recovery(pool: PgPool
         })
         .await
         .unwrap();
-    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace, for_warming) VALUES ($1, $2, $3, 'fixed', 'macrod', '/workspace', false)", session.as_uuid(), user.as_ref(), bot_id::MACRO_NEW_BOT_ID.as_uuid()).execute(&pool).await.unwrap();
+    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace, for_warming) VALUES ($1, $2, $3, 'fixed', 'roxd', '/workspace', false)", session.as_uuid(), user.as_ref(), bot_id::MACRO_NEW_BOT_ID.as_uuid()).execute(&pool).await.unwrap();
     let store = PgExternalReplyStore::new(pool.clone());
     let target = ExternalReplyTarget {
         origin: AnnounceOrigin {

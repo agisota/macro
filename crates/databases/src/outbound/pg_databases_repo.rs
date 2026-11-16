@@ -268,7 +268,7 @@ impl PgDatabaseFolders {
     }
 }
 
-/// [`DatabasesRepo`] backed by MacroDB; a new database's title definition is
+/// [`DatabasesRepo`] backed by RoxDB; a new database's title definition is
 /// written through the properties domain, in the same transaction.
 #[derive(Debug, Clone)]
 pub struct PgDatabasesRepo<Properties> {

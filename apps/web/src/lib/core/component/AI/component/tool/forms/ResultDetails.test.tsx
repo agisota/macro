@@ -24,7 +24,7 @@ const result: FormMutation = {
       id: '0199bfee-1000-7000-8000-000000000002',
       name: 'Startup intake',
       description: '',
-      ownerId: 'macro|owner@macro.com',
+      ownerId: 'macro|owner@rox.one',
       databaseId: '0199bfee-1000-7000-8000-000000000004',
       tableId: '0199bfee-1000-7000-8000-000000000005',
       audience: 'public',

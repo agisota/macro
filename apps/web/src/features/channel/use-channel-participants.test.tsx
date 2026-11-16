@@ -75,10 +75,10 @@ describe('useChannelParticipants', () => {
           channel_id: 'channel-1',
           joined_at: '2026-09-24T12:00:00Z',
           role: 'member',
-          user_id: 'macro|a@macro.com',
+          user_id: 'macro|a@rox.one',
         },
       ])
     );
-    await waitFor(() => expectContent('macro|a@macro.com|macro|a@macro.com'));
+    await waitFor(() => expectContent('macro|a@rox.one|macro|a@rox.one'));
   });
 });

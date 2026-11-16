@@ -31,8 +31,8 @@ use sqlx::PgPool;
 use std::sync::Arc;
 use uuid::Uuid;
 
-const OWNER: &str = "macro|workflow-owner@macro.com";
-const MEMBER: &str = "macro|workflow-member@macro.com";
+const OWNER: &str = "macro|workflow-owner@rox.one";
+const MEMBER: &str = "macro|workflow-member@rox.one";
 type Access = EntityAccessServiceImpl<PgAccessRepository>;
 type DatabaseService = PgDatabasesService<NoOpTableEventPublisher, NoopMacroEventBroker, Access>;
 type Pipelines = PipelineServiceImpl<

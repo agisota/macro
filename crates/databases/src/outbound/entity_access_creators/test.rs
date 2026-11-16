@@ -19,8 +19,8 @@ use crate::outbound::pg_databases_repo::PgDatabasesRepo;
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn the_owner_gets_an_edit_receipt_and_a_stranger_none(pool: PgPool) {
-    let owner_id = format!("macro|creators-owner-{}@macro.com", Uuid::new_v4());
-    let stranger_id = format!("macro|creators-stranger-{}@macro.com", Uuid::new_v4());
+    let owner_id = format!("macro|creators-owner-{}@rox.one", Uuid::new_v4());
+    let stranger_id = format!("macro|creators-stranger-{}@rox.one", Uuid::new_v4());
     for user_id in [&owner_id, &stranger_id] {
         let macro_user_id = macro_uuid::generate_uuid_v7();
         sqlx::query!(

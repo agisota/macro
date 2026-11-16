@@ -15,7 +15,7 @@ use tower::ServiceExt;
 
 use super::*;
 
-const USER: &str = "macro|generation-router@macro.com";
+const USER: &str = "macro|generation-router@rox.one";
 
 #[derive(Clone, Copy)]
 struct Jwt;

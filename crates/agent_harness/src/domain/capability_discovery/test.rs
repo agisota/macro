@@ -86,15 +86,15 @@ impl CapabilityProbe for HangingCursor {
 }
 
 #[tokio::test]
-async fn macrod_authorizes_before_dispatch_and_projects_the_catalog() {
+async fn roxd_authorizes_before_dispatch_and_projects_the_catalog() {
     let in_memory = Probe::new(unsupported);
     let cursor = Probe::new(unsupported);
-    let macrod = Probe::new(available);
+    let roxd = Probe::new(available);
     let service = AgentCapabilitiesServiceImpl::new(
         Access(true),
         in_memory,
         cursor,
-        macrod,
+        roxd,
         Duration::from_secs(1),
     );
 
@@ -102,7 +102,7 @@ async fn macrod_authorizes_before_dispatch_and_projects_the_catalog() {
         .load(
             caller(),
             DiscoverAgentCapabilities {
-                harness: CapabilityHarness::Macrod,
+                harness: CapabilityHarness::Roxd,
                 harness_id: Some(HarnessId::TEST_A),
                 model: None,
             },
@@ -113,15 +113,15 @@ async fn macrod_authorizes_before_dispatch_and_projects_the_catalog() {
     assert_eq!(result.config_options[0].id, "model");
     assert_eq!(service.in_memory.calls(), 0);
     assert_eq!(service.cursor.calls(), 0);
-    assert_eq!(service.macrod.calls(), 1);
+    assert_eq!(service.roxd.calls(), 1);
     assert_eq!(
-        *service.macrod.targets.lock().unwrap(),
+        *service.roxd.targets.lock().unwrap(),
         vec![HarnessId::TEST_A]
     );
 }
 
 #[tokio::test]
-async fn invisible_macrod_is_forbidden_without_probing() {
+async fn invisible_roxd_is_forbidden_without_probing() {
     let service = AgentCapabilitiesServiceImpl::new(
         Access(false),
         Probe::new(unsupported),
@@ -134,7 +134,7 @@ async fn invisible_macrod_is_forbidden_without_probing() {
         .load(
             caller(),
             DiscoverAgentCapabilities {
-                harness: CapabilityHarness::Macrod,
+                harness: CapabilityHarness::Roxd,
                 harness_id: Some(HarnessId::TEST_A),
                 model: None,
             },
@@ -145,7 +145,7 @@ async fn invisible_macrod_is_forbidden_without_probing() {
         result,
         Err(DiscoverAgentCapabilitiesError::Forbidden)
     ));
-    assert_eq!(service.macrod.calls(), 0);
+    assert_eq!(service.roxd.calls(), 0);
 }
 
 #[tokio::test]
@@ -201,7 +201,7 @@ async fn cursor_receives_the_authenticated_caller() {
     assert_eq!(result.config_options[0].id, "model");
     assert_eq!(*service.cursor.targets.lock().unwrap(), vec![caller()]);
     assert_eq!(service.in_memory.calls(), 0);
-    assert_eq!(service.macrod.calls(), 0);
+    assert_eq!(service.roxd.calls(), 0);
 }
 
 #[tokio::test]
@@ -215,7 +215,7 @@ async fn invalid_targets_are_rejected_without_probing() {
     );
 
     for (harness, harness_id) in [
-        (CapabilityHarness::Macrod, None),
+        (CapabilityHarness::Roxd, None),
         (CapabilityHarness::InMemory, Some(HarnessId::TEST_A)),
         (CapabilityHarness::Cursor, Some(HarnessId::TEST_A)),
     ] {
@@ -237,7 +237,7 @@ async fn invalid_targets_are_rejected_without_probing() {
 
     assert_eq!(service.in_memory.calls(), 0);
     assert_eq!(service.cursor.calls(), 0);
-    assert_eq!(service.macrod.calls(), 0);
+    assert_eq!(service.roxd.calls(), 0);
 }
 
 #[tokio::test]

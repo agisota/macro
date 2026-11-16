@@ -32,7 +32,7 @@ impl MacroAuthorizationService for Identity {
             return Err(Report::new(MacroAuthorizationError::InvalidCredentials));
         }
         Ok(UserContext {
-            user_id: "macro|router@macro.com".into(),
+            user_id: "macro|router@rox.one".into(),
             fusion_user_id: Default::default(),
             permissions: None,
             organization_id: None,
@@ -209,7 +209,7 @@ async fn a_due_date_is_metered_against_the_owner_as_background_focus_usage() {
             Request::post("/universal_input/thread-due-date")
                 .header("content-type", "application/json")
                 .header(INTERNAL_API_KEY_HEADER, INTERNAL_KEY)
-                .header(INTERNAL_MACRO_USER_ID_HEADER, "macro|owner@macro.com")
+                .header(INTERNAL_MACRO_USER_ID_HEADER, "macro|owner@rox.one")
                 .body(due_date_body())
                 .unwrap(),
         )
@@ -221,7 +221,7 @@ async fn a_due_date_is_metered_against_the_owner_as_background_focus_usage() {
     assert_eq!(body.due_on, NaiveDate::from_ymd_opt(2026, 10, 30));
     let metered = facts.metered.lock().unwrap();
     assert_eq!(metered[0].feature, ai_usage::AiFeature::EmailFocus);
-    assert_eq!(metered[0].user.to_string(), "macro|owner@macro.com");
+    assert_eq!(metered[0].user.to_string(), "macro|owner@rox.one");
     assert_eq!(
         metered[0].entity,
         Some("00000000-0000-7000-8000-000000000001".parse().unwrap())

@@ -10,7 +10,7 @@ import { Macro } from '../../../packages/sdk/src/macro';
 
 export type Stack = {
   instance: string;
-  /** The stack's MacroDB, for reading what a run changed. */
+  /** The stack's RoxDB, for reading what a run changed. */
   postgres: string;
   /** The checkout that started the stack: its compose files live there. */
   owner: string;

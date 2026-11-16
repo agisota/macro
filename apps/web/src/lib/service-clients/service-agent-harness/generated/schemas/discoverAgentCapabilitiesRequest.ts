@@ -14,7 +14,7 @@ import type { DiscoverAgentCapabilitiesRequestModel } from './discoverAgentCapab
 export interface DiscoverAgentCapabilitiesRequest {
   /** Provider to probe. */
   harness: CapabilityHarnessDto;
-  /** Required for macrod and forbidden for other targets. */
+  /** Required for roxd and forbidden for other targets. */
   harnessId?: DiscoverAgentCapabilitiesRequestHarnessId;
   /** Model whose session settings should be inspected. */
   model?: DiscoverAgentCapabilitiesRequestModel;

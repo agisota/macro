@@ -5,7 +5,7 @@
 Part of Calendar: personal and Macro-team booking pages — event types,
 availability, collective/round-robin hosts, booking limits, and the booking
 lifecycle. See `README.md` for the full product model and the required
-MacroDB migrations.
+RoxDB migrations.
 
 ## Start here
 

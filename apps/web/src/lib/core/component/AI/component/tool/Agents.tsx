@@ -11,7 +11,7 @@ import { createToolRenderer } from './ToolRenderer';
 const HARNESS_NAMES: Record<string, string> = {
   'in-memory': 'Rox',
   cursor: 'Cursor',
-  macrod: 'Self-hosted harness',
+  roxd: 'Self-hosted harness',
 };
 
 function harnessLabel(agent: AgentSummary): string {

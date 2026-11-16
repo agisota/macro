@@ -5,7 +5,7 @@ use std::sync::Arc;
 
 use std::time::Duration;
 
-use agent_harness::domain::model_load::{MacrodModelProbe, ModelProbeError, RawModelProbe};
+use agent_harness::domain::model_load::{RoxdModelProbe, ModelProbeError, RawModelProbe};
 use agent_harness::inbound::runtime_gateway::GatewaySender;
 use agent_harness::outbound::forward::COMMAND_CHANNEL;
 use agent_harness::outbound::runtime_registry::RuntimeRegistry;
@@ -30,16 +30,16 @@ pub(crate) enum ModelProbeEvent {
     },
 }
 
-/// Macrod adapter using the shared runtime bus on every replica.
+/// Roxd adapter using the shared runtime bus on every replica.
 #[derive(Clone)]
-pub struct MacrodModels {
+pub struct RoxdModels {
     runtimes: Arc<RuntimeRegistry<GatewaySender>>,
     redis: redis::Client,
     observations: broadcast::Sender<(HarnessId, ModelProbeResult)>,
     timeout: Duration,
 }
 
-impl MacrodModels {
+impl RoxdModels {
     /// Build the bus publisher and local observer shared with its consumer.
     pub fn new(
         runtimes: Arc<RuntimeRegistry<GatewaySender>>,
@@ -100,7 +100,7 @@ impl MacrodModels {
     }
 }
 
-impl MacrodModelProbe for MacrodModels {
+impl RoxdModelProbe for RoxdModels {
     async fn probe(&self, harness: HarnessId) -> Result<RawModelProbe, ModelProbeError> {
         // Observe first, so even an immediate answer cannot be missed.
         // Concurrent callers for this harness may use the same fresh observation.
@@ -125,7 +125,7 @@ impl MacrodModelProbe for MacrodModels {
     }
 }
 
-impl agent_harness::domain::capability_discovery::CapabilityProbe for MacrodModels {
+impl agent_harness::domain::capability_discovery::CapabilityProbe for RoxdModels {
     type Target = HarnessId;
     async fn probe(
         &self,
@@ -136,7 +136,7 @@ impl agent_harness::domain::capability_discovery::CapabilityProbe for MacrodMode
         if model.is_some() {
             return Ok(RawCapabilityProbe::Unsupported);
         }
-        match MacrodModelProbe::probe(self, *harness).await {
+        match RoxdModelProbe::probe(self, *harness).await {
             Ok(RawModelProbe::Options(options)) => Ok(RawCapabilityProbe::Options(options)),
             Ok(RawModelProbe::Unsupported) => Ok(RawCapabilityProbe::Unsupported),
             Err(ModelProbeError::Disconnected) => Err(CapabilityProbeError::Disconnected),

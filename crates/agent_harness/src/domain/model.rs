@@ -206,9 +206,9 @@ impl AgentKind {
             "cursor" => Self::Cursor,
             "codex-cloud" => Self::CodexCloud,
             "in-memory" | "macro-inmem" => Self::InMemory,
-            // Registered macrod harnesses are the deliberate external case:
+            // Registered roxd harnesses are the deliberate external case:
             // the agent's `harness_id` names whose daemon serves it.
-            harness_id::MACROD_HARNESS_SLUG => Self::External,
+            harness_id::ROXD_HARNESS_SLUG => Self::External,
             _ => Self::External,
         }
     }

@@ -132,9 +132,9 @@ fn find_tag_aware_byte_offset_handles_utf8() {
 
 #[test]
 fn merge_highlights_across_at_joins_email_tokens() {
-    let input = "sent to <macro_em>hutch</macro_em>@<macro_em>macro.com</macro_em> today";
+    let input = "sent to <macro_em>hutch</macro_em>@<macro_em>rox.one</macro_em> today";
     let result = merge_highlights_across_at(input);
-    assert_eq!(result, "sent to <macro_em>hutch@macro.com</macro_em> today");
+    assert_eq!(result, "sent to <macro_em>hutch@rox.one</macro_em> today");
 }
 
 #[test]
@@ -163,9 +163,9 @@ fn merge_highlights_across_at_multiple_pairs() {
 
 #[test]
 fn normalize_merges_email_highlight_tokens() {
-    let input = "hi <macro_em>hutch</macro_em>@<macro_em>macro.com</macro_em> thanks";
+    let input = "hi <macro_em>hutch</macro_em>@<macro_em>rox.one</macro_em> thanks";
     let result = normalize_highlight_fragment(input);
-    assert_eq!(result, "hi <macro_em>hutch@macro.com</macro_em> thanks");
+    assert_eq!(result, "hi <macro_em>hutch@rox.one</macro_em> thanks");
 }
 
 #[test]

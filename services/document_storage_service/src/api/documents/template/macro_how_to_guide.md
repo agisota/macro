@@ -6,7 +6,7 @@ We've prepared some starter docs to help you get a sense of the power of **Rox**
 
 Let's walk around together and see what **Rox** can do. As you're reading, try playing around.
 
-> **Tip:** We've pinned this doc to your favorites, which appears in the sidebar. For the full documentation, visit [docs.macro.com](https://docs.macro.com).
+> **Tip:** We've pinned this doc to your favorites, which appears in the sidebar. For the full documentation, visit [docs.rox.one](https://docs.rox.one).
 
 ---
 
@@ -48,7 +48,7 @@ Rox is built to be driven from the keyboard.
 
 > **Note:** You won't be able to use the single-letter shortcuts if you're currently editing text. Press `escape` first to unfocus the editor, and then try pressing, for example, `c`.
 
-You'll see shortcuts for actions listed in the command menu, in tooltips when you hover buttons, or in the context menu when you right-click on an item. For a full-list of shortcuts, see [keyboard shortcuts reference](https://macro.com/app/settings/shortcuts).
+You'll see shortcuts for actions listed in the command menu, in tooltips when you hover buttons, or in the context menu when you right-click on an item. For a full-list of shortcuts, see [keyboard shortcuts reference](https://rox.one/app/settings/shortcuts).
 
 ---
 

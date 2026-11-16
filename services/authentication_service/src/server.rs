@@ -60,7 +60,7 @@ use notification::{
 };
 use rate_limit::domain::service::RateLimitServiceImpl;
 use roles_and_permissions::{
-    domain::service::UserRolesAndPermissionsServiceImpl, outbound::pgpool::MacroDB,
+    domain::service::UserRolesAndPermissionsServiceImpl, outbound::pgpool::RoxDB,
 };
 use secretsmanager_client::SecretManager;
 use sqlx::postgres::PgPoolOptions;
@@ -405,7 +405,7 @@ async fn run_server() -> anyhow::Result<()> {
     };
     tracing::trace!("initialized loops client");
 
-    let user_roles_and_permissions_macro_db = MacroDB::new(db.clone());
+    let user_roles_and_permissions_macro_db = RoxDB::new(db.clone());
 
     let user_roles_and_permissions_service =
         UserRolesAndPermissionsServiceImpl::new(user_roles_and_permissions_macro_db);

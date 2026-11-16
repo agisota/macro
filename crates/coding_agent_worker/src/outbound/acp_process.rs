@@ -25,7 +25,7 @@
 //! - the grace periods around protocol shutdown and child exit.
 //!
 //! Deliberately not ported: the Windows `CREATE_NO_WINDOW` creation flag.
-//! `macrod` is itself a console program, so a console child inherits its
+//! `roxd` is itself a console program, so a console child inherits its
 //! console rather than opening a new one.
 //!
 //! If the SDK ever grows a working-directory option on `AcpAgentConfig`,
@@ -183,7 +183,7 @@ struct ChildGuard {
 
 enum GuardedChild {
     Spawned(Child),
-    /// A child an earlier macrod process image spawned and handed over. It is
+    /// A child an earlier roxd process image spawned and handed over. It is
     /// still this process's child, so a blocking `waitpid` reaps it.
     /// `None` once its exit has been reported.
     #[cfg(unix)]

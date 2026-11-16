@@ -1,5 +1,5 @@
 import IconCompany from '@icon/system/regular/buildings.svg';
-import IconMacroDocs from '@icon/system/regular/file.svg';
+import IconRoxDocs from '@icon/system/regular/file.svg';
 import IconMacroTasks from '@icon/system/regular/list-checks.svg';
 import IconSearch from '@icon/system/regular/magnifying-glass.svg';
 import IconMacroCall from '@icon/system/regular/phone-call.svg';
@@ -466,7 +466,7 @@ function MentionPill(props: {
       </Show>
       <Show when={props.kind === 'doc'}>
         <span style={mentionIconWrap}>
-          <IconMacroDocs
+          <IconRoxDocs
             style={{
               color: DOC_BLUE,
               display: 'block',
@@ -3860,7 +3860,7 @@ const faqItems: { q: string; a: JSX.Element }[] = [
         view in your workspace yet, it hasn't reached your account. And like the
         rest of Rox, it's fully open source under the AGPLv3, not "open core."
         To build on Rox under a different license, contact{' '}
-        <a href="mailto:licensing@macro.com">licensing@macro.com</a>.
+        <a href="mailto:licensing@rox.one">licensing@rox.one</a>.
       </>
     ),
   },

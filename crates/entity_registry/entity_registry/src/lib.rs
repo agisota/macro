@@ -17,7 +17,7 @@
 //! use model_owner::OwnerType;
 //! use uuid::Uuid;
 //!
-//! let owner = Owner::parse(OwnerType::User, "macro|hutch@macro.com").unwrap();
+//! let owner = Owner::parse(OwnerType::User, "macro|hutch@rox.one").unwrap();
 //! let record = NewEntityRecord::try_new(Uuid::nil(), EntityType::Chat, owner.clone()).unwrap();
 //! assert_eq!(record.entity_type, RegisteredEntityType::Chat);
 //! assert!(NewEntityRecord::try_new(Uuid::nil(), EntityType::Initiative, owner).is_err());

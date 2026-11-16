@@ -36,8 +36,8 @@ describe('isPlausibleInviteToken', () => {
 
 describe('buildInviteLinkUrl', () => {
   it('points at the web app welcome page with the token encoded', () => {
-    expect(buildInviteLinkUrl('a b', 'https://macro.com')).toBe(
-      'https://macro.com/app/invite?token=a%20b'
+    expect(buildInviteLinkUrl('a b', 'https://rox.one')).toBe(
+      'https://rox.one/app/invite?token=a%20b'
     );
   });
 

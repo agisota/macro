@@ -33,9 +33,9 @@ describe('composer model discovery', () => {
       harness: 'cursor',
     });
     expect(
-      composerModelTarget({ harness: 'macrod', harnessId: 'paired-runtime' })
-    ).toEqual({ harness: 'macrod', harnessId: 'paired-runtime' });
-    expect(composerModelTarget({ harness: 'macrod' })).toBeUndefined();
+      composerModelTarget({ harness: 'roxd', harnessId: 'paired-runtime' })
+    ).toEqual({ harness: 'roxd', harnessId: 'paired-runtime' });
+    expect(composerModelTarget({ harness: 'roxd' })).toBeUndefined();
     expect(composerModelTarget({ harness: 'sandbox' })).toBeUndefined();
     expect(composerModelTarget({ harness: 'macro-inmem' })).toEqual({
       harness: 'in-memory',
@@ -58,9 +58,9 @@ describe('composer model discovery', () => {
       expect(discovery.target?.()).toEqual({ harness: 'cursor' });
       setAgent({ ...agent(), harness: 'in-memory' });
       expect(discovery.target?.()).toEqual({ harness: 'in-memory' });
-      setAgent({ ...agent(), harness: 'macrod', harnessId: 'paired-runtime' });
+      setAgent({ ...agent(), harness: 'roxd', harnessId: 'paired-runtime' });
       expect(discovery.target?.()).toEqual({
-        harness: 'macrod',
+        harness: 'roxd',
         harnessId: 'paired-runtime',
       });
       setAgent({ ...agent(), runtime: { label: 'Offline', connected: false } });

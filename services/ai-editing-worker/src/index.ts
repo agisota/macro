@@ -12,12 +12,12 @@ import type { Bindings } from './env';
 // Mirrors crates/macro_cors's ALLOWED_ORIGINS/is_allowed_origin.
 const ALLOWED_ORIGINS = new Set([
   'http://localhost:5173',
-  'https://dashboarddev.macro.com',
-  'https://dashboard.macro.com',
+  'https://dashboarddev.rox.one',
+  'https://dashboard.rox.one',
   'http://host.local:3000',
-  'https://dev.macro.com',
-  'https://www.macro.com',
-  'https://macro.com',
+  'https://dev.rox.one',
+  'https://www.rox.one',
+  'https://rox.one',
   'http://tauri.localhost',
   'tauri://localhost',
 ]);
@@ -29,8 +29,8 @@ function isOriginAllowed(origin: string): boolean {
     const { protocol, hostname } = new URL(origin);
     if (
       protocol === 'https:' &&
-      (hostname === 'preview.macro.com' ||
-        hostname.endsWith('.preview.macro.com'))
+      (hostname === 'preview.rox.one' ||
+        hostname.endsWith('.preview.rox.one'))
     ) {
       return true;
     }

@@ -35,7 +35,7 @@ const secondaryLinks: {
 ];
 
 const socials: { title: string; Icon: IconComponent; href: string }[] = [
-  { title: 'X', Icon: IconTwitter, href: 'https://x.com/macrodotcom' },
+  { title: 'X', Icon: IconTwitter, href: 'https://x.com/roxdotone' },
   {
     title: 'GitHub',
     Icon: IconGithub,
@@ -44,12 +44,12 @@ const socials: { title: string; Icon: IconComponent; href: string }[] = [
   {
     title: 'LinkedIn',
     Icon: IconLinkedin,
-    href: 'https://www.linkedin.com/company/macrocom',
+    href: 'https://www.linkedin.com/company/roxdotone',
   },
   {
     title: 'Instagram',
     Icon: IconInstagram,
-    href: 'https://www.instagram.com/macrodotcom/',
+    href: 'https://www.instagram.com/roxdotone/',
   },
 ];
 

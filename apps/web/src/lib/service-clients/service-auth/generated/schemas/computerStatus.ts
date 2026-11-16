@@ -42,7 +42,7 @@ ended and the disk is still retained. */
   compReason?: ComputerStatusCompReason;
   /** Time the computer was reserved. */
   createdAt: string;
-  /** Bot id of the coding agent the computer came with; null until macrod
+  /** Bot id of the coding agent the computer came with; null until roxd
 first connects. It can name an agent the team since deleted. */
   defaultAgentId?: ComputerStatusDefaultAgentId;
   /** Root disk limit saved at purchase. */

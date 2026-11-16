@@ -41,7 +41,7 @@ and [the Settings interaction guide](../agent-guide/settings.md#slack-archive-im
 | --- | --- |
 | `SLACK_IMPORT_ENABLED` | DSS admits creates/registration/completion; worker admits new claims/publication. Default false. Set in both configurations deliberately. |
 | `SLACK_IMPORT_CONCURRENCY` | Worker, default 1; only 1 or 2 accepted. Start at 1. |
-| `DATABASE_URL` | Worker MacroDB; role needs the owning-domain historical transaction tables. |
+| `DATABASE_URL` | Worker RoxDB; role needs the owning-domain historical transaction tables. |
 | `INTERNAL_API_KEY` | Worker and search processing must agree; never log or include it in tickets. |
 | `UPLOAD_STAGING_BUCKET` | DSS/worker same bucket. Worker infrastructure supplies this value. |
 | `OVERRIDE_SLACK_IMPORT_QUEUE`, `OVERRIDE_SLACK_IMPORT_DLQ` | Typed queue names/URLs; worker infrastructure supplies them. Resolve both at startup. |

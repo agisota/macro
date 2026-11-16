@@ -136,7 +136,7 @@ where
     Ok(())
 }
 
-/// Split recipients so only `@macro.com` users are on the APNS path.
+/// Split recipients so only `@rox.one` users are on the APNS path.
 fn partition_email_push_recipients(
     recipient_ids: HashSet<MacroUserIdStr<'static>>,
 ) -> (

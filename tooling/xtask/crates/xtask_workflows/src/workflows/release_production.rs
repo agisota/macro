@@ -127,7 +127,7 @@ fn deploy_ai_editing_worker() -> Job {
         .uses("./.github/workflows/deploy_ai_editing_worker.yml")
 }
 
-/// Also owns the macro.com CloudFront distribution in front of the web app.
+/// Also owns the rox.one CloudFront distribution in front of the web app.
 fn deploy_website() -> Job {
     Job::default()
         .name("Deploy Website")

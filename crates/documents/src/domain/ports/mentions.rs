@@ -17,7 +17,7 @@ pub trait DocumentMentionTrackingPort: Send + Sync {
     ) -> impl Future<Output = anyhow::Result<()>> + Send;
 }
 
-/// Mention tracker that records nothing, for callers without a MacroDB pool.
+/// Mention tracker that records nothing, for callers without a RoxDB pool.
 #[derive(Debug, Clone, Copy, Default)]
 pub struct NoOpDocumentMentionTracker;
 

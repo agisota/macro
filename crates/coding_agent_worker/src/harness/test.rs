@@ -196,7 +196,7 @@ for line in sys.stdin:
     assert!(
         blocks[0]["text"]
             .as_str()
-            .is_some_and(|text| text.starts_with("<macrod-runtime>")),
+            .is_some_and(|text| text.starts_with("<roxd-runtime>")),
         "got {answer}"
     );
     assert_eq!(

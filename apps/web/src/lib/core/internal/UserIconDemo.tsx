@@ -7,11 +7,11 @@ import { For } from 'solid-js';
 
 // Mock macro user IDs (format: macro|email@domain.com)
 const MOCK_USERS = [
-  { id: 'macro|seamus@macro.com', firstName: 'Seamus', lastName: 'Edson' },
-  { id: 'macro|teo@macro.com', firstName: 'Teo', lastName: 'Brasoveanu' },
-  { id: 'macro|russel@macro.com', firstName: 'Russel', lastName: 'Smith' },
-  { id: 'macro|rahul@macro.com', firstName: 'Rahul', lastName: 'Gupta' },
-  { id: 'macro|gab@macro.com', firstName: 'Gab', lastName: 'Briones' },
+  { id: 'macro|seamus@rox.one', firstName: 'Seamus', lastName: 'Edson' },
+  { id: 'macro|teo@rox.one', firstName: 'Teo', lastName: 'Brasoveanu' },
+  { id: 'macro|russel@rox.one', firstName: 'Russel', lastName: 'Smith' },
+  { id: 'macro|rahul@rox.one', firstName: 'Rahul', lastName: 'Gupta' },
+  { id: 'macro|gab@rox.one', firstName: 'Gab', lastName: 'Briones' },
 ];
 
 const USER_IDS = MOCK_USERS.map((u) => u.id);

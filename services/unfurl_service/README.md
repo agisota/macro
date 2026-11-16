@@ -17,13 +17,13 @@ To unfurl:
 First, make sure the serve is running with something like `just run`, then:
 
 ```
-$ just unfurl https://macro.com
+$ just unfurl https://rox.one
 {
-  "url": "https://macro.com",
+  "url": "https://rox.one",
   "title": "Macro | Home",
   "description": "Macro - the next generation productivity suite",
-  "image_url": "https://macro.com/logo.png",
-  "favicon_url": "https://macro.com/favicon.ico"
+  "image_url": "https://rox.one/logo.png",
+  "favicon_url": "https://rox.one/favicon.ico"
 }
 ```
 

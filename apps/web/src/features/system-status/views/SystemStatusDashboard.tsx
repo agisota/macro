@@ -20,7 +20,7 @@ import {
   type StatusLevel,
 } from '../core/status';
 
-const STAFF_EMAIL_DOMAIN = '@macro.com';
+const STAFF_EMAIL_DOMAIN = '@rox.one';
 
 /**
  * Internal dashboard for setting the status banner every user sees. Reachable
@@ -46,10 +46,10 @@ export function SystemStatusDashboard() {
 
         <Switch>
           <Match when={isAuthenticated() === false}>
-            <Gate body="Log in with a @macro.com account to continue." />
+            <Gate body="Log in with a @rox.one account to continue." />
           </Match>
           <Match when={isAuthenticated() === true && !isStaff()}>
-            <Gate body="Only @macro.com accounts can set the system status." />
+            <Gate body="Only @rox.one accounts can set the system status." />
           </Match>
           <Match when={isAuthenticated() === true && isStaff()}>
             <CurrentStatus />
@@ -279,7 +279,7 @@ function ApiDocs() {
     <Section title="API">
       <div class="flex flex-col gap-3 text-sm text-ink-muted">
         <p>
-          Any @macro.com account can set the status from a script with a
+          Any @rox.one account can set the status from a script with a
           personal API key (Settings → API keys). <code>status</code> is{' '}
           <code>operational</code>, <code>degraded</code>, or{' '}
           <code>major_outage</code>; the latter two require a 1–

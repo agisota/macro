@@ -161,7 +161,7 @@ pub async fn claim_delivery(
     let header = schedule.delivery_message_id.or_else(|| {
         (!reconcile).then(|| {
             format!(
-                "{}.{}@send.macro.com",
+                "{}.{}@send.rox.one",
                 message_id,
                 macro_uuid::generate_uuid_v7()
             )

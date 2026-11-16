@@ -43,7 +43,7 @@ describe('recordMobileSignupSubmitted', () => {
     expect(
       recordMobileSignupSubmitted(' Person@Example.com ', {
         buttonName: 'mobile_signup_page',
-        pageLocation: 'https://macro.com/mobile-signup',
+        pageLocation: 'https://rox.one/mobile-signup',
       })
     ).toBe('person@example.com');
     expect(analytics.order).toEqual([
@@ -51,7 +51,7 @@ describe('recordMobileSignupSubmitted', () => {
       'mobile_signup_submitted:mobile_signup_page',
     ]);
     expect(analytics.track).toHaveBeenCalledWith('mobile_signup_submitted', {
-      page_location: 'https://macro.com/mobile-signup',
+      page_location: 'https://rox.one/mobile-signup',
       button_name: 'mobile_signup_page',
     });
   });
@@ -61,7 +61,7 @@ describe('recordMobileSignupSubmitted', () => {
     expect(
       recordMobileSignupSubmitted('not-an-email', {
         buttonName: 'mobile_signup_page',
-        pageLocation: 'https://macro.com/mobile-signup',
+        pageLocation: 'https://rox.one/mobile-signup',
       })
     ).toBeNull();
     expect(analytics.order).toEqual([]);

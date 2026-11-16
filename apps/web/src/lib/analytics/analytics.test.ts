@@ -245,7 +245,7 @@ describe('PostHog exception frames', () => {
     expect(
       await beforeSendException(
         'ResizeObserver loop completed with undelivered notifications.',
-        ['https://macro.com/app/app-gifhAVYj.js']
+        ['https://rox.one/app/app-gifhAVYj.js']
       )
     ).toBeNull();
   });
@@ -255,7 +255,7 @@ describe('PostHog exception frames', () => {
       await beforeSendException(
         "Cannot read properties of undefined (reading 'M_ID')",
         [
-          'https://macro.com/app/app-gifhAVYj.js',
+          'https://rox.one/app/app-gifhAVYj.js',
           'chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content.js',
         ]
       )
@@ -266,7 +266,7 @@ describe('PostHog exception frames', () => {
     expect(
       await beforeSendException('boom', [
         'chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content.js',
-        'https://macro.com/app/app-gifhAVYj.js',
+        'https://rox.one/app/app-gifhAVYj.js',
       ])
     ).not.toBeNull();
   });
@@ -285,9 +285,9 @@ describe('PostHog exception frames', () => {
           'https://cdn.example.com/app/vendor.js',
         ])
       ).toEqual([
-        'https://macro.com/app/app-xMZRw8gs.js',
-        'https://macro.com/app/chunk-AbC123.js',
-        'https://macro.com/app/chunk-AbC123.js',
+        'https://rox.one/app/app-xMZRw8gs.js',
+        'https://rox.one/app/chunk-AbC123.js',
+        'https://rox.one/app/chunk-AbC123.js',
         'tauri://localhost',
         'https://cdn.example.com/app/vendor.js',
       ]);
@@ -296,8 +296,8 @@ describe('PostHog exception frames', () => {
 
   it('leaves web frames untouched', async () => {
     expect(
-      await sendException(['https://macro.com/app/app-gifhAVYj.js'])
-    ).toEqual(['https://macro.com/app/app-gifhAVYj.js']);
+      await sendException(['https://rox.one/app/app-gifhAVYj.js'])
+    ).toEqual(['https://rox.one/app/app-gifhAVYj.js']);
   });
 });
 

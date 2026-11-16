@@ -41,24 +41,24 @@ const deck = {
 
 describe('link strings', () => {
   it('normalizes typed addresses', () => {
-    expect(normalizeAddress('macro.com')).toBe('https://macro.com');
+    expect(normalizeAddress('rox.one')).toBe('https://rox.one');
     expect(normalizeAddress(' http://a.b/c ')).toBe('http://a.b/c');
-    expect(normalizeAddress('team@macro.com')).toBe('mailto:team@macro.com');
+    expect(normalizeAddress('team@rox.one')).toBe('mailto:team@rox.one');
     expect(normalizeAddress('#nextslide')).toBe('#nextslide');
     expect(normalizeAddress('')).toBe('');
   });
 
   it('builds and parses email links', () => {
-    const link = emailLink('team@macro.com', 'Q3 & beyond');
-    expect(link).toBe('mailto:team@macro.com?subject=Q3%20%26%20beyond');
+    const link = emailLink('team@rox.one', 'Q3 & beyond');
+    expect(link).toBe('mailto:team@rox.one?subject=Q3%20%26%20beyond');
     expect(parseEmail(link)).toEqual({
-      address: 'team@macro.com',
+      address: 'team@rox.one',
       subject: 'Q3 & beyond',
     });
     expect(emailLink('mailto:a@b.co', ' ')).toBe('mailto:a@b.co');
     expect(linkKind(link)).toBe('email');
     expect(linkKind('#slide=257')).toBe('place');
-    expect(linkKind('https://macro.com')).toBe('web');
+    expect(linkKind('https://rox.one')).toBe('web');
   });
 
   it('labels links like PowerPoint lists them', () => {
@@ -71,7 +71,7 @@ describe('link strings', () => {
   });
 
   it('only opens safe addresses', () => {
-    expect(safeUrl('https://macro.com')).toBe(true);
+    expect(safeUrl('https://rox.one')).toBe(true);
     expect(safeUrl('mailto:a@b.co')).toBe(true);
     expect(safeUrl('javascript:alert(1)')).toBe(false);
     expect(safeUrl('file:///etc/passwd')).toBe(false);
@@ -100,9 +100,9 @@ describe('following links in a show', () => {
     });
     expect(linkAction('#endshow', deck, 1)).toEqual({ kind: 'end' });
     expect(linkAction('#slide=999', deck, 0)).toEqual({ kind: 'none' });
-    expect(linkAction('https://macro.com', deck, 0)).toEqual({
+    expect(linkAction('https://rox.one', deck, 0)).toEqual({
       kind: 'open',
-      url: 'https://macro.com',
+      url: 'https://rox.one',
     });
     expect(linkAction('javascript:void 0', deck, 0)).toEqual({
       kind: 'none',
@@ -118,7 +118,7 @@ describe('following links in a show', () => {
     };
     const box: LinkRegion = {
       shape: 2,
-      link: 'https://macro.com',
+      link: 'https://rox.one',
       quad: [0, 0, 20, 0, 20, 20, 0, 20],
     };
     expect(regionAt([diamond, box], 10, 10)?.shape).toBe(1);

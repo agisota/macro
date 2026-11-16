@@ -27,7 +27,7 @@ vi.mock('@queries/harnesses/harnesses', () => ({
 const HARNESS: RegisteredHarness = {
   id: '3f1c9d2e-8a4b-4c5d-9e6f-1a2b3c4d5e6f',
   allow_permission_bypass: false,
-  kind: 'macrod',
+  kind: 'roxd',
   name: 'Dev box',
   owner: { type: 'user', user_id: 'macro|user@example.com' },
   access: 'owner',

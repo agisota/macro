@@ -9,7 +9,7 @@ use super::ports::*;
 
 /// The existing Macro-admin policy for usage reporting and price changes.
 fn require_admin(actor: &macro_user_id::user_id::MacroUserIdStr<'_>) -> Result<()> {
-    if actor.email_str().ends_with("@macro.com") {
+    if actor.email_str().ends_with("@rox.one") {
         Ok(())
     } else {
         Err(UsageError::Forbidden)

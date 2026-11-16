@@ -1,6 +1,6 @@
 # Table sizes
 
-Orders of magnitude for MacroDB in production, from the database's table
+Orders of magnitude for RoxDB in production, from the database's table
 statistics in November 2026. Use them to size a query review or a migration
 review; never query a hosted database to refresh them during a review. Names
 are lower-cased as Postgres reports them (`Document` is `document`).

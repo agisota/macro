@@ -604,7 +604,7 @@ test('agent sessions are listed by default and by type, with their filter, as se
             name: 'Fix login',
             botId: 'bot',
             createdAt: '2026-11-01T00:00:00Z',
-            harness: 'macrod',
+            harness: 'roxd',
             ownerId: 'macro|me@example.com',
             pullRequestUrl: 'https://github.com/acme/app/pull/1',
             properties: [],

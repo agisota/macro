@@ -3959,7 +3959,7 @@ type GraphqlComputerSetupMetadata {
 	"""
 	computerId: ID!
 	"""
-	The computer's harness, once macrod has connected.
+	The computer's harness, once roxd has connected.
 	"""
 	harnessId: ID
 	"""
@@ -10295,7 +10295,7 @@ type GraphqlSoupForeignEntity implements GraphqlSoupEntity {
 }
 
 """
-A paired runtime (a macrod machine). Only attention feeds list it, for
+A paired runtime (a roxd machine). Only attention feeds list it, for
 the access notifications filed under it; it opens in Settings → Machines.
 """
 type GraphqlSoupHarness implements GraphqlSoupEntity {

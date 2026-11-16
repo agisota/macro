@@ -50,7 +50,7 @@ fn a_board_stored_today_reads_as_it_was_written() {
         group_by: STATUS,
         title: STATUS,
         lanes: vec![Lane {
-            key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+            key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
             hidden: false,
         }],
         card_fields: vec![],

@@ -2,8 +2,8 @@ import { stack } from '.';
 
 /** Public OAuth identities remain stable when their processes move to the harness. */
 export const AGENT_PUBLIC_URLS = {
-  cognition: `https://document-cognition${stack === 'prod' ? '' : `-${stack}`}.macro.com`,
-  mcp: `https://mcp-server${stack === 'prod' ? '' : `-${stack}`}.macro.com`,
+  cognition: `https://document-cognition${stack === 'prod' ? '' : `-${stack}`}.rox.one`,
+  mcp: `https://mcp-server${stack === 'prod' ? '' : `-${stack}`}.rox.one`,
 };
 
 /**
@@ -40,62 +40,62 @@ type ServiceUrlMap = {
  * Dev Service URLs
  */
 const DEV_SERVICE_URLS: ServiceUrlMap = {
-  [ServiceUrl.APP_SERVICE_URL]: 'https://dev.macro.com',
-  [ServiceUrl.PREVIEW_GATEWAY_URL]: 'https://dev-gateway.macro.com/preview',
+  [ServiceUrl.APP_SERVICE_URL]: 'https://dev.rox.one',
+  [ServiceUrl.PREVIEW_GATEWAY_URL]: 'https://dev-gateway.rox.one/preview',
   [ServiceUrl.SYNC_SERVICE_URL]:
     'https://sync-service-dev3.macroverse.workers.dev',
-  [ServiceUrl.EMAIL_SERVICE_URL]: 'https://dev-gateway.macro.com/email',
+  [ServiceUrl.EMAIL_SERVICE_URL]: 'https://dev-gateway.rox.one/email',
   [ServiceUrl.STATIC_FILE_SERVICE_URL]:
-    'https://static-file-service-dev.macro.com',
+    'https://static-file-service-dev.rox.one',
   [ServiceUrl.NOTIFICATION_SERVICE_URL]:
-    'https://dev-gateway.macro.com/notification',
-  [ServiceUrl.AUTHENTICATION_SERVICE_URL]: 'https://dev-gateway.macro.com/auth',
+    'https://dev-gateway.rox.one/notification',
+  [ServiceUrl.AUTHENTICATION_SERVICE_URL]: 'https://dev-gateway.rox.one/auth',
   [ServiceUrl.DOCUMENT_STORAGE_SERVICE_URL]:
-    'https://dev-gateway.macro.com/dss',
+    'https://dev-gateway.rox.one/dss',
   [ServiceUrl.CONNECTION_GATEWAY_URL]:
-    'https://dev-gateway.macro.com/connection-gateway',
+    'https://dev-gateway.rox.one/connection-gateway',
   [ServiceUrl.DOCUMENT_COGNITION_SERVICE_URL]:
-    'https://dev-gateway.macro.com/cognition',
-  [ServiceUrl.LEXICAL_SERVICE_URL]: 'https://dev-gateway.macro.com/lexical',
-  [ServiceUrl.UNFURL_SERVICE_URL]: 'https://dev-gateway.macro.com/unfurl',
+    'https://dev-gateway.rox.one/cognition',
+  [ServiceUrl.LEXICAL_SERVICE_URL]: 'https://dev-gateway.rox.one/lexical',
+  [ServiceUrl.UNFURL_SERVICE_URL]: 'https://dev-gateway.rox.one/unfurl',
   [ServiceUrl.AGENT_HARNESS_SERVICE_URL]:
-    'https://dev-gateway.macro.com/agent-harness',
+    'https://dev-gateway.rox.one/agent-harness',
   [ServiceUrl.AGENT_HARNESS_EGRESS_URL]:
-    'https://dev-gateway.macro.com/agent-harness-egress',
-  [ServiceUrl.MCP_SERVER_URL]: 'https://dev-gateway.macro.com/mcp',
+    'https://dev-gateway.rox.one/agent-harness-egress',
+  [ServiceUrl.MCP_SERVER_URL]: 'https://dev-gateway.rox.one/mcp',
   [ServiceUrl.MCP_CHATGPT_SERVICE_URL]:
     'https://mcp-chatgpt-worker-dev.macroverse.workers.dev',
-  [ServiceUrl.CONNECT_API_URL]: 'https://connect-dev.macro.com',
+  [ServiceUrl.CONNECT_API_URL]: 'https://connect-dev.rox.one',
 };
 
 /**
  * Prod Service URLs
  */
 const PROD_SERVICE_URLS: ServiceUrlMap = {
-  [ServiceUrl.APP_SERVICE_URL]: 'https://macro.com',
-  [ServiceUrl.PREVIEW_GATEWAY_URL]: 'https://gateway.macro.com/preview',
+  [ServiceUrl.APP_SERVICE_URL]: 'https://rox.one',
+  [ServiceUrl.PREVIEW_GATEWAY_URL]: 'https://gateway.rox.one/preview',
   [ServiceUrl.SYNC_SERVICE_URL]:
     'https://sync-service-prod2.macroverse.workers.dev',
-  [ServiceUrl.EMAIL_SERVICE_URL]: 'https://gateway.macro.com/email',
-  [ServiceUrl.STATIC_FILE_SERVICE_URL]: 'https://static-file-service.macro.com',
+  [ServiceUrl.EMAIL_SERVICE_URL]: 'https://gateway.rox.one/email',
+  [ServiceUrl.STATIC_FILE_SERVICE_URL]: 'https://static-file-service.rox.one',
   [ServiceUrl.NOTIFICATION_SERVICE_URL]:
-    'https://gateway.macro.com/notification',
-  [ServiceUrl.AUTHENTICATION_SERVICE_URL]: 'https://gateway.macro.com/auth',
-  [ServiceUrl.DOCUMENT_STORAGE_SERVICE_URL]: 'https://gateway.macro.com/dss',
+    'https://gateway.rox.one/notification',
+  [ServiceUrl.AUTHENTICATION_SERVICE_URL]: 'https://gateway.rox.one/auth',
+  [ServiceUrl.DOCUMENT_STORAGE_SERVICE_URL]: 'https://gateway.rox.one/dss',
   [ServiceUrl.CONNECTION_GATEWAY_URL]:
-    'https://gateway.macro.com/connection-gateway',
+    'https://gateway.rox.one/connection-gateway',
   [ServiceUrl.DOCUMENT_COGNITION_SERVICE_URL]:
-    'https://gateway.macro.com/cognition',
-  [ServiceUrl.LEXICAL_SERVICE_URL]: 'https://gateway.macro.com/lexical',
-  [ServiceUrl.UNFURL_SERVICE_URL]: 'https://gateway.macro.com/unfurl',
+    'https://gateway.rox.one/cognition',
+  [ServiceUrl.LEXICAL_SERVICE_URL]: 'https://gateway.rox.one/lexical',
+  [ServiceUrl.UNFURL_SERVICE_URL]: 'https://gateway.rox.one/unfurl',
   [ServiceUrl.AGENT_HARNESS_SERVICE_URL]:
-    'https://gateway.macro.com/agent-harness',
+    'https://gateway.rox.one/agent-harness',
   [ServiceUrl.AGENT_HARNESS_EGRESS_URL]:
-    'https://gateway.macro.com/agent-harness-egress',
-  [ServiceUrl.MCP_SERVER_URL]: 'https://gateway.macro.com/mcp',
+    'https://gateway.rox.one/agent-harness-egress',
+  [ServiceUrl.MCP_SERVER_URL]: 'https://gateway.rox.one/mcp',
   [ServiceUrl.MCP_CHATGPT_SERVICE_URL]:
     'https://mcp-chatgpt-worker.macroverse.workers.dev',
-  [ServiceUrl.CONNECT_API_URL]: 'https://connect.macro.com',
+  [ServiceUrl.CONNECT_API_URL]: 'https://connect.rox.one',
 };
 
 /**

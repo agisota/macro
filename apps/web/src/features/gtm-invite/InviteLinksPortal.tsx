@@ -34,7 +34,7 @@ import {
   type InviteStatusTone,
 } from './core/invite-link';
 
-const STAFF_EMAIL_DOMAIN = '@macro.com';
+const STAFF_EMAIL_DOMAIN = '@rox.one';
 
 /**
  * Internal portal for the GTM team: mint personal 48-hour invite links and
@@ -92,7 +92,7 @@ export function InviteLinksPortal() {
           <Match when={isAuthenticated() === true && !isStaff()}>
             <Gate
               title="Rox staff only"
-              body="Invite links can only be created from a @macro.com account."
+              body="Invite links can only be created from a @rox.one account."
             />
           </Match>
           <Match when={isAuthenticated() === true && isStaff()}>

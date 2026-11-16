@@ -38,7 +38,7 @@ async fn a_running_quiet_batch_leaves_the_next_conversation_message_queued(pool:
         .await
         .unwrap();
     mention_origin_mut(&mut command).parent = MessageParent::Channel(channel);
-    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ($1,'macro|asker@example.com',$2,'test','macrod','/workspace')", session.as_uuid(), command.bot_id.as_uuid()).execute(&pool).await.unwrap();
+    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ($1,'macro|asker@example.com',$2,'test','roxd','/workspace')", session.as_uuid(), command.bot_id.as_uuid()).execute(&pool).await.unwrap();
     outbox
         .enqueue(
             PendingNotification::new(ProduceNotification {

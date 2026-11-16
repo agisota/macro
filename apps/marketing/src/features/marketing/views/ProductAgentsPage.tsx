@@ -126,7 +126,7 @@ export function RouteAgents() {
       <FeaturePageSection
         id="existing-agents"
         title="Bring your own agents."
-        description="Point Claude Code, Codex, or any MCP client at your workspace, or run agents on your own machine with macrod. Your team’s memory and Rox’s tools work with all the latest models from every provider, so you’re never locked into one."
+        description="Point Claude Code, Codex, or any MCP client at your workspace, or run agents on your own machine with roxd. Your team’s memory and Rox’s tools work with all the latest models from every provider, so you’re never locked into one."
       >
         <div class="agents-connections">
           <div class="agents-connection-paths">
@@ -134,13 +134,13 @@ export function RouteAgents() {
               <h3>Your agent, inside Rox</h3>
               <p>
                 Bring Claude Code, OpenCode, OpenClaw, or Hermes into your
-                workspace. Connect through macrod and keep your agent running on
+                workspace. Connect through roxd and keep your agent running on
                 your machine.
               </p>
               <a class="agents-setup-link" href="/docs/AI/bring-your-own">
                 Connect your agent <ArrowUpRight aria-hidden="true" />
               </a>
-              <TutorialVideoEmbed tutorial="macrod" />
+              <TutorialVideoEmbed tutorial="roxd" />
             </div>
             <div class="agents-connection-path">
               <h3>Rox, inside your agent</h3>

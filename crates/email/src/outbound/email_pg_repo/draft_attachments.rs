@@ -78,8 +78,8 @@ impl DraftAttachmentRepository for EmailPgRepo {
                 + COALESCE((SELECT sum(a.size_bytes)::bigint FROM email_attachments_fwd f JOIN email_attachments a ON a.id = f.attachment_id WHERE f.message_id = $1),0)
                 + COALESCE((SELECT sum(a.size_bytes)::bigint FROM email_attachments a WHERE a.message_id = $1
                     AND NOT EXISTS (SELECT 1 FROM email_draft_attachment_removals r WHERE r.message_id = $1 AND (r.provider_id = a.provider_attachment_id OR trim(both '<>' from r.content_id) = trim(both '<>' from a.content_id)))
-                    AND NOT EXISTS (SELECT 1 FROM email_attachments_drafts d WHERE d.draft_id = $1 AND trim(both '<>' from a.content_id) = COALESCE(trim(both '<>' from d.content_id),d.id::text || '@attachments.macro.com'))
-                    AND NOT EXISTS (SELECT 1 FROM email_attachments_fwd f JOIN email_attachments original ON original.id=f.attachment_id WHERE f.message_id = $1 AND (trim(both '<>' from a.content_id) = f.attachment_id::text || '@attachments.macro.com' OR trim(both '<>' from a.content_id)=trim(both '<>' from original.content_id)))),0) AS "total!"
+                    AND NOT EXISTS (SELECT 1 FROM email_attachments_drafts d WHERE d.draft_id = $1 AND trim(both '<>' from a.content_id) = COALESCE(trim(both '<>' from d.content_id),d.id::text || '@attachments.rox.one'))
+                    AND NOT EXISTS (SELECT 1 FROM email_attachments_fwd f JOIN email_attachments original ON original.id=f.attachment_id WHERE f.message_id = $1 AND (trim(both '<>' from a.content_id) = f.attachment_id::text || '@attachments.rox.one' OR trim(both '<>' from a.content_id)=trim(both '<>' from original.content_id)))),0) AS "total!"
         "#,draft).fetch_one(&mut *tx).await.map_err(db_error)?;
         let already_forwarded = if let AttachmentChange::Forward(source) = &change {
             sqlx::query_scalar!("SELECT EXISTS(SELECT 1 FROM email_attachments_fwd WHERE message_id = $1 AND attachment_id = $2) AS \"exists!\"",draft,source.id).fetch_one(&mut *tx).await.map_err(db_error)?
@@ -162,7 +162,7 @@ impl DraftAttachmentRepository for EmailPgRepo {
                 // inline Content-ID, rather than retaining a delete intention.
                 sqlx::query!(r#"DELETE FROM email_draft_attachment_removals r WHERE r.message_id=$1 AND
                     (trim(both '<>' from r.content_id)=$2 OR trim(both '<>' from r.content_id)=(SELECT trim(both '<>' from content_id) FROM email_attachments WHERE id=$3))"#,
-                    draft,format!("{}@attachments.macro.com",source.id),source.id).execute(&mut *tx).await.map_err(db_error)?;
+                    draft,format!("{}@attachments.rox.one",source.id),source.id).execute(&mut *tx).await.map_err(db_error)?;
                 sqlx::query!("INSERT INTO email_attachments_fwd (message_id,attachment_id) VALUES ($1,$2) ON CONFLICT DO NOTHING",draft,source.id).execute(&mut *tx).await.map_err(db_error)?;
             }
             AttachmentChange::Remove {
@@ -176,7 +176,7 @@ impl DraftAttachmentRepository for EmailPgRepo {
                 content_removal(
                     &mut tx,
                     draft,
-                    &format!("{attachment_id}@attachments.macro.com"),
+                    &format!("{attachment_id}@attachments.rox.one"),
                 )
                 .await?;
                 // Inline forwarded files keep their original Content-ID.
@@ -204,7 +204,7 @@ impl DraftAttachmentRepository for EmailPgRepo {
                         draft,
                         &upload
                             .content_id
-                            .unwrap_or_else(|| format!("{attachment_id}@attachments.macro.com")),
+                            .unwrap_or_else(|| format!("{attachment_id}@attachments.rox.one")),
                     )
                     .await?;
                 } else {

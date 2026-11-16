@@ -43,21 +43,21 @@ use tracing::Instrument;
 
 /// Rox team members added to every new user's support channel.
 const MACRO_SUPPORT_EMAILS: [&str; 15] = [
-    "jacob@macro.com",
-    "julia@macro.com",
-    "teo@macro.com",
-    "valentina@macro.com",
-    "chaitanya@macro.com",
-    "austin@macro.com",
-    "eric.hayes@macro.com",
-    "gab@macro.com",
-    "hutch@macro.com",
-    "jackson@macro.com",
-    "peter@macro.com",
-    "rahul@macro.com",
-    "sean@macro.com",
-    "wolf@macro.com",
-    "zhamilya@macro.com",
+    "jacob@rox.one",
+    "julia@rox.one",
+    "teo@rox.one",
+    "valentina@rox.one",
+    "chaitanya@rox.one",
+    "austin@rox.one",
+    "eric.hayes@rox.one",
+    "gab@rox.one",
+    "hutch@rox.one",
+    "jackson@rox.one",
+    "peter@rox.one",
+    "rahul@rox.one",
+    "sean@rox.one",
+    "wolf@rox.one",
+    "zhamilya@rox.one",
 ];
 
 fn support_channel_name<T: AsRef<str>>(email: &Email<T>) -> String {

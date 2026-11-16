@@ -1327,7 +1327,7 @@ export class Sdk extends HeyApiClient {
 
     /**
      * Reserves storage for a new profile picture. Static file storage has no
-     * MacroDB, so it cannot check API keys; this route lets key holders upload.
+     * RoxDB, so it cannot check API keys; this route lets key holders upload.
      */
     public createProfilePictureUpload<ThrowOnError extends boolean = false>(options: Options<CreateProfilePictureUploadData, ThrowOnError>): RequestResult<CreateProfilePictureUploadResponses, CreateProfilePictureUploadErrors, ThrowOnError> {
         return (options.client ?? this.client).post<CreateProfilePictureUploadResponses, CreateProfilePictureUploadErrors, ThrowOnError>({

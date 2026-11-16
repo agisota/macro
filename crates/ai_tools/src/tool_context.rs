@@ -551,7 +551,7 @@ pub fn build_calendar_tool_context(
 pub type ToolBookingLinkService = calendar_scheduling::domain::service::Service<
     calendar_scheduling::outbound::postgres::PostgresRepository,
     (),
-    calendar_scheduling::outbound::macro_services::MacroDirectory<ToolTeamService>,
+    calendar_scheduling::outbound::macro_services::RoxDirectory<ToolTeamService>,
 >;
 /// Booking-link tool dependencies.
 pub type ToolBookingLinkToolContext =
@@ -565,13 +565,13 @@ pub fn build_booking_link_tool_context(
         service: Arc::new(calendar_scheduling::domain::service::Service::new(
             calendar_scheduling::outbound::postgres::PostgresRepository::new(pool.clone()),
             (),
-            calendar_scheduling::outbound::macro_services::MacroDirectory(TeamRepositoryImpl::new(
+            calendar_scheduling::outbound::macro_services::RoxDirectory(TeamRepositoryImpl::new(
                 pool,
             )),
         )),
         public_origin: match environment {
-            macro_env::Environment::Production => "https://macro.com",
-            macro_env::Environment::Develop => "https://dev.macro.com",
+            macro_env::Environment::Production => "https://rox.one",
+            macro_env::Environment::Develop => "https://dev.rox.one",
             macro_env::Environment::Local => "",
         }
         .into(),
@@ -592,8 +592,8 @@ pub fn build_booking_management_tool_context(
     calendar_scheduling::inbound::toolset::BookingManagementToolContext {
         service: Arc::new(calendar_scheduling::outbound::administration_client::SchedulingAdministrationClient::new(calendar_url.to_string(), internal_api_key)),
         public_origin: match environment {
-            macro_env::Environment::Production => "https://macro.com",
-            macro_env::Environment::Develop => "https://dev.macro.com",
+            macro_env::Environment::Production => "https://rox.one",
+            macro_env::Environment::Develop => "https://dev.rox.one",
             macro_env::Environment::Local => "",
         }.into(),
     }

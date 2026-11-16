@@ -1,8 +1,8 @@
-//! `macrod enroll`: join a Macro computer (hosted VM) to Macro at first boot.
+//! `roxd enroll`: join a Macro computer (hosted VM) to Macro at first boot.
 //!
 //! The control plane hands the computer one
 //! [`Enrollment`](hosted_runtimes::domain::enrollment::Enrollment): through the
-//! Incus guest API on VMs, or a file in Docker. Enrolling writes `macrod.toml`
+//! Incus guest API on VMs, or a file in Docker. Enrolling writes `roxd.toml`
 //! for the deployment it names and claims the pre-approved harness pairing.
 //! Every step is safe to re-run until the enrolled marker exists.
 //!
@@ -11,7 +11,7 @@
 //! generation, so enrollment runs again: it claims the new pairing and
 //! rewrites the config's deployment and credential, leaving the rest of the
 //! disk alone. A marker at least as new as the enrollment, or no enrollment
-//! (the control plane removes it once macrod connects), means enrolled.
+//! (the control plane removes it once roxd connects), means enrolled.
 
 use std::os::unix::fs::{MetadataExt as _, OpenOptionsExt as _, PermissionsExt as _};
 use std::path::{Path, PathBuf};
@@ -67,11 +67,11 @@ impl FromStr for EnrollmentSource {
     }
 }
 
-/// Everything `macrod enroll` accepts.
+/// Everything `roxd enroll` accepts.
 pub struct EnrollOptions {
     /// Where the enrollment JSON comes from.
     pub from: EnrollmentSource,
-    /// The `macrod.toml` macrod serves from. Takes its directory's owner.
+    /// The `roxd.toml` roxd serves from. Takes its directory's owner.
     pub config: PathBuf,
     /// Workspace for a newly created config.
     pub workspace: PathBuf,
@@ -284,7 +284,7 @@ async fn read_incus_enrollment(
     Ok(Some(body))
 }
 
-/// The deployment URLs `macrod.toml` stores, from the enrollment's typed
+/// The deployment URLs `roxd.toml` stores, from the enrollment's typed
 /// deployment.
 #[derive(Debug, Clone, PartialEq, Eq)]
 struct DeploymentUrls {
@@ -301,7 +301,7 @@ impl DeploymentUrls {
             egress_url: trim(&deployment.egress_url),
             api_url: trim(&deployment.agent_harness_url),
             storage_url: trim(&deployment.document_storage_url),
-            // macrod links into the web app's routes, below `/app`.
+            // roxd links into the web app's routes, below `/app`.
             web_url: format!("{}/app", trim(&deployment.app_url)),
         }
     }
@@ -333,7 +333,7 @@ fn write_config(
 /// Claim the pre-approved pairing unless the stored credential was claimed
 /// from it, which is what a retried enrollment finds. A credential from an
 /// earlier enrollment's pairing is replaced.
-#[tracing::instrument(name = "macrod.enroll.claim", skip_all, fields(attempts = tracing::field::Empty), err)]
+#[tracing::instrument(name = "roxd.enroll.claim", skip_all, fields(attempts = tracing::field::Empty), err)]
 async fn ensure_credentials(path: &Path, enrollment: &Enrollment) -> rootcause::Result<()> {
     let config = Config::load(path)?;
     if config.credentials.as_ref().is_some_and(|credentials| {
@@ -381,10 +381,10 @@ async fn ensure_credentials(path: &Path, enrollment: &Enrollment) -> rootcause::
 
 /// The agent teammate a computer was bought for: its brain's environment,
 /// read by the guest's `macro-agent.service`. Absent on other computers.
-pub const AGENT_ENV_PATH: &str = "/var/lib/macrod/agent.env";
+pub const AGENT_ENV_PATH: &str = "/var/lib/roxd/agent.env";
 
 /// Write the agent's environment as a systemd environment file (mode 0600,
-/// owned like macrod's config, since the brain runs as that user), or remove
+/// owned like roxd's config, since the brain runs as that user), or remove
 /// a stale one when this enrollment carries no agent.
 fn write_agent_env(
     path: &Path,
@@ -430,7 +430,7 @@ fn agent_env_file(agent: &hosted_runtimes::domain::agent::AgentEnrollment) -> St
     contents
 }
 
-/// Give a file its directory's owner: enrollment runs as root, macrod as the
+/// Give a file its directory's owner: enrollment runs as root, roxd as the
 /// user whose home holds its config.
 fn own_like_parent(path: &Path, host: &impl Host) -> rootcause::Result<()> {
     let parent = path

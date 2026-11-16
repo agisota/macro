@@ -104,7 +104,7 @@ function person(id: string, name: string): CommandMenuItem {
     searchText: name,
     sortTimestamp: 0,
     timestamps: {},
-    data: { id, name, email: `${id}@macro.com` },
+    data: { id, name, email: `${id}@rox.one` },
   };
 }
 
@@ -368,15 +368,15 @@ describe('command menu search ranking', () => {
 
   it('keeps server-matched people the fuzzy matcher misses, without the cache projection', () => {
     const person: CommandMenuItem = {
-      id: 'macro|asher@macro.com',
+      id: 'macro|asher@rox.one',
       kind: 'user',
       bucket: 'person',
-      searchText: 'Asher Smith | asher@macro.com',
+      searchText: 'Asher Smith | asher@rox.one',
       sortTimestamp: NOW,
       timestamps: {},
       data: {
-        id: 'macro|asher@macro.com',
-        email: 'asher@macro.com',
+        id: 'macro|asher@rox.one',
+        email: 'asher@rox.one',
         name: 'Asher Smith',
       },
     };

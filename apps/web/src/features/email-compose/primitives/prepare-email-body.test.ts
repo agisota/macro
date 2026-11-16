@@ -203,14 +203,14 @@ describe('prepareEmailBodyFromHtml', () => {
 
   it('converts booking link mentions to clickable anchor tags', () => {
     const prepared = prepareEmailBodyFromHtml(
-      '<p>Book a meeting: <span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="30min" data-booking-label="30 Minute Meeting" data-booking-url="https://macro.com/app/book/abc123/30min">30 Minute Meeting</span></p>'
+      '<p>Book a meeting: <span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="30min" data-booking-label="30 Minute Meeting" data-booking-url="https://rox.one/app/book/abc123/30min">30 Minute Meeting</span></p>'
     );
     const decoded = decodeBase64Utf8(prepared.bodyHtml);
     const body = new DOMParser().parseFromString(decoded, 'text/html').body;
     const link = body.querySelector('a[data-booking-link-mention="true"]');
     expect(link).not.toBeNull();
     expect(link?.getAttribute('href')).toBe(
-      'https://macro.com/app/book/abc123/30min'
+      'https://rox.one/app/book/abc123/30min'
     );
     expect(link?.textContent).toBe('30 Minute Meeting');
   });

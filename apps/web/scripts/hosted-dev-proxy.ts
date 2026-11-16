@@ -81,7 +81,7 @@ function forwardedHeaders(headers: IncomingHttpHeaders, host: string) {
   return forwarded;
 }
 
-/** Hosted auth cookies have Domain=macro.com; scope them to the dev host. */
+/** Hosted auth cookies have Domain=rox.one; scope them to the dev host. */
 function withoutCookieDomain(cookies: string[] | undefined) {
   return cookies?.map((cookie) => cookie.replace(/;\s*Domain=[^;]*/i, ''));
 }

@@ -33,7 +33,7 @@ use crate::domain::session::MAX_CLEANUP_ATTEMPTS;
 const PEOPLE: usize = 32;
 
 fn person(n: usize) -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from(format!("macro|generation-{n}@macro.com")).unwrap()
+    MacroUserIdStr::try_from(format!("macro|generation-{n}@rox.one")).unwrap()
 }
 
 fn user() -> MacroUserIdStr<'static> {

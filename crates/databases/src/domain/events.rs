@@ -5,7 +5,7 @@ use activity::Actor;
 use bot_id::BotId;
 use chrono::{DateTime, Utc};
 use macro_event_broker::{Event, MacroEvent, TopicEvent};
-use macro_event_topics::MacroDatabasesTopic;
+use macro_event_topics::RoxDatabasesTopic;
 use macro_user_id::user_id::MacroUserIdStr;
 use serde::{Deserialize, Serialize};
 
@@ -128,7 +128,7 @@ pub struct DatabaseTablesChangedMetadata {
     pub tables: Vec<TableVersionChange>,
 }
 
-/// Events that can be published to [`MacroDatabasesTopic`].
+/// Events that can be published to [`RoxDatabasesTopic`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "event_type", content = "metadata")]
 pub enum DatabaseTopicEvent {
@@ -167,12 +167,12 @@ pub enum DatabaseTopicEvent {
 }
 
 impl TopicEvent for DatabaseTopicEvent {
-    type Topic = MacroDatabasesTopic;
+    type Topic = RoxDatabasesTopic;
 
     const SCHEMA_VERSION: u8 = 1;
 }
 
-/// Publishable event for [`MacroDatabasesTopic`], keyed by database id.
+/// Publishable event for [`RoxDatabasesTopic`], keyed by database id.
 pub struct DatabaseMacroEvent {
     key: String,
     event: Event<DatabaseTopicEvent>,

@@ -169,8 +169,8 @@ async fn child_sees_the_configured_environment() {
     // The npm ACP adapters are pointed at an already-installed CLI through
     // `CODEX_PATH` / `CLAUDE_CODE_EXECUTABLE`; if those do not reach the child
     // the adapter silently runs its own bundled copy instead.
-    let process = shell("printf %s \"$MACROD_TEST_CLI_PATH\" >&2; exit 17", "/").envs([(
-        "MACROD_TEST_CLI_PATH".to_owned(),
+    let process = shell("printf %s \"$ROXD_TEST_CLI_PATH\" >&2; exit 17", "/").envs([(
+        "ROXD_TEST_CLI_PATH".to_owned(),
         "/nix/store/probe-and-bridge-agree".to_owned(),
     )]);
 
@@ -190,12 +190,12 @@ async fn child_sees_the_configured_environment() {
 async fn configured_environment_adds_to_the_inherited_one() {
     // `envs` layers onto this process's environment rather than replacing it:
     // the adapters still need PATH, HOME and the rest to work.
-    unsafe { std::env::set_var("MACROD_TEST_INHERITED", "inherited") };
+    unsafe { std::env::set_var("ROXD_TEST_INHERITED", "inherited") };
     let process = shell(
-        "printf %s \"$MACROD_TEST_INHERITED:$MACROD_TEST_ADDED\" >&2; exit 17",
+        "printf %s \"$ROXD_TEST_INHERITED:$ROXD_TEST_ADDED\" >&2; exit 17",
         "/",
     )
-    .envs([("MACROD_TEST_ADDED".to_owned(), "added".to_owned())]);
+    .envs([("ROXD_TEST_ADDED".to_owned(), "added".to_owned())]);
 
     let error = tokio::time::timeout(Duration::from_secs(5), Client.builder().connect_to(process))
         .await

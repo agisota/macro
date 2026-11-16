@@ -21,8 +21,8 @@ async fn draft_aggregate_signal_matches_canonical_policy(
             repo.upsert_email_filter(
                 link_id,
                 crate::domain::models::UpsertEmailFilterInput {
-                    email_address: address.then(|| "no-reply@notification.macro.com".into()),
-                    email_domain: (!address).then(|| "notification.macro.com".into()),
+                    email_address: address.then(|| "no-reply@notification.rox.one".into()),
+                    email_domain: (!address).then(|| "notification.rox.one".into()),
                     is_important: true,
                 },
             )

@@ -12,8 +12,8 @@ export function getMacroApiToken(): {
   return {
     macroApiTokenIssuer:
       stack === 'prod'
-        ? 'authentication-service.macro.com'
-        : `authentication-service-${stack}.macro.com`,
+        ? 'authentication-service.rox.one'
+        : `authentication-service-${stack}.rox.one`,
     macroApiTokenPublicKey: MACRO_API_TOKEN_PUBLIC_KEY,
     macroApiTokenPublicKeyArn: aws.secretsmanager
       .getSecretVersionOutput({

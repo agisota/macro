@@ -1,7 +1,7 @@
 //! Which agent turns are running, read off the ACP wire.
 //!
 //! A turn is a `session/prompt` request the agent has not answered yet. The
-//! self-updater restarts macrod only while none is outstanding.
+//! self-updater restarts roxd only while none is outstanding.
 
 use std::collections::HashSet;
 use std::sync::{Arc, Mutex, PoisonError};

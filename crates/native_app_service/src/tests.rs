@@ -27,9 +27,9 @@ use tower::ServiceExt;
 
 #[test]
 fn all_urls_work() {
-    let fetcher = DefaultBundleFetcher::new("https://macro.com".parse().unwrap());
+    let fetcher = DefaultBundleFetcher::new("https://rox.one".parse().unwrap());
     let url = fetcher.get_app_bundle_path();
-    assert_eq!(url.as_str(), "https://macro.com/app/app-archive.zip");
+    assert_eq!(url.as_str(), "https://rox.one/app/app-archive.zip");
 }
 
 struct MockBundleFetcher {

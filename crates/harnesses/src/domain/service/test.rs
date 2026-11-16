@@ -30,7 +30,7 @@ fn harness(owner: HarnessOwner) -> Harness {
     Harness {
         allow_permission_bypass: false,
         id: HarnessId::TEST_A,
-        kind: "macrod".to_owned(),
+        kind: "roxd".to_owned(),
         name: "erics-macbook".to_owned(),
         owner,
         access: HarnessAccess::None,

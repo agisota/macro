@@ -13,7 +13,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { CategoryFilter } from './types';
 import { type CommandContactSource, useCommandItems } from './useCommandItems';
 
-const VIEWER = 'macro|viewer@macro.com';
+const VIEWER = 'macro|viewer@rox.one';
 
 const mocks = vi.hoisted(() => ({
   lists: {} as Record<string, () => QuickAccessItem[]>,
@@ -30,7 +30,7 @@ vi.mock('@app/lib/analytics/posthog', () => ({
   useFeatureFlag: () => () => ({ enabled: false, loading: false }),
 }));
 vi.mock('@core/context/user', () => ({
-  useUserId: () => () => 'macro|viewer@macro.com',
+  useUserId: () => () => 'macro|viewer@rox.one',
 }));
 vi.mock('@app/constants/hotkeys', () => ({
   GO_TO_COMMAND_SCOPE: 'go-to',
@@ -226,15 +226,15 @@ describe('command menu contact discovery', () => {
     'finds a teammate without a DM or CRM contact in %s, including with CRM disabled',
     (category) => {
       const t = setup(category, false);
-      const gabriel = user('gabriel@macro.com', 'Gabriel Birman');
-      t.setUsers([gabriel, user('valentina@macro.com', 'Valentina')]);
+      const gabriel = user('gabriel@rox.one', 'Gabriel Birman');
+      t.setUsers([gabriel, user('valentina@rox.one', 'Valentina')]);
       expect(t.ids()).toEqual([]);
 
       t.setQuery('Gabriel');
       expect(t.ids()).toEqual([`search:${category}:Gabriel`, gabriel.id]);
-      t.setQuery('gabriel@macro.com');
+      t.setQuery('gabriel@rox.one');
       expect(t.ids()).toEqual([
-        `search:${category}:gabriel@macro.com`,
+        `search:${category}:gabriel@rox.one`,
         gabriel.id,
       ]);
 
@@ -248,11 +248,11 @@ describe('command menu contact discovery', () => {
 
   it('keeps a teammate separate from group DMs and excludes the viewer', () => {
     const t = setup('dms', false);
-    const gabriel = user('gabriel@macro.com', 'Gabriel Birman');
-    const viewer = user('viewer@macro.com', 'Gabriel Viewer');
+    const gabriel = user('gabriel@rox.one', 'Gabriel Birman');
+    const viewer = user('viewer@rox.one', 'Gabriel Viewer');
     const group = directMessage('group-gabriel', 'Gabriel group', gabriel.id);
     if (group.data.type !== 'channel') throw new Error('Expected channel');
-    group.data.participantIds = [VIEWER, gabriel.id, 'macro|third@macro.com'];
+    group.data.participantIds = [VIEWER, gabriel.id, 'macro|third@rox.one'];
     t.setUsers([gabriel, viewer]);
     t.setDms([group]);
     t.setQuery('Gabriel');
@@ -265,7 +265,7 @@ describe('command menu contact discovery', () => {
     'replaces a matching person with their DM when it arrives in %s',
     (category) => {
       const t = setup(category);
-      const gabriel = user('gabriel@macro.com', 'Gabriel Birman');
+      const gabriel = user('gabriel@rox.one', 'Gabriel Birman');
       t.setUsers([gabriel]);
       t.setQuery('Gabriel');
       t.setContacts([
@@ -285,9 +285,9 @@ describe('command menu contact discovery', () => {
         'crm-gabriel',
       ]);
 
-      t.setQuery('gabriel@macro.com');
+      t.setQuery('gabriel@rox.one');
       t.setContacts([]);
-      expect(t.ids()).toEqual([`search:${category}:gabriel@macro.com`, dm.id]);
+      expect(t.ids()).toEqual([`search:${category}:gabriel@rox.one`, dm.id]);
     }
   );
 
@@ -321,7 +321,7 @@ describe('command menu contact discovery', () => {
       const dm = directMessage(
         'dm-jack',
         'Jackson Kustec',
-        'macro|jack@macro.com'
+        'macro|jack@rox.one'
       );
       t.setDms([dm]);
       t.setQuery('jack');
@@ -352,11 +352,11 @@ describe('command menu contact discovery', () => {
 
   it('prefers the Macro user sharing the email even when only the CRM name matched', () => {
     const t = setup('dms');
-    const asher = user('asher@macro.com', 'Asher Smith');
+    const asher = user('asher@rox.one', 'Asher Smith');
     t.setUsers([asher]);
     t.setContacts([
-      contact('crm-asher', 'Asher at HackerNoon', ' Asher@Macro.com'),
-      contact('crm-plus', 'Asher Press', 'asher+press@macro.com'),
+      contact('crm-asher', 'Asher at HackerNoon', ' Asher@rox.one'),
+      contact('crm-plus', 'Asher Press', 'asher+press@rox.one'),
     ]);
     t.setQuery('hackernoon');
     const items = t.result.items();
@@ -372,7 +372,7 @@ describe('command menu contact discovery', () => {
 
   it("opens the person's existing conversation instead of a second row", () => {
     const t = setup('dms');
-    const asher = user('asher@macro.com', 'Asher Smith');
+    const asher = user('asher@rox.one', 'Asher Smith');
     const dm = directMessage('dm-asher', 'Asher Smith', asher.id);
     // People already lists the conversation; only the CRM name matches.
     t.setUsers([asher]);

@@ -5,7 +5,7 @@ The live writer commits each changed state with its log frame under the session'
 ownership fence. Streamed tokens do not trigger repeated projection writes.
 
 Apply migrations before deploying the writer. For sessions created before the
-projection existed, run the bounded backfill against the intended MacroDB:
+projection existed, run the bounded backfill against the intended RoxDB:
 
 ```bash
 cargo build -p agent_session --features cli --bin backfill_turn_states

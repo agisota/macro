@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 
 use super::*;
 
-const ADAPTER_ROOT: &str = "/home/test/.macrod/adapters";
+const ADAPTER_ROOT: &str = "/home/test/.roxd/adapters";
 
 struct Commands(HashMap<&'static str, PathBuf>);
 

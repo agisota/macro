@@ -758,12 +758,12 @@ export const patchAgentBody = zod
             harness: zod
               .string()
               .describe(
-                'Harness slug, e.g. `in-memory`, `cursor`, or `macrod`.'
+                'Harness slug, e.g. `in-memory`, `cursor`, or `roxd`.'
               ),
             harness_id: zod.union([zod.null(), zod.string()]).optional(),
           })
           .describe(
-            'The runtime an agent runs on: a harness slug and, for `macrod`, the\nregistered harness serving it. Travel together because one without the\nother is never a valid choice.'
+            'The runtime an agent runs on: a harness slug and, for `roxd`, the\nregistered harness serving it. Travel together because one without the\nother is never a valid choice.'
           ),
       ])
       .optional(),
@@ -47925,7 +47925,7 @@ export const approveHarnessPairingResponse = zod
     created_at: zod.iso.datetime({}).describe('Creation timestamp.'),
     created_by: zod.string().describe('User that registered this harness.'),
     id: zod.string(),
-    kind: zod.string().describe('Runtime kind. Currently always `macrod`.'),
+    kind: zod.string().describe('Runtime kind. Currently always `roxd`.'),
     last_connected_at: zod.iso
       .datetime({})
       .nullish()
@@ -48000,7 +48000,7 @@ export const claimHarnessPairingResponse = zod
         created_at: zod.iso.datetime({}).describe('Creation timestamp.'),
         created_by: zod.string().describe('User that registered this harness.'),
         id: zod.string(),
-        kind: zod.string().describe('Runtime kind. Currently always `macrod`.'),
+        kind: zod.string().describe('Runtime kind. Currently always `roxd`.'),
         last_connected_at: zod.iso
           .datetime({})
           .nullish()
@@ -48063,7 +48063,7 @@ export const listHarnessesResponseItem = zod
     created_at: zod.iso.datetime({}).describe('Creation timestamp.'),
     created_by: zod.string().describe('User that registered this harness.'),
     id: zod.string(),
-    kind: zod.string().describe('Runtime kind. Currently always `macrod`.'),
+    kind: zod.string().describe('Runtime kind. Currently always `roxd`.'),
     last_connected_at: zod.iso
       .datetime({})
       .nullish()
@@ -48120,7 +48120,7 @@ export const listHarnessDirectoryResponseItem = zod
     created_at: zod.iso.datetime({}).describe('Creation timestamp.'),
     created_by: zod.string().describe('User that registered this harness.'),
     id: zod.string(),
-    kind: zod.string().describe('Runtime kind. Currently always `macrod`.'),
+    kind: zod.string().describe('Runtime kind. Currently always `roxd`.'),
     last_connected_at: zod.iso
       .datetime({})
       .nullish()
@@ -48179,7 +48179,7 @@ export const getSelfHarnessResponse = zod
     created_at: zod.iso.datetime({}).describe('Creation timestamp.'),
     created_by: zod.string().describe('User that registered this harness.'),
     id: zod.string(),
-    kind: zod.string().describe('Runtime kind. Currently always `macrod`.'),
+    kind: zod.string().describe('Runtime kind. Currently always `roxd`.'),
     last_connected_at: zod.iso
       .datetime({})
       .nullish()
@@ -48299,7 +48299,7 @@ export const patchHarnessResponse = zod
     created_at: zod.iso.datetime({}).describe('Creation timestamp.'),
     created_by: zod.string().describe('User that registered this harness.'),
     id: zod.string(),
-    kind: zod.string().describe('Runtime kind. Currently always `macrod`.'),
+    kind: zod.string().describe('Runtime kind. Currently always `roxd`.'),
     last_connected_at: zod.iso
       .datetime({})
       .nullish()
@@ -54163,7 +54163,7 @@ export const getItemsSoupResponse = zod
                     .describe('When the machine was last changed.'),
                 })
                 .describe(
-                  'A paired runtime (a macrod machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
+                  'A paired runtime (a roxd machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
                 ),
               tag: zod.enum(['harness']),
             })
@@ -59325,7 +59325,7 @@ export const postItemsSoupResponse = zod
                     .describe('When the machine was last changed.'),
                 })
                 .describe(
-                  'A paired runtime (a macrod machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
+                  'A paired runtime (a roxd machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
                 ),
               tag: zod.enum(['harness']),
             })
@@ -63928,7 +63928,7 @@ export const postItemsSoupAstResponse = zod
                     .describe('When the machine was last changed.'),
                 })
                 .describe(
-                  'A paired runtime (a macrod machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
+                  'A paired runtime (a roxd machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
                 ),
               tag: zod.enum(['harness']),
             })
@@ -69119,7 +69119,7 @@ export const postItemsSoupAstGroupedResponse = zod
                           .describe('When the machine was last changed.'),
                       })
                       .describe(
-                        'A paired runtime (a macrod machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
+                        'A paired runtime (a roxd machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
                       ),
                     tag: zod.enum(['harness']),
                   })
@@ -73692,7 +73692,7 @@ export const postItemsSoupAstGroupedResponse = zod
                           .describe('When the machine was last changed.'),
                       })
                       .describe(
-                        'A paired runtime (a macrod machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
+                        'A paired runtime (a roxd machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.'
                       ),
                     tag: zod.enum(['harness']),
                   })

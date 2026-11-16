@@ -32,7 +32,7 @@ pub struct PgEventRunRepo {
 }
 
 impl PgEventRunRepo {
-    /// Construct at the composition root with the shared MacroDB pool.
+    /// Construct at the composition root with the shared RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

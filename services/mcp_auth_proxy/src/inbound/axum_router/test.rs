@@ -1372,7 +1372,7 @@ async fn a_chatgpt_resource_flow_receives_a_macro_api_token() {
 async fn an_unrecognized_resource_receives_the_upstream_access_token() {
     let harness = Harness::new();
     let client_id = register_client(&harness, TRUSTED_REDIRECT_URI).await;
-    let resource = urlencoding::encode("https://mcp-server.macro.com").into_owned();
+    let resource = urlencoding::encode("https://mcp-server.rox.one").into_owned();
 
     let authorize = send(
         &harness,
@@ -1444,7 +1444,7 @@ async fn the_consent_form_carries_the_resource() {
 
     assert_eq!(page.status, StatusCode::OK);
     assert!(page.body.contains(r#"name="resource""#), "{}", page.body);
-    assert!(page.body.contains("mcp-chatgpt.macro.com"), "{}", page.body);
+    assert!(page.body.contains("mcp-chatgpt.rox.one"), "{}", page.body);
 }
 
 async fn callback_with_failing_code_exchange(failure: fn() -> UpstreamGrantError) -> Response {

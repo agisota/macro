@@ -582,7 +582,7 @@ A frontend dev server runs against the **dev** backend, so this needs no local s
 cd apps/web && PORT=3003 bun run dev   # any free port in 3000-3009
 ```
 
-`import.meta.env.MODE === 'development'` resolves the service clients to `https://dev.macro.com` through Vite’s same-origin development proxy. Sign in on the development hostname; existing `.macro.com` cookies are separate. Vite prints `https://<hostname>:<port>/app/`; `https://localhost:<port>/app/` also works. Trust `infra/local/certs/ca.pem` once in the visiting browser (see `infra/local/certs/README.md`). `MACRO_DEV_HTTPS=false` restores HTTP for workflows that require it. Notes:
+`import.meta.env.MODE === 'development'` resolves the service clients to `https://dev.rox.one` through Vite’s same-origin development proxy. Sign in on the development hostname; existing `.rox.one` cookies are separate. Vite prints `https://<hostname>:<port>/app/`; `https://localhost:<port>/app/` also works. Trust `infra/local/certs/ca.pem` once in the visiting browser (see `infra/local/certs/README.md`). `MACRO_DEV_HTTPS=false` restores HTTP for workflows that require it. Notes:
 
 - On a remote devbox, open `https://<hostname>:<port>/app/` directly. The dev server serves HTTP/2, gzips modules and links source maps instead of inlining them, so a cold load of the ~7k dev modules moves ~13 MB instead of ~100 MB. Trust the CA on the visiting machine: Chrome caches nothing from a site whose certificate warning was clicked through, so every reload re-downloads every module. Tailscale Serve is an alternative that needs no CA: `sudo tailscale serve --bg --https=443 https+insecure://localhost:<port>`, then open `https://<devbox>.<tailnet>.ts.net/app/` and sign in again there (Serve offers HTTPS ports 443, 8443, and 10000). `MACRO_DEV_COMPRESSION=false` and `MACRO_DEV_INLINE_SOURCEMAPS=true` restore Vite's defaults.
 - Never assume port 3000 or 3002 is yours. Check with `lsof -nP -iTCP:<port> -sTCP:LISTEN -t` and confirm the owner's worktree via `lsof -p <pid> | awk '$4=="cwd"'`. Take a free port instead of killing another session's server, and reuse one only if its cwd is this worktree.
@@ -768,7 +768,7 @@ without success, on web and native, asks `/pipedream/mcp/recover` to register
 the user's newest account for that app from the last fifteen minutes.
 Desktop Home and Agents new-conversation and active-session composers show the shared **Run agents
 on this computer** invitation until this installation is paired or the current
-user dismisses it locally. Keep the invitation tied to bundled macrod support,
+user dismisses it locally. Keep the invitation tied to bundled roxd support,
 not to account-wide paired machine count; a user can pair several computers.
 
 ### General

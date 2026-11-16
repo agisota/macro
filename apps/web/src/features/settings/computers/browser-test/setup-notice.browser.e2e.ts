@@ -47,7 +47,7 @@ const computer: ComputerStatus = {
 const harness: RegisteredHarness = {
   id: 'harness-1',
   name: "Maya's Agent Box",
-  kind: 'macrod',
+  kind: 'roxd',
   owner: { type: 'user', user_id: 'maya@example.com' },
   access: 'owner',
   shared_team_ids: [],
@@ -89,7 +89,7 @@ const row = (page: Page) =>
 // The fixture's service clients point at the hosted dev gateway; anything a
 // test does not answer itself is refused, so nothing reaches a real backend.
 test.beforeEach(async ({ page }) => {
-  await page.route(/\.macro\.com\//, (route) => route.abort());
+  await page.route(/\.rox\.one\//, (route) => route.abort());
   page.on('pageerror', (error) => console.log('pageerror', error.stack));
 });
 

@@ -47,8 +47,8 @@ afterEach(() => {
 describe('runOperation', () => {
   test.each([
     'initiative-1',
-    'https://macro.com/app/initiative/initiative-1',
-    'https://macro.com/app/projects/initiative-1/overview/?tab=tasks',
+    'https://rox.one/app/initiative/initiative-1',
+    'https://rox.one/app/projects/initiative-1/overview/?tab=tasks',
   ])('task creation accepts initiative reference %s', async (initiative) => {
     const { macro, requests } = macroAnswering(() =>
       Response.json({ documentId: 'task-1' })
@@ -167,7 +167,7 @@ describe('runOperation', () => {
 
     const result = await runOperation({
       operation: operation('Document.permission'),
-      input: { document: 'https://macro.com/app/md/0192f4c8-doc' },
+      input: { document: 'https://rox.one/app/md/0192f4c8-doc' },
       macro,
       catalog,
       classes: handleClasses,

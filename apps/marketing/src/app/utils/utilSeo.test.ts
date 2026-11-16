@@ -43,7 +43,7 @@ it('keeps product and article cards image-only and clears homepage video on navi
       title: 'Example',
       description: 'Example',
       path,
-      image: 'https://macro.com/og/example.png',
+      image: 'https://rox.one/og/example.png',
     };
     setPageSeo(seo);
     expect(

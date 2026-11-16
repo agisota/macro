@@ -768,7 +768,7 @@ a pulsing placeholder while links load. The first pill names where the PR was st
 outside Macro: a Macro agent session that opened the PR wins and shows the tool
 its harness ran; otherwise a session link in the description (`claude.ai/code/…`,
 `chatgpt.com/codex/tasks/…`, `cursor.com/agents…`, `app.devin.ai/sessions/…`,
-`jules.google.com/…`, `macro.com/app/agent/…`), then footers such as
+`jules.google.com/…`, `rox.one/app/agent/…`), then footers such as
 "Generated with Claude Code" or a `Co-Authored-By: Claude` trailer, then the
 bot author (for example `Copilot` or `devin-ai-integration[bot]`), then the
 branch prefix (`claude/`, `codex/`, `cursor/`, `devin/`, `copilot/`, `jules-`).

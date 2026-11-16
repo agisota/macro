@@ -439,7 +439,7 @@ it('offers Finish setup until setup is done, and nothing once Claude is signed i
   const harness = {
     id: 'harness-build',
     name: 'Build machine',
-    kind: 'macrod' as const,
+    kind: 'roxd' as const,
     owner: { type: 'user' as const, user_id: 'viewer' },
     access: 'owner' as const,
     shared_team_ids: [],

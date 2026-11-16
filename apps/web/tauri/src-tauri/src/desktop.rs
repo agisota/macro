@@ -9,6 +9,6 @@
 
 #[cfg(target_os = "macos")]
 pub(crate) mod app_menu;
-pub(crate) mod macrod;
+pub(crate) mod roxd;
 pub(crate) mod main_window;
 pub(crate) mod pasteboard;

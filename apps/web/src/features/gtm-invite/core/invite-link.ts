@@ -40,8 +40,8 @@ export function inviteLinkOrigin(): string {
     return window.location.origin;
   }
   return import.meta.env.MODE === 'development'
-    ? 'https://dev.macro.com'
-    : 'https://macro.com';
+    ? 'https://dev.rox.one'
+    : 'https://rox.one';
 }
 
 export function buildInviteLinkUrl(

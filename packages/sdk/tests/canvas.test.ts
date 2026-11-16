@@ -144,7 +144,7 @@ test('edit sends instructions and keeps a partial clarification', async () => {
   expect(result).toEqual({
     operationsApplied: 2,
     summary: 'Moved one box.',
-    webUrl: 'https://macro.com/app/canvas/canvas-1',
+    webUrl: 'https://rox.one/app/canvas/canvas-1',
     clarification: 'Which colour for the other?',
   });
   expect(new URL(requests[0].url).pathname).toBe(
@@ -243,11 +243,11 @@ test('a render shows as an image in a reply, never as a document mention', () =>
 
 test('a canvas links to the canvas route', () => {
   expect(macro().documents.byId('canvas-1').canvas().webUrl()).toBe(
-    'https://macro.com/app/canvas/canvas-1',
+    'https://rox.one/app/canvas/canvas-1',
   );
   expect(macro().documents.byId('canvas-1').canvas().toJSON()).toEqual({
     id: 'canvas-1',
-    url: 'https://macro.com/app/canvas/canvas-1',
+    url: 'https://rox.one/app/canvas/canvas-1',
   });
 });
 
@@ -258,5 +258,5 @@ test('a loaded canvas document links to the canvas route', async () => {
   const document = macro().documents.byId('canvas-1');
 
   expect(await document.fileType()).toBe('canvas');
-  expect(document.webUrl()).toBe('https://macro.com/app/canvas/canvas-1');
+  expect(document.webUrl()).toBe('https://rox.one/app/canvas/canvas-1');
 });

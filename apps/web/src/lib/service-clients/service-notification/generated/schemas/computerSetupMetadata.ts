@@ -18,7 +18,7 @@ export interface ComputerSetupMetadata {
   computerId: string;
   /** The computer's name when the notice was sent. */
   computerName: string;
-  /** The computer's harness, once macrod has connected. */
+  /** The computer's harness, once roxd has connected. */
   harnessId?: ComputerSetupMetadataHarnessId;
   /** Ready, or why setup failed. */
   outcome: ComputerSetupOutcome;

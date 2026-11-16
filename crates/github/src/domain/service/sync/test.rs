@@ -1819,7 +1819,7 @@ async fn pr_with_task_id_in_title() {
     assert_eq!(comments[0].pull_number, 42);
     assert_eq!(
         comments[0].body,
-        format!("[My Task](https://macro.com/app/task/{KNOWN_TASK_UUID})")
+        format!("[My Task](https://rox.one/app/task/{KNOWN_TASK_UUID})")
     );
 }
 
@@ -1885,7 +1885,7 @@ async fn pr_with_team_task_id_in_branch_name() {
     assert_eq!(comments[0].pull_number, 7);
     assert_eq!(
         comments[0].body,
-        format!("[My Task](https://macro.com/app/task/{KNOWN_TASK_UUID})")
+        format!("[My Task](https://rox.one/app/task/{KNOWN_TASK_UUID})")
     );
 }
 

@@ -234,7 +234,7 @@ export function createEmailFormState(
       ...(message?.attachments_forwarded.map((a) => a.attachment_id) ?? []),
     ]);
     const representedCids = new Set(
-      [...representedIds].map((id) => `${id}@attachments.macro.com`)
+      [...representedIds].map((id) => `${id}@attachments.rox.one`)
     );
     for (const file of message?.attachments_draft ?? [])
       if (file.content_id) representedCids.add(file.content_id);

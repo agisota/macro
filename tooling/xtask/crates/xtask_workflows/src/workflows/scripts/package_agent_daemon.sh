@@ -7,8 +7,8 @@ set -euo pipefail
 # here rather than assumed.
 
 case "$TARGET" in
-  *-windows-*) executable="macrod.exe" ;;
-  *) executable="macrod" ;;
+  *-windows-*) executable="roxd.exe" ;;
+  *) executable="roxd" ;;
 esac
 binary="target/$TARGET/release/$executable"
 if [ ! -x "$binary" ]; then
@@ -87,7 +87,7 @@ install -m 755 "$binary" "$stage/$executable"
 # Every archive is published twice: under the tag, and under a name without
 # it, which `releases/latest/download/<name>` serves — the URL the install
 # scripts download from.
-for name in "macrod-${SAFE_TAG}-${SLUG}" "macrod-${SLUG}"; do
+for name in "roxd-${SAFE_TAG}-${SLUG}" "roxd-${SLUG}"; do
   case "$TARGET" in
     *-windows-*)
       archive="${name}.zip"

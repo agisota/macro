@@ -8,7 +8,7 @@ fn deploy_publishes_the_marketing_build_through_the_website_stack() {
         "lfs: 'true'",
         "working-directory: apps/marketing",
         "run: env -u LD_LIBRARY_PATH -u BASH_ENV bun run build",
-        "'https://macro.com'",
+        "'https://rox.one'",
         "work-dir: ./infra/stacks/website",
         "stack-name: macro-inc/${{ matrix.environment }}",
         // Manual dispatch can target dev, prod, or both, one leg at a time.

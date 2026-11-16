@@ -43,7 +43,7 @@ export function PublicBookingLayout(
 export function PublicBookingBrand(props: { target?: '_blank' }) {
   return (
     <a
-      href="https://macro.com"
+      href="https://rox.one"
       aria-label="Rox Scheduling"
       target={props.target}
       rel={props.target ? 'noopener noreferrer' : undefined}

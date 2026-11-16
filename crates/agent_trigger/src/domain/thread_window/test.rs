@@ -9,7 +9,7 @@ fn thread(len: u128) -> Vec<ThreadMessage> {
         .map(|index| ThreadMessage {
             id: Uuid::from_u128(index),
             sender: ChannelSender::new_from_user(
-                MacroUserIdStr::parse_from_str("macro|thread-window-test@macro.com")
+                MacroUserIdStr::parse_from_str("macro|thread-window-test@rox.one")
                     .expect("a valid user id")
                     .into_owned(),
             ),
@@ -142,7 +142,7 @@ fn a_rendered_transcript_marks_the_agents_own_messages() {
     assert_eq!(
         rendered,
         format!(
-            "[user macro|thread-window-test@macro.com] message 0\n\
+            "[user macro|thread-window-test@rox.one] message 0\n\
              [agent 1] message 1\n\
              [bot {}] message 2\n",
             BotId::TEST_B.into_storage_id()
@@ -161,7 +161,7 @@ fn a_rendered_transcript_numbers_each_candidate_agent() {
 
     assert_eq!(
         rendered,
-        "[user macro|thread-window-test@macro.com] message 0\n\
+        "[user macro|thread-window-test@rox.one] message 0\n\
          [agent 2] message 1\n\
          [agent 1] message 2\n"
     );

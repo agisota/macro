@@ -53,7 +53,7 @@ describe('releaseDownloadUrls', () => {
         {
           assets: [
             {
-              name: 'macrod-v2026.10.6.1-macos-aarch64.tar.gz',
+              name: 'roxd-v2026.10.6.1-macos-aarch64.tar.gz',
               browser_download_url: 'https://example.com/cli.tar.gz',
             },
           ],

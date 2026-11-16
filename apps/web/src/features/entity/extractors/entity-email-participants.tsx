@@ -105,7 +105,7 @@ function ParticipantWithTooltip(props: {
 function resolveParticipants(
   participants: EmailThreadParticipants | undefined,
   viewerEmail: string | undefined,
-  getMacroDisplayName: (email: string) => string | undefined
+  getRoxDisplayName: (email: string) => string | undefined
 ): ResolvedParticipant[] {
   if (!participants || participants.length === 0) return [];
 
@@ -116,7 +116,7 @@ function resolveParticipants(
     if (!participant.email) continue;
     if (isViewerAddress(participant.email, viewerEmail)) continue;
 
-    const macroDisplayName = getMacroDisplayName(participant.email);
+    const macroDisplayName = getRoxDisplayName(participant.email);
     const displayName = resolveParticipantName(participant, macroDisplayName);
 
     if (seen.has(displayName)) continue;

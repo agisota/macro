@@ -1,6 +1,6 @@
 //! `Deploy Website` — builds the public site (`apps/marketing`) and publishes
 //! it through the `website-infra` pulumi stack (`infra/stacks/website`), which
-//! also owns the macro.com CloudFront distribution that fronts `/app`.
+//! also owns the rox.one CloudFront distribution that fronts `/app`.
 //! Generated into `deploy_website.yml`.
 //!
 //! Push to `main` (path-gated) auto-deploys `dev`; prod deploys come through
@@ -172,11 +172,11 @@ fn build() -> Step<Run> {
         // Canonical URLs, sitemap and robots are baked in at build time.
         .add_env(Env::new(
             "VITE_APP_BASE_URL",
-            "${{ matrix.environment == 'prod' && 'https://macro.com' || 'https://dev.macro.com' }}",
+            "${{ matrix.environment == 'prod' && 'https://rox.one' || 'https://dev.rox.one' }}",
         ))
         .add_env(Env::new(
             "VITE_GOOGLE_SSO_URL",
-            "${{ matrix.environment == 'prod' && 'https://gateway.macro.com/auth/login/sso?idp_name=google_gmail' || 'https://dev-gateway.macro.com/auth/login/sso?idp_name=google_gmail' }}",
+            "${{ matrix.environment == 'prod' && 'https://gateway.rox.one/auth/login/sso?idp_name=google_gmail' || 'https://dev-gateway.rox.one/auth/login/sso?idp_name=google_gmail' }}",
         ))
 }
 

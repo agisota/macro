@@ -245,7 +245,7 @@ deny = [
     "graphql_email",             # Unavailable-thread warning field and span tests only
     "graphql_entity_mutation",   # Batch failure span field tests only
     "graphql_initiative",        # DataLoader batch span parenting tests only (dev-dependency)
-    "harnessd",                  # stdout is the harnessd protocol channel and the computer has no OTLP agent; standalone stderr logging, like macrod
+    "harnessd",                  # stdout is the harnessd protocol channel and the computer has no OTLP agent; standalone stderr logging, like roxd
     "hosted_runtimes",           # Provisioning span propagation tests only (dev-dependency)
     "initiative",                # initiative.read span field tests only (dev-dependency)
     "lambda_runtime_api_client", # External crate allowed to use tracing-subscriber

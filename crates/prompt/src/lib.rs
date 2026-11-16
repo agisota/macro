@@ -121,18 +121,18 @@ mod tests {
 
     #[test]
     fn mcp_instructions_link_items_as_urls_built_from_base_url() {
-        let instructions = mcp_instructions("https://macro.com");
+        let instructions = mcp_instructions("https://rox.one");
 
         // Item links are plain URLs built from the base url, including a
         // worked example for a document.
-        assert!(instructions.contains("https://macro.com/app/<type>/<id>"));
-        assert!(instructions.contains("[Name](https://macro.com/app/md/<id>)"));
-        assert!(instructions.contains("[Name](https://macro.com/app/routines/<id>)"));
+        assert!(instructions.contains("https://rox.one/app/<type>/<id>"));
+        assert!(instructions.contains("[Name](https://rox.one/app/md/<id>)"));
+        assert!(instructions.contains("[Name](https://rox.one/app/routines/<id>)"));
     }
 
     #[test]
     fn mcp_instructions_forbid_mention_tags_but_in_app_prompt_keeps_them() {
-        let instructions = mcp_instructions("https://macro.com");
+        let instructions = mcp_instructions("https://rox.one");
 
         // MCP responses must steer away from the in-app mention markup...
         assert!(instructions.contains("Do NOT emit `<m-document-mention>`"));
@@ -145,7 +145,7 @@ mod tests {
 
     #[test]
     fn mcp_instructions_describe_item_table_columns() {
-        let instructions = mcp_instructions("https://macro.com");
+        let instructions = mcp_instructions("https://rox.one");
 
         for column in ["number", "name", "link"] {
             assert!(
@@ -315,7 +315,7 @@ mod tests {
 
     #[test]
     fn mcp_and_coding_agents_open_ready_pull_requests_with_ci_passing() {
-        assert!(mcp_instructions("https://macro.com").contains(pull_requests::READY_PULL_REQUEST));
+        assert!(mcp_instructions("https://rox.one").contains(pull_requests::READY_PULL_REQUEST));
 
         let coding = coding_agents::PROMPT.to_string();
         assert!(coding.contains("ready for review, not a draft"));

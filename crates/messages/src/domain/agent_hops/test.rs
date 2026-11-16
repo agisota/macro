@@ -6,7 +6,7 @@ use macro_user_id::user_id::MacroUserIdStr;
 #[test]
 fn bots_answering_each_other_count_one_hop_per_turn_since_the_last_person() {
     let person = ChannelSender::new_from_user(
-        MacroUserIdStr::parse_from_str("macro|hops@macro.com")
+        MacroUserIdStr::parse_from_str("macro|hops@rox.one")
             .expect("a valid user id")
             .into_owned(),
     );

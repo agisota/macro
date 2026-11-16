@@ -864,7 +864,7 @@ impl GraphqlComputerSetupMetadata {
         ID(self.0.computer_id.to_string())
     }
 
-    /// The computer's harness, once macrod has connected.
+    /// The computer's harness, once roxd has connected.
     async fn harness_id(&self) -> Option<ID> {
         self.0.harness_id.map(|id| ID(id.to_string()))
     }

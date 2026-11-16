@@ -8,9 +8,9 @@ import {
 } from './template';
 
 const AUTHOR =
-  '<m-user-mention>{"userId":"macro|eric@macro.com","email":"eric@macro.com","displayName":"Eric"}</m-user-mention>';
+  '<m-user-mention>{"userId":"macro|eric@rox.one","email":"eric@rox.one","displayName":"Eric"}</m-user-mention>';
 const TEAMMATE =
-  '<m-user-mention>{"userId":"macro|priya@macro.com","email":"priya@macro.com","displayName":"Priya Shah"}</m-user-mention>';
+  '<m-user-mention>{"userId":"macro|priya@rox.one","email":"priya@rox.one","displayName":"Priya Shah"}</m-user-mention>';
 const CHANNEL =
   '<m-document-mention>{"documentId":"channel-1","documentName":"customer-success","blockName":"channel"}</m-document-mention>';
 const DOC =
@@ -25,8 +25,8 @@ const CRON = {
 };
 
 const ACTIVATOR = {
-  userId: 'macro|jun@macro.com',
-  email: 'jun@macro.com',
+  userId: 'macro|jun@rox.one',
+  email: 'jun@rox.one',
   displayName: 'Jun',
   timezone: 'America/New_York',
 };
@@ -37,7 +37,7 @@ describe('extractTemplateVariables', () => {
       extractTemplateVariables({
         texts: [PROMPT],
         timezone: CRON.timezone,
-        authorId: 'macro|eric@macro.com',
+        authorId: 'macro|eric@rox.one',
       })
     ).toEqual([
       {
@@ -56,13 +56,13 @@ describe('extractTemplateVariables', () => {
       },
       {
         kind: 'user',
-        id: 'macro|priya@macro.com',
+        id: 'macro|priya@rox.one',
         label: 'Priya Shah',
         fill: 'shared',
       },
       {
         kind: 'user',
-        id: 'macro|eric@macro.com',
+        id: 'macro|eric@rox.one',
         label: 'Eric',
         fill: 'activator',
       },
@@ -75,7 +75,7 @@ describe('extractTemplateVariables', () => {
       extractTemplateVariables({
         texts: ['Summarize it'],
         timezone: undefined,
-        authorId: 'macro|eric@macro.com',
+        authorId: 'macro|eric@rox.one',
       })
     ).toEqual([]);
   });
@@ -85,7 +85,7 @@ describe('fillTemplatePrompt', () => {
   const variables = extractTemplateVariables({
     texts: [PROMPT],
     timezone: CRON.timezone,
-    authorId: 'macro|eric@macro.com',
+    authorId: 'macro|eric@rox.one',
   });
 
   it('names the activator in place of the author and leaves out dropped references as text', () => {
@@ -96,7 +96,7 @@ describe('fillTemplatePrompt', () => {
       choices: new Map([['doc-1', 'leave_out']]),
     });
     expect(filled).toBe(
-      `Post the digest to ${CHANNEL}. Pull renewal dates from Acme account. Assign follow-ups to ${TEAMMATE} and DM <m-user-mention>{"userId":"macro|jun@macro.com","email":"jun@macro.com","displayName":"Jun"}</m-user-mention> a summary. Repeat in ${CHANNEL}.`
+      `Post the digest to ${CHANNEL}. Pull renewal dates from Acme account. Assign follow-ups to ${TEAMMATE} and DM <m-user-mention>{"userId":"macro|jun@rox.one","email":"jun@rox.one","displayName":"Jun"}</m-user-mention> a summary. Repeat in ${CHANNEL}.`
     );
   });
 
@@ -186,19 +186,19 @@ describe('templateShareBody', () => {
     expect(
       templateShareBody({
         draft,
-        authorId: 'macro|eric@macro.com',
+        authorId: 'macro|eric@rox.one',
         shared: null,
       }).variables
     ).toEqual([
       {
         kind: 'user',
-        id: 'macro|eric@macro.com',
+        id: 'macro|eric@rox.one',
         label: 'Eric',
         fill: 'activator',
       },
       {
         kind: 'user',
-        id: 'macro|priya@macro.com',
+        id: 'macro|priya@rox.one',
         label: 'Priya Shah',
         fill: 'shared',
       },
@@ -213,11 +213,11 @@ describe('templateShareBody', () => {
     expect(
       templateShareBody({
         draft: { ...draft, prompt: PROMPT, timezone: CRON.timezone },
-        authorId: 'macro|eric@macro.com',
+        authorId: 'macro|eric@rox.one',
         shared: {
           active_count: 2,
           appearance: { icon: null, color: null },
-          author: 'macro|eric@macro.com',
+          author: 'macro|eric@rox.one',
           created_at: '2026-10-01T00:00:00Z',
           description: 'Weekly renewals digest',
           id: 'routine-1',
@@ -262,13 +262,13 @@ describe('templateShareBody', () => {
         },
         {
           kind: 'user',
-          id: 'macro|priya@macro.com',
+          id: 'macro|priya@rox.one',
           label: 'Priya Shah',
           fill: 'shared',
         },
         {
           kind: 'user',
-          id: 'macro|eric@macro.com',
+          id: 'macro|eric@rox.one',
           label: 'Eric',
           fill: 'activator',
         },

@@ -7,7 +7,7 @@ into the short-lived SDK JWT. HTTP retries inside one invocation reuse that JWT
 and ID. Separate invocations get separate IDs.
 
 Managed MCP credentials carry signed `agent_session_id` provenance so code mode
-can create the same mapping for macrod sessions. The MCP credential cache includes
+can create the same mapping for roxd sessions. The MCP credential cache includes
 the session. External MCP callers and ordinary SDK credentials omit correlation.
 Neither claim grants access: the JWT's existing user and agent authorization is
 unchanged.

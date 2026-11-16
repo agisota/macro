@@ -11,7 +11,7 @@
 import { Macro } from '@macro-inc/sdk';
 
 /** Macro's connection gateway, which presence is a socket to. */
-export const gateway = 'wss://gateway.macro.com/connection-gateway/';
+export const gateway = 'wss://gateway.rox.one/connection-gateway/';
 
 /** The SDK client, made on first use from the account's API key. */
 export const macroClient = ({

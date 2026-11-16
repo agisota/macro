@@ -123,10 +123,10 @@ fn credentials_from(claimed: ClaimedPairing) -> HarnessCredentials {
     }
 }
 
-/// This machine's hostname, or `macrod` when it has none: what a pairing's
+/// This machine's hostname, or `roxd` when it has none: what a pairing's
 /// requested name starts with.
 pub fn machine_name() -> String {
-    local_hostname().unwrap_or_else(|| "macrod".to_owned())
+    local_hostname().unwrap_or_else(|| "roxd".to_owned())
 }
 
 fn local_hostname() -> Option<String> {

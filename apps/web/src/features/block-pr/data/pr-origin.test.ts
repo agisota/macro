@@ -36,9 +36,9 @@ describe('detectPrOrigin', () => {
       'https://app.devin.ai/sessions/0a1b2c3d',
     ],
     [
-      'From https://macro.com/app/agent/0198a4cc-e138-7670',
+      'From https://rox.one/app/agent/0198a4cc-e138-7670',
       'macro',
-      'https://macro.com/app/agent/0198a4cc-e138-7670',
+      'https://rox.one/app/agent/0198a4cc-e138-7670',
     ],
   ] as const)('reads a session link in %j', (description, tool, url) => {
     expect(detectPrOrigin({ description })).toEqual({
@@ -95,7 +95,7 @@ describe('toolForHarness', () => {
     ['claude-code', 'claude'],
     ['codex-cloud', 'codex'],
     ['cursor', 'cursor'],
-    ['macrod', 'macro'],
+    ['roxd', 'macro'],
     [undefined, 'macro'],
   ] as const)('maps %s to %s', (harness, tool) => {
     expect(toolForHarness(harness)).toBe(tool);

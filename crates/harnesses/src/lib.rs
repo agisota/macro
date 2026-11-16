@@ -1,5 +1,5 @@
 #![deny(missing_docs)]
-//! User-run agent harness (macrod) registration hex crate.
+//! User-run agent harness (roxd) registration hex crate.
 //!
 //! A harness is a daemon a user runs on their own machine to serve agent
 //! sessions with a local AI harness. This crate owns the harness registry:

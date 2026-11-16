@@ -3186,7 +3186,7 @@ async fn get_call_record_people_includes_meeting_owner_and_calendar_invitees(
         .execute(&pool)
         .await?;
     // The fixture's archived call ran 2024-01-01 10:00-10:05.
-    const LINK: &str = "https://macro.com/app/meet/join/tok-crm-link";
+    const LINK: &str = "https://rox.one/app/meet/join/tok-crm-link";
     insert_calendar_event_with_attendees(
         &pool,
         USER_C.deref().as_ref(),

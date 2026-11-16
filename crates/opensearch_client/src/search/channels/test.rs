@@ -10,7 +10,7 @@ fn channel_index(updated_at_millis: Option<i64>) -> ChannelMessageIndex {
         org_id: None,
         message_id: id,
         thread_id: id,
-        sender_id: "macro|gab@macro.com".to_string(),
+        sender_id: "macro|gab@rox.one".to_string(),
         mentions: vec![],
         created_at_millis: updated_at_millis,
         updated_at_millis,
@@ -58,7 +58,7 @@ fn author_only_match_without_highlight_keeps_message_and_thread_deep_links() {
         };
         assert_eq!(goto.channel_message_id, message_id);
         assert_eq!(goto.thread_id, thread);
-        assert_eq!(goto.sender_id, "macro|gab@macro.com");
+        assert_eq!(goto.sender_id, "macro|gab@rox.one");
     }
 }
 

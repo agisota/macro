@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 const routineId = '01a16547-0000-7000-8000-000000000001';
 // The app's link resolver also turns `/app/routines/<id>` into this mention;
 // this fixture has no split router, so it pastes the block-name form.
-const routineUrl = `https://dev.macro.com/app/routine/${routineId}`;
+const routineUrl = `https://dev.rox.one/app/routine/${routineId}`;
 
 test('a pasted routine link shows and sends the routine name', async ({
   page,

@@ -4,7 +4,7 @@ import { SceneGlobe } from '../components/scenes/SceneGlobe';
 import { breakpoint, viewportWidth } from '../utils/utilBreakpoint';
 import { setPageSeo } from '../utils/utilSeo';
 
-const APPLY_EMAIL = 'jobs@macro.com';
+const APPLY_EMAIL = 'jobs@rox.one';
 
 const eyebrowStyle = () =>
   ({

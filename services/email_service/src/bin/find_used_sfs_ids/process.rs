@@ -209,8 +209,8 @@ mod test {
 
     #[test]
     fn test_extract_sfs_uuids_basic() {
-        let html = r#"<img src="https://static-file-service.macro.com/file/4e369509-666f-4d00-a321-4a7f0faa1304">"#;
-        let uuids = extract_sfs_uuids(html, "static-file-service.macro.com");
+        let html = r#"<img src="https://static-file-service.rox.one/file/4e369509-666f-4d00-a321-4a7f0faa1304">"#;
+        let uuids = extract_sfs_uuids(html, "static-file-service.rox.one");
 
         assert_eq!(uuids.len(), 1);
         assert!(uuids.contains(&Uuid::parse_str("4e369509-666f-4d00-a321-4a7f0faa1304").unwrap()));
@@ -219,10 +219,10 @@ mod test {
     #[test]
     fn test_extract_sfs_uuids_multiple() {
         let html = r#"
-            <img src="https://static-file-service.macro.com/file/4e369509-666f-4d00-a321-4a7f0faa1304">
-            <img src="https://static-file-service.macro.com/file/12345678-1234-1234-1234-123456789abc">
+            <img src="https://static-file-service.rox.one/file/4e369509-666f-4d00-a321-4a7f0faa1304">
+            <img src="https://static-file-service.rox.one/file/12345678-1234-1234-1234-123456789abc">
         "#;
-        let uuids = extract_sfs_uuids(html, "static-file-service.macro.com");
+        let uuids = extract_sfs_uuids(html, "static-file-service.rox.one");
 
         assert_eq!(uuids.len(), 2);
         assert!(uuids.contains(&Uuid::parse_str("4e369509-666f-4d00-a321-4a7f0faa1304").unwrap()));
@@ -233,15 +233,15 @@ mod test {
     fn test_extract_sfs_uuids_no_match() {
         let html =
             r#"<img src="https://other-domain.com/file/4e369509-666f-4d00-a321-4a7f0faa1304">"#;
-        let uuids = extract_sfs_uuids(html, "static-file-service.macro.com");
+        let uuids = extract_sfs_uuids(html, "static-file-service.rox.one");
 
         assert!(uuids.is_empty());
     }
 
     #[test]
     fn test_extract_sfs_uuids_with_query_params() {
-        let html = r#"<img src="https://static-file-service.macro.com/file/4e369509-666f-4d00-a321-4a7f0faa1304?size=thumb">"#;
-        let uuids = extract_sfs_uuids(html, "static-file-service.macro.com");
+        let html = r#"<img src="https://static-file-service.rox.one/file/4e369509-666f-4d00-a321-4a7f0faa1304?size=thumb">"#;
+        let uuids = extract_sfs_uuids(html, "static-file-service.rox.one");
 
         assert_eq!(uuids.len(), 1);
         assert!(uuids.contains(&Uuid::parse_str("4e369509-666f-4d00-a321-4a7f0faa1304").unwrap()));

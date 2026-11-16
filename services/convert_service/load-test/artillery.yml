@@ -1,5 +1,5 @@
 config:
-  target: "https://dev-gateway.macro.com"
+  target: "https://dev-gateway.rox.one"
   processor: "./artillery-function.js"
   phases:
     - duration: 10

@@ -120,7 +120,7 @@ async fn macro_notification_sender_is_never_signal(pool: Pool<Postgres>) -> anyh
     repo.upsert_email_filter(
         link_id,
         UpsertEmailFilterInput {
-            email_address: Some("no-reply@notification.macro.com".to_string()),
+            email_address: Some("no-reply@notification.rox.one".to_string()),
             email_domain: None,
             is_important: true,
         },
@@ -132,7 +132,7 @@ async fn macro_notification_sender_is_never_signal(pool: Pool<Postgres>) -> anyh
         link_id,
         UpsertEmailFilterInput {
             email_address: None,
-            email_domain: Some("notification.macro.com".to_string()),
+            email_domain: Some("notification.rox.one".to_string()),
             is_important: true,
         },
     )

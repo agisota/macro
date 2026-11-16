@@ -18,7 +18,7 @@ fn all_topic_names_is_non_empty_and_unique() {
 #[test]
 fn all_topic_names_includes_declared_topics() {
     assert!(all_topic_names().contains(&MacroExampleTopic::TOPIC_STR));
-    assert!(all_topic_names().contains(&MacroDocumentsTopic::TOPIC_STR));
+    assert!(all_topic_names().contains(&RoxDocumentsTopic::TOPIC_STR));
     assert!(all_topic_names().contains(&MacroSoupRealtimeTopic::TOPIC_STR));
     assert!(all_topic_names().contains(&MacroProjectsTopic::TOPIC_STR));
     assert!(all_topic_names().contains(&MacroInitiativesTopic::TOPIC_STR));
@@ -35,7 +35,7 @@ fn all_topic_names_includes_declared_topics() {
     assert!(all_topic_names().contains(&MacroChatsTopic::TOPIC_STR));
     assert!(all_topic_names().contains(&MacroAgentSessionsTopic::TOPIC_STR));
     assert!(all_topic_names().contains(&MacroAgentSessionLifecycleTopic::TOPIC_STR));
-    assert!(all_topic_names().contains(&MacroDatabasesTopic::TOPIC_STR));
+    assert!(all_topic_names().contains(&RoxDatabasesTopic::TOPIC_STR));
     assert!(all_topic_names().contains(&MacroFormsTopic::TOPIC_STR));
     assert!(all_topic_names().contains(&MacroUsersTopic::TOPIC_STR));
 }

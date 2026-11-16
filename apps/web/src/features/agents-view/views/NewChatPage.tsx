@@ -260,7 +260,7 @@ export function NewChatPage(props: {
   const coding = () => mode() === 'code';
   // Auto holds the send while the backend picks Chat or Code.
   const [choosingMode, setChoosingMode] = createSignal(false);
-  const localRuntime = () => selected()?.harness === 'macrod';
+  const localRuntime = () => selected()?.harness === 'roxd';
   const canSelectRepository = () =>
     selected()?.harness === 'cursor' || localRuntime();
   const blocked = () => {
@@ -318,9 +318,9 @@ export function NewChatPage(props: {
       );
       return;
     }
-    // Both land on Settings → Runtimes: Cursor to save an API key, macrod to
+    // Both land on Settings → Runtimes: Cursor to save an API key, roxd to
     // restart the local runtime (one click on desktop) or re-pair it.
-    if (agent.harness === 'cursor' || agent.harness === 'macrod') {
+    if (agent.harness === 'cursor' || agent.harness === 'roxd') {
       openSettings('Harness');
     }
   };

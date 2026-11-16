@@ -3,7 +3,7 @@
   "info": {
     "title": "agent_harness_service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -132,7 +132,7 @@
             "description": "Harness is not visible to caller"
           },
           "409": {
-            "description": "Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
+            "description": "Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
             "content": {
               "application/json": {
                 "schema": {
@@ -150,7 +150,7 @@
             "description": "Provider probe failed"
           },
           "504": {
-            "description": "Macrod probe timed out"
+            "description": "Roxd probe timed out"
           }
         },
         "security": [
@@ -493,7 +493,7 @@
             "description": "Harness is not visible to caller"
           },
           "409": {
-            "description": "Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
+            "description": "Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
             "content": {
               "application/json": {
                 "schema": {
@@ -511,7 +511,7 @@
             "description": "Provider probe failed"
           },
           "504": {
-            "description": "Macrod probe timed out"
+            "description": "Roxd probe timed out"
           }
         },
         "security": [
@@ -5593,7 +5593,7 @@
       "CapabilityHarnessDto": {
         "type": "string",
         "description": "Harness names accepted by the capability-discovery endpoint.",
-        "enum": ["in-memory", "cursor", "macrod"]
+        "enum": ["in-memory", "cursor", "roxd"]
       },
       "CaptureAttemptDto": {
         "type": "object",
@@ -6403,7 +6403,7 @@
           "harnessId": {
             "type": ["string", "null"],
             "format": "uuid",
-            "description": "Required for macrod and forbidden for other targets."
+            "description": "Required for roxd and forbidden for other targets."
           },
           "model": {
             "type": ["string", "null"],
@@ -7222,7 +7222,7 @@
           "harnessId": {
             "type": ["string", "null"],
             "format": "uuid",
-            "description": "Required for macrod and forbidden for other targets."
+            "description": "Required for roxd and forbidden for other targets."
           }
         }
       },
@@ -7397,7 +7397,7 @@
       "ModelHarnessDto": {
         "type": "string",
         "description": "Harness names accepted by the model discovery endpoint.",
-        "enum": ["in-memory", "cursor", "macrod"]
+        "enum": ["in-memory", "cursor", "roxd"]
       },
       "MonthlyWeekday": {
         "type": "object",

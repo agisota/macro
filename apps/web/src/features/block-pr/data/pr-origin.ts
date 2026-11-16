@@ -72,7 +72,7 @@ const SESSION_LINKS: readonly [PrOriginTool, RegExp][] = [
   ],
   ['devin', /https:\/\/app\.devin\.ai\/sessions\/[\w-]+/i],
   ['jules', /https:\/\/jules\.google\.com\/[^\s)\]"'>]+/i],
-  ['macro', /https:\/\/(?:[\w-]+\.)?macro\.com\/app\/agent\/[\w-]+/i],
+  ['macro', /https:\/\/(?:[\w-]+\.)?rox\.one\/app\/agent\/[\w-]+/i],
 ];
 
 /** Footers and trailers that name the tool without a session link. */

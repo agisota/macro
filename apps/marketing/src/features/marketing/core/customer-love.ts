@@ -234,7 +234,7 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/ptaranat/status/2069988584925364268',
     quote:
-      'every early stage startup should be using @macrodotcom … the fastest UI i have ever seen for navigating Gmail like a StarCraft grandmaster',
+      'every early stage startup should be using @roxdotone … the fastest UI i have ever seen for navigating Gmail like a StarCraft grandmaster',
     note: 'Excerpts from X',
   },
   {
@@ -260,7 +260,7 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/macangel/status/2118810863301988475',
     quote:
-      'In @macrodotcom you ask the agent. It can search the whole company’s context — email, chat, docs, tasks, calls, CRM, and answer without interrupting a single human. That’s async that actually works!',
+      'In @roxdotone you ask the agent. It can search the whole company’s context — email, chat, docs, tasks, calls, CRM, and answer without interrupting a single human. That’s async that actually works!',
     note: 'Excerpt from X · Rox partner',
   },
   {
@@ -286,7 +286,7 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/ctres/status/2116866697592512543',
     quote:
-      'The next generation productivity software looks a lot more like @macrodotcom, @typedotcom.\n\nTable stakes:\nDocs\nChat\nKnowledge base\nBring your own harness',
+      'The next generation productivity software looks a lot more like @roxdotone, @typedotcom.\n\nTable stakes:\nDocs\nChat\nKnowledge base\nBring your own harness',
     note: 'From X',
   },
   {
@@ -312,7 +312,7 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/Clem_Descours/status/2087131512051319147',
     quote:
-      "What @macrodotcom is building is simply what I've always dreamed of...\n\nAn all-in-one open-source tool with thoughtfully designed keyboard shortcuts and central integration of agents.\n\nI think it's still missing a few features, but the essentials are there.",
+      "What @roxdotone is building is simply what I've always dreamed of...\n\nAn all-in-one open-source tool with thoughtfully designed keyboard shortcuts and central integration of agents.\n\nI think it's still missing a few features, but the essentials are there.",
     note: 'Excerpt · translated from French by X',
   },
 ];

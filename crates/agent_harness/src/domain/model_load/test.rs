@@ -42,7 +42,7 @@ impl Known {
     }
 }
 
-impl KnownMacrodModels for Known {
+impl KnownRoxdModels for Known {
     async fn last_known(&self, _harness: HarnessId) -> Result<Option<KnownModels>, String> {
         Ok(self.0.lock().unwrap().clone())
     }
@@ -101,7 +101,7 @@ impl CursorModelProbe for Probe {
     }
 }
 
-impl MacrodModelProbe for Probe {
+impl RoxdModelProbe for Probe {
     async fn probe(&self, _harness: HarnessId) -> Result<RawModelProbe, ModelProbeError> {
         self.calls.fetch_add(1, Ordering::Relaxed);
         (self.result)()
@@ -128,15 +128,15 @@ impl CursorModelProbe for HangingCursor {
 }
 
 #[tokio::test]
-async fn macrod_authorizes_before_dispatch_and_projects_the_catalog() {
+async fn roxd_authorizes_before_dispatch_and_projects_the_catalog() {
     let in_memory = Probe::new(unsupported);
     let cursor = Probe::new(unsupported);
-    let macrod = Probe::new(available);
+    let roxd = Probe::new(available);
     let service = AgentModelsServiceImpl::new(
         Access(HarnessModelReach::Connected),
         in_memory,
         cursor,
-        macrod,
+        roxd,
         Known::default(),
         Duration::from_secs(1),
     );
@@ -145,7 +145,7 @@ async fn macrod_authorizes_before_dispatch_and_projects_the_catalog() {
         .load(
             caller(),
             LoadAgentModels {
-                harness: ModelHarness::Macrod,
+                harness: ModelHarness::Roxd,
                 harness_id: Some(HarnessId::TEST_A),
             },
         )
@@ -157,11 +157,11 @@ async fn macrod_authorizes_before_dispatch_and_projects_the_catalog() {
     assert_eq!(result.models[0].id, "fast");
     assert_eq!(service.in_memory.calls(), 0);
     assert_eq!(service.cursor.calls(), 0);
-    assert_eq!(service.macrod.calls(), 1);
+    assert_eq!(service.roxd.calls(), 1);
 }
 
 #[tokio::test]
-async fn invisible_macrod_is_forbidden_without_probing() {
+async fn invisible_roxd_is_forbidden_without_probing() {
     let service = AgentModelsServiceImpl::new(
         Access(HarnessModelReach::Forbidden),
         Probe::new(unsupported),
@@ -175,14 +175,14 @@ async fn invisible_macrod_is_forbidden_without_probing() {
         .load(
             caller(),
             LoadAgentModels {
-                harness: ModelHarness::Macrod,
+                harness: ModelHarness::Roxd,
                 harness_id: Some(HarnessId::TEST_A),
             },
         )
         .await;
 
     assert!(matches!(result, Err(LoadAgentModelsError::Forbidden)));
-    assert_eq!(service.macrod.calls(), 0);
+    assert_eq!(service.roxd.calls(), 0);
 }
 
 #[tokio::test]
@@ -268,15 +268,15 @@ async fn a_rejected_cursor_credential_is_not_a_probe_failure() {
     );
 }
 
-fn macrod_request() -> LoadAgentModels {
+fn roxd_request() -> LoadAgentModels {
     LoadAgentModels {
-        harness: ModelHarness::Macrod,
+        harness: ModelHarness::Roxd,
         harness_id: Some(HarnessId::TEST_A),
     }
 }
 
 #[tokio::test]
-async fn a_live_macrod_catalog_is_remembered_and_not_marked_cached() {
+async fn a_live_roxd_catalog_is_remembered_and_not_marked_cached() {
     let service = AgentModelsServiceImpl::new(
         Access(HarnessModelReach::Connected),
         Probe::new(unsupported),
@@ -286,7 +286,7 @@ async fn a_live_macrod_catalog_is_remembered_and_not_marked_cached() {
         Duration::from_secs(1),
     );
 
-    let result = service.load(caller(), macrod_request()).await.unwrap();
+    let result = service.load(caller(), roxd_request()).await.unwrap();
 
     assert_eq!(result.cached_at, None);
     assert_eq!(
@@ -316,12 +316,12 @@ async fn a_powered_off_computer_serves_its_last_catalog_without_probing() {
         Duration::from_secs(1),
     );
 
-    let result = service.load(caller(), macrod_request()).await.unwrap();
+    let result = service.load(caller(), roxd_request()).await.unwrap();
 
     assert_eq!(result.status, AgentModelsStatus::Available);
     assert_eq!(result.models[0].id, "fast");
     assert_eq!(result.cached_at, Some(observed_at));
-    assert_eq!(service.macrod.calls(), 0);
+    assert_eq!(service.roxd.calls(), 0);
 }
 
 #[tokio::test]
@@ -339,7 +339,7 @@ async fn a_failed_probe_falls_back_to_the_last_catalog() {
         Duration::from_secs(1),
     );
 
-    let result = service.load(caller(), macrod_request()).await.unwrap();
+    let result = service.load(caller(), roxd_request()).await.unwrap();
 
     assert_eq!(result.cached_at, Some(observed_at));
 }
@@ -355,7 +355,7 @@ async fn a_disconnected_runtime_never_seen_is_still_disconnected() {
         Duration::from_secs(1),
     );
 
-    let result = service.load(caller(), macrod_request()).await;
+    let result = service.load(caller(), roxd_request()).await;
 
     assert!(matches!(result, Err(LoadAgentModelsError::Disconnected)));
 }

@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of the Email feature: SQLx access to MacroDB's email tables — messages,
+Part of the Email feature: SQLx access to RoxDB's email tables — messages,
 threads, contacts, labels, links, attachments, sync tokens, CRM cleanup and
 backfill — plus legacy storage/workflow helpers that remain to be separated.
 
@@ -46,7 +46,7 @@ backfill — plus legacy storage/workflow helpers that remain to be separated.
 ## Checks
 
 - `cargo test -p email_db_client` (`SQLX_OFFLINE` unset; requires local
-  MacroDB — `just setup_macrodb`).
+  RoxDB — `just setup_macrodb`).
 - Run root `just check` for shared formatting, dependency and code-rule checks.
 
 Parsed message responses expose the draft generation captured in the same SQL snapshot as their content.

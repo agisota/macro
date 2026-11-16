@@ -177,7 +177,7 @@ fn tool_approval(status: &str, resolved_by: Option<&str>) -> Value {
     let mut params = json!({
         "approvalId": "a1", "serverSlug": "macro", "serverName": "Macro",
         "toolName": "ListEmails", "arguments": {"limit": 5},
-        "requestedBy": "macro|julia@macro.com", "status": status,
+        "requestedBy": "macro|julia@rox.one", "status": status,
     });
     if let Some(by) = resolved_by {
         params["resolvedBy"] = json!(by);
@@ -214,20 +214,20 @@ fn a_held_tool_call_blocks_the_turn_until_it_is_resolved() {
     assert_eq!(pending.tool_name, "ListEmails");
     assert_eq!(
         pending.requested_by.as_deref(),
-        Some("macro|julia@macro.com")
+        Some("macro|julia@rox.one")
     );
 
     assert!(push(
         &mut machine,
         "to_server",
-        tool_approval("approved", Some("macro|wolf@macro.com"))
+        tool_approval("approved", Some("macro|wolf@rox.one"))
     ));
     assert!(machine.metadata().pending_interactions.is_empty());
     assert_eq!(machine.metadata().turn, TurnState::Running);
     assert!(matches!(
         approval_part(&machine),
         MessagePart::ToolApproval { status: ToolApprovalStatus::Approved, resolved_by: Some(by), .. }
-            if by == "macro|wolf@macro.com"
+            if by == "macro|wolf@rox.one"
     ));
 }
 
@@ -244,7 +244,7 @@ fn a_held_tool_call_approved_for_good_says_so() {
         }
     ));
 
-    let mut approved = tool_approval("approved", Some("macro|wolf@macro.com"));
+    let mut approved = tool_approval("approved", Some("macro|wolf@rox.one"));
     approved["params"]["remembered"] = json!(true);
     assert!(push(&mut machine, "to_server", approved));
     assert!(matches!(

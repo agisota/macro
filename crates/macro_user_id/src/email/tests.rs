@@ -3,7 +3,7 @@ use super::*;
 #[test]
 fn it_should_parse() {
     let valid_emails = [
-        "sean@macro.com",
+        "sean@rox.one",
         "sean+testing.thing@example.gc.ca",
         "###hello###+weird@something-strange.world.tour",
     ];
@@ -18,14 +18,14 @@ fn it_should_parse() {
 #[test]
 fn it_should_fail() {
     let invalid_emails = [
-        "sean@macro.com ",
-        " sean@macro.com",
-        "sean@macro.com\n",
-        "\nsean@macro.com",
+        "sean@rox.one ",
+        " sean@rox.one",
+        "sean@rox.one\n",
+        "\nsean@rox.one",
         // cant have double dot
-        "sean..aye@macro.com",
-        "sean@@macro.com",
-        r#"foo"@macro.com"@example.com"#,
+        "sean..aye@rox.one",
+        "sean@@rox.one",
+        r#"foo"@rox.one"@example.com"#,
         // cannot have single quote in domain part
         "sean@mac'ro.com",
         "se'an@mac'ro.com",
@@ -42,12 +42,12 @@ fn it_should_fail() {
 #[test]
 fn known_sql_injection_payloads_are_not_valid_email_addresses() {
     let sql_injection_vectors = [
-        "sean' OR '1'='1@macro.com",
-        "sean' UNION SELECT password FROM users--@macro.com",
-        "sean@macro.com'; DROP TABLE users; --",
-        "sean@macro.com' OR '1'='1",
-        "sean'@macro.com OR 1=1",
-        "sean'\nOR '1'='1@macro.com",
+        "sean' OR '1'='1@rox.one",
+        "sean' UNION SELECT password FROM users--@rox.one",
+        "sean@rox.one'; DROP TABLE users; --",
+        "sean@rox.one' OR '1'='1",
+        "sean'@rox.one OR 1=1",
+        "sean'\nOR '1'='1@rox.one",
     ];
 
     for input in sql_injection_vectors {
@@ -60,11 +60,11 @@ fn known_sql_injection_payloads_are_not_valid_email_addresses() {
 
 #[test]
 fn local_part_may_contain_single_quote_without_being_sql_injection() {
-    let email = Email::parse_from_str("o'connor@macro.com").unwrap();
+    let email = Email::parse_from_str("o'connor@rox.one").unwrap();
 
-    assert_eq!(email.email_str(), "o'connor@macro.com");
+    assert_eq!(email.email_str(), "o'connor@rox.one");
     assert_eq!(email.local_part(), "o'connor");
-    assert_eq!(email.domain_part(), "macro.com");
+    assert_eq!(email.domain_part(), "rox.one");
 }
 
 #[test]

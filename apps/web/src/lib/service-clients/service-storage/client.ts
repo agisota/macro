@@ -241,8 +241,8 @@ const dssHost = SERVER_HOSTS['document-storage-service'];
 const syncServiceWorkerHost = SYNC_SERVICE_HOSTS.worker;
 const syncOrigin =
   import.meta.env.MODE === 'development'
-    ? 'https://dev.macro.com'
-    : 'https://macro.com';
+    ? 'https://dev.rox.one'
+    : 'https://rox.one';
 
 export function dssFetch(
   url: string,
@@ -365,11 +365,11 @@ export type HarnessResident = {
   team_id?: string | null;
 };
 
-/** A macrod harness registered with the workspace. */
+/** A roxd harness registered with the workspace. */
 export type Harness = {
   allow_permission_bypass: boolean;
   id: string;
-  kind: 'macrod';
+  kind: 'roxd';
   name: string;
   owner: HarnessOwner;
   /** The viewer's role. Only `owner` and `user` can run agents on it. */
@@ -389,7 +389,7 @@ export type Harness = {
   claude_mode?: ClaudeMode;
 };
 
-/** A pending macrod pairing request, looked up by its printed code. */
+/** A pending roxd pairing request, looked up by its printed code. */
 export type HarnessPairing = PairingDetails;
 
 type ApproveHarnessPairingRequest = {
@@ -399,7 +399,7 @@ type ApproveHarnessPairingRequest = {
 };
 
 /**
- * The optional macrod harness binding on agent requests/responses. The backend
+ * The optional roxd harness binding on agent requests/responses. The backend
  * field is not yet in the generated schemas, so it is layered on here.
  */
 type WithHarnessId = { harness_id?: string | null };

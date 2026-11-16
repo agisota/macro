@@ -62,7 +62,7 @@ async fn imported_gmail_draft_preserves_native_inline_files_and_honors_removal_a
         (
             duplicate,
             "uploaded",
-            format!("<{upload}@attachments.macro.com>"),
+            format!("<{upload}@attachments.rox.one>"),
         ),
     ] {
         sqlx::query!("INSERT INTO email_attachments(id,message_id,provider_attachment_id,content_id,filename,mime_type,size_bytes) VALUES($1,$2,$3,$4,'image.png','image/png',3)",id,draft,provider,cid).execute(&db).await.unwrap();

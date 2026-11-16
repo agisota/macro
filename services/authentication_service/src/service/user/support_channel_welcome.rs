@@ -15,9 +15,9 @@ use uuid::Uuid;
 #[cfg(test)]
 mod test;
 
-const JACOB_EMAIL: &str = "jacob@macro.com";
-const JULIA_EMAIL: &str = "julia@macro.com";
-const TEO_EMAIL: &str = "teo@macro.com";
+const JACOB_EMAIL: &str = "jacob@rox.one";
+const JULIA_EMAIL: &str = "julia@rox.one";
+const TEO_EMAIL: &str = "teo@rox.one";
 
 /// The channel operation required to post a new user's welcome messages.
 pub trait SupportChannelMessageGateway: Send + Sync {

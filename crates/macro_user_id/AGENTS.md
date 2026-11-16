@@ -18,7 +18,7 @@ backend.
 ## Scope
 
 - Owns: parsing and representing the `macro|<email>` user id shape.
-- Not here: resolving a user id to a user record (MacroDB) — that's
+- Not here: resolving a user id to a user record (RoxDB) — that's
   `macro_db_client`/the owning domain crate.
 
 ## Boundaries

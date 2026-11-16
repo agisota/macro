@@ -9,7 +9,7 @@
 //! - `SFS_URL`: The URL for the Static File Service.
 //! - `INTERNAL_AUTH_KEY`: Internal auth key for SFS authentication.
 //! - `DESTINATION_URL_PREFIX`: URL prefix for reconstructing destination URLs
-//!   (e.g., "https://static-file-service-dev.macro.com/file/").
+//!   (e.g., "https://static-file-service-dev.rox.one/file/").
 //!
 //! ## Optional Environment Variables:
 //! - `UNUSED_UUIDS_FILE`: Path to the file containing unused UUIDs (default: "unused_sfs_uuids.txt").

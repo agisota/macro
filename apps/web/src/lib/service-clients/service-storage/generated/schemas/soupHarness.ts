@@ -6,7 +6,7 @@
  */
 
 /**
- * A paired runtime (a macrod machine), listed only by attention feeds: its
+ * A paired runtime (a roxd machine), listed only by attention feeds: its
 access requests and removals are notifications filed under it, and it has
 no page of its own, so Settings → Machines opens it.
  */

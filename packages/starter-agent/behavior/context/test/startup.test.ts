@@ -229,7 +229,7 @@ describe('runFiles', () => {
 describe('addresses', () => {
   const enrolled = {
     MACRO_API_KEY: 'mak_secret',
-    MACRO_GATEWAY: 'https://dev-gateway.macro.com',
+    MACRO_GATEWAY: 'https://dev-gateway.rox.one',
     OVERRIDE_DOCUMENT_STORAGE_SERVICE_URL: 'https://storage.internal/dss',
     OVERRIDE_AUTH_SERVICE_URL: 'https://auth.internal',
     OVERRIDE_DOCUMENT_COGNITION_SERVICE_URL: 'https://cognition.internal',
@@ -255,11 +255,11 @@ describe('addresses', () => {
           'agent-harness': 'https://harness.internal',
           'scheduled-action': 'https://scheduled.internal',
           connection: 'https://connection.internal/cg',
-          email: 'https://dev-gateway.macro.com/email',
-          calendar: 'https://dev-gateway.macro.com/calendar',
-          notification: 'https://dev-gateway.macro.com/notification',
-          contacts: 'https://dev-gateway.macro.com/contacts',
-          unfurl: 'https://dev-gateway.macro.com/unfurl',
+          email: 'https://dev-gateway.rox.one/email',
+          calendar: 'https://dev-gateway.rox.one/calendar',
+          notification: 'https://dev-gateway.rox.one/notification',
+          contacts: 'https://dev-gateway.rox.one/contacts',
+          unfurl: 'https://dev-gateway.rox.one/unfurl',
         },
       },
     });
@@ -267,17 +267,17 @@ describe('addresses', () => {
 
   test('with only the gateway, every service is on its route there', () => {
     expect(
-      addresses({ MACRO_GATEWAY: 'https://gateway.macro.com/' })
+      addresses({ MACRO_GATEWAY: 'https://gateway.rox.one/' })
     ).toMatchObject({
       kind: 'configured',
       value: {
-        presence: 'wss://gateway.macro.com/connection-gateway',
+        presence: 'wss://gateway.rox.one/connection-gateway',
         speech:
-          'https://gateway.macro.com/agent-harness-egress/brain/inference',
+          'https://gateway.rox.one/agent-harness-egress/brain/inference',
         hosts: {
-          storage: 'https://gateway.macro.com/dss',
-          connection: 'https://gateway.macro.com/connection-gateway',
-          'agent-harness': 'https://gateway.macro.com/agent-harness',
+          storage: 'https://gateway.rox.one/dss',
+          connection: 'https://gateway.rox.one/connection-gateway',
+          'agent-harness': 'https://gateway.rox.one/agent-harness',
         },
       },
     });

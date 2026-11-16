@@ -3092,7 +3092,7 @@ async fn accessible_forms_are_the_repository_listing() {
 async fn pipeline_receipts_use_their_own_grants() {
     let repo = MockRepo::new().with_database_access(AccessLevel::Owner);
     let service = EntityAccessServiceImpl::new(repo.clone());
-    let user = MacroUserIdStr::try_from_email("pipeline@macro.com").unwrap();
+    let user = MacroUserIdStr::try_from_email("pipeline@rox.one").unwrap();
     let id = Uuid::now_v7().to_string();
     assert!(
         service

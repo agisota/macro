@@ -4,15 +4,15 @@ import { staticFileSizedUrl } from './servers';
 describe('staticFileSizedUrl', () => {
   it.each([
     'data:image/png;base64,aW1hZ2U=',
-    'blob:https://macro.com/avatar-id',
+    'blob:https://rox.one/avatar-id',
   ])('preserves embedded or local image sources: %s', (url) => {
     expect(staticFileSizedUrl(url, 'small')).toBe(url);
   });
 
   it('requests a thumbnail for uploaded images', () => {
     expect(
-      staticFileSizedUrl('https://static.macro.com/file/avatar-id', 'small')
-    ).toBe('https://static.macro.com/file/avatar-id?size=320');
+      staticFileSizedUrl('https://static.rox.one/file/avatar-id', 'small')
+    ).toBe('https://static.rox.one/file/avatar-id?size=320');
   });
 });
 
@@ -35,7 +35,7 @@ it('keeps browser image URLs proxied but gives the agent a fetchable hosted URL'
     'https://localhost:3003/__macro_dev/static/file/test-image'
   );
   expect(staticFileReferenceEndpoint('test-image')).toBe(
-    'https://static-file-service-dev.macro.com/file/test-image'
+    'https://static-file-service-dev.rox.one/file/test-image'
   );
 });
 
@@ -98,7 +98,7 @@ it.each([
     servers: undefined,
     backend: undefined,
     stack: undefined,
-    page: 'https://macro.com/app/login',
+    page: 'https://rox.one/app/login',
     expected: false,
   },
   {
@@ -107,7 +107,7 @@ it.each([
     servers: 'ALL',
     backend: 'same-origin',
     stack: 'true',
-    page: 'https://macro.com/app/login',
+    page: 'https://rox.one/app/login',
     expected: false,
   },
 ])(

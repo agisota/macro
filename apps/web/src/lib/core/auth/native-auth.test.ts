@@ -50,7 +50,7 @@ describe('native browser authentication', () => {
     expect(second.callbackUrl).not.toBe(first.callbackUrl);
     mocks.invoke.mockResolvedValue({ success: true, token: 'one-time-code' });
     await expect(
-      first.authenticate('https://gateway.macro.com/auth/login/sso')
+      first.authenticate('https://gateway.rox.one/auth/login/sso')
     ).resolves.toEqual({
       success: true,
       token: 'one-time-code',
@@ -59,7 +59,7 @@ describe('native browser authentication', () => {
       'plugin:android-auth|authenticate',
       {
         payload: {
-          authUrl: 'https://gateway.macro.com/auth/login/sso',
+          authUrl: 'https://gateway.rox.one/auth/login/sso',
           callbackUrl: first.callbackUrl,
         },
       }
@@ -102,7 +102,7 @@ describe('native browser authentication', () => {
     const sheet = pendingSheet();
 
     const signingIn = createNativeAuthSession('login').authenticate(
-      'https://gateway.macro.com/auth/login/sso'
+      'https://gateway.rox.one/auth/login/sso'
     );
     await vi.waitFor(() => expect(mocks.invoke).toHaveBeenCalledOnce());
     expect(hasAutomaticReloadHolds()).toBe(true);
@@ -136,17 +136,17 @@ describe('native browser authentication', () => {
   it('hands the desktop flow to the system browser', async () => {
     mocks.invoke.mockResolvedValue(undefined);
     await expect(
-      openDesktopAuthSession('https://gateway.macro.com/auth/login/sso')
+      openDesktopAuthSession('https://gateway.rox.one/auth/login/sso')
     ).resolves.toEqual({ success: true });
     expect(mocks.invoke).toHaveBeenCalledWith('plugin:opener|open_url', {
-      url: 'https://gateway.macro.com/auth/login/sso',
+      url: 'https://gateway.rox.one/auth/login/sso',
     });
   });
 
   it('settles a desktop browser that will not open', async () => {
     mocks.invoke.mockRejectedValueOnce(new Error('no opener'));
     await expect(
-      openDesktopAuthSession('https://gateway.macro.com/auth/login/sso')
+      openDesktopAuthSession('https://gateway.rox.one/auth/login/sso')
     ).resolves.toEqual({
       success: false,
       error: 'Unable to start authentication',

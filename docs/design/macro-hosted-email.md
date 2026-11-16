@@ -17,7 +17,7 @@ provider fits.
 | --- | --- |
 | Mailboxes on a team's own domain (bring your own domain), received and sent by Macro. | IMAP, POP or JMAP access from other mail clients. Mail is read in Macro apps only. |
 | Inbound spam, virus and authentication verdicts. | Running our own outbound IPs or an MTA. |
-| Sending with per-domain DKIM, SPF and DMARC alignment, bounce and complaint handling. | Free `@macro.com`-style consumer addresses (abuse magnet; see [Abuse](#abuse-and-trust)). |
+| Sending with per-domain DKIM, SPF and DMARC alignment, bounce and complaint handling. | Free `@rox.one`-style consumer addresses (abuse magnet; see [Abuse](#abuse-and-trust)). |
 | Import of existing mail from Gmail/Outlook when a team moves its MX to Macro. | Selling domains (feasible later through a registrar API; see [Domains](#domains-and-dns)). |
 | Everything users already get on Gmail: threads, read/star/archive/trash/labels, drafts, scheduled and undo send, search, attachments, Signal/Noise. | Calendar and contacts hosting (CalDAV/CardDAV). |
 
@@ -184,8 +184,8 @@ override that later mail follows. Signal/Noise then works through
   sent copy with `is_sent` and the SES message id. Bcc recipients go in the
   envelope only and stay on our stored copy.
 - **Separation from Macro's own mail.** User mail uses its own configuration set
-  and SES tenants; Macro's invites and notifications keep `macro.com` and
-  `notification.macro.com`. A spam incident on user mail must never pause
+  and SES tenants; Macro's invites and notifications keep `rox.one` and
+  `notification.rox.one`. A spam incident on user mail must never pause
   transactional mail.
 - **Events.** The user-mail configuration set publishes delivery, bounce,
   complaint and reject events to SNS. A handler updates the send attempt and the
@@ -270,7 +270,7 @@ out most bulk abuse. On top of that:
   tenant are the signals, with Datadog monitors next to the existing
   `infra/stacks/monitoring/monitors/ses.ts`.
 - An `abuse@` and `postmaster@` route per hosted domain goes to the tenant's
-  admins; Macro's own `abuse@macro.com` handles reports about the platform.
+  admins; Macro's own `abuse@rox.one` handles reports about the platform.
 
 ## Storage, retention and compliance
 
@@ -308,7 +308,7 @@ carries trace context:
 | Ingest and storage | DB tests (`#[sqlx::test]`) for ingest idempotency and `mailbox_state` writes; the existing facts-view tests cover Signal/Noise for `MACRO` messages. |
 | Local stack | Drop a raw message into the local S3 bucket and an SQS notification; assert rows. Outbound points at a local SMTP sink (Mailpit) so nothing leaves the machine. |
 | Real SES | The [mailbox simulator](https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html#send-email-simulator) (its success, bounce and complaint addresses) exercises real bounce and complaint events without touching reputation. |
-| Dev end to end | A dev subdomain (`mail.dev.macro.com`) with MX to the dev account, plus one throwaway domain to test bring-your-own-domain; mail exchanged with real Gmail and Outlook accounts; check "Show original" for SPF, DKIM and DMARC `PASS` and a mail-tester score. The dev SES account needs production access first (sandbox accounts only send to verified addresses). |
+| Dev end to end | A dev subdomain (`mail.dev.rox.one`) with MX to the dev account, plus one throwaway domain to test bring-your-own-domain; mail exchanged with real Gmail and Outlook accounts; check "Show original" for SPF, DKIM and DMARC `PASS` and a mail-tester score. The dev SES account needs production access first (sandbox accounts only send to verified addresses). |
 
 ## Cost
 

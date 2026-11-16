@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "INSERT INTO hosted_runtime_timer (computer_id, kind, fire_at) VALUES ($1, 'macrod_missing', $2)",
+  "query": "INSERT INTO hosted_runtime_timer (computer_id, kind, fire_at) VALUES ($1, 'roxd_missing', $2)",
   "describe": {
     "columns": [],
     "parameters": {

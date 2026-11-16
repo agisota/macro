@@ -14,13 +14,13 @@ async fn releasing_awake_units_notifies_waiters_in_the_same_transaction(pool: Pg
     .unwrap();
     for (first, waiting, prepare, release) in [
         (1, 2, Event::PowerOff, Event::InstanceStopped),
-        (5, 6, Event::MacrodConnected, Event::ReleaseNow),
+        (5, 6, Event::RoxdConnected, Event::ReleaseNow),
     ] {
         let first = bought(&repo, first).await.id;
         repo.apply(first, Event::InstanceStarted, now())
             .await
             .unwrap();
-        repo.apply(first, Event::MacrodConnected, now())
+        repo.apply(first, Event::RoxdConnected, now())
             .await
             .unwrap();
         repo.apply(first, prepare, now()).await.unwrap();

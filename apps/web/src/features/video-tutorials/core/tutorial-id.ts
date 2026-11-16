@@ -17,7 +17,7 @@ export const TUTORIAL_IDS = [
   'calendar',
   'calls',
   'agents',
-  'macrod',
+  'roxd',
   'github',
   'scheduling',
   'whatsapp',

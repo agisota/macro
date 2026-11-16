@@ -2,12 +2,12 @@ import { invoke } from '@tauri-apps/api/core';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 
 /**
- * Bridge to the bundled macrod daemon (the local agent runtime) supervised by
+ * Bridge to the bundled roxd daemon (the local agent runtime) supervised by
  * the desktop app's main process. Desktop only: callers gate on
  * `isDesktopPlatform()` before touching anything here.
  */
 
-export type MacrodPhase =
+export type RoxdPhase =
   | 'stopped'
   | 'starting'
   | 'installing-adapter'
@@ -16,8 +16,8 @@ export type MacrodPhase =
   | 'error';
 
 /** The daemon snapshot the main process folds service events into. */
-export type MacrodStatus = {
-  phase: MacrodPhase;
+export type RoxdStatus = {
+  phase: RoxdPhase;
   agentId: string | null;
   agentName: string | null;
   workspace: string | null;
@@ -28,16 +28,16 @@ export type MacrodStatus = {
   lastError: string | null;
 };
 
-export type MacrodSupport = {
+export type RoxdSupport = {
   /** Whether this build bundles the daemon on this platform. */
   supported: boolean;
   /** Suggested workspace directory for a first-time setup. */
   defaultWorkspace: string | null;
 };
 
-/** One installed agent, as reported by `macrod detect-agents`. */
-export type MacrodDetectedAgent = {
-  /** Stable preset id accepted by {@link macrodStart}, e.g. `claude-code`. */
+/** One installed agent, as reported by `roxd detect-agents`. */
+export type RoxdDetectedAgent = {
+  /** Stable preset id accepted by {@link roxdStart}, e.g. `claude-code`. */
   id: string;
   name: string;
   note: string | null;
@@ -45,8 +45,8 @@ export type MacrodDetectedAgent = {
   needs_install: boolean;
 };
 
-/** The service config's state, as reported by `macrod inspect`. */
-export type MacrodInspection = {
+/** The service config's state, as reported by `roxd inspect`. */
+export type RoxdInspection = {
   config_path: string;
   exists: boolean;
   paired: boolean;
@@ -58,45 +58,45 @@ export type MacrodInspection = {
   web_url?: string;
 };
 
-export type MacrodStartOptions = {
+export type RoxdStartOptions = {
   agent?: string;
   workspace?: string;
 };
 
-export function macrodSupport(): Promise<MacrodSupport> {
-  return invoke<MacrodSupport>('macrod_support');
+export function roxdSupport(): Promise<RoxdSupport> {
+  return invoke<RoxdSupport>('roxd_support');
 }
 
-export async function macrodDetectAgents(): Promise<MacrodDetectedAgent[]> {
-  const result = await invoke<{ agents: MacrodDetectedAgent[] }>(
-    'macrod_detect_agents'
+export async function roxdDetectAgents(): Promise<RoxdDetectedAgent[]> {
+  const result = await invoke<{ agents: RoxdDetectedAgent[] }>(
+    'roxd_detect_agents'
   );
   return result.agents;
 }
 
-export function macrodInspect(): Promise<MacrodInspection> {
-  return invoke<MacrodInspection>('macrod_inspect');
+export function roxdInspect(): Promise<RoxdInspection> {
+  return invoke<RoxdInspection>('roxd_inspect');
 }
 
-export function macrodStart(
-  options: MacrodStartOptions
-): Promise<MacrodStatus> {
-  return invoke<MacrodStatus>('macrod_start', { options });
+export function roxdStart(
+  options: RoxdStartOptions
+): Promise<RoxdStatus> {
+  return invoke<RoxdStatus>('roxd_start', { options });
 }
 
-export function macrodStop(): Promise<MacrodStatus> {
-  return invoke<MacrodStatus>('macrod_stop');
+export function roxdStop(): Promise<RoxdStatus> {
+  return invoke<RoxdStatus>('roxd_stop');
 }
 
-export function macrodStatus(): Promise<MacrodStatus> {
-  return invoke<MacrodStatus>('macrod_status');
+export function roxdStatus(): Promise<RoxdStatus> {
+  return invoke<RoxdStatus>('roxd_status');
 }
 
 /** Subscribe to daemon snapshot changes; resolves to the unlisten function. */
-export function onMacrodStatus(
-  callback: (status: MacrodStatus) => void
+export function onRoxdStatus(
+  callback: (status: RoxdStatus) => void
 ): Promise<UnlistenFn> {
-  return listen<MacrodStatus>('macrod-status', (event) =>
+  return listen<RoxdStatus>('roxd-status', (event) =>
     callback(event.payload)
   );
 }

@@ -1,17 +1,17 @@
 import { render, waitFor } from '@solidjs/testing-library';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { MacrodPairingApprover } from './MacrodPairingApprover';
-import type { MacrodStatus } from './macrod';
+import { RoxdPairingApprover } from './RoxdPairingApprover';
+import type { RoxdStatus } from './roxd';
 
 const daemon = vi.hoisted(() => ({
-  snapshot: undefined as MacrodStatus | undefined,
-  emit: undefined as ((status: MacrodStatus) => void) | undefined,
+  snapshot: undefined as RoxdStatus | undefined,
+  emit: undefined as ((status: RoxdStatus) => void) | undefined,
   approve: vi.fn((_code: string) => {}),
 }));
 
-vi.mock('./macrod', () => ({
-  macrodStatus: async () => daemon.snapshot,
-  onMacrodStatus: async (callback: (status: MacrodStatus) => void) => {
+vi.mock('./roxd', () => ({
+  roxdStatus: async () => daemon.snapshot,
+  onRoxdStatus: async (callback: (status: RoxdStatus) => void) => {
     daemon.emit = callback;
     return () => {};
   },
@@ -21,9 +21,9 @@ vi.mock('@queries/harnesses/harnesses', () => ({
 }));
 
 function status(
-  phase: MacrodStatus['phase'],
+  phase: RoxdStatus['phase'],
   pairingCode: string | null = null
-): MacrodStatus {
+): RoxdStatus {
   return {
     phase,
     agentId: null,
@@ -36,7 +36,7 @@ function status(
   };
 }
 
-describe('MacrodPairingApprover', () => {
+describe('RoxdPairingApprover', () => {
   beforeEach(() => {
     daemon.snapshot = status('stopped');
     daemon.emit = undefined;
@@ -45,14 +45,14 @@ describe('MacrodPairingApprover', () => {
 
   it('approves a pairing that opened before it mounted', async () => {
     daemon.snapshot = status('pairing', 'ABCD-1234');
-    render(() => <MacrodPairingApprover />);
+    render(() => <RoxdPairingApprover />);
     await waitFor(() =>
       expect(daemon.approve).toHaveBeenCalledWith('ABCD-1234')
     );
   });
 
   it('approves each new code from a re-pair once', async () => {
-    render(() => <MacrodPairingApprover />);
+    render(() => <RoxdPairingApprover />);
     await waitFor(() => expect(daemon.emit).toBeDefined());
 
     daemon.emit?.(status('pairing', 'AAAA-1111'));

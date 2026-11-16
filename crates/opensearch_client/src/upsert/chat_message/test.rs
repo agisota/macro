@@ -4,7 +4,7 @@ fn args() -> UpsertChatMessageArgs {
     UpsertChatMessageArgs {
         chat_id: "chat1".to_string(),
         chat_message_id: "msg1".to_string(),
-        user_id: "macro|gab@macro.com".to_string(),
+        user_id: "macro|gab@rox.one".to_string(),
         role: "user".to_string(),
         created_at_millis: EpochMillis::new(1_700_000_000_123).unwrap(),
         updated_at_millis: EpochMillis::new(1_700_000_000_123).unwrap(),
@@ -20,7 +20,7 @@ fn parent_doc_body_has_metadata_no_child_fields() {
 
     assert_eq!(doc["entity_id"], "chat1");
     assert_eq!(doc["title"], "Chat title");
-    assert_eq!(doc["user_id"], "macro|gab@macro.com");
+    assert_eq!(doc["user_id"], "macro|gab@rox.one");
     assert_eq!(doc["updated_at_millis"], 1_700_000_000_123i64);
     assert_eq!(doc["chat_relation"], "chat");
     // Child-only fields must not be present on the parent.

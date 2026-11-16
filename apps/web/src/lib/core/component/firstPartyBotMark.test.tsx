@@ -61,7 +61,7 @@ describe('firstPartyBotMark', () => {
     expect(
       firstPartyBotMark('bot|11111111-2222-3333-4444-555555555555')
     ).toBeUndefined();
-    expect(firstPartyBotMark('macro|peter@macro.com')).toBeUndefined();
+    expect(firstPartyBotMark('macro|peter@rox.one')).toBeUndefined();
     expect(firstPartyBotMark(undefined)).toBeUndefined();
   });
 });

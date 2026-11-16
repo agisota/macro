@@ -5,7 +5,7 @@ use crate::outbound::git::{GitRepositories, git, primary_worktree};
 use crate::repository::{Repository, prepare};
 use std::path::{Path, PathBuf};
 
-/// Serializes repository preparation within one macrod instance.
+/// Serializes repository preparation within one roxd instance.
 pub(crate) struct Workspaces {
     git: GitRepositories,
     herdr: HerdrCli,

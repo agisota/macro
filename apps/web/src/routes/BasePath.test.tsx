@@ -383,7 +383,7 @@ describe('BasePathComponent', () => {
     const replace = vi.fn();
     vi.stubGlobal(
       'location',
-      Object.assign(new URL('https://macro.com/app/?referral_code=invite'), {
+      Object.assign(new URL('https://rox.one/app/?referral_code=invite'), {
         replace,
       })
     );
@@ -413,7 +413,7 @@ describe('BasePathComponent', () => {
     const replace = vi.fn();
     vi.stubGlobal(
       'location',
-      Object.assign(new URL('https://macro.com/app/?referral_code=invite'), {
+      Object.assign(new URL('https://rox.one/app/?referral_code=invite'), {
         replace,
       })
     );

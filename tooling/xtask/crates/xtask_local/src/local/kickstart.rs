@@ -393,7 +393,7 @@ pub fn build(
             "url": "/api/user/registration",
             "body": {
                 "user": {
-                    "email": "admin@macro.com",
+                    "email": "admin@rox.one",
                     "password": "macroIsGreat!",
                 },
                 "registration": {

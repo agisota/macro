@@ -89,9 +89,9 @@ targets:
       properties:
         aps-environment: production
         com.apple.developer.associated-domains:
-          - applinks:macro.com
-          - applinks:dev.macro.com
-          - applinks:staging.macro.com
+          - applinks:rox.one
+          - applinks:dev.rox.one
+          - applinks:staging.rox.one
         com.apple.developer.usernotifications.communication: true
         com.apple.developer.usernotifications.time-sensitive: true
         com.apple.security.application-groups:

@@ -7,7 +7,7 @@ import baseline from '../seo/migration-baseline.json';
 import redirects from '../seo/page-redirects.json';
 
 const directory = path.resolve(import.meta.dirname, '../dist');
-const origin = (process.env.VITE_APP_BASE_URL || 'https://macro.com').replace(
+const origin = (process.env.VITE_APP_BASE_URL || 'https://rox.one').replace(
   /\/$/,
   ''
 );
@@ -305,7 +305,7 @@ for (const route of [
 const robots = fs.readFileSync(path.join(directory, 'robots.txt'), 'utf8');
 assert(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
 assert(
-  origin === 'https://macro.com'
+  origin === 'https://rox.one'
     ? robots.includes('Allow: /') && !/^Disallow: \/$/m.test(robots)
     : /^Disallow: \/$/m.test(robots),
   'Wrong environment crawl policy'

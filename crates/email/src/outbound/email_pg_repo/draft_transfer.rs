@@ -242,14 +242,14 @@ impl DraftTransferRepository for EmailPgRepo {
             serde_json::from_value(uploads).map_err(anyhow::Error::from)?;
         for file in &mut uploads {
             file.content_id
-                .get_or_insert_with(|| format!("{}@attachments.macro.com", file.id));
+                .get_or_insert_with(|| format!("{}@attachments.rox.one", file.id));
             file.id = macro_uuid::generate_uuid_v7();
             file.draft_id = input.db_id;
         }
         let files=sqlx::query_scalar!(r#"SELECT a.id AS "id!" FROM email_attachments a WHERE a.message_id=$1
             AND NOT EXISTS(SELECT 1 FROM email_draft_attachment_removals r WHERE r.message_id=$1 AND (r.provider_id=a.provider_attachment_id OR trim(both '<>' from r.content_id)=trim(both '<>' from a.content_id)))
-            AND NOT EXISTS(SELECT 1 FROM email_attachments_drafts u WHERE u.draft_id=$1 AND trim(both '<>' from a.content_id)=COALESCE(trim(both '<>' from u.content_id),u.id::text||'@attachments.macro.com'))
-            AND NOT EXISTS(SELECT 1 FROM email_attachments_fwd f JOIN email_attachments original ON original.id=f.attachment_id WHERE f.message_id=$1 AND (trim(both '<>' from a.content_id)=trim(both '<>' from original.content_id) OR trim(both '<>' from a.content_id)=f.attachment_id::text||'@attachments.macro.com'))
+            AND NOT EXISTS(SELECT 1 FROM email_attachments_drafts u WHERE u.draft_id=$1 AND trim(both '<>' from a.content_id)=COALESCE(trim(both '<>' from u.content_id),u.id::text||'@attachments.rox.one'))
+            AND NOT EXISTS(SELECT 1 FROM email_attachments_fwd f JOIN email_attachments original ON original.id=f.attachment_id WHERE f.message_id=$1 AND (trim(both '<>' from a.content_id)=trim(both '<>' from original.content_id) OR trim(both '<>' from a.content_id)=f.attachment_id::text||'@attachments.rox.one'))
             UNION SELECT attachment_id FROM email_attachments_fwd WHERE message_id=$1"#,request.source_id).fetch_all(&mut *tx).await.map_err(db)?
             .into_iter().map(|source_id|TransferFile {source_id,destination_id:macro_uuid::generate_uuid_v7()}).collect();
         let plan = DraftTransferPlan {
@@ -350,14 +350,14 @@ impl DraftTransferRepository for EmailPgRepo {
         // other drafts already forward. Keep those aliases backed by bytes too.
         sqlx::query!(r#"INSERT INTO email_attachment_blobs(attachment_id,object_key,sha256,size_bytes)
             SELECT a.id,u.s3_key,u.sha,u.size::bigint FROM email_attachments a JOIN email_attachments_drafts u
-                ON u.draft_id=a.message_id AND trim(both '<>' from a.content_id)=COALESCE(trim(both '<>' from u.content_id),u.id::text||'@attachments.macro.com')
+                ON u.draft_id=a.message_id AND trim(both '<>' from a.content_id)=COALESCE(trim(both '<>' from u.content_id),u.id::text||'@attachments.rox.one')
             WHERE a.message_id=$1 AND NOT u.upload_pending
             ON CONFLICT(attachment_id) DO UPDATE SET object_key=EXCLUDED.object_key,sha256=EXCLUDED.sha256,size_bytes=EXCLUDED.size_bytes"#,plan.request.source_id).execute(&mut *tx).await.map_err(db)?;
         sqlx::query!(r#"INSERT INTO email_attachment_blobs(attachment_id,object_key,sha256,size_bytes)
             SELECT DISTINCT ON(a.id) a.id,b.object_key,b.sha256,b.size_bytes FROM email_attachments a
                 JOIN email_attachments_fwd f ON f.message_id=a.message_id JOIN email_attachments original ON original.id=f.attachment_id
                 JOIN email_attachment_blobs b ON b.attachment_id=original.id
-            WHERE a.message_id=$1 AND (trim(both '<>' from a.content_id)=trim(both '<>' from original.content_id) OR trim(both '<>' from a.content_id)=f.attachment_id::text||'@attachments.macro.com')
+            WHERE a.message_id=$1 AND (trim(both '<>' from a.content_id)=trim(both '<>' from original.content_id) OR trim(both '<>' from a.content_id)=f.attachment_id::text||'@attachments.rox.one')
             ORDER BY a.id,original.id
             ON CONFLICT(attachment_id) DO UPDATE SET object_key=EXCLUDED.object_key,sha256=EXCLUDED.sha256,size_bytes=EXCLUDED.size_bytes"#,plan.request.source_id).execute(&mut *tx).await.map_err(db)?;
         let now = Utc::now();

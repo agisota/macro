@@ -67,7 +67,7 @@ describe('calendar.booking', () => {
   test('lists a team’s links as handles with their booking URLs', async () => {
     const queries: unknown[] = [];
     const client = {
-      webAppUrl: 'https://macro.com',
+      webAppUrl: 'https://rox.one',
       calendar: {
         listBookingLinks: async (options: unknown) => {
           queries.push(options);
@@ -94,23 +94,23 @@ describe('calendar.booking', () => {
     expect(queries).toEqual([{ query: { teamId: 'team-1', query: 'intro' } }]);
     expect(listing.host.id).toBe('macro|owner@example.com');
     expect(listing.teams.map((t) => t.id)).toEqual(['team-1']);
-    expect(listing.pageUrl).toBe('https://macro.com/app/book/profile-1');
+    expect(listing.pageUrl).toBe('https://rox.one/app/book/profile-1');
     const [link] = listing.links;
     expect(link?.id).toBe('link-1');
     expect(link?.team).toBe(team);
     expect(await link?.webUrl()).toBe(
-      'https://macro.com/app/book/profile-1/intro',
+      'https://rox.one/app/book/profile-1/intro',
     );
     expect(JSON.parse(JSON.stringify(link))).toMatchObject({
       id: 'link-1',
-      url: 'https://macro.com/app/book/profile-1/intro',
+      url: 'https://rox.one/app/book/profile-1/intro',
     });
   });
 
   test('creates and edits a link with the quoted approval and the read revision', async () => {
     const calls: { method: string; options: unknown }[] = [];
     const client = {
-      webAppUrl: 'https://macro.com',
+      webAppUrl: 'https://rox.one',
       calendar: {
         createBookingLink: async (options: unknown) => {
           calls.push({ method: 'create', options });
@@ -161,7 +161,7 @@ describe('calendar.booking', () => {
   test('lists bookings in a range and reschedules one to an offered slot', async () => {
     const calls: { method: string; options: unknown }[] = [];
     const client = {
-      webAppUrl: 'https://macro.com',
+      webAppUrl: 'https://rox.one',
       calendar: {
         listBookings: async (options: unknown) => {
           calls.push({ method: 'list', options });

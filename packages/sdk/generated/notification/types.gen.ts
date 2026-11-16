@@ -535,7 +535,7 @@ export type ComputerSetupMetadata = {
      */
     computerName: string;
     /**
-     * The computer's harness, once macrod has connected.
+     * The computer's harness, once roxd has connected.
      */
     harnessId?: string | null;
     /**

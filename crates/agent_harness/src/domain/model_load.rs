@@ -20,8 +20,8 @@ pub enum ModelHarness {
     InMemory,
     /// The caller's Cursor account.
     Cursor,
-    /// A paired macrod runtime.
-    Macrod,
+    /// A paired roxd runtime.
+    Roxd,
 }
 
 /// One fresh model-discovery request.
@@ -29,7 +29,7 @@ pub enum ModelHarness {
 pub struct LoadAgentModels {
     /// Provider to inspect.
     pub harness: ModelHarness,
-    /// Paired harness identity, required only for [`ModelHarness::Macrod`].
+    /// Paired harness identity, required only for [`ModelHarness::Roxd`].
     pub harness_id: Option<HarnessId>,
 }
 
@@ -170,7 +170,7 @@ pub struct KnownModels {
 
 /// The last model configuration each paired runtime reported, kept so its
 /// agents stay editable while the machine is off.
-pub trait KnownMacrodModels: Send + Sync + 'static {
+pub trait KnownRoxdModels: Send + Sync + 'static {
     /// The last successful probe of `harness`.
     fn last_known(
         &self,
@@ -203,8 +203,8 @@ pub trait CursorModelProbe: Send + Sync + 'static {
     ) -> impl Future<Output = Result<RawModelProbe, ModelProbeError>> + Send;
 }
 
-/// Fresh paired-macrod model probe.
-pub trait MacrodModelProbe: Send + Sync + 'static {
+/// Fresh paired-roxd model probe.
+pub trait RoxdModelProbe: Send + Sync + 'static {
     /// Probe the live runtime connection for `harness`.
     fn probe(
         &self,
@@ -223,24 +223,24 @@ pub trait AgentModelsService: Send + Sync + 'static {
 }
 
 /// Domain service coordinating authorization, dispatch, timeout, and projection.
-pub struct AgentModelsServiceImpl<Access, InMemory, Cursor, Macrod, Known> {
+pub struct AgentModelsServiceImpl<Access, InMemory, Cursor, Roxd, Known> {
     access: Access,
     in_memory: InMemory,
     cursor: Cursor,
-    macrod: Macrod,
+    roxd: Roxd,
     known: Known,
     timeout: Duration,
 }
 
-impl<Access, InMemory, Cursor, Macrod, Known>
-    AgentModelsServiceImpl<Access, InMemory, Cursor, Macrod, Known>
+impl<Access, InMemory, Cursor, Roxd, Known>
+    AgentModelsServiceImpl<Access, InMemory, Cursor, Roxd, Known>
 {
     /// Build the service from its outbound ports.
     pub fn new(
         access: Access,
         in_memory: InMemory,
         cursor: Cursor,
-        macrod: Macrod,
+        roxd: Roxd,
         known: Known,
         timeout: Duration,
     ) -> Self {
@@ -248,23 +248,23 @@ impl<Access, InMemory, Cursor, Macrod, Known>
             access,
             in_memory,
             cursor,
-            macrod,
+            roxd,
             known,
             timeout,
         }
     }
 }
 
-impl<Access, InMemory, Cursor, Macrod, Known>
-    AgentModelsServiceImpl<Access, InMemory, Cursor, Macrod, Known>
+impl<Access, InMemory, Cursor, Roxd, Known>
+    AgentModelsServiceImpl<Access, InMemory, Cursor, Roxd, Known>
 where
     Access: HarnessModelAccess,
-    Macrod: MacrodModelProbe,
-    Known: KnownMacrodModels,
+    Roxd: RoxdModelProbe,
+    Known: KnownRoxdModels,
 {
     /// A paired runtime's catalog: probed live when it is connected and
     /// remembered, otherwise the last one it reported.
-    async fn load_macrod(
+    async fn load_roxd(
         &self,
         caller: &MacroUserIdStr<'static>,
         harness: HarnessId,
@@ -278,7 +278,7 @@ where
             HarnessModelReach::Forbidden => return Err(LoadAgentModelsError::Forbidden),
             HarnessModelReach::Disconnected => Err(LoadAgentModelsError::Disconnected),
             HarnessModelReach::Connected => {
-                match tokio::time::timeout(self.timeout, self.macrod.probe(harness)).await {
+                match tokio::time::timeout(self.timeout, self.roxd.probe(harness)).await {
                     Err(_) => Err(LoadAgentModelsError::Timeout),
                     Ok(Ok(RawModelProbe::Options(options))) => {
                         if let Err(error) = self.known.remember(harness, &options).await {
@@ -311,14 +311,14 @@ where
     }
 }
 
-impl<Access, InMemory, Cursor, Macrod, Known> AgentModelsService
-    for AgentModelsServiceImpl<Access, InMemory, Cursor, Macrod, Known>
+impl<Access, InMemory, Cursor, Roxd, Known> AgentModelsService
+    for AgentModelsServiceImpl<Access, InMemory, Cursor, Roxd, Known>
 where
     Access: HarnessModelAccess,
     InMemory: InMemoryModelProbe,
     Cursor: CursorModelProbe,
-    Macrod: MacrodModelProbe,
-    Known: KnownMacrodModels,
+    Roxd: RoxdModelProbe,
+    Known: KnownRoxdModels,
 {
     async fn load(
         &self,
@@ -336,17 +336,17 @@ where
                     .await
                     .map_err(|_| LoadAgentModelsError::Timeout)?
             }
-            (ModelHarness::Macrod, Some(harness)) => {
-                return self.load_macrod(&caller, harness).await;
+            (ModelHarness::Roxd, Some(harness)) => {
+                return self.load_roxd(&caller, harness).await;
             }
-            (ModelHarness::Macrod, None) => {
+            (ModelHarness::Roxd, None) => {
                 return Err(LoadAgentModelsError::BadRequest(
-                    "harnessId is required for macrod".to_owned(),
+                    "harnessId is required for roxd".to_owned(),
                 ));
             }
             (_, Some(_)) => {
                 return Err(LoadAgentModelsError::BadRequest(
-                    "harnessId is only valid for macrod".to_owned(),
+                    "harnessId is only valid for roxd".to_owned(),
                 ));
             }
         };

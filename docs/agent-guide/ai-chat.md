@@ -684,7 +684,7 @@ the shimmer.
   badge, and offers **Reconnect machine** instead of a model submenu; the same
   badge appears in the `@` menu, where offline agents cannot be mentioned at all
   (clicking or pressing Enter leaves the menu open and inserts nothing).
-  The built-in sandbox and paired macrod machines are not offered here.
+  The built-in sandbox and paired roxd machines are not offered here.
 - With the `enable-agent-updates` flag, the New conversation page shows a stack
   of pending updates from your coding sessions under the composer: one card per
   permission request, question, or tool approval of a blocked session, plus
@@ -753,8 +753,8 @@ the shimmer.
   agent changes and are sent only to coding agents. Cursor honors the explicit
   repository and branch instead of choosing a repository from the prompt;
   the owner must have access through the connected GitHub App.
-  Paired macrod agents also receive the repository choice. With native Herdr,
-  macrod finds an existing clone or clones it using local Git credentials, then
+  Paired roxd agents also receive the repository choice. With native Herdr,
+  roxd finds an existing clone or clones it using local Git credentials, then
   creates a managed worktree from a fresh `origin/main`. **Branch** shows `main`
   and cannot be changed for local sessions. The native Claude/Codex TUI remains
   interactive in Herdr, and local turns appear in the Macro transcript.
@@ -824,7 +824,7 @@ the shimmer.
   **Connected** or **Offline**, **Share**, **Options** and **Remove**),
   **Teammates' machines**, **Built-in machines**, and **New machine**.
   On the desktop app, **Machines** opens with a **This computer** card that sets
-  up the bundled macrod daemon in one click: **Set up** detects installed agents,
+  up the bundled roxd daemon in one click: **Set up** detects installed agents,
   then **Start running agents here** configures, pairs (auto-approved, no code),
   and starts it. Before this computer is paired, a dismissible **Run agents on
   this computer** invitation appears above the Home input and the Agents
@@ -836,20 +836,20 @@ the shimmer.
   other machines. In the agent form, a machine that is away is labelled
   **· Offline** but stays selectable: binding an agent to a sleeping computer is
   normal.
-  **New machine** shows three steps: install macrod with the shown `curl … |
-  sh` (macOS, Linux) or `irm … | iex` (Windows) command, run `macrod` and
+  **New machine** shows three steps: install roxd with the shown `curl … |
+  sh` (macOS, Linux) or `irm … | iex` (Windows) command, run `roxd` and
   configure your agent in Quickstart, then enter your pairing
   code and click **Look up**. Review the request and click **Approve** to connect.
   The setup guide contains configuration and pairing screenshots in that order.
   Enter the code from your own terminal, not the example screenshot.
-  Run inside a herdr pane, macrod's Quickstart also offers **Claude Code in herdr**
+  Run inside a herdr pane, roxd's Quickstart also offers **Claude Code in herdr**
   and **Codex in herdr**: each session of an agent on that machine opens a herdr
-  tab in the directory macrod started from, running the real Claude Code or Codex
+  tab in the directory roxd started from, running the real Claude Code or Codex
   TUI. The session page streams its tool calls and replies, and its permission
   prompts appear as approvals. Other runtimes started inside herdr get a live
   view tab per session that can prompt and interrupt it; approvals stay in Macro.
   This works in herdr 0.9 and in the herdr app (herdr-core, with `hc` on `PATH`),
-  where session tabs open in macrod's space. Under herdr-core, Codex reports no
+  where session tabs open in roxd's space. Under herdr-core, Codex reports no
   status, so its permission prompts must be answered in Herdr; see "Herdr
   versions" in `crates/coding_agent_worker/README.md`.
   Native Herdr sessions offer `/compact`, `/init`, and `/fast` in the slash menu;
@@ -880,7 +880,7 @@ the shimmer.
   For a paired machine's agent configured as a **Chat agent**, mentioning it posts a
   pending reply in the channel thread. Once the turn completes, that same reply
   shows the answer (or a stopped/failed result), even if the session view was
-  never opened. Follow-up messages get their own replies. This requires a macrod
+  never opened. Follow-up messages get their own replies. This requires a roxd
   build that sends source message IDs as control action IDs, together with the
   backend external-reply journal; older daemons do not supply that correlation.
   Replies older than 24 hours whose completion callback was lost are recovered
@@ -1496,7 +1496,7 @@ provider usage and completed writes may remain after cancellation.
 
 ## Code mode on the public MCP
 
-The public workspace MCP (`mcp-server[-dev].macro.com`) runs code mode for every
+The public workspace MCP (`mcp-server[-dev].rox.one`) runs code mode for every
 client but ChatGPT (whose plugin directory refuses generic executors) wherever
 the harness can run code. Those clients see only
 `ExecuteCode`, `DescribeCodeTools` and `ReadCodeDocs` on `tools/list` — not the
@@ -2372,11 +2372,11 @@ must stay hidden; subsequent live messages must still appear.
   paired machine then has it as `Don't ask before acting` in its `Options` menu
   (a sheet on touch; enabling asks for confirmation, and only the owner can
   change it) and a `Rename` action; a change reaches live sessions from their next turn, with
-  no re-pairing. macrod has no Full Access or scope setting; its Config tab shows
+  no re-pairing. roxd has no Full Access or scope setting; its Config tab shows
   these values read-only and links to Machines.
 - **Agent permission policy.** Settings → Agents → Runtime shows `Always prompt`
-  and `Always bypass` only for local macrod harnesses. The larger `Always bypass`
-  choice is labeled `Suggested`; the label does not select it. Macrod defaults to
+  and `Always bypass` only for local roxd harnesses. The larger `Always bypass`
+  choice is labeled `Suggested`; the label does not select it. Roxd defaults to
   prompts; bypass requires both the machine's setting and the agent's explicit
   choice; otherwise the form says to allow bypass in the machine's settings.
   Built-in Macro, in-memory, Cursor, and Codex runtimes always bypass and have no

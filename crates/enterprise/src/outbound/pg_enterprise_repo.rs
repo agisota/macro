@@ -11,14 +11,14 @@ use uuid::Uuid;
 #[cfg(test)]
 mod test;
 
-/// MacroDB adapter for the enterprise-owned tables.
+/// RoxDB adapter for the enterprise-owned tables.
 #[derive(Clone)]
 pub struct PgEnterpriseRepository {
     pool: PgPool,
 }
 
 impl PgEnterpriseRepository {
-    /// Construct the adapter over MacroDB.
+    /// Construct the adapter over RoxDB.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

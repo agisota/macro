@@ -7,7 +7,7 @@ use super::*;
 use crate::domain::event_runs::EventExecutionResult;
 use crate::domain::models::ActionExecutionRecord;
 
-const USER: &str = "macro|event-run@macro.com";
+const USER: &str = "macro|event-run@rox.one";
 
 fn page(size: u16) -> PageSize {
     size.try_into().unwrap()

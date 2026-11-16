@@ -25,7 +25,7 @@ const LEASE_SECONDS: f64 = 30.0;
 /// which it is marked failed.
 const MAX_ATTEMPTS: i16 = 5;
 
-/// Bulk actions in MacroDB.
+/// Bulk actions in RoxDB.
 #[derive(Clone)]
 pub struct PgBulkActions {
     pool: PgPool,

@@ -11,7 +11,7 @@ import redirects from '../seo/page-redirects.json';
  *
  * Usage: bun scripts/prerender.ts
  * Env:   VITE_APP_BASE_URL — public origin used for sitemap/robots/JSON-LD
- *        (defaults to https://macro.com, matching src/app/utils/utilBaseUrl.ts).
+ *        (defaults to https://rox.one, matching src/app/utils/utilBaseUrl.ts).
  */
 
 import fs from 'node:fs';
@@ -41,7 +41,7 @@ const {
 )) as typeof import('./prerenderEntry');
 
 const DIST_DIR = path.resolve(import.meta.dirname, '../dist');
-const BASE_URL = (process.env.VITE_APP_BASE_URL || 'https://macro.com').replace(
+const BASE_URL = (process.env.VITE_APP_BASE_URL || 'https://rox.one').replace(
   /\/$/,
   ''
 );
@@ -332,10 +332,10 @@ function buildJsonLd(route: string, seo: PageSeo, rootHtml: string): string[] {
       url: `${BASE_URL}/`,
       logo: `${BASE_URL}/logo.png`,
       sameAs: [
-        'https://x.com/macrodotcom',
+        'https://x.com/roxdotone',
         'https://github.com/macro-inc/macro',
-        'https://www.linkedin.com/company/macrocom',
-        'https://www.instagram.com/macrodotcom/',
+        'https://www.linkedin.com/company/roxdotone',
+        'https://www.instagram.com/roxdotone/',
         'https://www.youtube.com/channel/UCcn-1WTGff0X_RscGVtwljQ',
       ],
     });
@@ -523,9 +523,9 @@ function writeSitemapAndRobots(
     path.join(DIST_DIR, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
   );
-  // Keep non-production deployments (dev.macro.com) out of search indexes.
+  // Keep non-production deployments (dev.rox.one) out of search indexes.
   const rules =
-    BASE_URL === 'https://macro.com'
+    BASE_URL === 'https://rox.one'
       ? 'User-agent: *\nAllow: /\nDisallow: /test\nDisallow: /app'
       : 'User-agent: *\nDisallow: /';
   fs.writeFileSync(

@@ -13,13 +13,13 @@ import { Widget as WidgetNS } from './widget';
  * tool will emit. No AI involved: everything below is hand-written fixtures.
  *
  * The `list`/`timeline` entity refs below are REAL ids from dev-assets
- * (the macro-db-dev RDS the running app talks to), owned by eric.hayes@macro.com,
+ * (the macro-db-dev RDS the running app talks to), owned by eric.hayes@rox.one,
  * so they resolve to real previews via ItemPreview. Swap them for other ids as
  * needed.
  */
 
 // --- real entity refs from dev-assets (macro-db-dev RDS), owned by
-// macro|eric.hayes@macro.com — the account logged into the running app — so they
+// macro|eric.hayes@rox.one — the account logged into the running app — so they
 // resolve to real previews via ItemPreview.
 const DOC_SHOWCASE = '019e943b-ffbd-7a2b-b81d-7fe694f493b2'; // "Mentions and Citations Showcase"
 const DOC_STABILIZE = '019e8f7d-2105-7d37-b4fd-8a5e35caff90'; // "Stabilize the tool render component during chat streaming"
@@ -44,7 +44,7 @@ const CATALOG: Array<{ label: string; widget: Widget }> = [
     widget: {
       type: 'md',
       markdown:
-        '## Weekly summary\n\nYou shipped **4 PRs** and closed *6 tickets*. See the [tracker](https://macro.com) for the full breakdown.\n\n- Auth race fix\n- Tool render stabilization\n\n> Nice momentum this week.',
+        '## Weekly summary\n\nYou shipped **4 PRs** and closed *6 tickets*. See the [tracker](https://rox.one) for the full breakdown.\n\n- Auth race fix\n- Tool render stabilization\n\n> Nice momentum this week.',
     },
   },
   {

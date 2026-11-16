@@ -70,7 +70,7 @@ import {
   type DatabaseSchemaSource,
   useDatabaseSubscription,
 } from '../queries/database-subscription';
-import { createMacroDatabaseApi, editorTable } from '../queries/editor-api';
+import { createRoxDatabaseApi, editorTable } from '../queries/editor-api';
 import { useFormsAskingColumns } from '../queries/forms-usage';
 import { deleteDatabaseOption, updateDatabaseOption } from '../queries/options';
 import { relationTargets } from '../queries/relation-targets';
@@ -328,7 +328,7 @@ function TableAdapter(props: DatabaseGridProps & { tableId: string }) {
             value={canEdit() ? optionEditing : undefined}
           >
             <DatabaseProvider
-              api={createMacroDatabaseApi(databaseId, queryClient)}
+              api={createRoxDatabaseApi(databaseId, queryClient)}
               tableId={props.tableId}
               view={props.view}
               capabilities={{

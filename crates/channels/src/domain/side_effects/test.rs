@@ -1113,14 +1113,14 @@ fn contact_sync_system_channel_created_with_subject() {
         on_behalf_of: Some(user("owner@example.com")),
         channel_type: ChannelType::Private,
         channel_name: Some("Macro Support x owner".to_string()),
-        participant_user_ids: users(&["owner@example.com", "teo@macro.com"]),
+        participant_user_ids: users(&["owner@example.com", "teo@rox.one"]),
     };
 
     let contact_users = contact_sync_users_for_event(&event).unwrap();
 
     assert_eq!(contact_users.len(), 2);
     assert!(contact_users.contains(&user("owner@example.com")));
-    assert!(contact_users.contains(&user("teo@macro.com")));
+    assert!(contact_users.contains(&user("teo@rox.one")));
 }
 
 #[test]
@@ -1219,12 +1219,12 @@ fn macro_ai_user_mention_is_not_a_user_recipient() {
     )));
     assert!(!is_bot_user_mention(&mention(
         "user",
-        "macro|teo@macro.com"
+        "macro|teo@rox.one"
     )));
     assert!(is_bot_principal(
         bot_id::MACRO_AI_BOT_ID.into_storage_id().as_ref()
     ));
-    assert!(!is_bot_principal("macro|teo@macro.com"));
+    assert!(!is_bot_principal("macro|teo@rox.one"));
 }
 
 #[derive(Clone, Default)]

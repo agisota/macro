@@ -1,28 +1,28 @@
 <div align="center">
-  <a href="https://macro.com">
+  <a href="https://rox.one">
     <img width="256" height="256" alt="Rox" src=".github/readme/logo.png" />
   </a>
   <p>The unified workspace for your team</p>
-  <a target="_blank" href="https://macro.com">
+  <a target="_blank" href="https://rox.one">
     <img width="2400" height="1350" alt="Rox — three equal panes showing a team request, linked code changes, and the matching agent session" src=".github/readme/header.png" />
   </a>
 
   <br />
 
   <p>
-    <a href="https://macro.com/app">Sign up</a>
+    <a href="https://rox.one/app">Sign up</a>
     ·
-    <a href="https://docs.macro.com">Docs</a>
+    <a href="https://docs.rox.one">Docs</a>
     ·
-    <a href="https://macro.com/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/macro-demo">Book demo</a>
+    <a href="https://rox.one/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/macro-demo">Book demo</a>
     ·
-    <a href="https://macro.com">Website</a>
+    <a href="https://rox.one">Website</a>
     ·
-    <a href="mailto:contact@macro.com">Feature requests</a>
+    <a href="mailto:contact@rox.one">Feature requests</a>
     ·
     <a href="CONTRIBUTING.md">Contribute</a>
     ·
-    <a href="mailto:teo@macro.com">Hiring</a>
+    <a href="mailto:teo@rox.one">Hiring</a>
   </p>
 </div>
 
@@ -50,18 +50,18 @@ Each surface is purpose-built for its job rather than composed from a generic bl
 
 | Block | Docs | What it does |
 | --- | --- | --- |
-| Email | [Docs &rarr;](https://docs.macro.com/product/email) | Multi-account unified inbox, keyboard shortcuts, and shared inboxes. |
-| Messages | [Docs &rarr;](https://docs.macro.com/product/channels) | Channels and direct messages designed for focused technical discussions. |
-| Tasks | [Docs &rarr;](https://docs.macro.com/product/tasks) | Linear-inspired tasks, tightly integrated with channels, email, and agents. |
-| Docs | [Docs &rarr;](https://docs.macro.com/product/docs) | Real-time collaborative, markdown-native docs built on CRDTs, with @mentions. |
-| Canvas | [Docs &rarr;](https://docs.macro.com/product/canvas) | 2D board with embedded @links to tasks, files, and emails. |
-| Agents | [Docs &rarr;](https://docs.macro.com/product/agents) | Use our models or your agents to work across Rox and automate tasks. |
-| Calls | [Docs &rarr;](https://docs.macro.com/product/calls) | Recorded calls, transcripts, and summaries that agents can use. |
-| File storage | [Docs &rarr;](https://docs.macro.com/product/folders) | Auto-imported from email and channels, fully searchable. |
-| Pull requests | [Docs &rarr;](https://docs.macro.com/integrations/github) | Linked to tasks, embeddable in channels, available to agents. |
-| CRM | [Docs &rarr;](https://docs.macro.com/product/crm) | Customer and contact objects, custom properties, email sync, enrichment. |
+| Email | [Docs &rarr;](https://docs.rox.one/product/email) | Multi-account unified inbox, keyboard shortcuts, and shared inboxes. |
+| Messages | [Docs &rarr;](https://docs.rox.one/product/channels) | Channels and direct messages designed for focused technical discussions. |
+| Tasks | [Docs &rarr;](https://docs.rox.one/product/tasks) | Linear-inspired tasks, tightly integrated with channels, email, and agents. |
+| Docs | [Docs &rarr;](https://docs.rox.one/product/docs) | Real-time collaborative, markdown-native docs built on CRDTs, with @mentions. |
+| Canvas | [Docs &rarr;](https://docs.rox.one/product/canvas) | 2D board with embedded @links to tasks, files, and emails. |
+| Agents | [Docs &rarr;](https://docs.rox.one/product/agents) | Use our models or your agents to work across Rox and automate tasks. |
+| Calls | [Docs &rarr;](https://docs.rox.one/product/calls) | Recorded calls, transcripts, and summaries that agents can use. |
+| File storage | [Docs &rarr;](https://docs.rox.one/product/folders) | Auto-imported from email and channels, fully searchable. |
+| Pull requests | [Docs &rarr;](https://docs.rox.one/integrations/github) | Linked to tasks, embeddable in channels, available to agents. |
+| CRM | [Docs &rarr;](https://docs.rox.one/product/crm) | Customer and contact objects, custom properties, email sync, enrichment. |
 | Databases | — | Tables with typed columns, relations, saved views, and agent queries. |
-| Calendar | [Docs &rarr;](https://docs.macro.com/product/calendar) | Calendar sync, availability, and personal or team booking links. |
+| Calendar | [Docs &rarr;](https://docs.rox.one/product/calendar) | Calendar sync, availability, and personal or team booking links. |
 
 <br />
 
@@ -80,7 +80,7 @@ Rox Mail is inspired by Superhuman's keyboard-first interface with a few key add
 
 Rox Mail lives in the same interface as channels, docs, tasks, and code. From any email, hit "task" to create a linked task, e.g. a ticket for an engineer from a customer support email. @mention emails in documents, e.g. @Re: Contract Signature.eml inside of Todos.md. In Rox, your email is brought into the fold with all of your tools, and your team, in the same permissions system: just hit `Share` to share an email to any DM or channel — no need to screenshot.
 
-[Email docs &rarr;](https://docs.macro.com/product/email)
+[Email docs &rarr;](https://docs.rox.one/product/email)
 
 <br />
 
@@ -96,7 +96,7 @@ We've also added ways for you to bring in conversations outside of your team int
 - Connect your WhatsApp account to access selected direct and group chats.
 - Read, reply to, and share your WhatsApp conversations from Rox.
 
-[Messages docs &rarr;](https://docs.macro.com/product/channels)
+[Messages docs &rarr;](https://docs.rox.one/product/channels)
 
 <br />
 
@@ -122,7 +122,7 @@ Creating tasks in Rox is easy. Where possible, tasks created are bidirectionally
 
 We made organizing tasks in Rox simple. Group related tasks into projects and assign responsibility to team members or agents. To track your work use lists, boards, and saved views. You can hand off tasks to agents and they'll use the context connected to the task to complete it and update the status.
 
-[Tasks docs &rarr;](https://docs.macro.com/product/tasks)
+[Tasks docs &rarr;](https://docs.rox.one/product/tasks)
 
 <br />
 
@@ -143,7 +143,7 @@ We wanted everything in a single markdown editor without switching tools.
 
 Agents can edit documents that are open or closed. One interesting use case for agentic editing is to maintain team-context. For example we have a Rox Routine that runs daily to update our in-office Pool Games markdown doc. It scans through all of the channels to see if anyone has won and then updates the doc. If somebody has already edited the doc, it can know that and forgo the update. Conflicts are handled natively by the CRDT collaboration system.
 
-[Docs &rarr;](https://docs.macro.com/product/docs)
+[Docs &rarr;](https://docs.rox.one/product/docs)
 
 <br />
 
@@ -170,7 +170,7 @@ The problem with standalone CRM is the same as with task trackers: it's not up t
 - See related emails, files, tasks, calls, and discussions from a company or contact record.
 - @mention the company or contact from any note, message, task, pull request, etc., to create a bidirectional link between the record and that thing. For example, @mention a company from an engineering task to note their request. It all ties together.
 
-[CRM docs &rarr;](https://docs.macro.com/product/crm)
+[CRM docs &rarr;](https://docs.rox.one/product/crm)
 
 <br />
 
@@ -182,7 +182,7 @@ Agents also have access to Rox’s SDK and can write and run code to carry out y
 
 - DM an agent, @mention one in a channel, or assign it a task.
 - Have agents research a customer, draft a reply, update a document, maintain a database, or take an engineering task through to a pull request.
-- Use the models we provide, connect Cursor with your own API key, or bring agents running on your own machine into Rox through macrod.
+- Use the models we provide, connect Cursor with your own API key, or bring agents running on your own machine into Rox through roxd.
 - Create routines for work that should happen on a schedule or in response to activity in your workspace.
 - Give agents reusable instructions through skills, so you don’t have to explain the same process every time.
 
@@ -195,10 +195,10 @@ Memory isn't supposed to encompass everything. Agents can also search your works
 Your coding agents can use Rox too. Point Claude Code, Codex, or any MCP client at your workspace:
 
 ```bash
-claude mcp add --transport http macro https://mcp-server.macro.com/mcp
+claude mcp add --transport http macro https://mcp-server.rox.one/mcp
 ```
 
-See [MCP setup](https://docs.macro.com/AI/mcp/overview) for what they can do once connected.
+See [MCP setup](https://docs.rox.one/AI/mcp/overview) for what they can do once connected.
 
 <br />
 
@@ -213,7 +213,7 @@ Since Rox already has your CRM, chats, DMs, booking links, and calendar, calls c
 
 ![An internal group call recording with people on camera, playback controls, and a speaker-labelled transcript](.github/readme/framed/calls.png)
 
-[Calls docs &rarr;](https://docs.macro.com/product/calls)
+[Calls docs &rarr;](https://docs.rox.one/product/calls)
 
 <br />
 
@@ -240,13 +240,13 @@ We built a thoughtful Calendar in Rox so you can manage your week right next to 
 
 **One inbox.** Emails, channel messages, task assignments, @mentions, and agent responses all land in one place. Keyboard-first throughout.
 
-Deeper reading: [mentions](https://docs.macro.com/concepts/mentions), [properties](https://docs.macro.com/concepts/properties), and [permissions](https://docs.macro.com/permissions); the [FAQ](https://docs.macro.com/faq) covers comparisons and licensing.
+Deeper reading: [mentions](https://docs.rox.one/concepts/mentions), [properties](https://docs.rox.one/concepts/properties), and [permissions](https://docs.rox.one/permissions); the [FAQ](https://docs.rox.one/faq) covers comparisons and licensing.
 
 <br />
 
 # Using the hosted app
 
-[Sign up](https://macro.com/app) and connect your Gmail or Outlook account. Rox runs in any modern browser, with an [iOS app](https://apps.apple.com/us/app/macro-app/id6743133649) or [Android app](https://play.google.com/store/apps/details?id=com.macro.workspace.mobile&pcampaignid=web_share) for your phone. The [getting started guide](https://docs.macro.com/getting-started) takes you from a fresh account to a working setup in about 15 minutes. Coming from Notion, Slack, Superhuman, or Linear? See [Switch to Rox](https://docs.macro.com/switch-to-macro).
+[Sign up](https://rox.one/app) and connect your Gmail or Outlook account. Rox runs in any modern browser, with an [iOS app](https://apps.apple.com/us/app/macro-app/id6743133649) or [Android app](https://play.google.com/store/apps/details?id=com.macro.workspace.mobile&pcampaignid=web_share) for your phone. The [getting started guide](https://docs.rox.one/getting-started) takes you from a fresh account to a working setup in about 15 minutes. Coming from Notion, Slack, Superhuman, or Linear? See [Switch to Rox](https://docs.rox.one/switch-to-macro).
 
 <br />
 
@@ -260,7 +260,7 @@ To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 # Security
 
-Zero data retention with model providers, including no training on customer data. We welcome responsible security reports and pay bounties in accordance with severity and impact. Send reports to [security@macro.com](mailto:security@macro.com).
+Zero data retention with model providers, including no training on customer data. We welcome responsible security reports and pay bounties in accordance with severity and impact. Send reports to [security@rox.one](mailto:security@rox.one).
 
 <br />
 
@@ -273,9 +273,9 @@ Rox is fully open source — not "open core" — under the GNU Affero General Pu
 
 Have an idea, want to contribute, or want to work on Rox?
 
-- Feature requests: [contact@macro.com](mailto:contact@macro.com).
+- Feature requests: [contact@rox.one](mailto:contact@rox.one).
 - Contributions: see our [contribution guidelines](CONTRIBUTING.md).
-- Hiring: [teo@macro.com](mailto:teo@macro.com).
+- Hiring: [teo@rox.one](mailto:teo@rox.one).
 
 <br />
 

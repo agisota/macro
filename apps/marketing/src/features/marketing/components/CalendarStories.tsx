@@ -26,7 +26,7 @@ type CalendarBlock = {
 };
 
 const accounts = [
-  { email: 'julia@macro.com', tone: 'blue' },
+  { email: 'julia@rox.one', tone: 'blue' },
   { email: 'personal@example.com', tone: 'purple' },
   { email: 'family@example.com', tone: 'green' },
 ];
@@ -428,7 +428,7 @@ export function CalendarStories() {
             </div>
             <div class="calendar-event-row">
               <CalendarIcon />
-              <div>julia@macro.com</div>
+              <div>julia@rox.one</div>
             </div>
             <div class="calendar-event-actions">
               <span class="calendar-app-button">Discard</span>

@@ -3,7 +3,7 @@ use model_owner::Owner;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-/// A paired runtime (a macrod machine), listed only by attention feeds: its
+/// A paired runtime (a roxd machine), listed only by attention feeds: its
 /// access requests and removals are notifications filed under it, and it has
 /// no page of its own, so Settings → Machines opens it.
 #[derive(Serialize, Clone, Deserialize, Debug)]

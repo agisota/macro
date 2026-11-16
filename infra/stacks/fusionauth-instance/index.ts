@@ -156,7 +156,7 @@ const defaultTenant = new FusionAuthTenant(
       verificationEmailTemplateId: emailVerificationTemplate.id,
       verificationStrategy: 'ClickableLink',
     },
-    logoutUrl: `https://${stack === 'prod' ? '' : `${stack}.`}macro.com`,
+    logoutUrl: `https://${stack === 'prod' ? '' : `${stack}.`}rox.one`,
     // Delete unverified users
     userDeletePolicy: {
       unverifiedEnabled: true,
@@ -302,7 +302,7 @@ const macroApplication = new FusionAuthApplication(
               `${getServiceUrl(ServiceUrl.AUTHENTICATION_SERVICE_URL)}/oauth/redirect`,
             ]
           : []),
-        `https://mcp-server${stack === 'prod' ? '' : `-${stack}`}.macro.com/oauth/callback`,
+        `https://mcp-server${stack === 'prod' ? '' : `-${stack}`}.rox.one/oauth/callback`,
         ...(stack === 'dev' || stack === 'prod'
           ? [`${getServiceUrl(ServiceUrl.MCP_SERVER_URL)}/oauth/callback`]
           : []),

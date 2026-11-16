@@ -18,7 +18,7 @@ fn forwarded_headers_use_a_safe_allowlist() {
     incoming.insert("user-agent", "test-browser".parse().unwrap());
     incoming.insert(AUTHORIZATION, "Bearer secret".parse().unwrap());
     incoming.insert(COOKIE, "session=secret".parse().unwrap());
-    incoming.insert(REFERER, "https://app.macro.com/private".parse().unwrap());
+    incoming.insert(REFERER, "https://app.rox.one/private".parse().unwrap());
     incoming.insert("x-forwarded-for", "10.0.0.1".parse().unwrap());
 
     let forwarded = forwarded_request_headers(&incoming);

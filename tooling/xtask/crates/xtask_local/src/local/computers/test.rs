@@ -39,7 +39,7 @@ fn docker_computers_dial_the_stack_in_network() {
     let overrides: BTreeMap<String, String> = env
         .iter()
         .filter(|(name, _)| {
-            MACROD_SERVICES
+            ROXD_SERVICES
                 .iter()
                 .any(|(needed, _)| name.as_str() == *needed)
         })
@@ -137,7 +137,7 @@ fn incus_control_and_all_persona_urls_use_the_tailnet() {
     let overrides: BTreeMap<String, String> = env
         .iter()
         .filter(|(name, _)| {
-            MACROD_SERVICES
+            ROXD_SERVICES
                 .iter()
                 .any(|(needed, _)| name.as_str() == *needed)
         })
@@ -288,7 +288,7 @@ fn incus_uses_the_discovered_devbox_address() {
     let overrides: BTreeMap<String, String> = env
         .iter()
         .filter(|(name, _)| {
-            MACROD_SERVICES
+            ROXD_SERVICES
                 .iter()
                 .any(|(needed, _)| name.as_str() == *needed)
         })

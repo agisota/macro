@@ -42,7 +42,7 @@ describe('teamAgentRunState', () => {
     );
   });
 
-  it('reads a running computer whose macrod is not connected as offline', () => {
+  it('reads a running computer whose roxd is not connected as offline', () => {
     expect(teamAgentRunState({ status: 'running' }, { connected: false })).toBe(
       'offline'
     );

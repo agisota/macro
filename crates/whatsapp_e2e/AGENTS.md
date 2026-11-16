@@ -53,7 +53,7 @@ database. Nothing talks to WhatsApp or AWS (the KMS is
 ## Checks
 
 - `cargo test -p whatsapp_e2e` with `SQLX_OFFLINE` unset and `DATABASE_URL`
-  pointing at a migrated MacroDB (the query macros check against it; each test
+  pointing at a migrated RoxDB (the query macros check against it; each test
   gets its own database on that server). If the shared `macrodb` is stale,
   create and migrate your own `macrodb_<name>` with
   `sqlx migrate run --source crates/macro_db_client/migrations`.

@@ -51,7 +51,7 @@ events to the `macro.properties` Kafka topic.
 
 ## Checks
 
-- `cargo test -p properties` (`SQLX_OFFLINE` unset; requires local MacroDB).
+- `cargo test -p properties` (`SQLX_OFFLINE` unset; requires local RoxDB).
 - `cargo test -p properties --no-default-features --features outbound` to
   check the outbound-only build other services depend on.
 

@@ -4,7 +4,7 @@ use calendar_events::domain::meeting_links::attach_macro_call;
 use chrono::{NaiveDate, TimeZone, Utc};
 use opensearch_client::search::model::{Highlight, SearchHit};
 
-const CALL_URL: &str = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef";
+const CALL_URL: &str = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef";
 
 fn hit(entity_id: Uuid) -> SearchHit {
     SearchHit {

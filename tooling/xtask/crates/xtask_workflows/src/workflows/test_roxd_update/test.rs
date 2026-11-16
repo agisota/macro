@@ -2,7 +2,7 @@ use super::*;
 
 #[test]
 fn runs_the_end_to_end_tests_on_every_platform() {
-    let yaml = test_macrod_update()
+    let yaml = test_roxd_update()
         .to_string()
         .expect("workflow should serialize");
     for runner in [

@@ -157,7 +157,7 @@ fn keeps_the_upstreams_session_id_on_the_way_back() {
 #[test]
 fn echoed_scoping_headers_never_reach_the_sandbox() {
     let mut headers = header_map(&[
-        ("x-pd-external-user-id", "macro|owner@macro.com"),
+        ("x-pd-external-user-id", "macro|owner@rox.one"),
         ("x-pd-project-id", "proj_abc"),
         ("content-type", "application/json"),
     ]);
@@ -374,24 +374,24 @@ fn an_echoed_credential_never_reaches_the_sandbox() {
 /// compare rather than defeating it.
 #[test]
 fn the_staff_gate_admits_exactly_the_macro_domain() {
-    for staff in ["wolf@macro.com", "wolf@MACRO.COM", "wolf+agents@macro.com"] {
+    for staff in ["wolf@rox.one", "wolf@ROX.ONE", "wolf+agents@rox.one"] {
         let owner = MacroUserIdStr::try_from_email(staff).expect(staff);
         assert!(is_macro_staff(&owner), "refused {staff}");
     }
 
     for visitor in [
         "visitor@example.com",
-        "evil@macro.com.attacker.net",
-        "evil@xmacro.com",
-        "evil@macro.org",
+        "evil@rox.one.attacker.net",
+        "evil@xrox.one",
+        "evil@rox.org",
     ] {
         let owner = MacroUserIdStr::try_from_email(visitor).expect(visitor);
         assert!(!is_macro_staff(&owner), "admitted {visitor}");
     }
 
     for not_an_email in [
-        "wolf@macro.com@evil.com",
-        "wolf@macro.com.",
+        "wolf@rox.one@evil.com",
+        "wolf@rox.one.",
         "wolf@macro com",
         "wolf@macrо.com", // Cyrillic 'о': non-ASCII labels are not emails here.
         "not-an-email",

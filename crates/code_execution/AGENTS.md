@@ -39,7 +39,7 @@ them unless the schedule quotes the user's approval
 `RunEnvironment::endpoints` carries the SDK's hosts and the web app origin; the
 host fills both from `macro_service_urls`. Leaving `webAppUrl` out of
 `new Macro(...)` makes the SDK default to prod, so `webUrl()` links on dev and
-local would point at macro.com.
+local would point at rox.one.
 
 The bootstrap bans timers before importing `main.mjs`, and the import map points
 node timer and worker modules at `timers.mjs`. The bundled SDK's only timer is

@@ -34,7 +34,7 @@ class ScanLineTest(unittest.TestCase):
 
     def test_allows_macro_and_test_tlds(self):
         empty = Exceptions(set(), set(), set())
-        line = "wolf@macro.com qa@billing.test local@foo.localhost"
+        line = "wolf@rox.one qa@billing.test local@foo.localhost"
         self.assertEqual(scan_line("note.md", 1, line, empty), [])
 
     def test_flags_phone_and_address_not_iso_dates(self):

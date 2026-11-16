@@ -47,13 +47,13 @@ pub struct Daemon {
     _presence_watch: AbortOnDropHandle<()>,
 }
 
-/// The agent a previous macrod process image handed over, ready to relay.
+/// The agent a previous roxd process image handed over, ready to relay.
 #[cfg(unix)]
 pub type InheritedAgent = crate::handoff::HandedOffAgent;
 #[cfg(not(unix))]
 pub type InheritedAgent = std::convert::Infallible;
 
-/// How long a handoff may take before macrod gives up on keeping the agent.
+/// How long a handoff may take before roxd gives up on keeping the agent.
 #[cfg(unix)]
 const HANDOFF_TIMEOUT: Duration = Duration::from_secs(30);
 
@@ -85,7 +85,7 @@ impl Daemon {
         let workspaces = if crate::herdr::drives_herdr(&config.harness) {
             let root = crate::herdr::instance_directory(credentials.harness_id)?;
             let herdr = crate::herdr::HerdrSession::detect()
-                .ok_or_else(|| rootcause::report!("start macrod inside a Herdr pane"))?;
+                .ok_or_else(|| rootcause::report!("start roxd inside a Herdr pane"))?;
             crate::herdr::configure_launch(&mut config.harness, &config.herdr, &root);
             Some(crate::herdr::repositories::Workspaces::new(
                 config.workspace.path.clone(),
@@ -242,7 +242,7 @@ async fn watch_presence(client: EventStreamClient, mut runtime: watch::Receiver<
         match client.service_reports_connected().await {
             Ok(false) if !disagreeing => {
                 disagreeing = true;
-                tracing::warn!("macrod holds a runtime connection the service reports as offline");
+                tracing::warn!("roxd holds a runtime connection the service reports as offline");
             }
             Ok(true) if disagreeing => {
                 disagreeing = false;
@@ -280,7 +280,7 @@ fn adopt(inherited: Option<InheritedAgent>, _turns: &ActiveTurns) -> Option<Runn
     inherited.map(|never| match never {})
 }
 
-/// Inside herdr, the directory macrod was started from is the repository
+/// Inside herdr, the directory roxd was started from is the repository
 /// every session works in, and each session gets a herdr window.
 #[cfg(unix)]
 fn start_herdr(config: &mut Config, credentials: &HarnessCredentials) -> Option<crate::herdr::Hub> {

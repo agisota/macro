@@ -36,7 +36,7 @@ it has an active Claude login. Only meaningful for Macro computers. */
   created_by: string;
   /** Harness id. */
   id: HarnessId;
-  /** Runtime kind. Currently always `macrod`. */
+  /** Runtime kind. Currently always `roxd`. */
   kind: string;
   /** When the daemon last attached a runtime connection. */
   last_connected_at?: HarnessLastConnectedAt;

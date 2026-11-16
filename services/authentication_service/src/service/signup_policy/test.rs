@@ -64,15 +64,15 @@ fn allowlist_policy_accepts_macro_domain_addresses() {
     let policy =
         SignupPolicy::from_allowlist_json(r#"["person@example.test"]"#).expect("valid allowlist");
 
-    assert!(policy.authorize_public_email("new.user@macro.com").is_ok());
+    assert!(policy.authorize_public_email("new.user@rox.one").is_ok());
     assert!(
         policy
-            .authorize_public_email(" NEW.USER@MACRO.COM ")
+            .authorize_public_email(" NEW.USER@ROX.ONE ")
             .is_ok()
     );
     assert!(
         policy
-            .authorize_public_email("new.user+trial@macro.com")
+            .authorize_public_email("new.user+trial@rox.one")
             .is_ok()
     );
 }
@@ -83,9 +83,9 @@ fn macro_domain_match_does_not_include_subdomains_or_similar_domains() {
         SignupPolicy::from_allowlist_json(r#"["person@example.test"]"#).expect("valid allowlist");
 
     for email in [
-        "person@dev.macro.com",
-        "person@notmacro.com",
-        "person@macro.com.example.test",
+        "person@dev.rox.one",
+        "person@notrox.one",
+        "person@rox.one.example.test",
     ] {
         assert_eq!(
             policy.authorize_public_email(email),

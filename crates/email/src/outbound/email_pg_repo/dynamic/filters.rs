@@ -148,7 +148,7 @@ fn build_address_predicate_on_m(
         // by the expression index on `LOWER(SPLIT_PART(email_address, '@', 2))`
         // so the lookup is an index seek rather than a trigram substring
         // scan, and there are no false positives like `macro.community`
-        // matching the domain `macro.com`.
+        // matching the domain `rox.one`.
         (None, Email::Domain(s)) => {
             let domain = s.to_ascii_lowercase();
             build_address_text_match(

@@ -1,7 +1,7 @@
 use super::*;
 use crate::domain::setup::SetupTimeline;
 
-/// A billed computer booting for the first time: paid, booting, macrod not
+/// A billed computer booting for the first time: paid, booting, roxd not
 /// connected yet.
 fn setting_up() -> ComputerState {
     ComputerState {
@@ -30,7 +30,7 @@ fn apply(state: &ComputerState, event: Event, at: DateTime<Utc>) -> (ComputerSta
     .unwrap();
     let (phase, connected, waiting) = (
         next.phase.clone(),
-        next.macrod_connected,
+        next.roxd_connected,
         next.waiting_for_capacity(),
     );
     if let Some(setup) = next.setup.as_mut() {
@@ -50,8 +50,8 @@ fn setup_notices(effects: &[Effect]) -> Vec<&SetupOutcome> {
 }
 
 #[test]
-fn the_first_macrod_connection_of_setup_tells_the_buyer_it_is_ready() {
-    let (ready, effects) = apply(&setting_up(), Event::MacrodConnected, now());
+fn the_first_roxd_connection_of_setup_tells_the_buyer_it_is_ready() {
+    let (ready, effects) = apply(&setting_up(), Event::RoxdConnected, now());
 
     assert_eq!(ready.phase, Phase::Running);
     assert_eq!(
@@ -64,12 +64,12 @@ fn the_first_macrod_connection_of_setup_tells_the_buyer_it_is_ready() {
 
 #[test]
 fn reconnecting_after_setup_tells_nobody() {
-    let (ready, _) = apply(&setting_up(), Event::MacrodConnected, now());
+    let (ready, _) = apply(&setting_up(), Event::RoxdConnected, now());
     assert!(ready.setup.as_ref().unwrap().complete());
 
-    let (dropped, effects) = apply(&ready, Event::MacrodDisconnected, now());
+    let (dropped, effects) = apply(&ready, Event::RoxdDisconnected, now());
     assert_eq!(setup_notices(&effects), Vec::<&SetupOutcome>::new());
-    let (reconnected, effects) = apply(&dropped, Event::MacrodConnected, now());
+    let (reconnected, effects) = apply(&dropped, Event::RoxdConnected, now());
     assert_eq!(reconnected.phase, Phase::Running);
     assert_eq!(setup_notices(&effects), Vec::<&SetupOutcome>::new());
 
@@ -78,7 +78,7 @@ fn reconnecting_after_setup_tells_nobody() {
     let (stopped, _) = apply(&stopping, Event::InstanceStopped, now());
     let (booting, _) = apply(&stopped, Event::PowerOn, now());
     assert_eq!(booting.phase, Phase::Booting);
-    let (running, effects) = apply(&booting, Event::MacrodConnected, now());
+    let (running, effects) = apply(&booting, Event::RoxdConnected, now());
     assert_eq!(running.phase, Phase::Running);
     assert_eq!(setup_notices(&effects), Vec::<&SetupOutcome>::new());
 }
@@ -155,7 +155,7 @@ fn setup_that_keeps_crashing_tells_the_buyer_when_it_gives_up() {
 
 #[test]
 fn a_set_up_computer_that_fails_tells_nobody() {
-    let (ready, _) = apply(&setting_up(), Event::MacrodConnected, now());
+    let (ready, _) = apply(&setting_up(), Event::RoxdConnected, now());
 
     let (failed, effects) = apply(&ready, Event::HostLost, now() + Duration::days(3));
 
@@ -200,7 +200,7 @@ fn a_retried_setup_that_fails_again_tells_the_buyer_again() {
 
 #[test]
 fn a_computer_from_before_setup_timelines_tells_nobody() {
-    let (_, effects) = apply(&billed(Phase::Booting), Event::MacrodConnected, now());
+    let (_, effects) = apply(&billed(Phase::Booting), Event::RoxdConnected, now());
     assert_eq!(setup_notices(&effects), Vec::<&SetupOutcome>::new());
 
     let (_, effects) = apply(&billed(Phase::Booting), Event::HostLost, now());

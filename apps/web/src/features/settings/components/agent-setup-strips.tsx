@@ -94,7 +94,7 @@ export function AgentSetupStrips(props: {
             icon={<TerminalIcon />}
             title="Bring your own agent"
             subject="your own agent"
-            description="Pair Claude Code, Codex, or another local agent with macrod."
+            description="Pair Claude Code, Codex, or another local agent with roxd."
             action="Set up"
             onAction={props.onSetUpRuntime}
           />

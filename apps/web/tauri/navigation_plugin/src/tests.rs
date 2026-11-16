@@ -10,13 +10,13 @@ fn test_plugin() -> MacroNavigationPlugin {
         "http://localhost:3000",
     ])
     .unwrap()
-    .with_app_link_hosts(&["macro.com", "dev.macro.com", "staging.macro.com"])
+    .with_app_link_hosts(&["rox.one", "dev.rox.one", "staging.rox.one"])
 }
 
 #[test]
 fn get_destination_app_link_for_macro_app_path() {
     let plugin = test_plugin();
-    let url = Url::parse("https://macro.com/app/component/doc123").unwrap();
+    let url = Url::parse("https://rox.one/app/component/doc123").unwrap();
     match plugin.get_destination(&url) {
         NavigationOutput::AppLink(scheme) => {
             assert_eq!(scheme.path(), "/component/doc123");
@@ -29,7 +29,7 @@ fn get_destination_app_link_for_macro_app_path() {
 #[test]
 fn get_destination_app_link_preserves_query() {
     let plugin = test_plugin();
-    let url = Url::parse("https://dev.macro.com/app/component/doc123?foo=bar").unwrap();
+    let url = Url::parse("https://dev.rox.one/app/component/doc123?foo=bar").unwrap();
     match plugin.get_destination(&url) {
         NavigationOutput::AppLink(scheme) => {
             assert_eq!(scheme.path(), "/component/doc123");
@@ -42,7 +42,7 @@ fn get_destination_app_link_preserves_query() {
 #[test]
 fn get_destination_app_link_strips_www() {
     let plugin = test_plugin();
-    let url = Url::parse("https://www.macro.com/app/component/doc123").unwrap();
+    let url = Url::parse("https://www.rox.one/app/component/doc123").unwrap();
     assert!(matches!(
         plugin.get_destination(&url),
         NavigationOutput::AppLink(_)
@@ -52,7 +52,7 @@ fn get_destination_app_link_strips_www() {
 #[test]
 fn get_destination_external_for_non_app_path_on_macro_host() {
     let plugin = test_plugin();
-    for url in ["https://macro.com/pricing", "https://dev.macro.com/pricing"] {
+    for url in ["https://rox.one/pricing", "https://dev.rox.one/pricing"] {
         assert!(
             matches!(
                 plugin.get_destination(&Url::parse(url).unwrap()),
@@ -66,7 +66,7 @@ fn get_destination_external_for_non_app_path_on_macro_host() {
 #[test]
 fn get_destination_external_for_app_path_on_foreign_host() {
     let plugin = test_plugin();
-    let url = Url::parse("https://auth-service.macro.com/app/component/doc123").unwrap();
+    let url = Url::parse("https://auth-service.rox.one/app/component/doc123").unwrap();
     assert!(matches!(
         plugin.get_destination(&url),
         NavigationOutput::External(_)
@@ -96,15 +96,15 @@ fn get_destination_internal_for_spa_origins() {
 /// in the webview — the app-link check runs before the allowlist.
 #[test]
 fn get_destination_app_link_wins_over_allowlist() {
-    let plugin = MacroNavigationPlugin::new(&["https://macro.com"])
+    let plugin = MacroNavigationPlugin::new(&["https://rox.one"])
         .unwrap()
-        .with_app_link_hosts(&["macro.com"]);
-    let app_url = Url::parse("https://macro.com/app/component/doc123").unwrap();
+        .with_app_link_hosts(&["rox.one"]);
+    let app_url = Url::parse("https://rox.one/app/component/doc123").unwrap();
     assert!(matches!(
         plugin.get_destination(&app_url),
         NavigationOutput::AppLink(_)
     ));
-    let site_url = Url::parse("https://macro.com/pricing").unwrap();
+    let site_url = Url::parse("https://rox.one/pricing").unwrap();
     assert!(matches!(
         plugin.get_destination(&site_url),
         NavigationOutput::Internal
@@ -113,8 +113,8 @@ fn get_destination_app_link_wins_over_allowlist() {
 
 #[test]
 fn get_destination_no_app_link_hosts_keeps_old_behavior() {
-    let plugin = MacroNavigationPlugin::new(&["https://macro.com"]).unwrap();
-    let url = Url::parse("https://macro.com/app/component/doc123").unwrap();
+    let plugin = MacroNavigationPlugin::new(&["https://rox.one"]).unwrap();
+    let url = Url::parse("https://rox.one/app/component/doc123").unwrap();
     assert!(matches!(
         plugin.get_destination(&url),
         NavigationOutput::Internal
@@ -150,9 +150,9 @@ fn popup_and_main_frame_share_external_url_policy() {
 fn popup_app_links_include_same_origin_and_macro_scheme() {
     let plugin = test_plugin();
     for input in [
-        "https://macro.com/app/mail?view=all",
-        "https://dev.macro.com/app/mail?view=all",
-        "https://www.macro.com/app/mail?view=all",
+        "https://rox.one/app/mail?view=all",
+        "https://dev.rox.one/app/mail?view=all",
+        "https://www.rox.one/app/mail?view=all",
         "macro:///mail?view=all",
         "tauri://localhost/app/mail?view=all",
         "http://tauri.localhost/app/mail?view=all",
@@ -276,7 +276,7 @@ fn popup_app_link_emits_once_and_never_creates_a_webview() {
 
     let response = test_plugin().on_new_window(
         app.handle(),
-        &Url::parse("https://macro.com/app/mail?view=all").unwrap(),
+        &Url::parse("https://rox.one/app/mail?view=all").unwrap(),
     );
 
     assert!(matches!(response, tauri::webview::NewWindowResponse::Deny));
@@ -289,7 +289,7 @@ fn popup_app_link_emits_once_and_never_creates_a_webview() {
     received.lock().unwrap().clear();
     test_plugin().on_new_window(
         app.handle(),
-        &Url::parse("https://macro.com/app/booking/id#token").unwrap(),
+        &Url::parse("https://rox.one/app/booking/id#token").unwrap(),
     );
     assert_eq!(
         *received.lock().unwrap(),
@@ -317,7 +317,7 @@ fn open_external_routes_app_links_and_leaves_standalone_documents_to_the_page() 
 
     assert!(plugin.open_external(
         app.handle(),
-        &Url::parse("https://macro.com/app/mail?view=all").unwrap(),
+        &Url::parse("https://rox.one/app/mail?view=all").unwrap(),
     ));
     assert_eq!(
         *received.lock().unwrap(),
@@ -420,7 +420,7 @@ fn documents_are_not_embedded_unless_configured() {
 
 #[test]
 fn from_url_extracts_correct_path_from_universal_link() {
-    let url = Url::parse("https://macro.com/app/component/doc123").unwrap();
+    let url = Url::parse("https://rox.one/app/component/doc123").unwrap();
     let result = MacroScheme::from_url(&url).unwrap();
     assert_eq!(result.path(), "/component/doc123");
     assert_eq!(result.query(), None);
@@ -428,7 +428,7 @@ fn from_url_extracts_correct_path_from_universal_link() {
 
 #[test]
 fn from_url_extracts_path_and_query_from_universal_link() {
-    let url = Url::parse("https://macro.com/app/component/doc123?foo=bar").unwrap();
+    let url = Url::parse("https://rox.one/app/component/doc123?foo=bar").unwrap();
     let result = MacroScheme::from_url(&url).unwrap();
     assert_eq!(result.path(), "/component/doc123");
     assert_eq!(result.query(), Some("foo=bar"));
@@ -436,7 +436,7 @@ fn from_url_extracts_path_and_query_from_universal_link() {
 
 #[test]
 fn from_url_keeps_the_fragment_of_a_universal_link() {
-    let url = Url::parse("https://macro.com/app/booking/id?foo=bar#token").unwrap();
+    let url = Url::parse("https://rox.one/app/booking/id?foo=bar#token").unwrap();
     let result = MacroScheme::from_url(&url).unwrap();
     assert_eq!(result.path(), "/booking/id");
     assert_eq!(result.query(), Some("foo=bar"));
@@ -459,14 +459,14 @@ fn from_url_reads_the_route_from_a_webview_fragment() {
 
 #[test]
 fn from_url_strips_bare_app_path() {
-    let url = Url::parse("https://macro.com/app").unwrap();
+    let url = Url::parse("https://rox.one/app").unwrap();
     let result = MacroScheme::from_url(&url).unwrap();
     assert_eq!(result.path(), "/");
 }
 
 #[test]
 fn from_url_handles_nested_path() {
-    let url = Url::parse("https://macro.com/app/component/nested/path/here").unwrap();
+    let url = Url::parse("https://rox.one/app/component/nested/path/here").unwrap();
     let result = MacroScheme::from_url(&url).unwrap();
     assert_eq!(result.path(), "/component/nested/path/here");
 }

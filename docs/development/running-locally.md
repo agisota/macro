@@ -90,7 +90,7 @@ proxy or Tailscale is needed. Vite forwards hosted development API and WebSocket
 requests through `/__macro_dev/` on this same origin, so arbitrary machine
 hostnames do not need to be added to the deployed CORS allowlist. Authentication
 cookies are scoped to the visiting hostname; sign in with an email code on that
-hostname rather than relying on an existing `.macro.com` cookie. Google/SSO
+hostname rather than relying on an existing `.rox.one` cookie. Google/SSO
 redirects still use the hosted authentication service’s redirect allowlist, which
 does not currently include arbitrary development hostnames.
 
@@ -737,14 +737,14 @@ the store path or the daemon's image changes
 `--no-computers` to skip it.
 
 Computers are privileged `macro-box` containers named `macro-computer-<id>`
-on the instance's `<project>_services` network, so macrod dials the agent
+on the instance's `<project>_services` network, so roxd dials the agent
 harness, document storage, and auth in-network. The harness drives the daemon
 through the Docker socket it already mounts for sandboxes. Enrollments are
 written to `infra/local/generated/<instance>/computers/enrollments`, which is
 mounted into the harness at the same absolute path, because the daemon resolves
 bind sources on the host. The harness writes them as root. Each computer's
-`/home` and `/var/lib/macrod` are named volumes (`macro-computer-<id>-home`,
-`-macrod`), like an Incus computer's data disk; releasing the computer
+`/home` and `/var/lib/roxd` are named volumes (`macro-computer-<id>-home`,
+`-roxd`), like an Incus computer's data disk; releasing the computer
 deletes them. Starting the stack again removes the
 instance's computer containers and volumes along with its data.
 
@@ -783,7 +783,7 @@ verifying the pinned SHA-256 fingerprint before saving it and on every start.
 The Incus client pins the certificate bytes, so SAN/name mismatch is expected
 and does not weaken verification.
 
-Enrollment stores the fleet-reachable egress URL in macrod’s config. Computer
+Enrollment stores the fleet-reachable egress URL in roxd’s config. Computer
 sessions use it for first-party MCP servers and the Anthropic gateway, while
 other paired runtimes keep the stack’s external egress URL.
 

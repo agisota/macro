@@ -1,5 +1,5 @@
 use super::*;
-use crate::domain::lifecycle::MACROD_GRACE;
+use crate::domain::lifecycle::ROXD_GRACE;
 use crate::domain::ports::InstanceStatus;
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
@@ -22,13 +22,13 @@ async fn boot_timeout_uses_durable_timer_and_refreshes_grace_after_downtime(pool
         .await
         .unwrap();
     assert_eq!(overdue.len(), 1);
-    assert_eq!(overdue[0].fire_at, now() + MACROD_GRACE);
+    assert_eq!(overdue[0].fire_at, now() + ROXD_GRACE);
     drop(repo);
 
     let restarted = PgComputerRepo::new(pool, policy());
     let startup = now() + Duration::hours(1);
     restarted
-        .postpone_macrod_timers(host.id, startup + MACROD_GRACE)
+        .postpone_roxd_timers(host.id, startup + ROXD_GRACE)
         .await
         .unwrap();
     assert!(restarted.due_timers(startup, 10).await.unwrap().is_empty());
@@ -41,7 +41,7 @@ async fn boot_timeout_uses_durable_timer_and_refreshes_grace_after_downtime(pool
             .is_none()
     );
     let due = restarted
-        .due_timers(startup + MACROD_GRACE, 10)
+        .due_timers(startup + ROXD_GRACE, 10)
         .await
         .unwrap();
     assert_eq!(due.len(), 1);
@@ -49,7 +49,7 @@ async fn boot_timeout_uses_durable_timer_and_refreshes_grace_after_downtime(pool
         .fire_timer(
             due[0].clone(),
             Some(InstanceStatus::Running),
-            startup + MACROD_GRACE,
+            startup + ROXD_GRACE,
         )
         .await
         .unwrap()
@@ -57,12 +57,12 @@ async fn boot_timeout_uses_durable_timer_and_refreshes_grace_after_downtime(pool
     assert_eq!(computer.state.phase, Phase::Booting);
     assert!(computer.state.recent_crashes.is_empty());
     let next = restarted
-        .due_timers(startup + MACROD_GRACE * 2, 10)
+        .due_timers(startup + ROXD_GRACE * 2, 10)
         .await
         .unwrap();
-    assert_eq!(next[0].fire_at, startup + MACROD_GRACE * 2);
+    assert_eq!(next[0].fire_at, startup + ROXD_GRACE * 2);
     restarted
-        .apply(id, Event::MacrodConnected, startup + MACROD_GRACE)
+        .apply(id, Event::RoxdConnected, startup + ROXD_GRACE)
         .await
         .unwrap();
     assert_eq!(

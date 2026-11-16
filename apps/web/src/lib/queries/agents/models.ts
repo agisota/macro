@@ -19,7 +19,7 @@ export function buildAgentModelTargets(
   targets.push(
     ...harnesses.map(
       (harness): AgentModelTarget => ({
-        harness: 'macrod',
+        harness: 'roxd',
         harnessId: harness.id,
       })
     )
@@ -31,7 +31,7 @@ export function buildAgentModelTargets(
 const IN_MEMORY_MODELS_STALE_TIME = 60 * 1000;
 
 /**
- * Cursor and macrod catalogs can change, but not between two mounts of the
+ * Cursor and roxd catalogs can change, but not between two mounts of the
  * composer. Refetching on every mount put `agent-models/load` on the same
  * service as the prompt.
  */

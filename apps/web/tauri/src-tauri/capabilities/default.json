@@ -9,7 +9,7 @@
       "identifier": "http:default",
       "allow": [
         {
-          "url": "https://*.macro.com"
+          "url": "https://*.rox.one"
         },
         {
           "url": "https://doc-storage-dev.s3.us-east-1.amazonaws.com"

@@ -163,8 +163,8 @@ fn isolated_domains_and_shell_fields_are_validated() {
     let (service, _, _) = fixture(2222);
     let mut settings = service.settings().clone();
     for domain in [
-        "macro.com",
-        "preview.macro.com",
+        "rox.one",
+        "preview.rox.one",
         "bad;hostname",
         "UPPERCASE.test",
         "macro.test",

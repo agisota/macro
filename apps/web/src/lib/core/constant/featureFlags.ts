@@ -10,7 +10,7 @@ import { analytics } from '@app/lib/analytics';
  *
  * Distinct from `import.meta.env.DEV` (true under vite serve *and* local-backend
  * static bundles, including test builds) and `DEV_MODE_ENV` (true whenever
- * MODE=development, including dev.macro.com).
+ * MODE=development, including dev.rox.one).
  */
 export const LOCAL_ONLY =
   !!import.meta.hot || import.meta.env.VITE_LOCAL_ONLY === 'true';
@@ -36,7 +36,7 @@ export function resolveFeatureFlag(
 /**
  * This constant reflects whether the app is running in development mode with dev backend environment
  *
- * @returns true in dev.macro.com and bun run dev, false otherwise
+ * @returns true in dev.rox.one and bun run dev, false otherwise
  */
 export const DEV_MODE_ENV = import.meta.env.MODE === 'development';
 
@@ -148,7 +148,7 @@ export const showDatabaseSql = defineFlag({
 /**
  * This constant reflects whether the app is running in production mode with prod backend environment
  *
- * @returns true in macro.com, false otherwise
+ * @returns true in rox.one, false otherwise
  */
 export const PROD_MODE_ENV = import.meta.env.MODE === 'production';
 

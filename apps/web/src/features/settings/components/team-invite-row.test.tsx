@@ -11,7 +11,7 @@ vi.mock('@entity', () => ({
   formatRelativeTimestamp: () => '1h',
 }));
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://macro.com',
+  getWebOrigin: () => 'https://rox.one',
 }));
 
 const HOUR = 60 * 60 * 1000;

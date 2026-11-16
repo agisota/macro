@@ -52,8 +52,8 @@ maybe_env_vars!(
     pub struct PipedreamMcpUrl;
     /// Comma-separated browser origins allowed to embed Pipedream's hosted
     /// Connect UI (sent as the Connect token's `allowed_origins`). Defaults
-    /// by deploy environment: the app origin (`https://macro.com` /
-    /// `https://dev.macro.com`) plus localhost outside production.
+    /// by deploy environment: the app origin (`https://rox.one` /
+    /// `https://dev.rox.one`) plus localhost outside production.
     pub struct PipedreamAllowedOrigins;
     /// Absolute URL Pipedream posts connect-flow outcomes to, minted into
     /// every Connect token. Must carry the shared secret as a `secret` query

@@ -69,7 +69,7 @@ it('sends drafted values with the create and leaves unset ones to the server', (
           property: assignees,
           value: {
             valueType: 'ENTITY',
-            refs: [{ entity_type: 'USER', entity_id: 'macro|a@macro.com' }],
+            refs: [{ entity_type: 'USER', entity_id: 'macro|a@rox.one' }],
           },
         },
         { property: due, value: { valueType: 'DATE', value: null } },
@@ -90,7 +90,7 @@ it('sends drafted values with the create and leaves unset ones to the server', (
           multiEntityReference: [
             {
               entityType: 'USER',
-              entityId: 'macro|a@macro.com',
+              entityId: 'macro|a@rox.one',
               specificMessageId: null,
             },
           ],

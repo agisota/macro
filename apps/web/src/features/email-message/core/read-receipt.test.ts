@@ -80,11 +80,11 @@ describe('read receipts', () => {
   it('builds one pixel prefix per host without doubled slashes', () => {
     expect(
       readReceiptPixelPrefixes([
-        'https://gateway.macro.com/email',
+        'https://gateway.rox.one/email',
         'http://localhost:8087/',
       ])
     ).toEqual([
-      'https://gateway.macro.com/email/opens/',
+      'https://gateway.rox.one/email/opens/',
       'http://localhost:8087/opens/',
     ]);
   });

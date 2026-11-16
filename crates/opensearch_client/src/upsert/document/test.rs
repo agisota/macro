@@ -51,7 +51,7 @@ fn parent_doc_body_includes_properties_when_present() {
         },
         IndexedProperty {
             definition_id: "assignees-def".to_string(),
-            values: vec!["macro|gab@macro.com".to_string()],
+            values: vec!["macro|gab@rox.one".to_string()],
             ..Default::default()
         },
         IndexedProperty {
@@ -67,7 +67,7 @@ fn parent_doc_body_includes_properties_when_present() {
     assert_eq!(props[0]["values"][0], "not-started");
     // Empty value fields are skipped, not serialized as empty/null.
     assert!(props[0].get("number_value").is_none());
-    assert_eq!(props[1]["values"][0], "macro|gab@macro.com");
+    assert_eq!(props[1]["values"][0], "macro|gab@rox.one");
     assert_eq!(props[2]["date_value"], 1_700_000_000_000i64);
     assert!(props[2].get("values").is_none());
 }

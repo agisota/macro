@@ -146,7 +146,7 @@ describe('createHandler', () => {
     ]);
     expect(body.result.structuredContent).toEqual({
       result: { permission: 'view' },
-      url: 'https://dev.macro.com/app/md/doc-1',
+      url: 'https://dev.rox.one/app/md/doc-1',
     });
   });
 

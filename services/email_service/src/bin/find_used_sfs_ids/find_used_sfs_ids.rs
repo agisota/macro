@@ -8,7 +8,7 @@
 //! - `DATABASE_URL`: The connection string for the PostgreSQL database.
 //!
 //! ## Optional Environment Variables:
-//! - `SFS_DOMAIN`: The domain to search for (default: "static-file-service.macro.com").
+//! - `SFS_DOMAIN`: The domain to search for (default: "static-file-service.rox.one").
 //! - `MESSAGE_IDS_FILE`: Path to store/load message IDs (default: "message_ids.txt").
 //! - `USED_UUIDS_FILE`: Path to store found UUIDs (default: "used_sfs_uuids.txt").
 //! - `FETCH_BATCH_SIZE`: Number of messages to fetch from DB per query (default: 1000).

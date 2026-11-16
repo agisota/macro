@@ -149,7 +149,7 @@ export type AppEvents = {
     emails_connected: number;
     connectors_connected: string[];
   };
-  /** A @macro.com account used the staff Bypass button; `step` is where. */
+  /** A @rox.one account used the staff Bypass button; `step` is where. */
   onboarding_v4_bypassed: { step: string };
 
   subscription_start: Record<string, unknown>;
@@ -317,7 +317,7 @@ export type AppEvents = {
       | 'macro-calendar'
       | 'macro-calls'
       | 'macro-agents'
-      | 'macro-macrod'
+      | 'macro-roxd'
       | 'macro-github'
       | 'macro-scheduling'
       | 'macro-whatsapp';

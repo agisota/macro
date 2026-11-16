@@ -1,4 +1,4 @@
-//! MacroDB-backed adapter for
+//! RoxDB-backed adapter for
 //! [`crate::domain::team_crm_settings_repo::TeamCrmSettingsRepository`].
 //!
 //! Owns the `team_crm_settings` row for each team and the bulk
