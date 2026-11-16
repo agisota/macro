@@ -341,7 +341,7 @@ describe('Harness', () => {
     }
   );
 
-  it('lists Macro Agent and Cursor in the harness list', () => {
+  it('lists Rox Agent and Cursor in the harness list', () => {
     render(() => <Harness />);
 
     expect(screen.getByRole('heading', { name: 'Rox Agent' })).toBeTruthy();

@@ -422,7 +422,7 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
       where.getByRole('radio', { name: /On a Macro computer/ })
     ).toBeChecked();
     await expect(
-      where.getByRole('radio', { name: 'In Macro' })
+      where.getByRole('radio', { name: 'In Rox' })
     ).not.toBeChecked();
     await where.getByText('On a Macro computer').evaluate((label) => {
       label.scrollIntoView({ block: 'center' });

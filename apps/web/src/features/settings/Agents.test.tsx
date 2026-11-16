@@ -1507,7 +1507,7 @@ describe('Agents', () => {
     expect(where.dataset.harnessId).toBe('computer-harness');
     expect(where.dataset.checked).toBe('true');
     expect(
-      within(dialog).getByRole('radio', { name: 'In Macro' })
+      within(dialog).getByRole('radio', { name: `In ${displayName}` })
     ).toHaveProperty('checked', false);
     expect(agentSettingsRequest()).toBeUndefined();
   });
