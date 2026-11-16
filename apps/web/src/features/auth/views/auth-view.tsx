@@ -1,4 +1,5 @@
 import { fireAndForget } from '@core/util/fireAndForget';
+import IconApple from '@icon/macro-apple.svg';
 import { Stepper } from '@ui/components/Stepper';
 import {
   type Accessor,
@@ -9,8 +10,8 @@ import {
   Switch,
 } from 'solid-js';
 import { EmailForm } from '../components/email-form';
+import { AuthButton } from '../components/form-fields';
 import { LoginCard } from '../components/login-card';
-import { LoginPicker } from '../components/login-picker';
 import { VerifyForm } from '../components/verify-form';
 import {
   type AuthIntent,
@@ -71,6 +72,7 @@ export function AuthView(props: {
     autoStart: props.autoStart,
     onVerified: props.onVerified,
     fallbackNotice: props.ssoFallbackNotice,
+    openOnEmail: !props.signupJourney,
   });
   createSessionIdentity(context);
   redeemSessionToken(context, () => props.token);
@@ -118,32 +120,25 @@ export function AuthView(props: {
           agentSignup={props.intent === 'agent-signup'}
         >
           <Stepper
-            step={STEP_INDEX[login.step()]}
+            step={login.step() === 'verify' ? 1 : 0}
             transition={Stepper.transitions.scale}
           >
             <Stepper.Step>
-              <LoginPicker
-                showApple={props.showApple}
-                showMicrosoft={props.showMicrosoft === true}
-                onGoogle={() =>
-                  fireAndForget(
-                    context.startSso('google', props.intent),
-                    'auth'
-                  )
-                }
-                onMicrosoft={() =>
-                  fireAndForget(
-                    context.startSso('microsoft', props.intent),
-                    'auth'
-                  )
-                }
-                onApple={() =>
-                  fireAndForget(context.startSso('apple', props.intent), 'auth')
-                }
-                onEmail={login.chooseEmail}
-              />
-            </Stepper.Step>
-            <Stepper.Step>
+              <Show when={props.showApple}>
+                <AuthButton
+                  variant="secondary"
+                  class="mb-3"
+                  onClick={() =>
+                    fireAndForget(
+                      context.startSso('apple', props.intent),
+                      'auth'
+                    )
+                  }
+                >
+                  <IconApple class="size-5 shrink-0" aria-hidden="true" />
+                  Continue with Apple
+                </AuthButton>
+              </Show>
               <EmailStep login={login} />
             </Stepper.Step>
             <Stepper.Step>
@@ -170,8 +165,6 @@ export function AuthView(props: {
   );
 }
 
-const STEP_INDEX = { choose: 0, email: 1, verify: 2 } as const;
-
 function EmailStep(props: { login: EmailLogin }) {
   return (
     <EmailForm
@@ -187,7 +180,6 @@ function EmailStep(props: { login: EmailLogin }) {
       onHandleInput={props.login.setHandle}
       onPasswordInput={props.login.setPassword}
       onSubmit={props.login.submitEmail}
-      onBack={props.login.back}
     />
   );
 }

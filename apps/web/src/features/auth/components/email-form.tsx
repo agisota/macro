@@ -1,4 +1,3 @@
-import ArrowLeft from '@icon/system/regular/arrow-left.svg';
 import ArrowRight from '@icon/system/regular/arrow-right.svg';
 import { Show } from 'solid-js';
 import { AuthButton, FormError, FormInput } from './form-fields';
@@ -17,7 +16,6 @@ export function EmailForm(props: {
   onHandleInput: (value: string) => void;
   onPasswordInput: (value: string) => void;
   onSubmit: () => void;
-  onBack: () => void;
 }) {
   return (
     <form
@@ -66,10 +64,6 @@ export function EmailForm(props: {
       <AuthButton type="submit" disabled={props.sending}>
         Continue
         <ArrowRight class="size-5 shrink-0" />
-      </AuthButton>
-      <AuthButton variant="secondary" onClick={props.onBack}>
-        <ArrowLeft class="size-5 shrink-0" />
-        Back to sign in
       </AuthButton>
     </form>
   );

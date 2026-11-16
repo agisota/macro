@@ -41,11 +41,23 @@ export function createEmailLogin(
     onVerified?: () => void;
     /** A provider sign-in just failed: open on the email step and say why. */
     fallbackNotice?: string;
+    /** Open the email field immediately instead of a provider list. */
+    openOnEmail?: boolean;
   }
 ) {
   const [step, setStep] = createSignal<LoginStep>(
-    options.initialEmail || options.fallbackNotice ? 'email' : 'choose'
+    options.initialEmail || options.fallbackNotice || options.openOnEmail
+      ? 'email'
+      : 'choose'
   );
+  if (
+    options.openOnEmail &&
+    !options.initialEmail &&
+    !options.fallbackNotice &&
+    options.intent !== 'login'
+  ) {
+    context.track('sign_up_click', { method: 'email' });
+  }
   const [email, setEmail] = createSignal(options.initialEmail ?? '');
   const [handle, setHandle] = createSignal('');
   const [password, setPassword] = createSignal('');

@@ -112,27 +112,22 @@ export const [darkModeTheme, setDarkModeTheme] = makePersisted(
  *  live — see resolveActiveThemeId / systemThemeEffect in themeUtils. */
 export type ThemeMode = 'light' | 'dark' | 'system';
 
-/** Fallback for the initial themeMode, migrating the pre-"Active theme" setting
- *  (`macro-theme-should-match-system`) so returning users keep their appearance:
- *  auto-detect on → 'system'; auto-detect off (a pinned theme) → the fixed
- *  light/dark mode matching the previously-selected theme. Only used until the
- *  new `macro-theme-mode` key is written. */
+/** Mode used only when `macro-theme-mode` is not stored. A saved value is kept. */
 function initialThemeMode(): ThemeMode {
-  if (typeof localStorage === 'undefined') {
-    return 'system';
+  if (typeof localStorage !== 'undefined') {
+    const stored = localStorage.getItem('macro-theme-mode');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored) as unknown;
+        if (parsed === 'light' || parsed === 'dark' || parsed === 'system') {
+          return parsed;
+        }
+      } catch {
+        // A corrupt value does not follow the system; a new profile is light.
+      }
+    }
   }
-  const legacy = localStorage.getItem('macro-theme-should-match-system');
-  // New/already-migrated users, and anyone who had auto-detect on: follow the OS.
-  if (legacy !== 'false') {
-    return 'system';
-  }
-  // Auto-detect was off: pin to the mode matching the previously-selected theme
-  // based on the explicit mode stored by V3.
-  const pinned = themes().find((theme) => theme.id === currentThemeId());
-  if (!pinned) {
-    return 'system';
-  }
-  return pinned.mode;
+  return 'light';
 }
 
 export const [themeMode, setThemeMode] = makePersisted(

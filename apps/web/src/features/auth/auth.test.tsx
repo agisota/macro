@@ -85,20 +85,15 @@ const microsoftButton = () =>
 describe('Continue with Microsoft, behind enable-microsoft-signup', () => {
   it('is not offered on sign-in while the flag is off', async () => {
     render(() => <Login />);
-    await screen.findByRole('button', { name: 'Continue with Google' });
+    await screen.findByPlaceholderText('you@company.com');
     expect(microsoftButton()).toBeNull();
   });
 
-  it('signs in through Microsoft once the flag is on', async () => {
+  it('keeps sign-in on the email field once the flag is on', async () => {
     world.microsoftSignup = true;
     render(() => <Login />);
-    await screen.findByRole('button', { name: 'Continue with Google' });
-    const microsoft = microsoftButton();
-    expect(microsoft).toBeTruthy();
-    if (microsoft) fireEvent.click(microsoft);
-    await waitFor(() =>
-      expect(world.auth?.calls()).toContain('sso:microsoft:login')
-    );
+    await screen.findByPlaceholderText('you@company.com');
+    expect(microsoftButton()).toBeNull();
   });
 
   it('keeps the sign-up work step Google-only, with its old copy, while the flag is off', async () => {
@@ -117,7 +112,7 @@ describe('Continue with Microsoft, behind enable-microsoft-signup', () => {
     world.microsoftSignup = true;
     saveSignupDraft({ step: 'work' });
     render(() => <Login signupMode />);
-    await screen.findByRole('button', { name: 'Continue with Google' });
+    await screen.findByRole('button', { name: /Google$/ });
     expect(
       screen.getByRole('heading', { name: /Continue with your work/ })
     ).toBeTruthy();

@@ -99,22 +99,11 @@ describe('agent signup', () => {
   it('asks for an agent account by email', async () => {
     const { fake } = setup({ intent: 'agent-signup' });
 
-    click('Continue with email');
     await typeEmail('agent@signup.test');
     click('Continue');
     await screen.findByText('agent@signup.test');
 
     expect(fake.calls()).toContain('sendAgentCode:agent@signup.test');
-  });
-
-  it('asks for an agent account through Google', async () => {
-    const { fake } = setup({ intent: 'agent-signup' });
-
-    click('Continue with Google');
-
-    await waitFor(() =>
-      expect(fake.calls()).toContain('sso:google:agent-signup')
-    );
   });
 });
 
@@ -155,7 +144,6 @@ describe('email sign-in', () => {
 
   it('sends a code, verifies it, and hands off to the signed-in view', async () => {
     const { fake, verified } = setup();
-    click('Continue with email');
     await typeEmail('returning@acme.com');
     click('Continue');
     await screen.findByText('returning@acme.com');
@@ -182,7 +170,6 @@ describe('email sign-in', () => {
 
   it('keeps the verify step open on a wrong code', async () => {
     setup();
-    click('Continue with email');
     await typeEmail('returning@acme.com');
     click('Continue');
     await screen.findByText('returning@acme.com');
@@ -195,7 +182,6 @@ describe('email sign-in', () => {
   // Every check counts against the auth service's per-address attempt limit.
   it('checks each entered code once, even when Verify is tapped after a miss', async () => {
     const { fake } = setup();
-    click('Continue with email');
     await typeEmail('returning@acme.com');
     click('Continue');
     await screen.findByText('returning@acme.com');
@@ -219,7 +205,6 @@ describe('email sign-in', () => {
     const { fake } = setup({
       world: { codeAttempts: { 'returning@acme.com': 5 } },
     });
-    click('Continue with email');
     await typeEmail('returning@acme.com');
     click('Continue');
     await screen.findByText('returning@acme.com');
@@ -239,7 +224,6 @@ describe('email sign-in', () => {
 
   it('asks for a password only for password accounts', async () => {
     setup({ world: { passwordAccounts: { 'demo@acme.com': 'hunter2' } } });
-    click('Continue with email');
     await typeEmail('demo@acme.com');
     click('Continue');
     const password = await screen.findByPlaceholderText('Password');
@@ -254,7 +238,6 @@ describe('email sign-in', () => {
   it('lets the user resend after the countdown', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const { fake } = setup();
-    click('Continue with email');
     await typeEmail('returning@acme.com');
     click('Continue');
     await screen.findByText('returning@acme.com');
@@ -270,16 +253,13 @@ describe('email sign-in', () => {
     );
   });
 
-  it('goes back from verify to the email step, and from there to the picker', async () => {
+  it('goes back from verify to the email field', async () => {
     setup();
-    click('Continue with email');
     await typeEmail('returning@acme.com');
     click('Continue');
     await screen.findByText('returning@acme.com');
     click('Change email');
     await screen.findByPlaceholderText('you@company.com');
-    click('Back to sign in');
-    await screen.findByRole('button', { name: 'Continue with Google' });
   });
 
   it('signs straight in from a dev persona link when the backend returns the code', async () => {
@@ -293,7 +273,6 @@ describe('email sign-in', () => {
 
   it('shows the server’s reason when sending fails', async () => {
     setup({ world: { failures: { sendCode: 'Email is not allowed.' } } });
-    click('Continue with email');
     await typeEmail('blocked@acme.com');
     click('Continue');
     await screen.findByText('Email is not allowed.');
@@ -301,16 +280,8 @@ describe('email sign-in', () => {
 });
 
 describe('single sign-on', () => {
-  it('starts Google with the page’s intent', async () => {
-    const { fake } = setup({ intent: 'login' });
-    click('Continue with Google');
-    await screen.findByTestId('signed-in');
-    expect(fake.calls()).toContain('sso:google:login');
-  });
-
   it('records the email choice as a sign-up click on /signup', () => {
     const { fake } = setup({ intent: 'signup' });
-    click('Continue with email');
     expect(fake.events()).toContainEqual({
       event: 'sign_up_click',
       data: { method: 'email' },
@@ -332,7 +303,7 @@ describe('single sign-on', () => {
     const { setToken } = setupWithTokenSignal({
       world: { sessionTokens: { 'tok-deep-link': 'sso@acme.com' } },
     });
-    await screen.findByRole('button', { name: 'Continue with Google' });
+    await screen.findByPlaceholderText('you@company.com');
 
     setToken('tok-deep-link');
 
@@ -382,9 +353,7 @@ describe('single sign-on', () => {
         'Sign-in failed. Please try again.',
       ])
     );
-    expect(
-      screen.getByRole('button', { name: 'Continue with Google' })
-    ).toBeTruthy();
+    expect(screen.getByPlaceholderText('you@company.com')).toBeTruthy();
   });
 });
 

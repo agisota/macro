@@ -13,13 +13,13 @@
     <meta name="macro-bundle-build" content="__MACRO_BUNDLE_BUILD__" />
     <link
       rel="shortcut icon"
-      href="%ASSETS_PATH%/macro-favicon.svg"
-      type="image/svg+xml"
+      href="%ASSETS_PATH%/rox-eye.png"
+      type="image/png"
     />
     <link
       rel="icon"
-      href="%ASSETS_PATH%/macro-favicon.svg"
-      type="image/svg+xml"
+      href="%ASSETS_PATH%/rox-eye.png"
+      type="image/png"
     />
     <link rel="apple-touch-icon" href="%ASSETS_PATH%/logo192.png" />
     <!--
@@ -42,9 +42,9 @@
     -->
     <style>
       #boot-shell {
-        --bs-page: #0e0e0e;
-        --bs-panel: #121212;
-        --bs-ink: oklch(1 0 0);
+        --bs-page: oklch(0.964 0 0);
+        --bs-panel: oklch(1 0 0);
+        --bs-ink: oklch(0.16 0 0);
         --bs-edge: color-mix(in oklch, var(--bs-ink) 8%, transparent);
         position: fixed;
         inset: 0;
@@ -55,13 +55,6 @@
         color: var(--bs-ink);
         transition: opacity 180ms ease-out;
         pointer-events: none;
-      }
-      @media (prefers-color-scheme: light) {
-        #boot-shell {
-          --bs-page: oklch(0.964 0 0);
-          --bs-panel: oklch(1 0 0);
-          --bs-ink: oklch(0.16 0 0);
-        }
       }
       #boot-shell[data-leaving] {
         opacity: 0;
@@ -128,7 +121,7 @@
         }
         if (localStorage.getItem("macro:login") !== "true") {
           shell.style.background = "var(--bs-page)";
-          shell.innerHTML = `<img class="bs-mark" src="%ASSETS_PATH%/macro-favicon.svg" alt="" />`;
+          shell.innerHTML = `<img class="bs-mark" src="%ASSETS_PATH%/rox-eye.png" alt="" />`;
         } else {
           shell.innerHTML = `<div class="bs-rail"></div><div class="bs-content"></div>`;
         }

@@ -9,7 +9,6 @@ import {
 
 test('a returning user signs in with an emailed code', async ({ page }) => {
   await openFixture(page, '/?page=login');
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await signInWithCode(page, 'returning@acme.com', '424242');
   await expectLanded(page, '/');
 });
@@ -18,7 +17,6 @@ test('email verification retries cleanup without reusing a consumed code', async
   page,
 }) => {
   await openFixture(page, '/?page=login&cleanupFailure=once');
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await signInWithCode(page, 'returning@example.com', '424242');
   await expect(
     page.getByRole('status', { name: 'Notifications' })
@@ -39,7 +37,6 @@ test('changing the email after cleanup failure starts fresh verification', async
   page,
 }) => {
   await openFixture(page, '/?page=login&cleanupFailure=once');
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await signInWithCode(page, 'first@example.com', '424242');
   await expect(
     page.getByRole('status', { name: 'Notifications' })
@@ -62,7 +59,6 @@ test('a wrong code can be corrected without starting over', async ({
   page,
 }) => {
   await openFixture(page, '/?page=login&verifyLatency=300');
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await signInWithCode(page, 'returning@acme.com', '111111');
   await expect(page.getByRole('alert')).toHaveText('Invalid code.');
   const code = page.getByLabel('One-time code');
@@ -83,7 +79,6 @@ test('a rate-limited code check says to wait instead of calling the code invalid
   await openFixture(page, '/?page=login', {
     codeAttempts: { 'returning@acme.com': 5 },
   });
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await signInWithCode(page, 'returning@acme.com', '424242');
   await expect(page.getByRole('alert')).toHaveText(
     'Too many attempts. Wait a minute, then try again.'
@@ -92,17 +87,12 @@ test('a rate-limited code check says to wait instead of calling the code invalid
   await expect(page.getByRole('button', { name: 'Verify' })).toBeEnabled();
 });
 
-test('Google sign-in comes back with a session code the page redeems', async ({
-  page,
-}) => {
-  await openFixture(page, '/?page=login', { ssoEmail: 'returning@acme.com' });
-  await page.getByRole('button', { name: 'Continue with Google' }).click();
-  await expectLanded(page, '/');
-  const world = await fakeAuth(page);
-  expect(Object.keys(world.sessionTokens)).toEqual([
-    expect.stringMatching(/^google-/),
-  ]);
-  expect(world.user?.email).toBe('returning@acme.com');
+test('sign-in opens on the email field', async ({ page }) => {
+  await openFixture(page, '/?page=login');
+  await expect(page.getByPlaceholder('you@company.com')).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Continue', exact: true })
+  ).toBeVisible();
 });
 
 test('an expired session code leaves the visitor on sign-in', async ({
@@ -112,9 +102,7 @@ test('an expired session code leaves the visitor on sign-in', async ({
   await expect(page.getByRole('status', { name: 'Notifications' })).toHaveText(
     'Sign-in failed. Please try again.'
   );
-  await expect(
-    page.getByRole('button', { name: 'Continue with Google' })
-  ).toBeVisible();
+  await expect(page.getByPlaceholder('you@company.com')).toBeVisible();
 });
 
 test('a password account signs in with its password', async ({ page }) => {
@@ -122,7 +110,6 @@ test('a password account signs in with its password', async ({ page }) => {
     passwordAccounts: { 'demo@acme.com': 'hunter2' },
     accounts: { 'demo@acme.com': { tutorialComplete: true } },
   });
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await page.getByPlaceholder('you@company.com').fill('demo@acme.com');
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await page.getByPlaceholder('Password').fill('hunter2');
@@ -134,7 +121,6 @@ test('a new user who signs in by email continues into onboarding', async ({
   page,
 }) => {
   await openFixture(page, '/?page=login');
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await signInWithCode(page, 'fresh@acme.com', '424242');
   await expect(
     page.getByRole('heading', { level: 1, name: 'Create your workspace' })
@@ -152,7 +138,7 @@ test('desktop sign-up: slides, Google, then onboarding resumes at the work inbox
   await page.getByRole('button', { name: 'Get started' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('button', { name: 'Continue with Google' }).click();
+  await page.getByRole('button', { name: /Google$/ }).click();
 
   // Back from Google: signed in, onboarding picks up where sign-up left off.
   await expect(
@@ -184,7 +170,6 @@ test('a returning visitor on sign-up can switch to sign in', async ({
   await expect(
     page.getByRole('heading', { level: 1, name: 'Welcome to Rox' })
   ).toBeVisible();
-  await page.getByRole('button', { name: 'Continue with email' }).click();
   await signInWithCode(page, 'returning@acme.com', '424242');
   await expectLanded(page, '/');
 });
@@ -223,7 +208,7 @@ test('returning from Google sign-up settles into onboarding without flashing', a
   await page.getByRole('button', { name: 'Get started' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('button', { name: 'Continue with Google' }).click();
+  await page.getByRole('button', { name: /Google$/ }).click();
 
   // Back from Google: the session takes 500ms to resolve on the fresh load.
   await expect(
