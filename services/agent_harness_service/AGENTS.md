@@ -21,7 +21,9 @@ Pulumi stacks; they do not host extra agent processes.
   crate's own router (`agent_session`, `agent_changes`, `agent_egress`,
   `agent_harness`).
 - `src/model_providers/`: per-harness runtime adapters — `cursor.rs`,
-  `roxd.rs`, `in_memory.rs`.
+  `roxd.rs`, `in_memory.rs`, and `omp.rs`. `omp.rs` names an external
+  `omp acp` launch and is not constructed in `lib.rs`, so the running
+  environment list does not gain a row. The `omp` binary is not embedded.
 - `src/containers.rs`: Daytona sandbox lifecycle; local Docker opt-in.
 - `src/runtime_gauges.rs`: one task recording, every minute, what the process
   holds per session as OTel gauges (`ahs.harness.workers`,
@@ -310,7 +312,8 @@ Pulumi stacks; they do not host extra agent processes.
 - Add a new agent-session route: the owning domain crate's `inbound::axum_router`
   → mount it in `src/api.rs`.
 - Add a new model/runtime provider: `src/model_providers/<provider>.rs` →
-  `src/model_providers/mod.rs` → wire into `src/lib.rs`.
+  `src/model_providers/mod.rs` → wire into `src/lib.rs`. `omp.rs` stops
+  before `lib.rs` so the live environment list stays unchanged.
 - Inspect a session's protocol log: `just session-log <channel_id>`.
 
 ## Tool contracts
