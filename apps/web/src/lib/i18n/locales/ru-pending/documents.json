@@ -1,0 +1,15 @@
+{
+  "screen": "documents",
+  "wiredIntoLocalesRu": false,
+  "sourceFile": "apps/web/src/features/next-soup/soup-view/empty-states.tsx",
+  "source": {
+    "title": "No documents to show",
+    "description": "Write, collaborate, and share documents right inside Macro. Create notes, specs, or any long-form content and keep it alongside your conversations.",
+    "newDocument": "New document"
+  },
+  "emptyState": {
+    "title": "Нет документов",
+    "description": "Пишите, правьте вместе и делитесь документами прямо в Rox. Создавайте заметки, спецификации и длинные тексты и держите их рядом с перепиской.",
+    "newDocument": "Новый документ"
+  }
+}
