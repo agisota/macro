@@ -247,7 +247,7 @@ fn new_gmail_link(
     email_address: String,
 ) -> Result<Link, ConnectionError> {
     let email_address = EmailStr::try_from(email_address)?;
-    let is_primary = Link::derive_is_primary(&macro_id, &email_address);
+    let is_primary = Link::derive_is_primary(UserProvider::Gmail);
     Ok(Link {
         id: macro_uuid::generate_uuid_v7(),
         macro_id,
