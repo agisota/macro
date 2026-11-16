@@ -77,7 +77,7 @@ export const TUTORIAL_VIDEOS = {
   },
   macrod: {
     feature: 'Snippets',
-    title: 'Learn how to use MacroD',
+    title: 'Learn how to use RoxD',
     length: '1:17',
   },
   github: {
