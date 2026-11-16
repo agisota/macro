@@ -74,7 +74,7 @@ async function exerciseRestart(page: Page) {
 
   // Storage that cannot restart by itself asks for a reload at once.
   await page.getByRole('button', { name: 'storage recovery-required' }).click();
-  await expect(alert(page)).toContainText('reload Macro');
+  await expect(alert(page)).toContainText('reload Rox');
   await expect(
     alert(page).getByRole('button', { name: 'Reload', exact: true })
   ).toBeVisible();

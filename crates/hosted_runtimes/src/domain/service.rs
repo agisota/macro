@@ -43,7 +43,7 @@ pub enum ComputerError {
     #[error("this computer's purchase is still being confirmed")]
     NotPurchased,
     /// The caller is outside the computer rollout.
-    #[error("Macro computers are not enabled for this user")]
+    #[error("Rox computers are not enabled for this user")]
     RolloutDisabled,
     /// No host has enough sale capacity for this size.
     #[error("No capacity for {} right now", .0.label())]
@@ -549,6 +549,6 @@ impl<
 }
 
 fn computer_name(name: Option<&str>) -> Result<ComputerName, ComputerError> {
-    const DEFAULT_NAME: &str = "Macro computer";
+    const DEFAULT_NAME: &str = "Rox computer";
     Ok(ComputerName::try_new(name.unwrap_or(DEFAULT_NAME))?)
 }

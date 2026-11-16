@@ -251,7 +251,7 @@ export function createAiCollabSession(
       setState({
         t: 'error',
         message:
-          'This document was edited by a newer version of Macro. Reload to open it.',
+          'This document was edited by a newer version of Rox. Reload to open it.',
       });
       return;
     }

@@ -193,7 +193,7 @@ export function BookingReceiptView(props: {
           )}
         </Show>
       </div>
-      <p class="mt-7 text-center text-xs text-ink-muted">Scheduling by Macro</p>
+      <p class="mt-7 text-center text-xs text-ink-muted">Scheduling by Rox</p>
     </main>
   );
 }

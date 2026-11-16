@@ -3,7 +3,7 @@ export default {
   people: 'People',
   agent: 'Agent',
   intro:
-    'An agent teammate gets its own Macro account and computer, and works alongside your team.',
+    'An agent teammate gets its own Rox account and computer, and works alongside your team.',
   picture: 'Picture',
   pictureHint: 'Optional · square images work best',
   upload: 'Upload',
@@ -44,7 +44,7 @@ export default {
     "Couldn't save the voice. Your choice is still selected; try again.",
   computer: 'Computer',
   computerHint:
-    'The agent runs on its own Macro computer, billed like any other. Its seat is included.',
+    'The agent runs on its own Rox computer, billed like any other. Its seat is included.',
   loadingSizes: 'Loading computer sizes…',
   sizesFailed: "Couldn't load computer sizes.",
   tryAgain: 'Try again',
@@ -89,13 +89,13 @@ export default {
   removeFailed: "Couldn't remove {{name}}. Try again.",
   bringAiTitle: 'Bring your AI to {{name}}',
   claudeSignedIn: '{{name}} now uses your Claude plan',
-  claudeCredits: 'Claude: Macro credits',
+  claudeCredits: 'Claude: Rox credits',
   claudeSignedInState: 'Claude: your plan',
   claudeExpired: 'Claude sign-in expired',
   signInToClaude: 'Sign in to Claude',
-  useCredits: 'Use Macro credits',
-  useCreditsTitle: 'Switch {{name}} to Macro credits?',
+  useCredits: 'Use Rox credits',
+  useCreditsTitle: 'Switch {{name}} to Rox credits?',
   useCreditsBody:
-    "{{name}} signs out of Claude and runs on your team's Macro credits.",
-  useCreditsFailed: "Couldn't switch {{name}} to Macro credits. Try again.",
+    "{{name}} signs out of Claude and runs on your team's Rox credits.",
+  useCreditsFailed: "Couldn't switch {{name}} to Rox credits. Try again.",
 };

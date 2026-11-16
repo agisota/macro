@@ -12,7 +12,7 @@ pub const MAX_MESSAGE_LENGTH: usize = 500;
 #[derive(Debug, thiserror::Error)]
 pub enum SystemStatusError {
     /// The caller is not Macro staff.
-    #[error("only Macro staff can manage the system status")]
+    #[error("only Rox staff can manage the system status")]
     Forbidden,
     /// An internal error occurred.
     #[error("internal error")]

@@ -97,7 +97,7 @@ export function ToolsStep(props: { onContinue: () => void }) {
           }
         >
           <p class="py-4 text-center text-sm text-ink-muted">
-            GitHub account linked. Choose repositories to sync with Macro.{' '}
+            GitHub account linked. Choose repositories to sync with Rox.{' '}
             <button
               type="button"
               class="underline"

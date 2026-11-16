@@ -32,7 +32,7 @@ export function getNotificationSenderFallbackName(
 
   return match(notification.notification_metadata.tag)
     .with('new_email', () => content?.sender ?? undefined)
-    .with('ai_response', () => 'Macro agent')
+    .with('ai_response', () => 'Rox agent')
     .with('routine_run_finished', () => content?.routineName)
     .with('agent_sign_in_expiry', () => content?.computerName)
     .with('computer_setup', () => content?.agent?.name ?? content?.computerName)

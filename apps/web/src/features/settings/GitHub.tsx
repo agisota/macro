@@ -105,7 +105,7 @@ export function GitHubCard(props: { class?: string } = {}) {
       <IntegrationRow
         icon={<GithubIcon />}
         title="GitHub"
-        description="Review your pull requests in Macro, see live pull request status in docs and chats, and let agents work in your repositories."
+        description="Review your pull requests in Rox, see live pull request status in docs and chats, and let agents work in your repositories."
         status={
           <Show when={github.connectionState()}>
             {(state) => <StatusDot state={state()} label={connectionLabel()} />}

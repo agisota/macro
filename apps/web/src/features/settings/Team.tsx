@@ -660,7 +660,7 @@ function InviteHeadsUpStep(props: {
               </Show>
             </div>
             <div class="text-sm text-ink-muted">
-              Invite emails from Macro are easy to miss. Send the invite link in
+              Invite emails from Rox are easy to miss. Send the invite link in
               Slack, a text, or your own email so they know to look for it.
             </div>
           </div>

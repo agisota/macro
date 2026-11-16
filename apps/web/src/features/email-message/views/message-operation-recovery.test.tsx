@@ -44,7 +44,7 @@ it('resolves the conflict version the user reviewed even if a newer version arri
   const resolve = vi.fn(async () => {});
   render(() => <MessageOperationRecovery source={{ operation, resolve }} />);
   await fireEvent.click(
-    screen.getByRole('button', { name: 'Keep Macro version' })
+    screen.getByRole('button', { name: 'Keep Rox version' })
   );
   setOperation({ ...reviewed, revision: '6', remoteVersion: 'second' });
   await fireEvent.click(screen.getByRole('button', { name: 'Confirm' }));

@@ -34,7 +34,7 @@ export function EmailSettings() {
     >
       <SettingsSection
         title="Accounts"
-        description="Connect email accounts and manage their sync with Macro."
+        description="Connect email accounts and manage their sync with Rox."
       >
         <Suspense
           fallback={

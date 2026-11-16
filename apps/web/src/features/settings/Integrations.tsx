@@ -404,7 +404,7 @@ export function IntegrationsSection() {
   return (
     <SettingsSection
       title="MCP integrations"
-      description="Connect MCP servers to give Macro's agent access to the tools your team already uses."
+      description="Connect MCP servers to give Rox's agent access to the tools your team already uses."
       actions={
         <Button
           variant="secondary"

@@ -326,7 +326,7 @@ export const routineEvents: {
     label: 'Any GitHub event',
     group: 'GitHub',
     description:
-      'Any event Macro’s GitHub app receives, narrowed by the event names, actions, and payload tests you choose.',
+      'Any event Rox’s GitHub app receives, narrowed by the event names, actions, and payload tests you choose.',
     preset: github([]),
   },
 ];

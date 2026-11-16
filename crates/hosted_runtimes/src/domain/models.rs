@@ -443,7 +443,7 @@ pub struct PurchaseRequest {
     pub created_by: MacroUserIdStr<'static>,
     /// Purchased catalog size.
     pub size: ComputerSize,
-    /// Display name; defaults to "Macro computer".
+    /// Display name; defaults to "Rox computer".
     pub name: Option<String>,
     /// Additional subscription items included in the purchase.
     pub extra_items: Vec<SubscriptionItem>,

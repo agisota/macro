@@ -261,7 +261,7 @@ impl<Credentials: RoutineCredentials> RoutineCode for SdkRoutineCode<Credentials
             tracing::Span::current().record("outcome", "busy");
             return CodeOutcome {
                 result: Err(format!(
-                    "Macro was busy running other routines; this run waited {} minutes for a turn.",
+                    "Rox was busy running other routines; this run waited {} minutes for a turn.",
                     SLOT_WAIT.as_secs() / 60
                 )),
                 calls: Vec::new(),

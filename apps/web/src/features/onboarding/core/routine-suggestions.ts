@@ -61,7 +61,7 @@ export function suggestionByline(
 
 /** The line under a suggestion's name that says who suggests it. */
 export function bylineText(byline: SuggestionByline): string {
-  if (byline.from === 'macro') return 'Template from Macro';
+  if (byline.from === 'macro') return 'Template from Rox';
   return byline.reason ? `For you · ${byline.reason}` : 'For you';
 }
 

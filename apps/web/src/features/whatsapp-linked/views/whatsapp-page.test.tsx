@@ -395,7 +395,7 @@ describe('connected', () => {
     const list = within(screen.getByRole('list', { name: 'Groups' }));
     expect(list.getAllByRole('listitem').map((row) => row.textContent)).toEqual(
       [
-        'Launch War RoomGroupAdd to MacroMar 5, 2025',
+        'Launch War RoomGroupAdd to RoxMar 5, 2025',
         'Ana, Ben, +2GroupShared with you by Ana SilvaOpen',
       ]
     );
@@ -443,7 +443,7 @@ describe('connected', () => {
     );
     await waitFor(() =>
       expect(toast.success).toHaveBeenCalledWith(
-        'Disconnected in Macro. To finish, remove Macro under WhatsApp → Linked devices on your phone.'
+        'Disconnected in Rox. To finish, remove Rox under WhatsApp → Linked devices on your phone.'
       )
     );
     fake.setAccount(null);
@@ -521,7 +521,7 @@ describe('connected', () => {
     });
     mount(fake);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Add to Macro' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Add to Rox' }));
     await waitFor(() =>
       expect(fake.capabilities.add).toHaveBeenCalledWith(
         expect.objectContaining({ jid: '120363003@g.us', kind: 'group' })
@@ -550,7 +550,7 @@ describe('connected', () => {
         .closest('li') as HTMLElement
     );
     expect(row.getByText('Direct chat')).toBeTruthy();
-    fireEvent.click(row.getByRole('button', { name: 'Add to Macro' }));
+    fireEvent.click(row.getByRole('button', { name: 'Add to Rox' }));
     await waitFor(() =>
       expect(fake.capabilities.add).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -633,7 +633,7 @@ describe('connected', () => {
     expect(design.getByText('Community group')).toBeTruthy();
     expect(launchList.getByText('Announcement group')).toBeTruthy();
     expect(
-      screen.getAllByRole('button', { name: 'Add to Macro' })
+      screen.getAllByRole('button', { name: 'Add to Rox' })
     ).toHaveLength(5);
 
     // Folding a community is remembered.
@@ -671,14 +671,14 @@ describe('connected', () => {
     );
     mount(fake);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Add to Macro' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Add to Rox' }));
     const row = within(
       screen.getByText('Launch War Room').closest('li') as HTMLElement
     );
     expect((await row.findByRole('alert')).textContent).toBe(
       'Your WhatsApp is disconnected. Reconnect it, then add the chat.'
     );
-    expect(row.getByRole('button', { name: 'Add to Macro' })).toBeTruthy();
+    expect(row.getByRole('button', { name: 'Add to Rox' })).toBeTruthy();
   });
 });
 
@@ -745,7 +745,7 @@ describe('passkey', () => {
     expect(dialog.getByRole('button', { name: 'Try again' })).toBeTruthy();
   });
 
-  it('hands a browser pairing to Macro desktop by id and keeps it alive on close', async () => {
+  it('hands a browser pairing to Rox desktop by id and keeps it alive on close', async () => {
     const fake = createFakeWhatsApp({ account: null });
     mount(fake);
     fireEvent.click(screen.getByRole('button', { name: 'Connect' }));
@@ -753,7 +753,7 @@ describe('passkey', () => {
     fake.setPairing({ kind: 'passkey', challenge: { rpId: 'whatsapp.com' } });
 
     const link = dialog.getByRole('link', {
-      name: 'Continue in Macro desktop',
+      name: 'Continue in Rox desktop',
     });
     expect(link.getAttribute('href')).toBe(
       'macro:///external?whatsappPairing=pairing-1'

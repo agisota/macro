@@ -88,7 +88,7 @@ function ChatRow(props: {
  * show their unread count.
  */
 export function InMacroChats(props: {
-  /** The provider's name: "WhatsApp chats in Macro". */
+  /** The provider's name: "WhatsApp chats in Rox". */
   label: string;
   chats: ChatSummary[] | undefined;
   isPending: boolean;
@@ -113,7 +113,7 @@ export function InMacroChats(props: {
           >
             <div
               role="navigation"
-              aria-label={`${props.label} chats in Macro`}
+              aria-label={`${props.label} chats in Rox`}
               class="flex flex-col"
             >
               <ConversationSectionList

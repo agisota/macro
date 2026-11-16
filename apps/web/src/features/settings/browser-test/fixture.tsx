@@ -104,7 +104,7 @@ function Fixture() {
       >
         <SettingsSection
           title="Accounts"
-          description="Connect email accounts and manage their sync with Macro."
+          description="Connect email accounts and manage their sync with Rox."
         >
           <SettingsCard>
             <For each={['alex@example.com', 'alex@gmail.com']}>
@@ -151,7 +151,7 @@ function Fixture() {
             <Show when={desktop()} fallback={<DesktopApp />}>
               <AppInfo
                 title="Desktop App (Alpha)"
-                description="Your installed version of Macro Alpha."
+                description="Your installed version of Rox Alpha."
                 version="2.5.0"
                 buildDate={new Date('2026-10-01T16:30:00Z')}
                 bundleDate={new Date('2026-10-27T09:15:00Z')}

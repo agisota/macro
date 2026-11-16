@@ -728,7 +728,7 @@ describe('form collaboration session', () => {
       await until(ada.session.state, (state) => state.kind === 'error')
     ).toEqual({
       kind: 'error',
-      message: 'This form was edited by a newer version of Macro.',
+      message: 'This form was edited by a newer version of Rox.',
     });
     expect(ada.session.layout()).toBeUndefined();
     expect(() => ada.session.apply(contactForm, contactForm)).toThrow();
@@ -788,7 +788,7 @@ describe('form collaboration session', () => {
       await until(malformed.session.state, (state) => state.kind === 'error')
     ).toEqual({
       kind: 'error',
-      message: 'This form was edited by a newer version of Macro.',
+      message: 'This form was edited by a newer version of Rox.',
     });
     malformed.dispose();
   });
@@ -847,7 +847,7 @@ describe('form collaboration session', () => {
       await until(malformed.session.state, (state) => state.kind === 'error')
     ).toEqual({
       kind: 'error',
-      message: 'This form was edited by a newer version of Macro.',
+      message: 'This form was edited by a newer version of Rox.',
     });
     malformed.dispose();
   });

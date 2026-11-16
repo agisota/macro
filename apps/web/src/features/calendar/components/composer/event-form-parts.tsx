@@ -519,7 +519,7 @@ function Notices() {
               }
             >
               <span>
-                Macro checks for conflicts in the background while this calendar
+                Rox checks for conflicts in the background while this calendar
                 is connected. Replies already sent cannot be undone by changing
                 this event.
               </span>

@@ -19,7 +19,7 @@ describe('agent import handoff', () => {
     const files = IMPORT_CATEGORIES.files;
     const notion = files.providers.find((p) => p.appSlug === 'notion')!;
     const handoff = agentImportHandoff(files, notion);
-    expect(handoff.input).toBe('Import my Notion workspace into Macro.');
+    expect(handoff.input).toBe('Import my Notion workspace into Rox.');
     expect(handoff.instructions).toContain('ImportFromNotion');
     expect(handoff.instructions).not.toContain('CreateImportEntity');
   });

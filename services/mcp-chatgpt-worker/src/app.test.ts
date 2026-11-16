@@ -41,7 +41,7 @@ describe('createHandler', () => {
       resource: 'https://mcp-chatgpt.test/mcp',
       authorization_servers: ['https://auth.test'],
       bearer_methods_supported: ['header'],
-      resource_name: 'Macro',
+      resource_name: 'Rox',
     });
   });
 

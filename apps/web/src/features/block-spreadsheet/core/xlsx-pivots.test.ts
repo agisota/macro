@@ -29,7 +29,7 @@ describe('Excel pivot tables', () => {
       corpus('ironcalc-example-pivots-charts-comments.xlsx')
     );
     expect(imported.warnings).toContain(
-      'Pivot tables show their last values in Macro; Excel rebuilds them from their data when the downloaded file opens.'
+      'Pivot tables show their last values in Rox; Excel rebuilds them from their data when the downloaded file opens.'
     );
     const sheet = imported.sheets.find((entry) => entry.name === 'Sheet4');
     // The values Excel last showed stay in the cells.
@@ -165,7 +165,7 @@ describe('Excel pivot tables', () => {
   it('keeps pivot tables over other workbooks with the data Excel saved, and their charts linked', async () => {
     const imported = await decodeXlsx(corpus(UCL));
     expect(imported.warnings).toContain(
-      'Pivot tables over other workbooks or data connections show their last values in Macro; the download keeps them with the data Excel saved, to refresh in Excel.'
+      'Pivot tables over other workbooks or data connections show their last values in Rox; the download keeps them with the data Excel saved, to refresh in Excel.'
     );
     expect(imported.warnings).not.toContain(PIVOT_VALUES_WARNING);
     const pivots = imported.sheets.flatMap(
@@ -431,7 +431,7 @@ describe('GETPIVOTDATA', () => {
     const database = imported.sheets.find((sheet) => sheet.name === 'Database');
     expect(database?.cells.B16.value).toBe('57');
     expect(imported.warnings).toContain(
-      'Pivot table lookups (GETPIVOTDATA) of pivot tables Macro could not keep are imported as their last calculated values.'
+      'Pivot table lookups (GETPIVOTDATA) of pivot tables Rox could not keep are imported as their last calculated values.'
     );
     // With it, the lookup calculates.
     const kept = await decodeXlsx(corpus('sheetjs-formula-stress-test.xlsx'));

@@ -14,8 +14,8 @@ exports[`real-world XLSX corpus > bls-consumer-expenditure-2024-by-income… 1`]
   "sheets": 1,
   "styledCells": 5353,
   "warnings": [
-    "Frozen panes are retained for Excel export; Macro uses its own scrolling view.",
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Frozen panes are retained for Excel export; Rox uses its own scrolling view.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
   ],
 }
 `;
@@ -51,8 +51,8 @@ exports[`real-world XLSX corpus > github-alibhatti23-dcf-comps-lbo-merger… 1`]
   "sheets": 8,
   "styledCells": 831,
   "warnings": [
-    "Frozen panes are retained for Excel export; Macro uses its own scrolling view.",
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Frozen panes are retained for Excel export; Rox uses its own scrolling view.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
   ],
 }
 `;
@@ -88,7 +88,7 @@ exports[`real-world XLSX corpus > ironcalc-template-gantt-project-tracker… 1`]
   "sheets": 4,
   "styledCells": 5541,
   "warnings": [
-    "Hidden sheets are shown in Macro; their visibility is retained in Excel downloads.",
+    "Hidden sheets are shown in Rox; their visibility is retained in Excel downloads.",
   ],
 }
 `;
@@ -117,7 +117,7 @@ exports[`real-world XLSX corpus > libreoffice-forum-mso-en4-134670-sales-… 1`]
   "sheets": 5,
   "styledCells": 10319,
   "warnings": [
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
     "Text rotation, shrink-to-fit and right-to-left layout are not imported.",
   ],
 }
@@ -137,10 +137,10 @@ exports[`real-world XLSX corpus > obr-efo-ready-reckoner-spring-2025.xlsx 1`] = 
   "sheets": 27,
   "styledCells": 12262,
   "warnings": [
-    "Dynamic array formulas are recalculated by Macro; cached spill values are discarded and their cell formatting is retained.",
-    "Frozen panes are retained for Excel export; Macro uses its own scrolling view.",
+    "Dynamic array formulas are recalculated by Rox; cached spill values are discarded and their cell formatting is retained.",
+    "Frozen panes are retained for Excel export; Rox uses its own scrolling view.",
     "Hyperlinks are imported as display text; link targets are not retained.",
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
     "Rich text is imported as plain text with the cell’s formatting.",
   ],
 }
@@ -161,7 +161,7 @@ exports[`real-world XLSX corpus > openxmlsdk-business-startup-costs-pl-te… 1`]
   "styledCells": 3731,
   "warnings": [
     "Font sizes are rounded and limited to 8–36 pt.",
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
     "Rich text is imported as plain text with the cell’s formatting.",
   ],
 }
@@ -181,10 +181,10 @@ exports[`real-world XLSX corpus > packt-wazobia-3-statement-dcf-valuation… 1`]
   "sheets": 6,
   "styledCells": 3821,
   "warnings": [
-    "Excel sheet protection is not imported; Macro sharing controls determine edit access.",
+    "Excel sheet protection is not imported; Rox sharing controls determine edit access.",
     "External workbook links are not supported; formulas that use them keep their last calculated values.",
-    "Hidden sheets are shown in Macro; their visibility is retained in Excel downloads.",
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Hidden sheets are shown in Rox; their visibility is retained in Excel downloads.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
     "Names that refer to other workbooks are not imported.",
     "What-if data tables are imported as their last calculated values.",
   ],
@@ -230,7 +230,7 @@ exports[`real-world XLSX corpus > poi-formula-eval-test-data.xlsx 1`] = `
   "styledCells": 591,
   "warnings": [
     "Hyperlinks are imported as display text; link targets are not retained.",
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
     "Text number formats on numeric, boolean, date or formula cells are reset to preserve the original value types.",
     "Text rotation, shrink-to-fit and right-to-left layout are not imported.",
   ],
@@ -251,8 +251,8 @@ exports[`real-world XLSX corpus > sec-jpmorgan-10k-fy2024-financial-repor… 1`]
   "sheets": 234,
   "styledCells": 30568,
   "warnings": [
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
-    "Text longer than 10,000 characters was shortened to fit Macro cells.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
+    "Text longer than 10,000 characters was shortened to fit Rox cells.",
   ],
 }
 `;
@@ -292,8 +292,8 @@ exports[`real-world XLSX corpus > sheetjs-formula-stress-test.xlsx 1`] = `
   "sheets": 10,
   "styledCells": 164,
   "warnings": [
-    "Macro cannot calculate these Excel functions yet, so their formulas show errors: ECMA.CEILING, JIS, PHONETIC, YEN.",
-    "Pivot tables show their last values in Macro; Excel rebuilds them from their data when the downloaded file opens.",
+    "Pivot tables show their last values in Rox; Excel rebuilds them from their data when the downloaded file opens.",
+    "Rox cannot calculate these Excel functions yet, so their formulas show errors: ECMA.CEILING, JIS, PHONETIC, YEN.",
   ],
 }
 `;
@@ -312,11 +312,11 @@ exports[`real-world XLSX corpus > zenodo-surewave-floating-pv-cost-and-fi… 1`]
   "sheets": 12,
   "styledCells": 42476,
   "warnings": [
-    "Dynamic array formulas are recalculated by Macro; cached spill values are discarded and their cell formatting is retained.",
-    "Frozen panes are retained for Excel export; Macro uses its own scrolling view.",
+    "Dynamic array formulas are recalculated by Rox; cached spill values are discarded and their cell formatting is retained.",
+    "Frozen panes are retained for Excel export; Rox uses its own scrolling view.",
     "Hyperlinks are imported as display text; link targets are not retained.",
-    "Macro cannot calculate these Excel functions yet, so their formulas show errors: __XLUDF.UNSUPPORTED.",
-    "Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.",
+    "Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.",
+    "Rox cannot calculate these Excel functions yet, so their formulas show errors: __XLUDF.UNSUPPORTED.",
   ],
 }
 `;

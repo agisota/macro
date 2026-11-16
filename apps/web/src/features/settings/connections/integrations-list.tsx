@@ -199,7 +199,7 @@ export function IntegrationListRow(props: {
               title={
                 props.kind === 'mcp'
                   ? 'Agents use it through an MCP server'
-                  : 'Built into Macro'
+                  : 'Built into Rox'
               }
             >
               {props.kind}

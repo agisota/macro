@@ -18,7 +18,7 @@ export function capabilityFacts(
   if (!row || row.mechanism === 'pipedream') {
     const onConnect =
       macroConnectEnabled && (!row || row.grantProvider === 'connect');
-    return onConnect ? 'Powered by Macro Connect' : 'Powered by Pipedream';
+    return onConnect ? 'Powered by Rox Connect' : 'Powered by Pipedream';
   }
   return [row.account, SCOPE_LABEL[row.scope]].filter(Boolean).join(' · ');
 }

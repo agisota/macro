@@ -94,7 +94,7 @@ export function QuestionPreview(props: {
         <FauxField>Pick a document</FauxField>
       </Match>
       <Match when={props.type === 'entity'}>
-        <FauxField>Pick from Macro</FauxField>
+        <FauxField>Pick from Rox</FauxField>
       </Match>
       <Match when={props.type === 'relation'}>
         <FauxField>

@@ -50,7 +50,7 @@ vi.mock('@components/app/side-panel', () => ({
   },
 }));
 vi.mock('@app/features/chat/ChatWithAgentButton', () => ({
-  AskMacroButton: () => <button>Ask Macro</button>,
+  AskMacroButton: () => <button>Ask Rox</button>,
 }));
 vi.mock(
   '@app/features/email-thread/context/email-thread-state-context',
@@ -116,7 +116,7 @@ it('keeps email actions, sharing, and details available in the desktop header', 
   expect(actions.share).toHaveBeenCalledOnce();
   expect(actions.task).toHaveBeenCalledOnce();
   expect(actions.details).toHaveBeenCalledOnce();
-  expect(screen.getByRole('button', { name: 'Ask Macro' })).toBeTruthy();
+  expect(screen.getByRole('button', { name: 'Ask Rox' })).toBeTruthy();
   expect(
     screen.getByRole('button', { name: 'More email actions' })
   ).toBeTruthy();

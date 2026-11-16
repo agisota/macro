@@ -10,7 +10,7 @@ const row = {
 describe('capabilityFacts', () => {
   it('credits Macro Connect for a Connect grant when the flag is on', () => {
     expect(capabilityFacts({ ...row, grantProvider: 'connect' }, true)).toBe(
-      'Powered by Macro Connect'
+      'Powered by Rox Connect'
     );
   });
 
@@ -30,7 +30,7 @@ describe('capabilityFacts', () => {
   );
 
   it('names what would run an unconnected provider, by flag', () => {
-    expect(capabilityFacts(undefined, true)).toBe('Powered by Macro Connect');
+    expect(capabilityFacts(undefined, true)).toBe('Powered by Rox Connect');
     expect(capabilityFacts(undefined, false)).toBe('Powered by Pipedream');
   });
 

@@ -3,7 +3,7 @@ import { expect, it, vi } from 'vitest';
 import type { SharingSource } from '../context/contracts';
 import { createDirectAccessInvite } from './direct-access-invite';
 
-it('grants view access by Macro email and preserves the address when the write fails', async () => {
+it('grants view access by Rox email and preserves the address when the write fails', async () => {
   const setGrant = vi.fn().mockResolvedValue(undefined);
   const state = createRoot((dispose) => {
     const source: SharingSource = {
@@ -37,6 +37,8 @@ it('grants view access by Macro email and preserves the address when the write f
   state.invite.setEmail('ben@example.test');
   await state.invite.invite();
   expect(state.invite.email()).toBe('ben@example.test');
-  expect(state.invite.error()).toContain("Couldn't add this person");
+  expect(state.invite.error()).toBe(
+    "Couldn't add this person. Check their Rox email and try again."
+  );
   state.dispose();
 });

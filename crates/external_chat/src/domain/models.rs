@@ -99,7 +99,7 @@ pub enum CannotAdd {
     #[error("a community has no messages of its own; add one of its groups")]
     Community,
     /// The chat with yourself.
-    #[error("your chat with yourself can't be added to Macro")]
+    #[error("your chat with yourself can't be added to Rox")]
     OwnChat,
     /// A direct chat that is not in the account's chat list.
     #[error("this chat is not in your WhatsApp chat list")]

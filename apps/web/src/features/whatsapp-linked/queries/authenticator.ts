@@ -28,7 +28,7 @@ function passkeyFailure(error: unknown): PasskeyFailure {
     // Desktop builds from before the command answer "command ... not found".
     .with(
       P.string.regex(/not found/i),
-      () => 'Update Macro desktop to confirm WhatsApp passkeys, then try again.'
+      () => 'Update Rox desktop to confirm WhatsApp passkeys, then try again.'
     )
     .with(
       P.union('unavailable', 'unsupported'),

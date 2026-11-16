@@ -191,7 +191,7 @@ export function createSpreadsheetSession(
     const version = manager.doc.getMap('spreadsheetMeta').get('formatVersion');
     if (version !== undefined && version !== SPREADSHEET_FORMAT_VERSION) {
       setError(
-        'This spreadsheet uses a newer format. Update Macro to open it.'
+        'This spreadsheet uses a newer format. Update Rox to open it.'
       );
       return;
     }

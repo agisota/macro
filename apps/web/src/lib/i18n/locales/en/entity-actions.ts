@@ -18,7 +18,7 @@ export default {
   openInCurrentSplit: 'Open in current split',
   openFullscreen: 'Open fullscreen',
   rename: 'Rename',
-  askMacro: 'Ask Macro',
+  askMacro: 'Ask Rox',
   setChannelPicture: 'Set channel picture',
   removeChannelPicture: 'Remove channel picture',
   favorite: 'Favorite',

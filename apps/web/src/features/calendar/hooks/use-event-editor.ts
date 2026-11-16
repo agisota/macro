@@ -328,7 +328,7 @@ export function useEventEditor(props: UseEventEditorProps) {
       values.time.kind === 'timed' &&
       Date.parse(values.time.endsAt) <= Date.parse(values.time.startsAt)
     ) {
-      setSaveError('Give this event a duration before adding a Macro call.');
+      setSaveError('Give this event a duration before adding a Rox call.');
       setPending(false);
       return;
     }

@@ -87,7 +87,7 @@ function buildActionItems(
     },
     {
       id: 'ask-macro',
-      label: 'Ask Macro',
+      label: 'Ask Rox',
       icon: SparkleIcon,
       onClick: actions?.onChat,
     },

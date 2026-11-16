@@ -215,7 +215,7 @@ export function createPresentationCollabSession(
       setState({
         t: 'error',
         message:
-          'This presentation was saved by a newer version of Macro. Reload to open it.',
+          'This presentation was saved by a newer version of Rox. Reload to open it.',
       });
       return;
     }

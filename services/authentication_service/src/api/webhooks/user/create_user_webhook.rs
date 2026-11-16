@@ -41,7 +41,7 @@ use model_entity::EntityType;
 use teams::domain::team_repo::TeamService;
 use tracing::Instrument;
 
-/// Macro team members added to every new user's support channel.
+/// Rox team members added to every new user's support channel.
 const MACRO_SUPPORT_EMAILS: [&str; 15] = [
     "jacob@macro.com",
     "julia@macro.com",
@@ -61,7 +61,7 @@ const MACRO_SUPPORT_EMAILS: [&str; 15] = [
 ];
 
 fn support_channel_name<T: AsRef<str>>(email: &Email<T>) -> String {
-    format!("Macro Support x {}", email.local_part())
+    format!("Rox Support x {}", email.local_part())
 }
 
 /// Name the identity provider gave us, as (first, last).
@@ -568,10 +568,10 @@ fn spawn_human_signup_content(ctx: &ApiContext, user_id: &str, email: &str) {
         .in_current_span()
     });
 
-    // Seed the starter documents (the "Macro how to guide" and the starter
+    // Seed the starter documents (the "Rox how to guide" and the starter
     // tasks it links to, with the guide pinned to the new user's sidebar
     // favorites), then create a private support channel connecting the new
-    // user with the Macro support team and post the welcome script — which
+    // user with the Rox support team and post the welcome script — which
     // mentions the guide, so seeding runs first. Fire-and-forget: neither a
     // failed seeding (retried, then skipped) nor a failed channel creation
     // may block user creation.
@@ -623,18 +623,18 @@ fn spawn_human_signup_content(ctx: &ApiContext, user_id: &str, email: &str) {
             {
                 Ok(channel) => channel,
                 Err(e) => {
-                    tracing::error!(error=?e, "failed to create Macro support channel");
+                    tracing::error!(error=?e, "failed to create Rox support channel");
                     return;
                 }
             };
-            tracing::info!(channel_id=%channel.id, participant_count=participants_count, "created Macro support channel");
+            tracing::info!(channel_id=%channel.id, participant_count=participants_count, "created Rox support channel");
 
             let channel_entity = EntityType::Channel.with_entity_str(&channel.id);
             if let Err(e) = favorites_service
                 .add_favorite_with_established_access(&owner_id, &channel_entity)
                 .await
             {
-                tracing::error!(error=?e, channel_id=%channel.id, "failed to favorite Macro support channel");
+                tracing::error!(error=?e, channel_id=%channel.id, "failed to favorite Rox support channel");
             }
 
             let welcome_gateway =
@@ -642,10 +642,10 @@ fn spawn_human_signup_content(ctx: &ApiContext, user_id: &str, email: &str) {
             let _ = post_support_channel_welcome(&welcome_gateway, &channel.id, owner_id)
                 .await
                 .inspect(|_| {
-                    tracing::info!(channel_id=%channel.id, "posted Macro support welcome message");
+                    tracing::info!(channel_id=%channel.id, "posted Rox support welcome message");
                 })
                 .inspect_err(|e| {
-                    tracing::error!(error=?e, channel_id=%channel.id, "failed to post Macro support welcome message");
+                    tracing::error!(error=?e, channel_id=%channel.id, "failed to post Rox support welcome message");
                 });
         }
         .in_current_span()

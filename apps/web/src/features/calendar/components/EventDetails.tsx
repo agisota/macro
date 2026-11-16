@@ -482,7 +482,7 @@ export function EventDetails(props: {
   );
   const conferenceLabel = () =>
     macroMeetingUrl()
-      ? 'Join Macro call'
+      ? 'Join Rox call'
       : props.event.conferenceProvider === 'google_meet'
         ? 'Join Google Meet'
         : props.event.conferenceProvider === 'microsoft_teams'

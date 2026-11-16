@@ -417,11 +417,11 @@ export function readSheetPivotTables(options: {
   }
   if (pivots.some((pivot) => !pivot.workbook && !pivot.connection))
     warnings.add(
-      'Pivot tables show their last values in Macro; Excel rebuilds them from their data when the downloaded file opens.'
+      'Pivot tables show their last values in Rox; Excel rebuilds them from their data when the downloaded file opens.'
     );
   if (pivots.some((pivot) => pivot.workbook || pivot.connection))
     warnings.add(
-      'Pivot tables over other workbooks or data connections show their last values in Macro; the download keeps them with the data Excel saved, to refresh in Excel.'
+      'Pivot tables over other workbooks or data connections show their last values in Rox; the download keeps them with the data Excel saved, to refresh in Excel.'
     );
   if (removedPasswords)
     warnings.add(

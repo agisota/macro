@@ -87,7 +87,7 @@ function Members(props: { chat: ChatDetail }) {
   return (
     <div class="flex flex-col gap-2">
       <p class="px-1 text-xs text-ink-muted">
-        Members of the {label()} group can send from Macro with their own{' '}
+        Members of the {label()} group can send from Rox with their own{' '}
         {label()}.
       </p>
       <Show when={props.chat.members.length > FILTER_FROM}>
@@ -165,7 +165,7 @@ export function ChatDetails(props: {
       >
         <div class="flex flex-col items-start gap-2 px-1">
           <p class="text-xs text-ink-muted">
-            People you share this chat with read it in Macro.{' '}
+            People you share this chat with read it in Rox.{' '}
             {props.chat.kind === 'direct'
               ? 'Only its owner can reply.'
               : `Only ${label()} members can send.`}
@@ -186,7 +186,7 @@ export function ChatDetails(props: {
             <p class="text-xs text-ink-muted" role="status">
               <Show
                 when={!props.stopped}
-                fallback="Syncing stopped. Its history stays in Macro."
+                fallback="Syncing stopped. Its history stays in Rox."
               >
                 <Show
                   when={props.chat.phone}
@@ -215,7 +215,7 @@ export function ChatDetails(props: {
               open={confirming()}
               onOpenChange={setConfirming}
               title="Stop syncing this chat?"
-              body="Its history stays in Macro. New messages will stop syncing."
+              body="Its history stays in Rox. New messages will stop syncing."
               confirmLabel="Stop syncing"
               tone="danger"
               pending={stopping()}

@@ -28,7 +28,7 @@ pub enum GtmInviteError {
     #[error("invite link not found")]
     NotFound,
     /// The caller is not Macro staff.
-    #[error("only Macro staff can manage invite links")]
+    #[error("only Rox staff can manage invite links")]
     Forbidden,
     /// The link's 48-hour window has passed.
     #[error("this invite link has expired")]

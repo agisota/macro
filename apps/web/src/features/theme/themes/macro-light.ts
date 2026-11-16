@@ -3,7 +3,7 @@ import type { ThemeV3 } from '../types/themeTypes';
 /** Neutral light surfaces with white controls and the shared Macro blue accent. */
 export const macroLightTheme = {
   id: 'Macro Light',
-  name: 'Macro Light',
+  name: 'Rox Light',
   version: 3,
   mode: 'light',
   colorTokens: {

@@ -75,14 +75,14 @@ export function TopBar() {
 
   const tools: BlockTool[] = [
     {
-      label: 'Ask Macro',
+      label: 'Ask Rox',
       icon: ChatWithAgentIcon,
       action: () => openChatWithAgent(chatEntity()),
       buttonComponent: (control) => (
         <ChatWithAgentButton
           grouped={control.grouped}
           entity={chatEntity()}
-          label="Ask Macro"
+          label="Ask Rox"
         />
       ),
     },

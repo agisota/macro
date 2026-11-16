@@ -34,7 +34,7 @@ describe('adoption refusals', () => {
           new ThrownResultError([{ code: 'NETWORK_ERROR', message: 'x' }])
         )
       )
-    ).toBe("Couldn't reach Macro. Check your connection and try again.");
+    ).toBe("Couldn't reach Rox. Check your connection and try again.");
     expect(decodeAddRefusal(new TypeError('offline'))).toEqual({
       reason: 'unreachable',
     });

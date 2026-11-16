@@ -323,7 +323,7 @@ describe('unified Integrations page', () => {
       screen.queryByRole('button', { name: 'Set up local agents' })
     ).toBeNull();
     expect(
-      screen.getByRole('button', { name: 'Set up Macro in AI apps' })
+      screen.getByRole('button', { name: 'Set up Rox in AI apps' })
     ).toBeTruthy();
   });
 
@@ -338,7 +338,7 @@ describe('unified Integrations page', () => {
       />
     ));
     fireEvent.click(
-      screen.getByRole('button', { name: 'Set up Macro in AI apps' })
+      screen.getByRole('button', { name: 'Set up Rox in AI apps' })
     );
     expect(onOpenMacroMcp).toHaveBeenCalledOnce();
     expect(onOpenLocalAgents).not.toHaveBeenCalled();
@@ -392,7 +392,7 @@ describe('unified Integrations page', () => {
     expect(screen.getByText('Granola')).toBeTruthy();
     expect(screen.queryByText('GitHub')).toBeNull();
     expect(
-      screen.queryByRole('button', { name: 'Set up Macro in AI apps' })
+      screen.queryByRole('button', { name: 'Set up Rox in AI apps' })
     ).toBeNull();
   });
 

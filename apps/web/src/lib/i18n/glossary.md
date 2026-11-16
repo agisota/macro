@@ -1,13 +1,13 @@
 # Interface translation glossary
 
-How each language words Macro's product terms, so translations made at
+How each language words Rox's product terms, so translations made at
 different times read as one product. Translate a new or changed message with
 the words below, and add a row when a new product term appears. Each example is
 an existing message; reuse its word for the term, not its whole phrase.
 
 Across languages:
 
-- Keep product and brand names in English: Macro, GitHub, Gmail, CRM, MCP, API.
+- Keep product and brand names in English: Rox, GitHub, Gmail, CRM, MCP, API.
 - Keep `{{placeholders}}` exactly; move them to wherever the grammar needs.
 - Use the language's own quotation marks (`„…“`, `« … »`, `「…」`) around
   quoted names.

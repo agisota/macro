@@ -73,7 +73,7 @@ export function InviteLinksPortal() {
           <Match when={isAuthenticated() === false}>
             <Gate
               title="Log in to continue"
-              body="This page is for Macro staff."
+              body="This page is for Rox staff."
               action={
                 <Button
                   variant="primary"
@@ -91,7 +91,7 @@ export function InviteLinksPortal() {
           </Match>
           <Match when={isAuthenticated() === true && !isStaff()}>
             <Gate
-              title="Macro staff only"
+              title="Rox staff only"
               body="Invite links can only be created from a @macro.com account."
             />
           </Match>

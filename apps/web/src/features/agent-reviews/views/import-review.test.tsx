@@ -497,14 +497,14 @@ describe('import review', () => {
     expect(screen.getByRole('button', { name: 'Import 1 page' })).toBeTruthy();
 
     const disclosure = screen.getByRole('button', {
-      name: '3 already in Macro (imported by ana@acme.com, bo@acme.com)',
+      name: '3 already in Rox (imported by ana@acme.com, bo@acme.com)',
     });
     expect(disclosure.getAttribute('aria-expanded')).toBe('false');
     expect(screen.queryByRole('link', { name: 'Wiki' })).toBeNull();
 
     fireEvent.click(disclosure);
     expect(disclosure.getAttribute('aria-expanded')).toBe('true');
-    const section = screen.getByRole('region', { name: 'Already in Macro' });
+    const section = screen.getByRole('region', { name: 'Already in Rox' });
     expect(within(section).getAllByText('by ana@acme.com')).toHaveLength(2);
     expect(within(section).getByText('Old')).toBeTruthy();
     expect(within(section).queryByRole('link', { name: 'Old' })).toBeNull();

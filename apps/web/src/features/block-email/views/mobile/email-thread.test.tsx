@@ -74,7 +74,7 @@ vi.mock('../../component/useEmailThreadTools', () => ({
         markNotDone: action('Mark Not Done'),
         markUnread: action('Mark Unread'),
         markRead: action('Mark Read'),
-        askMacro: action('Ask Macro'),
+        askMacro: action('Ask Rox'),
         createTask: action('Create task', () => options.onCreateTask?.()),
         createEvent: action('Create event'),
         share: action('Share'),
@@ -116,7 +116,7 @@ it('keeps the header to the subject and details, with thread actions in the titl
   expect(actions.details).toHaveBeenCalledOnce();
 
   const menu = screen.getByRole('list', { name: 'Email actions' });
-  expect(within(menu).getByRole('button', { name: 'Ask Macro' })).toBeTruthy();
+  expect(within(menu).getByRole('button', { name: 'Ask Rox' })).toBeTruthy();
   fireEvent.click(within(menu).getByRole('button', { name: 'Create task' }));
   expect(actions.task).toHaveBeenCalledOnce();
 });

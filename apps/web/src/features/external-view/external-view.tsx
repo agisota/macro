@@ -126,7 +126,7 @@ export function ExternalView() {
               id="external-chats"
               class="px-2 pt-4 pb-1 text-xs font-semibold tracking-tight text-ink-extra-muted"
             >
-              In Macro
+              In Rox
             </h2>
             <For each={PROVIDERS}>{(provider) => inMacroChats(provider)}</For>
           </section>

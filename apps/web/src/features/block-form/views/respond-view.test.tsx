@@ -372,7 +372,7 @@ describe('RespondView', () => {
     ));
     expect(
       screen.getByText(
-        '“Your host” picks from Macro, which needs you to sign in.'
+        '“Your host” picks from Rox, which needs you to sign in.'
       )
     ).toBeTruthy();
   });

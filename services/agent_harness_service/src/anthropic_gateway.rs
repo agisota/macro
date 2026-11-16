@@ -291,7 +291,7 @@ async fn unsupported() -> Response {
         status: StatusCode::NOT_FOUND,
         kind: "not_found_error",
         outcome: "unsupported_endpoint",
-        message: "Macro's Anthropic gateway serves only /v1/messages and /v1/messages/count_tokens"
+        message: "Rox's Anthropic gateway serves only /v1/messages and /v1/messages/count_tokens"
             .into(),
     }
     .into_response()
@@ -353,7 +353,7 @@ async fn forward<Sessions: AgentSessionRepo, Computers: BotComputers>(
         span.record("agent.harness", session.harness.as_str());
         let owner = session
             .owner_user()
-            .map_err(|_| Rejection::permission("this session's owner cannot spend Macro credits"))?
+            .map_err(|_| Rejection::permission("this session's owner cannot spend Rox credits"))?
             .clone();
         // The computer is the gate: the rollout limits selling computers, not
         // using them, so a teammate outside it, or anyone once it is off, still
@@ -633,7 +633,7 @@ impl Rejection {
         kind: "authentication_error",
         outcome: "unauthenticated",
         message: std::borrow::Cow::Borrowed(
-            "send the agent teammate's Macro API key as `Authorization: Bearer`",
+            "send the agent teammate's Rox API key as `Authorization: Bearer`",
         ),
     };
 
@@ -642,7 +642,7 @@ impl Rejection {
         kind: "authentication_error",
         outcome: "unauthenticated",
         message: std::borrow::Cow::Borrowed(
-            "send the agent session's Macro token as `Authorization: Bearer`",
+            "send the agent session's Rox token as `Authorization: Bearer`",
         ),
     };
 
@@ -662,7 +662,7 @@ impl Rejection {
         kind: "permission_error",
         outcome: "not_on_a_computer",
         message: std::borrow::Cow::Borrowed(
-            "Macro's Anthropic gateway serves only sessions on a Macro computer",
+            "Rox's Anthropic gateway serves only sessions on a Rox computer",
         ),
     };
 
@@ -670,7 +670,7 @@ impl Rejection {
         status: StatusCode::SERVICE_UNAVAILABLE,
         kind: "api_error",
         outcome: "not_configured",
-        message: std::borrow::Cow::Borrowed("Macro's Anthropic gateway has no API key configured"),
+        message: std::borrow::Cow::Borrowed("Rox's Anthropic gateway has no API key configured"),
     };
 
     const UPSTREAM_UNREACHABLE: Self = Self {
@@ -699,7 +699,7 @@ impl Rejection {
             kind: "invalid_request_error",
             outcome: "model_not_allowed",
             message: format!(
-                "model `{model}` is not available on Macro credits; use one of: {}",
+                "model `{model}` is not available on Rox credits; use one of: {}",
                 allowed.join(", ")
             )
             .into(),

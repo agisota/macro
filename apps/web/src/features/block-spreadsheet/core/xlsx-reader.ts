@@ -383,7 +383,7 @@ function importFormula(
   if (resolved === undefined) return;
   if (resolved !== stripped)
     context.warnings.add(
-      'Excel tables without a header row, or beyond Macro’s sheet size or table limit, are imported as ordinary cells; formulas refer to their cell ranges.'
+      'Excel tables without a header row, or beyond Rox’s sheet size or table limit, are imported as ordinary cells; formulas refer to their cell ranges.'
     );
   const shown = displayStructuredReferences(
     resolved,
@@ -471,7 +471,7 @@ function readWorksheet(
     if (row >= SPREADSHEET_MAX_ROWS) {
       if (placed.value)
         throw new Error(
-          `“${entry.name}” has data beyond row ${SPREADSHEET_MAX_ROWS.toLocaleString('en-US')}, the most Macro supports. No sheets were imported.`
+          `“${entry.name}” has data beyond row ${SPREADSHEET_MAX_ROWS.toLocaleString('en-US')}, the most Rox supports. No sheets were imported.`
         );
       droppedRows = true;
       return;
@@ -484,7 +484,7 @@ function readWorksheet(
     // Excel allows 32,767 characters; keep the workbook and shorten long notes.
     if (long)
       warnings.add(
-        'Text longer than 10,000 characters was shortened to fit Macro cells.'
+        'Text longer than 10,000 characters was shortened to fit Rox cells.'
       );
     cells[formatCellAddress(row, column)] = long
       ? { ...placed, value: placed.value.slice(0, SPREADSHEET_MAX_CELL_LENGTH) }
@@ -625,7 +625,7 @@ function readWorksheet(
                 skipped.add(formatCellAddress(row, column));
           if (dynamic)
             warnings.add(
-              'Dynamic array formulas are recalculated by Macro; cached spill values are discarded and their cell formatting is retained.'
+              'Dynamic array formulas are recalculated by Rox; cached spill values are discarded and their cell formatting is retained.'
             );
           else {
             arrayFormulas[address] =
@@ -865,7 +865,7 @@ function readWorksheet(
           return;
         case 'sheetProtection':
           warnings.add(
-            'Excel sheet protection is not imported; Macro sharing controls determine edit access.'
+            'Excel sheet protection is not imported; Rox sharing controls determine edit access.'
           );
           return;
       }
@@ -1046,21 +1046,21 @@ function readWorksheet(
   if (entry.hidden) {
     metadata.hidden = true;
     warnings.add(
-      'Hidden sheets are shown in Macro; their visibility is retained in Excel downloads.'
+      'Hidden sheets are shown in Rox; their visibility is retained in Excel downloads.'
     );
   }
   if (styles.defaultFont) metadata.defaultFont = styles.defaultFont;
   if (merges.length)
     warnings.add(
-      'Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.'
+      'Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.'
     );
   if (metadata.freeze)
     warnings.add(
-      'Frozen panes are retained for Excel export; Macro uses its own scrolling view.'
+      'Frozen panes are retained for Excel export; Rox uses its own scrolling view.'
     );
   if (metadata.autoFilter)
     warnings.add(
-      'Excel filters are retained for export; Macro displays all rows.'
+      'Excel filters are retained for export; Rox displays all rows.'
     );
   // Tall rows show Excel's bottom alignment; ordinary rows look the same either
   // way. Measure against Excel's standard 15pt row so a round trip agrees.
@@ -1149,7 +1149,7 @@ function keepPivotLookups(
       });
     if (kept) continue;
     context.warnings.add(
-      'Pivot table lookups (GETPIVOTDATA) of pivot tables Macro could not keep are imported as their last calculated values.'
+      'Pivot table lookups (GETPIVOTDATA) of pivot tables Rox could not keep are imported as their last calculated values.'
     );
     const { value: _formula, ...style } = cell;
     if (lookup.literal || Object.keys(style).length)
@@ -1294,7 +1294,7 @@ export function readXlsxWorkbook(
   );
   if (total > XLSX_MAX_CELLS)
     throw new Error(
-      `This workbook has ${total.toLocaleString('en-US')} filled cells; Macro imports up to ${XLSX_MAX_CELLS.toLocaleString('en-US')}. No sheets were imported.`
+      `This workbook has ${total.toLocaleString('en-US')} filled cells; Rox imports up to ${XLSX_MAX_CELLS.toLocaleString('en-US')}. No sheets were imported.`
     );
   const sheetIndex = new Map(
     sheets.map((sheet, index) => [index, worksheets.indexOf(sheet)])
@@ -1330,7 +1330,7 @@ export function readXlsxWorkbook(
   keepPivotLookups(result, context);
   if (context.unsupportedFunctions.size)
     warnings.add(
-      `Macro cannot calculate these Excel functions yet, so their formulas show errors: ${[...context.unsupportedFunctions].sort().join(', ')}.`
+      `Rox cannot calculate these Excel functions yet, so their formulas show errors: ${[...context.unsupportedFunctions].sort().join(', ')}.`
     );
   for (const sheet of result)
     if (sheet.metadata && !Object.keys(sheet.metadata).length)

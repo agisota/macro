@@ -426,7 +426,7 @@ pub enum CalendarMutationErrorCode {
     /// The provider applied the mutation but local persistence lagged;
     /// refetching converges.
     PersistFailed,
-    /// The Macro call for a new event could not be created; nothing was
+    /// The Rox call for a new event could not be created; nothing was
     /// written to the calendar.
     MacroCallFailed,
     /// The meeting is on several of the requester's inboxes and the agent
@@ -642,7 +642,7 @@ impl From<MacroCallEventError> for CalendarMutationApiError {
                 tracing::error!(error = ?error, "calendar event macro call creation failed");
                 Self {
                     code: CalendarMutationErrorCode::MacroCallFailed,
-                    message: "the Macro call for the event could not be created; the event was \
+                    message: "the Rox call for the event could not be created; the event was \
                               not saved"
                         .to_string(),
                     status: StatusCode::SERVICE_UNAVAILABLE,
@@ -665,7 +665,7 @@ impl From<MacroCallEventError> for CalendarMutationApiError {
         (status = 401, description = "Authentication required"),
         (status = 403, description = "Calendar is read-only or needs reauthorization, or an agent's program asked to create without a review or confirmation", body = CalendarMutationApiError),
         (status = 409, description = "No writable calendar or the provider rejected the event", body = CalendarMutationApiError),
-        (status = 503, description = "Transient provider failure, or the Macro call could not be created", body = CalendarMutationApiError),
+        (status = 503, description = "Transient provider failure, or the Rox call could not be created", body = CalendarMutationApiError),
     )
 )]
 pub async fn create_calendar_event<S, L, Auth>(
@@ -797,7 +797,7 @@ fn update_scope(
         (status = 403, description = "Calendar is read-only or needs reauthorization, or the event is a snapshot of a shared meeting", body = CalendarMutationApiError),
         (status = 404, description = "Event or targeted occurrence not found", body = CalendarMutationApiError),
         (status = 409, description = "The provider rejected the update", body = CalendarMutationApiError),
-        (status = 503, description = "Transient provider failure, or the Macro call could not be created", body = CalendarMutationApiError),
+        (status = 503, description = "Transient provider failure, or the Rox call could not be created", body = CalendarMutationApiError),
     )
 )]
 pub async fn update_calendar_event<S, L, Auth>(

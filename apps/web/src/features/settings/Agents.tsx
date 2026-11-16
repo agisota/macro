@@ -1016,11 +1016,11 @@ function AgentEditorPage(props: {
     const saved = savedApiKey();
     if (apiKeyLocked())
       return saved
-        ? 'Agent API keys are part of the Premium and Max plans. This agent runs on Macro usage until you upgrade.'
+        ? 'Agent API keys are part of the Premium and Max plans. This agent runs on Rox usage until you upgrade.'
         : 'Agent API keys are part of the Premium and Max plans.';
     if (saved && saved.provider !== provider.id)
       return `The saved ${apiKeyProviderName(saved.provider)} key isn’t used with this model.`;
-    return `Bills this agent’s usage to your ${provider.name} account instead of Macro. Leave it empty to run on Macro.`;
+    return `Bills this agent’s usage to your ${provider.name} account instead of Rox. Leave it empty to run on Rox.`;
   };
   // Optional, so it stays a one-line offer until asked for or already set.
   const [apiKeyOpen, setApiKeyOpen] = createSignal(false);

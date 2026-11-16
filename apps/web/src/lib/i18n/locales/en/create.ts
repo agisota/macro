@@ -8,7 +8,7 @@ export default {
   agentDescription: 'Create agent session',
   agentHint: 'Dedicated Agent Session',
   routineLabel: 'Routine',
-  routineDescription: 'Run a model or agent on a schedule or Macro activity',
+  routineDescription: 'Run a model or agent on a schedule or Rox activity',
   routineHint: 'Schedules and activity triggers',
   databaseLabel: 'Database',
   databaseDescription: 'Create database',
@@ -220,7 +220,7 @@ export default {
   projectShortTagline: 'Organize related tasks',
   reminderTagline: 'Nudge yourself at a time you pick',
   reminderDetails:
-    'Set a reminder for something you want to revisit.\nChoose a time and let Macro bring it back.',
+    'Set a reminder for something you want to revisit.\nChoose a time and let Rox bring it back.',
   reminderExample1: 'Call back',
   reminderExample2: 'Check in Friday',
   reminderExample3: 'Renew license',
@@ -311,7 +311,7 @@ export default {
   guideTag: 'Label work so you can organize and filter it across projects.',
   guideConversation: 'Start a conversation with an existing agent.',
   guideWorkAgent:
-    'Create an assistant with instructions and access to your Macro workspace.',
+    'Create an assistant with instructions and access to your Rox workspace.',
   guideCodingAgent: 'Create an agent that works in a connected coding harness.',
   guideRoutine: 'Set up an agent to run on a recurring schedule.',
   guideCompany:

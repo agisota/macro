@@ -1,13 +1,21 @@
 /**
- * Every person who signs up gets a private support channel with the Macro
- * team, owned by them and named `Macro Support x <email local part>`
+ * Every person who signs up gets a private support channel with the Rox
+ * team, owned by them and named `Rox Support x <email local part>`
  * (`support_channel_name` in the authentication service's create-user
  * webhook). Nothing else marks it, so it is found by that name and owner.
- * Macro team members belong to many customers' support channels and own
+ * Rox team members belong to many customers' support channels and own
  * none; for them the link opens the most recently active one, so the team
  * sees what customers see and lands where support is happening.
  */
-const SUPPORT_CHANNEL_NAME_PREFIX = 'Macro Support x ';
+const SUPPORT_CHANNEL_NAME_PREFIX = 'Rox Support x ';
+
+/**
+ * The prefix the same webhook used before the product was renamed. Channels
+ * created back then kept the name they were created with, so they are still
+ * found by it; without this, everyone who signed up before the rename would
+ * lose the way back to their support channel.
+ */
+const LEGACY_SUPPORT_CHANNEL_NAME_PREFIX = 'Macro Support x ';
 
 type ChannelSummary = {
   id: string;
@@ -23,8 +31,11 @@ export function findSupportChannelId(
 ): string | undefined {
   if (!userId) return undefined;
 
-  const supportChannels = channels.filter((channel) =>
-    channel.name?.startsWith(SUPPORT_CHANNEL_NAME_PREFIX)
+  const supportChannels = channels.filter(({ name }) =>
+    Boolean(
+      name?.startsWith(SUPPORT_CHANNEL_NAME_PREFIX) ||
+        name?.startsWith(LEGACY_SUPPORT_CHANNEL_NAME_PREFIX)
+    )
   );
   const own = supportChannels.find((channel) => channel.owner_id === userId);
   if (own) return own.id;

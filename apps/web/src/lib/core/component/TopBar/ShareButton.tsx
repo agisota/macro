@@ -209,7 +209,7 @@ export function shareLevelsFor(
 }
 
 const SHARE_LINK_SUBTEXT =
-  'Sending this link in a Macro message will automatically update permissions to include recipients.';
+  'Sending this link in a Rox message will automatically update permissions to include recipients.';
 
 // Only these items' owners (a pipeline's editors) can grant access, so only
 // they may forward. Their links don't grant access to recipients either, so

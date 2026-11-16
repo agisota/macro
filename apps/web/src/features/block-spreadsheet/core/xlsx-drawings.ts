@@ -95,7 +95,7 @@ function importImage(
   if (!bytes) key = undefined;
   else if (!type)
     warnings.add(
-      'Images in formats Macro cannot read, such as TIFF, are not imported.'
+      'Images in formats Rox cannot read, such as TIFF, are not imported.'
     );
   else if (
     bytes.length > MAX_IMAGE_BYTES ||

@@ -717,7 +717,7 @@ it('names the community and notes disappearing messages quietly', () => {
   mount(fake);
   expect(screen.getByRole('heading', { name: 'Launch · Design' })).toBeTruthy();
   const note =
-    'Disappearing messages are on in WhatsApp (7 days). Macro keeps them.';
+    'Disappearing messages are on in WhatsApp (7 days). Rox keeps them.';
   expect(screen.getByLabelText(note)).toBeTruthy();
   expect(screen.getByText(note)).toBeTruthy();
   // Sending works as in any chat.
@@ -783,7 +783,7 @@ it('opens members, sharing and syncing in the side panel', async () => {
   );
   await waitFor(() => expect(fake.capabilities.stopSync).toHaveBeenCalled());
   expect(
-    await screen.findByText('Syncing stopped. Its history stays in Macro.')
+    await screen.findByText('Syncing stopped. Its history stays in Rox.')
   ).toBeTruthy();
   expect(screen.getByText('This chat is no longer syncing')).toBeTruthy();
 });

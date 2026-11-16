@@ -24,7 +24,7 @@ test('hands a Notion import from the Drive card to the agent', async ({
   await dialog.getByRole('button', { name: 'Import from Notion' }).click();
   await expect(dialog).not.toBeVisible();
   await expect(page.getByRole('status', { name: 'Agent handoff' })).toHaveText(
-    'Import my Notion workspace into Macro.'
+    'Import my Notion workspace into Rox.'
   );
 });
 
@@ -54,7 +54,7 @@ test('hands a connected Pipedream provider to the agent', async ({ page }) => {
   await dialog.getByRole('button', { name: 'Import from Jira' }).click();
   await expect(dialog).not.toBeVisible();
   await expect(page.getByRole('status', { name: 'Agent handoff' })).toHaveText(
-    'Import my Jira workspace into Macro.'
+    'Import my Jira workspace into Rox.'
   );
 });
 
@@ -114,6 +114,6 @@ for (const provider of ['Linear', 'Jira']) {
     await expect(dialog).not.toBeVisible();
     await expect(
       page.getByRole('status', { name: 'Agent handoff' })
-    ).toHaveText(`Import my ${provider} workspace into Macro.`);
+    ).toHaveText(`Import my ${provider} workspace into Rox.`);
   });
 }

@@ -93,12 +93,12 @@ describe('contacts', () => {
     expect(
       contacts.getAllByRole('listitem').map((row) => row.textContent)
     ).toEqual([
-      'Dana SmithDirect chat · +5550002Add to Macro',
-      '+5550003Direct chatAdd to Macro',
+      'Dana SmithDirect chat · +5550002Add to Rox',
+      '+5550003Direct chatAdd to Rox',
     ]);
 
     fireEvent.click(
-      contacts.getAllByRole('button', { name: 'Add to Macro' })[0]
+      contacts.getAllByRole('button', { name: 'Add to Rox' })[0]
     );
     expect(fake.capabilities.add).toHaveBeenCalledWith(chats[1]);
   });
@@ -113,7 +113,7 @@ describe('contacts', () => {
       within(screen.getByRole('list', { name: 'Contacts' }))
         .getAllByRole('listitem')
         .map((row) => row.textContent)
-    ).toEqual(['Dana SmithDirect chat · +5550002Add to Macro']);
+    ).toEqual(['Dana SmithDirect chat · +5550002Add to Rox']);
   });
 });
 

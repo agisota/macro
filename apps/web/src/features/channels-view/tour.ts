@@ -22,7 +22,7 @@ export const channelsTour = defineViewTour({
   title: 'Channels',
   video: {
     youtubeId: '1gDOXUxHo0U',
-    title: 'What Macro learned from Slack/Superhuman',
+    title: 'What Rox learned from Slack/Superhuman',
     duration: '5:56',
   },
   steps: [

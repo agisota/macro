@@ -119,7 +119,7 @@ describe('createAttachmentLinkOffer', () => {
     await share([huge], MAX_ATTACHMENTS_BYTES_SIZE);
     expect(confirm).toHaveBeenCalledExactlyOnceWith({
       title: 'Attachments exceed 18 MB',
-      body: '"huge.mov" won\'t fit as an attachment. Upload it to Macro and share a view-only link instead?',
+      body: '"huge.mov" won\'t fit as an attachment. Upload it to Rox and share a view-only link instead?',
       confirmLabel: 'Share link',
     });
     expect(uploadDocuments).not.toHaveBeenCalled();
@@ -135,7 +135,7 @@ describe('createAttachmentLinkOffer', () => {
     await share([huge, small], MAX_ATTACHMENTS_BYTES_SIZE);
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        body: "2 files won't fit as attachments. Upload them to Macro and share view-only links instead?",
+        body: "2 files won't fit as attachments. Upload them to Rox and share view-only links instead?",
         confirmLabel: 'Share links',
       })
     );

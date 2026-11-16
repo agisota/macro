@@ -58,7 +58,7 @@ it('renders absent setup as generic setup without a step detail', () => {
 it.each<{ step: SetupStep; label: string; position: number }>([
   { step: 'creating', label: 'Creating the computer', position: 1 },
   { step: 'booting', label: 'Starting up', position: 2 },
-  { step: 'connecting', label: 'Connecting to Macro', position: 3 },
+  { step: 'connecting', label: 'Connecting to Rox', position: 3 },
 ])(
   'renders $step as one of the three setup phases',
   ({ step, label, position }) => {
@@ -120,7 +120,7 @@ describe('offersFailure', () => {
   it('sends plan problems to Billing without a retry', () => {
     expect(offersFailure(failure('NO_PAID_PLAN'))).toEqual({
       message:
-        'Computers need a paid Macro plan. Your team does not have one yet.',
+        'Computers need a paid Rox plan. Your team does not have one yet.',
       remedy: 'billing',
     });
     expect(offersFailure(failure('TEAM_ON_TRIAL'))).toEqual({
@@ -143,7 +143,7 @@ describe('offersFailure', () => {
       remedy: 'retry',
     });
     expect(offersFailure(failure('BILLING_PROVIDER_FAILED'))).toEqual({
-      message: "Macro's billing provider didn't answer. Try again in a moment.",
+      message: "Rox's billing provider didn't answer. Try again in a moment.",
       remedy: 'retry',
     });
     expect(offersFailure(failure('TIMED_OUT'))).toEqual({
@@ -151,7 +151,7 @@ describe('offersFailure', () => {
       remedy: 'retry',
     });
     expect(offersFailure(failure('NETWORK_ERROR'))).toEqual({
-      message: "Couldn't reach Macro. Check your connection and try again.",
+      message: "Couldn't reach Rox. Check your connection and try again.",
       remedy: 'retry',
     });
     expect(offersFailure(failure('SERVER_ERROR'))).toEqual({

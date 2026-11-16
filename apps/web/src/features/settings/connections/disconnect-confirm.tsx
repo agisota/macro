@@ -17,7 +17,7 @@ export function DisconnectConfirmDialog(props: {
       onOpenChange={(open) => {
         if (!open) props.onClose();
       }}
-      title={props.request?.title ?? 'Disconnect from Macro'}
+      title={props.request?.title ?? 'Disconnect from Rox'}
       body={props.request?.body}
       confirmLabel={props.request?.confirmLabel ?? 'Disconnect'}
       tone="danger"

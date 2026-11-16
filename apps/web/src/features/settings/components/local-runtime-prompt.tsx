@@ -140,7 +140,7 @@ export function LocalRuntimePrompt() {
                 Run agents on this computer
               </span>
               <span class="block text-xs text-ink-muted">
-                Use your installed agents and local files in Macro.
+                Use your installed agents and local files in Rox.
               </span>
             </span>
             <span class="shrink-0 text-xs font-medium text-accent">Set up</span>

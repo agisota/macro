@@ -221,7 +221,7 @@ export function useGithubItem(
     icon: providerIcon('github'),
     get description() {
       const summary =
-        'Pull request reviews and status in Macro, and repository access for agents.';
+        'Pull request reviews and status in Rox, and repository access for agents.';
       const username = github.username();
       return username ? `@${username} · ${summary}` : summary;
     },
@@ -400,14 +400,14 @@ export function aiAppItems(hosts: IntegrationItemHosts): IntegrationItem[] {
       kind: 'mcp',
       icon: <ClaudeIcon />,
       description:
-        'Use your Macro workspace from Claude Code, Codex, ChatGPT, Claude.ai, and IDEs through the Macro MCP server.',
+        'Use your Rox workspace from Claude Code, Codex, ChatGPT, Claude.ai, and IDEs through the Rox MCP server.',
       categories: ['AI apps'],
       status: 'available',
       Actions: () => (
         <ConnectAction
           label="Set up"
           variant="neutral"
-          ariaLabel="Set up Macro in AI apps"
+          ariaLabel="Set up Rox in AI apps"
           onClick={hosts.onOpenMacroMcp}
         />
       ),
@@ -421,7 +421,7 @@ export function aiAppItems(hosts: IntegrationItemHosts): IntegrationItem[] {
       kind: 'native',
       icon: <DesktopIcon />,
       description:
-        'Pair your computer so Macro agents run on Claude Code, Codex, OpenCode, OpenClaw, or Hermes there, with each session streamed into Macro.',
+        'Pair your computer so Rox agents run on Claude Code, Codex, OpenCode, OpenClaw, or Hermes there, with each session streamed into Rox.',
       categories: ['AI apps'],
       status: 'available',
       Actions: () => (

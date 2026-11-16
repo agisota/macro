@@ -71,7 +71,7 @@ export function AgentSetupStrips(props: {
             icon={<CursorIcon />}
             title="Connect Cursor"
             subject="Cursor"
-            description="Use your Cursor subscription to run agents in Macro."
+            description="Use your Cursor subscription to run agents in Rox."
             action="Connect"
             onAction={props.onCursor}
           />

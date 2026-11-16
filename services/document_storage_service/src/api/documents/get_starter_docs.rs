@@ -8,7 +8,7 @@ use utoipa::ToSchema;
 /// The deterministic starter document ids for the current user.
 #[derive(serde::Serialize, ToSchema)]
 pub struct StarterDocumentsResponse {
-    /// Id of the user's "Macro how to guide".
+    /// Id of the user's "Rox how to guide".
     pub how_to_guide_id: String,
 }
 

@@ -118,7 +118,7 @@ export default {
     agentHint: 'Aparte agentsessie',
     routineLabel: 'Routine',
     routineDescription:
-      'Een model of agent uitvoeren volgens schema of bij Macro-activiteit',
+      'Een model of agent uitvoeren volgens schema of bij Rox-activiteit',
     routineHint: "Schema's en activiteitstriggers",
     databaseLabel: 'Database',
     databaseDescription: 'Database maken',
@@ -324,7 +324,7 @@ export default {
     projectShortTagline: 'Gerelateerde taken ordenen',
     reminderTagline: 'Herinner jezelf op een tijd naar keuze',
     reminderDetails:
-      'Stel een herinnering in voor iets waar je op terug wilt komen.\nKies een tijd en Macro herinnert je eraan.',
+      'Stel een herinnering in voor iets waar je op terug wilt komen.\nKies een tijd en Rox herinnert je eraan.',
     reminderExample1: 'Terugbellen',
     reminderExample2: 'Vrijdag opvolgen',
     reminderExample3: 'Licentie verlengen',
@@ -405,7 +405,7 @@ export default {
       'Tag werk zodat je het over projecten heen kunt ordenen en filteren.',
     guideConversation: 'Begin een conversatie met een bestaande agent.',
     guideWorkAgent:
-      'Maak een assistent met instructies en toegang tot je Macro-werkruimte.',
+      'Maak een assistent met instructies en toegang tot je Rox-werkruimte.',
     guideCodingAgent:
       'Maak een agent die werkt in een gekoppelde codeeromgeving.',
     guideRoutine: 'Laat een agent volgens een terugkerend schema draaien.',
@@ -706,20 +706,20 @@ export default {
     updateAvailable: 'Update beschikbaar',
     updateNewVersionTitle: 'Nieuwe versie beschikbaar',
     updateWebDescription:
-      'Er is een nieuwe versie van Macro klaar. Laad de pagina opnieuw om die te gebruiken.',
+      'Er is een nieuwe versie van Rox klaar. Laad de pagina opnieuw om die te gebruiken.',
     updateWebFailedLoadDescription:
-      'Een deel van Macro kon niet laden omdat er een nieuwe versie is. Laad de pagina opnieuw om die te gebruiken.',
+      'Een deel van Rox kon niet laden omdat er een nieuwe versie is. Laad de pagina opnieuw om die te gebruiken.',
     updateReload: 'Opnieuw laden',
     updateReadyTitle: 'Update klaar',
     updateBundleDescription:
-      'Er is een nieuwe versie van de Macro-desktopapp gedownload. Werk bij om die te gebruiken.',
+      'Er is een nieuwe versie van de Rox-desktopapp gedownload. Werk bij om die te gebruiken.',
     updateAction: 'Bijwerken',
     updateDesktopReadyTitle: 'Update desktopapp klaar',
     updateNativeDescription:
-      'Start Macro opnieuw om te installeren, of werk door: de update wordt geïnstalleerd zodra je afsluit.',
+      'Start Rox opnieuw om te installeren, of werk door: de update wordt geïnstalleerd zodra je afsluit.',
     updateRestartAndUpdate: 'Opnieuw starten en bijwerken',
     updateNativePreparingDescription:
-      'Je werk wordt opgeslagen voordat Macro opnieuw start om de update te installeren.',
+      'Je werk wordt opgeslagen voordat Rox opnieuw start om de update te installeren.',
     updatePreparingRestart: 'Herstart voorbereiden…',
   },
   settingsLanguage: {
@@ -731,7 +731,7 @@ export default {
     yourLanguage: 'Jouw taal',
     yourLanguageDescription: 'Overschrijft de teamtaal alleen voor jou.',
     yourLanguageNoTeamDescription:
-      'De taal waarin Macro voor jou wordt weergegeven. ‘Automatisch’ volgt je browser.',
+      'De taal waarin Rox voor jou wordt weergegeven. ‘Automatisch’ volgt je browser.',
     useTeamLanguage: 'Teamtaal gebruiken ({{language}})',
     automatic: 'Automatisch ({{language}})',
     teamAutomatic: 'Automatisch (ieders browsertaal)',

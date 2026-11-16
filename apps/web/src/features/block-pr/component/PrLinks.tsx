@@ -408,8 +408,8 @@ export function prOriginDescription(origin: PrOrigin) {
   const tool = PR_ORIGIN_LABELS[origin.tool];
   if (origin.signal === 'agent-session')
     return origin.tool === 'macro'
-      ? 'Started from a Macro agent session'
-      : `Started from ${tool} in a Macro agent session`;
+      ? 'Started from a Rox agent session'
+      : `Started from ${tool} in a Rox agent session`;
   return `Started from ${tool}, ${PR_ORIGIN_SIGNAL_LABELS[origin.signal]}`;
 }
 

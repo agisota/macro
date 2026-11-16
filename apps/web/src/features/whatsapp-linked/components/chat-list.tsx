@@ -134,7 +134,7 @@ export function ChatList(props: {
                         aria-label={
                           props.adding.has(chat.jid)
                             ? 'Adding…'
-                            : 'Add to Macro'
+                            : 'Add to Rox'
                         }
                         disabled={props.adding.has(chat.jid)}
                         onClick={() => props.onAdd(chat)}
@@ -144,7 +144,7 @@ export function ChatList(props: {
                         <span class="mobile:hidden">
                           {props.adding.has(chat.jid)
                             ? 'Adding…'
-                            : 'Add to Macro'}
+                            : 'Add to Rox'}
                         </span>
                       </Button>
                     }

@@ -181,14 +181,14 @@ export default function IconSystemGallery() {
       <main class="mx-auto max-w-6xl px-5 py-8 sm:px-8">
         <header class="mb-7">
           <div class="mb-2 flex items-center gap-3">
-            <h1 class="text-xl font-semibold tracking-tight">Macro icons</h1>
+            <h1 class="text-xl font-semibold tracking-tight">Rox icons</h1>
             <span class="rounded-md bg-hover px-2 py-1 text-[11px] text-ink-muted">
               Original set
             </span>
           </div>
           <p class="max-w-xl text-sm text-ink-muted">
             Icon specimen at actual interface sizes. Compare weight, spacing,
-            and selected states on both Macro themes.
+            and selected states on both Rox themes.
           </p>
         </header>
 

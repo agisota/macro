@@ -41,7 +41,7 @@ export function TeamSharingSettings(props: {
   return (
     <SettingsSection
       title="Team sharing"
-      description="What teammates can see in Macro. Sharing in Google Calendar or Outlook stays the same."
+      description="What teammates can see in Rox. Sharing in Google Calendar or Outlook stays the same."
     >
       <SettingsCard>
         <Show

@@ -115,7 +115,7 @@ export function NewCallButton(props: { presentation?: 'sidebar' | 'toolbar' }) {
                   createSource={useCombinedRecipientSource}
                   selectedOptions={selectedOptions()}
                   setSelectedOptions={setSelectedOptions}
-                  placeholder="To: Macro users or email addresses"
+                  placeholder="To: Rox users or email addresses"
                   triedToSubmit={triedToSubmit}
                   focusOnMount
                   triggerMode="input"

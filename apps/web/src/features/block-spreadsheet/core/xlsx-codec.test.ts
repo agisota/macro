@@ -690,13 +690,13 @@ describe('Excel workbook files', () => {
     expect(imported.sheets[0].cells.C2.value).toBe('bold plain');
   });
 
-  it('shortens text longer than a Macro cell holds instead of rejecting the workbook', async () => {
+  it('shortens text longer than a Rox cell holds instead of rejecting the workbook', async () => {
     const workbook = new ExcelJS.Workbook();
     workbook.addWorksheet('Notes').getCell('A1').value = 'x'.repeat(12_000);
     const imported = await decodeXlsx(await file(workbook));
     expect(imported.sheets[0].cells.A1.value).toHaveLength(10_000);
     expect(imported.warnings).toContain(
-      'Text longer than 10,000 characters was shortened to fit Macro cells.'
+      'Text longer than 10,000 characters was shortened to fit Rox cells.'
     );
   });
 

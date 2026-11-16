@@ -433,7 +433,7 @@ impl DocumentStorageServiceClient {
         Ok(response_data)
     }
 
-    /// Create the starter documents for a user — the "Macro how to guide"
+    /// Create the starter documents for a user — the "Rox how to guide"
     /// plus the starter tasks it links to — and pin the guide to their
     /// sidebar favorites. Returns a reference to the guide document when it
     /// could be resolved, so callers can link to it (e.g. the support

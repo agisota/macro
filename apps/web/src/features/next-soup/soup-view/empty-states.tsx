@@ -47,7 +47,7 @@ const FALLBACK_CONTENT: Partial<Record<ListView, FallbackContent>> = {
     plural: 'documents',
     graphic: EmptyStateDocGraphic,
     description:
-      'Write, collaborate, and share documents right inside Macro. Create notes, specs, or any long-form content and keep it alongside your conversations.',
+      'Write, collaborate, and share documents right inside Rox. Create notes, specs, or any long-form content and keep it alongside your conversations.',
     create: { label: 'New document', blockName: 'md' },
     documentationUrl: `${DOCS_BASE}/product/docs`,
   },
@@ -64,7 +64,7 @@ const FALLBACK_CONTENT: Partial<Record<ListView, FallbackContent>> = {
     graphic: EmptyStateCallsGraphic,
     description: (
       <>
-        See recordings, transcriptions and summaries of your Macro calls.
+        See recordings, transcriptions and summaries of your Rox calls.
         <br />
         Calls are available to agents.
       </>
@@ -133,7 +133,7 @@ export function EmptyState(props: {
         <EmptyStatePanel
           graphic={EmptyStateInboxTrayGraphic}
           title="Your inbox is empty"
-          description="Bring your inbox into Macro to triage signal from noise, reply faster, and let agents work alongside your mail."
+          description="Bring your inbox into Rox to triage signal from noise, reply faster, and let agents work alongside your mail."
           primaryAction={{
             label: 'Connect email',
             onClick: onConnectEmail,
@@ -146,7 +146,7 @@ export function EmptyState(props: {
         <EmptyStatePanel
           graphic={EmptyStateEmailGraphic}
           title="Connect your email"
-          description="Bring your inbox into Macro to triage signal from noise, reply faster, and let agents work alongside your mail."
+          description="Bring your inbox into Rox to triage signal from noise, reply faster, and let agents work alongside your mail."
           primaryAction={{
             label: 'Connect email',
             onClick: onConnectEmail,
@@ -255,7 +255,7 @@ export function EmptyState(props: {
         <EmptyStatePanel
           graphic={EmptyStateAiGraphic}
           title="Get started with agents"
-          description="Create an agent, or use Macro with your favorite AI chat client or code editor via MCP."
+          description="Create an agent, or use Rox with your favorite AI chat client or code editor via MCP."
           primaryAction={{
             label: 'New agent',
             icon: PlusIcon,

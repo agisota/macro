@@ -19,7 +19,7 @@ describe('describeToolCall', () => {
 
   it('falls back to the tool name in words', () => {
     expect(describeToolCall(macro, 'NewerThanThisBuild', 'your')).toBe(
-      'use your Macro workspace (newer than this build)'
+      'use your Rox workspace (newer than this build)'
     );
     expect(
       describeToolCall(

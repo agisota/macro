@@ -66,7 +66,7 @@ export function ManageMeetingsDialog(props: { onClose: () => void }) {
         </Panel.Header>
         <Panel.Body class="px-6 pb-6">
           <Dialog.Description class="text-sm text-ink-muted mb-2">
-            Anyone with a link can join, including guests without a Macro
+            Anyone with a link can join, including guests without a Rox
             account. Manage scheduled events in Calendar.
           </Dialog.Description>
           <div class="max-h-[60vh] overflow-y-auto">
@@ -87,7 +87,7 @@ export function ManageMeetingsDialog(props: { onClose: () => void }) {
               </Match>
               <Match when={list().length === 0}>
                 <p class="py-8 text-sm text-ink-muted">
-                  Add a Macro call to a calendar event to get your first link.
+                  Add a Rox call to a calendar event to get your first link.
                 </p>
               </Match>
               <Match when={list().length > 0}>

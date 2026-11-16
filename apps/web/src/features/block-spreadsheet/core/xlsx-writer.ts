@@ -105,7 +105,7 @@ function writtenValue(
   if (dateSerial !== undefined) return { kind: 'number', value: dateSerial };
   if (cellPlainText(cell.value) !== cell.value) {
     warnings.add(
-      'Macro mentions are exported as their display text; interactive pills remain in Macro.'
+      'Rox mentions are exported as their display text; interactive pills remain in Rox.'
     );
     return { kind: 'string', value: cellPlainText(cell.value) };
   }
@@ -464,7 +464,7 @@ export function writeXlsxWorkbook(
       .join('');
     if (sheet.rowCount > Math.max(200, maxRow + 1))
       warnings.add(
-        'Extra blank rows beyond the used range are not preserved when importing this Excel file back into Macro.'
+        'Extra blank rows beyond the used range are not preserved when importing this Excel file back into Rox.'
       );
     const hiddenColumns = new Set(metadata.hiddenColumns ?? []);
     const widthColumns = new Set([

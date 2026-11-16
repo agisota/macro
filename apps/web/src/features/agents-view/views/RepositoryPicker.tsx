@@ -293,7 +293,7 @@ export function RepositoryPicker(props: {
             </Match>
             <Match when={nothingReachable()}>
               <div class="flex flex-col gap-2 px-2 py-2 text-xs text-ink-muted">
-                No repositories yet. Give Macro's GitHub App access to the
+                No repositories yet. Give Rox's GitHub App access to the
                 repositories your coders should work on.
                 <Show when={props.onConnectGitHub}>
                   <Button

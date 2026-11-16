@@ -192,7 +192,7 @@ function Fixture() {
       <Switch>
         <Match when={page === 'landed'}>
           <main data-testid="landed" class="p-8 text-ink">
-            Entered Macro at {read<string>(FIXTURE_KEYS.landed)}
+            Entered Rox at {read<string>(FIXTURE_KEYS.landed)}
           </main>
         </Match>
         <Match when={page === 'mobile-signup'}>

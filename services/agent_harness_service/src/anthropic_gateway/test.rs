@@ -433,7 +433,7 @@ async fn a_model_off_the_allowlist_is_refused_before_anthropic_is_called() {
             "type": "error",
             "error": {
                 "type": "invalid_request_error",
-                "message": "model `claude-3-opus-20240229` is not available on Macro credits; use one of: claude-opus-4-8, claude-sonnet-4-6, claude-opus-5-5, claude-sonnet-5, claude-haiku-4-5-20251001, claude-fable-5-1",
+                "message": "model `claude-3-opus-20240229` is not available on Rox credits; use one of: claude-opus-4-8, claude-sonnet-4-6, claude-opus-5-5, claude-sonnet-5, claude-haiku-4-5-20251001, claude-fable-5-1",
             },
         })
     );

@@ -201,7 +201,7 @@ export function BotCreate(props: { channelId?: string; onBack: () => void }) {
               <p class="mt-0.5 text-sm text-ink-muted">
                 A bot is an account your program uses to read and send channel
                 messages. Create one, add it to channels, then use the token we
-                give you with the Macro SDK.
+                give you with the Rox SDK.
               </p>
             </div>
           </header>

@@ -275,7 +275,7 @@ describe('Excel drawings', () => {
     expect(again.images).toEqual(imported.images);
   });
 
-  it('writes charts Macro describes when the imported part cannot be kept', async () => {
+  it('writes charts Rox describes when the imported part cannot be kept', async () => {
     const imported = await decodeXlsx(fixture());
     const withoutSources = {
       ...imported,
@@ -367,7 +367,7 @@ describe('Excel drawings', () => {
     );
     const imported = await decodeXlsx(zipSync(files));
     expect(imported.warnings).toEqual([
-      'Images in formats Macro cannot read, such as TIFF, are not imported.',
+      'Images in formats Rox cannot read, such as TIFF, are not imported.',
     ]);
     // The PNG, shared by two pictures, and the EMF, kept for export.
     expect(

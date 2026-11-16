@@ -184,7 +184,7 @@ describe('Excel tables', () => {
     expect(sales.cells.D2.value).toBe('=$B2*$C2');
     expect(sales.cells.F1.value).toBe('=SUM($D$1:$D$3)');
     expect(imported.warnings).toContain(
-      'Excel tables without a header row, or beyond Macro’s sheet size or table limit, are imported as ordinary cells; formulas refer to their cell ranges.'
+      'Excel tables without a header row, or beyond Rox’s sheet size or table limit, are imported as ordinary cells; formulas refer to their cell ranges.'
     );
   });
 });

@@ -70,7 +70,7 @@ pub enum MeetingLinkError {
     #[error("invalid meeting link request: {0}")]
     InvalidInput(String),
     /// The host cannot mint meeting links at all.
-    #[error("Macro meeting links are not available in this host")]
+    #[error("Rox meeting links are not available in this host")]
     Unavailable,
     /// The meeting provider failed; the calendar event was not written.
     #[error("meeting link provider failed: {0}")]
@@ -95,13 +95,17 @@ pub enum MacroCallEventError {
     Calendar(#[from] CalendarMutationError),
     /// The meeting link could not be minted; nothing was written to the
     /// calendar.
-    #[error("could not create the Macro call for the event: {0}")]
+    #[error("could not create the Rox call for the event: {0}")]
     MeetingLink(#[from] MeetingLinkError),
 }
 
 /// Text prefixing the generated join line. The calendar UI matches on it
 /// to recognize the paragraph as generated rather than user-written.
-const JOIN_LINE_LABEL: &str = "Join Macro call";
+const JOIN_LINE_LABEL: &str = "Join Rox call";
+
+/// The wording earlier releases wrote into the same join line. Events saved
+/// before the rename still carry it, so finding and stripping recognize both.
+const LEGACY_JOIN_LINE_LABEL: &str = "Join Macro call";
 
 /// Write a meeting link into an event's location and description.
 ///
@@ -163,10 +167,17 @@ pub fn strip_macro_call(description_text: &str, location: &str, url: &str) -> (S
     (description.trim().to_string(), location)
 }
 
-/// Whether `line` is the generated join line: the label alone, or the label
-/// followed by a Macro call link.
+/// Whether `line` is the generated join line: one of the labels the calendar
+/// writes alone, or a label followed by a Rox call link.
 fn is_join_line(line: &str) -> bool {
-    match line.strip_prefix(JOIN_LINE_LABEL) {
+    [JOIN_LINE_LABEL, LEGACY_JOIN_LINE_LABEL]
+        .into_iter()
+        .any(|label| is_labeled_join_line(line, label))
+}
+
+/// Whether `line` is `label` alone, or `label` followed by a Rox call link.
+fn is_labeled_join_line(line: &str, label: &str) -> bool {
+    match line.strip_prefix(label) {
         Some("") => true,
         Some(rest) => rest
             .strip_prefix(": ")
@@ -198,13 +209,13 @@ where
 {
     if draft.out_of_office.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "out-of-office events cannot have a Macro call".to_string(),
+            "out-of-office events cannot have a Rox call".to_string(),
         )
         .into());
     }
     if draft.conference.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "an event carries either a Macro call or provider conferencing, not both".to_string(),
+            "an event carries either a Rox call or provider conferencing, not both".to_string(),
         )
         .into());
     }
@@ -259,13 +270,13 @@ where
 {
     if patch.out_of_office.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "out-of-office events cannot have a Macro call".to_string(),
+            "out-of-office events cannot have a Rox call".to_string(),
         )
         .into());
     }
     if patch.conference.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "an event carries either a Macro call or provider conferencing, not both".to_string(),
+            "an event carries either a Rox call or provider conferencing, not both".to_string(),
         )
         .into());
     }
@@ -294,7 +305,7 @@ where
         }
         if patch.is_empty() {
             return Err(CalendarMutationError::InvalidInput(
-                "this event already carries a Macro call".to_string(),
+                "this event already carries a Rox call".to_string(),
             )
             .into());
         }

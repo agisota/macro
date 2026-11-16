@@ -119,7 +119,7 @@ export default {
     agentHint: 'Eigene Agent-Sitzung',
     routineLabel: 'Routine',
     routineDescription:
-      'Modell oder Agent nach Zeitplan oder bei Macro-Aktivität ausführen',
+      'Modell oder Agent nach Zeitplan oder bei Rox-Aktivität ausführen',
     routineHint: 'Zeitpläne und Aktivitätsauslöser',
     databaseLabel: 'Datenbank',
     databaseDescription: 'Datenbank erstellen',
@@ -325,7 +325,7 @@ export default {
     projectShortTagline: 'Aufgaben bündeln',
     reminderTagline: 'Erinnerung zum gewünschten Zeitpunkt',
     reminderDetails:
-      'An etwas erinnern lassen, das Sie später wieder aufgreifen möchten.\nEine Zeit wählen, und Macro erinnert Sie daran.',
+      'An etwas erinnern lassen, das Sie später wieder aufgreifen möchten.\nEine Zeit wählen, und Rox erinnert Sie daran.',
     reminderExample1: 'Zurückrufen',
     reminderExample2: 'Freitag nachhaken',
     reminderExample3: 'Lizenz verlängern',
@@ -408,7 +408,7 @@ export default {
     guideConversation:
       'Eine Unterhaltung mit einem vorhandenen Agenten beginnen.',
     guideWorkAgent:
-      'Einen Assistenten mit Anweisungen und Zugriff auf Ihren Macro-Workspace erstellen.',
+      'Einen Assistenten mit Anweisungen und Zugriff auf Ihren Rox-Workspace erstellen.',
     guideCodingAgent:
       'Einen Agenten erstellen, der in einer verbundenen Coding-Umgebung arbeitet.',
     guideRoutine:
@@ -715,20 +715,20 @@ export default {
     updateAvailable: 'Update verfügbar',
     updateNewVersionTitle: 'Neue Version verfügbar',
     updateWebDescription:
-      'Eine neue Version von Macro ist bereit. Seite neu laden, um sie zu verwenden.',
+      'Eine neue Version von Rox ist bereit. Seite neu laden, um sie zu verwenden.',
     updateWebFailedLoadDescription:
-      'Ein Teil von Macro konnte nicht geladen werden, da eine neue Version verfügbar ist. Seite neu laden, um sie zu verwenden.',
+      'Ein Teil von Rox konnte nicht geladen werden, da eine neue Version verfügbar ist. Seite neu laden, um sie zu verwenden.',
     updateReload: 'Neu laden',
     updateReadyTitle: 'Update bereit',
     updateBundleDescription:
-      'Eine neue Version der Macro-Desktop-App wurde heruntergeladen. Jetzt aktualisieren, um sie zu verwenden.',
+      'Eine neue Version der Rox-Desktop-App wurde heruntergeladen. Jetzt aktualisieren, um sie zu verwenden.',
     updateAction: 'Aktualisieren',
     updateDesktopReadyTitle: 'Desktop-App-Update bereit',
     updateNativeDescription:
-      'Macro neu starten, um es zu installieren – oder weiterarbeiten, dann wird es beim Beenden installiert.',
+      'Rox neu starten, um es zu installieren – oder weiterarbeiten, dann wird es beim Beenden installiert.',
     updateRestartAndUpdate: 'Neu starten und aktualisieren',
     updateNativePreparingDescription:
-      'Arbeit wird gespeichert, bevor Macro zur Installation des Updates neu startet.',
+      'Arbeit wird gespeichert, bevor Rox zur Installation des Updates neu startet.',
     updatePreparingRestart: 'Neustart wird vorbereitet…',
   },
   settingsLanguage: {
@@ -740,7 +740,7 @@ export default {
     yourLanguage: 'Ihre Sprache',
     yourLanguageDescription: 'Ersetzt die Teamsprache nur für Sie.',
     yourLanguageNoTeamDescription:
-      'Die Sprache, in der Macro für Sie angezeigt wird. „Automatisch“ folgt Ihrem Browser.',
+      'Die Sprache, in der Rox für Sie angezeigt wird. „Automatisch“ folgt Ihrem Browser.',
     useTeamLanguage: 'Teamsprache verwenden ({{language}})',
     automatic: 'Automatisch ({{language}})',
     teamAutomatic: 'Automatisch (Browsersprache jeder Person)',

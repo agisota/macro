@@ -211,7 +211,7 @@ describe('editing event times', () => {
       form.setField('title', 'A new point call');
       await editor.save(form.submitValues()!);
       expect(editor.saveError()).toBe(
-        'Give this event a duration before adding a Macro call.'
+        'Give this event a duration before adding a Rox call.'
       );
       expect(editor.pending()).toBe(false);
       expect(mocks.updateEvent).not.toHaveBeenCalled();
@@ -365,7 +365,7 @@ describe('editing event times', () => {
       location: 'Meeting room',
       description: '<p>Deploy checklist</p>',
     },
-    { label: 'Macro call', location: savedEvent.location },
+    { label: 'Rox call', location: savedEvent.location },
   ])('sends only reminders on an invited $label event', async (overrides) => {
     const { editor, form, onSaved, dispose } = editorFor({
       ...overrides,
@@ -697,11 +697,11 @@ describe('scheduling a Macro call', () => {
   );
 
   it.each(['none', 'google_meet'] as const)(
-    'removes a saved Macro link when changed to %s',
+    'removes a saved Rox link when changed to %s',
     async (conferenceChoice) => {
       const event = {
         ...savedEvent,
-        description: `<p>Roadmap discussion</p><p>Join Macro call: <a href="${savedEvent.location}">${savedEvent.location}</a></p>`,
+        description: `<p>Roadmap discussion</p><p>Join Rox call: <a href="${savedEvent.location}">${savedEvent.location}</a></p>`,
       };
       const [editor, dispose] = createRoot(
         (dispose) =>
@@ -740,7 +740,7 @@ describe('scheduling a Macro call', () => {
     }
   );
 
-  it('adds a Macro call when an event without a call switches to Macro', async () => {
+  it('adds a Rox call when an event without a call switches to Rox', async () => {
     const event = { ...savedEvent, location: 'Meeting room' };
     const [editor, dispose] = createRoot(
       (dispose) =>
@@ -761,7 +761,7 @@ describe('scheduling a Macro call', () => {
       await editor.save(values);
       expect(mocks.createMeeting).toHaveBeenCalledOnce();
       expect(mocks.updateEvent.mock.lastCall?.[0].patch.description).toContain(
-        'Join Macro call'
+        'Join Rox call'
       );
     } finally {
       dispose();

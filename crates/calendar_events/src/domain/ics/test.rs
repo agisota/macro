@@ -293,7 +293,7 @@ fn a_forward_keeps_the_macro_call_it_would_strip_from_a_share() {
         .expect("the description stays");
     assert!(description.contains("Bring the budget draft"), "{lines:?}");
     assert!(
-        description.ends_with(&format!("\\nJoin Macro call: {CALL_URL}")),
+        description.ends_with(&format!("\\nJoin Rox call: {CALL_URL}")),
         "{lines:?}"
     );
     assert!(lines.contains(&"METHOD:PUBLISH".to_string()));

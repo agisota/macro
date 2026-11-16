@@ -136,7 +136,7 @@ export function useMarkdownDocumentTools() {
       action: () => setMarkdownWideMode((wide) => !wide),
     },
     askMacro: {
-      label: 'Ask Macro',
+      label: 'Ask Rox',
       icon: ChatWithAgentIcon,
       action: () => openChatWithAgent(chatEntity()),
     },

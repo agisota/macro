@@ -67,7 +67,7 @@ const browserPage: ReloadPage = {
     if (!isTouchDevice()) return;
     toast.custom(
       {
-        title: 'A new version of Macro is ready',
+        title: 'A new version of Rox is ready',
         icon: MacroLogo,
         color: 'var(--color-accent)',
         dismissLabel: t('common.maybeLater'),

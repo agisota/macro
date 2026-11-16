@@ -67,8 +67,11 @@ export function removeCalendarMacroCall(
             .replace(/&amp;/g, '&')
             .trim();
           const linkedUrl = calendarMacroCallUrl({ description: paragraph });
-          const textUrl = text.match(/^Join Macro call:\s*(\S+)$/i)?.[1];
+          // Invitations saved by earlier releases say "Join Macro call"; keep
+          // reading that wording so old events still lose their generated line.
+          const textUrl = text.match(/^Join (?:Macro|Rox) call:\s*(\S+)$/i)?.[1];
           const generated =
+            text === 'Join Rox call' ||
             text === 'Join Macro call' ||
             (textUrl !== undefined && macroCallUrl(textUrl) === linkedUrl);
           return generated && linkedUrl ? '' : paragraph;
@@ -95,7 +98,7 @@ export function attachCalendarMacroCall(
 ) {
   const clean = removeCalendarMacroCall(content, existingUrl ?? url);
   return {
-    description: `${clean.description}${clean.description ? '\n' : ''}<p>Join Macro call: <a href="${url}">${url}</a></p>`,
+    description: `${clean.description}${clean.description ? '\n' : ''}<p>Join Rox call: <a href="${url}">${url}</a></p>`,
     location: clean.location.trim() ? clean.location : url,
   };
 }

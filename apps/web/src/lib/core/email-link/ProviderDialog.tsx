@@ -46,7 +46,7 @@ export function EmailProviderDialog(
             </Show>
           </Dialog.Description>
           <p class="text-ink-muted text-sm/tight">
-            Macro connects an account's email and calendar together, so keep the
+            Rox connects an account's email and calendar together, so keep the
             email permissions checked on the provider's screen.
           </p>
           <Button

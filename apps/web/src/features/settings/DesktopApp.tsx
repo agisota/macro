@@ -8,7 +8,7 @@ export function DesktopApp() {
   return (
     <NativeAppInfo
       title="Desktop App (Alpha)"
-      description="Your installed version of Macro Alpha."
+      description="Your installed version of Rox Alpha."
     />
   );
 }

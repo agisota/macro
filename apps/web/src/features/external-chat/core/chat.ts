@@ -262,8 +262,8 @@ export function disappearingNote(chat: ChatDetail): string | undefined {
   const { label } = chatProvider(chat.provider);
   const timer = disappearingLabel(String(chat.disappearingSeconds));
   return timer
-    ? `Disappearing messages are on in ${label} (${timer}). Macro keeps them.`
-    : `Disappearing messages are on in ${label}. Macro keeps them.`;
+    ? `Disappearing messages are on in ${label} (${timer}). Rox keeps them.`
+    : `Disappearing messages are on in ${label}. Rox keeps them.`;
 }
 
 /** Shown above the oldest message once the import stopped at its limit. */

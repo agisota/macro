@@ -71,7 +71,7 @@ describe('describeInboxRow', () => {
     expect(action({ kind: 'agent', name: 'Builder' })).toBe(
       'Builder assigned you a task'
     );
-    expect(action({ kind: 'macro' })).toBe('Macro assigned you a task');
+    expect(action({ kind: 'macro' })).toBe('Rox assigned you a task');
   });
 
   it('keeps the sender a notification names itself, such as a GitHub login', () => {

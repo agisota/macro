@@ -37,7 +37,7 @@ export default {
   // App update waiting for Wi-Fi
   updateOffWifiTitle: 'Update available',
   updateOffWifiDescription:
-    'A new update to Macro is available. Updates download automatically on Wi-Fi. Download it now? This may use mobile data.',
+    'A new update to Rox is available. Updates download automatically on Wi-Fi. Download it now? This may use mobile data.',
   updateNotNow: 'Not now',
   updateDownload: 'Download',
   updateDownloadingTitle: 'Downloading update',
@@ -46,11 +46,11 @@ export default {
   updateInstallProgress: 'Installing… {{progress}}%',
   updateHide: 'Hide',
   updateReadyTitle: 'Update ready',
-  updateReadyDescription: 'Restart Macro to use the new version.',
+  updateReadyDescription: 'Restart Rox to use the new version.',
   updateLater: 'Later',
   updateRestart: 'Restart',
   updateFailedTitle: "Couldn't download the update",
   updateFailedDescription:
-    'Try again later. Macro downloads updates automatically on Wi-Fi.',
+    'Try again later. Rox downloads updates automatically on Wi-Fi.',
   updateOk: 'OK',
 };

@@ -66,7 +66,7 @@ export function BotSettingsList(props: {
   return (
     <SettingsPage
       title="Bots"
-      description="A bot is an account your program uses to read and send channel messages. Create a bot, add it to channels, then use its token with the Macro SDK to control it."
+      description="A bot is an account your program uses to read and send channel messages. Create a bot, add it to channels, then use its token with the Rox SDK to control it."
       actions={
         <Button variant="primary" size="sm" onClick={props.onCreate}>
           <PlusIcon class="size-3 touch:size-6 shrink-0 pointer-events-none" />
@@ -98,7 +98,7 @@ export function BotSettingsList(props: {
                     Create your first bot
                   </div>
                   <div class="mt-1 max-w-80 text-xs text-ink-muted">
-                    Give your program a name and profile in Macro. We’ll
+                    Give your program a name and profile in Rox. We’ll
                     generate a token when you create the bot.
                   </div>
                   <Button

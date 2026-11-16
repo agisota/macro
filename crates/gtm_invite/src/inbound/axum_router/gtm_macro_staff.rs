@@ -29,7 +29,7 @@ pub enum GtmMacroStaffRejection {
     #[error("authorization failed")]
     Authorization(#[from] MacroAuthorizationRejection),
     /// The authenticated user is not Macro staff.
-    #[error("only Macro staff can manage invite links")]
+    #[error("only Rox staff can manage invite links")]
     NotStaff,
 }
 

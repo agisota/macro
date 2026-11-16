@@ -474,11 +474,11 @@ describe('after a failed provider sign-in', () => {
     const { fake } = setup({
       intent: 'signup',
       ssoFallbackNotice:
-        'Your organization needs an admin to approve Macro. Continue with your email instead.',
+        'Your organization needs an admin to approve Rox. Continue with your email instead.',
     });
     expect(
       screen.getByText(
-        'Your organization needs an admin to approve Macro. Continue with your email instead.'
+        'Your organization needs an admin to approve Rox. Continue with your email instead.'
       )
     ).toBeTruthy();
     expect(

@@ -74,7 +74,7 @@ export const InviteModal = () => {
 
         <Panel.Body scroll class="p-3 flex flex-col gap-3">
           <p>
-            Invite friends and teammates to Macro. You'll get $10 of AI credit
+            Invite friends and teammates to Rox. You'll get $10 of AI credit
             for each person who signs up.
           </p>
           <div class="flex flex-col gap-2">

@@ -346,7 +346,7 @@ export function alreadyInMacroSummary(entries: ImportPlanEntry[]): string {
   const copies = alreadyInMacro(entries);
   if (copies.length === 0) return '';
   const by = [...new Set(copies.map((entry) => entry.alreadyImported.by))];
-  return `${copies.length} already in Macro (imported by ${by.join(', ')})`;
+  return `${copies.length} already in Rox (imported by ${by.join(', ')})`;
 }
 
 /** Objects the import will write once approved. */
@@ -442,7 +442,7 @@ export function planTotals(
         }
       : null,
     skipped > 0 ? { label: 'Skipped', value: `${skipped}` } : null,
-    already > 0 ? { label: 'Already in Macro', value: `${already}` } : null,
+    already > 0 ? { label: 'Already in Rox', value: `${already}` } : null,
   ].filter((total): total is ImportTotal => total !== null);
 }
 

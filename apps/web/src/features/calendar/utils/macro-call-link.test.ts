@@ -9,7 +9,7 @@ import {
 const URL = 'https://macro.com/app/meet/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF';
 const SETUP_URL = URL.replace('/meet/', '/meet/join/');
 
-describe('Macro calendar call links', () => {
+describe('Rox calendar call links', () => {
   it('recognizes shared links in invitations and drops autojoin parameters', () => {
     expect(
       calendarMacroCallUrl({
@@ -98,7 +98,7 @@ describe('Macro calendar call links', () => {
     expect(
       removeCalendarMacroCall(
         {
-          description: `<p>Agenda</p><p>Join Macro call: <a href="${trackedUrl}">${trackedUrl}</a></p>`,
+          description: `<p>Agenda</p><p>Join Rox call: <a href="${trackedUrl}">${trackedUrl}</a></p>`,
           location: 'Room 2',
         },
         URL
@@ -106,7 +106,30 @@ describe('Macro calendar call links', () => {
     ).toEqual({ description: '<p>Agenda</p>', location: 'Room 2' });
   });
 
-  it('hides generated Macro invitations even when the series URL differs', () => {
+  it('writes the Rox wording into the invitation', () => {
+    const content = attachCalendarMacroCall({ description: '' }, URL);
+    expect(content.description).toBe(
+      `<p>Join Rox call: <a href="${URL}">${URL}</a></p>`
+    );
+    expect(removeCalendarMacroCall(content, URL)).toEqual({
+      description: '',
+      location: '',
+    });
+  });
+
+  it('hides legacy invitations that say "Join Macro call"', () => {
+    expect(
+      removeCalendarMacroCall(
+        {
+          description: `<p>Join Macro call: <a href="${URL}">${URL}</a></p>`,
+          location: 'Room 2',
+        },
+        URL
+      )
+    ).toEqual({ description: '', location: 'Room 2' });
+  });
+
+  it('hides generated legacy invitations even when the series URL differs', () => {
     expect(
       removeCalendarMacroCall(
         {

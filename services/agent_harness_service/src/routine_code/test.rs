@@ -278,7 +278,7 @@ async fn a_step_waits_for_a_free_slot_before_its_credential_and_gives_up_after_f
     assert_eq!(
         busy.result,
         Err(
-            "Macro was busy running other routines; this run waited 5 minutes for a turn."
+            "Rox was busy running other routines; this run waited 5 minutes for a turn."
                 .to_owned()
         )
     );

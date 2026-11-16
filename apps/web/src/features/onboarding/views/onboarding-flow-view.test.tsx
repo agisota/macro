@@ -252,7 +252,7 @@ describe('onboarding flow', () => {
       screen
         .getByRole('button', { name: 'About the team email' })
         .getAttribute('aria-description')
-    ).toMatch(/contacts who aren't on Macro yet/);
+    ).toMatch(/contacts who aren't on Rox yet/);
 
     fireEvent.click(joinInfo);
     expect(domainJoin.checked).toBe(true);
@@ -864,7 +864,7 @@ describe('onboarding flow', () => {
     expect(
       screen.getByText('For you · You get a lot of newsletters.')
     ).toBeTruthy();
-    expect(screen.getByText('Template from Macro')).toBeTruthy();
+    expect(screen.getByText('Template from Rox')).toBeTruthy();
     const toggle = (name: string) =>
       screen.getByRole('switch', { name: `Turn on ${name}` });
     expect(toggle('Sort my inbox')).toHaveProperty('checked', true);
@@ -1008,7 +1008,7 @@ describe('onboarding flow', () => {
     });
   });
 
-  it('falls back to Macro’s templates when AI gave none in time', async () => {
+  it('falls back to Rox’s templates when AI gave none in time', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     try {
       const { fake } = setup({
@@ -1060,7 +1060,7 @@ describe('onboarding flow', () => {
     });
     await heading('Put your busywork on autopilot.');
     expect(screen.getByText('Share updates')).toBeTruthy();
-    expect(screen.getByText('Template from Macro')).toBeTruthy();
+    expect(screen.getByText('Template from Rox')).toBeTruthy();
   });
 
   it('keeps a routine that failed to turn on and retries only it', async () => {

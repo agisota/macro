@@ -33,7 +33,7 @@ describe('native booking navigation', () => {
       const historyLength = window.history.length;
       render(() => (
         <HashRouter base="/app">
-          <Route path="/" component={() => <h1>Macro home</h1>} />
+          <Route path="/" component={() => <h1>Rox home</h1>} />
           <Route
             path={['/book/*path', '/booking/:id']}
             component={() => (
@@ -46,10 +46,10 @@ describe('native booking navigation', () => {
       ));
 
       expect(screen.getByText(text)).toBeTruthy();
-      fireEvent.click(screen.getByRole('button', { name: 'Back to Macro' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Back to Rox' }));
 
       expect(
-        await screen.findByRole('heading', { name: 'Macro home' })
+        await screen.findByRole('heading', { name: 'Rox home' })
       ).toBeTruthy();
       expect(window.location.pathname).toBe('/app/');
       expect(window.location.hash).toBe('#/app');
@@ -64,7 +64,7 @@ describe('native booking navigation', () => {
     }
     render(() => (
       <HashRouter base="/app">
-        <Route path="/" component={() => <h1>Macro home</h1>} />
+        <Route path="/" component={() => <h1>Rox home</h1>} />
         <Route
           path="/book/*path"
           component={() => (
@@ -79,9 +79,9 @@ describe('native booking navigation', () => {
     ));
 
     expect(screen.getByText('Loading booking page…')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: 'Back to Macro' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Back to Rox' }));
     expect(
-      await screen.findByRole('heading', { name: 'Macro home' })
+      await screen.findByRole('heading', { name: 'Rox home' })
     ).toBeTruthy();
   });
 
@@ -104,9 +104,7 @@ describe('native booking navigation', () => {
       ));
 
       expect(screen.getByText('Choose an event')).toBeTruthy();
-      expect(
-        screen.queryByRole('button', { name: 'Back to Macro' })
-      ).toBeNull();
+      expect(screen.queryByRole('button', { name: 'Back to Rox' })).toBeNull();
     }
   );
 });

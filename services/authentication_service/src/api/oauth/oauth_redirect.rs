@@ -206,7 +206,7 @@ pub async fn handler(
 enum InnerErr {
     #[error("{0}")]
     Serde(#[from] serde_json::Error),
-    #[error("Macro Cache Err {0}")]
+    #[error("Rox Cache Err {0}")]
     MacroCacheErr(anyhow::Error),
     #[error("Failed to parse url {0}")]
     ParseErr(#[from] url::ParseError),

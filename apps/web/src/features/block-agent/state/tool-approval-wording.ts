@@ -225,7 +225,7 @@ export function describeToolCall(
   const wording = isMacroTool(tool) ? MACRO_TOOLS[tool] : null;
   return wording
     ? wording(whose)
-    : `use ${whose} Macro workspace (${toolWords(tool)})`;
+    : `use ${whose} Rox workspace (${toolWords(tool)})`;
 }
 
 /**

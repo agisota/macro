@@ -124,7 +124,7 @@ export default function DocxBlock(props: { share?: string }) {
             <HeaderActionGroup label="Document actions">
               <ChatWithAgentButton
                 grouped
-                label="Ask Macro"
+                label="Ask Rox"
                 entity={{
                   type: 'document',
                   id: documentId,

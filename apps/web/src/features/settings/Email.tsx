@@ -276,7 +276,7 @@ export function EmailCard(props: { class?: string } = {}) {
                   ? 'Connect another Google Workspace account'
                   : 'Connect a Google Workspace account'
               }
-              description="Sync a Gmail or Google Workspace inbox into Macro Email."
+              description="Sync a Gmail or Google Workspace inbox into Rox Email."
             >
               <ConnectAction
                 label="Connect"
@@ -291,7 +291,7 @@ export function EmailCard(props: { class?: string } = {}) {
                 icon={<OutlookIcon />}
                 title="Connect an Outlook account"
                 badge={<OutlookBetaBadge />}
-                description="Sync an Outlook.com or Microsoft 365 inbox into Macro Email."
+                description="Sync an Outlook.com or Microsoft 365 inbox into Rox Email."
               >
                 <ConnectAction
                   label="Connect"
@@ -336,7 +336,7 @@ export function EmailCard(props: { class?: string } = {}) {
                 }
               >
                 Remove <span class="text-ink">{removeTarget()?.email}</span>?
-                This clears all of its email data from Macro and cannot be
+                This clears all of its email data from Rox and cannot be
                 undone.
               </Show>
             </Dialog.Description>

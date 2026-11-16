@@ -304,7 +304,7 @@ export default function PptxBlock(props: { share?: string }) {
             <HeaderActionGroup label="Presentation actions">
               <ChatWithAgentButton
                 grouped
-                label="Ask Macro"
+                label="Ask Rox"
                 entity={{
                   type: 'document',
                   id: documentId,

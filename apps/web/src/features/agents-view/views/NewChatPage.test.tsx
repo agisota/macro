@@ -1286,7 +1286,7 @@ describe('agent-led new conversation', () => {
       'Cursor default'
     );
   });
-  it('groups the Macro catalog and selects direct models with readable names and icons', async () => {
+  it('groups the Rox catalog and selects direct models with readable names and icons', async () => {
     const send = page(true, [
       {
         bot: { id: 'saved-agent', name: 'Reviewer', handle: 'reviewer' },
@@ -1310,7 +1310,7 @@ describe('agent-led new conversation', () => {
     expect(screen.getByTitle('GLM 5.3 Flash')).toBeTruthy();
     fireEvent.input(search, { target: { value: '' } });
     expect(screen.queryByRole('menuitem', { name: /Cursor/ })).toBeNull();
-    expect(screen.queryByRole('menuitem', { name: /^Macro/ })).toBeNull();
+    expect(screen.queryByRole('menuitem', { name: /^Rox/ })).toBeNull();
     const models = within(screen.getByRole('group', { name: 'Suggested' }));
     expect(
       models.queryByRole('menuitem', { name: /Cursor default/ })

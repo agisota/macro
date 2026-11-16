@@ -299,7 +299,7 @@ fn macro_call_error(error: MacroCallEventError) -> async_graphql::Error {
         MacroCallEventError::MeetingLink(error) => {
             tracing::error!(error = ?error, "calendar event macro call creation failed");
             async_graphql::Error::new(
-                "the Macro call for the event could not be created; the event was not saved",
+                "the Rox call for the event could not be created; the event was not saved",
             )
             .extend_with(|_, extensions| {
                 extensions.set("code", "macro_call_failed");

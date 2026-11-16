@@ -28,7 +28,7 @@ export function OnTeamPanel(props: {
           when={(props.invited ?? 0) > 0}
           fallback={
             <p class="max-w-xs text-xs text-ink-muted leading-snug">
-              Your team is set up — everything your teammates bring into Macro
+              Your team is set up — everything your teammates bring into Rox
               is shared with you.
             </p>
           }

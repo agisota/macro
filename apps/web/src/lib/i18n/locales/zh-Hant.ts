@@ -116,7 +116,7 @@ export default {
     agentDescription: '建立代理程式工作階段',
     agentHint: '專屬代理程式工作階段',
     routineLabel: '例行任務',
-    routineDescription: '依排程或 Macro 活動執行模型或代理程式',
+    routineDescription: '依排程或 Rox 活動執行模型或代理程式',
     routineHint: '排程與活動觸發條件',
     databaseLabel: '資料庫',
     databaseDescription: '建立資料庫',
@@ -317,7 +317,7 @@ export default {
     projectShortTagline: '整理相關任務',
     reminderTagline: '在指定時間提醒自己',
     reminderDetails:
-      '為想要稍後回顧的事情設定提醒。\n選擇時間，Macro 會準時提醒你。',
+      '為想要稍後回顧的事情設定提醒。\n選擇時間，Rox 會準時提醒你。',
     reminderExample1: '回電',
     reminderExample2: '週五跟進',
     reminderExample3: '續訂授權',
@@ -394,7 +394,7 @@ export default {
     guideProject: '圍繞共同目標集中相關任務。',
     guideTag: '為工作加上標籤，方便跨專案整理和篩選。',
     guideConversation: '與現有的代理程式開始對話。',
-    guideWorkAgent: '建立具備指示、可存取你 Macro 工作區的助理。',
+    guideWorkAgent: '建立具備指示、可存取你 Rox 工作區的助理。',
     guideCodingAgent: '建立在已連結的程式設計環境中運作的代理程式。',
     guideRoutine: '設定依固定排程執行的代理程式。',
     guideCompany: '追蹤組織、其成員以及你與它的關係。',
@@ -662,20 +662,20 @@ export default {
     reorderItem: '重新排序{{label}}',
     updateAvailable: '有可用的更新',
     updateNewVersionTitle: '有新版本可用',
-    updateWebDescription: 'Macro 的新版本已準備就緒。重新載入頁面即可使用。',
+    updateWebDescription: 'Rox 的新版本已準備就緒。重新載入頁面即可使用。',
     updateWebFailedLoadDescription:
-      '由於新版本已推出，Macro 的部分內容無法載入。重新載入頁面即可使用。',
+      '由於新版本已推出，Rox 的部分內容無法載入。重新載入頁面即可使用。',
     updateReload: '重新載入',
     updateReadyTitle: '更新已就緒',
     updateBundleDescription:
-      'Macro 桌面應用程式的新版本已下載完成。更新後即可開始使用。',
+      'Rox 桌面應用程式的新版本已下載完成。更新後即可開始使用。',
     updateAction: '更新',
     updateDesktopReadyTitle: '桌面應用程式更新已就緒',
     updateNativeDescription:
-      '重新啟動 Macro 以安裝更新，或繼續工作，結束時會自動安裝。',
+      '重新啟動 Rox 以安裝更新，或繼續工作，結束時會自動安裝。',
     updateRestartAndUpdate: '重新啟動並更新',
     updateNativePreparingDescription:
-      '正在儲存你的工作，接著 Macro 會重新啟動以安裝更新。',
+      '正在儲存你的工作，接著 Rox 會重新啟動以安裝更新。',
     updatePreparingRestart: '正在準備重新啟動…',
   },
   settingsLanguage: {
@@ -687,7 +687,7 @@ export default {
     yourLanguage: '我的語言',
     yourLanguageDescription: '僅對你自己覆寫團隊語言。',
     yourLanguageNoTeamDescription:
-      'Macro 對你顯示的語言。選擇「自動」時會依照瀏覽器語言。',
+      'Rox 對你顯示的語言。選擇「自動」時會依照瀏覽器語言。',
     useTeamLanguage: '使用團隊語言（{{language}}）',
     automatic: '自動（{{language}}）',
     teamAutomatic: '自動（每位成員的瀏覽器語言）',

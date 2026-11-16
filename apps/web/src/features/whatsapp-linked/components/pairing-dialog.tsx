@@ -156,7 +156,7 @@ function PasskeyStep(props: {
           {(url) => (
             <>
               <p class="text-sm text-ink-muted">
-                WhatsApp asks for your phone's passkey, which only the Macro
+                WhatsApp asks for your phone's passkey, which only the Rox
                 desktop app can use. Finish this same request there.
               </p>
               <a
@@ -164,15 +164,15 @@ function PasskeyStep(props: {
                 onClick={props.onHandOff}
                 class="text-sm font-medium text-ink underline underline-offset-2"
               >
-                Continue in Macro desktop
+                Continue in Rox desktop
               </a>
             </>
           )}
         </Match>
         <Match when={props.mode.kind === 'unsupported'}>
           <p role="alert" class="text-sm text-ink-muted">
-            WhatsApp asks for your phone's passkey, which only the Macro desktop
-            app can use. Start linking again from Macro on your computer.
+            WhatsApp asks for your phone's passkey, which only the Rox desktop
+            app can use. Start linking again from Rox on your computer.
           </p>
         </Match>
       </Switch>
@@ -196,7 +196,7 @@ function description(step: PairingStep): string {
       { kind: 'passkey' },
       () => 'WhatsApp wants to confirm it’s you before linking.'
     )
-    .with({ kind: 'connected' }, () => 'Your phone linked WhatsApp to Macro.')
+    .with({ kind: 'connected' }, () => 'Your phone linked WhatsApp to Rox.')
     .with(
       { kind: 'failed' },
       { kind: 'cancelled' },

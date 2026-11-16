@@ -169,7 +169,7 @@ export function TopBar() {
 
   const menuTools: BlockTool[] = [
     {
-      label: 'Ask Macro',
+      label: 'Ask Rox',
       icon: ChatWithAgentIcon,
       action: () =>
         openChatWithAgent({

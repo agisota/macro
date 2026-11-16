@@ -247,7 +247,7 @@ impl From<AttendeeInput> for CalendarAttendeeInput {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct EventReminderOverrideInput {
-    /// Provider reminder method. `popup` creates a Macro notification.
+    /// Provider reminder method. `popup` creates a Rox notification.
     pub method: String,
     /// Minutes before the event start.
     pub minutes: u32,
@@ -361,7 +361,7 @@ pub struct ToolEventAttendee {
 #[derive(Debug, Clone, Serialize, Deserialize, JsonSchema, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct ToolCalendarEvent {
-    /// Macro calendar event id, used by UpdateCalendarEvent and
+    /// Rox calendar event id, used by UpdateCalendarEvent and
     /// DeleteCalendarEvent.
     pub event_id: uuid::Uuid,
     /// Display title.
@@ -394,7 +394,7 @@ pub struct ToolCalendarEvent {
     pub organizer_email: Option<String>,
     /// Conference join URL, when a conference is attached.
     pub conference_url: Option<String>,
-    /// Join URL of the event's Macro call, when CreateCalendarEvent or
+    /// Join URL of the event's Rox call, when CreateCalendarEvent or
     /// UpdateCalendarEvent was asked for one.
     pub macro_call_url: Option<String>,
     /// Whether the user's calendar prohibits modifying this event.
@@ -683,7 +683,7 @@ fn mutation_tool_error(action: &str, error: CalendarMutationError) -> ToolCallEr
             "The calendar service is temporarily unavailable. Try again shortly.".to_string()
         }
         CalendarMutationError::PersistFailed(_) => {
-            "The change reached the calendar provider, but Macro's copy lagged behind. It will appear \
+            "The change reached the calendar provider, but Rox's copy lagged behind. It will appear \
              after the next sync."
                 .to_string()
         }
@@ -705,15 +705,15 @@ fn macro_call_create_tool_error(error: MacroCallEventError) -> ToolCallError {
         MacroCallEventError::MeetingLink(error) => {
             let description = match &error {
                 MeetingLinkError::InvalidInput(message) => {
-                    format!("The Macro call could not be created: {message}")
+                    format!("The Rox call could not be created: {message}")
                 }
                 MeetingLinkError::Unavailable => {
-                    "Macro calls cannot be created from here. Retry with `addMacroCall` false, \
+                    "Rox calls cannot be created from here. Retry with `addMacroCall` false, \
                      or use `addConference` for video conferencing."
                         .to_string()
                 }
                 MeetingLinkError::Failed(_) => {
-                    "The Macro call could not be created right now. Nothing was added to the \
+                    "The Rox call could not be created right now. Nothing was added to the \
                      calendar; try again shortly."
                         .to_string()
                 }
@@ -737,15 +737,15 @@ fn macro_call_update_tool_error(error: MacroCallEventError) -> ToolCallError {
         MacroCallEventError::MeetingLink(error) => {
             let description = match &error {
                 MeetingLinkError::InvalidInput(message) => {
-                    format!("The Macro call could not be created: {message}")
+                    format!("The Rox call could not be created: {message}")
                 }
                 MeetingLinkError::Unavailable => {
-                    "Macro calls cannot be created from here. Retry without `addMacroCall`, or \
+                    "Rox calls cannot be created from here. Retry without `addMacroCall`, or \
                      use `conference` for video conferencing."
                         .to_string()
                 }
                 MeetingLinkError::Failed(_) => {
-                    "The Macro call could not be created right now. The event was not changed; \
+                    "The Rox call could not be created right now. The event was not changed; \
                      try again shortly."
                         .to_string()
                 }

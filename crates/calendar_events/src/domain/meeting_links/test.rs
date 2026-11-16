@@ -254,7 +254,7 @@ fn attaching_fills_an_empty_location_and_appends_a_join_paragraph() {
     let (description, location) = attach_macro_call(None, None, URL);
     assert_eq!(
         description,
-        format!("<p>Join Macro call: <a href=\"{URL}\">{URL}</a></p>")
+        format!("<p>Join Rox call: <a href=\"{URL}\">{URL}</a></p>")
     );
     assert_eq!(location, URL);
 }
@@ -264,7 +264,7 @@ fn attaching_keeps_user_text_and_a_physical_location() {
     let (description, location) = attach_macro_call(Some("<p>Agenda</p>"), Some("  Room 4 "), URL);
     assert_eq!(
         description,
-        format!("<p>Agenda</p>\n<p>Join Macro call: <a href=\"{URL}\">{URL}</a></p>")
+        format!("<p>Agenda</p>\n<p>Join Rox call: <a href=\"{URL}\">{URL}</a></p>")
     );
     assert_eq!(location, "Room 4");
 }
@@ -333,7 +333,7 @@ async fn the_meeting_is_minted_as_the_requester_and_written_into_the_draft() {
     assert_eq!(
         written.description.as_deref(),
         Some(
-            format!("<p>Agenda</p>\n<p>Join Macro call: <a href=\"{URL}\">{URL}</a></p>").as_str()
+            format!("<p>Agenda</p>\n<p>Join Rox call: <a href=\"{URL}\">{URL}</a></p>").as_str()
         )
     );
     assert_eq!(written.conference, None);
@@ -535,7 +535,7 @@ async fn switching_replaces_the_conference_with_a_call_in_one_write() {
     assert_eq!(
         patch.description.as_deref(),
         Some(
-            format!("<p>Agenda</p>\n<p>Join Macro call: <a href=\"{URL}\">{URL}</a></p>").as_str()
+            format!("<p>Agenda</p>\n<p>Join Rox call: <a href=\"{URL}\">{URL}</a></p>").as_str()
         )
     );
     assert!(links.cancelled.lock().unwrap().is_empty());
@@ -587,7 +587,7 @@ async fn switching_applies_the_changes_the_patch_carries() {
     assert_eq!(patch.location.as_deref(), Some(URL));
     assert_eq!(
         patch.description.as_deref(),
-        Some(format!("New agenda\n<p>Join Macro call: <a href=\"{URL}\">{URL}</a></p>").as_str())
+        Some(format!("New agenda\n<p>Join Rox call: <a href=\"{URL}\">{URL}</a></p>").as_str())
     );
 }
 
@@ -790,4 +790,36 @@ async fn switching_refuses_an_explicit_provider_conference() {
         MacroCallEventError::Calendar(CalendarMutationError::InvalidInput(_))
     ));
     assert!(links.requests.lock().unwrap().is_empty());
+}
+
+#[test]
+fn stripping_takes_back_the_join_line_and_a_call_only_location() {
+    let (description, location) =
+        strip_macro_call(&format!("Agenda\nJoin Rox call: [{URL}]"), URL, URL);
+    assert_eq!(description, "Agenda");
+    assert_eq!(location, "");
+}
+
+/// Events written before the label was renamed say "Join Macro call"; they
+/// still lose their generated line, whether it carries the link bare or in
+/// the brackets html2text writes.
+#[test]
+fn a_join_line_written_before_the_rename_is_still_stripped() {
+    for text in [
+        format!("Agenda\nJoin Macro call: [{URL}]"),
+        format!("Agenda\nJoin Macro call: {URL}"),
+        "Agenda\nJoin Macro call".to_string(),
+    ] {
+        let (description, location) = strip_macro_call(&text, URL, URL);
+        assert_eq!(description, "Agenda", "{text}");
+        assert_eq!(location, "");
+    }
+}
+
+#[test]
+fn a_bare_join_label_of_either_wording_is_stripped() {
+    for label in [JOIN_LINE_LABEL, LEGACY_JOIN_LINE_LABEL] {
+        let (description, _) = strip_macro_call(&format!("Agenda\n{label}"), "", "");
+        assert_eq!(description, "Agenda", "{label}");
+    }
 }

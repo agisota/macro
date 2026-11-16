@@ -98,7 +98,7 @@ describe('suggestion cards', () => {
       within(pick!).getByText('You answer most mail within a day.')
     ).toBeTruthy();
     expect(within(macro!).getByText('Template')).toBeTruthy();
-    expect(within(macro!).getByText('From Macro')).toBeTruthy();
+    expect(within(macro!).getByText('From Rox')).toBeTruthy();
     expect(within(drafts!).getByText('Draft')).toBeTruthy();
     expect(
       within(drafts!).getByText('Suppliers write every week.')

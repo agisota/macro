@@ -226,8 +226,8 @@ export function AskMacroButton(props: {
       grouped={props.grouped}
       size={props.size}
       onClick={() => openChatWithAgent(props.entity)}
-      tooltip="Ask Macro"
-      label="Ask Macro"
+      tooltip="Ask Rox"
+      label="Ask Rox"
       icon={
         <AgentIcon class="size-3.5 touch:size-6 shrink-0 pointer-events-none" />
       }

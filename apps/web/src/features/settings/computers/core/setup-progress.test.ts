@@ -102,7 +102,7 @@ describe('setupStages', () => {
     expect(stages[4]).toMatchObject({
       state: 'skipped',
       label: 'Sign in to Claude · skipped',
-      detail: 'Not needed: the agent runs on Macro credits.',
+      detail: 'Not needed: the agent runs on Rox credits.',
     });
   });
 
@@ -115,7 +115,7 @@ describe('setupStages', () => {
       ['Billing updated', 'done'],
       ['Computer created', 'done'],
       ['Started up', 'done'],
-      ['Connected to Macro', 'done'],
+      ['Connected to Rox', 'done'],
       ['Signed in to Claude', 'done'],
     ]);
   });

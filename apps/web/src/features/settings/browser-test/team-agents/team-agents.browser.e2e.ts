@@ -624,7 +624,7 @@ test("an admin signs the agent's computer in to Claude from its row", async ({
 
   const agentRow = page.locator('[data-member-kind="agent"]');
   const claude = agentRow.locator('[data-agent-claude]');
-  await expect(claude).toContainText('Claude: Macro credits');
+  await expect(claude).toContainText('Claude: Rox credits');
   await claude.getByRole('button', { name: 'Sign in to Claude' }).click();
   const dialog = page.getByRole('dialog');
   const open = dialog.getByRole('link', { name: 'Open claude.ai' });
@@ -645,11 +645,11 @@ test("an admin signs the agent's computer in to Claude from its row", async ({
   await expect(claude).toContainText('Claude: your plan');
   await screenshot(page, testInfo, 'row-signed-in');
 
-  await claude.getByRole('button', { name: 'Use Macro credits' }).click();
+  await claude.getByRole('button', { name: 'Use Rox credits' }).click();
   const confirm = page.getByRole('dialog');
-  await expect(confirm).toContainText('Switch Ada to Macro credits?');
-  await confirm.getByRole('button', { name: 'Use Macro credits' }).click();
-  await expect(claude).toContainText('Claude: Macro credits');
+  await expect(confirm).toContainText('Switch Ada to Rox credits?');
+  await confirm.getByRole('button', { name: 'Use Rox credits' }).click();
+  await expect(claude).toContainText('Claude: Rox credits');
   expect(backend.claudeCalls).toContain('harness-ada claude-sign-out');
 });
 

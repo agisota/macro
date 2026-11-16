@@ -248,7 +248,7 @@ describe('calendar mention card for a Macro call', () => {
     expect(view.container.textContent).not.toContain('/meet/join/');
     expect(view.container.textContent).toContain('Agenda');
 
-    fireEvent.click(screen.getByRole('button', { name: 'Join Macro call' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Join Rox call' }));
     expect(mocks.openExternalUrl).toHaveBeenCalledWith(callUrl);
   });
 
@@ -257,9 +257,7 @@ describe('calendar mention card for a Macro call', () => {
     const view = renderCard();
 
     expect(view.container.textContent).toContain('Room 2');
-    expect(
-      screen.getByRole('button', { name: 'Join Macro call' })
-    ).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Join Rox call' })).toBeTruthy();
   });
 
   // Channel shares carry the meeting, not a way into its call: the .ics
@@ -270,9 +268,7 @@ describe('calendar mention card for a Macro call', () => {
 
     expect(view.container.textContent).not.toContain('/meet/join/');
     expect(view.container.textContent).toContain('Agenda');
-    expect(
-      screen.queryByRole('button', { name: 'Join Macro call' })
-    ).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Join Rox call' })).toBeNull();
   });
 
   it('leaves a Google Meet link where it was', () => {
@@ -281,9 +277,7 @@ describe('calendar mention card for a Macro call', () => {
     const view = renderCard();
 
     expect(view.container.textContent).toContain(meetUrl);
-    expect(
-      screen.queryByRole('button', { name: 'Join Macro call' })
-    ).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Join Rox call' })).toBeNull();
   });
 
   // Native apps route the link in-app, behind the sheet.
@@ -304,7 +298,7 @@ describe('calendar mention card for a Macro call', () => {
     ));
 
     fireEvent.click(
-      await screen.findByRole('button', { name: 'Join Macro call' })
+      await screen.findByRole('button', { name: 'Join Rox call' })
     );
 
     expect(mocks.openExternalUrl).toHaveBeenCalledWith(callUrl);

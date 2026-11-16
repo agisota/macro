@@ -162,7 +162,7 @@ export function StepRevision(props: {
           {(problems) => (
             <div role="alert" class="grid min-w-0 gap-1.5">
               <span class="text-sm text-failure">
-                Rewritten, but it doesn’t type-check against Macro’s SDK, so it
+                Rewritten, but it doesn’t type-check against Rox’s SDK, so it
                 can’t be kept. Undo and try saying it differently.
               </span>
               <For each={problems()}>

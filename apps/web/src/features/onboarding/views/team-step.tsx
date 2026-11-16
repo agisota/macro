@@ -299,7 +299,7 @@ function TeamForm(props: {
                 disabled={!form.allowDomainJoin()}
                 onChange={form.setNotifyDomain}
                 infoLabel="About the team email"
-                info={`We'll email your @${domain()} contacts who aren't on Macro yet to let them know the team exists. Needs domain join on.`}
+                info={`We'll email your @${domain()} contacts who aren't on Rox yet to let them know the team exists. Needs domain join on.`}
               >
                 Notify your team via email
               </RecommendedSwitch>

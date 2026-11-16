@@ -15,7 +15,7 @@ export default {
   computer: 'Computer',
   sizedComputer: '{{size}} computer',
   computerName: '{{name}} · {{size}}',
-  included: 'Included for Macro',
+  included: 'Included for Rox',
   alive: 'Alive',
   settingUp: 'Setting up…',
   failed: 'Failed',

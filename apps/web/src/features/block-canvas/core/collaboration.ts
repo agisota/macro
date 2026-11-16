@@ -52,7 +52,7 @@ export function readSharedCanvas(
     typeof file !== 'string'
   )
     throw new Error(
-      'This canvas uses an unsupported shared format. Update Macro to open it.'
+      'This canvas uses an unsupported shared format. Update Rox to open it.'
     );
   return readCanvasFile({
     ...JSON.parse(file),

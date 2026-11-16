@@ -1126,7 +1126,7 @@ function ElicitationFormDemo() {
   const [values, setValues] = createStore(initialValues(FIXTURE_ELICITATION));
   const errors = () => validate(FIXTURE_ELICITATION, values);
   return (
-    <ToolCard title="Macro Coder is asking" status="running" defaultOpen>
+    <ToolCard title="Rox Coder is asking" status="running" defaultOpen>
       <ElicitationForm
         schema={FIXTURE_ELICITATION}
         values={values}
@@ -1463,7 +1463,7 @@ export default function AgentUiGallery() {
 
           <Item label="AgentInput with model selector (slug-named catalog)">
             <p class="text-xs text-ink-muted">
-              What Macro Agent reports: names that are only ids, shown as names
+              What Rox Agent reports: names that are only ids, shown as names
               with their provider's logo.
             </p>
             <ModelSelectorDemo

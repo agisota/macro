@@ -68,7 +68,7 @@ describe('workbook upgraded from a legacy .xls', () => {
     expect(budget.cells.B15).toMatchObject({ format: 'number', decimals: 2 });
     expect(budget.metadata?.merges).toEqual(['F1:H1']);
     expect(imported.warnings).toEqual([
-      'Merged ranges are shown as individual cells in Macro and restored on Excel export when their covered cells remain empty.',
+      'Merged ranges are shown as individual cells in Rox and restored on Excel export when their covered cells remain empty.',
     ]);
   });
 

@@ -419,7 +419,7 @@ where
             .await?;
         let Some(computer_id) = harness.computer_id else {
             return Err(ComputerRouteError::BadRequest(
-                "this runtime is not a Macro computer".to_owned(),
+                "this runtime is not a Rox computer".to_owned(),
             ));
         };
         self.fleet_attachment.require_attached()?;
@@ -437,7 +437,7 @@ pub enum ComputerRouteError {
     #[error("you cannot do that on this computer")]
     Forbidden,
     /// The per-user computer rollout is off or unavailable.
-    #[error("Macro computers are not enabled for this user")]
+    #[error("Rox computers are not enabled for this user")]
     RolloutDisabled,
     /// Hosted computers have no fleet attached in this environment.
     #[error(transparent)]
