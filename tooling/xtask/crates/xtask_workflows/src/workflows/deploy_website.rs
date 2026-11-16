@@ -159,7 +159,12 @@ fn check() -> Step<Run> {
     Step::new("Type-check and test")
         // Same env scrubbing as the build: the dev shell's glibc-linked libs
         // break Bun's subprocesses.
-        .run("env -u LD_LIBRARY_PATH -u BASH_ENV bun run type-check && env -u LD_LIBRARY_PATH -u BASH_ENV bun run test")
+        //
+        // Two workers, not the default core count: the story suites advance fake
+        // timers frame by frame and, on a loaded machine, a handful of them
+        // assert one frame early. Serialising fully is deterministic but costs
+        // eight minutes; two workers keeps the gate under four.
+        .run("env -u LD_LIBRARY_PATH -u BASH_ENV bun run type-check && env -u LD_LIBRARY_PATH -u BASH_ENV bun run test -- --maxWorkers=2")
         .working_directory(xtask_paths::repo_dir!("apps/marketing"))
 }
 
