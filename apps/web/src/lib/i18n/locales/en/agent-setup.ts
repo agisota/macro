@@ -5,7 +5,7 @@ export default {
   loadFailed: 'Couldn’t create your SDK token.',
   tryAgain: 'Try again',
   intro:
-    'Use this token to work in Macro through the SDK. Save it now: it is shown only once, and reloading this page replaces it.',
+    'Use this token to work in Rox through the SDK. Save it now: it is shown only once, and reloading this page replaces it.',
   teamJoinFailed:
     'We couldn’t add you to the team that invited you. Reload this page to try again, which replaces this token, or join later from the link in your invite email.',
   tokenLabel: 'SDK token',
@@ -28,6 +28,6 @@ export default {
   anotherToken: '4. Need another token later?',
   anotherTokenSettings: 'You can also create one in Settings → API Keys.',
   openApp: 'Open the app',
-  openAppLink: 'I saved my token, open Macro',
+  openAppLink: 'I saved my token, open Rox',
   confirmFailed: 'Couldn’t confirm that you saved your token.',
 };

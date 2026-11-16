@@ -33,9 +33,9 @@ export const HOME_SETUP_PROMOTION = {
     logo('Google Drive', IconGoogleDrive),
     logo('Jira', IconJira),
   ],
-  headline: 'Make Macro your home base',
+  headline: 'Make Rox your home base',
   pitch:
-    'Connect the tools you use every day and invite teammates to work in Macro.',
+    'Connect the tools you use every day and invite teammates to work in Rox.',
   action: 'Connect tools',
   secondaryAction: 'Invite team',
 } satisfies PromotionCopy;
