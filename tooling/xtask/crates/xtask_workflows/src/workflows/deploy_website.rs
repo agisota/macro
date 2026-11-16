@@ -122,6 +122,7 @@ fn build_deploy() -> Job {
         .add_step(steps::setup_nix())
         // The build prerenders every page and checks homepage hydration in Chromium.
         .add_step(steps::setup_reqs_web("Setup", true))
+        .add_step(check())
         .add_step(build())
         .add_step(install_infra_dependencies())
         .add_step(configure_aws_credentials())
@@ -148,6 +149,17 @@ fn verify_lfs_videos() -> Step<Run> {
               exit 1
             fi
         "#})
+        .working_directory(xtask_paths::repo_dir!("apps/marketing"))
+}
+
+/// `bun run build` only proves the site compiles. The marketing suite and the
+/// type-check are what catch a broken rename or a stale copy string, so they run
+/// before the deploy spends four minutes building and publishing.
+fn check() -> Step<Run> {
+    Step::new("Type-check and test")
+        // Same env scrubbing as the build: the dev shell's glibc-linked libs
+        // break Bun's subprocesses.
+        .run("env -u LD_LIBRARY_PATH -u BASH_ENV bun run type-check && env -u LD_LIBRARY_PATH -u BASH_ENV bun run test")
         .working_directory(xtask_paths::repo_dir!("apps/marketing"))
 }
 

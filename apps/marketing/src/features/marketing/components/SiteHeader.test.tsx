@@ -9,9 +9,27 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { SiteHeader } from './SiteHeader';
 
 vi.mock('./DemoBookingDialog', () => ({ DemoBookingDialog: () => null }));
+/**
+ * jsdom has no `matchMedia`, and the solid primitives behind
+ * `DocumentationNavigation` subscribe through `addEventListener`, so a stub that
+ * only carries `matches` throws on mount.
+ */
+function stubMatchMedia(matches: (query: string) => boolean) {
+  vi.stubGlobal('matchMedia', (query: string) => ({
+    matches: matches(query),
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+  }));
+}
+
 beforeEach(() => {
   localStorage.clear();
-  vi.stubGlobal('matchMedia', () => ({ matches: false }));
+  stubMatchMedia(() => false);
 });
 afterEach(() => {
   cleanup();
@@ -71,9 +89,7 @@ it('opens and focuses search with Command or Control K/F, and navigates results'
 });
 
 it('keeps desktop navigation open across content clicks and page mounts', () => {
-  vi.stubGlobal('matchMedia', (query: string) => ({
-    matches: query === '(min-width: 768px)',
-  }));
+  stubMatchMedia((query) => query === '(min-width: 768px)');
   render(() => <SiteHeader currentPath="/docs/product/email" />);
   expect(screen.queryByRole('button', { name: 'Close navigation' })).toBeNull();
   expect(
@@ -90,9 +106,7 @@ it('keeps desktop navigation open across content clicks and page mounts', () => 
 });
 
 it('keeps the mobile guide visible until navigation is opened', () => {
-  vi.stubGlobal('matchMedia', (query: string) => ({
-    matches: query === '(max-width: 767px)',
-  }));
+  stubMatchMedia((query) => query === '(max-width: 767px)');
   render(() => <SiteHeader currentPath="/docs/product/email" />);
   expect(screen.queryByRole('navigation')).toBeNull();
   fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
