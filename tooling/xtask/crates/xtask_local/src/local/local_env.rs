@@ -795,7 +795,9 @@ impl BootStubEnv {
             "local-account-link-state-secret-0123456789".into(),
         );
         env.insert("STRIPE_SECRET_KEY".into(), "local-stripe-secret".into());
-        env.insert("STRIPE_PRICE_ID".into(), "local-stripe-price".into());
+        // The auth service validates the shape (`^price_[A-Za-z0-9_]{1,64}$`)
+        // before it will start, so the local placeholder has to look real.
+        env.insert("STRIPE_PRICE_ID".into(), "price_local_premium_monthly".into());
         env.insert(
             "STRIPE_COMPUTER_STANDARD_MONTHLY_PRICE_ID".into(),
             "price_local_computer_standard_monthly".into(),
