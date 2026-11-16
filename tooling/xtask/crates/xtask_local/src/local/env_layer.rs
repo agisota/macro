@@ -263,7 +263,10 @@ fn should_overlay_process_env(key: &str, value: &str) -> bool {
 }
 
 pub(super) fn is_local_database_url(value: &str) -> bool {
-    value.contains("@postgres:") || value.contains("localhost")
+    value.contains("@postgres:")
+        || value.contains("localhost")
+        || value.contains("127.0.0.1")
+        || value.contains("[::1]")
 }
 
 /// Dev-only overrides: pin the environment + project name, and strip any local
