@@ -21,9 +21,9 @@ const responses = [
 
 export default function ProductFormsPage() {
   setPageSeo({
-    title: 'Macro Forms | Forms connected to your work',
+    title: 'Rox Forms | Forms connected to your work',
     description:
-      'Collect form responses in Macro Databases, qualify requests, and let people book a call. Create and edit forms with agents.',
+      'Collect form responses in Rox Databases, qualify requests, and let people book a call. Create and edit forms with agents.',
     path: '/forms',
   });
   return (
@@ -38,7 +38,7 @@ export default function ProductFormsPage() {
         />
         <FeaturePageSection
           id="forms-databases"
-          title="Forms populate Macro Databases."
+          title="Forms populate Rox Databases."
           description="Each question is a column, and every response is a row. Responses appear as they come in. Open the database to sort, filter, and work with the answers."
         >
           <div
@@ -95,20 +95,20 @@ export default function ProductFormsPage() {
         </FeaturePageSection>
         <FeaturePageSection
           id="forms-booking"
-          title="Integrated with Macro Booking Links."
+          title="Integrated with Rox Booking Links."
           description="Add a gate to qualify requests, then a booking link as the last step. People who pass the gate can choose a time after their response is saved."
         >
           <FormBookingGraphic />
         </FeaturePageSection>
         <FeaturePageSection
           id="forms-agents"
-          title="Create forms with Macro Agents."
+          title="Create forms with Rox Agents."
           description="Describe the questions, qualification rules, and booking link you need. Your agent can create the form and edit it as your needs change."
         >
           <div
             class="forms-story forms-story-agent"
             role="img"
-            aria-label="Julia asks Macro to create a demo-request form with three questions, a minimum team size of five, and a product-demo booking link."
+            aria-label="Julia asks Rox to create a demo-request form with three questions, a minimum team size of five, and a product-demo booking link."
           >
             <FeatureDemoBackdrop />
             <div class="forms-conversation" inert aria-hidden="true">
@@ -118,7 +118,7 @@ export default function ProductFormsPage() {
                     person: 'julia',
                     text: (
                       <>
-                        <span class="forms-mention">@Macro</span> make a
+                        <span class="forms-mention">@Rox</span> make a
                         demo-request form. Ask for name, company, and team size.
                         Teams of 5 or more can book our product demo.
                       </>
@@ -154,7 +154,7 @@ export default function ProductFormsPage() {
         <FeaturePageSection
           id="forms-sharing"
           title="Share a form with your own branding."
-          description="Add your logo and accent color. Share with specific people or a channel in Macro Chat, or let anyone with the link respond without signing in."
+          description="Add your logo and accent color. Share with specific people or a channel in Rox Chat, or let anyone with the link respond without signing in."
         >
           <div
             class="forms-story forms-story-sharing"
@@ -194,14 +194,14 @@ export default function ProductFormsPage() {
             },
             {
               q: 'Can I create a form from an existing table?',
-              a: 'Yes. On a database you own, choose New form from the table menu. Macro creates questions from its columns.',
+              a: 'Yes. On a database you own, choose New form from the table menu. Rox creates questions from its columns.',
             },
             {
               q: 'What happens when someone does not pass a gate?',
               a: 'They see your gate message and cannot continue. Their response is not saved. A gate’s rule describes who can continue.',
             },
             {
-              q: 'Do respondents need a Macro account?',
+              q: 'Do respondents need a Rox account?',
               a: 'Choose Anyone with the link to allow responses without signing in. Invited people sign in to respond.',
             },
             {

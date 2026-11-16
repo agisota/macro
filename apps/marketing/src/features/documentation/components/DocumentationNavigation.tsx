@@ -186,7 +186,7 @@ const moreLinks = [
   { href: '/posts', title: 'Blog' },
   { href: '/partners', title: 'Partners' },
   { href: '/jobs', title: 'Jobs' },
-  { href: '/download', title: 'Download Macro' },
+  { href: '/download', title: 'Download Rox' },
   { href: '/legal', title: 'Legal' },
 ];
 
@@ -390,8 +390,8 @@ export function DocumentationNavigation(props: { currentPath: string }) {
                 </>
               )}
             </For>
-            <section class="doc-nav-group" aria-label="Switch to Macro">
-              <h2 class="doc-nav-heading">Switch to Macro</h2>
+            <section class="doc-nav-group" aria-label="Switch to Rox">
+              <h2 class="doc-nav-heading">Switch to Rox</h2>
               <a
                 href="/docs/switch-to-macro"
                 aria-current={

@@ -319,7 +319,7 @@ function EmailCard() {
                 color: palette.text,
               }}
             >
-              MACRO
+              ROX
             </div>
           </div>
         </div>

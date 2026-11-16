@@ -28,7 +28,7 @@ export function RouteWallOfLove() {
     onCleanup(() => observer.disconnect());
   });
   setPageSeo({
-    title: 'Wall of love · Macro',
+    title: 'Wall of love · Rox',
     description:
       'Real people on X, LinkedIn and thousands of support channels.',
     path: '/wall-of-love',
@@ -40,7 +40,7 @@ export function RouteWallOfLove() {
         <header class="love-hero">
           <p class="love-title">Wall of love.</p>
           <h1 class="love-intro">
-            Every Macro user (free or paid) gets a dedicated channel with our
+            Every Rox user (free or paid) gets a dedicated channel with our
             executive and engineering team. It's a lot of work for us to read
             but it has been the most valuable thing we've done. Below is some of
             the kind words we've heard in these channels, on X and on LinkedIn.

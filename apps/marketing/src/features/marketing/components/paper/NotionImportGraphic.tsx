@@ -18,7 +18,7 @@ export function NotionImportGraphic() {
           <span>Import from Notion</span>
         </div>
         <p class="notion-import-description">
-          Pick what to copy into Macro. Copies don't sync back to Notion.
+          Pick what to copy into Rox. Copies don't sync back to Notion.
         </p>
         <div class="notion-import-selection">Clear selection</div>
         <div class="notion-import-items">

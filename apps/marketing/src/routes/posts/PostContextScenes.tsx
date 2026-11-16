@@ -31,7 +31,7 @@ export function PostTags() {
 export function PostAgentContext() {
   return (
     <div class="post-agent-scene glass workspace-demo">
-      <div class="post-scene-label">Macro · Team update</div>
+      <div class="post-scene-label">Rox · Team update</div>
       <HomepageConversation
         messages={[
           {
@@ -71,7 +71,7 @@ export function PostAgentContext() {
 export function PostAgentMentions() {
   return (
     <div class="post-agent-scene glass workspace-demo">
-      <div class="post-scene-label">Macro · Add context</div>
+      <div class="post-scene-label">Rox · Add context</div>
       <HomepageConversation
         messages={[
           {

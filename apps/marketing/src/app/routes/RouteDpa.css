@@ -168,7 +168,7 @@
   margin-top: 0;
 }
 
-/* `.dpa-note` is Macro's notice rather than contract text, but it is set as an
+/* `.dpa-note` is Rox's notice rather than contract text, but it is set as an
    ordinary paragraph like the rest — the class exists so the page can still be
    checked against MacroDPA.docx with the notice excluded. */
 .dpa-note,

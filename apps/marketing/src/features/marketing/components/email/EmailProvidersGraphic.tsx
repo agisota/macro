@@ -15,7 +15,7 @@ export function EmailProvidersGraphic() {
     <div
       class="email-providers"
       role="img"
-      aria-label="Macro’s sign-up screen: continue with Google or Microsoft to sync your inbox and calendar, with zero-retention agreements, audited security, and data that is never sold."
+      aria-label="Rox’s sign-up screen: continue with Google or Microsoft to sync your inbox and calendar, with zero-retention agreements, audited security, and data that is never sold."
     >
       <div class="email-providers-screen" aria-hidden="true">
         <h3>

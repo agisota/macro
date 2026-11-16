@@ -59,7 +59,7 @@ export const BENEFIT_PAGES: Record<string, BenefitPage> = {
         id: 'customer-context',
         title: 'Keep the customer email attached.',
         description:
-          'Create a task from Macro Mail and the email stays linked as its source. Open the task from the thread, or go back to the original request from the task.',
+          'Create a task from Rox Mail and the email stays linked as its source. Open the task from the thread, or go back to the original request from the task.',
         scene: 'task-email',
       },
       {
@@ -88,7 +88,7 @@ export const BENEFIT_PAGES: Record<string, BenefitPage> = {
     sections: [
       {
         id: 'automatic-tags',
-        title: 'Automatically tag your Macro Mail.',
+        title: 'Automatically tag your Rox Mail.',
         description:
           'Set up a routine to tag new emails by what they’re about and how urgently they need a reply. A customer request can be tagged with the account, the topic, and its priority.',
         scene: 'auto-tags',
@@ -126,7 +126,7 @@ export const BENEFIT_PAGES: Record<string, BenefitPage> = {
     sections: [
       {
         id: 'share-in-channel',
-        title: 'Share access through Macro Chat.',
+        title: 'Share access through Rox Chat.',
         description:
           'When you share a document, task, or email in a channel, the people in that conversation can open it. The discussion and access stay together.',
         scene: 'channel-access',
@@ -159,7 +159,7 @@ export const BENEFIT_PAGES: Record<string, BenefitPage> = {
         id: 'customer-events',
         title: 'Act on a customer’s email.',
         description:
-          'Set up a routine for incoming customer email in Macro Mail. An agent can read the request, create a follow-up task, and draft a reply using the context in your workspace.',
+          'Set up a routine for incoming customer email in Rox Mail. An agent can read the request, create a follow-up task, and draft a reply using the context in your workspace.',
         scene: 'customer-event',
       },
       {
@@ -190,14 +190,14 @@ export const BENEFIT_PAGES: Record<string, BenefitPage> = {
         id: 'search-workspace',
         title: 'Find it wherever it happened.',
         description:
-          'Find an email from Macro Mail, a conversation from Macro Chat, or a detail in a document. You don’t have to remember which app it was in. Press / to search across your workspace.',
+          'Find an email from Rox Mail, a conversation from Rox Chat, or a detail in a document. You don’t have to remember which app it was in. Press / to search across your workspace.',
         scene: 'search',
       },
       {
         id: 'agent-search',
         title: 'Give agents one place to look.',
         description:
-          'Across separate tools, agents have to make separate searches and piece the answers together. Some connectors have rate limits or don’t offer search. In Macro, agents search the same connected workspace you do.',
+          'Across separate tools, agents have to make separate searches and piece the answers together. Some connectors have rate limits or don’t offer search. In Rox, agents search the same connected workspace you do.',
         scene: 'agent-search',
       },
       {

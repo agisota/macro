@@ -100,7 +100,7 @@ function files(directory: string): string[] {
 
 function docsIndex(full = false): string {
   return (
-    '# Macro documentation\n\n' +
+    '# Rox documentation\n\n' +
     files(docsRoot)
       .filter((file) => file.endsWith('.mdx'))
       .sort()

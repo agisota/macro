@@ -5,7 +5,7 @@ import './RouteLegal.css';
 
 const content = `# Legal
 
-Macro's terms, privacy policies, and account deletion information.
+Rox's terms, privacy policies, and account deletion information.
 
 - [Terms of service](/terms)
 - [Privacy policy](/privacy)
@@ -16,9 +16,9 @@ Macro's terms, privacy policies, and account deletion information.
 
 export const RouteLegal: Component = () => {
   setPageSeo({
-    title: 'Legal · Macro',
+    title: 'Legal · Rox',
     description:
-      "Macro's terms of service, privacy policy, data processing agreement, partner terms, and account deletion information.",
+      "Rox's terms of service, privacy policy, data processing agreement, partner terms, and account deletion information.",
     path: '/legal',
   });
   return <UtilPlainText content={content} lists />;

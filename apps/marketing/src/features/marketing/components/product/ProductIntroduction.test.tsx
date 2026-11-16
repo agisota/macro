@@ -15,5 +15,5 @@ it('links a marked product and italicizes a marked word', () => {
 it('leaves a product’s own name in its introduction as plain text', () => {
   const view = render(() => <ProductIntroduction product="Tasks" />);
   expect(view.queryByRole('link')).toBeNull();
-  expect(view.getByText(/^Macro Tasks are auto-created/)).toBeTruthy();
+  expect(view.getByText(/^Rox Tasks are auto-created/)).toBeTruthy();
 });

@@ -94,7 +94,7 @@ export function PartnerBadge() {
         lengthAdjust="spacing"
       >
         <textPath href="#partner-badge-ring" startOffset="0">
-          APPROVED PARTNER · MACRO · APPROVED PARTNER · MACRO ·
+          APPROVED PARTNER · ROX · APPROVED PARTNER · ROX ·
         </textPath>
       </text>
 

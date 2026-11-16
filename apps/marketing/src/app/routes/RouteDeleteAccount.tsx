@@ -11,7 +11,7 @@ You can request deletion of your Rox account and associated personal data by ema
 
 ## Request deletion by email
 
-1. Email [support@macro.com](mailto:support@macro.com?subject=Delete%20my%20Macro%20account) from the email address associated with your Rox account.
+1. Email [support@macro.com](mailto:support@macro.com?subject=Delete%20my%20Rox%20account) from the email address associated with your Rox account.
 2. Use the subject “Delete my Rox account” and say that you want your account and associated personal data deleted.
 3. We may ask you to verify your identity before fulfilling the request. Do not send your password or sign-in codes.
 

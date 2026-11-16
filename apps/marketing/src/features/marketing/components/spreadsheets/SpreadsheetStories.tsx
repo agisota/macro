@@ -85,7 +85,7 @@ export function SpreadsheetStories() {
           backdrop={false}
           height={384}
           mobileHeight={400}
-          label="An uploaded Excel workbook open in Macro with its three sheets as tabs and an Edit in Macro action that makes an editable copy."
+          label="An uploaded Excel workbook open in Rox with its three sheets as tabs and an Edit in Rox action that makes an editable copy."
           mobile={<SheetImportGraphic compact />}
         >
           <SheetImportGraphic />

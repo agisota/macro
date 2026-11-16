@@ -34,9 +34,9 @@ const replacementApps: ReplacementApp[] = [
 
 export default function ReplaceAppsPage() {
   setPageSeo({
-    title: 'Replace 27+ apps with Macro',
+    title: 'Replace 27+ apps with Rox',
     description:
-      'Bring your team’s work into one connected workspace. Compare the cost of your current tools with Macro using our savings calculator.',
+      'Bring your team’s work into one connected workspace. Compare the cost of your current tools with Rox using our savings calculator.',
     path: '/replace-apps',
   });
   return (
@@ -45,13 +45,13 @@ export default function ReplaceAppsPage() {
         <ProductHero
           product="Workspace"
           title="Replace 27+ apps."
-          description="Email, chat, docs, and tasks. All included with Macro."
+          description="Email, chat, docs, and tasks. All included with Rox."
           cta="replace_apps_hero"
         />
         <section class="replacement-calculator" aria-label="Compare app costs">
           <SavingsCalculator apps={replacementApps} />
           <a class="replacement-pricing-link" href="/pricing">
-            See all Macro plans →
+            See all Rox plans →
           </a>
         </section>
       </div>

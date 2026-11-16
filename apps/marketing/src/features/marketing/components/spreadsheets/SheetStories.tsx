@@ -430,7 +430,7 @@ export function SheetImportGraphic(props: { compact?: boolean }) {
             Uploaded workbook · Convert to edit and collaborate. The original
             file stays available.
           </span>
-          <span class="sheet-upload-action">Edit in Macro</span>
+          <span class="sheet-upload-action">Edit in Rox</span>
         </div>
         <SheetGrid
           widths={props.compact ? [116, 96, 110] : [156, 112, 124, 112]}

@@ -27,7 +27,7 @@ export function SectionHeroAlt() {
             left: '-1.5px',
           }}
         >
-          MACRO
+          ROX
         </div>
       </div>
 

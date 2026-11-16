@@ -100,14 +100,14 @@ export function HomepageTiles() {
         <Tile
           id="databases"
           title="Migrate your Notion databases"
-          description="Bring your Notion databases into Macro. Add custom fields and views, and link records to the emails, tasks, and docs they refer to."
+          description="Bring your Notion databases into Rox. Add custom fields and views, and link records to the emails, tasks, and docs they refer to."
           links={[{ href: '/demo', label: 'Explore the workspace' }]}
           preview="databases"
         />
         <Tile
           id="crm"
           title="Auto-updating, hands-free CRM"
-          description="Macro builds customer records from your team’s email and enriches them with public information. Agents can update deals and draft follow-ups from the conversation."
+          description="Rox builds customer records from your team’s email and enriches them with public information. Agents can update deals and draft follow-ups from the conversation."
           links={[{ href: '/crm', label: 'CRM' }]}
           preview="crm"
         />

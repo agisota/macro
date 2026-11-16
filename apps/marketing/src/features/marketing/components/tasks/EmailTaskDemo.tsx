@@ -190,7 +190,7 @@ export function EmailTaskDemo() {
                     <Button
                       variant="plain"
                       size="icon-sm"
-                      label="Ask Macro"
+                      label="Ask Rox"
                       tabIndex={-1}
                     >
                       <AskIcon />
