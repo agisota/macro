@@ -23,6 +23,7 @@ pub mod outbound;
 pub mod pubsub;
 mod server;
 pub mod util;
+mod utils;
 
 /// The service's OpenAPI document, rendered by the `*_openapi` binary.
 pub use api::swagger::ApiDoc;

@@ -19,6 +19,13 @@
 /apps
 /packages
 
+# `agent_git`'s build script embeds the starter agent's files with include_str!,
+# so the crate cannot compile without them. Re-include the one package the
+# services image needs; the parent directories must be un-ignored first.
+!/packages
+/packages/*
+!/packages/starter-agent
+
 # Secrets and local configuration
 .env
 .env.*

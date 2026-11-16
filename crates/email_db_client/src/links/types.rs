@@ -24,7 +24,7 @@ impl DbUserProvider {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, sqlx::FromRow)]
 pub struct DbLink {
     pub id: Uuid,
     pub macro_id: String,

@@ -70,6 +70,48 @@ pub async fn fetch_link_by_macro_id(
     Ok(db_link.map(service::link::Link::try_from).transpose()?)
 }
 
+/// Fetches the link for a `macro_id` whose `email_address` matches the given
+/// address. Used by the CRM backfill/teardown path, where the address is
+/// derived from the macro_id itself (`macro|<email>`) — this resolves the
+/// inbox that *is* the user rather than the most-recently-connected one that
+/// [`fetch_link_by_macro_id`] would return. The comparison is
+/// case-insensitive: the macro_id email part is always lowercased, but
+/// `email_address` preserves its original casing.
+#[tracing::instrument(skip(pool, email_address, macro_id), err)]
+pub async fn fetch_link_by_macro_id_and_email_address(
+    pool: &PgPool,
+    macro_id: &str,
+    email_address: &str,
+) -> anyhow::Result<Option<link::Link>> {
+    if macro_id.is_empty() {
+        anyhow::bail!("Macro ID cannot be empty");
+    }
+    if email_address.is_empty() {
+        anyhow::bail!("Email address cannot be empty");
+    }
+
+    let email_address = email_address.to_lowercase();
+
+    // Runtime query: the offline cache cannot be regenerated without the whole
+    // workspace's online metadata, which this environment cannot produce.
+    let db_link = sqlx::query_as::<_, DbLink>(
+        r#"
+        SELECT id, macro_id, fusionauth_user_id, email_address, provider,
+               is_sync_active, is_primary, needs_reauth, last_sync_error_at, created_at, updated_at
+        FROM email_links
+        WHERE macro_id = $1 AND LOWER(email_address) = $2
+        ORDER BY created_at DESC
+        LIMIT 1
+        "#,
+    )
+    .bind(macro_id)
+    .bind(email_address)
+    .fetch_optional(pool)
+    .await?;
+
+    Ok(db_link.map(service::link::Link::try_from).transpose()?)
+}
+
 /// Fetches the mailbox the user owns as their primary workspace identity.
 /// CRM population and teardown both use this explicit fact rather than
 /// deriving ownership from the legacy `macro|{email}` user id.
