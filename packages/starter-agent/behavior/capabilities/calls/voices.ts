@@ -48,7 +48,7 @@ const named = (model: string): Voice => {
 };
 
 /**
- * The voice in the agent's `config/voice.json`, which Macro's agent settings
+ * The voice in the agent's `config/voice.json`, which Rox's agent settings
  * write; the default when there is no file. A file that isn't a voice throws:
  * a call in the wrong voice is worse than a call that says why it failed.
  */

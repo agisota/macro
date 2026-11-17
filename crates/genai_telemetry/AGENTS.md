@@ -26,7 +26,7 @@ agent loop.
 - Owns: `gen_ai.*` attribute names/values, content bounding, the setters
   that attach them to spans opened elsewhere, and `provider_account`: the
   classifier and `ai provider account unavailable` log for provider responses
-  that mean Macro's account is suspended or out of credit (read by
+  that mean Rox's account is suspended or out of credit (read by
   `infra/stacks/monitoring/monitors/ai-providers.ts`).
 - Not here: the spans themselves (`invoke_agent`, `chat`, `execute_tool`) —
   those come from `rig`.

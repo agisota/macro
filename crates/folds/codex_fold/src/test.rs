@@ -201,7 +201,7 @@ fn a_background_command_finishing_after_its_turn_leaves_the_session_idle() {
     }
     assert_eq!(observed.inner().metadata().turn, TurnState::Idle);
 
-    // The same turn prompted from Macro: roxd answers the prompt when the
+    // The same turn prompted from Rox: roxd answers the prompt when the
     // turn ends, and the late command arrives after that answer.
     let (turn, late) = wire.split_at(wire.len() - 2);
     let mut prompted = vec![

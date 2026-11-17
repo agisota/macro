@@ -387,7 +387,7 @@ in
     };
 
     systemd.services.macro-agent = agentUnit // {
-      description = "Macro agent teammate";
+      description = "Rox agent teammate";
       wantedBy = [ "multi-user.target" ];
       serviceConfig = hardening // {
         WorkingDirectory = home;

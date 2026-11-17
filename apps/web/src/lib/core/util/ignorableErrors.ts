@@ -7,7 +7,7 @@ const IGNORABLE_MESSAGES = [
 const EXTENSION_SCRIPT = /^(?:chrome|moz|safari(?:-web)?)-extension:\/\//;
 
 /**
- * Browser noise that is not a Macro bug, dropped before it reaches PostHog or
+ * Browser noise that is not a Rox bug, dropped before it reaches PostHog or
  * Datadog. `source` is the URL of the script that threw.
  */
 export function isIgnorableError(error: {

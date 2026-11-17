@@ -712,7 +712,7 @@ where
             .map_err(GenerationError::internal)
     }
 
-    /// The person's routine suggestions: AI's, then Macro's templates.
+    /// The person's routine suggestions: AI's, then Rox's templates.
     pub async fn routine_suggestions(
         &self,
         user: &MacroUserIdStr<'static>,

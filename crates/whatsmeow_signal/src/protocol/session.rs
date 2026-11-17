@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/session.rs and modified
-// by Macro: X3DH only (no Kyber pre-keys, no post-quantum ratchet), bundles
+// by Rox: X3DH only (no Kyber pre-keys, no post-quantum ratchet), bundles
 // come from the whatsmeow port's `PreKeyBundle`, and the stores are the port's
 // `SignalProtocolStore`. See NOTICE.
 

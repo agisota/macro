@@ -37,7 +37,7 @@ export type GithubSelectorDraft = z.infer<typeof githubSelectorSchema>;
 
 /** The repositories a GitHub trigger can choose from. */
 export type GithubRepositoryOptions = {
-  /** `owner/name` of every repository Macro's GitHub app reaches for you. */
+  /** `owner/name` of every repository Rox's GitHub app reaches for you. */
   names: string[];
   loading: boolean;
   error: boolean;
@@ -501,7 +501,7 @@ function githubTriggerLabel(selector: GithubSelectorDraft | undefined) {
   return `GitHub ${selector.events.join(', ')}`;
 }
 
-/** The menu item for one of a Macro trigger's events. */
+/** The menu item for one of a Rox trigger's events. */
 function routineEventItem(trigger: EventTriggerDraft, name: RoutineEventName) {
   const property =
     name === 'task.property_changed'

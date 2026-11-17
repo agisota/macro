@@ -1,4 +1,4 @@
-//! Generate a local E2E Macro API JWT using the shared Rust token encoder.
+//! Generate a local E2E Rox API JWT using the shared Rust token encoder.
 
 use anyhow::{Context, ensure};
 use local_e2e_test_support::{

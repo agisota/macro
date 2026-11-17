@@ -8,7 +8,7 @@ export async function resolveWsUrl() {
   const wsHost = SERVER_HOSTS['connection-gateway'];
   if (ENABLE_BEARER_TOKEN_AUTH) {
     const apiToken = await getMacroApiToken();
-    if (!apiToken) throw new Error('No Macro API token');
+    if (!apiToken) throw new Error('No Rox API token');
 
     return `${wsHost}?macro-api-token=${apiToken}`;
   }

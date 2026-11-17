@@ -1,4 +1,4 @@
-# The Macro computer guest as a NixOS module: roxd, harnessd, Claude Code, herdr,
+# The Rox computer guest as a NixOS module: roxd, harnessd, Claude Code, herdr,
 # Chromium on an Xvnc display, Docker and nix-ld. `_image.nix` adds the Incus
 # VM image on top; `_vm-test.nix` boots this module alone.
 {
@@ -402,7 +402,7 @@ in
     };
 
     systemd.services.roxd = {
-      description = "Macro agent daemon";
+      description = "Rox agent daemon";
       wantedBy = [ "multi-user.target" ];
       # Wants, not Requires: a first enroll attempt that fails must not fail
       # roxd's start for good; the enroll retry starts it once enrolled.
@@ -454,12 +454,12 @@ in
     };
 
     systemd.user.services.macro-display =
-      userService "Macro computer display (Xvnc :0 on 127.0.0.1:5900)"
+      userService "Rox computer display (Xvnc :0 on 127.0.0.1:5900)"
         {
           ExecStart = "${pkgs.tigervnc}/bin/Xvnc ${display} -geometry 1920x1080 -depth 24 -rfbport 5900 -interface 127.0.0.1 -localhost -SecurityTypes None -UseBlacklist 0 -AlwaysShared -nolisten tcp -nolisten local";
         };
     systemd.user.services.macro-openbox =
-      userService "Openbox window manager on the Macro display" {
+      userService "Openbox window manager on the Rox display" {
         ExecStartPre = waitForDisplay;
         ExecStart = lib.getExe' pkgs.openbox "openbox";
       }
@@ -469,7 +469,7 @@ in
         environment.DISPLAY = display;
       };
     systemd.user.services.macro-chromium =
-      userService "Chromium on the Macro display, DevTools on 127.0.0.1:9222" {
+      userService "Chromium on the Rox display, DevTools on 127.0.0.1:9222" {
         ExecStartPre = waitForDisplay;
         ExecStart = "${lib.getExe pkgs.chromium} --user-data-dir=%h/.config/chromium --remote-debugging-port=9222 --no-first-run --no-default-browser-check --disable-dev-shm-usage --password-store=basic --start-maximized";
       }

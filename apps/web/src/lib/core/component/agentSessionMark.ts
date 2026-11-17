@@ -24,7 +24,7 @@ const CLAUDE: AgentSessionMark = {
 const CODEX: AgentSessionMark = { Icon: CodexIcon, class: 'text-ink' };
 const CURSOR: AgentSessionMark = { Icon: CursorIcon, class: 'text-ink' };
 const MACRO: AgentSessionMark = { Icon: MacroLogo, class: 'text-accent' };
-/** Harnesses Macro ships no logo for (OpenCode, OpenClaw, Hermes, ...). */
+/** Harnesses Rox ships no logo for (OpenCode, OpenClaw, Hermes, ...). */
 const GENERIC: AgentSessionMark = { Icon: SparkleIcon, class: 'text-chat' };
 
 /**
@@ -52,7 +52,7 @@ function fromFirstParty(mark: FirstPartyBotMark): AgentSessionMark {
 
 /**
  * The brand mark for the agent running a session: Claude in its orange for
- * Claude Code, Codex, Cursor, or Macro. A static lookup over fields the
+ * Claude Code, Codex, Cursor, or Rox. A static lookup over fields the
  * mention preview already carries, so a chip costs no extra request.
  * First-party Cursor and Codex bots win over the harness, which older rows
  * stamped with the sandboxed-coder default.

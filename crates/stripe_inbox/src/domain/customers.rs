@@ -28,7 +28,7 @@ where
 
     /// Every subscription of `customer` as Stripe lists it now, for a
     /// decision the held snapshots may be behind on (an irreversible
-    /// cancel). Any failure, a list Macro cannot read included, retries:
+    /// cancel). Any failure, a list Rox cannot read included, retries:
     /// the caller must not act without it.
     pub async fn live_subscriptions(
         &self,

@@ -71,7 +71,7 @@ pub(crate) fn event_snapshot(invite: &CalendarInvitation) -> Result<EventSnapsho
     let recurrence_lines = invite
         .recurrence
         .clone()
-        .ok_or("this event was saved before Macro recorded whether it repeats")?;
+        .ok_or("this event was saved before Rox recorded whether it repeats")?;
     let time = event_time(invite.start.as_ref(), invite.end.as_ref())
         .filter(EventTime::is_valid)
         .ok_or("the event's time could not be read")?;

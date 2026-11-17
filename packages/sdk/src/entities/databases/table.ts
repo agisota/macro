@@ -166,7 +166,7 @@ export class DatabaseTable {
   }
 
   /**
-   * This table's URL in the Macro web app: the database, opened on this
+   * This table's URL in the Rox web app: the database, opened on this
    * table. Hand it to users as the link to a table you built or changed.
    *
    * @readonly

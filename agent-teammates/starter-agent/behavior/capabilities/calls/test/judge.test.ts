@@ -479,14 +479,14 @@ test("the evidence: an invite's title and who's there; a channel's chat from ten
 		kind: "invite",
 		callId: "mc",
 		token: "tok",
-		title: "Macro call",
+		title: "Rox call",
 		createdBy: cy,
 	};
 	expect(
 		await gatherCandidate(invite, { api, me: assistant, now: start }),
 	).toEqual({
 		kind: "invite",
-		title: "Macro call",
+		title: "Rox call",
 		channel: "",
 		createdBy: cy,
 		attendees: ["Cy"],
@@ -545,7 +545,7 @@ test("a busy or empty case is ruled before the model", () => {
 	expect(
 		saysNothing({
 			kind: "invite",
-			title: "Macro call",
+			title: "Rox call",
 			channel: "",
 			createdBy: cy,
 			attendees: ["Cy"],

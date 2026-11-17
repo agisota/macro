@@ -63,7 +63,7 @@ pub struct DraftCheckpoint {
     pub prepared: PreparedDraft,
     pub stage: DraftStage,
     pub stage_started_at: DateTime<Utc>,
-    /// True only after Macro atomically claims a requested delivery.
+    /// True only after Rox atomically claims a requested delivery.
     #[serde(default)]
     pub submission_started: bool,
     pub draft: Option<ProviderDraft>,

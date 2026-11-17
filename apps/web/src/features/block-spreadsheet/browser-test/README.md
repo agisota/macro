@@ -1,7 +1,7 @@
 # Spreadsheet browser fixture
 
 This isolated entry mounts the real `SpreadsheetEditor` with its local Loro
-source, IronCalc calculation worker, Excel import/export worker, and shared Macro
+source, IronCalc calculation worker, Excel import/export worker, and shared Rox
 styles and controls. It does not load authentication, hosted document APIs, or
 product routes. Reloading resets the workbook. This verifies the editor and
 worker integration, not network collaboration or persistence.

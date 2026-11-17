@@ -121,7 +121,7 @@ Now is {now}; the user's time zone is {timezone}. Cron schedules take `timezone:
 
 {steps}
 
-Macro's catalog, for your surfaces (written by Macro):
+Rox's catalog, for your surfaces (written by Rox):
 {catalog}
 
 Already suggested or dismissed, never to suggest again (catalog keys and routine names):

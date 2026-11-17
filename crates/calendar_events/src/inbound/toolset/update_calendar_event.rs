@@ -325,7 +325,7 @@ where
                 description: "`addMacroCall` and `conference` are mutually exclusive; pick one."
                     .to_string(),
                 internal_error: anyhow::Error::from_boxed(
-                    rootcause::report!("both Macro call and provider conference requested")
+                    rootcause::report!("both Rox call and provider conference requested")
                         .into_boxed_error(),
                 ),
             });

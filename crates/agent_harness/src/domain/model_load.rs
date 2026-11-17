@@ -16,7 +16,7 @@ mod test;
 /// Provider selected by a model-discovery request.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ModelHarness {
-    /// Macro's in-process agent.
+    /// Rox's in-process agent.
     InMemory,
     /// The caller's Cursor account.
     Cursor,
@@ -145,7 +145,7 @@ pub enum HarnessModelReach {
     Forbidden,
     /// Its daemon holds a runtime connection.
     Connected,
-    /// Its daemon is not connected, e.g. a Macro computer that is powered off.
+    /// Its daemon is not connected, e.g. a Rox computer that is powered off.
     Disconnected,
 }
 

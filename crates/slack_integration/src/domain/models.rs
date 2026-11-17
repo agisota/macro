@@ -81,7 +81,7 @@ uuid_id!(
 );
 uuid_id!(
     TeamId,
-    "Macro team identity, derived from an admin receipt, not request JSON."
+    "Rox team identity, derived from an admin receipt, not request JSON."
 );
 uuid_id!(
     CreateToken,
@@ -256,7 +256,7 @@ impl fmt::Display for SlackTimestamp {
     }
 }
 
-/// Source identity supplied when creating a job. One binding per Macro team in v1.
+/// Source identity supplied when creating a job. One binding per Rox team in v1.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(
     tag = "kind",
@@ -276,18 +276,18 @@ pub enum SourceIdentity {
     ConfirmedUnknown,
 }
 
-/// Slack conversation kind. Public Slack channels map to Macro Team, never Public.
+/// Slack conversation kind. Public Slack channels map to Rox Team, never Public.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 #[cfg_attr(feature = "inbound", derive(utoipa::ToSchema))]
 pub enum ConversationKind {
     /// Team channel with explicit members and auto-join disabled.
     PublicChannel,
-    /// Private Macro channel.
+    /// Private Rox channel.
     PrivateChannel,
     /// Exactly two distinct mapped email identities; otherwise skip.
     DirectMessage,
-    /// Private Macro channel named from source member display names.
+    /// Private Rox channel named from source member display names.
     GroupDirectMessage,
 }
 
@@ -304,13 +304,13 @@ pub struct ConversationMetadata {
     pub name: String,
     /// Single archive folder name, not a backend object key.
     pub folder: KeySegment,
-    /// Complete source member list, including members unknown to Macro.
+    /// Complete source member list, including members unknown to Rox.
     pub member_ids: Vec<SlackUserId>,
     /// Source creator when available.
     pub creator_id: Option<SlackUserId>,
     /// Missing time is resolved once from earliest message or persisted job time.
     pub created_at: Option<SlackTimestamp>,
-    /// Source archived flag (does not silently archive a reused Macro target).
+    /// Source archived flag (does not silently archive a reused Rox target).
     pub archived: bool,
     /// Advisory only; null means not yet counted, not zero.
     pub message_count: Option<u64>,
@@ -683,7 +683,7 @@ pub enum SearchState {
 pub struct ConversationProgress {
     /// Source identity (always visible to the importing team's administrator).
     pub slack_channel_id: ConversationId,
-    /// Persisted source display name, never the reused Macro target's name.
+    /// Persisted source display name, never the reused Rox target's name.
     pub name: String,
     /// Persisted source kind.
     pub kind: ConversationKind,
@@ -944,7 +944,7 @@ pub struct HistoricalMessage {
     pub sender: HistoricalSender,
     /// Slack display name only for system-bot fallback attribution.
     pub imported_author: Option<String>,
-    /// Converted, nonempty Macro markdown (attachment bytes are excluded).
+    /// Converted, nonempty Rox markdown (attachment bytes are excluded).
     pub content: String,
     /// Only user identities emitted by conversion outside code; never rediscover
     /// these by parsing the serialized body.
@@ -960,7 +960,7 @@ pub struct HistoricalMessage {
 /// One silent historical reaction; source message time supplies missing reaction time.
 #[derive(Debug, Clone, Serialize)]
 pub struct HistoricalReaction {
-    /// Raw lowercase email mapped to a Macro identity.
+    /// Raw lowercase email mapped to a Rox identity.
     pub user_id: MacroUserIdStr<'static>,
     /// Supported Unicode reaction, after shortcode conversion.
     pub emoji: String,

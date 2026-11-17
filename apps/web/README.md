@@ -1,4 +1,4 @@
-# Macro App Frontend
+# Rox App Frontend
 
 This is the root directory for the [solidjs](https://www.solidjs.com/) frontend application known as _Macro_
 

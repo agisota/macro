@@ -166,7 +166,7 @@ describe('email thread query ownership', () => {
     await Promise.all(mocks.started);
   });
 
-  it("labels the thread's inbox address, not the Macro login, as Me", () => {
+  it("labels the thread's inbox address, not the Rox login, as Me", () => {
     setLinksLoaded(false);
     const source = createThreadContext({
       thread: () =>

@@ -1,7 +1,7 @@
-//! Notion data sources in Macro database terms: the column each property
+//! Notion data sources in Rox database terms: the column each property
 //! becomes and the cell each value becomes.
 //!
-//! Ids derive from a caller-chosen namespace (the Macro database) and the
+//! Ids derive from a caller-chosen namespace (the Rox database) and the
 //! Notion property, so planning the same data source again names the same
 //! columns and options.
 
@@ -22,22 +22,22 @@ use super::model::{
 #[cfg(test)]
 mod test;
 
-/// Longest column or option name a Macro database accepts.
+/// Longest column or option name a Rox database accepts.
 pub const MAX_NAME: usize = 200;
 
-/// Notion users matched to Macro team members, by Notion user id.
+/// Notion users matched to Rox team members, by Notion user id.
 pub type PeopleMap = HashMap<NotionId, Person>;
 
-/// A Notion user as Macro knows them.
+/// A Notion user as Rox knows them.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Person {
     /// Their email, when Notion shared it.
     pub email: Option<String>,
-    /// Their Macro account, when the email matched a team member.
+    /// Their Rox account, when the email matched a team member.
     pub macro_user: Option<MacroUserIdStr<'static>>,
 }
 
-/// The Macro columns a data source's properties become.
+/// The Rox columns a data source's properties become.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ColumnPlan {
     /// The title column's name, when the data source has a title property.
@@ -123,7 +123,7 @@ impl ColumnPlan {
     }
 }
 
-/// A Macro column planned for a Notion property.
+/// A Rox column planned for a Notion property.
 #[derive(Debug, Clone, PartialEq)]
 pub struct PlannedColumn {
     /// The column id, minted before the column is created.
@@ -137,7 +137,7 @@ pub struct PlannedColumn {
 }
 
 impl PlannedColumn {
-    /// The column as Macro creates it.
+    /// The column as Rox creates it.
     pub fn definition(&self) -> NewColumn {
         NewColumn::New {
             name: self.name.clone(),
@@ -151,7 +151,7 @@ impl PlannedColumn {
 /// How a planned column stores values.
 #[derive(Debug, Clone, PartialEq)]
 pub enum ColumnShape {
-    /// Plain text; also where values Macro has no type for are snapshotted.
+    /// Plain text; also where values Rox has no type for are snapshotted.
     Text,
     /// A number.
     Number,
@@ -168,7 +168,7 @@ pub enum ColumnShape {
         /// The options, by label.
         options: Vec<(OptionId, String)>,
     },
-    /// Macro users.
+    /// Rox users.
     People {
         /// Whether a cell holds several people.
         multi: bool,
@@ -176,7 +176,7 @@ pub enum ColumnShape {
 }
 
 impl ColumnShape {
-    /// The Macro column kind.
+    /// The Rox column kind.
     pub fn kind(&self) -> ColumnKind {
         match self {
             Self::Text => ColumnKind::Text,
@@ -271,7 +271,7 @@ pub fn planned_column(
 }
 
 /// The column name each property of one data source gets, by property id.
-/// Macro refuses an empty column name, so a blank one becomes "Untitled" (or
+/// Rox refuses an empty column name, so a blank one becomes "Untitled" (or
 /// "Untitled 2", ...), distinct from the data source's other names. It
 /// depends on the schema alone, so planning again picks the same names.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -330,13 +330,13 @@ fn planned_options<'a>(
 }
 
 /// A stable id for `name` within `namespace` (UUIDv5), so writing the same
-/// object again names the same thing: Macro refuses an id already in use
+/// object again names the same thing: Rox refuses an id already in use
 /// instead of creating a duplicate.
 pub fn derived_id(namespace: Uuid, name: &str) -> Uuid {
     Uuid::new_v5(&namespace, name.as_bytes())
 }
 
-/// A name trimmed to what Macro accepts.
+/// A name trimmed to what Rox accepts.
 pub fn capped_name(name: &str) -> String {
     name.trim().chars().take(MAX_NAME).collect()
 }
@@ -465,7 +465,7 @@ fn format_number(number: f64) -> String {
     }
 }
 
-/// Whether `value` is an http(s) URL, the only links Macro keeps.
+/// Whether `value` is an http(s) URL, the only links Rox keeps.
 pub fn is_web_url(value: &str) -> bool {
     value.starts_with("https://") || value.starts_with("http://")
 }

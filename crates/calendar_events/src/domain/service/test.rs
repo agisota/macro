@@ -494,9 +494,9 @@ fn complete_scope_capability_requires_every_requested_scope() {
     }
 }
 
-/// An inbox connected before Macro narrowed its request reports only the broad
+/// An inbox connected before Rox narrowed its request reports only the broad
 /// scope. It deliberately does not read as the capability — the user re-grants
-/// through the normal prompt, which records the scopes Macro asks for today.
+/// through the normal prompt, which records the scopes Rox asks for today.
 #[test]
 fn broad_calendar_grant_no_longer_reads_as_the_capability() {
     let broad = GoogleScopeSet::parse(GOOGLE_CALENDAR_FULL_SCOPE);
@@ -1341,7 +1341,7 @@ async fn retiring_a_regular_meeting_leaves_team_ooo_rows_alone() {
             deleted: true,
             team_ooo_changed: false,
         }],
-        // A tombstone for something Macro never stored changes nothing.
+        // A tombstone for something Rox never stored changes nothing.
         Vec::new(),
     ] {
         let coordinator = GoogleCalendarBackfillCoordinator::new(
@@ -2137,7 +2137,7 @@ async fn event_forward_falls_back_to_the_event_file_without_evidence_of_an_outsi
             },
         ),
         (
-            "a snapshot Macro imported",
+            "a snapshot Rox imported",
             exchange.clone(),
             crate::domain::ics::ForwardedCopy {
                 is_snapshot: true,

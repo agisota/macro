@@ -124,7 +124,7 @@ export const enableDatabases = defineFlag({
 });
 
 /**
- * Macro Forms (`block-form`): questionnaires whose answers land as rows of a
+ * Rox Forms (`block-form`): questionnaires whose answers land as rows of a
  * database table. On under local HMR, like databases; deployed environments
  * follow PostHog. The flag gates authoring (create entries, builder, `/poll`,
  * `/form`, database controls); responding, form cards and mentions follow the
@@ -162,7 +162,7 @@ export const enableEntityAppearance = defineFlag({
 });
 
 /**
- * Connect apps Macro Connect serves through it instead of Pipedream. The
+ * Connect apps Rox Connect serves through it instead of Pipedream. The
  * backend reads the same PostHog key and decides per app; this side only
  * reserves the consent popup inside the click. Off in dev too: dev has no
  * Connect customer key until one is added to Doppler.
@@ -204,7 +204,7 @@ export const enableSlackArchiveImport = defineFlag({
 });
 
 /**
- * Macro computers: the whole computer UI (Settings → Machines, Billing,
+ * Rox computers: the whole computer UI (Settings → Machines, Billing,
  * Agents). Off hides it; existing computers keep running and billing.
  * No dev default: dev follows PostHog like the backend, which fails closed.
  */
@@ -215,7 +215,7 @@ export const enableMacroComputers = defineFlag({
 
 /**
  * Agent teammates: team admins invite an AI agent, with its own account and
- * Macro computer, from Settings → Team → Members.
+ * Rox computer, from Settings → Team → Members.
  */
 export const enableAgentTeammates = defineFlag({
   key: 'enable-agent-teammates',
@@ -232,7 +232,7 @@ export const enableSidebarPromotions = defineFlag({
 
 /**
  * Auto in the agent composer's mode switch: the agent harness picks Chat or
- * Code per prompt. Macro employees only; the backend checks the same key.
+ * Code per prompt. Rox employees only; the backend checks the same key.
  */
 export const enableComposerAutoMode = defineFlag({
   key: 'enable-composer-auto-mode',
@@ -543,7 +543,7 @@ export const enableEmailSignatures = defineFlag({
 });
 
 // Email read receipts: the per-inbox switch in Settings › Email and the
-// opened status on sent messages. Which copies load Macro's pixels, and so
+// opened status on sent messages. Which copies load Rox's pixels, and so
 // count as opens, does not depend on this flag.
 export const enableEmailReadReceipts = defineFlag({
   key: 'enable-email-read-receipts',
@@ -553,7 +553,7 @@ export const enableEmailReadReceipts = defineFlag({
 
 // CRM companies & contacts frontend: the Companies view + sidebar entry, the
 // company/contact detail blocks, CRM mentions / quick-access, and CRM rows in
-// global search. PostHog-gated (currently targeted at the Macro team in prod)
+// global search. PostHog-gated (currently targeted at the Rox team in prod)
 // with a dev-mode default; override with VITE_ENABLE_CRM.
 export const enableCrm = defineFlag({
   key: 'enable-crm',
@@ -562,7 +562,7 @@ export const enableCrm = defineFlag({
 });
 
 // Emergency stop for CRM contact results in @ mentions and Command K/mobile
-// name searches. Companies and Macro users remain searchable. Off until
+// name searches. Companies and Rox users remain searchable. Off until
 // PostHog enables it; override with VITE_DISABLE_CRM_CONTACT_SEARCH.
 export const disableCrmContactSearch = defineFlag({
   key: 'disable-crm-contact-search',
@@ -685,7 +685,7 @@ export const enableTaskDuplicates = defineFlag({
 });
 
 // Snippets: reusable markdown documents, the `c` launcher entry, and the `;`
-// insert menu. PostHog-gated (currently targeted at the Macro team) with a
+// insert menu. PostHog-gated (currently targeted at the Rox team) with a
 // dev-mode default; override with VITE_ENABLE_SNIPPETS.
 export const enableSnippets = defineFlag({
   key: 'enable-snippets',
@@ -1006,7 +1006,7 @@ export const enableRoutineConditions = defineFlag({
   default: onInDev,
 });
 
-// Macro's built-in routine templates (Sort my inbox, Morning brief, ...): the
+// Rox's built-in routine templates (Sort my inbox, Morning brief, ...): the
 // strip above the routines list and New routine's Templates section. Not
 // shared templates, which follow enable-routine-sharing.
 export const enableRoutineStarterTemplates = defineFlag({
@@ -1060,7 +1060,7 @@ export const enableRoutineSharing = defineFlag({
   env: 'ENABLE_ROUTINE_SHARING',
 });
 
-// Event triggers (Macro and GitHub events). The server checks the same key per
+// Event triggers (Rox and GitHub events). The server checks the same key per
 // routine owner, on save and before each run, so follow PostHog even in
 // development.
 export const enableEventRoutines = defineFlag({
@@ -1167,7 +1167,7 @@ export const enableInAppTours = defineFlag({
 
 /**
  * Personal WhatsApp linked devices: the External tab, pairing, adding chats
- * to Macro and sharing them by mention in channels. The only rollout gate;
+ * to Rox and sharing them by mention in channels. The only rollout gate;
  * the backend always serves the routes. Follows PostHog everywhere; override
  * locally with VITE_ENABLE_WHATSAPP_LINKED=true.
  */

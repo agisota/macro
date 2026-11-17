@@ -18,7 +18,7 @@ pub struct SdkDocumentation {
     pub name: String,
     /// When to use the entity: its `@routing` sentence, "Use when …; not …".
     pub description: String,
-    /// How this area of Macro works: the entity's `@agent` guidance, when it
+    /// How this area of Rox works: the entity's `@agent` guidance, when it
     /// has some; omitted in a compact catalog.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub guide: Option<String>,
@@ -336,7 +336,7 @@ pub async fn select_documentation(
 ) -> String {
     let docs = sdk_documentation();
     let mut output = String::from(
-        "\n<macro_sdk>\nUse the real Macro SDK in ExecuteCode. Entity indexes below list each class, method and type by symbol, with method signatures. Read the symbols a program needs with ReadCodeDocs for their parameters, options and return types, all together in one call, unless their reference is already in context. Use DescribeCodeTools for the index of an entity not loaded here.\nAvailable entities:\n",
+        "\n<macro_sdk>\nUse the real Rox SDK in ExecuteCode. Entity indexes below list each class, method and type by symbol, with method signatures. Read the symbols a program needs with ReadCodeDocs for their parameters, options and return types, all together in one call, unless their reference is already in context. Use DescribeCodeTools for the index of an entity not loaded here.\nAvailable entities:\n",
     );
     for doc in docs {
         output.push_str(&format!("{}: {}\n", doc.name, doc.description));

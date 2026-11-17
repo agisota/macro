@@ -86,7 +86,7 @@ impl CommunityReference {
     }
 }
 
-/// Why a chat can't be added to Macro; the app words it from the code.
+/// Why a chat can't be added to Rox; the app words it from the code.
 #[derive(Debug, Clone, Copy, Serialize, PartialEq, Eq, thiserror::Error)]
 #[serde(rename_all = "snake_case")]
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
@@ -317,7 +317,7 @@ pub enum MediaKind {
     Document,
 }
 
-/// Every MIME type Macro sends to WhatsApp, with its category.
+/// Every MIME type Rox sends to WhatsApp, with its category.
 pub const SENDABLE_MEDIA: [(&str, MediaKind); 10] = [
     ("image/jpeg", MediaKind::Image),
     ("image/png", MediaKind::Image),
@@ -407,7 +407,7 @@ pub enum AttachmentState {
     Ready,
     /// Download or import failed for good.
     Unavailable,
-    /// A file type Macro does not import.
+    /// A file type Rox does not import.
     Unsupported,
 }
 
@@ -537,7 +537,7 @@ pub enum ExternalChatError {
     /// Invalid input with actionable detail.
     #[error("{0}")]
     Invalid(&'static str),
-    /// The chat can't be added to Macro.
+    /// The chat can't be added to Rox.
     #[error("{0}")]
     CannotAdd(CannotAdd),
     /// Absent or outside the caller's authorized scope.

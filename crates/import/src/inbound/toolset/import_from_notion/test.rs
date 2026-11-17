@@ -122,7 +122,7 @@ fn the_agent_hears_how_much_is_already_in_macro_and_by_whom() {
 
     assert_eq!(
         message(NotionImportAction::Plan, &report),
-        "The plan is ready: of the 12 pages and 0 databases Notion shared, it imports 2 pages as documents; 0 of them shared with the user's team, 2 visible only to the user; 0 skipped, 0 to handle by hand. 10 more are already in Macro, imported and shared with the team by ana@acme.test (7), bo@acme.test (3); they link to those copies and are not imported again. Tell the user these numbers as they are, then present the plan now with PresentReview (kind \"import\", a short title such as \"Import from Notion\", drafts [{\"source\":\"notion\"}]). Nothing is written until they approve it; they can change who sees each object on the card. End your message by asking \"Should I kick it off?\"; if they say yes, approve it with DecideReview (a submit decision)."
+        "The plan is ready: of the 12 pages and 0 databases Notion shared, it imports 2 pages as documents; 0 of them shared with the user's team, 2 visible only to the user; 0 skipped, 0 to handle by hand. 10 more are already in Rox, imported and shared with the team by ana@acme.test (7), bo@acme.test (3); they link to those copies and are not imported again. Tell the user these numbers as they are, then present the plan now with PresentReview (kind \"import\", a short title such as \"Import from Notion\", drafts [{\"source\":\"notion\"}]). Nothing is written until they approve it; they can change who sees each object on the card. End your message by asking \"Should I kick it off?\"; if they say yes, approve it with DecideReview (a submit decision)."
     );
 }
 

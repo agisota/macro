@@ -17,7 +17,7 @@
 //!   shared-event file (`METHOD:PUBLISH`) naming no attendees, so a
 //!   recipient can add the event to their own calendar but has nothing to
 //!   answer, nothing reaches the organizer, and the guest list stays as the
-//!   organizer keeps it. A Macro recipient sees it as a shared event with
+//!   organizer keeps it. A Rox recipient sees it as a shared event with
 //!   Add to calendar ([`super::invitation_import`]).
 
 #[cfg(test)]

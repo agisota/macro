@@ -1,4 +1,4 @@
-//! The repositories a user reaches through Macro's GitHub App.
+//! The repositories a user reaches through Rox's GitHub App.
 //!
 //! Everything this knows about GitHub - which installations belong to whom,
 //! what each one covers, how to prove we are the App - belongs to the `github`

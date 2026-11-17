@@ -6,7 +6,7 @@ use models_email::service::attachment::AttachmentUploadMetadata;
 use sqlx::types::Uuid;
 use sqlx::{Pool, Postgres, Row};
 
-/// fetch attachments for a thread to upload to Macro during the backfill process.
+/// fetch attachments for a thread to upload to Rox during the backfill process.
 /// all attachments for a thread should be uploaded if any message in the thread meets any of the
 /// following criteria:
 /// 1. the user sent the message
@@ -318,7 +318,7 @@ async fn message_has_unclaimed_document_attachment(
     Ok(has_candidate)
 }
 
-/// Fetch and atomically claim attachments for a specific message to upload to Macro.
+/// Fetch and atomically claim attachments for a specific message to upload to Rox.
 /// This is called when a new email is inserted for a user. Attachments for the message
 /// should be uploaded if any message in the message's thread meets any of the following criteria:
 /// 1. the user sent the message

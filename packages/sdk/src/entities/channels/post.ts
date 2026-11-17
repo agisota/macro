@@ -10,7 +10,7 @@ import type { Thread } from './thread';
 export type MessageAttachments = {
   /** Static images, shown inline. */
   images?: StaticImage[];
-  /** Macro documents, shown as file chips. */
+  /** Rox documents, shown as file chips. */
   documents?: Document[];
 };
 
@@ -102,7 +102,7 @@ export async function postToChannel(
 /** Attachment type of an image in static file storage. */
 const STATIC_IMAGE = 'static/image';
 
-/** Attachment type of a Macro document. */
+/** Attachment type of a Rox document. */
 const DOCUMENT = 'document';
 
 /** Split a target into the channel to post in and the thread to post under. */

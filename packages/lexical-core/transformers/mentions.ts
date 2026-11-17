@@ -347,7 +347,7 @@ export const I_PR_MENTION: TextMatchTransformer = {
     try {
       const data = JSON.parse(match[1]);
       // Agents often know only a PR's GitHub URL; the decorator resolves the
-      // Macro entity from it, so either field identifies the PR.
+      // Rox entity from it, so either field identifies the PR.
       const id = typeof data.id === 'string' ? data.id : '';
       const url =
         typeof data.url === 'string' && isGithubPullRequestUrl(data.url)

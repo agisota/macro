@@ -513,7 +513,7 @@ describe('fixed chart values', () => {
 
 describe('radar, bubble, stock and contour charts', () => {
   const cells = (column: string) => `'Data'!$${column}$2:$${column}$5`;
-  /** A chart part read back as Macro reads Excel's. */
+  /** A chart part read back as Rox reads Excel's. */
   const reread = (part: string) => {
     const path = 'xl/charts/chart1.xml';
     const warnings = new Set<string>();
@@ -529,7 +529,7 @@ describe('radar, bubble, stock and contour charts', () => {
     expect([...warnings]).toEqual([]);
     return chart;
   };
-  /** Series of columns after labels in column A, as Macro makes them. */
+  /** Series of columns after labels in column A, as Rox makes them. */
   const columns = (names: string[]) => ({
     series: names.map((column, index) => ({
       name: column,

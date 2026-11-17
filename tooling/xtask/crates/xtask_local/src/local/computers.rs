@@ -1,4 +1,4 @@
-//! Macro computers on a local stack: which fleet `agent_harness_service`'s
+//! Rox computers on a local stack: which fleet `agent_harness_service`'s
 //! computer control plane drives, the `COMPUTERS_*` env it reads, and the
 //! macro-box image the Docker fleet runs.
 //!
@@ -86,7 +86,7 @@ const ROXD_SERVICES: &[(&str, Option<Port>)] = &[
     ("OVERRIDE_APP_SERVICE_URL", None),
 ];
 
-/// Which fleet runs a stack's Macro computers.
+/// Which fleet runs a stack's Rox computers.
 #[derive(clap::ValueEnum, Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum Fleet {
@@ -100,7 +100,7 @@ pub enum Fleet {
 
 #[derive(Args, Clone, Default)]
 pub struct ComputersArgs {
-    /// Which fleet runs Macro computers. Defaults to `docker` for
+    /// Which fleet runs Rox computers. Defaults to `docker` for
     /// `run_local` and `off` for `stack up`.
     #[arg(long, value_enum)]
     pub computers: Option<Fleet>,
@@ -341,7 +341,7 @@ impl Computers {
             }
             return Ok(());
         }
-        stage.run_step("Building the Macro computer image", || {
+        stage.run_step("Building the Rox computer image", || {
             load_image(&stage.quiet(), &REGULAR_BUILD)
         })?;
         stage.run_step("Building the agent teammate computer image", || {

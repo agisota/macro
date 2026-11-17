@@ -464,7 +464,7 @@ fn local_times_use_the_zones_2026_rules() {
     }
 }
 
-/// Graph applies its own current rules to the local time Macro sends, so a
+/// Graph applies its own current rules to the local time Rox sends, so a
 /// write computed with stale rules lands an hour off for every attendee.
 #[test]
 fn writes_send_local_times_in_the_zones_2026_rules() {

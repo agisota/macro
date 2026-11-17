@@ -1,5 +1,5 @@
-//! Code-aware Slack mrkdwn to Macro markdown. Source markup is never trusted as
-//! Macro entities. Links and mapped users use native nodes; channel/message
+//! Code-aware Slack mrkdwn to Rox markdown. Source markup is never trusted as
+//! Rox entities. Links and mapped users use native nodes; channel/message
 //! references carry source evidence for later authorized resolution. Broadcasts
 //! and subteams remain historical display text, not notifications.
 
@@ -35,7 +35,7 @@ pub enum SkippedMessage {
 /// `Empty`), and pass only `Text` to the historical sink.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum MessageConversion {
-    /// Nonempty Macro markdown.
+    /// Nonempty Rox markdown.
     Text(String),
     /// Intentionally ignored source message.
     Skipped(SkippedMessage),
@@ -45,7 +45,7 @@ pub enum MessageConversion {
 pub struct MrkdwnConverter<'a> {
     /// Archive user directory for mention attribution.
     pub users: &'a UserDirectory,
-    /// Source channel names for tokens without a label. No Macro channel IDs.
+    /// Source channel names for tokens without a label. No Rox channel IDs.
     pub channels: &'a BTreeMap<ConversationId, String>,
 }
 
@@ -90,7 +90,7 @@ impl MrkdwnConverter<'_> {
     /// Preserve single-tick spans and line-start triple fences byte-for-byte;
     /// malformed/unsupported code delimiters fall back to escaped text. Elsewhere
     /// decode Slack's three entities once and translate recognized tokens. Encoded
-    /// angle brackets never become active Slack or Macro mention syntax.
+    /// angle brackets never become active Slack or Rox mention syntax.
     pub fn convert(&self, source: &str) -> String {
         self.convert_with_italics(source, false, None)
             .expect("legacy conversion has no limits")
@@ -323,7 +323,7 @@ impl MrkdwnConverter<'_> {
     }
 }
 
-/// Source-supplied Macro markup is one inert region, including any URLs or Slack
+/// Source-supplied Rox markup is one inert region, including any URLs or Slack
 /// tokens inside it. This only identifies literal tag boundaries, never decodes
 /// their payload. Unclosed regions remain inert through EOF. Nested tags are
 /// counted in one pass so hostile input cannot cause repeated suffix scans.
@@ -417,7 +417,7 @@ fn code_span(rest: &str, fence_position: bool) -> Option<(usize, bool)> {
     for line in rest[first_line_end..].split_inclusive('\n') {
         let trimmed = line.trim_start_matches([' ', '\t']);
         let closing_run = trimmed.bytes().take_while(|b| *b == b'`').count();
-        // Match Macro's closing fences, including arbitrary space/tab indentation.
+        // Match Rox's closing fences, including arbitrary space/tab indentation.
         // Missing an accepted close would pass subsequent source tags through raw.
         if closing_run >= run && trimmed[closing_run..].trim().is_empty() {
             return Some((offset + line.trim_end_matches('\n').len(), true));

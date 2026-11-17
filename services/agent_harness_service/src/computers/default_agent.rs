@@ -1,4 +1,4 @@
-//! The team coding agent a Macro computer comes with: created once, when the
+//! The team coding agent a Rox computer comes with: created once, when the
 //! computer first becomes ready, through the bots service as its buyer, and
 //! deleted with every other agent on the computer when it goes away.
 
@@ -119,7 +119,7 @@ where
 
         // The same defaults the Agents settings editor starts a roxd
         // coding agent with. The permission choice is left to bots, which
-        // has an agent on a Macro computer run without asking.
+        // has an agent on a Rox computer run without asking.
         let agent = self
             .bots
             .create_agent(

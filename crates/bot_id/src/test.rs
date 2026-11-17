@@ -56,7 +56,7 @@ fn macro_new_id_is_stable_and_distinct_from_macro() {
     // The classic bot answers in channel; only its replacement opens sessions.
     assert!(!system_bot(MACRO_AI_BOT_ID).unwrap().has_agent);
     assert!(system_bot(MACRO_NEW_BOT_ID).unwrap().has_agent);
-    // Two ids, one persona: both present as "Macro" wherever a person reads a
+    // Two ids, one persona: both present as "Rox" wherever a person reads a
     // sender, a mention, or an agent list.
     assert_eq!(
         system_bot(MACRO_NEW_BOT_ID).unwrap().name,

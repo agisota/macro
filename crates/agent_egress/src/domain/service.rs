@@ -281,7 +281,7 @@ where
                     // still be addressed for them: the handshake and tool
                     // listing go through, and a tool call is answered
                     // here with a result the model can act on. Only a
-                    // Pipedream app resolves this way; Macro's own server
+                    // Pipedream app resolves this way; Rox's own server
                     // has no grant to lack, and a custom server with no
                     // row is refused by its resolver outright.
                     McpResolution::Unconnected(call) => match destination {
@@ -394,7 +394,7 @@ where
             let (server_slug, server_name) = match destination {
                 // Session-scoped previews spend nobody's access; exempt above.
                 McpDestination::Macro | McpDestination::Preview => {
-                    (MACRO_SERVER_SLUG.to_owned(), "Macro".to_owned())
+                    (MACRO_SERVER_SLUG.to_owned(), "Rox".to_owned())
                 }
                 McpDestination::Connected(slug) => {
                     (slug.as_str().to_owned(), grant.display_name(slug))

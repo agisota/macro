@@ -13,7 +13,7 @@ Two different values get checked during sign-in, by two different parties:
   header or, on a navigation, the `Referer`. FusionAuth checks it against the
   application's authorized origins (`infra/stacks/fusionauth-instance/origins.ts`)
   and fails with `invalid_request: Invalid origin uri` when it is not listed.
-  That list is for Macro's own apps that talk to FusionAuth directly, plus
+  That list is for Rox's own apps that talk to FusionAuth directly, plus
   Google's sign-in pages, which send the browser back to FusionAuth.
 - The **redirect URI** is where the authorization code is delivered. The broker
   checks it, as described in the next two sections. FusionAuth only ever
@@ -35,7 +35,7 @@ know how that user's account signs in. The chooser stores nothing; its form is
 the same `/authorize` request with `sign_in` added.
 
 - **Google** goes straight to Google through FusionAuth.
-- **Email** is the one-time code the Macro app uses. `/authorize` records the
+- **Email** is the one-time code the Rox app uses. `/authorize` records the
   pending flow and redirects to `email-sign-in`, the broker's own form. The form
   calls the authentication service's public endpoints
   (`outbound/email_sign_in.rs`), so its address checks, per-address rate limits,
@@ -79,7 +79,7 @@ Dynamic client registration is open, because MCP clients require it. That means
 the registered redirect URIs of a client prove nothing about who registered it:
 anyone can register a client whose callback they control. FusionAuth also signs
 in a user with an existing session without asking anything, so without another
-check, anyone could register their own callback and send a Macro user a link
+check, anyone could register their own callback and send a Rox user a link
 that silently hands them that user's code. A deployment-level policy
 (`domain/redirect_uri.rs`) therefore sorts every redirect URI into one of three
 groups, and a registration can only narrow what it allows:
@@ -90,7 +90,7 @@ groups, and a registration can only narrow what it allows:
   listed in `MCP_ALLOWED_REDIRECT_HOSTS`, matched exactly; when that variable is
   unset the list falls back to `DEFAULT_MCP_ALLOWED_REDIRECT_HOSTS` in
   `services/agent_harness_service/src/public_mcp.rs`, which holds the
-  browser-based MCP clients Macro has vetted. Subdomains of a listed host are
+  browser-based MCP clients Rox has vetted. Subdomains of a listed host are
   not themselves trusted.
 - **Delivered after consent.** `https` on any other host, such as a self-hosted
   MCP gateway. `/authorize` shows the consent screen described below before
@@ -105,7 +105,7 @@ a client that registered `http://localhost:6274/...` cannot have a code sent to
 
 A new third-party HTTPS client needs no change at all: its users approve it on
 the consent screen. Adding its callback host to the trusted list only skips that
-screen, so reserve it for clients Macro has vetted. It needs no FusionAuth origin
+screen, so reserve it for clients Rox has vetted. It needs no FusionAuth origin
 either way.
 
 Both endpoints that take a redirect URI apply the policy: `/register` refuses to
@@ -177,9 +177,9 @@ writes as "<client_name> · Agent". The name is self-reported at `/register`: a
 display label, never an identity or permission. `domain/client_name.rs` bounds
 it: only ASCII letters, digits, spaces and plain punctuation survive (no
 control, bidi, zero-width, lookalike or mention characters), at most 64 of them,
-and a name that is Macro's own ("Macro", "Macro Agent", a first-party Macro
+and a name that is Rox's own ("Rox", "Rox Agent", a first-party Rox
 bot's name or handle; compared ignoring case, spaces and punctuation) is
-refused with a 400. A name that only mentions Macro ("Claude Code (macro)") is
+refused with a 400. A name that only mentions Rox ("Claude Code (rox)") is
 fine. A name with nothing left registers as "MCP
 client". Reads apply the same rules, so a name stored before they existed is
 shown normalized, or unnamed if reserved. A token issued before its binding was
@@ -204,10 +204,10 @@ RFC 8707 `resource` parameter (`domain/resource.rs`):
   resource they derive from the URL their user configured (the gateway URL, a
   bare origin), so the broker does not refuse one it does not recognize.
 - **The ChatGPT MCP server** (`McpChatgptServiceUrl` + `/mcp`, a Cloudflare
-  Worker). It passes its bearer unchanged to Macro's APIs, which accept a
+  Worker). It passes its bearer unchanged to Rox's APIs, which accept a
   FusionAuth token but cannot look up its client, so writes would show as the
-  user's own. This resource gets a Macro API token instead, minted at `/token`
-  for the same user through the `MacroApiTokenMinter` port: the Macro bot via
+  user's own. This resource gets a Rox API token instead, minted at `/token`
+  for the same user through the `MacroApiTokenMinter` port: the Rox bot via
   the client's registered name, the attribution public MCP's `ExecuteCode`
   signs. It expires with the FusionAuth token it was minted from, and the
   refresh token stays FusionAuth's, so a refresh naming this resource mints a
@@ -218,7 +218,7 @@ lookalike such as its bare origin or an `http` URL gets the harness's token.
 The resource is not stored with the code: it changes only which credential for
 the same user and client is returned, so `/token` decides from its own
 `resource`, which MCP clients send on both grants. A ChatGPT refresh that omits
-it gets a FusionAuth token, which Macro's APIs accept without the client label.
+it gets a FusionAuth token, which Rox's APIs accept without the client label.
 
 ## Token endpoint errors
 
@@ -241,7 +241,7 @@ never the token itself, and are not returned to the client.
 ## Disconnecting a client
 
 `/revoke` implements RFC 7009 and is advertised as `revocation_endpoint` in
-the authorization server metadata. A client disconnecting from Macro posts its
+the authorization server metadata. A client disconnecting from Rox posts its
 refresh token there as a form:
 
 ```
@@ -265,7 +265,7 @@ binding goes last, so a client that sees a `503` can retry. A token the broker
 does not hold (never issued, expired, or already revoked) gets `200`, as RFC
 7009 section 2.2 requires.
 
-Access tokens, FusionAuth JWTs or Macro API tokens, are not revocable: presenting one gets
+Access tokens, FusionAuth JWTs or Rox API tokens, are not revocable: presenting one gets
 `400 unsupported_token_type`. Revocation does not cut them short, so an access
 token issued before the revocation stays valid until it expires. Every token
 response carries `expires_in`, which is that remaining window; FusionAuth signs

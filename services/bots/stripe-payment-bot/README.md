@@ -1,6 +1,6 @@
 # stripe-payment-bot
 
-Posts to every Macro channel containing the bot when Stripe reports a new
+Posts to every Rox channel containing the bot when Stripe reports a new
 payment or a subscription cancellation. It can be deployed from any Cloudflare
 account; it has no dependency on a Macro-owned Worker or domain.
 
@@ -16,7 +16,7 @@ Stripe webhook ──POST /webhook──> Cloudflare Worker
                                    │ Stripe SDK verifies the signature
                                    │ map the event to a payment or cancellation
                                    ▼
-                  Macro SDK → list the bot's channel memberships
+                  Rox SDK → list the bot's channel memberships
                             → POST each channel's bot webhook
 ```
 
@@ -32,7 +32,7 @@ All deployment-specific values are Worker bindings:
 - `MACRO_BOT_TOKEN`: API key for a team-owned Macro bot.
 - `MACRO_ENV`: `dev`, `prod`, or `local`.
 - `MACRO_STORAGE_URL`: optional storage API base URL override for a custom
-  Macro deployment.
+  Rox deployment.
 - `STRIPE_API_KEY`: restricted or secret Stripe API key.
 - `STRIPE_WEBHOOK_SECRET`: signing secret for this deployment's Stripe webhook
   destination.
@@ -49,7 +49,7 @@ printf '%s' 'whsec_...' | wrangler secret put STRIPE_WEBHOOK_SECRET
 bun run deploy
 ```
 
-For a nonstandard Macro storage endpoint, also set:
+For a nonstandard Rox storage endpoint, also set:
 
 ```bash
 printf '%s' 'https://your-storage-api.example.com' | \

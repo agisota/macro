@@ -51,7 +51,7 @@ export class UserNamespace {
   }
 
   /**
-   * Find people by name or email among your Macro contacts and your team, as
+   * Find people by name or email among your Rox contacts and your team, as
    * in the mention picker. Returns at most 20 people in one request, ranked
    * teammates first, then names or addresses that start with the query. This
    * is not a global directory, and it never chooses a person for you.

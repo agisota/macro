@@ -1,5 +1,5 @@
 """Generate chart-types.xlsx: radar, bubble, stock and surface charts written by
-openpyxl, not Macro.
+openpyxl, not Rox.
 
 Run from this directory: python3 generate-chart-types.py (needs openpyxl).
 """

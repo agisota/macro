@@ -29,7 +29,7 @@ export type EventType = {
   description: string;
   durationMinutes: number;
   location: string;
-  /** Create a Macro call and attach its join link when someone books. */
+  /** Create a Rox call and attach its join link when someone books. */
   macroCall: boolean;
   googleMeet: boolean;
   enabled: boolean;

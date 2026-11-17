@@ -63,7 +63,7 @@ export function useWhatsappLinkedPairingQuery(
   return useQuery(() => pairingOptions(userId(), pairingId()));
 }
 
-/** The connected account's chat list, newest activity first, with Macro state. */
+/** The connected account's chat list, newest activity first, with Rox state. */
 export function useWhatsappLinkedChatsQuery(
   userId: Accessor<string>,
   enabled: Accessor<boolean>
@@ -156,7 +156,7 @@ export function useImportWhatsappHistoryMutation() {
   }));
 }
 
-/** Adds one of the account's WhatsApp chats to Macro as an external chat. */
+/** Adds one of the account's WhatsApp chats to Rox as an external chat. */
 export function useAddWhatsappChatMutation() {
   return useMutation(() => ({
     mutationFn: (chat: { jid: string; kind: ExternalChatKind }) =>

@@ -205,7 +205,7 @@ where
 #[derive(Debug, Deserialize, utoipa::IntoParams)]
 #[into_params(parameter_in = Path)]
 pub struct AgentPath {
-    /// The agent's Macro user id.
+    /// The agent's Rox user id.
     pub agent_user_id: String,
 }
 

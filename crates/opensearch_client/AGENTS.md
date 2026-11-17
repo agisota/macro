@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of the Search feature. Typed client for Macro's search index:
+Part of the Search feature. Typed client for Rox's search index:
 per-entity-type upsert/delete and search for documents, emails, channel
 messages, chats, agent sessions, calendar events, call records, and
 projects.

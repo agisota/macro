@@ -1,6 +1,6 @@
-# Macro computers
+# Rox computers
 
-How Macro computers work: hosted VMs a team buys, each running roxd so it
+How Rox computers work: hosted VMs a team buys, each running roxd so it
 shows up in Settings → Runtimes like a paired machine. The code lives in
 `crates/hosted_runtimes` (see its `AGENTS.md` for navigation), with the control
 plane wired in `services/agent_harness_service/src/computers.rs` and the routes
@@ -41,7 +41,7 @@ mounted by authentication_service.
 ## Rollout
 
 `domain::rollout::ComputerRollout` reads `enable-macro-computers` for the
-authenticated Macro user through `feature_flags`. Missing providers, missing
+authenticated Rox user through `feature_flags`. Missing providers, missing
 flags and load errors refuse team purchase and offers with 403.
 Composition roots inject it with `with_rollout`; `offers` takes the caller
 user id. Existing reads and management, Stripe reconciliation and workers remain

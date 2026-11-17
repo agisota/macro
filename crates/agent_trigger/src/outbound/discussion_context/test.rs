@@ -382,7 +382,7 @@ async fn an_attachment_only_message_reaches_the_agent_with_its_document() {
         11,
         Some(10),
         "wolf@example.com",
-        "@Macro summarize into a short paragraph",
+        "@Rox summarize into a short paragraph",
         2,
     );
 
@@ -1268,7 +1268,7 @@ async fn design_discussions_reach_the_agent_unanchored() {
 #[tokio::test]
 async fn an_agent_asking_for_a_person_names_them_and_counts_its_hop() {
     let parent = document();
-    let root = posted(&parent, 1, None, "alice@example.com", "@Macro fix this", 0);
+    let root = posted(&parent, 1, None, "alice@example.com", "@Rox fix this", 0);
     let by_bot = |id: u128, bot: bot_id::BotId, name: &str, content: &str, minute: i64| Message {
         sender_id: channel_sender::ChannelSender::new_from_bot(bot),
         triggered_by: Some(actor().as_ref().to_owned()),
@@ -1279,7 +1279,7 @@ async fn an_agent_asking_for_a_person_names_them_and_counts_its_hop() {
         ..posted(&parent, id, Some(1), "unused@example.com", content, minute)
     };
     let macro_reply = by_bot(2, bot_id::MACRO_NEW_BOT_ID, "Macro", "@Cursor fix it", 1);
-    let prompt = by_bot(3, bot_id::CURSOR_BOT_ID, "Cursor", "@Macro done, check", 2);
+    let prompt = by_bot(3, bot_id::CURSOR_BOT_ID, "Cursor", "@Rox done, check", 2);
 
     let mut source = MockMessageReader::new();
     let prompt_message = prompt.clone();

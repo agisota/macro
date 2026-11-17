@@ -63,7 +63,7 @@ Serde parsing by itself does not enforce collection or string quotas.
 
 ## Source binding and creation
 
-V1 supports one Slack workspace per Macro team. Source binding is durable and
+V1 supports one Slack workspace per Rox team. Source binding is durable and
 shared with onboarding. Known mismatches fail with `source_mismatch`. A missing
 workspace identity requires the explicit `confirmed_unknown` variant on every
 such create, including when prior unscoped onboarding mappings exist. Omission
@@ -335,7 +335,7 @@ Counters are cumulative committed `processed`, `imported`, `duplicates`, `skippe
 and `reactions`; processed equals imported + duplicates + skipped, not reactions.
 Replays/checkpoint retries cannot inflate them. Selected failures/skips remain in
 receipts; unselected channels are never counted as skipped. Names/kinds come from
-persisted source metadata, not inaccessible Macro targets or locally retained ZIPs.
+persisted source metadata, not inaccessible Rox targets or locally retained ZIPs.
 Polling, reconnect and job history render this same immutable server snapshot.
 The administrator service independently gates target disclosure through a read-only
 port using the **viewing** admin, not the original requester or import-write provenance.
@@ -359,7 +359,7 @@ Reservation states are pending/ready/conflict; ambiguous legacy mappings fail
 closed. Preserve the first mapping. Private/DM provenance is import-owned and
 must not leak through team-wide onboarding mapping lists.
 
-| Slack kind | Macro target |
+| Slack kind | Rox target |
 | --- | --- |
 | Public channel | Team, explicit members, `auto_join_team=false`; never Public |
 | Private channel | Private, `team_id=NULL`, provenance in reservation |
@@ -444,7 +444,7 @@ This prevents closing/nested tag injection without HTML-encoding decoded labels.
 URL scheme policy (HTTP/HTTPS/mailto only) is validated separately from URL syntax
 using the URL parser; malformed authorities/ports and literal controls, whitespace,
 backslashes or tag delimiters are rejected. Original accepted URLs are retained,
-not rewritten to a hardcoded Macro origin.
+not rewritten to a hardcoded Rox origin.
 
 Safe Slack labeled/unlabeled angle links and protocol-prefixed bare HTTP(S)/mailto
 URLs outside code become `m-link`. Unlabeled mailto displays its address. Bare URL
@@ -452,7 +452,7 @@ boundaries follow the frontend's protocol-mode autolink convention: terminal
 punctuation and unmatched closing parentheses are outside the URL; balanced path
 parentheses remain inside. Host-only/fuzzy links are not guessed. Entities decode
 once. Formatting is applied around generated nodes, never recursively through
-serialized JSON. Source-supplied Macro tags are escaped display text; recognized
+serialized JSON. Source-supplied Rox tags are escaped display text; recognized
 inline/fenced code remains literal. Never feed the entire output to the XML-only
 Rust parser to extract mention rows: it is not code-aware. Use `user_mentions`.
 Channel/group broadcasts and subteams are always inert text.
@@ -460,7 +460,7 @@ Channel/group broadcasts and subteams are always inert text.
 Reference evidence and fallback policy:
 
 - Channel tokens carry a validated exact Slack channel ID. Fallback is the escaped
-  original `#label`, archive-provided channel name, or original Slack ID; no Macro
+  original `#label`, archive-provided channel name, or original Slack ID; no Rox
   metadata is added to a fallback.
 - Supported permalinks are HTTPS `<workspace>.slack.com/archives/<C/G/D ID>/p<seconds><six microseconds>`
   root links and reply links with optional `thread_ts=<seconds>.<six microseconds>`

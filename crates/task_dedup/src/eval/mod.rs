@@ -8,7 +8,7 @@
 //! they exercise (rephrasing, same-project-different-action, etc.).
 //!
 //! The corpus is produced two ways and merged:
-//! - a committed snapshot of real production tasks created by Macro employees
+//! - a committed snapshot of real production tasks created by Rox employees
 //!   (pulled read-only by the `pull_task_corpus` binary), and
 //! - hand-authored synthetic pairs that pin down the canonical cases from the
 //!   dedup spec.

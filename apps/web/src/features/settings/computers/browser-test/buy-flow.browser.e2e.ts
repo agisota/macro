@@ -193,7 +193,7 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
     });
 
     await page.goto('/');
-    // Get a Macro computer leads Machines, with its facts and price.
+    // Get a Rox computer leads Machines, with its facts and price.
     const entry = page.locator('[data-settings-target="get-macro-computer"]');
     await expect(
       entry.getByRole('heading', { name: 'Get a Rox computer' })

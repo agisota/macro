@@ -1,4 +1,4 @@
-//! Meeting-link adapter that asks the call service for a Macro call.
+//! Meeting-link adapter that asks the call service for a Rox call.
 //!
 //! Booking runs in the calendar service, which does not host calls. This
 //! client creates the meeting through document storage on behalf of the
@@ -14,7 +14,7 @@ use uuid::Uuid;
 
 /// Header carrying the shared key for internal service authorization.
 const INTERNAL_API_KEY_HEADER: &str = "x-internal-auth-key";
-/// Header carrying the acting Macro user for internal authorization.
+/// Header carrying the acting Rox user for internal authorization.
 const INTERNAL_MACRO_USER_ID_HEADER: &str = "x-internal-macro-user-id";
 /// Router path of meeting management, relative to the document storage origin.
 const MEETINGS_PATH: &str = "/call/meetings";

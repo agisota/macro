@@ -111,7 +111,7 @@ impl Drop for AgentEnv {
 /// What roxd needs to run the agent a computer was bought for.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AgentEnrollment {
-    /// The agent's Macro account.
+    /// The agent's Rox account.
     pub agent_user_id: MacroUserIdStr<'static>,
     /// The environment the guest's brain runs with.
     pub env: AgentEnv,

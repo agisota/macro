@@ -22,7 +22,7 @@ const senderContent = (
 
 /**
  * The sender name carried in the notification metadata, for notifications
- * whose sender is not (only) a Macro user id: email senders, agents, bots and
+ * whose sender is not (only) a Rox user id: email senders, agents, bots and
  * GitHub logins.
  */
 export function getNotificationSenderFallbackName(

@@ -142,7 +142,7 @@ async fn a_direct_chat_imports_its_history_and_works_both_ways(pool: PgPool) {
         "Alice's own message is hers"
     );
 
-    // From Macro.
+    // From Rox.
     let send = world.send(ALICE, &binding, "it ships tomorrow").await;
     world
         .customer

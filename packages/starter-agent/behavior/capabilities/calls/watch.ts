@@ -128,7 +128,7 @@ export const liveJoins = async (
   });
 
 /**
- * The world as the arbiter reads it. `ringing` is always false: Macro rings
+ * The world as the arbiter reads it. `ringing` is always false: Rox rings
  * every member on any channel call, so reading ring state honestly would
  * put the agent on every team channel call as "person calling". A plain channel
  * call is a judgment; a DM is answered by being a DM.

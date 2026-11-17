@@ -80,7 +80,7 @@ pub struct CodeModeSurface {
 pub struct AuthenticatedToolService<Context> {
     toolset: Arc<AsyncToolCollection<Context>>,
     context: Context,
-    /// Base URL of the Macro web app used to build links to Macro items in MCP
+    /// Base URL of the Rox web app used to build links to Rox items in MCP
     /// responses (e.g. `https://rox.one`). Resolved at startup from `AppServiceUrl`.
     item_base_url: String,
     /// Static file CDN used for attachments returned by authorized channel reads.

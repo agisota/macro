@@ -44,7 +44,7 @@ function ledgerSteps(provider: ImportProvider): string[] {
 }
 
 /**
- * Notion runs Macro's workspace importer: the agent asks who should see the
+ * Notion runs Rox's workspace importer: the agent asks who should see the
  * import, plans it with ImportFromNotion, and presents the plan for review.
  */
 const NOTION_WORKSPACE_HANDOFF: AgentImportHandoff = {

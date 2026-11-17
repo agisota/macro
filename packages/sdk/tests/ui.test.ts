@@ -99,7 +99,7 @@ describe('macro.ui', () => {
     });
   });
 
-  test('link refuses anything but a Macro app link', () => {
+  test('link refuses anything but a Rox app link', () => {
     const { macro } = macroAnswering({ status: 'no_client' });
 
     for (const url of [

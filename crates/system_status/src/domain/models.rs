@@ -11,7 +11,7 @@ pub const MAX_MESSAGE_LENGTH: usize = 500;
 /// Errors returned by the system status service.
 #[derive(Debug, thiserror::Error)]
 pub enum SystemStatusError {
-    /// The caller is not Macro staff.
+    /// The caller is not Rox staff.
     #[error("only Rox staff can manage the system status")]
     Forbidden,
     /// An internal error occurred.
@@ -83,7 +83,7 @@ pub enum SystemStatus {
         #[cfg_attr(feature = "inbound", schema(value_type = String))]
         message: StatusMessage,
     },
-    /// Macro is largely unavailable.
+    /// Rox is largely unavailable.
     MajorOutage {
         /// What users should know.
         #[cfg_attr(feature = "inbound", schema(value_type = String))]

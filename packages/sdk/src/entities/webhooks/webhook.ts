@@ -11,7 +11,7 @@ import { MacroEntity } from '../entity';
 import { User } from '../users/user';
 
 /**
- * A webhook registration: an HTTPS endpoint Macro delivers signed entity
+ * A webhook registration: an HTTPS endpoint Rox delivers signed entity
  * events to.
  *
  * A free-to-construct `(client, id)` handle like any other entity: the detail

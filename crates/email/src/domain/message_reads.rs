@@ -140,7 +140,7 @@ pub enum ThreadOwnerError<E> {
     /// No thread exists with the requested identifier.
     #[error("thread not found")]
     NotFound,
-    /// The stored owner is not a valid Macro user identifier.
+    /// The stored owner is not a valid Rox user identifier.
     #[error("invalid macro user id")]
     InvalidOwner,
     /// The owner query failed.

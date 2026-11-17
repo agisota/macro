@@ -792,9 +792,9 @@ fn a_bare_text_field_titled_other_without_a_select_is_left_alone() {
     assert_eq!(schema.properties[0].name, "name_custom");
 }
 
-// --- a Macro user tool's review ---
+// --- a Rox user tool's review ---
 
-/// Macro's in-process agent calling `CreateCalendarEvent` natively: the
+/// Rox's in-process agent calling `CreateCalendarEvent` natively: the
 /// call opens as a user tool, answered pending until the review lands.
 const CREATE_EVENT_CALL: &str = r#"{"direction":"to_server","content":{"type":"acp","jsonrpc":"2.0","method":"session/update","params":{"sessionId":"s","update":{"_meta":{"macro":{"toolName":"CreateCalendarEvent"}},"toolCallId":"toolu_evt","sessionUpdate":"tool_call","title":"CreateCalendarEvent","kind":"edit","status":"in_progress","rawInput":{"title":"Q3 sync","time":{"kind":"allDay","startDate":"2026-08-20","endDate":"2026-08-21"}}}}}}"#;
 
@@ -871,7 +871,7 @@ fn a_form_scoped_to_a_user_tool_call_is_that_tools_review() {
             schema.properties[1].schema,
             ElicitationPropertySchema::Unrecognized { ref type_name, .. } if type_name == "_macro/json"
         ),
-        "the draft field is Macro's extension type: {:?}",
+        "the draft field is Rox's extension type: {:?}",
         schema.properties[1].schema
     );
 
@@ -1062,7 +1062,7 @@ fn a_review_with_no_call_to_absorb_is_still_a_review_from_its_meta() {
 
 #[test]
 fn a_form_scoped_to_an_ordinary_tool_call_stays_a_form() {
-    // A Macro tool that is not a user tool, asked about with no `_meta.macro.userTool`.
+    // A Rox tool that is not a user tool, asked about with no `_meta.macro.userTool`.
     let read_call = r#"{"direction":"to_server","content":{"type":"acp","jsonrpc":"2.0","method":"session/update","params":{"sessionId":"s","update":{"_meta":{"macro":{"toolName":"ReadContent"}},"toolCallId":"toolu_read","sessionUpdate":"tool_call","title":"ReadContent","kind":"read","status":"in_progress","rawInput":{"documentId":"d"}}}}}"#;
     let question = r#"{"direction":"to_server","content":{"type":"acp","jsonrpc":"2.0","id":3,"method":"elicitation/create","params":{"sessionId":"s","toolCallId":"toolu_read","mode":"form","message":"Which section?","requestedSchema":{"type":"object","properties":{"section":{"type":"string"}}}}}}"#;
     let (machine, _) = drive(&lines(&[

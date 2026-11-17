@@ -13,7 +13,7 @@ const MACRO_EMAIL_DOMAIN: &str = "rox.one";
 pub enum SignupPolicy {
     /// Admit every signup origin.
     AllowAll,
-    /// Admit public signups when their normalized email is a Macro address or present.
+    /// Admit public signups when their normalized email is a Rox address or present.
     EmailAllowlist { allowed_emails: HashSet<String> },
 }
 

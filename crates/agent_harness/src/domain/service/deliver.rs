@@ -7,7 +7,7 @@ use super::*;
 /// dial stops restoring it.
 const IDLE_SESSION_AFTER: chrono::TimeDelta = chrono::TimeDelta::hours(1);
 
-/// Whether neither Macro nor the runtime has seen activity in `session` for
+/// Whether neither Rox nor the runtime has seen activity in `session` for
 /// [`IDLE_SESSION_AFTER`]. `modified_at` moves when a turn starts, runs, is
 /// stopped or blocks, never when it ends, so an unfinished turn is read from
 /// the turn projection instead. `runtime_activity` is the runtime's own
@@ -176,7 +176,7 @@ where
     /// time: a command in flight here, a turn the durable projection shows
     /// unfinished (still open, or open when the session disconnected, on any
     /// replica), a durable queue nobody else dispatches, or a session that
-    /// Macro or the runtime (its listed `updatedAt`) saw active in the last
+    /// Rox or the runtime (its listed `updatedAt`) saw active in the last
     /// hour.
     /// Everything else binds on its next prompt or delivery, which reconnects
     /// a detached session anyway; durable notifications and conversation

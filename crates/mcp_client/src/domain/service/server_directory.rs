@@ -37,7 +37,7 @@ pub enum AddedBy {
     User,
     /// An agent acting for the user. The backend later connects to the URL,
     /// so an agent may only add public `https` destinations: a prompt must
-    /// not be able to aim Macro at loopback, private or link-local hosts.
+    /// not be able to aim Rox at loopback, private or link-local hosts.
     Agent,
 }
 

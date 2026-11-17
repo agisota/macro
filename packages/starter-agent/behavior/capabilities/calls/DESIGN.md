@@ -1,9 +1,9 @@
 # Calls: design
 
-The agent on Macro calls: LiveKit Agents with Claude Code as its LLM,
+The agent on Rox calls: LiveKit Agents with Claude Code as its LLM,
 TypeScript on Bun, one process per call. LiveKit's `AgentSession` owns
 endpointing, turn detection, interruptions and playout, on its stock options.
-What is ours: joining the Macro room, Claude Code as the brain, the watcher
+What is ours: joining the Rox room, Claude Code as the brain, the watcher
 that decides which call to be on, and the tools that don't touch live audio
 (the event log, the report, the replay).
 
@@ -21,14 +21,14 @@ computer it also runs under the agent's sandbox (`base.sandbox`), so neither
 it nor its brain's Claude Code (the image's `claude` wrapper) can read the
 enrollment's secrets.
 
-- **Speech is LiveKit Inference through Macro** (`context/speech.ts`):
+- **Speech is LiveKit Inference through Rox** (`context/speech.ts`):
   Deepgram Nova-3 to hear, Aura-2 to speak, over
   `agent-harness /brain/inference/{stt,tts}`, which holds the project's keys
   and bills the team's credits. The relay carries exactly those two sockets.
   LiveKit's inference classes are used as they are, with only `connectWs`
   replaced, so the socket opens on the relay.
 - **The voice** is `config/voice.json` in the agent's repository,
-  `{ "model": "aura-2-<voice>-<language>" }`, which Macro's agent settings
+  `{ "model": "aura-2-<voice>-<language>" }`, which Rox's agent settings
   commit; Thalia until one is chosen (`parseVoice` in `voices.ts`). Each
   call fetches the remote's main and reads the file there
   (`voice-file.ts`), so a new voice is used on the next call without a pull
@@ -50,7 +50,7 @@ is built, `capabilities/<name>.ts` holds the capabilities, and
 | `config.ts`                   | Every path (`callsPaths`) and credential name. No decisions.                                                                                                          |
 | `types.ts`                    | The nouns the parts share: ledger rows, `Placed`, `Ask`, `Refusal`, what sharing needs from a call.                                                                   |
 | `arbiter.ts`                  | Every decision about the agent's calls, pure, as tables (below). Start here to change how it behaves.                                                                 |
-| `macro.ts`                    | `CallApi`: Macro's calls behind a port, over the SDK only. `refusal` reads why Macro wouldn't seat the agent. A `Connection` keeps the room token inside it.          |
+| `macro.ts`                    | `CallApi`: Rox's calls behind a port, over the SDK only. `refusal` reads why Rox wouldn't seat the agent. A `Connection` keeps the room token inside it.              |
 | `retry.ts`                    | A deadline per attempt for the token request and the room connect, and how soon a failed join is tried again.                                                         |
 | `ledger.ts`                   | The append-only ledgers and id lists, each line parsed with its schema.                                                                                               |
 | `session.ts`                  | What the agent does at LiveKit's hooks: addressing, the brain's text as the reply stream, cancel on interruption, the line said before leaving.                       |
@@ -98,7 +98,7 @@ imported function in a script; `bin/agent describe <name>` has its docs.
 | `state/memory/calls/hungup.json`    | Calls it was told to leave, or left uninvited.                                                     |
 | `state/memory/calls/no-call.json`   | People who said not to be called.                                                                  |
 
-## Macro's calls
+## Rox's calls
 
 `macro.ts` is the only module that knows the SDK's shape, and it uses public
 methods only. Calls use `@macro-inc/sdk/calls/node` (`connectRoom`,
@@ -113,14 +113,14 @@ at the same version, make incompatible `Room` classes (a test in
 - **One seat per identity.** Every join asks with `onOtherCall: "fail"`, so a
   join the arbiter didn't see is refused, not evicting. Only `insist` asks to
   switch or replace, after repeated refusals.
-- **Ring state doesn't seat the agent.** Macro rings every member on any
+- **Ring state doesn't seat the agent.** Rox rings every member on any
   channel call, so honouring it would put the agent on every channel call.
   The watcher gives every call `ringing: false`; a DM is answered by being a
   DM, anything else is a judgment.
 - **A call with only programs ends a minute or two after it started.** The
   agent's key makes it a program, so it is never alone on a call for long.
 - **A process killed without leaving is a ghost**: the identity stays "in"
-  that call until Macro clears it, and every other join is refused. Hence the
+  that call until Rox clears it, and every other join is refused. Hence the
   switch after three refusals (`insist`).
 - **Replacing a connection that's still alive ends the call** (`leave()` is
   per identity). The watcher only asks to replace when no join of its own is
@@ -130,7 +130,7 @@ at the same version, make incompatible `Room` classes (a test in
 
 ## Refusals
 
-What the watcher does next when Macro won't seat the agent (`joinErrorRules`
+What the watcher does next when Rox won't seat the agent (`joinErrorRules`
 in `arbiter.ts`; a join's exit code carries the refusal to the watcher:
 `refusalExits`).
 
@@ -230,7 +230,7 @@ instead.
 
 **The mutex has two layers.** The arbiter never seats a join while one is
 alive, so `placeCall`, `place_call`, hand-offs and retries all just queue.
-Then Macro: `onOtherCall: "fail"` refuses a join the arbiter didn't see.
+Then Rox: `onOtherCall: "fail"` refuses a join the arbiter didn't see.
 
 **A call it placed can't look inbound.** A placed call is seated under
 `place-<id>`, because its call id doesn't exist before the token; any call
@@ -283,7 +283,7 @@ when asked. No WAVs, and the event log drops what it overhears
   answered. So whoever it's answering can talk over it; someone else can't
   until they address it.
 - **Addressing** (`addressing` in `session.ts`): 1:1, every line is for the
-  agent. In a group, Macro's `ai.decide` reads the line with the 8 before it
+  agent. In a group, Rox's `ai.decide` reads the line with the 8 before it
   (`callScreen`), threshold 0.7; failing or over 1.5 s, the rule: its name
   (`namePattern`, from `agent.json`'s `name`), or a 20 s follow-up from whoever
   it just answered. Uninvited, the screen's yes also needs its name or a
@@ -298,7 +298,7 @@ segment, where LiveKit's typing clip plays until the brain's next word.
 LiveKit plays segments in order, so the sound can't overlap speech, and a
 barge-in clears it like any speech.
 
-- It goes out on the voice track, not a second track: Macro's web client
+- It goes out on the voice track, not a second track: Rox's web client
   plays one microphone publication per person.
 - It starts from `content_block_start`, not the finished `tool_use`, and
   after 1 s (`workingDelayMs`), so quick lookups stay quiet. It stops while
@@ -347,7 +347,7 @@ A write that blocks the call's one JS thread is silence at the far end.
   evicts the agent or is refused, so one process owns them. The queue is
   `outbound.jsonl`, also the audit log and what the limits count.
 - **Who asked is never the run's word.** `placeCall`'s `message` makes the
-  code read the author from Macro (`CallApi.message`), and the brain's
+  code read the author from Rox (`CallApi.message`), and the brain's
   `place_call` takes the speaker from the room. On a group call the speaker
   is whoever the session is linked to, not proven, so the owner there counts
   as an ordinary request (`Asked.sure`).
@@ -376,7 +376,7 @@ A write that blocks the call's one JS thread is silence at the far end.
 ## Decisions
 
 - **Node SDK on Bun.** `AgentSession.start({ agent, room })` takes a `Room`
-  connected with Macro's participant token, with no worker, dispatch, or
+  connected with Rox's participant token, with no worker, dispatch, or
   LiveKit API key. On NixOS the native VAD links `libstdc++`, so the flake's
   shell sets `LD_LIBRARY_PATH`; Chromium and ffmpeg break with it set, so it
   is stripped from their environment and the brain's.

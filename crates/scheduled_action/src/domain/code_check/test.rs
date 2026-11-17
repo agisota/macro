@@ -170,7 +170,7 @@ async fn problems_name_every_failing_step_for_its_author() {
     assert!(
         error
             .to_string()
-            .contains("doesn't type-check against Macro's SDK")
+            .contains("doesn't type-check against Rox's SDK")
     );
     assert!(error.to_string().contains("at step_0.ts:1:1"));
 }

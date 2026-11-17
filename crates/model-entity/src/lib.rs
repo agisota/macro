@@ -83,16 +83,16 @@ pub enum EntityType {
     ScheduledAction,
     /// The entity is an initiative (a named grouping of tasks)
     Initiative,
-    /// The entity is a Macro Database: a collection of user-defined tables
+    /// The entity is a Rox Database: a collection of user-defined tables
     /// (see the `databases` crate)
     Database,
-    /// The entity is a row of a table in a Macro Database
+    /// The entity is a row of a table in a Rox Database
     DatabaseRow,
-    /// The entity is a Macro Form: a questionnaire whose answers land as rows
+    /// The entity is a Rox Form: a questionnaire whose answers land as rows
     /// of one database table (see the `forms` crate)
     Form,
     /// A chat from another messaging service (see [`ExternalChatProvider`])
-    /// a person added to Macro as an independently shared entity.
+    /// a person added to Rox as an independently shared entity.
     ExternalChat,
 }
 

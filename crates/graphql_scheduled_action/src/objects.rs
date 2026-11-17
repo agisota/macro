@@ -59,7 +59,7 @@ pub(crate) struct GraphqlScheduledActionCronTrigger {
     next_run_at: Option<String>,
 }
 
-/// Any of several schedules and optional Macro event filters.
+/// Any of several schedules and optional Rox event filters.
 #[derive(SimpleObject)]
 pub(crate) struct GraphqlScheduledActionMultipleTrigger {
     /// Each schedule retains its own timezone and next firing.
@@ -169,7 +169,7 @@ pub(crate) enum GraphqlScheduledActionEventName {
     CallStarted,
     /// A call the routine's owner joined ended.
     CallEnded,
-    /// Macro's GitHub App received a delivery.
+    /// Rox's GitHub App received a delivery.
     Github,
 }
 

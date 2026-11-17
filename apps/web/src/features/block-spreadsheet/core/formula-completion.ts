@@ -4,8 +4,8 @@ import catalog from './formula-functions.json';
 
 // Adapted from IronCalc's function catalog at the vendored engine's upstream
 // commit (vendor/ironcalc/upstream.json). See the adjacent MIT license.
-// HYPERLINK is left out (Macro shows its text); AGGREGATE and GETPIVOTDATA are
-// Macro's additions.
+// HYPERLINK is left out (Rox shows its text); AGGREGATE and GETPIVOTDATA are
+// Rox's additions.
 export type FormulaFunction = {
   args: string[][];
   description: string;

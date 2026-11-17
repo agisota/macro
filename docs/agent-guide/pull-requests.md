@@ -6,12 +6,12 @@ Opening **Reviews** from the mobile dock or its **More** drawer starts on **Pull
 requests** (the **All** scope). Explicit review-tab links keep their selected
 scope; desktop's default scope remains **Involves me**.
 
-The sidebar **Labels** section lists GitHub labels, not Macro tags. Keep this
-section separate from Macro tag lists. GitHub labels are also available in
+The sidebar **Labels** section lists GitHub labels, not Rox tags. Keep this
+section separate from Rox tag lists. GitHub labels are also available in
 **Filter pull requests → Label** on desktop and **Open pull request filters →
 Label** on phones.
 
-Macro-linked GitHub pull requests open inside the Reviews shell, with a Reviews
+Rox-linked GitHub pull requests open inside the Reviews shell, with a Reviews
 breadcrumb, PR title/status, linked GitHub metadata, discussion timeline, and Details/Checks
 side panel below the top bar. An open PR has a split button in the top bar
 beside **Changes** (`[data-pull-request-primary-action]` names its main action).
@@ -27,15 +27,15 @@ a refusal appears as a toast with GitHub's reason, and a change refreshes the PR
 status in place. Without a linked GitHub account the toast points to Settings.
 Merged and closed PRs have no split button. PRs are not tasks and do not appear
 in the Tasks list. PRs cannot be favorited.
-**Ask Macro**, before Share, opens a new agent conversation whose unsent draft
-holds the PR chip with the PR's Macro id and GitHub URL; the agent reads the diff
+**Ask Rox**, before Share, opens a new agent conversation whose unsent draft
+holds the PR chip with the PR's Rox id and GitHub URL; the agent reads the diff
 through the SDK's `githubPullRequests`. On touch screens the header's actions wrap
 onto their own row below the breadcrumb when it leaves no room for them.
 The **Share** button has a **Copy Share Link** button beside it, like other
 items. The "…" menu beside the PR title (in the Reviews breadcrumb, the standalone
 `/app/pr/<id>` page, and PR previews) holds the same changes as the split button,
 with **Merge** only once its checks pass, plus **Reopen pull request** for a
-closed unmerged PR; then **Copy Link** (the Macro link), **Copy ID**, **Copy
+closed unmerged PR; then **Copy Link** (the Rox link), **Copy ID**, **Copy
 GitHub link**, **Open on GitHub**, and **Copy branch name** when the head branch
 is stored.
 The metadata pills beneath the PR title include linked agent sessions, using the

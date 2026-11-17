@@ -277,8 +277,8 @@ describe('support link under the video', () => {
     await waitFor(() => expect(dialogClosed()).toBe(true));
   });
 
-  it("opens a Macro team member's most recently active support channel", async () => {
-    // A Macro team member is in customers' support channels but owns none.
+  it("opens a Rox team member's most recently active support channel", async () => {
+    // A Rox team member is in customers' support channels but owns none.
     channelList.channels = [
       {
         id: 'older-support',

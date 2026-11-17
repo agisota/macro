@@ -187,7 +187,7 @@ export const IMPORT_CATEGORIES: Record<ImportCategory, ImportCategoryConfig> = {
   },
 };
 
-/** Where Macro can import an app's data from, if it can. */
+/** Where Rox can import an app's data from, if it can. */
 export function importSourceFor(
   appSlug: string
 ): { config: ImportCategoryConfig; provider: ImportProvider } | undefined {

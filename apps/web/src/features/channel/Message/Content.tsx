@@ -119,7 +119,7 @@ export function Content(props: ContentProps) {
         )}
       >
         <Show when={fromAgent()} fallback={shownBody()}>
-          {/* An agent's links to Macro open in the app, as its mention chips do. */}
+          {/* An agent's links to Rox open in the app, as its mention chips do. */}
           <AgentReplyLinks>{shownBody()}</AgentReplyLinks>
         </Show>
       </div>

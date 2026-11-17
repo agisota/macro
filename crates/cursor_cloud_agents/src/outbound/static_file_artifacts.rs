@@ -1,10 +1,10 @@
-//! Re-hosting artifacts on Macro's static file service.
+//! Re-hosting artifacts on Rox's static file service.
 
 use crate::domain::ports::ArtifactStore;
 use static_file_service_client::StaticFileServiceClient;
 
 /// Stores artifacts on the static file service, which is where every other
-/// user-visible blob in Macro already lives — so an artifact is served,
+/// user-visible blob in Rox already lives — so an artifact is served,
 /// permissioned, and expired exactly like an uploaded image is.
 #[derive(Clone)]
 pub struct StaticFileArtifactStore {

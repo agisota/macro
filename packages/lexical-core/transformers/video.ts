@@ -65,12 +65,12 @@ export const isVideoMarkdownLink = (url: string, linkText = ''): boolean => {
 };
 
 // Standalone markdown link whose URL path ends in a video extension, or whose
-// label names a video file on Macro static-file-service (`/file/…` has no ext).
+// label names a video file on Rox static-file-service (`/file/…` has no ext).
 // Lexical slices the match before `replace` runs, so this must not match
 // ordinary links. `^`/`$` keep trailing inline links from replacing a paragraph.
 const VIDEO_LINK_REGEXP = new RegExp(
   '^(?:' +
-    // Label has a video extension; URL is Macro static-file-service /file/…
+    // Label has a video extension; URL is Rox static-file-service /file/…
     String.raw`\[([^\]]*\.(?:${VIDEO_EXTENSION_PATTERN})[^\]]*)\]\((https?:\/\/(?:[\w.-]+\.)?static-file-service\.rox\.one\/file\/[^)\s]+)(?:\s"([^"]*)"\s*)?\)` +
     '|' +
     // URL path ends with a video extension (query/hash allowed after it)

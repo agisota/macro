@@ -121,7 +121,7 @@ function Members(props: { chat: ChatDetail }) {
 }
 
 /**
- * The chat's side panel sections: its provider members, Macro sharing and,
+ * The chat's side panel sections: its provider members, Rox sharing and,
  * for the owner, syncing. Registers with the nearest `SidePanel.Root`.
  */
 export function ChatDetails(props: {

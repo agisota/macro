@@ -150,7 +150,7 @@ where
         self
     }
 
-    /// Admit Macro-funded model work (a model agent), open a leading agent's
+    /// Admit Rox-funded model work (a model agent), open a leading agent's
     /// transcript, and announce the run. Programs without a leading agent
     /// start with none. Code's own AI calls are admitted by the API they call.
     async fn prepare(

@@ -15,7 +15,7 @@ describe('agent import handoff', () => {
     expect(handoff.instructions).toContain('never edit or delete');
   });
 
-  it("imports the Notion workspace through Macro's importer", () => {
+  it("imports the Notion workspace through Rox's importer", () => {
     const files = IMPORT_CATEGORIES.files;
     const notion = files.providers.find((p) => p.appSlug === 'notion')!;
     const handoff = agentImportHandoff(files, notion);

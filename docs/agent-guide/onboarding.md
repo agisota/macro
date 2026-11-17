@@ -64,7 +64,7 @@ routines (`POST /scheduled-action/suggestions/generate?timezone=<zone>`,
 once per person; the same run writes the person's suggestions when `enable-suggestions`
 is on, and the step reads only the routine suggestions).
 
-- The server fills every area to three with Macro's templates (drafted
+- The server fills every area to three with Rox's templates (drafted
   routines, then catalog picks, then templates). While its status is
   `generating` (polled every 2 s), only AI's suggestions show, as they land,
   under **Studying your workspace…** and then **Finding more routines for
@@ -72,7 +72,7 @@ is on, and the step reads only the routine suggestions).
   and stay filled. Once AI is done (`ready` or `failed`), every area tops up
   to the server's list. With no inbox (`none`), templates show at once.
 - Rows are grouped by area: area icon, name, what it does, when it runs, and
-  a byline, **For you · <reason>** for AI's or **Template from Macro**, with a
+  a byline, **For you · <reason>** for AI's or **Template from Rox**, with a
   switch. Opening a row lets the person rename it and choose **Show each run
   in Home** before it is created.
 - Switched on to start: only catalog picks the scheduler marks on by default

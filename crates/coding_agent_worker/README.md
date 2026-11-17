@@ -1,7 +1,7 @@
 
 ### Repositories in native Herdr sessions
 
-Macro can include `repoUrl` when opening a session on roxd. Native Herdr
+Rox can include `repoUrl` when opening a session on roxd. Native Herdr
 sessions look for the matching origin in the configured workspace directory
 (and its child directories), then in this daemon's repository cache. A missing
 repository is cloned using the operator's Git credentials. New worktrees start
@@ -26,24 +26,24 @@ After roxd restarts or its runtime connection reconnects, the harness service
 initializes the new connection and calls ACP `session/list`. herdr-acp lists
 the sessions whose Herdr agent still runs, each with `updatedAt` set to its
 transcript's last write. The service loads the ones with recent activity (in
-Herdr or in Macro), an unfinished turn, or queued prompts; that replays local
-history Macro missed and resumes forwarding without a Macro prompt. A session
-idle for longer loads on its next Macro prompt, so local work started in it
-after the reconnect reaches Macro only from then. Agents closed in Herdr are not
+Herdr or in Rox), an unfinished turn, or queued prompts; that replays local
+history Rox missed and resumes forwarding without a Rox prompt. A session
+idle for longer loads on its next Rox prompt, so local work started in it
+after the reconnect reaches Rox only from then. Agents closed in Herdr are not
 reopened.
 
 Closing a session's agent in Herdr (its tab or pane, by you or the agent) is
-reported to Macro once with the ACP extension notification `_session/closed`.
+reported to Rox once with the ACP extension notification `_session/closed`.
 Only Herdr's explicit `agent_not_found` answer counts, checked every few
-seconds while no Macro prompt runs; socket errors, timeouts, and unreadable
+seconds while no Rox prompt runs; socket errors, timeouts, and unreadable
 answers are never reported, and neither is roxd or its connection stopping.
 Only an agent this roxd run launched or saw running counts, so sessions
 restored after Herdr itself restarted, whose agents are all gone, stay visible.
-Macro archives the session if its owner turned on archiving when the runtime
+Rox archives the session if its owner turned on archiving when the runtime
 closes and the session is idle. The next prompt still relaunches the agent,
 and a close of that new agent is reported again.
 
-A background reader forwards local TUI turns even without a Macro prompt.
+A background reader forwards local TUI turns even without a Rox prompt.
 Complete JSONL records are read in bounded batches. Partial lines wait for the
 next append; truncation or replacement requires a reload. Turn boundaries are
 forwarded in order, including multiple local turns between polls.
@@ -55,7 +55,7 @@ the agent idle and the transcript has been quiet for a few seconds.
 
 ### Native controls and MCP
 
-Model selection from Macro applies before launch and to idle native sessions.
+Model selection from Rox applies before launch and to idle native sessions.
 Claude receives `/model <id>`; Codex opens its native model picker, selects the
 exact model row, and retains the reasoning level selected by the native picker.
 Each key requires the expected dialog, session identity, and unchanged screen
@@ -69,24 +69,24 @@ unconfigured session reports the native default. Claude identifies the actual
 model when its first assistant record arrives.
 
 Unconfirmed prompt submission is reported as an error, never retried by pressing
-Enter. Cancellation (Stop in Macro, for a Macro prompt or an observed native
+Enter. Cancellation (Stop in Rox, for a Rox prompt or an observed native
 turn) presses Escape until Herdr reports the agent stopped, at most three times
 (Claude Code's vim editor mode spends the first Escape leaving insert mode), and
 never sends an input-clearing key. The turn reports `cancelled` only once the
 agent has stopped; if it keeps running, roxd follows it to its real end.
 
-A prompt from Macro while the native agent is working or showing a dialog
+A prompt from Rox while the native agent is working or showing a dialog
 waits, like input typed into the TUI mid-turn. The running turn keeps streaming
-and its permission dialogs still reach Macro; the prompt is typed once the turn
-ends. Stopping from Macro while it waits interrupts the native turn and drops
-the prompt, which fails with a `prompt_not_delivered` notice so Macro shows the
+and its permission dialogs still reach Rox; the prompt is typed once the turn
+ends. Stopping from Rox while it waits interrupts the native turn and drops
+the prompt, which fails with a `prompt_not_delivered` notice so Rox shows the
 message was never typed in rather than a stopped turn. Claude Code's exit confirmation, left by a second Ctrl-C while
 background work runs, is dismissed with Escape ("Stay") before the prompt is
 typed.
 
-New and reloaded sessions advertise `/compact`, `/init`, and `/fast` in Macro;
+New and reloaded sessions advertise `/compact`, `/init`, and `/fast` in Rox;
 Codex also advertises `/ultrafast`. Speed controls are delivered unchanged to
-the native TUI. Macro acknowledges delivery without claiming the setting
+the native TUI. Rox acknowledges delivery without claiming the setting
 changed: check the response in Herdr, including any confirmation or unavailable
 mode message. Claude accepts `/fast on` and `/fast off`; bare `/fast` opens its
 native controls. Codex's speed commands toggle tiers available to its current
@@ -97,20 +97,20 @@ generate an assistant turn, so they do not wait for transcript output. Ordinary
 prompts still require confirmation.
 
 For Codex, `/effort` or `/effort status` reports the active model, effort, and
-available levels directly in Macro. `/effort high` (or another supported level)
+available levels directly in Rox. `/effort high` (or another supported level)
 selects that level in the current model's native picker and waits for the footer
 to confirm it. `/effort default` restores the model's catalog default. Explicit
 `max` and `ultra` requests can navigate the advanced reasoning picker. Additional
 warnings or unrecognized dialogs require native interaction; they are not
 accepted automatically. These commands keep the current model and session.
 
-Effort choices are validated by the native agent. Macro's model dropdown only
+Effort choices are validated by the native agent. Rox's model dropdown only
 projects the ACP model option; it does not currently expose a separate effort
 selector or mirror effort changes made inside Herdr.
 
 Herdr does not provide command discovery; this is a curated built-in list, not
 the full set of native commands or installed skills. Session-switching commands
-such as `/resume`, `/new`, and `/fork` are not advertised because Macro tracks a
+such as `/resume`, `/new`, and `/fork` are not advertised because Rox tracks a
 specific native session. Automatic recovery still resumes that saved session.
 
 Remote permission answers require a recognized approval shortcut, the same
@@ -118,18 +118,18 @@ visible dialog, and the same Herdr state generation. Sign-in prompts and other
 unknown dialogs require native interaction. Herdr does not offer an atomic
 compare-and-send-key operation, so native interaction remains the authority.
 
-Macro offers **Always allow** next to **Allow once**. When the dialog shows its
+Rox offers **Always allow** next to **Allow once**. When the dialog shows its
 own "Yes, and don't ask again ..." answer with a known shortcut, Always allow
 presses it and the native agent keeps the rule. Otherwise roxd approves the
 dialog and remembers the tool for the rest of the session: Claude Code's tool
 name (such as `Bash`) or Codex's exact command. Later dialogs for it are
-approved without asking Macro. These standing approvals live in roxd's memory
+approved without asking Rox. These standing approvals live in roxd's memory
 and end when roxd restarts.
 
-Macro supplies the session's configured MCP connections when roxd binds it:
+Rox supplies the session's configured MCP connections when roxd binds it:
 owner-connection sessions include enabled connected apps and custom MCP servers;
 explicit agent selections retain their selected apps. All connections use the
-session credential through Macro's egress proxy.
+session credential through Rox's egress proxy.
 
 Claude receives MCP configuration in a private file. Codex receives per-launch
 MCP overrides; HTTP credentials come from private environment files sourced in
@@ -146,7 +146,7 @@ describe `env_http_headers` and per-server configuration.
 
 Start roxd inside Herdr and choose **Claude Code in herdr** or **Codex in
 herdr** in Quickstart. Select a workspace directory containing your existing
-clones and pair with Macro. Native CLI authentication and Git credentials are
+clones and pair with Rox. Native CLI authentication and Git credentials are
 reused. Each instance has one configuration. The TUI and `roxd service`
 share `~/.roxd/roxd.toml` (`%USERPROFILE%\.roxd\roxd.toml` on Windows;
 `--config` overrides it), and only one roxd can serve a config at a time.
@@ -157,12 +157,12 @@ Settings → Machines. `allow_permission_bypass = false` in an old local config
 no longer vetoes bypass: the machine's managers decide it on the web.
 
 The Config tab adds **Model** (empty uses the native default, and is only the
-launch fallback: Macro picks each agent's model), **Extra args**
+launch fallback: Rox picks each agent's model), **Extra args**
 (shell-style quoting), **Storage** (empty uses automatic instance storage), and
 **Open sessions** (foreground or background). Switching agents clears the
 previous agent's model and extra arguments. Storage and focus preferences remain.
 Session metadata stays in the instance directory even with custom worktree storage.
-Choose a repository in Macro's composer; local sessions always start from `main`.
+Choose a repository in Rox's composer; local sessions always start from `main`.
 
 ### Herdr versions
 
@@ -181,7 +181,7 @@ roxd drives both herdrs and picks by where it runs (`src/herdr/cli.rs`):
 herdr-core does not guess status; it shows what a program reports through
 OSC 7501. Claude Code reports it. Codex does not, so under herdr-core a Codex
 session loses three things: busy detection before a prompt, remote permission
-answers (approve in Herdr), and cancelling a turn Macro did not start.
+answers (approve in Herdr), and cancelling a turn Rox did not start.
 Transcripts still end its turns. Without a reported session ID, roxd finds
 Codex's transcript by working directory and start time. Viewer windows
 (`roxd herdr-pane`) report their own state through OSC 7501.

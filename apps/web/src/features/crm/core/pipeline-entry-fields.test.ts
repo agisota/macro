@@ -50,10 +50,10 @@ describe('isEmptyCell', () => {
 describe('isLongText', () => {
   it('reads paragraphs and sentences as long, and addresses as one line', () => {
     expect(isLongText(text('Hi,\n\nThanks'))).toBe(true);
-    expect(
-      isLongText(text('Skipped: using Macro, 5 of the last 14 days'))
-    ).toBe(true);
-    expect(isLongText(text('How’s Macro going?'))).toBe(false);
+    expect(isLongText(text('Skipped: using Rox, 5 of the last 14 days'))).toBe(
+      true
+    );
+    expect(isLongText(text('How’s Rox going?'))).toBe(false);
     expect(
       isLongText(text('someone.with.a.long.address@harborlinefield.example'))
     ).toBe(false);

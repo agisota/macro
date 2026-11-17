@@ -832,7 +832,7 @@ async fn dismissing_a_suggestion_or_a_template_removes_it_for_good_everywhere() 
                 .all(|s| s.id != mine.id && s.id != template.id)
         );
     }
-    // A dismissed catalog pick never comes back as Macro's template either,
+    // A dismissed catalog pick never comes back as Rox's template either,
     // nor as a suggestion.
     let all = h.read(None).await;
     assert!(all.suggestions.iter().all(|suggestion| !matches!(

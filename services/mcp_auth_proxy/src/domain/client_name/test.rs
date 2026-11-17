@@ -70,20 +70,20 @@ fn a_name_with_nothing_left_is_no_name() {
 #[test]
 fn names_claiming_to_be_macro_itself_are_reserved() {
     for name in [
-        "Macro",
+        "Rox",
         "macro",
         "  MACRO  ",
-        "Macro Agent",
-        "macroagent",
-        "Macro AI",
-        "Macro Coder",
-        "Macro System",
+        "Rox Agent",
+        "roxagent",
+        "Rox AI",
+        "Rox Coder",
+        "Rox System",
         "macro-system",
         "macro-new",
-        "Macro Support",
+        "Rox Support",
         "M.A.C.R.O",
         "Ma\u{200b}cro",
-        "<Macro>",
+        "<Rox>",
     ] {
         assert!(
             matches!(ClientName::parse(name), Err(ReservedClientName)),
@@ -95,12 +95,12 @@ fn names_claiming_to_be_macro_itself_are_reserved() {
 #[test]
 fn a_name_that_only_mentions_macro_is_allowed() {
     assert_eq!(
-        ClientName::parse("Claude Code (macro)"),
-        Ok(Some(ClientName("Claude Code (macro)".to_owned())))
+        ClientName::parse("Claude Code (rox)"),
+        Ok(Some(ClientName("Claude Code (rox)".to_owned())))
     );
     assert_eq!(
-        ClientName::parse("MacroBot"),
-        Ok(Some(ClientName("MacroBot".to_owned())))
+        ClientName::parse("RoxBot"),
+        Ok(Some(ClientName("RoxBot".to_owned())))
     );
     assert_eq!(
         ClientName::parse("Security Team"),

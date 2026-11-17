@@ -1,4 +1,4 @@
-//! Normalize Macro static-file images before invoking a remote model.
+//! Normalize Rox static-file images before invoking a remote model.
 //!
 //! Normalized inline images carry a MIME type and work even with private URLs. This
 //! adapter resolves only the configured static-file route through its owning
@@ -23,7 +23,7 @@ use crate::domain::engine::{TurnEngine, TurnRequest};
 #[cfg(test)]
 mod test;
 
-/// A turn engine with Macro static-file images normalized and inlined.
+/// A turn engine with Rox static-file images normalized and inlined.
 ///
 /// The composition root supplies the browser-facing base URL and an attachment
 /// service that can read the files internally. Resolution covers the whole

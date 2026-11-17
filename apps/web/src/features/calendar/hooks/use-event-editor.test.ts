@@ -435,7 +435,7 @@ describe('editing event times', () => {
   );
 });
 
-describe('scheduling a Macro call', () => {
+describe('scheduling a Rox call', () => {
   it.each(['off', 'loading'] as const)(
     'saves a calendar event without creating a call when the flag is %s',
     async (state) => {
@@ -469,7 +469,7 @@ describe('scheduling a Macro call', () => {
     }
   );
 
-  it('creates the event with its Macro call in a single write', async () => {
+  it('creates the event with its Rox call in a single write', async () => {
     const saved = vi.fn();
     const [editor, dispose] = createRoot(
       (dispose) =>
@@ -531,7 +531,7 @@ describe('scheduling a Macro call', () => {
   });
 
   it.each(['off', 'loading'] as const)(
-    'preserves an existing Macro link without syncing it while %s',
+    'preserves an existing Rox link without syncing it while %s',
     async (state) => {
       mocks.quickCalls = state === 'loading';
       mocks.quickCallsLoading = state === 'loading';
@@ -660,7 +660,7 @@ describe('scheduling a Macro call', () => {
   });
 
   it.each(['none', 'google_meet'] as const)(
-    'does not attach a Macro call when %s is selected',
+    'does not attach a Rox call when %s is selected',
     async (conferenceChoice) => {
       const saved = vi.fn();
       const [editor, dispose] = createRoot(
@@ -906,7 +906,7 @@ describe('scheduling a Macro call', () => {
 
   it('retries a failed create from scratch instead of patching a saved event', async () => {
     mocks.createEvent.mockRejectedValueOnce(
-      new Error('the Macro call for the event could not be created')
+      new Error('the Rox call for the event could not be created')
     );
     const saved = vi.fn();
     const [editor, dispose] = createRoot(
@@ -924,7 +924,7 @@ describe('scheduling a Macro call', () => {
     try {
       await editor.save(values);
       expect(mocks.failure).toHaveBeenCalledWith('Failed to create event', {
-        subtext: 'the Macro call for the event could not be created',
+        subtext: 'the Rox call for the event could not be created',
       });
       expect(editor.saveError()).toBeUndefined();
       expect(saved).not.toHaveBeenCalled();

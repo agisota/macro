@@ -1,10 +1,10 @@
-//! `/anthropic/v1/*`: the Anthropic Messages API for agent sessions on Macro credits.
+//! `/anthropic/v1/*`: the Anthropic Messages API for agent sessions on Rox credits.
 //!
-//! A runtime (Claude Code on a Macro computer) points `ANTHROPIC_BASE_URL` here
+//! A runtime (Claude Code on a Rox computer) points `ANTHROPIC_BASE_URL` here
 //! and sends its session's egress token as `ANTHROPIC_AUTH_TOKEN`. The request
-//! is forwarded unchanged with Macro's key; the response streams back
+//! is forwarded unchanged with Rox's key; the response streams back
 //! unchanged while its `usage` is read and recorded against the session owner.
-//! Only sessions whose bot runs on a Macro computer are served.
+//! Only sessions whose bot runs on a Rox computer are served.
 
 use std::future::Future;
 use std::pin::Pin;
@@ -115,7 +115,7 @@ const RETURNED_RESPONSE_HEADERS: &[&str] = &[
 const MESSAGES_PATH: &str = "/v1/messages";
 const COUNT_TOKENS_PATH: &str = "/v1/messages/count_tokens";
 
-/// Which Macro computer serves a bot right now, if any.
+/// Which Rox computer serves a bot right now, if any.
 pub(super) trait BotComputers: Send + Sync + 'static {
     fn computer_for(
         &self,
@@ -655,7 +655,7 @@ impl Rejection {
         message: std::borrow::Cow::Borrowed("agent teammates are not enabled for this agent"),
     };
 
-    /// Fails closed: the session is not on a Macro computer, or its lookup
+    /// Fails closed: the session is not on a Rox computer, or its lookup
     /// failed.
     const NOT_ON_A_COMPUTER: Self = Self {
         status: StatusCode::FORBIDDEN,

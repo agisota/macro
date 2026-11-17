@@ -65,7 +65,7 @@ export const retry = async <Value>(
     readonly clock: Clock;
     /** Told about every attempt, for the call's event log. */
     readonly onAttempt?: (attempt: Attempt) => void;
-    /** False for an error that another try can't fix, e.g. Macro refusing to seat the agent. */
+    /** False for an error that another try can't fix, e.g. Rox refusing to seat the agent. */
     readonly shouldRetry?: (error: unknown) => boolean;
   }
 ): Promise<Value> => {

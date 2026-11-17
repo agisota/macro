@@ -121,7 +121,7 @@ use crate::{
                 ),
         ),
         tags(
-            (name = "notification service", description = "Macro Notification Service")
+            (name = "notification service", description = "Rox Notification Service")
         )
     )]
 pub struct ApiDoc;

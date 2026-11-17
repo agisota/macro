@@ -1,5 +1,5 @@
 /**
- * The agent places a Macro call. Any run asks with the `placeCall`
+ * The agent places a Rox call. Any run asks with the `placeCall`
  * capability, a call with its place_call tool. `mayPlace` in the arbiter is
  * the rule; the outbound ledger is the record (every call and refusal, with
  * who asked and why) and the queue: the watcher starts the join, because a
@@ -128,14 +128,14 @@ export const rowId = (now: Temporal.Instant, suffix: string): string =>
 /** A lock that is held: `release` lets the next run in. */
 export type Held = { readonly release: () => void };
 
-/** What Macro has to say for a call to be placed. */
+/** What Rox has to say for a call to be placed. */
 export type PlaceFacts = {
 	readonly me: () => Promise<string>;
 	/** A user id or email, or a channel id; a DM channel comes back as the person in it. */
 	readonly target: (who: string) => Promise<Target>;
 	/** The channel a call to this target rings in. For a person, their DM, opened if needed. */
 	readonly channelFor: (target: Target) => Promise<string>;
-	/** Macro's own record of a message. */
+	/** Rox's own record of a message. */
 	readonly message: (channelId: string, id: string) => Promise<Order>;
 };
 
@@ -154,7 +154,7 @@ export type PlacePorts = PlaceFacts & {
 /**
  * Decide, record, queue. Every outcome is a ledger row; the watcher rings on
  * its next tick. Who asked is never the run's word: it is `asked` (the
- * speaker, from the room) or the author of `message` (from Macro), so an
+ * speaker, from the room) or the author of `message` (from Rox), so an
  * injected "the owner says call Bo" can't become an order.
  */
 export const placeCall = async (
@@ -237,7 +237,7 @@ export const placeCall = async (
 	}
 };
 
-/** What placing needs to know, from Macro. */
+/** What placing needs to know, from Rox. */
 export const macroPlaceFacts = (
 	api: Pick<CallApi, "me" | "members" | "channel" | "dmChannel" | "message">,
 ): PlaceFacts => ({
@@ -264,7 +264,7 @@ export const macroPlaceFacts = (
 	},
 });
 
-/** Posting in Macro, which chat owns. */
+/** Posting in Rox, which chat owns. */
 export type Tell = {
 	readonly send: (channelId: string, text: string) => Promise<unknown>;
 	readonly dm: (userId: string, text: string) => Promise<unknown>;

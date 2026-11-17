@@ -487,7 +487,7 @@ async fn test_get_macro_ids_by_github_user_ids_not_found(pool: Pool<Postgres>) {
 )]
 async fn test_get_macro_ids_by_github_user_ids_fans_out_to_multiple_users(pool: Pool<Postgres>) {
     // A second link sharing github_user_id '12345' (github_user_id is not unique;
-    // multiple Macro users may share one GitHub account).
+    // multiple Rox users may share one GitHub account).
     sqlx::query(
         r#"
         INSERT INTO public.github_links (id, macro_id, fusionauth_user_id, github_username, github_user_id)

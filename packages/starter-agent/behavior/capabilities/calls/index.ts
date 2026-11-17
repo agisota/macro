@@ -43,7 +43,7 @@ export {
 export const callsModule = module({
   name: 'calls',
   summary:
-    "Your voice on Macro calls: place a call, be asked onto one, hang up, post in a call's chat, see what the watcher sees and decided, and read a call back.",
+    "Your voice on Rox calls: place a call, be asked onto one, hang up, post in a call's chat, see what the watcher sees and decided, and read a call back.",
   file: import.meta.path,
   functions: {
     placeCall,

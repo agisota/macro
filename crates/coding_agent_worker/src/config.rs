@@ -31,7 +31,7 @@ mod environment {
 #[derive(Debug, Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Config {
-    /// The Macro deployment this harness's sessions live in: production
+    /// The Rox deployment this harness's sessions live in: production
     /// unless the file overrides it for development.
     #[serde(rename = "macro", default)]
     pub macro_api: MacroApi,
@@ -69,7 +69,7 @@ impl Default for UpdateSettings {
 #[serde(default, deny_unknown_fields)]
 pub struct HerdrSettings {
     /// Native model ID; absent uses the CLI's configured default. Only the
-    /// native CLI's launch fallback: Macro picks each agent's model.
+    /// native CLI's launch fallback: Rox picks each agent's model.
     pub model: Option<String>,
     /// Extra native CLI arguments, already split into words.
     pub arguments: Vec<String>,
@@ -98,7 +98,7 @@ pub struct HarnessCredentials {
     pub harness_id: HarnessId,
     /// The bearer token (`mhns_...`).
     pub token: String,
-    /// The Macro computer enrollment pairing this credential was claimed
+    /// The Rox computer enrollment pairing this credential was claimed
     /// from; a newer enrollment's pairing must be claimed again.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub pairing_id: Option<pairing_id::PairingId>,
@@ -113,7 +113,7 @@ impl HarnessCredentials {
     }
 }
 
-/// The Macro deployment this harness's sessions live in. Every field defaults
+/// The Rox deployment this harness's sessions live in. Every field defaults
 /// to production; values in the file are development overrides.
 #[derive(Debug, Clone, Deserialize)]
 #[serde(default, deny_unknown_fields)]
@@ -128,7 +128,7 @@ pub struct MacroApi {
     /// Base URL of the storage service, e.g. `http://localhost:50009/dss`.
     /// Hosts harness pairing and `GET /webhook/events/stream`.
     pub storage_url: String,
-    /// Base URL of the Macro web app, used for the pairing and settings links.
+    /// Base URL of the Rox web app, used for the pairing and settings links.
     pub web_url: String,
 }
 
@@ -218,7 +218,7 @@ pub enum ConfigError {
     /// The file sets something that is configured on the web now.
     #[error(
         "{path} sets {key}, which roxd no longer reads: a machine's name, access, and \
-         permission bypass are set in Macro at Settings → Machines. Delete {key} from \
+         permission bypass are set in Rox at Settings → Machines. Delete {key} from \
          the file."
     )]
     WebSetting {

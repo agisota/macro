@@ -215,7 +215,7 @@ describe('Excel pivot tables', () => {
   it('keeps pivot tables over data connections, without saved passwords', async () => {
     // Two caches of the workbook read data connections instead: a
     // database, with its password saved, and a Power Query query, which
-    // reads parts of the workbook Macro does not keep.
+    // reads parts of the workbook Rox does not keep.
     const files = unzipSync(corpus(UCL));
     const fromConnection = (part: string, id: number) => {
       files[part] = strToU8(
@@ -295,7 +295,7 @@ describe('Excel pivot tables', () => {
   it('downloads pivot tables without saved data that does not fit', async () => {
     const files = unzipSync(corpus(UCL));
     const part = 'xl/pivotCache/pivotCacheRecords1.xml';
-    // Records over the size Macro keeps.
+    // Records over the size Rox keeps.
     files[part] = strToU8(
       text(files, part).replace(
         '</pivotCacheRecords>',
@@ -341,7 +341,7 @@ describe('GETPIVOTDATA', () => {
       }))
     );
 
-  it('calculates lookups of the pivot tables Macro keeps, as Excel did', async () => {
+  it('calculates lookups of the pivot tables Rox keeps, as Excel did', async () => {
     const imported = await decodeXlsx(
       corpus('zenodo-ccs-cement-post-tax-dcf-model.xlsx')
     );

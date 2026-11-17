@@ -1,4 +1,4 @@
-//! Bridge provider facts to Macro's shared session PR operation.
+//! Bridge provider facts to Rox's shared session PR operation.
 
 use std::pin::Pin;
 use std::sync::Arc;

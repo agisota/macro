@@ -78,7 +78,7 @@ impl ToolApprovalStatus {
 pub struct ToolApprovalNotice {
     /// The approval's id, shared by its pending and terminal frames.
     pub approval_id: String,
-    /// `macro` for Macro's own server, otherwise the connected app's slug.
+    /// `macro` for Rox's own server, otherwise the connected app's slug.
     pub server_slug: String,
     /// What a person calls the server.
     pub server_name: String,

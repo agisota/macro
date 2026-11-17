@@ -11,7 +11,7 @@ reminder dispatch, team availability, and provider/Postgres persistence.
 - `src/domain/models.rs` + `src/domain/events.rs`: the `CalendarEvent` entity and
   recurrence-occurrence projections.
 - `src/domain/mutations.rs`, `src/domain/invitations.rs`, `src/domain/meeting_links.rs`:
-  write paths — mutations, email invitations, and Macro-call meeting links.
+  write paths — mutations, email invitations, and Rox-call meeting links.
 - `src/domain/capabilities.rs`: Google's organizer-set `GuestPolicy` and the
   `ViewerCapabilities` every read surface exposes as `viewerCan`.
 - `src/domain/team_availability.rs` + `src/domain/team.rs`: team sharing/availability.
@@ -58,7 +58,7 @@ reminder dispatch, team availability, and provider/Postgres persistence.
 
 ## Gotchas
 
-- `CalendarEvent` is the stable Macro entity; external calendars and email
+- `CalendarEvent` is the stable Rox entity; external calendars and email
   invitations are sources feeding it, and recurrence instances are queryable
   occurrence projections, not separate events — don't model them as new entities.
 - Imported point (non-recurring) events must survive sync and cache round-trips
@@ -94,7 +94,7 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   `InvalidInput`.
   `ViewerCapabilities::set_guest_policy` is therefore Google-only, and
   `organize` is the organizer signal clients read instead.
-- The organizer's own copy decides the guest policy of every Macro-held copy
+- The organizer's own copy decides the guest policy of every Rox-held copy
   of a Google meeting (`src/outbound/pg/guest_policy.rs`). Google takes 4 to
   12 seconds to carry an organizer's change to its guests' copies, and a guest
   invite in that window gets a 200 while Google drops the guest and mails
@@ -110,11 +110,11 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   `calendar_meeting_uid` and organizer; Outlook copies and snapshots take no
   part. The aligned copies' inboxes get change-log entries and refresh nudges
   (`CalendarEventWriteOutcome::aligned_copies`). An organizer whose calendar
-  no Macro inbox writes still reaches guests only through Google's sync.
+  no Rox inbox writes still reaches guests only through Google's sync.
 - Sharing an event into a channel writes an `entity_access` row on the
   sharer's copy. The `calendar_event_entity_access_cleanup` trigger deletes it
   with the event row, which covers every way a copy goes away: a delete
-  through Macro, a sync tombstone or removal, a disabled calendar, and the
+  through Rox, a sync tombstone or removal, a disabled calendar, and the
   `email_links` cascade when the inbox is removed. A cancelled, private or
   confidential row keeps its grants, since readers skip them and the row can
   come back. Removing one source, or cancelling one occurrence, leaves the row.
@@ -149,7 +149,7 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   forwarded by email takes the same import through
   `CalendarSnapshotImporter::import_snapshot`, fed an `EventSnapshot` that
   `crates/email`'s `invitation_import` builds from the email's saved snapshot.
-  Only the channel-share path strips the Macro call
+  Only the channel-share path strips the Rox call
   (`content_without_macro_call`, behind `EventSnapshot::without_macro_call`);
   a forwarded file keeps the join link it carries.
   The other direction, a guest forwarding their copy of an event, renders it
@@ -167,11 +167,11 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   file naming no attendees, so a recipient can only add it to their calendar
   and nothing reaches the organizer; missing evidence falls back to it. One
   renderer serves every use: `render_event_ics` takes an `IcsPurpose`, and
-  only `Forward` keeps the Macro call and adds the copy's conference link
+  only `Forward` keeps the Rox call and adds the copy's conference link
   (`JoinLink`), which `Share` (the .ics download) and channel shares never
   carry.
 - Asking to join a channel-shared event (`src/domain/join_requests.rs`) is a
-  Macro-stored request, not an `entity_access` row: the grant is a provider guest
+  Rox-stored request, not an `entity_access` row: the grant is a provider guest
   write. Eligibility is the invite path's own `copy_capabilities` on the
   sharer's copy, so a request that can be made is one the sharer can accept,
   and accepting calls `invite_guests` as the sharer
@@ -226,7 +226,7 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   `document_storage_service` hosts the ask, so it has its own
   `CalendarRefreshNotifier` (`src/outbound/calendar_refresh.rs`).
 - `update_event_with_macro_call` (`src/domain/meeting_links.rs`) switches an
-  existing event to a Macro call in one provider write, so attendees get one
+  existing event to a Rox call in one provider write, so attendees get one
   update: it reads the stored content through `CalendarEventDetailsReader`,
   mints the call, appends the join line and removes the provider conference.
   Only the calendar service composes it (`macroCall` on `PATCH /events/{id}`);
@@ -239,10 +239,10 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   a channel-shared event never grants. The agent reads a mentioned event with
   `ReadCalendarEvent` (`src/inbound/toolset/read_calendar_event.rs`), which goes
   through `mention_previews`: the hover card's visibility and fields. A preview
-  that falls back to a channel share loses its Macro call there, in the
+  that falls back to a channel share loses its Rox call there, in the
   repository and before the description cap, since the join line closes the
   description. Whoever resolves to their own copy keeps it: the card's Join
-  button reads the link from the preview. Only the generated Macro call goes;
+  button reads the link from the preview. Only the generated Rox call goes;
   join text a provider wrote into the body, as a Teams invitation's, stays, as
   it does in a snapshot. Search rows apply the same rule, but a row stays on
   the hit instead of resolving to the viewer's copy, so there a snapshot does
@@ -399,11 +399,11 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   (`OutlookCalendarProgress::Unreadable`), since without the calendar error
   Google shows beside its old copy a stale copy would look current, but its
   page membership stays so later tombstones resolve. The round still finishes
-  as a clean sync. The warning `skipping an Outlook event Macro cannot read`
+  as a clean sync. The warning `skipping an Outlook event Rox cannot read`
   and the `calendar.outlook_sync` span carry `calendar_id`,
   `provider_event_id` and `rejected_field`. A series imports without an
   occurrence the adapter cannot read (`OutlookEventRefresh::Refreshed`'s
-  `skipped`), warning `skipping an Outlook occurrence Macro cannot read` with
+  `skipped`), warning `skipping an Outlook occurrence Rox cannot read` with
   its `occurrence_id`, and the span adds `skipped_occurrences`. A secondary
   calendar has no v1.0 delta, so each of its rounds lists and reads every
   event again. A delta round lists only changes, so it also reads again the
@@ -412,12 +412,12 @@ reminder dispatch, team availability, and provider/Postgres persistence.
   it; a member found with a stored copy is stamped instead): a parser fix brings skipped events back without anyone touching
   them, and a skip costs no read until the event changes or the revision
   rises. Discovery does not fail on a
-  mailbox time zone Macro cannot map to IANA either: `OutlookDiscovery`
+  mailbox time zone Rox cannot map to IANA either: `OutlookDiscovery`
   stores the account's calendars with no `time_zone`, which every reader
   treats as unknown, as it does a Google calendar's zone it cannot read
   (reminders and automatic declines anchor all-day dates at UTC, team
   availability reports the zone missing). The warning `ignoring an Outlook
-  mailbox time zone Macro cannot map` and the span carry `unmapped_time_zone`.
+  mailbox time zone Rox cannot map` and the span carry `unmapped_time_zone`.
 - A calendar's sync error reaches calendar caches only as an `UpsertCalendar`
   change-log entry, since they read the calendar list once and then follow
   the log. Google and Outlook log one when the shown error

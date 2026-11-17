@@ -18,7 +18,7 @@ pub mod replay;
 pub mod session;
 /// Which of the user's skills a turn loads on its own, and where they sit.
 pub mod skill_routing;
-/// Whether one of Macro's own tools may run in this turn.
+/// Whether one of Rox's own tools may run in this turn.
 pub mod tool_gate;
 pub mod tool_mode;
 pub mod tool_stream;

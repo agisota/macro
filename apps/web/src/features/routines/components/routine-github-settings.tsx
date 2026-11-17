@@ -38,7 +38,7 @@ function NameList(props: {
   );
 }
 
-/** Which deliveries from Macro's GitHub app the trigger watches. */
+/** Which deliveries from Rox's GitHub app the trigger watches. */
 export function RoutineGithubSettings(props: {
   selector: GithubSelectorDraft;
   repositories: GithubRepositoryOptions;

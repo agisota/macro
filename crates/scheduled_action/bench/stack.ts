@@ -102,7 +102,7 @@ export function searchIndexer(at: Stack): { url: string; key: string } {
   return { url: `http://localhost:${port}`, key };
 }
 
-/** A Macro API token for `email`, through local passwordless login. */
+/** A Rox API token for `email`, through local passwordless login. */
 export async function login(at: Stack, email: string): Promise<string> {
   for (let attempt = 0; ; attempt++) {
     try {

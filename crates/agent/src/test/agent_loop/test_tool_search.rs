@@ -107,7 +107,7 @@ impl AsyncTool<()> for LoadToolsTest {
 }
 
 /// Fake `CombinedToolSet`: static tools + a searchable catalog of a deferred
-/// Macro tool and MCP tools spanning two servers (`a` and `b`).
+/// Rox tool and MCP tools spanning two servers (`a` and `b`).
 struct FakeCombined {
     static_tools: Arc<AsyncToolCollection<()>>,
     catalog_tools: Vec<String>,

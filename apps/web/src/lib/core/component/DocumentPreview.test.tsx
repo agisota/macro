@@ -234,7 +234,7 @@ describe('calendar mention preview card', () => {
   });
 });
 
-describe('calendar mention card for a Macro call', () => {
+describe('calendar mention card for a Rox call', () => {
   const callUrl = 'https://rox.one/app/meet/join/abcdefghijklmnop';
   const call = {
     location: callUrl,

@@ -63,8 +63,8 @@ const PIPE_CAPACITY: usize = 64 * 1024;
 ///
 /// The agent's page on cursor.com drives the same conversation, and Cursor's
 /// v1 API has no webhooks yet — so while a session's transport is up, its
-/// service polls, and a turn driven over there mirrors into Macro within
-/// about a second instead of waiting for the next Macro prompt. One
+/// service polls, and a turn driven over there mirrors into Rox within
+/// about a second instead of waiting for the next Rox prompt. One
 /// `list_runs` per second per live session; a session mid-turn skips its
 /// tick, and the poll dies with the pipe.
 ///
@@ -204,7 +204,7 @@ struct RestoredCursorSession {
     acp_session: SessionId,
     /// The Cursor agent, when one was ever minted.
     agent: Option<CursorAgentId>,
-    /// The last Cursor run whose output reached Macro's session log.
+    /// The last Cursor run whose output reached Rox's session log.
     last_run: Option<CursorRunId>,
 }
 
@@ -311,7 +311,7 @@ where
         }
     }
 
-    /// Configure admission for Macro-funded helpers, not the owner's Cursor runtime.
+    /// Configure admission for Rox-funded helpers, not the owner's Cursor runtime.
     pub fn with_admission(mut self, admission: Arc<dyn ai_billing::AiAdmissionService>) -> Self {
         self.admission = admission;
         self
@@ -533,7 +533,7 @@ where
         let observed = Arc::clone(&last_activity);
         let reaper_shutdown = shutdown.clone();
         let pending = self.pending.clone();
-        // The Macro session id on everything this task does. The mirror's
+        // The Rox session id on everything this task does. The mirror's
         // own spans know only the ACP session id (`cursor-acp-1` for every
         // hosted session), so without this a run it follows for an hour is
         // unsearchable by the session it belongs to.
@@ -745,7 +745,7 @@ where
         // be gone — a user who disconnects Cursor still has sessions to clean
         // up. The row is ours and the agent is theirs, so a key we no longer
         // hold costs them an unarchived agent on cursor.com, which they can
-        // see and archive; refusing the teardown instead would leave a Macro
+        // see and archive; refusing the teardown instead would leave a Rox
         // session that can never be cleaned up at all.
         let stored = AgentSessionRepo::get(&self.sessions, session).await?;
         let agent = CursorAgentId::new(external.external_id);

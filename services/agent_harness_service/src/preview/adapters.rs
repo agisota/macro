@@ -1,4 +1,4 @@
-//! Composition-root adapters to existing Macro session, permission and realtime services.
+//! Composition-root adapters to existing Rox session, permission and realtime services.
 use agent_egress::domain::model::SessionToken;
 use agent_preview::domain::{
     AgentIdentity, Preview, PreviewError,

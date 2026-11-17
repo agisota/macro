@@ -47,7 +47,7 @@ pub trait SessionAuthority: Send + Sync {
 /// OAuth.
 pub trait McpCredentials: Send + Sync {
     /// The upstream and credential for `destination`, on behalf of `owner`.
-    /// `agent` is the session's bound agent: Macro's own server signs it into
+    /// `agent` is the session's bound agent: Rox's own server signs it into
     /// the credential so tool writes are attributed to it; connected and
     /// custom servers ignore it.
     ///

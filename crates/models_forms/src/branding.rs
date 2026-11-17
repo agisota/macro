@@ -1,6 +1,6 @@
 //! How a form looks to respondents beyond its words: a logo, a cover image
 //! and an accent color. Every part is optional; a form with none looks like
-//! any other Macro page.
+//! any other Rox page.
 
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;

@@ -83,7 +83,7 @@ pub struct ArchivedCall {
     pub duration_ms: i64,
     /// Whether a recording egress was started before the call was archived.
     pub has_recording: bool,
-    /// Macro accounts that joined the call over its lifetime, once each.
+    /// Rox accounts that joined the call over its lifetime, once each.
     pub participants: Vec<String>,
     /// Whether the call's discussion is a thread in its channel.
     pub channel_thread: bool,
@@ -92,7 +92,7 @@ pub struct ArchivedCall {
 /// The people known to have been on, or invited to, an archived call.
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct CallPeople {
-    /// Macro accounts that joined the call, plus the owner of its meeting link.
+    /// Rox accounts that joined the call, plus the owner of its meeting link.
     pub user_ids: Vec<MacroUserIdStr<'static>>,
     /// Email addresses invited to the calendar event carrying the call's
     /// meeting link. External guests join without an account, so this is the
@@ -257,7 +257,7 @@ pub struct LiveCallParticipant {
     pub display_name: String,
     /// User or guest.
     pub kind: LiveParticipantKind,
-    /// Macro account identifier, if this is a user.
+    /// Rox account identifier, if this is a user.
     pub user_id: Option<String>,
     /// Whether the caller is a program.
     pub is_program: bool,
@@ -337,7 +337,7 @@ pub struct RingStatusResponse {
 /// Identity and room grant extracted from a verified RTC access token.
 #[derive(Debug, Clone)]
 pub struct VerifiedRingToken {
-    /// The participant identity the token was minted for (a Macro user id string).
+    /// The participant identity the token was minted for (a Rox user id string).
     pub identity: String,
     /// The room the token grants access to, if any.
     pub room: Option<String>,
@@ -346,7 +346,7 @@ pub struct VerifiedRingToken {
 /// An RTC room that currently exists on the provider.
 #[derive(Debug, Clone)]
 pub struct RtcRoom {
-    /// The room name; Macro names rooms after their call id.
+    /// The room name; Rox names rooms after their call id.
     pub name: String,
     /// When the provider created the room.
     pub created_at: DateTime<Utc>,
@@ -440,7 +440,7 @@ pub struct CallWebhookEvent {
     pub participant_identity: Option<MacroUserIdStr<'static>>,
     /// Bot identity, classified separately so it never becomes attendance.
     pub bot_identity: Option<bot_id::BotId>,
-    /// Non-account guest identity, classified separately from Macro users.
+    /// Non-account guest identity, classified separately from Rox users.
     pub guest_identity: Option<super::meetings::GuestId>,
     /// Egress ID associated with the event, if any.
     pub egress_id: Option<String>,
@@ -593,7 +593,7 @@ pub struct CustomSpeakerAssignment {
     /// The diarization label whose rows this assignment targets.
     pub diarized_speaker_id: String,
     #[cfg_attr(feature = "inbound", schema(value_type = String))]
-    /// Macro user id to attribute matching rows to, or `None` to clear.
+    /// Rox user id to attribute matching rows to, or `None` to clear.
     pub custom_speaker: Option<MacroUserIdStr<'static>>,
 }
 
@@ -642,7 +642,7 @@ pub struct CallRecordTranscriptSegment {
 #[cfg_attr(feature = "inbound", derive(utoipa::ToSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct CallRecordParticipant {
-    /// The Macro user id.
+    /// The Rox user id.
     pub user_id: String,
     /// When the user joined the call.
     pub joined_at: DateTime<Utc>,
@@ -735,7 +735,7 @@ pub struct CallRecord {
     /// can still stop ringing via reconciliation; `false` in list contexts.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub viewer_has_declined: bool,
-    /// Macro-account participants (both active and historic).
+    /// Rox-account participants (both active and historic).
     pub participants: Vec<CallRecordParticipant>,
     /// Non-account guests (both active and historic). Guests only ever exist
     /// on standalone meeting calls, never on channel calls.
@@ -743,7 +743,7 @@ pub struct CallRecord {
     /// Transcript segments ordered by `sequence_num`.
     pub transcript: Vec<CallRecordTranscriptSegment>,
     /// External provenance for calls imported from another provider; `None`
-    /// for calls recorded in Macro.
+    /// for calls recorded in Rox.
     pub source: Option<CallRecordSource>,
 }
 

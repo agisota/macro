@@ -3,7 +3,7 @@
 /// A hand-shaped complete turn with prose, tools, permission, and a clean stop.
 pub const TURN: &str = include_str!("../../fixtures/turn.jsonl");
 
-/// A hand-shaped Claude Code turn calling Macro tools over MCP - a read, a
+/// A hand-shaped Claude Code turn calling Rox tools over MCP - a read, a
 /// user tool (`SendEmail`) the user later edits and sends, and a failed call -
 /// with the MCP `CallToolResult` envelope around every output.
 pub const MACRO_MCP: &str = include_str!("../../fixtures/macro_mcp.jsonl");
@@ -40,7 +40,7 @@ pub const SUBAGENT_OPENCODE: &str = include_str!("../../fixtures/real/subagent_o
 /// string. Nothing of the child is streamed as its own frames.
 pub const SUBAGENT_CURSOR: &str = include_str!("../../fixtures/real/subagent_cursor.jsonl");
 
-/// A sanitized real turn of Macro's in-process agent (`macro-inmem`)
+/// A sanitized real turn of Rox's in-process agent (`macro-inmem`)
 /// delegating to a subagent: its native `Subagent` call, flagged
 /// `_meta.macro.subagent: true`, with `{ "task" }` as input and the bare
 /// `{ "result": "<answer>" }` response on completion. Nothing of the child is

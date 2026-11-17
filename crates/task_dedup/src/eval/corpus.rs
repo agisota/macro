@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum TaskSource {
-    /// Pulled from a real production task created by a Macro employee.
+    /// Pulled from a real production task created by a Rox employee.
     Prod,
     /// Hand-authored or generated synthetic task.
     Synthetic,

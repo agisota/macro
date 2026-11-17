@@ -99,7 +99,7 @@ interface RoutineCommonOptions {
   /** Display name. */
   name: string;
   /**
-   * Schedules or Macro events that start the routine. A cron `schedule` has 6
+   * Schedules or Rox events that start the routine. A cron `schedule` has 6
    * or 7 fields: `sec min hour day-of-month month day-of-week [year]`.
    */
   trigger: RoutineTriggerOptions;
@@ -144,7 +144,7 @@ export interface StepsRoutineOptions extends RoutineCommonOptions {
    * Make code steps' messages, comments and emails appear written by the
    * owner, with no agent badge. Set it only when the user explicitly asked
    * for the routine to act, send or post as them; never infer it from what
-   * the routine does. Omitted, writes are attributed to Macro's agent acting
+   * the routine does. Omitted, writes are attributed to Rox's agent acting
    * for the owner, and an update that omits it turns it off.
    */
   dangerouslyOperateAsUser?: boolean;
@@ -160,7 +160,7 @@ export type RoutineOptions = AgentRoutineOptions | StepsRoutineOptions;
 /** A scheduled or event-triggered agent task. */
 export class Routine extends MacroEntity<ScheduledActionResponse> {
   /**
-   * The routine's URL in the Macro web app; hand it to users as the link.
+   * The routine's URL in the Rox web app; hand it to users as the link.
    *
    * @readonly
    */

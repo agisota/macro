@@ -21,14 +21,14 @@ const notionSnapshotRequest = z.object({
 
 const notionSnapshotResponse = z.object({
   snapshot: z.string().describe('The Loro snapshot, base64-encoded'),
-  markdown: z.string().describe('The same content as Macro markdown'),
+  markdown: z.string().describe('The same content as Rox markdown'),
 });
 
 export class NotionSnapshotEndpoint extends OpenAPIRoute {
   schema = {
     summary: 'Convert Notion markdown to a Loro snapshot',
     description:
-      "Converts a page in Notion's enhanced markdown to Lexical nodes, resolving page and people references through `links` (keyed by dashless Notion id) into document and user mentions, assigns durable node ids, and returns the Loro snapshot with the same content as Macro markdown.",
+      "Converts a page in Notion's enhanced markdown to Lexical nodes, resolving page and people references through `links` (keyed by dashless Notion id) into document and user mentions, assigns durable node ids, and returns the Loro snapshot with the same content as Rox markdown.",
     request: {
       body: {
         content: {

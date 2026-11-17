@@ -16,7 +16,7 @@ pub trait GithubInstallationClaims: Send + Sync + 'static {
 
     /// Whether `user`, while linked, has a claim to the installation: a team
     /// they belong to installed it, or they installed it with the GitHub
-    /// account linked now. False for an installation Macro has no record of.
+    /// account linked now. False for an installation Rox has no record of.
     fn has_claim(
         &self,
         user: &MacroUserIdStr<'_>,

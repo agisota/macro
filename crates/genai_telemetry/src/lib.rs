@@ -27,7 +27,7 @@
 //!   creation, so this is the only way to add attributes to spans another crate
 //!   (rig) opened — and it keeps large content out of the JSON log layer, which
 //!   would otherwise repeat every span field on every log line.
-//! - [`provider_account`]: recognizes provider responses that mean Macro's
+//! - [`provider_account`]: recognizes provider responses that mean Rox's
 //!   account is suspended or out of credit, and logs them for alerting.
 
 #![deny(missing_docs)]

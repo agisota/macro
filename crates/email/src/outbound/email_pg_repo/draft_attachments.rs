@@ -158,7 +158,7 @@ impl DraftAttachmentRepository for EmailPgRepo {
                 }
             }
             AttachmentChange::Forward(source) => {
-                // Re-adding a removed file restores both its Macro and original
+                // Re-adding a removed file restores both its Rox and original
                 // inline Content-ID, rather than retaining a delete intention.
                 sqlx::query!(r#"DELETE FROM email_draft_attachment_removals r WHERE r.message_id=$1 AND
                     (trim(both '<>' from r.content_id)=$2 OR trim(both '<>' from r.content_id)=(SELECT trim(both '<>' from content_id) FROM email_attachments WHERE id=$3))"#,

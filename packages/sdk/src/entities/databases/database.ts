@@ -259,7 +259,7 @@ export type CreateDatabaseOptions = {
 };
 
 /**
- * A Macro database: a named collection of tables, owned and shared as one
+ * A Rox database: a named collection of tables, owned and shared as one
  * entity.
  *
  * A free-to-construct `(client, id)` handle like any other entity — the schema
@@ -296,7 +296,7 @@ export class Database extends MacroEntity<DatabaseDetail> {
   }
 
   /**
-   * The database's URL in the Macro web app; hand it to users as the link.
+   * The database's URL in the Rox web app; hand it to users as the link.
    *
    * @readonly
    */

@@ -89,7 +89,7 @@ export class ExternalChat extends FavoritableEntity<ExternalChatDetail> {
       ExternalChatParticipant.from(this, record),
     ),
   );
-  /** The provider's disappearing-messages timer in seconds while on; Macro keeps the messages. */
+  /** The provider's disappearing-messages timer in seconds while on; Rox keeps the messages. */
   readonly disappearingSeconds = this.field('disappearingSeconds');
   /** Actual owner, independent of provider membership. */
   readonly owner = this.mappedField('userId', (id) =>

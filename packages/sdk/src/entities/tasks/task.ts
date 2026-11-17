@@ -54,7 +54,7 @@ export interface SimilarTask {
 }
 
 /**
- * A Macro task: a document with sub-type `task`, so every `Document` method
+ * A Rox task: a document with sub-type `task`, so every `Document` method
  * works on it, including `content` and `edit` for its body. Inherits the full
  * document surface ({@link Document.rename}, move, delete, restore, events)
  * and adds task-specific state.
@@ -246,7 +246,7 @@ export class Task extends Document {
   }
 
   /**
-   * The task's URL in the Macro web app.
+   * The task's URL in the Rox web app.
    *
    * @readonly
    */

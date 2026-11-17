@@ -330,7 +330,7 @@ async fn attachments_travel_both_ways_with_a_sealed_locator(pool: PgPool) {
     };
     assert_eq!(session.download_media(&import).await.unwrap(), photo);
 
-    let reply = b"a photo sent from Macro".repeat(30);
+    let reply = b"a photo sent from Rox".repeat(30);
     let uploaded = session
         .upload_media(&OutboundMedia {
             kind: MediaKind::Image,

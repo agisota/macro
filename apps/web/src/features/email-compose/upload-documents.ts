@@ -2,7 +2,7 @@ import { fileTypeToBlockName } from '@core/constant/allBlocks';
 import { forceDssRuleset, uploadFiles } from '@core/util/upload';
 import type { UploadedDocument } from './context/compose-capabilities';
 
-/** Uploads files as Macro documents; the upload toasts report each outcome. */
+/** Uploads files as Rox documents; the upload toasts report each outcome. */
 export async function uploadAttachmentDocuments(
   files: File[]
 ): Promise<UploadedDocument[]> {

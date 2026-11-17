@@ -591,7 +591,7 @@ async fn comments_from_two_agents_post_as_each_agent_for_the_user() {
     assert_eq!(authors, [reviewer, planner]);
 }
 
-/// A user's MCP client posts as the Macro bot for the user, with the client
+/// A user's MCP client posts as the Rox bot for the user, with the client
 /// named on the post; a pasted API key posts the same way without a label.
 #[tokio::test]
 async fn a_comment_through_an_mcp_client_names_the_client() {

@@ -375,7 +375,7 @@ impl MailboxInitializationRepository for PgMailboxInitialization {
             ),
             _ => return Err(InitializationError::Changed),
         };
-        // The grant's encryption owner remains its consenting principal. Macro
+        // The grant's encryption owner remains its consenting principal. Rox
         // inbox ownership is independent and access is always scoped to this link.
         // An explicit, identity-checked reconnect can replace the custodian.
         let link = sqlx::query!(r#"

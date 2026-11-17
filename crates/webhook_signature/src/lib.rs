@@ -1,4 +1,4 @@
-//! Macro webhook delivery signatures: one crate owning both halves, so the
+//! Rox webhook delivery signatures: one crate owning both halves, so the
 //! signer (webhook delivery) and verifiers (webhook receivers) cannot drift.
 //!
 //! Deliveries are signed as `v1=<hex>` where the digest is HMAC-SHA256 over

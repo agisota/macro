@@ -93,7 +93,7 @@ pub struct ImportSettlement {
     /// Why it failed, or what went wrong in a completed write.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
-    /// Objects written into Macro.
+    /// Objects written into Rox.
     pub imported: u32,
     /// Objects the plan copies: as they are or as task lists from Notion,
     /// projects and issues from Linear or Jira.
@@ -118,7 +118,7 @@ pub struct ImportSettlement {
     pub already_in_macro: u32,
     /// Objects a teammate is writing at the same time, linked once written.
     pub waiting_on_teammates: u32,
-    /// The Macro folder the import writes into.
+    /// The Rox folder the import writes into.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[specta(type = Option<String>)]
     pub root_folder_id: Option<Uuid>,

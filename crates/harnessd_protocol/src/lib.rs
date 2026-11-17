@@ -1,5 +1,5 @@
 //! What the control plane and `harnessd`, the agent sign-in daemon on a
-//! Macro computer, say to each other: one JSON [`Request`] per line in, one
+//! Rox computer, say to each other: one JSON [`Request`] per line in, one
 //! JSON [`Response`] per line out.
 //!
 //! Every message names its agent, so a second agent adds an
@@ -75,7 +75,7 @@ pub enum Request {
         agent: AgentProvider,
     },
     /// Forget the agent's credential on this computer, so its sessions run
-    /// on Macro credits.
+    /// on Rox credits.
     SignOut {
         /// The agent to sign out.
         agent: AgentProvider,
@@ -147,7 +147,7 @@ pub enum Response {
         #[serde(default, skip_serializing_if = "Option::is_none")]
         claude: Option<ClaudeAccount>,
     },
-    /// The agent has no credential; its sessions run on Macro credits.
+    /// The agent has no credential; its sessions run on Rox credits.
     SignedOut {
         /// The signed-out agent.
         agent: AgentProvider,

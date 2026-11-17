@@ -20,7 +20,7 @@ export interface TeamMembership {
 }
 
 /**
- * A Macro team. A free-to-construct handle; the record loads lazily on first
+ * A Rox team. A free-to-construct handle; the record loads lazily on first
  * field access, resolved from the caller's team memberships.
  */
 export class Team extends MacroEntity<TeamRecord> {

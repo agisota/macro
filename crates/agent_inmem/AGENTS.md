@@ -10,7 +10,7 @@ milliseconds instead of waiting on container provisioning.
 ## Start here
 
 - `src/rig_engine.rs`: `RigTurnEngine` — the production composition root,
-  runs one turn over `agent::AgentLoop` and the Macro toolset.
+  runs one turn over `agent::AgentLoop` and the Rox toolset.
 - `src/domain/engine.rs`: `TurnEngine` port — the seam `rig_engine` fills.
 - `src/outbound/manager.rs`: `InMemAgentManager` — provisions per-session
   agent tasks, implements the container-manager port the harness expects.
@@ -129,7 +129,7 @@ MCP catalog lacks any `mcp__macro_internal__` code tool fails
   The stream, log and history keep the whole result; replay cuts it again, so
   build turn messages with `to_rig_messages_limited`, not `to_rig_messages`.
 - `rig_engine::system_prompt` orders text from most to least stable for the
-  prompt cache: the static Macro prompt (the cached shared block, the same for
+  prompt cache: the static Rox prompt (the cached shared block, the same for
   every agent), then the session's part, then the turn's (`with_turn`). Put
   anything that changes per turn in the turn part, never in the shared block;
   measure with `measure_prompt_cache_turns`.

@@ -220,7 +220,7 @@ tools — hexagonal, heavily feature-gated.
 - All Mail excludes present messages in spam/junk or trash before pagination;
   canonical cached previews and non-draft baselines use the same rule for Gmail
   labels and Outlook mailbox facts. Mixed threads show their latest eligible message.
-  Synced Macro drafts in junk/trash must not advance All Mail timestamps.
+  Synced Rox drafts in junk/trash must not advance All Mail timestamps.
   Filtered and unfiltered All Mail share the dynamic builder and its per-inbox
   ordered, limited scans; do not add a separate whole-mailbox sort.
 - A CRM record's Team view (team-scoped All Mail with one OR-tree of addresses)
@@ -304,7 +304,7 @@ tools — hexagonal, heavily feature-gated.
   source inbox access in `domain/forwarded_attachments.rs`, including legacy jobs.
 - A send with files staged before delivery goes through
   `StagedAttachmentSender` (`domain/service/attachments.rs`): draft, staged
-  attachment rows, then the send. `DraftAttachmentSender` adds Macro documents
+  attachment rows, then the send. `DraftAttachmentSender` adds Rox documents
   as the source of those files for `SendEmail`; a caller that already holds
   the bytes, such as an event forward's `.ics`, uses `send_with_files`. A
   `SourcedAttachment` with `is_inline` (no Content-ID) is staged inline and
@@ -345,7 +345,7 @@ tools — hexagonal, heavily feature-gated.
   condition to `view_mailbox_fact` so it shares the presence/trash probe in
   `build_preview_message_predicate` instead of adding a second one.
 - Read receipts (`domain/read_receipts.rs`) own pixel policy for every send
-  path: strip existing Macro pixels, track only HTML bodies, never block
+  path: strip existing Rox pixels, track only HTML bodies, never block
   delivery on a tracking failure, and count opens only for sent messages.
   Tokens are stored per message, so a retried send or Outlook draft revision
   rebuilds the same URL; keep it that way or the draft fingerprints drift.

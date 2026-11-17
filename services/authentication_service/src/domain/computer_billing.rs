@@ -1,4 +1,4 @@
-//! Macro computers billed as items on the team subscription: their prices,
+//! Rox computers billed as items on the team subscription: their prices,
 //! and the port that keeps purchased computers in step with what Stripe bills.
 
 use hosted_runtimes::domain::{models::BillingInterval, size::ComputerSize};

@@ -68,7 +68,7 @@ describe('startup', () => {
     });
   });
 
-  test("a script's process reaches Macro through the agent's relay, with names and no values", () => {
+  test("a script's process reaches Rox through the agent's relay, with names and no values", () => {
     expect(
       startup(
         {

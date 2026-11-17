@@ -22,11 +22,11 @@ const GOOGLE_QUESTIONS: TrustQuestion[] = [
     title: 'Why does Google ask for these permissions?',
     answer: (
       <>
-        Gmail access lets Rox read, send, organize, and move messages to
-        trash. Contacts help suggest recipients; mail settings support your
-        signature and filters. When you connect Calendar, its permissions let
-        Rox show your calendars and create or update events. Google shows the
-        exact permissions before you approve.
+        Gmail access lets Rox read, send, organize, and move messages to trash.
+        Contacts help suggest recipients; mail settings support your signature
+        and filters. When you connect Calendar, its permissions let Rox show
+        your calendars and create or update events. Google shows the exact
+        permissions before you approve.
       </>
     ),
   },
@@ -87,9 +87,9 @@ const MICROSOFT_QUESTIONS: TrustQuestion[] = [
         After you sign in, Rox asks Microsoft separately for Outlook access.
         Mail access lets Rox read, send, and organize messages; contacts help
         suggest recipients; mailbox settings support your inbox rules and time
-        zone; calendar access lets Rox show your calendars and create or
-        update events. Microsoft shows the exact permissions before you approve,
-        and you can skip this step and connect later in Settings.
+        zone; calendar access lets Rox show your calendars and create or update
+        events. Microsoft shows the exact permissions before you approve, and
+        you can skip this step and connect later in Settings.
       </>
     ),
   },
@@ -114,8 +114,8 @@ const SECURITY_QUESTIONS: TrustQuestion[] = [
         When you use an agent, information needed for your request is processed
         by its model provider. Our agreements with OpenAI and Anthropic provide
         zero data retention and no training on that data. This concerns model
-        processing: Rox still stores the workspace content needed to provide
-        the service.
+        processing: Rox still stores the workspace content needed to provide the
+        service.
       </>
     ),
   },
@@ -161,7 +161,7 @@ const SECURITY_QUESTIONS: TrustQuestion[] = [
   },
 ];
 
-/** Optional reading, grounded in Macro's privacy policy, DPA, and security material. */
+/** Optional reading, grounded in Rox's privacy policy, DPA, and security material. */
 export function OnboardingTrustDetails(props: {
   topic: 'security' | 'google';
   /**
@@ -204,8 +204,8 @@ export function OnboardingTrustDetails(props: {
           fallback={
             <>
               <p>
-                Rox stores your workspace content to provide the service. We
-                do not sell your data.
+                Rox stores your workspace content to provide the service. We do
+                not sell your data.
               </p>
               <p>
                 Your data is encrypted in transit and at rest. Production access
@@ -221,9 +221,9 @@ export function OnboardingTrustDetails(props: {
           }
         >
           <p>
-            Rox requests Google account access to read, send, and organize
-            email and manage connected calendars. Google lists the permissions
-            before you approve the connection.
+            Rox requests Google account access to read, send, and organize email
+            and manage connected calendars. Google lists the permissions before
+            you approve the connection.
           </p>
           <p>
             Rox’s email agents show you the draft and ask for your approval
@@ -231,9 +231,9 @@ export function OnboardingTrustDetails(props: {
           </p>
           <p>
             You sign in through Google. Rox does not receive your Google
-            password. Your Rox sign-in stays the same; adding a personal
-            account is optional. You can disconnect in Rox’s Settings or
-            revoke access from your Google account.
+            password. Your Rox sign-in stays the same; adding a personal account
+            is optional. You can disconnect in Rox’s Settings or revoke access
+            from your Google account.
           </p>
         </Show>
       </div>
@@ -254,8 +254,8 @@ export function OnboardingTrustDetails(props: {
           </p>
           <p>
             Rox does not receive your Microsoft password. You can disconnect
-            Outlook in Rox’s Settings or remove Rox’s access from your
-            Microsoft account.
+            Outlook in Rox’s Settings or remove Rox’s access from your Microsoft
+            account.
           </p>
         </div>
       </Show>

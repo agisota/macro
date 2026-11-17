@@ -571,7 +571,7 @@ pub struct Props {
     pub prototype_start: Option<Guid>,
     /// Being published from a library, or coming from one.
     pub library: Option<Arc<LibraryLink>>,
-    /// Macro's own data on the node (`pluginData` under
+    /// Rox's own data on the node (`pluginData` under
     /// [`library::MACRO_PLUGIN`]): key and value.
     pub macro_data: Option<library::RoxData>,
     /// On an instance's override or derived layout entry: made by the
@@ -708,7 +708,7 @@ impl Props {
         self.library.as_ref()?.source.as_deref()
     }
 
-    /// One of Macro's values on the node (see [`Props::macro_data`]).
+    /// One of Rox's values on the node (see [`Props::macro_data`]).
     pub fn macro_value(&self, key: &str) -> Option<&str> {
         self.macro_data
             .as_deref()?

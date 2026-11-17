@@ -297,7 +297,7 @@
         package = "coding_agent_worker";
       };
 
-      # The agent sign-in daemon baked into the Macro computer image
+      # The agent sign-in daemon baked into the Rox computer image
       # (nix/macro-box).
       harnessdBinary = workspaceBinary {
         pname = "harnessd";
@@ -1489,7 +1489,7 @@
         tauri-desktop = {
           type = "app";
           program = "${wrappedTauriDesktop}/bin/app";
-          meta.description = "Run the Macro Tauri desktop app";
+          meta.description = "Run the Rox Tauri desktop app";
         };
       };
 

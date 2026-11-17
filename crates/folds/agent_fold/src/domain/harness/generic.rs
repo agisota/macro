@@ -69,7 +69,7 @@ pub fn is_subagent(name: &ToolName, frame: &ToolFrame<'_>) -> bool {
 }
 
 /// The Task-tool arguments, plus the aliases the harnesses that copied the
-/// convention use: `task` for the prompt (Macro's own `Subagent`),
+/// convention use: `task` for the prompt (Rox's own `Subagent`),
 /// `background` for `run_in_background` (OpenCode).
 #[derive(Deserialize, Default)]
 struct TaskInput {

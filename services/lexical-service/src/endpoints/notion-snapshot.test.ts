@@ -37,7 +37,7 @@ const page = {
 };
 
 describe('notion snapshot endpoint', () => {
-  it('returns a loadable Loro snapshot and its Macro markdown', async () => {
+  it('returns a loadable Loro snapshot and its Rox markdown', async () => {
     const response = await request(page);
     expect(response.status).toBe(200);
     const body: { snapshot: string; markdown: string } = await response.json();

@@ -11,14 +11,14 @@
 # not set here: change them on the web at Settings → Machines.
 
 # Optional development overrides. Every key defaults to production.
-# Macro computer enrollment may set egress_url to its fleet-reachable gateway.
+# Rox computer enrollment may set egress_url to its fleet-reachable gateway.
 # [macro]
 # # Base URL of the agent-harness service. Its ws(s) twin hosts the runtime
 # # gateway the daemon connects to on startup.
 # api_url = "http://localhost:50009/agent-harness"
 # # Base URL of the storage service (harness pairing + live event stream).
 # storage_url = "http://localhost:50009/dss"
-# # Base URL of the Macro web app, used for the pairing and settings links.
+# # Base URL of the Rox web app, used for the pairing and settings links.
 # web_url = "http://localhost:3000/app"
 
 [harness]
@@ -37,7 +37,7 @@ repo_url = "https://github.com/macro-inc/macro"
 
 # Optional defaults for the one native Herdr configuration (also editable in the TUI).
 # [herdr]
-# model = "sonnet"            # Launch fallback; Macro picks each agent's model.
+# model = "sonnet"            # Launch fallback; Rox picks each agent's model.
 # arguments = []              # Native CLI arguments, one word per element.
 # storage_path = "/path/to/agents" # Omit for ~/.roxd/herdr/<harness-id>.
 # focus = true               # false opens new sessions in the background.

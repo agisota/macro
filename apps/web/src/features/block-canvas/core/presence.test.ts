@@ -5,7 +5,7 @@ describe('bounded operation lanes on untrusted awareness', () => {
   it('accepts disjoint selected regions and rejects phantom, duplicate and oversized lanes', () => {
     const packet = {
       id: 'peer',
-      name: 'Macro (AI)',
+      name: 'Rox (AI)',
       color: '#0891b2',
       cursor: null,
       selectedIds: ['a', 'b', 'c'],

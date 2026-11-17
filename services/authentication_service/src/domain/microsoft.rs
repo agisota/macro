@@ -243,7 +243,7 @@ pub trait MicrosoftAuth: Send + Sync {
     /// switch, then their [`OUTLOOK_FLAG`]. Records `outlook.flag` on the
     /// current span when the flag is read.
     async fn new_connections_enabled(&self, user: &MacroUserIdStr<'_>) -> bool;
-    /// Where an administrator grants Macro's delegated permissions for their
+    /// Where an administrator grants Rox's delegated permissions for their
     /// whole directory, for users whose consent attempt needs admin approval.
     fn admin_consent_url(
         &self,

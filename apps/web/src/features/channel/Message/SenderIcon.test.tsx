@@ -76,7 +76,7 @@ describe('SenderIcon', () => {
         message(MACRO_AGENT_PRINCIPAL_ID, {
           type: 'bot',
           id: '00000000-0000-0000-0000-00000000a1a1',
-          name: 'Macro',
+          name: 'Rox',
           triggered_by: 'macro|alice@example.com',
           triggered_via: client,
         })
@@ -97,7 +97,7 @@ describe('SenderIcon', () => {
       message(MACRO_AGENT_PRINCIPAL_ID, {
         type: 'bot',
         id: '00000000-0000-0000-0000-00000000a1a1',
-        name: 'Macro',
+        name: 'Rox',
         triggered_by: 'macro|alice@example.com',
         triggered_via: 'Zed',
       })

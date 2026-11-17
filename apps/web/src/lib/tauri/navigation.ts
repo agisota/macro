@@ -23,7 +23,7 @@ export function useTauriNavigationEffect() {
 
   createEffect(() => {
     // Send side of the same `navigate` bridge as the listener below: route
-    // Macro `/app` links opened via `openExternalUrl` in-app instead of the
+    // Rox `/app` links opened via `openExternalUrl` in-app instead of the
     // system browser.
     const unregisterInterceptor = registerMacroLinkInterceptor();
 

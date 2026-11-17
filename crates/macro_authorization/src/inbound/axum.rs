@@ -64,7 +64,7 @@ pub enum ActingEntity<'a> {
     Bot(BotId),
     /// A directly authenticated harness.
     Harness(HarnessId),
-    /// A directly authenticated Macro user.
+    /// A directly authenticated Rox user.
     User(&'a str),
     /// An authenticated internal service.
     Internal,

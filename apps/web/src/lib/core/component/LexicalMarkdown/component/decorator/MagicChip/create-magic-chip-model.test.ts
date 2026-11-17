@@ -405,7 +405,7 @@ describe('createMagicChipModel', () => {
   );
 
   it.each(['in-memory', 'macro-inmem', 'sandbox'])(
-    'names the %s session Macro Agent, not Macro Agent Agent',
+    'names the %s session Rox Agent, not Rox Agent Agent',
     async (harness) => {
       serviceClient.get.mockResolvedValue({
         isOk: () => true,
@@ -676,7 +676,7 @@ describe('createMagicChipModel', () => {
             approvalId: 'a1',
             turn: 0,
             serverSlug: 'macro',
-            serverName: 'Macro',
+            serverName: 'Rox',
             toolName: 'GetThread',
             requestedBy: 'macro|bob@rox.one',
           },

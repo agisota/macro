@@ -2,7 +2,7 @@
 
 ## What it is
 
-The agent sign-in daemon baked into the Macro computer image (computers).
+The agent sign-in daemon baked into the Rox computer image (computers).
 It owns each agent's sign-in on the computer (today Claude, through
 `claude setup-token`) and answers the JSONL protocol of
 `crates/harnessd_protocol`. Tokens stay on the computer.
@@ -56,7 +56,7 @@ It owns each agent's sign-in on the computer (today Claude, through
 - Read screens through the emulator, never by stripping escapes: the CLI
   uses cursor moves (`ESC[1C`) for spaces.
 - Sessions get the token from the image's `claude` wrapper, which drops the
-  Macro gateway env (`ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`,
+  Rox gateway env (`ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`,
   `ANTHROPIC_API_KEY`, `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`) and sets
   `CLAUDE_CODE_OAUTH_TOKEN` only when the file has a token; an unreadable
   file or one without a token keeps the gateway env and warns on stderr.

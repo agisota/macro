@@ -8,7 +8,7 @@ const row = {
 } as const;
 
 describe('capabilityFacts', () => {
-  it('credits Macro Connect for a Connect grant when the flag is on', () => {
+  it('credits Rox Connect for a Connect grant when the flag is on', () => {
     expect(capabilityFacts({ ...row, grantProvider: 'connect' }, true)).toBe(
       'Powered by Rox Connect'
     );

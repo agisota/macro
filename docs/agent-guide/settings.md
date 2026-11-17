@@ -180,7 +180,7 @@ Cmd/Ctrl+K; Settings manages existing snoozes and mutes.
 
 Design references: [Slack notification pause/resume](https://slack.com/help/articles/214908388-Pause-your-Slack-notifications)
 and [Superhuman's keyboard-driven Remind Me picker](https://new.superhuman.com/remind-me-29124).
-Macro applies the temporary pause per entity and keeps the entity visible.
+Rox applies the temporary pause per entity and keeps the entity visible.
 
 ### Team membership
 
@@ -251,7 +251,7 @@ you know when it's ready." The new agent appears in **Team → Members** as its
 own row (name, **Agent** tag, job description) with a status in place of a
 role: **Setting up** with a spinner while its computer provisions, with the
 computer's setup step under the job description (**Updating billing…**,
-**Creating the computer**, **Starting up**, **Connecting to Macro**; the agent
+**Creating the computer**, **Starting up**, **Connecting to Rox**; the agent
 and computer lists poll), then **Running**, **Paused**, **Needs attention** or
 **Released**. A failed computer's row offers owners and admins **Retry**,
 the computer's own retry (`POST /team/computers/{id}/retry`), so it never buys
@@ -276,10 +276,10 @@ the computer purchase flow. With `enable-macro-computers` on, **Bring your AI
 to <name>** is the Claude sign-in for the agent's computer, opened from the
 notification or the row, never as a step of the invite: it shows the
 computer's setup progress above **Open claude.ai** and the pasted code, and
-**Close** or **Use Macro credits instead** leaves it. Owners and admins see
+**Close** or **Use Rox credits instead** leaves it. Owners and admins see
 the agent's Claude under its job description: **Claude: Macro credits · Sign
 in to Claude** (offered only while the computer is connected), **Claude: your
-plan · Use Macro credits** (a confirmation, then sign-out), or **Claude
+plan · Use Rox credits** (a confirmation, then sign-out), or **Claude
 sign-in expired · Sign in to Claude**. The sign-in spans carry
 `claude.sign_in.entry` (`team_agent_row`, `notification`).
 
@@ -327,7 +327,7 @@ paid **Human seats**, each mapped computer's size, status,
 and current subscription price, and any other provider subscription items.
 Each computer appears once, with recorded specifications when available; there is
 no duplicate Computers subtotal. Included rows say **Included**, with an
-**Included for Macro** note. If today’s catalog price differs from an existing
+**Included for Rox** note. If today’s catalog price differs from an existing
 charge, the row keeps the actual subscribed amount and explains the new-computer price.
 
 **Total per month/year** uses the current subscription interval and currency.
@@ -466,13 +466,13 @@ editor under that row: a custom theme is edited in place, a default theme opens
 as a `<name> copy` fork. `features/settings/Appearance.test.tsx` covers opening
 it for both default themes, whose hex grays once crashed the editor's color pickers.
 
-The default Macro Dark theme uses a neutral `#0E0E0E` outer background and
+The default Rox Dark theme uses a neutral `#0E0E0E` outer background and
 `#121212` inset content panels. The app rail follows the outer background;
 text and accent colors retain their existing palette.
 
-Macro Light uses `#F5F5F5` outside `#FCFCFC` content panels, white controls,
+Rox Light uses `#F5F5F5` outside `#FCFCFC` content panels, white controls,
 `#E4E4E4` frame borders, and `#EDEDED` button borders. Its controls use
-`#2E2E2E` ink. Macro Light and Macro Dark share the same muted blue accent
+`#2E2E2E` ink. Rox Light and Rox Dark share the same muted blue accent
 (`oklch(0.7 0.12 250deg)`); light mode does not switch the accent to orange.
 
 The theme editor's **Status** section exposes **Priority Urgent** separately
@@ -713,7 +713,7 @@ Pipedream catalog (results are `option` rows; picking one adds it) and a row per
 with a connected / not-connected dot for the *current viewer* plus an inline `Connect`
 that opens the Pipedream Connect flow inside the web page. Native apps open
 consent in the system browser, which returns to the waiting app on its own after
-authorization (**Return to Macro** is the fallback link). Unconnected picks never block
+authorization (**Return to Rox** is the fallback link). Unconnected picks never block
 saving; each teammate connects their own account. An agent session that calls a picked
 but unconnected app gets a tool result saying so, and the agent's reply renders a
 `Connect <app>` chip that opens Agents → Connections for that app. The same page
@@ -738,7 +738,7 @@ With `pipedream-mcp` enabled, Settings → Integrations is one searchable list
 styled like the Drive and Tasks lists, spanning nearly the full settings page
 width. Rows are separated by faint dividers and have Name (icon, name, an
 `mcp` or `native` badge, and a smaller, fainter second line on what it does in
-Macro or which accounts are connected), Category (tag pills like email tags; several per row, e.g. Email,
+Rox or which accounts are connected), Category (tag pills like email tags; several per row, e.g. Email,
 Calendar), Status, and the row's actions. There is one row per integration; custom MCP
 servers come first, then integrations in use (connected, off, or needing
 attention), then the rest, then the app catalog. Below a 640px list width Category and Status hide and a status
@@ -755,17 +755,17 @@ dot sits beside the name.
   opening the provider page and **Import** beside it. Slack's Import opens the
   Slack export importer for team admins with archive import enabled, otherwise
   the connector import dialog.
-- **Granola**, **Claude Code, Codex, and ChatGPT** (Macro MCP setup), and
+- **Granola**, **Claude Code, Codex, and ChatGPT** (Rox MCP setup), and
   **Coding agents on your computer** (Claude Code, Codex, OpenCode, OpenClaw,
   Hermes; opens Machines within Integrations and follows the Machines
   availability gate; Back returns to Integrations).
 - Installed catalog apps and custom MCP servers, with their More menus.
 - The catalog: every Pipedream app not yet connected, tagged with its directory
-  categories. Apps Macro can import from show **Import** beside **Connect**.
+  categories. Apps Rox can import from show **Import** beside **Connect**.
 
 The search filters every row by name, description and category and also searches
 the catalog. **Add custom** sits beside it. Gmail, Google Calendar and Google
-Sheets are hidden from the catalog because Macro syncs email and calendars
+Sheets are hidden from the catalog because Rox syncs email and calendars
 natively. LinkedIn never appears in the catalog or its search: the backend
 hides it. Scrolling toward the end loads the next catalog page; a failed page
 keeps loaded apps and offers Retry.
@@ -782,7 +782,7 @@ GitHub is overlaid onto `api.githubcopilot.com/mcp`, but its server is
 authorized by the GitHub account link (the same GitHub App), so connecting
 GitHub anywhere (catalog, chat connect card, import dialog, the GitHub AI
 provider page) runs the account link, and a linked account shows GitHub
-connected for Macro AI with no second consent. Disconnecting GitHub on its AI
+connected for Rox AI with no second consent. Disconnecting GitHub on its AI
 provider page unlinks the account. Verify by linking GitHub from its row and
 checking the GitHub catalog entry reads connected.
 The Agents workspace opens this same Integrations page. The list includes featured providers, a searchable catalog,
@@ -792,13 +792,13 @@ access; channel import is a separate action where the user chooses channels.
 Provider Back returns to the combined integrations overview; navigation
 is local to each mounted Integrations page.
 
-Macro agents and external AI clients using Macro's MCP server can run
+Rox agents and external AI clients using Rox's MCP server can run
 `ImportNotionPage`, `ImportFromNotion`, `ImportFromLinear`, `ImportFromJira`
 and the shared import ledger tools against the user's
-connections saved in Macro.
+connections saved in Rox.
 Verify a Notion import returns a document and a repeated import returns the
 existing document. For Linear/Jira workspace imports, verify planning writes no
-Macro tasks before approval, source-specific reviews show task/project totals,
+Rox tasks before approval, source-specific reviews show task/project totals,
 and an approved import preserves task fields, comments, labels and relationships. These calls must not report that import tracking
 is unavailable.
 On hosts without Pipedream credentials, saved Pipedream accounts must not hide
@@ -839,8 +839,8 @@ mention picker; select text to open the formatting menu. Saved instructions
 retain mention identities using the shared editor's Markdown format and reopen
 with their formatting intact. Enter adds a new paragraph; use `Create agent` or
 `Save changes` to submit. The form also includes runtime selectors.
-Under `In Macro`, an Anthropic or OpenAI model shows an optional
-`<Provider> API key · Optional` row with `Add key`; the agent runs on Macro
+Under `In Rox`, an Anthropic or OpenAI model shows an optional
+`<Provider> API key · Optional` row with `Add key`; the agent runs on Rox
 usage without one. `Add key` reveals the write-only field (`Cancel` hides it
 again); a saved key starts expanded with `Remove`. On plans without agent keys
 the row only explains that keys are part of Premium and Max.
@@ -851,9 +851,9 @@ Under `Advanced`, `Answering a mention` chooses between `Coding agent` (a
 channel mention is answered with a magic chip that opens into the live session)
 and `Chat agent` (the agent replies in the thread, like `@macro`). It is the
 agent's own setting and always saved: a new form starts from the selected runtime
-- Macro's in-memory runtime as chat, every other runtime as coding - and picking a
+- Rox's in-memory runtime as chat, every other runtime as coding - and picking a
 different runtime resets it to that default, but only the saved choice counts.
-The model list is loaded live and independently for Macro Agent, connected Cursor, and every
+The model list is loaded live and independently for Rox Agent, connected Cursor, and every
 registered roxd harness. The selected harness stays selected when the list refreshes.
 A paired roxd connects on startup, so models can load before any agents are bound.
 A harness can show `Loading models…`, an unsupported message, or
@@ -864,7 +864,7 @@ New roxd sessions use the agent's saved model before sending the first prompt.
 Changing that default applies to new sessions; existing sessions keep their selected model.
 If the runtime rejects the saved model, the prompt fails instead of using a different model.
 
-Under its title and description, the `Machines` section shows the RoxD `TutorialPill` (from `features/video-tutorials`) once that video is in its catalog, except on touch devices. The `Machines` section shows built-in Macro, Cursor, and Codex configuration (under `Built-in machines`), followed by paired roxd machines. Codex's card appears only within the agents and Codex rollouts. On the desktop app only, a “This computer” card appears above the built-in machines: the bundled roxd daemon is set up from here with one click. `Set up` scans the machine for installed agents and names the one it will use (Claude Code first, then Codex, OpenCode, OpenClaw, Hermes); `Options` changes the agent, workspace folder, and a larger Full access choice labeled Suggested (unchecked until explicitly selected). `Set up <agent>` then walks a three-step checklist — Find an agent, Connect this computer (start, install the connector, link to the account; the pairing is approved automatically, no code is typed), Create your agent (a private `@<agent>` coding agent bound to this machine) — and ends on `@<agent> is ready` with `Start a session`, which opens the Agents composer in Auto with that agent as the usual coding agent. A failed step shows its error and `Try again`, which resumes at the failed step. A desktop app that was never set up also shows a one-time “Run agents on this computer” prompt whose `Set up` runs the same flow in a dialog; closing the prompt sticks. Before this computer is paired, a dismissible “Run agents on this computer” invitation also appears above the Home input and the Agents new-conversation and active-session inputs; its `Set up` runs the same flow in a dialog in place, and dismissal applies only to this user on this computer. The Machines settings tab stays available in the desktop app even if the newer Agents view is disabled. A running machine with no agent bound to it offers `Create agent`. The daemon runs with the user's interactive login-shell environment (variables exported from `.zshrc` and the like), so agents authenticate as they do in a terminal. The app then keeps the daemon up: it restarts after any unexpected exit (with backoff) and on every launch until the user presses `Stop`, and any re-pairing is approved from wherever the user is in the app, not only on this card. While running the card shows the bound agent and workspace with a `Stop` action; a stopped machine offers `Start`. The web app never shows this card. The “Bring your own agent” card sits above the Agents / Machines navigation and is visible on both sections. It rotates Claude Code, OpenCode, OpenClaw, and Hermes; reduced motion keeps a static name. Its `New machine` action opens the full-page pairing flow from either section: enter the code, look up the request, review the machine, name, sharing and permission bypass, then Approve and Done. `Pending requests`, at the top and only while any wait, lists teammates' requests to use machines the viewer owns (`<person> requested to use <machine>`, with `Deny` and `Approve`) and the viewer's own requests on teammates' machines (`Your access: Requested`, whose `Requested` button cancels); the `Machines` entry in the settings sidebar and the phone settings sheet shows how many incoming requests wait. `Your machines` lists every machine the viewer owns, offline ones included. Each row shows a status dot before the name, then a meta line (`Private` or `Team machine`, the count of waiting access requests in accent ink, and the last connection), with `Share`, `Options`, `Rename` and `Remove` at the top right; on narrow rows the name wraps, the meta line sits under it and the actions get their own line. `Options` opens a small menu on desktop and a sheet on touch with one toggle, `Don't ask before acting` (the machine's permission bypass: turning it on asks for confirmation and applies from each session's next turn). Only the owner can change it; everyone else sees it disabled with its current value. A machine's name and this toggle are set only here, and its sharing through Share; roxd.toml holds only machine-local config, and roxd refuses a file that still sets `[identity]` or a credentials `scope`. Desktop setup's Full access choice turns the toggle on for the new machine. Back/Cancel returns to the machine list. Destructive removal still requires confirmation. Every paired machine has one person as its owner; its `Team machine` or `Private` label says whether every teammate is a user of it. Everyone else on the team can see it and holds a role: No Access, Read (sees what is on it but cannot run agents), or User (can run agents); non-coding agents bound to it are Residents. `Share` opens the machine Share menu: the `Team machine` switch, the owner, residents, people with a `Read` or `User` role picker, access requests (each reads `Requested to use <machine>`) with `Approve` and `Deny`, and a filterable list of teammates to `Add` as users. It has no link, channel or outside sharing. Removing or lowering access a resident depends on first warns that it shuts the agent down. `Teammates' machines`, below, groups the team's other machines by owner. Each row uses the same layout: status dot and name, a meta line with `Online`/`Offline` and `Your access: None/Read/User/Requested`, `Request access` (or the pending `Requested`, which cancels) when the viewer cannot run agents on it, and the read-only `Options`; the team's owner also gets `Remove` on team machines. People never show machines: user cards, hover cards, drawers and chips list none. Agent cards and the agent session pane still show the machine an agent runs or lives on (`Runs on <machine>` / `Lives on <machine>`), with `Request access`, and so do the agent and routine pickers. When an agent's owner loses access to the machine it lives on, the agent stops: its session pane and DM header say `Stopped: no access to <machine>` with `Request access` for the owner, a prompt to it leaves a refusal line in the transcript instead of running, and the owner gets a notification ("<person> removed your access to <machine>" / "<agent> has stopped.") that opens this section with that machine pointed out. These notifications are filed under the machine and listed in Notifications (Access); clicking the row opens what its newest notification opens. An access-request notification ("requested to use <machine>") opens this section with that machine's row highlighted and its Share menu open; a grant notification highlights the row only. `/settings/runtimes` opens this section; legacy `/settings/harness?pair=…` links remain supported. A Macro computer is listed only under **Macro computers**, not here.
+Under its title and description, the `Machines` section shows the RoxD `TutorialPill` (from `features/video-tutorials`) once that video is in its catalog, except on touch devices. The `Machines` section shows built-in Rox, Cursor, and Codex configuration (under `Built-in machines`), followed by paired roxd machines. Codex's card appears only within the agents and Codex rollouts. On the desktop app only, a “This computer” card appears above the built-in machines: the bundled roxd daemon is set up from here with one click. `Set up` scans the machine for installed agents and names the one it will use (Claude Code first, then Codex, OpenCode, OpenClaw, Hermes); `Options` changes the agent, workspace folder, and a larger Full access choice labeled Suggested (unchecked until explicitly selected). `Set up <agent>` then walks a three-step checklist — Find an agent, Connect this computer (start, install the connector, link to the account; the pairing is approved automatically, no code is typed), Create your agent (a private `@<agent>` coding agent bound to this machine) — and ends on `@<agent> is ready` with `Start a session`, which opens the Agents composer in Auto with that agent as the usual coding agent. A failed step shows its error and `Try again`, which resumes at the failed step. A desktop app that was never set up also shows a one-time “Run agents on this computer” prompt whose `Set up` runs the same flow in a dialog; closing the prompt sticks. Before this computer is paired, a dismissible “Run agents on this computer” invitation also appears above the Home input and the Agents new-conversation and active-session inputs; its `Set up` runs the same flow in a dialog in place, and dismissal applies only to this user on this computer. The Machines settings tab stays available in the desktop app even if the newer Agents view is disabled. A running machine with no agent bound to it offers `Create agent`. The daemon runs with the user's interactive login-shell environment (variables exported from `.zshrc` and the like), so agents authenticate as they do in a terminal. The app then keeps the daemon up: it restarts after any unexpected exit (with backoff) and on every launch until the user presses `Stop`, and any re-pairing is approved from wherever the user is in the app, not only on this card. While running the card shows the bound agent and workspace with a `Stop` action; a stopped machine offers `Start`. The web app never shows this card. The “Bring your own agent” card sits above the Agents / Machines navigation and is visible on both sections. It rotates Claude Code, OpenCode, OpenClaw, and Hermes; reduced motion keeps a static name. Its `New machine` action opens the full-page pairing flow from either section: enter the code, look up the request, review the machine, name, sharing and permission bypass, then Approve and Done. `Pending requests`, at the top and only while any wait, lists teammates' requests to use machines the viewer owns (`<person> requested to use <machine>`, with `Deny` and `Approve`) and the viewer's own requests on teammates' machines (`Your access: Requested`, whose `Requested` button cancels); the `Machines` entry in the settings sidebar and the phone settings sheet shows how many incoming requests wait. `Your machines` lists every machine the viewer owns, offline ones included. Each row shows a status dot before the name, then a meta line (`Private` or `Team machine`, the count of waiting access requests in accent ink, and the last connection), with `Share`, `Options`, `Rename` and `Remove` at the top right; on narrow rows the name wraps, the meta line sits under it and the actions get their own line. `Options` opens a small menu on desktop and a sheet on touch with one toggle, `Don't ask before acting` (the machine's permission bypass: turning it on asks for confirmation and applies from each session's next turn). Only the owner can change it; everyone else sees it disabled with its current value. A machine's name and this toggle are set only here, and its sharing through Share; roxd.toml holds only machine-local config, and roxd refuses a file that still sets `[identity]` or a credentials `scope`. Desktop setup's Full access choice turns the toggle on for the new machine. Back/Cancel returns to the machine list. Destructive removal still requires confirmation. Every paired machine has one person as its owner; its `Team machine` or `Private` label says whether every teammate is a user of it. Everyone else on the team can see it and holds a role: No Access, Read (sees what is on it but cannot run agents), or User (can run agents); non-coding agents bound to it are Residents. `Share` opens the machine Share menu: the `Team machine` switch, the owner, residents, people with a `Read` or `User` role picker, access requests (each reads `Requested to use <machine>`) with `Approve` and `Deny`, and a filterable list of teammates to `Add` as users. It has no link, channel or outside sharing. Removing or lowering access a resident depends on first warns that it shuts the agent down. `Teammates' machines`, below, groups the team's other machines by owner. Each row uses the same layout: status dot and name, a meta line with `Online`/`Offline` and `Your access: None/Read/User/Requested`, `Request access` (or the pending `Requested`, which cancels) when the viewer cannot run agents on it, and the read-only `Options`; the team's owner also gets `Remove` on team machines. People never show machines: user cards, hover cards, drawers and chips list none. Agent cards and the agent session pane still show the machine an agent runs or lives on (`Runs on <machine>` / `Lives on <machine>`), with `Request access`, and so do the agent and routine pickers. When an agent's owner loses access to the machine it lives on, the agent stops: its session pane and DM header say `Stopped: no access to <machine>` with `Request access` for the owner, a prompt to it leaves a refusal line in the transcript instead of running, and the owner gets a notification ("<person> removed your access to <machine>" / "<agent> has stopped.") that opens this section with that machine pointed out. These notifications are filed under the machine and listed in Notifications (Access); clicking the row opens what its newest notification opens. An access-request notification ("requested to use <machine>") opens this section with that machine's row highlighted and its Share menu open; a grant notification highlights the row only. `/settings/runtimes` opens this section; legacy `/settings/harness?pair=…` links remain supported. A Rox computer is listed only under **Rox computers**, not here.
 Connection chips in agent replies open this page, including before any account is connected. Cursor's default-model picker uses
 the same live model discovery and retains its existing save action. Beside it,
 the composer's speedometer effort control (the bottom sheet on touch) offers the
@@ -876,7 +876,7 @@ on the saved effort; an effort picked in the composer still overrides it.
 
 The Codex row uses the OpenAI logo and the same icon, button, and status styling
 as Cursor. Under **Codex**, choose **Connect with ChatGPT**, copy the displayed device code,
-and use **Continue to ChatGPT** to finish sign-in in the provider tab. The Macro
+and use **Continue to ChatGPT** to finish sign-in in the provider tab. The Rox
 page displays pending, expired, failed, and retryable error states; **Cancel
 sign-in** cancels the attempt. After connecting, choose a **Cloud environment**
 and click **Save Codex settings** before using Codex. Options show their
@@ -893,17 +893,17 @@ The UI never asks for an
 OAuth token.
 
 The Codex section and its auth/config requests were exercised in Chromium with
-mocked backend responses on 2026-09-15. Provider login and a full deployed Macro
+mocked backend responses on 2026-09-15. Provider login and a full deployed Rox
 session were not exercised by that UI check.
 
-### Macro computers
+### Rox computers
 
-Macro computers are hosted machines a team buys for its agents, billed on the
+Rox computers are hosted machines a team buys for its agents, billed on the
 team subscription. They never sleep. They sit in `Machines`, behind the
 `enable-macro-computers` flag for purchases and Claude account controls, and
 need a team: without one the page shows nothing about them. The flag follows
 PostHog in every environment unless explicitly overridden locally. With the
-flag off, the computer UI is hidden (the Macro computers section, Billing,
+flag off, the computer UI is hidden (the Rox computers section, Billing,
 Agents and settings search show nothing about computers; a team owner or admin
 still sees an existing computer under Your machines as an ordinary machine
 they can rename), while existing computers keep running and billing. Turning the flag off is a sales kill switch, not a way to manage
@@ -913,7 +913,7 @@ offers and purchases answer 503 with `computers are not available in
 this environment`; partial price configuration prevents the authentication
 service from starting.
 
-**Macro computers** lists every team computer once; its runtime is not listed
+**Rox computers** lists every team computer once; its runtime is not listed
 again under **Your machines**. Each row uses the same layout as a Your machines
 row: status dot, name, one muted line, at most one action, and **⋯** (a sheet
 on touch) for the rest. The line is the size and the resources recorded at
@@ -941,7 +941,7 @@ in order: **Don't ask before acting** (the computer's permission bypass, for
 the team's owner and admins; a computer belongs to its team, so it has no Share
 menu); **Retry** on a `failed` computer when the row does not already offer
 **Retry setup**; **Turn off** (confirm: agents on it stop
-until it is turned back on) or **Turn on**; **Switch to Macro credits** or
+until it is turned back on) or **Turn on**; **Switch to Rox credits** or
 **Sign in with Claude** (confirm: it affects everyone on the team); **Cancel at
 period end**, **Undo cancel** while the cancellation is pending, or **Restore**
 once billing has ended and the disk is still retained (`canRestore`; confirm:
@@ -957,20 +957,20 @@ release; whoever manages the runtime gets the Claude items.
 To buy one as a team admin:
 
 1. Open `/app/settings/runtimes` (mobile: Settings sheet → Machines). The top
-   of the page, above every other section, is the **Get a Macro computer**
+   of the page, above every other section, is the **Get a Rox computer**
    panel: "A hosted computer where your team's agents run.", three facts
-   (**Always on, never sleeps**, **Runs on your Claude plan or Macro
+   (**Always on, never sleeps**, **Runs on your Claude plan or Rox
    credits**, **From <price>/month** from the cheapest size on sale, or
    **Included**), and a large primary **Get a computer** (full width on
    phones). It stays the same once the team has computers; a compact
    one-row variant (`variant="compact"`: "Hosted, always on · from
    <price>/month" with a small **Get a computer**) exists for comparison. In **Settings →
-   Agents**, a team without a computer also sees **Run coding agents on a Macro
-   computer** in the agents list, and **Where it runs** ends with **New Macro
+   Agents**, a team without a computer also sees **Run coding agents on a Rox
+   computer** in the agents list, and **Where it runs** ends with **New Rox
    computer**. Computers are for paying teams: on a trialing subscription the
    panel instead reads "Computers can be added once your trial ends and your
    team is on a paid plan." and on a team with no paid plan (offers answers
-   422) "Computers need a paid Macro plan. Your team does not have one yet.",
+   422) "Computers need a paid Rox plan. Your team does not have one yet.",
    each with **Go to Billing**, and the Agents entries are hidden. The API
    answers 403 with `code: "team_on_trial"` to offers, purchase, undo and
    restore. Showing the panel loads the offers, so the dialog opens with the
@@ -983,7 +983,7 @@ To buy one as a team admin:
    **Large**, **XL**) with price per interval, a sold-out size disabled and
    marked **Sold out**, a size too large for every host left out (with none
    left the step shows only "No computer sizes are available right now." and
-   "Macro's hosts have no room for a new computer. Try again later.", with
+   "Rox's hosts have no room for a new computer. Try again later.", with
    **Close** and no Name, price line, heads-up or Buy); **Name**, prefilled "<first name>'s Agent Box" (**Agent
    Box** without a first name); the price breakdown; and under **Buy** the
    heads-up "Next you'll name your agent and sign in to Claude (Pro or Max) —
@@ -996,9 +996,9 @@ To buy one as a team admin:
    rollout (any other 403, "Computers aren't available for this account yet.")
    with only **Close**; computers unavailable (503, "Computers aren't
    available right now. Try again later."), the billing provider failing (502,
-   "Macro's billing provider didn't answer. Try again in a moment."), a
+   "Rox's billing provider didn't answer. Try again in a moment."), a
    timeout ("Loading computer sizes took too long. Try again.") or a dropped
-   connection ("Couldn't reach Macro. Check your connection and try again."),
+   connection ("Couldn't reach Rox. Check your connection and try again."),
    each with **Retry**.
 3. **Buy · <price>/month** (or **Buy** for an included offer) adds it. Each
    opening of the modal makes one `purchaseKey`, sent again on every retry, so
@@ -1020,11 +1020,11 @@ purchase; "Waiting for space on the host" while it waits for capacity; "Sign
 in to Claude", without a timer, once the computer is up). Pressing it
 (`aria-expanded`) opens the **Setup progress** list, which stays open across
 steps: the same phases the row shows (Updating billing…, Creating the
-computer, Starting up, Connecting to Macro, Sign in to Claude; the same five
+computer, Starting up, Connecting to Rox, Sign in to Claude; the same five
 on every step, the sign-in marked with a dash as "Sign in to Claude · skipped",
-"Not needed", once Macro credits is chosen), done stages with a check and
+"Not needed", once Rox credits is chosen), done stages with a check and
 worded as done (Billing updated, Computer created, Started up, Connected to
-Macro, Signed in to Claude), the current one a spinner and its time. A
+Rox, Signed in to Claude), the current one a spinner and its time. A
 stopped setup replaces the line with one banner at the top of the dialog:
 `failed` says which stage failed and why on one line ("Couldn't create the
 computer: the host ran out of disk", the server's `failureReason` in lower
@@ -1037,10 +1037,10 @@ code; **Try it** and **Create an agent on this computer**: setup finishing),
 except **Continue**, whose two fields sit right above it. The row in Machines shows the same live line, `Setting up ·
 Starting up (2 of 3) · 0:42`. The dialog closes at any time while setup
 carries on; the row's **Finish setup** reopens the same dialog where it left
-off. **Let's set up an agent on it** (no subtitle) names the agent Macro
+off. **Let's set up an agent on it** (no subtitle) names the agent Rox
 creates on the computer ("<buyer first name>'s Agent", a coding agent that
 bypasses permission prompts) and asks **Which Claude should it use?** with a
-two-option segmented control, **Your Claude account** or **Macro credits**
+two-option segmented control, **Your Claude account** or **Rox credits**
 (each option's hint is its description and desktop tooltip); nothing is
 preselected. Both options must stay reachable at any viewport height: the
 step's body scrolls above a footer that never covers it, and the buy-flow
@@ -1053,21 +1053,21 @@ Claude, then setup-complete.
   nothing of it can start before the computer connects: until then the step
   explains that, shows a live status line ("Preparing sign-in… Starting up ·
   0:42") instead of a greyed button, lists the sign-in as a later stage that
-  unlocks by itself, and offers only **Close** and **Use Macro credits
+  unlocks by itself, and offers only **Close** and **Use Rox credits
   instead**. Once connected, **Open claude.ai** appears and the tab title
-  becomes "● Sign in to Claude — Macro". Closed meanwhile, the setup notice
+  becomes "● Sign in to Claude — Rox". Closed meanwhile, the setup notice
   (below) reopens the modal on that step. The code is pasted in the same modal.
-- **Macro credits** skips **Bring your AI**, shown muted with a dash as
+- **Rox credits** skips **Bring your AI**, shown muted with a dash as
   "Bring your AI · skipped" (phones keep "Your AI" with the dash), never struck
-  through. Choosing **Use Macro credits instead** after opening **Bring your
-  AI** marks it done instead: a check and "Bring your AI · Macro credits".
+  through. Choosing **Use Rox credits instead** after opening **Bring your
+  AI** marks it done instead: a check and "Bring your AI · Rox credits".
 - A **failed** or stuck setup stops the **Bring your AI** step: it says setup
   stopped before the computer came up and to use the banner's **Retry setup**
   above, with
-  no spinner, no elapsed time, no shared-sign-in note and no **Use Macro
+  no spinner, no elapsed time, no shared-sign-in note and no **Use Rox
   credits instead**.
 
-Macro creates that agent once, on the computer's first connection, with the
+Rox creates that agent once, on the computer's first connection, with the
 handle `@<first-name>-s-agent` (`-2`, `-3`… when taken), on Claude Code's
 default model, all channels and the runner's connected apps. Deleting or moving
 it never brings it back; if creating it fails, setup still finishes and anyone
@@ -1114,15 +1114,15 @@ notice, so the two never stack.
 system browser). Sign in there, copy the code, come back, paste it into the
 focused field (under the note that the code goes straight into the harness
 running the real Claude Code on the computer), and press **Complete
-sign-in**; **Use Macro credits instead**
+sign-in**; **Use Rox credits instead**
 switches to credits. A rejected code shows "That code didn't work. Try again to
 get a new one." with **Try again**; an expired sign-in shows **Start over**.
 Success closes the dialog with "Signed in with Claude", and the row reads
 **Signed in with Claude**: the computer holds a one-year Claude credential
 (no email or plan to show). Everyone on the team uses it on the computer.
 
-In **Settings → Agents**, agents on a computer read `On a Macro computer ·
-<name>`. The editor's **Where it runs** has its own **On a Macro computer**
+In **Settings → Agents**, agents on a computer read `On a Rox computer ·
+<name>`. The editor's **Where it runs** has its own **On a Rox computer**
 option with a computer picker; a computer that is off reads `<name> · Powered
 off`, its model list comes from the last-known catalog, and a computer never
 shows "Could not load models". New agents on a computer default to **Always
@@ -1133,7 +1133,7 @@ machine".
 
 Team **Billing** lists the computers on the subscription breakdown with their
 specs, status (**Alive**, **Starting…**, **Setting up…**, **Stopped**,
-**Failed**) and amount, or under **Macro computers** when the subscription has
+**Failed**) and amount, or under **Rox computers** when the subscription has
 no itemized billing.
 
 Whoever completed the sign-in, and the team's owner and admins, get a
@@ -1142,28 +1142,28 @@ expires, **… expires today** within its last day, and **… expired** once it
 passes; the notification list
 row uses the same titles. Each goes out once per sign-in, a later stage
 replacing the earlier ones it overtook, and none arrive after switching to
-Macro credits. Opening one lands on this section, where **Sign in with Claude**
+Rox credits. Opening one lands on this section, where **Sign in with Claude**
 starts over. People can turn them off under **Settings → Notifications →
 Computer Claude sign-ins**.
 
 ### GitHub reconnect recovery
 
 When GitHub reports that reauthentication is required, reconnect starts OAuth
-without first deleting the current Macro link. Cancelling OAuth preserves it.
+without first deleting the current Rox link. Cancelling OAuth preserves it.
 Selecting a different GitHub account fails without changing the connection; use
 Disconnect first to switch accounts.
 A successful callback refreshes the grant; if its old FusionAuth identity was
-deleted, all Macro accounts sharing that GitHub account move to the new grant.
+deleted, all Rox accounts sharing that GitHub account move to the new grant.
 Verify reconnect both as the original linker and as another sharing account,
 and verify an upstream outage leaves the current links intact and reports an error.
-The Macro link survives a failed reconnect, but replacing the FusionAuth grant
+The Rox link survives a failed reconnect, but replacing the FusionAuth grant
 is not atomic. A crash or failed restoration may leave it missing; retry OAuth
 to recreate it after the provider recovers.
 
 ## Bots
 
 Open **Developer → Bots** to create an account for a program. The page explains
-how to add the bot to channels and use its token with the Macro SDK. **Create
+how to add the bot to channels and use its token with the Rox SDK. **Create
 bot** keeps Profile and Channels visible. **Advanced** starts collapsed on both
 desktop and mobile and contains:
 

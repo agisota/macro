@@ -183,12 +183,8 @@ describe('Home channel reply row', () => {
     setNotifications([{ ...documentMention, state: 'done' }, reply]);
     expect(row.textContent).toContain('Eric in #bug-reports');
 
-    setNotifications([
-      replyNotification(null, 'Macro'),
-      documentMention,
-      reply,
-    ]);
-    expect(row.textContent).toContain('Macro in #bug-reports');
+    setNotifications([replyNotification(null, 'Rox'), documentMention, reply]);
+    expect(row.textContent).toContain('Rox in #bug-reports');
   });
 
   it('does not attribute an unnamed bot reply to the thread author', () => {
@@ -333,7 +329,7 @@ describe('Home document comment row', () => {
                   content: {
                     commentId: 'comment-1',
                     documentName: 'Plan',
-                    senderDisplayName: 'Macro',
+                    senderDisplayName: 'Rox',
                   },
                 },
               },
@@ -344,7 +340,7 @@ describe('Home document comment row', () => {
       />
     )).container.querySelector<HTMLElement>('[data-home-item]')!;
 
-    expect(row.textContent).toContain('Macro replied on Recent chat');
+    expect(row.textContent).toContain('Rox replied on Recent chat');
     expect(row.textContent).not.toContain('Someone');
   });
 });

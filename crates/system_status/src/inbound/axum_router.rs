@@ -2,8 +2,8 @@
 //!
 //! Nested under `/system-status` by the authentication service:
 //! - `GET /` — anyone: the current status
-//! - `POST /` — Macro staff: set the status
-//! - `GET /history` — Macro staff: recent updates, newest first
+//! - `POST /` — Rox staff: set the status
+//! - `GET /history` — Rox staff: recent updates, newest first
 
 /// The current status.
 pub mod get_current;

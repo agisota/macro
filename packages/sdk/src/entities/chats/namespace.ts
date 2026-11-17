@@ -4,14 +4,14 @@ import type { SearchOpts } from '../search/options';
 import { Chat } from './chat';
 
 /**
- * The user's AI chats: earlier conversations with Macro's assistant, each
+ * The user's AI chats: earlier conversations with Rox's assistant, each
  * with its message history. Find one with {@link ChatNamespace.search},
  * `macro.search.all(query, {types: ['chat']})` or
  * `macro.workspace.list({includeTypes: ['ai_chat']})`, then read it with
  * `chat.history()`. Agent work and coding sessions are agent sessions, not
  * chats.
  *
- * @routing Use when reading or continuing one of the user's AI chats with Macro's assistant; not agent sessions or channels.
+ * @routing Use when reading or continuing one of the user's AI chats with Rox's assistant; not agent sessions or channels.
  */
 export class ChatNamespace {
   constructor(private readonly client: MacroClient) {}

@@ -1,4 +1,4 @@
-//! Macro event broker publisher for realtime Soup patches.
+//! Rox event broker publisher for realtime Soup patches.
 
 #[cfg(test)]
 mod test;

@@ -41,7 +41,7 @@ const OBSERVED_WORKFLOWS: &[&str] = &[
     "Deploy on Push",
     "Ensure Daytona Snapshot",
     "Export Datadog observability definitions",
-    "Migrate Macro Database",
+    "Migrate Rox Database",
     "Native Check Label",
     "PR CI",
     "Publish Android to Google Play",

@@ -80,7 +80,7 @@ test("the system prompt is the same for every call: what differs goes in the fir
 	});
 	expect(
 		first.startsWith(
-			"BRIEF\n\nYou just joined call call-1 in Macro channel ch-1",
+			"BRIEF\n\nYou just joined call call-1 in Rox channel ch-1",
 		),
 	).toBe(true);
 	expect(first).toContain(

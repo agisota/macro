@@ -41,7 +41,7 @@ function stubFiles(): Plugin {
 }
 
 /**
- * Mounts the real Macro computers section over the real computers queries and
+ * Mounts the real Rox computers section over the real computers queries and
  * service client, so Playwright can answer `/team/computers/*` itself. Only
  * the app's shell (account, team, feature flags, other queries) is stubbed.
  */

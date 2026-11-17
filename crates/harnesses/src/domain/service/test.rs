@@ -781,7 +781,7 @@ async fn claim_rejects_bad_secrets_and_dead_pairings() {
     assert!(matches!(result, Err(HarnessError::NotFound(_))));
 }
 
-/// A Macro computer's harness goes away with the computer (Release now);
+/// A Rox computer's harness goes away with the computer (Release now);
 /// deleting it directly would leave a paid computer with no runtime.
 #[tokio::test]
 async fn a_computer_harness_cannot_be_removed_like_a_paired_machine() {

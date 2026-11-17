@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { LANGUAGES } from '../languages';
 
 test.beforeEach(async ({ page }) => {
-  // The app's sockets to Macro's services are closed, never Vite's own: on a
+  // The app's sockets to Rox's services are closed, never Vite's own: on a
   // cold server a dependency found while the page loads makes Vite re-bundle
   // and ask the page to reload over that socket, and a page that can't is
   // left on 504 "Outdated Optimize Dep" chunks and never reports ready.

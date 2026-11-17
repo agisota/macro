@@ -61,14 +61,14 @@ describe('PipedreamAiProvider label', () => {
   });
   afterEach(cleanup);
 
-  it('says Macro Connect on a Connect grant with the macro-connect flag on', () => {
+  it('says Rox Connect on a Connect grant with the macro-connect flag on', () => {
     flag.on = true;
     renderLinear('connect');
     expect(screen.getByText('Powered by Rox Connect')).toBeTruthy();
     expect(screen.queryByText(/Pipedream/)).toBeNull();
   });
 
-  it('says Macro Connect before connecting with the flag on', () => {
+  it('says Rox Connect before connecting with the flag on', () => {
     flag.on = true;
     renderLinear();
     expect(screen.getByText('Powered by Rox Connect')).toBeTruthy();

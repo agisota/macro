@@ -263,7 +263,7 @@ async fn run_loop(
 ///
 /// The agent process survives the restart, but the service ends a turn
 /// when its runtime connection closes, so a turn in flight would still be
-/// cut off in Macro: the swap waits for one to finish.
+/// cut off in Rox: the swap waits for one to finish.
 #[cfg(unix)]
 fn install_when_idle(
     app: &mut App,

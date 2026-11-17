@@ -15,7 +15,7 @@ viewer identity is available, document inserts into Shared are rejected.
 
 Files opens **Drive** using the same shell as Tasks, on desktop and touch
 devices alike.
-The top of Drive's My Files, Recent and Shared lists (not folders) holds the Drive `TutorialRow`, outside the virtualized rows, and the top of Drive's sidebar holds the Docs `TutorialSidebarItem`, followed by Spreadsheets' under `enable-spreadsheets` and Databases' under `enable-databases` (all from `features/video-tutorials`, each once its video is in the catalog). While Drive's sidebar lists more than Docs, each item is labelled with its Block (**Macro Docs**, **Macro Spreadsheets**, **Macro Databases**) instead of **Watch tutorial**.
+The top of Drive's My Files, Recent and Shared lists (not folders) holds the Drive `TutorialRow`, outside the virtualized rows, and the top of Drive's sidebar holds the Docs `TutorialSidebarItem`, followed by Spreadsheets' under `enable-spreadsheets` and Databases' under `enable-databases` (all from `features/video-tutorials`, each once its video is in the catalog). While Drive's sidebar lists more than Docs, each item is labelled with its Block (**Rox Docs**, **Rox Spreadsheets**, **Rox Databases**) instead of **Watch tutorial**.
 
 The document header's **Copy Share Link** and the Share dialog's **Copy Link**
 copy a standalone link to the selected file, not the current browser URL.
@@ -94,7 +94,7 @@ disabled), and a searchable folder hierarchy.
 The Drive sidebar's import card (**Import files**, see
 [setup cards](setup-cards.md#import-from-connected-apps)) lists Notion; its
 **Import** (or a successful **Connect**) opens a new agent chat beside Drive
-that sends "Import my Notion workspace into Macro." (the agent plans with ImportFromNotion, or shows the
+that sends "Import my Notion workspace into Rox." (the agent plans with ImportFromNotion, or shows the
 Notion connect chip first; a user on a team is first asked whether to share
 the import with the team, keep it personal, or let AI decide per page, and a
 user without a team gets a personal import without being asked). The plan
@@ -103,12 +103,12 @@ while planning it shows `Reading Notion: 40 pages, 12 databases`, then every
 row with a **Deciding…** badge and `Deciding what to import: 40 of 84
 decided` as the decisions fill in, with **Import** disabled until the plan is
 ready. The card shows totals (Documents, Databases with rows, Task lists with
-tasks, Skipped, Already in Macro), a **Team** / **Only you** badge on every
+tasks, Skipped, Already in Rox), a **Team** / **Only you** badge on every
 written row (the owner clicks it to flip it, and a folder flips what is below
 it; databases stay **Only you**, and the card says "Databases can't be shared
 with the team yet, so they stay with you."), a sharing summary line (without
 a team: `N only you — you're not on a team, so nothing is shared`), and a
-collapsed **Already in Macro** section linking to copies teammates already
+collapsed **Already in Rox** section linking to copies teammates already
 imported and shared, which are not imported again. A database or task-list
 row's caret (**Show rows of …**) shows its row count with a few sample row
 titles and, for a task list, which Notion columns become status, priority,
@@ -253,7 +253,7 @@ from `apps/web`.
 
 ## Reading unrecognized files
 
-A file Macro has no viewer for reads in place when its content is text: one whose
+A file Rox has no viewer for reads in place when its content is text: one whose
 name has no recognized extension, or a text type such as `.env`, `.ics`, `.vcf`,
 or `.dot`. Both `/app/unknown/<id>` (channel attachments, mentions) and the Drive
 detail show it read-only through the static Lexical renderer, one literal line
@@ -287,10 +287,10 @@ preview header without opening the file.
   completed native save. Retry download remains available after a fetch failure.
 - On phones and tablets that support system sharing, **Download** opens a menu
   with **Download** and **Share**. Share opens the system share sheet; desktop
-  headers keep only Macro's existing Share control for access and links. If a browser's
+  headers keep only Rox's existing Share control for access and links. If a browser's
   user gesture expires during loading, a ready notice asks for another tap on
   Share in the open menu; that tap uses the prepared bytes without another network request.
-  No Macro download dialog appears. Cancelling a chooser keeps the file ready
+  No Rox download dialog appears. Cancelling a chooser keeps the file ready
   for another attempt and does not report success.
 - Installed iOS binaries without the optional file-export bridge use the system
   share sheet for saving too. After a slow preparation, tap **Save file** to open

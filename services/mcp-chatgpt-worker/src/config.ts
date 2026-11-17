@@ -16,7 +16,7 @@ export type Bindings = {
 const CONFIG = z.object({
   /** `deployment.environment` on exported spans. */
   ENVIRONMENT: z.string().min(1),
-  /** Which Macro environment the SDK talks to; its hosts come from the SDK. */
+  /** Which Rox environment the SDK talks to; its hosts come from the SDK. */
   MACRO_ENV: z.enum(['local', 'dev', 'prod']),
   /** This server's MCP endpoint, the OAuth resource tokens are issued for. */
   RESOURCE_URL: z.url(),

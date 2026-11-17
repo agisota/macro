@@ -6,7 +6,7 @@ export class ExternalChatParticipant {
   private constructor(
     /** The chat whose members list them. */
     readonly chat: ExternalChat,
-    /** Their provider id (a WhatsApp JID): correlation data, not a Macro user. */
+    /** Their provider id (a WhatsApp JID): correlation data, not a Rox user. */
     readonly id: string,
     private readonly record?: ExternalChatParticipantRecord,
   ) {}

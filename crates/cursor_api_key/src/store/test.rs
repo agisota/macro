@@ -15,7 +15,7 @@ fn encrypted(seed: u8) -> EncryptedCursorApiKey {
 
 /// The table's foreign key means a key needs a real user to belong to.
 ///
-/// A Macro user is two rows: `macro_user` holds the identity and `"User"` the
+/// A Rox user is two rows: `macro_user` holds the identity and `"User"` the
 /// profile that references it. `cursor_configs` keys on `"User"."id"`, the
 /// text id that `MacroUserIdStr` carries — not the `macro_user_id` uuid.
 async fn insert_user(pool: &Pool<Postgres>, user_id: &str) -> anyhow::Result<()> {

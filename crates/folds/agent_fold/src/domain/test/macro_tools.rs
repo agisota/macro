@@ -1,4 +1,4 @@
-//! Macro tools reached over MCP, and the user tools among them, fold to
+//! Rox tools reached over MCP, and the user tools among them, fold to
 //! their own details with the MCP envelope removed.
 
 use crate::domain::fold::{FoldMachineImpl, fold};
@@ -80,7 +80,7 @@ fn macro_mcp_calls_fold_to_macro_and_user_tool_details() {
             _ => None,
         })
         .collect();
-    assert_eq!(tools.len(), 3, "three Macro calls: {tools:#?}");
+    assert_eq!(tools.len(), 3, "three Rox calls: {tools:#?}");
 
     let (name, status, detail) = tools[0];
     assert_eq!(name, "ReadContent");
@@ -91,7 +91,7 @@ fn macro_mcp_calls_fold_to_macro_and_user_tool_details() {
         error,
     } = detail
     else {
-        panic!("ReadContent folds to a Macro detail: {detail:?}");
+        panic!("ReadContent folds to a Rox detail: {detail:?}");
     };
     assert_eq!(
         input,
@@ -128,7 +128,7 @@ fn macro_mcp_calls_fold_to_macro_and_user_tool_details() {
     assert_eq!(name, "ListEntities");
     assert_eq!(status, ToolStatus::Failed);
     let ToolDetail::Macro { output, error, .. } = detail else {
-        panic!("ListEntities folds to a Macro detail: {detail:?}");
+        panic!("ListEntities folds to a Rox detail: {detail:?}");
     };
     assert_eq!(
         error.as_deref(),
@@ -343,7 +343,7 @@ fn tool_shape_puts_macro_tools_first_and_leaves_the_rest_to_the_harness() {
         ),
         ToolShape::Subagent
     );
-    // Macro's own agent calls its tools by bare name.
+    // Rox's own agent calls its tools by bare name.
     let inmem = Harness::Macro.reader();
     assert_eq!(
         harness::tool_shape(inmem, &parse("SendEmail"), &other.view()),
@@ -360,7 +360,7 @@ fn tool_shape_puts_macro_tools_first_and_leaves_the_rest_to_the_harness() {
     );
 }
 
-/// Macro's `Subagent` answers in Macro's shape through every harness's
+/// Rox's `Subagent` answers in Rox's shape through every harness's
 /// wrapper; a harness's own delegation tool is read by its reader.
 #[test]
 fn subagent_result_reads_macro_subagent_through_the_harness_wrapper() {
@@ -401,7 +401,7 @@ fn subagent_result_reads_macro_subagent_through_the_harness_wrapper() {
         harness::subagent_result(inmem, &parse("Subagent"), &streaming.view()),
         None
     );
-    // The same `{ "result" }` from the harness's own tool is not Macro's
+    // The same `{ "result" }` from the harness's own tool is not Rox's
     // shape: the generic reading shows it as JSON text.
     assert_eq!(
         harness::subagent_result(claude, &parse("Task"), &bare.view()),
@@ -409,7 +409,7 @@ fn subagent_result_reads_macro_subagent_through_the_harness_wrapper() {
     );
 }
 
-/// Macro's in-process agent calls the same tools natively, with bare output.
+/// Rox's in-process agent calls the same tools natively, with bare output.
 #[test]
 fn the_inmem_harness_reads_native_names_as_macro_tools_with_bare_output() {
     let reader = Harness::Macro.reader();
@@ -432,7 +432,7 @@ fn the_inmem_harness_reads_native_names_as_macro_tools_with_bare_output() {
         reader.unwrap_tool_output(&json!({"error": "boom"})),
         (Value::Null, Some("boom".to_owned()))
     );
-    // Other harnesses only know Macro's tools through its MCP server.
+    // Other harnesses only know Rox's tools through its MCP server.
     assert_eq!(
         Harness::ClaudeCode
             .reader()

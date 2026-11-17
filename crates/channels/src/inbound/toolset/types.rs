@@ -79,7 +79,7 @@ pub enum ChannelAttachmentKind {
     Image,
     /// An inline, playable video uploaded with CreateChannelMediaUpload.
     Video,
-    /// A Macro document, shown as a file chip.
+    /// A Rox document, shown as a file chip.
     Document,
 }
 
@@ -99,12 +99,12 @@ impl ChannelAttachmentKind {
 pub struct ChannelMessageAttachmentInput {
     /// The attachmentId from CreateChannelMediaUpload, or a document ID.
     #[schemars(
-        description = "The attachmentId returned by CreateChannelMediaUpload (after its upload succeeded), or the ID of a Macro document."
+        description = "The attachmentId returned by CreateChannelMediaUpload (after its upload succeeded), or the ID of a Rox document."
     )]
     pub id: String,
     /// How the attachment renders.
     #[schemars(
-        description = "image or video for media from CreateChannelMediaUpload (use the kind it returned); document for a Macro document ID."
+        description = "image or video for media from CreateChannelMediaUpload (use the kind it returned); document for a Rox document ID."
     )]
     pub kind: ChannelAttachmentKind,
     /// Optional pixel width of an image or video, used to lay it out before it loads.

@@ -17,7 +17,7 @@ import { fail, mail, noon, type Over, pass, raw, who } from "./helpers.ts";
 const provider = "gmail.com";
 
 describe("who counts as a colleague", () => {
-	test("the owner's domain is read from their Macro id", () => {
+	test("the owner's domain is read from their Rox id", () => {
 		expect(who).toEqual({
 			mailbox: "agent@example.com",
 			owner: "owner@example.com",

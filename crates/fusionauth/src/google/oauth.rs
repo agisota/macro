@@ -87,7 +87,7 @@ pub(crate) async fn refresh_google_token(
                 .await
                 .unwrap_or_else(|_| "Unable to read error response".to_string());
 
-            // If the user revoked Macro's access to their account, we get an invalid_grant error here
+            // If the user revoked Rox's access to their account, we get an invalid_grant error here
             if error_text.contains("invalid_grant") {
                 tracing::warn!(status=?status, error=?error_text, "Google rejected the refresh token");
                 return Err(FusionAuthClientError::InvalidGrant);

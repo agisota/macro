@@ -27,7 +27,7 @@ enum NavigationOutput<'a> {
     /// navigation handler about subframe loads too, so it must be allowed to
     /// load in place; as a new window it is still external.
     Embedded,
-    /// A link to content inside the Macro app whose literal [Url] points at
+    /// A link to content inside the Rox app whose literal [Url] points at
     /// the remote website (e.g. `https://rox.one/app/...`). The webview
     /// must not load it — that would replace the running SPA with the live
     /// site — so the navigation is cancelled and re-emitted as a `navigate`

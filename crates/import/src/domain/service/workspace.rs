@@ -21,7 +21,7 @@ pub(super) mod scan;
 
 /// Source-independent entry points for reviewed Notion, Linear and Jira imports.
 pub trait WorkspaceImporter: NotionWorkspaceImporter {
-    /// Read a connected workspace and stage a plan. No Macro entities are
+    /// Read a connected workspace and stage a plan. No Rox entities are
     /// created until the owner approves the resulting review.
     fn prepare_workspace_import(
         &self,

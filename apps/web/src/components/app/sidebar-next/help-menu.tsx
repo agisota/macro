@@ -12,7 +12,7 @@ const DEMO_URL =
   'https://rox.one/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/macro-demo';
 const SUPPORT_EMAIL = 'support@rox.one';
 
-/** The rail's question-mark button: ways to reach the Macro team. */
+/** The rail's question-mark button: ways to reach the Rox team. */
 export function HelpMenu() {
   const support = createSupportLink();
 

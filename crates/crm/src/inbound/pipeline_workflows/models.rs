@@ -71,7 +71,7 @@ pub enum EntryFieldValue {
     Labels(Vec<String>),
     /// URLs.
     Links(Vec<String>),
-    /// Macro ids: people as macro| user ids, records or other items.
+    /// Rox ids: people as macro| user ids, records or other items.
     References(Vec<String>),
 }
 
@@ -162,9 +162,9 @@ pub enum PipelineFieldType {
     Select,
     /// Tags.
     Tags,
-    /// Macro users.
+    /// Rox users.
     Person,
-    /// Ids of other Macro items.
+    /// Ids of other Rox items.
     Item,
     /// Linked rows; written only in the app.
     Relation,
@@ -585,9 +585,9 @@ pub enum NewFieldType {
     Select,
     /// Several labels from `options`.
     MultiSelect,
-    /// One Macro user.
+    /// One Rox user.
     Person,
-    /// Several Macro users.
+    /// Several Rox users.
     People,
 }
 
@@ -737,7 +737,7 @@ pub struct EditPipelineRequest {
     pub remove_options: Vec<OptionRemoval>,
 }
 
-/// A CSV to import: exactly one of its text or a CSV file in Macro.
+/// A CSV to import: exactly one of its text or a CSV file in Rox.
 #[derive(Debug, Clone, Deserialize, utoipa::ToSchema)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct ImportPipelineCsvRequest {
@@ -838,7 +838,7 @@ pub struct NewImportPipeline {
 }
 
 /// A companies CSV to import: exactly one of its text or a CSV file in
-/// Macro, and at most one of `pipelineId` or `newPipeline` for its Stage,
+/// Rox, and at most one of `pipelineId` or `newPipeline` for its Stage,
 /// Owner and Revenue values (a new private pipeline when neither is given).
 #[derive(Debug, Clone, Deserialize, utoipa::ToSchema)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]

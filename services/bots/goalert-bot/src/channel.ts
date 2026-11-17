@@ -9,7 +9,7 @@ export type ChannelConfig = {
   botToken: string;
   /** The bot owner's user id (`macro|<email>`); the bot acts as this user. */
   actingUserId: string;
-  /** Macro environment. Defaults to prod. */
+  /** Rox environment. Defaults to prod. */
   env?: Env;
 };
 
@@ -24,7 +24,7 @@ export type AlertChannel = {
 };
 
 /**
- * The alerts channel through the Macro SDK.
+ * The alerts channel through the Rox SDK.
  *
  * The bot is user-owned and acts as its owner (`x-macro-bot-for-macro-user-id`,
  * user scope), which routes posts through the entity message API: threads,

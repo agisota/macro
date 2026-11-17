@@ -16,7 +16,7 @@ import {
 } from '../primitives/create-tutorial-state';
 
 /**
- * "Have questions about Macro CRM? Talk to us in your support channel." under
+ * "Have questions about Rox CRM? Talk to us in your support channel." under
  * the video, when the person has a support channel. Mounts with the open
  * dialog, so the channel list is read only then. Following it closes the
  * dialog.
@@ -136,7 +136,7 @@ export function TutorialPill(props: { tutorial: TutorialId; class?: string }) {
 
 /**
  * The entry as a sidebar item, at the top of a block's sidebar. `named` labels
- * it with the block ("Macro Docs") for a sidebar that lists several tutorials.
+ * it with the block ("Rox Docs") for a sidebar that lists several tutorials.
  */
 export function TutorialSidebarItem(props: {
   tutorial: TutorialId;

@@ -89,9 +89,9 @@ function stepLabel(step: SetupStepId): string {
 }
 
 /**
- * How the step bar marks Bring your AI: as an ordinary step, skipped (Macro's
- * Claude chosen up front), or done on Macro credits (the sign-in was opened,
- * then Use Macro credits instead).
+ * How the step bar marks Bring your AI: as an ordinary step, skipped (Rox's
+ * Claude chosen up front), or done on Rox credits (the sign-in was opened,
+ * then Use Rox credits instead).
  */
 export type ClaudeStepMark = 'step' | 'skipped' | 'credits';
 
@@ -515,7 +515,7 @@ export function ComputerSetupSteps(props: {
           <Button type="button" variant="ghost" onClick={props.onClose}>
             {t('common.close')}
           </Button>
-          {/* Choosing Macro credits cannot finish a computer that is not up. */}
+          {/* Choosing Rox credits cannot finish a computer that is not up. */}
           <Show when={!setupStopped()}>
             <Button
               type="button"

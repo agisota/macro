@@ -287,10 +287,10 @@ define_notif_event!(
         /// One of the user's routines finished a run, successfully or not.
         RoutineRunFinished(RoutineRunFinishedMetadata),
 
-        /// An agent's sign-in on one of the team's Macro computers is about
+        /// An agent's sign-in on one of the team's Rox computers is about
         /// to expire, expired, or was rejected.
         AgentSignInExpiry(AgentSignInExpiryMetadata),
-        /// A Macro computer the user bought finished first-time setup, or
+        /// A Rox computer the user bought finished first-time setup, or
         /// could not be set up.
         ComputerSetup(ComputerSetupMetadata),
         /// A runtime's owner removed the user's access to it, and agents of

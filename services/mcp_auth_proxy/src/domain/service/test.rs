@@ -89,7 +89,7 @@ async fn registration_refuses_a_name_claiming_to_be_macro() {
     let error = harness
         .service
         .register_client(ClientRegistrationRequest {
-            client_name: Some("Macro Security".to_owned()),
+            client_name: Some("Rox Security".to_owned()),
             redirect_uris: vec![LOOPBACK_REDIRECT_URI.to_owned()],
         })
         .await
@@ -1412,8 +1412,8 @@ async fn the_harness_resource_gets_the_upstream_access_token() {
     assert_eq!(response.access_token.as_str(), UPSTREAM_ACCESS_TOKEN);
 }
 
-/// The ChatGPT server hands its token straight to Macro's APIs, so the token
-/// is a Macro API token for the same user, labelled with the client's name and
+/// The ChatGPT server hands its token straight to Rox's APIs, so the token
+/// is a Rox API token for the same user, labelled with the client's name and
 /// expiring when the upstream token would.
 #[tokio::test]
 async fn the_chatgpt_resource_gets_a_macro_api_token_naming_the_client() {

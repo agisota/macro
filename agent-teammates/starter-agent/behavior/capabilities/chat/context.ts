@@ -18,7 +18,7 @@ const screenModule = z.object({ screen: Screen });
 const screenFile = "screen.ts";
 const queueDirectory = "queue";
 
-/** What chat adds to the agent's context: Macro, what it remembers of conversations, and who is waiting on it. */
+/** What chat adds to the agent's context: Rox, what it remembers of conversations, and who is waiting on it. */
 export const chatContext = ({ macro, config, state, join, disk }: Base) => {
 	const chat = sdkChat({ macro, myName: config.identity.name });
 	const unanswered = channel<Conversation>();

@@ -63,7 +63,7 @@ ranked AS (
     ORDER BY p.is_teammate DESC, is_prefix DESC, sort_key, p.id COLLATE "C"
     LIMIT $3
 )
--- Same precedence as the directory's names: a Macro profile name wins;
+-- Same precedence as the directory's names: a Rox profile name wins;
 -- otherwise the viewer's own address-book label, read only for the page.
 SELECT
     r.id AS "user_id!",

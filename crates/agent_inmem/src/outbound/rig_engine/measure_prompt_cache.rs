@@ -1,5 +1,5 @@
 //! Measures Anthropic prompt-cache reads and writes per model call, against
-//! the real API, with Macro's real tools and system prompt routed through the
+//! the real API, with Rox's real tools and system prompt routed through the
 //! production agent loop. Tool calls other than `LoadTools` answer `ok`
 //! without running, so nothing touches a workspace.
 //!
@@ -88,7 +88,7 @@ async fn turn(
     let identity = AgentIdentity {
         bot: bot_id::BotId::TEST_A,
         // Unique per run, so every run starts from a cold cache.
-        name: format!("Macro {run}"),
+        name: format!("Rox {run}"),
         handle: "macro".to_owned(),
     };
     let system_prompt = system_prompt(
@@ -183,7 +183,7 @@ async fn measure_prompt_cache() {
         .to_string();
     let task = |id: &str| {
         format!(
-            "You've been assigned the original Macro task linked below. Carry out its requested work.\n\
+            "You've been assigned the original Rox task linked below. Carry out its requested work.\n\
              <m-document-mention>{{\"documentId\":\"{id}\",\"documentName\":\"Original assigned task\"}}</m-document-mention>"
         )
     };
@@ -230,7 +230,7 @@ async fn measure_prompt_cache_turns() {
         .to_string();
     let identity = AgentIdentity {
         bot: bot_id::BotId::TEST_A,
-        name: format!("Macro {run}-turns"),
+        name: format!("Rox {run}-turns"),
         handle: "macro".to_owned(),
     };
     let session_id = agent_session::domain::model::AgentSessionId::new();

@@ -1,6 +1,6 @@
 # Shared cognition tools
 
-`GenerateObject` and `Decide` are ordinary Macro tools available through the
+`GenerateObject` and `Decide` are ordinary Rox tools available through the
 shared `ai_tools` toolset. The code-mode SDK calls those same tools; it has no
 provider client, separate AI service, or model credentials.
 
@@ -17,7 +17,7 @@ requests. Its HTTP adapter calls the existing cognition service:
 The cognition service owns model access, admission, provider work, output-schema
 validation, and usage metering. Tools cannot choose an acting user, change the
 service destination, pass credentials, or enable nested tools. Callers supply
-the source context; these operations do not fetch or modify Macro documents.
+the source context; these operations do not fetch or modify Rox documents.
 
 `ai_tools::build_cognition_tool_context` constructs one pooled client using the
 existing cognition service URL and internal credential. The client forwards

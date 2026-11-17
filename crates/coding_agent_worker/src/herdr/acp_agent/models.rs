@@ -128,7 +128,7 @@ impl Adapter {
             return Err(RpcError::invalid("cannot change model during a turn"));
         }
         // A short observer poll must not cause an otherwise idle model change
-        // to fail. Active Macro prompts are rejected before and after waiting.
+        // to fail. Active Rox prompts are rejected before and after waiting.
         let mut guard = tokio::time::timeout(Duration::from_secs(3), session.live.lock())
             .await
             .map_err(|_| RpcError::invalid("native session is busy; retry the selection"))?;

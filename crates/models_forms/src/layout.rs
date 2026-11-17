@@ -17,7 +17,7 @@ pub struct FormLayout {
     pub sections: Vec<FormSection>,
 }
 
-/// An existing native Macro scheduling event offered after an accepted response.
+/// An existing native Rox scheduling event offered after an accepted response.
 #[cfg_attr(feature = "schema", derive(schemars::JsonSchema))]
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, utoipa::ToSchema, specta::Type)]
 #[serde(rename_all = "camelCase")]

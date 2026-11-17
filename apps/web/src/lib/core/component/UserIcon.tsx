@@ -33,7 +33,7 @@ export type UserIconProps = {
   suppressClick?: boolean;
   showTooltip?: boolean;
   class?: string;
-  /** Fallback image (e.g. an email contact photo) shown when the user has no Macro profile picture. */
+  /** Fallback image (e.g. an email contact photo) shown when the user has no Rox profile picture. */
   photoUrl?: string;
 } & ({ id: string; email?: never } | { email: string; id?: never });
 
@@ -73,7 +73,7 @@ function ProfileImage(props: {
 
   const [profilePicUrl] = useProfilePictureUrl(props.id);
 
-  // Macro profile picture wins; fall back to a contact photo before initials.
+  // Rox profile picture wins; fall back to a contact photo before initials.
   const imageUrl = () => profilePicUrl() || props.photoUrl;
 
   return (

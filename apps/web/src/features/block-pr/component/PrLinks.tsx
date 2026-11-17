@@ -403,7 +403,7 @@ export function PrOriginIcon(props: { tool: PrOriginTool; class?: string }) {
   );
 }
 
-/** "Claude, from its branch name"; Macro sessions say which tool they ran. */
+/** "Claude, from its branch name"; Rox sessions say which tool they ran. */
 export function prOriginDescription(origin: PrOrigin) {
   const tool = PR_ORIGIN_LABELS[origin.tool];
   if (origin.signal === 'agent-session')
@@ -415,7 +415,7 @@ export function prOriginDescription(origin: PrOrigin) {
 
 /**
  * Where the pull request was started. Opens the originating session: the
- * Macro agent session in a split, or the external session link in a tab.
+ * Rox agent session in a split, or the external session link in a tab.
  */
 export function PrOriginBadge(props: { origin: PrOrigin; onOpen: OpenPrLink }) {
   const target = () => props.origin.sessionId ?? props.origin.url;

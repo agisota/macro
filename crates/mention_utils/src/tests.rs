@@ -187,7 +187,7 @@ fn bot_mention_renders_display_name() {
     let input = r#"hi <m-user-mention>{"userId":"bot|00000000-0000-0000-0000-00000000a1a1","email":"Macro"}</m-user-mention> ok"#;
     let parsed = ParsedXmlText::parse(input).unwrap();
     let rendered = PlainTextFormatter::format_xml_text(parsed).0;
-    assert_eq!(rendered, "hi Macro ok");
+    assert_eq!(rendered, "hi Rox ok");
 }
 
 #[test]
@@ -953,14 +953,14 @@ fn parse_booking_link_mention() {
 
 #[test]
 fn parse_await_tag_is_skipped() {
-    let input = r#"<m-await>{"awaitId":"a1","text":"Macro is thinking…","inline":true}</m-await>"#;
+    let input = r#"<m-await>{"awaitId":"a1","text":"Rox is thinking…","inline":true}</m-await>"#;
     let out = ParsedXmlText::parse(input).unwrap();
     assert!(out.0.is_empty());
 }
 
 #[test]
 fn parse_await_tag_with_surrounding_text() {
-    let input = r#"before <m-await>{"text":"Macro is thinking…","inline":true}</m-await> after"#;
+    let input = r#"before <m-await>{"text":"Rox is thinking…","inline":true}</m-await> after"#;
     let out = ParsedXmlText::parse(input).unwrap();
     assert_matches!(
         out.0,

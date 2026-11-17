@@ -5,7 +5,7 @@ import { decodeXml, escapeAttribute, escapeText } from './xml';
  * Word's own comments (`word/comments.xml`) in the shared format: the part
  * is an entry of `wordParts`, related to the main part through `wordRels`
  * and typed in `wordTypes`. These are what Word shows in its comment
- * balloons, so comments written here travel with the file; Macro's editor
+ * balloons, so comments written here travel with the file; Rox's editor
  * shows them beside the pages as comments "in the document".
  */
 

@@ -166,7 +166,7 @@ fn csv_input(csv: Option<String>, document_id: Option<Uuid>) -> Result<CsvInput,
         (Some(text), None) => Ok(CsvInput::Text(text)),
         (None, Some(id)) => Ok(CsvInput::File(id)),
         _ => Err(TransferError::Invalid(
-            "Give exactly one of csv (the CSV text) or documentId (a CSV file in Macro).".into(),
+            "Give exactly one of csv (the CSV text) or documentId (a CSV file in Rox).".into(),
         )),
     }
 }

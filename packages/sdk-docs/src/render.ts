@@ -8,7 +8,7 @@ import type { PluginOptions } from 'typedoc-plugin-markdown';
 /**
  * What an SDK declaration tells agents and nobody else, from two TSDoc block
  * tags the public reference omits: `@routing`, one "Use when …; not …"
- * sentence an agent decides on, and `@agent`, how that area of Macro works.
+ * sentence an agent decides on, and `@agent`, how that area of Rox works.
  */
 export interface AgentNotes {
   /** The TypeDoc module the declaration lives in, e.g. `src/entities/databases/namespace`. */
@@ -76,7 +76,7 @@ export async function renderSdkDocs(
     plugin: ['typedoc-plugin-markdown'],
     blockTags: [...OptionDefaults.blockTags, ...AGENT_TAGS, ...MCP_BLOCK_TAGS],
     modifierTags: [...OptionDefaults.modifierTags, ...MCP_MODIFIER_TAGS],
-    name: 'Macro SDK',
+    name: 'Rox SDK',
     readme: join(root, 'packages/sdk-docs/pages/home.md'),
     exclude: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**'],
     excludePrivate: true,

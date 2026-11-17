@@ -129,7 +129,7 @@ impl AsyncTool<RoutineToolContext> for ListRoutines {
 #[serde(rename_all = "camelCase")]
 #[schemars(
     title = "ReadRoutine",
-    description = "Read a routine owned by the authenticated user: its saved configuration in the shape CreateRoutine and UpdateRoutine take (name, triggers, steps, requiredApps), and its recent run history. When part of a routine can only be edited on its page in Macro (GitHub or payload filters), `notEditableHere` says why instead. Reading a run transcript still requires its own access."
+    description = "Read a routine owned by the authenticated user: its saved configuration in the shape CreateRoutine and UpdateRoutine take (name, triggers, steps, requiredApps), and its recent run history. When part of a routine can only be edited on its page in Rox (GitHub or payload filters), `notEditableHere` says why instead. Reading a run transcript still requires its own access."
 )]
 pub struct ReadRoutine {
     /// Routine UUID from CreateRoutine or ListRoutines.

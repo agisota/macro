@@ -2,7 +2,7 @@
 use super::*;
 use crate::domain::ics::EventSnapshot;
 
-/// Private extended property marking an event as Macro's snapshot of a
+/// Private extended property marking an event as Rox's snapshot of a
 /// shared meeting. Private properties stay on the calendar copy they were
 /// written to, so no other copy of the meeting ever carries the marker.
 pub(super) const SNAPSHOT_PROPERTY: &str = "macroSnapshot";
@@ -54,7 +54,7 @@ impl<G: GoogleRequestGate> GoogleCalendarClient<G> {
     }
 
     /// Whether the calendar holds a live event under `ical_uid`, counting an
-    /// invitation the user has hidden: Macro never syncs those, and an
+    /// invitation the user has hidden: Rox never syncs those, and an
     /// import would update one in place all the same.
     async fn holds_ical_uid(
         &self,
@@ -81,7 +81,7 @@ impl<G: GoogleRequestGate> GoogleCalendarClient<G> {
 }
 
 /// A snapshot of another calendar's event: the meeting's UID, organizer and
-/// content, with the calendar as its only guest and Macro's snapshot marker.
+/// content, with the calendar as its only guest and Rox's snapshot marker.
 ///
 /// Google imports an event only into the calendar of its organizer or one of
 /// its attendees, and names a calendar among an event's attendees by the
@@ -123,7 +123,7 @@ pub(super) fn import_body(source: &EventSnapshot, provider_calendar_id: &str) ->
     body
 }
 
-/// Whether the event is still Macro's snapshot: it carries the marker and
+/// Whether the event is still Rox's snapshot: it carries the marker and
 /// holds only what the import wrote, the calendar as its only guest with an
 /// answer.
 ///

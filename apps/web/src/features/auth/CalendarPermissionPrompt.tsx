@@ -19,7 +19,7 @@ import { useEmailLinksQuery } from '@queries/email/link';
  * grant to the existing link, which kicks off the calendar backfill.
  *
  * Only the viewer's own inboxes are prompted. The links list also carries
- * inboxes another Macro user delegated to the viewer; whether that user's
+ * inboxes another Rox user delegated to the viewer; whether that user's
  * calendar syncs is theirs to decide, as in the calendar settings.
  *
  * Inboxes that also need a full reconnect are skipped so the two prompts don't

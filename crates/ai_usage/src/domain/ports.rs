@@ -347,7 +347,7 @@ pub struct UsageContext {
     pub user: MacroUserIdStr<'static>,
     /// The entity the completion relates to, if any.
     pub entity: Option<Uuid>,
-    /// The agent's own API key the completion runs on, when Macro is
+    /// The agent's own API key the completion runs on, when Rox is
     /// not paying for it.
     pub agent_api_key_id: Option<Uuid>,
     /// The agent session whose work the completion is part of: its turns,
@@ -392,7 +392,7 @@ impl UsageContext {
 
     /// Attribute the completion to an agent's own API key. Only for calls
     /// that actually authenticate with that key: the usage is not counted
-    /// toward the user's Macro allowance.
+    /// toward the user's Rox allowance.
     pub fn with_agent_api_key(mut self, agent_api_key_id: Uuid) -> Self {
         self.agent_api_key_id = Some(agent_api_key_id);
         self

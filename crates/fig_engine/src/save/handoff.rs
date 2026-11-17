@@ -154,7 +154,7 @@ const FLOAT: i32 = -5;
 const STRING: i32 = -6;
 
 /// The types and `NodeChange` fields a schema without export presets,
-/// layout grids, or guides gets (files made in Macro before it wrote them),
+/// layout grids, or guides gets (files made in Rox before it wrote them),
 /// named and shaped as in Figma's schema. Types the schema already has are
 /// used as they are.
 pub(super) fn schema_additions(

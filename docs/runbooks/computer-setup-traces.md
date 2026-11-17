@@ -1,4 +1,4 @@
-# Macro computer setup traces
+# Rox computer setup traces
 
 Use this to find where the time goes between Buy computer and the computer
 being Ready.
@@ -6,7 +6,7 @@ being Ready.
 ## What one trace contains
 
 The purchase request is the root. Every later step joins it while first setup
-runs ([Macro computers: Observability](../architecture/macro-computers.md#observability)):
+runs ([Rox computers: Observability](../architecture/macro-computers.md#observability)):
 
 | Span | Service | Meaning |
 | --- | --- | --- |

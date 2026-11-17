@@ -635,7 +635,7 @@ it("reopens a computer's setup at Bring your AI when a notification asks", async
   expect(computerSetupRequest()).toBeUndefined();
 });
 
-it('puts Get a Macro computer on top with its facts, or as one row when compact', () => {
+it('puts Get a Rox computer on top with its facts, or as one row when compact', () => {
   const first = render(() => <Machines />);
   expect(
     screen.getByText('Get a Rox computer', { selector: 'h2' })

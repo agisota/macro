@@ -640,7 +640,7 @@ describe('Harness', () => {
     expect(invalidateHarnesses).toHaveBeenCalled();
   });
 
-  it('lists a Macro computer only under Macro computers, without Remove or Rename', () => {
+  it('lists a Rox computer only under Rox computers, without Remove or Rename', () => {
     harnessMocks.query.data = [
       { ...REGISTERED_HARNESS, access: 'owner', computer_id: 'computer-1' },
     ];
@@ -651,7 +651,7 @@ describe('Harness', () => {
     expect(screen.queryByRole('button', { name: 'Rename' })).toBeNull();
   });
 
-  it('never offers Share or Remove on a Macro computer, even with computers off', () => {
+  it('never offers Share or Remove on a Rox computer, even with computers off', () => {
     teamComputers.enabled = false;
     harnessMocks.query.data = [
       { ...REGISTERED_HARNESS, access: 'owner', computer_id: 'computer-1' },

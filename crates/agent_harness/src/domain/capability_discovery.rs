@@ -14,7 +14,7 @@ mod test;
 /// Provider selected by a capability-discovery request.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum CapabilityHarness {
-    /// Macro's in-process agent.
+    /// Rox's in-process agent.
     InMemory,
     /// The caller's Cursor account.
     Cursor,

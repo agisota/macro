@@ -1,6 +1,6 @@
 # cla-worker
 
-Cloudflare Worker that collects and looks up Macro CLA signatures. Together
+Cloudflare Worker that collects and looks up Rox CLA signatures. Together
 with the `cla.yml` GitHub workflow (generated from
 `tooling/xtask/crates/xtask_workflows/src/workflows/cla.rs`) it enforces the
 CLA policy on `macro-inc/macro` pull requests.

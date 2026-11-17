@@ -1,6 +1,6 @@
 # Infrastructure
 
-Macro's AWS infrastructure is Pulumi in TypeScript under `infra/`, run with Bun,
+Rox's AWS infrastructure is Pulumi in TypeScript under `infra/`, run with Bun,
 in `us-east-1`; the observability pilot (`infra/stacks/observability`) runs in
 `us-east-2`. Cloudflare Workers deploy with `wrangler`, not Pulumi. This
 guide covers how the code is laid out, the patterns to copy, how deploys happen,

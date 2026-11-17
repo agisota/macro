@@ -153,7 +153,7 @@ fn pending_human_interactions_are_nonterminal() {
         ),
         (
             json!({"method": "_macro/tool_approval", "params": {
-                "approvalId": "a1", "serverSlug": "macro", "serverName": "Macro",
+                "approvalId": "a1", "serverSlug": "macro", "serverName": "Rox",
                 "toolName": "WebSearch", "arguments": {}, "status": "pending"
             }}),
             RoutinePendingReason::Permission,

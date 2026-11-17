@@ -70,7 +70,7 @@ pub(crate) async fn drafts_preview_cursor(
                 -- This sub-subquery efficiently finds the latest draft timestamp for every thread.
                 SELECT m.thread_id, MAX(m.updated_at) as latest_draft_ts
                 FROM email_messages m
-                -- Include Macro drafts and imported drafts supported by the provider adapter.
+                -- Include Rox drafts and imported drafts supported by the provider adapter.
                 WHERE m.link_id = ANY($1) AND m.is_draft = TRUE AND (m.internal_date_ts IS NULL OR m.mailbox_state IS NOT NULL)
                   AND EXISTS (SELECT 1 FROM email_message_mailbox_facts mf WHERE mf.id = m.id AND mf.is_present AND NOT mf.in_trash)
                 GROUP BY m.thread_id
@@ -99,7 +99,7 @@ pub(crate) async fn drafts_preview_cursor(
             FROM email_messages m
             WHERE m.thread_id = t.id
               AND m.is_draft = TRUE
-              -- Include Macro drafts and imported drafts supported by the provider adapter.
+              -- Include Rox drafts and imported drafts supported by the provider adapter.
               AND (m.internal_date_ts IS NULL OR m.mailbox_state IS NOT NULL)
               AND EXISTS (SELECT 1 FROM email_message_mailbox_facts mf WHERE mf.id = m.id AND mf.is_present AND NOT mf.in_trash)
             ORDER BY m.updated_at DESC

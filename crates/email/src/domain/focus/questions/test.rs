@@ -16,7 +16,7 @@ fn every_question_fits_jev_limits() {
 #[test]
 fn questions_name_no_particular_person_or_company() {
     for text in FOCUS_QUESTIONS {
-        for word in ["Teo", "Macro", " him", " his ", " her ", " she ", " he "] {
+        for word in ["Teo", "Rox", " him", " his ", " her ", " she ", " he "] {
             assert!(!text.contains(word), "question mentions {word:?}: {text}");
         }
     }

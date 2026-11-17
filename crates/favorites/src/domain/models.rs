@@ -90,7 +90,7 @@ pub struct SetFavoriteResult {
 /// Authenticated actor performing a favorites mutation.
 #[derive(Clone, Debug)]
 pub struct FavoritesMutationActor {
-    /// Stable Macro user id.
+    /// Stable Rox user id.
     pub user_id: MacroUserIdStr<'static>,
     /// Organization id attached to the authenticated request, when present.
     pub organization_id: Option<i64>,

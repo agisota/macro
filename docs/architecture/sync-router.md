@@ -16,7 +16,7 @@ Browser
                                 +-- document B --> sync-service DO B
 ```
 
-The endpoint authenticates the account using the standard Macro cookie/API-token
+The endpoint authenticates the account using the standard Rox cookie/API-token
 extractor. Each subscription carries a separate document-scoped token. The
 sync-service Durable Object validates that token and continues to own document
 state, permission enforcement, and durable acknowledgements. Only a successful

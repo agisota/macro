@@ -42,8 +42,8 @@ mod test;
 /// Namespace for event ids, so a redelivered protocol event keeps its id.
 const EVENT_NAMESPACE: Uuid = Uuid::from_u128(0x6c1e_4f0a_93d2_4b7e_8a55_0f3c_2d19_7e41);
 
-/// Readable stand-in for message shapes Macro does not import.
-const UNSUPPORTED_TEXT: &str = "Sent something Macro can't show yet";
+/// Readable stand-in for message shapes Rox does not import.
+const UNSUPPORTED_TEXT: &str = "Sent something Rox can't show yet";
 
 /// What a whatsmeow event means for the account.
 #[derive(Debug)]
@@ -212,7 +212,7 @@ pub async fn picture_changed(lids: &dyn LidStore, picture: &Picture) -> SessionE
     }
 }
 
-/// A direct chat as Macro keys it: by phone number when the store knows it.
+/// A direct chat as Rox keys it: by phone number when the store knows it.
 pub async fn macro_chat(lids: &dyn LidStore, chat: &str) -> String {
     let Ok(jid) = chat.parse::<Jid>() else {
         return chat.to_owned();
@@ -699,7 +699,7 @@ impl Content<'_> {
 }
 
 /// Media WhatsApp shows once on the phone (the port unwraps the view-once
-/// wrappers; the flag can also sit on the media itself). Macro keeps it.
+/// wrappers; the flag can also sit on the media itself). Rox keeps it.
 fn message_view_once(message: Option<&wa_e2e::Message>) -> bool {
     message.is_some_and(|message| {
         message

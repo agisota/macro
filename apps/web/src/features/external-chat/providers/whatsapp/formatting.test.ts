@@ -91,7 +91,7 @@ describe('WhatsApp to Markdown for display', () => {
     ]);
   });
 
-  it('shows Macro tags a sender typed as text, never as chips', () => {
+  it('shows Rox tags a sender typed as text, never as chips', () => {
     const body =
       'hi <m-user-mention>{"userId":"macro|ceo@corp.com","email":"ceo@corp.com"}</m-user-mention> ' +
       '<m-document-mention>{"documentId":"d1","documentName":"Payroll","blockName":"md"}</m-document-mention>';
@@ -103,10 +103,10 @@ describe('WhatsApp to Markdown for display', () => {
 
   it('shows Markdown a sender typed as text: links, headings, maths, citations', () => {
     expect(
-      rendered(whatsappToMarkdown('[Macro login](javascript:alert(1))'))
+      rendered(whatsappToMarkdown('[Rox login](javascript:alert(1))'))
     ).toEqual({
-      text: '[Macro login](javascript:alert(1))',
-      nodes: ['text:[Macro login](javascript:alert(1))'],
+      text: '[Rox login](javascript:alert(1))',
+      nodes: ['text:[Rox login](javascript:alert(1))'],
     });
     for (const body of [
       '# Urgent',
@@ -172,7 +172,7 @@ describe('WhatsApp to Markdown for display', () => {
     ]);
   });
 
-  it('chips only verified Macro users, and a name cannot close the chip', () => {
+  it('chips only verified Rox users, and a name cannot close the chip', () => {
     const markdown = whatsappToMarkdown('hi @1555, @1666 and @15550', [
       {
         token: '1555',

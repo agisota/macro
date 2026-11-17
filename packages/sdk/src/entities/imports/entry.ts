@@ -15,7 +15,7 @@ import { Project } from '../projects/project';
 import { Task } from '../tasks/task';
 import { User } from '../users/user';
 
-/** The Macro item an import became. */
+/** The Rox item an import became. */
 export type ImportedItem =
   | Document
   | Task
@@ -93,7 +93,7 @@ export class ImportEntry {
   }
 
   /**
-   * The Macro item the import became; `undefined` until it is imported, or
+   * The Rox item the import became; `undefined` until it is imported, or
    * for a kind of item this SDK has no handle for.
    *
    * @readonly

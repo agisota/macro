@@ -6,7 +6,7 @@ use wiremock::{
 };
 
 fn rule(id: &str, correlation: Uuid) -> Value {
-    json!({"id":id,"displayName":format!("Macro block {correlation}"),"isEnabled":true,
+    json!({"id":id,"displayName":format!("Rox block {correlation}"),"isEnabled":true,
         "conditions":{"fromAddresses":[{"emailAddress":{"address":"BLOCKED@example.com"}}],"subjectContains":[]},
         "actions":{"delete":true,"stopProcessingRules":true,"forwardTo":[]},"exceptions":{}})
 }
@@ -44,7 +44,7 @@ async fn blocking_uses_exact_address_and_recoverable_trash_not_permanent_deletio
     Mock::given(method("POST"))
         .and(path("/v1.0/me/mailFolders/inbox/messageRules"))
         .and(body_json(
-            json!({"displayName":format!("Macro block {id}"),"sequence":1,"isEnabled":true,
+            json!({"displayName":format!("Rox block {id}"),"sequence":1,"isEnabled":true,
             "conditions":{"fromAddresses":[{"emailAddress":{"address":"blocked@example.com"}}]},
             "actions":{"delete":true,"stopProcessingRules":true}}),
         ))

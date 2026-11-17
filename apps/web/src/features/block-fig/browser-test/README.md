@@ -26,7 +26,7 @@ design; saves stay in memory, and `?reload` reopens each one. Test-only
   (`font-source.ts`): every family is served as the bundled Inter, and
   "Nowhere Grotesk" is installed locally;
 - `comments`: the in-memory comment store (`memory-comments.tsx`, the
-  `FigCommentStore` contract the app fulfils with Macro comments, with
+  `FigCommentStore` contract the app fulfils with Rox comments, with
   plain stand-ins for the shared message thread and composer):
   `threads()`, `arrive(author, text, target)` (someone else comments or
   replies), `follow(threadId)` (a followed comment link), and `people`.

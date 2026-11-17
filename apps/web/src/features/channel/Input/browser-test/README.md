@@ -33,12 +33,12 @@ editor focus and the selection, and that the last control stays reachable
 without widening the composer.
 
 The code-paste regression types three backticks to open a code block in the
-production composer and pastes a Macro link, then Markdown. Both land as literal
+production composer and pastes a Rox link, then Markdown. Both land as literal
 code text: the link used to become a mention the code block dropped, and the
 Markdown used to lose its syntax.
 
 The CRM mention regression uses the real menu and contact query with controlled
-pages. It selects a CRM contact whose email also belongs to a Macro user,
+pages. It selects a CRM contact whose email also belongs to a Rox user,
 verifies the stored contact link, and pages CRM results on desktop and phone.
 
 The attach regression taps the add drawer's Attach files on a phone. A phone

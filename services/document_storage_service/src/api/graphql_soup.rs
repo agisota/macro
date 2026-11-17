@@ -124,7 +124,7 @@ async fn subscription_handler(
 }
 
 /// The viewer's opaque account id (`macro_user.id`, the FusionAuth user id),
-/// logged in place of the email-bearing Macro user id.
+/// logged in place of the email-bearing Rox user id.
 fn opaque_viewer_id(user: &MacroUserAuthentication) -> Option<Uuid> {
     Uuid::parse_str(&user.user_context.fusion_user_id).ok()
 }

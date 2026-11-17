@@ -1,14 +1,14 @@
 /**
- * The agent in Macro, as its own account, behind a small port, so
+ * The agent in Rox, as its own account, behind a small port, so
  * everything that talks can be run against a fake. `sdkChat` is the thin adapter over
- * Macro's SDK.
+ * Rox's SDK.
  */
 import type { Macro } from "@macro-inc/sdk";
 import { pushed } from "../../context/stream.ts";
 import type { Attachment, Incoming } from "./entry.ts";
 import type { Probabilities } from "./listen.ts";
 
-/** A message as the agent reads it back from Macro. */
+/** A message as the agent reads it back from Rox. */
 export type Line = {
 	readonly id: string;
 	/** The sender's display name, or their id if they have none. */
@@ -28,7 +28,7 @@ export type EmailLine = {
 export type Posted = { readonly channelId: string; readonly messageId: string };
 
 export type Chat = {
-	/** The agent's own Macro id. */
+	/** The agent's own Rox id. */
 	readonly me: () => Promise<string>;
 	/** The channels the agent is in. */
 	readonly channels: () => Promise<

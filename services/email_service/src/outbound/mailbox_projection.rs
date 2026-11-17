@@ -1,4 +1,4 @@
-//! Adapters from durable email projections to existing Macro services.
+//! Adapters from durable email projections to existing Rox services.
 
 use contacts::domain::{models::messages::ContactConnection, ports::ContactsIngress};
 use email::domain::{

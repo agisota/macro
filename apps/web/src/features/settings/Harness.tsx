@@ -194,9 +194,7 @@ export function Harness(
           <SettingsPage
             title="Machines"
             description="Providers and machines your agents can run on."
-            signpost={
-              <TutorialPill tutorial="roxd" class="mt-1 self-start" />
-            }
+            signpost={<TutorialPill tutorial="roxd" class="mt-1 self-start" />}
             onBack={props.onBack}
             backLabel={props.backLabel ?? 'Agents'}
             actions={
@@ -216,7 +214,7 @@ export function Harness(
               harnesses={
                 harnessesQuery.isSuccess
                   ? harnessesQuery.data.filter(
-                      // A Macro computer is listed once, under Macro computers;
+                      // A Rox computer is listed once, under Rox computers;
                       // with that section off it stays an ordinary machine.
                       // An agent teammate's computer is never one: people
                       // message the agent instead.
@@ -344,8 +342,8 @@ export function Harness(
                               </Button>
                             </div>
                             <p class="text-xs text-ink-extra-muted">
-                              Create an API key in Cursor and paste it here.
-                              Rox stores it encrypted.
+                              Create an API key in Cursor and paste it here. Rox
+                              stores it encrypted.
                             </p>
                           </div>
                         }
@@ -366,8 +364,8 @@ export function Harness(
 
                         <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
                           <p class="flex-1 basis-56 text-xs text-ink-extra-muted">
-                            Disconnecting removes Rox's copy of the key but
-                            does not revoke it in Cursor.
+                            Disconnecting removes Rox's copy of the key but does
+                            not revoke it in Cursor.
                           </p>
                           <Button
                             type="button"

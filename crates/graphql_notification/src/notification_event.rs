@@ -776,7 +776,7 @@ impl GraphqlRoutineRunFinishedMetadata {
     }
 }
 
-/// The coding agent a Macro computer signs in to an account for.
+/// The coding agent a Rox computer signs in to an account for.
 #[derive(Clone, Copy, Debug, Eq, Enum, PartialEq)]
 pub enum GraphqlAgentProvider {
     /// An Anthropic Claude account, for Claude Code.
@@ -791,7 +791,7 @@ impl From<AgentProvider> for GraphqlAgentProvider {
     }
 }
 
-/// How close a Macro computer's agent sign-in is to no longer working.
+/// How close a Rox computer's agent sign-in is to no longer working.
 #[derive(Clone, Copy, Debug, Eq, Enum, PartialEq)]
 pub enum GraphqlAgentSignInExpiryStage {
     /// It expires within three days.
@@ -815,7 +815,7 @@ impl From<AgentSignInExpiryStage> for GraphqlAgentSignInExpiryStage {
 /// GraphQL wrapper for agent sign-in expiry metadata.
 pub struct GraphqlAgentSignInExpiryMetadata(AgentSignInExpiryMetadata);
 
-/// Metadata for a Macro computer's agent sign-in running out.
+/// Metadata for a Rox computer's agent sign-in running out.
 #[Object]
 impl GraphqlAgentSignInExpiryMetadata {
     /// The agent whose sign-in is running out.
@@ -844,7 +844,7 @@ impl GraphqlAgentSignInExpiryMetadata {
     }
 }
 
-/// How a Macro computer's first setup ended.
+/// How a Rox computer's first setup ended.
 #[derive(Clone, Copy, Debug, Eq, Enum, PartialEq)]
 pub enum GraphqlComputerSetupOutcome {
     /// The computer is ready.
@@ -856,7 +856,7 @@ pub enum GraphqlComputerSetupOutcome {
 /// GraphQL wrapper for computer setup metadata.
 pub struct GraphqlComputerSetupMetadata(ComputerSetupMetadata);
 
-/// Metadata for a Macro computer finishing, or failing, first-time setup.
+/// Metadata for a Rox computer finishing, or failing, first-time setup.
 #[Object]
 impl GraphqlComputerSetupMetadata {
     /// The computer that was set up.
@@ -874,7 +874,7 @@ impl GraphqlComputerSetupMetadata {
         &self.0.computer_name
     }
 
-    /// The Macro user id of the agent teammate the computer runs; absent for
+    /// The Rox user id of the agent teammate the computer runs; absent for
     /// a plain computer.
     async fn agent_user_id(&self) -> Option<&str> {
         self.0.agent.as_ref().map(|agent| agent.user_id.as_str())

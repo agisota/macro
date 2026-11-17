@@ -1,6 +1,6 @@
 import { LoadingSpinner } from '@core/component/LoadingSpinner';
 
-/** Shared Macro loader for target resolution and message loading. */
+/** Shared Rox loader for target resolution and message loading. */
 export function ChannelLoading() {
   return (
     <div

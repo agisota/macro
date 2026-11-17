@@ -19,7 +19,7 @@ type ProjectDetail = GetProjectHandlerResponses[200]['data']['projectMetadata'];
 type ProjectItem =
   GetProjectContentHandlerResponses[200]['data'][number]['item'];
 
-/** A Macro project: a folder-like container for documents, chats, and subprojects. */
+/** A Rox project: a folder-like container for documents, chats, and subprojects. */
 export class Project extends PropertiedEntity<ProjectDetail> {
   /**
    * Read this project's sharing configuration.
@@ -95,7 +95,7 @@ export class Project extends PropertiedEntity<ProjectDetail> {
   }
 
   /**
-   * The project's URL in the Macro web app; hand it to users as the link.
+   * The project's URL in the Rox web app; hand it to users as the link.
    *
    * @readonly
    */

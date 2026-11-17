@@ -204,7 +204,7 @@ test('Command K composer uses the shared live search results and closes after op
   );
 });
 
-test('the Macro logo hides for explicit newlines and wrapping, then returns for a single line', async ({
+test('the Rox logo hides for explicit newlines and wrapping, then returns for a single line', async ({
   page,
 }) => {
   const dialog = await openMenu(page);

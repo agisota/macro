@@ -35,7 +35,7 @@ impl<R: InboxSyncRepository> MessageResyncRepository for R {
 }
 
 /// A read of Gmail's labels for a message, with the labels that had a
-/// pending Macro write just before and just after it.
+/// pending Rox write just before and just after it.
 pub struct PendingAroundRead<T> {
     /// Value returned by the provider read.
     pub value: T,

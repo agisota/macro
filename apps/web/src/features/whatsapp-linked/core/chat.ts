@@ -1,6 +1,6 @@
 import { isSameDay } from '@core/util/time';
 import { match } from 'ts-pattern';
-/** Where a WhatsApp chat already is in Macro for this viewer. */
+/** Where a WhatsApp chat already is in Rox for this viewer. */
 export type InMacro =
   | { kind: 'own'; chatId: string }
   | { kind: 'shared'; chatId: string; ownerId: string; ownerName: string };
@@ -38,7 +38,7 @@ export type WhatsAppChat = {
   lastActivityAt: string | undefined;
   archived: boolean;
   inMacro: InMacro | undefined;
-  /** "Add to Macro" works now. */
+  /** "Add to Rox" works now. */
   canAdd: boolean;
   /** DSS's reason this chat can't be added, when it can't. */
   /** Why DSS says it can't be added; the words are ours (`cannotAddLabel`). */
@@ -147,7 +147,7 @@ export function matchesChatQuery(chat: WhatsAppChat, query: string): boolean {
   );
 }
 
-/** Why a chat can't be added to Macro, as DSS reports it. */
+/** Why a chat can't be added to Rox, as DSS reports it. */
 export type CannotAdd =
   | 'not_in_group'
   | 'community'

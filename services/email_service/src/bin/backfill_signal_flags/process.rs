@@ -53,7 +53,7 @@ pub async fn process_macro_id(
 
         // Mirrors sync_thread_signal_flag (email_db_client/threads/update.rs)
         // and the Importance(true) predicate in the dynamic query builder,
-        // including the exclusion of Macro's own notification sender ($2).
+        // including the exclusion of Rox's own notification sender ($2).
         let flagged = sqlx::query!(
             r#"
             UPDATE email_threads t

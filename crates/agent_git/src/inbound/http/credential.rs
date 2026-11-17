@@ -14,9 +14,9 @@ use macro_authorization::{
 use crate::domain::models::{GitCredential, RepoToken};
 
 /// Realm git shows when it asks for credentials.
-pub(crate) const BASIC_CHALLENGE: &str = "Basic realm=\"Macro agent workspace\"";
+pub(crate) const BASIC_CHALLENGE: &str = "Basic realm=\"Rox agent workspace\"";
 
-/// HTTP Basic (password = repo token, username ignored), else a Macro user
+/// HTTP Basic (password = repo token, username ignored), else a Rox user
 /// credential (session cookie, bearer JWT, or `x-macro-user-api-key`).
 pub struct GitCredentialExtractor<Auth> {
     /// The caller.
@@ -28,7 +28,7 @@ pub struct GitCredentialExtractor<Auth> {
 pub enum GitCredentialRejection {
     /// Nothing presented: challenge so git asks for credentials.
     Missing,
-    /// A Macro credential failed.
+    /// A Rox credential failed.
     Macro(MacroAuthorizationRejection),
 }
 

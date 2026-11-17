@@ -66,7 +66,7 @@ pub trait ContactsPageService: Send + Sync + 'static {
 /// One bounded, ranked read of the people a viewer may search for.
 pub trait PeopleSearchRepository: Send + Sync + 'static {
     /// Match `needle` (lowercase, at least two characters) against the email and
-    /// Macro profile name of the viewer's contacts, self, and current teammates.
+    /// Rox profile name of the viewer's contacts, self, and current teammates.
     /// Rank teammates first, then prefix matches, and return at most `limit`.
     fn search_people(
         &self,
@@ -90,7 +90,7 @@ pub trait PeopleSearchService: Send + Sync + 'static {
 
 /// Resolves names only for the authorized, bounded IDs selected by the directory.
 pub trait ContactNameReader: Send + Sync + 'static {
-    /// Resolve at most MAX_CONTACT_PAGE_SIZE IDs with Macro profile names taking
+    /// Resolve at most MAX_CONTACT_PAGE_SIZE IDs with Rox profile names taking
     /// precedence over this viewer's address book. Missing names are not errors.
     fn contact_names(
         &self,

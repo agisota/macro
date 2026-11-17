@@ -140,7 +140,7 @@ export type { RequestActivity } from './utils/activity';
 /**
  * The authenticated SDK client; every namespace hangs off it.
  *
- * @routing Use when a request is only about the Macro SDK client itself or its shared plumbing, such as live events or an item's access requests; not any request about the user's content, people or settings.
+ * @routing Use when a request is only about the Rox SDK client itself or its shared plumbing, such as live events or an item's access requests; not any request about the user's content, people or settings.
  */
 export class Macro<T extends MacroOpts = MacroOpts> {
   /** routines resources and operations. */
@@ -188,7 +188,7 @@ export class Macro<T extends MacroOpts = MacroOpts> {
 
   readonly channels: ChannelNamespace;
 
-  /** Chats from external providers (WhatsApp) added to Macro: read, share and send. */
+  /** Chats from external providers (WhatsApp) added to Rox: read, share and send. */
   readonly externalChats: ExternalChatsNamespace;
 
   /** The current user's WhatsApp account and chat list; add chats from it. */
@@ -207,7 +207,7 @@ export class Macro<T extends MacroOpts = MacroOpts> {
   /** Call the user's connected apps and MCP servers from a code execution. */
   readonly connectedApps: ConnectedAppNamespace;
 
-  /** Open items in the Macro app tab the user prompted from. */
+  /** Open items in the Rox app tab the user prompted from. */
   readonly ui: UiNamespace;
 
   readonly favorites: FavoritesNamespace;
@@ -219,7 +219,7 @@ export class Macro<T extends MacroOpts = MacroOpts> {
 
   /** Generate images with AI and attach them to messages. */
   readonly images: ImagesNamespace;
-  /** The import ledger: external items proposed for, or copied into, Macro. */
+  /** The import ledger: external items proposed for, or copied into, Rox. */
   readonly imports: ImportNamespace;
   /** Search the public web and read web pages. */
   readonly web: WebNamespace;
@@ -240,7 +240,7 @@ export class Macro<T extends MacroOpts = MacroOpts> {
 
   readonly properties: PropertiesNamespace;
 
-  /** Share the caller's referral link and email invites to join Macro. */
+  /** Share the caller's referral link and email invites to join Rox. */
   readonly referrals: ReferralNamespace;
 
   /** Saved views: named filter definitions shown in a surface's sidebar, such as Email. */
@@ -262,7 +262,7 @@ export class Macro<T extends MacroOpts = MacroOpts> {
 
   readonly events: MacroEvents;
 
-  /** Base URL of the Macro web app, used to build entity URLs. */
+  /** Base URL of the Rox web app, used to build entity URLs. */
   readonly webAppUrl: string;
 
   /** Direct access to the underlying hey-api service clients. */

@@ -138,7 +138,7 @@ const POST_LINK_FALLBACK_ROUTE = `${DEFAULT_ROUTE}/~/settings/${settingsTabToSlu
 
 /**
  * The `email_link_notice` the auth service sends an administrator back with
- * after they approve Macro for their Microsoft 365 tenant.
+ * after they approve Rox for their Microsoft 365 tenant.
  */
 const ADMIN_CONSENT_GRANTED_NOTICE = 'admin_consent_granted';
 

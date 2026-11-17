@@ -7,7 +7,7 @@ import { Show } from 'solid-js';
 import { type BannerStatus, STATUS_LABELS } from '../core/status';
 
 /**
- * The full-width bar across the top of the app while Macro is degraded or
+ * The full-width bar across the top of the app while Rox is degraded or
  * down. On touch devices it sits under the status bar, so it pads itself by
  * the top safe area. With `onDismiss`, it shows a close button on the right.
  */

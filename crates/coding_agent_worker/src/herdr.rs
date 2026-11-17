@@ -10,7 +10,7 @@
 //! shows each session as an agent that is working, blocked, or done.
 //!
 //! The harness still runs under roxd and every session still belongs to
-//! Macro: windows steer through the same control API the web app uses.
+//! Rox: windows steer through the same control API the web app uses.
 //!
 //! With `roxd herdr-acp` as the harness, the window instead hosts the real
 //! Claude Code or Codex TUI, driven over ACP by that adapter (see

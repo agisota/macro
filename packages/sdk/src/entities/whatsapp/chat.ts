@@ -66,7 +66,7 @@ export class WhatsAppChat extends MacroEntity<WhatsAppChatRecord> {
   /** Pinned in WhatsApp. */
   readonly pinned = this.field('pinned');
 
-  /** Whether adding it to Macro works now. */
+  /** Whether adding it to Rox works now. */
   readonly canAdd = this.field('canAdd');
 
   /** Why it can't be added (`not_in_group`, `community`, `own_chat`, `not_in_chat_list`), when it is neither added, shared nor addable. */
@@ -88,7 +88,7 @@ export class WhatsAppChat extends MacroEntity<WhatsAppChatRecord> {
   );
 
   /**
-   * Add the chat (a group or a direct chat) to Macro as the current user's
+   * Add the chat (a group or a direct chat) to Rox as the current user's
    * own external chat; its earlier messages are imported from the phone.
    * Adding it again returns the same chat. Only the owner sends in a direct
    * chat.

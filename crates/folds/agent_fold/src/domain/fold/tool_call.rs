@@ -217,7 +217,7 @@ fn tool_output(
     }
 }
 
-/// Build the detail for a Macro tool from its opening frame: its input as
+/// Build the detail for a Rox tool from its opening frame: its input as
 /// given, its output out of the harness's wrapper.
 pub(super) fn macro_detail(reader: &dyn HarnessReader, frame: &ToolFrame<'_>) -> ToolDetail {
     let (output, error) = match frame.raw_output.map(|raw| reader.unwrap_tool_output(raw)) {
@@ -257,7 +257,7 @@ pub(super) fn view_detail(reader: &dyn HarnessReader, frame: &ToolFrame<'_>) -> 
     }
 }
 
-/// Build the detail for a Macro user tool from its opening frame.
+/// Build the detail for a Rox user tool from its opening frame.
 ///
 /// A user tool starts [`UserToolOutcome::Pending`] whether or not the frame
 /// carried output: the backend's `"PendingUserExecution"` reads as pending
@@ -275,7 +275,7 @@ pub(super) fn user_tool_detail(
     }
 }
 
-/// Write an update's raw input and output into a Macro tool's detail.
+/// Write an update's raw input and output into a Rox tool's detail.
 ///
 /// Both replace rather than merge: a harness sends the arguments whole each
 /// time, and so does the session API that later records what the user did

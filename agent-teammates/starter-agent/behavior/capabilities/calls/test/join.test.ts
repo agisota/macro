@@ -93,7 +93,7 @@ test("the token request gives up with the last error after its attempts, so the 
 	expect(String(failure)).toContain("ConnectionRefused");
 });
 
-test("Macro's refusal is classified and is not retried within the same join", async () => {
+test("Rox's refusal is classified and is not retried within the same join", async () => {
 	let attempts = 0;
 	const failure = await seat(
 		{
@@ -338,7 +338,7 @@ test("a join: events from t=0, the pid, the call id on stdout, the greeting, and
 	expect(h.types().slice(-2)).toEqual(["call.leave", "call.end"]);
 });
 
-test("Macro's refusal exits with its own code, and an ended call is a clean exit", async () => {
+test("Rox's refusal exits with its own code, and an ended call is a clean exit", async () => {
 	const refused = harness({ join: () => Promise.reject(inOtherCall) });
 	expect(await refused.run({ callId: "call-1" })).toMatchObject({
 		code: refusalExits.in_other_call,

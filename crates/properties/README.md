@@ -20,12 +20,12 @@ The events below use schema version 1 and are published to the
 ```
 
 The Kafka record key is not part of this JSON envelope. Every metadata object
-includes `actor_user_id`, which is a nullable Macro user ID. It identifies the
+includes `actor_user_id`, which is a nullable Rox user ID. It identifies the
 authenticated user responsible for the mutation and is `null` for internal,
 machine, bot, or unauthenticated callers. In particular, document-deletion
 cleanup is an internal call and produces `entity_properties.cleared` with a null
 actor. A task status change from a linked GitHub pull request (opened, edited,
-commented on, merged, or closed) credits the Macro user linked to the GitHub
+commented on, merged, or closed) credits the Rox user linked to the GitHub
 account that caused it when that user can edit the task, and is internal
 otherwise; either way its `source` names the pull request and GitHub account.
 Optional metadata fields are serialized as `null` unless their reused

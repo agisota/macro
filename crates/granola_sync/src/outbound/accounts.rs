@@ -13,7 +13,7 @@ use pipedream_mcp::domain::{
 pub struct ConnectedAccounts<S>(pub S);
 
 /// Sync reads Granola's REST API, which takes Pipedream's API-key account.
-/// A Granola connection held by Macro Connect is an MCP grant, which that API
+/// A Granola connection held by Rox Connect is an MCP grant, which that API
 /// does not accept, so it is not synced.
 fn syncable(connection: &PipedreamConnection) -> bool {
     connection.enabled && connection.provider == ConnectionProvider::Pipedream

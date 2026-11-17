@@ -9,8 +9,8 @@ pub const BOT_MENTION_ENTITY_TYPE: &str = "bot";
 
 /// Collect the bot ids mentioned in a message.
 ///
-/// Bot mentions normally arrive tagged `bot`, but Macro AI is surfaced through
-/// the user-mention UI, so a `user` mention whose id is exactly the Macro AI
+/// Bot mentions normally arrive tagged `bot`, but Rox AI is surfaced through
+/// the user-mention UI, so a `user` mention whose id is exactly the Rox AI
 /// bot is recognized as a bot mention too.
 ///
 /// Ids must be in the canonical `bot|<uuid>` principal form; bare UUIDs are
@@ -38,7 +38,7 @@ pub fn bot_mention_ids(mentions: &[SimpleMention]) -> Vec<BotId> {
 /// Parsed message reference vocabulary; recognizing a kind never grants access.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum MessageReferenceKind {
-    /// A human principal, or the special Macro AI user mention.
+    /// A human principal, or the special Rox AI user mention.
     User,
     /// A canonical bot principal.
     Bot,
@@ -72,7 +72,7 @@ pub enum MessageReferenceKind {
     CrmContact,
     /// An automation reference; recognized separately from message authorization support.
     Automation,
-    /// An external chat added to Macro.
+    /// An external chat added to Rox.
     ExternalChat,
 }
 impl MessageReferenceKind {

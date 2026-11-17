@@ -39,7 +39,7 @@ export function SystemStatusDashboard() {
         <header class="flex flex-col gap-1">
           <h1 class="text-xl font-semibold tracking-tight">System status</h1>
           <p class="text-sm text-ink-muted">
-            While Macro isn't operational, every user sees a banner with the
+            While Rox isn't operational, every user sees a banner with the
             status and your message. Changes reach open apps immediately.
           </p>
         </header>
@@ -279,8 +279,8 @@ function ApiDocs() {
     <Section title="API">
       <div class="flex flex-col gap-3 text-sm text-ink-muted">
         <p>
-          Any @rox.one account can set the status from a script with a
-          personal API key (Settings → API keys). <code>status</code> is{' '}
+          Any @rox.one account can set the status from a script with a personal
+          API key (Settings → API keys). <code>status</code> is{' '}
           <code>operational</code>, <code>degraded</code>, or{' '}
           <code>major_outage</code>; the latter two require a 1–
           {MAX_MESSAGE_LENGTH} character <code>message</code>, and operational

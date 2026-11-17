@@ -893,7 +893,7 @@ describe('onboarding flow', () => {
   it('streams AI’s suggestions in, fills only surfaces still empty after the wait, and tops up once AI is done', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     try {
-      // The server always fills each surface with Macro's templates.
+      // The server always fills each surface with Rox's templates.
       const emailTemplate = catalogSuggestion('updates', 'updates', {
         from: 'macro',
         surface: 'email',

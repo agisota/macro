@@ -46,7 +46,7 @@ pub trait GithubSyncRepo: Send + Sync + 'static {
     ///
     /// Implementations should use the installation's team sources from
     /// `github_app_installation` (`source_type = 'team'`) and the referenced
-    /// team slug/task number to find the backing Macro task document. Each
+    /// team slug/task number to find the backing Rox task document. Each
     /// match is returned with the team it resolved in; because team slugs are
     /// not unique, one reference may resolve in several of the installation's
     /// teams and callers must treat such references as ambiguous instead of
@@ -57,20 +57,20 @@ pub trait GithubSyncRepo: Send + Sync + 'static {
         references: &[TeamTaskReference],
     ) -> impl Future<Output = Result<Vec<ResolvedTeamTaskReference>, Self::Err>> + Send;
 
-    /// Maps GitHub user IDs to the Macro user IDs linked to them via the `github_links` table.
+    /// Maps GitHub user IDs to the Rox user IDs linked to them via the `github_links` table.
     ///
     /// A GitHub user ID absent from the result has no link; a GitHub user ID may map to
-    /// multiple Macro users because `github_links.github_user_id` is not unique (many Macro
+    /// multiple Rox users because `github_links.github_user_id` is not unique (many Rox
     /// users may share one GitHub account).
     fn get_macro_ids_by_github_user_ids(
         &self,
         github_user_ids: &[String],
     ) -> impl Future<Output = Result<std::collections::HashMap<String, Vec<String>>, Self::Err>> + Send;
 
-    /// Maps GitHub logins to the Macro user IDs linked to them via the `github_links` table.
+    /// Maps GitHub logins to the Rox user IDs linked to them via the `github_links` table.
     ///
     /// Logins are matched case-insensitively and returned lowercased. A login absent
-    /// from the result has no link; a login may map to multiple Macro users because
+    /// from the result has no link; a login may map to multiple Rox users because
     /// `github_links.github_username` is not unique.
     fn get_macro_ids_by_github_logins(
         &self,
@@ -83,13 +83,13 @@ pub trait GithubSyncRepo: Send + Sync + 'static {
         macro_id: &str,
     ) -> impl Future<Output = Result<Vec<uuid::Uuid>, Self::Err>> + Send;
 
-    /// Returns the Macro sources associated with a GitHub App installation.
+    /// Returns the Rox sources associated with a GitHub App installation.
     fn get_installation_sources(
         &self,
         installation_id: &str,
     ) -> impl Future<Output = Result<Vec<GithubAppInstallationSource>, Self::Err>> + Send;
 
-    /// Returns the installations whose sources include the given Macro user or
+    /// Returns the installations whose sources include the given Rox user or
     /// any of the given teams.
     ///
     /// The inverse of [`GithubSyncRepo::get_installation_sources`]: that
@@ -102,7 +102,7 @@ pub trait GithubSyncRepo: Send + Sync + 'static {
         team_ids: &[uuid::Uuid],
     ) -> impl Future<Output = Result<Vec<String>, Self::Err>> + Send;
 
-    /// Returns all Macro user IDs that belong to the given team.
+    /// Returns all Rox user IDs that belong to the given team.
     fn get_team_member_ids(
         &self,
         team_id: uuid::Uuid,
@@ -123,7 +123,7 @@ pub trait GithubSyncRepo: Send + Sync + 'static {
         installation_id: &str,
     ) -> impl Future<Output = Result<(), Self::Err>> + Send;
 
-    /// Records the Macro source a GitHub user asked to sync when requesting an
+    /// Records the Rox source a GitHub user asked to sync when requesting an
     /// org install that awaits admin approval. Replaces any earlier pending
     /// request by the same GitHub user (latest intent wins).
     fn upsert_installation_request(
@@ -273,7 +273,7 @@ pub trait GithubSyncService: Send + Sync + 'static {
     }
 
     /// Completes an installation setup callback after verifying its state,
-    /// that the completing GitHub account is linked to the state's Macro user,
+    /// that the completing GitHub account is linked to the state's Rox user,
     /// and (for install/update) that the account owns the installation.
     fn complete_installation_setup(
         &self,
@@ -311,7 +311,7 @@ pub trait GithubSyncRealtime: Send + Sync + 'static {
     ) -> impl Future<Output = Result<(), GithubError>> + Send;
 }
 
-/// Pages through every GitHub App installation Macro has recorded.
+/// Pages through every GitHub App installation Rox has recorded.
 pub trait GithubInstallationLister: Send + Sync + 'static {
     /// The error type returned by repository operations.
     type Err: Into<anyhow::Error> + Send + std::fmt::Debug;

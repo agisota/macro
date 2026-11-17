@@ -81,7 +81,7 @@ pub struct SoupAgentSession<T = ()> {
     /// Last synchronized state of the linked pull request, when visible.
     pub pull_request_state: Option<AgentPullRequestState>,
 
-    /// The linked pull request's Macro entity, when visible to the viewer.
+    /// The linked pull request's Rox entity, when visible to the viewer.
     pub pull_request_id: Option<Uuid>,
 
     /// Last persisted fold turn state. Absent until an older session next runs.

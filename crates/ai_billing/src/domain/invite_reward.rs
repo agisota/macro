@@ -1,4 +1,4 @@
-//! The reward for bringing someone to Macro: an inviter or referrer earns AI
+//! The reward for bringing someone to Rox: an inviter or referrer earns AI
 //! for each person who joins their team or signs up through their link.
 //!
 //! A paid user's payer gets [`REWARD_CREDIT_CUSTOMER_CENTS`] of prepaid credit.

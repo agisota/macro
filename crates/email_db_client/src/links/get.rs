@@ -48,7 +48,7 @@ pub async fn fetch_link_by_macro_id(
     macro_id: &str,
 ) -> anyhow::Result<Option<link::Link>> {
     if macro_id.is_empty() {
-        anyhow::bail!("Macro ID cannot be empty");
+        anyhow::bail!("Rox ID cannot be empty");
     }
 
     let db_link = sqlx::query_as!(
@@ -84,7 +84,7 @@ pub async fn fetch_link_by_macro_id_and_email_address(
     email_address: &str,
 ) -> anyhow::Result<Option<link::Link>> {
     if macro_id.is_empty() {
-        anyhow::bail!("Macro ID cannot be empty");
+        anyhow::bail!("Rox ID cannot be empty");
     }
     if email_address.is_empty() {
         anyhow::bail!("Email address cannot be empty");
@@ -121,7 +121,7 @@ pub async fn fetch_primary_link_by_macro_id(
     macro_id: &str,
 ) -> anyhow::Result<Option<link::Link>> {
     if macro_id.is_empty() {
-        anyhow::bail!("Macro ID cannot be empty");
+        anyhow::bail!("Rox ID cannot be empty");
     }
 
     let db_link = sqlx::query_as!(
@@ -213,7 +213,7 @@ pub struct InboxDetails {
     pub calendar_disabled: bool,
     /// Whether the inbox has a calendar account in Macro, i.e. whether there
     /// is calendar data to remove. Independent of the recorded scopes, which
-    /// stop satisfying the capability check whenever Macro changes the scope
+    /// stop satisfying the capability check whenever Rox changes the scope
     /// set it requests.
     pub has_calendar_data: bool,
 }

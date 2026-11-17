@@ -735,7 +735,7 @@ async fn requests_on_a_purchase_being_confirmed_are_not_purchased() {
     ));
     assert!(matches!(
         service
-            .release_now(TEAM, computer_id, "Macro computer")
+            .release_now(TEAM, computer_id, "Rox computer")
             .await,
         Err(ComputerError::NotPurchased)
     ));

@@ -11,7 +11,7 @@ pub trait CallToolResultExt {
     /// Concatenate text-bearing content blocks while preserving block boundaries.
     fn text_content(&self) -> String;
 
-    /// Convert a successful result into the JSON value exposed to Macro tools.
+    /// Convert a successful result into the JSON value exposed to Rox tools.
     ///
     /// Structured content is preserved as JSON. Results without structured
     /// content fall back to their text-bearing content blocks.

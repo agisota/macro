@@ -116,7 +116,7 @@ broker's recipient routing field is removed from delivered metadata.
 For document, channel, and message events, ingestion asks `EntityAccessService`
 for the people who currently have access to the entity; a message's entity is
 its parent channel or document. The matching workspace set
-contains each person's Macro user ID, for personal webhooks, plus every team ID
+contains each person's Rox user ID, for personal webhooks, plus every team ID
 to which any of those people belongs. The set is deduplicated before matching,
 so one person or team is considered only once.
 
@@ -246,7 +246,7 @@ The request includes:
 
 The signature input is the raw byte sequence
 `<X-Macro-Timestamp>.<request-body>`, using the webhook signing secret. Custom
-headers are included, but case-insensitive attempts to override a Macro header
+headers are included, but case-insensitive attempts to override a Rox header
 are permanent configuration failures. Delivery applies the same HTTPS, DNS,
 blocked-address, reserved-header, signing, and no-redirect protections as
 validation.

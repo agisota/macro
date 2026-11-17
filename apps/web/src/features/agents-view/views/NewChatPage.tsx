@@ -79,7 +79,7 @@ export type AgentRequest = { agentId: string; request: string };
 export type StartConversation = {
   prompt: string;
   attachments?: PromptAttachment[];
-  /** Persisted or first-party bot to run; omitted for Macro's default. */
+  /** Persisted or first-party bot to run; omitted for Rox's default. */
   botId?: string;
   repoUrl?: string;
   repoBranch?: string;
@@ -111,7 +111,7 @@ export function NewChatPage(props: {
   mode?: ComposerMode;
   onModeChange?: (mode: ComposerMode) => void;
   /**
-   * An agent to select, e.g. one just set up on a Macro computer. Each
+   * An agent to select, e.g. one just set up on a Rox computer. Each
    * request selects it again, also after the user picked another; one not in
    * the roster yet is selected once it arrives.
    */
@@ -152,7 +152,7 @@ export function NewChatPage(props: {
       }
     )
   );
-  /** One-shot model from a coding agent's submenu; Macro uses {@link preferredInmem}. */
+  /** One-shot model from a coding agent's submenu; Rox uses {@link preferredInmem}. */
   const [modelOverride, setModelOverride] = createSignal<string>();
   const [effortPickerOpen, setEffortPickerOpen] = createSignal(false);
   const [repositoryPickerOpen, setRepositoryPickerOpen] = createSignal(false);
@@ -171,10 +171,10 @@ export function NewChatPage(props: {
     repository: string;
     branch: string;
   }>();
-  /** The picked agent, else the last one used, else Macro, else any that can start. */
+  /** The picked agent, else the last one used, else Rox, else any that can start. */
   const preferredAgent = (kind: AgentsMode, picked?: string) => {
     const options = optionsFor(kind);
-    // Falling back to Macro before availability is known would open the
+    // Falling back to Rox before availability is known would open the
     // compact composer, then swap to the last agent's layout once it settles.
     const settling = props.rosterLoading || props.availabilityLoading;
     const recent = recentAgents
@@ -429,7 +429,7 @@ export function NewChatPage(props: {
           }
         : {}),
     });
-    // Macro's preferred model and the picked efforts stay; coding-agent model
+    // Rox's preferred model and the picked efforts stay; coding-agent model
     // picks are one-shot.
     setModelOverride(undefined);
   };
@@ -442,7 +442,7 @@ export function NewChatPage(props: {
     setAgentId(agent.id);
     if (agent.id === MACRO_PERSONA_ID) {
       if (model) preferredInmem.remember(model);
-      // Still set the override so the trigger updates when Macro was
+      // Still set the override so the trigger updates when Rox was
       // already selected (agent id unchanged would otherwise skip a render).
       setModelOverride(model);
     } else {

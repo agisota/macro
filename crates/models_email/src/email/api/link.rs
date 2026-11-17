@@ -116,9 +116,9 @@ pub struct Link {
     /// this is what separates "never granted" from "deliberately off" —
     /// unprompted calendar nags must stay quiet for the latter.
     pub calendar_disabled: bool,
-    /// Whether Macro holds calendar data for this inbox. Drives the turn-off
+    /// Whether Rox holds calendar data for this inbox. Drives the turn-off
     /// control on its own, so removing that data never depends on the recorded
-    /// scopes still matching the set Macro requests today — a set that changes
+    /// scopes still matching the set Rox requests today — a set that changes
     /// as the integration narrows, stranding data behind a capability check
     /// that no longer recognizes an older grant.
     pub has_calendar_data: bool,

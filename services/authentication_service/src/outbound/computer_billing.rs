@@ -1,4 +1,4 @@
-//! Macro computers billed on the team subscription through `teams`, and the
+//! Rox computers billed on the team subscription through `teams`, and the
 //! webhook observer that reports subscription snapshots to `hosted_runtimes`.
 
 use chrono::{DateTime, Utc};

@@ -1,4 +1,4 @@
-"""Generate drawings.xlsx: charts and an image written by openpyxl, not Macro.
+"""Generate drawings.xlsx: charts and an image written by openpyxl, not Rox.
 
 Run from this directory: python3 generate-drawings.py (needs openpyxl and Pillow).
 """

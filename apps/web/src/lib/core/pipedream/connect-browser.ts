@@ -1,7 +1,7 @@
 import { PIPEDREAM_CALLBACK_PATH } from './connect-callback';
 import { openPipedreamConnectUI } from './connect-ui';
 
-/** Standalone browser handoff; no Macro browser login is needed. */
+/** Standalone browser handoff; no Rox browser login is needed. */
 export function mountPipedreamBrowserConnect(
   root: HTMLElement,
   returnToApp: (href: string) => void = (href) => window.location.assign(href)
@@ -12,8 +12,7 @@ export function mountPipedreamBrowserConnect(
   const app = params.get('app');
   const state = params.get('state');
   if (!token || !app || !state) {
-    root.textContent =
-      'This connection link has expired. Start again in Rox.';
+    root.textContent = 'This connection link has expired. Start again in Rox.';
     return;
   }
   root.textContent = 'Connect your account to continue.';

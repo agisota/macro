@@ -204,7 +204,7 @@ describe('setShared', () => {
   });
 });
 
-describe('already in Macro', () => {
+describe('already in Rox', () => {
   const copy = (by: string) => ({
     by,
     entityId: `doc-${by}`,

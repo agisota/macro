@@ -69,7 +69,7 @@ where
     pub mutations: Arc<M>,
     /// Read path: bounded occurrence viewport queries.
     pub occurrences: Arc<O>,
-    /// Macro meetings minted for events that carry a Macro call.
+    /// Rox meetings minted for events that carry a Rox call.
     pub meeting_links: Arc<L>,
     /// Whether AddSharedCalendarEvent adds copies of channel-shared events:
     /// the `ENABLE_CALENDAR_ADD_SHARED_EVENT` deployment switch, off unless
@@ -694,7 +694,7 @@ fn mutation_tool_error(action: &str, error: CalendarMutationError) -> ToolCallEr
     }
 }
 
-/// Map a failure creating an event with a Macro call to an agent-readable
+/// Map a failure creating an event with a Rox call to an agent-readable
 /// tool error. Calendar failures read exactly like a plain create; meeting
 /// failures say that nothing reached the calendar.
 fn macro_call_create_tool_error(error: MacroCallEventError) -> ToolCallError {
@@ -726,7 +726,7 @@ fn macro_call_create_tool_error(error: MacroCallEventError) -> ToolCallError {
     }
 }
 
-/// Map a failure switching an event to a Macro call to an agent-readable
+/// Map a failure switching an event to a Rox call to an agent-readable
 /// tool error. Calendar failures read exactly like a plain update; meeting
 /// failures say that the event was left as it was.
 fn macro_call_update_tool_error(error: MacroCallEventError) -> ToolCallError {

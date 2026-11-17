@@ -27,7 +27,7 @@ struct StagedThreadLabels {
 }
 
 impl StagedThreadLabels {
-    /// Changed messages Gmail knows about; Macro-only drafts have no provider id.
+    /// Changed messages Gmail knows about; Rox-only drafts have no provider id.
     fn changed_provider_messages(&self) -> impl Iterator<Item = (Uuid, String)> + '_ {
         self.messages
             .iter()
@@ -40,7 +40,7 @@ impl StagedThreadLabels {
             })
     }
 
-    /// Changed Macro-only drafts, which never reach Gmail.
+    /// Changed Rox-only drafts, which never reach Gmail.
     fn changed_local_messages(&self) -> Vec<Uuid> {
         self.messages
             .iter()

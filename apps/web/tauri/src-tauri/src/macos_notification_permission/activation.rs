@@ -99,7 +99,7 @@ fn activate(app: &AppHandle, destination: Option<Url>) {
     if let Err(error) = app.run_on_main_thread(move || {
         let _entered = span.enter();
         if let Err(error) = handle.show() {
-            tracing::warn!(?error, "Unable to show Macro for notification");
+            tracing::warn!(?error, "Unable to show Rox for notification");
         }
         if let Some(window) = handle.get_webview_window("main") {
             for result in [window.unminimize(), window.show(), window.set_focus()] {

@@ -9,7 +9,7 @@ use tokio::io::BufReader;
 
 const DEFAULT_SOCKET: &str = "/run/harnessd/harnessd.sock";
 
-/// Agent sign-ins on a Macro computer. Without a subcommand, forwards
+/// Agent sign-ins on a Rox computer. Without a subcommand, forwards
 /// request lines from stdin to the daemon and prints its answers.
 #[derive(Parser)]
 #[command(name = "harnessd")]

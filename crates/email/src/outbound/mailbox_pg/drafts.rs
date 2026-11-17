@@ -53,7 +53,7 @@ impl PgMailboxSync {
             return Err(MailboxError::Stale);
         }
         // A locally composed thread gains a provider conversation once. Existing
-        // Macro thread identity (and its sharing) survives provider draft creation.
+        // Rox thread identity (and its sharing) survives provider draft creation.
         sqlx::query!(r#"
             UPDATE email_threads t SET provider_id = $3
             WHERE t.id = (SELECT thread_id FROM email_messages WHERE id = $1 AND link_id = $2)

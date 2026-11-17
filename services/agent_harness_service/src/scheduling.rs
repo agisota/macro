@@ -729,7 +729,7 @@ pub async fn build<Ingress: notification::domain::service::NotificationIngress>(
         .with_github_links(PgGithubInstallationClaims::new(db.clone()))
         .with_code(code, upgrades),
     );
-    // AI drafts routines in a hidden session of the in-process Macro agent.
+    // AI drafts routines in a hidden session of the in-process Rox agent.
     // Before it starts, a fast call names the items the request refers to and
     // the SDK areas it needs, and the existing name search finds those of
     // the kinds it covers, so the session is given them and the reference
@@ -794,7 +794,7 @@ pub async fn build<Ingress: notification::domain::service::NotificationIngress>(
             }
         });
     }
-    // Generations: hidden sessions of the in-process Macro agent on the free
+    // Generations: hidden sessions of the in-process Rox agent on the free
     // tier's model, at onboarding and in each person's night, opened
     // non-billable (`SessionBilling::NonBillable`), so their usage is
     // recorded, never billed. Suggestions sessions write through `macro.suggestions.*`;
@@ -848,7 +848,7 @@ pub async fn build<Ingress: notification::domain::service::NotificationIngress>(
             routine_flags.clone(),
         )
         // Accepting a background prompt suggestion runs it in a hidden session of the
-        // in-process Macro agent, as the person, billed as their agent usage.
+        // in-process Rox agent, as the person, billed as their agent usage.
         .with_runs(
             Arc::new(SuggestionRunSessions {
                 sessions: Arc::clone(&sessions),

@@ -20,7 +20,7 @@ pub const BOT_WEBHOOK_SCOPE: &str = "user";
 pub enum BotOwnerSummary {
     /// Bot owned by one user.
     User {
-        /// Macro user id of the owner.
+        /// Rox user id of the owner.
         user_id: String,
     },
     /// Bot owned by a team.

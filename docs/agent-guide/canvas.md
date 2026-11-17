@@ -12,7 +12,7 @@ as gray rather than transparent.
 
 ## Canvas link paste
 
-Pasting a supported routed Macro app link onto the canvas creates a document
+Pasting a supported routed Rox app link onto the canvas creates a document
 reference card. Routed links retain compatible block targets, but not workspace
 paths or pane-local search state; unsupported links remain text.
 
@@ -69,14 +69,14 @@ item concurrently chooses one completed content string; characters do not merge.
 
 ## AI editing and visual reads
 
-Use **Ask Macro** to attach the live Canvas. Ask for a visual layout or diagram:
-Macro can call **RenderCanvas** for an immutable PNG with crop/revision/object
+Use **Ask Rox** to attach the live Canvas. Ask for a visual layout or diagram:
+Rox can call **RenderCanvas** for an immutable PNG with crop/revision/object
 mapping, then edit and visually review the result. Embedded content is explicitly
 unavailable in scoped renders. A viewer can read/render but cannot edit.
 **ReadCanvas** also offers a compact approximate semantic overview with stable IDs.
 
 For a person mention, type `@` inside a text box or label and select the person.
-Ask Macro to insert that same person into another text box: it must resolve the
+Ask Rox to insert that same person into another text box: it must resolve the
 user ID/email and call `mentionUser`, rather than type literal `@Name`. Inspect
 `[data-user-mention]` and its `data-user-id`/`data-email`, reopen the Canvas, and
 check a second editor sees the same chip. Existing rich text and other chips

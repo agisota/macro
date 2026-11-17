@@ -29,7 +29,7 @@ fails isn't run.
 
 - Owns: the behavior, event, hook, capability and runtime mechanisms; the
   Claude Code agent; utilities any agent can use (schedules, jobs,
-  credentials, browser (a running Chromium's tab over CDP), Macro chat, failures, time).
+  credentials, browser (a running Chromium's tab over CDP), Rox chat, failures, time).
 - Not here: any particular agent's prompts, memory or product logic →
   the agent's own repository, started from `../starter-agent`.
 
@@ -71,7 +71,7 @@ in `packages/sdk`:
   `parseEnvFile` (a hosted agent's enrollment file, read-only), and
   `withheldCredentials` (names only, for a script's own process).
 - The Claude Code tools are `RunCapabilityScript` and `DescribeCapabilities`:
-  never Macro's own MCP tool names (`ExecuteCode`, `DescribeCodeTools`,
+  never Rox's own MCP tool names (`ExecuteCode`, `DescribeCodeTools`,
   `ReadCodeDocs`), which an agent may also be given.
 - Agents import this library from source and restart to pick up a change, so
   a change to an exported function is a breaking change for every agent.

@@ -21,7 +21,7 @@ use crate::domain::meetings::GuestId;
 
 /// A person connected to an RTC room.
 pub(super) enum RoomParticipant<'a> {
-    /// A Macro user.
+    /// A Rox user.
     User(MacroUserIdStr<'a>),
     /// A non-account meeting guest.
     Guest(GuestId),

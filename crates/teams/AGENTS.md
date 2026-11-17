@@ -17,7 +17,7 @@ event contract (schema, sanitization, delivery semantics).
   joining through it via the same direct-join path as domain auto-join.
 - `src/domain/domain_notice.rs` + `join_announcement.rs`: the one-time email a
   new work-domain team sends to the creator's same-domain contacts who are not
-  on Macro yet (`POST /team/domain-notice`, at most 25 per team). Its
+  on Rox yet (`POST /team/domain-notice`, at most 25 per team). Its
   unsubscribe link is signed by the notification service at send time.
 - `src/domain/team_service/invite_reminders.rs` +
   `src/inbound/invite_reminder_worker.rs`: reminder emails for unanswered
@@ -33,7 +33,7 @@ event contract (schema, sanitization, delivery semantics).
   calls `OwnedEntityCleanup::release_computers` after the purge and before
   cancelling the subscription, so computers leave through their own lifecycle.
 - `src/domain/subscription_items.rs`: `TeamSubscriptionItems`, non-seat items
-  (Macro computers) on the team subscription. Each computer bills ONE item at
+  (Rox computers) on the team subscription. Each computer bills ONE item at
   a price of its own (`create_computer_price` copies the catalog price; Stripe
   refuses two items of one price) carrying `computer_id` in item and price
   metadata, so items are matched by computer, never by price or count.

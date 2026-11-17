@@ -43,7 +43,7 @@ fn only_fields(value: &Value, allowed: &[&str]) -> bool {
 fn owned(rule: Rule) -> Option<OwnedSenderRule> {
     let correlation = rule
         .display_name
-        .strip_prefix("Macro block ")?
+        .strip_prefix("Rox block ")?
         .parse()
         .ok()?;
     // Never claim a similarly named rule with additional predicates/actions,
@@ -142,7 +142,7 @@ impl MailboxSettingsClient for OutlookApiClientRepository {
         sender: &str,
     ) -> Result<ProviderId, EmailApiError> {
         let response = self.request(token, Method::POST, self.endpoint(&["me", "mailFolders", "inbox", "messageRules"])?,
-            Some(&json!({"displayName": format!("Macro block {correlation}"), "sequence": 1, "isEnabled": true,
+            Some(&json!({"displayName": format!("Rox block {correlation}"), "sequence": 1, "isEnabled": true,
                 "conditions": {"fromAddresses": [{"emailAddress": {"address": sender}}]},
                 "actions": {"delete": true, "stopProcessingRules": true}}))).await?;
         let value: Value = read_json(response).await?;

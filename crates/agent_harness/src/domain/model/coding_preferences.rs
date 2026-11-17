@@ -5,7 +5,7 @@ use agent_session::domain::coding_preferences::CodingPreferences;
 #[cfg(test)]
 mod test;
 
-/// Research prior work, then link the session to a Macro task.
+/// Research prior work, then link the session to a Rox task.
 pub const CREATE_TASKS_INSTRUCTIONS: &str = include_str!("coding_preferences/create_tasks.md");
 
 /// Deliver the work as a pull request registered with the session.

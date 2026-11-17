@@ -1,20 +1,20 @@
 # MCP surfaces
 
-Macro serves two MCP servers. Both run the same SDK as the signed-in user and
+Rox serves two MCP servers. Both run the same SDK as the signed-in user and
 share one OAuth broker; they differ in how the SDK is exposed.
 
 ```
                         ┌──────────── mcp_auth_proxy (in agent_harness_service, McpPublicUrl) ───────────┐
 MCP client ──OAuth────▶ │ /register /authorize /token   resource=…/mcp → which server the token is for   │
                         └──────┬──────────────────────────────────────────────┬──────────────────────────┘
-                   FusionAuth token                                   Macro API token (kid=macro,
+                   FusionAuth token                                   Rox API token (kid=macro,
                                │                                        bot + agent_via=<client name>)
                                ▼                                              ▼
         McpPublicUrl/mcp: public MCP                     McpChatgptServiceUrl/mcp: services/mcp-chatgpt-worker
         code mode: ExecuteCode,                          SDK-generated tools (packages/sdk-mcp):
         DescribeCodeTools, ReadCodeDocs                  <entity>_read | _write | _delete, `op` union
                                │                                              │
-                               └────────────── Macro service APIs ◀───────────┘
+                               └────────────── Rox service APIs ◀───────────┘
 ```
 
 ## Public MCP (harness)
@@ -34,9 +34,9 @@ server exposes the SDK as generated tools instead of code mode:
   `@write`, `@send`, `@destructive`) into one operation per public method, grouped per
   SDK entity and hint class, or one tool per operation (`TOOL_GROUPING`).
 - The Worker is a resource server only. Its metadata names the broker; the
-  broker answers `resource=<McpChatgptServiceUrl>/mcp` with a Macro API token
-  minted for the Macro bot with `agent_via` set to the client's name, so
-  Macro's APIs attribute writes without the harness in the path. The Worker
+  broker answers `resource=<McpChatgptServiceUrl>/mcp` with a Rox API token
+  minted for the Rox bot with `agent_via` set to the client's name, so
+  Rox's APIs attribute writes without the harness in the path. The Worker
   passes the bearer unchanged to `new Macro({ token })`.
 - Results are the SDK method's JSON-safe return value plus the entity's web
   URL; SDK errors become `invalid`, `not_found`, `forbidden`, `conflict` or

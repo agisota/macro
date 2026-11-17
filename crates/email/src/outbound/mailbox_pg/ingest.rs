@@ -158,7 +158,7 @@ impl MailboxIngest for PgMailboxSync {
         // provider-native thread fetch or manufacturing a complete conversation.
         let candidate_thread_id = macro_uuid::generate_uuid_v7();
         let thread_id = if let Some(existing) = &existing {
-            // A previously linked draft/message keeps its stable Macro thread,
+            // A previously linked draft/message keeps its stable Rox thread,
             // including thread sharing and local composer references.
             existing.thread_id
         } else {

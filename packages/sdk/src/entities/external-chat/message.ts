@@ -60,7 +60,7 @@ export class ExternalChatMessage extends MacroEntity<ExternalChatMessageRecord> 
   readonly kind = this.field('kind');
   /** Forwarded from another chat. */
   readonly forwarded = this.field('forwarded');
-  /** Sent as view-once in the provider; Macro keeps and shows it like any media. */
+  /** Sent as view-once in the provider; Rox keeps and shows it like any media. */
   readonly viewOnce = this.field('viewOnce');
   /** People the body @-mentions: `@<token>` in the body is this person. */
   readonly mentions = this.field('mentions');

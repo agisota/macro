@@ -24,7 +24,7 @@ MCP app, a custom server, or a GitHub installation token) on each request.
   `tools/list`/`tools/call` on a connected app or custom server for a caller
   that authorized against the session itself (code executions'
   `macro.connectedApps`). It reads the grant by session id
-  (`SessionAuthority::authorize_session`), never reaches Macro's own server or
+  (`SessionAuthority::authorize_session`), never reaches Rox's own server or
   previews, and shares the actor path's credential resolution and
   not-connected answers. A call as the owner in a turn someone else prompted
   is held per call through `OwnerApprovals::hold_in_process`, the same
@@ -65,7 +65,7 @@ retain their existing session/repository identities.
 
 - `cargo test -p agent_egress` (`SQLX_OFFLINE` unset).
 
-Session-egress Macro API tokens (`MacroApiTokens::mint`) carry the session's
+Session-egress Rox API tokens (`MacroApiTokens::mint`) carry the session's
 bound agent (`agent_session.bot_id`, read off the row as `SessionGrant.agent`) as
 their signed `agent_id` claim and retain `agent_session_id` provenance, so
 code mode can mint a fresh invocation correlation. Cache credentials by owner,

@@ -213,6 +213,6 @@ pub(crate) fn viewer_of<Authorization>(signed_in: &SignedIn<Authorization>) -> V
         models_forms::FormErrorCode,
         models_forms::LayoutProblem,
     )),
-    tags((name = "forms", description = "Macro Forms: questionnaires over a database table"))
+    tags((name = "forms", description = "Rox Forms: questionnaires over a database table"))
 )]
 pub struct FormsApi;

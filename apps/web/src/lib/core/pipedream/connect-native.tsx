@@ -34,7 +34,7 @@ export function openNativePipedreamConnectUI(
   let closed = false;
   const [openFailed, setOpenFailed] = createSignal(false);
   const launch = async () => {
-    // This hosted /app page must bypass Macro's ordinary in-app link routing.
+    // This hosted /app page must bypass Rox's ordinary in-app link routing.
     const result = await ResultAsync.fromPromise(
       invoke('plugin:opener|open_url', { url: url.href }),
       () => undefined

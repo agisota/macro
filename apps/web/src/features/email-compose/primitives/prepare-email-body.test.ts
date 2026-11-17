@@ -53,7 +53,7 @@ function quotedImageSources(html: string) {
 
 describe('prepareEmailBodyFromHtml', () => {
   it.each(['reply', 'forward'] as const)(
-    'keeps quoted Macro document links re-importable as rich mentions in a %s',
+    'keeps quoted Rox document links re-importable as rich mentions in a %s',
     (replyType) => {
       const prepared = prepareEmailBodyFromHtml('<p>My reply</p>', {
         replyType,
@@ -140,7 +140,7 @@ describe('prepareEmailBodyFromHtml', () => {
     ]);
   });
   it.each(['reply', 'forward'] as const)(
-    'drops Macro read-receipt pixels from a quoted %s',
+    'drops Rox read-receipt pixels from a quoted %s',
     (replyType) => {
       const pixel = `${EMAIL_SERVICE_EMBEDDED_HOSTS[0]}/opens/token`;
       const original = {

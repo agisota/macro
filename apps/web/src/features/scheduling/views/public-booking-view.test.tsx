@@ -6,7 +6,7 @@ import { PublicBookingView } from './public-booking-view';
 
 const profile: PublicProfile = {
   id: 'team',
-  name: 'Macro',
+  name: 'Rox',
   description: 'Meet the team.',
   eventTypes: [],
 };
@@ -35,7 +35,7 @@ it('carries the Rox name when it is the whole page', () => {
 it('leaves the Rox name to the page that embeds it', () => {
   renderPage(true);
 
-  expect(screen.getByRole('heading', { name: 'Macro' })).toBeTruthy();
+  expect(screen.getByRole('heading', { name: 'Rox' })).toBeTruthy();
   expect(screen.queryByRole('link')).toBeNull();
   expect(screen.queryByText('Scheduling by Rox')).toBeNull();
 });

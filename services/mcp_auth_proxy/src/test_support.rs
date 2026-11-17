@@ -61,13 +61,13 @@ pub const SSO_EMAIL_ADDRESS: &str = "user@sso.example";
 pub const EMAIL_CODE: &str = "123456";
 /// The harness's public MCP, as its metadata advertises it.
 pub const HARNESS_RESOURCE: &str = "https://mcp.rox.one/mcp";
-/// The ChatGPT MCP server, which gets Macro API tokens.
+/// The ChatGPT MCP server, which gets Rox API tokens.
 pub const CHATGPT_RESOURCE: &str = "https://mcp-chatgpt.rox.one/mcp";
 
 /// The longest token the fake minter signs, like the harness's signer cap.
 pub const MINTED_LIFETIME_CAP_SECONDS: u64 = 900;
 
-/// Minter that spells out what it signed, standing in for the harness's Macro
+/// Minter that spells out what it signed, standing in for the harness's Rox
 /// API token signer, and caps lifetimes as it does.
 pub struct FakeMacroApiTokens;
 

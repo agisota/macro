@@ -164,7 +164,7 @@ pub struct ReactionMessageContext {
     pub sender: Sender,
     /// Root thread id when this message is a reply.
     pub thread_id: Option<Uuid>,
-    /// Macro Markdown message body.
+    /// Rox Markdown message body.
     pub content: String,
 }
 
@@ -685,7 +685,7 @@ pub enum ReferencedShareItemType {
     CalendarEvent,
     /// Form entity: posting one lets the channel respond to it.
     Form,
-    /// External chat added to Macro: mentioning one lets the channel read it.
+    /// External chat added to Rox: mentioning one lets the channel read it.
     ExternalChat,
 }
 
@@ -821,7 +821,7 @@ pub enum ChannelShareEntityType {
     EmailThread,
     /// An agent session.
     AgentSession,
-    /// An external chat (such as WhatsApp) added to Macro.
+    /// An external chat (such as WhatsApp) added to Rox.
     ExternalChat,
 }
 
@@ -987,7 +987,7 @@ pub struct WithChannelId {
 #[cfg(feature = "list")]
 #[derive(Debug, Deserialize)]
 pub struct UserName {
-    /// Macro user id.
+    /// Rox user id.
     pub id: MacroUserIdStr<'static>,
     /// First name, if present.
     pub first_name: Option<String>,
@@ -1012,11 +1012,11 @@ impl UserName {
     }
 }
 
-/// Lookup from Macro user id to display name.
+/// Lookup from Rox user id to display name.
 #[cfg(any(feature = "list", feature = "outbound"))]
 pub(crate) type NameLookup = HashMap<MacroUserIdStr<'static>, String>;
 
-/// Produce the human-readable fallback for a Macro user id.
+/// Produce the human-readable fallback for a Rox user id.
 #[cfg(any(feature = "list", feature = "outbound"))]
 pub(crate) fn fallback_user_name(user_id: &MacroUserIdStr<'_>) -> String {
     user_id.email_part().local_part().to_string()

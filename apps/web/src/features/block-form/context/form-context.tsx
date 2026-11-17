@@ -188,7 +188,7 @@ export type FormMetadataPatch = {
   logoFileId?: string | null;
   /** A static file id, or `null` to remove it. */
   coverFileId?: string | null;
-  /** `#rrggbb`, or `null` for Macro's accent. */
+  /** `#rrggbb`, or `null` for Rox's accent. */
   accentColor?: string | null;
 };
 
@@ -280,7 +280,7 @@ export type FormBookingLink = {
   owner: string;
 };
 
-/** Native Macro scheduling, as forms use it for a booking step. */
+/** Native Rox scheduling, as forms use it for a booking step. */
 export type FormBooking = {
   /** Whether the viewer can create and pick booking links. */
   available: Accessor<boolean>;
@@ -312,7 +312,7 @@ export type ResponsesGridProps = {
 };
 
 /**
- * What Macro Forms needs from the app. Production wiring lives in
+ * What Rox Forms needs from the app. Production wiring lives in
  * `../form-context-production.tsx`; tests supply their own.
  */
 export type FormContext = {

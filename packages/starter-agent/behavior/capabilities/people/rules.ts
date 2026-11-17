@@ -192,7 +192,7 @@ export const Event = z.object({
   note: z.string(),
   /** Said where only they could see it. */
   private: z.boolean(),
-  /** Where it came from: the Macro message or call. */
+  /** Where it came from: the Rox message or call. */
   source: z.string(),
   forgotten: z.boolean().optional(),
 });

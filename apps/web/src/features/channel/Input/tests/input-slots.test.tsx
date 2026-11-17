@@ -542,7 +542,7 @@ describe('Input slots', () => {
   });
 
   it.each([false, true])(
-    'offers one Macro entry in call chat with agents rollout %s',
+    'offers one Rox entry in call chat with agents rollout %s',
     (enabled) => {
       editorMocks.agentsEnabled = enabled;
       render(() => (
@@ -567,12 +567,12 @@ describe('Input slots', () => {
     }
   );
 
-  it('offers a single Macro mention, aimed by the agents rollout', () => {
+  it('offers a single Rox mention, aimed by the agents rollout', () => {
     render(() => <ChannelInput input={baseInput} />);
     expect(
-      editorMocks.mentionUsers?.().filter(
-        (user) => user.name === MACRO_AGENT_NAME
-      )
+      editorMocks
+        .mentionUsers?.()
+        .filter((user) => user.name === MACRO_AGENT_NAME)
     ).toEqual([
       {
         id: MACRO_AGENT_PRINCIPAL_ID,
@@ -584,9 +584,9 @@ describe('Input slots', () => {
     editorMocks.agentsEnabled = true;
     render(() => <ChannelInput input={baseInput} />);
     expect(
-      editorMocks.mentionUsers?.().filter(
-        (user) => user.name === MACRO_AGENT_NAME
-      )
+      editorMocks
+        .mentionUsers?.()
+        .filter((user) => user.name === MACRO_AGENT_NAME)
     ).toEqual([
       {
         id: MACRO_NEW_PRINCIPAL_ID,

@@ -44,7 +44,7 @@ describe('hideIncompleteMacroXml', () => {
     'Example:\n```xml\n<m-document-mention>{"documentId":"example"}\n```\nAfter.',
     'Example:\n```xml\n<m-document-mention>{"documentId":"unfinished',
     'Example:\n````xml\n```\n<m-document-mention>\n````\nAfter.',
-  ])('preserves literal Macro XML in code: %s', (text) => {
+  ])('preserves literal Rox XML in code: %s', (text) => {
     expect(hideIncompleteMacroXml(text)).toBe(text);
   });
 

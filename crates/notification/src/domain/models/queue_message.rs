@@ -64,13 +64,13 @@ pub struct EmailContent {
     /// name, marked as sent via Macro, while the address stays Macro's.
     #[serde(default)]
     pub from_name: Option<String>,
-    /// The address replies go to instead of Macro's no-reply sender.
+    /// The address replies go to instead of Rox's no-reply sender.
     #[serde(default)]
     pub reply_to: Option<EmailStr<'static>>,
 }
 
 impl EmailContent {
-    /// An HTML-only email from Macro itself.
+    /// An HTML-only email from Rox itself.
     pub fn new(subject: String, body: String) -> Self {
         Self {
             subject,

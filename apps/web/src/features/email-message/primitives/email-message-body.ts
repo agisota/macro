@@ -20,7 +20,7 @@ export interface EmailMessageBodyProps {
   setFocusedMessageId: (messageId: string | undefined) => void;
   showFullContent?: boolean;
   isFocused: boolean;
-  /** Load Macro read-receipt pixels, so viewing this copy counts as an open. */
+  /** Load Rox read-receipt pixels, so viewing this copy counts as an open. */
   showReadReceiptPixel?: boolean;
 }
 

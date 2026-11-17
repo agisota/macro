@@ -757,7 +757,7 @@ async fn a_prompt_to_a_busy_native_session_waits_for_its_turn_then_submits() {
             .unwrap()
             .unwrap()
     };
-    // The native turn keeps streaming while the Macro prompt waits for it.
+    // The native turn keeps streaming while the Rox prompt waits for it.
     assert_eq!(
         next().await["params"]["update"]["content"]["text"],
         "typed in herdr"

@@ -16,7 +16,7 @@ import '@fontsource-variable/inter';
 import '../../../index.css';
 
 document.documentElement.dataset.touchDevice = String(isTouchDevice());
-applyTheme('Macro Dark');
+applyTheme('Rox Dark');
 
 // The harness answers from the replay's saved programs.
 Object.assign(agentHarnessServiceClient, {

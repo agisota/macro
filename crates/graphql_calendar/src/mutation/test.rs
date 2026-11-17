@@ -56,7 +56,7 @@ enum Call {
 struct FakeMutations {
     calls: Mutex<Vec<(String, Call)>>,
     failure: Mutex<Option<CalendarMutationError>>,
-    /// Fails the next Macro call before any calendar write.
+    /// Fails the next Rox call before any calendar write.
     meeting_failure: Mutex<Option<MeetingLinkError>>,
 }
 
@@ -202,7 +202,7 @@ impl CalendarMacroCallService for FakeMutations {
         _patch: CalendarEventPatch,
         _scope: CalendarUpdateScope,
     ) -> Result<CalendarEvent, MacroCallEventError> {
-        unreachable!("GraphQL updates carry no Macro call")
+        unreachable!("GraphQL updates carry no Rox call")
     }
 }
 
@@ -467,7 +467,7 @@ async fn create_with_a_macro_call_mints_the_meeting_before_the_calendar_write() 
     );
     let calls = mutations.calls.lock().unwrap();
     let (viewer, Call::CreateWithMeeting(email_link_id, calendar_id, draft)) = &calls[0] else {
-        panic!("expected a create carrying a Macro call, got {calls:?}");
+        panic!("expected a create carrying a Rox call, got {calls:?}");
     };
     assert_eq!(viewer, VIEWER);
     assert_eq!(*email_link_id, None);

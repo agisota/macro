@@ -287,7 +287,7 @@ const AGENT_PROVIDER_CATEGORIES: Record<CuratedAiProvider, string[]> = {
   slack: ['Chat', 'Agent tools'],
 };
 
-/** Slack, Linear and Notion: agent tools with Macro's importer beside them. */
+/** Slack, Linear and Notion: agent tools with Rox's importer beside them. */
 export function useAgentProviderItem(
   model: Accessor<ConnectionsModel>,
   provider: Exclude<CuratedAiProvider, 'github'>
@@ -391,7 +391,7 @@ export function useGranolaItem(): IntegrationItem {
   };
 }
 
-/** Macro MCP setup for AI apps, and local coding agents when available. */
+/** Rox MCP setup for AI apps, and local coding agents when available. */
 export function aiAppItems(hosts: IntegrationItemHosts): IntegrationItem[] {
   const items: IntegrationItem[] = [
     {

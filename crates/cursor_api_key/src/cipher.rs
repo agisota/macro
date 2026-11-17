@@ -265,7 +265,7 @@ impl KeyOwner {
 
     /// The context KMS requires to match on decrypt.
     ///
-    /// Bound to the Macro user only. Deliberately not to any Cursor-side
+    /// Bound to the Rox user only. Deliberately not to any Cursor-side
     /// identity: that changes when a user swaps Cursor accounts, and a row
     /// bound to it would become permanently unreadable.
     fn encryption_context(&self) -> HashMap<String, String> {

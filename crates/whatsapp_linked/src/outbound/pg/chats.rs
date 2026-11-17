@@ -283,7 +283,7 @@ pub(super) async fn backfill_work_in(
     account: &Fenced,
 ) -> ExternalChatResult<Vec<BackfillWork>> {
     // The anchor is the chat list's newest message, else the newest message
-    // of the chat stored in Macro that this account saw (in this group, or in
+    // of the chat stored in Rox that this account saw (in this group, or in
     // an earlier or someone else's group for the same chat).
     sqlx::query!(
         r#"SELECT g.id, g.remote_id, g.backfill_state AS "state!", g.backfill_imported, g.backfill_cursor,

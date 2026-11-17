@@ -23,15 +23,15 @@ including two process incarnations born within the same second.
 Prerequisites:
 
 - macOS, Xcode 27, and a **booted** iOS 27 simulator.
-- An installed Macro **debug** app from this checkout, built with
+- An installed Rox **debug** app from this checkout, built with
   `--no-default-features` to disable automatic bundle updates. Keep its Vite
   server running. Use `just ios-dev` from `apps/web` to open Xcode and build/run
   the simulator destination. The app and both extensions require iOS 15+.
-- The debug logs must include Tao's `emitting Opened` and Macro's
+- The debug logs must include Tao's `emitting Opened` and Rox's
   `mobile window resumed` messages (the debug app's default log filter does).
   Missing logs fail the test; do not treat an instrumentation failure as a pass.
 
-Save any drafts first: the test **terminates and relaunches Macro**. It does
+Save any drafts first: the test **terminates and relaunches Rox**. It does
 not install/reinstall apps, boot/erase simulators, clear data, sign out, grant
 permissions, send messages, or edit documents. Existing sessions are retained.
 It briefly activates Safari to exercise background/foreground transitions.
@@ -141,7 +141,7 @@ is pending or fails, including the simulator's registration timeout.
 
 ## Separate finding: legacy document displays JSON
 
-The existing onboarding document titled `Why use Macro?` displayed serialized
+The existing onboarding document titled `Why use Rox?` displayed serialized
 Lexical JSON as body text during read-only testing. Navigation remained responsive;
 a second document was empty and therefore was not a rich-text rendering control.
 This has **not** been attributed to this PR or to iOS/Tao. Investigate stored

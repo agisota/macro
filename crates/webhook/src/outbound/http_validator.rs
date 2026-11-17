@@ -109,7 +109,7 @@ impl WebhookValidationClient for ReqwestWebhookValidationClient {
 
         for (name, value) in webhook.headers {
             if is_reserved_macro_header(&name) {
-                return Ok(failure(None, "reserved Macro headers cannot be overridden"));
+                return Ok(failure(None, "reserved Rox headers cannot be overridden"));
             }
             request = request.header(name, value);
         }

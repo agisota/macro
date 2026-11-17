@@ -21,7 +21,7 @@ import {
 import { createSoundUnlock } from './primitives/sound-unlock';
 
 /**
- * The sound Macro plays for an incoming notification, if any. System alerts
+ * The sound Rox plays for an incoming notification, if any. System alerts
  * for it stay silent so the person hears one sound, not two.
  */
 export function notificationSoundFor(

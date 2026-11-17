@@ -1,5 +1,5 @@
 #![deny(missing_docs)]
-//! Macro Databases: tables of typed rows whose cells are entity properties,
+//! Rox Databases: tables of typed rows whose cells are entity properties,
 //! behind a domain service with Axum, agent-tool and Postgres adapters.
 
 pub mod domain;

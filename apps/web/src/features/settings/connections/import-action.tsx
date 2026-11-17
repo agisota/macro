@@ -14,8 +14,8 @@ const ConnectorImportDialogHost = lazyNamed(
 );
 
 /**
- * Offers Macro's importer beside Connect for apps it can import from: the
- * importer copies the app's data into Macro, while Connect only gives agents
+ * Offers Rox's importer beside Connect for apps it can import from: the
+ * importer copies the app's data into Rox, while Connect only gives agents
  * the app's tools.
  */
 export function ImportAction(props: { appSlug: string; name: string }) {
@@ -65,7 +65,7 @@ export function ImportAction(props: { appSlug: string; name: string }) {
   );
 }
 
-/** One line on what connecting an app does in Macro, not what the app is. */
+/** One line on what connecting an app does in Rox, not what the app is. */
 export function connectorDescription(appSlug: string, name: string): string {
   const found = importSourceFor(appSlug);
   if (!found) {

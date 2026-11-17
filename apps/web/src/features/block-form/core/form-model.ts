@@ -1,6 +1,6 @@
 import type { EntityAppearance } from '../../entity-appearance/core/appearance';
 /**
- * The vocabulary of Macro Forms: a form is a view of one database table. Its
+ * The vocabulary of Rox Forms: a form is a view of one database table. Its
  * questions are the table's columns; the form owns only presentation
  * (sections, order, help text, required, widget, gate rules).
  *
@@ -13,7 +13,7 @@ import type { EntityAppearance } from '../../entity-appearance/core/appearance';
  * it comes last.
  */
 
-/** Who may respond: signed-in Macro users, or anyone with the link. */
+/** Who may respond: signed-in Rox users, or anyone with the link. */
 export type FormAudience = 'members' | 'public';
 
 export type FormStatus = 'open' | 'closed';
@@ -23,7 +23,7 @@ export type FormAccess = 'view' | 'edit' | 'owner';
 
 export type SectionKind = 'questions' | 'gate' | 'booking';
 
-/** A native Macro booking link: one event type of a scheduling profile. */
+/** A native Rox booking link: one event type of a scheduling profile. */
 export type FormBookingTarget = { profileId: string; eventTypeId: string };
 
 /**
@@ -49,7 +49,7 @@ export type QuestionWidget =
   | 'dropdown'
   | 'checkboxes';
 
-/** A kind of Macro entity a reference column points at. */
+/** A kind of Rox entity a reference column points at. */
 export type FormEntityKind =
   | 'USER'
   | 'DOCUMENT'

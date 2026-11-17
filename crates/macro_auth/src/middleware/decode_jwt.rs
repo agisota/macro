@@ -60,7 +60,7 @@ impl JwtValidationArgs {
         })
     }
 
-    /// Build an isolated Macro JWT verifier with fixture keys.
+    /// Build an isolated Rox JWT verifier with fixture keys.
     #[cfg(feature = "testing")]
     pub fn testing_macro_token(issuer: &'static str, public_key: &'static str) -> Self {
         Self {
@@ -189,7 +189,7 @@ struct FusionAuthAccessToken {
 }
 
 /// Checks that a token was issued by FusionAuth for this application (signature, audience and
-/// issuer) without checking expiry or the Macro claims, and returns when it was issued.
+/// issuer) without checking expiry or the Rox claims, and returns when it was issued.
 /// FusionAuth still issues an access token when the JWT populate lambda fails, just without
 /// those claims.
 pub fn validate_fusionauth_access_token_allow_expired(

@@ -187,7 +187,7 @@ function NewTop(props: { channelId: string }) {
     },
   });
 
-  // Seed for "Ask Macro": a new chat with this channel @mentioned, so the
+  // Seed for "Ask Rox": a new chat with this channel @mentioned, so the
   // user does not have to create an agent and mention the channel by hand.
   const askMacroEntity = () => {
     const type = channelType();

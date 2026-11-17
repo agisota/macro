@@ -6,7 +6,7 @@ use crate::{LocalE2eConfig, SeedUser};
 /// Default local E2E JWT lifetime: eight hours.
 pub const DEFAULT_EXPIRY_SECONDS: usize = 8 * 60 * 60;
 
-/// Options for generating a local Macro API token.
+/// Options for generating a local Rox API token.
 #[derive(Clone, Debug)]
 pub struct LocalJwtOptions<'a> {
     /// Seed user to encode into the token.
@@ -34,12 +34,12 @@ impl<'a> LocalJwtOptions<'a> {
     }
 }
 
-/// Explicit claims for generating a local Macro API token.
+/// Explicit claims for generating a local Rox API token.
 #[derive(Clone, Copy, Debug)]
 pub struct LocalJwtClaims<'a> {
     /// FusionAuth user id claim.
     pub fusion_user_id: &'a str,
-    /// Macro auth user id claim.
+    /// Rox auth user id claim.
     pub macro_user_id: &'a str,
     /// Optional organization id claim.
     pub organization_id: Option<i32>,
@@ -49,13 +49,13 @@ pub struct LocalJwtClaims<'a> {
     pub expiry_seconds: Option<usize>,
 }
 
-/// Generate a local Macro API token for a seed user.
+/// Generate a local Rox API token for a seed user.
 pub fn encode_local_jwt(user: &SeedUser) -> anyhow::Result<String> {
     let config = LocalE2eConfig::load()?;
     encode_local_jwt_with(&config, LocalJwtOptions::new(user))
 }
 
-/// Generate a local Macro API token using explicit config and options.
+/// Generate a local Rox API token using explicit config and options.
 pub fn encode_local_jwt_with(
     config: &LocalE2eConfig,
     options: LocalJwtOptions<'_>,
@@ -72,7 +72,7 @@ pub fn encode_local_jwt_with(
     )
 }
 
-/// Generate a local Macro API token using explicit claims.
+/// Generate a local Rox API token using explicit claims.
 pub fn encode_local_jwt_claims_with(
     config: &LocalE2eConfig,
     claims: LocalJwtClaims<'_>,

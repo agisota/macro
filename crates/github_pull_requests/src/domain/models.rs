@@ -363,7 +363,7 @@ pub enum GithubPullRequestSortDirection {
     Desc,
 }
 
-/// A GitHub pull request as Macro stores it, read through one of the caller's records.
+/// A GitHub pull request as Rox stores it, read through one of the caller's records.
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(rename_all = "camelCase")]

@@ -67,7 +67,7 @@ test('accepting an external draft version requires reload before editing', async
   await expect(page.getByTestId('resolutions')).toHaveText(
     'use_provider:9:false'
   );
-  await expect(editor).toHaveValue('Saved Macro draft');
+  await expect(editor).toHaveValue('Saved Rox draft');
   await expect(editor).toBeDisabled();
   await page.getByRole('button', { name: 'Reload draft' }).click();
   await expect(editor).toHaveValue('Latest mailbox draft');

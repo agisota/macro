@@ -55,7 +55,7 @@ pub const MAX_FILTERS: usize = 32;
 pub const MAX_EVENTS_PER_FILTER: usize = 15;
 pub const MAX_IDS_PER_FILTER: usize = 100;
 
-/// A routine may run on one trigger or any of several schedules and Macro events.
+/// A routine may run on one trigger or any of several schedules and Rox events.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, ToSchema)]
 #[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
 pub enum ActionTrigger {
@@ -256,7 +256,7 @@ pub enum EventName {
     CallStarted,
     #[serde(rename = "call.ended")]
     CallEnded,
-    /// A delivery from Macro's GitHub App; the filter's `github` selector narrows it.
+    /// A delivery from Rox's GitHub App; the filter's `github` selector narrows it.
     #[serde(rename = "github")]
     Github,
 }
@@ -303,7 +303,7 @@ impl EventName {
         }
     }
 
-    /// Events from outside Macro: they carry their payload, take a payload
+    /// Events from outside Rox: they carry their payload, take a payload
     /// match, and stand alone in their filter.
     const fn is_external(self) -> bool {
         matches!(self, Self::Github)
@@ -368,7 +368,7 @@ pub enum FilterValidationError {
 /// An event name AND an entity ID must match within the same filter. A
 /// condition further requires the event's content to answer it with yes.
 ///
-/// `github` comes from outside Macro and carries its payload: it stands
+/// `github` comes from outside Rox and carries its payload: it stands
 /// alone in its filter, takes no ids, and may require
 /// exact payload values with `match`. A `github` filter narrows deliveries
 /// with its `github` selector.
@@ -690,7 +690,7 @@ impl EventId {
     }
 }
 
-/// Durable context. A Macro event keeps no content, owner or full envelope:
+/// Durable context. A Rox event keeps no content, owner or full envelope:
 /// dispatch reads its content again, as the routine's owner. Its only actor is
 /// the GitHub account in a change source, which nothing else records. An
 /// external delivery has nothing to read again, so it keeps its payload.
@@ -706,7 +706,7 @@ pub struct EventReference {
 /// What an event is about.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EventSource {
-    /// A Macro entity, the message the event concerns, and what outside Macro
+    /// A Rox entity, the message the event concerns, and what outside Rox
     /// changed it.
     Entity {
         entity_id: Uuid,
@@ -714,7 +714,7 @@ pub enum EventSource {
         change_source: Option<PropertyChangeSource>,
         property_change: Option<PropertyChange>,
     },
-    /// A delivery from Macro's GitHub App. Boxed: it carries its payload.
+    /// A delivery from Rox's GitHub App. Boxed: it carries its payload.
     Github(Box<GithubWebhookReceived>),
 }
 
@@ -725,7 +725,7 @@ struct EventReferenceInput {
     event_name: EventName,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     entity_id: Option<Uuid>,
-    /// Always written for Macro events, which predate external ones.
+    /// Always written for Rox events, which predate external ones.
     #[serde(default, skip_serializing_if = "skip_message_id")]
     message_id: Option<Option<Uuid>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -817,7 +817,7 @@ impl EventReference {
     pub fn source(&self) -> &EventSource {
         &self.source
     }
-    /// The Macro entity the event is about; None for external deliveries.
+    /// The Rox entity the event is about; None for external deliveries.
     pub fn entity_id(&self) -> Option<Uuid> {
         match self.source {
             EventSource::Entity { entity_id, .. } => Some(entity_id),
@@ -1068,12 +1068,12 @@ impl IncomingEvent {
             }
             EventPayload::Email(_) => return Err(EventRejection::UnsupportedEvent),
             EventPayload::Call(CallTopicEvent::Started(data)) => {
-                // The creator is always a Macro account; the call is theirs.
+                // The creator is always a Rox account; the call is theirs.
                 (EventName::CallStarted, data.call_id, None)
             }
             EventPayload::Call(CallTopicEvent::RecordArchived(data)) => {
                 // A call ends when its people leave, not by anyone's action;
-                // it is theirs only if a Macro account joined it.
+                // it is theirs only if a Rox account joined it.
                 if data.participants.is_empty() {
                     return Err(EventRejection::UnsafeAttribution);
                 }
@@ -1171,7 +1171,7 @@ fn task_property_event(
     }
     let name = task_property_event_name(change.as_ref().map(PropertyChange::definition_id));
     // GitHub reports what happened to a pull request whether or not its account
-    // has a Macro user, so its status changes need no Macro actor. An actor that
+    // has a Rox user, so its status changes need no Rox actor. An actor that
     // is present still has to be a person.
     let from_github =
         name == EventName::TaskStatusChanged && source.is_some() && actor.is_none() && !delegated;

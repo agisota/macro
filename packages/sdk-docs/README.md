@@ -1,4 +1,4 @@
-# Macro SDK documentation
+# Rox SDK documentation
 
 The public SDK source and its comments are the source of truth. TypeDoc and
 typedoc-plugin-markdown generate a canonical Markdown hierarchy and an HTML

@@ -237,12 +237,12 @@ async fn an_installed_adapter_is_not_installed_again() {
 
 #[test]
 fn custom_commands_preserve_quoted_arguments() {
-    let agent = custom(r#"my-agent --mode acp --name "Macro Agent""#).expect("custom command");
+    let agent = custom(r#"my-agent --mode acp --name "Rox Agent""#).expect("custom command");
 
     assert_eq!(agent.launch.command, "my-agent");
     assert_eq!(
         agent.launch.args,
-        ["--mode", "acp", "--name", "Macro Agent"]
+        ["--mode", "acp", "--name", "Rox Agent"]
     );
     assert!(agent.launch.env.is_empty());
     assert_eq!(agent.install, None);

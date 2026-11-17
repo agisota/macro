@@ -355,7 +355,7 @@ async fn bot_instructions_carry_the_user_and_bot_in_the_token_and_the_bot_name_o
                 Some("bot|00000000-0000-0000-0000-00000000a1a1".to_string())
             );
             assert_eq!(mode, EditMode::Supervised);
-            assert_eq!(editor, EditorName::new("Macro"));
+            assert_eq!(editor, EditorName::new("Rox"));
             Box::pin(async {
                 Ok(EditResult {
                     edits_applied: 1,

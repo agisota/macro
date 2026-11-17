@@ -27,7 +27,7 @@ import { AgentClaudeDialog } from './agent-claude-step';
 /**
  * An agent teammate's Claude on its row in Members: sign its computer in to
  * the team's Claude plan, later or after the sign-in expired, or switch it
- * back to Macro credits. Only those who own the computer's runtime (the
+ * back to Rox credits. Only those who own the computer's runtime (the
  * team's owner and admins, so its inviter) see it; the server refuses
  * everyone else.
  */

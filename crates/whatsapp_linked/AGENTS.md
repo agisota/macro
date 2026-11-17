@@ -81,7 +81,7 @@ They share no HTTP: only RoxDB rows and `NOTIFY` (`external_chat`'s
   (`whatsapp_profile_picture`, per observing account and JID, because
   WhatsApp's privacy settings differ per viewer; a chat shows what its
   owner's account sees). Adoption tracks the added group or direct chat by
-  `remote_id`, and ingest each new non-Macro group sender by one of their
+  `remote_id`, and ingest each new non-Rox group sender by one of their
   aliases (LID when known), for the chat owner's account; the unadded chat
   list never is. `*_whatsapp_profile_picture_backfill.sql` tracked what was
   added before. Detaching a chat drops the rows no other added chat of the

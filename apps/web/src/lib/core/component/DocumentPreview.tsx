@@ -392,7 +392,7 @@ function CalendarEventPreviewDetails(props: {
   );
   const descriptionHtml = () =>
     sanitizeCalendarDescription(eventContent().description);
-  // Opening a Macro link reads the split layout from context, so the handler
+  // Opening a Rox link reads the split layout from context, so the handler
   // keeps this component's owner.
   const openDescriptionLink = createCallback((event: MouseEvent) => {
     const anchor = (event.target as Element | null)?.closest('a[href]');

@@ -287,7 +287,7 @@ pub(crate) fn mutation_error(error: CalendarMutationError) -> async_graphql::Err
     })
 }
 
-/// Map a failure creating an event together with its Macro call. A meeting
+/// Map a failure creating an event together with its Rox call. A meeting
 /// that could not be minted leaves the calendar untouched, so the client may
 /// retry the same create.
 fn macro_call_error(error: MacroCallEventError) -> async_graphql::Error {

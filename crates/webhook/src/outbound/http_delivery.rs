@@ -106,7 +106,7 @@ fn delivery_headers(
         .keys()
         .any(|name| is_reserved_macro_header(name))
     {
-        return Err("reserved Macro headers cannot be overridden");
+        return Err("reserved Rox headers cannot be overridden");
     }
 
     let mut headers = HeaderMap::new();

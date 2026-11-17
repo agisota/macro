@@ -82,7 +82,7 @@ async fn the_person_themself_cannot_attach_a_draft(pool: PgPool) {
 const USER_ID: &str = "macro|suggestions-router@rox.one";
 /// The person's own session in the app.
 const SESSION_JWT: &str = "session";
-/// A code-mode credential: a Macro API token carrying the agent.
+/// A code-mode credential: a Rox API token carrying the agent.
 const AGENT_JWT: &str = "agent";
 
 #[derive(Clone)]

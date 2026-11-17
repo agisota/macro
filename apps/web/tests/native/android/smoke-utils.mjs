@@ -12,7 +12,7 @@ export function screenPointForInput(
       node.includes('class="android.webkit.WebView"') &&
       node.includes(`package="${packageName}"`)
   );
-  assert.ok(webView, 'Macro WebView is unavailable');
+  assert.ok(webView, 'Rox WebView is unavailable');
   const bounds = webView.match(
     /bounds="\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]"/
   );

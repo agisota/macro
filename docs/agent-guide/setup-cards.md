@@ -15,7 +15,7 @@ The button opens a dialog listing that category's apps (Files: Notion, Google
 Drive, Dropbox, OneDrive, Box, Confluence; Tasks: Linear, Jira, Asana, GitHub,
 Trello, monday.com; Customers: HubSpot, Salesforce, Close, Airtable). A
 disconnected row offers **Connect** (`Connect <App>`). GitHub connects through
-Macro's native GitHub MCP server (`api.githubcopilot.com/mcp`): authorization
+Rox's native GitHub MCP server (`api.githubcopilot.com/mcp`): authorization
 opens in a new tab, and the row flips to connected when the app regains focus.
 Every other app opens Pipedream's Connect UI inside the dialog. A connected row
 (native MCP or Pipedream) shows a check and **Import** (`Import from <App>`).
@@ -23,14 +23,14 @@ Every other app opens Pipedream's Connect UI inside the dialog. A connected row
 - Every **Import** closes the dialog and opens an agent chat beside the current
   view with an unsent prompt. Notion, Linear and Jira open workspace importers
   (`ImportFromNotion`, `ImportFromLinear`, `ImportFromJira`) with “Import my
-  <Provider> workspace into Macro.” They read only, ask who should see the import
+  <Provider> workspace into Rox.” They read only, ask who should see the import
   when needed, and present a review before creating anything. Other connectors
   list candidates and ask which ones to create. No importer writes to its source.
 - The shared review identifies its source, shows task/project totals for issue
   trackers, and lets the owner exclude objects and change sharing. On phones,
   **Open full review** uses the existing full-height sheet. Approve on the card,
   or say yes and let the agent submit it with `DecideReview`; planning must be ready.
-  Stop affects the selected source only, and completed copies stay in Macro.
+  Stop affects the selected source only, and completed copies stay in Rox.
 - Files also offers **Upload files** and **Upload a folder** (Drive's own
   uploads), and Customers offers **Upload a CSV** (the existing CSV import).
   Each closes the dialog first.
@@ -52,7 +52,7 @@ the bottom of three more sidebars. On desktop every card, import cards
 included, uses the email message card's surface (`ComposerSurface`). Calendar's
 card sits above **Settings**, outside the scrolling list.
 
-- **Home** (desktop): "Make Macro your home base". **Connect tools** opens
+- **Home** (desktop): "Make Rox your home base". **Connect tools** opens
   Settings → Connections; **Invite team** opens Settings → Team. **Invite
   team** is hidden for members of a team that limits invites to admins
   (Settings → Team would offer nothing to do).
@@ -83,11 +83,11 @@ sidebar's, Agents aside, else Calendar for a scheduled one), **N routines for
 you**, the suggestions' names, and a caret, framed like the Email sidebar's
 **Accounts** card. Clicking it opens **Routines for <area>**: a two-column
 grid of cards, with **For you** and **Templates** tabs (each with a count)
-when the area has both AI's picks and Macro's templates. Each card has the
+when the area has both AI's picks and Rox's templates. Each card has the
 area icon, **For you** (violet), **Draft** or **Template** badges, the name,
 what it does as the routine page's knob sentence (underlined values change in
 place before turning it on; without code steps it reads as a summary), its
-trigger → first step, and below a divider AI's reason or **From Macro** beside
+trigger → first step, and below a divider AI's reason or **From Rox** beside
 **Turn on** (AI's catalog picks) or a quiet **Review →** / **Use →** label,
 or **Enabled** once on. Long names and reasons wrap.
 The whole card is one button (hover tint, focus ring around the card, Enter
@@ -96,7 +96,7 @@ the footer says **Finding more for you…** and the grid refreshes every 2
 seconds.
 
 - Clicking the card opens New routine filled in, unsaved: `Review <name>` for
-  a routine AI drafted, `Start a routine from <name>` for Macro's templates,
+  a routine AI drafted, `Start a routine from <name>` for Rox's templates,
   `Edit <name> before turning it on` for AI's picks. Once a card is on it is
   `Open <name>` and opens the routine.
 - **Turn on** (`Turn on <name>`, AI's catalog picks) saves the routine in one

@@ -1,8 +1,8 @@
 //! Meeting-link adapter over the call domain service.
 //!
-//! Mints standalone Macro meetings owned by the requester, the same ones the
+//! Mints standalone Rox meetings owned by the requester, the same ones the
 //! calendar UI creates through `POST /call/meetings`, and renders the join
-//! URL the frontend recognizes as a Macro call.
+//! URL the frontend recognizes as a Rox call.
 
 use std::sync::Arc;
 

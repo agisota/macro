@@ -49,7 +49,7 @@ function isOriginAllowed(origin: string): boolean {
 const app = new Hono<{ Bindings: Bindings }>();
 
 // The web app calls /edit directly from the browser; auth is the document
-// permission token in the body, so we scope CORS to known Macro origins.
+// permission token in the body, so we scope CORS to known Rox origins.
 app.use(
   '*',
   cors({

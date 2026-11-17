@@ -25,7 +25,7 @@ This document describes the custom URL parsing functionality added to the unfurl
 - **Pattern**: `linear.app/[team]/issue/[ticket-id]/[title-with-dashes]`
 - **Examples**:
   - `https://linear.app/macro-eng/issue/M-3586/ability-to-archive-emails` → "Ability To Archive Emails"
-  - `https://linear.app/macro-eng/issue/M-3421/add-macro-permissions-to-jwt-token` → "Add Macro Permissions To Jwt Token"
+  - `https://linear.app/macro-eng/issue/M-3421/add-macro-permissions-to-jwt-token` → "Add Rox Permissions To Jwt Token"
 - **Fallback**: Returns "Linear" if URL parsing fails
 
 ### Video Embed Support

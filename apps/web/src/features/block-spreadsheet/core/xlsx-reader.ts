@@ -143,7 +143,7 @@ const SPILL_FUNCTIONS = new Set([
 ]);
 
 /** OOXML escapes control characters in text as `_xHHHH_`. */
-/** Sheet metadata Macro stores, at most; parts that keep export fidelity
+/** Sheet metadata Rox stores, at most; parts that keep export fidelity
  * give way first. */
 const MAX_METADATA_LENGTH = 900_000;
 
@@ -312,7 +312,7 @@ function isDateFormat(code: string) {
   return /[dy]/i.test(tokens) || (/m/i.test(tokens) && !/[hs]/i.test(tokens));
 }
 
-/** Any valid Excel address, including rows Macro cannot hold. */
+/** Any valid Excel address, including rows Rox cannot hold. */
 type SheetEntry = {
   name: string;
   path: string;
@@ -329,9 +329,9 @@ type WorkbookContext = {
   date1904: boolean;
   dynamicArrays: boolean;
   tables: WorkbookTable[];
-  /** The table parts, with the tables Macro keeps. */
+  /** The table parts, with the tables Rox keeps. */
   importedTables: XlsxTable[];
-  /** Lowercase names of the tables Macro keeps. */
+  /** Lowercase names of the tables Rox keeps. */
   keptTables: ReadonlySet<string>;
   sheetNames: string[];
   /** Lowercase names defined as multi-cell references. */
@@ -356,7 +356,7 @@ type PendingShared = {
 };
 
 /**
- * A cell formula as Macro stores it, or undefined when a table reference
+ * A cell formula as Rox stores it, or undefined when a table reference
  * cannot be converted. `intersect` applies the implicit intersection Excel
  * uses for formulas saved without dynamic-array or array evaluation.
  */
@@ -371,7 +371,7 @@ function importFormula(
   const stripped = normalizeReferences(
     stripFunctionPrefixes(importSingleFunction(source))
   );
-  // References to tables Macro keeps stay, shown as Excel shows them.
+  // References to tables Rox keeps stay, shown as Excel shows them.
   const resolved = resolveStructuredReferences(
     stripped,
     context.tables,
@@ -975,7 +975,7 @@ function readWorksheet(
           : defaultWidth
       )
     );
-    // Excel's default is 64px; Macro's own default needs no stored width.
+    // Excel's default is 64px; Rox's own default needs no stored width.
     if (pixels !== DEFAULT_COLUMN_WIDTH) columnWidths[column] = pixels;
     if (definition?.hidden) hiddenColumns.push(column);
   }
@@ -1037,7 +1037,7 @@ function readWorksheet(
   if (hiddenRows.length && hiddenRows.length < rowCount)
     metadata.hiddenRows = hiddenRows.filter((row) => row < rowCount);
   if (hiddenColumns.length) metadata.hiddenColumns = hiddenColumns;
-  // Rows at the sheet's default height already look the same in Macro.
+  // Rows at the sheet's default height already look the same in Rox.
   const heights = Object.entries(rowHeights).filter(
     ([, height]) => Math.abs(height - defaultHeight) > 0.01
   );
@@ -1110,9 +1110,9 @@ function readSharedStrings(archive: XlsxArchive, path: string | undefined) {
   return strings;
 }
 
-/** Decode a validated XLSX package into Macro sheets, without ExcelJS. */
+/** Decode a validated XLSX package into Rox sheets, without ExcelJS. */
 /**
- * GETPIVOTDATA reads the cells of the pivot tables Macro keeps. A lookup of
+ * GETPIVOTDATA reads the cells of the pivot tables Rox keeps. A lookup of
  * any other table, or of one it cannot tell, keeps its last value.
  */
 function keepPivotLookups(

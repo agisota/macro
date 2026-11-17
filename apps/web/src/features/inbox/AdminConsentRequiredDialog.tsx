@@ -5,7 +5,7 @@ import { Show } from 'solid-js';
 
 /**
  * Shown when a Microsoft 365 tenant lets only an administrator consent to
- * Macro's permissions. The user cannot finish on their own: they copy the
+ * Rox's permissions. The user cannot finish on their own: they copy the
  * tenant-wide approval link for IT, or connect a different account instead.
  */
 export function AdminConsentRequiredDialog(props: {
@@ -46,8 +46,8 @@ export function AdminConsentRequiredDialog(props: {
         </Panel.Header>
         <Panel.Body class="p-6 font-sans flex flex-col gap-3">
           <Dialog.Description class="text-ink-muted text-sm/tight font-normal">
-            Your organization requires an IT admin to approve Macro before you
-            can connect this account.
+            Your organization requires an IT admin to approve Rox before you can
+            connect this account.
           </Dialog.Description>
           <Show when={props.adminConsentUrl === undefined}>
             <p class="text-ink-muted text-sm">

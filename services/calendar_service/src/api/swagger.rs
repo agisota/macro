@@ -70,7 +70,7 @@ use utoipa::OpenApi;
         calendar_events::domain::models::RefreshCalendarEvent,
     )),
     tags(
-        (name = "calendar_events", description = "Macro Calendar Service"),
+        (name = "calendar_events", description = "Rox Calendar Service"),
         (name = "scheduling", description = "Booking links, bookings and booking settings"),
     )
 )]

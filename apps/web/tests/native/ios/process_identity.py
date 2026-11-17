@@ -34,9 +34,9 @@ def start_time(pid):
         raise OSError(error, f"Cannot read process identity for PID {pid}: {os.strerror(error)}")
     # SZOMB and PROC_FLAG_INEXIT, respectively. Signal 0 accepts zombies.
     if info.status == 5 or info.flags & 4:
-        raise ProcessLookupError(f"Macro PID {pid} is exiting or a zombie")
+        raise ProcessLookupError(f"Rox PID {pid} is exiting or a zombie")
     if info.pid != pid or (info.name or info.comm) != b"macro":
-        raise AssertionError(f"PID {pid} no longer belongs to Macro")
+        raise AssertionError(f"PID {pid} no longer belongs to Rox")
     return datetime.fromtimestamp(info.start_seconds, timezone.utc) + timedelta(
         microseconds=info.start_microseconds
     )

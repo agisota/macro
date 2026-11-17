@@ -13,16 +13,16 @@ Not built yet:
 
 Screen share has not been run end to end.
 
-Goal: one supported way for a program to be a participant in a Macro call, able to do
+Goal: one supported way for a program to be a participant in a Rox call, able to do
 everything a person can do there.
 
 ## The model
 
-**Macro decides who may be in which call. LiveKit runs what happens in the room.**
+**Rox decides who may be in which call. LiveKit runs what happens in the room.**
 
-The SDK does the Macro half and hands over a LiveKit connection. It does not wrap
+The SDK does the Rox half and hands over a LiveKit connection. It does not wrap
 LiveKit. LiveKit's own clients already cover audio, video, screen share, data and
-subscriptions, and voice agents already build on them through `AgentSession`. A Macro
+subscriptions, and voice agents already build on them through `AgentSession`. A Rox
 wrapper would have to chase all of that, and would get in the way of those tools.
 
 ```ts
@@ -56,7 +56,7 @@ for callers that only use the core API.
 
 ## Why the current path isn't good enough
 
-A voice agent built outside this repo already joins and talks in calls, using a Macro
+A voice agent built outside this repo already joins and talks in calls, using a Rox
 user account, an API key and `@livekit/rtc-node` under Bun. It proves the approach, and
 shows what is missing:
 
@@ -80,7 +80,7 @@ shows what is missing:
 | Meeting guest | A guest UUID | Standalone links, no account | 4 |
 | Bot token | New `bot\|<uuid>` handling | Bots granted a channel. Refused today by `UserOrInternal` | 4 |
 | Companion of a person | New `conn:<uuid>` | Sharing into a call while my own app stays in it | 5 |
-| Code-mode program | None | Control methods only. It has a 30 second deadline and reaches only Macro hosts, so it can never hold media | - |
+| Code-mode program | None | Control methods only. It has a 30 second deadline and reaches only Rox hosts, so it can never hold media | - |
 
 Agent accounts go first because they need no changes to attendance, access or identity
 handling: to the backend they are already users. Programs must not use LiveKit's
@@ -200,7 +200,7 @@ All in `crates/call`, in its hexagonal layout.
 | `GET /call/active/all` | Channel and standalone calls in one shape, each with its kind and whether it is ringing for the caller |
 | `GET /call/record/{call_id}/ring` | Ring state for an authenticated user, reusing `get_ring_status`'s logic. The push-token route stays for native clients |
 | `GET /call/record/{call_id}/participants` | Live roster from `list_participants`, with track state and whether each is a program. Same access as join |
-| `GET /call/record/{call_id}/recording` | Recording bytes through a Macro host |
+| `GET /call/record/{call_id}/recording` | Recording bytes through a Rox host |
 
 **Refuse tokens in code mode.** All token routes return `403` when the request carries
 `x-macro-code-execution`. The sandbox cannot use a token, and it would land in the model's

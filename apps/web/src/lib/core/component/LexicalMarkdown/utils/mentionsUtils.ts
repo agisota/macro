@@ -418,7 +418,7 @@ export type AgentSessionMentionItem = Omit<
   'kind'
 > & { kind: 'agentSession' };
 
-/** An external chat in Macro; not a Soup entity, so it has its own kind. */
+/** An external chat in Rox; not a Soup entity, so it has its own kind. */
 export type ExternalChatMentionItem = {
   kind: 'externalChat';
   id: string;

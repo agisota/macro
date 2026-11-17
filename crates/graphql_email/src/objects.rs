@@ -287,7 +287,7 @@ impl GraphqlSoupEmailMessage {
         self.parsed().body_html_sanitized.as_deref()
     }
 
-    /// The message body in Macro's rich-text format.
+    /// The message body in Rox's rich-text format.
     async fn body_macro(&self) -> Option<&str> {
         self.parsed().body_macro.as_deref()
     }

@@ -5,7 +5,7 @@
 //! agent side of ACP on an in-process channel, so a session starts in
 //! milliseconds and its transport never leaves the process. The agentic loop
 //! is the same one the rest of the product uses ([`agent::AgentLoop`] over the
-//! Macro toolset), adapted to ACP: prompts run turns, stream parts become
+//! Rox toolset), adapted to ACP: prompts run turns, stream parts become
 //! `session/update` notifications, and the existing session log, fold, and UI
 //! consume them unchanged.
 //!

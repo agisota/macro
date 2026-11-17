@@ -215,7 +215,7 @@ export type ToggleAutoJoinDomainErrorCode = 'GENERIC_DOMAIN_NOT_ALLOWED';
  *
  * These endpoints answer with a body that already says what went wrong and is
  * written to be safe to show a user — "value does not look like a Cursor API
- * key", "Cursor agents are only available to Macro staff". The default handler
+ * key", "Cursor agents are only available to Rox staff". The default handler
  * throws that away and reports `HTTP error! status: 403`, which tells the user
  * nothing they can act on.
  */
@@ -744,7 +744,7 @@ export const authServiceClient = {
     ).map(() => undefined);
   },
 
-  // GTM invite links: personal, time-limited signup links Macro staff hand
+  // GTM invite links: personal, time-limited signup links Rox staff hand
   // to prospects. Staff endpoints are gated server-side on a @rox.one account.
   async createGtmInviteLink(args: CreateGtmInviteLinkRequest) {
     return (
@@ -812,7 +812,7 @@ export const authServiceClient = {
     ).map((status) => status);
   },
 
-  /** Macro staff only; the server rejects everyone else. */
+  /** Rox staff only; the server rejects everyone else. */
   async setSystemStatus(status: SystemStatus) {
     return (
       await fetchWithAuth<StatusUpdate>(`${authHost}/system-status`, {
@@ -822,7 +822,7 @@ export const authServiceClient = {
     ).map((update) => update);
   },
 
-  /** Macro staff only. */
+  /** Rox staff only. */
   async listSystemStatusHistory() {
     return (
       await fetchWithAuth<SystemStatusHistory>(
@@ -1420,7 +1420,7 @@ export const authServiceClient = {
   },
 
   /**
-   * Emails the caller's same-domain contacts who aren't on Macro yet that
+   * Emails the caller's same-domain contacts who aren't on Rox yet that
    * the caller's team exists. Call it after inviting, so invitees are
    * skipped. Admin/Owner only; the server caps a team at 25 recipients.
    */

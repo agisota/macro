@@ -30,7 +30,7 @@ import { CallParticipant } from './participant';
 
 type CallRecordDetail = GetCallRecordResponses[200];
 
-/** A Macro call record (an archived or still active call). */
+/** A Rox call record (an archived or still active call). */
 export class CallRecord extends FavoritableEntity<CallRecordDetail> {
   /** Kind is available immediately on handles returned by the live list. */
   readonly kind?: LiveCallSummary['kind'];
@@ -127,7 +127,7 @@ export class CallRecord extends FavoritableEntity<CallRecordDetail> {
     );
   }
 
-  /** Download recording bytes through the Macro host. */
+  /** Download recording bytes through the Rox host. */
   readonly recording = {
     bytes: async (): Promise<Uint8Array> => {
       const blob = unwrap(
@@ -231,7 +231,7 @@ export class CallRecord extends FavoritableEntity<CallRecordDetail> {
   }
 
   /**
-   * The call's URL in the Macro web app; hand it to users as the link.
+   * The call's URL in the Rox web app; hand it to users as the link.
    *
    * @readonly
    */

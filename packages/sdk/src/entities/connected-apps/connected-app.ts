@@ -22,7 +22,7 @@ export type ConnectedToolResult = {
 
 /**
  * An app the session's agent was given: one the user connected through
- * Macro Connect (Slack, Linear, GitHub, Notion, Gmail, ...) or a custom MCP
+ * Rox Connect (Slack, Linear, GitHub, Notion, Gmail, ...) or a custom MCP
  * server they added. Read its tools, then call one.
  */
 export class ConnectedApp {

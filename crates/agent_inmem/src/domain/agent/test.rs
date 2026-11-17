@@ -1914,7 +1914,7 @@ async fn serve_with_mcp(
 }
 
 /// The servers `session/new` carries are dialed in the background, minus
-/// Macro's own, whose tools this runtime already has natively.
+/// Rox's own, whose tools this runtime already has natively.
 #[tokio::test]
 async fn session_new_dials_the_advertised_servers_except_macros_own() {
     use agent_client_protocol::schema::v1::{HttpHeader, McpServer as AcpMcpServer, McpServerHttp};
@@ -2516,7 +2516,7 @@ impl TurnEngine for ReviewingEngine {
 }
 
 /// A user tool's review goes out as a tool-call-scoped form elicitation the
-/// fold and a Macro client can recognize: the draft's flat fields with their
+/// fold and a Rox client can recognize: the draft's flat fields with their
 /// values as defaults, the `_macro/json` draft field, and `_meta.macro.userTool`
 /// naming the tool. The accepted content comes back as submitted.
 #[tokio::test]
@@ -2577,7 +2577,7 @@ async fn a_user_tool_review_is_a_tool_scoped_form_elicitation_naming_the_tool() 
     assert_eq!(
         user_tool.get("name").and_then(|name| name.as_str()),
         Some("CreateCalendarEvent"),
-        "a Macro client learns which tool's composer to show"
+        "a Rox client learns which tool's composer to show"
     );
     assert_eq!(
         user_tool.get("draft"),

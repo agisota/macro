@@ -16,7 +16,7 @@ const MANUAL_DELIVERY_URI_PUNCTUATION: &str = "-._~:/?&=%[]";
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum RedirectTrust {
     /// A loopback listener or a host the deployment trusts. The code reaches
-    /// the user who authorized it or a client Macro has vetted, so it is
+    /// the user who authorized it or a client Rox has vetted, so it is
     /// delivered without asking the user first.
     Trusted,
     /// Any other `https` host. Whoever registered the client chose it, so the

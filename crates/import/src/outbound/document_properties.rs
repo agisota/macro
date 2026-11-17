@@ -1,4 +1,4 @@
-//! Applies properties recovered from an external document to a Macro document.
+//! Applies properties recovered from an external document to a Rox document.
 //!
 //! This adapter translates import-domain values into the Properties service's
 //! definitions, options, and stored values. Imported enrichment is best-effort:
@@ -26,7 +26,7 @@ use crate::domain::ports::{
 #[cfg(test)]
 mod test;
 
-/// Applies imported document properties through Macro's Properties service.
+/// Applies imported document properties through Rox's Properties service.
 pub struct DocumentPropertiesApplicator<P> {
     properties: Arc<P>,
 }
@@ -491,7 +491,7 @@ fn log_definition_conflict(document_id: &str, property_name: &str, conflict: Def
             document_id,
             property = %property_name,
             is_system,
-            "skipping imported property whose existing Macro definition has a different type"
+            "skipping imported property whose existing Rox definition has a different type"
         ),
         DefinitionConflict::ReservedSystem { definition_id } => tracing::warn!(
             document_id,
@@ -547,7 +547,7 @@ async fn create_or_recover_definition<P: ImportedPropertyDefinitions>(
 
 #[derive(Debug, Clone, PartialEq)]
 struct ImportedPropertyDescriptor {
-    /// API type used when a Macro definition must be created.
+    /// API type used when a Rox definition must be created.
     definition_type: PropertyDataType,
     /// Stored type used to check compatibility with an existing definition.
     stored_type: DataType,

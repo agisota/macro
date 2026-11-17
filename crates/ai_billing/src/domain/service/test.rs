@@ -3734,7 +3734,7 @@ async fn a_payer_buys_credits_on_the_card_on_file() {
     let opened = payments.opened_reloads();
     assert_eq!(opened.len(), 1);
     assert_eq!(opened[0].customer_id, "cus_123");
-    assert_eq!(opened[0].description, "Macro AI credits, $25.00");
+    assert_eq!(opened[0].description, "Rox AI credits, $25.00");
     let reloads = repo.reloads();
     assert_eq!(reloads[0].kind, CreditReloadKind::Purchase);
     assert_eq!(reloads[0].status, CreditReloadStatus::Paid);

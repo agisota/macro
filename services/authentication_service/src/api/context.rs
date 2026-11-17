@@ -176,7 +176,7 @@ pub(crate) type GithubLinkServiceType = GithubLinkServiceImpl<
 
 pub(crate) type EntityAccessServiceType = EntityAccessServiceImpl<PgAccessRepository>;
 
-/// Buys and manages Macro computers on team subscriptions.
+/// Buys and manages Rox computers on team subscriptions.
 pub(crate) type ComputerServiceType = hosted_runtimes::domain::service::ComputerService<
     hosted_runtimes::outbound::pg::PgComputerRepo,
     crate::outbound::computer_billing::TeamComputerBilling<TeamsServiceType>,
@@ -201,7 +201,7 @@ pub(crate) type StripeInboxType = stripe_inbox::domain::service::InboxService<
     StripeConsumersType,
 >;
 
-/// Agent teammates on the team's Macro computers.
+/// Agent teammates on the team's Rox computers.
 pub(crate) type TeamAgentsServiceType = team_agents::domain::service::TeamAgentServiceImpl<
     team_agents::outbound::pg_team_agents_repo::PgTeamAgentsRepo,
     team_agents::outbound::team_membership::TeamsMembership<TeamsServiceType>,
@@ -317,9 +317,9 @@ pub(crate) struct ApiContext {
     pub event_broker: AuthenticationEventBroker,
     /// The stripe price ids for each paid plan's seat
     pub stripe_prices: crate::api::user::stripe::StripePrices,
-    /// The Stripe prices Macro computers bill at.
+    /// The Stripe prices Rox computers bill at.
     pub computer_prices: crate::domain::computer_billing::ComputerPrices,
-    /// Buys and manages Macro computers; also runs their billing effects.
+    /// Buys and manages Rox computers; also runs their billing effects.
     pub computer_service: Arc<ComputerServiceType>,
     /// Stores verified Stripe events for the inbox's consumers to apply.
     pub stripe_inbox: Arc<StripeInboxType>,

@@ -147,7 +147,7 @@ the gateway `/email` prefix.
 
 - Forwarded attachments use the source inbox's provider credentials; the email
   domain rechecks the scheduled actor's access before cross-inbox downloads.
-- Macro's own digest emails are filtered out of Signal/email notifications
+- Rox's own digest emails are filtered out of Signal/email notifications
   (#7039) — don't reintroduce a path that notifies on our own sends.
 - Remote signature images and contact photos are fetched only through
   `util/process_pre_insert/sfs_map/public_http.rs`, whose resolver and

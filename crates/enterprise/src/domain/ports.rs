@@ -65,7 +65,7 @@ pub trait TeamDirectory: Clone + Send + Sync + 'static {
 
 /// Lookup of the external identity used by the soft lifecycle calls.
 pub trait MemberDirectory: Clone + Send + Sync + 'static {
-    /// Resolve a stored Macro user to FusionAuth's UUID.
+    /// Resolve a stored Rox user to FusionAuth's UUID.
     fn fusion_user_id(
         &self,
         user: &MacroUserIdStr<'_>,

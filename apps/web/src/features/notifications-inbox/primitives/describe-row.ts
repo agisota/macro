@@ -36,7 +36,7 @@ export type InboxCardDisplay = {
 type Names = Pick<NotificationsInboxContext, 'userName' | 'senderName'>;
 
 /**
- * The name a row shows for who it is from. A row from no one in Macro names
+ * The name a row shows for who it is from. A row from no one in Rox names
  * the sender its notification carries; an unknown kind of actor names no one.
  */
 function actorName(

@@ -13,7 +13,7 @@ import '@fontsource-variable/inter';
 import '../../../index.css';
 
 document.documentElement.dataset.touchDevice = String(isTouchDevice());
-applyTheme('Macro Dark');
+applyTheme('Rox Dark');
 
 export type RowState = {
   requesterName: string;

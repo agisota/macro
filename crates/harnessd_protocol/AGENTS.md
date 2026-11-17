@@ -2,7 +2,7 @@
 
 ## What it is
 
-The wire types of `harnessd`, the agent sign-in daemon on a Macro computer:
+The wire types of `harnessd`, the agent sign-in daemon on a Rox computer:
 JSON lines the control plane writes to `harnessd` over `Fleet::exec`, and the
 lines it answers with. Also the one `AgentProvider` enum, which `harnesses`,
 `model_notifications` and the control plane re-use.

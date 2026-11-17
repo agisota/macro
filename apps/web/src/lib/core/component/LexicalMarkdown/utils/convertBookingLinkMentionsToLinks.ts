@@ -1,4 +1,4 @@
-/** Replace Macro booking-link-mention elements with portable HTML links. */
+/** Replace Rox booking-link-mention elements with portable HTML links. */
 export function convertBookingLinkMentionsToLinks(root: ParentNode): void {
   const mentionElements = root.querySelectorAll<HTMLElement>(
     '[data-booking-link-mention="true"]'
@@ -18,7 +18,7 @@ export function convertBookingLinkMentionsToLinks(root: ParentNode): void {
     link.href = url;
     link.textContent = label;
 
-    // Preserve mention data attributes so importing this HTML into Macro can
+    // Preserve mention data attributes so importing this HTML into Rox can
     // recreate the richer Lexical node.
     link.setAttribute('data-booking-link-mention', 'true');
     link.setAttribute(

@@ -105,7 +105,7 @@ where
             .and_then(MacroAuthorization::acting_user)
             .map(|user| user.macro_user_id.clone());
 
-        // An internal service with no acting user is trusted: it is Macro's
+        // An internal service with no acting user is trusted: it is Rox's
         // own machinery, not a person whose grants we could look up.
         if macro_user_id.is_none() && is_internal_access {
             return Ok(Self {

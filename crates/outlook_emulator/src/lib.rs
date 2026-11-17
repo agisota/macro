@@ -1,4 +1,4 @@
-//! A stateful fake of the Microsoft Graph mail and calendar APIs Macro's
+//! A stateful fake of the Microsoft Graph mail and calendar APIs Rox's
 //! email and calendar code call.
 //!
 //! [`OutlookEmulator::start`] listens on a `127.0.0.1` port and serves, for
@@ -363,7 +363,7 @@ impl OutlookEmulator {
             .await
     }
 
-    /// A stand-in for Macro's authentication service, for
+    /// A stand-in for Rox's authentication service, for
     /// `OVERRIDE_AUTH_SERVICE_URL`: it answers the internal Microsoft access
     /// token route for the links bound with [`Self::link_mailbox`].
     pub fn authentication_service_url(&self) -> String {
@@ -456,7 +456,7 @@ impl OutlookEmulator {
         self.with_state(|state| state.revoke_grant(email))
     }
 
-    /// Binds a Macro email link id to a mailbox, so the authentication
+    /// Binds a Rox email link id to a mailbox, so the authentication
     /// service stand-in can answer token requests for that link.
     pub fn link_mailbox(&self, link_id: &str, email: &str) -> Result<(), EmulatorError> {
         self.with_state(|state| {

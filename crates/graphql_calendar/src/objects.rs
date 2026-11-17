@@ -397,9 +397,9 @@ impl From<CalendarEventSourceContent> for GraphqlCalendarEventSource {
 /// A calendar event entity: the series content shared by every occurrence.
 #[derive(SimpleObject, Clone, Debug, PartialEq, Eq)]
 pub struct GraphqlCalendarEvent {
-    /// Macro event identifier.
+    /// Rox event identifier.
     id: ID,
-    /// Macro user who owns this event projection.
+    /// Rox user who owns this event projection.
     owner_id: String,
     /// Connected inbox whose grant backs the event.
     link_id: ID,
@@ -617,7 +617,7 @@ pub struct GraphqlCalendarCapabilities {
     conference_provider: Option<GraphqlCalendarConferenceProvider>,
     /// Whether arbitrary RFC 5545 recurrence properties can be written.
     custom_recurrence: bool,
-    /// Whether email reminders are delivered by the provider or Macro.
+    /// Whether email reminders are delivered by the provider or Rox.
     email_reminders: bool,
     /// Whether an existing conference can be detached.
     remove_conference: bool,
@@ -644,7 +644,7 @@ impl From<CalendarCapabilities> for GraphqlCalendarCapabilities {
 /// A calendar visible to the viewer.
 #[derive(SimpleObject, Clone, Debug, PartialEq, Eq)]
 pub struct GraphqlCalendar {
-    /// Macro calendar identifier.
+    /// Rox calendar identifier.
     id: ID,
     /// Connected inbox that syncs this calendar.
     link_id: ID,

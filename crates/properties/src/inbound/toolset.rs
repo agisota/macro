@@ -37,7 +37,7 @@ pub struct PropertiesToolContext<T: PropertiesService, A: EntityAccessService> {
     /// The canonical service used to mint entity access receipts.
     pub entity_access_service: Arc<A>,
     /// The bot these tools act as, on behalf of the requesting user. Defaults
-    /// to Macro AI; hosts running a specific agent set it with [`Self::with_actor`].
+    /// to Rox AI; hosts running a specific agent set it with [`Self::with_actor`].
     pub actor: BotId,
 }
 

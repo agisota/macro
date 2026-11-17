@@ -211,7 +211,7 @@ function StepBody(props: { finishing: boolean; onFinish(): void }) {
 
 /**
  * Put busywork on autopilot: the routines AI picked from the inbox, shown
- * as they arrive, then Macro's templates; finishing turns on those left on.
+ * as they arrive, then Rox's templates; finishing turns on those left on.
  */
 export function RoutinesStep(props: { finishing: boolean; onFinish(): void }) {
   return (

@@ -154,7 +154,7 @@ export function rankCommandSearchItems<T extends CommandMenuItem>(
     return others.length === 1 && team.has(others[0]);
   };
   // Match quality decides first. Among equally good matches, teammates and
-  // conversations with them lead, then other Macro users and DMs, then
+  // conversations with them lead, then other Rox users and DMs, then
   // documents and channels.
   const scored = search(eligible, query)
     .map((result) =>

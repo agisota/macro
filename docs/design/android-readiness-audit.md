@@ -90,7 +90,7 @@ There is also a concrete configuration mismatch to resolve: [lib.rs](../../apps/
 
 **Do:** support Android share intents for text, URLs, images, and files; stage `content://` resources while permission grants remain valid; handle multiple files, MIME types, size limits, cancellation, cleanup, cold start, and an authentication detour. Reuse the destination picker/upload logic after removing iOS-specific assumptions. Scope FileProvider paths to the data actually shared.
 
-**Done when:** sharing from Photos, Files, a browser, and another messaging app opens Macro and successfully sends to the selected destination without replaying old shares.
+**Done when:** sharing from Photos, Files, a browser, and another messaging app opens Rox and successfully sends to the selected destination without replaying old shares.
 
 ### 9. Verify and complete attachments, clipboard, downloads, and outgoing sharing — P1, medium
 

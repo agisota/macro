@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/ratchet.rs,
-// ratchet/keys.rs and ratchet/params.rs, modified by Macro: X3DH only (no
+// ratchet/keys.rs and ratchet/params.rs, modified by Rox: X3DH only (no
 // Kyber, no post-quantum ratchet), and message keys are always derived and
 // stored in full, never as seeds. See NOTICE.
 

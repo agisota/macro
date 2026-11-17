@@ -1,4 +1,4 @@
-//! Deterministic races between Macro's Gmail label writes, Gmail's answers
+//! Deterministic races between Rox's Gmail label writes, Gmail's answers
 //! and inbox syncs, through the production worker and domain code.
 
 use super::fake_gmail::{Kind, PauseAt, Reply};

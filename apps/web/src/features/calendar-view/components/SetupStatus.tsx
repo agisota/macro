@@ -53,7 +53,7 @@ export function SetupStatus() {
   const startAddInbox = useAddInboxFlow();
   const userId = useUserId();
 
-  // The links list also carries inboxes another Macro user delegated to the
+  // The links list also carries inboxes another Rox user delegated to the
   // viewer. Whether that user's calendar syncs is theirs to decide, as in the
   // calendar settings, so setup counts and acts on the viewer's own alone.
   const ownLinks = () =>

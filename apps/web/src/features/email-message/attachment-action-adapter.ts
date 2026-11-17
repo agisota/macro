@@ -63,7 +63,7 @@ export function createEmailAttachmentOpener() {
     }
     const dbId = attachment.db_id;
     if (!dbId) return;
-    // Macro has no viewer for a calendar file (a message that shows its
+    // Rox has no viewer for a calendar file (a message that shows its
     // event opens that instead), so a Drive copy would only say "No preview
     // available"; save the file instead of filing it into Drive.
     if (isCalendarFile(attachment.filename, attachment.mime_type)) {

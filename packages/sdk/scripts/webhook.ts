@@ -147,7 +147,7 @@ function required(value: string | undefined, option: string): string {
 function parseEnv(value: string | undefined): Env | undefined {
   if (value === undefined) return undefined;
   if (value === 'dev' || value === 'prod' || value === 'local') return value;
-  fail('Macro environment must be dev, prod, or local');
+  fail('Rox environment must be dev, prod, or local');
 }
 
 function parseEvents(value: string): EventName[] {

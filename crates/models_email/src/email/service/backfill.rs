@@ -80,7 +80,7 @@ pub enum BackfillOperation {
     // backfill completes. Once backfill is completed it sends a BackfillAttachment message
     // for each of those attachments.
     UpdateThreadMetadata(JobScopedPayload<UpdateMetadataPayload>),
-    // Uploads the message attachment as a Macro document.
+    // Uploads the message attachment as a Rox document.
     BackfillAttachment(JobScopedPayload<BackfillAttachmentPayload>),
     /// Runs durable post-completion attachment, contact, and client-refresh effects.
     FinalizeBackfill(JobScopedPayload<FinalizeBackfillPayload>),

@@ -2,8 +2,8 @@
 
 ## What it is
 
-Agent teammates: AI members of a team, each a real Macro account with its own
-Macro computer and workspace repository, behind the `enable-agent-teammates`
+Agent teammates: AI members of a team, each a real Rox account with its own
+Rox computer and workspace repository, behind the `enable-agent-teammates`
 PostHog flag. Served at `/team_agents` in authentication_service.
 
 ## How it works

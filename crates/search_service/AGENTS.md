@@ -33,7 +33,7 @@ per-entity-type search plus a unified search across them — mounted into
 
 - Depends on: `opensearch_client`, `models_opensearch`, `macro_db_client`,
   `entity_access`, `properties`, `crm`, `item_filters`, `calendar_events`
-  (domain only, no features, for its Macro call rule and label port).
+  (domain only, no features, for its Rox call rule and label port).
 - Used by: `document_storage_service` (mounts `search_router`); called
   through `search_service_client`.
 
@@ -94,7 +94,7 @@ per-entity-type search plus a unified search across them — mounted into
   holding the meeting for the conference link. Enrichment re-checks every hit
   against the event's access rule. A caller who does not hold the meeting gets
   no conference link, and `calendar_events`' `content_without_macro_call` takes
-  the Macro call out of the description; a provider's own join text in the body
+  the Rox call out of the description; a provider's own join text in the body
   stays, as it does in a mention preview. Enrichment is the only gate: an id
   named in the `own` scope reaches a share as well. The index stores titles,
   never the description or location, so hits and highlights cannot carry the

@@ -77,7 +77,7 @@ export function WhatsAppPage(props: {
   const chats = whatsapp.chats(connected);
   const [query, setQuery] = createSignal('');
   const pairing = createPairingFlow(connected, whatsapp);
-  // A pairing handed off from a browser opens here in Macro desktop.
+  // A pairing handed off from a browser opens here in Rox desktop.
   onMount(() => {
     if (props.resumePairingId) pairing.resume(props.resumePairingId);
   });

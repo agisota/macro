@@ -63,7 +63,7 @@ pub struct GetTeamAvailability {
     pub end: DateTime<Utc>,
     /// Selected current teammates; the requester is always added by the domain.
     #[schemars(
-        description = "At most 100 Macro user ids from ListTeamMembers. Omit for the whole team; an empty list checks only you. Unknown ids never expand access and suppress common free windows."
+        description = "At most 100 Rox user ids from ListTeamMembers. Omit for the whole team; an empty list checks only you. Unknown ids never expand access and suppress common free windows."
     )]
     pub user_ids: Option<Vec<String>>,
 }

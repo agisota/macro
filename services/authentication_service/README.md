@@ -78,7 +78,7 @@ Matching rules:
 
 ## GTM invite links
 
-Macro staff (any `@rox.one` account) mint personal, 48-hour signup links from
+Rox staff (any `@rox.one` account) mint personal, 48-hour signup links from
 `/app/internal/invite-links`. The recipient opens `/app/invite?token=…`, signs up,
 and the account is attributed to the staff member who created the link. At the
 plan step of onboarding the account sees a free-month offer instead of the plan
@@ -140,7 +140,7 @@ To allow every public signup in Develop:
 
 To enforce the allowlist again:
 
-1. Confirm that `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON` lists every non-Macro
+1. Confirm that `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON` lists every non-Rox
    address that still needs to sign up in Develop, including shared mailboxes.
 2. Set `DEVELOPMENT_BYPASS_SIGNUP_ALLOWLIST` to `false` in config `dev`, or
    delete it.

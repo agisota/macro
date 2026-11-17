@@ -1,6 +1,6 @@
-# Contributing to Macro
+# Contributing to Rox
 
-Thanks for your interest in contributing! Macro is fully open source under the
+Thanks for your interest in contributing! Rox is fully open source under the
 [AGPLv3](LICENSE.txt), and we welcome outside contributions. This guide covers
 how to get a change from idea to merged PR.
 
@@ -67,7 +67,7 @@ If you change a backend service, the database, or behavior that must stay on you
 ## Contributor License Agreement
 
 Before we can merge a PR from outside the macro-inc GitHub org, you need to
-have signed the Macro CLA. It's a one-time signature that covers all your
+have signed the Rox CLA. It's a one-time signature that covers all your
 future contributions:
 
 1. Every PR runs a required check named `cla`. If you haven't signed, it

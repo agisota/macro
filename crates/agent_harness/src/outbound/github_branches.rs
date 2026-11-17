@@ -1,4 +1,4 @@
-//! The branches on a repository a user reaches through Macro's GitHub App.
+//! The branches on a repository a user reaches through Rox's GitHub App.
 //!
 //! Reachability is the `github` crate's question: this adapter only maps its
 //! answer into the harness's vocabulary so a picker can list the same branches

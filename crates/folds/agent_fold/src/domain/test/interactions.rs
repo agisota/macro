@@ -175,7 +175,7 @@ fn ending_stopping_and_disconnecting_clear_both_live_requests() {
 
 fn tool_approval(status: &str, resolved_by: Option<&str>) -> Value {
     let mut params = json!({
-        "approvalId": "a1", "serverSlug": "macro", "serverName": "Macro",
+        "approvalId": "a1", "serverSlug": "macro", "serverName": "Rox",
         "toolName": "ListEmails", "arguments": {"limit": 5},
         "requestedBy": "macro|julia@rox.one", "status": status,
     });

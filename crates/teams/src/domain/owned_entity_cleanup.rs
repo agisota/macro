@@ -99,7 +99,7 @@ pub trait OwnedEntityCleanup: Clone + Send + Sync + 'static {
     /// owner is an error, and nothing is deleted.
     fn purge(&self, entity: &OwnedEntityRef) -> impl Future<Output = Result<(), Self::Err>> + Send;
 
-    /// Release every Macro computer the team has, through the computers'
+    /// Release every Rox computer the team has, through the computers'
     /// own lifecycle (billing item removal, destroy, harness revocation), and
     /// drop its purchases in flight, before its subscription and row go.
     /// Safe to repeat.

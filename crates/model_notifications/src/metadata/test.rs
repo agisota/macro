@@ -302,7 +302,7 @@ fn github_pr_status_changed_tagged_content_serializes_with_type_name() {
 fn github_pr_status_changed_formats_title_and_body() {
     let event = github_pr_status_changed();
 
-    // The GitHub login names the actor even when a Macro sender id is present.
+    // The GitHub login names the actor even when a Rox sender id is present.
     let title = event
         .format_title(Some(uid("macro|pr.sender@rox.one")))
         .unwrap();
@@ -505,7 +505,7 @@ fn github_review_requested_serializes_flat_and_formats() {
         "macro/app#42: Add GitHub PR notifications"
     );
 
-    // Without a GitHub login the title stays actor-less; the Macro sender id
+    // Without a GitHub login the title stays actor-less; the Rox sender id
     // never substitutes for the GitHub identity.
     let no_login = GithubReviewRequested {
         common: GithubPrNotificationCommon {
@@ -1200,7 +1200,7 @@ fn agent_session_ref() -> AgentSessionNotificationRef {
         session_id: Uuid::parse_str("aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa").unwrap(),
         session_name: "Fix the flaky test".to_string(),
         bot_id: Uuid::parse_str("bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb").unwrap(),
-        bot_name: "Macro Coder".to_string(),
+        bot_name: "Rox Coder".to_string(),
         parent: Some(AgentSessionOriginParent {
             kind: "channel".to_string(),
             id: "cccccccc-cccc-4ccc-8ccc-cccccccccccc".to_string(),
@@ -1223,7 +1223,7 @@ fn agent_session_settled_serializes_flat_and_formats() {
 
     let value = serde_json::to_value(&metadata).unwrap();
     assert_eq!(value["sessionId"], "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa");
-    assert_eq!(value["botName"], "Macro Coder");
+    assert_eq!(value["botName"], "Rox Coder");
     assert_eq!(value["threadId"], "dddddddd-dddd-4ddd-8ddd-dddddddddddd");
     assert!(value.get("announcementMessageId").is_none());
     assert_eq!(value["turn"], 3);
@@ -1231,7 +1231,7 @@ fn agent_session_settled_serializes_flat_and_formats() {
     let parsed: AgentSessionSettledMetadata = serde_json::from_value(value).unwrap();
     assert_eq!(parsed, metadata);
 
-    assert_eq!(metadata.format_title(None).unwrap(), "Macro Coder finished");
+    assert_eq!(metadata.format_title(None).unwrap(), "Rox Coder finished");
     assert_eq!(metadata.format_body(None).unwrap(), "Done. All tests pass.");
 
     let event: NotifEvent = serde_json::from_value(serde_json::json!({
@@ -1275,7 +1275,7 @@ fn agent_session_settled_push_groups_with_the_thread_and_collapses_per_session()
     assert!(matches!(
         apns.aps.alert,
         Some(Alert::Dictionary(AlertDictionary { title: Some(ref title), body: Some(ref body), .. }))
-            if title == "Macro Coder finished" && body == "Done."
+            if title == "Rox Coder finished" && body == "Done."
     ));
     assert_eq!(apns.push_notification_data.notification_id, notification_id);
 
@@ -1301,7 +1301,7 @@ fn agent_session_waiting_for_input_is_time_sensitive() {
 
     assert_eq!(
         metadata.format_title(None).unwrap(),
-        "Macro Coder needs an answer"
+        "Rox Coder needs an answer"
     );
     assert_eq!(
         metadata.format_body(None).unwrap(),

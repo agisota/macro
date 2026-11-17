@@ -40,7 +40,7 @@ pub struct PublicCodeMode {
     pub service: Arc<dyn agent_code_mode::domain::UserCodeMode>,
 }
 
-/// Browser-based MCP clients Macro has vetted, whose users skip the consent
+/// Browser-based MCP clients Rox has vetted, whose users skip the consent
 /// screen. Any other `https` client works too, after the user approves it.
 const DEFAULT_MCP_ALLOWED_REDIRECT_HOSTS: [&str; 5] = [
     "claude.ai",
@@ -77,7 +77,7 @@ pub async fn router(
         jwt_args.clone(),
     )
     .await?;
-    // Agent teammates' brains authenticate with their own Macro API key; no
+    // Agent teammates' brains authenticate with their own Rox API key; no
     // one else's user key is accepted here.
     let user_api_keys = Arc::new(agent_keys::AgentUserApiKeys::new(
         macro_authorization::PgUserApiKeyAuthorizer::new(

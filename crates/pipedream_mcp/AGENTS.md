@@ -5,7 +5,7 @@
 Part of the AI agent tools feature. Lets users connect third-party apps
 through Pipedream Connect (Pipedream owns grants/tokens/refresh), and the
 AI loop calls their tools through Pipedream's remote MCP server. A user the
-`macro-connect` flag is on for is on Macro Connect alone (Macro's own OAuth
+`macro-connect` flag is on for is on Rox Connect alone (Rox's own OAuth
 apps; Connect owns grants and refresh): directory, connect flow, tool
 listings, and calls all go through Connect, with no Pipedream fallback.
 
@@ -26,7 +26,7 @@ listings, and calls all go through Connect, with no Pipedream fallback.
   (also reached through `recover_pipedream_connection`)
   refuses them (409) and deletes the new Pipedream account.
 - `src/inbound/toolset.rs`: how connected apps surface as agent tools.
-- `src/outbound/connect.rs`: the Macro Connect adapter over
+- `src/outbound/connect.rs`: the Rox Connect adapter over
   `connect_client` (a pinned copy of Connect's client): tools through Connect's
   MCP gateway, app API calls with an exported access token, catalog apps
   addressed by the Pipedream slugs they replace, or by their Connect id when
@@ -52,7 +52,7 @@ listings, and calls all go through Connect, with no Pipedream fallback.
 ## Boundaries
 
 - Depends on: `ai_toolset`, `mcp_toolset`, `macro_authorization`,
-  `macro_user_id`, `connect_client` (the only Connect crate Macro may use).
+  `macro_user_id`, `connect_client` (the only Connect crate Rox may use).
 - Used by: `ai_tools`, `import_notion`, `import_tracker`, `import_linear`,
   `import_jira`, `agent_egress`, `agent_harness`,
   `granola_sync`, `mcp_select`, `services/agent_harness_service`.
@@ -72,7 +72,7 @@ listings, and calls all go through Connect, with no Pipedream fallback.
 - Completing a connection (Pipedream, its recovery, or Connect) turns the app
   on, even over a row the user disabled: the app reads a disabled result as a
   failed connect, and agent discovery reports a disabled app as unconnected.
-- A Macro Connect grant outranks an overlay: the store returns it, and
+- A Rox Connect grant outranks an overlay: the store returns it, and
   status checks read it before the overlay's native connection.
 - Overlaying an app hides its Pipedream grant from every reader, including
   imports (Linear, Jira, Notion) and Granola sync, which use the Pipedream

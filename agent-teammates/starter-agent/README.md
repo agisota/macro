@@ -2,7 +2,7 @@
 
 A new agent, ready to become someone's. Copy this directory, point it at the
 muppet library, run `bin/setup`, and you have an agent with its
-own Macro account that talks with you in chat, joins calls with its voice,
+own Rox account that talks with you in chat, joins calls with its voice,
 shares its screen, keeps its own memory, and can change its own code.
 
 It is not anyone yet. It has no name, no purpose and no personality: the
@@ -25,7 +25,7 @@ You need:
   agent is Claude Code, through the Agent SDK.
 - **muppet**, on this machine: beside the agent's directory (`../muppet`), or
   `MUPPET` set to where it is.
-- **A Macro account for the agent**, separate from yours, and an API key for
+- **A Rox account for the agent**, separate from yours, and an API key for
   it.
 
 Then, one copy of this directory per agent, named for the agent or its owner,
@@ -39,28 +39,28 @@ inside someone else's.
 
 `MUPPET` is only needed when muppet isn't at `../muppet` from the copy.
 
-`bin/setup` asks for your Macro email (the owner: the only account that can
-give the agent orders), the agent's Macro email and API key, and your time
+`bin/setup` asks for your Rox email (the owner: the only account that can
+give the agent orders), the agent's Rox email and API key, and your time
 zone. It writes `agent.json`, encrypts the key into `secrets.enc.json` with an
 age key (made at `~/.config/sops/age/keys.txt` if this machine has none: back
 it up), installs packages, commits, and offers to install and start the
 agent as a systemd user service named after the directory.
 
-Once it is running, it DMs you in Macro. Answer it: that conversation is how
+Once it is running, it DMs you in Rox. Answer it: that conversation is how
 it learns its name, its purpose and how to talk. It writes what you tell it
 to `state/memory/identity/identity.md`.
 
 ## What it can do
 
-| Area        | What                                                                    | Needs, beyond its Macro key         |
+| Area        | What                                                                    | Needs, beyond its Rox key           |
 | ----------- | ----------------------------------------------------------------------- | ----------------------------------- |
-| `chat`      | Read and post in Macro channels, threads and DMs; answer when spoken to | nothing                             |
+| `chat`      | Read and post in Rox channels, threads and DMs; answer when spoken to   | nothing                             |
 | `identity`  | Know who it is, from what its owner told it                             | nothing                             |
 | `later`     | Hand itself longer tasks to do in a run of their own                    | nothing                             |
 | `people`    | Remember the people it talks with, on this machine only                 | nothing                             |
 | `heartbeat` | Schedules, its own clock, and changing its own code (`commit`, `land`)  | nothing                             |
 | `tools`     | Its credentials, by name                                                | nothing                             |
-| `calls`     | Join, place and leave Macro calls with a voice; post in a call's chat   | speech credentials (see below)      |
+| `calls`     | Join, place and leave Rox calls with a voice; post in a call's chat     | speech credentials (see below)      |
 | `screen`    | Show a browser on a call                                                | the screen service running          |
 | `mail`      | An inbox of its own, screened before it reaches it                      | a Gmail account's OAuth credentials |
 
@@ -93,7 +93,7 @@ adding one turns the feature on without a restart.
 ## How it runs
 
 One process, `bin/agent run`, under a systemd user unit. It builds the
-behavior in `behavior/`, shows the agent online in Macro, and waits on its
+behavior in `behavior/`, shows the agent online in Rox, and waits on its
 event sources. A handler decides cheaply what each event needs, and wakes the
 agent (Claude Code, with `AGENT.md` and who it is as its system prompt) only
 when it is needed.
@@ -120,7 +120,7 @@ second unit, `<name>-screen.service`.
     nix develop --command bun run check     # typecheck, tests, format
 
 `<name>` is the directory's name. Several agents can run on one machine, each
-in its own copy, with its own Macro account, sharing the machine's age key.
+in its own copy, with its own Rox account, sharing the machine's age key.
 
 Never start a second `bin/agent run` for the same agent: both would answer
 the same messages.
@@ -130,11 +130,11 @@ the same messages.
     index.ts, cli.ts, bin/agent    build the behavior; run the agent, or call any function
     bin/setup                      turn a fresh copy into one particular agent 
     AGENT.md                       the charter: every run's system prompt
-    agent.json                     who it is in Macro, who owns it, the name it commits under
+    agent.json                     who it is in Rox, who owns it, the name it commits under
     secrets.enc.json, .sops.yaml   credentials, encrypted with SOPS (age)
     behavior/
       index.ts                     the whole behavior, composed from the areas
-      context/                     the one place IO happens: disk, clock, shell, credentials, Macro
+      context/                     the one place IO happens: disk, clock, shell, credentials, Rox
       agent/                       the agent as Claude Code, its limits per event, its guards
       events/sources/<area>.ts     where events come from
       events/handlers/<area>.ts    what happens when one fires

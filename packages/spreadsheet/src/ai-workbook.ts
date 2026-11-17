@@ -78,7 +78,7 @@ export const SPREADSHEET_AI_LIMITS = {
 /** Strict native shape check: never reinterpret markdown as a blank sheet. */
 export function assertSpreadsheetDocument(doc: LoroDoc): void {
   if (doc.getMap('spreadsheetMeta').get('formatVersion') !== 1)
-    throw new Error('This is not a supported native Macro spreadsheet.');
+    throw new Error('This is not a supported native Rox spreadsheet.');
 }
 
 function resolveSheet(

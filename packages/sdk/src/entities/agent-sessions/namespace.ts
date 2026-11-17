@@ -16,7 +16,7 @@ import {
 /**
  * Entry point for coding-agent sessions.
  *
- * @routing Use when work happens in a code repository or with a coding agent: writing code, fixing a bug, opening or changing a pull request, or reading an agent session's history; not changes to Macro databases or documents.
+ * @routing Use when work happens in a code repository or with a coding agent: writing code, fixing a bug, opening or changing a pull request, or reading an agent session's history; not changes to Rox databases or documents.
  *
  * @agent
  * ## Starting agent sessions

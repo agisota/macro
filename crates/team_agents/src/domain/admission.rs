@@ -40,7 +40,7 @@ pub struct AgentAccountFacts {
 /// An admitted agent, with the human responsible for it.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AdmittedAgent {
-    /// The agent's Macro user id.
+    /// The agent's Rox user id.
     pub agent_user_id: MacroUserIdStr<'static>,
     /// The team it is admitted to.
     pub team_id: Uuid,

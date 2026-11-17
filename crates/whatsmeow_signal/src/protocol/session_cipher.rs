@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/session_cipher.rs and
-// modified by Macro: no post-quantum ratchet or Kyber payload, no expiry of
+// modified by Rox: no post-quantum ratchet or Kyber payload, no expiry of
 // unacknowledged sessions (go.mau.fi/libsignal has none), the stores are the
 // port's `SignalProtocolStore`, and the failure logs leave out addresses and
 // keys. See NOTICE.

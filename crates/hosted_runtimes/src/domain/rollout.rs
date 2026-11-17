@@ -38,7 +38,7 @@ impl ComputerRollout {
         }
     }
 
-    /// Evaluate the authenticated Macro user, never a team or derived identity.
+    /// Evaluate the authenticated Rox user, never a team or derived identity.
     #[tracing::instrument(skip_all)]
     pub async fn enabled(&self, user_id: &MacroUserIdStr<'static>) -> bool {
         let Some(evaluate) = &self.evaluate else {

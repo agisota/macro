@@ -1,4 +1,4 @@
-//! QueryDatabase tool: the read *and* write verb for Macro Databases. What
+//! QueryDatabase tool: the read *and* write verb for Rox Databases. What
 //! it may write is the viewer's access, never the tool.
 
 use models_databases::{DatabaseId, RowId, TableId};

@@ -49,7 +49,7 @@ impl Txn<'_> {
         }
     }
 
-    /// Sets (or removes) one of Macro's values on node `i`.
+    /// Sets (or removes) one of Rox's values on node `i`.
     pub(super) fn set_macro_value(&mut self, i: NodeIdx, key: &str, value: Option<&str>) {
         let current = self.doc.props(i).macro_data.clone();
         let next = with_value(current.as_deref(), key, value);

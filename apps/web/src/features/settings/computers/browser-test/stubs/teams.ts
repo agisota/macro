@@ -12,7 +12,7 @@ export function useCurrentTeamQuery() {
   return {
     isPending: false,
     isSuccess: true,
-    data: { id: 'team-1', team: { id: 'team-1', name: 'Macro' } },
+    data: { id: 'team-1', team: { id: 'team-1', name: 'Rox' } },
   };
 }
 

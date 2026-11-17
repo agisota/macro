@@ -305,7 +305,7 @@ pub trait CalendarMutationProvider: Send + Sync + 'static {
     /// Imports nothing when the calendar already holds a live event with
     /// that UID ([`ProviderImportOutcome::AlreadyHeld`]). Google's import
     /// updates such an event in place, which would strip the guests and join
-    /// link of an invitation Macro has not synced yet.
+    /// link of an invitation Rox has not synced yet.
     fn import_event(
         &self,
         access_token: &str,
@@ -585,7 +585,7 @@ pub struct CalendarEventWriteOutcome {
     pub change: CalendarEventChange,
     /// A changed source was or is OOO; it may revoke a teammate's status/title.
     pub team_ooo_changed: bool,
-    /// Guest copies of the same meeting, in any inbox Macro holds, whose
+    /// Guest copies of the same meeting, in any inbox Rox holds, whose
     /// guest policy changed to follow this copy's organizer. Their viewers
     /// need a refresh too.
     pub aligned_copies: Vec<AlignedGuestCopy>,
@@ -1004,7 +1004,7 @@ pub trait CalendarJoinRequestService: Send + Sync + 'static {
 
 /// Outbound port that nudges a connected inbox's calendar viewers — the link
 /// owner plus its delegates — to refetch their calendar projections after a
-/// Macro-originated mutation changed them. Best effort: implementations log
+/// Rox-originated mutation changed them. Best effort: implementations log
 /// and swallow delivery failures, since the mutation is already committed.
 pub trait CalendarRefreshNotifier: Send + Sync + 'static {
     /// Signal that `email_link_id`'s calendar projection changed. Only pass
@@ -1174,7 +1174,7 @@ pub trait CalendarEventForwardSource: Send + Sync + 'static {
     ) -> impl Future<Output = Result<Option<CalendarEventForward>, Report>> + Send;
 }
 
-/// Inbound service port writing events that carry a Macro call.
+/// Inbound service port writing events that carry a Rox call.
 ///
 /// The meeting is minted before the calendar write, so the one invitation or
 /// update attendees receive already names the call, and its join link travels
@@ -1184,7 +1184,7 @@ pub trait CalendarEventForwardSource: Send + Sync + 'static {
 /// [`super::meeting_links::update_event_with_macro_call`]; hosts that are not
 /// the calendar write authority forward the request to the calendar service.
 pub trait CalendarMacroCallService: Send + Sync + 'static {
-    /// Mint a Macro call for `draft` and create the event carrying its link.
+    /// Mint a Rox call for `draft` and create the event carrying its link.
     fn create_event_with_macro_call(
         &self,
         requester_id: &str,
@@ -1193,7 +1193,7 @@ pub trait CalendarMacroCallService: Send + Sync + 'static {
         draft: CalendarEventDraft,
     ) -> impl Future<Output = Result<CalendarEvent, MacroCallEventError>> + Send;
 
-    /// Switch an event to a Macro call, applying `patch` in the same write.
+    /// Switch an event to a Rox call, applying `patch` in the same write.
     fn update_event_with_macro_call(
         &self,
         requester_id: &str,
@@ -1204,7 +1204,7 @@ pub trait CalendarMacroCallService: Send + Sync + 'static {
     ) -> impl Future<Output = Result<CalendarEvent, MacroCallEventError>> + Send;
 }
 
-/// Outbound port minting Macro meetings for calendar events.
+/// Outbound port minting Rox meetings for calendar events.
 ///
 /// Implementations act as the requester: the meeting is owned by the user
 /// whose event carries it, so only they can later edit or cancel it.
@@ -1227,7 +1227,7 @@ pub trait MeetingLinkProvider: Send + Sync + 'static {
 
 /// Unwired meeting-link port for hosts that expose calendar operations but
 /// have no call service. Every method fails with
-/// [`MeetingLinkError::Unavailable`], so an event asking for a Macro call
+/// [`MeetingLinkError::Unavailable`], so an event asking for a Rox call
 /// is refused before anything reaches the calendar.
 #[derive(Clone, Copy, Debug, Default)]
 pub struct UnavailableMeetingLinks;

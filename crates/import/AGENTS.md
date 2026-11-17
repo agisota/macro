@@ -4,7 +4,7 @@
 
 Belongs to AI chat and Settings: the import pipeline tracking external items
 (Linear and Jira issues, Notion pages, Slack channels) as they're discovered,
-accepted, and copied into Macro entities. Host-agnostic — chat tools,
+accepted, and copied into Rox entities. Host-agnostic — chat tools,
 Settings → Slack discovery, and the Slack archive import drive the same
 primitives, distinguished only by the `initiator` recorded on each row.
 
@@ -33,7 +33,7 @@ undecided rows as `deciding`, and the write cannot start until the run is
 `ready`. A resumed plan stages the tree again, which is idempotent. On
 approval the harness starts the write:
 folders mirroring the page tree, documents, databases with rows, row bodies and
-relations, and task lists as Macro tasks. Each page, row body and task is
+relations, and task lists as Rox tasks. Each page, row body and task is
 created with its Notion page's created and last-edited times (`SourceDates`),
 and folders are created dated by what is written into them
 (`ProjectService::create_project_dated_by_contents`), so an import of old
@@ -144,7 +144,7 @@ from this import's other databases into it are not linked.
   while it exists. Left open: a crash between creating a folder, a database
   or a row batch and recording it duplicates that one object or batch, and a
   crash between applying a schema op and recording it fails that database on
-  resume (Macro refuses the column id).
+  resume (Rox refuses the column id).
 - `team_id` on a Notion row means "the team's copy": only shared objects take
   it, at `claim_importing` (staged → importing) before anything is written, so
   `import_entity_team_object_key` makes a second teammate's claim fail. A
@@ -203,8 +203,8 @@ Plans retain complete issue/group snapshots. The decision model triages groups;
 issues inherit copy/skip/hand and sharing. Issues become tasks through ordinary
 markdown conversion, comments append to the body, labels become personal tags,
 and group projects are initiatives. Project and Parent Task properties link only
-targets available in Macro. Assignees match team emails. Source values without a
-Macro property equivalent stay in the body.
+targets available in Rox. Assignees match team emails. Source values without a
+Rox property equivalent stay in the body.
 
 Tasks and projects use UUIDv5 identities derived from ledger rows. Tasks record a
 written marker before relationship enrichment and stay private until it

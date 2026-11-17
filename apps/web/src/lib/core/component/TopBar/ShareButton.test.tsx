@@ -307,7 +307,7 @@ vi.mock('@queries/call/call', () => ({
 vi.mock('@queries/team/teams', () => ({
   useCurrentTeamQuery: () => ({
     isSuccess: mocks.hasTeam,
-    data: mocks.hasTeam ? { team: { id: 'team-1', name: 'Macro' } } : undefined,
+    data: mocks.hasTeam ? { team: { id: 'team-1', name: 'Rox' } } : undefined,
   }),
 }));
 vi.mock('@solidjs/router', () => ({ useNavigate: () => vi.fn() }));

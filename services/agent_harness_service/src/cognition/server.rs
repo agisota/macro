@@ -683,7 +683,7 @@ pub async fn build(
             None
         }
     };
-    // Macro Connect beside Pipedream: a user the `macro-connect` rollout is
+    // Rox Connect beside Pipedream: a user the `macro-connect` rollout is
     // on for is on Connect alone; everyone else stays on Pipedream.
     let connect_adapter = ai_tools::connect_adapter(config.connect_customer_key.value())?;
     let rollout = ai_tools::macro_connect_rollout(

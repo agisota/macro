@@ -50,12 +50,12 @@ fn highlights_every_term_of_a_multi_term_query() {
 #[test]
 fn merges_overlapping_term_matches_into_one_span() {
     assert_eq!(
-        super::highlight_name_terms("Macro Planning", &["plan", "lann"]).as_deref(),
+        super::highlight_name_terms("Rox Planning", &["plan", "lann"]).as_deref(),
         Some("Macro <macro_em>Plann</macro_em>ing")
     );
 }
 
 #[test]
 fn returns_none_when_no_term_matches() {
-    assert!(super::highlight_name_terms("Macro Planning", &["teo", " "]).is_none());
+    assert!(super::highlight_name_terms("Rox Planning", &["teo", " "]).is_none());
 }

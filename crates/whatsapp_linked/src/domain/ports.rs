@@ -67,7 +67,7 @@ pub trait AccountRepository: Send + Sync {
         user: &MacroUserIdStr<'_>,
         generation: i64,
     ) -> ExternalChatResult<bool>;
-    /// The Macro user who linked this account.
+    /// The Rox user who linked this account.
     async fn account_owner(&self, account: Uuid) -> ExternalChatResult<Option<String>>;
     /// Delete participant receipts older than [`RECEIPT_RETENTION_DAYS`],
     /// pairings consumed over a day ago (they keep the expected identity) and

@@ -45,7 +45,7 @@ pub struct CreateDraftInput {
     /// HTML body (base64 encoded from the client; decoded and sanitized
     /// before storage).
     pub body_html: Option<String>,
-    /// Macro-specific body format.
+    /// Rox-specific body format.
     pub body_macro: Option<String>,
     /// Headers JSON (e.g. Macro-In-Reply-To).
     pub headers_json: Option<JsonValue>,
@@ -104,7 +104,7 @@ pub struct ResolvedDraftInput {
     pub body_text: Option<String>,
     /// HTML body (decoded).
     pub body_html: Option<String>,
-    /// Macro-specific body format.
+    /// Rox-specific body format.
     pub body_macro: Option<String>,
     /// Headers JSON (e.g. Macro-In-Reply-To).
     pub headers_json: Option<JsonValue>,
@@ -242,7 +242,7 @@ pub struct CreatedDraft {
     pub body_text: Option<String>,
     /// HTML body (decoded).
     pub body_html: Option<String>,
-    /// Macro body.
+    /// Rox body.
     pub body_macro: Option<String>,
     /// Headers JSON.
     pub headers_json: Option<JsonValue>,

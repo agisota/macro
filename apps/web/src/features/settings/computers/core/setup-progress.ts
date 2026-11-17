@@ -18,7 +18,7 @@ export type SetupStageState =
   | 'current'
   | 'upcoming'
   | 'failed'
-  /** Not needed: the agent runs on Macro credits. */
+  /** Not needed: the agent runs on Rox credits. */
   | 'skipped';
 
 export type SetupStage = {
@@ -158,7 +158,7 @@ export type SignInPlan = 'needed' | 'skipped' | 'undecided';
 /**
  * The stages from purchase to a working agent, the same list on every
  * step: the billing wait, the three provisioning phases the API reports,
- * then the Claude sign-in, struck through when the agent runs on Macro's
+ * then the Claude sign-in, struck through when the agent runs on Rox's
  * Claude.
  */
 export function setupStages(

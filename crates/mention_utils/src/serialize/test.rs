@@ -124,7 +124,7 @@ fn serializes_bot_mention() {
 #[test]
 fn serializes_document_mention() {
     assert_eq!(
-        document_mention("6e01a670-0000-0000-0000-00000000f47d", "Macro how to guide").unwrap(),
-        "<m-document-mention>{\"documentId\":\"6e01a670-0000-0000-0000-00000000f47d\",\"blockName\":\"md\",\"documentName\":\"Macro how to guide\",\"blockParams\":{},\"collapsed\":false}</m-document-mention>"
+        document_mention("6e01a670-0000-0000-0000-00000000f47d", "Rox how to guide").unwrap(),
+        "<m-document-mention>{\"documentId\":\"6e01a670-0000-0000-0000-00000000f47d\",\"blockName\":\"md\",\"documentName\":\"Rox how to guide\",\"blockParams\":{},\"collapsed\":false}</m-document-mention>"
     );
 }

@@ -14,7 +14,7 @@ use crate::herdr::wire::AgentState;
 /// source, so this must not collide with a built-in integration's name.
 const REPORT_SOURCE: &str = "roxd";
 const REPORT_AGENT: &str = "macro";
-const DISPLAY_AGENT: &str = "Macro agent";
+const DISPLAY_AGENT: &str = "Rox agent";
 /// How long a new tab's shell may take to reach its prompt.
 const SHELL_READY_TIMEOUT: Duration = Duration::from_secs(10);
 const SHELL_READY_POLL: Duration = Duration::from_millis(250);

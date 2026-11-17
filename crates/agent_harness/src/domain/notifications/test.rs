@@ -27,7 +27,7 @@ fn identity() -> SessionIdentity {
         session_id: AgentSessionId::new_from_uuid(SESSION),
         session_name: "Fix the flaky test".to_owned(),
         bot_id: BotId::new_from_uuid(Uuid::from_u128(0xB07)),
-        bot_name: "Macro Coder".to_owned(),
+        bot_name: "Rox Coder".to_owned(),
         owner_id: owner(),
         origin: Some(ThreadOrigin::new(
             messages::domain::models::MessageParent::Channel(Uuid::from_u128(1)),
@@ -88,7 +88,7 @@ fn settled_notifies_the_whole_audience_under_the_session() {
     );
     assert_eq!(notify.metadata.turn, 2);
     assert_eq!(notify.metadata.excerpt.as_deref(), Some("Done."));
-    assert_eq!(notify.metadata.session.bot_name, "Macro Coder");
+    assert_eq!(notify.metadata.session.bot_name, "Rox Coder");
     assert_eq!(
         notify.metadata.session.announcement_message_id,
         Some(Uuid::from_u128(4))
@@ -469,7 +469,7 @@ fn a_held_code_run_asks_for_work_in_the_workspace() {
         Uuid::from_u128(0xA99),
         Some(&user("alice@rox.one")),
         "macro",
-        "Macro",
+        "Rox",
         "ExecuteCode",
     ) else {
         panic!("filed as waiting for input");
@@ -488,7 +488,7 @@ fn a_held_tool_call_tells_only_the_owner() {
         approval,
         Some(&user("alice@rox.one")),
         "macro",
-        "Macro",
+        "Rox",
         "ListEmails",
     ) else {
         panic!("filed as waiting for input");
@@ -496,7 +496,7 @@ fn a_held_tool_call_tells_only_the_owner() {
     assert_eq!(notify.recipients, [owner()], "only the owner can answer");
     assert_eq!(
         notify.metadata.question,
-        "alice asked it to use Macro ListEmails with your access. Approve or decline it."
+        "alice asked it to use Rox ListEmails with your access. Approve or decline it."
     );
     assert_eq!(
         notify.notification_id,

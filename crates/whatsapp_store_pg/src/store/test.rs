@@ -33,7 +33,7 @@ impl CurveSignatures for FixedSignatures {
     }
 }
 
-/// A Macro user: a `macro_user` identity and the `"User"` profile the
+/// A Rox user: a `macro_user` identity and the `"User"` profile the
 /// account references.
 pub(crate) async fn insert_user(pool: &Pool<Postgres>, user_id: &str) {
     let email = format!("{user_id}@example.com");
@@ -56,7 +56,7 @@ pub(crate) async fn insert_user(pool: &Pool<Postgres>, user_id: &str) {
     .expect("the user is new");
 }
 
-/// A Macro user and a linked account of theirs, at lease epoch 0.
+/// A Rox user and a linked account of theirs, at lease epoch 0.
 pub(crate) async fn insert_account(pool: &Pool<Postgres>, user_id: &str) -> Uuid {
     insert_user(pool, user_id).await;
     let account_id = Uuid::now_v7();

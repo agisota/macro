@@ -55,7 +55,7 @@ describe('agentClaudeState', () => {
     expect(agentClaudeState(undefined, now)).toBe('loading');
   });
 
-  it('runs on Macro credits without a sign-in', () => {
+  it('runs on Rox credits without a sign-in', () => {
     expect(agentClaudeState({ mode: 'macro_credits' }, now)).toBe('credits');
   });
 
@@ -120,7 +120,7 @@ describe('agentClaudeMode', () => {
 
   it("reads the sign-in's expiry while the harness uses its own account", () => {
     expect(agentClaudeMode('own_account', login)).toBe(login);
-    // The login is still loading, or was cached from Macro credits.
+    // The login is still loading, or was cached from Rox credits.
     expect(agentClaudeMode('own_account', undefined)).toEqual({
       mode: 'own_account',
     });

@@ -1,9 +1,9 @@
 # External chats
 
-A chat from another messaging service that a person adds to Macro becomes an
+A chat from another messaging service that a person adds to Rox becomes an
 `external_chat` entity: theirs, shared like any other entity, readable without
 an account at the provider. WhatsApp is the one provider today; how its
-accounts are linked and its messages reach Macro is in
+accounts are linked and its messages reach Rox is in
 [WhatsApp linked devices](whatsapp-linked-devices.md).
 
 ## Model
@@ -14,7 +14,7 @@ accounts are linked and its messages reach Macro is in
 | Provider | `model_entity::ExternalChatProvider` (`whatsapp`); `label()` names it for people |
 | Kind | `model_entity::ExternalChatKind` (`group`, `direct`) |
 | Chat | `external_chat`: `provider`, `remote_id` (the provider's id; WhatsApp: a JID), `kind`, name, owner, `state`, history import (`backfill_*`) |
-| People | `external_chat_person` (the provider's display name, verified Macro user); the provider names them and gives their picture for reads (`ChatProvider::people`) |
+| People | `external_chat_person` (the provider's display name, verified Rox user); the provider names them and gives their picture for reads (`ChatProvider::people`) |
 | Pictures | `picture_file_id` (a static file) on senders, people, members and the chat (`ChatProvider::pictures`): what the chat owner's provider account sees, `null` for initials. WhatsApp: `whatsapp_profile_picture`, imported to static files in DSS (`whatsapp_linked::domain::pictures`) |
 | Messages | `external_chat_message`: one row per `(chat, person, source id)`; `origin` is `remote`, `macro` or `history`; `kind` `message` or `system`; structured `rich` content and `mentions` (provider ids) |
 | Reactions, poll votes | `external_chat_reaction`, `external_chat_poll_vote` (per person, latest revision wins) |

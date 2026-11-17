@@ -22,11 +22,11 @@ use super::sender_label;
 /// Detects both explicit `@`-mention triggers and inferred triggers.
 ///
 /// A message that mentions bots triggers exactly those bots. A message that
-/// mentions none is considered for an inferred Macro AI trigger, which fires
+/// mentions none is considered for an inferred Rox AI trigger, which fires
 /// only when all of the following hold:
 ///
 /// * the message is a thread reply (never a top-level message),
-/// * the thread already contains a Macro AI message,
+/// * the thread already contains a Rox AI message,
 /// * the classifier judges that the message expects an agent response.
 ///
 /// Attributed bot messages trigger like a person's, within the agent hop
@@ -137,7 +137,7 @@ where
         true
     }
 
-    /// Macro AI never infers a reply to its own message.
+    /// Rox AI never infers a reply to its own message.
     async fn infer(&self, candidate: &MessagePostedMetadata) -> Option<BotInvocation> {
         if candidate.sender.as_bot().map(|sender| sender.bot_id()) == Some(bot_id::MACRO_AI_BOT_ID)
         {
@@ -182,7 +182,7 @@ where
     }
 }
 
-/// Macro AI's messages are the agent's; other bots go by their public name.
+/// Rox AI's messages are the agent's; other bots go by their public name.
 fn transcript_message(message: &Message) -> TranscriptMessage {
     let from_agent =
         message.sender_id.as_bot().map(|bot| bot.bot_id()) == Some(bot_id::MACRO_AI_BOT_ID);

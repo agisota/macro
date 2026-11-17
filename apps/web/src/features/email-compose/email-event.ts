@@ -70,7 +70,7 @@ export function useCreateEmailEvent() {
           ? suggestEmailEvent(title, email.text)
           : undefined,
         initialValues: {
-          // The composer settles the Macro call default once its flag loads.
+          // The composer settles the Rox call default once its flag loads.
           ...defaultEditorInitialValues(new Date(), true),
           title,
           guests: email.guests.join(', '),

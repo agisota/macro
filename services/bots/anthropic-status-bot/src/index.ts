@@ -6,12 +6,12 @@ import { parseWebhookPayload } from './statuspage';
 export type AppConfig = {
   /** Shared secret embedded in the webhook URL path. */
   webhookSecret: string;
-  /** Delivers a formatted message to the Macro channel. */
+  /** Delivers a formatted message to the Rox channel. */
   postToChannel: ChannelPoster;
 };
 
 /**
- * Anthropic (Claude) status page → Macro channel bot.
+ * Anthropic (Claude) status page → Rox channel bot.
  *
  * status.claude.com is powered by Atlassian Statuspage, which supports
  * webhook subscriptions but provides no request signing, so the webhook URL

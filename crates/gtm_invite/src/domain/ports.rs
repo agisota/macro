@@ -90,21 +90,21 @@ pub trait GtmInviteService: Send + Sync + 'static {
     /// The offer configuration links are created with.
     fn config(&self) -> &GtmInviteConfig;
 
-    /// Creates a link. Only Macro staff may create links.
+    /// Creates a link. Only Rox staff may create links.
     fn create_link(
         &self,
         creator: &MacroUserIdStr<'_>,
         request: CreateInviteLink,
     ) -> impl Future<Output = Result<InviteLink, GtmInviteError>> + Send;
 
-    /// Lists links for the dashboard. Only Macro staff may list links.
+    /// Lists links for the dashboard. Only Rox staff may list links.
     fn list_links(
         &self,
         caller: &MacroUserIdStr<'_>,
         only_mine: bool,
     ) -> impl Future<Output = Result<Vec<InviteLink>, GtmInviteError>> + Send;
 
-    /// Revokes a link nobody has signed up through. Only Macro staff may revoke.
+    /// Revokes a link nobody has signed up through. Only Rox staff may revoke.
     fn revoke_link(
         &self,
         caller: &MacroUserIdStr<'_>,

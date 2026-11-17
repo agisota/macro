@@ -123,7 +123,7 @@ describe('task agent assignees', () => {
     });
   });
 
-  it('reuses system session-agent rollout and excludes classic Macro', () => {
+  it('reuses system session-agent rollout and excludes classic Rox', () => {
     fixture.agentRollout = true;
     fixture.codexRollout = true;
     fixture.cursorRollout = true;

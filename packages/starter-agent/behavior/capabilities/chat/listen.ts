@@ -1,5 +1,5 @@
 /**
- * The listener's decisions: is a Macro message for the agent? Pure; the
+ * The listener's decisions: is a Rox message for the agent? Pure; the
  * handler supplies the history and the relevance screen.
  */
 import { z } from 'zod';
@@ -77,7 +77,7 @@ export const judge = async (
     decide,
     failed,
   }: {
-    /** The agent's Macro id. */
+    /** The agent's Rox id. */
     readonly me: string;
     /** The name the agent answers to, so the screen can tell when it is addressed. */
     readonly name: string;

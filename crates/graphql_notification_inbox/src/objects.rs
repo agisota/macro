@@ -19,21 +19,21 @@ const MAX_ROW_NOTIFICATION_LIMIT: i32 = 100;
 #[derive(Enum, Clone, Copy, Debug, PartialEq, Eq)]
 #[graphql(name = "NotificationInboxActorKind")]
 pub enum GraphqlNotificationInboxActorKind {
-    /// A Macro user.
+    /// A Rox user.
     User,
     /// An agent.
     Agent,
-    /// Macro itself.
+    /// Rox itself.
     Macro,
 }
 
-/// Who a row is from: a person, an agent, or Macro itself.
+/// Who a row is from: a person, an agent, or Rox itself.
 #[derive(SimpleObject)]
 #[graphql(name = "NotificationInboxActor")]
 pub struct GraphqlNotificationInboxActor {
     /// The kind of principal.
     kind: GraphqlNotificationInboxActorKind,
-    /// The user id for a user, the bot id for an agent; absent for Macro.
+    /// The user id for a user, the bot id for an agent; absent for Rox.
     /// Not `id`: the client cache reads an `id` field as entity identity.
     principal_id: Option<String>,
     /// The display name when the row carries it (an agent's bot name);
@@ -154,7 +154,7 @@ impl GraphqlNotificationInboxRow {
     }
 
     /// Who the row is from, per its newest shown notification; absent when
-    /// that is no one in Macro (outside email senders, GitHub users).
+    /// that is no one in Rox (outside email senders, GitHub users).
     async fn actor(&self) -> Option<GraphqlNotificationInboxActor> {
         self.0.actor.clone().map(Into::into)
     }

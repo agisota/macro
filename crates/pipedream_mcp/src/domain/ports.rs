@@ -139,8 +139,8 @@ pub trait PipedreamConnect: Send + Sync + 'static {
     fn delete_account(&self, account_id: &str) -> impl Future<Output = anyhow::Result<()>> + Send;
 }
 
-/// Port for Macro Connect's connect flow: Connect owns the consent flow,
-/// the grant, and refresh, like Pipedream Connect, but Macro owns the OAuth
+/// Port for Rox Connect's connect flow: Connect owns the consent flow,
+/// the grant, and refresh, like Pipedream Connect, but Rox owns the OAuth
 /// apps. Apps are addressed by the Pipedream slug they replace.
 pub trait MacroConnect: Send + Sync + 'static {
     /// Whether every connector call for `user_id` goes through Connect, with
@@ -156,7 +156,7 @@ pub trait MacroConnect: Send + Sync + 'static {
     ) -> impl Future<Output = anyhow::Result<Option<ConnectApp>>> + Send;
 
     /// Start a browser connect session for `user_id` and return the URL to
-    /// open. Connect redirects back to Macro when consent finishes.
+    /// open. Connect redirects back to Rox when consent finishes.
     fn create_connect_session(
         &self,
         user_id: &MacroUserIdStr<'static>,
@@ -268,7 +268,7 @@ pub trait ConnectedAppProxy: Send + Sync + 'static {
 }
 
 /// Whether the `macro-connect` rollout is on for a user: every connector
-/// call for them goes through Macro Connect instead of Pipedream. Hosts read
+/// call for them goes through Rox Connect instead of Pipedream. Hosts read
 /// the feature flag here; a failed read must answer `false`.
 pub type ConnectRollout = std::sync::Arc<
     dyn Fn(MacroUserIdStr<'static>) -> std::pin::Pin<Box<dyn Future<Output = bool> + Send>>

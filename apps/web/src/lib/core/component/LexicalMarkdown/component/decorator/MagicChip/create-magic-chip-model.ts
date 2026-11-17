@@ -53,7 +53,7 @@ type SessionIdentity = {
 
 /**
  * The persona as the header names it: the runtime's product name, with
- * "Agent" appended when that name does not already end in it (`Macro Agent`,
+ * "Agent" appended when that name does not already end in it (`Rox Agent`,
  * `Cursor Agent`). A titled slug for a runtime the composer does not name.
  */
 function agentName(session: {

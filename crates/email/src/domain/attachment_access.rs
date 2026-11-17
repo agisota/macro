@@ -35,7 +35,7 @@ pub struct StoredAttachmentBlob {
     pub size: i64,
 }
 
-/// The Macro document already linked to an attachment.
+/// The Rox document already linked to an attachment.
 #[derive(Debug, Clone)]
 pub struct ExistingAttachmentDocument {
     pub id: String,

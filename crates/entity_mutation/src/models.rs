@@ -7,7 +7,7 @@ use models_permissions::share_permission::UpdateSharePermissionRequestV2;
 /// Authenticated actor performing an entity mutation.
 #[derive(Clone, Debug)]
 pub struct EntityMutationActor {
-    /// Stable Macro user id.
+    /// Stable Rox user id.
     pub user_id: MacroUserIdStr<'static>,
     /// Organization id attached to the authenticated request, when present.
     pub organization_id: Option<i64>,

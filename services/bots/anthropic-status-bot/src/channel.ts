@@ -7,7 +7,7 @@ export type ChannelConfig = {
   channelId: string;
   /** Bot API key (mbot_...), sent as x-macro-bot-token. */
   botToken: string;
-  /** Macro environment. Defaults to prod. */
+  /** Rox environment. Defaults to prod. */
   env?: Env;
 };
 
@@ -15,7 +15,7 @@ export type ChannelConfig = {
 export type ChannelPoster = (content: string) => Promise<void>;
 
 /**
- * Post channel messages via the Macro SDK's channel bot webhook.
+ * Post channel messages via the Rox SDK's channel bot webhook.
  *
  * Uses bot auth (x-macro-bot-token, user scope) — the preferred auth for
  * POST /channels/{channel_id}/webhook. The bot must be a participant of the

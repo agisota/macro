@@ -15,7 +15,7 @@ fn identity() -> SessionIdentity {
         session_id: AgentSessionId::TEST_A,
         session_name: "Fix the flaky test".to_owned(),
         bot_id: BotId::TEST_A,
-        bot_name: "Macro Coder".to_owned(),
+        bot_name: "Rox Coder".to_owned(),
         owner_id: owner(),
         origin: Some(ThreadOrigin::new(
             messages::domain::models::MessageParent::Channel(Uuid::from_u128(1)),

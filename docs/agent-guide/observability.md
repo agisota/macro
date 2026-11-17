@@ -77,8 +77,8 @@ trace context — timestamps + service are the only join for those.
 ## Account WebSocket sessions
 
 Search for `{ name="auth.session_websockets.activate" }` after signing in.
-`user.id_hash` is SHA-256 of the Macro user ID; this trace suppresses automatic
-raw user-ID enrichment because Macro IDs can contain email addresses. No socket
+`user.id_hash` is SHA-256 of the Rox user ID; this trace suppresses automatic
+raw user-ID enrichment because Rox IDs can contain email addresses. No socket
 URLs, tokens, close reasons, or raw credential errors are recorded.
 
 Gateway and storage child spans share that activation trace. `ws.service`
@@ -205,14 +205,14 @@ trace covers an email event from its Kafka publish to the browser's read:
 ## Agent sessions
 
 A session's lifetime is reconstructable from these spans. All of them carry
-`agent.session.id` — the Macro session UUID, and only ever that. The ACP-local
+`agent.session.id` — the Rox session UUID, and only ever that. The ACP-local
 session name (`cursor-acp-1`) is `agent.acp.session_id`; the two are different
 identifier spaces and must not be confused.
 
 | Span | Answers |
 | --- | --- |
 | `agent.turn` | Did a Cursor turn run, and how did it end? `agent.turn.stop_reason` / `agent.turn.outcome`, plus `cursor.agent.id` / `cursor.run.id`. `agent.turn.gate_wait_ms` is time spent waiting behind a mirror of a run started from cursor.com before the turn could begin. |
-| `agent.session.background` | The per-session task that mirrors cursor.com and reaps idle pipes. Every `cursor.run.ingest` a mirror runs sits under it, which is what makes a mirrored run searchable by Macro session id. |
+| `agent.session.background` | The per-session task that mirrors cursor.com and reaps idle pipes. Every `cursor.run.ingest` a mirror runs sits under it, which is what makes a mirrored run searchable by Rox session id. |
 | `cursor.run.poll` | Is a turn still alive? One per poll, at DEBUG. |
 | `agent.session.turn_ended` | The connection's live fold closed the turn on a logged frame; carries `agent.turn.id`, `agent.turn.stop_reason`, and `agent.action.id` when a local prompt opened it. |
 | `agent.session.disconnect` | The session's actor wrote a `disconnected` event, and `agent.session.close_reason` says why. |

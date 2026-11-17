@@ -147,7 +147,7 @@ export type DataValidation = {
   promptTitle?: string;
   prompt?: string;
   /**
-   * Macro's colors for a list's choices, matched to cell text ignoring case.
+   * Rox's colors for a list's choices, matched to cell text ignoring case.
    * Excel has no equivalent; export writes them as conditional formatting.
    */
   colors?: DropdownColor[];

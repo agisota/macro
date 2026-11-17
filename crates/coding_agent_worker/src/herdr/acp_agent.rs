@@ -2,12 +2,12 @@
 //! (Claude Code or Codex) in herdr windows.
 //!
 //! roxd runs this as its harness like any other ACP agent, so sessions
-//! still open, prompt, stream, and stop through Macro's ACP infrastructure.
+//! still open, prompt, stream, and stop through Rox's ACP infrastructure.
 //! Behind the protocol, each session is a real interactive `claude` or
 //! `codex` in its own herdr tab, rooted at the session's working directory:
 //!
 //! - the first `session/prompt` opens the tab and starts the agent there
-//!   with the session's model and Macro MCP servers;
+//!   with the session's model and Rox MCP servers;
 //! - prompts are typed into the TUI with `herdr agent prompt`;
 //! - the agent's own session transcript is tailed and streamed back as
 //!   `session/update`s, and its end-of-turn record ends the turn;
@@ -201,7 +201,7 @@ impl RpcError {
     }
 
     /// A prompt that was stopped before it was typed into the TUI. Answering
-    /// `cancelled` would read in Macro as a message the agent saw.
+    /// `cancelled` would read in Rox as a message the agent saw.
     fn not_delivered() -> Self {
         let notice = FailureNotice {
             kind: FailureNoticeKind::PromptNotDelivered,
@@ -342,7 +342,7 @@ struct Session {
     prompt_pending: AtomicBool,
     live: tokio::sync::Mutex<Option<Live>>,
     cancel: Mutex<Option<CancellationToken>>,
-    /// Tools a user in Macro chose to always allow for this session, where
+    /// Tools a user in Rox chose to always allow for this session, where
     /// the native dialog had no "don't ask again" answer of its own.
     always_allowed: Mutex<std::collections::HashSet<String>>,
 }
@@ -533,7 +533,7 @@ impl Adapter {
     /// never reopened; other lookup failures are retried before a session is
     /// left out. Each carries `updatedAt`, its transcript's last write, when
     /// it has one: the client restores recently active sessions at once, so
-    /// work typed into the agent's pane keeps reaching Macro.
+    /// work typed into the agent's pane keeps reaching Rox.
     async fn list_sessions(&self, cwd: Option<&Path>) -> ListSessionsResponse {
         use futures::StreamExt as _;
         let Some(herdr) = &self.herdr else {
@@ -637,9 +637,9 @@ impl Adapter {
             let mut live = existing
                 .live
                 .try_lock()
-                .map_err(|_| RpcError::invalid("cannot reload during a Macro prompt"))?;
+                .map_err(|_| RpcError::invalid("cannot reload during a Rox prompt"))?;
             if existing.prompt_pending.load(Ordering::SeqCst) {
-                return Err(RpcError::invalid("cannot reload during a Macro prompt"));
+                return Err(RpcError::invalid("cannot reload during a Rox prompt"));
             }
             *live = None;
             lock(&self.sessions).remove(id);
@@ -723,7 +723,7 @@ impl Adapter {
                 if session.prompt_pending.load(Ordering::SeqCst) {
                     continue;
                 }
-                // A Macro prompt owns the reader until its response is sent.
+                // A Rox prompt owns the reader until its response is sent.
                 let Ok(mut guard) = session.live.try_lock() else {
                     continue;
                 };
@@ -869,7 +869,7 @@ impl Adapter {
                     }
                     native_turns += 1;
                     // An interrupted native turn ends "cancelled" too; only a
-                    // Stop from Macro drops the waiting prompt, which then
+                    // Stop from Rox drops the waiting prompt, which then
                     // answers as not delivered.
                     self.follow(herdr, session, live, &cancel, true).await?;
                     if cancel.is_cancelled() {
@@ -1104,7 +1104,7 @@ impl Adapter {
         })
     }
 
-    /// Hand Claude Code the MCP servers Macro gave the session, in a file
+    /// Hand Claude Code the MCP servers Rox gave the session, in a file
     /// only this user can read: the entries carry session credentials.
     fn write_mcp_config(&self, session: &Session) -> Result<Option<PathBuf>, RpcError> {
         let servers = claude_mcp_servers(&session.mcp_servers);
@@ -1138,7 +1138,7 @@ impl Adapter {
         let mut active = running;
         let mut open_tool: Option<OpenTool> = None;
         // Bumped whenever a dialog is asked about or goes away, so a late
-        // answer from Macro never presses keys into a different dialog.
+        // answer from Rox never presses keys into a different dialog.
         let generation = Arc::new(AtomicU64::new(0));
         let mut asking = false;
         let mut last_output = Instant::now();
@@ -1152,7 +1152,7 @@ impl Adapter {
                         self.forward(session, live, &mut open_tool)?;
                         return Ok("cancelled");
                     }
-                    // Answering `cancelled` now would end the turn in Macro
+                    // Answering `cancelled` now would end the turn in Rox
                     // while the agent keeps working; follow it to its end.
                     tracing::warn!(session = %session.id, "the native turn kept running after Esc");
                     interrupt_failed = true;
@@ -1270,7 +1270,7 @@ impl Adapter {
                     ended = Some(stop);
                     break;
                 }
-                // A waiting Macro prompt owns the next turn: the item joins
+                // A waiting Rox prompt owns the next turn: the item joins
                 // it, and only the prompt's own turn end may answer it.
                 LogEvent::LateUpdate(update) => {
                     moved = true;

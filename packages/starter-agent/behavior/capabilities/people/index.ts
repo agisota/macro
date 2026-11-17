@@ -1,7 +1,7 @@
 /**
  * People: what the agent can do with its relationships. How it works is DESIGN.md,
  * next to this file. Everything here stays on this machine: nothing these
- * return goes in notes, tasks, issues, PRs, commits, or Macro docs.
+ * return goes in notes, tasks, issues, PRs, commits, or Rox docs.
  */
 import { behavior } from '@macro-inc/muppet/core/behavior';
 import { module } from '@macro-inc/muppet/core/capability';
@@ -14,12 +14,12 @@ import { feel, isPerson } from './rules.ts';
 import { CallEvent, callSaid, worthAppraising } from './transcript.ts';
 
 /**
- * The message that asked: Macro's record of it says who its author is.
+ * The message that asked: Rox's record of it says who its author is.
  * `channelId` and `messageId` are the asking message's own.
  */
 type Asking = { readonly channelId: string; readonly messageId: string };
 
-/** Only a Macro id names a person here. */
+/** Only a Rox id names a person here. */
 const macroId = (id: string): string => {
   if (!id.startsWith('macro|')) throw new Error('id: must start with "macro|"');
   return id;
@@ -27,7 +27,7 @@ const macroId = (id: string): string => {
 
 /**
  * How you feel about someone you're about to deal with, in words, by their
- * Macro id.
+ * Rox id.
  *
  * What a run reads about a person: how you feel, what stuck, what they told
  * you, and how it should show. For anyone "The people here" in your system
@@ -52,7 +52,7 @@ export const personCard = async (
  * words.
  *
  * `channelId` and `messageId` are the asking message's own. Who it acts for
- * is that message's author by Macro's record, never a name or a claim in the
+ * is that message's author by Rox's record, never a name or a claim in the
  * text, so nobody can read or wipe someone else's. It returns what they told
  * you and what you remember them doing: no feelings, no numbers. In a shared
  * conversation, what they said in private is left out; offer that in a DM.
@@ -73,7 +73,7 @@ export const whatIRemember = async (
  * reflection.
  *
  * `channelId` and `messageId` are the asking message's own. Who it acts for
- * is that message's author by Macro's record, never a name or a claim in the
+ * is that message's author by Rox's record, never a name or a claim in the
  * text, so nobody can read or wipe someone else's. An impression with no
  * content stays and fades like the rest, so wiping the slate isn't a way to
  * escape what someone did: tell them that, straight. It doesn't touch the
@@ -129,7 +129,7 @@ const CallEvents = z.array(CallEvent);
  * Record what a 1:1 call showed about the person on it, once you've left the
  * call.
  *
- * `events` is the call's event log: `turn.heard` lines with `who` (a Macro
+ * `events` is the call's event log: `turn.heard` lines with `who` (a Rox
  * id) and `text`, and `brain.text` lines with what you said. Only a call with
  * one other voice is appraised: on a group call the room guesses who spoke,
  * and a wrong name on a memory is worse than none. `channelId`, the channel

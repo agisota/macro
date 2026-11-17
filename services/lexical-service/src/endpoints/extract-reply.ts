@@ -29,7 +29,7 @@ export class ExtractReplyEndpoint extends OpenAPIRoute {
   schema = {
     summary: 'Extract an explicit reply target from Markdown',
     description:
-      'Parses Macro Markdown and returns the leading ReplyTarget node when it is followed by authored content. Standard blockquotes do not count as replies.',
+      'Parses Rox Markdown and returns the leading ReplyTarget node when it is followed by authored content. Standard blockquotes do not count as replies.',
     request: {
       body: {
         content: {

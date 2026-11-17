@@ -84,7 +84,7 @@ pub(super) async fn thread_mail_projections_by_ids(
     // `entity_access` once per source, thousands of times for some viewers,
     // instead of once per requested thread.
     //
-    // The Macro-draft and received-mail rules restate `recompute_thread_metadata`
+    // The Rox-draft and received-mail rules restate `recompute_thread_metadata`
     // (email_db_client threads/update.rs). Change both together.
     let rows = sqlx::query!(
         r#"

@@ -1,5 +1,5 @@
 /**
- * The public entry for programs that edit Macro documents with Lexical
+ * The public entry for programs that edit Rox documents with Lexical
  * (`@macro-inc/sdk/lexical`): our nodes and their helpers, the `@lexical/*`
  * nodes documents use, node ids and markdown conversion. It leaves out the
  * package index's AI, diff and app-only utilities, so it bundles small and
@@ -78,7 +78,7 @@ export {
 } from './transformers';
 
 /**
- * A headless editor with every node a Macro document can hold registered.
+ * A headless editor with every node a Rox document can hold registered.
  * Errors thrown inside `update`, `read` and `parseEditorState` propagate to
  * the caller; a failed `update` leaves the editor state as it was.
  */

@@ -31,7 +31,7 @@ pub enum LaneKey {
 
 impl LaneKey {
     /// The lane of the person an entity id names; a reference that is not
-    /// a Macro user id names no one, so its card is in the empty lane.
+    /// a Rox user id names no one, so its card is in the empty lane.
     pub fn person(entity_id: &str) -> LaneKey {
         MacroUserIdStr::try_from(entity_id.to_string())
             .map(LaneKey::User)

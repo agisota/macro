@@ -67,7 +67,7 @@ async fn cancelling_the_request_abandons_a_held_call_and_tells_the_server() {
     let client = crate::client_info().serve(client_side).await.unwrap();
     let tools = RemoteMcpToolSet::from_connected(
         vec![ConnectedServer {
-            name: "Macro".into(),
+            name: "Rox".into(),
             client,
         }],
         None,

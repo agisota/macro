@@ -6,7 +6,7 @@ import { ensureWebhook } from './webhook';
 // verifies delivery signatures with the returned secret.
 const webhookSecret = await ensureWebhook(`${env.PUBLIC_URL}/macro-events`);
 
-/** The one Macro SDK client, shared by everything in this worker. The SDK
+/** The one Rox SDK client, shared by everything in this worker. The SDK
  * resolves service hosts itself (MACRO_ENV, plus the local-stack portmap
  * when it's `local`). */
 export const macro = new Macro({ webhookSecret }).requestedAs(

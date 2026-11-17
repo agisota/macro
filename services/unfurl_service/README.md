@@ -20,8 +20,8 @@ First, make sure the serve is running with something like `just run`, then:
 $ just unfurl https://rox.one
 {
   "url": "https://rox.one",
-  "title": "Macro | Home",
-  "description": "Macro - the next generation productivity suite",
+  "title": "Rox | Home",
+  "description": "Rox - the next generation productivity suite",
   "image_url": "https://rox.one/logo.png",
   "favicon_url": "https://rox.one/favicon.ico"
 }

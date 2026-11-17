@@ -286,7 +286,7 @@ async fn macro_ai_bot_profile_is_builtin_without_context_lookup() {
     let profile = service
         .bot_profile_for_message(&message)
         .await
-        .expect("Macro AI should have a built-in profile");
+        .expect("Rox AI should have a built-in profile");
 
     assert_eq!(profile.name, bot_id::MACRO_AI_NAME);
     assert_eq!(profile.avatar_url, None);
@@ -360,7 +360,7 @@ async fn non_macro_bot_profile_uses_context_lookup() {
     let profile = service
         .bot_profile_for_message(&message)
         .await
-        .expect("non-Macro bot profile should come from context");
+        .expect("non-Rox bot profile should come from context");
 
     assert_eq!(profile.name, "Test Bot");
     assert_eq!(*lookup_count.lock().unwrap(), 1);
@@ -589,7 +589,7 @@ async fn mentions_only_skips_failing_invite_lookup_and_sends_mention() {
             channel_id,
             metadata: ChannelMetadata {
                 channel_type: ChannelType::Private,
-                channel_name: "Macro Support".to_string(),
+                channel_name: "Rox Support".to_string(),
             },
             participants,
             message: MutatedMessage {

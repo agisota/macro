@@ -112,12 +112,12 @@ impl GithubInstallationAccessToken {
     }
 }
 
-/// Source that grants a GitHub App installation access to Macro sync data.
+/// Source that grants a GitHub App installation access to Rox sync data.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum GithubAppInstallationSource {
-    /// A Macro team source.
+    /// A Rox team source.
     Team(uuid::Uuid),
-    /// A Macro user source.
+    /// A Rox user source.
     User(String),
 }
 
@@ -695,7 +695,7 @@ pub struct ResolvedTeamTaskReference {
     pub task_id: MacroTaskId,
 }
 
-/// A Macro task ID in the form `MACRO-{short_uuid}`.
+/// A Rox task ID in the form `MACRO-{short_uuid}`.
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MacroTaskId {
     /// The Flickr base58 short UUID portion

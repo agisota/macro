@@ -19,7 +19,7 @@ export function useInitOutlookLink() {
 }
 
 /**
- * Where a Microsoft administrator lands after approving Macro. Always the web
+ * Where a Microsoft administrator lands after approving Rox. Always the web
  * app: the link is copied for someone else, often on another device, so a
  * desktop deep link or native callback would not reach them.
  */

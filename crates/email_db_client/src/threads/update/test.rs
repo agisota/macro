@@ -272,7 +272,7 @@ async fn signal_domain_override_mutes_unlabeled_message(
     Ok(())
 }
 
-// Macro's own notification emails are never signal: the exclusion is
+// Rox's own notification emails are never signal: the exclusion is
 // case-insensitive on the sender domain and beats both the unlabeled
 // default and an explicit address-important override.
 #[sqlx::test(
@@ -374,7 +374,7 @@ async fn repeated_metadata_recompute_is_noop(pool: Pool<Postgres>) -> anyhow::Re
     Ok(())
 }
 
-/// Archived sent mail to `recipient` with a Macro reply draft, recomputed.
+/// Archived sent mail to `recipient` with a Rox reply draft, recomputed.
 async fn reply_draft_to_sent_mail_inbox_state(
     pool: &Pool<Postgres>,
     recipient: &str,

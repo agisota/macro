@@ -1,10 +1,10 @@
 # goalert-bot
 
-Posts GoAlert alerts to the Macro Alerts channel, one thread per alert.
+Posts GoAlert alerts to the Rox Alerts channel, one thread per alert.
 
 GoAlert is the paging hub: Grafana and Datadog alert GoAlert, whose escalation
 policies send outgoing webhooks for each alert and status change. This worker
-receives them and posts through the [Macro SDK](../../../packages/sdk), so it
+receives them and posts through the [Rox SDK](../../../packages/sdk), so it
 can thread, mention, edit and react, which the channel bot webhook cannot.
 
 ## How it works
@@ -97,7 +97,7 @@ notification) at
 | Variable         | Required | Default | Description                                               |
 | ---------------- | -------- | ------- | --------------------------------------------------------- |
 | `BOT_TOKEN`      | yes      |         | Bot API key (`mbot_...`, sent as `x-macro-bot-token`)      |
-| `CHANNEL_ID`     | yes      |         | Channel UUID to post to (Macro Alerts)                    |
+| `CHANNEL_ID`     | yes      |         | Channel UUID to post to (Rox Alerts)                    |
 | `ACTING_USER_ID` | yes      |         | Secret: the bot owner's user id (`macro\|<email>`)         |
 | `WEBHOOK_SECRET` | yes      |         | Secret path segment for the webhook URL                   |
 | `ALERT_MESSAGES` | worker   |         | KV namespace binding: `alert:<AlertID>` → posted message  |

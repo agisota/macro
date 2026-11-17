@@ -265,7 +265,7 @@ export class EmailNamespace {
    * (`execution.reviews.create({kind: 'email', ...})`) instead; its card is
    * the confirmation. Takes what the SendEmail tool takes: a Markdown body,
    * Cc/Bcc, the inbox to send from, the message to reply to (sent in its
-   * thread) and Macro documents to attach. The send takes effect at once and
+   * thread) and Rox documents to attach. The send takes effect at once and
    * is never retried; on an error, look for the message in the thread before
    * sending again.
    *

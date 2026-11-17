@@ -2,7 +2,7 @@
 //!
 //! Interactive Claude Code appends every message of a session to
 //! `~/.claude/projects/<cwd>/<session-id>.jsonl` as it happens. Tailing that
-//! file is how the herdr adapter streams a TUI-driven turn to Macro without
+//! file is how the herdr adapter streams a TUI-driven turn to Rox without
 //! scraping the screen: each assistant block becomes a `session/update`, and
 //! the assistant message that stops for a reason other than a tool call ends
 //! the turn.
@@ -140,7 +140,7 @@ fn user_message(entry: &Value, message: &Value) -> Vec<LogEvent> {
         events.push(LogEvent::TurnEnded("cancelled"));
         return events;
     }
-    // Only a prompt may open a turn: a user chunk outside a Macro prompt
+    // Only a prompt may open a turn: a user chunk outside a Rox prompt
     // starts one, and CLI bookkeeping is never followed by the `end_turn`
     // that would close it.
     let flag = |key| entry.get(key).and_then(Value::as_bool) == Some(true);

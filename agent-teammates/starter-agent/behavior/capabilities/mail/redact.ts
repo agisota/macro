@@ -55,7 +55,7 @@ export const redact = (text: string): string => {
 								: value,
 					)}`,
 			)
-			// Bare codes: "Log into Macro - 153060", "G-482913", "ABC-123".
+			// Bare codes: "Log into Rox - 153060", "G-482913", "ABC-123".
 			.replace(/\b\d{6,8}\b/g, "[code redacted]")
 			.replace(/\b[A-Z]{1,4}-\d{4,8}\b/g, "[code redacted]")
 			.replace(/\b\d{3,4}[- ]\d{3,4}\b(?!\s*[-–]\s*\d)/g, (match) =>

@@ -8,7 +8,7 @@ COPY sidecar/Cargo.toml sidecar/Cargo.lock ./
 COPY sidecar/src ./src
 RUN cargo build --locked --release
 
-# Macro nix devshell hard install
+# Rox nix devshell hard install
 FROM docker.io/library/ubuntu:22.04 AS nix-build
 
 RUN apt-get update && \

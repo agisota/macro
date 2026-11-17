@@ -74,7 +74,7 @@ export interface CalendarEvent {
   /** Direct conference join URL, when available. */
   conferenceUrl?: string;
   /**
-   * Which conferencing system backs `conferenceUrl`. Macro can generate a
+   * Which conferencing system backs `conferenceUrl`. Rox can generate a
    * Google Meet; other conferencing is preserved unless explicitly replaced.
    */
   conferenceProvider?: ConferenceProvider;
@@ -102,7 +102,7 @@ export interface CalendarEvent {
    */
   viewerCan: ViewerCapabilities;
   /**
-   * Reminder configuration of the primary copy, the one Macro's alerts
+   * Reminder configuration of the primary copy, the one Rox's alerts
    * follow whichever copy a chip shows. Absent means the calendar default.
    */
   reminders?: EventReminders;
@@ -154,7 +154,7 @@ export interface CalendarEvent {
 /** Source id every teammate out-of-office event carries; hiding it hides the overlay. */
 export const TEAM_OOO_SOURCE_ID = 'team-ooo';
 
-/** Google's default guest policy, for events Macro builds itself. */
+/** Google's default guest policy, for events Rox builds itself. */
 export const DEFAULT_GUEST_POLICY: GuestPolicy = {
   canModify: false,
   canInviteOthers: true,

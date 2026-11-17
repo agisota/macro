@@ -784,7 +784,7 @@ pub struct ListedSession {
     /// The agent's id for it.
     pub id: SessionId,
     /// When the agent last saw activity in it, when it says (`updatedAt`):
-    /// the only sign of work done outside Macro, such as in a terminal.
+    /// the only sign of work done outside Rox, such as in a terminal.
     pub updated_at: Option<chrono::DateTime<chrono::Utc>>,
 }
 

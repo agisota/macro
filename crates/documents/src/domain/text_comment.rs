@@ -115,7 +115,7 @@ where
         }
         Some(FileType::Docx) => comment_on_docx(messages, access, attribution, request).await,
         _ => Err(TextCommentError::Invalid(
-            "inline comments anchor to text in Macro markdown and Word documents only; use Comment to comment on this document as a whole".to_string(),
+            "inline comments anchor to text in Rox markdown and Word documents only; use Comment to comment on this document as a whole".to_string(),
         )),
     }
 }

@@ -3,7 +3,7 @@
 ## What it is
 
 Shared infrastructure for cross-feature rollout gating: async flag loading
-for authenticated Macro users or explicit global service contexts; one load returns a stable
+for authenticated Rox users or explicit global service contexts; one load returns a stable
 `FlagSnapshot`, read synchronously after.
 
 ## Start here

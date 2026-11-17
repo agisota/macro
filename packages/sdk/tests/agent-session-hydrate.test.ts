@@ -10,7 +10,7 @@ const identity = {
   session_id: '01a00000-0000-7000-8000-00000000000a',
   session_name: 'Fix the flaky test',
   bot_id: '01a00000-0000-7000-8000-0000000000b7',
-  bot_name: 'Macro Coder',
+  bot_name: 'Rox Coder',
   owner_id: 'macro|owner@example.com',
   origin: {
     parent: {

@@ -8,7 +8,7 @@ import {
 } from '../core/computer-display';
 import { useTeamComputers } from '../primitives/team-computers';
 
-/** The Macro computers billed on the team subscription, for Billing. */
+/** The Rox computers billed on the team subscription, for Billing. */
 export function BillingComputers() {
   const { enabled, computers, failed } = useTeamComputers();
 

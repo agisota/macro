@@ -629,7 +629,7 @@ fn rows_say_who_they_are_from() {
         Some(InboxActor::Macro)
     );
 
-    // Mail from outside Macro has no actor.
+    // Mail from outside Rox has no actor.
     let thread = group(EntityType::EmailThread, 0xE0);
     assert_eq!(
         rows_of(&thread, &[new_email(1, 0xE0, 1, NotificationState::Unseen)])[0].actor,
@@ -665,7 +665,7 @@ fn a_requested_review_offers_the_pull_request() {
     );
     assert_eq!(
         listed[0].actor, None,
-        "GitHub users are not Macro principals"
+        "GitHub users are not Rox principals"
     );
 }
 

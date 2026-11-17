@@ -12,19 +12,19 @@
 # a test asserts the two agree.
 #
 # MACRO_EGRESS_URL and MACRO_SESSION_TOKEN come from the sandbox environment.
-# Git presents the latter only to the Macro egress origin; the proxy selects the
+# Git presents the latter only to the Rox egress origin; the proxy selects the
 # repository from the session and exchanges it for a scoped GitHub App token.
 set -e
 
 workspace_dir=/workspace
 sidecar_port=8700
-# Macro dev shell baked into the image at build time, so a sandbox skips
+# Rox dev shell baked into the image at build time, so a sandbox skips
 # realizing it. Sourced only if present, so an image built without that layer
 # still starts.
 repo_env_file=/env/repo-dev-env.sh
 sidecar_log=/tmp/acp-sidecar.log
 
-# 1. The repo, unless it is already cloned. Scope the helper to Macro egress so
+# 1. The repo, unless it is already cloned. Scope the helper to Rox egress so
 #    an agent cannot redirect the session token to another host.
 if [ ! -d "$workspace_dir/.git" ]; then
   egress_git_url="${MACRO_EGRESS_URL%/}/git"

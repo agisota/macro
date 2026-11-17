@@ -520,11 +520,11 @@ async fn test_insert_thread_conflict_with_provider_id(pool: Pool<Postgres>) -> a
 // ── update_thread_metadata ────────────────────────────────────────
 
 const DRAFT_FIXTURE_LINK: Uuid = uuid::uuid!("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
-/// A sent message and a Macro reply draft.
+/// A sent message and a Rox reply draft.
 const SENT_WITH_DRAFT_THREAD: Uuid = uuid::uuid!("11111111-1111-1111-1111-111111111111");
 /// A received message in the inbox.
 const RECEIVED_THREAD: Uuid = uuid::uuid!("22222222-2222-2222-2222-222222222222");
-/// A Macro draft and nothing else.
+/// A Rox draft and nothing else.
 const DRAFT_ONLY_THREAD: Uuid = uuid::uuid!("33333333-3333-3333-3333-333333333333");
 
 async fn recompute_inbox_state(

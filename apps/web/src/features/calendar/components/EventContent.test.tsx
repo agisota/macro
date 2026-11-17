@@ -48,7 +48,7 @@ function event(overrides: Partial<CalendarEvent> = {}): CalendarEvent {
   };
 }
 
-/** A Macro call as the editor saves it, next to whatever location was typed. */
+/** A Rox call as the editor saves it, next to whatever location was typed. */
 function macroCallEvent(typedLocation: string) {
   return event(
     attachCalendarMacroCall(
@@ -75,14 +75,14 @@ function renderDayChip(calendarEvent: CalendarEvent) {
 }
 
 describe('the location on a day view event chip', () => {
-  it('leaves out a Macro call link saved as the only location', () => {
+  it('leaves out a Rox call link saved as the only location', () => {
     const { container } = renderDayChip(macroCallEvent(''));
 
     expect(screen.getByText('Planning')).toBeTruthy();
     expect(container.textContent).not.toContain('/meet/');
   });
 
-  it('shows the location typed next to a Macro call', () => {
+  it('shows the location typed next to a Rox call', () => {
     const { container } = renderDayChip(macroCallEvent('Room 4B'));
 
     expect(screen.getByText('Room 4B')).toBeTruthy();

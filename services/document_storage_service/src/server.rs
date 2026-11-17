@@ -445,7 +445,7 @@ async fn run_server() -> anyhow::Result<()> {
         ),
     );
 
-    // Gmail send-as lookups for the composer and the Macro agent's email tools.
+    // Gmail send-as lookups for the composer and the Rox agent's email tools.
     let send_as_auth_client = Arc::new(authentication_service_client::AuthServiceClient::new(
         config
             .authentication_service_secret_key
@@ -1544,7 +1544,7 @@ async fn run_server() -> anyhow::Result<()> {
         }
     });
 
-    // Wire Macro AI to react to mentions with the classic in-channel chat
+    // Wire Rox AI to react to mentions with the classic in-channel chat
     // reply. The router posts replies through the channel service we just
     // built and runs the agent loop in-process with the channel-bot toolset:
     // a channel has no composer to finish a chat-deferred user tool in, so
@@ -1582,7 +1582,7 @@ async fn run_server() -> anyhow::Result<()> {
         ),
     )
     .await
-    .context("failed to build Macro agent tool context")?;
+    .context("failed to build Rox agent tool context")?;
     // Wire the agent's SendChannelMessage tool to this service's own
     // side-effect pipeline so agent-posted messages share the exact instance
     // used by the HTTP API, including the in-process bot trigger sender (the

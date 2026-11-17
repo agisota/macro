@@ -46,9 +46,9 @@ export interface UpdateEventOptions {
   /** Provider conference change; omit to retain it. Outlook removal requires a
    * separately confirmed replacement via prepareReplacement(). */
   conference?: ConferenceChange;
-  /** Switch the event to a Macro call in this update: create one, write its
+  /** Switch the event to a Rox call in this update: create one, write its
    * join link into the description and location, and remove any Google Meet or
-   * other conference. An event already holding a Macro call keeps it. Cannot be
+   * other conference. An event already holding a Rox call keeps it. Cannot be
    * combined with `conference`. */
   macroCall?: boolean;
   /** Replacement out-of-office properties, applied only to an event that is
@@ -127,7 +127,7 @@ export interface RsvpEventOptions {
 }
 
 /**
- * A Macro calendar event: a handle exposing the event's synced fields and the
+ * A Rox calendar event: a handle exposing the event's synced fields and the
  * mutations that act on it ({@link CalendarEvent.update},
  * {@link CalendarEvent.delete}, {@link CalendarEvent.rsvp}).
  *
@@ -221,7 +221,7 @@ export class CalendarEvent extends MacroEntity<CalendarEventRecord> {
    * copy and say which inbox you used. Without `inbox` the call is refused
    * with `copy_choice_required`, listing each copy and the question to ask.
    *
-   * To change a meeting's link to a Macro call pass `macroCall: true`; never
+   * To change a meeting's link to a Rox call pass `macroCall: true`; never
    * delete and recreate the event for it. The Teams meeting of an Outlook event
    * cannot be removed this way: use {@link CalendarEvent.prepareReplacement}.
    *

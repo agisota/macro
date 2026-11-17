@@ -61,7 +61,7 @@ use tokio_util::compat::{TokioAsyncReadCompatExt as _, TokioAsyncWriteCompatExt 
 ///
 /// The domain service holds one of these for the whole connection and notifies
 /// from wherever a turn produces updates — including
-/// [`CursorSessionService::sync_foreign_runs`], which the Macro harness drives
+/// [`CursorSessionService::sync_foreign_runs`], which the Rox harness drives
 /// on its own timer, *outside* any request handler. That is why this wraps a
 /// connection handle the service can hold from construction, filled in by
 /// [`serve`] once the connection exists, rather than a handle passed per call.
@@ -203,7 +203,7 @@ impl SessionNotifier for AcpNotifier {
         run: &crate::domain::model::CursorRunId,
     ) -> Result<(), rootcause::Report> {
         // Standalone domain tests and embedders without a durable host have no
-        // connection to checkpoint through. The Macro host always binds first;
+        // connection to checkpoint through. The Rox host always binds first;
         // there the metadata marker is persisted with the ordinary ACP log.
         let Some(connection) = self.connection.get() else {
             return Ok(());
@@ -317,7 +317,7 @@ fn agent_capabilities() -> AgentCapabilities {
         .mcp_capabilities(McpCapabilities::new().http(true).sse(true))
         // Without this a client resuming a session it persisted never sends
         // `session/load` — it gives up on the session instead, which for the
-        // Macro harness means a session that stops answering after a restart.
+        // Rox harness means a session that stops answering after a restart.
         .load_session(true)
 }
 
@@ -325,7 +325,7 @@ fn agent_capabilities() -> AgentCapabilities {
 /// frame per line.
 ///
 /// The two production transports are both byte streams — the binary's
-/// stdin/stdout, and the Macro harness's in-process `tokio::io::duplex` — so
+/// stdin/stdout, and the Rox harness's in-process `tokio::io::duplex` — so
 /// this takes the tokio halves directly and keeps the SDK types out of the
 /// callers. Anything more exotic goes through [`serve_transport`].
 ///

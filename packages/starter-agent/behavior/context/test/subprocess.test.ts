@@ -1,6 +1,6 @@
 /**
  * A script run the way the running agent runs one: in a process of its own,
- * `cli.ts exec`, with a cleared environment, reaching a fake Macro through
+ * `cli.ts exec`, with a cleared environment, reaching a fake Rox through
  * the agent's relay. The script's process never has the agent's key.
  */
 import { afterAll, beforeAll, expect, test } from 'bun:test';
@@ -76,7 +76,7 @@ afterAll(async () => {
 });
 
 test(
-  "a script reaches Macro through the relay, and can't read the agent's key",
+  "a script reaches Rox through the relay, and can't read the agent's key",
   async () => {
     const run = inSubprocess({
       timeoutMs: coldCheckMs,

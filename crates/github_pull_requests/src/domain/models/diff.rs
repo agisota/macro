@@ -142,7 +142,7 @@ impl GithubPullRequestDiffError {
                 Some("This pull request is too large to load here. Review it on GitHub.")
             }
             Self::Unavailable => Some(
-                "Macro's GitHub App cannot read this pull request. Check its repository access.",
+                "Rox's GitHub App cannot read this pull request. Check its repository access.",
             ),
             Self::Other(_) => None,
         }

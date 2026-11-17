@@ -25,7 +25,7 @@ sender/generic-address checks.
 
 ## Boundaries
 
-- Depends on: `ammonia`, `scraper` (no Macro crates).
+- Depends on: `ammonia`, `scraper` (no Rox crates).
 - Used by: `crates/email`, `crates/email_db_client`, `crates/email_api_client`,
   `crates/graphql_email`, `crates/google_token`, `crates/models_email`,
   `services/calendar_service`, `services/email_service`.

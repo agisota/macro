@@ -21,7 +21,7 @@ pub type ExternalChatResult<T> = Result<T, rootcause::Report<ExternalChatError>>
 pub struct AccountRef {
     /// The provider account.
     pub id: Uuid,
-    /// The Macro user who linked it.
+    /// The Rox user who linked it.
     pub user_id: String,
     /// Its identity at the provider (WhatsApp: the verified JID), once known.
     pub identity: Option<String>,
@@ -229,7 +229,7 @@ pub trait ChatRepository: Send + Sync {
 pub enum Origin {
     /// Someone at the provider: a person's phone or app.
     Remote,
-    /// A deliberate send from Macro.
+    /// A deliberate send from Rox.
     Macro,
     /// Earlier messages imported after adding the chat.
     History,
@@ -248,7 +248,7 @@ pub struct ChatEffect {
     pub first_publication: bool,
     /// Who wrote it.
     pub origin: Origin,
-    /// Verified Macro user behind a phone-origin message, never notified of it.
+    /// Verified Rox user behind a phone-origin message, never notified of it.
     pub associated_user: Option<String>,
     /// A system line (added, left, renamed…), never a notification.
     pub system: bool,
@@ -309,7 +309,7 @@ pub trait ChatPublisher: Send + Sync {
 pub struct FileImport {
     /// Which attachment.
     pub attachment: AttachmentRef,
-    /// The staged bytes' id (the upload id of a file sent from Macro).
+    /// The staged bytes' id (the upload id of a file sent from Rox).
     pub blob_id: Uuid,
     /// The chat the attachment belongs to.
     pub chat_id: Uuid,

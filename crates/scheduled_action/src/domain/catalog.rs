@@ -1,4 +1,4 @@
-//! The routine catalog as clients offer it: each of Macro's routines with
+//! The routine catalog as clients offer it: each of Rox's routines with
 //! its trigger in the owner's time zone, and its code step where code can be
 //! saved.
 
@@ -16,7 +16,7 @@ use super::ports::RoutineCode;
 #[cfg(test)]
 mod test;
 
-/// One of Macro's routines, ready to start a new routine from.
+/// One of Rox's routines, ready to start a new routine from.
 #[derive(Debug, Clone, PartialEq, Serialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct CatalogEntry {
@@ -50,7 +50,7 @@ pub struct CatalogEntry {
     pub safe_default: bool,
     /// Offered among the templates when someone creates a routine.
     pub template: bool,
-    /// Offered unpicked as a suggestion from Macro.
+    /// Offered unpicked as a suggestion from Rox.
     pub suggest: bool,
 }
 

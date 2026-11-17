@@ -61,7 +61,7 @@ pub struct SearchedPerson {
     pub name: Option<String>,
     /// Whether the person is on the viewer's current team.
     pub is_teammate: bool,
-    /// Whether the person is an agent rather than a human; false for non-Macro contacts.
+    /// Whether the person is an agent rather than a human; false for non-Rox contacts.
     pub is_agent: bool,
 }
 

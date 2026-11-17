@@ -85,7 +85,7 @@ async fn register<I: InflightAuthStore + 'static>(
         }
         Err(RegisterClientError::ReservedClientName) => (
             axum::http::StatusCode::BAD_REQUEST,
-            "client_name may not be Macro's own name",
+            "client_name may not be Rox's own name",
         )
             .into_response(),
         Err(RegisterClientError::ClientRegistrationStore(error)) => {
@@ -410,7 +410,7 @@ fn email_code_refusal(error: &EmailSignInError) -> Option<&'static str> {
 
     match error {
         EmailCodeError::InvalidEmail => Some("Enter a valid email address."),
-        EmailCodeError::NotAllowed => Some("That email address can't sign in to Macro."),
+        EmailCodeError::NotAllowed => Some("That email address can't sign in to Rox."),
         EmailCodeError::InvalidCode => Some("That code isn't right, or it has expired."),
         EmailCodeError::RateLimited => Some("Too many attempts. Wait a minute and try again."),
         EmailCodeError::Unavailable(_) => None,
@@ -565,8 +565,8 @@ fn start_authorization_error_response(error: StartAuthorizationError) -> Respons
             .into_response(),
         StartAuthorizationError::UnknownClient => (
             axum::http::StatusCode::BAD_REQUEST,
-            "Your Macro connection needs to be reconnected. In the app you are connecting from, \
-             remove the Macro MCP connection, add it again, and sign in to Macro. \
+            "Your Rox connection needs to be reconnected. In the app you are connecting from, \
+             remove the Rox MCP connection, add it again, and sign in to Rox. \
              Signing in again without removing the connection may reuse the old registration.",
         )
             .into_response(),

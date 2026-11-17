@@ -14,7 +14,7 @@ function cleanHostname(hostname: string): string {
   // Strip only a leading `www.` (parity with the Rust `strip_prefix("www.")`);
   // a bare `replace('www.', '')` would also collapse a mid-string occurrence,
   // e.g. `macro.www.com` -> `rox.one`, letting a foreign host masquerade as
-  // a Macro one.
+  // a Rox one.
   return hostname.toLowerCase().replace(/^www\./, '');
 }
 
@@ -31,9 +31,9 @@ export function isValidMacroAppHostname(hostname: string): boolean {
     return true;
   }
   // On Tauri, window.location.hostname is 'localhost' (custom tauri:// scheme)
-  // or 'tauri.localhost' (http asset scheme, e.g. Windows/Android), but Macro
+  // or 'tauri.localhost' (http asset scheme, e.g. Windows/Android), but Rox
   // links are built with the real web origin (rox.one, dev.rox.one, or
-  // staging.rox.one). Accept any recognized Macro host when running inside
+  // staging.rox.one). Accept any recognized Rox host when running inside
   // the native Tauri app (mirrors APP_LINK_HOSTS on the Rust side).
   if (
     isTauri() &&
@@ -53,10 +53,10 @@ type InternalAppLink = {
 };
 
 /**
- * Parses an absolute URL pointing at the Macro web app (e.g.
+ * Parses an absolute URL pointing at the Rox web app (e.g.
  * `https://rox.one/app/channel/<id>?message=<id>`) into a router path, query
  * and fragment; a booking receipt link keeps its private token in the fragment.
- * Returns null for anything that is not a Macro `/app` URL.
+ * Returns null for anything that is not a Rox `/app` URL.
  *
  * The `/app` prefix is stripped because the Tauri router uses `/` as its
  * base (mirrors `MacroScheme::from_url` on the Rust side).

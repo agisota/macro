@@ -19,7 +19,7 @@ fn lists_each_tool_by_name_with_its_first_sentence() {
 
     assert_eq!(
         section,
-        "# More Macro Tools\n\
+        "# More Rox Tools\n\
          These tools are available too, but their parameters are not loaded yet. \
          To use one, call `LoadTools` with its exact name (load several at once if \
          the task needs them), then call it on your next step. `SearchTools` also \

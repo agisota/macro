@@ -57,7 +57,7 @@ for bot mutations that channel bots, agent triggers, and memory build on.
 - Agent create and update hold a chosen harness's row `FOR SHARE` in their
   transaction and refuse a deleted one (`HarnessRemoved`, a 400), so no bind
   slips past a concurrent harness delete.
-- An agent created on a Macro computer's harness without a permission choice
+- An agent created on a Rox computer's harness without a permission choice
   gets `auto_accept_permissions = Some(true)` when the harness allows bypass. The
   `roxd`⇔`harness_id` pairing is checked only for a runtime the request
   chooses; a patch that omits `harness` keeps an unbound agent editable.

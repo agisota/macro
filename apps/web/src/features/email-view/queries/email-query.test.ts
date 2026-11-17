@@ -517,7 +517,7 @@ describe('buildEmailSearchRequest', () => {
     const filtersFor = (tab: EmailTab) =>
       requestFor({ tab }).filters.email_filters;
 
-    // Macro-composed drafts are unindexed and unlabeled; the client trims
+    // Rox-composed drafts are unindexed and unlabeled; the client trims
     // both tabs' results instead (see tabFilters).
     expect(filtersFor('drafts')).toEqual({});
     expect(filtersFor('sent')).toEqual({});

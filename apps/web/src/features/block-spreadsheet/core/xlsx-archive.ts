@@ -118,7 +118,7 @@ function archiveEntries(
     !names.has('xl/workbook.xml')
   )
     throw invalid();
-  // Imports drop macros with a warning; Macro's own exports must never
+  // Imports drop macros with a warning; Rox's own exports must never
   // contain them.
   if (!allowMacros && [...names].some(isMacroPart))
     throw new Error('Workbooks written by Rox must not contain macros.');
@@ -200,7 +200,7 @@ function isMacroPart(name: string) {
   );
 }
 
-/** Warnings for package parts Macro does not import, from entry names alone. */
+/** Warnings for package parts Rox does not import, from entry names alone. */
 export function xlsxFeatureWarnings(names: string[]): string[] {
   const warnings = new Set<string>();
   for (const name of names) {

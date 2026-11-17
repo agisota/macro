@@ -19,7 +19,7 @@ use unicode_segmentation::UnicodeSegmentation;
 use uuid::Uuid;
 
 /// `name` cut to `max` graphemes; source trackers allow longer titles than
-/// Macro, and the body links back to the full source item.
+/// Rox, and the body links back to the full source item.
 fn capped_name(name: &str, max: usize) -> String {
     name.trim().graphemes(true).take(max).collect::<String>()
 }

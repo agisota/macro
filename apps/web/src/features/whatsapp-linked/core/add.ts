@@ -8,7 +8,7 @@ export type AddRefusal =
   | { reason: 'already-added' }
   | { reason: 'disconnected' }
   | { reason: 'rate-limited' }
-  /** DSS's reason this chat can't be in Macro. */
+  /** DSS's reason this chat can't be in Rox. */
   | { reason: 'cannot-add'; why: CannotAdd }
   | { reason: 'unavailable' }
   /** DSS is behind on this account's WhatsApp work. */
@@ -47,8 +47,7 @@ export function addFailureMessage(failure: AddRefusal): string {
     )
     .with(
       { reason: 'server-error' },
-      () =>
-        'Rox hit an error adding this chat. If it keeps happening, tell us.'
+      () => 'Rox hit an error adding this chat. If it keeps happening, tell us.'
     )
     .with(
       { reason: 'unavailable' },

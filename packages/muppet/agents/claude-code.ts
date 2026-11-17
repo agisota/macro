@@ -12,7 +12,7 @@ const server = 'muppet';
  * Claude Code as an agent, through the Claude Agent SDK. Each wake starts a
  * session with the request and its event as the prompt, and the system
  * prompt appended to Claude Code's own, and gives it the code-mode tools, RunCapabilityScript and DescribeCapabilities.
- * The names are its own, so they never collide with Macro's MCP tools
+ * The names are its own, so they never collide with Rox's MCP tools
  * (ExecuteCode, DescribeCodeTools, ReadCodeDocs) when both are offered.
  */
 export const claudeCode = ({

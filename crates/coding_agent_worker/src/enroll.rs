@@ -1,4 +1,4 @@
-//! `roxd enroll`: join a Macro computer (hosted VM) to Macro at first boot.
+//! `roxd enroll`: join a Rox computer (hosted VM) to Rox at first boot.
 //!
 //! The control plane hands the computer one
 //! [`Enrollment`](hosted_runtimes::domain::enrollment::Enrollment): through the

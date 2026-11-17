@@ -8,7 +8,7 @@ import type {
 } from '../context/whatsapp-linked-context';
 import type { PasskeyChallenge } from '../core/pairing';
 
-/** Whether this is Macro desktop, the only place a passkey can be answered. */
+/** Whether this is Rox desktop, the only place a passkey can be answered. */
 export function canAuthenticatePasskey(): boolean {
   return isTauri() && isPlatform('desktop');
 }
@@ -63,7 +63,7 @@ export function authenticateWhatsAppPasskey(
   );
 }
 
-/** A deep link that opens this pairing in Macro desktop, by id only. */
+/** A deep link that opens this pairing in Rox desktop, by id only. */
 export function desktopPairingUrl(pairingId: string): string {
   return `macro:///external?whatsappPairing=${encodeURIComponent(pairingId)}`;
 }

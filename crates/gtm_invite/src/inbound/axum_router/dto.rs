@@ -55,7 +55,7 @@ pub struct GtmInviteLink {
     pub free_months: u8,
     /// Lifecycle status.
     pub status: GtmInviteLinkStatus,
-    /// The Macro user id of the staff member who created the link.
+    /// The Rox user id of the staff member who created the link.
     pub created_by: String,
     /// When the link was created.
     pub created_at: DateTime<Utc>,
@@ -67,7 +67,7 @@ pub struct GtmInviteLink {
     pub open_count: i32,
     /// When the welcome page first loaded.
     pub first_opened_at: Option<DateTime<Utc>>,
-    /// The Macro user id of the account that signed up through the link.
+    /// The Rox user id of the account that signed up through the link.
     pub redeemed_by: Option<String>,
     /// When that account redeemed the link.
     pub redeemed_at: Option<DateTime<Utc>>,

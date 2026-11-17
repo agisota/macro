@@ -626,7 +626,7 @@ async fn deleting_a_synced_outlook_event_deletes_it_in_graph_and_drops_it_from_t
 }
 
 /// One series in Graph: its master, and its instances as `instances`
-/// returns them, which Macro patches, deletes or answers one at a time.
+/// returns them, which Rox patches, deletes or answers one at a time.
 #[derive(Clone)]
 struct GraphSeries(Arc<Mutex<(Value, Vec<Value>)>>);
 

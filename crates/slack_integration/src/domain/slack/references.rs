@@ -23,7 +23,7 @@ pub const MAX_SOURCE_BYTES: usize = 1024 * 1024;
 /// Maximum reference occurrences and emitted user-mention occurrences per body.
 pub const MAX_REFERENCES: usize = 256;
 
-/// Exact source identity, never an inferred Macro target.
+/// Exact source identity, never an inferred Rox target.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum SourceReference {
@@ -40,7 +40,7 @@ pub enum SourceReference {
         channel: ConversationId,
         /// Exact message timestamp from the path (not thread_ts).
         timestamp: SlackTimestamp,
-        /// Optional source root hint. Never a Macro root ID.
+        /// Optional source root hint. Never a Rox root ID.
         thread_timestamp: Option<SlackTimestamp>,
     },
 }
@@ -53,7 +53,7 @@ pub struct ReferenceIntent {
     pub source: SourceReference,
     /// Byte range in `ConvertedText::body` occupied by the fallback.
     pub range: Range<usize>,
-    /// Source-only fallback; no inaccessible Macro names/IDs may enrich it.
+    /// Source-only fallback; no inaccessible Rox names/IDs may enrich it.
     pub fallback: String,
 }
 
@@ -74,14 +74,14 @@ pub struct ConvertedText {
 /// matching source identity first. The UI still enforces per-viewer access.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ResolvedTarget {
-    /// Authorized Macro channel.
+    /// Authorized Rox channel.
     Channel {
         /// Canonical channel UUID.
         channel_id: Uuid,
         /// Authorized entity name, not an arbitrary source label.
         name: String,
     },
-    /// Authorized Macro message; never downgrade a missing message to a channel.
+    /// Authorized Rox message; never downgrade a missing message to a channel.
     Message {
         /// Canonical channel UUID (the mention's documentId).
         channel_id: Uuid,

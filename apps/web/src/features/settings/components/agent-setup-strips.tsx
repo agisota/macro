@@ -49,7 +49,7 @@ function SetupStrip(props: {
   );
 }
 
-/** Where agents can run besides Macro: Cursor, and your own paired machines. */
+/** Where agents can run besides Rox: Cursor, and your own paired machines. */
 export function AgentSetupStrips(props: {
   onCursor: () => void;
   onSetUpRuntime: () => void;

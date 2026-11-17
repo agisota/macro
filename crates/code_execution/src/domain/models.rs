@@ -40,7 +40,7 @@ pub struct RunEnvironment {
     pub unattended: Option<Unattended>,
 }
 
-/// The deployment's Macro SDK targets, so a program's requests and links stay
+/// The deployment's Rox SDK targets, so a program's requests and links stay
 /// in the environment it runs in.
 #[derive(Clone, Serialize, Default)]
 #[serde(rename_all = "camelCase")]

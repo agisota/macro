@@ -34,7 +34,7 @@ do without a repository.";
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, ToSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum AgentMode {
-    /// A chat agent, such as Macro.
+    /// A chat agent, such as Rox.
     Chat,
     /// A coding agent with a repository.
     Code,

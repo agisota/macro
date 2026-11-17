@@ -46,7 +46,7 @@ pub struct CalendarReplacement {
     pub user_id: String,
     /// Authorized calendar, retained after the old event is retired.
     pub calendar_id: Uuid,
-    /// Original Macro event, retained as an identifier rather than a foreign key.
+    /// Original Rox event, retained as an identifier rather than a foreign key.
     pub event_id: Uuid,
     /// Provider master; serializes overlapping series and occurrence replacements.
     pub master_id: String,

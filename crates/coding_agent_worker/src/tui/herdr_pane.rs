@@ -3,8 +3,8 @@
 //! The window attaches to its roxd over the local socket, replays what the
 //! session has done so far, then follows it live: prompts, streamed agent
 //! output, thoughts, tool calls, plans. Typing prompts the session and Esc
-//! interrupts it, both carried to the session through Macro by the daemon.
-//! Permission requests are shown but answered in Macro: the service accepts
+//! interrupts it, both carried to the session through Rox by the daemon.
+//! Permission requests are shown but answered in Rox: the service accepts
 //! approvals only from a user, never from the runtime they would unblock.
 
 use std::path::Path;
@@ -169,7 +169,7 @@ impl Transcript {
     }
 }
 
-/// A permission request waiting on an answer in Macro.
+/// A permission request waiting on an answer in Rox.
 #[derive(Debug, Clone, PartialEq)]
 pub(crate) struct PendingPermission {
     pub(crate) title: Option<String>,

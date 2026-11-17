@@ -1,7 +1,7 @@
 /**
  * Identity for the first-party "Cursor" system bot. Mirrors
  * `bot_id::CURSOR_BOT_ID` on the backend. Mentioning it opens an agent
- * session served by a Cursor cloud agent rather than a Macro-managed sandbox
+ * session served by a Cursor cloud agent rather than a Rox-managed sandbox
  * (see `macroCoder.ts` for the sandboxed sibling).
  */
 export const CURSOR_BOT_ID = '00000000-0000-0000-0000-00000000c5c5';

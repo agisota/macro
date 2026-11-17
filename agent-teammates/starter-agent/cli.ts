@@ -56,7 +56,7 @@ const Hook = z.object({
 });
 
 const run = async (): Promise<void> => {
-	// The agent shows online in Macro for as long as it runs.
+	// The agent shows online in Rox for as long as it runs.
 	const apiKey = await base.credentials.get(macroKey);
 	stayOnline({
 		open: () => {

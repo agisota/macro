@@ -101,7 +101,7 @@ pub trait Calendars: Send + Sync + 'static {
     /// Move an existing provider event without creating a second invitation.
     fn reschedule(&self, record: &BookingRecord) -> impl Future<Output = Result<(), Error>> + Send;
 }
-/// Membership facts supplied by Macro's teams domain.
+/// Membership facts supplied by Rox's teams domain.
 pub trait Directory: Send + Sync + 'static {
     /// Teams the authenticated user currently belongs to, for booking-link discovery.
     fn user_teams(&self, user: &str) -> impl Future<Output = Result<Vec<Uuid>, Error>> + Send;

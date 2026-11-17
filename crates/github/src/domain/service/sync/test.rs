@@ -387,14 +387,14 @@ struct StubSyncRepo {
     team_task_references: Mutex<HashMap<(String, String, i32), Vec<(uuid::Uuid, MacroTaskId)>>>,
     /// Maps github_user_id -> macro_ids for installation event lookups.
     ///
-    /// A github_user_id may map to multiple Macro users because multiple Macro
+    /// A github_user_id may map to multiple Rox users because multiple Rox
     /// users can share one GitHub account.
     github_links: Mutex<HashMap<String, Vec<String>>>,
     /// Maps lowercase github login -> macro_ids for mention lookups.
     github_login_links: Mutex<HashMap<String, Vec<String>>>,
     /// Maps macro_id -> team_ids for installation event lookups.
     user_teams: Mutex<HashMap<String, Vec<uuid::Uuid>>>,
-    /// Maps team_id -> Macro user IDs for notification recipient lookups.
+    /// Maps team_id -> Rox user IDs for notification recipient lookups.
     team_members: Mutex<HashMap<uuid::Uuid, Vec<MacroUserIdStr<'static>>>>,
     /// Current github_app_installation source rows keyed by installation id.
     installation_source_rows: Mutex<HashMap<String, HashSet<GithubAppInstallationSource>>>,
@@ -3095,7 +3095,7 @@ async fn github_pr_status_changed_does_not_notify_any_macro_user_linked_to_actor
 
     let requests = service.notification_ingress.requests();
     assert_eq!(requests.len(), 1);
-    // The actor's GitHub account is linked to two Macro users; both are
+    // The actor's GitHub account is linked to two Rox users; both are
     // excluded from recipients, not just the attributed sender.
     assert_eq!(
         requests[0]
@@ -4703,7 +4703,7 @@ async fn review_requested_notifies_only_mapped_reviewer_in_team() {
 
 #[tokio::test]
 async fn review_requested_fans_out_to_all_macro_users_sharing_reviewer_github_account() {
-    // The requested reviewer's GitHub account (id 333) is shared by two Macro
+    // The requested reviewer's GitHub account (id 333) is shared by two Rox
     // users, both of whom are members of the source team. The notification
     // should fan out to both of them.
     let team_id: uuid::Uuid = "dddddddd-dddd-dddd-dddd-dddddddddddd".parse().unwrap();
@@ -6041,7 +6041,7 @@ async fn complete_installation_setup_rejects_missing_fields_and_unknown_action()
 #[tokio::test]
 async fn complete_installation_setup_rejects_unlinked_completer() {
     // A signed state alone must not be honored: whoever finishes the flow has
-    // to be linked to the Macro user the state was minted for, or a leaked or
+    // to be linked to the Rox user the state was minted for, or a leaked or
     // attacker-minted state could bind an installation to a foreign source.
     let service = make_sync_service();
     service.client.set_user_installations(&[9]);

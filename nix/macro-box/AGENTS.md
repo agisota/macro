@@ -2,7 +2,7 @@
 
 ## What it is
 
-The Macro computer guest: a NixOS configuration with roxd, harnessd, Claude Code,
+The Rox computer guest: a NixOS configuration with roxd, harnessd, Claude Code,
 herdr, Chromium on Xvnc + Openbox, Docker and nix-ld. It ships as an Incus
 VM image (for the computers IncusFleet) and a Docker image with systemd as
 PID 1 (for the dev-only DockerFleet).
@@ -165,7 +165,7 @@ PID 1 (for the dev-only DockerFleet).
   has a token it unsets `ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`,
   `ANTHROPIC_API_KEY` and `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` and
   exports `CLAUDE_CODE_OAUTH_TOKEN` (the customer's plan); with no file it
-  changes nothing (Macro credits); an unreadable file or one without a token
+  changes nothing (Rox credits); an unreadable file or one without a token
   keeps the gateway env and warns on stderr without the token. Never write
   `~/.claude/.credentials.json`.
 - Its `--ignore-stdin-eof` keeps systemd's closed stdin from stopping the daemon.
@@ -324,5 +324,5 @@ The control plane, per computer:
   CPU pinning; dev-only Docker guests still see host totals in `/proc` and
   `nproc`. Do not add lxcfs; Incus VMs see their real CPU and memory limits.
 - No managed `managed-mcp.json`: it takes exclusive control of MCP servers and
-  would block the Macro servers roxd forwards; chrome-devtools is
+  would block the Rox servers roxd forwards; chrome-devtools is
   registered in user scope instead.

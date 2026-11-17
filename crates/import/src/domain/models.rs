@@ -41,13 +41,13 @@ mod test;
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum ImportSource {
-    /// Linear issues, imported as Macro tasks.
+    /// Linear issues, imported as Rox tasks.
     Linear,
     /// Jira Cloud issues and projects.
     Jira,
-    /// Notion pages, imported as Macro markdown documents.
+    /// Notion pages, imported as Rox markdown documents.
     Notion,
-    /// Slack channels, recreated as Macro channels.
+    /// Slack channels, recreated as Rox channels.
     Slack,
 }
 
@@ -113,7 +113,7 @@ impl ImportSource {
         }
     }
 
-    /// The Macro entity type items from this source become. The mapping is
+    /// The Rox entity type items from this source become. The mapping is
     /// fixed — importers have latitude on content, never on shape.
     pub fn entity_type(self) -> &'static str {
         match self {
@@ -234,7 +234,7 @@ pub enum ImportStatus {
     Staged,
     /// Accepted; an import job is copying it in.
     Importing,
-    /// A Macro entity exists for it (`entity_id`/`entity_type` are set).
+    /// A Rox entity exists for it (`entity_id`/`entity_type` are set).
     Imported,
     /// The user declined it. Remembered so later discovery doesn't re-stage it.
     Discarded,
@@ -355,7 +355,7 @@ pub struct SlackConversation {
     pub id: SlackConversationId,
     /// Conversation name.
     pub name: String,
-    /// Source conversation kind, independent of the Macro target kind.
+    /// Source conversation kind, independent of the Rox target kind.
     pub kind: SlackConversationKind,
     /// Whether Slack has archived this conversation.
     pub archived: bool,
@@ -431,7 +431,7 @@ fn valid_slack_id(value: &str, prefixes: &[u8]) -> bool {
             .all(|byte| byte.is_ascii_uppercase() || byte.is_ascii_digit())
 }
 
-/// Durable single-workspace binding for a Macro team. Absence of this row means unbound.
+/// Durable single-workspace binding for a Rox team. Absence of this row means unbound.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ImportSourceBinding {
     /// Known workspace, if the source supplied identity.
@@ -506,7 +506,7 @@ const MAX_TEXT: usize = 300;
 const MAX_LONG_TEXT: usize = 4_000;
 /// Cap for summaries and purposes.
 const MAX_SUMMARY: usize = 600;
-/// Cap on matched Slack participants, bounded by Macro team size, not channel size.
+/// Cap on matched Slack participants, bounded by Rox team size, not channel size.
 const MAX_PARTICIPANTS: usize = 100;
 
 /// Truncate to a character boundary at most `max` bytes in.
@@ -619,7 +619,7 @@ pub enum NotionDecision {
     /// Bring it over as it is: a page becomes a document, a data source a
     /// database.
     Copy,
-    /// A data source that is really a task list: its rows become Macro tasks.
+    /// A data source that is really a task list: its rows become Rox tasks.
     Tasks,
     /// Leave it in Notion.
     Skip,
@@ -734,7 +734,7 @@ pub struct SlackChannelMeta {
     pub channel_id: Option<String>,
     /// The channel's purpose/topic, when set.
     pub purpose: Option<String>,
-    /// Slack members matched to the Macro team roster when discovery resolved membership.
+    /// Slack members matched to the Rox team roster when discovery resolved membership.
     #[serde(default)]
     pub participants: Vec<SlackParticipant>,
     /// Total human members in the Slack channel.
@@ -863,9 +863,9 @@ pub struct ImportEntity {
     /// Per-source metadata (shape depends on `source`; see
     /// [`LinearIssueMeta`], [`NotionDocMeta`], [`SlackChannelMeta`]).
     pub metadata: serde_json::Value,
-    /// The Macro entity it became, once imported.
+    /// The Rox entity it became, once imported.
     pub entity_id: Option<String>,
-    /// The Macro entity type (`task` | `md` | `channel`), once imported.
+    /// The Rox entity type (`task` | `md` | `channel`), once imported.
     pub entity_type: Option<String>,
     /// Failure detail from the last import attempt, when one failed.
     pub last_error: Option<String>,
@@ -964,7 +964,7 @@ pub struct NotionImportReport {
     /// Tracker issues in the plan.
     #[serde(default)]
     pub issues: u32,
-    /// Tracker groups written as Macro projects.
+    /// Tracker groups written as Rox projects.
     #[serde(default)]
     pub projects: u32,
     /// The run's state: `running` while planning, `ready` once a plan is
@@ -1023,7 +1023,7 @@ pub struct NotionImportReport {
     /// they link to that copy and are not counted as copies.
     #[serde(default)]
     pub already_in_macro: u32,
-    /// Who imported the objects already in Macro, most first.
+    /// Who imported the objects already in Rox, most first.
     #[serde(default)]
     pub already_imported_by: Vec<NotionImporter>,
     /// The review the plan is tied to, once presented.

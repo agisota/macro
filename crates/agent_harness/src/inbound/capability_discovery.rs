@@ -39,7 +39,7 @@ pub struct DiscoverAgentCapabilitiesRequest {
 #[derive(Debug, Deserialize, ToSchema)]
 #[serde(rename_all = "kebab-case")]
 pub enum CapabilityHarnessDto {
-    /// Macro's in-process agent.
+    /// Rox's in-process agent.
     InMemory,
     /// The caller's Cursor account.
     Cursor,

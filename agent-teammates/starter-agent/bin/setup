@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # bin/setup: turns a fresh copy of this directory into one particular agent.
 #
-# It asks who owns the agent and for the agent's own Macro account, then
+# It asks who owns the agent and for the agent's own Rox account, then
 # writes agent.json (who it is), an age key if this machine has none,
 # .sops.yaml and secrets.enc.json (its credentials, encrypted), links the
 # muppet library, installs its packages, and offers to install and start its
 # systemd user services. It gives the agent no name and no personality: the
-# agent asks its owner who it is, in Macro, the first time it runs.
+# agent asks its owner who it is, in Rox, the first time it runs.
 #
 # Run it once per agent, from a copy of this directory that is not inside
 # another git repository. It refuses to overwrite an agent that is already set
@@ -54,15 +54,15 @@ top=$(git rev-parse --show-toplevel 2>/dev/null || true)
 }
 command -v claude >/dev/null || echo "Note: the claude program isn't on your PATH. The agent runs on Claude Code: install it and sign in before starting the agent."
 
-say "Who owns this agent? Only this Macro account will be able to give it orders."
-owner=$(ask "Owner's Macro email")
+say "Who owns this agent? Only this Rox account will be able to give it orders."
+owner=$(ask "Owner's Rox email")
 [[ $owner == *@* ]] || { echo "That isn't an email address."; exit 1; }
 
-say "The agent needs a Macro account of its own, and an API key for it (Macro: Settings, API keys, signed in as the agent's account)."
-me=$(ask "The agent's Macro email")
+say "The agent needs a Rox account of its own, and an API key for it (Rox: Settings, API keys, signed in as the agent's account)."
+me=$(ask "The agent's Rox email")
 [[ $me == *@* ]] || { echo "That isn't an email address."; exit 1; }
 [[ $me != "$owner" ]] || { echo "The agent needs its own account: it can't be its owner's."; exit 1; }
-read -r -s -p "The agent's Macro API key (not shown): " key; echo
+read -r -s -p "The agent's Rox API key (not shown): " key; echo
 [[ -n $key ]] || { echo "No key given."; exit 1; }
 
 zone=$(ask "Your time zone" "$(timedatectl show -p Timezone --value 2>/dev/null || echo UTC)")
@@ -100,7 +100,7 @@ bun install >/dev/null
 
 git rev-parse --git-dir >/dev/null 2>&1 || git init -q -b main
 git add "$settings" "$secrets" "$rules"
-git -c user.name="Agent" -c user.email="$me" commit -q -m "Set up: who owns this agent, and its Macro account" || true
+git -c user.name="Agent" -c user.email="$me" commit -q -m "Set up: who owns this agent, and its Rox account" || true
 
 unit=$(basename "$here")
 say "The agent runs as a systemd user service named $unit (after this directory)."
@@ -113,7 +113,7 @@ if [[ $(ask "Install and start it now? (y/n)" y) == y* ]]; then
   done
   systemctl --user daemon-reload
   systemctl --user enable --now "$unit.service"
-  say "Started. It will DM $owner in Macro to ask who it is. Watch it with: journalctl --user -u $unit -f"
+  say "Started. It will DM $owner in Rox to ask who it is. Watch it with: journalctl --user -u $unit -f"
   echo "For screen share on calls, also: systemctl --user enable --now $unit-screen.service"
 else
   say "Not started. Run it by hand with: bin/agent run"

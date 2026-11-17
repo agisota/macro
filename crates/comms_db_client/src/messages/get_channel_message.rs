@@ -18,7 +18,7 @@ pub struct ChannelMessageInfo {
     pub deleted_at: Option<chrono::DateTime<chrono::Utc>>,
 }
 
-/// Search-only projection; fallback author text is not a Macro sender identity.
+/// Search-only projection; fallback author text is not a Rox sender identity.
 #[derive(Debug)]
 pub struct ChannelMessageForSearch {
     pub message: ChannelMessageInfo,

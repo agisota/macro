@@ -1,6 +1,6 @@
 # External (external chats)
 
-`/app/external` lists outside messaging accounts a person links into Macro and
+`/app/external` lists outside messaging accounts a person links into Rox and
 the chats added from them (entity type `external_chat`, one provider per
 chat). WhatsApp is the only provider today. The view, its rail button, its More-views entry on
 mobile and the `g x` shortcut exist only with the `enable-whatsapp-linked`
@@ -17,7 +17,7 @@ The WhatsApp page opens with the WhatsApp `TutorialSidebarItem` (from `features/
   the dock is full). It has no back button, like other navigation views; the
   External sidebar is hidden on touch. Like Channels, the account list omits the floating split
   header; the WhatsApp title uses the shared collection header directly below
-  the safe area on phones and tablets, above the scrollable **In Macro** chats.
+  the safe area on phones and tablets, above the scrollable **In Rox** chats.
   Opening a chat drills in full-screen; its **Back to WhatsApp** button returns.
 
 ## Sidebar
@@ -32,7 +32,7 @@ section per community (its groups by their own name, its announcement group as
 shows its unread total, and folded sections are remembered per person. The
 caret on WhatsApp folds everything; folded, WhatsApp shows the total unread
 count. The open chat's row is highlighted. On phones the page starts with the
-same sections under **In Macro**.
+same sections under **In Rox**.
 DSS's `external_chat_changed` gateway events (`{scope:"chats"}` for the
 account's chat list, `{scope:"chat", chatId}` for one chat) refresh the lists;
 without one, External re-fetches once ~3 s after opening.
@@ -41,15 +41,15 @@ without one, External re-fetches once ~3 s after opening.
 
 | State | What shows |
 | --- | --- |
-| Not linked | Outlined WhatsApp row and **Connect**. A signed-out device reads **Reconnect**. A phone can't scan its own screen, so at phone width (touch, under 640px) there is no **Connect**; the row says to open Macro on a computer and scan its code with the phone. Tablets keep **Connect**. |
-| Passkey | When WhatsApp asks for a passkey, the dialog says **Confirm on your desktop**. In Macro desktop, **Confirm with passkey** runs the native `whatsapp_passkey_authenticate` command (its caBLE QR shows in the dialog) and posts the assertion to `/whatsapp/pairing/<id>/passkey`; a returned code then shows to type on the phone. In a browser, **Continue in Macro desktop** opens `macro:///external?whatsappPairing=<id>`, which reopens the same pairing there; closing the browser dialog then doesn't cancel it. |
+| Not linked | Outlined WhatsApp row and **Connect**. A signed-out device reads **Reconnect**. A phone can't scan its own screen, so at phone width (touch, under 640px) there is no **Connect**; the row says to open Rox on a computer and scan its code with the phone. Tablets keep **Connect**. |
+| Passkey | When WhatsApp asks for a passkey, the dialog says **Confirm on your desktop**. In Rox desktop, **Confirm with passkey** runs the native `whatsapp_passkey_authenticate` command (its caBLE QR shows in the dialog) and posts the assertion to `/whatsapp/pairing/<id>/passkey`; a returned code then shows to type on the phone. In a browser, **Continue in Rox desktop** opens `macro:///external?whatsappPairing=<id>`, which reopens the same pairing there; closing the browser dialog then doesn't cancel it. |
 | Pairing | Dialog **Link WhatsApp**: a locally encoded QR (`role="img"`, name "Scan this code with WhatsApp on your phone") that follows WhatsApp's rotating codes, four numbered steps, **Cancel**. The dialog carries `ph-no-capture`. When a pairing expires (WhatsApp ran out of codes, ~2.7 minutes, or the 5-minute deadline) while the tab stays visible, the dialog shows **Refreshing code…** and starts a new pairing on its own, up to three times; after that, or if the tab was hidden, the QR square reads **Code expired** with **Show a new code**. A failure (not expiry) says **Linking didn't finish.** with **Show a new code**. |
-| Linked | A full-width list like Drive's. Its header has **Search chats and contacts** (filters every section by name or phone digits) and a slim account strip: the phone number, "Connected" and a **WhatsApp account options** menu with **Disconnect** (asks to confirm). One account at a time: to switch, disconnect and connect again. Below, the account's WhatsApp chat list (`GET /whatsapp/chats`), newest activity first, one line per chat: a group, person or (announcement group) megaphone icon, the name ("Community · Group", or "Community · Announcements"), "Group" / "Community group" / "Announcement group" / "Direct chat · <number> · Archived" (the number when the name isn't it), and the last activity on the right. Row actions show on hover or keyboard focus (always on touch). Chats sit in folding sections like the sidebar's (**Direct messages**, **Groups**, **Communities** with one section per community), remembered per person; a search opens every section and also lists matching added chats with **Open** (otherwise they are only in the sidebar). Addable chats (direct chats, community groups and disappearing-message groups included) have a one-click **Add to Macro** (no dialog, no name: the Macro chat follows the WhatsApp name; unnamed groups show member names), and groups someone already shared with the viewer as "Shared with you by <owner>" with **Open**. **Can't be added (n)** is collapsed (searching unfolds it) and lists the chat with yourself, communities themselves ("A community has no messages of its own; add one of its groups"), and groups the account left, each with its reason. Saved contacts nobody wrote to yet (no last activity) are listed apart in a **Contacts** section below the others, name and "Direct chat · <number>", each with **Add to Macro**; search matches them by name or number. **New chat** beside the search (just the icon at phone width) opens **New WhatsApp chat**: a **Phone number** field (spaces, dashes, brackets and a leading `00` are fine; it needs the country code) and **Start chat**, which reads **Looking up…** while WhatsApp answers, then adds and opens the chat; otherwise the field says why ("<number> isn't on WhatsApp.", no answer, the hourly lookup limit, or the add's refusal) and the dialog stays open. A refused add shows DSS's specific reason in that chat's row. An account paired before the chat list existed shows only groups and chats with new messages until it is re-linked. |
+| Linked | A full-width list like Drive's. Its header has **Search chats and contacts** (filters every section by name or phone digits) and a slim account strip: the phone number, "Connected" and a **WhatsApp account options** menu with **Disconnect** (asks to confirm). One account at a time: to switch, disconnect and connect again. Below, the account's WhatsApp chat list (`GET /whatsapp/chats`), newest activity first, one line per chat: a group, person or (announcement group) megaphone icon, the name ("Community · Group", or "Community · Announcements"), "Group" / "Community group" / "Announcement group" / "Direct chat · <number> · Archived" (the number when the name isn't it), and the last activity on the right. Row actions show on hover or keyboard focus (always on touch). Chats sit in folding sections like the sidebar's (**Direct messages**, **Groups**, **Communities** with one section per community), remembered per person; a search opens every section and also lists matching added chats with **Open** (otherwise they are only in the sidebar). Addable chats (direct chats, community groups and disappearing-message groups included) have a one-click **Add to Rox** (no dialog, no name: the Rox chat follows the WhatsApp name; unnamed groups show member names), and groups someone already shared with the viewer as "Shared with you by <owner>" with **Open**. **Can't be added (n)** is collapsed (searching unfolds it) and lists the chat with yourself, communities themselves ("A community has no messages of its own; add one of its groups"), and groups the account left, each with its reason. Saved contacts nobody wrote to yet (no last activity) are listed apart in a **Contacts** section below the others, name and "Direct chat · <number>", each with **Add to Rox**; search matches them by name or number. **New chat** beside the search (just the icon at phone width) opens **New WhatsApp chat**: a **Phone number** field (spaces, dashes, brackets and a leading `00` are fine; it needs the country code) and **Start chat**, which reads **Looking up…** while WhatsApp answers, then adds and opens the chat; otherwise the field says why ("<number> isn't on WhatsApp.", no answer, the hourly lookup limit, or the add's refusal) and the dialog stays open. A refused add shows DSS's specific reason in that chat's row. An account paired before the chat list existed shows only groups and chats with new messages until it is re-linked. |
 
 Cancel sends `DELETE /whatsapp/pairing/<id>`; closing after the phone links
 does not; closing while a new code is starting cancels that pairing too.
 Disconnect results show as a toast; one WhatsApp did not confirm tells the
-person to remove Macro under Linked devices on their phone.
+person to remove Rox under Linked devices on their phone.
 
 ## Driving it without a WhatsApp backend
 
@@ -102,7 +102,7 @@ come from the attachment's static file, like Chat's media. Other ready files
 (PDF, text) show as file chips that open the stored file in a new tab; other
 states show loading, unavailable or unsupported. Senders, reactors (the
 reaction chip's tooltip), poll voters, members and mentioned people who are
-not Macro users go by the chat owner's contact name for them, else their
+not Rox users go by the chat owner's contact name for them, else their
 WhatsApp name, else their phone number; "WhatsApp participant" only when
 WhatsApp gave neither (a LID with no number). They show the WhatsApp
 profile picture the chat owner's account can see (`img[data-provider-picture]`)
@@ -110,7 +110,7 @@ over their initials, which stay when the picture is hidden, unset or not
 fetched yet; the chat header and External's sidebar show the group's or
 person's picture the same way, over the provider badge or the group/person
 icon. `@<number>` in a body shows the
-person: a verified Macro user as Chat's mention chip, anyone else that name in
+person: a verified Rox user as Chat's mention chip, anyone else that name in
 bold.
 Bare URLs are links with Chat's hover preview. **Forwarded** marks forwarded
 messages. Polls (read-only tallies, "Vote in WhatsApp"), locations (**Open in
@@ -122,7 +122,7 @@ call"): no avatar, no actions, never unread. View-once media show like any
 media; unknown types keep DSS's placeholder text. The header has the provider's badge and the chat name ("Community · Group"
 for a community's group), a timer icon when WhatsApp's disappearing messages
 are on (the timeline's start also says "Disappearing messages are on in
-WhatsApp (7 days). Macro keeps them."), **Share**, and the standard side panel
+WhatsApp (7 days). Rox keeps them."), **Share**, and the standard side panel
 toggle (**Show Side Panel**, `]`; **Show details** on touch). On phones and
 tablets, Back, the provider badge/name, Share and details occupy the shared
 floating split-header islands, positioned at the safe area like an open channel.
@@ -140,7 +140,7 @@ as +1…"); otherwise the reason replies are unavailable shows in its place. Sen
 and current membership that permits posting. A shared second member can send
 from their number without owning or re-adding the chat. Typing `@` in the
 composer offers only the group's WhatsApp participants (not the sender, agents,
-Macro items or `@here`); a picked person is sent as `@<digits>` with
+Rox items or `@here`); a picked person is sent as `@<digits>` with
 `mentions: [jid]`, and a mentioning text follows files instead of captioning
 them. Text/media/replies,
 reactions, and edits/deletes of the caller's own recent messages use
@@ -152,7 +152,7 @@ The owner may stop syncing (details → **Syncing**, groups and direct chats) wi
 Any viewer, including one who can't reply, can make a task from a message:
 **Task** in the row's hover toolbar, or **Create task** in the touch action
 drawer, opens the task composer titled with the first 70 characters of the
-text (mentions as `@<name>`; Macro users mentioned at either end are left out
+text (mentions as `@<name>`; Rox users mentioned at either end are left out
 and preselected as assignees) and a mention of the chat as its content. The
 mention opens the chat, not the message. The task has no **Source**: the
 properties service's entity references don't include external chats. Pending,

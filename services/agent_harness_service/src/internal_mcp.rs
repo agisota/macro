@@ -1,4 +1,4 @@
-//! Macro Internal MCP: session tools served by the harness, separate from workspace MCP.
+//! Rox Internal MCP: session tools served by the harness, separate from workspace MCP.
 
 use agent_code_mode::{domain::SessionCodeMode, inbound::toolset::CodeModeToolContext};
 use agent_code_mode::{domain::reviews::ReviewService, inbound::reviews::ReviewToolContext};
@@ -94,7 +94,7 @@ pub(super) struct InternalTools {
     pub(super) cognition: Option<Arc<dyn Cognition>>,
     pub(super) reviews: Arc<OnceLock<ReviewService>>,
     pub(super) gate: Arc<dyn agent_inmem::domain::tool_gate::NativeToolGate>,
-    /// Macro app origin, for links back to the calling session.
+    /// Rox app origin, for links back to the calling session.
     pub(super) app_url: Arc<str>,
 }
 

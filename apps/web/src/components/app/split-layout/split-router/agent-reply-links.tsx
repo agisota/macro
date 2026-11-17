@@ -25,7 +25,7 @@ import { upgradeLegacyPath } from './legacy-route';
 import { createMacroMentionLinkResolver } from './mention-links';
 
 /**
- * The location a Macro app link shows in its last pane, as the router would
+ * The location a Rox app link shows in its last pane, as the router would
  * read the URL. Undefined when a pane matches no route.
  */
 function appLinkLocation(
@@ -56,7 +56,7 @@ function appLinkLocation(
 }
 
 /**
- * Opens a Macro app link from an agent's reply in a new split, as the reply's
+ * Opens a Rox app link from an agent's reply in a new split, as the reply's
  * mention chips do (in place on touch, a new pane when panes stack). Entity
  * links take the mention path, so an open entity is reused and its location
  * applied; any other app route opens at its full location.
@@ -91,7 +91,7 @@ function useAgentReplyLinkOpener(): AppLinkOpener | undefined {
   });
 }
 
-/** Macro app links inside open in the app, in a new split, instead of a browser tab. */
+/** Rox app links inside open in the app, in a new split, instead of a browser tab. */
 export function AgentReplyLinks(props: ParentProps) {
   return (
     <AppLinkOpenerContext.Provider value={useAgentReplyLinkOpener()}>

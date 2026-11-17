@@ -81,11 +81,11 @@ issue filed, a label added, a job's exit code). When the wake ends:
 `status` is how the wake ended and never changes the outcome. `reported`
 always keeps what the agent said.
 
-## As OpenTelemetry, through Macro's telemetry framework
+## As OpenTelemetry, through Rox's telemetry framework
 
 muppet has no exporter of its own. `macroTelemetry` (`macro.ts`) records
 wakes through `Telemetry` of `@macro-inc/observability`
-(`packages/observability` in the Macro repository), which the agent sets up
+(`packages/observability` in the Rox repository), which the agent sets up
 once at its entrypoint, with `createNodeTracingProvider` from its `./node`
 entry, and hands in. The framework does the encoding, batching and sending
 (OTLP/HTTP), and nothing here waits on a collector or throws.

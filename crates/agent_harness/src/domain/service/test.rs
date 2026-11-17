@@ -823,7 +823,7 @@ async fn disconnected_session_owned_by(
     .await
 }
 
-/// [`disconnected_session`] served by Macro's in-process agent.
+/// [`disconnected_session`] served by Rox's in-process agent.
 async fn disconnected_in_memory_session(
     repo: &InMemoryAgentSessionRepo,
     containers: &MockContainerManager,

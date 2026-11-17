@@ -1,4 +1,4 @@
-# Macro call rooms
+# Rox call rooms
 
 The SDK’s `calls/node` and `calls/browser` entry points connect call handles to a
 real LiveKit room. Install

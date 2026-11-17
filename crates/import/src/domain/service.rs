@@ -115,7 +115,7 @@ pub enum StageOutcome {
     /// The item was already imported. `by_teammate` distinguishes "you did
     /// this" from "someone on your team did".
     AlreadyImported {
-        /// The imported row (carries the Macro entity it became).
+        /// The imported row (carries the Rox entity it became).
         entity: ImportEntity,
         /// Whether a teammate (not the user) imported it.
         by_teammate: bool,
@@ -206,7 +206,7 @@ pub trait ImportStager: Send + Sync + 'static {
 }
 
 /// Finalization the Notion import session's `FinalizeImport` tool drives:
-/// create the Macro entity for one `importing` row and flip it to
+/// create the Rox entity for one `importing` row and flip it to
 /// `imported`.
 pub trait ImportFinalizer: Send + Sync + 'static {
     /// Create the document for `import_id` (fixed mapping: linear → task,
@@ -224,9 +224,9 @@ pub trait ImportFinalizer: Send + Sync + 'static {
 /// Outcome of explicitly importing one Notion page from an interactive chat.
 #[derive(Debug, Clone, PartialEq)]
 pub enum ImportNotionPageOutcome {
-    /// The page now exists as a Macro document.
+    /// The page now exists as a Rox document.
     Imported {
-        /// The ledger row carrying the Macro document id.
+        /// The ledger row carrying the Rox document id.
         entity: ImportEntity,
         /// Whether the document existed before this request.
         already_existed: bool,
@@ -1808,7 +1808,7 @@ fn transform_outside_fenced_code(input: &str, mut transform: impl FnMut(&str) ->
     output
 }
 
-/// Map a Linear workflow status name onto Macro's task status label.
+/// Map a Linear workflow status name onto Rox's task status label.
 /// Returns `None` for anything unrecognized (the raw label then stays in
 /// the task body's footer instead).
 pub fn map_linear_status(status: &str) -> Option<&'static str> {
@@ -1824,7 +1824,7 @@ pub fn map_linear_status(status: &str) -> Option<&'static str> {
     }
 }
 
-/// Map a Linear priority label onto Macro's task priority label. `None` for
+/// Map a Linear priority label onto Rox's task priority label. `None` for
 /// unrecognized labels and for Linear's explicit "No priority".
 pub fn map_linear_priority(priority: &str) -> Option<&'static str> {
     match priority.trim().to_ascii_lowercase().as_str() {
@@ -1837,7 +1837,7 @@ pub fn map_linear_priority(priority: &str) -> Option<&'static str> {
 }
 
 /// The system properties an imported Linear issue should carry, normalized
-/// to Macro's vocabulary. Unmappable status/priority labels are dropped
+/// to Rox's vocabulary. Unmappable status/priority labels are dropped
 /// here and surface in the body footer instead.
 pub fn linear_task_properties(meta: &LinearIssueMeta) -> ImportedTaskProperties {
     ImportedTaskProperties {

@@ -105,7 +105,7 @@ fn status_refusal(status: StatusCode) -> AccessRefusal {
     }
 }
 
-/// A signed-in caller, or Macro's own machinery acting for one.
+/// A signed-in caller, or Rox's own machinery acting for one.
 pub struct SignedIn<Authorization> {
     /// The authorization the request carries.
     pub user: MacroAuthorizationExtractor<Authorization, UserOrInternal>,

@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! Macro service URL values with per-environment defaults and environment
+//! Rox service URL values with per-environment defaults and environment
 //! variable overrides.
 //!
 //! Use [`service_url!`] to define a newtype whose default value is selected
@@ -492,7 +492,7 @@ macro_rules! service_url {
 }
 
 service_url! {
-    /// Common service URLs used by Macro services.
+    /// Common service URLs used by Rox services.
     pub struct ServiceUrls {
         /// Main app URL.
         pub AppServiceUrl {
@@ -565,7 +565,7 @@ service_url! {
         },
         /// Public API gateway origin: every service's API under its path
         /// prefix (`/auth`, `/dss`, `/cognition`, `/agent-harness`, ...), as
-        /// clients off Macro's network reach them. Locally this is the stack's
+        /// clients off Rox's network reach them. Locally this is the stack's
         /// proxy, which mirrors the gateway's prefixes.
         pub ApiGatewayUrl {
             local: "https://localhost:8090",
@@ -593,7 +593,7 @@ service_url! {
             dev: "https://dev-gateway.rox.one/agent-harness-egress",
             prod: "https://gateway.rox.one/agent-harness-egress",
         },
-        /// Macro MCP service base URL. Append `/mcp` for its transport endpoint.
+        /// Rox MCP service base URL. Append `/mcp` for its transport endpoint.
         pub McpServiceUrl {
             local: "http://localhost:8101",
             dev: "https://dev-gateway.rox.one/mcp",
@@ -607,7 +607,7 @@ service_url! {
         },
         /// ChatGPT MCP server base URL (a Cloudflare Worker). Append `/mcp` for
         /// its transport endpoint, which is also its RFC 8707 resource: the
-        /// `McpPublicUrl` broker issues it Macro API tokens.
+        /// `McpPublicUrl` broker issues it Rox API tokens.
         pub McpChatgptServiceUrl {
             local: "http://localhost:8103",
             dev: "https://mcp-chatgpt-worker-dev.macroverse.workers.dev",

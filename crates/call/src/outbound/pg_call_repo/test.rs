@@ -3619,7 +3619,7 @@ async fn standalone_meeting_archives_guest_names_and_preserves_invitation(
     let record = repo.get_call_record_by_call_id(&call.id).await?.unwrap();
     assert_eq!(record.channel_id, None);
     assert_eq!(record.custom_name.as_deref(), Some("Design review"));
-    // Guests archive as their own rows; participant tables stay Macro-only.
+    // Guests archive as their own rows; participant tables stay Rox-only.
     assert!(record.participants.is_empty());
     assert_eq!(record.guests.len(), 1);
     assert_eq!(record.guests[0].id, guest_id);

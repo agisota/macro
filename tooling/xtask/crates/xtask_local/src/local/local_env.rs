@@ -529,7 +529,7 @@ struct AgentHarnessEnv {
     /// The egress proxy as its clients dial it: the run's Cursor egress
     /// tunnel when one opened, otherwise the in-network address.
     egress_url: String,
-    /// Macro's MCP service base URL, without its `/mcp` transport endpoint.
+    /// Rox's MCP service base URL, without its `/mcp` transport endpoint.
     /// In-network and cleartext, which the proxy permits only locally:
     /// this hop never leaves the compose bridge.
     mcp_service_url: &'static str,
@@ -840,7 +840,7 @@ impl BootStubEnv {
             "15000".into(),
         );
         env.insert("AI_USAGE_OVERAGE_MARKUP_PERCENT".into(), "25".into());
-        // Browser clients exchange FusionAuth sessions for Macro API tokens
+        // Browser clients exchange FusionAuth sessions for Rox API tokens
         // for actions such as enabling CRM. Both issuance and validation need
         // the same usable local key pair, even without Doppler.
         env.insert("MACRO_API_TOKEN_ISSUER".into(), "local".into());

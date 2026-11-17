@@ -130,7 +130,7 @@ static ALLOWED_DOMAINS: &[&str] = &[
 /// `CONNECT_UI_URL` in `apps/web/src/lib/core/pipedream/connect-ui.ts`.
 static EMBEDDED_DOCUMENTS: &[&str] = &["https://pipedream.com/_static/connect.html"];
 
-/// hosts whose `/app` urls are Macro app links. Main-frame navigations to
+/// hosts whose `/app` urls are Rox app links. Main-frame navigations to
 /// these are routed through the SPA router instead of loading the remote
 /// site in the webview. Keep in parity with the deep-link hosts in
 /// tauri.conf.json.

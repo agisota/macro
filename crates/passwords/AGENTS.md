@@ -4,7 +4,7 @@
 
 Team credential vault hosted by document_storage_service. Postgres stores metadata
 and grants; OpenBao stores credential values and TOTP keys. Server-side decryption
-means this is a Macro-managed team vault.
+means this is a Rox-managed team vault.
 
 ## Start here
 

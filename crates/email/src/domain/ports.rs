@@ -444,7 +444,7 @@ pub trait EmailRepo: Send + Sync + 'static {
     /// `provider_message_ids` go back to the state Gmail will end up with:
     /// that of the newest older write still on its way, or the one before
     /// this write; a newer write keeps its own. `local_message_ids`
-    /// (Macro-only drafts) lose the change. The thread's state is derived
+    /// (Rox-only drafts) lose the change. The thread's state is derived
     /// again, all while holding the thread's label-write lock.
     #[expect(clippy::too_many_arguments, reason = "the parts of one staged change")]
     fn revert_staged_label_change(
@@ -1023,7 +1023,7 @@ impl GmailTokenProvider for NoOpGmailTokenProvider {
     }
 }
 
-/// Port for turning a Macro document the caller may view into the file an
+/// Port for turning a Rox document the caller may view into the file an
 /// outgoing email attaches. The email domain never reads document storage
 /// itself; a composition root implements this over the documents domain.
 pub trait DraftAttachmentSource: Send + Sync + 'static {
@@ -1189,7 +1189,7 @@ pub trait EmailFileSendService: Send + Sync + 'static {
     ) -> impl Future<Output = Result<CreatedDraft, EmailErr>> + Send;
 }
 
-/// Use case: send a message carrying Macro documents as attachments.
+/// Use case: send a message carrying Rox documents as attachments.
 ///
 /// Object-safe (boxed future) so a tool context can hold any implementation
 /// behind one `Arc<dyn _>`, and hosts without attachment infrastructure can

@@ -84,7 +84,7 @@ vi.mock('@app/features/block-agent/context/pending-session', () => ({
 }));
 vi.mock('@app/features/agents-view/queries/agent-roster-source', () => ({
   createAgentRosterSource: () => ({
-    roster: () => [{ id: 'macro', kind: 'agent', name: 'Macro' }],
+    roster: () => [{ id: 'macro', kind: 'agent', name: 'Rox' }],
   }),
 }));
 vi.mock('@app/features/agents-view/queries/composer-models', () => ({

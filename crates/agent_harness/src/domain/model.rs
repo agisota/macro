@@ -175,7 +175,7 @@ pub enum AgentKind {
     Cursor,
     /// A per-owner Codex cloud conversation served over ACP.
     CodexCloud,
-    /// The in-process (in-memory) Macro agent bot, served by `agent_inmem`.
+    /// The in-process (in-memory) Rox agent bot, served by `agent_inmem`.
     InMemory,
     /// The bot's operator hosts the runtime and dials the gateway; no
     /// deployment here provisions anything for it.
@@ -286,7 +286,7 @@ impl AgentKind {
     /// announced as a magic chip - a live portal into the session. The
     /// in-memory runtime has no repository and chats, so its thread gets a
     /// pending reply that becomes the answer when the turn ends, the way the
-    /// original Macro bot replied.
+    /// original Rox bot replied.
     #[must_use]
     pub const fn is_coding(self) -> bool {
         !matches!(self, Self::InMemory)
@@ -397,7 +397,7 @@ pub struct AgentRuntimeConfig {
     pub mcp_servers: AgentMcpServers,
 }
 
-/// Whether a user belongs to the Macro staff domain - the egress crate's
+/// Whether a user belongs to the Rox staff domain - the egress crate's
 /// predicate, reused so the harness's staff gates and the proxy's can never
 /// disagree about who staff is.
 pub(crate) use agent_egress::domain::model::is_macro_staff;
@@ -663,7 +663,7 @@ pub enum HarnessCommand {
     /// Release a session's live resources and delete it.
     Delete,
     /// Load an external session whose agent is still running on a runtime
-    /// that dialed in again, so its local activity reaches Macro without a
+    /// that dialed in again, so its local activity reaches Rox without a
     /// prompt. Internal: the runtime registry asks for these on each dial.
     Reattach,
 }
@@ -972,7 +972,7 @@ pub struct SandboxEgress {
     pub session_token: String,
     /// The MCP servers to advertise, by the slug the proxy resolves: the
     /// owner's connected apps, or the agent's selected apps whether or not
-    /// the owner has connected them. Macro's own server is not listed: every
+    /// the owner has connected them. Rox's own server is not listed: every
     /// session has it, on its own route.
     pub mcp_servers: Vec<McpServerSlug>,
     /// The owner's own MCP servers - the ones added by URL under "Custom
@@ -993,7 +993,7 @@ pub const EGRESS_URL_VARIABLE: &str = "MACRO_EGRESS_URL";
 /// `container/ensure_ready.sh` on the same terms as [`EGRESS_URL_VARIABLE`].
 pub const SESSION_TOKEN_VARIABLE: &str = "MACRO_SESSION_TOKEN";
 
-/// The name every session's server list gives Macro's own MCP server.
+/// The name every session's server list gives Rox's own MCP server.
 ///
 /// Purely a display name now - resolution happens by route, not by name - but
 /// kept short and stable because agents namespace tool names under it.
@@ -1009,7 +1009,7 @@ impl SandboxEgress {
         format!("{}/mcp/{slug}", self.base_url)
     }
 
-    /// Where the proxy serves Macro's own MCP server: its own route, so no
+    /// Where the proxy serves Rox's own MCP server: its own route, so no
     /// connected app's slug can ever name it.
     pub fn macro_mcp_url(&self) -> String {
         format!("{}/mcp-macro", self.base_url)
@@ -1150,7 +1150,7 @@ pub struct ProvisionedEgress {
 /// Owner-typed names are reduced to `[A-Za-z0-9_-]`, which is what agents
 /// accept in a tool namespace, and an empty result reads as `custom`. A name
 /// that then matches an earlier entry gets a key suffix, so two servers the
-/// owner named alike stay distinguishable and neither can shadow Macro's own.
+/// owner named alike stay distinguishable and neither can shadow Rox's own.
 fn unique_server_name(name: &str, key: &CustomMcpServerKey, taken: &[(String, String)]) -> String {
     const DEFAULT_NAME: &str = "custom";
     const KEY_SUFFIX_LEN: usize = 8;
@@ -1223,7 +1223,7 @@ impl SessionRepository {
     }
 }
 
-/// One repository a user can reach through Macro's GitHub App.
+/// One repository a user can reach through Rox's GitHub App.
 ///
 /// What a chooser offers and what the open path authorizes against: the url
 /// is the value a session's row is pinned to, and the default branch is where
@@ -1264,7 +1264,7 @@ pub struct SessionDefaults {
 /// Session defaults for every bot a deployment answers for.
 ///
 /// One deployment can serve more than one managed bot (the sandboxed coder
-/// bot and the in-process Macro bot), and each stamps different defaults onto
+/// bot and the in-process Rox bot), and each stamps different defaults onto
 /// the sessions it opens.
 #[derive(Debug, Clone)]
 pub struct HarnessDefaults {

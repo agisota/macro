@@ -71,7 +71,7 @@ impl FoldState {
             .and_then(|tool| self.tool_positions.get(tool).cloned())
             .filter(|at| matches!(self.part_at_mut(at), Some(MessagePart::ToolUse { .. })));
 
-        // A form asked on behalf of one of Macro's user tools is that tool's
+        // A form asked on behalf of one of Rox's user tools is that tool's
         // review: the call is what is being decided, and a client with the
         // tool's composer renders the draft rather than the form.
         let elicitation_request = match elicitation_request {
@@ -116,7 +116,7 @@ impl FoldState {
         self.pending_elicitations
             .insert(request_id.clone(), at.clone());
 
-        // One question at a time is a Macro rule the session machine enforces
+        // One question at a time is a Rox rule the session machine enforces
         // by refusing a second create; the fold mirrors it by never letting a
         // second one take the slot, so a refused request still gets its part
         // (and its `Errored` outcome) without ever being offered to the user.
@@ -300,7 +300,7 @@ impl FoldState {
         Some(Changed::updated(at.message))
     }
 
-    /// The Macro user tool at `at`, with its draft, when the part there is a
+    /// The Rox user tool at `at`, with its draft, when the part there is a
     /// tool call this fold classified as one.
     fn user_tool_at(&mut self, at: &ToolPath) -> Option<(String, Value)> {
         match self.part_at_mut(at) {
@@ -399,7 +399,7 @@ fn decode_request(
 }
 
 /// The user tool a request names under `_meta.macro.userTool`, with the
-/// draft it carries there - how Macro's own agent labels a review, so the
+/// draft it carries there - how Rox's own agent labels a review, so the
 /// fold reads it even when the call it is scoped to is not open here. The
 /// name is required; the draft defaults to nothing.
 fn user_tool_from_meta(request: &CreateElicitationRequest) -> Option<(String, Value)> {

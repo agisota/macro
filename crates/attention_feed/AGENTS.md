@@ -2,7 +2,7 @@
 
 ## What it is
 
-The shared layer under Macro's attention feeds: Home's work feed
+The shared layer under Rox's attention feeds: Home's work feed
 (`crates/work_feed`) and the notifications inbox (`crates/notification_inbox`). It pages authorized, hydrated
 candidates with their notifications, completes, reads and restores them, and
 batches realtime changes into recomputes. Each feed keeps its own model on top.

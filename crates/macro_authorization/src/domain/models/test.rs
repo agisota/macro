@@ -18,7 +18,7 @@ fn user_authentication() -> MacroUserAuthentication {
         agent_id: None,
         agent_via: None,
         macro_user_id: MacroUserIdStr::try_from("macro|user@example.com".to_string())
-            .expect("valid Macro user id"),
+            .expect("valid Rox user id"),
         user_context: UserContext {
             user_id: "macro|user@example.com".to_string(),
             fusion_user_id: "fusion-user-id".to_string(),

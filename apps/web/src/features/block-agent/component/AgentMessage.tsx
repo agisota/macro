@@ -470,7 +470,7 @@ export function Message(props: {
         !isNotificationMessage(props.message)
       }
       fallback={
-        // An agent's links to Macro open in the app, as its mention chips do.
+        // An agent's links to Rox open in the app, as its mention chips do.
         <AgentReplyLinks>
           <div class="flex flex-col gap-1 min-w-0">
             {/* Segments are positional, and a run at the tail grows as calls

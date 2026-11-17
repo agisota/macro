@@ -70,7 +70,7 @@ const CEREBRAS_PROVIDER: &str = "cerebras";
 /// Cerebras inference endpoint (OpenAI-compatible Chat Completions API).
 const CEREBRAS_BASE_URL: &str = "https://api.cerebras.ai/v1";
 /// Provider segment Fireworks is registered under (OpenAI-compatible Chat
-/// Completions). Open-weight models on the in-memory Macro agent route here.
+/// Completions). Open-weight models on the in-memory Rox agent route here.
 const FIREWORKS_PROVIDER: &str = "fireworks";
 /// Fireworks inference endpoint (OpenAI-compatible Chat Completions API).
 const FIREWORKS_BASE_URL: &str = "https://api.fireworks.ai/inference/v1";

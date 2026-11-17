@@ -123,7 +123,7 @@ export const startJoin =
     readonly shell: Pick<Shell, 'start'>;
     /** What the join runs under, its brain's Claude Code and all: `Base.sandbox`. */
     readonly sandbox: readonly string[];
-    /** What makes the join's process the agent's, reaching Macro through its relay. */
+    /** What makes the join's process the agent's, reaching Rox through its relay. */
     readonly relayed: () => Promise<Readonly<Record<string, string>>>;
     readonly disk: Pick<Disk, 'makeDirectory'>;
     readonly config: Pick<Config, 'root'>;

@@ -20,7 +20,7 @@ use uuid::Uuid;
 pub struct PasswordRouterState<A> {
     /// Vault use-case service; owns all product authorization decisions.
     pub service: Arc<PasswordService>,
-    /// Shared Macro credential-validation boundary.
+    /// Shared Rox credential-validation boundary.
     pub authorization: MacroAuthorizationState<A>,
 }
 impl<A> Clone for PasswordRouterState<A> {

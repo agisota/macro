@@ -347,7 +347,7 @@ async fn a_selected_list_carries_none_of_the_owners_custom_servers() {
 
 /// Custom servers are advertised after the apps, on the proxy's custom
 /// route, under a name reduced to what tool namespaces tolerate - and a
-/// name that would repeat an earlier entry, Macro's own included, is made
+/// name that would repeat an earlier entry, Rox's own included, is made
 /// unique with a piece of the server's key rather than dropped or allowed
 /// to shadow.
 #[test]
@@ -401,7 +401,7 @@ fn custom_servers_are_advertised_under_unique_sanitized_names() {
 }
 
 /// Every server points at the proxy and carries the session token rather than
-/// any upstream credential; Macro's own server leads the list on its own
+/// any upstream credential; Rox's own server leads the list on its own
 /// route.
 #[test]
 fn points_every_acp_server_at_the_proxy() {
@@ -459,7 +459,7 @@ fn points_every_acp_server_at_the_proxy() {
     );
 }
 
-/// An owner with no connected apps still gets Macro's own server.
+/// An owner with no connected apps still gets Rox's own server.
 #[test]
 fn an_owner_with_no_connected_apps_still_gets_the_macro_server() {
     let entries: Vec<(String, String)> = egress(&[]).server_entries().collect();

@@ -11,7 +11,7 @@ import { createEffect, on, onCleanup } from 'solid-js';
 
 async function finishActivationSpan(span: Span, userId: string) {
   try {
-    // Macro IDs can contain email addresses. Keep only an opaque identifier,
+    // Rox IDs can contain email addresses. Keep only an opaque identifier,
     // and suppress the runtime's raw user-ID enrichment for this entire trace.
     span.setAttr(
       'user.id_hash',

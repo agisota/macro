@@ -67,14 +67,14 @@ impl<A: EntityAccessService> SupportChannelMessageGateway for AuthorizedSupportC
         self.messages
             .post(access, request)
             .await
-            .context("failed to post Macro support welcome message")?;
+            .context("failed to post Rox support welcome message")?;
         Ok(())
     }
 }
 
 fn support_user(email: &str) -> Result<MacroUserIdStr<'static>, Report> {
     Ok(MacroUserIdStr::try_from_email(email)
-        .context_with(|| format!("invalid Macro support user email: {email}"))?)
+        .context_with(|| format!("invalid Rox support user email: {email}"))?)
 }
 
 /// Post Julia's welcome message in a newly created support channel.

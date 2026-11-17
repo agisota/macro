@@ -73,7 +73,7 @@ pub struct SeedMailbox {
     /// so Sign in with Microsoft is refused.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub unverified_email_domain: bool,
-    /// The Macro email link (`email_links.id`) this mailbox is connected
+    /// The Rox email link (`email_links.id`) this mailbox is connected
     /// as, which the authentication-service stand-in answers tokens for.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub link_id: Option<String>,
@@ -100,7 +100,7 @@ pub struct SeedMailbox {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub messages: Vec<NewMessage>,
     /// `mailboxSettings.timeZone`: a Windows name such as `Pacific Standard
-    /// Time`, an IANA name, or one Macro cannot map. Defaults to `UTC`.
+    /// Time`, an IANA name, or one Rox cannot map. Defaults to `UTC`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub time_zone: Option<String>,
     /// Calendars. Every mailbox has a default calendar named `Calendar`;

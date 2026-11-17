@@ -3,7 +3,7 @@
 //! Replaces the Pulumi-driven local FusionAuth configuration with a single
 //! declarative kickstart that FusionAuth applies once against an empty DB:
 //! API key, HS256 signing key, the (unlicensed) populate-JWT lambda, and the
-//! tenant and Macro application with fixed ids + a fixed client secret. Every
+//! tenant and Rox application with fixed ids + a fixed client secret. Every
 //! id/secret is fixed (see `identity`) so services and FusionAuth always agree
 //! without any API read-back or patch step. The admin user is provisioned last
 //! (after the app it registers against exists); passwordless login auto-creates
@@ -383,7 +383,7 @@ pub fn build(
                     "refreshTokenExpirationPolicy": "SlidingWindow",
                 },
                 "lambdaConfiguration": { "accessTokenPopulateId": lambda_id },
-                // Macro logs users in with email codes; enable passwordless.
+                // Rox logs users in with email codes; enable passwordless.
                 "passwordlessConfiguration": { "enabled": true },
             }}
         }),
@@ -403,7 +403,7 @@ pub fn build(
             }
         }),
         // 7. Webhooks: on user.create FusionAuth calls auth-service, which
-        // registers the new user for the Macro app (so passwordless completes
+        // registers the new user for the Rox app (so passwordless completes
         // with 200). `x-internal-auth-key` must equal the services'
         // INTERNAL_API_SECRET_KEY (set to "local" in local mode).
         json!({

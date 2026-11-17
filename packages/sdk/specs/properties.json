@@ -2425,7 +2425,7 @@
   "tags": [
     {
       "name": "properties service",
-      "description": "Macro Properties Service"
+      "description": "Rox Properties Service"
     }
   ]
 }

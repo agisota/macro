@@ -16,7 +16,7 @@ use super::{
 
 /// Header carrying the shared key for standard internal service authorization.
 pub const INTERNAL_API_KEY_HEADER: &str = "x-internal-auth-key";
-/// Header carrying the acting Macro user ID for standard internal authorization.
+/// Header carrying the acting Rox user ID for standard internal authorization.
 pub const INTERNAL_MACRO_USER_ID_HEADER: &str = "x-internal-macro-user-id";
 /// Header carrying the acting organization ID for standard internal authorization.
 pub const INTERNAL_MACRO_ORGANIZATION_ID_HEADER: &str = "x-internal-macro-organization-id";
@@ -26,7 +26,7 @@ pub const INTERNAL_FUSIONAUTH_USER_ID_HEADER: &str = "x-internal-fusionauth-user
 /// Legacy DSS header carrying the internal service authorization key.
 #[deprecated(note = "migrate callers to INTERNAL_API_KEY_HEADER")]
 pub const LEGACY_DSS_INTERNAL_API_KEY_HEADER: &str = "x-document-storage-service-auth-key";
-/// Legacy DSS header carrying the acting Macro user ID.
+/// Legacy DSS header carrying the acting Rox user ID.
 #[deprecated(note = "migrate callers to INTERNAL_MACRO_USER_ID_HEADER")]
 pub const LEGACY_DSS_INTERNAL_MACRO_USER_ID_HEADER: &str = "x-document-storage-service-user-id";
 

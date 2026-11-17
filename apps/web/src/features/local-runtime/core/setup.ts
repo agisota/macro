@@ -9,7 +9,7 @@ import { match } from 'ts-pattern';
 /**
  * One-click local runtime setup on the desktop app: find a coding agent
  * installed on this computer, connect the bundled roxd daemon to the
- * user's account, and create a Macro agent that runs on it.
+ * user's account, and create a Rox agent that runs on it.
  */
 
 /** The steps the user watches, in order. */

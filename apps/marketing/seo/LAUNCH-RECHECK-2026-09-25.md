@@ -2,7 +2,7 @@
 
 The public website now owns its presentation components, fixtures, styles,
 fonts, icons, and build configuration under `apps/marketing`. It imports no
-application source or Macro workspace packages. The PR contains no changes to
+application source or Rox workspace packages. The PR contains no changes to
 `apps/web/src`, backend crates, or shared application packages relative to its
 merge base. Root workspace registration and public build scripts remain.
 

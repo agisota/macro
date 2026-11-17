@@ -6,7 +6,7 @@ import type { AgentClaudeState } from '../core/team-agent-claude';
 /**
  * Which Claude an agent teammate's computer runs on, under its name in
  * Members, with the one change that applies: sign in to the team's Claude
- * plan (again, once expired), or go back to Macro credits.
+ * plan (again, once expired), or go back to Rox credits.
  */
 export function TeamAgentClaudeStatus(props: {
   state: AgentClaudeState;

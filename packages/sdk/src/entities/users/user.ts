@@ -11,7 +11,7 @@ import { type ProfilePicture, toProfilePicture } from './profile-picture';
 export type ActivityReport = Activity;
 
 /**
- * A Macro user. Identity lives in the auth service, so details like the
+ * A Rox user. Identity lives in the auth service, so details like the
  * display name are fetched on demand. Can be dropped into a {@link msg}
  * template to @-mention the user.
  */
@@ -51,7 +51,7 @@ export class User extends PropertiedEntity<UserName> implements Mentionable {
 
   /**
    * This user's display name, fetched from the auth service (falling back to
-   * your email contacts when the Macro profile has none).
+   * your email contacts when the Rox profile has none).
    *
    * @returns The full name, or `undefined` if the user has no name on record.
    *
@@ -67,7 +67,7 @@ export class User extends PropertiedEntity<UserName> implements Mentionable {
    * This user's current profile picture. Reads the auth service every time,
    * so it reflects a recent change.
    *
-   * A picture set through Macro is a `StaticImage`; an older picture stored as
+   * A picture set through Rox is a `StaticImage`; an older picture stored as
    * a bare URL is an `ExternalProfilePicture`. For many users at once use
    * `macro.users.profilePictures`.
    *

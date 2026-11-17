@@ -87,7 +87,7 @@ export type TokenSource = string | (() => string | Promise<string>);
 export type BotScope = 'user' | 'team';
 
 /**
- * How the SDK authenticates with Macro.
+ * How the SDK authenticates with Rox.
  *
  * A user has exactly one of two credential fields.
  *

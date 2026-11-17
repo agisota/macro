@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! Typed owner reference for Macro entities.
+//! Typed owner reference for Rox entities.
 //!
 //! [`Owner`] is the domain value. [`OwnerType`] is the closed string set for
 //! the sqlx type `entity_owner_type` and the matching wire discriminator.
@@ -58,7 +58,7 @@ pub enum Owner {
     sqlx(type_name = "entity_owner_type", rename_all = "lowercase")
 )]
 pub enum OwnerType {
-    /// A Macro user.
+    /// A Rox user.
     User,
     /// A bot.
     Bot,

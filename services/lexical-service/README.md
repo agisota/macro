@@ -28,7 +28,7 @@ Accepts `{ "markdown": "..." }` and returns an `application/octet-stream` Loro s
 
 ## POST /snapshot/notion
 Accepts `{ "markdown": "...", "links": { "pages": { "<notion id>": { "documentId", "name" } }, "users": { "<notion id>": { "userId", "email" } } } }`
-with a page in Notion's enhanced markdown and returns `{ "snapshot": "<base64 Loro snapshot>", "markdown": "<Macro markdown>" }`.
+with a page in Notion's enhanced markdown and returns `{ "snapshot": "<base64 Loro snapshot>", "markdown": "<Rox markdown>" }`.
 Notion ids are dashless and lowercase. Mapped page and people references become document and user mentions;
 the rest degrade to links or text (`packages/lexical-core/notion/`). Deploy this endpoint before the import backend that calls it.
 

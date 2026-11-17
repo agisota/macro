@@ -127,7 +127,7 @@ function CalendarDraftComposerContent(props: CalendarDraftComposerProps) {
   const requestedNeedsAccess = () =>
     requestedInbox()?.needs_reauth ||
     requestedInbox()?.needs_calendar_permission;
-  // The tool mints the Macro call when it executes, so the composer offers the
+  // The tool mints the Rox call when it executes, so the composer offers the
   // choice under the same flag as the calendar's own event composer.
   const quickCalls = useQuickCallsFlag();
   const macroCallsEnabled = () => quickCalls().enabled && !quickCalls().loading;

@@ -276,7 +276,7 @@ function Fixture() {
         setScreen('receipt');
       }
     },
-    openTeamSettings: () => setNotice('Macro team settings shortcut selected'),
+    openTeamSettings: () => setNotice('Rox team settings shortcut selected'),
     createBookingLinkWithAgent: async (scope) => {
       setNotice(`Agent draft (not sent): ${bookingLinkAgentSeed(scope).input}`);
     },

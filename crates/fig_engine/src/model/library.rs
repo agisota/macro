@@ -5,7 +5,7 @@
 use super::Guid;
 use std::sync::Arc;
 
-/// The plugin id Macro's own `pluginData` entries are stored under.
+/// The plugin id Rox's own `pluginData` entries are stored under.
 pub const MACRO_PLUGIN: &str = "macro";
 
 /// Macro's values on a node (`pluginData` under [`MACRO_PLUGIN`]): key and

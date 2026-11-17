@@ -64,7 +64,7 @@ async function connect(waitForApp = false) {
           return;
         await pause(500);
       }
-      throw new Error('Macro did not initialize its native inset listener');
+      throw new Error('Rox did not initialize its native inset listener');
     } catch {
       socket?.close();
       await pause(500);

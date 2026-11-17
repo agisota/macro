@@ -53,9 +53,9 @@ impl FlagSnapshot {
     }
 }
 
-/// Capability for loading all flags for an authenticated Macro user.
+/// Capability for loading all flags for an authenticated Rox user.
 ///
-/// Implementations use the exact Macro user ID as the distinct ID, without
+/// Implementations use the exact Rox user ID as the distinct ID, without
 /// deriving it from email or normalizing it. Failures, including incomplete
 /// evaluations, return an error; callers own fallback policy. No reads on the
 /// resulting snapshot can trigger further evaluation.

@@ -27,7 +27,7 @@ use crate::{
 mod test;
 
 const GMAIL_IDENTITY_PROVIDER_NAME: &str = "google_gmail";
-/// The scope that makes a Google account a mailbox Macro can read and send
+/// The scope that makes a Google account a mailbox Rox can read and send
 /// from. A consent that leaves it out cannot provision an inbox, so the
 /// callback refuses it (`api::oauth2::google`).
 pub(crate) const GMAIL_MAILBOX_SCOPE: &str = "https://www.googleapis.com/auth/gmail.modify";

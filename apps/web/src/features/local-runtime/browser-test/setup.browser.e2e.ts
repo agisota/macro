@@ -10,7 +10,7 @@ test('sets up the preferred agent and opens a session with it', async ({
   await expect(dialog.getByText('Find an agent')).toBeVisible();
   await expect(dialog.getByText('@claude-code is ready')).toBeVisible();
   await expect(
-    dialog.getByText('Sessions run in /Users/sample/Macro.')
+    dialog.getByText('Sessions run in /Users/sample/Rox.')
   ).toBeVisible();
 
   await dialog.getByRole('button', { name: 'Start a session' }).click();
@@ -58,7 +58,7 @@ test('lets the user pick another agent before setting up', async ({ page }) => {
   ).toBeVisible();
   await dialog.getByRole('button', { name: 'Options' }).click();
   await expect(dialog.getByLabel('Workspace folder')).toHaveValue(
-    '/Users/sample/Macro'
+    '/Users/sample/Rox'
   );
   await expect(dialog.getByText('Full access')).toBeVisible();
   await expect(

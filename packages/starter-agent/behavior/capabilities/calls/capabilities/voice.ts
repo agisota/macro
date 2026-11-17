@@ -1,5 +1,5 @@
 /**
- * One call's capabilities: the process that sits in a Macro call as the
+ * One call's capabilities: the process that sits in a Rox call as the
  * agent, and a way to check what it hears without a call.
  */
 import type { Base } from '../../../context/index.ts';
@@ -21,7 +21,7 @@ import { filled } from './filled.ts';
 export type VoiceContext = Base & { readonly voice: Voice };
 
 /**
- * Sits in one Macro call as your voice, until the call is over. Run by the
+ * Sits in one Rox call as your voice, until the call is over. Run by the
  * calls watcher, one process per call.
  *
  * The calls watcher starts this as a process of its own,
@@ -48,7 +48,7 @@ export type VoiceContext = Base & { readonly voice: Voice };
  *
  *
  * Exit codes: 0 when the call is over (or was already), 1 for a failure worth
- * retrying, and 76-80 for Macro's refusals (in another call, already
+ * retrying, and 76-80 for Rox's refusals (in another call, already
  * connected, rate limited, refused, programmatic calls off).
  */
 export const joinCall = async (

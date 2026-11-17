@@ -1,5 +1,5 @@
 /**
- * Post to a channel using a webhook token copied out of the Macro web UI.
+ * Post to a channel using a webhook token copied out of the Rox web UI.
  *
  * The token is an ordinary bot token, so this is just `channel.send()` — the
  * SDK works out that the credential can only reach the webhook endpoint and

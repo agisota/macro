@@ -394,7 +394,7 @@ Existing chips in the document XML look like `<user-mention>`, `<date-mention>`,
 - `mentionDocument(blockId, at, { documentId, documentName, blockName, blockParams? })` — documents, channels, chats, folders, projects, tasks, emails, calendar events, skills, calls, automations (`blockName` is `md`/`channel`/`chat`/`project`/`initiative`/`task`/`email`/`calendar`/`skill`/`call`/`automation`/…). A project (initiative) is `blockName: 'initiative'` with the initiative id as `documentId`; `project` is a folder. `blockParams` is for channel messages (`channel_message_id`) and calendar occurrences (`occurrenceKey`).
 - `mentionAgentSession(blockId, at, { id, label?, expanded? })` — existing agent session. `expanded: true` inserts the card that follows the session's latest turn.
 - `mentionPullRequest(blockId, at, { id, label? })`
-- `mentionBookingLink(blockId, at, { profileId, url, slug?, label? })` — Macro booking page (`/app/book/{profileId}/{slug?}`). Prefer the shareable URL from a booking-link tool.
+- `mentionBookingLink(blockId, at, { profileId, url, slug?, label? })` — Rox booking page (`/app/book/{profileId}/{slug?}`). Prefer the shareable URL from a booking-link tool.
 - `mentionTag(blockId, at, { optionId, propertyDefinitionId, scope, name, color? })`
 
 ```ts

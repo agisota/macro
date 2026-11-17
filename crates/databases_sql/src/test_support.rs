@@ -56,7 +56,7 @@ pub(crate) fn user(id: &'static str) -> MacroUserIdStr<'static> {
     MacroUserIdStr::parse_from_str(id).expect("valid user id")
 }
 
-/// `id` acting through the Macro AI bot, as the agent tools act.
+/// `id` acting through the Rox AI bot, as the agent tools act.
 pub(crate) fn agent_for(id: &'static str) -> Viewer {
     Viewer {
         user_id: user(id),

@@ -42,7 +42,7 @@ function userMentionDisplayText(data: UserMentionData) {
 /**
  * Mirrors `PlainTextFormatter::format_user` in
  * `crates/mention_utils/src/parse.rs`, which produces the indexed text of a
- * channel message: a Macro user is their email, a bot its display name, and
+ * channel message: a Rox user is their email, a bot its display name, and
  * any other principal "Guest". Change both together.
  */
 function userMentionIndexedText(data: UserMentionData) {

@@ -177,7 +177,7 @@ enum DbEmailBackfillStatus {
 struct DbInboxDetailsRow {
     /// Stable email link identifier.
     id: Uuid,
-    /// Macro user that owns the link.
+    /// Rox user that owns the link.
     macro_id: String,
     /// Provider email address.
     email_address: String,

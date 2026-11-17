@@ -447,7 +447,7 @@ function rangeOperands(
 }
 
 /** Add Excel's `@` where a formula saved without dynamic-array evaluation
- * intersects a range, so Macro calculates the value Excel showed. */
+ * intersects a range, so Rox calculates the value Excel showed. */
 export function markImplicitIntersections(
   formula: string,
   rangeNames: ReadonlySet<string>

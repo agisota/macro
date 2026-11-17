@@ -29,7 +29,7 @@ fn signed_execution_token_preserves_owner_agent_and_lifetime() {
         ),
     };
     let JwtToken::MacroApiToken(claims) = handler(&args, &token).unwrap() else {
-        panic!("expected Macro API token");
+        panic!("expected Rox API token");
     };
     assert_eq!(claims.agent_id, Some(agent));
     assert_eq!(
@@ -103,7 +103,7 @@ fn signed_routine_token_carries_its_routine_and_rejects_a_forged_one() {
         ),
     };
     let JwtToken::MacroApiToken(claims) = handler(&args, &token).unwrap() else {
-        panic!("expected Macro API token");
+        panic!("expected Rox API token");
     };
     assert_eq!(claims.routine_id, Some(routine));
     assert_eq!(claims.agent_id, None);
@@ -174,12 +174,12 @@ fn a_signed_scope_survives_decoding_and_cannot_be_dropped() {
     };
     let scoped = mint(Some("generation"));
     let JwtToken::MacroApiToken(claims) = handler(&args, &scoped).unwrap() else {
-        panic!("expected Macro API token");
+        panic!("expected Rox API token");
     };
     assert_eq!(claims.agent_scope.as_deref(), Some("generation"));
 
     let JwtToken::MacroApiToken(unscoped) = handler(&args, &mint(None)).unwrap() else {
-        panic!("expected Macro API token");
+        panic!("expected Rox API token");
     };
     assert_eq!(unscoped.agent_scope, None);
 

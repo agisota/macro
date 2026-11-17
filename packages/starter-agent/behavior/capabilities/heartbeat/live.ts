@@ -27,7 +27,7 @@ import { gitCommand, githubRepo, type Repository } from './repository.ts';
 import { type Misplaced, misplaced } from './state.ts';
 import { type Beat, Cursor, mentionedIds } from './tick.ts';
 
-/** What the heartbeat needs from the rest of the agent: the scheduler, Macro (from chat), and people's cards if the people area is there. */
+/** What the heartbeat needs from the rest of the agent: the scheduler, Rox (from chat), and people's cards if the people area is there. */
 export type Needs = HeartbeatContext & {
   readonly schedules: Schedules;
   readonly chat: Pick<Chat, 'dm'>;
@@ -178,7 +178,7 @@ const PrList = z.array(
  * The GitHub repository a landing goes through, or undefined for the
  * repository's own check. Only a self-hosted agent with its own GitHub token
  * and a GitHub remote lands through a PR and CI; a hosted agent (its remote is
- * Macro's agent git server, and it has no token) never does.
+ * Rox's agent git server, and it has no token) never does.
  */
 export const githubLanding = ({
   token,

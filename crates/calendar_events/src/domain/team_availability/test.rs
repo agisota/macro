@@ -260,7 +260,7 @@ fn subscriptions_do_not_block_owner_but_owned_attendance_does() {
     );
     subscribed.contributes_to_availability = false;
     // Provider self refers to the subscribed calendar, not necessarily its
-    // Macro viewer. Only an owned address establishes personal attendance.
+    // Rox viewer. Only an owned address establishes personal attendance.
     subscribed.event.attendees = vec![attendee(
         "coworker@example.com",
         AttendeeResponseStatus::Accepted,

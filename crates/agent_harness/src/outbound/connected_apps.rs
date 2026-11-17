@@ -53,7 +53,7 @@ where
             .load(user, app_slug)
             .await
             .map_err(|error| lookup(&error))?;
-        // A Macro Connect grant outranks an overlay; a Pipedream grant doesn't.
+        // A Rox Connect grant outranks an overlay; a Pipedream grant doesn't.
         if let Some(connection) = connection
             .as_ref()
             .filter(|connection| connection.provider == ConnectionProvider::Connect)

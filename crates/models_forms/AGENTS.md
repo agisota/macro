@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of Macro Forms. The wire vocabulary: ids, layout, answers, submission
+Part of Rox Forms. The wire vocabulary: ids, layout, answers, submission
 outcomes, and summaries. A form is a view of one database table — answers
 reuse `models_databases` cells, gate rules reuse its filters, unchanged.
 

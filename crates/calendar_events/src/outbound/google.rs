@@ -2618,8 +2618,8 @@ fn conference_url(data: Option<&GoogleConferenceData>) -> Option<String> {
 }
 
 /// Classify the conference behind a join URL. Only `hangoutsMeet` is one
-/// Macro may rewrite; a bare `hangoutLink` with no conference data is a
-/// legacy classic Hangout, which Macro also leaves alone.
+/// Rox may rewrite; a bare `hangoutLink` with no conference data is a
+/// legacy classic Hangout, which Rox also leaves alone.
 fn conference_provider(
     data: Option<&GoogleConferenceData>,
     has_url: bool,
@@ -2795,7 +2795,7 @@ struct GoogleEvent {
     guests_can_see_other_guests: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     extended_properties: Option<GoogleExtendedProperties>,
-    /// Every field Macro does not map, so the stored raw payload is Google's
+    /// Every field Rox does not map, so the stored raw payload is Google's
     /// event as it arrived.
     #[serde(flatten)]
     extra: serde_json::Map<String, serde_json::Value>,

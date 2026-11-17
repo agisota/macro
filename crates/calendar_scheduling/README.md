@@ -30,7 +30,7 @@ calendar service's HTTP listing), plus meetings the host is in on any calendar
 Deployed invitations include the private cancellation/rescheduling URL.
 
 The web entry points are Settings → Calendar, the calendar header shortcuts,
-`/app/book/:profile/:slug?`, and `/app/booking/:id#token`. Existing Macro team
+`/app/book/:profile/:slug?`, and `/app/booking/:id#token`. Existing Rox team
 owners/admins can manage team scheduling; members have read access. Current
 membership is checked again when booking or approving. Booking capabilities travel
 in request headers/bodies, and scheduling responses disable caching.

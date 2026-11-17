@@ -1,4 +1,4 @@
-//! The name an MCP client registers under, as Macro shows it.
+//! The name an MCP client registers under, as Rox shows it.
 //!
 //! The name is self-reported at dynamic client registration and becomes the
 //! author label on what the client writes ("Claude Code · Agent"), so the
@@ -19,9 +19,9 @@ pub(crate) const MAX_CLIENT_NAME_CHARS: usize = 64;
 /// Mention and markup characters (`<>@#[]` and friends) are left out.
 const ALLOWED_PUNCTUATION: &[char] = &['-', '_', '.', ',', ':', '(', ')', '&', '+', '\'', '/', '!'];
 
-/// Names that would read as Macro itself: its own personas and the
-/// first-party Macro bots. Matched as a whole name, ignoring case, spaces and
-/// punctuation, so a client may still mention Macro ("Claude Code (macro)").
+/// Names that would read as Rox itself: its own personas and the
+/// first-party Rox bots. Matched as a whole name, ignoring case, spaces and
+/// punctuation, so a client may still mention Rox ("Claude Code (rox)").
 /// Cursor and Codex are first-party bots too, but are also the real names of
 /// MCP clients, so they are not reserved.
 const RESERVED_NAMES: &[&str] = &[
@@ -31,18 +31,18 @@ const RESERVED_NAMES: &[&str] = &[
     MACRO_CODER_NAME,
     MACRO_SYSTEM_NAME,
     MACRO_SYSTEM_HANDLE,
-    "Macro AI",
-    "Macro Agent",
-    "Macro Team",
-    "Macro Support",
-    "Macro Security",
+    "Rox AI",
+    "Rox Agent",
+    "Rox Team",
+    "Rox Support",
+    "Rox Security",
 ];
 
 /// A client name fit to show as a post author.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ClientName(String);
 
-/// The name claims to be Macro itself.
+/// The name claims to be Rox itself.
 #[derive(Debug, PartialEq, Eq, thiserror::Error)]
 #[error("client_name is reserved")]
 pub struct ReservedClientName;

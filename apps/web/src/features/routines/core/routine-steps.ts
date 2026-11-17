@@ -8,7 +8,7 @@ import { type Knob, knobFromWire, knobSchema, knobToWire } from './knobs';
 import { type RoutineTarget, routineTargetSchema } from './routine-target';
 import type { RoutineTriggerDraft } from './routine-triggers';
 
-/** TypeScript against Macro's SDK, written by the AI that built the routine. */
+/** TypeScript against Rox's SDK, written by the AI that built the routine. */
 export type CodeStepDraft = {
   id: string;
   kind: 'code';

@@ -894,7 +894,7 @@ async fn strips_hop_by_hop_headers_from_the_response() {
     assert_eq!(names(response.headers()), ["mcp-session-id"]);
 }
 
-/// Egress is open to every session owner, not only Macro staff: an outside
+/// Egress is open to every session owner, not only Rox staff: an outside
 /// owner's call resolves against their own connections and goes through.
 #[tokio::test]
 async fn a_session_owned_outside_macro_is_proxied_with_its_owners_credentials() {
@@ -1442,7 +1442,7 @@ async fn a_tool_call_in_a_turn_a_bot_prompted_is_held_too() {
     assert_eq!(service.approvals.held.lock().unwrap().len(), 1);
 }
 
-/// Macro's own server is gated like any connected app, under its own name.
+/// Rox's own server is gated like any connected app, under its own name.
 #[tokio::test]
 async fn a_tool_call_to_macros_own_server_is_held_under_its_name() {
     let service = gated(prompted_by(Some(asker())), SpyCredentials::knowing());
@@ -1455,7 +1455,7 @@ async fn a_tool_call_to_macros_own_server_is_held_under_its_name() {
         .await
         .expect("held");
     let held = service.approvals.held.lock().unwrap();
-    assert_eq!((held[0].0.as_str(), held[0].1.as_str()), ("macro", "Macro"));
+    assert_eq!((held[0].0.as_str(), held[0].1.as_str()), ("macro", "Rox"));
 }
 
 fn google_drive() -> EgressTarget {

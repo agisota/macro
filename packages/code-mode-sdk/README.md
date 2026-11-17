@@ -11,7 +11,7 @@ handles plus `token`, `hosts`, `sessionId` and `executionId`. Explicit imports f
 or TypeScript compilation happen during a run. SDK local portmap discovery is
 removed from the bundle because service hosts are supplied by the harness.
 
-The harness mints a Macro API JWT for the owner, lasting 60 seconds, after the
+The harness mints a Rox API JWT for the owner, lasting 60 seconds, after the
 session's execution approval policy permits the run. Its signed agent identity comes from
 the authenticated session. SDK messages use that agent as sender and record the
 owner as `triggered_by`; other SDK endpoints retain normal user authentication.
@@ -19,7 +19,7 @@ External chat reads, sends and media uploads use the credential owner's own
 provider connection. Owner API tokens can send, including signed agent-attributed tokens;
 bot credentials never send. Pairing and account/access controls require the person's
 bearer session.
-Deno permits network access only to configured Macro service hosts and denies
+Deno permits network access only to configured Rox service hosts and denies
 filesystem writes, arbitrary imports, subprocesses, environment access and FFI.
 User API authorization and metering apply. Tokens expire; process exit does not
 revoke them. Source and final results are journaled, credentials are not.

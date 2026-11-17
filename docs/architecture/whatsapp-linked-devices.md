@@ -74,7 +74,7 @@ a send is the final check.
 
 Groups with disappearing messages are added like any other: Macro keeps their
 messages permanently, the roster keeps WhatsApp's timer
-(`GroupInfo.disappearing_seconds`, shown on the detail), and Macro's sends
+(`GroupInfo.disappearing_seconds`, shown on the detail), and Rox's sends
 carry it as `contextInfo.expiration` so members' phones expire them like their
 own. A community's own entry (`community_parent`) has no messages and can't be
 added; its groups and announcement group (`community_jid`, named on the chat
@@ -84,7 +84,7 @@ under the usual admins-only posting rule.
 Adding (`POST /external-chats` with `{provider: "whatsapp", remoteId, kind}`;
 the kind must match the JID) makes the chat the adder's own entity: one live
 `external_chat` per (owner, provider, remote id), so two people adding the
-same WhatsApp group get two Macro chats, and adding it again returns the
+same WhatsApp group get two Rox chats, and adding it again returns the
 existing one. No team is involved. It registers `EntityType::ExternalChat`,
 grants the adder Owner through `entity_access`, and records their account's
 `whatsapp_chat_membership`. The name always follows WhatsApp: the subject, or
@@ -123,7 +123,7 @@ Profile pictures are stored per observing account and JID
 picture to some accounts and not others; a chat shows the pictures its
 owner's account sees, as it shows that account's contact names. Only added
 chats are tracked: the group or direct chat when it is added and each new
-sender who is not a Macro user, never the unadded chat list (bulk picture
+sender who is not a Rox user, never the unadded chat list (bulk picture
 queries for strangers get accounts banned). Chats and people added before
 pictures were tracked are backfilled the same way, all due at once for the
 budget to pace. Detaching a chat stops tracking (and deletes the files of)
@@ -153,7 +153,7 @@ added by; history is requested in the chat as the phone keys it (by LID).
 An account paired before the list existed only gets groups and chats with new
 messages: WhatsApp sends the full list once, at pairing.
 
-Earlier messages come only from the owner's phone, and Macro asks it only
+Earlier messages come only from the owner's phone, and Rox asks it only
 when the owner presses **Import**. Every request wakes WhatsApp on the phone;
 on iOS one it can't finish in the background shows "Syncing with WhatsApp on
 Other device stopped", so nothing asks on a timer, on reconnect or on adding.
@@ -227,7 +227,7 @@ messages of history pages (including group creation). They never notify and
 never count as unread. The timeline resolves the ids in mentions, system lines
 and votes to names (people seen in the group, then the roster, then the phone
 number). View-once media is kept and shown like any media (marked
-`view_once`); shapes Macro does not read stay readable placeholders. Attachments keep WhatsApp's declared width, height and length,
+`view_once`); shapes Rox does not read stay readable placeholders. Attachments keep WhatsApp's declared width, height and length,
 and whether WhatsApp shows them as a sticker, GIF or voice note.
 
 Reads, unread counts and notifications follow the generic rules
@@ -304,7 +304,7 @@ intent key does not); requests that later fail still count. Exhaustion returns `
 retry a send or change its idempotency key or unknown-outcome reconciliation.
 
 Only the person who owns a connection sends from it, using their session or their
-own API credential, including a verified Macro API JWT with signed agent attribution.
+own API credential, including a verified Rox API JWT with signed agent attribution.
 The domain resolves the sending account from the authenticated person, never from
 the chat owner or request input. Media uploads follow the same owner policy.
 Bot, harness and internal principals never send, including bots acting for a user.

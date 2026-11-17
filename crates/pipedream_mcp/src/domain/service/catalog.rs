@@ -1,6 +1,6 @@
 //! Browsing the catalog of connectable MCP apps.
 //!
-//! The catalog is the user's directory: Macro Connect's catalog for a user
+//! The catalog is the user's directory: Rox Connect's catalog for a user
 //! on Connect alone, otherwise Pipedream's app directory, ranked by
 //! Pipedream's own popularity ordering (see the directory adapters). Clients render the
 //! user's connected apps as their own section from the connections

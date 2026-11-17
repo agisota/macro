@@ -155,7 +155,7 @@ describe('suggestion cards', () => {
     expect(host.created).toEqual([]);
   });
 
-  it('send a drafted routine and Macro’s template to the editor, never saving them from the card', () => {
+  it('send a drafted routine and Rox’s template to the editor, never saving them from the card', () => {
     const host = renderCards();
     fireEvent.click(
       screen.getByRole('button', { name: 'Review Supplier digest' })

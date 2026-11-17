@@ -71,7 +71,7 @@ pub struct PendingMailboxState {
     pub in_junk: Option<bool>,
 }
 
-/// A stable Macro message and its provider identity at command acceptance.
+/// A stable Rox message and its provider identity at command acceptance.
 #[derive(Debug, Clone)]
 pub struct MailboxActionTarget {
     pub message_id: Uuid,

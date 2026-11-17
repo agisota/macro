@@ -24,7 +24,7 @@ describe('aiLabel', () => {
   });
 
   it('labels an edit that names no editor as Macro', () => {
-    expect(aiLabel(DEFAULT_EDITOR_NAME)).toBe('Macro (AI)');
+    expect(aiLabel(DEFAULT_EDITOR_NAME)).toBe('Rox (AI)');
   });
 });
 
@@ -136,7 +136,7 @@ describe('realAwarenessSource (no live mirror)', () => {
       }).apply({ type: 'cursor', node: 't1', at: 3 });
     }
 
-    // Decode what a reader's client would: two cursors, both labelled Macro.
+    // Decode what a reader's client would: two cursors, both labelled Rox.
     const reader = new EphemeralStore<
       Record<string, { user: { userId: string } }>
     >(30_000);
@@ -144,7 +144,7 @@ describe('realAwarenessSource (no live mirror)', () => {
     const users = Object.values(reader.getAllStates()).map(
       (state) => state?.user.userId
     );
-    expect(users).toEqual(['Macro (AI)', 'Macro (AI)']);
+    expect(users).toEqual(['Rox (AI)', 'Rox (AI)']);
   });
 
   it('keeps live awareness alive until clear removes it', () => {

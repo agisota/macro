@@ -11,7 +11,7 @@ use gmail_emulator::{
 use macro_entrypoint::MacroEntrypoint;
 use macro_env::Environment;
 
-/// A stateful fake of the Google APIs Macro's email code calls.
+/// A stateful fake of the Google APIs Rox's email code calls.
 #[derive(Parser)]
 struct Args {
     /// The address to listen on.

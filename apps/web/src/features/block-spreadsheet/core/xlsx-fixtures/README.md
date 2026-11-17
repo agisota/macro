@@ -1,6 +1,6 @@
 # XLSX interoperability fixtures
 
-`financial-model.xlsx` and `namespaced-table.xlsx` are synthetic workbooks generated independently with openpyxl, not with Macro's exporter. Regenerate them with `python3 generate-financial.py` from this directory after installing openpyxl. No customer data is included.
+`financial-model.xlsx` and `namespaced-table.xlsx` are synthetic workbooks generated independently with openpyxl, not with Rox's exporter. Regenerate them with `python3 generate-financial.py` from this directory after installing openpyxl. No customer data is included.
 
 `drawings.xlsx` holds charts (clustered columns, a line, a pie, stacked bars, an area, a scatter, a doughnut and columns with a line on a secondary axis, some reading another sheet) and a PNG logo, all written by openpyxl. Regenerate it with `python3 generate-drawings.py` (needs openpyxl and Pillow).
 

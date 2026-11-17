@@ -21,7 +21,7 @@ use std::collections::BTreeSet;
 use url::Url;
 use uuid::Uuid;
 
-// Named MAPI property owned by Macro. Email and extra popup reminders are dispatched by
+// Named MAPI property owned by Rox. Email and extra popup reminders are dispatched by
 // Macro; Graph's single native reminder remains the nearest one to the start.
 const CREATION_ID: &str =
     "String {81f532e3-7ace-4e0b-bae9-312ce0d50c8c} Name MacroCalendarCreation";
@@ -84,7 +84,7 @@ fn invalid() -> CalendarProviderError {
         "Microsoft returned an invalid calendar response",
     )
 }
-/// A Graph event property Macro cannot represent, named by its path in the
+/// A Graph event property Rox cannot represent, named by its path in the
 /// event, such as `recurrence.range.endDate`. Paths are built only from
 /// literals, so a log of one never carries event content.
 #[derive(Debug, PartialEq, Eq)]
@@ -182,7 +182,7 @@ impl OutlookApiClientRepository {
                 .is_some_and(|ps| ps.iter().any(|p| p.as_str() == Some("teamsForBusiness")))
             {
                 return Err(unsupported(
-                    "This Microsoft calendar cannot create Teams meetings. Use a Macro call or an existing meeting link.",
+                    "This Microsoft calendar cannot create Teams meetings. Use a Rox call or an existing meeting link.",
                 ));
             }
         }

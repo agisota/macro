@@ -45,7 +45,7 @@ impl PairingClient {
         }
     }
 
-    /// Claim inside a Macro computer's setup trace.
+    /// Claim inside a Rox computer's setup trace.
     pub fn with_trace_parent(mut self, trace_parent: Option<String>) -> Self {
         self.trace_parent = trace_parent;
         self

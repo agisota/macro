@@ -1,4 +1,4 @@
-//! The pull requests linked to a Macro task.
+//! The pull requests linked to a Rox task.
 
 use ai_toolset::{
     AsyncTool, RequestContext, ServiceContext, ToolAnnotated, ToolAnnotations, ToolCallError,
@@ -16,12 +16,12 @@ use crate::domain::session_task::TaskPullRequests;
 #[serde(deny_unknown_fields)]
 #[schemars(
     title = "task_pull_requests",
-    description = "List the GitHub pull requests linked to a Macro task, with each one's URL, title and state (open, closed or merged; null until Macro has indexed it)."
+    description = "List the GitHub pull requests linked to a Rox task, with each one's URL, title and state (open, closed or merged; null until Rox has indexed it)."
 )]
 pub struct TaskPullRequestsTool {
     /// The task to look up.
     #[schemars(
-        description = "Macro task id, MACRO-<id> reference, or task link, e.g. https://rox.one/app/task/<id>"
+        description = "Rox task id, MACRO-<id> reference, or task link, e.g. https://rox.one/app/task/<id>"
     )]
     pub task: String,
 }

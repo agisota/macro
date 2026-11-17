@@ -12,7 +12,7 @@ type BrandingPatch = Partial<FormBranding>;
 
 /**
  * The logo, cover image and accent color the respond page shows, so a form
- * looks like part of its owner's business. Unset parts keep Macro's look.
+ * looks like part of its owner's business. Unset parts keep Rox's look.
  */
 export function BrandingPanel(props: {
   branding: FormBranding;

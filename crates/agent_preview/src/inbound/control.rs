@@ -15,14 +15,14 @@ use entity_access::{
 use macro_authorization::{MacroAuthorizationService, MacroAuthorizationState};
 use std::sync::Arc;
 
-/// State shared by Macro control routes and the standard authorization extractors.
+/// State shared by Rox control routes and the standard authorization extractors.
 pub struct ControlState<Access, Auth> {
     service: PreviewService,
     access: Arc<Access>,
     auth: MacroAuthorizationState<Auth>,
 }
 impl<Access, Auth> ControlState<Access, Auth> {
-    /// Compose service and existing Macro authentication/entity-access implementations.
+    /// Compose service and existing Rox authentication/entity-access implementations.
     pub fn new(
         service: PreviewService,
         access: Arc<Access>,
@@ -61,7 +61,7 @@ pub struct PreviewSnapshot {
     pub preview: Option<Preview>,
 }
 
-/// Control endpoints; mount under `/preview` on Macro's authenticated API gateway.
+/// Control endpoints; mount under `/preview` on Rox's authenticated API gateway.
 pub fn router<Access: EntityAccessService, Auth: MacroAuthorizationService>(
     state: ControlState<Access, Auth>,
 ) -> Router {

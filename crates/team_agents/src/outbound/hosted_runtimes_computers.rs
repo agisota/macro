@@ -40,7 +40,7 @@ impl<Repo, Bill, Time, Attachment, Policy, Agents>
 fn purchase_error(error: ComputerError) -> TeamAgentError {
     match error {
         ComputerError::FleetUnavailable(_) => TeamAgentError::ComputerUnavailable(
-            "Macro computers are unavailable right now".to_owned(),
+            "Rox computers are unavailable right now".to_owned(),
         ),
         ComputerError::RolloutDisabled => TeamAgentError::NotEnabled,
         sold_out @ ComputerError::SoldOut(_) => {

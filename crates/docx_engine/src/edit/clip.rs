@@ -1,4 +1,4 @@
-//! The clipboard. A copy is a list of paragraphs: in Macro's own form
+//! The clipboard. A copy is a list of paragraphs: in Rox's own form
 //! (every run's attributes and the paragraph properties, which paste back
 //! losslessly) and as HTML for other applications. Pasted HTML arrives as
 //! the same paragraphs with plain formatting flags instead of attributes.
@@ -76,7 +76,7 @@ pub struct ClipRun {
 /// What a selection copies.
 #[derive(Clone, Debug, Default, PartialEq, Serialize)]
 pub struct Clip {
-    /// The paragraphs, in Macro's own form.
+    /// The paragraphs, in Rox's own form.
     pub paragraphs: Vec<ClipParagraph>,
     /// The same content as HTML.
     pub html: String,

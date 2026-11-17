@@ -30,7 +30,7 @@ export interface PlatformNotificationHandle {
 }
 
 export interface PlatformNotificationSender {
-  /** The sender's Macro user id, or the agent's name when it has none. */
+  /** The sender's Rox user id, or the agent's name when it has none. */
   id: string;
   name: string;
   avatarUrl?: string;

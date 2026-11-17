@@ -18,7 +18,7 @@ export type ChatSummary = {
   /** A group, or a one-to-one chat (named after the other person). */
   kind: 'group' | 'direct';
   name: string;
-  /** The Macro user who added it; only they share it on. */
+  /** The Rox user who added it; only they share it on. */
   ownerId: string;
   unreadCount: number;
   /** False for viewers who can only read. */
@@ -66,7 +66,7 @@ export type ChatDetail = {
   /** `pictureUrl`: as the owner's account sees it; initials when absent. */
   members: { id: string; name: string; admin: boolean; pictureUrl?: string }[];
   backfill?: ChatBackfill;
-  /** The provider's timer while disappearing messages are on; Macro keeps all. */
+  /** The provider's timer while disappearing messages are on; Rox keeps all. */
   disappearingSeconds?: number;
   /** The provider community the group belongs to. */
   community?: { name: string; announcements: boolean };
@@ -256,7 +256,7 @@ export function chatTitle(group: ChatDetail): string {
   return `${group.community.name} · ${group.community.announcements ? 'Announcements' : group.name}`;
 }
 
-/** The provider deletes this chat's messages after a while; Macro doesn't. */
+/** The provider deletes this chat's messages after a while; Rox doesn't. */
 export function disappearingNote(chat: ChatDetail): string | undefined {
   if (!chat.disappearingSeconds) return undefined;
   const { label } = chatProvider(chat.provider);

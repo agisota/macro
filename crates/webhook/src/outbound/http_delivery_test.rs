@@ -120,7 +120,7 @@ fn rejects_reserved_headers_case_insensitively() {
 
         assert_eq!(
             delivery_headers(&webhook, &event(), "123", "v1=signature"),
-            Err("reserved Macro headers cannot be overridden")
+            Err("reserved Rox headers cannot be overridden")
         );
     }
 }
@@ -264,7 +264,7 @@ async fn reserved_header_configuration_is_permanent_without_dns_lookup() {
     assert_eq!(details.error_kind.as_deref(), Some("header_configuration"));
     assert_eq!(
         details.error_message.as_deref(),
-        Some("reserved Macro headers cannot be overridden")
+        Some("reserved Rox headers cannot be overridden")
     );
 }
 

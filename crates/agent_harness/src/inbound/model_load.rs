@@ -37,7 +37,7 @@ pub struct LoadAgentModelsRequest {
 #[derive(Debug, Deserialize, ToSchema)]
 #[serde(rename_all = "kebab-case")]
 pub enum ModelHarnessDto {
-    /// Macro's in-process agent.
+    /// Rox's in-process agent.
     InMemory,
     /// The caller's Cursor account.
     Cursor,

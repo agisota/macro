@@ -10,12 +10,12 @@ export type MessageTask = {
   title: string;
   /** A mention that opens the chat. */
   content: string;
-  /** Macro users the message mentions. */
+  /** Rox users the message mentions. */
   assigneeIds: string[];
 };
 
 /**
- * The message's text with each mention as `@<name>`. Macro users mentioned
+ * The message's text with each mention as `@<name>`. Rox users mentioned
  * at either end are left out: they become the assignees, as in Chat.
  */
 function titleText(message: ChatMessage): string {

@@ -17,7 +17,7 @@ use sqlx::types::Uuid;
 pub struct ResyncSnapshot {
     /// The message's provider labels before the fetch.
     pub stored_labels: Vec<String>,
-    /// Labels with a pending Macro write just before or just after the fetch.
+    /// Labels with a pending Rox write just before or just after the fetch.
     pub pending_labels: Vec<String>,
 }
 
@@ -64,7 +64,7 @@ pub async fn insert_message_with_tx(
         .map(|label| label.provider_label_id.clone())
         .collect();
 
-    // A re-sync must not undo a Macro label write Gmail has not confirmed yet,
+    // A re-sync must not undo a Rox label write Gmail has not confirmed yet,
     // including the read and starred flags those labels drive.
     let mut kept_label_ids =
         labels::pending_writes::pending_provider_label_ids(&mut *tx, message_db_id).await?;

@@ -79,7 +79,7 @@ export type PipedreamUpdateRequest = {
   enabled?: boolean;
 };
 export type PipedreamTokenRequest = {
-  /** With it, an app Macro Connect serves may answer with a Connect URL. */
+  /** With it, an app Rox Connect serves may answer with a Connect URL. */
   app_slug?: string;
 };
 /** A Pipedream Connect token, or for `provider: 'connect'` a Connect URL. */
@@ -333,7 +333,7 @@ export const cognitionApiServiceClient = {
 
   /**
    * Start connecting an MCP connector: a Pipedream Connect token, or a
-   * Macro Connect URL when the backend routes `app_slug` through Connect.
+   * Rox Connect URL when the backend routes `app_slug` through Connect.
    * Answers with the {@link PIPEDREAM_DISABLED} error code on deployments
    * where Pipedream isn't configured (HTTP 501).
    */
@@ -372,7 +372,7 @@ export const cognitionApiServiceClient = {
   },
 
   /**
-   * Record an app connected through Macro Connect. Fails with `NOT_FOUND`
+   * Record an app connected through Rox Connect. Fails with `NOT_FOUND`
    * until Connect lists the connection, so callers poll it.
    */
   async completeMacroConnect(args: PipedreamConnectCompleteRequest) {

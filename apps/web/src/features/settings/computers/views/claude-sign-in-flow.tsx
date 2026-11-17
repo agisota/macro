@@ -89,7 +89,7 @@ export function ClaudeSignInFlow(props: {
       if (!isHttpsUrl(result.url)) throw new Error('untrusted sign-in link');
       setUrl(result.url);
       if (waitingTab) {
-        // The Claude page gets no handle back to Macro.
+        // The Claude page gets no handle back to Rox.
         waitingTab.opener = null;
         waitingTab.location.href = result.url;
       }

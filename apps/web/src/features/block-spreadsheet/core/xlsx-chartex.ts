@@ -93,7 +93,7 @@ function namespacePrefix(source: string, uri: string): string | undefined {
 const pattern = (prefix: string) => prefix.replace(/[.]/g, '\\.');
 
 /**
- * The chartEx part as Macro keeps it for export: without cached values,
+ * The chartEx part as Rox keeps it for export: without cached values,
  * which export writes again. Undefined when it refers to other parts or is
  * too large.
  */
@@ -167,8 +167,8 @@ const finite = (text: string | undefined) => {
 };
 
 /**
- * Read a chartEx part into what Macro draws, keeping the part for export.
- * Undefined for kinds Macro does not draw, such as region maps, so the
+ * Read a chartEx part into what Rox draws, keeping the part for export.
+ * Undefined for kinds Rox does not draw, such as region maps, so the
  * drawing's fallback is read instead.
  */
 export function readChartEx(
@@ -567,7 +567,7 @@ function levels(
 }
 
 /**
- * The chartEx part Macro kept, with its references as they are now and
+ * The chartEx part Rox kept, with its references as they are now and
  * caches of their current values. Undefined if it no longer matches them.
  */
 function keptChartEx(
@@ -669,7 +669,7 @@ function layoutXml(plot: ChartPlot): string {
   return body ? `<cx:layoutPr>${body}</cx:layoutPr>` : '';
 }
 
-/** A chartEx part made from what Macro knows of the chart. */
+/** A chartEx part made from what Rox knows of the chart. */
 function generatedChartEx(chart: SheetChart, values: ChartValues): string {
   const plot = chart.plots.find((value) => isChartExKind(value.kind));
   if (!plot || !isChartExKind(plot.kind)) return '';

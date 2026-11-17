@@ -44,7 +44,7 @@ pub struct ImportEntitiesResponse {
 pub enum TrackImportStatus {
     /// A candidate the user has not accepted yet.
     Staged,
-    /// A Macro entity already created from the item.
+    /// A Rox entity already created from the item.
     Imported,
 }
 
@@ -64,7 +64,7 @@ pub struct TrackImportEntityRequest {
     /// `{title, url?, summary?}`; Slack: `{name, …}`.
     #[schema(value_type = Object)]
     pub metadata: serde_json::Value,
-    /// The Macro entity created from the item; required when `status` is
+    /// The Rox entity created from the item; required when `status` is
     /// `imported`.
     pub entity_id: Option<String>,
 }
@@ -108,7 +108,7 @@ pub struct ImportNotionPageRequest {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, ToSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum ImportNotionPageResult {
-    /// The page is now a Macro document.
+    /// The page is now a Rox document.
     Imported,
     /// The caller already imported the page.
     AlreadyImported,
@@ -159,7 +159,7 @@ pub async fn list_entities_handler<T: ImportStager, Auth: MacroAuthorizationServ
 }
 
 /// Track an external item in the ledger: stage it as a candidate, or record a
-/// Macro entity already created from it. Says when the item was already
+/// Rox entity already created from it. Says when the item was already
 /// imported, so callers do not create a duplicate.
 #[utoipa::path(
     post,
@@ -284,7 +284,7 @@ pub async fn decline_entity_handler<T: ImportStager, Auth: MacroAuthorizationSer
     }
 }
 
-/// Import one Notion page as a Macro document through the caller's Notion
+/// Import one Notion page as a Rox document through the caller's Notion
 /// connection, deduplicated against the ledger. Notion databases are not
 /// imported; a whole workspace goes through a reviewed import instead.
 #[utoipa::path(

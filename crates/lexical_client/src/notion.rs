@@ -14,20 +14,20 @@ use crate::parse_markdown::check_response;
 pub struct NotionSnapshotRequest<'a> {
     /// The page in Notion's enhanced markdown.
     pub markdown: &'a str,
-    /// Where its page and people references point in Macro.
+    /// Where its page and people references point in Rox.
     pub links: NotionSnapshotLinks,
 }
 
-/// Notion ids (dashless, lowercase) mapped to the Macro objects they became.
+/// Notion ids (dashless, lowercase) mapped to the Rox objects they became.
 #[derive(Debug, Clone, Default, PartialEq, Eq, serde::Serialize)]
 pub struct NotionSnapshotLinks {
-    /// Notion page id → the Macro document it became.
+    /// Notion page id → the Rox document it became.
     pub pages: HashMap<String, NotionSnapshotPage>,
-    /// Notion user id → the Macro user they are.
+    /// Notion user id → the Rox user they are.
     pub users: HashMap<String, NotionSnapshotUser>,
 }
 
-/// The Macro document a Notion page became.
+/// The Rox document a Notion page became.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct NotionSnapshotPage {
@@ -37,11 +37,11 @@ pub struct NotionSnapshotPage {
     pub name: String,
 }
 
-/// The Macro user a Notion person is.
+/// The Rox user a Notion person is.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct NotionSnapshotUser {
-    /// The Macro user id.
+    /// The Rox user id.
     pub user_id: String,
     /// Their email.
     pub email: String,
@@ -52,7 +52,7 @@ pub struct NotionSnapshotUser {
 pub struct NotionSnapshot {
     /// The new document's Loro snapshot.
     pub snapshot: Vec<u8>,
-    /// The same content as Macro markdown.
+    /// The same content as Rox markdown.
     pub markdown: String,
 }
 

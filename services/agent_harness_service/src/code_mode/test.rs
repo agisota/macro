@@ -469,7 +469,7 @@ enum ScopeEnforcement {
     /// `agent_correlation::inbound::enforce_signed_scope`: the signed scope
     /// alone, for a service with no database.
     SignedScope,
-    /// The service accepts no Macro API token, so the credential grants
+    /// The service accepts no Rox API token, so the credential grants
     /// nothing there.
     NoMacroCredential,
 }
@@ -505,7 +505,7 @@ fn enforcement(host: SdkHost) -> ScopeEnforcement {
 /// Every host the SDK can reach, including the ones it falls back to when
 /// code mode passes none, is one code mode knows, and its service holds a
 /// scoped session's credential to its scope: it checks the scope on a path
-/// the scope understands, or accepts no Macro credential and the SDK calls
+/// the scope understands, or accepts no Rox credential and the SDK calls
 /// nothing there outside either scope.
 #[test]
 fn every_sdk_host_holds_a_scoped_credential_to_its_scope() {
@@ -610,7 +610,7 @@ async fn a_run_signs_its_sessions_scope_into_its_credential(pool: sqlx::PgPool) 
             assert!(token.agent_correlation_id.is_some());
             token.agent_scope
         }
-        JwtToken::MacroAccessToken(_) => panic!("a code-mode credential is a Macro API token"),
+        JwtToken::MacroAccessToken(_) => panic!("a code-mode credential is a Rox API token"),
     };
     for (scope, name) in [
         (Some(SessionScope::Generation), Some("generation")),

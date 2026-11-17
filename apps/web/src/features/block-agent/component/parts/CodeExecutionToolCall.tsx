@@ -11,7 +11,7 @@ import type { ToolCallCommon, ToolCallContext } from './shared';
 
 /**
  * A program's steps, as rows of the tool group it belongs to: each observed
- * operation, historical calls with their registered Macro result components,
+ * operation, historical calls with their registered Rox result components,
  * or one failed row when it ended without any. The program itself is never
  * shown.
  */

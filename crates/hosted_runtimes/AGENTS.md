@@ -2,7 +2,7 @@
 
 ## What it is
 
-Macro computers: hosted VMs a team buys, each running roxd so it shows up
+Rox computers: hosted VMs a team buys, each running roxd so it shows up
 in Settings → Runtimes like a paired machine. This crate owns the computer
 lifecycle, capacity, purchase/billing orchestration and the fleet ports.
 
@@ -81,6 +81,6 @@ read it before changing behaviour.
 
 ## Related
 
-- Docs: [Macro computers](../../docs/architecture/macro-computers.md) ·
+- Docs: [Rox computers](../../docs/architecture/macro-computers.md) ·
   [setup trace runbook](../../docs/runbooks/computer-setup-traces.md) ·
   Skill: `cloud-storage-hexagonal-architecture`

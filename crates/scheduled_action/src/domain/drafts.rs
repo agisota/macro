@@ -1,5 +1,5 @@
 //! AI drafts a routine, or one step of one, from a person's words. The draft
-//! runs in an ordinary hidden agent session of the in-process Macro agent,
+//! runs in an ordinary hidden agent session of the in-process Rox agent,
 //! as the person, with its usual tools. The brief has it find the items the
 //! words name itself (searching, paging and refining), create only what the
 //! routine must reference (such as the database it writes to), never do the
@@ -235,7 +235,7 @@ pub struct InvalidDraft(pub String);
 /// run on (`DraftContext::agent_model`), which their plan allows.
 #[derive(Debug, Clone)]
 pub struct DraftAgent {
-    /// The in-process Macro agent.
+    /// The in-process Rox agent.
     pub bot: BotId,
     /// How to write a routine: the SDK's routines guide, the same text every
     /// code-mode session reads (`agent_code_mode::entity_guide("routines")`).
@@ -1128,7 +1128,7 @@ fn task(request: &DraftRequest, program: &[Step], code: bool) -> Result<String, 
     })
 }
 
-/// Macro's catalog routines that are code, as worked examples of whole
+/// Rox's catalog routines that are code, as worked examples of whole
 /// routines: what someone asked for, and the trigger and step that do it.
 /// Their code type-checks against the SDK (the harness's real-Deno tests).
 fn catalog_examples(conditions: bool) -> String {
@@ -1147,7 +1147,7 @@ fn catalog_examples(conditions: bool) -> String {
         })
         .collect();
     format!(
-        "Macro's own routines that are code, as worked examples (a cron trigger here leaves out its `timezone`; yours needs one):\n{examples}"
+        "Rox's own routines that are code, as worked examples (a cron trigger here leaves out its `timezone`; yours needs one):\n{examples}"
     )
 }
 

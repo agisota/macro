@@ -1,4 +1,4 @@
-//! Macro computers' control plane in this process: the fleet operator and
+//! Rox computers' control plane in this process: the fleet operator and
 //! its loops, and roxd presence → lifecycle events.
 //!
 //! Purchases, billing and the team routes live in authentication_service,
@@ -258,7 +258,7 @@ impl Pass {
 
 /// The Claude sign-in watch's ports.
 pub struct ClaudeSignInWatch<Ingress> {
-    /// Computers signed in to Claude through Macro.
+    /// Computers signed in to Claude through Rox.
     pub sign_ins: hosted_runtimes::outbound::pg_sign_ins::PgClaudeSignIns,
     /// Their notices.
     pub notices: claude_expiry::IngressClaudeSignInNotices<Ingress>,

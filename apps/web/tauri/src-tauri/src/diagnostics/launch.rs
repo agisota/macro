@@ -3,12 +3,12 @@ use url::Url;
 use uuid::Uuid;
 
 #[derive(Debug, Parser)]
-#[command(name = "macro", about = "Macro desktop")]
+#[command(name = "macro", about = "Rox desktop")]
 struct LaunchOptions {
     /// Record app memory and all emitted frontend OTel spans until app exit.
     #[arg(long, requires = "otel_traces_url")]
     record_memory: bool,
-    /// Full OTLP HTTP /v1/traces endpoint (no API key needed for the Macro proxy).
+    /// Full OTLP HTTP /v1/traces endpoint (no API key needed for the Rox proxy).
     #[arg(long, requires = "record_memory", value_parser = traces_url)]
     otel_traces_url: Option<Url>,
     /// URLs passed by the operating system's deep-link handler.

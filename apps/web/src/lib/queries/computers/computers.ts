@@ -111,7 +111,7 @@ function refreshOnChange(
   );
 }
 
-/** The current team's Macro computers; any team member can read them. */
+/** The current team's Rox computers; any team member can read them. */
 export function useComputersQuery(enabled: () => boolean) {
   const computers = useQuery(() => computersQueryOptions(enabled()));
   const harnesses = useHarnessesQuery();

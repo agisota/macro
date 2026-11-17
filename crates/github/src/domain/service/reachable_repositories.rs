@@ -1,4 +1,4 @@
-//! Listing the repositories a Macro user can reach through our GitHub App.
+//! Listing the repositories a Rox user can reach through our GitHub App.
 //!
 //! The forward direction of the check
 //! [`InstallationTokenService`](super::InstallationTokenService) makes

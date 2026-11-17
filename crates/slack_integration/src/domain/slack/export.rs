@@ -21,7 +21,7 @@ mod test;
 /// Supported root conversation lists; filename, not ID prefix, determines kind.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ConversationFile {
-    /// Public Slack channels, mapped to Macro Team channels.
+    /// Public Slack channels, mapped to Rox Team channels.
     Channels,
     /// Private Slack channels.
     Groups,
@@ -189,7 +189,7 @@ pub struct ExportRecord {
 pub enum SkippedRecord {
     /// Not a message event.
     NonMessage,
-    /// Deletion event; v1 never deletes an already imported Macro message.
+    /// Deletion event; v1 never deletes an already imported Rox message.
     Deleted,
     /// Tombstone has no importable body; v1 does not propagate deletions.
     Tombstone,

@@ -13,7 +13,7 @@ pub use agent_credentials::{RepoToken, RepoTokenHash};
 /// A stored agent repo.
 #[derive(Debug, Clone)]
 pub struct AgentRepo {
-    /// The agent's Macro user; also the repo's identity.
+    /// The agent's Rox user; also the repo's identity.
     pub agent_user_id: MacroUserIdStr<'static>,
     /// The team whose admins may read the repo.
     pub team_id: Uuid,
@@ -30,7 +30,7 @@ pub struct AgentRepo {
 /// A repo created or re-keyed by [`crate::domain::ports::AgentGitService::create_repo`].
 #[derive(Debug, Clone)]
 pub struct CreatedRepo {
-    /// The agent's Macro user.
+    /// The agent's Rox user.
     pub agent_user_id: MacroUserIdStr<'static>,
     /// The new token; this is the only time it is readable.
     pub token: RepoToken,
@@ -41,7 +41,7 @@ pub struct CreatedRepo {
 pub enum GitCredential {
     /// A repo token (HTTP Basic password).
     RepoToken(RepoToken),
-    /// A Macro user authenticated by session, JWT, or API key.
+    /// A Rox user authenticated by session, JWT, or API key.
     User(MacroUserIdStr<'static>),
 }
 

@@ -273,7 +273,7 @@ impl AgentLoop {
     /// content, tool definitions and conversation id on each `chat` span, and
     /// the arguments and result on each `execute_tool` span. On by default.
     ///
-    /// Off for a loop whose turns are already traced from outside - Macro's
+    /// Off for a loop whose turns are already traced from outside - Rox's
     /// in-process agent session runtime, whose ACP frames the session actor
     /// projects onto GenAI spans for every harness alike. With it off the run
     /// is still wrapped in a span (so the runtime adopts it rather than

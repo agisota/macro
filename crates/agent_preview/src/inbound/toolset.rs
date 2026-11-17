@@ -94,7 +94,7 @@ pub struct PreviewToolContext {
 #[serde(deny_unknown_fields)]
 #[schemars(
     title = "SharePreview",
-    description = "Share a running local HTTP development server with viewers of this agent session. Returns a shell script: execute it in the same machine/container as the server. Requires only OpenSSH, no helper or client key. Supports HTTP, WebSocket and HMR. The preview appears in Macro once reachable. Keep the dev server running; edits remain live. Call again to reconnect after the tunnel ends. Do not publish credentials or the script in a chat message."
+    description = "Share a running local HTTP development server with viewers of this agent session. Returns a shell script: execute it in the same machine/container as the server. Requires only OpenSSH, no helper or client key. Supports HTTP, WebSocket and HMR. The preview appears in Rox once reachable. Keep the dev server running; edits remain live. Call again to reconnect after the tunnel ends. Do not publish credentials or the script in a chat message."
 )]
 pub struct SharePreview {
     /// The local HTTP server port, such as 3000 or 5173.
@@ -192,7 +192,7 @@ ssh -F /dev/null -fNT \
   -p "$2" -l '{token}' "$1"
 }}
 {proxy_support}{connect}
-printf '%s\n' 'Preview tunnel connected. Keep the local server running; Macro shows the preview once HTTP is reachable.'
+printf '%s\n' 'Preview tunnel connected. Keep the local server running; Rox shows the preview once HTTP is reachable.'
 "#,
             port = share.port,
             token = share.token
@@ -251,7 +251,7 @@ impl ServerHandler for Mcp {
         let mut info = ServerConfig::new(ServerCapabilities::builder().enable_tools().build());
         info.server_info =
             rmcp::model::Implementation::new("macro-preview", env!("CARGO_PKG_VERSION"));
-        info.instructions = Some("Use SharePreview to share a local development server with viewers of the current Macro session. Execute the returned SSH script, then continue editing; WebSocket hot reload is forwarded automatically. Credentials must stay in tool execution, never final messages.".into());
+        info.instructions = Some("Use SharePreview to share a local development server with viewers of the current Rox session. Execute the returned SSH script, then continue editing; WebSocket hot reload is forwarded automatically. Credentials must stay in tool execution, never final messages.".into());
         info
     }
     async fn list_tools(

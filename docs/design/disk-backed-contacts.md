@@ -329,7 +329,7 @@ PostgreSQL 18; production PostgreSQL 14 was not run.
 
 Ordinary entities retain fixed per-row scores and command keyword matching.
 Personal suggestions instead use exact-name/word-prefix/literal-contains tiers,
-recent-first within tiers and identity ties. Complete addresses and Macro IDs are
+recent-first within tiers and identity ties. Complete addresses and Rox IDs are
 identity lookups; no arbitrary-gap or domain/brevity scoring is applied to people.
 
 The new core person-policy API stores only local DM/inbox facts on existing

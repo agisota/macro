@@ -27,7 +27,7 @@ mod test;
 #[serde(rename_all = "camelCase")]
 #[schemars(
     title = "UploadFile",
-    description = "Upload an existing file to Macro from base64-encoded bytes, up to 25 MiB decoded. Use for PDFs, images, Office files, and other files; use CreateDocument for generated text or native Macro spreadsheets. Encode actual file bytes programmatically; never invent or transcribe binary content. Returns a document ID after the bytes are uploaded; preview and indexing may finish asynchronously. Does not read local paths or fetch URLs."
+    description = "Upload an existing file to Rox from base64-encoded bytes, up to 25 MiB decoded. Use for PDFs, images, Office files, and other files; use CreateDocument for generated text or native Rox spreadsheets. Encode actual file bytes programmatically; never invent or transcribe binary content. Returns a document ID after the bytes are uploaded; preview and indexing may finish asynchronously. Does not read local paths or fetch URLs."
 )]
 pub struct UploadFile {
     #[schemars(
@@ -49,7 +49,7 @@ pub struct UploadFile {
 #[derive(Serialize, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct UploadFileResponse {
-    /// ID of the new Macro document.
+    /// ID of the new Rox document.
     pub document_id: String,
     /// Uploaded filename, including its extension.
     pub file_name: String,
@@ -70,7 +70,7 @@ fn upload_error(error: DocumentError) -> ToolCallError {
         DocumentError::Unauthorized => {
             "you need edit access to the destination project".to_string()
         }
-        _ => "failed to upload the file to Macro".to_string(),
+        _ => "failed to upload the file to Rox".to_string(),
     };
     ToolCallError {
         description,

@@ -240,7 +240,7 @@ pub async fn get_user_activity_handler<T: MemoryService, Auth: MacroAuthorizatio
                 return (
                     StatusCode::BAD_REQUEST,
                     Json(MemoryErrorBody {
-                        error: "invalid Macro user id".to_string(),
+                        error: "invalid Rox user id".to_string(),
                     }),
                 )
                     .into_response();

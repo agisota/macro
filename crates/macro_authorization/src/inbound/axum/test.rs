@@ -41,7 +41,7 @@ const ACCESS_TOKEN_COOKIE: &str = "macro-access-token";
 const API_KEY_USER_ID: &str = "macro|api-key@example.com";
 const VALID_USER_API_KEY: &str = "mak_valid";
 const MANAGER_API_KEY: &str = "mak_manager";
-/// A Macro API token that signs an agent session's scope.
+/// A Rox API token that signs an agent session's scope.
 const SCOPED_JWT: &str = "scoped";
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -125,7 +125,7 @@ impl MacroAuthorizationService for FakeAuthorizationService {
                 account_manager: Some(AccountManagerCredential {
                     grant_id: Uuid::nil(),
                     manager_user_id: MacroUserIdStr::parse_from_str("macro|agent@example.com")
-                        .expect("valid Macro user id")
+                        .expect("valid Rox user id")
                         .into_owned(),
                 }),
             }),

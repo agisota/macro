@@ -468,9 +468,9 @@ function mentionFallbackLabel(
 }
 
 /**
- * Resolve a GitHub-URL-only mention (one an agent wrote without the Macro id)
+ * Resolve a GitHub-URL-only mention (one an agent wrote without the Rox id)
  * to its synced pull request. Settles to `undefined` while loading and when
- * Macro has not synced the PR, without suspending.
+ * Rox has not synced the PR, without suspending.
  */
 function useGithubUrlMentionEntity(
   props: Pick<PullRequestMentionDecoratorProps, 'id' | 'url'>,
@@ -483,7 +483,7 @@ function useGithubUrlMentionEntity(
   return () => (query.isSuccess ? (query.data ?? undefined) : undefined);
 }
 
-/** Hover preview for a GitHub URL mention Macro has not synced. */
+/** Hover preview for a GitHub URL mention Rox has not synced. */
 function UnsyncedPullRequestPreviewCard(props: {
   label: string;
   url?: string;
@@ -634,7 +634,7 @@ export function PullRequestMention(props: PullRequestMentionDecoratorProps) {
     }
     const id = entityId();
     if (!id) {
-      // A PR Macro has not synced has no split to open; fall back to GitHub.
+      // A PR Rox has not synced has no split to open; fall back to GitHub.
       if (props.url) openExternalUrl(props.url);
       return;
     }

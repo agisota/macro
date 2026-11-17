@@ -62,7 +62,7 @@ it('opens a synced pull request in a new split instead of GitHub', () => {
   );
 });
 
-it('links a pull request Macro has not synced to GitHub', () => {
+it('links a pull request Rox has not synced to GitHub', () => {
   mocks.pullRequests = [pullRequest];
   render(() => <InlineTaskGithubPullRequests />);
 

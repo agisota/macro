@@ -161,9 +161,9 @@ encodes its caret/selection as a Loro cursor and broadcasts it over the
 ephemeral awareness channel, so the website renders a remote cursor walking
 through the text. The cursor's label is the editor `POST /edit` names
 (`editor: { name }`): the agent or persona that asked for the edit, so a
-`Macro` or `Grunk` session's edits read `Macro (AI)` / `Grunk (AI)` on every
+`Macro` or `Grunk` session's edits read `Rox (AI)` / `Grunk (AI)` on every
 cursor they draw (`PeerPool.forEditor`). A request that names nobody labels its
-cursors `Macro (AI)` (`DEFAULT_EDITOR_NAME`), never a person's name. Every label ends in
+cursors `Rox (AI)` (`DEFAULT_EDITOR_NAME`), never a person's name. Every label ends in
 `(AI)`; the website keys off that suffix to keep AI name tags pinned. Each
 writer also gets one of a few accent colors; the cursor lingers ~700ms after the
 writer finishes, then clears. We have some ugly code that manages resolving a

@@ -102,11 +102,11 @@ pub struct Settings {
     pub ssh_proxy_host: Option<String>,
     /// OpenSSH public host key, algorithm and base64 blob.
     pub host_key: String,
-    /// Allowed Macro application origin for browser ticket handoff.
+    /// Allowed Rox application origin for browser ticket handoff.
     pub app_origin: String,
 }
 impl Settings {
-    /// Reject invalid shell/host components and Macro's shared cookie domain.
+    /// Reject invalid shell/host components and Rox's shared cookie domain.
     pub fn validate(&self) -> Result<(), PreviewError> {
         fn host(s: &str) -> bool {
             !s.is_empty()

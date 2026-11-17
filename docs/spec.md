@@ -17,7 +17,7 @@ The source prompts do not assign FR/SC ids. The ids below are assigned by this r
 | --- | --- | --- |
 | FR-001 Rox display | Rox/rox.one/rox-one display constants, titles, manifests, docs, mail footer, MCP display title, and local OAuth display name use the shared brand source without renaming wire identifiers. | frontend |
 | FR-002 Legal and wire fence | `LICENSE.txt`, `apps/web/LICENSE`, `macro|` ids, bundle ids, service hostnames, Kafka topics, package scopes, cookie/storage keys, and staff domain remain unchanged; one linked modification notice names the source fork. | frontend |
-| FR-003 Assets and truthful copy | Required Rox icon derivatives exist; `Sent with Macro` is gone; marketing/docs make no unsupported Rox SAML, SCIM, SSO, compliance, self-host, or EU-hosting claims. | frontend |
+| FR-003 Assets and truthful copy | Required Rox icon derivatives exist; `Sent with Rox` is gone; marketing/docs make no unsupported Rox SAML, SCIM, SSO, compliance, self-host, or EU-hosting claims. | frontend |
 | FR-004 Handle signup | `ada` passes; `ab`, `admin`, `ada` with the first-party domain appended, and `..ada` fail; uniqueness is case-insensitive; duplicate handle is rejected rather than suffixed; existing `macro|email` users still resolve. | mailbox |
 | FR-005 First-party primary mailbox | New `ROX` provider/link for the claimed handle at the first-party domain is primary; no-link `/email/init` does not call Gmail; later Gmail/Outlook links are optional and non-primary unless explicitly promoted. | mailbox |
 | FR-006 Native Drive and import copy | Existing Document storage/key shape is unchanged; native files are Drive and third-party Google Drive/Dropbox/OneDrive/Box entries are imports, with no new bucket/table/sync engine. | mailbox + frontend |
@@ -35,7 +35,7 @@ The source prompts do not assign FR/SC ids. The ids below are assigned by this r
 ## Explicit non-goals and preserved gaps
 
 - No SAML, SCIM, custom customer mail domain, legal hold, retention/DLP rollout, public hosted-enterprise claim, production mailbox suspension, or live broker-token exchange.
-- No repo-wide Macro identifier rename, second mail/file stack, replacement ACP/runtime protocol, or webview CLI spawn.
+- No repo-wide Rox identifier rename, second mail/file stack, replacement ACP/runtime protocol, or webview CLI spawn.
 - No database/volume reset, history rewrite, `git stash`, deployment, push, or production action.
 
 ## Completion condition

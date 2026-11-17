@@ -24,7 +24,7 @@ HTTP endpoints directly; this crate does not register tools into a runtime.
 
 ## Boundaries
 
-- Depends on Jev's shared decision types and Macro authenticated user identity.
+- Depends on Jev's shared decision types and Rox authenticated user identity.
 - Composition roots supply the trusted service URL, internal credential and
   default model. Callers cannot select another user through tool inputs.
 

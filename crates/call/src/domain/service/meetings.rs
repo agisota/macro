@@ -64,10 +64,10 @@ impl<
                 "Only the meeting owner can send invitations".to_string(),
             ));
         }
-        // Email invitations admit guests; channel calls require Macro accounts.
+        // Email invitations admit guests; channel calls require Rox accounts.
         if meeting.channel_id.is_some() {
             return Err(CallError::Forbidden(
-                "Channel calls cannot be shared with people outside Macro".to_string(),
+                "Channel calls cannot be shared with people outside Rox".to_string(),
             ));
         }
         let email = email.trim().to_lowercase();
@@ -111,7 +111,7 @@ impl<
             .create_meeting(Meeting {
                 id: Uuid::now_v7(),
                 share_token: MeetingToken::generate(),
-                title: request.title.unwrap_or_else(|| "Macro call".to_string()),
+                title: request.title.unwrap_or_else(|| "Rox call".to_string()),
                 scheduled_start: request.scheduled_start,
                 scheduled_end: request.scheduled_end,
                 channel_id: None,
@@ -206,7 +206,7 @@ impl<
             .create_meeting(Meeting {
                 id: Uuid::now_v7(),
                 share_token: MeetingToken::generate(),
-                title: "Macro call".to_string(),
+                title: "Rox call".to_string(),
                 scheduled_start: None,
                 scheduled_end: None,
                 channel_id: record.channel_id,
@@ -272,7 +272,7 @@ impl<
                     .get_user_display_name(user.copied())
                     .await
                     .map_err(|error| CallError::Internal(error.into()))?
-                    .unwrap_or_else(|| "Macro user".to_string());
+                    .unwrap_or_else(|| "Rox user".to_string());
                 let avatar_url = self
                     .repo
                     .get_user_profile_picture(user)

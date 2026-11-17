@@ -6,7 +6,7 @@ import { EntityMention } from './mention';
 /**
  * Stored entity mention relationships.
  *
- * @routing Use when recording or removing a typed mention relationship between two Macro items; not writing mention tags into text.
+ * @routing Use when recording or removing a typed mention relationship between two Rox items; not writing mention tags into text.
  */
 export class EntityMentionNamespace {
   constructor(private readonly client: MacroClient) {}

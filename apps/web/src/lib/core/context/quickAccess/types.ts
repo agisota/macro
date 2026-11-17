@@ -38,7 +38,7 @@ export type Bucket =
   | 'project'
   | 'email'
   | 'crm_company'
-  // CRM contacts, kept apart from 'person' (Macro users and email contacts).
+  // CRM contacts, kept apart from 'person' (Rox users and email contacts).
   | 'crm_contact'
   | 'agent_session'
   | 'initiative'

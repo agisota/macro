@@ -102,7 +102,7 @@ pub struct EmailToolContext<
     pub entity_access_service: Arc<E>,
     /// Renders model-authored markdown into the HTML an email body carries.
     pub lexical_client: Arc<lexical_client::LexicalClient>,
-    /// Sends a `SendEmail` call, staging its Macro-document attachments
+    /// Sends a `SendEmail` call, staging its Rox-document attachments
     /// first. [`new`](Self::new) installs a sender that refuses attachments;
     /// hosts with attachment infrastructure swap in a real one through
     /// [`with_attachment_sender`](Self::with_attachment_sender).

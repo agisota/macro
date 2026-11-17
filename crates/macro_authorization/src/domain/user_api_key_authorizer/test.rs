@@ -113,7 +113,7 @@ async fn a_manager_key_acts_as_the_managed_account_and_names_its_holder() {
     let credential = AccountManagerCredential {
         grant_id,
         manager_user_id: MacroUserIdStr::try_from("macro|agent@example.com".to_string())
-            .expect("valid Macro user id"),
+            .expect("valid Rox user id"),
     };
     let mut repo = FakeRepo::found();
     repo.owner = Some(ResolvedApiKeyUser {

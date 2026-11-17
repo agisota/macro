@@ -1,4 +1,4 @@
-//! Walkthrough artifacts: what Cursor wrote, what Macro re-hosted, and the
+//! Walkthrough artifacts: what Cursor wrote, what Rox re-hosted, and the
 //! markdown that puts them in the conversation.
 //!
 //! Cursor's agents save screenshots and screen recordings to an agent-scoped
@@ -127,7 +127,7 @@ pub fn mime_type(name: &str, served: Option<&str>) -> String {
 /// differently on reload is a bug the reader sees.
 ///
 /// Images inline as markdown; videos use the editor's `<m-video>` block,
-/// which is what Macro's document format renders a player from; text files
+/// which is what Rox's document format renders a player from; text files
 /// whose body we kept become a fenced `txt` code block; everything else is
 /// a link, which is the honest rendering of a file nobody can preview.
 #[must_use]
@@ -143,7 +143,7 @@ pub fn artifact_markdown(artifacts: &[CollectedArtifact]) -> String {
     markdown
 }
 
-/// The `<m-video>` payload the Macro editor reads: a URL and how to read it.
+/// The `<m-video>` payload the Rox editor reads: a URL and how to read it.
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 struct VideoBlock<'a> {

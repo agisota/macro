@@ -516,7 +516,7 @@ pub async fn run() -> anyhow::Result<()> {
     // closed and drained on shutdown so nothing is dropped mid-publish.
     let event_broker_tracker = tokio_util::task::TaskTracker::new();
     // MCP connections: the same rows the chat tool path reads, so an app
-    // connected in Macro is an app the sandbox can reach, with nothing to
+    // connected in Rox is an app the sandbox can reach, with nothing to
     // keep in sync. The rows hold no secrets - Pipedream owns the grants.
     let mcp_connections = Arc::new(PgConnectionRepo::new(pool.clone()));
     // Custom MCP servers - the ones a person added by URL - in the same rows
@@ -545,7 +545,7 @@ pub async fn run() -> anyhow::Result<()> {
         allowed_origins: Vec::new(),
     })
     .context("failed to build Pipedream client")?;
-    // Grants held by Macro Connect are reached through its MCP gateway; a
+    // Grants held by Rox Connect are reached through its MCP gateway; a
     // user on Connect alone gets no Pipedream grant.
     let mut connectors = ConnectorBackends::new(
         Arc::new(pipedream),
@@ -565,7 +565,7 @@ pub async fn run() -> anyhow::Result<()> {
         mcp_client::outbound::guarded_http::AddressPolicy::for_environment(config.environment);
     let mcp_http = mcp_client::outbound::guarded_http::McpHttp::new(mcp_address_policy)?;
 
-    // Every session's MCP servers: Macro's own under the reserved `macro`
+    // Every session's MCP servers: Rox's own under the reserved `macro`
     // slug, the owner's custom servers by URL key, then the owner's Pipedream
     // connections. The `macro` credential is signed inline with the same key
     // authentication_service holds; what this process hands out is always
@@ -851,7 +851,7 @@ pub async fn run() -> anyhow::Result<()> {
     )
     .await
     .context("failed to compose public MCP")?;
-    // Session tasks are read as the owner through the same services Macro's own tools use.
+    // Session tasks are read as the owner through the same services Rox's own tools use.
     let task_directory = agent_harness::outbound::session_tasks::DocumentTaskDirectory::new(
         tool_context.document_tool_context.service.clone(),
         tool_context
@@ -1161,7 +1161,7 @@ pub async fn run() -> anyhow::Result<()> {
     )
     // Cursor's own artifact links expire in fifteen minutes, so a
     // walkthrough's screenshots and recordings are re-hosted where every
-    // other user-visible blob in Macro lives.
+    // other user-visible blob in Rox lives.
     .with_artifact_store(
         cursor_cloud_agents::outbound::static_file_artifacts::StaticFileArtifactStore::new(
             static_file_service_client::StaticFileServiceClient::new(
@@ -1394,7 +1394,7 @@ pub async fn run() -> anyhow::Result<()> {
     // Each dial also reports which sessions its runtime still serves, which
     // the harness loads once it exists below.
     let (live_sessions, mut live_session_reports) = tokio::sync::mpsc::unbounded_channel();
-    // Macro computers: the fleet operator (when this deployment drives a
+    // Rox computers: the fleet operator (when this deployment drives a
     // fleet) and presence that turns roxd connects into lifecycle events.
     let computer_operator = computers::operator(
         &config,

@@ -1,33 +1,33 @@
 import { displayName } from '@core/constant/brand';
 
 /**
- * Identity for the first-party Macro system bot. Mirrors
- * `bot_id::MACRO_AI_BOT_ID` on the backend. Macro is a global system bot
+ * Identity for the first-party Rox system bot. Mirrors
+ * `bot_id::MACRO_AI_BOT_ID` on the backend. Rox is a global system bot
  * available in every channel; mentioning it triggers an AI reply in a thread.
  */
 export const MACRO_AGENT_BOT_ID = '00000000-0000-0000-0000-00000000a1a1';
 
 /**
- * Canonical principal id for Macro, matching the `bot|<uuid>` form used for
+ * Canonical principal id for Rox, matching the `bot|<uuid>` form used for
  * bot senders and participants everywhere else. New mentions must always use
  * this form; the bare UUID is only accepted for historical content.
  */
 export const MACRO_AGENT_PRINCIPAL_ID = `bot|${MACRO_AGENT_BOT_ID}`;
 
-/** Display name for Macro. */
+/** Display name for Rox. */
 export const MACRO_AGENT_NAME = displayName;
 
 /**
- * User-facing name for Macro's built-in harness (`in-memory` / `macro-inmem`).
+ * User-facing name for Rox's built-in harness (`in-memory` / `macro-inmem`).
  * Wire slugs stay as they are; this is only what the UI prints.
  */
 export const MACRO_HARNESS_NAME = `${displayName} Agent`;
 
-/** Handle used to find Macro in the mention typeahead (`@macro`). */
+/** Handle used to find Rox in the mention typeahead (`@macro`). */
 export const MACRO_AGENT_HANDLE = 'macro';
 
 /**
- * Whether an id refers to the Macro bot. Accepts both the bare UUID and
+ * Whether an id refers to the Rox bot. Accepts both the bare UUID and
  * the `bot|<uuid>` participant/sender form.
  */
 export function isMacroAgentId(id: string | undefined): boolean {
@@ -38,7 +38,7 @@ export function isMacroAgentId(id: string | undefined): boolean {
 
 /**
  * Whether an id is a bot principal: the canonical `bot|<uuid>` form used for
- * bot senders, participants, and mentions, or the Macro bot's bare UUID
+ * bot senders, participants, and mentions, or the Rox bot's bare UUID
  * (accepted for historical content only).
  */
 export function isBotPrincipalId(id: string | undefined): boolean {

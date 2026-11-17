@@ -111,7 +111,7 @@ pub struct DocumentServiceImpl<
     pub entity_access_management_service: Eam,
     /// Foreign entity service
     pub foreign_entity_service: F,
-    /// Macro event broker for publishing document lifecycle events
+    /// Rox event broker for publishing document lifecycle events
     pub macro_event_broker: B,
 }
 

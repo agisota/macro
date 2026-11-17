@@ -432,7 +432,7 @@ use model::user::{
                 ),
         ),
         tags(
-            (name = "auth service", description = "Macro Authentication Service")
+            (name = "auth service", description = "Rox Authentication Service")
         )
     )]
 pub struct ApiDoc;

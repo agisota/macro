@@ -32,7 +32,7 @@ export const CURSOR_SYSTEM_NOTIFICATION_NODE_TYPE = 'system-notification';
  *
  * Unlike the `<m-*>` tags this package owns, the attributes ride on the
  * opening tag rather than as a JSON body, and the body is the human-readable
- * summary. Nothing in Macro writes one; they only arrive through the Cursor
+ * summary. Nothing in Rox writes one; they only arrive through the Cursor
  * transport, so the node exists to read them.
  */
 export const CURSOR_SYSTEM_NOTIFICATION_TAG = 'system_notification';

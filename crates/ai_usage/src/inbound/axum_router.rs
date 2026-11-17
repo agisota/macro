@@ -1,6 +1,6 @@
 //! Admin-only HTTP API for querying AI cost and re-pricing models.
 //!
-//! Every route is restricted to Macro admins — callers whose user id resolves
+//! Every route is restricted to Rox admins — callers whose user id resolves
 //! to an `@rox.one` email.
 
 use super::models::UsageSummary;

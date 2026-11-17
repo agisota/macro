@@ -31,7 +31,7 @@ export type Config = {
   readonly model: string;
   /** What one run, and one day of the owner's, may spend. */
   readonly budget: Caps;
-  /** Who the agent is in Macro, and who its owner is: the one `agent.json` names while they are on the team, else the team's owner (`agent/authority.ts`). Only the owner's id gives orders. */
+  /** Who the agent is in Rox, and who its owner is: the one `agent.json` names while they are on the team, else the team's owner (`agent/authority.ts`). Only the owner's id gives orders. */
   readonly me: string;
   readonly owner: string;
   /** The agent's git identity, which lives only in the environment of its processes. */

@@ -548,7 +548,7 @@ async fn held_tool_calls_are_told_in_the_thread_until_none_wait() {
     let list_entities = HeldToolCall {
         approval_id: "approval-1".to_owned(),
         server_slug: "macro".to_owned(),
-        server_name: "Macro".to_owned(),
+        server_name: "Rox".to_owned(),
         tool_name: "ListEntities".to_owned(),
     };
     let create_issue = HeldToolCall {

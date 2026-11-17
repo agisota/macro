@@ -308,7 +308,7 @@ describe('upcoming calendar events source', () => {
     expect(result.events()).toEqual([]);
   });
 
-  it('keeps recurring occurrences and recognizes embedded Macro links', async () => {
+  it('keeps recurring occurrences and recognizes embedded Rox links', async () => {
     const macroUrl = 'https://rox.one/app/meet/valid-token-1234567890';
     respond(
       [1, 2, 3, 4, 5].map((day) =>

@@ -58,11 +58,11 @@ pub const HOLD_LIMIT_WITH_PROGRESS: Duration = Duration::from_secs(30 * 60);
 /// nothing says it will wait longer than a transport usually does.
 pub const HOLD_LIMIT: Duration = Duration::from_secs(4 * 60);
 
-/// The server slug Macro's own tools are held under.
+/// The server slug Rox's own tools are held under.
 pub const MACRO_SERVER_SLUG: &str = "macro";
 
-/// Macro's tools that use nobody's access: looking things up on the public
-/// web, and Macro's help about itself. Everything else on Macro's server
+/// Rox's tools that use nobody's access: looking things up on the public
+/// web, and Rox's help about itself. Everything else on Rox's server
 /// reads or changes the owner's own data, and every connected app is the
 /// owner's own account.
 const MACRO_TOOLS_WITHOUT_OWNER_ACCESS: [&str; 3] = ["WebSearch", "WebFetch", "SelfKnowledge"];
@@ -75,7 +75,7 @@ pub fn spends_owner_access(server_slug: &str, tool: &str) -> bool {
 }
 
 /// Connected apps whose tools that change the owner's data wait for the
-/// owner even in a turn they prompted themselves, by tool name: Macro
+/// owner even in a turn they prompted themselves, by tool name: Rox
 /// Connect's Google Drive, whose users confirm every change to their Drive.
 const OWNER_CONFIRMED_WRITES: [(&str, &[&str]); 1] = [(
     "google_drive",
@@ -285,7 +285,7 @@ where
     }
 }
 
-/// A tool call made in-process - the in-memory runtime's own Macro tools -
+/// A tool call made in-process - the in-memory runtime's own Rox tools -
 /// with nothing to stream a hold into.
 #[derive(Clone, Debug)]
 pub struct InProcessCall {

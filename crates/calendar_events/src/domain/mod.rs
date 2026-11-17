@@ -19,7 +19,7 @@ pub mod ics;
 pub mod join_requests;
 /// What says whose calendar an event is on, and what the user is there.
 pub mod labels;
-/// Macro meeting links carried by calendar events.
+/// Rox meeting links carried by calendar events.
 pub mod meeting_links;
 /// Domain models.
 pub mod models;

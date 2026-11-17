@@ -98,7 +98,7 @@ pub fn router<
 #[serde(rename_all = "camelCase")]
 #[into_params(parameter_in = Query)]
 pub struct Scope {
-    /// Existing Macro team; omit for the caller's personal booking links.
+    /// Existing Rox team; omit for the caller's personal booking links.
     team_id: Option<Uuid>,
 }
 /// Bookings of one profile, optionally limited to a half-open start range.
@@ -106,7 +106,7 @@ pub struct Scope {
 #[serde(rename_all = "camelCase")]
 #[into_params(parameter_in = Query)]
 pub struct BookingRange {
-    /// Existing Macro team; omit for personal bookings.
+    /// Existing Rox team; omit for personal bookings.
     team_id: Option<Uuid>,
     /// Inclusive start; supply together with `to`, at most 733 days apart.
     from: Option<chrono::DateTime<chrono::Utc>>,
@@ -118,7 +118,7 @@ pub struct BookingRange {
 #[serde(rename_all = "camelCase")]
 #[into_params(parameter_in = Query)]
 pub struct LinkSearch {
-    /// Existing Macro team; omit for personal links.
+    /// Existing Rox team; omit for personal links.
     team_id: Option<Uuid>,
     /// Text matched against link title, slug and description; omit for all links.
     query: Option<String>,

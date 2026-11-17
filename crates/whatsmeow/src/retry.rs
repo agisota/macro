@@ -439,7 +439,7 @@ impl Client {
     /// decrypt.
     pub(crate) async fn immediate_request_message_from_phone(self: &Arc<Self>, info: &MessageInfo) {
         let request = self.build_unavailable_message_request(&info.chat, &info.sender, &info.id);
-        // Boxed (Macro addition): the send future is large, and this runs
+        // Boxed (Rox addition): the send future is large, and this runs
         // nested in message decryption; inline it overflows a 2 MiB stack in
         // debug builds.
         match Box::pin(self.send_peer_message(request)).await {

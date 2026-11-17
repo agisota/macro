@@ -33,7 +33,7 @@ impl<S: SystemPropertiesService> PgCallCrmLinker<S> {
 
     /// CRM companies whose domain a person's address is at, and CRM contacts
     /// holding the address as any of their addresses, with or without a
-    /// company, in the CRMs of the teams of the Macro accounts on the call.
+    /// company, in the CRMs of the teams of the Rox accounts on the call.
     /// Every visible contact holding an address matches, and brings its
     /// company with it whatever domain the address is at. A team's own members
     /// never match its CRM, and hidden records are skipped, as is a contact

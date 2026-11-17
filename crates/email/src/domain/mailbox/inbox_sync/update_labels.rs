@@ -192,7 +192,7 @@ where
 struct LabelDiff {
     labels_to_add: Vec<String>,
     labels_to_delete: Vec<String>,
-    /// Labels Gmail disagrees on that keep their local state, because Macro's
+    /// Labels Gmail disagrees on that keep their local state, because Rox's
     /// own write to them has not reached Gmail yet.
     kept_pending: Vec<String>,
 }
@@ -265,7 +265,7 @@ fn is_user_label(label: &str) -> bool {
 }
 
 /// Publish semantic macro.email events for a provider-side label diff, all
-/// with `origin = provider_sync`. Changes made through Macro update the DB
+/// with `origin = provider_sync`. Changes made through Rox update the DB
 /// optimistically, so by the time they echo back through Gmail history sync
 /// there is no diff and nothing is published here — user-initiated changes
 /// are published from their handlers, with `origin = user_action`.

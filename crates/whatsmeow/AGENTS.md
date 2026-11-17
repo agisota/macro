@@ -138,9 +138,9 @@ WASA/bot parts of `msgsecret.go`, reporting tokens, `armadillomessage.go`, `push
 - Log opaque values only (tags, IDs, counts); unlike Go, never log node XML,
   JIDs or phone numbers.
 
-## Telemetry (a Macro addition)
+## Telemetry (a Rox addition)
 
-whatsmeow has no tracing spans; the spans here are Macro's, added around the
+whatsmeow has no tracing spans; the spans here are Rox's, added around the
 ported logic without changing it. Helpers live in `src/telemetry.rs`; its test
 captures spans from a client on the fake server.
 
@@ -193,7 +193,7 @@ Signal interop and linked-device end-to-end tests exercise the implementation.
 ## Gotchas
 
 - License is MPL-2.0 (`LICENSE`), file-level copyleft: keep ported code in
-  these crates, don't copy it into Macro crates.
+  these crates, don't copy it into Rox crates.
 - Never connect to real WhatsApp servers or link a real account from tests;
   socket tests run over in-memory websockets (`tokio::io::duplex`).
 - `FrameSocket::connect` dials `wss://` with rustls; the binary must install a

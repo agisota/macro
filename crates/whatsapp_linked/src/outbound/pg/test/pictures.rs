@@ -553,7 +553,7 @@ async fn the_backfill_tracks_added_chats_and_their_people_as_live_tracking_would
             (GROUP.to_owned(), "due".to_owned(), None, None),
             (CUSTOMER_JID.to_owned(), "due".to_owned(), None, None),
         ],
-        "live tracking: the group and the customer, not Bob, a Macro user"
+        "live tracking: the group and the customer, not Bob, a Rox user"
     );
     // The customer's LID became known; phones key people by it.
     sqlx::query!(
@@ -580,7 +580,7 @@ async fn the_backfill_tracks_added_chats_and_their_people_as_live_tracking_would
             (CUSTOMER_LID.to_owned(), "due".to_owned(), None, None),
             (GROUP.to_owned(), "due".to_owned(), None, None),
         ],
-        "the owner's added group, and its non-Macro person once, by LID"
+        "the owner's added group, and its non-Rox person once, by LID"
     );
     assert!(pictures(&pool, bob.account_id).await.is_empty());
 

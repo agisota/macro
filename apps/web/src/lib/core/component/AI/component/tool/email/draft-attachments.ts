@@ -1,9 +1,9 @@
 /**
- * The attachments of a drafted `SendEmail`: Macro documents by reference.
+ * The attachments of a drafted `SendEmail`: Rox documents by reference.
  *
  * The email behind the tool has no draft row until it is sent, so there is
  * nothing to upload attachment bytes into. Instead every attachment is a
- * Macro document - the ones the agent named, plus files the user adds, which
+ * Rox document - the ones the agent named, plus files the user adds, which
  * are uploaded as documents first - and the backend fetches their files when
  * the send runs. The list keeps uploading files beside resolved documents so
  * the composer can show both.
@@ -48,7 +48,7 @@ export type DraftAttachmentsOptions = {
   initial: EmailAttachment[] | undefined;
   /** Reads a document's name and type; rejects when it cannot be read. */
   describe: (documentId: string) => Promise<DocumentDescription>;
-  /** Uploads a file as a Macro document; resolves undefined on failure. */
+  /** Uploads a file as a Rox document; resolves undefined on failure. */
   upload: (file: File) => Promise<{ documentId: string } | undefined>;
   /** Called after any change the tool args should pick up. */
   onChange: () => void;

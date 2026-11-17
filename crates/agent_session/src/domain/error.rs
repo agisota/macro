@@ -30,7 +30,7 @@ pub enum AgentSessionError {
     /// No session has been created under this identity yet.
     #[error("agent session {0} was not found")]
     NotFound(AgentSessionId),
-    /// New Macro-funded work was refused before execution.
+    /// New Rox-funded work was refused before execution.
     #[cfg(feature = "admission")]
     #[error(transparent)]
     Admission(#[from] AiAdmissionError),

@@ -154,7 +154,7 @@ impl Client {
     /// an [`IqError`]. A disconnect before the response retries once after
     /// reconnecting, unless `no_retry` is set.
     pub(crate) async fn send_iq(&self, query: InfoQuery) -> Result<Node, ClientError> {
-        // Macro addition: one span per info query with its outcome. Not
+        // Rox addition: one span per info query with its outcome. Not
         // `err`: an IQ error's message can hold the raw response node.
         let span = tracing::info_span!(
             "whatsmeow.iq",

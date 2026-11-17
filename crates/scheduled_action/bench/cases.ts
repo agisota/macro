@@ -8,7 +8,7 @@ import { FIXTURE, email, fullName } from './workspace';
 
 export { FIXTURE };
 
-/** The routine a step case starts from: one of Macro's catalog routines. */
+/** The routine a step case starts from: one of Rox's catalog routines. */
 export type BaseRoutine = { catalogKey: string };
 
 export type Arm = 'draft' | 'bare';

@@ -1,5 +1,5 @@
 /**
- * Secrets: the team's vault in Macro, as the agent may use it. It finds
+ * Secrets: the team's vault in Rox, as the agent may use it. It finds
  * items by name, puts one field of one on the clipboard, makes and changes
  * its own, and asks the owner for the rest. No function here gives a value
  * back: a value goes from the vault to the clipboard, or from the clipboard
@@ -99,7 +99,7 @@ export const refusal = (
       ? undefined
       : Math.max(1, Math.ceil(retryAfterMs / 60_000));
   const messages: Record<Refusal, string> = {
-    unauthorized: 'the vault refused your Macro key',
+    unauthorized: 'the vault refused your Rox key',
     invalid_agent: "the vault doesn't admit you as an agent of your team",
     invalid_session_attribution:
       "the vault refused this wake's id, which the running agent sets: a bug in the agent, not something to retry",

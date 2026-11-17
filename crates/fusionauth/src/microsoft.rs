@@ -136,7 +136,7 @@ impl FusionAuthClient {
     }
 
     /// Constructs the tenant-wide admin-consent URL an administrator completes
-    /// when their directory does not let users consent to Macro themselves.
+    /// when their directory does not let users consent to Rox themselves.
     ///
     /// `state` is opaque and is only URL-encoded, never JSON-serialized.
     pub fn construct_microsoft_admin_consent_url(

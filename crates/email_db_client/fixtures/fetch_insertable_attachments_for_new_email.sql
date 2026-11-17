@@ -523,7 +523,7 @@ VALUES ('00000000-0000-0000-0000-000000aa1301',
         '00000000-0000-0000-0000-0000000e1301',
         'provider-att-1301', 'missing_self_contact.pdf', 'application/pdf', NOW());
 
--- Macro user for the User table foreign key
+-- Rox user for the User table foreign key
 INSERT INTO "macro_user" (id, username, email, stripe_customer_id)
 VALUES ('00000000-0000-0000-0000-00000000001a',
         'user_a',

@@ -20,7 +20,7 @@ execution, display) that don't belong to a single domain.
   work).
 - `src/tool_context.rs` + `src/tool_context/`: per-tool context extraction.
 - `src/import_workspace.rs`: `ToolEntityCreator` as the import crate's
-  `WorkspaceWriter` (folders, documents, tasks, databases as Macro AI for the
+  `WorkspaceWriter` (folders, documents, tasks, databases as Rox AI for the
   user), sharing its document/task paths with `EntityCreator`; Notion bodies
   go through `DocumentCreator::create_notion_markdown`. `share_with_team`
   shares a folder through `ProjectService::edit_project` (edit level) and a
@@ -96,5 +96,5 @@ edit capability but calls no nested model and emits no additional model charge; 
 
 Reviewed Linear/Jira imports also register read-only tracker connections in every
 host. `src/import_trackers.rs` creates stable-id tasks via ordinary markdown and
-projects via `InitiativeServiceImpl::create_imported`, with Macro AI attribution;
+projects via `InitiativeServiceImpl::create_imported`, with Rox AI attribution;
 project, parent and label writes pass through the owning property services.

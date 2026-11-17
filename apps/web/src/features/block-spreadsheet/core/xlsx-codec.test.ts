@@ -651,7 +651,7 @@ describe('Excel workbook files', () => {
     sheet.getRow(1).height = 50;
     sheet.getRow(2).hidden = true;
     sheet.getCell('C1').value = {
-      text: 'Macro',
+      text: 'Rox',
       hyperlink: 'https://rox.one',
     };
     sheet.getCell('C2').value = {

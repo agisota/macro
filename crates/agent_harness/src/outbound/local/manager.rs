@@ -314,7 +314,7 @@ impl ContainerManager for LocalContainerManager {
 /// The container name for a session.
 ///
 /// Deterministic so a session has at most one container and `docker ps` reads
-/// legibly, and prefixed so a developer can tell Macro's sandboxes apart from
+/// legibly, and prefixed so a developer can tell Rox's sandboxes apart from
 /// the rest of their daemon.
 fn container_name(session: AgentSessionId) -> String {
     format!("macro-agent-{session}")

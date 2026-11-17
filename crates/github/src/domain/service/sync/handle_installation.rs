@@ -24,7 +24,7 @@ impl<
     /// Completes the org-approval install flow: when an admin approves another
     /// user's installation request, the payload's `requester` identifies who
     /// asked, and their pending installation request (recorded by the
-    /// authenticated setup callback) carries the Macro source to associate.
+    /// authenticated setup callback) carries the Rox source to associate.
     /// Installations created directly through the authenticated setup flow
     /// have no `requester` and are associated by the setup callback instead.
     #[tracing::instrument(skip(self, event), err)]

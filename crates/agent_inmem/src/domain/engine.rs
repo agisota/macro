@@ -22,7 +22,7 @@ use super::user_input::SharedUserInputRequester;
 /// who it is; the id and name also make the turn's tools act as that bot, so
 /// what the agent writes is attributed to it - and presented under its name
 /// wherever a reader sees the write happen, such as the cursor the editing
-/// worker draws - rather than to Macro.
+/// worker draws - rather than to Rox.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AgentIdentity {
     /// The bot the session belongs to.
@@ -70,7 +70,7 @@ pub struct TurnRequest {
     /// answered.
     pub messages: Vec<ChatMessage>,
     /// Tools of the MCP servers the session was handed, composed next to the
-    /// native Macro tools. `None` when the session has none.
+    /// native Rox tools. `None` when the session has none.
     pub mcp_tools: Option<RemoteMcpToolSet>,
     /// Cancelling this token stops the turn; the stream ends after the
     /// engine has drained cooperatively.
@@ -83,9 +83,9 @@ pub struct TurnRequest {
     /// rejected - before the model reads its result. Absent for the same
     /// reason as `user_input`; a pending call then stays pending.
     pub reviewer: Option<Arc<dyn UserToolReviewer>>,
-    /// The agent's own key the turn's model calls run on instead of Macro's,
+    /// The agent's own key the turn's model calls run on instead of Rox's,
     /// with their usage recorded against it rather than the owner's
-    /// allowance. `None` runs on Macro.
+    /// allowance. `None` runs on Rox.
     pub agent_key: Option<UsableAgentKey>,
 }
 

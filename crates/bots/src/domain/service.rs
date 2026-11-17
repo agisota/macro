@@ -539,7 +539,7 @@ where
             .ensure_harness_usable(&owner, req.harness_id, req.auto_accept_permissions)
             .await?;
         let mut req = req;
-        // A Macro computer is a sandbox the team bought for its agents, so an
+        // A Rox computer is a sandbox the team bought for its agents, so an
         // agent on one runs without asking unless the request says otherwise.
         if req.auto_accept_permissions.is_none()
             && harness.is_some_and(|facts| facts.on_computer && facts.allow_permission_bypass)

@@ -48,7 +48,7 @@ impl PgHarnessRepo {
         Self { pool }
     }
 
-    /// The Macro computer behind the live harness `bot` runs on, if any: a
+    /// The Rox computer behind the live harness `bot` runs on, if any: a
     /// bot on a paired machine, on a deleted harness or on none has none.
     pub async fn computer_for_bot(&self, bot: bot_id::BotId) -> sqlx::Result<Option<ComputerId>> {
         let computer = sqlx::query_scalar!(
@@ -777,7 +777,7 @@ impl HarnessRepo for PgHarnessRepo {
 
         // Lock the row first: agent creates and rebinds hold it `FOR SHARE`
         // while they write, so a bind either commits before this delete (and
-        // a Macro computer's release then deletes that agent with the rest)
+        // a Rox computer's release then deletes that agent with the rest)
         // or waits and then sees the harness gone and fails.
         sqlx::query!(
             "SELECT id FROM harnesses WHERE id = $1 FOR UPDATE",

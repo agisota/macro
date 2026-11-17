@@ -184,7 +184,7 @@ export const scheduledActionClient = {
     ),
 
   /**
-   * Macro's catalog routines, with schedules in `timezone`; code steps only
+   * Rox's catalog routines, with schedules in `timezone`; code steps only
    * where code can be saved.
    */
   catalog: async (args: { timezone: string }) =>
@@ -195,7 +195,7 @@ export const scheduledActionClient = {
 
   /**
    * The caller's routine suggestions on every surface: AI's first, then
-   * Macro's templates. 404 while suggestions are off for them.
+   * Rox's templates. 404 while suggestions are off for them.
    */
   routineSuggestions: async () =>
     scheduledActionFetch<RoutineSuggestions>('/scheduled-actions/suggestions', {

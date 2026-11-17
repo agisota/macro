@@ -111,7 +111,7 @@ const load = loader({
 
 // A script the agent writes runs in a process of its own, with none of this
 // one's environment or credentials: `cli.ts exec`, which type-checks it the
-// same way, and reaches Macro through this process's relay. Each script that
+// same way, and reaches Rox through this process's relay. Each script that
 // passes is written to the repository, so it can import its packages, under
 // a fresh name, and only for as long as it takes to import it.
 export const scripts: Scripts = {

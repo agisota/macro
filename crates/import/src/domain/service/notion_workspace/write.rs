@@ -3,7 +3,7 @@
 //!
 //! A write can stop part way (a crash, a deploy) and resume in another
 //! process, so it never creates the same thing twice: documents and tasks
-//! get ids derived from their ledger row and Notion object, which Macro
+//! get ids derived from their ledger row and Notion object, which Rox
 //! refuses to create twice, and everything else is recorded as it is made
 //! ([`Progress`]) and reused when the write resumes.
 
@@ -196,7 +196,7 @@ pub(super) fn folder_for(
     root
 }
 
-/// Where the plan's pages and people resolve in Macro: every page gets the
+/// Where the plan's pages and people resolve in Rox: every page gets the
 /// id of the document it becomes (`imported` when it already exists,
 /// otherwise [`document_id`], known before anything is written), and every
 /// person matched to a teammate their account.
@@ -350,7 +350,7 @@ pub(super) async fn folder_once<Writer: WorkspaceWriter, Store: WrittenObjects>(
     Ok(folder)
 }
 
-/// Write a task list: a folder of Macro tasks, one per row, shared with the
+/// Write a task list: a folder of Rox tasks, one per row, shared with the
 /// team with `share`. Returns the folder id. Rows an earlier attempt already
 /// wrote are skipped.
 #[expect(

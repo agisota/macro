@@ -53,7 +53,7 @@ pub struct ClaudeSignInNotice {
     pub expires_at: Option<DateTime<Utc>>,
 }
 
-/// A computer whose Claude Code runs on an account signed in through Macro:
+/// A computer whose Claude Code runs on an account signed in through Rox:
 /// its active Claude login.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ClaudeSignIn {
@@ -134,7 +134,7 @@ pub trait ClaudeSignIns: Send + Sync + 'static {
     type Err: std::error::Error + Send + Sync + 'static;
 
     /// Every live computer whose Claude Code runs on an account signed in
-    /// through Macro.
+    /// through Rox.
     fn signed_in(&self) -> impl Future<Output = Result<Vec<ClaudeSignIn>, Self::Err>> + Send;
 
     /// Remember that `notice` went out for the login `login_id`.

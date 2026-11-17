@@ -1,7 +1,7 @@
 //! Resolve who a prompt mentions through the lexical service, and share the
 //! session with them.
 //!
-//! The lexical service is the one place that parses Macro markdown, so the
+//! The lexical service is the one place that parses Rox markdown, so the
 //! `<m-user-mention>` tags come from its `/mentions` endpoint - the same call
 //! channel messages use to track theirs. Access is the session's
 //! `entity_access` grants: the owner, the origin channel's members, any team,
@@ -172,7 +172,7 @@ where
             let mentioned = self.source.mentioned_user_ids(prompt_markdown).await?;
             let mut users: Vec<MacroUserIdStr<'static>> = Vec::new();
             for id in mentioned {
-                // An id the lexical service produced that is not a Macro user
+                // An id the lexical service produced that is not a Rox user
                 // id is not ours to notify; skip it rather than fail the lot.
                 let Ok(user) = MacroUserIdStr::parse_from_str(&id) else {
                     tracing::warn!(mention = %id, "ignoring a user mention that is not a macro user id");

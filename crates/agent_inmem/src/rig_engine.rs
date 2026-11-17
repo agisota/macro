@@ -1,9 +1,9 @@
 //! Composition root for the production turn engine: the shared rig agent loop
-//! over the Macro product toolset.
+//! over the Rox product toolset.
 //!
 //! Consumption mirrors the scheduled-action executor
 //! (`crates/scheduled_action/src/outbound/inprocess_executor/agent_task.rs`):
-//! the full static toolset, the agent-session preamble, the static Macro
+//! the full static toolset, the agent-session preamble, the static Rox
 //! prompt, the agent's name and handle, any session instructions, and the
 //! owner's memory, with usage recorded per turn against the session owner.
 //!
@@ -108,7 +108,7 @@ impl RigTurnEngine {
         }
     }
 
-    /// Ask `gate` before each of Macro's own tools runs.
+    /// Ask `gate` before each of Rox's own tools runs.
     #[must_use]
     pub fn with_gate(mut self, gate: Arc<dyn NativeToolGate>) -> Self {
         self.gate = gate;
@@ -135,7 +135,7 @@ impl RigTurnEngine {
 /// turn already got, spend nobody's access.
 const UNGATED_NATIVE_TOOLS: [&str; 4] = ["AskUser", "SearchTools", "LoadTools", "ReadToolResult"];
 
-/// A turn's tools, each call to one of Macro's own asked of the gate first.
+/// A turn's tools, each call to one of Rox's own asked of the gate first.
 /// Remote MCP tools are left to the egress proxy, which gates them already.
 struct GatedToolSet<Context> {
     tools: Arc<dyn AiToolSet<Context> + Send + Sync>,
@@ -591,7 +591,7 @@ async fn drive_turn(
             "the agent's API key does not serve {model}"
         )));
     }
-    // The opening line runs on Macro's own fast model, so a turn the agent's
+    // The opening line runs on Rox's own fast model, so a turn the agent's
     // key pays for goes without one; so does a reply read only once it is
     // finished, which gains nothing from it.
     let opening = !summarizing && agent_key.is_none() && delivery == ReplyDelivery::Streamed;
@@ -601,7 +601,7 @@ async fn drive_turn(
     let usage_ctx = ai_usage::UsageContext::new(feature, owner.clone())
         .with_agent_session(Some(session_id.as_uuid()));
     let agent = identity.as_ref().map_or_else(
-        || "Macro".to_owned(),
+        || "Rox".to_owned(),
         |identity| format!("{} (@{})", identity.name, identity.handle),
     );
     // How the race went, on one span per turn. `outcome` is `complete` (the
@@ -740,7 +740,7 @@ async fn drive_turn(
     tool_context.recorder =
         ai_usage::for_agent_session(base_context.recorder.clone(), session_id.as_uuid());
     // The tools act as the session's bot, delegated for the owner: its writes
-    // are attributed to it and presented under its name, not Macro's.
+    // are attributed to it and presented under its name, not Rox's.
     if let Some(identity) = &identity {
         tool_context = tool_context
             .with_actor(identity.bot)
@@ -773,7 +773,7 @@ async fn drive_turn(
         .with_tool_result_limit(tool_results.clone());
     // Only the loop's own model calls run on the agent's key, so only they are
     // recorded against it; tools keep `usage_ctx`, since they call models on
-    // Macro's keys.
+    // Rox's keys.
     let loop_usage = match agent_key {
         Some(key) => {
             agent_loop = agent_loop.with_provider_api_key(key.key.expose())?;
@@ -845,7 +845,7 @@ async fn drive_turn(
     // Native tools use the actor gate unless the installed finisher authorizes
     // their final reviewed arguments. Remote MCP tools use the egress gate.
     // Keep remote MCP tools alongside the native and AskUser tools. The
-    // finisher above reviews only Macro's native user tools.
+    // finisher above reviews only Rox's native user tools.
     let toolset: Arc<dyn AiToolSet<_> + Send + Sync> = match mcp_tools.filter(|_| !summarizing) {
         Some(mcp) if unseen => Arc::new(
             mcp_select::CombinedToolSet::new(toolset, unseen::CodeModeOnly::new(mcp))
@@ -857,7 +857,7 @@ async fn drive_turn(
         ),
         None => toolset,
     };
-    // Most of Macro's tools go out by name only; the model loads the rest.
+    // Most of Rox's tools go out by name only; the model loads the rest.
     let toolset: Arc<dyn AiToolSet<_> + Send + Sync> =
         Arc::new(DeferredToolSet::new(toolset, deferred));
     let toolset: Arc<dyn AiToolSet<_> + Send + Sync> = Arc::new(GatedToolSet {
@@ -1022,14 +1022,14 @@ fn elapsed_ms(since: tokio::time::Instant) -> u64 {
 /// The turn's system prompt, ordered so the longest possible prefix is
 /// cached: the agent-session preamble (which notes that an opening line may
 /// already be out, see [`opener`]; a session whose replies are read whole is
-/// told otherwise in its own part) and the static Macro prompt (how to use the
+/// told otherwise in its own part) and the static Rox prompt (how to use the
 /// product: mentions, tools, terminology), which are the same for every
 /// session of every agent; then the agent's identity, the session's own
 /// instructions when there are any, which session this is, and the owner's
 /// memory when there is any; and last the SDK documentation picked for this
 /// turn.
 ///
-/// The prompt is split after the static Macro prompt, so every session reads
+/// The prompt is split after the static Rox prompt, so every session reads
 /// it back from the cache whatever its agent or instructions. Identity opens
 /// the session's part so a named agent (even one with no instructions) knows
 /// who it is before its instructions, and `<session_instructions>` follows

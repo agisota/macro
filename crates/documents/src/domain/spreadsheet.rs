@@ -42,9 +42,9 @@ pub enum SpreadsheetError {
     /// Access or token minting.
     #[error(transparent)]
     Document(#[from] DocumentError),
-    /// The document is not a native Macro spreadsheet.
+    /// The document is not a native Rox spreadsheet.
     #[error(
-        "This requires a native Macro spreadsheet. Import an Excel file into a spreadsheet first; read other documents as text."
+        "This requires a native Rox spreadsheet. Import an Excel file into a spreadsheet first; read other documents as text."
     )]
     NotSpreadsheet,
     /// The request is invalid, such as an unknown sheet, a bad range or a

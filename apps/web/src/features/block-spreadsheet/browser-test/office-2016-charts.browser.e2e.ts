@@ -165,7 +165,7 @@ test('a chart inserted as a waterfall becomes a funnel and downloads as chartEx'
   const parts = Object.keys(files).filter((name) =>
     name.startsWith('xl/charts/chartEx')
   );
-  // The seven imported, and the funnel Macro wrote.
+  // The seven imported, and the funnel Rox wrote.
   expect(parts).toHaveLength(8);
   const written = parts
     .map((name) => strFromU8(files[name]))

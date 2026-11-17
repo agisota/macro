@@ -381,11 +381,11 @@ export type Harness = {
   updated_at: string;
   connected: boolean;
   last_connected_at: string | null;
-  /** Set when this is a team's Macro computer. */
+  /** Set when this is a team's Rox computer. */
   computer_id?: HarnessComputerId;
   /** Set when that computer is an agent teammate's, which runs only its agent. */
   team_agent_user_id?: HarnessTeamAgentUserId;
-  /** How Claude Code on a Macro computer is paid for. */
+  /** How Claude Code on a Rox computer is paid for. */
   claude_mode?: ClaudeMode;
 };
 
@@ -542,9 +542,9 @@ export const storageServiceClient = {
       method: 'PUT',
       body: JSON.stringify({ trashed: true }),
     }),
-  /** Macro Databases — see `./databases.ts`. */
+  /** Rox Databases — see `./databases.ts`. */
   databases: databasesClient,
-  /** Macro Forms — see `./forms.ts`. */
+  /** Rox Forms — see `./forms.ts`. */
   forms: formsClient,
 
   async createSlackImport(args: {

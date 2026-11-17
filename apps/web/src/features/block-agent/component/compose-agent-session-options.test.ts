@@ -35,7 +35,7 @@ describe('sessionRepositoryUrl', () => {
 });
 
 describe('harnessDisplayName', () => {
-  it('names Macro runtimes after the product', () => {
+  it('names Rox runtimes after the product', () => {
     expect(harnessDisplayName('in-memory')).toBe('Rox Agent');
     expect(harnessDisplayName('macro-inmem')).toBe('Rox Agent');
     expect(harnessDisplayName('sandbox')).toBe('Rox Agent');
@@ -51,7 +51,7 @@ describe('harnessDisplayName', () => {
 });
 
 describe('harnessTitle', () => {
-  it('uses the product name for Macro slugs instead of title-casing them', () => {
+  it('uses the product name for Rox slugs instead of title-casing them', () => {
     expect(harnessTitle('macro-inmem')).toBe('Rox Agent');
     expect(harnessTitle('in-memory')).toBe('Rox Agent');
     expect(harnessTitle('sandbox')).toBe('Rox Agent');
@@ -79,7 +79,7 @@ describe('sessionHarnessTitle', () => {
     expect(sessionHarnessTitle({ harness: 'claude-code' })).toBe('Claude Code');
   });
 
-  it('uses the product name for Macro slugs', () => {
+  it('uses the product name for Rox slugs', () => {
     expect(sessionHarnessTitle({ harness: 'macro-inmem' })).toBe('Rox Agent');
     expect(sessionHarnessTitle({ harness: 'in-memory' })).toBe('Rox Agent');
   });

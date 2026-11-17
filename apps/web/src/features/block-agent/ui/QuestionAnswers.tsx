@@ -4,7 +4,7 @@
  * card chrome.
  *
  * Port of the question renderer from opencode's message-part.tsx —
- * github.com/sst/opencode, MIT © 2025 opencode — adapted to Macro tokens.
+ * github.com/sst/opencode, MIT © 2025 opencode — adapted to Rox tokens.
  */
 
 import { For } from 'solid-js';

@@ -266,7 +266,7 @@ fn the_caller_is_the_authenticated_one_not_one_the_request_names() {
 }
 
 /// With no authenticated caller there is nothing to write as, so the call
-/// fails instead of falling back to the Macro bot.
+/// fails instead of falling back to the Rox bot.
 #[test]
 fn a_call_without_a_caller_is_refused() {
     let error = caller(&call_extensions(None, &[])).expect_err("no caller");

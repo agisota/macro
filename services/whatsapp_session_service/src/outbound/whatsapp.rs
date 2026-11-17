@@ -316,7 +316,7 @@ impl Forwarder {
             return;
         };
         // Messages are read in the chat as the page names it; the page is
-        // reported under the chat Macro knows (by phone number).
+        // reported under the chat Rox knows (by phone number).
         let phone_chat = page.chat_jid.clone();
         page.chat_jid = events::macro_chat(self.store.as_ref(), &page.chat_jid).await;
         let Some(client) = self.client.upgrade() else {
@@ -343,7 +343,7 @@ impl Forwarder {
             let mut stored = 0usize;
             let mut names = SenderNames::default();
             let mut unreadable: Vec<i32> = vec![];
-            // Messages Macro does not import, by WhatsApp stub type (0: not
+            // Messages Rox does not import, by WhatsApp stub type (0: not
             // a stub), so a page that stores less than it got is explained.
             let mut skipped: Vec<i32> = vec![];
             let mut kept = true;

@@ -13,7 +13,7 @@ export async function resolveSyncRouterWsUrl(): Promise<string> {
     url.protocol = url.protocol === 'http:' ? 'ws:' : 'wss:';
     if (ENABLE_BEARER_TOKEN_AUTH) {
       const token = await getMacroApiToken();
-      if (!token) throw new Error('No Macro API token');
+      if (!token) throw new Error('No Rox API token');
       url.searchParams.set('macro-api-token', token);
     } else {
       const refreshed = await ensureFreshSession();

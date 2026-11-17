@@ -782,7 +782,7 @@ impl Client {
             .instrument(tracing::info_span!("whatsmeow.send_message.get_devices"))
             .await
             .map_err(|error| error.wrap("failed to get device list"))?;
-        // Macro addition: the fan-out on the `whatsmeow.send_message` span.
+        // Rox addition: the fan-out on the `whatsmeow.send_message` span.
         tracing::Span::current().record("devices", all_devices.len());
         if to.server == GROUP_SERVER {
             all_devices

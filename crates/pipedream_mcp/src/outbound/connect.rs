@@ -30,7 +30,7 @@ const CATALOG_TTL: Duration = Duration::from_secs(5 * 60);
 pub struct ConnectConfig {
     /// Connect API base URL, e.g. `https://connect-dev.rox.one`.
     pub api_url: String,
-    /// Macro's customer key for the Connect API.
+    /// Rox's customer key for the Connect API.
     pub customer_key: String,
     /// Where Connect sends the browser after consent.
     pub callback_url: Url,
@@ -47,7 +47,7 @@ impl std::fmt::Debug for ConnectConfig {
     }
 }
 
-/// Macro Connect behind this crate's ports, over `connect_client`.
+/// Rox Connect behind this crate's ports, over `connect_client`.
 ///
 /// Serves records with [`ConnectionProvider::Connect`]: tools through
 /// Connect's MCP gateway (Connect attaches the vendor token), app API calls
@@ -112,7 +112,7 @@ impl ConnectAdapter {
     }
 }
 
-/// The slugs Macro addresses a Connect app by: the Pipedream slugs it
+/// The slugs Rox addresses a Connect app by: the Pipedream slugs it
 /// replaces, or its Connect id when Pipedream has no such app.
 fn macro_slugs(app: &wire::CatalogEntry) -> &[String] {
     if app.pipedream_app_slugs.is_empty() {
@@ -122,7 +122,7 @@ fn macro_slugs(app: &wire::CatalogEntry) -> &[String] {
     }
 }
 
-/// The catalog entry Macro shows for a Connect app under `app_slug`. Icon
+/// The catalog entry Rox shows for a Connect app under `app_slug`. Icon
 /// paths are relative to the Connect origin.
 fn catalog_entry(app: &wire::CatalogEntry, app_slug: &str, api_url: &Url) -> CatalogEntry {
     CatalogEntry {
@@ -284,7 +284,7 @@ impl ConnectorCapabilities for ConnectAdapter {
 }
 
 impl ConnectorDirectory for ConnectAdapter {
-    /// Connect's catalog under each app's first Macro slug, in catalog
+    /// Connect's catalog under each app's first Rox slug, in catalog
     /// order. `cursor` is an offset.
     #[tracing::instrument(skip(self), err)]
     async fn search(

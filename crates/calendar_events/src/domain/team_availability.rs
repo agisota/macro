@@ -68,7 +68,7 @@ pub enum AvailabilityUnknownReason {
 #[cfg_attr(feature = "ai_tools", derive(schemars::JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct TeamMemberAvailability {
-    /// Macro identifier of the included person.
+    /// Rox identifier of the included person.
     pub user_id: String,
     /// Merged known busy intervals clipped to the requested range.
     pub busy: Vec<AvailabilityInterval>,

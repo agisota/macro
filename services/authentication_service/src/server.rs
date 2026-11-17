@@ -183,7 +183,7 @@ async fn run_server() -> anyhow::Result<()> {
         "initialized db connection"
     );
 
-    // Macro API token
+    // Rox API token
     let macro_api_token_private_key = secretsmanager_client
         .get_maybe_secret_value(config.environment, MacroApiTokenPrivateSecretKey::new()?)
         .await?;

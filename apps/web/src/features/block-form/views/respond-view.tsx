@@ -93,7 +93,7 @@ export function RespondView(props: {
   });
 
   const form = () => props.detail.form;
-  // An inline card stays in Macro's look; the page wears the owner's.
+  // An inline card stays in Rox's look; the page wears the owner's.
   const branding = () => (props.compact ? undefined : form().branding);
   const brandingImage = (
     fileId: string | null | undefined,
@@ -561,7 +561,7 @@ export function RespondView(props: {
                                 columnFacts().kind,
                                 question.widget
                               );
-                            // Files and Macro pickers need an account; an
+                            // Files and Rox pickers need an account; an
                             // anonymous visitor is told so, not shown a dead end.
                             const needsSignIn = () => {
                               if (signedIn()) return undefined;

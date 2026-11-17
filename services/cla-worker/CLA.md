@@ -1,11 +1,11 @@
-# Macro Contributor License Agreement
+# Rox Contributor License Agreement
 
 **Version: 2026-08-19**
 
 You (the contributor) are entering into an agreement with CoParse Inc., the
-company behind Macro.
+company behind Rox.
 
-- You're giving Macro permission to use, modify, sublicense, and share your
+- You're giving Rox permission to use, modify, sublicense, and share your
   contributions.
 - You keep ownership of your contributions — this is a license, not a
   transfer.
@@ -16,7 +16,7 @@ company behind Macro.
 - If you ever notice an error or change in the details you've given us, you
   agree to let us know.
 
-In short, this agreement covers the terms for your contributions to Macro's
+In short, this agreement covers the terms for your contributions to Rox's
 projects. It does not change your rights to use your own Contributions for
 any other purpose.
 

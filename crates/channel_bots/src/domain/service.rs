@@ -1,4 +1,4 @@
-//! Domain service for the built-in Macro AI agent on channels and documents.
+//! Domain service for the built-in Rox AI agent on channels and documents.
 
 use std::collections::HashSet;
 use std::fmt::Write as _;
@@ -245,10 +245,10 @@ fn append_block(
     let _ = writeln!(prompt, "</{tag}>");
 }
 
-/// Message Macro posts immediately, then replaces with its answer.
+/// Message Rox posts immediately, then replaces with its answer.
 ///
 /// Rendered by the channel markdown as the existing pulsing AwaitNode.
-const THINKING_MESSAGE: &str = r#"<m-await>{"text":"Macro is thinking…","inline":true}</m-await>"#;
+const THINKING_MESSAGE: &str = r#"<m-await>{"text":"Rox is thinking…","inline":true}</m-await>"#;
 const EMPTY_RESPONSE_FALLBACK: &str = "I wasn't able to come up with a response.";
 const ERROR_FALLBACK: &str = "Sorry — I ran into an error while responding.";
 
@@ -284,7 +284,7 @@ fn current_time_block(now: chrono::DateTime<chrono::Utc>, time_zone: Option<&str
     format!("\n<current_time>\n{line}\n</current_time>\n")
 }
 
-/// In-process handler for the Macro AI system bot.
+/// In-process handler for the Rox AI system bot.
 ///
 /// Posts an immediate "thinking" reply in a thread, runs the agent loop, then
 /// edits that same message with the final answer. Reads and writes go through
@@ -304,7 +304,7 @@ where
     R: AgentResponder,
     Z: UserTimeZones,
 {
-    /// Create a Macro AI handler over the shared message service.
+    /// Create a Rox AI handler over the shared message service.
     pub fn new(
         messages: Arc<dyn MessageServiceApi>,
         access: Arc<dyn ConversationAccess>,
@@ -571,7 +571,7 @@ where
         Ok(prompt)
     }
 
-    /// React to a Macro AI mention.
+    /// React to a Rox AI mention.
     #[tracing::instrument(skip(self, event), fields(parent = ?event.message.parent), err)]
     pub(crate) async fn handle(&self, event: &BotEvent) -> anyhow::Result<()> {
         let parent = &event.message.parent;

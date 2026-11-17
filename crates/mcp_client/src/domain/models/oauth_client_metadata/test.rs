@@ -13,7 +13,7 @@ fn serializes_required_client_id_metadata_fields() {
         value,
         serde_json::json!({
             "client_id": "https://document-cognition.rox.one/mcp/servers/auth/client-metadata",
-            "client_name": "Macro",
+            "client_name": "Rox",
             "redirect_uris": ["https://document-cognition.rox.one/mcp/servers/auth/callback"],
             "grant_types": ["authorization_code", "refresh_token"],
             "response_types": ["code"],

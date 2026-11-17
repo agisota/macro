@@ -94,7 +94,7 @@ use models_search::{MatchType, SearchHighlight, TermMatching};
                 ),
         ),
         tags(
-            (name = "search service", description = "Macro Search Service")
+            (name = "search service", description = "Rox Search Service")
         )
     )]
 pub struct ApiDoc;

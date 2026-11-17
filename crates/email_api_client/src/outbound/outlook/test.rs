@@ -463,7 +463,7 @@ async fn first_archive_provisions_a_marked_folder_then_recovers_it_on_retry() {
             let value = if count.fetch_add(1, std::sync::atomic::Ordering::SeqCst) == 0 {
                 json!([])
             } else {
-                json!([{"id":"archive-created","displayName":"Macro Archive"}])
+                json!([{"id":"archive-created","displayName":"Rox Archive"}])
             };
             ResponseTemplate::new(200).set_body_json(json!({"value":value}))
         })
@@ -472,7 +472,7 @@ async fn first_archive_provisions_a_marked_folder_then_recovers_it_on_retry() {
         .await;
     Mock::given(method("POST")).and(path("/v1.0/me/mailFolders"))
         .and(body_partial_json(json!({"singleValueExtendedProperties":[{"id":"String {81f532e3-7ace-4e0b-bae9-312ce0d50c8c} Name MacroFolderRole","value":"archive"}]})))
-        .respond_with(ResponseTemplate::new(201).set_body_json(json!({"id":"archive-created","displayName":"Macro Archive"}))).expect(1).mount(&server).await;
+        .respond_with(ResponseTemplate::new(201).set_body_json(json!({"id":"archive-created","displayName":"Rox Archive"}))).expect(1).mount(&server).await;
     Mock::given(method("POST"))
         .and(path("/v1.0/me/messages/m1/move"))
         .and(body_partial_json(

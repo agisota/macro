@@ -187,7 +187,7 @@ pub(super) async fn forwarded_copy(
             event.conference_provider,
             -- Google's own flag, kept in the payload it sent. Every source
             -- must be a Google private copy: an Outlook copy, or a source
-            -- stored before Macro kept Google's whole payload, is no evidence.
+            -- stored before Rox kept Google's whole payload, is no evidence.
             -- A source without the key counts as false, since bool_and skips
             -- NULLs.
             COALESCE(

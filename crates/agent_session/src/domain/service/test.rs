@@ -1709,7 +1709,7 @@ async fn a_recorded_frame_is_stored_and_published_at_once() {
     let notice = agent_runtime_protocol::domain::tool_approval::ToolApprovalNotice {
         approval_id: "a1".to_owned(),
         server_slug: "macro".to_owned(),
-        server_name: "Macro".to_owned(),
+        server_name: "Rox".to_owned(),
         tool_name: "WebSearch".to_owned(),
         arguments: serde_json::json!({}),
         requested_by: None,

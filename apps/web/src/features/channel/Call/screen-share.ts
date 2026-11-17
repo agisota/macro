@@ -20,9 +20,9 @@ function shareFailed(span: Span, message: string, cause: unknown) {
 }
 
 /**
- * Starts sharing a screen. The macOS desktop app picks the source in Macro's
+ * Starts sharing a screen. The macOS desktop app picks the source in Rox's
  * own picker; everywhere else the browser shows its own. Resolves
- * `cancelled` when the user dismisses Macro's picker.
+ * `cancelled` when the user dismisses Rox's picker.
  */
 export async function startScreenShare(
   room: Room,

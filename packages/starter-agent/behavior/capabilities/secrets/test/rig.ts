@@ -9,7 +9,7 @@ import { stubVault } from './stub.ts';
 
 export const teamId = '11111111-1111-4111-8111-111111111111';
 export const agentKey = 'relay-capability-token';
-/** The origin a script's Macro client has for the storage service: the relay's. */
+/** The origin a script's Rox client has for the storage service: the relay's. */
 export const origin = 'http://127.0.0.1:40000/storage';
 
 export const rig = (start = '2026-11-11T12:00:00Z') => {

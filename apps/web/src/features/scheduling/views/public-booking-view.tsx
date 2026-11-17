@@ -11,7 +11,7 @@ export function PublicBookingView(props: {
   source: BookingSource;
   onEvent: (slug: string) => void;
   onReceipt: (r: BookingReceipt) => void;
-  /** Shown inside another Macro page, which already carries the Macro name. */
+  /** Shown inside another Rox page, which already carries the Rox name. */
   embedded?: boolean;
 }) {
   return (

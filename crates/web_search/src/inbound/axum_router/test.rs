@@ -49,7 +49,7 @@ impl SearchProvider for FakeProvider {
             value: vec![WebSearchResult {
                 title: "Macro".into(),
                 url: "https://rox.one/".into(),
-                snippet: "Macro is a workspace.".into(),
+                snippet: "Rox is a workspace.".into(),
                 published_at: None,
                 content: None,
             }],
@@ -218,7 +218,7 @@ async fn search_returns_results_and_meters_the_caller() {
         json!({ "results": [{
             "title": "Macro",
             "url": "https://rox.one/",
-            "snippet": "Macro is a workspace."
+            "snippet": "Rox is a workspace."
         }] })
     );
     let checks = limiter.checks.lock().unwrap();

@@ -185,7 +185,7 @@ where Word PDFs exist they decide.
 - Fields are shown with their cached results, except page numbers, which
   are computed; a table of contents is not regenerated.
 - Editing does not create text boxes or pictures and does not edit inside
-  text boxes (it keeps them); new comments are Macro threads anchored in the
+  text boxes (it keeps them); new comments are Rox threads anchored in the
   body, and Word's comments in the file are shown read-only (the AI tools'
   `addComment` writes Word comments, through the shared parts). Undoing a new
   footnote removes its reference; the empty note stays in the notes part,

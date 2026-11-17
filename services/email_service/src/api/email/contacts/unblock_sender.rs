@@ -15,7 +15,7 @@ pub struct UnblockSenderRequest {
     pub email_address: String,
 }
 
-/// Durably remove Macro-managed sender blocking in the selected inbox.
+/// Durably remove Rox-managed sender blocking in the selected inbox.
 #[utoipa::path(
     post,
     tag = "Contacts",

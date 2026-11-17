@@ -1,6 +1,6 @@
 # Email Seed Data
 
-Two-step workflow for populating your local Macro environment with email data.
+Two-step workflow for populating your local Rox environment with email data.
 
 ## Prerequisites
 

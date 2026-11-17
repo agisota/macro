@@ -229,8 +229,8 @@ fn listing_harness() -> (
 
 /// An adapter that lists every session it has ever stored, the way
 /// `@agentclientprotocol/claude-agent-acp` 0.73.0 answers `session/list`:
-/// Macro's sessions on this harness, archived ones, another harness's, ones
-/// Macro never created, and ids that are not Macro's at all. Only the live,
+/// Rox's sessions on this harness, archived ones, another harness's, ones
+/// Rox never created, and ids that are not Rox's at all. Only the live,
 /// unarchived sessions bound to the dialing harness are restored.
 #[tokio::test]
 async fn a_dial_restores_only_this_harness_tracked_sessions_from_an_agent_that_lists_everything() {
@@ -273,7 +273,7 @@ async fn a_dial_restores_only_this_harness_tracked_sessions_from_an_agent_that_l
             {"sessionId": archived.to_string(), "cwd": "/srv/agent", "title": "Old work", "updatedAt": "2026-10-01T10:00:00Z"},
             {"sessionId": elsewhere.to_string(), "cwd": "/srv/agent", "title": "Other laptop", "updatedAt": "2026-11-01T10:00:00Z"},
             {"sessionId": untracked.to_string(), "cwd": "/home/operator", "title": "Started in a terminal", "updatedAt": "2026-11-02T09:00:00Z"},
-            {"sessionId": "claude-local-7f3a", "cwd": "/home/operator/scratch", "title": "Not Macro's", "updatedAt": "2026-10-20T09:00:00Z"},
+            {"sessionId": "claude-local-7f3a", "cwd": "/home/operator/scratch", "title": "Not Rox's", "updatedAt": "2026-10-20T09:00:00Z"},
         ]}),
     );
     let report = reports.recv().await.expect("the dial reports its listing");
@@ -740,7 +740,7 @@ async fn a_redial_restores_a_session_its_runtime_saw_active_recently() {
     let bot_id = BotId::new_from_uuid(macro_uuid::generate_uuid_v7());
     let worked_locally = native_session(&service, &repo, bot_id).await;
     let untouched = native_session(&service, &repo, bot_id).await;
-    // Neither was prompted from Macro for days; the runtime says someone
+    // Neither was prompted from Rox for days; the runtime says someone
     // worked in one of them minutes ago, in its terminal.
     let days_ago = chrono::Utc::now() - chrono::Duration::days(3);
     repo.set_modified_at(worked_locally, days_ago);

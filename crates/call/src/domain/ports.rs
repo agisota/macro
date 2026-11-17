@@ -275,7 +275,7 @@ pub trait CallRepository: Send + Sync + 'static {
         call_id: &Uuid,
     ) -> impl Future<Output = Result<Vec<CallParticipant>, Self::Err>> + Send;
 
-    /// The people on an archived call: its Macro participants, the owner of
+    /// The people on an archived call: its Rox participants, the owner of
     /// its meeting link, and the invitees of the calendar event carrying that
     /// link.
     fn get_call_record_people(
@@ -283,7 +283,7 @@ pub trait CallRepository: Send + Sync + 'static {
         call_record_id: &Uuid,
     ) -> impl Future<Output = Result<CallPeople, Self::Err>> + Send;
 
-    /// Get the count of active attendees in a call: Macro participants plus
+    /// Get the count of active attendees in a call: Rox participants plus
     /// non-account guests. Archival on room-empty keys off this reaching 0.
     fn get_participant_count(
         &self,
@@ -970,7 +970,7 @@ pub trait CallService: Send + Sync + 'static {
         actor: Option<MacroUserIdStr<'a>>,
     ) -> impl Future<Output = Result<MeetingParticipants, CallError>> + Send;
 
-    /// Join using an authenticated Macro identity.
+    /// Join using an authenticated Rox identity.
     fn join_meeting<'a>(
         &self,
         token: MeetingToken,
@@ -1243,7 +1243,7 @@ pub trait CallRecordQueryService: Send + Sync + 'static {
         req: GetCallRecordsRequest,
     ) -> impl Future<Output = Result<Vec<CallRecord>, CallError>> + Send;
 
-    /// The people on an archived call record: its Macro participants, the
+    /// The people on an archived call record: its Rox participants, the
     /// owner of its meeting link, and the invitees of the calendar event
     /// carrying that link. Empty when the record does not exist.
     fn get_call_record_people(

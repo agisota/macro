@@ -2,7 +2,7 @@
 
 ## What it is
 
-Backs favoriting/pinning across Macro surfaces (sidebar, Home/Soup):
+Backs favoriting/pinning across Rox surfaces (sidebar, Home/Soup):
 user- and team-scoped ordered collections of entities, following the
 hexagonal architecture pattern.
 

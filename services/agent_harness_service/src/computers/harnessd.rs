@@ -1,4 +1,4 @@
-//! Driving harnessd, the agent sign-in daemon on a Macro computer, through
+//! Driving harnessd, the agent sign-in daemon on a Rox computer, through
 //! the fleet's exec, and keeping the computer's login rows in step with it.
 //!
 //! Every command for a computer runs under that computer's lock, and so does

@@ -102,7 +102,7 @@ fn every_outcome() -> Vec<ReplyOutcome> {
         ReplyOutcome::AwaitingApproval(HeldToolCall {
             approval_id: "approval-1".to_owned(),
             server_slug: "macro".to_owned(),
-            server_name: "Macro".to_owned(),
+            server_name: "Rox".to_owned(),
             tool_name: "ListEntities".to_owned(),
         }),
         ReplyOutcome::Resumed,
@@ -209,7 +209,7 @@ fn a_resumed_reply_is_the_pending_reply_again() {
 }
 
 /// A held call names the tool, and the app it belongs to when that is not
-/// Macro, and asks nothing of the thread: only the owner can approve it.
+/// Rox, and asks nothing of the thread: only the owner can approve it.
 #[test]
 fn a_held_call_names_its_tool_while_it_waits() {
     let held = |server_slug: &str, server_name: &str, tool_name: &str| {
@@ -221,11 +221,11 @@ fn a_held_call_names_its_tool_while_it_waits() {
         })))
     };
     assert_eq!(
-        held("macro", "Macro", "ListEntities"),
+        held("macro", "Rox", "ListEntities"),
         "Waiting for the session owner to allow `ListEntities`."
     );
     assert_eq!(
-        held("macro", "Macro", "ExecuteCode"),
+        held("macro", "Rox", "ExecuteCode"),
         "Waiting for the session owner to allow a step in their workspace."
     );
     assert_eq!(

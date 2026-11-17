@@ -739,7 +739,7 @@ fn override_text(path: &Path) {
         .map_or(100.0, |i| doc.props(i).size().x + 40.0);
     let ops: Vec<Op> = serde_json::from_str(&format!(
         r#"[{{"op":"set","ids":["{root}"],"props":{{"width":{width}}}}},
-            {{"op":"set","ids":["{id}"],"props":{{"characters":"Macro override"}}}}]"#
+            {{"op":"set","ids":["{id}"],"props":{{"characters":"Rox override"}}}}]"#
     ))
     .expect("ops");
     if let Err(e) = History::default().apply(&mut doc, &ops, None) {

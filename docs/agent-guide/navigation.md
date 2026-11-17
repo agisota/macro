@@ -74,7 +74,7 @@ even when the sidebar is shown on a touch device.
 Desktop external links open in the system browser, whether activated by a normal
 anchor, a `target="_blank"` anchor, or `window.open(url)`. Native webview navigation
 handles this, not a window-level DOM click listener. Each activation should open
-exactly once, without replacing the app or creating another app window. Macro app
+exactly once, without replacing the app or creating another app window. Rox app
 links (including same-origin popup links) route inside the existing SPA. Standalone
 `.html` documents on trusted app origins, such as `/billing-lab.html`, instead open
 in a native popup without replacing the app or emitting an SPA navigation event.
@@ -87,9 +87,9 @@ prevented click does nothing. Browser-only URLs such as `about:blank`, `data:`,
 behavior is unchanged. iOS/Android retain their existing JS opener fallback because
 Tauri's native popup callback is desktop-only.
 
-## Macro links in agent replies
+## Rox links in agent replies
 
-A plain click on a Macro `/app` link in an agent's reply, in its session
+A plain click on a Rox `/app` link in an agent's reply, in its session
 transcript or in a channel message the agent posted, opens the item in the app
 the way the reply's mention chips do: a new split on desktop, in place on touch,
 and reusing a split that already shows it. On the web this replaces the new
@@ -124,7 +124,7 @@ every cache-driven view after each intermediate write. Open Calendar, switch to
 an unrelated tab (or fully cover Chrome with another macOS app), let remote
 updates arrive, then return and immediately click an event and change the date.
 Check that input is handled and the final events appear without repeated chip
-rebuilds. Repeat with several hidden Macro tabs. `graphql_cache.change_batch`
+rebuilds. Repeat with several hidden Rox tabs. `graphql_cache.change_batch`
 reports the number of hints combined; individual commits and mutation replies
 remain separate. The backend-free parking regression verifies five queued commits
 produce one visible-cache refresh, but real macOS occlusion and calendar input
@@ -190,7 +190,7 @@ keyboard leaves only the usual gutter above it. iOS retains its existing 28px
 bottom padding with the keyboard closed and 12px with it open.
 
 Sharing text, links, images, or documents from another Android app opens Share to
-Macro after login. A second incoming share waits behind the current one. Back or
+Rox after login. A second incoming share waits behind the current one. Back or
 outside dismissal asks **Discard this share?**; **Keep editing** preserves the
 message and attachments. Failed uploads show **Retry** and block Send until they
 succeed. Send stays disabled while posting and after success, including when
@@ -217,8 +217,8 @@ successfully rather than hashing the empty JavaScript placeholder.
 | `/app` | Redirects to Home |
 | `/app/welcome` | Login page (when unauthenticated) |
 | `/app/invite?token=<token>` | GTM invite welcome page ("Welcome, <first name>", Continue → signup). Links come from the staff portal, last 48h, and grant the first month of Premium free once the account is created |
-| `/app/internal/invite-links` | Macro staff only (`@rox.one`): create GTM invite links and track opens, signups, and subscriptions |
-| `/app/internal/status` | Macro staff only (`@rox.one`): set the system status (Operational, Degraded, Major outage + message), see its history and the `POST /auth/system-status` API. A non-operational status shows a banner across the top of the app for every user; open apps update over the connection gateway. Its close button hides that alert on this device, across reloads, remembered by the alert's id in localStorage; a new alert shows again and clears the stored id |
+| `/app/internal/invite-links` | Rox staff only (`@rox.one`): create GTM invite links and track opens, signups, and subscriptions |
+| `/app/internal/status` | Rox staff only (`@rox.one`): set the system status (Operational, Degraded, Major outage + message), see its history and the `POST /auth/system-status` API. A non-operational status shows a banner across the top of the app for every user; open apps update over the connection gateway. Its close button hides that alert on this device, across reloads, remembered by the alert's id in localStorage; a new alert shows again and clears the stored id |
 | `/app/home` | Desktop: Home (notifications + recent activity); mobile: Notifications soup |
 | `/app/home/<block-type>/<uuid>` | Home with an item opened inline; `<block-type>` may be an alias such as `task`; a targeted channel message uses `sN.channels.messageId` (and optionally `sN.channels.threadId`) and a document comment `sN.drive.commentId`; a calendar row renders the Calendar view inline at `/app/home/calendar/<month-or-week-or-day>` with the event, occurrence, and locator range in `sN.calendar.*` |
 | `/app/mail` | Email client |
@@ -665,7 +665,7 @@ field above New and filter by title.
 Results stay packed at the top with compact spacing, even with only a few matches;
 clearing the search restores the list.
 Its **New conversation** button opens the composer for the current mode with one
-**Agent** selector on the right. In Work the selector lists Macro's models and
+**Agent** selector on the right. In Work the selector lists Rox's models and
 chat agents, and the composer stays on one line. In Code it lists coding agents
 only, the composer opens expanded with the repository drawer below it, and the
 greeting reads "What should we build?". New sessions use the selected agent's
@@ -763,7 +763,7 @@ Type directly; predictions refresh while typing, at most once every 200 ms with
 separate classification and field-extraction queues. Each queue keeps one request
 in flight and coalesces updates to the latest text; field extraction never blocks
 type prediction. The classifier chooses a form; extraction supplies its addressing
-and outgoing body. It recognizes AI, global Macro search, email,
+and outgoing body. It recognizes AI, global Rox search, email,
 Markdown note, task, calendar event, or message/DM. The main editor keeps focus
 while editable fields appear below it. **Content type** defaults to **Auto**;
 the strongest candidate starts a draft even when the scores are close. Field
@@ -818,7 +818,7 @@ Editing **Search for** or changing the filter chips overrides subsequent
 predictions for those values. Sender-only message scopes and speaker-only call
 scopes keep their filters visible and request search text:
 channel/call browsing cannot enforce those message-level filters. No unfiltered
-browse results appear while keywords are required. **Search Macro** or
+browse results appear while keywords are required. **Search Rox** or
 **Cmd/Ctrl+Enter** opens Global Search with the same query and complete filters,
 including when the Search view is already open. If extraction fails, results and
 submission pause until both **Search for** and the filter selection are explicitly
@@ -830,7 +830,7 @@ focus. **Shift+Enter** inserts a newline in the composer's main input, including
 when Shift is released before Enter; neither key release opens the selected
 result. Before Universal Input activates, Shift+Enter in the Command K search
 input opens the selected result in a new split. Multiline input hides the
-Macro logo and removes its reserved spacing so text uses the full width. **Escape** exits
+Rox logo and removes its reserved spacing so text uses the full width. **Escape** exits
 result navigation; a second Escape closes the menu. The content type selector
 uses the shared styled dropdown with a selection checkmark and platform-specific
 shortcut tooltip. Search navigation and type cycling use the app's scoped
@@ -1211,10 +1211,10 @@ scroll sideways. With `enable-routine-suggestions` and
 strip's place: **Suggested for you** above the rows on **All** shows one row
 of Discover's cards, as many as fit, and after them a narrow **N more · In
 Discover** column, which opens a third tab, **Discover**. Discover
-replaces the list with every suggestion (AI's first, then Macro's) followed by
+replaces the list with every suggestion (AI's first, then Rox's) followed by
 the templates no suggestion already offers, as many cards to a row as fit, with
 **All** and one tab per area that has any (`Suggestion area`) and the hint
-**picked for you, then Macro's templates**. Every suggestion card, in the row,
+**picked for you, then Rox's templates**. Every suggestion card, in the row,
 on Discover and in the sidebar dialog, is the dialog's card: 25rem wide
 (narrower only in a pane too small for one) and as tall as the tallest card in
 its row. The list's search narrows Discover
@@ -1301,7 +1301,7 @@ open replaces it with the new one. A routine
 whose only step is **Ask AI** saves in the original single-agent form.
 
 **Steps.** A routine runs its steps in order and stops at the first failed
-step. There are two kinds. **Code** steps run TypeScript against Macro's SDK;
+step. There are two kinds. **Code** steps run TypeScript against Rox's SDK;
 AI writes them (**Draft it**, the starter templates, or a conversation about
 the routine), and they run with the owner's access. Each shows the sentence
 of what it does, with its values to change; its code is in the step's ⋯ menu. **Ask AI** hands the run to a model or agent with instructions; it sees
@@ -1332,7 +1332,7 @@ Escape work throughout. On phones there are no submenus: tapping a kind drills
 in place, with a back row. **On a schedule** opens a panel with **Describe it**
 (a check shows when it's understood), **Repeat** (Hourly, Daily, Weekly,
 Monthly, Cron), **On** (day buttons S M T W T F S), **At** and **Time zone**.
-**Once** offers Macro's natural date search (**tomorrow 9am**, **in 2 hours**)
+**Once** offers Rox's natural date search (**tomorrow 9am**, **in 2 hours**)
 and **Custom date and time…**. Click **Add trigger** in the panel to confirm.
 Recurring schedules retain their time zones; one-off times use the browser's
 local time. A one-off saves a `once` trigger (`{type: 'once', at}`, the same one
@@ -1356,14 +1356,14 @@ the card (on its own before there are triggers).
 
 Event triggers appear only for users with the `enable-event-routines` PostHog
 flag; without it, **Add trigger** offers schedules only. The event menu groups
-Macro activity triggers by surface:
+Rox activity triggers by surface:
 
 - **Channels:** **Channel created**, **Message sent in channel**, and **@ mentioned in channel**.
 - **Documents:** **Document created** and **Document deleted**. Tasks are separate.
 - **Tasks:** **Task created**, **Status changed**, **Priority changed**, **Assignees changed**, **Due date changed**, **Project changed**, **Effort changed**, and **Any property changed**. Under **Changes to**, choose the values that start the routine, such as **Completed**, or leave **Any status**. A value counts only when the change adds it. Tags aren't properties and have no trigger.
 - **Email:** **New email received** in the routine owner's inbox, excluding spam, trash, drafts, and historical imports.
 - **Calls:** **Call started**, for calls the routine owner starts (receives the call and who has joined so far); and **Call ended**, for channel calls and meetings the owner joined (receives participants and transcript, cut short for long calls).
-- **GitHub:** presets for **Workflow failed**, **Workflow finished**, **Pull request opened**, **Pull request merged**, **Review requested**, **Review submitted**, **Issue opened**, **Comment added**, **Code pushed**, **Release published**, and **Any GitHub event**, from repositories Macro's GitHub app reaches for the routine owner. Until the owner connects GitHub, the group shows **Connect GitHub** instead.
+- **GitHub:** presets for **Workflow failed**, **Workflow finished**, **Pull request opened**, **Pull request merged**, **Review requested**, **Review submitted**, **Issue opened**, **Comment added**, **Code pushed**, **Release published**, and **Any GitHub event**, from repositories Rox's GitHub app reaches for the routine owner. Until the owner connects GitHub, the group shows **Connect GitHub** instead.
 
 For messages, mentions, deletion, and task changes, use **Applies to** in the
 same panel to choose any accessible item or specific channels/documents/tasks.
@@ -1373,7 +1373,7 @@ Creation triggers cover newly created accessible items; email covers the owner's
 join** — neither has an item picker. Calls the owner did not start never trigger
 **Call started**; calls they did not join never trigger **Call ended**. Mentions match only @ mentions of the routine owner. **Any property changed**
 also includes status and priority; overlapping selectors start only one run for
-the same event. Bot-authored or delegated Macro changes do not retrigger
+the same event. Bot-authored or delegated Rox changes do not retrigger
 routines. Saved legacy selectors remain
 editable but are no longer offered in the new-trigger menu.
 
@@ -1383,7 +1383,7 @@ edits the preset's **GitHub events** and **Actions** (comma-separated names
 GitHub sends, such as `workflow_run` and `completed`; empty means any), checks
 **Repositories** from the owner's reachable list (none checked means all), and
 **Also run for bots and apps** (off by default, so an agent acting through
-Macro's app can't retrigger itself). Deliveries only reach owners whose
+Rox's app can't retrigger itself). Deliveries only reach owners whose
 currently linked GitHub account installed the delivering installation, or whose
 team did. While GitHub is disconnected the panel shows **Connect GitHub**
 instead, as does the triggers section above the list whenever a GitHub
@@ -1392,7 +1392,7 @@ trigger is present, and an enabled GitHub routine can't be saved. The panel also
 `pull_request.labels.*.name`), a comparison (**is**, **is one of**, **is not one
 of**, **matches** glob, **is set**, **is not set**) and a value. Every row must
 pass before the run is queued. Steps that act on the triggering item can't run
-on GitHub triggers, which have no Macro item.
+on GitHub triggers, which have no Rox item.
 
 Presets and **Any GitHub event** only receive events selected on the installed
 GitHub App. Account linking alone does not enable delivery. The
@@ -1548,18 +1548,18 @@ bottom sheets.
 **Runs** shows outcome, duration, and firing time. History loads fifty
 rows at a time; **Load more runs** reveals older records. Accessible run rows
 open the agent session created by that run. Selecting a model uses the same
-Macro agent-session runtime as the new AI chat composer, with that model;
+Rox agent-session runtime as the new AI chat composer, with that model;
 selecting an agent uses its runtime and default model or selected override.
 Historical runs that created legacy chats still open those chats. Unavailable conversations
-remain non-clickable. Macro event routines also support editing, history, and
+remain non-clickable. Rox event routines also support editing, history, and
 activation.
 
-MCP and Macro agent tools expose **CreateRoutine**, **ListRoutines**,
+MCP and Rox agent tools expose **CreateRoutine**, **ListRoutines**,
 **ReadRoutine**, and **UpdateRoutine**. A configuration is a `name`, `triggers`
 (`once` with a future RFC3339 `at`, `cron` with a six-field `expression` and IANA
 `timezone`, or `event` with `events`, optional item `ids` and an optional yes/no
 `condition`), `steps`, a JSON array encoded as a string, and `requiredApps`.
-Step types are `code` (TypeScript against Macro's SDK, type-checked when saved,
+Step types are `code` (TypeScript against Rox's SDK, type-checked when saved,
 run with the owner's access) and `agent` (`model`, or `agent.bot_id`
 from **ListAgents**, plus `instructions`). Routine ownership comes from the authenticated caller, never a
 model-supplied user ID.
@@ -1574,7 +1574,7 @@ category, Esc closes. The category strip and footer have transparent backgrounds
 With PostHog **enable-universal-input** enabled, typing at least **34 characters**
 (word count does not matter) turns the menu into the shared Universal Input composer. The current
 text and insertion point transfer to its rich input in the same header row, with
-the same type size and padding. There is no additional title. The Macro logo hides
+the same type size and padding. There is no additional title. The Rox logo hides
 when the rich input wraps or contains multiple lines, then returns on one line;
 its reserved space is removed so text uses the full input width. Classification and field
 extraction run while typing continues. For example, “dinner with julia tomorrow
@@ -1651,23 +1651,23 @@ and stable tie ordering remain unchanged.
 
 With CRM enabled, normal `@` menus include companies and contacts under
 **Contacts & Companies** in documents, channels, discussions, and composers.
-**People** contains only Macro users and groups. Contact search loads paged
+**People** contains only Rox users and groups. Contact search loads paged
 GraphQL results from all accessible CRM-enabled teams, excludes hidden contacts
 and companies, and
 collapses duplicate full email addresses case-insensitively. The most recently
 active visible team record represents each email. Picking a CRM contact inserts
-a link to that original CRM record, even if a Macro user shares its email; it
+a link to that original CRM record, even if a Rox user shares its email; it
 does not invite or notify that email address. Assignee and other user-only
-pickers continue to list Macro users only. Mobile keeps a single list, with
-only Macro users and groups pinned ahead of ranked entity results.
+pickers continue to list Rox users only. Mobile keeps a single list, with
+only Rox users and groups pinned ahead of ranked entity results.
 
 The PostHog `disable-crm-contact-search` kill switch hides CRM contact results
 and disables their searches in `@` menus, Cmd+K, and mobile name search.
-Companies and Macro users remain searchable; existing contact mentions and
+Companies and Rox users remain searchable; existing contact mentions and
 record pages are unaffected. Override locally with
 `VITE_DISABLE_CRM_CONTACT_SEARCH=true`.
 
-Typed Cmd+K **People** and **All** queries find known Macro users, including
+Typed Cmd+K **People** and **All** queries find known Rox users, including
 teammates supplied by the contacts service, before their first DM and without a
 CRM record or the CRM feature. Search by name or email. Selecting a person opens
 their direct message; an existing one-to-one DM replaces the person row without
@@ -1698,10 +1698,10 @@ accessible-team search, hidden-record exclusions, and full-email collapsing as
 mentions. Cached contacts appear at once; the server search starts about 250 ms
 after typing stops and pages 100 contacts at a time, so contacts beyond the first
 500 cached records are found too. An empty query keeps People and All on their
-usual recency lists without contacts. A contact whose email belongs to a Macro user
+usual recency lists without contacts. A contact whose email belongs to a Rox user
 appears as that person instead, even when only the CRM name matched: their existing
 direct message when you have one, otherwise the person, and selecting them opens a
-direct message. Matching direct messages and Macro users rank ahead of CRM contacts,
+direct message. Matching direct messages and Rox users rank ahead of CRM contacts,
 even when the conversation is old or has no recorded activity. Relevance and recency
 still order results within each group; other result types keep their positions.
 Verify this in both People and All with a recent CRM contact and a matching DM last
@@ -1992,7 +1992,7 @@ update and the app runs uncached until then. Update app uses the native opener; 
 HTTPS Play listing for `com.macro.workspace.mobile`, allowing a browser when the Store app
 is absent. An opener failure displays an inline error and the dialog stays
 dismissible. A missing listing is handled in the external store/browser: return
-to Macro, dismiss, and retry later. Task 07 verifies the live listing.
+to Rox, dismiss, and retry later. Task 07 verifies the live listing.
 
 Universal Input observability uses one draft trace, timed classification/extraction
 and submission spans, and events for queue wait, predictions, readiness and edits. Inspect `input.outcome`, safe failure

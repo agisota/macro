@@ -1,6 +1,6 @@
 # Building a bot
 
-A bot is a Macro account for a program, such as a release job or a webhook
+A bot is a Rox account for a program, such as a release job or a webhook
 relay. It posts to channels under its own name. This guide creates one in the
 app, then uses it from TypeScript with
 [`@macro-inc/sdk`](https://sdk.rox.one).

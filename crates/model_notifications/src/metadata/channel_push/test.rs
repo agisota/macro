@@ -7,7 +7,7 @@ use uuid::Uuid;
 #[test]
 fn top_level_message_push_contains_the_destination_before_notification_fetch() {
     let metadata: ChannelMessageSendMetadata = serde_json::from_value(json!({
-        "senderDisplayName": "Macro Bot",
+        "senderDisplayName": "Rox Bot",
         "messageId": "019a0000-0000-7000-8000-000000000002",
         "messageContent": "Hello",
         "channelType": "directMessage",
@@ -40,7 +40,7 @@ fn top_level_message_push_contains_the_destination_before_notification_fetch() {
 #[test]
 fn reply_push_includes_the_thread_root() {
     let metadata: ChannelReplyMetadata = serde_json::from_value(json!({
-        "senderDisplayName": "Macro Bot",
+        "senderDisplayName": "Rox Bot",
         "threadId": "019a0000-0000-7000-8000-000000000002",
         "messageId": "019a0000-0000-7000-8000-000000000003",
         "messageContent": "Reply",
@@ -70,7 +70,7 @@ fn reply_push_includes_the_thread_root() {
 fn channel_mentions_distinguish_top_level_messages_from_replies() {
     for thread_id in [None, Some("019a0000-0000-7000-8000-000000000002")] {
         let metadata: ChannelMentionMetadata = serde_json::from_value(json!({
-            "senderDisplayName": "Macro Bot",
+            "senderDisplayName": "Rox Bot",
             "threadId": thread_id,
             "messageId": "019a0000-0000-7000-8000-000000000003",
             "messageContent": "Mention",
@@ -100,7 +100,7 @@ fn channel_mentions_distinguish_top_level_messages_from_replies() {
 #[test]
 fn malformed_legacy_ids_keep_alerts_without_a_broken_destination() {
     let metadata: ChannelMessageSendMetadata = serde_json::from_value(json!({
-        "senderDisplayName": "Macro Bot",
+        "senderDisplayName": "Rox Bot",
         "messageId": "legacy-message",
         "messageContent": "Hello",
         "channelType": "public",

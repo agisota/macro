@@ -60,7 +60,7 @@ pub struct ExternalChatDetail {
     /// observer is connected.
     pub members: Option<ExternalChatMembers>,
     /// The provider's disappearing-messages timer in seconds while it is on;
-    /// Macro keeps the messages anyway. `null` when off or unknown.
+    /// Rox keeps the messages anyway. `null` when off or unknown.
     pub disappearing_seconds: Option<u32>,
     /// Caller's own phone identity, never another account's identity.
     pub sending_identity: Option<String>,
@@ -82,7 +82,7 @@ pub struct ExternalChatMembers {
     pub observed_at: DateTime<Utc>,
 }
 
-/// Someone in an external chat; Macro access is a separate grant.
+/// Someone in an external chat; Rox access is a separate grant.
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
@@ -110,7 +110,7 @@ pub struct ExternalChatParticipant {
 pub struct ExternalChatSender {
     /// External person identity.
     pub person_id: Uuid,
-    /// Verified Macro user association, if present.
+    /// Verified Rox user association, if present.
     pub user_id: Option<String>,
     /// Display name, never authentication evidence.
     pub name: String,
@@ -145,7 +145,7 @@ pub struct ExternalChatMessage {
     pub reply_to: Option<Uuid>,
     /// Timestamp assigned by the provider.
     pub sent_at: DateTime<Utc>,
-    /// Timestamp first received by Macro.
+    /// Timestamp first received by Rox.
     pub received_at: DateTime<Utc>,
     /// Last edit timestamp.
     pub edited_at: Option<DateTime<Utc>>,
@@ -161,7 +161,7 @@ pub struct ExternalChatMessage {
     pub kind: ExternalChatMessageKind,
     /// Forwarded from another chat.
     pub forwarded: bool,
-    /// Sent as view-once; Macro shows it like any media.
+    /// Sent as view-once; Rox shows it like any media.
     pub view_once: bool,
     /// People the body @-mentions.
     pub mentions: Vec<ExternalChatMention>,
@@ -180,7 +180,7 @@ pub enum ExternalChatMessageKind {
     System,
 }
 
-/// A person named in a message: a Macro user when verified, else their name
+/// A person named in a message: a Rox user when verified, else their name
 /// at the provider, else their phone number.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -188,7 +188,7 @@ pub enum ExternalChatMessageKind {
 pub struct ExternalChatPersonRef {
     /// Display name, never authentication evidence.
     pub name: String,
-    /// Verified Macro user, if any.
+    /// Verified Rox user, if any.
     pub user_id: Option<String>,
     /// Their profile picture as the chat owner's account sees it: a static
     /// file id; `null` when hidden, unset or not fetched yet.
@@ -223,7 +223,7 @@ pub struct ExternalChatPollOption {
     pub voters: Vec<ExternalChatPersonRef>,
 }
 
-/// A poll, read-only in Macro.
+/// A poll, read-only in Rox.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
@@ -363,7 +363,7 @@ pub struct VisibleChat {
 pub struct StoredPerson {
     /// External person identity.
     pub person_id: Uuid,
-    /// Verified Macro user association, if present.
+    /// Verified Rox user association, if present.
     pub user_id: Option<String>,
 }
 
@@ -392,7 +392,7 @@ pub struct StoredMessage {
     pub reply_to: Option<Uuid>,
     /// Timestamp assigned by the provider.
     pub sent_at: DateTime<Utc>,
-    /// Timestamp first received by Macro.
+    /// Timestamp first received by Rox.
     pub received_at: DateTime<Utc>,
     /// Last edit timestamp.
     pub edited_at: Option<DateTime<Utc>>,
@@ -435,7 +435,7 @@ pub trait TimelineRepository: Send + Sync {
         user: &MacroUserIdStr<'_>,
     ) -> ExternalChatResult<Vec<VisibleChat>>;
     /// Facts for an authorized chat, for a viewer principal (a person or a
-    /// bot, whose id is not a Macro user id).
+    /// bot, whose id is not a Rox user id).
     async fn chat_facts(&self, chat: Uuid, viewer: &str) -> ExternalChatResult<ChatFacts>;
     /// Bounded, stable pagination for a viewer principal.
     async fn messages(

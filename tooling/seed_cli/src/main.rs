@@ -1,5 +1,5 @@
 #![deny(missing_docs)]
-//! The Seed CLI to enable easy populate Macro with seed data.
+//! The Seed CLI to enable easy populate Rox with seed data.
 
 mod config;
 mod entity;
@@ -19,9 +19,9 @@ use crate::{
     service::s3::S3,
 };
 
-/// The Seed CLI for populating Macro with seed data.
+/// The Seed CLI for populating Rox with seed data.
 #[derive(Debug, Parser)]
-#[command(name = "seed_cli", about = "Seed CLI to populate Macro with seed data")]
+#[command(name = "seed_cli", about = "Seed CLI to populate Rox with seed data")]
 pub struct Cli {
     /// The entity and action to perform
     #[command(subcommand)]

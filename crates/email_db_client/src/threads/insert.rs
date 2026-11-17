@@ -73,7 +73,7 @@ pub async fn insert_thread_and_messages(
         // Messages were inserted with per-message metadata updates disabled, and
         // insert_thread precomputes the thread columns from Gmail's labels only
         // for a new thread. Recompute them, and is_signal, from the stored
-        // labels, which keep pending Macro writes and newly synced messages.
+        // labels, which keep pending Rox writes and newly synced messages.
         super::update::update_thread_metadata(&mut tx, thread_id, link_id).await?;
 
         Ok(thread_id)

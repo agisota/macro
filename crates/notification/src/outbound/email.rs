@@ -21,7 +21,7 @@ use crate::domain::ports::EmailSender;
 /// Longest sender name shown before the "via Macro" suffix.
 const FROM_NAME_MAX_CHARS: usize = 64;
 
-/// Marks a display name as someone Macro sends for, so it never reads as Macro's own mail.
+/// Marks a display name as someone Rox sends for, so it never reads as Rox's own mail.
 const FROM_NAME_SUFFIX: &str = " (via Macro)";
 
 /// RFC 2047 caps an encoded word at 75 characters; `=?UTF-8?Q?` and `?=` take 12 of them.
@@ -191,7 +191,7 @@ fn encoded_words(text: &str) -> String {
         .join(" ")
 }
 
-/// The From header for `from_email`, naming the person Macro sends for when there is one.
+/// The From header for `from_email`, naming the person Rox sends for when there is one.
 fn from_header(from_email: &str, from_name: Option<&str>) -> String {
     let Some(name) = from_name.and_then(sanitize_from_name) else {
         return from_email.to_owned();

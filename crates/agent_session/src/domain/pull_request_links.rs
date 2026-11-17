@@ -43,7 +43,7 @@ pub struct SessionPullRequestLink {
     pub url: String,
     /// Who associated the pull request with the session.
     pub source: PullRequestLinkSource,
-    /// The Macro user who linked it, for links a person made.
+    /// The Rox user who linked it, for links a person made.
     pub linked_by: Option<String>,
     /// When the pull request was associated with the session.
     pub created_at: DateTime<Utc>,

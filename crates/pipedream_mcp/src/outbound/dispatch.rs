@@ -14,7 +14,7 @@ use std::sync::Arc;
 #[cfg(test)]
 mod test;
 
-/// Every connector backend behind one set of ports: Pipedream, plus Macro
+/// Every connector backend behind one set of ports: Pipedream, plus Rox
 /// Connect when configured.
 ///
 /// A user the `macro-connect` rollout is on for is on Connect alone
@@ -69,14 +69,14 @@ impl<P, C> ConnectorBackends<P, C> {
                 .map(Backend::Connect)
                 .ok_or_else(|| {
                     anyhow::anyhow!(
-                        "{} is connected through Macro Connect, which is not configured",
+                        "{} is connected through Rox Connect, which is not configured",
                         record.app_slug
                     )
                 }),
             ConnectionProvider::Pipedream => {
                 if self.connect_for_user(&record.user_id).await.is_some() {
                     anyhow::bail!(
-                        "{} is connected through Pipedream; reconnect it through Macro Connect",
+                        "{} is connected through Pipedream; reconnect it through Rox Connect",
                         record.app_slug
                     );
                 }
@@ -226,7 +226,7 @@ impl<P: Send + Sync + 'static, C: MacroConnect> MacroConnect for ConnectorBacken
     ) -> anyhow::Result<String> {
         match &self.connect {
             Some(connect) => connect.create_connect_session(user_id, app).await,
-            None => anyhow::bail!("Macro Connect is not configured"),
+            None => anyhow::bail!("Rox Connect is not configured"),
         }
     }
 
@@ -248,7 +248,7 @@ impl<P: Send + Sync + 'static, C: MacroConnect> MacroConnect for ConnectorBacken
     ) -> anyhow::Result<()> {
         match &self.connect {
             Some(connect) => connect.delete_connection(user_id, app_id).await,
-            None => anyhow::bail!("Macro Connect is not configured"),
+            None => anyhow::bail!("Rox Connect is not configured"),
         }
     }
 }

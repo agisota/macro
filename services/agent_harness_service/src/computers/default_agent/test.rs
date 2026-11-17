@@ -197,7 +197,7 @@ async fn a_ready_computer_gets_one_team_coding_agent(pool: PgPool) {
     assert_eq!(agent.default_model, "default");
     assert_eq!(agent.channel_scope, AgentChannelScope::All);
     assert_eq!(agent.mcp, AgentMcpServers::OwnerConnections);
-    // A Macro computer is the team's sandbox: its agent runs without asking.
+    // A Rox computer is the team's sandbox: its agent runs without asking.
     assert_eq!(agent.auto_accept_permissions, Some(true));
     assert!(agent.is_coding);
 }
@@ -432,7 +432,7 @@ async fn any_teammate_can_run_agents_on_a_team_computer(pool: PgPool) {
     }
 }
 
-/// An agent put on a Macro computer later runs without asking unless the
+/// An agent put on a Rox computer later runs without asking unless the
 /// request picks prompting, which stays a choice.
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn agents_on_a_computer_default_to_bypassing_permissions(pool: PgPool) {

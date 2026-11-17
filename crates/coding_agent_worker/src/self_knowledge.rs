@@ -1,8 +1,8 @@
 //! Tells each new session's agent what roxd is and what it can do from
 //! here. The first `session/prompt` of a session the agent created gains a
 //! leading text block describing this runtime; loaded and resumed sessions
-//! already carry it from their first turn. General Macro guidance stays in
-//! the Macro MCP server's `SelfKnowledge` tool.
+//! already carry it from their first turn. General Rox guidance stays in
+//! the Rox MCP server's `SelfKnowledge` tool.
 
 use std::collections::HashMap;
 
@@ -17,9 +17,9 @@ mod test;
 pub(crate) struct SessionFacts {
     /// The directory the agent works in.
     pub(crate) workspace: String,
-    /// Names of the MCP servers Macro forwarded to this session.
+    /// Names of the MCP servers Rox forwarded to this session.
     pub(crate) mcp_servers: Vec<String>,
-    /// Whether Macro approves the agent's tool permission requests itself.
+    /// Whether Rox approves the agent's tool permission requests itself.
     pub(crate) permission_bypass: bool,
 }
 

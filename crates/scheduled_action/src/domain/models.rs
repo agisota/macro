@@ -142,7 +142,7 @@ impl<'a> ResolvedTaskTarget<'a> {
         }
     }
 
-    /// Use the same Macro runtime as the new AI composer for model selections.
+    /// Use the same Rox runtime as the new AI composer for model selections.
     /// Explicit agent selections keep their own runtime and optional model override.
     pub fn session_target(self) -> (BotId, Option<&'a str>) {
         match self {
@@ -191,7 +191,7 @@ pub struct RoutineCheck {
     pub ok: bool,
     /// Why saving it would fail, other than its code, for its author.
     pub problems: Vec<String>,
-    /// Code steps that don't type-check against Macro's SDK.
+    /// Code steps that don't type-check against Rox's SDK.
     pub steps: Vec<CheckedStepProblems>,
     /// The routine as saving would store it: code steps named and the SDK
     /// their code checks against stamped.

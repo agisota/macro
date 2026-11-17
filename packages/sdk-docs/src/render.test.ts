@@ -43,7 +43,7 @@ test('agent routing and guidance never reach the public reference', async () => 
   for (const page of [markdown, html]) {
     expect(page).not.toContain('@agent');
     expect(page).not.toContain('@routing');
-    expect(page).not.toContain('Use when working with a Macro database');
+    expect(page).not.toContain('Use when working with a Rox database');
     expect(page).not.toContain("check every database's tables");
   }
 });

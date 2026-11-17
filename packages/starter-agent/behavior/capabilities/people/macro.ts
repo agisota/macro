@@ -1,13 +1,13 @@
 import type { Macro } from '@macro-inc/sdk';
 
-/** Who wrote a message, by Macro's record, and whether it was in a DM. */
+/** Who wrote a message, by Rox's record, and whether it was in a DM. */
 export type Author = {
   readonly id: string;
   readonly name: string | undefined;
   readonly dm: boolean;
 };
 
-/** The author of a message, from Macro's record, never from anything it says. */
+/** The author of a message, from Rox's record, never from anything it says. */
 export type AuthorOf = (
   channelId: string,
   messageId: string

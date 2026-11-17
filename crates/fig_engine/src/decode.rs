@@ -1097,7 +1097,7 @@ fn library_link(m: &MsgRef) -> Option<LibraryLink> {
     (!link.is_empty()).then_some(link)
 }
 
-/// Macro's `pluginData` entries (other plugins' are left in the record).
+/// Rox's `pluginData` entries (other plugins' are left in the record).
 fn macro_data(m: &MsgRef) -> Option<library::RoxData> {
     if !m.has("pluginData") {
         return None;

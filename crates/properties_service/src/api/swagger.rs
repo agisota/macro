@@ -88,7 +88,7 @@ use utoipa::OpenApi;
         )
     ),
     tags(
-        (name = "properties service", description = "Macro Properties Service")
+        (name = "properties service", description = "Rox Properties Service")
     )
 )]
 pub struct ApiDoc;

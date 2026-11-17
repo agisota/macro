@@ -56,7 +56,7 @@ impl OutlookApiClientRepository {
             .mailbox
             .map(|m| m.link_id.simple().to_string())
             .unwrap_or_else(|| "macro".into());
-        let body = json!({"displayName":format!("Macro Archive ({})",&suffix[..suffix.len().min(8)]),"singleValueExtendedProperties":[{"id":ARCHIVE_ROLE_PROPERTY,"value":"archive"}]});
+        let body = json!({"displayName":format!("Rox Archive ({})",&suffix[..suffix.len().min(8)]),"singleValueExtendedProperties":[{"id":ARCHIVE_ROLE_PROPERTY,"value":"archive"}]});
         let response = self
             .request(
                 token,

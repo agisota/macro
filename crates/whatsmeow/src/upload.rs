@@ -99,7 +99,7 @@ pub async fn upload(
     app_info: MediaType,
 ) -> Result<UploadResponse, UploadError> {
     let media_key: [u8; 32] = rand::random();
-    // Macro addition: encrypt and HTTP upload as child spans.
+    // Rox addition: encrypt and HTTP upload as child spans.
     let (mut resp, data_to_upload) = tracing::info_span!("whatsmeow.media.encrypt")
         .in_scope(|| encrypt_media(plaintext, &media_key, app_info))?;
     let file_enc_sha256 = resp.file_enc_sha256.clone();

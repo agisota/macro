@@ -12,9 +12,9 @@ describe('PeerPool', () => {
       pool.borrow(),
     ]);
     expect(peers.map((p) => p.name)).toEqual([
-      'Macro (AI)',
-      'Macro (AI)',
-      'Macro (AI)',
+      'Rox (AI)',
+      'Rox (AI)',
+      'Rox (AI)',
     ]);
     expect(pool.outstanding).toBe(3);
   });

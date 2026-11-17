@@ -58,8 +58,8 @@ pub(super) fn rows(
     if is_tool_lookup(name) {
         return Some(Vec::new());
     }
-    // Macro's own agent runs code on the internal server; other agents reach
-    // the same tool through Macro's public MCP server.
+    // Rox's own agent runs code on the internal server; other agents reach
+    // the same tool through Rox's public MCP server.
     if !matches!(name, ToolName::Mcp { server, tool } if matches!(server.as_str(), "macro" | "macro_internal") && tool == "ExecuteCode")
     {
         return None;

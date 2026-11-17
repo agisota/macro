@@ -6,7 +6,7 @@
  * pacing the clip's frames.
  *
  * Why not LiveKit's BackgroundAudioPlayer: it publishes a second track, and
- * Macro's client plays one publication per person (the microphone), so
+ * Rox's client plays one publication per person (the microphone), so
  * people would hear nothing of it.
  */
 import type { Emit } from './types.ts';

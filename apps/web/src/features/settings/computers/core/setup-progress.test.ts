@@ -86,7 +86,7 @@ describe('setupStages', () => {
     ).toBe('current');
   });
 
-  it('keeps the sign-in in the list for an agent on Macro credits, marked skipped', () => {
+  it('keeps the sign-in in the list for an agent on Rox credits, marked skipped', () => {
     const stages = setupStages(computer, {
       signIn: 'skipped',
       connected: false,

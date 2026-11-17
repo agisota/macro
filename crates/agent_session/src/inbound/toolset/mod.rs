@@ -1,4 +1,4 @@
-//! Macro Internal MCP tools for agent sessions.
+//! Rox Internal MCP tools for agent sessions.
 
 mod coding_agents;
 mod context;

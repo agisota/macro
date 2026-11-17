@@ -93,7 +93,7 @@ pub fn unseen_execute_code_description() -> String {
     format!("{running}\n{SESSION_CHECK_BACK}\n{PROGRAM}\n{RUNTIME}")
 }
 
-/// Execute a JavaScript module with the real Macro SDK.
+/// Execute a JavaScript module with the real Rox SDK.
 #[derive(Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 #[schemars(
@@ -167,7 +167,7 @@ impl AsyncTool<CodeModeToolContext> for ExecuteCode {
     }
 }
 
-/// Execute a JavaScript module with the real Macro SDK as the signed-in user.
+/// Execute a JavaScript module with the real Rox SDK as the signed-in user.
 #[derive(Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 #[schemars(
@@ -230,7 +230,7 @@ impl AsyncTool<UserCodeModeToolContext> for UserExecuteCode {
 #[serde(deny_unknown_fields)]
 #[schemars(
     title = "DescribeCodeTools",
-    description = "Find Macro SDK methods for ExecuteCode. Before writing a program, pass task, a short description of what the program must do, to receive the index of every relevant SDK entity in one call; skip it only when the indexes you need are already in context. An index lists each class, method and type by symbol with its signature; read the symbols you need with ReadCodeDocs. Request up to five entity names together for their indexes, e.g. entities omitted for size. Request topics for workflow guides. With no arguments, returns the compact entity catalog."
+    description = "Find Rox SDK methods for ExecuteCode. Before writing a program, pass task, a short description of what the program must do, to receive the index of every relevant SDK entity in one call; skip it only when the indexes you need are already in context. An index lists each class, method and type by symbol with its signature; read the symbols you need with ReadCodeDocs. Request up to five entity names together for their indexes, e.g. entities omitted for size. Request topics for workflow guides. With no arguments, returns the compact entity catalog."
 )]
 pub struct DescribeCodeTools {
     /// What the next program must do; selects relevant references.
@@ -452,7 +452,7 @@ impl DescribeCodeTools {
 #[serde(deny_unknown_fields)]
 #[schemars(
     title = "ReadCodeDocs",
-    description = "Read the Macro SDK reference for symbols named in an entity index or another reference: a class (Task), one of its methods (TaskNamespace.create) or a type (CreateReviewOptions). Request every symbol the next program needs together, up to ten. Each reference has the full signature, parameters, option fields and return type; symbols it names in backticks can be read the same way."
+    description = "Read the Rox SDK reference for symbols named in an entity index or another reference: a class (Task), one of its methods (TaskNamespace.create) or a type (CreateReviewOptions). Request every symbol the next program needs together, up to ten. Each reference has the full signature, parameters, option fields and return type; symbols it names in backticks can be read the same way."
 )]
 pub struct ReadCodeDocs {
     /// Symbols exactly as an index or reference names them.

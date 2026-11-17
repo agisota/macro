@@ -3,7 +3,7 @@
 ## What it is
 
 Documents feature: converts uploaded Office documents (docx/xlsx/legacy
-Office formats) into Macro documents using LibreOfficeKit, triggered
+Office formats) into Rox documents using LibreOfficeKit, triggered
 synchronously via HTTP or asynchronously via SQS.
 
 ## Start here
@@ -18,7 +18,7 @@ synchronously via HTTP or asynchronously via SQS.
 
 ## Scope
 
-- Owns: office-document-to-Macro conversion and its worker/backfill paths.
+- Owns: office-document-to-Rox conversion and its worker/backfill paths.
 
 ## Recipes
 

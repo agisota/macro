@@ -82,7 +82,7 @@ function ChatRow(props: {
 }
 
 /**
- * One provider's chats this viewer can read in Macro, their own and shared
+ * One provider's chats this viewer can read in Rox, their own and shared
  * ones, nested under the provider in External's sidebar: direct messages,
  * groups, then each community's groups, like Chat's rail. Folded sections
  * show their unread count.

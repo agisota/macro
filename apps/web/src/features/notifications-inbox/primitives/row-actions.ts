@@ -92,7 +92,7 @@ export function createRowActions(options: {
   requests: InboxRequests;
   /** Open what a row is about, as activating the row does. */
   open: (row: NotificationInboxRow) => void;
-  /** Open a pull request to review outside Macro. */
+  /** Open a pull request to review outside Rox. */
   review: (row: NotificationInboxRow, url: string) => void;
   complete: (row: NotificationInboxRow) => Promise<unknown>;
   notices: InboxRowActionNotices;

@@ -1,6 +1,6 @@
 //! The ports of the control plane's Claude sign-in watch
 //! (`hosted_runtimes::domain::claude_sign_in`): computers signed in to Claude
-//! through Macro, read from their active Claude login, harness and computer
+//! through Rox, read from their active Claude login, harness and computer
 //! rows; the team's
 //! admins; and the `agent_sign_in_expiry` notification.
 

@@ -96,7 +96,7 @@ pub struct UserEmailLinkSettings {
 pub struct EmailInboxDetails {
     /// Stable email link identifier.
     pub id: Uuid,
-    /// Macro user that owns the inbox.
+    /// Rox user that owns the inbox.
     pub macro_id: MacroUserIdStr<'static>,
     /// Provider email address for the inbox.
     pub email_address: EmailStr<'static>,
@@ -136,7 +136,7 @@ pub struct UserEmailLink {
     pub draft_is_signal: bool,
     /// Stable email link identifier.
     pub id: Uuid,
-    /// Macro user that owns the inbox.
+    /// Rox user that owns the inbox.
     pub macro_id: MacroUserIdStr<'static>,
     /// Provider email address for the inbox.
     pub email_address: EmailStr<'static>,

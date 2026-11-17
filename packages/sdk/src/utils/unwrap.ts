@@ -25,7 +25,7 @@ function errorDetail(data: unknown): string {
 }
 
 /**
- * A non-2xx HTTP response (Macro API, or a raw fetch like presigned downloads).
+ * A non-2xx HTTP response (Rox API, or a raw fetch like presigned downloads).
  * The message includes the server's explanation, such as a validation error,
  * and `data` holds the parsed error body.
  */
@@ -37,8 +37,8 @@ export class MacroApiError extends MacroError {
     const detail = errorDetail(data);
     super(
       detail
-        ? `Macro API error ${status}: ${detail}`
-        : `Macro API error ${status}`,
+        ? `Rox API error ${status}: ${detail}`
+        : `Rox API error ${status}`,
     );
     this.name = 'MacroApiError';
   }

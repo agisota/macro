@@ -210,7 +210,7 @@ use utoipa::OpenApi;
         ),
     ),
     tags(
-            (name = "Email Service", description = "Macro Email Service")
+            (name = "Email Service", description = "Rox Email Service")
     )
 )]
 pub struct ApiDoc;

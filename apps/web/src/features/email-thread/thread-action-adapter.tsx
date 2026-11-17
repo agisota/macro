@@ -27,7 +27,7 @@ export function createThreadActionAdapter(
   const viewerEmail = useInboxEmail(() => threadSource()?.link_id);
   const loginEmail = useEmail();
 
-  // Mail sent from the Macro login is the viewer's own too, even in an inbox
+  // Mail sent from the Rox login is the viewer's own too, even in an inbox
   // linked under another address. Until the inbox address loads, no sender
   // is known.
   const getSenderEmail = (): string | undefined => {

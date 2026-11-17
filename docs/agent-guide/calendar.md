@@ -78,7 +78,7 @@ changing the user or date range must not retain the old events. Verify both hand
 directions with delayed responses and delay calendar metadata past occurrences.
 If metadata fails, events remain usable with the default calendar presentation.
 Provider backfill shows a persistent `Syncing your calendar…` banner above the
-grid, explaining that events will appear automatically and Macro remains usable.
+grid, explaining that events will appear automatically and Rox remains usable.
 The banner stays visible as partial results arrive and disappears when sync finishes.
 A routine sync of an already imported account never shows it.
 Errors retain the separate retry state. Verify delayed occurrence
@@ -102,7 +102,7 @@ Grid dragging and resizing are disabled for points. An owned point's metadata,
 RSVP, and deletion still work; metadata saves preserve its exact provider time.
 Creating an event or changing its time requires positive duration. Shared points
 remain read-only and appear only when their details are shared.
-An existing Macro call can keep its schedule during point metadata edits; adding
+An existing Rox call can keep its schedule during point metadata edits; adding
 a new Macro call requires giving the event a duration first.
 
 Calendar reads come from the local GraphQL cache when both `enable-graphql-soup`
@@ -131,7 +131,7 @@ waiting for event responses or hidden-page redraws. Verify repeated forward clic
 and mixed directions reach the cumulative date while events are still loading.
 Touch swipes retain their page-readiness gates.
 
-Quick-call creation, incoming invitations, Live lists, Macro meeting links, and
+Quick-call creation, incoming invitations, Live lists, Rox meeting links, and
 the `/app/meet/*` routes require the PostHog flag `enable-quick-calls`. While the
 flag loads or is off, those controls stay hidden and meeting routes do not mount
 call setup. Existing channel calls and the upcoming-events list remain available.
@@ -148,7 +148,7 @@ Talking participants have an accent-colored border.
 Desktop chat fills the call content height; phones use a bottom sheet. Messages
 persist with that call session and are visible in its recording page after it ends.
 Guests can open the same call discussion and read and send text while connected;
-their messages show their name with **(Guest)**. The signed-in composer’s `@` menu includes Macro and available agents;
+their messages show their name with **(Guest)**. The signed-in composer’s `@` menu includes Rox and available agents;
 mentioning one invokes it in the call thread. Reply on any live message, including
 your own, quotes it in the bottom composer. Verify the reply preserves a draft,
 an agent reply appears, and messages remain in the saved history; starting a
@@ -211,7 +211,7 @@ visibility note. Disconnect removes calendar access/data, not the Gmail connecti
 Settings → Calendar lists only the viewer's own inboxes. The **Enable calendar**
 toast (behind `enable-calendar-prompt-web` and `enable-calendar-prompt-mobile`)
 follows the same rule: it asks once per own inbox missing calendar permission,
-never for an inbox another Macro user delegated to the viewer (a **Shared** row
+never for an inbox another Rox user delegated to the viewer (a **Shared** row
 in Settings → Email, whose per-inbox Enable calendar button stays available).
 The calendar view's setup prompt decides and acts on own inboxes alone too: a
 delegate with no inbox of their own sees **Connect your calendar**, the Calendar
@@ -241,7 +241,7 @@ An event still blocks time when another copy sits on a Busy calendar, when its
 calendar is unknown, or when the user is in the meeting and has not declined it
 (`labels::attends_meeting`): invited as a guest, or organizing it with other
 guests on a copy they can change. A solo entry listing the user's inbox as its
-organizer, as Macro writes on a primary calendar, and the mailbox organizer row
+organizer, as Rox writes on a primary calendar, and the mailbox organizer row
 Outlook puts on every event of a read-only calendar are not meetings. The switch shows once the setting loads,
 saves at once and restores itself with a toast when the save fails. Phones reach
 the same rows from the mobile Settings sheet's **Calendar** page; the calendar
@@ -260,7 +260,7 @@ dropdown moves from the header into the calendar sidebar above `Upcoming events`
 and its menu matches the trigger's width. Phones retain the header dropdown
 because they do not expose that sidebar. The calendar automatically sets up a
 default personal link for a new profile. Public
-`/app/book/:profile/:slug?` pages accept bookings without Macro sign-in. Guests
+`/app/book/:profile/:slug?` pages accept bookings without Rox sign-in. Guests
 choose an event on the profile landing page, then choose their timezone, date,
 and time before entering attendee details. Date & time and Your details steps
 show progress; the event summary and selected time stay visible. Choose another
@@ -268,11 +268,11 @@ time preserves attendee input. Event booking pages do not show an All meetings
 link back to the profile chooser.
 The private confirmation shows the meeting, date, timezone, location, and guest.
 In the native desktop, iOS and Android apps, standalone booking and receipt pages keep a
-sticky **Back to Macro** button below the device's top safe-area inset. It returns to
+sticky **Back to Rox** button below the device's top safe-area inset. It returns to
 the app through the router without reloading, including while the page is loading
 or unavailable. Browser pages and embedded booking dialogs omit this button.
 
-The website can frame the booking page and receipt without duplicate Macro
+The website can frame the booking page and receipt without duplicate Rox
 branding. A completed booking notifies the same-origin parent page; other sites
 cannot frame these routes.
 Uncertain calendar writes retain the booking and show its private receipt while automatic recovery runs.
@@ -343,9 +343,9 @@ description of the current choice under the label. A new choice shows at once
 and saves in the background; a failed save restores the previous choice and
 shows a toast. Neither it nor the Busy switches return to a loading state
 after a change, including when the server's `team_sharing_changed` push arrives.
-These are Macro read permissions. They do not change Google Calendar ACLs,
+These are Rox read permissions. They do not change Google Calendar ACLs,
 invite teammates to meetings, or let teammates edit, RSVP, or manage reminders.
-The sharing choice covers every currently authorized calendar synced to Macro.
+The sharing choice covers every currently authorized calendar synced to Rox.
 Private/confidential events only expose generic time blocks.
 
 Which calendars count toward the user's availability is the **Busy** switch on
@@ -402,10 +402,10 @@ loading. Empty results show an illustrated empty state. Result titles show a cal
 swatch when the event is loaded in the visible range, falling back to the
 default calendar color otherwise. A result shows its location after the
 date/time when available. Each result offers at most one rounded Join action:
-matching occurrence content takes precedence over series metadata. Macro links
+matching occurrence content takes precedence over series metadata. Rox links
 use a neutral button, Google Meet uses a solid blue button in light mode and a
 subtle blue button in dark mode, and other conference links use a neutral button.
-All Join buttons use a camera icon. Generated Macro invitation paragraphs are
+All Join buttons use a camera icon. Generated Rox invitation paragraphs are
 hidden from event descriptions. Google Meet URLs in an event's location or
 description also supply Join actions. Recurring results wait for matching
 occurrence details before showing Join. Selecting a result preserves the search
@@ -496,36 +496,36 @@ Failed calendar or account queries show `Could not load your calendars.` with
 `Try again`, rather than offering consent or presenting the failure as backfill.
 
 `New event` opens the compact composer with All day in the date/time fields.
-The meeting-link selector lists `Macro call`, `Google Meet`, then `No meeting link`
-for new events, defaulting to `Macro call` when quick calls are enabled. Keeping
-that selection creates the Macro call together with the event in one save, so the
+The meeting-link selector lists `Rox call`, `Google Meet`, then `No meeting link`
+for new events, defaulting to `Rox call` when quick calls are enabled. Keeping
+that selection creates the Rox call together with the event in one save, so the
 invitation attendees receive already carries the link; if the call cannot be
 created, nothing is saved and Save retries the whole create. Selecting
-`Google Meet` or `No meeting link` skips the Macro call. Out-of-office entries do
+`Google Meet` or `No meeting link` skips the Rox call. Out-of-office entries do
 not create calls. There is no separate call toggle or Scheduled Call menu option.
 All-day events get an untimed call link, so setup does not display a misleading midnight time.
 Adding a call to an existing event attaches it after the update; a failed
 attachment keeps the composer open with a retry message, and Save reuses the same
 call instead of creating duplicates. The invitation includes
 the call link in its description and, when no location was entered, its location.
-Event details show a plain icon row with a standard gray `Join Macro call` button
+Event details show a plain icon row with a standard gray `Join Rox call` button
 and `Copy call link`, without an enclosing border or the full URL.
 Day-view chips, which show an event's location under its time on desktop and phone,
 leave out a location that is only the call link and keep a location typed beside it.
-Editing or rescheduling an owned event retains and updates its selected Macro call.
-Selecting `Macro call` on an owned editable event without one adds a call on save;
-choosing another option removes its generated Macro link from the invitation.
+Editing or rescheduling an owned event retains and updates its selected Rox call.
+Selecting `Rox call` on an owned editable event without one adds a call on save;
+choosing another option removes its generated Rox link from the invitation.
 Removing the link or deleting the calendar event does not revoke the reusable call.
 The AI's `CreateCalendarEvent` composer (chat, agent sessions, channel review cards)
-offers the same selector under the same quick-calls flag; `Macro call` there maps to
+offers the same selector under the same quick-calls flag; `Rox call` there maps to
 the tool's `addMacroCall`, and the call is created when the tool executes, before the
 event is written, so the single invitation already carries the link. The MCP server
 and channel bot accept `addMacroCall` directly. `addMacroCall` and `addGoogleMeet`
 are mutually exclusive, and out-of-office entries accept neither.
-An existing event switches to a Macro call without being recreated:
+An existing event switches to a Rox call without being recreated:
 `UpdateCalendarEvent`'s `addMacroCall` and the SDK's `event.update({ macroCall: true })`
 send `macroCall` on the update route, which writes the join link and removes the
-Google Meet in one update. An event already holding a Macro call keeps it, and an
+Google Meet in one update. An event already holding a Rox call keeps it, and an
 Outlook event's Teams meeting cannot be removed this way.
 
 The sidebar's `Calendars` section folds each connected account into a collapsible
@@ -586,7 +586,7 @@ the details popover's color square shows its calendars. The chip shows the title
 editability of the first shown copy in primary-first order — hiding the primary calendar
 switches the chip to the shared copy, hiding every one of its calendars hides the chip.
 Reminders, guests, and conferencing always show and follow the primary copy, since that is
-the copy Macro's alerts fire from and whose guest list and join link Macro records, and the
+the copy Rox's alerts fire from and whose guest list and join link Rox records, and the
 editor only lets them be changed there. Answering an invitation likewise addresses the
 primary copy. The details popover and the editor act on the displayed copy, so editing or
 deleting it targets that calendar's event at Google.
@@ -610,12 +610,12 @@ popover and phone drawer) and Forward by email's summary name the day too (`Week
 Each guest in event details (desktop popover and phone drawer) shows their name with their
 address on a muted line under it, as the user card shows a person, followed by `Organizer` or
 `Optional` and any comment; the viewer's own row (`(you)`) does too, which tells their inboxes
-apart. A guest Macro has no name for (no Macro profile or email contact) shows the address
+apart. A guest Rox has no name for (no Rox profile or email contact) shows the address
 once, as the name. The address wraps instead of truncating in a narrow popover or on a phone
 (the event details browser regression's `?addresses=long`).
 The `Organizer` row under the calendar row, shown when someone other than the calendar
 organizes the event, adds the organizer's address the same way. Teammates' read-only event
-details (`Shared in Macro · Read only`) list guests by provider name, or by address when there
+details (`Shared in Rox · Read only`) list guests by provider name, or by address when there
 is none.
 As in Google Calendar, the guests row of the details popover (a bottom sheet on phones)
 carries `Copy guest emails` and `Email guests` icon buttons, both hidden when you are the
@@ -681,15 +681,15 @@ the server decides what it is from the stored copy, ending the body with the mat
   invitation was forwarded to you. Your answer goes to the organizer.`
 - Anything else, notably a Google organizer who turned inviting off, and whenever the
   evidence is missing (an Outlook copy, a snapshot, a private copy whose UID ends in
-  `@google.com`, which is an imported Google meeting, an organizer Macro cannot name, or a
-  source synced before Macro kept Google's whole payload): the event's `.ics`
+  `@google.com`, which is an imported Google meeting, an organizer Rox cannot name, or a
+  source synced before Rox kept Google's whole payload): the event's `.ics`
   (`METHOD:PUBLISH`, no guests) attached, so recipients can add the event to their calendar
   and nothing reaches the organizer or the guest list. The note reads `This invitation was
   forwarded to you. Add the event to your calendar from the attached file. You won't be on
   the organizer's guest list.`
 
-Both carry the join link, unlike `Download .ics` and channel shares: a Macro call's
-`Join Macro call` line and location stay, and the copy's Meet, Teams or Zoom link is added as
+Both carry the join link, unlike `Download .ics` and channel shares: a Rox call's
+`Join Rox call` line and location stay, and the copy's Meet, Teams or Zoom link is added as
 a `Join with Google Meet: <url>` (or `Join the Microsoft Teams meeting`, `Join the meeting`)
 line unless the description already shows it, plus `CONFERENCE` (and, for Meet,
 `X-GOOGLE-CONFERENCE`). The toast reads `Invitation forwarded to <name>` (or `to N
@@ -747,7 +747,7 @@ disabled while a recurring edit
 targets `This event`, since the policy belongs to the whole series, and says so after the
 switches (`Guest permissions apply to all events. Choose All events to change them.`);
 choosing `This event` returns it to the stored values. Save sends `guestPolicy` only when it
-changed. Guests whose copies Macro holds follow at once, since the organizer's stored copy
+changed. Guests whose copies Rox holds follow at once, since the organizer's stored copy
 hands its policy to theirs; others follow once Google syncs their copies. Turning `Invite others`
 off replaces a guest's `Add guests` with `Only the organizer can invite guests.` (and, with
 the forward flag on, `Forward invitation`). The update
@@ -761,10 +761,10 @@ id (`…@group.calendar.google.com`). Whoever can write that calendar organizes 
 Google: details, guests, guest permissions and Delete work as on their primary calendar, on
 every copy. A new event on a calendar other than the primary lists its creator as a guest only
 when it has other guests, as Google's own client does, so an event of one's own shows as one
-block in Google. With guests, Google also invites the creator's primary calendar; Macro shows
+block in Google. With guests, Google also invites the creator's primary calendar; Rox shows
 both copies as one event, sends the organizer's changes and Delete through the copy on the
 secondary calendar, and keeps reminders and answers on the invitation. Google takes 15 to 30
-seconds to carry the organizer's changes to that invitation; Macro shows them at once and never
+seconds to carry the organizer's changes to that invitation; Rox shows them at once and never
 falls back to the old title, description or guests meanwhile. To verify, create an event on a
 secondary calendar with no guests and another with a guest, open each (no `Only the organizer
 can change this event.`), change the title, add a guest, and watch the chip and details for 40
@@ -773,8 +773,8 @@ both disappear from every calendar after the delete.
 The details header's `Download .ics` icon button, beside `Copy event`, saves the event as an
 iCalendar file named after its title, so it can be passed on or added to another calendar. The
 file holds the series (its repeat rule, in the event's original time zone), title, description
-as plain text, location and organizer, never the guest list or join link. A Macro call's
-`Join Macro call` line and a location that is only its link are left out too, as event details
+as plain text, location and organizer, never the guest list or join link. A Rox call's
+`Join Rox call` line and a location that is only its link are left out too, as event details
 leave them out. Like `Copy event`, it
 is absent from teammates' out-of-office chips. Its endpoint, document storage's
 `GET /calendar-events/{event_id}/ics`, also exports an event shared with a channel the viewer
@@ -785,7 +785,7 @@ where `Email guests` does, with no recipients, the title as subject, a plain-tex
 the body (title, when in the viewer's zone, the repeat rule in words, location, organizer and
 description, never guests or a join link) and the `.ics` attached as a picked file would be.
 Nothing is saved as a draft until you edit something. The file is `METHOD:PUBLISH`, so
-recipients get a copy to add to their calendar, not an invitation they can answer; in Macro the
+recipients get a copy to add to their calendar, not an invitation they can answer; in Rox the
 received email shows it as a shared event (see [Calendar invitations in
 email](#calendar-invitations-in-email)). If the file
 cannot be fetched, no composer opens and a `Failed to forward event` toast shows; to check it,
@@ -854,7 +854,7 @@ Google's invitation lands on the same calendar event. Once Google's copy shows i
 which every Google meeting with guests has in its organizer, or a request for the viewer's
 answer) the copy becomes an ordinary guest seat: the note goes away, and RSVP and `Edit event`
 follow the organizer's guest permissions. A meeting that lists only the viewer, answered in
-Google before Macro synced the invitation, still reads as a snapshot. If Google already holds the meeting on that calendar (an invitation Macro has
+Google before Rox synced the invitation, still reads as a snapshot. If Google already holds the meeting on that calendar (an invitation Rox has
 not synced yet), nothing is imported, a sync is scheduled and the card reports that it is
 already on their calendar. `Download .ics` saves the event as an iCalendar file and is not
 flagged. `Ask to join` asks the person who shared the event to add the viewer as a guest; it
@@ -880,17 +880,17 @@ drops the request from an open list and updates the requester's open card, witho
 press on a row that had not caught up changes nothing and says so: `Already answered: <address> was
 invited` or `Already answered: this request was declined`. The notification goes when the request is answered, by whoever answers
 it and however they do, leaving the notifications of other requests on the event, when the
-requester's account is deleted, and when the event goes (deleted in Macro, deleted or cancelled in
+requester's account is deleted, and when the event goes (deleted in Rox, deleted or cancelled in
 Google or Outlook, its calendar or inbox removed); deleting one occurrence of a series leaves it,
 since the sharer can still add the guest.
-A classic `@Macro` reply that
+A classic `@Rox` reply that
 mentions an event does not share
 it by posting the chip. It asks whether to share with the channel, and a yes in that thread
 writes the same channel grant. Private and confidential events are never shared this way.
 Every calendar mention's hover card shows the schedule, location, organizer and attendee
 count, plus the first lines of the event description (its links open), and no last-updated
-byline. A Macro call's generated `Join Macro call` line and a location that is only its link are
-left out, as in event details, and a viewer holding the meeting gets one `Join Macro call` button
+byline. A Rox call's generated `Join Rox call` line and a location that is only its link are
+left out, as in event details, and a viewer holding the meeting gets one `Join Rox call` button
 below the schedule, which closes the phone sheet as it joins. A read-only channel share gets no
 join button, since a share never carries the join link. A mention of a meeting that was deleted or cancelled reads `Deleted`; clicking it (a tap
 on a phone, which opens a sheet) shows `This event was deleted or cancelled.`, like a shared
@@ -1209,8 +1209,8 @@ Only entered custom links validate their format; Reset to title generates a uniq
 URL for the current title.
 Escape closes the popover without closing the editor and returns focus to the pencil
 icon.
-Location offers Macro call, Google Meet, and Custom presets. New links default
-to Macro call; booking creates a call and adds its join link to the invitation.
+Location offers Rox call, Google Meet, and Custom presets. New links default
+to Rox call; booking creates a call and adds its join link to the invitation.
 The selected option uses a subtle accent tint, accent text, and an accent border.
 Custom shows an address or URL input; either video option shows joining
 instructions. Switching presets preserves the entered location/instructions. Availability keeps its
@@ -1445,7 +1445,7 @@ thread refreshes. Close, Escape, or dismissing the phone drawer returns focus to
 attachment chip; `Open in calendar` closes the dialog before the calendar opens, including
 when Calendar is already open in another split, without pulling focus back to the email. A
 calendar file with
-no card (nothing Macro could read) downloads directly, and an Outlook cloud-reference `.ics`
+no card (nothing Rox could read) downloads directly, and an Outlook cloud-reference `.ics`
 opens its Outlook page like any other reference attachment.
 Related recurring components are grouped behind their own disclosure. Only mail synced
 after the feature shipped gets a card; older invitations render as plain email.

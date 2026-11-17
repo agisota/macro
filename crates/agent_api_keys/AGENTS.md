@@ -4,7 +4,7 @@
 
 Part of agents: an agent's own Anthropic or OpenAI API key. An in-memory
 agent on an Anthropic or OpenAI model can have one; while it fits, every turn
-of the agent runs on it instead of Macro's allowance. See the crate doc in
+of the agent runs on it instead of Rox's allowance. See the crate doc in
 `src/lib.rs`.
 
 ## Start here

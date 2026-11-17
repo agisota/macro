@@ -564,7 +564,7 @@ pub struct BotChannel {
 /// Authenticated principal asking to list a bot's channels.
 #[derive(Debug, Clone)]
 pub enum BotChannelListCaller {
-    /// A directly authenticated Macro user.
+    /// A directly authenticated Rox user.
     User(MacroUserIdStr<'static>),
     /// An authenticated bot.
     Bot(BotId),
@@ -728,6 +728,6 @@ pub struct ChannelWebhookResponse {
 pub struct HarnessFacts {
     /// Whether the harness operator permits unattended tool approvals.
     pub allow_permission_bypass: bool,
-    /// Whether the harness runs on a Macro computer.
+    /// Whether the harness runs on a Rox computer.
     pub on_computer: bool,
 }

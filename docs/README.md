@@ -22,7 +22,7 @@ Email: [frontend architecture](architecture/email.md) and
 
 Billing: the [Stripe event inbox](architecture/stripe-event-inbox.md).
 
-Macro computers: [architecture](architecture/macro-computers.md) and the
+Rox computers: [architecture](architecture/macro-computers.md) and the
 [setup trace runbook](runbooks/computer-setup-traces.md).
 
 Contacts: [disk-backed directory implementation plan](design/disk-backed-contacts.md),

@@ -72,7 +72,7 @@ const KNOWN_ERRORS = new Set([
   '#REF!',
   '#VALUE!',
 ]);
-/** Macro's default column width in Excel character units. */
+/** Rox's default column width in Excel character units. */
 const DEFAULT_COLUMN_CHARACTERS =
   Math.round(((DEFAULT_COLUMN_WIDTH - 5) / 7) * 256) / 256;
 
@@ -193,7 +193,7 @@ function chartValues(
   };
 }
 
-/** Write Macro sheets as a SpreadsheetML package without an intermediate model. */
+/** Write Rox sheets as a SpreadsheetML package without an intermediate model. */
 export function writeXlsxWorkbook(
   input: Pick<WorkbookFileData, 'sheets' | 'images'>
 ): WorkbookFileExport {

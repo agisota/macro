@@ -295,7 +295,7 @@ pub(super) async fn stage_thread_label_change(
 /// Undo a staged label change Gmail will never receive, in one transaction
 /// holding the thread's label-write lock: labels of `provider_message_ids`
 /// go back to the state Gmail will end up with (see
-/// `abandon_pending_label_writes`), `local_message_ids` (Macro-only drafts)
+/// `abandon_pending_label_writes`), `local_message_ids` (Rox-only drafts)
 /// lose the change, and the thread's state is derived again.
 #[tracing::instrument(skip(pool, provider_message_ids, local_message_ids), err)]
 #[expect(clippy::too_many_arguments, reason = "the parts of one staged change")]

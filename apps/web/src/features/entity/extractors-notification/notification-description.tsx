@@ -82,8 +82,8 @@ export function NotificationDescription(props: NotificationDescriptionProps) {
 
   // Sender display labels for the notification/stack. GitHub PR senders are
   // always named by the GitHub login carried in the notification metadata —
-  // never by a linked Macro user's name, even when the notification has a
-  // `sender_id`. Macro senders resolve to their display name; agents, which
+  // never by a linked Rox user's name, even when the notification has a
+  // `sender_id`. Rox senders resolve to their display name; agents, which
   // have no `sender_id`, are named from the metadata.
   // Memoized so the per-sender name resolution (which has side effects: it
   // queues a fetch and registers a reactive effect) runs once per dependency

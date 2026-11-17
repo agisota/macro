@@ -1,4 +1,4 @@
-//! Notification sent to a Macro computer's buyer when its first setup ends;
+//! Notification sent to a Rox computer's buyer when its first setup ends;
 //! for an agent teammate's computer, that is the agent's inviter.
 use super::*;
 
@@ -21,13 +21,13 @@ pub enum ComputerSetupOutcome {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct ComputerSetupAgent {
-    /// The agent's Macro user id, to open a DM with it.
+    /// The agent's Rox user id, to open a DM with it.
     pub user_id: String,
     /// The agent's name.
     pub name: String,
 }
 
-/// A team's Macro computer finished first-time setup, or could not be set
+/// A team's Rox computer finished first-time setup, or could not be set
 /// up. Sent to its buyer, who continues (or retries) from the setup flow.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, ToSchema)]
 #[serde(rename_all = "camelCase")]

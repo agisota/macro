@@ -219,7 +219,7 @@
         "properties": {
           "isAgent": {
             "type": "boolean",
-            "description": "Whether the person is an agent rather than a human; false for non-Macro contacts."
+            "description": "Whether the person is an agent rather than a human; false for non-Rox contacts."
           },
           "isTeammate": {
             "type": "boolean",

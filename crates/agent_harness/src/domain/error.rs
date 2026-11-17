@@ -12,7 +12,7 @@ pub type Result<T, E = HarnessError> = std::result::Result<T, E>;
 #[derive(Debug, thiserror::Error)]
 #[non_exhaustive]
 pub enum HarnessError {
-    /// New Macro-funded work was refused or could not be validated.
+    /// New Rox-funded work was refused or could not be validated.
     #[error(transparent)]
     Admission(#[from] ai_billing::AiAdmissionError),
     /// A container could not be spawned or reattached.

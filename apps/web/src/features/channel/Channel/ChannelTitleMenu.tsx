@@ -16,7 +16,7 @@ import { useChannelEntity } from './channel-entity';
  * The conversation's entity actions behind the same ellipsis a document's
  * title menu uses. The actions match the channel's row in the rail, so
  * favoriting, muting or renaming a conversation does not depend on finding
- * that row. It also offers Ask Macro, which would otherwise take a top bar
+ * that row. It also offers Ask Rox, which would otherwise take a top bar
  * button.
  *
  * Owned by the channel top bar rather than by each of its hosts: the menu
@@ -34,7 +34,7 @@ export function ChannelTitleMenu(props: { channelId: string }) {
   const channelName = useChannelName(props.channelId);
   const channelType = useChannelType(props.channelId);
 
-  // Seed for "Ask Macro": a new chat with this channel @mentioned.
+  // Seed for "Ask Rox": a new chat with this channel @mentioned.
   const askMacroEntity = () => {
     const type = channelType();
     if (!type) return undefined;

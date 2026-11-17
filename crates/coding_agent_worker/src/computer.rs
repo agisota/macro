@@ -1,5 +1,5 @@
-//! What roxd does differently on a Macro computer: every Claude Code
-//! session starts with Macro's Anthropic gateway in its environment, derived
+//! What roxd does differently on a Rox computer: every Claude Code
+//! session starts with Rox's Anthropic gateway in its environment, derived
 //! from the session's `macro_internal` MCP server, and first-party traffic
 //! goes through the computer's egress route. The env reaches Claude Code
 //! through the ACP adapter's `_meta.claudeCode.options.env`.
@@ -26,15 +26,15 @@ const ANTHROPIC_GATEWAY_PATH: &str = "/anthropic";
 /// ACP methods that start a Claude Code query.
 const SESSION_METHODS: &[&str] = &["session/new", "session/load", "session/resume"];
 
-/// Written last by enrollment; only machines bearing it are Macro computers.
+/// Written last by enrollment; only machines bearing it are Rox computers.
 pub const ENROLLED_MARKER: &str = "/var/lib/roxd/enrolled";
 
-/// Whether this machine is an enrolled Macro computer.
+/// Whether this machine is an enrolled Rox computer.
 pub fn is_macro_computer() -> bool {
     cfg!(unix) && std::path::Path::new(ENROLLED_MARKER).exists()
 }
 
-/// A Macro computer's runtime-side settings, shared by every bridge.
+/// A Rox computer's runtime-side settings, shared by every bridge.
 pub struct Computer {
     workspace: PathBuf,
     egress_url: Option<String>,

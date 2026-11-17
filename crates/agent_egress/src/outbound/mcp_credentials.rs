@@ -11,7 +11,7 @@
 //!
 //! Both halves come from `pipedream_mcp`'s own ports - the same rows the chat
 //! tool path reads, the same client that dials Pipedream for it - so an app
-//! connected in Macro is an app the sandbox can reach, with nothing to keep
+//! connected in Rox is an app the sandbox can reach, with nothing to keep
 //! in sync.
 
 use macro_user_id::user_id::MacroUserIdStr;
@@ -92,12 +92,12 @@ where
         _session: uuid::Uuid,
         destination: &McpDestination,
     ) -> Result<McpResolution, EgressError> {
-        // Macro's own server is the composition root's to layer on with
+        // Rox's own server is the composition root's to layer on with
         // [`crate::outbound::macro_mcp::WithMacroMcp`]; these rows can never
         // answer for it.
         let McpDestination::Connected(slug) = destination else {
             return Err(EgressError::Internal(rootcause::report!(
-                "the Pipedream resolver was asked for Macro's own MCP server; \
+                "the Pipedream resolver was asked for Rox's own MCP server; \
                  the composition root did not layer WithMacroMcp"
             )));
         };

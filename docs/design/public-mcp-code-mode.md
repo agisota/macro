@@ -11,14 +11,14 @@ Sources:
 ## Goal
 
 Give external MCP clients (Claude, ChatGPT, Cursor) the code mode that agent
-sessions already have: write one JavaScript module against the real Macro SDK
+sessions already have: write one JavaScript module against the real Rox SDK
 instead of chaining many tool calls. Every client but ChatGPT sees it: ChatGPT's
 plugin directory refuses generic executors.
 
 ## What exists
 
 - `crates/code_execution`: fresh Deno child per run, prebundled SDK, network
-  limited to Macro service hosts, 30 s deadline.
+  limited to Rox service hosts, 30 s deadline.
 - `crates/agent_code_mode`: `ExecuteCode`, `DescribeCodeTools`, execution
   journal, review stacks. Session-bound throughout: `ExecutionIdentity` needs a
   session, turn and agent; the journal is keyed by session; turn Stop cancels;
@@ -63,7 +63,7 @@ Choose the surface per client in `initialize`, `list_tools` and `call_tool`
 
 - Off: unchanged.
 - On: `tools/list` is `ExecuteCode`, `DescribeCodeTools` and `ReadCodeDocs` only
-  (`agent_code_mode::inbound::toolset::user_toolset`). Individual Macro tools
+  (`agent_code_mode::inbound::toolset::user_toolset`). Individual Rox tools
   are not advertised. `initialize` (which, unlike `get_info`, sees the
   request) replaces the standard tool-catalog instructions with code-mode
   instructions.

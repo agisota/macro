@@ -5,10 +5,10 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-/// A draft created for one stable Macro message, with a searchable correlation ID.
+/// A draft created for one stable Rox message, with a searchable correlation ID.
 #[derive(Debug, Clone)]
 pub struct DraftRequest {
-    /// Stable Macro message identity, scoped by the mailbox credential.
+    /// Stable Rox message identity, scoped by the mailbox credential.
     pub correlation: Uuid,
     /// Monotonic local revision, stamped atomically with editable content.
     pub revision: u64,
@@ -29,7 +29,7 @@ pub struct ProviderDraft {
     pub version: Option<String>,
     /// False means another client submitted the draft.
     pub is_draft: bool,
-    /// Last Macro content revision observed on the provider, if any.
+    /// Last Rox content revision observed on the provider, if any.
     pub app_revision: Option<u64>,
     /// Digest of provider-normalized content, excluding mutable attachment metadata.
     /// A missing digest forbids advancing through an attachment edit to delivery.

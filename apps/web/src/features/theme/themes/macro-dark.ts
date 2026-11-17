@@ -2,7 +2,7 @@ import type { ThemeV3 } from '../types/themeTypes';
 
 /** Neutral outer background and inset content surfaces with a muted blue accent. */
 export const macroDarkTheme = {
-  id: 'Macro Dark',
+  id: 'Rox Dark',
   name: 'Rox Dark',
   version: 3,
   mode: 'dark',

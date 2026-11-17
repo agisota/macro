@@ -33,7 +33,7 @@ export type {
 export const TEAM_ON_TRIAL = 'TEAM_ON_TRIAL';
 type TeamOnTrialErrorCode = typeof TEAM_ON_TRIAL;
 
-/** The team has no paid Macro plan to bill a computer on (422). */
+/** The team has no paid Rox plan to bill a computer on (422). */
 export const NO_PAID_PLAN = 'NO_PAID_PLAN';
 
 /** Computers are not rolled out to this team (a 403 without a code). */
@@ -42,7 +42,7 @@ export const ROLLOUT_DISABLED = 'ROLLOUT_DISABLED';
 /** Computers aren't sold here right now: no host is attached (503). */
 export const COMPUTERS_UNAVAILABLE = 'COMPUTERS_UNAVAILABLE';
 
-/** Macro's billing provider failed (502); trying again usually works. */
+/** Rox's billing provider failed (502); trying again usually works. */
 export const BILLING_PROVIDER_FAILED = 'BILLING_PROVIDER_FAILED';
 
 /** No answer within {@link REQUEST_TIMEOUT_MS}. */
@@ -239,7 +239,7 @@ async function releaseError(
 }
 
 /**
- * The caller's current team's Macro computers. Writes need team admin. Every
+ * The caller's current team's Rox computers. Writes need team admin. Every
  * request gives up after {@link REQUEST_TIMEOUT_MS} with `TIMED_OUT`.
  */
 export const computersClient = {

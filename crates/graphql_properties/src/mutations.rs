@@ -251,7 +251,7 @@ pub enum GraphqlPropertyTargetEntityType {
     Chat,
     /// CRM company target.
     Company,
-    /// Row of a Macro database table.
+    /// Row of a Rox database table.
     DatabaseRow,
     /// Document target, including tasks and snippets.
     Document,

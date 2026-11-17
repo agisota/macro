@@ -176,8 +176,8 @@ fn opencode_reports_the_child_session_and_strips_the_task_wrapper() {
     assert_eq!(result.error, None);
 }
 
-/// Macro's own agent delegates through its `Subagent` tool, which by name is
-/// a Macro tool; the fold still folds it to the subagent detail, with the
+/// Rox's own agent delegates through its `Subagent` tool, which by name is
+/// a Rox tool; the fold still folds it to the subagent detail, with the
 /// tool's `{ "result" }` response read as the answer rather than shown as
 /// JSON.
 #[test]
@@ -228,11 +228,11 @@ fn the_inmem_agents_subagent_tool_folds_to_a_subagent_not_a_macro_tool() {
                 ..
             }
         )),
-        "the delegation must not also fold as a Macro tool"
+        "the delegation must not also fold as a Rox tool"
     );
 }
 
-/// Any other harness reaches the same tool over Macro's MCP server, with the
+/// Any other harness reaches the same tool over Rox's MCP server, with the
 /// response inside MCP's envelope; it is a delegation there too.
 #[test]
 fn the_subagent_tool_over_mcp_folds_to_a_subagent() {

@@ -53,7 +53,7 @@ pub enum GraphqlMessageOperationIssue {
     MovePending,
     /// The source draft changed before retirement.
     MoveConflict,
-    /// The original was sent outside Macro.
+    /// The original was sent outside Rox.
     MoveSourceSent,
     /// Source mailbox access must be restored.
     MoveReauthorization,

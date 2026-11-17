@@ -33,7 +33,7 @@ export type DriveFile = {
   id: string;
   name: string;
   kind: DriveKind;
-  /** Where the file came from, when it was not made in Macro. */
+  /** Where the file came from, when it was not made in Rox. */
   source?: 'email' | 'channel';
   tags?: readonly EmailTagId[];
   owner: HomepagePersonId;

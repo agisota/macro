@@ -30,7 +30,7 @@ const RUNNING: RoxdStatus = {
   phase: 'running',
   agentId: 'claude-code',
   agentName: 'Claude Code',
-  workspace: '/Users/sample/Macro',
+  workspace: '/Users/sample/Rox',
   pairingCode: null,
   pairingExpiresAt: null,
   harnessId: 'harness-1',
@@ -104,7 +104,7 @@ function Fixture() {
           <LocalRuntimeSetupPanel
             capabilities={capabilities}
             onOpenSession={(agent) => setAction(`Opened @${agent.handle}`)}
-            defaultWorkspace="/Users/sample/Macro"
+            defaultWorkspace="/Users/sample/Rox"
             autoStart={params.get('auto') !== 'false'}
             onClose={() => setOpen(false)}
           />

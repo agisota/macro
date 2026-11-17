@@ -10,7 +10,7 @@ use macro_env::Environment;
 use outlook_emulator::{Options, OutlookEmulator, Seed, SeedError, StartError};
 
 /// A stateful fake of the Microsoft Graph mail and calendar APIs and the
-/// Microsoft identity platform Macro's email, calendar and sign-in code call.
+/// Microsoft identity platform Rox's email, calendar and sign-in code call.
 #[derive(Parser)]
 struct Args {
     /// The address to listen on.

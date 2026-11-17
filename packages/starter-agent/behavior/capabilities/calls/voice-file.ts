@@ -1,5 +1,5 @@
 /**
- * The call's voice file, as Macro last committed it. Macro's agent settings
+ * The call's voice file, as Rox last committed it. Rox's agent settings
  * commit `config/voice.json` to the agent's repository; the live checkout
  * only gets it at its next pull. So a call fetches the remote's main and
  * reads the file there, and the checkout's copy when it can't.

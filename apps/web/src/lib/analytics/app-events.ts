@@ -107,10 +107,10 @@ export type AppEvents = {
   /** The last step's list settled: AI finished, or the wait ran out. */
   onboarding_v4_routines_shown: {
     shown: number;
-    /** Suggested by AI for the person, not Macro's templates. */
+    /** Suggested by AI for the person, not Rox's templates. */
     for_you: number;
     on_by_default: number;
-    /** AI gave none in time, so only Macro's templates showed. */
+    /** AI gave none in time, so only Rox's templates showed. */
     fallback: boolean;
     /** The wait ran out before AI finished. */
     waited_out: boolean;
@@ -512,7 +512,7 @@ type RoutineSuggestionEvent = {
   /** The sidebar's surface, or the suggestion's main one on the Routines page. */
   surface: string;
   placement: 'sidebar' | 'routines';
-  /** `for_you` from AI, `macro` for Macro's templates. */
+  /** `for_you` from AI, `macro` for Rox's templates. */
   from: 'for_you' | 'macro';
   /** A catalog routine with AI's values, or a routine AI drafted. */
   kind: 'catalog' | 'routine';

@@ -370,7 +370,7 @@ where
                     return Ok(ApplyOutcome::Skipped);
                 }
                 // A subscription's invoice reaches only consumers of those;
-                // the others act on Macro's own one-off invoices.
+                // the others act on Rox's own one-off invoices.
                 let subscription = match &invoice.subscription {
                     Some(_) if !consumer.reads_invoice_subscription() => {
                         return Ok(ApplyOutcome::Skipped);

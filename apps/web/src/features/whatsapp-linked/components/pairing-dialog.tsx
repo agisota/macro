@@ -219,7 +219,7 @@ export function PairingDialog(props: {
   passkey: PasskeyMode;
   ceremony: PasskeyCeremony;
   onConfirmPasskey: () => void;
-  /** The person continued in Macro desktop; closing must not cancel. */
+  /** The person continued in Rox desktop; closing must not cancel. */
   onHandOff: () => void;
   onRetry: () => void;
   onCancel: () => void;

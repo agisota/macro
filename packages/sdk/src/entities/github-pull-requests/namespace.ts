@@ -10,7 +10,7 @@ import { GithubPullRequest } from './pull-request';
 export class GithubPullRequestNamespace {
   constructor(private readonly client: MacroClient) {}
 
-  /** Construct from a Macro foreign entity's identity. */
+  /** Construct from a Rox foreign entity's identity. */
   byId(id: string): GithubPullRequest {
     return GithubPullRequest.byId(this.client, id);
   }

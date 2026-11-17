@@ -44,7 +44,7 @@ export function RepositoryPicker(props: {
   branch: string;
   /** This runtime always starts new worktrees from main. */
   branchLocked?: boolean;
-  /** Repositories the signed-in user can hand a coder through Macro's GitHub App. */
+  /** Repositories the signed-in user can hand a coder through Rox's GitHub App. */
   repositories: ReachableRepository[];
   repositoriesLoading: boolean;
   repositoriesError: boolean;

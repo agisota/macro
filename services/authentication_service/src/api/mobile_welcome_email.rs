@@ -212,7 +212,7 @@ pub async fn handler(
     Ok(Json(SendMobileWelcomeEmailResponse { sent: true }))
 }
 
-/// Gmail domains accepted despite being generic: Macro connects Gmail inboxes,
+/// Gmail domains accepted despite being generic: Rox connects Gmail inboxes,
 /// so a Gmail lead can finish signing up on desktop.
 const ALLOWED_PERSONAL_DOMAINS: &[&str] = &["gmail.com", "googlemail.com"];
 
@@ -304,7 +304,7 @@ fn desktop_email_html(url: &str) -> String {
   </head>
   <body style="margin:0;padding:0;width:100%;background-color:#f5f5f4;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">
-      Open this link on desktop to finish signing up for Macro.
+      Open this link on desktop to finish signing up for Rox.
     </div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f5f5f4" style="font-family:Arial,Helvetica,sans-serif;color:#222222;">
       <tr>
@@ -313,10 +313,10 @@ fn desktop_email_html(url: &str) -> String {
             <tr>
               <td bgcolor="#ffffff" style="padding:36px 40px 40px;border:1px solid #e7e7e5;border-radius:12px;">
                 <a href="https://rox.one" style="text-decoration:none;">
-                  <img src="https://rox.one/app/macro-email-icon.png" width="48" height="48" alt="Macro" style="display:block;border:0;" />
+                  <img src="https://rox.one/app/macro-email-icon.png" width="48" height="48" alt="Rox" style="display:block;border:0;" />
                 </a>
                 <h1 style="margin:36px 0 16px;font-size:28px;line-height:36px;font-weight:600;letter-spacing:-0.5px;color:#222222;">{DESKTOP_EMAIL_SUBJECT}</h1>
-                <p style="margin:0 0 20px;font-size:16px;line-height:26px;color:#525252;">Macro is a better experience on desktop. Open this link to finish signing up — it only takes a minute.</p>
+                <p style="margin:0 0 20px;font-size:16px;line-height:26px;color:#525252;">Rox is a better experience on desktop. Open this link to finish signing up — it only takes a minute.</p>
                 <table role="presentation" cellpadding="0" cellspacing="0" style="margin:28px 0 8px;">
                   <tr>
                     <td bgcolor="#222222" style="border-radius:6px;text-align:center;">

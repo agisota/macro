@@ -36,9 +36,9 @@ the local ACP process (Claude Code, Codex, ...), and drives native
 - `src/self_knowledge.rs`: the `<roxd-runtime>` section the bridge
   (`src/harness.rs`) prefixes to each new session's first prompt — roxd
   version, workspace, forwarded MCP servers, permission bypass, listing only
-  what the session has. General Macro guidance stays in the `SelfKnowledge` tool.
+  what the session has. General Rox guidance stays in the `SelfKnowledge` tool.
 - `src/enroll.rs`: `roxd enroll --from incus|file:<path> --config <path>`,
-  run as root by the box image's `roxd-enroll.service` on a Macro computer.
+  run as root by the box image's `roxd-enroll.service` on a Rox computer.
   Reads the `hosted_runtimes` `Enrollment` (Incus guest API
   `/dev/incus/sock`, key `user.macro.enrollment`, or a file), writes
   `roxd.toml` with the enrollment's typed deployment (API, storage, app and
@@ -59,7 +59,7 @@ the local ACP process (Claude Code, Codex, ...), and drives native
   An enrollment carrying `agent` (an agent teammate's computer) also writes
   its environment to `/var/lib/roxd/agent.env` (0600, owned like the
   config) for the guest's `macro-agent.service`; one without removes it.
-- `src/computer.rs`: the one Macro-computer hook in sessions. On an enrolled Macro
+- `src/computer.rs`: the one Rox-computer hook in sessions. On an enrolled Rox
   computer only (the marker exists), each Claude Code session's env: `ANTHROPIC_BASE_URL` (the
   session's `macro_internal` MCP URL with `/mcp/internal` → `/anthropic`),
   `ANTHROPIC_AUTH_TOKEN` (its bearer) and
@@ -132,7 +132,7 @@ the local ACP process (Claude Code, Codex, ...), and drives native
 ## Recipes
 
 - Add a config field (machine-local only: commands, paths, local launch
-  defaults; runtime behaviour a Macro user controls belongs on the web harness
+  defaults; runtime behaviour a Rox user controls belongs on the web harness
   row, and never put a launch command on the web): `src/config.rs` →
   `config.example.toml` → `default.roxd.toml` → the TUI config form
   (`src/tui/config_form/`).
@@ -198,7 +198,7 @@ external chat replies depend on it. Direct session controls still mint IDs.
   desktop app updates it.
 - The update still waits for idle although the agent survives it: the
   harness service ends a session's turn when its runtime connection closes,
-  so a turn in flight would be cut off in Macro. After a handoff the service
+  so a turn in flight would be cut off in Rox. After a handoff the service
   re-runs `initialize` and `session/resume` (or `load`) on the live agent.
 - A `roxd herdr-acp` harness is a child process, so it is handed off like
   any agent and keeps running the old binary until it restarts.
@@ -212,7 +212,7 @@ external chat replies depend on it. Direct session controls still mint IDs.
 - MCP server selection is supplied by `agent_harness` when the session binds;
   native launch forwards that list, with credentials refreshed on launch/resume.
 
-Macro computers replace the managed `/workspace` placeholder with their configured
+Rox computers replace the managed `/workspace` placeholder with their configured
 workspace on session start. The enrollment deployment's egress URL is
 stored as `[macro].egress_url`; computer sessions route first-party MCP and
 Anthropic requests through it without changing custom external MCP addresses.

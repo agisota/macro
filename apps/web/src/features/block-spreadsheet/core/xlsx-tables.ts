@@ -36,7 +36,7 @@ const MAIN = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main';
 export type XlsxTable = {
   /** Where formulas find it, to resolve references to it. */
   layout: WorkbookTable;
-  /** The table Macro keeps; one without a header row becomes cells. */
+  /** The table Rox keeps; one without a header row becomes cells. */
   table?: SheetTable;
 };
 
@@ -49,7 +49,7 @@ type CustomFilter = { operator: string; value: string };
  * wildcards, so they and `~` are escaped with `~`. */
 const wildcardText = (value: string) => value.replace(/[~*?]/g, '~$&');
 
-/** The condition Excel custom filters express, when Macro has one. */
+/** The condition Excel custom filters express, when Rox has one. */
 function customCondition(
   filters: CustomFilter[],
   and: boolean
@@ -247,7 +247,7 @@ export function readXlsxTables(
         layout.headerRows > 0 &&
         layout.bottom < SPREADSHEET_MAX_ROWS &&
         kept < MAX_SHEET_TABLES;
-      // Filters Macro cannot hold give way to the table.
+      // Filters Rox cannot hold give way to the table.
       const { filters: _filters, ...unfiltered } = table;
       const keep = fits
         ? [table, unfiltered].find((candidate) => validSheetTable(candidate))

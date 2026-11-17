@@ -1,5 +1,5 @@
 //! Seat changes send the same Stripe requests they sent before subscription
-//! item changes (Macro computers) were added: the same endpoints in the same
+//! item changes (Rox computers) were added: the same endpoints in the same
 //! order, the same form fields, always-invoice proration, and no
 //! `Idempotency-Key`. The expected requests are written out from the seat code
 //! as it was before that change.

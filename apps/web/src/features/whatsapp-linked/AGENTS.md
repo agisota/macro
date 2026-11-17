@@ -19,7 +19,7 @@ own shareable external chat (`POST /external-chats` with `provider:
   community, on view-shell's `CollapsibleSection` (what Chat's rail uses);
   External's sidebar renders the same sections. Open state is
   `primitives/open-sections.ts`, per user.
-- `components/chat-list.tsx`: one-line chat rows styled like Macro's list rows
+- `components/chat-list.tsx`: one-line chat rows styled like Rox's list rows
   (`bg-list-hover`, actions on hover/focus, always on touch).
 - Starting chats: `core/chat.ts` `chatSections` puts saved contacts nobody
   wrote to (direct, no `lastActivityAt`) in `contacts`, shown as the page's

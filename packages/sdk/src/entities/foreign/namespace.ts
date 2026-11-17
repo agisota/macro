@@ -44,7 +44,7 @@ function withoutNullLogin({
 }
 
 /**
- * @routing Use when resolving a linked external entity, such as an imported item; not Macro's own items.
+ * @routing Use when resolving a linked external entity, such as an imported item; not Rox's own items.
  */
 export class ForeignEntityNamespace {
   constructor(private readonly client: MacroClient) {}

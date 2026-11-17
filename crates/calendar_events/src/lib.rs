@@ -1,7 +1,7 @@
 #![deny(missing_docs)]
 //! Calendar event domain, parsing, and provider persistence adapters.
 //!
-//! A [`domain::models::CalendarEvent`] is the stable Macro entity. External
+//! A [`domain::models::CalendarEvent`] is the stable Rox entity. External
 //! calendars and email invitations are sources of that entity, while
 //! recurrence instances are stored as queryable occurrence projections.
 

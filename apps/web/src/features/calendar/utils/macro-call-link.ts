@@ -4,7 +4,7 @@ interface CalendarCallContent {
   description?: string | null;
 }
 
-/** Accept only Macro meeting links, including local development links. */
+/** Accept only Rox meeting links, including local development links. */
 export function macroCallUrl(value: string): string | undefined {
   try {
     const url = new URL(value);
@@ -69,7 +69,9 @@ export function removeCalendarMacroCall(
           const linkedUrl = calendarMacroCallUrl({ description: paragraph });
           // Invitations saved by earlier releases say "Join Macro call"; keep
           // reading that wording so old events still lose their generated line.
-          const textUrl = text.match(/^Join (?:Macro|Rox) call:\s*(\S+)$/i)?.[1];
+          const textUrl = text.match(
+            /^Join (?:Macro|Rox) call:\s*(\S+)$/i
+          )?.[1];
           const generated =
             text === 'Join Rox call' ||
             text === 'Join Macro call' ||
@@ -82,7 +84,7 @@ export function removeCalendarMacroCall(
   };
 }
 
-/** The location event details show: empty when it is only the meeting's Macro call link. */
+/** The location event details show: empty when it is only the meeting's Rox call link. */
 export function calendarEventLocation(event: CalendarCallContent) {
   return removeCalendarMacroCall(
     { location: event.location },

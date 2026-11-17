@@ -15,7 +15,7 @@ export const PIPEDREAM_BROWSE_HIDDEN_SLUGS: ReadonlySet<string> = new Set([
   'slack',
   ...SLACK_PIPEDREAM_SLUGS,
   'cursor',
-  // Macro syncs email and calendars natively (Settings → Integrations → Email).
+  // Rox syncs email and calendars natively (Settings → Integrations → Email).
   'gmail',
   'google_calendar',
   'google_sheets',

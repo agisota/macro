@@ -1,6 +1,6 @@
 # Computer capacity
 
-Macro computers are sold in units (8 GiB or 4 vCPUs, whichever needs more) on
+Rox computers are sold in units (8 GiB or 4 vCPUs, whichever needs more) on
 bare-metal Incus hosts. A host sells `awake capacity × oversell factor` units,
 and a purchase holds its units from reservation until its charge fails or the
 computer is released, whether it is running or stopped. A purchase that no host

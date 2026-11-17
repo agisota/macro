@@ -63,7 +63,7 @@ Sensitive details are checked in code as well as by the model: a keyword or `sen
 needs "remember" or similar in the sender's own message.
 
 `whatIRemember` and `forgetPerson` take the asking message's channel and id, and act for that
-message's author by Macro's record (`macro.ts`), so nobody can read or wipe someone else's by
+message's author by Rox's record (`macro.ts`), so nobody can read or wipe someone else's by
 claiming to be them.
 
 ## Why words, and "How this shows"

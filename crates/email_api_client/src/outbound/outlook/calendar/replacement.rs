@@ -66,7 +66,7 @@ fn key_date(key: &str) -> Result<NaiveDate, CalendarProviderError> {
         .map_err(|_| invalid())
 }
 
-/// Copy writable fields, preserving provider-native content beyond Macro's normalized subset.
+/// Copy writable fields, preserving provider-native content beyond Rox's normalized subset.
 fn copy_body(event: &Value, remove_conference: bool) -> Result<Value, CalendarProviderError> {
     if event["hasAttachments"].as_bool() == Some(true) {
         return Err(unsupported(

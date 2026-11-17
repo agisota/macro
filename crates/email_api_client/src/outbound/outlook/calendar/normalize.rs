@@ -4,7 +4,7 @@ use chrono::{DateTime, NaiveDate, NaiveDateTime, TimeZone, Utc};
 const DECLINE_FIELD: &str = "singleValueExtendedProperties.automaticDecline";
 const INSTANCE_DECLINE_FIELD: &str = "instances.singleValueExtendedProperties.automaticDecline";
 /// An exception without the start of the occurrence it replaces. An
-/// `originalStart` Macro cannot parse is `instances.originalStart` instead.
+/// `originalStart` Rox cannot parse is `instances.originalStart` instead.
 pub(super) const UNPAIRED_EXCEPTION_FIELD: &str = "instances.originalStart.missing";
 
 /// A normalized event, and the occurrences of its series left out of it.
@@ -117,7 +117,7 @@ fn attendees(value: &Value) -> Vec<CalendarAttendee> {
             let address = v["emailAddress"]["address"].as_str()?;
             let is_organizer = organizer.is_some_and(|o| o.eq_ignore_ascii_case(address));
             // Graph lists a meeting's organizer as an attendee who has not
-            // answered ("none"), as when Macro creates the event. They hold
+            // answered ("none"), as when Rox creates the event. They hold
             // the meeting, as the row added below for an unlisted organizer
             // and Google's organizer row say.
             let response_status = match v["status"]["response"].as_str() {
@@ -158,7 +158,7 @@ fn attendees(value: &Value) -> Vec<CalendarAttendee> {
 }
 
 fn event_reminders(value: &Value, preferences: &Value) -> EventReminders {
-    // An edit in Outlook to its native reminder supersedes Macro's extra
+    // An edit in Outlook to its native reminder supersedes Rox's extra
     // reminder metadata; never resurrect old reminder choices on the next sync.
     let own_reminders = (preferences["nativeReminderOn"] == value["isReminderOn"]
         && (value["isReminderOn"].as_bool() != Some(true)

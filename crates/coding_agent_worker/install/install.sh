@@ -1,5 +1,5 @@
 #!/bin/sh
-# Install roxd, Macro's agent daemon, on macOS or Linux:
+# Install roxd, Rox's agent daemon, on macOS or Linux:
 #
 #   curl -fsSL https://raw.githubusercontent.com/macro-inc/macro/main/crates/coding_agent_worker/install/install.sh | sh
 #

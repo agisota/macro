@@ -113,7 +113,7 @@ impl CalendarMutationService for FakeMutations {
         &self,
         _requester_id: &str,
     ) -> Result<Vec<VisibleCalendar>, CalendarMutationError> {
-        unreachable!("creating with a Macro call lists no calendars")
+        unreachable!("creating with a Rox call lists no calendars")
     }
 
     async fn update_event(
@@ -141,7 +141,7 @@ impl CalendarMutationService for FakeMutations {
         _calendar_id: Option<Uuid>,
         _scope: CalendarDeletionScope,
     ) -> Result<(), CalendarMutationError> {
-        unreachable!("creating with a Macro call deletes nothing")
+        unreachable!("creating with a Rox call deletes nothing")
     }
 
     async fn respond_to_event(
@@ -153,7 +153,7 @@ impl CalendarMutationService for FakeMutations {
         _scope: CalendarRsvpScope,
         _responding_email: Option<String>,
     ) -> Result<CalendarEvent, CalendarMutationError> {
-        unreachable!("creating with a Macro call answers no invitation")
+        unreachable!("creating with a Rox call answers no invitation")
     }
 
     async fn invite_guests(
@@ -164,7 +164,7 @@ impl CalendarMutationService for FakeMutations {
         _guests: Vec<CalendarAttendeeInput>,
         _scope: CalendarUpdateScope,
     ) -> Result<CalendarEvent, CalendarMutationError> {
-        unreachable!("creating with a Macro call invites no one afterwards")
+        unreachable!("creating with a Rox call invites no one afterwards")
     }
 
     async fn copy_shared_event(
@@ -173,7 +173,7 @@ impl CalendarMutationService for FakeMutations {
         _event_id: Uuid,
         _calendar_id: Option<Uuid>,
     ) -> Result<CalendarEvent, CalendarMutationError> {
-        unreachable!("creating with a Macro call copies nothing")
+        unreachable!("creating with a Rox call copies nothing")
     }
 
     async fn respond_to_join_request(
@@ -182,7 +182,7 @@ impl CalendarMutationService for FakeMutations {
         _request_id: Uuid,
         _accept: bool,
     ) -> Result<crate::domain::join_requests::CalendarJoinRequest, CalendarMutationError> {
-        unreachable!("creating with a Macro call answers no join request")
+        unreachable!("creating with a Rox call answers no join request")
     }
 
     async fn disconnect_calendar(
@@ -190,7 +190,7 @@ impl CalendarMutationService for FakeMutations {
         _requester_id: &str,
         _email_link_id: Uuid,
     ) -> Result<(), CalendarMutationError> {
-        unreachable!("creating with a Macro call disconnects nothing")
+        unreachable!("creating with a Rox call disconnects nothing")
     }
 }
 

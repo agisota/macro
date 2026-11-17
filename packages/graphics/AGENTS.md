@@ -3,7 +3,7 @@
 ## Scope
 
 Portable Canvas scene, commands, rendering and collaboration. Keep `src/core`
-independent of Loro, Mirror, DOM, Solid and Macro services. Hosts own rich text,
+independent of Loro, Mirror, DOM, Solid and Rox services. Hosts own rich text,
 assets, permissions, durable sync and document lifetime.
 
 ## Start here

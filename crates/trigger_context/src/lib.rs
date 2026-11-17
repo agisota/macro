@@ -58,7 +58,7 @@ pub enum ChannelType {
 /// A person or bot, as a reader would name them.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContextPerson {
-    /// Stable identity: a Macro user id or a bot id.
+    /// Stable identity: a Rox user id or a bot id.
     pub id: String,
     /// Display name, or the email when the user set none.
     pub name: String,
@@ -642,14 +642,14 @@ pub enum RoutineEvent {
         /// The call.
         call: CallSnapshot,
     },
-    /// Macro's GitHub App received a delivery.
+    /// Rox's GitHub App received a delivery.
     Github {
         /// The delivery.
         delivery: GithubDelivery,
     },
 }
 
-/// A delivery from Macro's GitHub App.
+/// A delivery from Rox's GitHub App.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GithubDelivery {
     /// The GitHub event, such as `workflow_run`.

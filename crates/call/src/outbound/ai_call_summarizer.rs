@@ -82,15 +82,15 @@ Summary: `Alex and Priya reviewed Q3 marketing spend and agreed to cut paid \
 search by 20% next quarter.` → `Q3 Marketing Spend Review`
 Summary: `Standup with the platform team. Blocked on the Postgres upgrade; \
 Sam will follow up with infra.` → `Platform Standup: Postgres Upgrade Blocker`
-Summary: `Intro call between Jordan (Macro) and Lee (Acme) about a possible \
-SSO integration.` → `Macro & Acme SSO Intro Call`
+Summary: `Intro call between Jordan (Rox) and Lee (Acme) about a possible \
+SSO integration.` → `Rox & Acme SSO Intro Call`
 Summary: `No speech detected in the transcript.` → `UNTITLED_CALL`";
 
-/// System prompt for assigning archived transcript rows to known Macro users.
+/// System prompt for assigning archived transcript rows to known Rox users.
 const CUSTOM_SPEAKER_SYSTEM_PROMPT: &str = "\
-You assign speakers in archived call transcript rows to Macro user ids. You are \
+You assign speakers in archived call transcript rows to Rox user ids. You are \
 given JSON transcript rows from the `call_record_transcripts` table and a JSON \
-array of candidate Macro user ids. Your job is to infer the actual speaker for \
+array of candidate Rox user ids. Your job is to infer the actual speaker for \
 each row only when the transcript content and surrounding context make that \
 attribution clear.
 
@@ -99,7 +99,7 @@ Rules:
 - The JSON must be an array of objects with exactly these keys: \
   `call_transcript_id` and `custom_speaker`.
 - `call_transcript_id` must be the `id` value from an input transcript row.
-- `custom_speaker` must be one of the candidate Macro user ids exactly.
+- `custom_speaker` must be one of the candidate Rox user ids exactly.
 - Return an entry only when you are confident. If unsure, omit that row.
 - If you cannot confidently identify any speaker, return exactly `[]`.
 - Do not invent users, do not use display names, and do not include reasons.";
@@ -301,7 +301,7 @@ fn format_custom_speakers_prompt(
         serde_json::to_string_pretty(&candidate_user_ids).unwrap_or_else(|_| "[]".to_string());
 
     format!(
-        "Candidate Macro user ids:\n{candidate_json}\n\nArchived transcript rows:\n{transcript_json}\n\nReturn only the JSON array of confident custom speaker assignments."
+        "Candidate Rox user ids:\n{candidate_json}\n\nArchived transcript rows:\n{transcript_json}\n\nReturn only the JSON array of confident custom speaker assignments."
     )
 }
 

@@ -20,7 +20,7 @@ async fn main() -> anyhow::Result<()> {
     macro_entrypoint::MacroEntrypoint::new(config.environment).init();
 
     let user = MacroUserIdStr::try_from(config.user_id.clone())
-        .context("USER_ID must be a valid Macro user id")?;
+        .context("USER_ID must be a valid Rox user id")?;
 
     let pool = PgPoolOptions::new()
         .max_connections(5)

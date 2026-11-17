@@ -309,7 +309,7 @@ mod tests {
         let url2 = "https://linear.app/macro-eng/issue/M-3421/add-macro-permissions-to-jwt-token";
         assert_eq!(
             parse_linear_title(url2),
-            Some("Add Macro Permissions To Jwt Token".to_string())
+            Some("Add Rox Permissions To Jwt Token".to_string())
         );
 
         assert_eq!(parse_linear_title("https://google.com"), None);

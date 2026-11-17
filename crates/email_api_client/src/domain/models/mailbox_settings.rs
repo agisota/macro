@@ -1,4 +1,4 @@
-//! Provider facts used for category cleanup and rules owned by Macro.
+//! Provider facts used for category cleanup and rules owned by Rox.
 
 use super::ProviderId;
 
@@ -16,7 +16,7 @@ pub struct CategoryMessage {
 pub struct OwnedSenderRule {
     /// Opaque provider resource identity.
     pub id: ProviderId,
-    /// Persisted Macro ownership nonce encoded in the rule name.
+    /// Persisted Rox ownership nonce encoded in the rule name.
     pub correlation: uuid::Uuid,
     /// Exact sender address tested by the rule.
     pub sender: String,

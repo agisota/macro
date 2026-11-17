@@ -22,7 +22,7 @@ afterEach(() => {
   globalThis.fetch = realFetch;
 });
 
-/** Macro, as far as placing a call asks it; every request is recorded. */
+/** Rox, as far as placing a call asks it; every request is recorded. */
 const fakeMacro = (requests: string[]) => {
   const json = (body: unknown) =>
     new Response(JSON.stringify(body), {
@@ -119,7 +119,7 @@ test("the owner's 'call me' in a DM places the call, with real ids in every requ
   expect(requests.filter((line) => /[{}]|%7B/i.test(line))).toEqual([]);
 });
 
-test("a message passed as { channelId, messageId } is refused, and Macro isn't asked", async () => {
+test("a message passed as { channelId, messageId } is refused, and Rox isn't asked", async () => {
   const requests: string[] = [];
   fakeMacro(requests);
   const macro = new Macro({ auth: { type: 'user', apiKey: 'mak_test' } });

@@ -210,7 +210,7 @@ test("the port shows private things only when the agent is alone with them", asy
 	expect(await people.cards(["bot|1", who.me], "reply")).toBe("");
 });
 
-test("remembering and forgetting act for the message's author by Macro's record, nobody else", async () => {
+test("remembering and forgetting act for the message's author by Rox's record, nobody else", async () => {
 	const { keeping, store } = kept();
 	const seed = (id: string, fact: string) =>
 		store.update(id, "", (person) => ({
@@ -231,7 +231,7 @@ test("remembering and forgetting act for the message's author by Macro's record,
 	expect(JSON.stringify(await store.load("macro|bo@example.com"))).toContain(
 		"Lima",
 	);
-	// An id is required from Macro's record: input without the message is refused.
+	// An id is required from Rox's record: input without the message is refused.
 	expect(
 		(await invoke(peopleModule, "forgetPerson", { keeping }, { id: ada })).kind,
 	).toBe("invalid");
@@ -273,7 +273,7 @@ test("a card is words; only the report, for the owner's terminal, has numbers", 
 	).toBeNull();
 });
 
-test("only a Macro id names a person", async () => {
+test("only a Rox id names a person", async () => {
 	const { keeping, store } = kept();
 	await store.update(ada, "Ada", (person) => ({
 		...person,

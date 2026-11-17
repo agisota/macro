@@ -16,7 +16,7 @@ use chrono::{DateTime, Utc};
 /// A user's stored Cursor configuration, as the row holds it.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct StoredCursorConfig {
-    /// The Macro user the configuration belongs to.
+    /// The Rox user the configuration belongs to.
     pub user_id: String,
     /// The ciphertext and what is needed to decrypt it.
     pub encrypted: EncryptedCursorApiKey,

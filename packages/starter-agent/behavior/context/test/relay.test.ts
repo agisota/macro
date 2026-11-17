@@ -10,7 +10,7 @@ import {
 const capability = 'capability-token';
 const apiKey = 'mak_real_key';
 
-/** A Macro that records what reached it. */
+/** A Rox that records what reached it. */
 const upstream = () => {
   const seen: Request[] = [];
   return {
@@ -166,7 +166,7 @@ describe('relayHandler', () => {
     expect(macro.seen).toEqual([]);
   });
 
-  test('answers 502, saying only which service, when Macro is unreachable', async () => {
+  test('answers 502, saying only which service, when Rox is unreachable', async () => {
     const response = await handler(async () => {
       throw new Error(`connect failed with ${apiKey}`);
     })(

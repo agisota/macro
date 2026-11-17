@@ -1,4 +1,4 @@
-//! The owner's stored Macro memory and calendar time zone as Focus context.
+//! The owner's stored Rox memory and calendar time zone as Focus context.
 
 use calendar_events::domain::ports::CalendarRepository;
 use email::domain::focus::ProfileSource;

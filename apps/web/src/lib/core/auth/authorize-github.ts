@@ -76,7 +76,7 @@ export function handleGithubLinkCallback(path: string): boolean {
 
 /**
  * Link the user's GitHub account, or relink one whose token stopped working.
- * The link also authorizes GitHub for Macro AI. Resolves as
+ * The link also authorizes GitHub for Rox AI. Resolves as
  * {@link authorizeGithub} does.
  */
 export async function linkGithubAccount(

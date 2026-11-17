@@ -1,6 +1,6 @@
 # Stripe event inbox
 
-How Macro receives and applies Stripe billing events. Code:
+How Rox receives and applies Stripe billing events. Code:
 `crates/stripe_inbox` (inbox, translator, worker, audit) and
 `services/authentication_service` (webhook, consumers).
 
@@ -127,7 +127,7 @@ Once a day one replica (row lease in `stripe_audit_run`), paced at 5 req/s:
   and quantities) and domain disagreement: a team's subscription id and
   `paying`, and a live personal subscriber without the subscriber role
   (a subscription whose customer's last invoice payment failed counts as not
-  paying); a subscription whose Macro side could not be read is recorded as
+  paying); a subscription whose Rox side could not be read is recorded as
   `unchecked`;
 - clears payloads after 30 days and deletes events after 90.
 
@@ -150,4 +150,4 @@ needs fixtures and tests (`crates/stripe_inbox/fixtures`).
 - A failed payment revokes at once, as before, even while Stripe retries;
   following the subscription status instead is a separate product change.
 - No other service hears about billing changes yet; a Kafka publisher of
-  Macro's own billing decisions is planned for when one needs them.
+  Rox's own billing decisions is planned for when one needs them.

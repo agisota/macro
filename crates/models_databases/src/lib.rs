@@ -1,5 +1,5 @@
 #![deny(missing_docs)]
-//! The typed write surface of Macro databases: ops, the cast rule, views and
+//! The typed write surface of Rox databases: ops, the cast rule, views and
 //! position keys, shared by the SQL engine, the HTTP API and the domain.
 
 pub mod cast;

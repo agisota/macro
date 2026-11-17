@@ -105,7 +105,7 @@ pub struct Computer {
     pub harness_id: Option<HarnessId>,
     /// Last guest creation begun by the fleet; retries keep the same generation.
     pub enrollment_generation: crate::domain::enrollment::EnrollmentGeneration,
-    /// Macro user who purchased the computer.
+    /// Rox user who purchased the computer.
     pub created_by: MacroUserIdStr<'static>,
     /// Time the computer was reserved.
     pub created_at: DateTime<Utc>,
@@ -158,7 +158,7 @@ pub struct ComputerDisplayMetadata {
     pub catalog_entry: String,
     /// Reservation timestamp.
     pub created_at: DateTime<Utc>,
-    /// The Macro user who bought it.
+    /// The Rox user who bought it.
     pub purchased_by: String,
 }
 
@@ -312,7 +312,7 @@ pub struct NewReservation {
     pub catalog_entry: CatalogEntryId,
     /// The saved price, or the comp reason.
     pub funding: Funding,
-    /// Macro user who purchased the computer.
+    /// Rox user who purchased the computer.
     pub created_by: MacroUserIdStr<'static>,
     /// Joined into the computer's subscription update, replayed exactly.
     pub extra_items: Vec<SubscriptionItem>,
@@ -343,7 +343,7 @@ pub struct Reservation {
     pub catalog_entry: CatalogEntryId,
     /// The saved price, or the comp reason.
     pub funding: Funding,
-    /// Macro user who purchased the computer.
+    /// Rox user who purchased the computer.
     pub created_by: MacroUserIdStr<'static>,
     /// Joined into the computer's subscription update, replayed exactly.
     pub extra_items: Vec<SubscriptionItem>,
@@ -733,7 +733,7 @@ pub struct ComputerStatus {
     pub harness_id: Option<HarnessId>,
     /// Time the computer was reserved.
     pub created_at: DateTime<Utc>,
-    /// The Macro user who bought it. The team's owner and admins, not the
+    /// The Rox user who bought it. The team's owner and admins, not the
     /// buyer, finish its setup and manage its Claude account.
     pub purchased_by: String,
     /// When the team finished the guided setup; null while it is unfinished.

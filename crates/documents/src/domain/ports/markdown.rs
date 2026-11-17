@@ -5,12 +5,12 @@ use std::future::Future;
 use crate::domain::models::DocumentError;
 use crate::domain::notion_markdown::NotionMarkdown;
 
-/// A new document's Loro snapshot and its content as Macro markdown.
+/// A new document's Loro snapshot and its content as Rox markdown.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MarkdownSnapshot {
     /// The Loro snapshot.
     pub snapshot: Vec<u8>,
-    /// The same content as Macro markdown.
+    /// The same content as Rox markdown.
     pub markdown: String,
 }
 
@@ -24,7 +24,7 @@ pub trait MarkdownInitializationPort: Send + Sync {
     ) -> impl Future<Output = Result<Vec<u8>, DocumentError>> + Send;
 
     /// Initialize an already-created markdown document from a Notion page
-    /// and return its snapshot with the Macro markdown it holds.
+    /// and return its snapshot with the Rox markdown it holds.
     fn initialize_existing_notion(
         &self,
         document_id: &str,

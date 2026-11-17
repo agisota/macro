@@ -1,4 +1,4 @@
-# Install roxd, Macro's agent daemon, on Windows:
+# Install roxd, Rox's agent daemon, on Windows:
 #
 #   irm https://raw.githubusercontent.com/macro-inc/macro/main/crates/coding_agent_worker/install/install.ps1 | iex
 #

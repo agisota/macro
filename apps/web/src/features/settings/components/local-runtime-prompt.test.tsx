@@ -52,10 +52,9 @@ vi.mock('@core/context/user', () => ({ useUserId: () => currentUser }));
 vi.mock('@macro/tauri/roxd', () => ({
   roxdSupport: async () => ({
     supported: mocks.supported,
-    defaultWorkspace: '/Users/me/Macro',
+    defaultWorkspace: '/Users/me/Rox',
   }),
-  roxdInspect: () =>
-    mocks.inspect ?? Promise.resolve({ paired: mocks.paired }),
+  roxdInspect: () => mocks.inspect ?? Promise.resolve({ paired: mocks.paired }),
   roxdStatus: async () => ({ phase: mocks.statusPhase }),
   onRoxdStatus: (callback: (status: { phase: string }) => void) => {
     mocks.onStatus = callback;
@@ -97,7 +96,7 @@ describe('local runtime invitation', () => {
     fireEvent.click(screen.getAllByText('Set up')[0]);
     expect(await screen.findByText('Local setup')).toBeTruthy();
     expect(mocks.setupProps).toMatchObject({
-      defaultWorkspace: '/Users/me/Macro',
+      defaultWorkspace: '/Users/me/Rox',
       autoStart: true,
     });
 

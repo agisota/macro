@@ -13,7 +13,7 @@ export function BookingReceiptView(props: {
     timeZone: string
   ) => Promise<{ startsAt: string; endsAt: string }[]>;
   reschedule: (start: string) => Promise<void>;
-  /** Shown inside another Macro page, which already frames the receipt. */
+  /** Shown inside another Rox page, which already frames the receipt. */
   embedded?: boolean;
 }) {
   const [confirm, setConfirm] = createSignal(false);

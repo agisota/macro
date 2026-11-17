@@ -24,8 +24,8 @@ import { usePipelinePositionsQuery } from '../queries/pipeline-views';
 
 applyTheme(
   new URLSearchParams(location.search).get('theme') === 'dark'
-    ? 'Macro Dark'
-    : 'Macro Light'
+    ? 'Rox Dark'
+    : 'Rox Light'
 );
 document.documentElement.dataset.touchDevice = String(
   matchMedia('(pointer: coarse)').matches

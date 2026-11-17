@@ -68,13 +68,13 @@ where
         .from_contact_id
         .and_then(|from_id| sender_contacts.get(&from_id));
 
-    // Macro's own digest / system emails describe activity the user already
+    // Rox's own digest / system emails describe activity the user already
     // has in-app notifications for; never raise a new-email notification
     // (in-app row or push) on top of them.
     if sender_contact.is_some_and(|contact| is_macro_notification_sender(&contact.email)) {
         tracing::debug!(
             thread_id = %message.thread_db_id,
-            "skipping new-email notification for Macro's own notification sender"
+            "skipping new-email notification for Rox's own notification sender"
         );
         return Ok(());
     }

@@ -3,12 +3,12 @@
 ## What it is
 
 Belongs to shared infrastructure: low-level JWT and internal-credential
-primitives used across services — decoding Macro API tokens, validating the
+primitives used across services — decoding Rox API tokens, validating the
 internal API key, and the Axum JWT-decode middleware.
 
 ## Start here
 
-- `src/macro_api_token.rs`: the Macro API token (JWT) shape and claims.
+- `src/macro_api_token.rs`: the Rox API token (JWT) shape and claims.
 - `src/internal_api_key.rs`: `InternalApiKey`, the shared-secret credential
   for service-to-service calls.
 - `src/middleware/decode_jwt.rs`: Axum middleware that decodes and attaches
@@ -32,7 +32,7 @@ internal API key, and the Axum JWT-decode middleware.
 
 - `cargo test -p macro_auth` (`SQLX_OFFLINE` unset).
 
-Macro API tokens may include a signed `agent_id` for SDK message attribution,
+Rox API tokens may include a signed `agent_id` for SDK message attribution,
 and with it an `agent_via` client label ("Claude Code"), plus a signed
 `routine_id` naming the routine whose run the token acts for (loop protection,
 see `agent_correlation`). Ordinary user token producers leave them absent; only

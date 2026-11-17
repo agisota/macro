@@ -30,7 +30,7 @@ const SYSTEM_LABELS: [&str; 14] = [
 ];
 /// Labels only Gmail sets.
 const IMMUTABLE_LABELS: [&str; 2] = ["SENT", "DRAFT"];
-/// The scopes Macro asks a Gmail link for.
+/// The scopes Rox asks a Gmail link for.
 pub(crate) const DEFAULT_SCOPES: [&str; 9] = [
     "openid",
     "https://www.googleapis.com/auth/userinfo.email",

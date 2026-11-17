@@ -1,6 +1,6 @@
 /**
- * A Macro tool the fold recognized by name — reached over Macro's MCP
- * server, or called natively by Macro's own agent.
+ * A Rox tool the fold recognized by name — reached over Rox's MCP
+ * server, or called natively by Rox's own agent.
  *
  * Successful calls reuse their registered result renderer and its disclosure.
  * Running, failed, and stopped calls reuse the same renderer without a result,

@@ -41,7 +41,7 @@ export function mobileMarkdownHeaderMenu(
 
 /**
  * The Markdown block's header on touch, where every document and task opens
- * as this block: the title with its menu, sync state, Ask Macro, and Info.
+ * as this block: the title with its menu, sync state, Ask Rox, and Info.
  */
 export function MobileMarkdownHeader(props: {
   collaborationStatus: Accessor<SyncSourceStatus | undefined>;

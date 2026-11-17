@@ -2,7 +2,7 @@
 //!
 //! A program is data: a list of steps run in order.
 //!
-//! - **Code** steps run TypeScript written against Macro's SDK, type-checked
+//! - **Code** steps run TypeScript written against Rox's SDK, type-checked
 //!   when it is saved; they may only make changes where they declare. Each
 //!   reads the outputs of the code steps before it, and its own
 //!   [`Knob`]s: values its owner changes without new code.

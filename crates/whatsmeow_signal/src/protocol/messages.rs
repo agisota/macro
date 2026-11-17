@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/protocol.rs and modified
-// by Macro for WhatsApp's wire format (see NOTICE):
+// by Rox for WhatsApp's wire format (see NOTICE):
 // - the version byte is `0x33` (version 3 in both nibbles), as WhatsApp and
 //   go.mau.fi/libsignal write it; libsignal writes its current version (4) in
 //   the low nibble, which breaks the MAC whatsmeow recomputes;

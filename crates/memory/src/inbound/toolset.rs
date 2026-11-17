@@ -113,7 +113,7 @@ impl<R: ComposedMemoryRepo> AsyncTool<MemoryToolContext<R>> for GetUserActivity 
             Some(id) => {
                 macro_user_id::user_id::MacroUserIdStr::try_from(id.clone()).map_err(|e| {
                     ToolCallError {
-                        description: "Invalid Macro user id".into(),
+                        description: "Invalid Rox user id".into(),
                         internal_error: e.into(),
                     }
                 })?

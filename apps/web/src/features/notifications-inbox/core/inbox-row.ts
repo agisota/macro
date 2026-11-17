@@ -33,7 +33,7 @@ export type InboxRowAction =
   | { kind: 'open' }
   /** Answer the agent waiting for the viewer. */
   | { kind: 'answer' }
-  /** Review the pull request at `url`, outside Macro. */
+  /** Review the pull request at `url`, outside Rox. */
   | { kind: 'review'; url: string }
   /** Approve or deny an access request, accept or decline a join request. */
   | { kind: InboxDecision; targetId: string };
@@ -56,7 +56,7 @@ export type InboxRow<Content> = {
   latestAt: number;
   /** For a thread row, the top-level message it is about. */
   threadId?: string;
-  /** Absent when the row is from no one in Macro, such as an email sender. */
+  /** Absent when the row is from no one in Rox, such as an email sender. */
   actor?: InboxActor;
   /** What the viewer can do from the row, in button order. */
   actions: readonly InboxRowAction[];

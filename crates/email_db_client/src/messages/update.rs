@@ -147,7 +147,7 @@ where
 
 /// Finalize a provider-accepted send and populate its provider IDs.
 ///
-/// Macro messages may not have a provider timestamp until inbox sync runs.
+/// Rox messages may not have a provider timestamp until inbox sync runs.
 /// Seed their delivery time now so thread metadata and the realtime Mail cache
 /// can include them in Sent immediately. Preserve existing provider timestamps
 /// and the timestamp from an earlier finalization attempt.

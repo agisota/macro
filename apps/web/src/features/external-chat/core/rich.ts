@@ -1,6 +1,6 @@
 import { match, P } from 'ts-pattern';
 
-/** Someone WhatsApp named; `userId` when they are a verified Macro user. */
+/** Someone WhatsApp named; `userId` when they are a verified Rox user. */
 export type Person = { name: string; userId?: string };
 
 /** `@<token>` in a body stands for this person. */

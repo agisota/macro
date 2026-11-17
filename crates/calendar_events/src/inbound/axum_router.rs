@@ -269,7 +269,7 @@ pub struct TeamOutOfOfficeQuery {
 #[derive(Serialize, utoipa::ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct TeamOutOfOfficeItem {
-    /// Macro user id of the teammate who is out.
+    /// Rox user id of the teammate who is out.
     owner_id: String,
     /// The teammate's calendar event id.
     event_id: Uuid,

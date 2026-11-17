@@ -1,4 +1,4 @@
-//! The addresses an agent teammate's brain reaches Macro at, as its computer
+//! The addresses an agent teammate's brain reaches Rox at, as its computer
 //! sees them: each service's canonical URL type, resolved afresh for every
 //! enrollment. Local stacks override them per fleet (`OVERRIDE_*`).
 
@@ -14,9 +14,9 @@ mod test;
 
 /// The public gateway origin the brain's SDK calls.
 pub const GATEWAY_KEY: &str = "MACRO_GATEWAY";
-/// Macro's Anthropic gateway for brains, on the harness's egress listener.
+/// Rox's Anthropic gateway for brains, on the harness's egress listener.
 pub const ANTHROPIC_BASE_URL_KEY: &str = "ANTHROPIC_BASE_URL";
-/// Macro's call speech gateway for brains, on the same listener: the
+/// Rox's call speech gateway for brains, on the same listener: the
 /// runtime opens `ws(s)://…/stt` and `…/tts` under it.
 pub const SPEECH_URL_KEY: &str = "MACRO_SPEECH_URL";
 

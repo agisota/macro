@@ -277,7 +277,7 @@ async fn resuming_a_session_a_live_peer_manages_is_refused_without_rotating() {
     );
 }
 
-/// The in-process runtime skips Macro's own server by the name the harness
+/// The in-process runtime skips Rox's own server by the name the harness
 /// gives it, and restates that name rather than importing it. This is the one
 /// crate that sees both, so it is where they are held equal.
 #[test]

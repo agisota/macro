@@ -74,7 +74,7 @@ pub fn is_private(name: &str) -> bool {
     name.starts_with('_') || name.starts_with('.')
 }
 
-/// Whether `p` is a copy of another library's asset (Figma's, or Macro's).
+/// Whether `p` is a copy of another library's asset (Figma's, or Rox's).
 pub fn is_copy(p: &Props) -> bool {
     p.library_source().is_some()
         || (p.key.is_some()
@@ -390,7 +390,7 @@ pub struct LibraryCopy {
     pub id: String,
     pub name: String,
     pub kind: AssetKind,
-    /// The library it came from (a Macro document id, or Figma's key).
+    /// The library it came from (a Rox document id, or Figma's key).
     pub library: Option<String>,
     /// The version it was copied at.
     pub version: Option<String>,

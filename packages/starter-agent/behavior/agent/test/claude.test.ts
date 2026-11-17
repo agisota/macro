@@ -100,7 +100,7 @@ test('every wake has its capability tools beside the MCP servers it was given, a
   expect(options?.env?.CLAUDE_CODE_OAUTH_TOKEN).toBeUndefined();
 });
 
-test("its tools are named so they never collide with Macro's own MCP tools", async () => {
+test("its tools are named so they never collide with Rox's own MCP tools", async () => {
   const fake = recording();
   await agentWith(fake.query).wake(wake);
   const server = fake.calls[0]?.mcpServers?.[capabilityServer];

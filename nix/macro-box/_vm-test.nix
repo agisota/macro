@@ -29,7 +29,7 @@ let
     };
   };
   # A fake agent environment as `roxd enroll` writes it (systemd's quoted
-  # KEY="value" lines). Macro itself is
+  # KEY="value" lines). Rox itself is
   # unreachable; the repo is the in-VM git server.
   agentEnvironment =
     repoUrl:
@@ -103,7 +103,7 @@ pkgs.testers.runNixOSTest {
   };
   # An agent teammate's computer (agentMode): macro has no sudo or docker,
   # and the agent's units run against an in-VM agent_git and an
-  # unreachable Macro.
+  # unreachable Rox.
   nodes.agent = {
     imports = [ guest ];
     macro.box = {

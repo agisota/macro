@@ -34,7 +34,7 @@ async fn updates_round_trip_newest_first(pool: PgPool) {
     let repo = PgSystemStatusRepo::new(pool);
     let outage = update(
         SystemStatus::MajorOutage {
-            message: message("Macro is down"),
+            message: message("Rox is down"),
         },
         30,
     );

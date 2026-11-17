@@ -110,7 +110,7 @@ pub struct TeamTaskNumber {
     pub task_num: i32,
 }
 
-/// What names a task outside Macro: its title, short id, and team number.
+/// What names a task outside Rox: its title, short id, and team number.
 #[derive(Eq, PartialEq, Debug, Clone)]
 pub struct TaskIdentity {
     /// The task document id.

@@ -147,7 +147,7 @@ pub(super) fn from_graph(event: &Value) -> Result<Vec<String>, Rejected> {
 }
 
 /// The zone the series' end date is in. Graph names a legacy custom zone
-/// (`tzone://Microsoft/Custom`) Macro cannot resolve, so fall back as
+/// (`tzone://Microsoft/Custom`) Rox cannot resolve, so fall back as
 /// `normalize::event_time` does, to the zone the event's time is kept in:
 /// `to_graph` writes the end date back in that zone.
 fn range_zone(event: &Value) -> Tz {

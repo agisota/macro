@@ -30,11 +30,11 @@ struct PullRequestStatusTransition {
     status: GithubPullRequestStatus,
 }
 
-/// The webhook actor resolved to Macro users via `github_links`.
+/// The webhook actor resolved to Rox users via `github_links`.
 ///
-/// `sender_id` is the single Macro user a notification is attributed to, and
+/// `sender_id` is the single Rox user a notification is attributed to, and
 /// the user a task status change from the same event is credited to. A
-/// GitHub account may be linked to several Macro users, so `actor_user_ids`
+/// GitHub account may be linked to several Rox users, so `actor_user_ids`
 /// carries every linked user; `send_github_notification` excludes all of them
 /// from recipients so nobody is notified about their own GitHub activity.
 #[derive(Default)]
@@ -114,7 +114,7 @@ impl<
     /// Send a GitHub pull request notification over the connection gateway,
     /// logging (rather than propagating) delivery failures.
     ///
-    /// Every Macro user linked to the actor's GitHub account is dropped from
+    /// Every Rox user linked to the actor's GitHub account is dropped from
     /// the recipients: users should not be notified about their own GitHub
     /// activity, and the notification service's sender exclusion only knows
     /// the single attributed `sender_id`.
@@ -158,7 +158,7 @@ impl<
     }
 
     /// Whether the webhook event was triggered by a bot account (including the
-    /// Macro GitHub App itself, whose task-link comments echo back as
+    /// Rox GitHub App itself, whose task-link comments echo back as
     /// `issue_comment` webhooks).
     pub(super) fn is_bot_sender(event: &ValidatedGithubWebhookEvent) -> bool {
         Self::payload_string(&event.payload, &["sender", "type"]).as_deref() == Some("Bot")
@@ -252,7 +252,7 @@ impl<
             if macro_ids.is_empty() {
                 tracing::trace!(
                     participant_github_user_id=%github_user_id,
-                    "GitHub PR participant has no Macro user mapping"
+                    "GitHub PR participant has no Rox user mapping"
                 );
                 continue;
             }
@@ -267,7 +267,7 @@ impl<
                             error=?error,
                             macro_id=%macro_id,
                             participant_github_user_id=%github_user_id,
-                            "GitHub PR participant mapping is not a valid Macro user ID"
+                            "GitHub PR participant mapping is not a valid Rox user ID"
                         );
                     }
                 }
@@ -356,7 +356,7 @@ impl<
         for macro_id in links.get(&github_user_id).into_iter().flatten() {
             match MacroUserIdStr::try_from(macro_id.clone()) {
                 Ok(user_id) => {
-                    // A notification has a single sender; many Macro users may
+                    // A notification has a single sender; many Rox users may
                     // share one GitHub account, so attribute to the first
                     // mapped user but track all of them as the actor.
                     if sender.sender_id.is_none() {
@@ -369,7 +369,7 @@ impl<
                         error=?error,
                         macro_id=%macro_id,
                         sender_github_user_id=%github_user_id,
-                        "GitHub PR notification sender mapping is not a valid Macro user ID"
+                        "GitHub PR notification sender mapping is not a valid Rox user ID"
                     );
                 }
             }

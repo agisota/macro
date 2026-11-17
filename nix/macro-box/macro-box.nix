@@ -1,4 +1,4 @@
-# Flake outputs for the Macro computer guest, a NixOS configuration; see
+# Flake outputs for the Rox computer guest, a NixOS configuration; see
 # AGENTS.md.
 {
   inputs,

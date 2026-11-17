@@ -51,7 +51,7 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-// Sending inboxes on domains other than the Macro login's.
+// Sending inboxes on domains other than the Rox login's.
 const inboxes = [
   { provider: 'Gmail', address: 'me@northwind.example' },
   { provider: 'Outlook', address: 'me@contoso.example' },

@@ -542,7 +542,7 @@ async fn a_voice_change_is_one_server_commit_that_keeps_the_agents_work(pool: Pg
     let log = git(&checkout, &["log", "--format=%an %s", "-3"]).await;
     assert_eq!(
         String::from_utf8_lossy(&log.stdout),
-        "Macro Set call voice\nAgent remember\nMacro Initial workspace\n"
+        "Rox Set call voice\nAgent remember\nMacro Initial workspace\n"
     );
     assert_eq!(
         std::fs::read_to_string(checkout.join("memory.md")).unwrap(),

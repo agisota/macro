@@ -3,7 +3,7 @@
 ## What it is
 
 Agent teammates (`docs/design/agent-teammates.md`, "The repo"): exactly
-one bare git repo per agent user, served over smart HTTP behind Macro auth,
+one bare git repo per agent user, served over smart HTTP behind Rox auth,
 plus the internal create/delete API and its client.
 
 ## How it works
@@ -61,7 +61,7 @@ standalone `bun.lock` (`tooling/scripts/starter-agent-lock.sh`).
   equality compares fixed-length secrets and digests in constant time. Wire
   tokens remain strings.
 - Credentials: HTTP Basic password = repo token (read and push, own repo
-  only); otherwise a Macro user credential (cookie, bearer, or
+  only); otherwise a Rox user credential (cookie, bearer, or
   `x-macro-user-api-key`, e.g. via `git -c http.extraHeader=...`) of a team
   admin or owner reads only.
 - Creating again for the same team keeps the repo and replaces the token

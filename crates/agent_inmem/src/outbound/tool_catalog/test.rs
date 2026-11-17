@@ -45,6 +45,6 @@ async fn every_http_server_is_listed_including_macros_own() {
     assert_eq!(
         connector.dialed.lock().expect("not poisoned").as_slice(),
         ["macro", "linear"],
-        "HTTP servers are dialed, Macro's included; stdio entries are not"
+        "HTTP servers are dialed, Rox's included; stdio entries are not"
     );
 }

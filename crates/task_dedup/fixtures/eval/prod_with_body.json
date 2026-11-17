@@ -1654,7 +1654,7 @@
     {
       "id": "019f1929-2944-78ad-94a4-9e5f5070c874",
       "title": "[fix][ai] Ai does weird formatting in channels",
-      "body": "Ensure Macro's channel replies are grammatically correct — proper spacing between sentences (e.g. \"I'll create that task. Done.\" not \"I'll create that task.Done\"), no run-ons, no smashed-together words after tool actions.\n\nexamples\n[bug-reports](channel:0195ceb6-ec2e-7023-80e4-6e084fa6cccd#019f1929-de7f-717e-8473-9e8f329c82b7)\n[bug-reports](channel:0195ceb6-ec2e-7023-80e4-6e084fa6cccd#019f192b-9ecb-7714-b03b-5387e22a57c3)",
+      "body": "Ensure Rox's channel replies are grammatically correct — proper spacing between sentences (e.g. \"I'll create that task. Done.\" not \"I'll create that task.Done\"), no run-ons, no smashed-together words after tool actions.\n\nexamples\n[bug-reports](channel:0195ceb6-ec2e-7023-80e4-6e084fa6cccd#019f1929-de7f-717e-8473-9e8f329c82b7)\n[bug-reports](channel:0195ceb6-ec2e-7023-80e4-6e084fa6cccd#019f192b-9ecb-7714-b03b-5387e22a57c3)",
       "owner": "macro|reese.walsh@rox.one",
       "source": "prod",
       "properties": [
@@ -4895,7 +4895,7 @@
     },
     {
       "id": "019f1003-73be-7629-891a-64ff399fdf70",
-      "title": "[feat][ai] Macro agent",
+      "title": "[feat][ai] Rox agent",
       "body": "We want to be able to dispatch agents from macro. We want the `@` claude workflow to be able to kick off a guy that does work async.\n\nThe workflow I use is\n\n1. create macro task\n2. open claude code\n3. use skill to kick off claude to read the task, do the work, put up a pr\n\n^ we want this workflow, triggered from chat and tasks. We want it to run in the background. We want it to have good UI. We want it to use any coding agent (claude, codex, cursor, pi, etc). \n\nManaged agents gets us close but not all the way there. It fails because it uses our API key. We could charge overage to users, but we'll get rate limited quickly by anthropic if we do this. Could we OAuth users then setup a sandbox with claude?\n\nThe 1st iteration of this doesn't need to support arbitrary agents just a single best-in-class agent like claude code.\n\n- Look linear coding agent\n- [https://www.atcyrus.com/](https://www.atcyrus.com/)",
       "owner": "macro|casey.nguyen@rox.one",
       "source": "prod",
@@ -7049,7 +7049,7 @@
     {
       "id": "019efad1-51f6-7d07-8bb5-2bc6db9f515e",
       "title": "feat(bots): macro agent auto respond",
-      "body": "Currently macro agent will only respond in a thread when he is directly @mentioned.\n\nDesired Outcome:\n\n- If Macro Agent is not mentioned in the thread he won't respond\n- If Macro Agent is directly mentioned in the previous message he will respond\n- If Macro Agent is mentioned somewhere in the thread he will decide wether or not to respond.",
+      "body": "Currently macro agent will only respond in a thread when he is directly @mentioned.\n\nDesired Outcome:\n\n- If Rox Agent is not mentioned in the thread he won't respond\n- If Rox Agent is directly mentioned in the previous message he will respond\n- If Rox Agent is mentioned somewhere in the thread he will decide wether or not to respond.",
       "owner": "macro|riley.patel@rox.one",
       "source": "prod",
       "properties": [

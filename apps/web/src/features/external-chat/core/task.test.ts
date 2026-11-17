@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { chat, messages } from '../tests/fake-capabilities';
 import { messageTask } from './task';
 
-it('titles a task from the message text and assigns the Macro users it mentions', () => {
+it('titles a task from the message text and assigns the Rox users it mentions', () => {
   expect(
     messageTask(
       {

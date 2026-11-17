@@ -1045,7 +1045,7 @@
         meta.mainProgram = "goalert-mcp";
       };
 
-      # Starts goalert-mcp against Macro's GoAlert with the admin login read
+      # Starts goalert-mcp against Rox's GoAlert with the admin login read
       # from Doppler at launch, read-only unless GOALERT_READ_ONLY=false.
       goalert-mcp-macro = pkgs.writeShellApplication {
         name = "goalert-mcp-macro";

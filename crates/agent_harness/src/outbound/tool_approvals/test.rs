@@ -44,7 +44,7 @@ fn identity(session: AgentSessionId) -> SessionIdentity {
         session_id: session,
         session_name: "Session".to_owned(),
         bot_id: BotId::new_from_uuid(Uuid::from_u128(1)),
-        bot_name: "Macro".to_owned(),
+        bot_name: "Rox".to_owned(),
         owner_id: MacroUserIdStr::try_from_email("owner@rox.one").unwrap(),
         origin: None,
         audience: Vec::new(),
@@ -120,7 +120,7 @@ fn approval(session: AgentSessionId, status: ToolApprovalStatus) -> ToolApproval
         owner: MacroUserIdStr::try_from_email("owner@rox.one").unwrap(),
         requested_by: Some(MacroUserIdStr::try_from_email("asker@rox.one").unwrap()),
         server_slug: "macro".to_owned(),
-        server_name: "Macro".to_owned(),
+        server_name: "Rox".to_owned(),
         tool_name: "ListEmails".to_owned(),
         arguments: serde_json::json!({}),
         status,
@@ -186,7 +186,7 @@ async fn every_state_of_a_held_call_is_recorded_and_told_to_the_harness() {
                 ToolApprovalChange::Held(HeldToolCall {
                     approval_id: pending.id.to_string(),
                     server_slug: "macro".to_owned(),
-                    server_name: "Macro".to_owned(),
+                    server_name: "Rox".to_owned(),
                     tool_name: "ListEmails".to_owned(),
                 })
             ),

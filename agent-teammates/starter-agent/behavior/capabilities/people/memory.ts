@@ -1,6 +1,6 @@
 /**
  * Anyone can ask what the agent remembers about them and have it forgotten. Both
- * take the asker from Macro's record of their message, so nobody can read or
+ * take the asker from Rox's record of their message, so nobody can read or
  * wipe someone else's. Forgetting removes every detail, every note, and the
  * reflection. What stays is a dateline with no content that fades like the
  * rest: wiping the slate can't be a way to escape what you did. The owner's

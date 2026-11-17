@@ -1,6 +1,6 @@
 # anthropic-status-bot
 
-Posts Anthropic status page updates to a Macro channel.
+Posts Anthropic status page updates to a Rox channel.
 
 [status.claude.com](https://status.claude.com) (formerly status.anthropic.com)
 is powered by Atlassian Statuspage. This service receives Statuspage webhook
@@ -19,7 +19,7 @@ Statuspage webhook ──POST──> /webhook/{WEBHOOK_SECRET}
               body: {"content": "🟡 [Anthropic Status] ..."}
 ```
 
-Channel delivery uses the [Macro SDK](../../../packages/sdk)
+Channel delivery uses the [Rox SDK](../../../packages/sdk)
 (`Macro._client.storage.postChannelBotWebhook`) with bot auth
 (`x-macro-bot-token`, user scope) — the endpoint's preferred auth. The bot
 must be a participant of `CHANNEL_ID`.

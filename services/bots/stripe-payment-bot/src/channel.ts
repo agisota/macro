@@ -5,16 +5,16 @@ import { unwrap } from '../../../../packages/sdk/src/utils';
 export type ChannelConfig = {
   /** Bot API key (`mbot_...`) for the bot whose channels receive notifications. */
   botToken: string;
-  /** Macro environment selected by the host. */
+  /** Rox environment selected by the host. */
   env: Env;
-  /** Optional storage API base URL for a custom Macro deployment. */
+  /** Optional storage API base URL for a custom Rox deployment. */
   storageUrl?: string;
 };
 
 /** Delivers a formatted message to every channel containing the bot. */
 export type ChannelBroadcaster = (content: string) => Promise<void>;
 
-/** Create a broadcaster backed by Macro's bot and channel webhook SDK methods. */
+/** Create a broadcaster backed by Rox's bot and channel webhook SDK methods. */
 export function createChannelBroadcaster(
   config: ChannelConfig
 ): ChannelBroadcaster {
@@ -44,12 +44,12 @@ export function createChannelBroadcaster(
     );
     if (failures.length > 0) {
       failures.forEach((failure) => {
-        console.error('Failed to post Stripe notification to a Macro channel', {
+        console.error('Failed to post Stripe notification to a Rox channel', {
           error: failure.reason,
         });
       });
       throw new Error(
-        `Failed to post to ${failures.length} of ${channels.length} Macro channels`
+        `Failed to post to ${failures.length} of ${channels.length} Rox channels`
       );
     }
 

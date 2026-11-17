@@ -138,7 +138,7 @@ function hintsOf(where: string, node: ts.Node): Hints | undefined {
   }
   return {
     hint: only[0],
-    // Sending leaves Macro by definition.
+    // Sending leaves Rox by definition.
     openWorld: only[0] === 'send' || /@openworld\b/.test(text),
     idempotent: only[0] === 'read' || /@idempotent\b/.test(text),
   };
@@ -236,7 +236,7 @@ function extendsClass(
   return parent === ancestor || extendsClass(parent, ancestor);
 }
 
-/** A reference that is one plain id, which a Macro URL can stand for. */
+/** A reference that is one plain id, which a Rox URL can stand for. */
 function isPlainReference(reference: HandleReference | undefined) {
   if (reference?.kind !== 'byId') return false;
   const read = reference.parameters.filter((parameter) => !parameter.client);
@@ -755,7 +755,7 @@ const macroClass = macroFile?.statements.find(
   (statement): statement is ts.ClassDeclaration =>
     ts.isClassDeclaration(statement) && statement.name?.text === 'Macro'
 );
-if (!macroClass) throw new Error('Macro class not found');
+if (!macroClass) throw new Error('Rox class not found');
 
 // Namespaces are `Macro`'s readonly properties, recursively.
 addOperations(macroClass, { kind: 'namespace', path: [] }, 'macro', 'core');

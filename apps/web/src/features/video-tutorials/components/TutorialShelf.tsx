@@ -28,7 +28,7 @@ import type { TutorialId } from '../core/tutorial-id';
 export type ShelfTutorial = {
   id: TutorialId;
   title: string;
-  /** "Macro Mail" */
+  /** "Rox Mail" */
   block: string;
   length: string;
 };
@@ -102,7 +102,7 @@ function TileArt(props: { tutorial: ShelfTutorial }) {
 }
 
 /**
- * Shown over the bottom of the video once it ends: "More videos from Macro",
+ * Shown over the bottom of the video once it ends: "More videos from Rox",
  * a Replay action, and a row of the other tutorials that scrolls sideways
  * (arrows when it overflows). Arrow keys move between cards.
  */

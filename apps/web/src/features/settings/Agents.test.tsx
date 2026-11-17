@@ -478,7 +478,7 @@ describe('Agents', () => {
     }
   );
 
-  it('lists the built-in global Macro agent as a team agent', () => {
+  it('lists the built-in global Rox agent as a team agent', () => {
     render(() => <Agents {...agentsPageProps} />);
 
     const list = screen.getByRole('region', { name: 'Your agents' });
@@ -607,7 +607,7 @@ describe('Agents', () => {
 
     const list = screen.getByRole('region', { name: 'Your agents' });
 
-    // Macro first, then team agents, then private agents.
+    // Rox first, then team agents, then private agents.
     expect(
       within(list)
         .getAllByText(/^@/)
@@ -1342,7 +1342,9 @@ describe('Agents', () => {
     const dialog = screen.getByRole('region', { name: /^(New|Edit) agent$/ });
     expect(within(dialog).queryByLabelText('Anthropic API key')).toBeNull();
     expect(
-      within(dialog).getByText(`Runs on ${displayName} usage unless you add one.`)
+      within(dialog).getByText(
+        `Runs on ${displayName} usage unless you add one.`
+      )
     ).toBeTruthy();
 
     fireEvent.click(within(dialog).getByRole('button', { name: 'Add key' }));
@@ -1490,7 +1492,7 @@ describe('Agents', () => {
     );
   });
 
-  it('opens the create form on a requested Macro computer', () => {
+  it('opens the create form on a requested Rox computer', () => {
     const computer = {
       ...ROXD_HARNESS,
       id: 'computer-harness',
@@ -1797,7 +1799,7 @@ describe('Agents', () => {
       target: { value: 'Chatty' },
     });
     fireEvent.click(within(dialog).getByRole('button', { name: 'Show' }));
-    // Macro's in-memory runtime chats; a roxd harness codes.
+    // Rox's in-memory runtime chats; a roxd harness codes.
     expect(within(dialog).getByLabelText('Chat agent')).toHaveProperty(
       'checked',
       true

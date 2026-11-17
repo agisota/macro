@@ -33,7 +33,7 @@ export const chatTarget = (
  *
  * Everyone on the call sees it in the call's chat: a channel call's thread in
  * its channel, or a meeting's own chat. For links, ids and anything better
- * read than heard. `text` is Macro markdown, not empty. Without `callId` it is the call
+ * read than heard. `text` is Rox markdown, not empty. Without `callId` it is the call
  * you're in on this machine, and it refuses if there isn't exactly one; a
  * meeting's join doesn't name its call, so for a meeting pass the id
  * `callsNow` lists. It posts as you.

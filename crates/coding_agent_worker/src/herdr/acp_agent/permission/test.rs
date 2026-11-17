@@ -94,7 +94,7 @@ async fn always_allowing_a_command_without_a_native_answer_approves_it_for_the_r
     );
     assert_eq!(std::fs::read_to_string(&keys).unwrap(), "y\n");
 
-    // The same command again is approved without asking Macro.
+    // The same command again is approved without asking Rox.
     adapter
         .answer_permission(&session, "macro-s1", None, 1, &blocked)
         .await;
@@ -136,7 +136,7 @@ async fn always_allow_presses_the_dialogs_own_dont_ask_again_answer() {
         json!({"optionId": "always", "name": "Yes, and don't ask again for commands that start with `cargo test`", "kind": "allow_always"})
     );
     assert_eq!(std::fs::read_to_string(&keys).unwrap(), "p\n");
-    // The native agent remembers it; Macro keeps no standing approval.
+    // The native agent remembers it; Rox keeps no standing approval.
     assert!(lock(&session.always_allowed).is_empty());
     adapter.shutdown.cancel();
 }

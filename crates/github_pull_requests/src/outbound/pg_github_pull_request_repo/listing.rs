@@ -33,7 +33,7 @@ struct ListingQuery<'a> {
     source_auth_entities: &'a [String],
     sort_method: SimpleSortMethod,
     filter_jsonpath: Option<&'a str>,
-    /// Macro user id used to scope the per-user notification state predicates.
+    /// Rox user id used to scope the per-user notification state predicates.
     /// When a notification filter is requested but this is `None`, nothing matches.
     notification_user_id: Option<&'a str>,
     /// Accepted sets of states present on the entity (unseen=1, seen=2, done=4).

@@ -107,7 +107,7 @@ const run = async (): Promise<void> => {
   process.on('SIGTERM', () => {
     void Telemetry.flush().finally(() => process.exit(exitCodes.stopped));
   });
-  // The agent shows online in Macro for as long as it runs.
+  // The agent shows online in Rox for as long as it runs.
   stayOnline({
     open: () => {
       const socket = new WebSocket(presence, {

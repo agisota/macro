@@ -520,7 +520,7 @@ it.each([
   { folder: 'junk', mixed: true },
   { folder: 'trash', mixed: true },
 ])(
-  'editing a synced Macro draft in $folder preserves All Mail eligibility (mixed=$mixed)',
+  'editing a synced Rox draft in $folder preserves All Mail eligibility (mixed=$mixed)',
   async ({ folder, mixed }) => {
     const { draft, thread } = await standalone();
     const state = thread.mailDraftState!;

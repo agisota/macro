@@ -69,7 +69,7 @@ describe('catalog suggestions', () => {
     expect(draftWithEdits(item, {})).toBe(item.draft);
   });
 
-  it('read as their summary where code can’t be saved, and open in the editor when Macro’s', () => {
+  it('read as their summary where code can’t be saved, and open in the editor when Rox’s', () => {
     const item = required(suggestionItem(template, [TAGS], context(false)));
     expect(item.reason).toBeUndefined();
     expect(item.needsPersonalTags).toBe(false);
@@ -118,7 +118,7 @@ describe('templates beside the suggestions', () => {
     expect(suggestionAction(item)).toBe('use');
   });
 
-  it('come after AI’s picks and Macro’s suggestions, unless one already offers them', () => {
+  it('come after AI’s picks and Rox’s suggestions, unless one already offers them', () => {
     const pick = required(suggestionItem(forYou, [TAGS], context(true)));
     const macro = required(suggestionItem(template, [TAGS], context(true)));
     const drafts = required(suggestionItem(drafted, [], context(true)));

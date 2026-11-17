@@ -21,7 +21,7 @@ const DAY_MILLISECONDS = 86_400_000;
 export const numericLiteral =
   /^\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?\s*$/i;
 
-/** A number as a cell with Macro's own format shows it. */
+/** A number as a cell with Rox's own format shows it. */
 export function displayNumber(number: number, cell?: SpreadsheetCell): string {
   const format = cell?.format ?? 'general';
   if (format === 'date') {

@@ -332,7 +332,7 @@ pub trait ScheduledActionService: Send + Sync + 'static {
         receipt: EntityAccessReceipt<ViewAccessLevel>,
     ) -> impl Future<Output = Result<Vec<ListedRun>>> + Send;
 
-    /// Macro's catalog routines with schedules in `timezone`, without code
+    /// Rox's catalog routines with schedules in `timezone`, without code
     /// steps on hosts where code can't be saved.
     fn catalog(&self, timezone: chrono_tz::Tz) -> Vec<super::catalog::CatalogEntry>;
 

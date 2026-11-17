@@ -1058,7 +1058,7 @@ impl CalendarRepository for PgCalendarRepository {
 
         // Content follows the canonical copy. The schedule follows whichever
         // copy last wrote it: the canonical copy takes it when that copy is
-        // new to Macro, advanced its own sequence, or is at least as fresh as
+        // new to Rox, advanced its own sequence, or is at least as fresh as
         // the write it replaces, a user edit through another copy lands when
         // it is at least that fresh, and the copy that wrote the schedule
         // keeps writing it until then. The meeting's content (title,
@@ -1102,7 +1102,7 @@ impl CalendarRepository for PgCalendarRepository {
             tracing::Span::current().record("meeting_content", meeting_content);
         }
         // A canonical copy older than a pending edit through the organizer's
-        // copy leaves the schedule to it too, even when new to Macro or
+        // copy leaves the schedule to it too, even when new to Rox or
         // advanced: that edit's guests and time are the newer ones.
         let owns_schedule = schedule.source_id == Some(source_id);
         let writes_schedule = if is_canonical {
@@ -1398,7 +1398,7 @@ impl CalendarRepository for PgCalendarRepository {
                 viewer_event.inbox_organizes AS "inbox_organizes?",
                 viewer_event.inbox_attends AS "inbox_attends?",
                 COALESCE(occurrence_override.title, viewer_event.title) AS "title?",
-                -- A channel share is capped after its Macro call comes out,
+                -- A channel share is capped after its Rox call comes out,
                 -- since the join line closes the description.
                 CASE
                     WHEN viewer_event.is_channel_shared
@@ -5191,7 +5191,7 @@ fn event_visibility(value: &str) -> EventVisibility {
 
 /// Parse the stored provider, treating an unknown value as a third-party
 /// conference so a row written by a newer deployment stays joinable and is
-/// never mistaken for one Macro may detach.
+/// never mistaken for one Rox may detach.
 fn conference_provider(value: &str) -> ConferenceProvider {
     if value == "microsoft_teams" {
         ConferenceProvider::MicrosoftTeams

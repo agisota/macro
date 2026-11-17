@@ -15,7 +15,7 @@ function operation(name: string) {
 
 type Recorded = { method: string; url: string; body: string | undefined };
 
-/** A Macro client whose requests answer from `respond`, recording each. */
+/** A Rox client whose requests answer from `respond`, recording each. */
 function macroAnswering(respond: (request: Recorded) => Response) {
   const requests: Recorded[] = [];
   vi.stubGlobal(
@@ -160,7 +160,7 @@ describe('runOperation', () => {
     });
   });
 
-  test('a Macro URL addresses the handle its last path segment names', async () => {
+  test('a Rox URL addresses the handle its last path segment names', async () => {
     const { macro, requests } = macroAnswering(() =>
       Response.json({ permission: 'edit' })
     );
@@ -225,7 +225,7 @@ describe('runOperation', () => {
     expect(missing.structuredContent).toEqual({
       error: {
         code: 'not_found',
-        message: 'Macro API error 404: document is gone',
+        message: 'Rox API error 404: document is gone',
       },
     });
 
@@ -241,7 +241,7 @@ describe('runOperation', () => {
       validators,
     });
     expect(failed.structuredContent).toEqual({
-      error: { code: 'internal', message: 'Macro API error 500' },
+      error: { code: 'internal', message: 'Rox API error 500' },
     });
   });
 

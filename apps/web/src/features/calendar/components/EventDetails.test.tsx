@@ -12,7 +12,7 @@ vi.mock('@core/component/UserIcon', () => ({
   UserIcon: () => document.createElement('span'),
 }));
 vi.mock('@core/mobile/isMobile', () => ({ isMobile: () => false }));
-// Macro profile and contact names; any other address has no name and falls
+// Rox profile and contact names; any other address has no name and falls
 // back to itself, as the real lookup does.
 vi.mock('@core/user', async (importOriginal) => {
   const names: Record<string, string> = {

@@ -397,7 +397,7 @@ export interface EmailComposePresentation {
   signaturesEnabled: Accessor<boolean>;
 }
 
-/** A file stored as a Macro document, as a body link names it. */
+/** A file stored as a Rox document, as a body link names it. */
 export interface UploadedDocument {
   documentId: string;
   name: string;

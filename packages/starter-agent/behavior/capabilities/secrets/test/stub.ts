@@ -1,5 +1,5 @@
 /**
- * A stand-in for Macro's vault API (the agent routes of the "Vault API
+ * A stand-in for Rox's vault API (the agent routes of the "Vault API
  * contract", with the selectors and payloads of the selector proposal, rev
  * 4): the same routes, statuses, camelCase JSON and error precedence, over
  * memory, as a fetch handler a test hands the client. The owner's side

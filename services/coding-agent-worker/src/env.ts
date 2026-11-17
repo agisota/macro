@@ -16,10 +16,10 @@ export const env = envsafe({
     desc: 'mbot_ key (Settings → Bots); the SDK also reads this from the environment itself',
   }),
   MACRO_USER_ID: str({
-    desc: 'Macro user ID the bot is authorized to act as',
+    desc: 'Rox user ID the bot is authorized to act as',
   }),
   PUBLIC_URL: url({
-    desc: 'Public base url Macro webhooks can reach this worker at (e.g. an ngrok tunnel)',
+    desc: 'Public base url Rox webhooks can reach this worker at (e.g. an ngrok tunnel)',
   }),
   UPSTREAM_WS_URL: str({
     default: '',

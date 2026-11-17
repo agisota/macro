@@ -1,6 +1,6 @@
 # Repository guide for coding agents
 
-Macro is a document and collaboration app with a Rust backend and a web frontend.
+Rox is a document and collaboration app with a Rust backend and a web frontend.
 This file is the shared entry point: `AGENTS.md` symlinks to `CLAUDE.md`. Edit
 `CLAUDE.md` and preserve the symlink; do not maintain two copies.
 
@@ -27,7 +27,7 @@ patterns in older code.
 | `crates/` | Reusable backend libraries, domain services, and adapters. |
 | `crates/macro_db_client/migrations/` | RoxDB PostgreSQL migrations. |
 | `infra/` | Deployment definitions and local infrastructure. |
-| `agent-teammates/` | Agents that work in Macro as their own users: the `muppet` library and a `starter-agent` template. Outside the root workspace and its checks. |
+| `agent-teammates/` | Agents that work in Rox as their own users: the `muppet` library and a `starter-agent` template. Outside the root workspace and its checks. |
 | `packages/muppet/`, `packages/starter-agent/` | The hosted agent teammate runtime, in the root workspace: the muppet library and the template each agent's repository starts from (`docs/design/agent-teammates.md`). |
 | `tooling/` | Development tools, scripts, and imported `just` recipes. |
 | `docs/` | Development guides, architecture, designs, runbooks, and the browser agent guide; see [the index](docs/README.md). |
@@ -88,7 +88,7 @@ Real files live in `.agents/`; tool-specific directories only symlink to it.
 - Disagree when they're wrong. No flattery.
 - Answer simple questions directly.
 - For UI work, ask how it should behave on mobile unless that's obvious.
-- Ground UI proposals and prototypes in the existing Macro app screens and
+- Ground UI proposals and prototypes in the existing Rox app screens and
   design system, preserving its shell, typography, controls, and spacing.
 - Treat an approved UI proposal followed by a PR request as a request to
   implement it; keep standalone prototypes outside the repository unless asked.

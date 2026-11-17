@@ -1,7 +1,7 @@
 pub use macro_user_id::user_id::MacroUserIdStr;
 pub use mcp_toolset::{MCP_CLIENT_NAME, McpServer, client_info};
 
-/// An MCP connector a user has connected through Pipedream or Macro Connect.
+/// An MCP connector a user has connected through Pipedream or Rox Connect.
 ///
 /// The provider owns the OAuth grant and tokens for the connected account; we
 /// store only which app the user connected and where the grant lives.
@@ -31,7 +31,7 @@ pub enum ConnectionProvider {
     /// Pipedream Connect: `account_id` is a Pipedream account (`apn_...`).
     #[default]
     Pipedream,
-    /// Macro Connect: `account_id` is the Connect app ID.
+    /// Rox Connect: `account_id` is the Connect app ID.
     Connect,
 }
 
@@ -54,7 +54,7 @@ impl ConnectionProvider {
     }
 }
 
-/// A Macro Connect catalog app, addressed by the Pipedream slug it replaces.
+/// A Rox Connect catalog app, addressed by the Pipedream slug it replaces.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ConnectApp {
     /// Connect's app ID, e.g. `airtable`.

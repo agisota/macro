@@ -3,13 +3,13 @@
 ## What it is
 
 Part of the channels/chat (messaging) feature — lets a team bring its Slack
-history into Macro. Browser-staged Slack archive imports: upload a Slack
-export, map it onto Macro channels/messages/users, and import it as a job.
+history into Rox. Browser-staged Slack archive imports: upload a Slack
+export, map it onto Rox channels/messages/users, and import it as a job.
 
 ## Start here
 
 - `src/domain/importer.rs` + `src/domain/importer/stream.rs`/`targets.rs`:
-  the import pipeline and its target resolution (which Macro entities a
+  the import pipeline and its target resolution (which Rox entities a
   Slack channel/user maps to).
 - `src/domain/slack/`: Slack-format parsing — `mrkdwn.rs`, `reactions.rs`,
   `threads.rs`, `users.rs`, `references.rs`, `export.rs`.
@@ -22,7 +22,7 @@ export, map it onto Macro channels/messages/users, and import it as a job.
 
 - Owns: parsing a Slack export, staging its upload, and running the import
   job end to end (including search backfill and reference reconciliation).
-- Not here: the resulting Macro channel/message storage itself → `channels`,
+- Not here: the resulting Rox channel/message storage itself → `channels`,
   `chat`.
 
 ## Boundaries

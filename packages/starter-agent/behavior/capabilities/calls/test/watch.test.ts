@@ -338,7 +338,7 @@ const paths = callsPaths({
 
 const settle = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 
-test('free, with a DM call: it joins it, asking Macro to fail rather than evict it', async () => {
+test('free, with a DM call: it joins it, asking Rox to fail rather than evict it', async () => {
   const { ports, started } = fakes();
   const state = watchState();
   const ms = await tick(base({ calls: [dm('a', cy)] }), state, ports);

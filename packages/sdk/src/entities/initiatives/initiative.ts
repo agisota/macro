@@ -67,7 +67,7 @@ export class Initiative extends MacroEntity<InitiativeDetail> {
   readonly access = new EntityAccess(this.client, 'initiative', this);
 
   /**
-   * The initiative's URL in the Macro web app; hand it to users as the link.
+   * The initiative's URL in the Rox web app; hand it to users as the link.
    *
    * @readonly
    */

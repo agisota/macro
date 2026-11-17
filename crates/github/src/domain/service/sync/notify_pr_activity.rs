@@ -114,7 +114,7 @@ impl<
     /// action `created`. Mentioned users receive only the more specific
     /// `github_pr_mention` notification; non-mentioned PR participants in the
     /// source receive `github_pr_comment`. Bot-authored comments (including
-    /// the Macro app's own task-link comments) are skipped entirely.
+    /// the Rox app's own task-link comments) are skipped entirely.
     pub(super) async fn notify_pr_comment_and_mentions(
         &self,
         event: &ValidatedGithubWebhookEvent,
@@ -371,10 +371,10 @@ impl<
         }
     }
 
-    /// Resolve the pull request author from `pull_request.user.id` to the Macro
+    /// Resolve the pull request author from `pull_request.user.id` to the Rox
     /// users linked to that GitHub account via `github_links`. Returns an empty
     /// set (with a trace) when unmapped; a single GitHub account may be linked
-    /// to several Macro users, so all of them are returned.
+    /// to several Rox users, so all of them are returned.
     async fn pull_request_author_macro_users(
         &self,
         event: &ValidatedGithubWebhookEvent,
@@ -396,16 +396,16 @@ impl<
         if authors.is_empty() {
             tracing::trace!(
                 author_github_user_id=%author_github_user_id,
-                "pull request author has no Macro mapping"
+                "pull request author has no Rox mapping"
             );
         }
 
         authors
     }
 
-    /// Resolve a single GitHub user ID to the Macro users linked to it via
-    /// `github_links`. Unmapped GitHub user IDs and invalid Macro IDs are
-    /// skipped. A GitHub account may be linked to several Macro users.
+    /// Resolve a single GitHub user ID to the Rox users linked to it via
+    /// `github_links`. Unmapped GitHub user IDs and invalid Rox IDs are
+    /// skipped. A GitHub account may be linked to several Rox users.
     async fn macro_users_for_github_user_id(
         &self,
         github_user_id: &str,
@@ -420,7 +420,7 @@ impl<
                 tracing::warn!(
                     error=?error,
                     github_user_id=%github_user_id,
-                    "failed to map GitHub user ID to Macro users"
+                    "failed to map GitHub user ID to Rox users"
                 );
                 return HashSet::new();
             }
@@ -440,7 +440,7 @@ impl<
                             error=?error,
                             macro_id=%macro_id,
                             github_user_id=%github_user_id,
-                            "GitHub user mapping is not a valid Macro user ID"
+                            "GitHub user mapping is not a valid Rox user ID"
                         );
                         None
                     }
@@ -449,15 +449,15 @@ impl<
             .collect()
     }
 
-    /// Resolve the Macro users @mentioned in `text` via their `github_links`
-    /// login mappings. Unmapped logins and invalid Macro IDs are skipped.
+    /// Resolve the Rox users @mentioned in `text` via their `github_links`
+    /// login mappings. Unmapped logins and invalid Rox IDs are skipped.
     async fn mentioned_macro_users(&self, text: &str) -> HashSet<MacroUserIdStr<'static>> {
         self.macro_users_for_logins(&extract_github_mentions(text))
             .await
     }
 
-    /// Resolve GitHub logins to Macro users via their `github_links` login
-    /// mappings. Unmapped logins and invalid Macro IDs are skipped.
+    /// Resolve GitHub logins to Rox users via their `github_links` login
+    /// mappings. Unmapped logins and invalid Rox IDs are skipped.
     async fn macro_users_for_logins(&self, logins: &[String]) -> HashSet<MacroUserIdStr<'static>> {
         if logins.is_empty() {
             return HashSet::new();
@@ -468,7 +468,7 @@ impl<
             Err(error) => {
                 tracing::warn!(
                     error=?error,
-                    "failed to map GitHub mention logins to Macro users"
+                    "failed to map GitHub mention logins to Rox users"
                 );
                 return HashSet::new();
             }
@@ -484,7 +484,7 @@ impl<
                         tracing::warn!(
                             error=?error,
                             macro_id=%macro_id,
-                            "GitHub mention mapping is not a valid Macro user ID"
+                            "GitHub mention mapping is not a valid Rox user ID"
                         );
                         None
                     }

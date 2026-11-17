@@ -41,7 +41,7 @@ describe('peerAuthorId', () => {
     expect(peerAuthorId('4242424242', undefined)).toBe('unknown');
   });
 
-  it('falls back to Macro for an AI peer with no record', () => {
+  it('falls back to Rox for an AI peer with no record', () => {
     expect(peerAuthorId('11646767255883251712', undefined)).toBe(
       '00000000-0000-0000-0000-00000000a1a1'
     );

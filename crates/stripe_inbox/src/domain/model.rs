@@ -33,7 +33,7 @@ pub enum Consumer {
     TeamSubscription,
     /// AI overage and credit reload invoices, and credit checkouts.
     AiCredits,
-    /// Macro computers billed as team subscription items.
+    /// Rox computers billed as team subscription items.
     Computers,
     /// GA, Meta and PostHog subscription conversions.
     Analytics,
@@ -381,7 +381,7 @@ pub struct SubscriptionFacts {
     pub team_id: Option<Uuid>,
     /// The `owner_id` metadata of a team subscription.
     pub owner_id: Option<macro_user_id::user_id::MacroUserIdStr<'static>>,
-    /// The `macro_plan_change_at` metadata Macro stamps on an immediate plan change.
+    /// The `macro_plan_change_at` metadata Rox stamps on an immediate plan change.
     pub plan_change_at: Option<DateTime<Utc>>,
     /// Marketing attribution.
     pub attribution: Attribution,
@@ -538,7 +538,7 @@ pub struct InvoiceFacts {
     pub status: Option<String>,
     /// Why it was created (`subscription_cycle`, ...).
     pub billing_reason: Option<String>,
-    /// Its metadata (Macro's own invoices carry `macro_purpose`).
+    /// Its metadata (Rox's own invoices carry `macro_purpose`).
     pub metadata: HashMap<String, String>,
     /// Its lines.
     pub lines: Vec<InvoiceLine>,
@@ -655,12 +655,12 @@ pub enum ApplyOutcome {
     DeadLettered,
 }
 
-/// A Stripe customer, as far as Macro needs one.
+/// A Stripe customer, as far as Rox needs one.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CustomerFacts {
     /// The customer.
     pub id: CustomerId,
-    /// Its billing email; never used to find a Macro account unless the
+    /// Its billing email; never used to find a Rox account unless the
     /// customer maps to none.
     pub email: Option<String>,
     /// Whether Stripe deleted it.

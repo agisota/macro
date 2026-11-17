@@ -198,7 +198,7 @@ pub fn personal_plan_change(
         let renewed = previous_period_start.is_some_and(|start| start < period.start);
 
         // A downgrade at renewal belongs to the new period. An immediate
-        // change carries Macro's own stamp only when this update set it;
+        // change carries Rox's own stamp only when this update set it;
         // a later portal edit must not reuse an old stamp.
         let at = if renewed && !PlanChange::is_upgrade(from, to) {
             period.start
@@ -429,7 +429,7 @@ pub fn decide_team_subscription(
     })
 }
 
-/// What Macro holds for a team subscription event's team.
+/// What Rox holds for a team subscription event's team.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum TeamState {
     /// The team was deleted.

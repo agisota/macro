@@ -41,7 +41,7 @@ pub(super) fn command(text: &str) -> Option<Result<Option<&str>, RpcError>> {
 }
 
 impl Adapter {
-    /// Return the complete ACP snapshot consumed by Macro's model/effort menu.
+    /// Return the complete ACP snapshot consumed by Rox's model/effort menu.
     /// Until the native footer confirms an effort, don't guess from defaults.
     pub(super) fn session_options(&self, session: &Session) -> Value {
         let model = lock(&session.model).clone();

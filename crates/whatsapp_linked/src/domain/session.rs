@@ -16,7 +16,7 @@ use uuid::Uuid;
 #[cfg(test)]
 mod test;
 
-/// Largest inbound text Macro stores, in UTF-8 bytes.
+/// Largest inbound text Rox stores, in UTF-8 bytes.
 const INBOUND_TEXT_LIMIT_BYTES: usize = 64 * 1024;
 
 /// Session-service use cases.

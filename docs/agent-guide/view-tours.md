@@ -52,7 +52,7 @@ and highlights.
   offers Import from Linear, which opens the CSV importer.
 
 Connection suggestions open Email or Connected settings. Home, Email, Documents,
-Tasks, Channels, Customers, and Calls include a video from Macro's YouTube
+Tasks, Channels, Customers, and Calls include a video from Rox's YouTube
 channel; no player loads until Watch is clicked. The player has an × above it
 to close the video, and dismissing the tour removes it.
 

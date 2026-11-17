@@ -22,7 +22,7 @@ const cached = () =>
 
 const outage = {
   status: 'major_outage',
-  message: 'Macro is down',
+  message: 'Rox is down',
   updatedAt: '2026-10-28T12:00:00.000Z',
 } as const;
 const recovered = {

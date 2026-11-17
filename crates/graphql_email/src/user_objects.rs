@@ -166,7 +166,7 @@ pub struct GraphqlEmailLink<S: EmailUserService> {
     draft_is_signal: bool,
     /// Stable email link identifier.
     id: ID,
-    /// Macro user that owns the inbox.
+    /// Rox user that owns the inbox.
     macro_id: String,
     /// Provider email address for the inbox.
     email_address: String,

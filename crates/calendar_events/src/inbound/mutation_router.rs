@@ -61,7 +61,7 @@ impl<S, L, Auth> Clone for CalendarMutationRouterState<S, L, Auth> {
 
 impl<S, L, Auth> CalendarMutationRouterState<S, L, Auth> {
     /// Create router state from a shared mutation service, the meeting-link
-    /// provider minting Macro calls for new events, and authorization state.
+    /// provider minting Rox calls for new events, and authorization state.
     pub fn new(
         service: Arc<S>,
         meeting_links: Arc<L>,
@@ -175,7 +175,7 @@ pub struct CreateCalendarEventRequest {
     pub reminders: Option<EventReminders>,
     /// Conference to attach to the new event; omit to create it without one.
     pub conference: Option<ConferenceChange>,
-    /// Mint a Macro call and write its join link into the description and
+    /// Mint a Rox call and write its join link into the description and
     /// location before creating the event, so the invitation carries it.
     /// Cannot be combined with `conference`.
     #[serde(default)]
@@ -222,9 +222,9 @@ pub struct UpdateCalendarEventRequest {
     /// A third-party conference is replaced or detached like any other, since
     /// the request is explicit. Omit the field to leave it alone.
     pub conference: Option<ConferenceChange>,
-    /// Switch the event to a Macro call in this write: mint one, write its
+    /// Switch the event to a Rox call in this write: mint one, write its
     /// join link into the description and location, and detach any provider
-    /// conference. An event already holding a Macro call keeps it. Cannot be
+    /// conference. An event already holding a Rox call keeps it. Cannot be
     /// combined with `conference`.
     #[serde(default)]
     pub macro_call: bool,

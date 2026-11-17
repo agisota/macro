@@ -1,4 +1,4 @@
-//! Thin transport adapter linking a session to the Macro task it works on.
+//! Thin transport adapter linking a session to the Rox task it works on.
 
 use std::sync::Arc;
 

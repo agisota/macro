@@ -19,7 +19,7 @@ import {
   inboxKindLabel,
 } from './inbox-kind-icon';
 
-/** Whether Macro knows a picture for who sent a notification. */
+/** Whether Rox knows a picture for who sent a notification. */
 const hasKnownSender = (notification: UnifiedNotification) =>
   Boolean(
     notification.sender_id ||
@@ -29,7 +29,7 @@ const hasKnownSender = (notification: UnifiedNotification) =>
   );
 
 /**
- * Who a notification is from: their avatar, an initial for a sender Macro only
+ * Who a notification is from: their avatar, an initial for a sender Rox only
  * knows by name, such as an email's, or the kind of notification for one that
  * comes from no one, such as a reminder. With `badged`, a person's avatar also
  * says what kind of notification it is on its corner, in the color of the entity

@@ -1518,7 +1518,7 @@ impl<
                     .get_user_display_name(user)
                     .await
                     .map_err(|e| CallError::Internal(e.into()))?
-                    .unwrap_or_else(|| "Macro user".to_string());
+                    .unwrap_or_else(|| "Rox user".to_string());
             }
         }
         Ok(LiveCallParticipantsResponse { participants })
@@ -2690,7 +2690,7 @@ where
         .get_enhanced_call_record_transcripts(call_record_id)
         .await
         .map_err(Into::into)?;
-    // Never infer a Macro account identity for a guest speaker.
+    // Never infer a Rox account identity for a guest speaker.
     transcripts.retain(|segment| {
         super::meetings::GuestId::parse_rtc_identity(&segment.speaker_id).is_none()
     });

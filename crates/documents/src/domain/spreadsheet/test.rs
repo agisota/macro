@@ -129,7 +129,7 @@ async fn imported_files_cannot_enter_native_spreadsheet_worker() {
         )
         .await
         .unwrap_err();
-    assert!(error.to_string().contains("native Macro spreadsheet"));
+    assert!(error.to_string().contains("native Rox spreadsheet"));
 }
 
 #[tokio::test]

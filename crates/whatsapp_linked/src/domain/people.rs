@@ -19,7 +19,7 @@ mod test;
 pub struct SeenPerson {
     /// External person identity.
     pub person_id: Uuid,
-    /// Verified Macro user association.
+    /// Verified Rox user association.
     pub user_id: Option<String>,
     /// Their WhatsApp name, from their messages or the address book's
     /// copy of it.

@@ -64,7 +64,7 @@ describe('workbook upgraded from a legacy .xls', () => {
       bold: true,
       fillColor: '#DDEBF7',
     });
-    // `#,##0.00` imports as Macro's thousands-separated number format.
+    // `#,##0.00` imports as Rox's thousands-separated number format.
     expect(budget.cells.B15).toMatchObject({ format: 'number', decimals: 2 });
     expect(budget.metadata?.merges).toEqual(['F1:H1']);
     expect(imported.warnings).toEqual([

@@ -1350,7 +1350,7 @@ describe('agent-led new conversation', () => {
       repoUrl: undefined,
       modelOverride: 'anthropic/claude-sonnet-5-5',
     });
-    // Macro Models picks stick: a second send still uses the preferred model.
+    // Rox Models picks stick: a second send still uses the preferred model.
     expect(screen.getByRole('button', { name: 'Agent' }).title).toBe(
       'Sonnet 5.5'
     );
@@ -1359,7 +1359,7 @@ describe('agent-led new conversation', () => {
       modelOverride: 'anthropic/claude-sonnet-5-5',
     });
   });
-  it('keeps unavailable Macro models disabled throughout the catalog', async () => {
+  it('keeps unavailable Rox models disabled throughout the catalog', async () => {
     const roster = buildAgentRoster({
       agents: [],
       runtimes: [],
@@ -1403,7 +1403,7 @@ describe('agent-led new conversation', () => {
     fireEvent.click(extra);
     expect(onSelect).not.toHaveBeenCalled();
   });
-  it('restores a preferred Macro model on a fresh composer', () => {
+  it('restores a preferred Rox model on a fresh composer', () => {
     mocks.preferredInmemModel = 'anthropic/claude-sonnet-5-5';
     page();
     expect(screen.getByRole('button', { name: 'Agent' }).title).toBe(

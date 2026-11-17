@@ -4,8 +4,8 @@
 //! Each runs its confirmed tool (`SendConfirmedEmail`,
 //! `CreateConfirmedCalendarEvent`) as it is, so an agent's program does what
 //! the tool does - a Markdown email body, a chosen inbox, a reply in its
-//! thread, Macro documents as attachments; an event with guests, a
-//! conference or a Macro call - behind the same quoted confirmation. The
+//! thread, Rox documents as attachments; an event with guests, a
+//! conference or a Rox call - behind the same quoted confirmation. The
 //! email and calendar services refuse a program's direct send or create, so
 //! these and a review (`execution.reviews.create`) are the only ways a
 //! program gets an email out or an event onto a calendar.

@@ -29,14 +29,14 @@ export const AI_NAME_SUFFIX = '(AI)';
 /** Longest editor name shown on a cursor; anything past this is cut, not rejected. */
 const MAX_EDITOR_NAME_LENGTH = 64;
 
-/** The cursor label for an AI writer named `name`, e.g. `Macro (AI)`. */
+/** The cursor label for an AI writer named `name`, e.g. `Rox (AI)`. */
 export function aiLabel(name: string): string {
   const shown = name.trim().slice(0, MAX_EDITOR_NAME_LENGTH).trimEnd();
   return shown.endsWith(AI_NAME_SUFFIX) ? shown : `${shown} ${AI_NAME_SUFFIX}`;
 }
 
 /**
- * The editor a request that names nobody runs as: the Macro agent, the same
+ * The editor a request that names nobody runs as: the Rox agent, the same
  * default the canvas path and the web client use. Never a person's name.
  */
 export const DEFAULT_EDITOR_NAME = 'Macro';

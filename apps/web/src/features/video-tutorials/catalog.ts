@@ -37,9 +37,9 @@ import type { TutorialId } from './core/tutorial-id';
 
 export type Tutorial = {
   id: TutorialId;
-  /** "Learn how to use Macro Mail" */
+  /** "Learn how to use Rox Mail" */
   readonly title: string;
-  /** The block's name in a sentence, like "Macro Mail". */
+  /** The block's name in a sentence, like "Rox Mail". */
   readonly block: string;
   /** One line under the title in a row. */
   readonly snippet: string;

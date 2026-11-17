@@ -44,7 +44,7 @@ export type ImportedCopy = {
   /** The teammate's email. */
   by: string;
   entityId: string;
-  /** A Macro entity type, e.g. `md`, `project`, or `database`. */
+  /** A Rox entity type, e.g. `md`, `project`, or `database`. */
   entityType: string;
 };
 
@@ -134,13 +134,13 @@ export function isWritten(decision: ImportPlanDecision | null): boolean {
     .exhaustive();
 }
 
-/** Whether an entry becomes a new Macro object when the plan is approved. */
+/** Whether an entry becomes a new Rox object when the plan is approved. */
 function isNew(entry: ImportPlanEntry): boolean {
   return isWritten(entry.decision) && entry.alreadyImported === null;
 }
 
 /**
- * The entries the plan tree shows: everything not already in Macro. A child
+ * The entries the plan tree shows: everything not already in Rox. A child
  * of an already-imported entry moves up to its nearest ancestor still shown.
  */
 export function planTreeEntries(entries: ImportPlanEntry[]): ImportPlanEntry[] {
@@ -341,7 +341,7 @@ export function sharingSummary(
     .join(' · ');
 }
 
-/** e.g. "4 already in Macro (imported by ana@acme.com, bo@acme.com)". */
+/** e.g. "4 already in Rox (imported by ana@acme.com, bo@acme.com)". */
 export function alreadyInMacroSummary(entries: ImportPlanEntry[]): string {
   const copies = alreadyInMacro(entries);
   if (copies.length === 0) return '';

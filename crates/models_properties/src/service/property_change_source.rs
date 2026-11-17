@@ -2,7 +2,7 @@
 
 use serde::{Deserialize, Serialize};
 
-/// What outside Macro caused a property change.
+/// What outside Rox caused a property change.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum PropertyChangeSource {
@@ -10,12 +10,12 @@ pub enum PropertyChangeSource {
     GithubPullRequest {
         /// The pull request's URL.
         url: String,
-        /// The GitHub account behind the change, linked to Macro or not.
+        /// The GitHub account behind the change, linked to Rox or not.
         account: GithubAccount,
     },
 }
 
-/// A GitHub account, which may have no Macro user.
+/// A GitHub account, which may have no Rox user.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GithubAccount {
     /// GitHub's numeric user id.

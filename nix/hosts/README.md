@@ -1,6 +1,6 @@
-# Macro computers hosts
+# Rox computers hosts
 
-NixOS Incus hosts that run Macro computer VMs. `nix/hosts.nix` exports
+NixOS Incus hosts that run Rox computer VMs. `nix/hosts.nix` exports
 `nixosConfigurations.<host>`; the NixOS modules live in `_nixos/` (the
 underscore keeps `import-tree` from loading them as flake-parts modules).
 

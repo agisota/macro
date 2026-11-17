@@ -1,5 +1,5 @@
 /**
- * What calls add to the agent's context: Macro's calls, the ledgers, the
+ * What calls add to the agent's context: Rox's calls, the ledgers, the
  * watcher that keeps it in at most one call, and what one call's process
  * runs on.
  * Everything here is made once, so the watcher's memory is shared by its
@@ -23,7 +23,7 @@ import { sdkCalls } from './macro.ts';
 import { askerLine, openingLine, pendingPlaced } from './place.ts';
 import { liveJoins, pollMs, pulse, type Watcher, watchState } from './watch.ts';
 
-/** What calls need from the rest of the agent: a way to post in Macro, somewhere to hand work, and what it knows of people. */
+/** What calls need from the rest of the agent: a way to post in Rox, somewhere to hand work, and what it knows of people. */
 export type CallsNeeds = {
   readonly chat: Pick<Chat, 'send' | 'dm' | 'reply'>;
   readonly work: Work;

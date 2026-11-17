@@ -449,7 +449,7 @@ impl HasContactInfo for MessageToSend {
 }
 
 /// One message from the top of a user's inbox, read straight from Gmail or
-/// Outlook rather than from Macro's synced copy.
+/// Outlook rather than from Rox's synced copy.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RecentInboxMessage {
     /// The inbox address the message arrived in.

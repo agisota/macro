@@ -262,7 +262,7 @@ export class AgentSession extends MacroEntity<AgentSessionResponse> {
   }
 
   /**
-   * The session's URL in the Macro web app; hand it to users as the link.
+   * The session's URL in the Rox web app; hand it to users as the link.
    *
    * @readonly
    */
@@ -309,7 +309,7 @@ export class AgentSession extends MacroEntity<AgentSessionResponse> {
 
   /**
    * The GitHub repositories the caller can hand a managed session: every
-   * repository under an installation of Macro's GitHub App they or their
+   * repository under an installation of Rox's GitHub App they or their
    * teams made, sorted by `owner/name`. Empty when the App is installed
    * nowhere they reach.
    */

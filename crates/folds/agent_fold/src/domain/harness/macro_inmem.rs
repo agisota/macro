@@ -1,10 +1,10 @@
-//! Macro's own in-process agent, `agent_inmem`.
+//! Rox's own in-process agent, `agent_inmem`.
 //!
 //! The one harness this repository writes as well as reads, so it labels its
 //! frames rather than leaving the fold to guess from titles. It mirrors
 //! Claude Code's key layout under its own namespace, `_meta.macro`:
 //!
-//! - `toolName` - the Macro tool's name (`ReadContent`, `SendEmail`), or
+//! - `toolName` - the Rox tool's name (`ReadContent`, `SendEmail`), or
 //!   `mcp__<server>__<tool>` for a connected app's tool it reached over MCP.
 //! - `subagent: true` - on a `Subagent` delegation (logs from before the tool was removed).
 //!
@@ -60,7 +60,7 @@ impl HarnessReader for MacroInmem {
             .map(|name| name.parse().unwrap_or_else(|never| match never {}))
     }
 
-    /// Every native tool this agent calls is a Macro tool; the ones it
+    /// Every native tool this agent calls is a Rox tool; the ones it
     /// reaches over MCP belong to whichever server it named.
     fn macro_tool<'name>(&self, name: &'name ToolName) -> Option<&'name str> {
         match name {

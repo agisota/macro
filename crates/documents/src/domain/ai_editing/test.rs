@@ -34,7 +34,7 @@ fn request(token: &DocumentPermissionToken) -> AiEditRequest<'_> {
         document_token: token,
         instructions: "edit",
         mode: EditMode::Fast,
-        editor: EditorName::new("Macro"),
+        editor: EditorName::new("Rox"),
     }
 }
 
@@ -90,7 +90,7 @@ async fn admitted_edit_keeps_worker_arguments_and_each_models_usage() {
             assert_eq!(token.as_str(), "test-scoped-token");
             assert_eq!(instructions, "edit");
             assert_eq!(mode, EditMode::Fast);
-            assert_eq!(editor, EditorName::new("Macro"));
+            assert_eq!(editor, EditorName::new("Rox"));
             Box::pin(async {
                 Ok(EditResult {
                     edits_applied: 0,

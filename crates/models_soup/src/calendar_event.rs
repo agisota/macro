@@ -40,7 +40,7 @@ pub enum SoupCalendarEventTime {
 pub struct SoupCalendarEvent<T = ()> {
     /// Entity identifier.
     pub id: Uuid,
-    /// Owning Macro user.
+    /// Owning Rox user.
     pub owner_id: String,
     /// RFC 5545 UID used for source reconciliation.
     pub ical_uid: String,

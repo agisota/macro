@@ -86,7 +86,7 @@ fn parent_item(parent: &MessageParent) -> Option<Item> {
 fn resolution_event(event: &SuggestionEvent) -> Option<ResolutionEvent> {
     match event {
         SuggestionEvent::EmailMacroEvent(event) => match &event.event().event {
-            // Sent by the inbox's owner, through Macro or (no actor) from
+            // Sent by the inbox's owner, through Rox or (no actor) from
             // another client.
             EmailTopicEvent::MessageSent(sent) => Some(ResolutionEvent::Replied {
                 user: sent.actor.clone().unwrap_or_else(|| sent.owner.clone()),

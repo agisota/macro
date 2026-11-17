@@ -1,5 +1,5 @@
 //! Writes a workspace import (folders, documents, tasks, databases) through
-//! the same services the AI tools run on, as Macro AI for the user.
+//! the same services the AI tools run on, as Rox AI for the user.
 
 use crate::ToolEntityCreator;
 use crate::tool_context::ImportedContent;
@@ -26,7 +26,7 @@ use uuid::Uuid;
 #[cfg(test)]
 mod test;
 
-/// The import acts as Macro AI on the user's behalf, like the agent's tools.
+/// The import acts as Rox AI on the user's behalf, like the agent's tools.
 fn viewer(user: &MacroUserIdStr<'static>) -> Viewer {
     Viewer {
         user_id: user.clone(),

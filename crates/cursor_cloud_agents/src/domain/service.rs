@@ -1391,7 +1391,7 @@ where
         )
         .await?;
         // The turn span is the only place all three identities meet, and it
-        // is what makes a Macro session joinable to the cursor.com run that
+        // is what makes a Rox session joinable to the cursor.com run that
         // served it.
         let span = tracing::Span::current();
         span.record("cursor.agent.id", tracing::field::display(&agent));
@@ -2226,7 +2226,7 @@ where
                 "gave up waiting; Cursor still reports a non-terminal status"
             );
             return Err(SessionError::Rejected(PromptRefusal::plain(
-                "Cursor has been working on this for over two hours and Macro stopped \
+                "Cursor has been working on this for over two hours and Rox stopped \
                  waiting. Send another message to continue: if Cursor has finished by \
                  then, that message picks up what it did, and if not, the run is \
                  cancelled and the conversation starts fresh from there.",
@@ -3273,7 +3273,7 @@ where
     ///
     /// The host calls this on a timer while a session's transport is up, so
     /// the cursor.com half of a conversation appears here within a tick of
-    /// happening rather than waiting for the next Macro prompt. A session
+    /// happening rather than waiting for the next Rox prompt. A session
     /// mid-turn is skipped (the turn gate is held). Failures are logged per
     /// session and never stop the sweep.
     pub async fn sync_foreign_runs(&self) {

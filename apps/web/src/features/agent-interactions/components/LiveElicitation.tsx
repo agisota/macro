@@ -6,7 +6,7 @@
  * Fields and decisions are separate components over one draft so a surface
  * can place them apart - the chip crops the fields in its area and keeps the
  * decisions on the row beneath - while `LiveQuestionCard` stacks them for
- * the session. A Macro user tool under review opens in the tool's own
+ * the session. A Rox user tool under review opens in the tool's own
  * composer (`UserToolComposer`); a draft the tool's schema rejects falls
  * back to the flat form the agent also sent, through these.
  */
@@ -304,7 +304,7 @@ export type UserToolRequest = Extract<
   { kind: 'user_tool' }
 >;
 
-/** A drafted Macro user tool, as its schema reads it. */
+/** A drafted Rox user tool, as its schema reads it. */
 export type DraftedTool = { name: string; data: unknown };
 
 /** What a review needs to know to act: the session's or the chip's answer. */
@@ -347,7 +347,7 @@ export function parseDraftedTool(
 }
 
 /**
- * A drafted Macro user tool in the tool's own composer: the calendar event
+ * A drafted Rox user tool in the tool's own composer: the calendar event
  * form for `CreateCalendarEvent`, the email compose for `SendEmail`. The
  * composer's Create/Send accepts the review with the whole edited draft; its
  * Cancel, where it has one, declines. The email composer has only Send, so

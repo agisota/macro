@@ -1528,7 +1528,7 @@ async fn unattributed_bot_messages_do_not_trigger() {
 async fn agents_mentioning_each_other_stop_at_the_hop_limit_without_a_person() {
     let macro_ai = ChannelSender::new_from_bot(bot_id::MACRO_NEW_BOT_ID);
     let cursor = ChannelSender::new_from_bot(bot_id::CURSOR_BOT_ID);
-    // The agent posting hop `n`, alternating from Macro's first handoff.
+    // The agent posting hop `n`, alternating from Rox's first handoff.
     let agent = |n: usize| {
         if n % 2 == 1 {
             (macro_ai.clone(), bot_id::CURSOR_BOT_ID)

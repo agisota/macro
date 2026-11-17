@@ -1527,7 +1527,7 @@ fn a_meet_conference_is_classified_as_google_meet() {
 }
 
 /// A third-party conference stays joinable but must never be reported as a
-/// Meet: the product offers to detach only conferences Macro owns, so
+/// Meet: the product offers to detach only conferences Rox owns, so
 /// misclassifying a Zoom link here is what would let an edit destroy it.
 #[test]
 fn a_third_party_conference_is_not_classified_as_google_meet() {
@@ -1549,7 +1549,7 @@ fn an_event_without_a_conference_has_no_provider() {
 }
 
 /// A legacy classic Hangout arrives as a bare `hangoutLink` with no
-/// conference data, and Macro cannot regenerate it.
+/// conference data, and Rox cannot regenerate it.
 #[test]
 fn a_bare_hangout_link_is_not_classified_as_google_meet() {
     assert_eq!(

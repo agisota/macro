@@ -88,7 +88,7 @@ async fn archiving_moves_to_archive_or_creates_one_when_the_mailbox_has_none() {
     }
 
     let messages = emulator.messages(ADA).unwrap();
-    assert!(messages[0].folder.starts_with("Macro Archive"));
+    assert!(messages[0].folder.starts_with("Rox Archive"));
     assert_eq!(messages[0].folder, messages[1].folder);
     let folders = api.folders(&token).await.unwrap();
     let archives = folders.iter().filter(|f| f.role == FolderRole::Archive);

@@ -1,4 +1,4 @@
-//! Macro user tools: drafted by the agent, finished by the user.
+//! Rox user tools: drafted by the agent, finished by the user.
 
 use serde::Serialize;
 use specta::Type;

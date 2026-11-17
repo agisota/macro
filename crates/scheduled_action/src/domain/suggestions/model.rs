@@ -11,7 +11,7 @@ use super::state::RoutineSuggestionState;
 use crate::domain::models::{ActionConfiguration, CreatedItem, RoutineCheck};
 
 /// A routine offered to one person: one AI suggested for them, or one of
-/// Macro's catalog routines filling a surface.
+/// Rox's catalog routines filling a surface.
 #[derive(Debug, Clone, PartialEq, Serialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct RoutineSuggestion {
@@ -19,15 +19,15 @@ pub struct RoutineSuggestion {
     /// it uses it too.
     #[schema(value_type = String, format = Uuid)]
     pub id: Uuid,
-    /// Who suggests it: AI, for this person, or Macro, as a template.
+    /// Who suggests it: AI, for this person, or Rox, as a template.
     pub from: SuggestionFrom,
     /// The sidebars it shows in, first the one it belongs to most.
     /// Dismissing it in one dismisses it everywhere.
     pub surfaces: Vec<Surface>,
-    /// Why it fits this person, in a line; absent on Macro's templates.
+    /// Why it fits this person, in a line; absent on Rox's templates.
     pub reason: Option<String>,
     /// AI's estimate, from 0 to 1, that the person keeps it on; absent on
-    /// Macro's templates.
+    /// Rox's templates.
     pub keep_probability: Option<f32>,
     /// Onboarding shows it switched on: one of at most two catalog
     /// routines AI picked that are safe by default and likely kept. Never a
@@ -44,7 +44,7 @@ pub struct RoutineSuggestion {
 pub enum SuggestionFrom {
     /// AI suggested it for this person, with a reason.
     ForYou,
-    /// One of Macro's catalog routines, as a template.
+    /// One of Rox's catalog routines, as a template.
     Macro,
 }
 
@@ -83,14 +83,14 @@ pub enum SuggestedPick {
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum GenerationStatus {
-    /// Never generated: no inbox was connected yet. Only Macro's templates
+    /// Never generated: no inbox was connected yet. Only Rox's templates
     /// show.
     None,
     /// AI is suggesting; its suggestions appear as each is handed back.
     Generating,
     /// Generation finished.
     Ready,
-    /// Generation failed, after a retry; Macro's templates fill in.
+    /// Generation failed, after a retry; Rox's templates fill in.
     Failed,
 }
 
@@ -99,7 +99,7 @@ pub enum GenerationStatus {
 #[serde(rename_all = "camelCase")]
 pub struct RoutineSuggestions {
     pub status: GenerationStatus,
-    /// Per surface, AI's first, best first, then Macro's templates, so each
+    /// Per surface, AI's first, best first, then Rox's templates, so each
     /// surface has at least one and ideally three. A suggestion with
     /// several surfaces appears once.
     pub suggestions: Vec<RoutineSuggestion>,

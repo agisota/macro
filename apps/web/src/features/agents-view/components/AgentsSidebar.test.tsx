@@ -854,7 +854,7 @@ describe.each(['home', 'sidebar'] as const)('%s agent rows', (surface) => {
     ).toBeNull();
   });
 
-  it('opens a synced PR in Macro without activating its session', () => {
+  it('opens a synced PR in Rox without activating its session', () => {
     const { setEntity, open } = setup();
     setEntity({
       ...conversation,

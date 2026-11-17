@@ -151,7 +151,7 @@ describe('Ask Agent without the agent composer', () => {
       expect(seed.initialInput).toContain('"channelType":"public"');
   });
 
-  it('attaches a pull request by its Macro id and URL', async () => {
+  it('attaches a pull request by its Rox id and URL', async () => {
     await openChatWithAgent({
       type: 'pr',
       id: 'pr-entity-id',

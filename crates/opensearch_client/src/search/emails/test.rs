@@ -345,7 +345,7 @@ fn test_importance_true_excludes_depriority_unless_priority() -> anyhow::Result<
     let priority = inner_must_not[0]["terms"]["labels"].as_array().unwrap();
     assert_eq!(priority.len(), 3);
 
-    // Macro's own notification sender is excluded from signal outright.
+    // Rox's own notification sender is excluded from signal outright.
     assert_eq!(
         must_not[1],
         json!({
@@ -392,7 +392,7 @@ fn test_importance_false_filters_to_depriority_only() -> anyhow::Result<()> {
         .unwrap();
     assert_eq!(priority.len(), 3);
 
-    // ...or from Macro's own notification sender.
+    // ...or from Rox's own notification sender.
     assert_eq!(
         should[1],
         json!({
@@ -439,7 +439,7 @@ fn test_importance_true_with_exclude_labels_both_apply() -> anyhow::Result<()> {
 
     let must_not = json["bool"]["must_not"].as_array().unwrap();
     // Should have all three: the explicit exclude_label, the importance
-    // nested bool, and the Macro notification sender exclusion.
+    // nested bool, and the Rox notification sender exclusion.
     assert_eq!(must_not.len(), 3);
 
     // One should be the INBOX term exclusion

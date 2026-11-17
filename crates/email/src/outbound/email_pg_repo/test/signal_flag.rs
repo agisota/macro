@@ -95,7 +95,7 @@ async fn update_thread_metadata_syncs_signal_flag(pool: Pool<Postgres>) -> anyho
 
 const THREAD_MACRO_DIGEST: &str = "00000000-0000-0000-0000-00000000e207";
 
-// Macro's own notification emails are never signal: update_thread_metadata
+// Rox's own notification emails are never signal: update_thread_metadata
 // clears a stale flag, and neither an address- nor a domain-important
 // override can promote the thread back.
 #[sqlx::test(

@@ -14,7 +14,7 @@ import { useRetryTeamAgentSetup } from '../primitives/team-agent-status';
  * Bring your AI for an agent teammate: sign its computer in to the team's
  * Claude plan, with the computer's setup progress above it. Opened from the
  * agent's row in Members or from its ready notification, never as a step of
- * the invite, and always closable; the agent runs on Macro credits until
+ * the invite, and always closable; the agent runs on Rox credits until
  * then.
  */
 export function AgentClaudeDialog(props: {

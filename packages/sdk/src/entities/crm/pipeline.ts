@@ -568,7 +568,7 @@ export class CrmPipeline extends MacroEntity<AccessiblePipeline> {
     );
   }
 
-  /** Save every entry as a CSV file in the caller's Macro files, laid out as {@link CrmPipeline.exportCsv} returns it.
+  /** Save every entry as a CSV file in the caller's Rox files, laid out as {@link CrmPipeline.exportCsv} returns it.
    *
    * @write
    */

@@ -118,7 +118,7 @@ const FIXTURE_MODELS: ModelOption[] = [
 ];
 
 /**
- * A Macro Agent catalog: the in-memory harness keeps no display names, so
+ * A Rox Agent catalog: the in-memory harness keeps no display names, so
  * every option arrives named after its own slug.
  */
 const FIXTURE_INMEM_MODELS: ModelOption[] = [
@@ -705,7 +705,7 @@ const FIXTURE_MESSAGE: FoldedMessage = {
         error: null,
       },
     },
-    // A Macro MCP call whose payload does not fit the registered renderer:
+    // A Rox MCP call whose payload does not fit the registered renderer:
     // keep its summary visible without exposing the raw exchange.
     {
       kind: 'tool_use',

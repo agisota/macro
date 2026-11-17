@@ -459,7 +459,7 @@ async fn message_failures_fail_the_read() {
 fn serializes_ids_kind_and_anchor_for_agents() {
     let mut bot = message(2, Some(1), "On it");
     bot.bot_profile = Some(BotSenderProfile {
-        name: "Macro AI".to_owned(),
+        name: "Rox AI".to_owned(),
         avatar_url: None,
     });
     let discussion = DocumentDiscussion {
@@ -492,7 +492,7 @@ fn serializes_ids_kind_and_anchor_for_agents() {
                 {
                     "id": id(2),
                     "author": "macro|author@rox.one",
-                    "authorName": "Macro AI",
+                    "authorName": "Rox AI",
                     "content": "On it",
                     "createdAt": "2026-09-23T12:02:00Z"
                 }

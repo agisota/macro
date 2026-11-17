@@ -117,7 +117,7 @@ function importImage(
 
 type Marker = { col: number; colOff: number; row: number; rowOff: number };
 
-/** A drawing's corner within Macro's grid, or undefined beyond it. */
+/** A drawing's corner within Rox's grid, or undefined beyond it. */
 function point(marker: Marker | undefined): DrawingPoint | undefined {
   if (
     !marker ||
@@ -157,7 +157,7 @@ function chartPrefix(source: string): string | undefined {
 }
 
 /**
- * The chart part as Macro keeps it for export: without cached values, which
+ * The chart part as Rox keeps it for export: without cached values, which
  * export writes again, and without parts it does not keep. Undefined when it
  * refers to other parts or is too large.
  */
@@ -254,7 +254,7 @@ function readOfPie(plot: ChartPlot, local: string, value: string | undefined) {
     ofPie.size = number;
 }
 
-/** Read a chart part into what Macro draws, keeping the part for export. */
+/** Read a chart part into what Rox draws, keeping the part for export. */
 export function readChart(
   archive: XlsxArchive,
   path: string,
@@ -648,7 +648,7 @@ export function readSheetDrawings(options: {
   let choiceName: string | undefined;
   const stack: string[] = [];
   const finish = (value: PendingAnchor) => {
-    // Excel 2016's chart stands in for its fallback when Macro can draw it.
+    // Excel 2016's chart stands in for its fallback when Rox can draw it.
     if (value.chartEx) {
       const target = relations.get(value.chartEx.id ?? '');
       const chart =
@@ -1040,7 +1040,7 @@ function pivotSource(link: string) {
 }
 
 /**
- * The chart part Macro kept, with its references as they are now and caches
+ * The chart part Rox kept, with its references as they are now and caches
  * of their current values. Undefined if the part no longer matches them.
  * A pivot chart whose pivot table is not in the download becomes a chart of
  * its cells, as Excel makes it when the pivot table is deleted.
@@ -1127,7 +1127,7 @@ function keptChart(
 /** The id of a surface chart's series axis. */
 const SERIES_AXIS = 5;
 
-/** A chart part made from what Macro knows of the chart. */
+/** A chart part made from what Rox knows of the chart. */
 function generatedChart(chart: SheetChart, values: ChartValues): string {
   const reference = (index: number | undefined, kind: 'numRef' | 'strRef') =>
     index === undefined
@@ -1332,7 +1332,7 @@ function generatedChart(chart: SheetChart, values: ChartValues): string {
       plot.grouping === 'percentStacked'
         ? '0%'
         : formatOf(plot.series[0]?.values);
-    // A stock chart's dates are categories, evenly spaced as Macro draws them.
+    // A stock chart's dates are categories, evenly spaced as Rox draws them.
     const automatic = plot.kind === 'stock' ? 0 : 1;
     const categoryAxis = xy
       ? `<c:valAx><c:axId val="${category}"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="${secondary ? 1 : 0}"/><c:axPos val="b"/><c:numFmt formatCode="${categoryFormat}" sourceLinked="1"/><c:majorTickMark val="out"/><c:minorTickMark val="none"/><c:tickLblPos val="nextTo"/><c:crossAx val="${value}"/><c:crosses val="autoZero"/><c:crossBetween val="midCat"/></c:valAx>`

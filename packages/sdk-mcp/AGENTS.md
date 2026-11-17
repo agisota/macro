@@ -3,7 +3,7 @@
 ## What it is
 
 The tool surface of the MCP server for ChatGPT, generated from the public
-Macro SDK (`packages/sdk`): every public SDK method is an operation, grouped
+Rox SDK (`packages/sdk`): every public SDK method is an operation, grouped
 into tools by SDK entity and hint class. Operations run the SDK as the
 caller, so no tool is handwritten.
 

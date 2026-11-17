@@ -328,7 +328,7 @@ struct AgentChatReplyRequest<'a> {
 /// A person an agent session acts for or hears from.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
 pub struct AgentContextPerson<'a> {
-    /// Their Macro user id.
+    /// Their Rox user id.
     pub id: &'a str,
     /// How a reader names them.
     pub name: &'a str,

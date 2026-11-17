@@ -26,7 +26,7 @@ pub enum ShareEntityType {
     EmailThread,
     /// Agent conversations.
     AgentSession,
-    /// External chats added to Macro.
+    /// External chats added to Rox.
     #[serde(rename = "external_chat")]
     ExternalChat,
     /// Runtimes, with Read and User roles: shared only with teammates, and only

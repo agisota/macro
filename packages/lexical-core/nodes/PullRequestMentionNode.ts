@@ -18,7 +18,7 @@ const VERSION = 1;
 
 export type PullRequestMentionInfo = {
   /**
-   * The Macro foreign entity id. Empty when the mention was authored from a
+   * The Rox foreign entity id. Empty when the mention was authored from a
    * GitHub URL alone; the decorator then resolves the PR from `url`.
    */
   id: string;
@@ -84,7 +84,7 @@ export class PullRequestMentionNode extends DecoratorNode<
     key?: NodeKey
   ) {
     super(key);
-    // Agents sometimes put the PR's GitHub URL in `id`. It is not a Macro id,
+    // Agents sometimes put the PR's GitHub URL in `id`. It is not a Rox id,
     // so treat it as the mention's URL.
     const idIsUrl = isGithubPullRequestUrl(id);
     this.__id = idIsUrl ? '' : id;

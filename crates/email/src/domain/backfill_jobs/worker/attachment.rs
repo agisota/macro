@@ -6,7 +6,7 @@ use models_email::service::{
     pubsub::{DetailedError, FailureReason, ProcessingError},
 };
 /// this step is invoked by the UpdateMetadata step. it uploads the specified attachment as a
-/// Macro document for the user. first checks the attachment doesn't already exist by querying
+/// Rox document for the user. first checks the attachment doesn't already exist by querying
 /// document_email table before fetching and uploading the attachment data.
 #[tracing::instrument(skip(ctx))]
 pub(super) async fn backfill_attachment<R, G, Q, E, C>(

@@ -98,7 +98,7 @@ async fn everyone_sees_the_pictures_the_owner_sees_and_initials_once_hidden(pool
                 .collect::<Vec<_>>()
         }
     };
-    // Bob is a Macro user and shows his Macro avatar instead.
+    // Bob is a Rox user and shows his Rox avatar instead.
     assert_eq!(senders(BOB).await, vec![Some(customer), None]);
 
     let detail = linked

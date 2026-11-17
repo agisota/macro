@@ -14,8 +14,8 @@
    clears the boxes and refocuses them for retyping. The auth service allows five code
    checks a minute per address; past that the step shows "Too many attempts. Wait a minute,
    then try again." and keeps the code. Requesting a new code does not lift that wait.
-5. First login auto-creates the user, seeds onboarding content (a "Macro Support x <name>"
-   channel, a "Macro how to guide" doc favorite, three sample tasks), and lands on
+5. First login auto-creates the user, seeds onboarding content (a "Rox Support x <name>"
+   channel, a "Rox how to guide" doc favorite, three sample tasks), and lands on
    `/app/home`. The starter documents share a personal `docs` tag; the
    guide's `#` example is an inline mention of that same tag. A tag attachment
    failure does not block the remaining content; signup retries repair tags
@@ -187,17 +187,17 @@ are not on the hosted OAuth redirect allowlist.
 
 The native welcome screen offers `Create new account` and `Log into existing
 account` before the login form. Startup and background/foreground resume work
-with the scene lifecycle enabled; Macro remains single-window on iPhone and
+with the scene lifecycle enabled; Rox remains single-window on iPhone and
 iPad. The iPad welcome screen can show an `Optimized for iPhone` notice.
 Mobile resume is delivered per window, independently of ordinary focus changes.
 A custom-scheme link to `macro://app/login` now opens the login form both
-while Macro is running and when it cold-starts the app. Verify both cases
+while Rox is running and when it cold-starts the app. Verify both cases
 separately. When signed out, an ordinary launch with no URL should show the
 welcome screen. When signed in, the session should survive restart and the app
 should open its authenticated landing view without replaying an old deep link.
 For simulator checks, `xcrun devicectl device process launch --device <udid>
 --payload-url 'macro://app/login' com.macro.app.prod` delivers the link without
-`simctl openurl`'s confirmation dialog. Terminate Macro first for the cold case.
+`simctl openurl`'s confirmation dialog. Terminate Rox first for the cold case.
 Signed universal links and share-sheet flows still need end-to-end verification;
 see the [Tauri guide](../../apps/web/tauri/src-tauri/README.md#ios-27-scene-lifecycle)
 and [repeatable iOS smoke test](../../apps/web/tests/native/ios/README.md).
@@ -226,10 +226,10 @@ three-button navigation as well as gesture navigation.
 
 The Android welcome screen also offers `Create new account` and `Log into existing
 account`. Google sign-in opens a system browser Auth Tab; completing or canceling
-returns to Macro. Cancel and retry should open a fresh attempt. Enter provider
+returns to Rox. Cancel and retry should open a fresh attempt. Enter provider
 passwords and verification codes only in that browser, never in agent messages.
 For browsers using the Custom Tabs fallback, verify that the callback returns to
-the original Macro task. A callback for another attempt must leave the current
+the original Rox task. A callback for another attempt must leave the current
 attempt pending; a callback after process death must not restore that attempt.
 The first Google sign-in after a fresh install must land in the app, even while
 an over-the-air update finishes downloading: an update reload during the sheet
@@ -241,7 +241,7 @@ After signing in, test background/foreground, force-stop/relaunch, logout, and
 signing in as another account. An entity link opened while signed out should
 remain pending until authentication completes. The destination expires after
 30 minutes and explicit logout clears it. Test both cold and warm delivery;
-forcing an Android intent to Macro proves routing, not verified App Links.
+forcing an Android intent to Rox proves routing, not verified App Links.
 Root links must preserve query parameters through the welcome or inbox redirect,
 including when Android delivers the link after the session gate mounts. Test
 with a harmless marker query; checkout return parameters can trigger analytics
@@ -274,7 +274,7 @@ page should remain stable after the session check returns
 401; it must not alternate with the loading screen or reset a selected color.
 Verify that Continue advances without signing in. Below the color
 picker, "Already have an account? Sign in instead" opens `/app/login`. At the work-email
-step, Continue with Google creates the Macro account and links the primary
+step, Continue with Google creates the Rox account and links the primary
 inbox; Continue with Microsoft below it (behind the `enable-microsoft-signup`
 flag, on only in Vite development-mode builds) creates the account through the
 FusionAuth `microsoft` identity provider (work, school, and personal accounts;
@@ -300,7 +300,7 @@ view fixture documented in `apps/web/src/features/onboarding/browser-test/README
 
 The steps are workspace color, feature interests, security, work Google account,
 personal Google account, tools, team, and plan selection. Color selection forks
-the default Macro Light or Macro Dark theme for the current mode and pins the
+the default Rox Light or Rox Dark theme for the current mode and pins the
 custom accent palette; it does not modify a built-in theme. Cream mode hides
 Pearl and centers the remaining five swatches. A selected Pearl falls back to Mint
 when entering cream mode; Pearl stays available in dark mode. Cream slab headings use weight 330
@@ -327,7 +327,7 @@ The catalog scrolls with the page; Continue stays visible in a sticky footer.
 At desktop and phone widths, verify scrolling over the cards moves the page,
 the last row remains reachable, and Continue stays fully visible after searching.
 
-GitHub uses Macro's native OAuth/re-authorization flow and returns to the tools
+GitHub uses Rox's native OAuth/re-authorization flow and returns to the tools
 step. It shows **Account linked**, distinct from agent-tool readiness. A
 **Configure GitHub repositories** action opens native GitHub App installation;
 repository access must not be inferred from the account link. No Pipedream
@@ -359,7 +359,7 @@ shows two switches, both on by default and marked recommended: **Allow @domain
 emails to join** and **Notify your team via email**. Creating the team with the
 first on sets the team's auto-join domain. With both on, it then, after the
 invites, emails up to 25 of the creator's same-domain contacts who are not on
-Macro, invited, or already sent a notice (`POST /team/domain-notice`). The
+Rox, invited, or already sent a notice (`POST /team/domain-notice`). The
 notice switch is disabled and reads off while domain join is off, because the
 server sends nothing to a team without an auto-join domain; turning domain
 join back on restores its earlier setting. Each switch has an info button
@@ -401,7 +401,7 @@ to review their subscription and payment details. The “See more” scroll cue 
 below, comparing Free, Pro, and Max. The grid loads monthly subscription prices
 from the billing catalog and describes Max as 10× Pro usage, without displaying
 dollar-denominated included AI allowances. Monthly prices use the compact
-`/usr/mo` unit on one line; Free email branding reads “Sent with Macro”.
+`/usr/mo` unit on one line; Free email branding reads “Sent with Rox”.
 Free completes onboarding without a
 card. Pro returns to the account-specific Pro offer; Max starts standard paid
 checkout with no trial period. The trial copy and button stay on the Pro offer.
@@ -451,8 +451,8 @@ Stripe Checkout as described above.
 
 - UI: `http://localhost:<mailpit-port>/`
 - API: `curl -s http://localhost:<mailpit-port>/api/v1/messages` — newest message first.
-  Login codes arrive as subject `Your Macro login code` with snippet
-  `Your Macro login code: NNNNNN`.
+  Login codes arrive as subject `Your Rox login code` with snippet
+  `Your Rox login code: NNNNNN`.
 
 ## Known crash on first landing (local)
 

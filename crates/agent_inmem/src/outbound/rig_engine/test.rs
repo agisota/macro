@@ -208,7 +208,7 @@ fn instructions_are_a_delimited_section_after_the_standing_prompt() {
         prompt.contains(&format!(
             "{TOOLS}\n<session_instructions>\nbe terse\n</session_instructions>"
         )),
-        "the static Macro prompt sits immediately before session instructions"
+        "the static Rox prompt sits immediately before session instructions"
     );
     assert!(prompt.ends_with(&format!(
         "\n<session_instructions>\nbe terse\n</session_instructions>\n<agent_session>\nThis \
@@ -385,7 +385,7 @@ fn memory_follows_instructions_rather_than_preceding_them() {
     assert!(instructions < memory);
 }
 
-/// Sessions of every agent differ only after the static Macro prompt, so
+/// Sessions of every agent differ only after the static Rox prompt, so
 /// the part before it is cached once for all of them, and the turn's SDK
 /// documentation comes after everything the session repeats.
 #[test]

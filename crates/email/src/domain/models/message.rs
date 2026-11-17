@@ -74,7 +74,7 @@ pub struct MessageRow {
     pub body_text: Option<String>,
     /// Sanitized HTML body.
     pub body_html_sanitized: Option<String>,
-    /// Macro-format body.
+    /// Rox-format body.
     pub body_macro: Option<String>,
     /// Raw headers as JSON.
     pub headers_json: Option<serde_json::Value>,
@@ -196,7 +196,7 @@ pub struct Message {
     pub body_text: Option<String>,
     /// Sanitized HTML body.
     pub body_html_sanitized: Option<String>,
-    /// Macro-format body.
+    /// Rox-format body.
     pub body_macro: Option<String>,
     /// Body with reply/forwarded thread content stripped.
     pub body_replyless: Option<String>,

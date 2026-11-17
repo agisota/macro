@@ -135,7 +135,7 @@ pub trait OAuthClient: Send + Sync + 'static {
     ) -> impl Future<Output = anyhow::Result<McpServerRecord>> + Send;
 }
 
-/// The GitHub token from a user's Macro account link.
+/// The GitHub token from a user's Rox account link.
 ///
 /// Object-safe (`async_trait`) so hosts without the link wire nothing and the
 /// decorated store's type stays the same everywhere.

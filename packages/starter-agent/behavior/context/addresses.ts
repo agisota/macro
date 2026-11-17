@@ -6,7 +6,7 @@ export type ServiceName = keyof NonNullable<MacroOpts['hosts']>;
 
 export type Hosts = Partial<Record<ServiceName, string>>;
 
-/** Where the agent reaches Macro: each service's host, and the socket its presence is kept on. */
+/** Where the agent reaches Rox: each service's host, and the socket its presence is kept on. */
 export type Addresses = {
   readonly hosts: Hosts;
   readonly presence: string;
@@ -30,7 +30,7 @@ const speechRoute = '/brain/inference';
 const connectionService: ServiceName = 'connection';
 
 /**
- * Each service the SDK knows: the `OVERRIDE_*` URL Macro's services are
+ * Each service the SDK knows: the `OVERRIDE_*` URL Rox's services are
  * configured with (`crates/macro_service_urls`), which enrollment writes for
  * the ones an agent needs, and the gateway's route to it otherwise.
  * `static-files` has neither (it isn't behind the gateway), so it is left to
@@ -111,9 +111,9 @@ const swapped = (url: string, from: string, to: string): string =>
   url.startsWith(from) ? `${to}${url.slice(from.length)}` : url;
 
 /**
- * Where the agent reaches Macro, from its credentials (enrollment's
+ * Where the agent reaches Rox, from its credentials (enrollment's
  * `agent.env`, or a self-hosted agent's secrets). It needs `MACRO_GATEWAY`;
- * nothing falls back to Macro's production hosts. A message names a key,
+ * nothing falls back to Rox's production hosts. A message names a key,
  * never its value.
  */
 export const addresses = (

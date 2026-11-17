@@ -21,7 +21,7 @@ axum = { workspace = true }
 # session-token extraction would otherwise hand-roll.
 axum-extra = { workspace = true, features = ["typed-header"] }
 base64 = { workspace = true }
-# The session's agent, signed into Macro's own MCP credential.
+# The session's agent, signed into Rox's own MCP credential.
 bot_id = { path = "../bot_id" }
 bytes = { workspace = true }
 # Holding a tool call for the owner: the stream it answers with.
@@ -39,7 +39,7 @@ http = { workspace = true }
 http-body = { workspace = true }
 http-body-util = { workspace = true }
 lru = { workspace = true }
-# Signing Macro API tokens, with the same shared vocabulary
+# Signing Rox API tokens, with the same shared vocabulary
 # `authentication_service` mints through.
 macro_auth = { path = "../macro_auth" }
 # The owner's `User` row, which carries the FusionAuth id the exchange needs.

@@ -42,7 +42,7 @@ function Field(props: {
   );
 }
 
-/** Macro's natural date search and calendar, rendered inline in the trigger panel. */
+/** Rox's natural date search and calendar, rendered inline in the trigger panel. */
 function RunOnceSettings(props: {
   trigger: ScheduleTriggerDraft;
   onChange: (patch: Partial<ScheduleTriggerDraft>) => void;

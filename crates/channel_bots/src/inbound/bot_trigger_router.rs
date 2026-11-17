@@ -20,7 +20,7 @@ use crate::domain::{
 /// Dispatch is fire-and-forget: each candidate is handled on a spawned task.
 ///
 /// System bots are defined in code and require no database row. Unknown bot ids
-/// are ignored here; only Macro AI is handled by this branch. Non-system bots
+/// are ignored here; only Rox AI is handled by this branch. Non-system bots
 /// are notified of mentions out of process via the trigger topic and webhooks
 /// instead (see the `agent_trigger` and `webhook` crates).
 pub struct BotTriggerRouter<R, D, Z> {

@@ -1,7 +1,7 @@
 /**
- * Macro calls: showing a browser tab in a call, as a screen share. The tab is
+ * Rox calls: showing a browser tab in a call, as a screen share. The tab is
  * a Playwright page (see `utilities/browser`), and frames go to the call
- * through the Macro SDK's `publishScreen`.
+ * through the Rox SDK's `publishScreen`.
  *
  *     const { room } = await connectRoom(call);     // @macro-inc/sdk/calls/node
  *     const page = await (await browser.newContext()).newPage();

@@ -46,7 +46,7 @@ const claudeSignInError: ErrorResponseHandler<ClaudeSignInErrorCode> = async (
   return statusError(response.status);
 };
 
-/** Claude Code sign-in on a Macro computer's runtime. Changes need manage rights. */
+/** Claude Code sign-in on a Rox computer's runtime. Changes need manage rights. */
 export const computerClaudeClient = {
   mode: (harnessId: string) =>
     fetchWithToken<ClaudeModeResponse>(

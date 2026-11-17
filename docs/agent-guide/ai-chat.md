@@ -74,14 +74,14 @@ overlaid app (one with its own MCP server, see Settings → Integrations) it
 opens that server's OAuth consent in a new tab instead, and the session
 continues once the server is authorized; the agent then reaches the app
 through that server rather than Pipedream. In
-native apps, consent opens in the system browser, which returns to Macro on its
-own after authorization (**Return to Macro** is the fallback link). The waiting
+native apps, consent opens in the system browser, which returns to Rox on its
+own after authorization (**Return to Rox** is the fallback link). The waiting
 dialog's **Done** checks Pipedream for an account the flow created, and callbacks
 from canceled or expired attempts cannot resume the agent. After the
 backend verifies and registers the connection, the agent session sends a visible
 continuation message in the same conversation. Before that message reaches the
 agent, the harness hands the live session its permitted connector servers again
-(a `session/resume`), so the next turn can use the new app. The native Macro
+(a `session/resume`), so the next turn can use the new app. The native Rox
 runtime and sandboxed coding sessions support this; a runtime that cannot resume
 a session picks the app up when it next attaches. The unsent draft
 is preserved. Closing authorization or a failed registration sends no message.
@@ -126,7 +126,7 @@ usable. `agent.session.confirm_control` records whether the live feed or the
 reread settled it, and `agent.session.log.follow_resumed` each reopened
 subscription.
 
-Macro's in-process agent opens each reply with a line from a fast model
+Rox's in-process agent opens each reply with a line from a fast model
 (`gpt-5.4-mini`), usually within half a second of Enter. Small talk
 ("hi there", "thanks") gets that line as the whole reply, and the chosen model,
 already started alongside it, is cancelled. A real task ("what is on my calendar tomorrow?") gets a short
@@ -296,7 +296,7 @@ keep their New action or their own reply/comment composer.
 The mobile Agents composer is an opaque, rounded input using the same surface as
 the New button, including its glass treatment in dark mode. Send is a bare up
 arrow without a background, including when disabled. The short placeholder reads
-“Message Macro AI”.
+“Message Rox AI”.
 Its collapsed height matches New, with Send visible and the model/provider control hidden until the input is focused. Tap the input to expand across the row, hiding New and giving the draft
 a full-width text area above the controls.
 Auto/Chat/Code stays in the inset bar above the input on phones, as icons only.
@@ -338,7 +338,7 @@ horizontal overflow.
 `UploadFile` accepts a filename and standard padded base64 contents, up to 25 MiB
 decoded. An optional project ID places the file in a folder the caller can edit.
 Use `CreateDocument` (in code mode, `macro.documents.create`,
-`createSpreadsheet` and `upload`) for generated text and native Macro
+`createSpreadsheet` and `upload`) for generated text and native Rox
 spreadsheets. Agents with
 code execution should construct the base64 argument from the original bytes;
 the tool cannot access an agent's local path or download a URL.
@@ -348,7 +348,7 @@ content, project })`, which sends the raw bytes to the storage host's
 `POST /documents/upload` under the same limit and folder rule, read a stored
 file (including an email attachment's `toDocument()`) with `Document.bytes()`,
 and attach documents to messages with `channel.send(text, { documents })`. The
-sandbox reaches only Macro hosts, so presigned upload URLs fail there.
+sandbox reaches only Rox hosts, so presigned upload URLs fail there.
 
 The tool row displays the filename and, on success, **Uploaded**. Expand it to
 open the created document and see the uploaded byte count. Success means the
@@ -365,7 +365,7 @@ The response includes `staticFileId`, the permanent image `url`, intrinsic pixel
 `width` and `height`, and ready-to-send `markdown`; it does not
 create a document or take a filename or destination project.
 
-For edits or variations, attach photos with the existing paperclip or use Macro
+For edits or variations, attach photos with the existing paperclip or use Rox
 image documents the user can view. Pass up to three references in `referenceImages`,
 for example `[{"type":"staticFile","id":"<UUID>"},{"type":"document","id":"<UUID>"}]`.
 For an uploaded photo, use the UUID from `/file/<id>` in its attachment URL;
@@ -407,7 +407,7 @@ session is ready. With the Agents workspace enabled, an empty search replaces it
 split with the Agents workspace's new-conversation composer; otherwise it opens an
 empty session there. Command-menu actions open a new split.
 
-**Ask Macro** and **Chat with Agent** on documents, tasks, PDFs, DOCX files,
+**Ask Rox** and **Chat with Agent** on documents, tasks, PDFs, DOCX files,
 code files, images, canvases, spreadsheets, email, channels, calls, and projects,
 and the channel message hover menu, open the Agents workspace's new-conversation
 composer in a new split, the same centered composer as Home and **Create → Agent**,
@@ -417,7 +417,7 @@ returns to its composer with that draft. The mention fills the composer once: af
 sending, Back, Forward, or returning to Agents from the dock or sidebar shows the
 composer without it, while text still unsent comes back. Spreadsheet mentions retain the current
 sheet and selected range; channel-message actions retain the referenced message. On
-phones, the channel message long-press drawer offers the same action as **Ask Macro**.
+phones, the channel message long-press drawer offers the same action as **Ask Rox**.
 Add a question and press Send to start the conversation. Handoffs that carry hidden
 instructions or a fixed model (database chat, booking-link setup, connector import)
 still open a bare session directly, as does every action while the Agents workspace
@@ -466,7 +466,7 @@ the shimmer.
 
 - If session creation fails, the session view shows **Unable to start this agent**
   with the service's reason. Repository access requires a GitHub connection to
-  Macro that covers that repository; connecting only Cursor does not grant Macro
+  Rox that covers that repository; connecting only Cursor does not grant Rox
   GitHub access. Cloud agents also need a public agent gateway: Docker-only hostnames
   cannot receive their MCP callbacks. Check the runtime error before retrying, and
   start a new session after correcting its gateway network configuration.
@@ -503,7 +503,7 @@ the shimmer.
   Filtering does not clear selections. Rows progress from **Importing…** to an
   **Imported** link; channels already imported by another team member show
   **by a teammate** and cannot be selected again. Imported channels appear under
-  **Channels**, with the Slack name and matched Macro teammates. Member counts
+  **Channels**, with the Slack name and matched Rox teammates. Member counts
   show how many Slack members are on your team; unchecked membership is labeled
   separately. Unmatched members are not invited. Messages, files, private
   channels, and direct messages are not imported, and there is no ongoing sync.
@@ -580,7 +580,7 @@ the shimmer.
   their skills loaded on their own when a session request matches a
   description; the session view shows nothing for it, and the
   `agent.skill_selection` span says what loaded.
-- Empty conversation greetings use Roboto Slab with the Macro mark to the left,
+- Empty conversation greetings use Roboto Slab with the Rox mark to the left,
   at weight 390 with softened ink in light mode and 315 in dark mode, including the Chat and Code
   starting headings, legacy Home, and the conversation preview empty state.
   Code uses the wireframe blocks from the loading mark; Chat uses the filled mark.
@@ -608,7 +608,7 @@ the shimmer.
   with the same duration; both animations respect reduced motion.
   Its bottom corners follow the toggle's curve. Chat and Code limit the offered agents; the choice
   lasts only while the composer is mounted, and every composer opens in **Auto**. Auto is
-  behind the `enable-composer-auto-mode` PostHog flag (Macro employees only), which the
+  behind the `enable-composer-auto-mode` PostHog flag (Rox employees only), which the
   agent harness checks too; without it the switch is Chat / Code and Auto reads as Chat.
   **Auto** (sparkle, the sidebar's Agents icon) hides the agent, model, effort, and speed controls. On send, the
   input is briefly blocked (“Choosing Chat or Code…”) while `POST /agent-mode-choice` on the
@@ -633,7 +633,7 @@ the shimmer.
   keeps the saved model name visible in its picker, including unavailable models.
 - The agent dropdown includes saved agents of the selected mode regardless of
   runtime, plus Cursor in Code mode.
-  Macro's models use the same searchable catalog as running sessions:
+  Rox's models use the same searchable catalog as running sessions:
   **Suggested** lists **Opus 5.5**, **Sonnet 5.5**, **GPT-5.6** (Sol in
   runtime catalogs), **GPT-6 Astra**, and **Gemini**, when available, in that order. The
   **More models** submenu contains the complete catalog grouped by provider,
@@ -657,10 +657,10 @@ the shimmer.
   Selecting a model here selects
   the default runtime and applies that model to the next send, hiding the repository controls while keeping the mode bar visible.
   A model chosen from that catalog is remembered in local storage as the
-  default for Macro's in-memory agent until another model entry is picked.
-  The built-in Macro agent is the only agent excluded from these sections; its models remain available.
+  default for Rox's in-memory agent until another model entry is picked.
+  The built-in Rox agent is the only agent excluded from these sections; its models remain available.
   Unavailable paired agents stay visible with a reason.
-  If Macro is unavailable, its catalog stays searchable but
+  If Rox is unavailable, its catalog stays searchable but
   model choices are disabled in every list. Model discovery uses the
   selected runtime. When Cursor refuses the connected key (a team-owned
   service token, a revoked key), the Cursor submenu says to reconnect with a
@@ -669,7 +669,7 @@ the shimmer.
   controls; chat agents hide those controls but keep the mode bar. Repository/branch overrides are currently applied
   only to Cursor sessions by the create-session API.
   The most recently used supported,
-  available agent is selected initially; otherwise Macro is selected.
+  available agent is selected initially; otherwise Rox is selected.
   Hover an agent (or use the right arrow key) to open its model submenu, with
   the searchable Settings catalog, provider icons, and scrollable provider sections.
   The submenu focuses the `Search models` field so you can type immediately.
@@ -723,7 +723,7 @@ the shimmer.
   preferences disable the animation. The hidden drawer is inert. **Repository**
   (**Auto-detect** with a GitHub icon unless a default was saved) opens a searchable list:
   **Auto-detect**, then the repositories the signed-in user reaches
-  through Macro's GitHub App (`GET /agent-repositories` on the agent harness),
+  through Rox's GitHub App (`GET /agent-repositories` on the agent harness),
   recently used ones first. **Settings → Agents → Coding sessions → Default
   repository** lets the user save a GitHub repository or **Auto-detect** (the
   initial default). New Code conversations preselect that choice; changing
@@ -757,7 +757,7 @@ the shimmer.
   roxd finds an existing clone or clones it using local Git credentials, then
   creates a managed worktree from a fresh `origin/main`. **Branch** shows `main`
   and cannot be changed for local sessions. The native Claude/Codex TUI remains
-  interactive in Herdr, and local turns appear in the Macro transcript.
+  interactive in Herdr, and local turns appear in the Rox transcript.
 - Sending starts a session with the chosen agent's configured default model;
   a model selected from its submenu overrides that default for the next send
   only. Sending or choosing another agent clears the override. This does not
@@ -778,7 +778,7 @@ the shimmer.
   docs, people, or channels, / for skills** immediately, without typing or cycling
   through other hints. Clearing a draft restores the same hint.
   Coding agents show **Describe what you want to build**; phones keep the short
-  **Message Macro AI** placeholder. Type `@` for
+  **Message Rox AI** placeholder. Type `@` for
   mentions and `/` for skills and connections. The **Connections** section lists enabled native
   servers and Pipedream connectors, preferring the native connection when both
   provide the same tools. Selecting one inserts its name as plain text
@@ -798,15 +798,15 @@ the shimmer.
 - **Agents page** uses the same **Agents** management screen as Settings. Two
   slim strips sit above the list: **Connect Cursor** (**Manage** once connected)
   and **Bring your own agent** (**Set up**, or **Paired** + **Manage** once a
-  machine is paired). One **Your agents** list shows Macro, team agents, then
-  private agents, each with a TEAM/PRIVATE pill and an "In Macro / In Cursor /
+  machine is paired). One **Your agents** list shows Rox, team agents, then
+  private agents, each with a TEAM/PRIVATE pill and an "In Rox / In Cursor /
   On your machine · model · channels" subtitle, plus Edit / Delete actions.
   **Add agent**, the setup strips, and Edit replace the list with full pages,
   not dialogs; Back/Cancel returns to the list. Use **Create → Agent** to open a new composer.
-  The agent editor has Profile, Instructions, **Where it runs** (In Macro, In
+  The agent editor has Profile, Instructions, **Where it runs** (In Rox, In
   Cursor, On your machine) and **Who can use it** (Private / Team). The selected
   place opens its Model picker inside its card; On your machine adds a Machine
-  picker beside it. In Macro on an Anthropic or OpenAI model also shows an
+  picker beside it. In Rox on an Anthropic or OpenAI model also shows an
   optional **Anthropic API key** / **OpenAI API key** field (see
   [agent API keys](#agent-api-keys)). An unconnected Cursor or unpaired machine is disabled with
   **Connect** / **Set up**, which open the setup guide in place and return to the
@@ -847,21 +847,21 @@ the shimmer.
   tab in the directory roxd started from, running the real Claude Code or Codex
   TUI. The session page streams its tool calls and replies, and its permission
   prompts appear as approvals. Other runtimes started inside herdr get a live
-  view tab per session that can prompt and interrupt it; approvals stay in Macro.
+  view tab per session that can prompt and interrupt it; approvals stay in Rox.
   This works in herdr 0.9 and in the herdr app (herdr-core, with `hc` on `PATH`),
   where session tabs open in roxd's space. Under herdr-core, Codex reports no
   status, so its permission prompts must be answered in Herdr; see "Herdr
   versions" in `crates/coding_agent_worker/README.md`.
   Native Herdr sessions offer `/compact`, `/init`, and `/fast` in the slash menu;
-  Codex also offers `/ultrafast`. Macro confirms delivery of speed commands;
+  Codex also offers `/ultrafast`. Rox confirms delivery of speed commands;
   check their result and any confirmation in Herdr. For Claude, use `/fast on`
   or `/fast off`, or bare `/fast` to open its native controls. Available speed
   tiers depend on the native agent, model, and account. Claude also offers
   `/effort` with an optional level, `auto`, or `status`. In Codex sessions,
-  `/effort` shows the current effort and available choices in Macro. Send
+  `/effort` shows the current effort and available choices in Rox. Send
   `/effort high` (or another supported level) to change it and wait for native
   confirmation; `/effort default` restores the model's default. This preserves
-  the current model. `/model` still opens the picker in Herdr. Macro's model dropdown
+  the current model. `/model` still opens the picker in Herdr. Rox's model dropdown
   changes the model of an idle native session after native confirmation and
   displays the model identified by the session (Codex's live footer, or native
   transcript metadata). Unexpected native dialogs must be completed in Herdr.
@@ -952,7 +952,7 @@ description refers to; document storage looks those names up as the person
 (`POST /search/names`) and settles each on the one item with that name, or
 leaves out a name that matches nothing or several items, so the review shows
 the normal picker for it. The routine is then written in a hidden agent
-session of the in-process Macro agent, as the person, on the model their Ask
+session of the in-process Rox agent, as the person, on the model their Ask
 AI steps use, billed as agent session usage. It never appears in Home or the
 Agents list, notifies nobody, and is deleted when the draft comes back. It is
 given the items found and the SDK reference it needs, so it searches for
@@ -1044,7 +1044,7 @@ appears and the row returns to its normal status.
 
 Chats from before agent sessions (`/app/chat/<uuid>`) still open and render
 their full history, including tool cards, but nothing can be sent to them. The
-composer is replaced by a notice headed **Macro Chats are now Agents.**, the
+composer is replaced by a notice headed **Rox Chats are now Agents.**, the
 text **This chat is read-only. Continue it in Agents to keep going.**, and a
 **Continue in Agents** button that opens
 the new-conversation composer (or, without `enable-chat-v3-agents`, a new
@@ -1064,7 +1064,7 @@ icons instead of flashing back to loading placeholders. Check an answer with
 multiple mentions while more text arrives and when generation finishes, in both
 chat and agent sessions. A newly encountered mention may load once.
 
-If an agent reply stops inside a Macro mention chip, its unfinished trailing
+If an agent reply stops inside a Rox mention chip, its unfinished trailing
 markup stays hidden after stopping and after reload, on desktop and mobile.
 Completed chips, literal tag examples in Markdown code, and the prose before
 the unfinished chip remain visible. Verify
@@ -1094,9 +1094,9 @@ prompt, optionally choose an agent or model or
 attach context, and tap **Send** to start an agent session with that prompt.
 Enter on the virtual keyboard adds a line to the draft rather than sending it.
 The paperclip (**Attach files**) opens the device file chooser directly, including
-in the native iPhone app; it does not open a Macro file browser. Select supported
+in the native iPhone app; it does not open a Rox file browser. Select supported
 files to upload and attach them, or cancel to return to the unchanged draft.
-Existing Macro documents can still be attached through an `@mention`.
+Existing Rox documents can still be attached through an `@mention`.
 On touch devices, the accessory hides whenever an editable field outside its
 Ask AI composer is focused, including email recipients, subject, and body fields.
 It returns with the same draft when focus leaves that field. While typing in
@@ -1205,7 +1205,7 @@ CallSummary, Dictation, and ChatRename features are not blocked by quota. Option
 trigger inference may be skipped without blocking successful primary work; it
 must not make a fallback model call. Managed sessions use their persisted owner
 for quota, not a collaborating sender. Externally funded runtimes skip session
-quota, but Macro-funded tools and helpers still check independently.
+quota, but Rox-funded tools and helpers still check independently.
 
 Every plan includes a monthly AI allowance per seat, measured at provider cost;
 paid usage beyond it is billed at a markup. All of the numbers come from Doppler
@@ -1261,7 +1261,7 @@ toast.
 
 ### Agent API keys
 
-An agent that runs **In Macro** on an Anthropic or OpenAI model can have its own
+An agent that runs **In Rox** on an Anthropic or OpenAI model can have its own
 API key, set in the agent editor under its model: **Anthropic API key** or
 **OpenAI API key** (the shared `ApiKeyInput`, which shows a saved key only as
 `sk-ant-••••`). Whoever may edit the agent may set or **Remove** its key; a
@@ -1269,19 +1269,19 @@ saved key is never shown again, and removing it does not revoke it at the
 provider. The key is saved after the agent (`PUT /auth/agents/{id}/api-key`).
 
 - Every turn of an agent with a usable key runs on it: never admitted against
-  or counted toward the person's Macro usage, and recorded against the key
+  or counted toward the person's Rox usage, and recorded against the key
   (`ai_usage.agent_api_key_id`). Such turns skip the quick opening line, which
-  runs on Macro's model; tools that call models and context summaries still
-  run on Macro's keys and count.
+  runs on Rox's model; tools that call models and context summaries still
+  run on Rox's keys and count.
 - Only the agent's own sessions spend its key: the owner's for a personal
   agent, a current member's for a team agent. Anyone else's session of it
-  runs on their Macro usage.
+  runs on their Rox usage.
 - The session's model list is the key's provider's models, whatever the
   person's plan, and another provider's model cannot be picked.
 - Keys are part of the Premium and Max plans (and enterprise teams), checked
   against the agent's owner: a personal agent's owner, or a team agent's team
   payer. On Free the field is disabled with a note; a key saved before a
-  downgrade stays (and can be removed) but the agent runs on Macro usage.
+  downgrade stays (and can be removed) but the agent runs on Rox usage.
 - A key stops counting while the agent no longer fits it (moved to another
   provider's model or another harness); the editor says the saved key isn't
   used, and offers **Remove key** under Where it runs.
@@ -1295,7 +1295,7 @@ recognized foreground quota refusals open the shared dialog when the frontend
 rollout is active (always in dev and local; flag-controlled in production).
 
 1. With the flag absent/false across all hosts, send a managed session prompt. Confirm ordinary behavior and new uncounted usage rows.
-2. With enforcement true and an exhausted paid fixture, select a Macro-funded
+2. With enforcement true and an exhausted paid fixture, select a Rox-funded
    model and send from Home and a doc-scoped agent session. Confirm 402 with
    a stable denial code, no new orphaned session/message/stream, no provider
    work, and usable retry/cancel controls.
@@ -1328,7 +1328,7 @@ and settlement tests still require the isolated backend fixtures above.
 When the harness has its local Deno runtime configured, the session's `macro_internal`
 server exposes `DescribeCodeTools`, `ReadCodeDocs` and `ExecuteCode`. The in-process agent sees
 all three schemas on its first model call, without `SearchTools` or `LoadTools`.
-For Macro's in-process agent, every conversation turn of a user's session runs
+For Rox's in-process agent, every conversation turn of a user's session runs
 code mode, and needs those three tools: a turn without them fails, with no
 direct-tools fallback. Code mode has a smaller direct toolset:
 SDK-supported searches, reads, listing, and data operations run through the SDK
@@ -1427,7 +1427,7 @@ body with `document.edit(instructions)`, and a canvas through `document.canvas()
 The harness spawns a fresh Deno process for each execution. Dependencies are
 bundled at build time; no TypeScript compilation or package downloads happen
 in a run. The process receives a short-lived normal user token after any required
-approval for the selected account. SDK methods make HTTP requests to configured Macro
+approval for the selected account. SDK methods make HTTP requests to configured Rox
 service hosts using normal API authorization. The token also signs the session's
 agent identity: SDK messages show that agent as sender and the selected acting user in the
 `from` pill. Ordinary user tokens have no agent attribution; client headers and
@@ -1500,7 +1500,7 @@ The public workspace MCP (`mcp-server[-dev].rox.one`) runs code mode for every
 client but ChatGPT (whose plugin directory refuses generic executors) wherever
 the harness can run code. Those clients see only
 `ExecuteCode`, `DescribeCodeTools` and `ReadCodeDocs` on `tools/list` — not the
-individual Macro tools — and the server instructions tell the client to call
+individual Rox tools — and the server instructions tell the client to call
 `DescribeCodeTools` with a `task`, then `ReadCodeDocs` for the symbols it uses,
 before writing a program. Programs export `async function main({macro})` and
 return exactly `{data}` (an empty `reviews: []` is dropped). There is no
@@ -1517,12 +1517,12 @@ editing, and other work outside the SDK.
 
 To verify locally, run Claude Code against the stack's MCP with
 `tooling/scripts/claude-local-mcp.sh --instance <name> --email <email>`. It mints
-a local token for an existing user and passes only the Macro MCP; its
+a local token for an existing user and passes only the Rox MCP; its
 `tools/list` should be the three code-mode tools.
 
 ## Start a doc-scoped chat
 
-Open a doc → side panel `Actions` → `Ask Macro`. Opens an agent session with the
+Open a doc → side panel `Actions` → `Ask Rox`. Opens an agent session with the
 document already mentioned as context (a link chip in the composer). The mention
 is an unsent draft: add a question, then Send.
 
@@ -1598,7 +1598,7 @@ message controls remain available.
 
 User messages in both AI systems appear in right-aligned bubbles with rounded
 corners, including on mobile. In dark mode, their fill and text follow the active
-theme; Macro Dark uses a dark gray fill and white text. Long prompts wrap within the bubble;
+theme; Rox Dark uses a dark gray fill and white text. Long prompts wrap within the bubble;
 production chat retains its Show more/Show less and editing controls.
 
 ## Waiting for a response
@@ -1608,17 +1608,17 @@ as email blocks: an opaque background, subtle border and shadow, and a raised
 rim in dark mode. The recipients, subject, body, and send controls stay inside
 that card. Touch-device styling is unchanged.
 
-A drafted email can carry attachments. The agent attaches uploaded Macro files
+A drafted email can carry attachments. The agent attaches uploaded Rox files
 (PDFs, images, spreadsheets, Word documents; a Word document is attached as its
 PDF rendering) through `SendEmail`'s `attachments`, and each appears as a
 removable file pill under the body once its name resolves. The card's paperclip
 `Attach` control and dropping files onto the body add more: each file is first
-uploaded as a Macro document, shown as a pill while it uploads, and `Send email`
-stays disabled until every upload finishes. Macro-native documents written in the
+uploaded as a Rox document, shown as a pill while it uploads, and `Send email`
+stays disabled until every upload finishes. Rox-native documents written in the
 editor have no file and cannot be attached; the send reports which document
 could not be attached. Attachments together may total the sending inbox's limit
 (18 MB on Gmail, 25 MB on Outlook): a picked or dropped file that would pass it
-opens the same confirmation as the email composer, offering to upload it to Macro and link it from the body as a public
+opens the same confirmation as the email composer, offering to upload it to Rox and link it from the body as a public
 view-only document instead; Cancel adds nothing, and files that fit still
 attach. The sent and saved-draft rows read `with N attachments`, and the
 expanded sent card shows the pills read-only.
@@ -1709,7 +1709,7 @@ selection, and original turn; any other reuse runs as a new execution under a fr
 When another person requests owner access, the session view shows what the agent
 wants to do. The owner sees `Approval needed` with `Decline`, `Always allow`, and
 `Approve`; others see `Waiting for <owner> to approve` and editors may cancel.
-`Always allow` retains its existing scope: the named requester’s same Macro tool,
+`Always allow` retains its existing scope: the named requester’s same Rox tool,
 or all tools of the connected app, for this session. It does not change which
 account a call selects. Declined, cancelled, expired, or superseded calls do not
 run. The Magic Chip reads `Waiting for approval` while a call is held.
@@ -1739,11 +1739,11 @@ supported edits and retry behavior.
 
 ## In channels
 
-Mention `@Macro` in any channel message. Without the `enable-chat-v3-agents` rollout it is
+Mention `@Rox` in any channel message. Without the `enable-chat-v3-agents` rollout it is
 the classic in-channel reply; with it, the same mention opens an **agent session** — a
 dedicated transcript at `/app/agent/<uuid>` whose replies also stream back into the thread.
-`@cursor` opens a session. Macro Coding Agent (`@coder`) is unavailable in mention
-suggestions. There is only ever one Macro entry in the mention menu; which of the
+`@cursor` opens a session. Rox Coding Agent (`@coder`) is unavailable in mention
+suggestions. There is only ever one Rox entry in the mention menu; which of the
 two answers is the rollout's decision, not a second choice in the menu.
 
 ## Agent sessions
@@ -1872,14 +1872,14 @@ Individual tools appear as bare rows with no icon or indent, in the group
 header's tone: the tool name, then any detail and result summary in a dimmer
 tone. A successful call shows no outcome. The caret after them appears on hover
 or keyboard focus, and always on touch, and the whole row opens the results; it
-points right when collapsed and down when expanded. Macro tools such as
+points right when collapsed and down when expanded. Rox tools such as
 **Search** read the same way: the query in the detail tone, the result count
 right after it, and found items listed flush below in the row's tone, without
 icons. Code search output and read paths open as plain text, not a boxed block.
 Individual results start collapsed. Existing rich result views retain their own content and controls;
 when a result view provides its own disclosure, use that control rather than
 adding a second nested disclosure. Counts come from structured responses,
-edits show additions/deletions, and other tools show their outcome. A Macro
+edits show additions/deletions, and other tools show their outcome. A Rox
 tool call keeps the same label as its successful row in every state,
 never the tool's code name: while it runs its text shimmers; a call cut off when
 its turn ends reads **Stopped**; a failed call is faded with **Failed** in the failure
@@ -1933,7 +1933,7 @@ The server decodes the view before it is drawn: a view that does not decode
 is never presented, and the agent is told what to fix.
 The call the harness presents (`view_<id>`) draws the view directly in the
 reply and stays visible without opening a tool row. Every agent chain with
-`ExecuteCode`, including external coding agents connected through Macro's MCP
+`ExecuteCode`, including external coding agents connected through Rox's MCP
 server, can present one. AI chat's `DisplayResults` calls render the same
 way, from the view the call returns; nothing draws while the call streams.
 
@@ -2090,7 +2090,7 @@ beside the transcript (drag the 1px divider between them). Clicking it again clo
 In the Agents workspace, changes reach the top of the main area. The session
 title, share, and sidebar controls stay above the conversation on the left;
 the **Changes** toggle stays visible, ghost while closed and active while open.
-Chat sessions on Macro's in-memory harness have no repository, so they show
+Chat sessions on Rox's in-memory harness have no repository, so they show
 none of this: no **Changes** toggle, pane, hand-off card, or review-notes chip,
 and the title menu offers **Open repository** only when the session has one.
 The session's split stores the pane in its own search params:
@@ -2379,7 +2379,7 @@ must stay hidden; subsequent live messages must still appear.
   choice is labeled `Suggested`; the label does not select it. Roxd defaults to
   prompts; bypass requires both the machine's setting and the agent's explicit
   choice; otherwise the form says to allow bypass in the machine's settings.
-  Built-in Macro, in-memory, Cursor, and Codex runtimes always bypass and have no
+  Built-in Rox, in-memory, Cursor, and Codex runtimes always bypass and have no
   permission policy selector. The backend enforces these policies.
 
 Locally sent user messages in both AI implementations enter with a short upward
@@ -2403,7 +2403,7 @@ saved local draft selection taking precedence. Icons do not query chat transcrip
 Rows without model data show the standard chat icon. Claude models use the Claude sunburst logo; OpenAI and Google use their
 provider logos; unknown providers in chat titles reserve the icon space.
 
-For a Macro agent session, changing the model must settle on the selected model
+For a Rox agent session, changing the model must settle on the selected model
 and update the title's provider logo. Check this with an OpenAI override when
 starting a session and when changing an existing session before its first prompt.
 Reopening or resuming the session must retain that selection and logo.
@@ -2443,7 +2443,7 @@ Long runtime-provided effort names wrap within their submenu rows as well.
 Open the model selector and hover a model to choose its reasoning effort in the
 submenu on desktop, opened with Right Arrow. On mobile, tap a model to select it,
 then use the adjacent effort button to adjust effort.
-Cursor and Macro's in-memory agent load the hovered model's own advertised
+Cursor and Rox's in-memory agent load the hovered model's own advertised
 choices. The selected label includes the effort, such as `Sonnet 5.5 · High`;
 the composer also offers a separate effort button for the selected model. Models without effort
 support remain selectable through `Use <model>` (or a desktop click/Enter).
@@ -2465,7 +2465,7 @@ choices, because routine targets do not save an effort setting.
 
 ## Reading skills
 
-Agents in Macro and connected MCP harnesses can discover saved skill documents
+Agents in Rox and connected MCP harnesses can discover saved skill documents
 and built-in skills with `ListSkills`, then load the full instructions with
 `ReadSkill` using the returned `documentId`. `ListSkills` returns the 100 most
 recently updated visible skill documents plus built-ins; `SearchSkills` finds a
@@ -2525,7 +2525,7 @@ agent settings leave a usable reservation available for the default agent.
 
 ### Free-plan models in the new Macro agent
 
-The in-memory Macro runtime uses the session owner's current permissions.
+The in-memory Rox runtime uses the session owner's current permissions.
 Free users see only Gemini 3.8 Flash in model discovery and the live session
 picker. New and resumed sessions replace an inaccessible saved model with Gemini.
 A direct request to select a paid model is rejected, and each prompt rechecks
@@ -2533,7 +2533,7 @@ permissions before inference, including after a plan downgrade. Permission
 lookup failures prevent inference. Paid users retain the full supported catalog.
 Cursor and paired external runtimes keep their own model rules.
 
-To verify, start a Macro conversation as a free user with a previously saved
+To verify, start a Rox conversation as a free user with a previously saved
 paid-model preference: the composer should show Gemini and send that model.
 In a live session, confirm the model options contain only Gemini. Backend tests
 also exercise direct ACP model-change requests, downgrade, and resume.
@@ -2624,7 +2624,7 @@ and GPT-6.1 Sol (6× token pricing). Its tooltip shows the mode, state, and usag
 multiplier before sending. Claude models, including Opus 5.5, stay on standard
 speed until Anthropic approves fast mode for this account. Other models keep
 standard speed. The preference is saved in browser local storage and shared by
-legacy chat and native Macro agent composers. External coding agents use their
+legacy chat and native Rox agent composers. External coding agents use their
 own speed controls.
 
 Preview the controls at `/app/debug/ui?ui=speed-toggle`.
@@ -2678,7 +2678,7 @@ Generation and classification do not edit a document. Use
 ### Code-mode review stacks
 
 A completed `PresentReview` ACP call shows saved email and calendar
-reviews as their own visible cards in every agent chain, including Macro and
+reviews as their own visible cards in every agent chain, including Rox and
 Cursor. The presentation returns “Presented to the user” immediately; it does
 not wait for a response. Code and native tools use the same presentation path. These cards do not block the
 chat composer. Their status is read from the session's review API, not reconstructed
@@ -2748,7 +2748,7 @@ presentation, and typing during a save is `bunx playwright test --config src/fea
 Open the model selector and hover a model to choose its reasoning effort in the
 submenu on desktop, opened with Right Arrow. On mobile, tap a model to select it,
 then use the adjacent effort button to adjust effort.
-Cursor and Macro's in-memory agent load the hovered model's own advertised
+Cursor and Rox's in-memory agent load the hovered model's own advertised
 choices. The selected label includes the effort, such as `Sonnet 5.5 · High`;
 the composer also offers a separate effort button for the selected model. Models without effort
 support remain selectable through `Use <model>` (or a desktop click/Enter).

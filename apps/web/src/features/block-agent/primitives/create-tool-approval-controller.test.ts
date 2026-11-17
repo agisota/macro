@@ -13,7 +13,7 @@ const held = {
   approvalId: 'approval-1',
   turn: 0,
   serverSlug: 'macro',
-  serverName: 'Macro',
+  serverName: 'Rox',
   toolName: 'ListEmails',
   requestedBy: 'macro|julia@rox.one',
 } satisfies PendingInteraction;
@@ -95,9 +95,8 @@ describe('createToolApprovalController', () => {
   });
 
   it('does not answer a call that is no longer held', async () => {
-    const { controller, dispose, answer, setPending } = setup(
-      'macro|wolf@rox.one'
-    );
+    const { controller, dispose, answer, setPending } =
+      setup('macro|wolf@rox.one');
     setPending([]);
     await expect(controller.answer('approval-1', 'deny')).resolves.toBe(false);
     expect(answer).not.toHaveBeenCalled();
@@ -105,9 +104,8 @@ describe('createToolApprovalController', () => {
   });
 
   it('says so when somebody answered first', async () => {
-    const { controller, dispose, answer, onFailure } = setup(
-      'macro|wolf@rox.one'
-    );
+    const { controller, dispose, answer, onFailure } =
+      setup('macro|wolf@rox.one');
     answer.mockResolvedValueOnce(
       err([{ code: 'CONFLICT' as const, message: 'already resolved' }])
     );

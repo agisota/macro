@@ -28,7 +28,7 @@ export type DraftOptions = Omit<
   bodyText?: string;
   /** HTML body. */
   bodyHtml?: string;
-  /** Macro body. */
+  /** Rox body. */
   bodyMacro?: string;
   /** Extra headers. */
   headers?: ApiDraftInput['headers_json'];

@@ -17,11 +17,11 @@ use macro_auth::middleware::decode_jwt::{JwtToken, JwtValidationArgs, handler};
 use crate::domain::access_token_clients::AccessTokenClients;
 use macro_user_id::user_id::MacroUserIdStr;
 
-/// Validated Macro JWT from the `Authorization: Bearer` header.
+/// Validated Rox JWT from the `Authorization: Bearer` header.
 #[derive(Clone)]
 pub struct JwtAccessToken(pub String);
 
-/// Managed session provenance from a verified Macro API JWT.
+/// Managed session provenance from a verified Rox API JWT.
 #[derive(Clone, Copy)]
 pub struct ManagedAgentSession(pub uuid::Uuid);
 
@@ -42,7 +42,7 @@ pub enum McpAuthMethod {
     /// A FusionAuth access token, as issued by the OAuth broker to clients
     /// such as Claude.ai, ChatGPT, or Cursor.
     OAuth,
-    /// A Macro API key the user created and pasted into the client.
+    /// A Rox API key the user created and pasted into the client.
     ApiKey,
 }
 
@@ -118,12 +118,12 @@ fn unauthorized_response(request: &Request<Body>, error: Option<&str>) -> Respon
 /// Validates an existing user API key or `Authorization: Bearer <token>` and stores the authenticated
 /// [`MacroUserIdStr`], its [`McpAuthMethod`], and its [`ToolCaller`] in the
 /// request extensions. Every authenticated request carries a caller:
-/// - a Macro API token signed for an agent (only key holders such as the
+/// - a Rox API token signed for an agent (only key holders such as the
 ///   agent harness's egress sign the claim, so a client cannot name a bot) is
 ///   [`ToolCaller::Agent`];
 /// - an OAuth access token is [`ToolCaller::McpClient`], named after the
 ///   client the broker issued it to;
-/// - an existing user API key or any other Macro API token is [`ToolCaller::ApiKey`].
+/// - an existing user API key or any other Rox API token is [`ToolCaller::ApiKey`].
 #[tracing::instrument(skip_all, fields(caller = tracing::field::Empty))]
 pub async fn validate_bearer(
     axum::extract::State(auth): axum::extract::State<BearerAuth>,

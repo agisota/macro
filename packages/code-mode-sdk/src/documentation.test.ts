@@ -210,7 +210,7 @@ describe('TypeDoc documentation packaging', () => {
     const guide = (name: string) =>
       docs.entities.find((doc) => doc.name === name)?.guide ?? '';
     expect(guide('databases')).toContain("check every database's tables");
-    expect(guide('crm')).toContain('not a Macro database');
+    expect(guide('crm')).toContain('not a Rox database');
     expect(guide('email')).toContain('Labels are per inbox');
     expect(guide('calendar')).toContain(
       'Booking links use conversational confirmation'

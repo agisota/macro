@@ -363,7 +363,7 @@ export type ProjectEntity = EntityBase & {
 
 export type CallStatus = StorageCallStatus;
 
-/** Session-scoped guest identity on a call; not a Macro account. */
+/** Session-scoped guest identity on a call; not a Rox account. */
 export type CallGuest = {
   id: string;
   displayName: string;
@@ -378,7 +378,7 @@ export type CallEntity = EntityBase & {
   /** Compatibility flag derived from status. */
   attended: boolean;
   durationMs?: number;
-  /** Macro users only; guests are listed separately in `guests`. */
+  /** Rox users only; guests are listed separately in `guests`. */
   participantIds: string[];
   guests?: CallGuest[];
   summary?: string;
@@ -463,7 +463,7 @@ export type CrmContactEntity = EntityBase & {
   hidden: boolean;
 };
 
-/** A Macro Database. Not a Soup entity: it has no view history, so `createdAt` is its only timestamp. */
+/** A Rox Database. Not a Soup entity: it has no view history, so `createdAt` is its only timestamp. */
 export type DatabaseEntity = EntityBase & {
   type: 'database';
   /** What the viewer may do with the database. */
@@ -480,7 +480,7 @@ export type HarnessEntity = EntityBase & {
   type: 'harness';
 };
 
-/** A Macro Form. Like a database, not a Soup entity: `createdAt` is its only timestamp. */
+/** A Rox Form. Like a database, not a Soup entity: `createdAt` is its only timestamp. */
 export type FormEntity = EntityBase & {
   type: 'form';
   /** What the viewer may do: view responds, edit builds and reads responses. */
@@ -703,7 +703,7 @@ export const isCrmContactEntity = (
   return entity.type === 'crm_contact';
 };
 
-/** The full-email identity shared by CRM contacts and Macro users. Plus
+/** The full-email identity shared by CRM contacts and Rox users. Plus
  * aliases stay distinct, as in the backend's authorized contact deduplication. */
 export const crmContactEmailKey = (email: string) => email.trim().toLowerCase();
 

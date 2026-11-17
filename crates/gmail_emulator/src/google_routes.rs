@@ -1,4 +1,4 @@
-//! The other Google endpoints Macro's email code calls: the People API,
+//! The other Google endpoints Rox's email code calls: the People API,
 //! the OAuth token endpoint (code exchange and refresh), token info and
 //! revocation, and the certificates that verify push and ID tokens.
 

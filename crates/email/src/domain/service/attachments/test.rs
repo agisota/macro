@@ -105,7 +105,7 @@ impl DraftAttachmentSource for Fake {
         let Some((_, bytes)) = files.iter().find(|(doc, _)| *doc == id) else {
             return Err(EmailErr::AttachmentUnavailable {
                 name: id,
-                reason: "it is a Macro document, not a file".to_owned(),
+                reason: "it is a Rox document, not a file".to_owned(),
             });
         };
         Ok(SourcedAttachment {

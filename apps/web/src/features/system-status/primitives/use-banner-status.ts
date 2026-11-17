@@ -38,7 +38,7 @@ const DISMISSED_STORAGE: PersistenceStorage<string | undefined> = {
 };
 
 /**
- * The banner every user sees while Macro is not operational. Never suspends:
+ * The banner every user sees while Rox is not operational. Never suspends:
  * until the status loads, and through failed refetches, it shows whatever was
  * last known (nothing at first).
  *

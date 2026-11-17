@@ -124,7 +124,7 @@ impl CurrentOwnerAccess for FakeAccess {
                 EventEntityType::EmailThread => EntityType::EmailThread,
                 EventEntityType::Call => EntityType::Call,
                 EventEntityType::GithubInstallation => {
-                    unreachable!("these routines watch Macro events only")
+                    unreachable!("these routines watch Rox events only")
                 }
             },
         };
@@ -168,7 +168,7 @@ impl CurrentOwnerAccess for FakeAccess {
                 .unwrap(),
             ),
             EventEntityType::GithubInstallation => {
-                unreachable!("these routines watch Macro events only")
+                unreachable!("these routines watch Rox events only")
             }
         };
         Ok(Some(access))

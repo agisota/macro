@@ -111,7 +111,7 @@ fn held(
             client: None,
         },
         server_slug: "macro".to_owned(),
-        server_name: "Macro".to_owned(),
+        server_name: "Rox".to_owned(),
         call,
         request,
         forward: Box::new(move |request| {
@@ -427,7 +427,7 @@ fn in_process(session: AgentSessionId) -> InProcessCall {
             client: None,
         },
         server_slug: "macro".to_owned(),
-        server_name: "Macro".to_owned(),
+        server_name: "Rox".to_owned(),
         tool_name: "ListEmails".to_owned(),
         arguments: serde_json::json!({}),
     }

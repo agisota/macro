@@ -98,7 +98,7 @@ impl PlanTree {
     }
 
     /// What the decision model sees of each node, leaving out those already
-    /// in Macro (keyed by Notion id), which need no decision.
+    /// in Rox (keyed by Notion id), which need no decision.
     pub fn triage_items(
         &self,
         already_imported: &HashMap<String, NotionAlreadyImported>,
@@ -121,7 +121,7 @@ impl PlanTree {
 
     /// The rows planning stages before the decision model answers, parents
     /// first: every node, waiting for its decision, except those already in
-    /// Macro (keyed by Notion id), which are decided already: they link to
+    /// Rox (keyed by Notion id), which are decided already: they link to
     /// the teammate's copy. `team` says whether the user has a team.
     pub fn staged_rows(
         &self,
@@ -221,7 +221,7 @@ impl PlanTree {
 
 /// Why an object a teammate already imported is not copied.
 const ALREADY_IN_MACRO: &str =
-    "Already in Macro: a teammate imported it and shared it with the team.";
+    "Already in Rox: a teammate imported it and shared it with the team.";
 
 fn triage_item(node: &Node, key: &str) -> TriageItem {
     TriageItem {

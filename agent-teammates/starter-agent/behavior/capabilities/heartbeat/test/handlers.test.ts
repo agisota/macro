@@ -26,7 +26,7 @@ const owner = "macro|owner@example.com";
 const ok = (stdout = ""): Ran => ({ code: 0, stdout, stderr: "" });
 const no: Ran = { code: 1, stdout: "", stderr: "" };
 
-/** The agent with a stand-in for itself, for Macro, for git, and firings pushed by hand. */
+/** The agent with a stand-in for itself, for Rox, for git, and firings pushed by hand. */
 const setup = () => {
 	const disk = memoryDisk();
 	const clock = fixedClock("2026-11-09T15:00:00Z");
@@ -78,7 +78,7 @@ const setup = () => {
 		log: makeLog({ directory: state.log("agent"), join, disk, clock }),
 		join,
 		macro: async () => {
-			throw new Error("Macro is not reached");
+			throw new Error("Rox is not reached");
 		},
 		environment: async () => ({}),
 	};

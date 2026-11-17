@@ -1,6 +1,6 @@
 # Agent teammates
 
-An agent teammate is a Macro user of its own, on a Macro computer of its own.
+An agent teammate is a Rox user of its own, on a Rox computer of its own.
 It talks in channels and DMs, joins calls, uses its computer's screen and a
 browser, keeps its memory in a git repository, and can change its own code.
 The runtime is muppet (`packages/muppet`, from Eric Hayes's agent-teammates
@@ -10,9 +10,9 @@ work); each agent's code starts as a copy of `packages/starter-agent`.
 
 | Piece | Where | What it does |
 | --- | --- | --- |
-| Account, seat, invite | `crates/team_agents`, auth service `/team_agents` | The agent's Macro user, its team seat (included, not billed), its API key, and the invite UI under Settings → Team. |
+| Account, seat, invite | `crates/team_agents`, auth service `/team_agents` | The agent's Rox user, its team seat (included, not billed), its API key, and the invite UI under Settings → Team. |
 | Computer | `crates/hosted_runtimes` (#10186) | Buys and runs the computer. A computer linked to an agent (`agent_user_id`) is created from the agent image (`macro-box-agent`, `macro.box.agentMode`). |
-| Enrollment | `crates/hosted_runtimes` + `crates/team_agents` | On every enrollment generation, the computer of an agent gets `agent.env`: its Macro key, gateway and service addresses, its repo URL and token, and, in Macro-credits mode, its Anthropic gateway access. The key and repo token rotate with each generation. |
+| Enrollment | `crates/hosted_runtimes` + `crates/team_agents` | On every enrollment generation, the computer of an agent gets `agent.env`: its Rox key, gateway and service addresses, its repo URL and token, and, in Rox-credits mode, its Anthropic gateway access. The key and repo token rotate with each generation. |
 | Repository | `crates/agent_git` | One bare repo per agent, over smart HTTP, seeded from `packages/starter-agent` with `agent.json` (owner = the inviting admin, the agent itself) and, when the invite described it, the agent's identity. |
 | Runtime | `packages/muppet` | Behaviors, event sources, typed capability modules, the code mode, the Claude Code agent. Pure: IO comes from an injected context. |
 | The agent's code | `packages/starter-agent` → the agent's repo | Chat, schedules, people, identity, heartbeat (commit, land), tools, browser, calls, secrets. |
@@ -35,7 +35,7 @@ The agent commits after every wake, pulls with `--rebase`, and pushes `main`.
 A rebase conflict aborts, keeps the local commits and tells the owner once.
 `state/memory/` and `state/private/` are committed; `state/run/` is volatile
 and ignored, and `state/log/` stays on the computer (traces keep the record).
-Team admins and owners can read the repo with their Macro credential.
+Team admins and owners can read the repo with their Rox credential.
 
 ## Bootstrap
 
@@ -51,7 +51,7 @@ Team admins and owners can read the repo with their Macro credential.
    identity and credential helper, links the image's packages (muppet, the
    SDK and the template's locked dependencies) and starts `bun cli.ts run`.
 5. **Claude Code** reaches Anthropic through the customer's Claude login
-   (harnessd), or through the Macro-credits gateway when `agent.env` says so.
+   (harnessd), or through the Rox-credits gateway when `agent.env` says so.
 6. **The agent boots**: it reads its credentials, shows online, starts its
    event sources and records the healthy HEAD. With no identity, its first
    wake DMs its owner to ask who it should be; otherwise it introduces itself.
@@ -67,8 +67,8 @@ The agent's process is the only one that holds its credentials.
   (`MUPPET_CREDENTIALS_FILE`, read-only). A self-hosted agent can keep them in
   SOPS instead (`MUPPET_CREDENTIALS=sops`).
 - **Capability scripts** (`RunCapabilityScript`, named not to collide with
-  Macro's `ExecuteCode`) run in a `cli.ts exec` subprocess with a cleared
-  environment. They reach Macro through a loopback relay in the agent process
+  Rox's `ExecuteCode`) run in a `cli.ts exec` subprocess with a cleared
+  environment. They reach Rox through a loopback relay in the agent process
   that adds the key, for HTTP calls and for the call speech WebSockets only.
 - **Claude Code and scripts** run under bubblewrap with the credentials
   directory hidden, so a script that guesses the path finds nothing.

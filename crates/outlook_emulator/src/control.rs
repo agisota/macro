@@ -52,7 +52,7 @@ pub struct MessageSummary {
     pub received: DateTime<Utc>,
 }
 
-/// A change to a message made in Outlook, outside Macro.
+/// A change to a message made in Outlook, outside Rox.
 #[derive(Clone, Debug, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct MessageChange {

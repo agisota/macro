@@ -1,4 +1,4 @@
-//! What a computer reads at first boot to join Macro.
+//! What a computer reads at first boot to join Rox.
 //!
 //! The control plane writes one [`Enrollment`] as JSON into the instance
 //! config key [`INCUS_ENROLLMENT_KEY`] (read in the guest from `/dev/incus`),
@@ -29,7 +29,7 @@ pub struct Enrollment {
     pub device_secret: DeviceSecret,
     /// Display name the harness shows in Settings → Runtimes.
     pub name: ComputerName,
-    /// The Macro deployment roxd joins, resolved when this enrollment was
+    /// The Rox deployment roxd joins, resolved when this enrollment was
     /// issued.
     pub deployment: Deployment,
     /// W3C context of the setup trace, so roxd's enrollment, claim and first

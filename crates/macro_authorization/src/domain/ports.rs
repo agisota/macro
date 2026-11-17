@@ -127,7 +127,7 @@ pub trait HarnessAuthorizationRepo: Clone + Send + Sync + 'static {
         token_id: Uuid,
     ) -> impl Future<Output = Result<(), Self::Err>> + Send;
 
-    /// Resolve a Macro user id to user-store facts.
+    /// Resolve a Rox user id to user-store facts.
     fn find_user(
         &self,
         macro_user_id: &str,
@@ -146,7 +146,7 @@ pub trait HarnessAuthorizationRepo: Clone + Send + Sync + 'static {
 pub trait HarnessAuthorizer: Clone + Send + Sync + 'static {
     /// Authorize a harness token, verifying and resolving the acting user.
     ///
-    /// `acting_user_claim` is an unverified Macro user id the daemon forwards
+    /// `acting_user_claim` is an unverified Rox user id the daemon forwards
     /// (a mention sender); absent, the acting user defaults to the harness
     /// owner or, for team harnesses, its creator.
     fn authorize_harness(

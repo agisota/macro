@@ -37,7 +37,7 @@ type MobileSettingsSheetProps = {
   emailSignatures?: boolean;
   /** Whether search lists the Outlook connection; see `searchSettings`. */
   outlook?: boolean;
-  /** Whether search lists Macro computer settings; see `searchSettings`. */
+  /** Whether search lists Rox computer settings; see `searchSettings`. */
   macroComputers?: boolean;
   name: string;
   email: string;

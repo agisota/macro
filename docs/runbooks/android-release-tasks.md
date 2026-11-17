@@ -1,6 +1,6 @@
 # Android release tasks
 
-Created in Macro from `docs/design/android-readiness-audit.md` on September 21, 2026 (source snapshot `1c26a7c4fe`).
+Created in Rox from `docs/design/android-readiness-audit.md` on September 21, 2026 (source snapshot `1c26a7c4fe`).
 
 All six tasks verified: **Priority: High · Assignee: Peter (peter@rox.one) · Personal tag: android · Status: Not Started**. No due dates set.
 
@@ -13,7 +13,7 @@ All six tasks verified: **Priority: High · Assignee: Peter (peter@rox.one) · P
 
 ## 1. Make the Android app build, authenticate, and open app links
 
-Deliver a reproducible Android app that launches, signs users in, connects their accounts, and opens Macro links correctly.
+Deliver a reproducible Android app that launches, signs users in, connects their accounts, and opens Rox links correctly.
 
 Scope:
 - Add Android shared-library output and separate shared/iOS/Android plugin capabilities. Repair or replace the pinned auth plugin's missing Android implementation and the keyboard plugin's invalid Android scaffold.

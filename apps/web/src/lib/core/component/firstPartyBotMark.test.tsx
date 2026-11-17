@@ -38,7 +38,7 @@ vi.mock('@core/signal/profilePicture', () => ({
 afterEach(cleanup);
 
 describe('firstPartyBotMark', () => {
-  it('gives both Macro bots and the coder the Macro logo', () => {
+  it('gives both Rox bots and the coder the Rox logo', () => {
     for (const id of [
       MACRO_AGENT_PRINCIPAL_ID,
       MACRO_NEW_PRINCIPAL_ID,
@@ -97,7 +97,7 @@ describe('UserIcon for first-party bots', () => {
     expect(svgOf(cursor)?.innerHTML).toBe(svgOf(reference)?.innerHTML);
   });
 
-  it('draws the Macro logo for the agent-session Macro bot', () => {
+  it('draws the Rox logo for the agent-session Rox bot', () => {
     const { container: macro } = render(() => (
       <UserIcon id={MACRO_NEW_PRINCIPAL_ID} />
     ));

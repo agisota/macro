@@ -266,7 +266,7 @@ impl<'de> XmlTaggedParsed<'de> for ParsedAgentSessionMention<'de> {
 #[serde(rename_all = "camelCase")]
 #[non_exhaustive]
 pub struct ParsedPullRequestMention<'a> {
-    /// The Macro foreign entity id. Empty when an agent mentioned the PR by
+    /// The Rox foreign entity id. Empty when an agent mentioned the PR by
     /// its GitHub `url` alone.
     #[serde(borrow, default)]
     pub id: Cow<'a, str>,

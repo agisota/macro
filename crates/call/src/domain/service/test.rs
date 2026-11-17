@@ -4308,7 +4308,7 @@ async fn guest_webhook_events_reconcile_join_and_leave() {
 
 #[tokio::test]
 async fn mixed_call_archives_only_after_both_users_and_guests_leave() {
-    // Last Macro user leaves while a guest is still connected: the call must
+    // Last Rox user leaves while a guest is still connected: the call must
     // stay open. The guest's later departure archives it.
     let mut active = active_call_for_archived_event(ARCHIVED_EVENT_CREATOR, None);
     active.channel_id = None;

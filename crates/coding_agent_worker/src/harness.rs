@@ -385,7 +385,7 @@ fn encode(frame: &RawJsonRpcMessage) -> Option<String> {
 }
 
 /// Teach a new session's agent about this runtime on its first prompt, and
-/// on a Macro computer give each Claude Code session its account or gateway.
+/// on a Rox computer give each Claude Code session its account or gateway.
 fn teach(
     self_knowledge: &mut SelfKnowledge,
     message: RawJsonRpcMessage,

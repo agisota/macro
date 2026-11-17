@@ -146,7 +146,7 @@ it('keeps the phone step bar to short labels', () => {
   ]);
 });
 
-it('marks Bring your AI skipped, not struck, when the agent runs on Macro credits', () => {
+it('marks Bring your AI skipped, not struck, when the agent runs on Rox credits', () => {
   render(() => <StepHeader step="ready" claude="skipped" />);
 
   const items = screen
@@ -158,7 +158,7 @@ it('marks Bring your AI skipped, not struck, when the agent runs on Macro credit
   expect(items[1].textContent).toBe('Configure agent');
 });
 
-it('marks Bring your AI done on Macro credits once its sign-in was opened', () => {
+it('marks Bring your AI done on Rox credits once its sign-in was opened', () => {
   expect(claudeStepMark(undefined, false)).toBe('step');
   expect(claudeStepMark('own_account', true)).toBe('step');
   expect(claudeStepMark('macro_credits', false)).toBe('skipped');

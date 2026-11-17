@@ -59,12 +59,12 @@ While the email list itself has focus, `Tab` moves browser focus instead; use
 `g i` or `g o`. Calendar mail remains available through the calendar filter and
 existing Calendar route. Mobile keeps its original tabs and order, including
 separate Signal, Noise, and Calendar tabs, with `Focus` (flagged) first.
-The top of Signal shows a pinned **Learn how to use Macro Mail** row
+The top of Signal shows a pinned **Learn how to use Rox Mail** row
 (`TutorialRow` from `features/video-tutorials`, shared by every block). No block shows a tutorial entry on a touch device (`isTouchDevice()`: phones,
 tablets and the native iOS and Android apps), so they never load a tutorial video. Clicking it opens the tutorial video in a dialog at 80% of
 the window that never autoplays: the play pill
 (play disc, then the presenter's photo and name over "Watch demo · 1:27")
-starts it and brings up the native controls. When it ends, the last frame dims under a shelf, "More videos from Macro", of the other tutorials (each block's nav icon on a pastel tile with its length); a card switches the dialog to that video, paused, and Replay or a click on the frame restarts it. Under the video, three Macro team faces (stacked like a block's live viewers) and "Have questions about Macro Mail? **Talk to us in your support channel →**" open the person's own `Macro Support x …` channel and close the dialog; the line is left out when they own no such channel. The row's X (on hover or keyboard
+starts it and brings up the native controls. When it ends, the last frame dims under a shelf, "More videos from Rox", of the other tutorials (each block's nav icon on a pastel tile with its length); a card switches the dialog to that video, paused, and Replay or a click on the frame restarts it. Under the video, three Rox team faces (stacked like a block's live viewers) and "Have questions about Rox Mail? **Talk to us in your support channel →**" open the person's own `Rox Support x …` channel and close the dialog; the line is left out when they own no such channel. The row's X (on hover or keyboard
 focus) hides it on that device for good (`localStorage`
 `email-tutorial-row-dismissed`). It is outside the virtualized rows, so list
 keyboard focus skips it.
@@ -129,7 +129,7 @@ Outlook connections support personal Outlook.com and individual Microsoft 365
 inboxes. Choose the inbox explicitly when testing mixed-provider accounts. The
 same thread, search, Signal/Noise, draft, and schedule surfaces apply to both
 providers. Shared/delegated Microsoft mailboxes are outside this account scope;
-sharing an inbox or thread inside Macro remains available.
+sharing an inbox or thread inside Rox remains available.
 
 A Microsoft 365 tenant that lets only administrators consent sends the user
 back to an `Admin approval required` dialog with `Copy admin approval link`
@@ -168,7 +168,7 @@ further reloads, even while an offline edit is still queued.
 
 Opening an attachment opens it in a split from its Drive copy, except a
 calendar file: it opens its event (see the calendar invitations section of the
-calendar guide), or downloads when Macro could not read one, and creates no
+calendar guide), or downloads when Rox could not read one, and creates no
 Drive file. Every received attachment chip, of any file type, has a download
 button joined to the filename that saves the file without opening it. Images
 and videos keep their previews and get the same chip. Cloud-reference chips
@@ -197,7 +197,7 @@ picture opens the message. The backend-free desktop/phone regression is
 `bunx playwright test --config src/features/entity/browser-test/playwright.config.ts`
 from `apps/web`.
 
-`Favorites`, directly below Inbox on desktop, lists starred Macro emails across
+`Favorites`, directly below Inbox on desktop, lists starred Rox emails across
 Signal, Noise, and archived mail. It respects the selected inboxes and filters; search
 within the tab is also restricted to favorites. Removing a star removes the row
 from this view. The tab persists across reloads. With `enable-graphql-soup` on,
@@ -283,7 +283,7 @@ icon. Search-service results carry no attachments, so they never show it.
 
 On desktop, a favorited email keeps a filled, muted star just before its
 timestamp. Other rows reserve only that small star slot. Hovering reveals
-**Star email** (Macro favorites), **Archive email** (Mark Done, with Undo), and
+**Star email** (Rox favorites), **Archive email** (Mark Done, with Undo), and
 **Open command menu** for that email. The star stays in place; archive and commands
 replace the timestamp within its existing space. Archived rows offer
 **Unarchive email**; the archive control is disabled in tabs that do not support
@@ -698,11 +698,11 @@ place, not the first row. The `⋯` email title menu
 right after the subject's last word, in place of Copy subject, holds **Ask AI**,
 **Create a Task**, and the other thread actions. On desktop, **Mark as unread**, **Mark done**,
 and reminders share one outlined group at the right of that header. Separate
-groups contain **Previous item** / **Next item**, icon-only **Ask Macro** / **Create
+groups contain **Previous item** / **Next item**, icon-only **Ask Rox** / **Create
 task**, and the **Share** icon and label / copy-link icon. On touch (phones and
 tablets) the thread header has only Back, the subject, and the Info button:
 tapping the subject opens the title menu as a sheet, which holds every thread
-action including **Ask Macro**, **Create task**, and **Remind me**, and Info
+action including **Ask Rox**, **Create task**, and **Remind me**, and Info
 opens the details sheet. The arrows
 follow the current filtered list and disable at its ends. When the open thread
 leaves the list while it stays open (a reply in Signal marks it done, or another
@@ -853,7 +853,7 @@ and press Enter or Space. Removal is a separate button named `Remove <filename>`
 Removing a forwarded file keeps the received original.
 Files that would push the email over the sending inbox's delivery limit (18 MB
 on Gmail, 25 MB on Outlook) are not attached:
-a confirmation (a drawer on phones) offers to upload them to Macro and share
+a confirmation (a drawer on phones) offers to upload them to Rox and share
 view-only links instead. Confirming inserts one link per file at the end of the
 written message, above a reply's quoted thread, and the draft autosaves; Cancel
 adds nothing. Files that fit still attach, and the same check covers files
@@ -1062,8 +1062,8 @@ next account cannot see them. If local storage cannot be inspected, sign-out mus
 still offer a warning and a way to continue. Do not verify this by deleting real
 user drafts; use disposable drafts in an isolated test session.
 The three-dot button beneath a body reveals quoted content and a trimmed
-signature. Plaintext and Macro Markdown use the existing Markdown renderer;
-Macro Markdown messages retain document mentions. Ordinary HTML bodies use an
+signature. Plaintext and Rox Markdown use the existing Markdown renderer;
+Rox Markdown messages retain document mentions. Ordinary HTML bodies use an
 open shadow root: Playwright text locators can reach them, but a card's ordinary
 `innerText` or `querySelector` does not traverse that root.
 
@@ -1078,7 +1078,7 @@ people with access to the sending inbox see it, and the thread refreshes it
 about once a minute. Turning the setting off stops tracking new messages;
 statuses already recorded for that inbox stay visible while another of the
 viewer's inboxes has read receipts on, and every status hides once none does.
-A recipient who reads their own copy in Macro counts as
+A recipient who reads their own copy in Rox counts as
 an open; the reader loads the pixel only on copies in an inbox the viewer owns
 or is a delegate of that were not sent from one of the viewer's addresses or
 send-as aliases. The sender's copy never loads it, including a copy the sender
@@ -1086,7 +1086,7 @@ received by CC'ing themselves, and neither does a thread seen only through
 sharing or any copy while the viewer's inboxes load. Quoted replies and
 forwards always drop it, so new recipients never inherit the original's pixel.
 With the image proxy on, a browser caches the pixel, so a recipient's repeat
-opens in Macro on one device count once. Verify with two Macro accounts: open
+opens in Rox on one device count once. Verify with two Rox accounts: open
 the recipient's copy, then check the sender's status; the sender's own views
 must not change it. Opens need the email service's public URL, which the local
 Docker stack cannot serve.

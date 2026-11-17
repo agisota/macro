@@ -68,7 +68,7 @@ pub trait SuggestionRepo: Send + Sync + 'static {
         user: &MacroUserIdStr<'_>,
     ) -> impl Future<Output = Result<Vec<StoredSuggestion>>> + Send;
 
-    /// Catalog routines the person dismissed as Macro's templates, by key.
+    /// Catalog routines the person dismissed as Rox's templates, by key.
     fn dismissed_templates(
         &self,
         user: &MacroUserIdStr<'_>,
@@ -142,7 +142,7 @@ pub trait SuggestionSources: Send + Sync + 'static {
 
 /// Routine suggestions as the API serves them.
 pub trait RoutineSuggestionApi: Send + Sync + 'static {
-    /// The person's suggestions: AI's, then Macro's templates filling each
+    /// The person's suggestions: AI's, then Rox's templates filling each
     /// surface (only `surface`, when given). Reading never generates.
     fn suggestions(
         &self,

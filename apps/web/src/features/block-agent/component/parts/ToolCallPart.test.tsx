@@ -223,7 +223,7 @@ describe('ToolCallPart routing', () => {
     expect(rendered.getAllByTestId('subtitle')[0]?.textContent).toBe('');
   });
 
-  it('reuses a known renderer for calls from the explicit Macro MCP server', () => {
+  it('reuses a known renderer for calls from the explicit Rox MCP server', () => {
     const rendered = render(() => (
       <ToolCallPart
         part={{
@@ -271,7 +271,7 @@ describe('ToolCallPart routing', () => {
     expect(rendered.getByTestId('body').textContent).toBe('');
   });
 
-  it('does not select a Macro renderer for an external server with the same tool name', () => {
+  it('does not select a Rox renderer for an external server with the same tool name', () => {
     const rendered = render(() => (
       <ToolCallPart
         part={{
@@ -294,7 +294,7 @@ describe('ToolCallPart routing', () => {
     expect(rendered.getByTestId('body').textContent).toBe('');
   });
 
-  it('keeps malformed Macro MCP results hidden instead of exposing JSON', () => {
+  it('keeps malformed Rox MCP results hidden instead of exposing JSON', () => {
     const rendered = render(() => (
       <ToolCallPart
         part={{
@@ -316,7 +316,7 @@ describe('ToolCallPart routing', () => {
     expect(rendered.getByTestId('body').textContent).toBe('');
   });
 
-  it('updates a generic Macro MCP result without remounting its existing renderer', () => {
+  it('updates a generic Rox MCP result without remounting its existing renderer', () => {
     const call = (text: string): ToolUsePart => ({
       ...toolUse({
         kind: 'other',
@@ -404,7 +404,7 @@ describe('ToolCallPart routing', () => {
   });
 });
 
-describe('ToolCallPart Macro tools', () => {
+describe('ToolCallPart Rox tools', () => {
   // A ReadContent call the fold already named and unwrapped.
   const readContent = (overrides?: Partial<Omit<ToolUsePart, 'name'>>) =>
     toolUse(
@@ -417,7 +417,7 @@ describe('ToolCallPart Macro tools', () => {
       { name: 'ReadContent', status: 'running', ...overrides }
     );
 
-  it('renders a running Macro tool through its renderer while it runs', () => {
+  it('renders a running Rox tool through its renderer while it runs', () => {
     const rendered = render(() => (
       <ToolCallPart part={readContent()} context={context(true)} />
     ));
@@ -429,7 +429,7 @@ describe('ToolCallPart Macro tools', () => {
     expect(rendered.queryByTestId('tool-card')).toBeNull();
   });
 
-  it('marks a Macro call cut off by the turn as stopped', () => {
+  it('marks a Rox call cut off by the turn as stopped', () => {
     // The turn ended with this call still `running` in the log; it settles
     // and renders through its renderer as stopped, with no response.
     const rendered = render(() => (
@@ -485,7 +485,7 @@ describe('ToolCallPart Macro tools', () => {
     expect(rendered.queryByTestId('tool-card')).toBeNull();
   });
 
-  it('keeps an unknown Macro tool on a labelled card', () => {
+  it('keeps an unknown Rox tool on a labelled card', () => {
     const rendered = render(() => (
       <ToolCallPart
         part={toolUse(
@@ -542,7 +542,7 @@ describe('ToolCallPart Macro tools', () => {
     expect(rendered.getByTestId('tool-card')).not.toBeNull();
   });
 
-  it('shows a failed Macro tool through its renderer with the reason and no result', () => {
+  it('shows a failed Rox tool through its renderer with the reason and no result', () => {
     const rendered = render(() => (
       <ToolCallPart
         part={toolUse(
@@ -1290,7 +1290,7 @@ describe('ToolCallPart result summaries', () => {
     }
   );
 
-  it('does not infer a result count from an invalid Macro response', () => {
+  it('does not infer a result count from an invalid Rox response', () => {
     const rendered = render(() => (
       <ToolCallPart
         part={toolUse(

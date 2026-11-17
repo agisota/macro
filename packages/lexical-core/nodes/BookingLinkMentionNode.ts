@@ -27,11 +27,11 @@ export type BookingLinkMentionInfo = {
   url: string;
 };
 
-/** Pattern to match Macro booking URLs: /app/book/:profile/:slug? */
+/** Pattern to match Rox booking URLs: /app/book/:profile/:slug? */
 const MACRO_BOOKING_URL_PATTERN =
   /^https?:\/\/(?:www\.)?(?:rox\.one|localhost:\d+|dev\.rox\.one|staging\.rox\.one)\/app\/book\/([^/?#]+)(?:\/([^/?#]+))?(?:[?#].*)?$/;
 
-/** Check whether a URL is a valid Macro booking link. */
+/** Check whether a URL is a valid Rox booking link. */
 export function isMacroBookingUrl(url: string): boolean {
   return MACRO_BOOKING_URL_PATTERN.test(url);
 }

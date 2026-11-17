@@ -122,7 +122,7 @@ impl InMemAgentManager {
     }
 
     /// Let agents' turns run on their own API keys. Without this, every turn
-    /// runs on Macro's allowance.
+    /// runs on Rox's allowance.
     #[must_use]
     pub fn with_agent_keys(mut self, agent_keys: Arc<dyn AgentKeys>) -> Self {
         self.agent_keys = agent_keys;

@@ -64,7 +64,7 @@ export type SettingsTabItem = {
 
 /**
  * Whether `group` is the team group, whose nav label gets the team's name
- * (`Team · Macro`). Matched by its General tab, since the label is translated.
+ * (`Team · Rox`). Matched by its General tab, since the label is translated.
  */
 export function isTeamSettingsGroup(group: SettingsTabGroup): boolean {
   return group.items.some((item) => item.tab === 'Team');
@@ -388,7 +388,7 @@ export const useSettingsTabAvailable = () => {
       case 'Team Members':
       case 'Tags':
         return true;
-      // CRM is still rolling out (Macro-internal only); keep the settings tab
+      // CRM is still rolling out (Rox-internal only); keep the settings tab
       // behind the same enable-crm gate as every other CRM surface so it never
       // leaks into teams that can't actually use the CRM.
       case 'CRM':

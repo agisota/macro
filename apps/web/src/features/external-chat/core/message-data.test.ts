@@ -17,7 +17,7 @@ const message: ChatMessage = {
 };
 
 describe('chat message senders', () => {
-  it('shows a Macro user as themselves, whatever WhatsApp called them', () => {
+  it('shows a Rox user as themselves, whatever WhatsApp called them', () => {
     const row = chatMessageData(message, (body) => body);
 
     expect(row.sender_id).toBe('macro|owner@example.test');
@@ -51,7 +51,7 @@ describe('chat message senders', () => {
 });
 
 describe('chat message reactions', () => {
-  it('names each reactor: Macro users as themselves, anyone else by name', () => {
+  it('names each reactor: Rox users as themselves, anyone else by name', () => {
     const row = chatMessageData(
       {
         ...message,

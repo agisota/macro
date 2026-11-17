@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! Macro queue name values with per-environment defaults and environment
+//! Rox queue name values with per-environment defaults and environment
 //! variable overrides.
 //!
 //! Use [`queue!`] to define a newtype whose default value is selected from
@@ -444,7 +444,7 @@ macro_rules! queue {
 }
 
 queue! {
-    /// Common SQS queues used by Macro services.
+    /// Common SQS queues used by Rox services.
     ///
     /// Default values mirror what infrastructure provisions: `local` uses the
     /// bare queue names emitted by the xtask local environment, while `dev` and

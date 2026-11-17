@@ -524,10 +524,10 @@ where
     tag = "mcp",
     operation_id = "mcp_oauth_client_metadata",
     responses(
-        (status = 200, description = "Macro OAuth client metadata document"),
+        (status = 200, description = "Rox OAuth client metadata document"),
     )
 )]
-/// Return Macro's public OAuth Client ID Metadata Document.
+/// Return Rox's public OAuth Client ID Metadata Document.
 pub async fn client_metadata<S, O, Auth>(
     State(state): State<McpRouterState<S, O, Auth>>,
 ) -> Json<OAuthClientMetadata>

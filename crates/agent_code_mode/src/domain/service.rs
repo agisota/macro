@@ -198,7 +198,7 @@ impl CodeModeService {
     }
 }
 
-/// Tools whose operations have an equivalent in the public Macro SDK.
+/// Tools whose operations have an equivalent in the public Rox SDK.
 /// Keep unsupported capabilities discoverable rather than assuming every native
 /// tool can be called through a dynamic proxy (there is no such proxy anymore).
 pub fn covered_by_code_sdk(name: &str, user_tool: bool) -> bool {

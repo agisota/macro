@@ -1087,7 +1087,7 @@ async fn spawning_without_a_registered_key_says_so() {
 
 /// Disconnecting Cursor and then tearing down a session it owns: the agent
 /// cannot be archived without the key, but the session must still clean up.
-/// The alternative is a Macro session nothing can ever remove.
+/// The alternative is a Rox session nothing can ever remove.
 #[tokio::test]
 async fn teardown_forgets_the_session_even_when_the_key_is_gone() {
     let (base_url, archived, _) = fake_cursor_api().await;
@@ -1247,7 +1247,7 @@ async fn reload(
 }
 
 /// Resume a session whose Cursor agent is `agent` with `run-delivered` already
-/// in Macro's log, then `initialize` + `session/load` it; the third element is
+/// in Rox's log, then `initialize` + `session/load` it; the third element is
 /// what that first load replayed.
 async fn resume_delivered_session(
     base_url: String,
@@ -1284,7 +1284,7 @@ async fn resume_delivered_session(
     (sender, receiver, history)
 }
 
-/// A run driven from cursor.com while the Macro session sits idle: the mirror
+/// A run driven from cursor.com while the Rox session sits idle: the mirror
 /// streams it to the host as it happens, the way a turn streams, and
 /// checkpoints it without asking for a reload. Every frame is traffic on the
 /// pipe, so the idle reaper sees the run as the activity it is. A later

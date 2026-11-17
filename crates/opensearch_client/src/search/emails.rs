@@ -41,7 +41,7 @@ const EMAIL_KEYWORD_FIELDS: &[&str] = &[
     "bcc.parts",
 ];
 
-/// Domain Macro's own notification/digest emails are sent from. Those are
+/// Domain Rox's own notification/digest emails are sent from. Those are
 /// never signal, mirroring the Postgres `is_signal` heuristic. Kept in sync
 /// with `email_utils::MACRO_NOTIFICATION_SENDER_DOMAIN`, which is not imported
 /// so this crate stays free of the email HTML tooling that crate pulls in.
@@ -323,7 +323,7 @@ impl EmailQueryBuilder {
 
         // Importance filter. Source of truth for the label logic is in
         // email/src/outbound/email_pg_repo/dynamic.rs (EmailLiteral::Importance).
-        // Macro's own notification emails are always noise on top of that.
+        // Rox's own notification emails are always noise on top of that.
         match self.importance {
             Some(true) => {
                 // Exclude emails that have depriority labels UNLESS they also have a priority label.
@@ -346,7 +346,7 @@ impl EmailQueryBuilder {
             }
             Some(false) => {
                 // Only show deprioritized emails: must have a depriority label
-                // AND must not have a priority label, or come from Macro's
+                // AND must not have a priority label, or come from Rox's
                 // own notification sender.
                 let depriority_filter = BoolQuery::new()
                     .filter(QueryType::terms(

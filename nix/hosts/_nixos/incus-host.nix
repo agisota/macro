@@ -1,4 +1,4 @@
-# Incus host for Macro computers: ZFS-backed VMs on an isolated bridge.
+# Incus host for Rox computers: ZFS-backed VMs on an isolated bridge.
 # Boxes get outbound internet only; the host and internal ranges are closed
 # to them except DNS/DHCP and the control plane. The control plane reaches the
 # Incus API over a WireGuard tunnel; nothing else may reach TCP/8443.
@@ -149,7 +149,7 @@ in
           }
           {
             name = "macro-box";
-            description = "Macro computer VM";
+            description = "Rox computer VM";
             config = {
               "security.secureboot" = "false";
               # /dev/incus inside the guest, so roxd can read user.* keys.
@@ -173,7 +173,7 @@ in
     };
 
     systemd.services.incus-trust-control-plane = {
-      description = "Trust the Macro control-plane client certificate";
+      description = "Trust the Rox control-plane client certificate";
       after = [ "incus-preseed.service" ];
       requires = [ "incus.service" ];
       wantedBy = [ "multi-user.target" ];

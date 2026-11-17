@@ -547,7 +547,7 @@ pub async fn download_media_with_path(
     Ok(data)
 }
 
-/// Macro addition: a `whatsmeow.media.fetch` span per host tried, with the
+/// Rox addition: a `whatsmeow.media.fetch` span per host tried, with the
 /// size, retries and hash check outcome.
 async fn download_and_decrypt(
     http: &MediaHttpClient,

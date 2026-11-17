@@ -216,7 +216,7 @@ pub struct PromptRejected(pub String);
 /// repository.
 ///
 /// A distinct context because it is the one rejection the user can act on,
-/// and acting on it happens outside Macro. `detail` keeps Cursor's own body
+/// and acting on it happens outside Rox. `detail` keeps Cursor's own body
 /// for the logs; [`Self::user_message`] is what a person should read.
 #[derive(Debug, Error)]
 #[error("cursor cannot use {repo} ({reason}): {detail}")]

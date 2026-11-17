@@ -37,12 +37,12 @@ Pulumi stacks; they do not host extra agent processes.
 - `src/internal_mcp.rs`: the internal MCP server exposed to running sessions.
 - `src/anthropic_gateway.rs` + `src/anthropic_gateway/`: `/anthropic/v1/messages`
   and `/anthropic/v1/messages/count_tokens` on the egress listener, for runtimes
-  on Macro credits (Claude Code on a Macro computer). Both values come from
+  on Rox credits (Claude Code on a Rox computer). Both values come from
   the `macro_internal` MCP server in `session/new`/`load`/`resume`:
   `ANTHROPIC_BASE_URL` is its URL with `/mcp/internal` replaced by
   `/anthropic`, and `ANTHROPIC_AUTH_TOKEN` is the session egress token from
   its `Authorization: Bearer` header (re-minted on every attach, so restart
-  the runtime with the latest one). Only sessions whose bot runs on a live Macro
+  the runtime with the latest one). Only sessions whose bot runs on a live Rox
   computer harness (`harnesses.computer_id`) are served; anything else, a
   failed lookup included, is a 403 with nothing forwarded. The
   `enable-macro-computers` rollout is not checked: it limits selling
@@ -57,7 +57,7 @@ Pulumi stacks; they do not host extra agent processes.
   not stop the read: the rest is drained (up to ten minutes) so its usage is
   still recorded. Span: `anthropic_gateway.messages`.
   `/brain/anthropic/*` serves agent teammates' brains the same way, but
-  authenticates the agent's own Macro API key (`anthropic_gateway/brain.rs`)
+  authenticates the agent's own Rox API key (`anthropic_gateway/brain.rs`)
   and counts usage against the agent account, with no session entity. It
   serves only agents with `enable-agent-teammates` on for their creator
   (`BrainRollout` over `agent_credentials::rollout`; PostHog never targets an
@@ -87,7 +87,7 @@ Pulumi stacks; they do not host extra agent processes.
   every computer creation asks the auth service's internal
   `/internal/team_agent_enrollment` route, so an agent computer never enrolls
   without its agent.
-- `src/computers.rs`: passes shared computer/pairing IDs and validated Macro buyer IDs
+- `src/computers.rs`: passes shared computer/pairing IDs and validated Rox buyer IDs
   directly between the hosted-runtime and harness services; configures the optional fleet operator, runs fleet effects,
   timers and reconciliation, and reports roxd presence. `COMPUTERS_FLEET` selects
   `incus` or local-only `docker`; absence means no attached fleet, emits one startup
@@ -116,7 +116,7 @@ Pulumi stacks; they do not host extra agent processes.
   harnesses keep their agents bound when deleted, so a retry still finds them.
 - Computer lifecycle and gateway adapters carry canonical `ComputerId` and
   `HarnessId`; unwrap only at the harness/storage boundary.
-- `src/computers/claude.rs`: Claude sign-in on Macro computers. All routes
+- `src/computers/claude.rs`: Claude sign-in on Rox computers. All routes
   require the caller's `enable-macro-computers` flag through
   `hosted_runtimes::domain::rollout::ComputerRollout` (missing providers/flags
   and evaluation errors return 403) and an attached fleet (503).
@@ -179,7 +179,7 @@ Pulumi stacks; they do not host extra agent processes.
   content. The test `every_sdk_host_holds_a_scoped_credential_to_its_scope`
   fails for a host the SDK can reach (`code_mode_assets::HOSTS`) that isn't
   an `SdkHost`, and records how each host's service holds a scoped session's
-  credential to its scope: `propagate`, `enforce_signed_scope`, or no Macro
+  credential to its scope: `propagate`, `enforce_signed_scope`, or no Rox
   credential accepted. A new host picks one before it ships.
   `src/public_mcp/analytics.rs` sends PostHog `$mcp_initialize` /
   `$mcp_tool_call` events (PostHog MCP analytics schema) in the background,
@@ -244,7 +244,7 @@ Pulumi stacks; they do not host extra agent processes.
   Routine code steps run through `src/routine_code.rs`,
   on routines' own Deno executor (own slots, CPU limit, lower priority) and
   type checker, with a token for the owner's access (`mint_for_routine`):
-  attributed to Macro acting for them, or, when the routine sets
+  attributed to Rox acting for them, or, when the routine sets
   `dangerously_operate_as_user`, to the owner with no agent badge. Every such
   token carries the routine id, which the events its writes produce keep, so
   they never start routines.
@@ -258,7 +258,7 @@ Pulumi stacks; they do not host extra agent processes.
   every minute and starts nightly generations every five minutes, once the
   process is ready.
   Accepted background prompt suggestions run in hidden, billable sessions of the
-  in-process Macro agent (`SuggestionRunSessions` in `scheduling.rs`, which reads
+  in-process Rox agent (`SuggestionRunSessions` in `scheduling.rs`, which reads
   every page of a session's activity for what it created, each item once). Runs
   move from their sessions' lifecycle events and a reconcile sweep every five
   minutes. Reply suggestions read who they wait on from their email thread or
@@ -273,7 +273,7 @@ Pulumi stacks; they do not host extra agent processes.
   (`CalendarTimeZones`).
   A step waits up to five minutes for one of `ROUTINE_CODE_SLOTS` before its
   credential is minted, so its token and 30-second limit start when it runs;
-  a step that never gets one fails with "Macro was busy running other
+  a step that never gets one fails with "Rox was busy running other
   routines".
 - `src/preview.rs` + `src/preview/`: preview control routes, public HTTP and SSH listeners;
   lease/ticket and authorization logic lives in `crates/agent_preview`. The shared
@@ -438,14 +438,14 @@ listener failure shuts down the process so ECS can replace the task.
   never add tool arguments or results to them.
 - Public MCP tool calls run for the `ToolCaller` the bearer middleware
   (`mcp_auth_proxy`) attached, and a call without one is refused: `Agent` (a
-  Macro API token's signed `agent_id`, which egress mints from the session's
+  Rox API token's signed `agent_id`, which egress mints from the session's
   `agent_session.bot_id`) writes as that agent, under the bot's own name (read
   per call, so its document edits label their live cursors with it);
-  `McpClient` (OAuth) writes as the Macro bot labelled with the client's name
-  (shown as the author); `ApiKey` writes as the Macro bot. Public `ExecuteCode`
+  `McpClient` (OAuth) writes as the Rox bot labelled with the client's name
+  (shown as the author); `ApiKey` writes as the Rox bot. Public `ExecuteCode`
   builds its context per call from the caller and signs the same attribution
-  into its SDK token: the agent, or the Macro bot plus the client name as
-  `agent_via`. The OAuth broker signs the same Macro bot attribution into the
+  into its SDK token: the agent, or the Rox bot plus the client name as
+  `agent_via`. The OAuth broker signs the same Rox bot attribution into the
   tokens it issues for the ChatGPT MCP Worker's resource
   (`McpChatgptServiceUrl`; `public_mcp/macro_api_tokens.rs`). Never read a bot
   id or client name from the request itself.

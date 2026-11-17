@@ -81,7 +81,7 @@ pub struct ApiDraftInput {
     pub body_text: Option<String>,
     /// HTML body (base64 URL_SAFE_NO_PAD encoded). Sanitized before storage.
     pub body_html: Option<String>,
-    /// Macro body format.
+    /// Rox body format.
     pub body_macro: Option<String>,
     /// Headers JSON.
     pub headers_json: Option<JsonValue>,
@@ -130,7 +130,7 @@ pub struct ApiDraftOutput {
     pub body_text: Option<String>,
     /// HTML body (decoded).
     pub body_html: Option<String>,
-    /// Macro body.
+    /// Rox body.
     pub body_macro: Option<String>,
     /// Headers JSON.
     pub headers_json: Option<JsonValue>,

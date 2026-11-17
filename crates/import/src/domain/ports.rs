@@ -262,7 +262,7 @@ pub trait ImportRepo: Send + Sync + 'static {
         user: &MacroUserIdStr<'static>,
     ) -> impl Future<Output = Result<Option<Uuid>>> + Send;
 
-    /// IDs of the team's members. Macro user IDs encode emails, so this is
+    /// IDs of the team's members. Rox user IDs encode emails, so this is
     /// the roster the import domain matches Slack emails against.
     fn team_members(
         &self,
@@ -372,13 +372,13 @@ pub trait ImportTargetReader: Send + Sync + 'static {
 }
 
 /// System properties to set on an imported task, already normalized to
-/// Macro's vocabulary by the import service (the creator applies them
+/// Rox's vocabulary by the import service (the creator applies them
 /// best-effort — a property that fails to apply never fails the import).
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct ImportedTaskProperties {
-    /// Macro status display label (`Not Started` … `Canceled`).
+    /// Rox status display label (`Not Started` … `Canceled`).
     pub status: Option<String>,
-    /// Macro priority display label (`Low` … `Urgent`).
+    /// Rox priority display label (`Low` … `Urgent`).
     pub priority: Option<String>,
     /// Due date as an ISO date (`YYYY-MM-DD`).
     pub due_date: Option<String>,
@@ -406,7 +406,7 @@ impl From<&NotionPage> for SourceDates {
 }
 
 /// Properties recovered from a Notion page and attached to the imported
-/// Macro document. The creator applies these best-effort after the document
+/// Rox document. The creator applies these best-effort after the document
 /// exists, so unsupported or invalid values never prevent the body import.
 #[derive(
     Debug, Clone, Default, PartialEq, serde::Serialize, serde::Deserialize, schemars::JsonSchema,
@@ -416,7 +416,7 @@ pub struct ImportedDocumentProperties {
     /// Ordinary Notion database properties.
     #[serde(default)]
     pub values: Vec<ImportedDocumentProperty>,
-    /// Notion tag/label values, mapped onto Macro's personal tag set.
+    /// Notion tag/label values, mapped onto Rox's personal tag set.
     #[serde(default)]
     pub tags: Vec<String>,
 }
@@ -431,7 +431,7 @@ pub struct ImportedDocumentProperty {
     pub value: ImportedDocumentPropertyValue,
 }
 
-/// Portable property values that have direct Macro property equivalents.
+/// Portable property values that have direct Rox property equivalents.
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
 #[serde(rename_all = "snake_case", tag = "type")]
 pub enum ImportedDocumentPropertyValue {
@@ -471,17 +471,17 @@ pub enum ImportedDocumentPropertyValue {
     },
 }
 
-/// What a Notion page's references point to in Macro, so the page converts
+/// What a Notion page's references point to in Rox, so the page converts
 /// with live mentions instead of links back to Notion.
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct NotionLinks {
-    /// Notion page → the Macro document it becomes.
+    /// Notion page → the Rox document it becomes.
     pub pages: HashMap<NotionId, NotionPageLink>,
-    /// Notion person → the Macro user they are.
+    /// Notion person → the Rox user they are.
     pub users: HashMap<NotionId, NotionUserLink>,
 }
 
-/// The Macro document a Notion page becomes.
+/// The Rox document a Notion page becomes.
 #[derive(Debug, Clone, PartialEq)]
 pub struct NotionPageLink {
     /// The document id, minted before the document exists.
@@ -490,16 +490,16 @@ pub struct NotionPageLink {
     pub name: String,
 }
 
-/// The Macro user a Notion person is.
+/// The Rox user a Notion person is.
 #[derive(Debug, Clone, PartialEq)]
 pub struct NotionUserLink {
-    /// The Macro user id.
+    /// The Rox user id.
     pub user_id: MacroUserIdStr<'static>,
     /// Their email, lowercase.
     pub email: String,
 }
 
-/// Creates the Macro entities imports become. Implemented by the host
+/// Creates the Rox entities imports become. Implemented by the host
 /// service against its real document/channel services; the fixed
 /// source → entity-type mapping is enforced by the import service, which
 /// only ever calls the creator matching the row's source.
@@ -565,20 +565,20 @@ pub enum SharedEntity {
 /// A team member a Notion person can be matched to, by email.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TeamMember {
-    /// The member's Macro user id.
+    /// The member's Rox user id.
     pub user_id: MacroUserIdStr<'static>,
     /// Their email, lowercase.
     pub email: String,
 }
 
-/// Creates the Macro side of a workspace import: folders mirroring the
+/// Creates the Rox side of a workspace import: folders mirroring the
 /// source's tree, documents and tasks inside them, and databases.
 ///
 /// Every entity is created as `user`, through the same services the app
 /// uses, so permissions, search and sync behave as for anything the user
 /// made by hand.
 pub trait WorkspaceWriter: Send + Sync + 'static {
-    /// Idempotently create a Macro project (initiative) with the ledger's
+    /// Idempotently create a Rox project (initiative) with the ledger's
     /// stable id and the approved visibility, using attributed creation.
     fn create_tracker_project(
         &self,
@@ -701,9 +701,9 @@ pub trait WorkspaceWriter: Send + Sync + 'static {
 /// Stable task/project relationships resolved from a reviewed tracker plan.
 #[derive(Debug, Clone, Default)]
 pub struct TrackerTaskRelations {
-    /// Macro project (initiative) containing this task.
+    /// Rox project (initiative) containing this task.
     pub project: Option<Uuid>,
-    /// Macro parent task, if it was imported successfully.
+    /// Rox parent task, if it was imported successfully.
     pub parent: Option<Uuid>,
     /// Source labels, mapped to personal tags.
     pub labels: Vec<String>,

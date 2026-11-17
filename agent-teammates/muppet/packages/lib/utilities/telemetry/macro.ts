@@ -1,5 +1,5 @@
 /**
- * Wake telemetry through Macro's own telemetry framework,
+ * Wake telemetry through Rox's own telemetry framework,
  * `@macro-inc/observability` (`packages/observability` in the Macro
  * repository): a wake is one of its spans, and each record one of its logs,
  * so muppet has no exporter, batching or OpenTelemetry dependency of its own.

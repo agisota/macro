@@ -1,4 +1,4 @@
-//! [`AgentSessionLifecyclePublisher`] over the Macro event broker.
+//! [`AgentSessionLifecyclePublisher`] over the Rox event broker.
 
 #[cfg(test)]
 mod test;

@@ -18,14 +18,14 @@ pub struct ItemId(
 #[serde(transparent)]
 #[schema(as=PasswordTeamId)]
 pub struct TeamId(
-    /// Validated UUID identifying a Macro team.
+    /// Validated UUID identifying a Rox team.
     pub Uuid,
 );
 
 /// Authenticated human identity. Constructed by the authentication adapter.
 #[derive(Clone)]
 pub struct Actor {
-    /// Authenticated Macro user identity; never a provider credential.
+    /// Authenticated Rox user identity; never a provider credential.
     pub user_id: macro_user_id::user_id::MacroUserIdStr<'static>,
 }
 
@@ -263,7 +263,7 @@ pub struct Activity {
     pub id: Uuid,
     /// Item associated with this activity.
     pub item_id: ItemId,
-    /// Authenticated Macro user identity; never a provider credential.
+    /// Authenticated Rox user identity; never a provider credential.
     pub user_id: String,
     /// Fixed operation category; never derived from secret contents.
     pub action: Action,

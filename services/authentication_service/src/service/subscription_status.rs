@@ -64,7 +64,7 @@ pub struct SubscriptionStatus {
 pub struct SubscriptionStatusService<E, G> {
     entitlements: E,
     gateway: G,
-    /// The billing breakdown belongs to Macro computers; off, status reads as before them.
+    /// The billing breakdown belongs to Rox computers; off, status reads as before them.
     rollout: ComputerRollout,
 }
 

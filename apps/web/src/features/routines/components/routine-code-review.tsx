@@ -4,7 +4,7 @@ import { createSignal, For, Show } from 'solid-js';
 import type { CodeReview } from '../core/code-review';
 
 /**
- * A routine paused because Macro's SDK changed under its code: why, the
+ * A routine paused because Rox's SDK changed under its code: why, the
  * update AI proposed (each changed step's code before and after), and
  * approving it, which checks it again and resumes the routine.
  */

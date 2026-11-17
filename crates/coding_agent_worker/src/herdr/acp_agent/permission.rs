@@ -1,4 +1,4 @@
-//! Native permission dialogs answered from Macro. "Always allow" presses the
+//! Native permission dialogs answered from Rox. "Always allow" presses the
 //! dialog's own "don't ask again" answer when it shows one; otherwise this
 //! session remembers the tool and answers its later dialogs itself.
 
@@ -63,7 +63,7 @@ fn standing_tool(
     }
 }
 
-/// The options Macro offers for one dialog.
+/// The options Rox offers for one dialog.
 fn permission_options(always: Option<&Always>) -> Value {
     let mut options = vec![json!({"optionId": ALLOW, "name": "Allow once", "kind": "allow_once"})];
     if let Some(always) = always {
@@ -74,7 +74,7 @@ fn permission_options(always: Option<&Always>) -> Value {
 }
 
 impl Adapter {
-    /// Ask Macro about the TUI's permission dialog, then press the key for
+    /// Ask Rox about the TUI's permission dialog, then press the key for
     /// the answer - unless the dialog was already answered in the window.
     /// A tool the session always allows is approved without asking.
     pub(super) fn ask_permission(

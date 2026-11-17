@@ -3,7 +3,7 @@ import { invoke } from "../../../../test/invoke.ts";
 import { fixedClock } from "../../../context/test/fakes.ts";
 import { chatModule } from "../index.ts";
 
-/** Just enough of a chat context to see what reaches Macro. */
+/** Just enough of a chat context to see what reaches Rox. */
 const rig = () => {
 	const sent: unknown[] = [];
 	const recalled: number[] = [];
@@ -79,7 +79,7 @@ test("an empty message or a flag is never sent", async () => {
 	expect(sent).toEqual([]);
 });
 
-test("a DM goes only to a Macro id", async () => {
+test("a DM goes only to a Rox id", async () => {
 	const { context, sent } = rig();
 	const refused = await invoke(chatModule, "dmPerson", context, {
 		userId: "ada@example.com",

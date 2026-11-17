@@ -3,7 +3,7 @@
  * run in the live checkout as the agent, and the lock that makes one of them
  * run at a time.
  *
- * The remote is the agent's repository in Macro, which its owner can push to
+ * The remote is the agent's repository in Rox, which its owner can push to
  * too. Every commit on main pulls it with --rebase before pushing, so the
  * owner's edits reach the live checkout and the history stays linear. Code
  * the owner pushes takes effect at the next restart, like a landing's.

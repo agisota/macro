@@ -69,7 +69,7 @@ vi.mock('@app/features/calendar/components/composer/EventForm', () => ({
           {(option) => <option value={option.id}>{option.label}</option>}
         </For>
       </select>
-      <output aria-label="Macro calls enabled">
+      <output aria-label="Rox calls enabled">
         {String(props.macroCallsEnabled)}
       </output>
       <output aria-label="Conference">
@@ -79,7 +79,7 @@ vi.mock('@app/features/calendar/components/composer/EventForm', () => ({
         type="button"
         onClick={() => props.controller.setField('conference', 'macro')}
       >
-        Pick Macro call
+        Pick Rox call
       </button>
       <button
         disabled={
@@ -284,18 +284,16 @@ describe('AI calendar draft account selection', () => {
   );
 });
 
-describe('AI calendar draft Macro calls', () => {
-  it('offers Macro calls under the quick-calls flag', () => {
+describe('AI calendar draft Rox calls', () => {
+  it('offers Rox calls under the quick-calls flag', () => {
     const [flag, setFlag] = createSignal({ loading: false, enabled: false });
     mocks.quickCalls = flag;
     showDraft();
-    expect(screen.getByLabelText('Macro calls enabled').textContent).toBe(
+    expect(screen.getByLabelText('Rox calls enabled').textContent).toBe(
       'false'
     );
     setFlag({ loading: false, enabled: true });
-    expect(screen.getByLabelText('Macro calls enabled').textContent).toBe(
-      'true'
-    );
+    expect(screen.getByLabelText('Rox calls enabled').textContent).toBe('true');
   });
 
   it('opens on the conferencing the agent drafted', () => {
@@ -303,14 +301,14 @@ describe('AI calendar draft Macro calls', () => {
     expect(screen.getByLabelText('Conference').textContent).toBe('macro');
   });
 
-  it('executes the tool with addMacroCall when the user picks a Macro call', async () => {
+  it('executes the tool with addMacroCall when the user picks a Rox call', async () => {
     showDraft(undefined, {
       attendees: [{ email: 'guest@example.com' }],
       addConference: false,
     });
     expect(screen.getByLabelText('Conference').textContent).toBe('none');
     await fireEvent.click(
-      screen.getByRole('button', { name: 'Pick Macro call' })
+      screen.getByRole('button', { name: 'Pick Rox call' })
     );
     expect(screen.getByLabelText('Conference').textContent).toBe('macro');
     await fireEvent.click(screen.getByRole('button', { name: 'Create event' }));

@@ -4,12 +4,12 @@ import { registerExternalUrlInterceptor } from '@core/util/url';
 import { emit } from '@tauri-apps/api/event';
 
 /**
- * `openExternalUrl` interceptor: inside the native Tauri shell, routes a Macro
+ * `openExternalUrl` interceptor: inside the native Tauri shell, routes a Rox
  * `/app` link in-app via the same `navigate` event the deep-link handler emits,
  * instead of letting it fall through to `window.open` — which bypasses the
  * webview's navigation hook and would open the link in the system browser.
  *
- * Returns false for non-Tauri and non-Macro-`/app` URLs so `openExternalUrl`
+ * Returns false for non-Tauri and non-Rox-`/app` URLs so `openExternalUrl`
  * keeps handling them.
  */
 export function openMacroLinkInApp(url: string): boolean {

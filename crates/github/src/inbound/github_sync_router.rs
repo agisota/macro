@@ -130,13 +130,13 @@ pub struct SyncRedirectParams {
     pub code: Option<String>,
     /// GitHub App installation ID.
     pub installation_id: Option<String>,
-    /// Signed Macro installation context.
+    /// Signed Rox installation context.
     pub state: Option<String>,
     /// GitHub's setup result (`install`, `update`, or `request`).
     pub setup_action: Option<String>,
 }
 
-/// Completes a GitHub App installation callback and redirects back to Macro.
+/// Completes a GitHub App installation callback and redirects back to Rox.
 #[utoipa::path(
     get,
     path = "/github/sync-redirect",
@@ -144,11 +144,11 @@ pub struct SyncRedirectParams {
     params(
         ("code" = Option<String>, Query, description = "OAuth authorization code from GitHub"),
         ("installation_id" = Option<String>, Query, description = "GitHub App installation ID"),
-        ("state" = Option<String>, Query, description = "Signed Macro installation context"),
+        ("state" = Option<String>, Query, description = "Signed Rox installation context"),
         ("setup_action" = Option<String>, Query, description = "GitHub setup result: install, update, or request"),
     ),
     responses(
-        (status = 307, description = "Temporary redirect to Macro; callback failures degrade to this redirect"),
+        (status = 307, description = "Temporary redirect to Rox; callback failures degrade to this redirect"),
     )
 )]
 #[tracing::instrument(skip_all)]

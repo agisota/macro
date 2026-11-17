@@ -138,7 +138,7 @@ impl Display for RoleId {
 }
 
 impl RoleId {
-    /// Whether this role represents an active paid Macro subscription.
+    /// Whether this role represents an active paid Rox subscription.
     pub fn is_paid_subscription(&self) -> bool {
         matches!(
             self,

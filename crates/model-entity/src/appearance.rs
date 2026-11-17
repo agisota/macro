@@ -22,7 +22,7 @@ mod icons {
 )]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct EntityAppearance {
-    /// A custom Macro glyph or a native emoji.
+    /// A custom Rox glyph or a native emoji.
     #[serde(default)]
     pub icon: Option<AppearanceIcon>,
     /// A shared tag-palette key. Native emoji retain their own colors.
@@ -44,7 +44,7 @@ pub struct EntityAppearance {
 )]
 #[serde(tag = "kind", rename_all = "snake_case", deny_unknown_fields)]
 pub enum AppearanceIcon {
-    /// A stable name from Macro's original, distinct icon catalog.
+    /// A stable name from Rox's original, distinct icon catalog.
     Macro {
         /// Catalog name without the SVG extension.
         name: String,
@@ -106,7 +106,7 @@ impl EntityAppearance {
                 if icons::ICON_NAMES.contains(&name.as_str()) {
                     Ok(())
                 } else {
-                    Err("Unknown Macro icon".into())
+                    Err("Unknown Rox icon".into())
                 }
             }
             Some(AppearanceIcon::Emoji { value }) => {

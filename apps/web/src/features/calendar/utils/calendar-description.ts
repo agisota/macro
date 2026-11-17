@@ -28,7 +28,7 @@ const BLOCK_NAMES: ReadonlySet<string> = new Set([
 ]);
 
 /**
- * Which Macro entity an `/app/<block>/<id>` link opens, if it is one. App pages
+ * Which Rox entity an `/app/<block>/<id>` link opens, if it is one. App pages
  * with the same shape that are not entities, such as `/app/booking/<id>`,
  * open as ordinary links.
  */
@@ -53,7 +53,7 @@ export function parseMacroAppLink(
 }
 
 /**
- * The HTML to seed the description editor with. Links to Macro entities are
+ * The HTML to seed the description editor with. Links to Rox entities are
  * marked so the editor rehydrates them as mention pills.
  */
 export function calendarDescriptionToEditorHtml(raw: string): string {
@@ -98,7 +98,7 @@ export function calendarDescriptionText(raw: string): string {
 
 /**
  * The description to store for the editor's current content. Document
- * mentions become plain Macro links, every other mention keeps only its
+ * mentions become plain Rox links, every other mention keeps only its
  * display text, and an empty editor is an empty description.
  */
 export function exportCalendarDescription(editor: LexicalEditor): string {

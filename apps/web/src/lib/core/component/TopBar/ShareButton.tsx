@@ -184,7 +184,7 @@ function shareUrl(type: ShareBlockType, id: string): string {
 
 /**
  * The levels a recipient can hold on an item: forms have no comments, and a
- * external chat is read-only in Macro (sending follows provider membership).
+ * external chat is read-only in Rox (sending follows provider membership).
  */
 export function shareLevelsFor(
   itemType: ShareItemType,

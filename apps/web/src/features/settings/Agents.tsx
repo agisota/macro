@@ -117,7 +117,7 @@ type AgentSummary = {
   tag: string;
   avatarUrl?: string;
   instructions: string;
-  /** "In Macro", "In Cursor", … for the row's subtitle. */
+  /** "In Rox", "In Cursor", … for the row's subtitle. */
   whereItRuns: string;
   defaultModel: string;
   channelSummary: string;
@@ -133,7 +133,7 @@ type ConnectedHarness = {
   allowPermissionBypass: boolean;
   target: AgentModelTarget;
   connected?: boolean;
-  /** A team's Macro computer rather than a machine someone paired. */
+  /** A team's Rox computer rather than a machine someone paired. */
   computer?: boolean;
 };
 
@@ -176,7 +176,7 @@ export function Agents(props: {
   const [creating, setCreating] = createSignal(
     pendingCreate?.type === 'create'
   );
-  // A machine chosen elsewhere, such as a Macro computer just set up.
+  // A machine chosen elsewhere, such as a Rox computer just set up.
   const [createHarnessId, setCreateHarnessId] = createSignal(
     pendingCreate?.type === 'create' ? pendingCreate.harnessId : undefined
   );
@@ -838,7 +838,7 @@ function AgentEditorPage(props: {
     rememberedMcpServers = servers;
     setMcp({ scope: 'selected', servers });
   };
-  // A Macro computer is the team's own sandbox, so its agents bypass
+  // A Rox computer is the team's own sandbox, so its agents bypass
   // permission prompts unless someone chooses otherwise.
   const [autoAcceptPick, setAutoAcceptChoice] = createSignal<boolean>();
   const autoAcceptChoice = () =>
@@ -879,8 +879,7 @@ function AgentEditorPage(props: {
   const finishSetup = () => {
     const finished = setup();
     setSetup(undefined);
-    const ready =
-      finished === 'cursor' ? cursorHarness() : roxdHarnesses()[0];
+    const ready = finished === 'cursor' ? cursorHarness() : roxdHarnesses()[0];
     if (ready) handleHarnessChange(ready.id);
   };
   const advancedSummary = () =>
@@ -996,8 +995,8 @@ function AgentEditorPage(props: {
   );
   const modelField = () => <div class="max-w-[280px]">{modelPicker()}</div>;
 
-  // An agent that runs in Macro on an Anthropic or OpenAI model can run on
-  // its own API key instead of Macro usage. The key is write-only: a saved
+  // An agent that runs in Rox on an Anthropic or OpenAI model can run on
+  // its own API key instead of Rox usage. The key is write-only: a saved
   // one shows masked, and is replaced by typing a new one.
   const apiKey = useAgentApiKeyQuery(() => props.agent?.bot.id);
   const [apiKeyDraft, setApiKeyDraft] = createSignal('');

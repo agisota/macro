@@ -560,7 +560,7 @@ impl CallRtcClient for LivekitRtcClient {
             None => (None, None),
         };
 
-        // Keep UUID guests separate from Macro users and agent identities.
+        // Keep UUID guests separate from Rox users and agent identities.
         let guest_identity = event
             .participant
             .as_ref()
