@@ -6,6 +6,6 @@
  */
 
 /**
- * Macro account identifier, if this is a user.
+ * Rox account identifier, if this is a user.
  */
 export type LiveCallParticipantUserId = string | null;

@@ -14,7 +14,7 @@ export interface EmailConnectionProviders {
   /** Whether this user may start a new Outlook connection: the deployment
 switch and their `enable-outlook` flag. */
   outlook: boolean;
-  /** Where a Microsoft 365 administrator approves Macro for their whole
+  /** Where a Microsoft 365 administrator approves Rox for their whole
 directory. Present when Outlook is configured and the request named an
 `original_url` for the administrator's browser to return to. */
   outlook_admin_consent_url?: EmailConnectionProvidersOutlookAdminConsentUrl;

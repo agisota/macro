@@ -6,7 +6,7 @@
  */
 
 /**
- * The Macro entity created from the item; required when `status` is
+ * The Rox entity created from the item; required when `status` is
 `imported`.
  */
 export type TrackImportEntityRequestEntityId = string | null;

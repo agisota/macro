@@ -16,7 +16,7 @@ export interface RoutineProgram {
   /** Code steps write as the owner, with no agent badge: their posts,
 comments and emails appear written by the owner. Set only when the
 owner explicitly asked for the routine to act or send as them; by
-default code steps' writes are attributed to Macro's agent acting for
+default code steps' writes are attributed to Rox's agent acting for
 the owner. Agent ("Ask AI") steps keep their own agent attribution
 either way: an agent session speaking as a person is a different
 change. A single agent task has no code steps, so it never applies. */

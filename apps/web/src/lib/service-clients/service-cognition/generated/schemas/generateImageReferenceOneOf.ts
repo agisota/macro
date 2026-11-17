@@ -10,7 +10,7 @@ import type { GenerateImageReferenceOneOfType } from './generateImageReferenceOn
  * An image document the caller can view.
  */
 export type GenerateImageReferenceOneOf = {
-  /** The Macro document ID. */
+  /** The Rox document ID. */
   id: string;
   type: GenerateImageReferenceOneOfType;
 };

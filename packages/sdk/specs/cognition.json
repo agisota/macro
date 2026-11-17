@@ -6073,7 +6073,7 @@
             "items": {
               "$ref": "#/components/schemas/NotionImporter"
             },
-            "description": "Who imported the objects already in Macro, most first."
+            "description": "Who imported the objects already in Rox, most first."
           },
           "alreadyInMacro": {
             "type": "integer",

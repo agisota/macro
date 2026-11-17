@@ -27,7 +27,7 @@ export interface ApiDraftInput {
   bcc?: ApiDraftInputBcc;
   /** HTML body (base64 URL_SAFE_NO_PAD encoded). Sanitized before storage. */
   body_html?: ApiDraftInputBodyHtml;
-  /** Macro body format. */
+  /** Rox body format. */
   body_macro?: ApiDraftInputBodyMacro;
   /** Plain text body. */
   body_text?: ApiDraftInputBodyText;

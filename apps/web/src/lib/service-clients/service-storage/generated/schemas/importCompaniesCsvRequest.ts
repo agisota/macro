@@ -11,7 +11,7 @@ import type { ImportCompaniesCsvRequestPipelineId } from './importCompaniesCsvRe
 
 /**
  * A companies CSV to import: exactly one of its text or a CSV file in
-Macro, and at most one of `pipelineId` or `newPipeline` for its Stage,
+Rox, and at most one of `pipelineId` or `newPipeline` for its Stage,
 Owner and Revenue values (a new private pipeline when neither is given).
  */
 export interface ImportCompaniesCsvRequest {

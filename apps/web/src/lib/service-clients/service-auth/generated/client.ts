@@ -1999,7 +1999,7 @@ export const setGithubPullRequestState = async (
 };
 
 /**
- * @summary Lists invite links, newest first. Macro staff only.
+ * @summary Lists invite links, newest first. Rox staff only.
  */
 export type listGtmInviteLinksResponse200 = {
   data: GtmInviteLinkList;
@@ -2073,7 +2073,7 @@ export const listGtmInviteLinks = async (
 };
 
 /**
- * @summary Creates an invite link. Macro staff only.
+ * @summary Creates an invite link. Rox staff only.
  */
 export type createGtmInviteLinkResponse200 = {
   data: GtmInviteLink;
@@ -2145,7 +2145,7 @@ export const createGtmInviteLink = async (
 };
 
 /**
- * @summary Revokes an invite link nobody has signed up through. Macro staff only.
+ * @summary Revokes an invite link nobody has signed up through. Rox staff only.
  */
 export type revokeGtmInviteLinkResponse200 = {
   data: GtmInviteLink;
@@ -4322,13 +4322,13 @@ export const getSystemStatus = async (
 };
 
 /**
- * Authenticate with a Macro session, or from a script with a personal API
+ * Authenticate with a Rox session, or from a script with a personal API
 key (Settings → API keys) in the `x-macro-user-api-key` header. The body
 is the new status:
 
 - `{"status": "operational"}` clears the banner. It takes no message.
 - `{"status": "degraded", "message": "Search is slow to update."}`
-- `{"status": "major_outage", "message": "Macro is unavailable. We're on it."}`
+- `{"status": "major_outage", "message": "Rox is unavailable. We're on it."}`
 
 Messages are trimmed and must be 1–500 characters. Every call is kept in
 the history, even when it repeats the current status.
@@ -4402,7 +4402,7 @@ export const setSystemStatus = async (
 };
 
 /**
- * @summary Recent status updates, newest first, with who set each. Macro staff only.
+ * @summary Recent status updates, newest first, with who set each. Rox staff only.
  */
 export type listSystemStatusHistoryResponse200 = {
   data: SystemStatusHistory;
@@ -5423,7 +5423,7 @@ export const patchTeamCrmSettings = async (
 
 /**
  * @summary Emails the caller's contacts on the team's auto-join domain that the team
-exists, so they can sign up and join. Contacts already on Macro, on the
+exists, so they can sign up and join. Contacts already on Rox, on the
 team, invited, or emailed before are skipped, and a team emails at most 25
 people in total. Call it after sending the team's invites. Requires the
 caller to be an Admin or Owner of the team.

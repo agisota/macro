@@ -68,7 +68,7 @@ at creation. Absent otherwise, so existing payloads are unchanged. */
   sandboxSize: SandboxSize;
   /** The session's status. */
   status: SessionStatusDto;
-  /** The Macro task the session was linked to. */
+  /** The Rox task the session was linked to. */
   taskId?: AgentSessionResponseTaskId;
   /** The channel `thread_id` lives in, when the session was spawned from a
 channel thread. Derived from `thread_parent`. */

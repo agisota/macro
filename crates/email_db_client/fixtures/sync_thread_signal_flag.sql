@@ -18,9 +18,9 @@
 --   draft is the only signal message; discarding it must flip the flag and
 --   deflate the draft-inflated metadata (inbox_visible,
 --   latest_inbound_message_ts — see the UPDATE at the bottom).
--- Thread d209 (flag=true, stale on purpose): unlabeled message from Rox's
+-- Thread d209 (flag=true, stale on purpose): unlabeled message from Macro's
 --   own digest sender (no-reply-dev@notification.rox.one), which is
---   explicitly marked important by address — Rox notification emails are
+--   explicitly marked important by address — Macro notification emails are
 --   never signal, so sync must clear it despite the label heuristic and the
 --   sender override both saying signal.
 

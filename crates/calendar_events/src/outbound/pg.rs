@@ -1398,7 +1398,7 @@ impl CalendarRepository for PgCalendarRepository {
                 viewer_event.inbox_organizes AS "inbox_organizes?",
                 viewer_event.inbox_attends AS "inbox_attends?",
                 COALESCE(occurrence_override.title, viewer_event.title) AS "title?",
-                -- A channel share is capped after its Rox call comes out,
+                -- A channel share is capped after its Macro call comes out,
                 -- since the join line closes the description.
                 CASE
                     WHEN viewer_event.is_channel_shared

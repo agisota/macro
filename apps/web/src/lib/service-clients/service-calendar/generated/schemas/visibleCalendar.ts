@@ -29,7 +29,7 @@ access role only says what they may do, on a colleague's calendar too. */
   emailAddress: string;
   /** Connected inbox that syncs this calendar. */
   emailLinkId: string;
-  /** Persisted Macro calendar identifier. */
+  /** Persisted Rox calendar identifier. */
   id: string;
   /** Whether this is its account's primary calendar. */
   isPrimary: boolean;

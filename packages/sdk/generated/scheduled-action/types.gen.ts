@@ -79,7 +79,7 @@ export type ActionExecutionRecord = {
 export type ActionKind = 'Agent';
 
 /**
- * A routine may run on one trigger or any of several schedules and Macro events.
+ * A routine may run on one trigger or any of several schedules and Rox events.
  */
 export type ActionTrigger = {
     schedule: Schedule;
@@ -114,7 +114,7 @@ export type AgentMcpServer = {
 };
 
 /**
- * Hand the run to a model running as Macro, or to an agent.
+ * Hand the run to a model running as Rox, or to an agent.
  */
 export type AgentStep = {
     agent?: null | AgentTaskAgent;
@@ -216,7 +216,7 @@ export type AttachDraft = {
 };
 
 /**
- * One of Macro's routines, ready to start a new routine from.
+ * One of Rox's routines, ready to start a new routine from.
  */
 export type CatalogEntry = {
     /**
@@ -257,7 +257,7 @@ export type CatalogEntry = {
      */
     safeDefault: boolean;
     /**
-     * Offered unpicked as a suggestion from Macro.
+     * Offered unpicked as a suggestion from Rox.
      */
     suggest: boolean;
     /**
@@ -347,7 +347,7 @@ export type CheckedStepProblems = {
 export type CodeIdentity = 'agent' | 'owner';
 
 /**
- * TypeScript written against Macro's SDK, usually by the AI that built the
+ * TypeScript written against Rox's SDK, usually by the AI that built the
  * routine. It is type-checked before it is saved and runs with its owner's
  * access.
  */
@@ -686,7 +686,7 @@ export type EntityType = 'user' | 'chat' | 'channel' | 'channel_message' | 'docu
  * An event name AND an entity ID must match within the same filter. A
  * condition further requires the event's content to answer it with yes.
  *
- * `github` comes from outside Macro and carries its payload: it stands
+ * `github` comes from outside Rox and carries its payload: it stands
  * alone in its filter, takes no ids, and may require
  * exact payload values with `match`. A `github` filter narrows deliveries
  * with its `github` selector.
@@ -879,7 +879,7 @@ export type GithubSelector = {
      */
     events?: Array<string>;
     /**
-     * Also run for deliveries caused by bots and apps, including Macro's own.
+     * Also run for deliveries caused by bots and apps, including Rox's own.
      */
     includeBots?: boolean;
     /**
@@ -1160,7 +1160,7 @@ export type RoutineCheck = {
      */
     routine: ActionConfiguration;
     /**
-     * Code steps that don't type-check against Macro's SDK.
+     * Code steps that don't type-check against Rox's SDK.
      */
     steps: Array<CheckedStepProblems>;
 };
@@ -1270,7 +1270,7 @@ export type RoutineProgram = {
      * Code steps write as the owner, with no agent badge: their posts,
      * comments and emails appear written by the owner. Set only when the
      * owner explicitly asked for the routine to act or send as them; by
-     * default code steps' writes are attributed to Macro's agent acting for
+     * default code steps' writes are attributed to Rox's agent acting for
      * the owner. Agent ("Ask AI") steps keep their own agent attribution
      * either way: an agent session speaking as a person is a different
      * change. A single agent task has no code steps, so it never applies.
@@ -1330,11 +1330,11 @@ export type RoutineStep = (CodeStep & {
 
 /**
  * A routine offered to one person: one AI suggested for them, or one of
- * Macro's catalog routines filling a surface.
+ * Rox's catalog routines filling a surface.
  */
 export type RoutineSuggestion = SuggestedPick & {
     /**
-     * Who suggests it: AI, for this person, or Macro, as a template.
+     * Who suggests it: AI, for this person, or Rox, as a template.
      */
     from: SuggestionFrom;
     /**
@@ -1344,7 +1344,7 @@ export type RoutineSuggestion = SuggestedPick & {
     id: string;
     /**
      * AI's estimate, from 0 to 1, that the person keeps it on; absent on
-     * Macro's templates.
+     * Rox's templates.
      */
     keepProbability?: number | null;
     /**
@@ -1354,7 +1354,7 @@ export type RoutineSuggestion = SuggestedPick & {
      */
     onByDefault: boolean;
     /**
-     * Why it fits this person, in a line; absent on Macro's templates.
+     * Why it fits this person, in a line; absent on Rox's templates.
      */
     reason?: string | null;
     /**
@@ -1390,7 +1390,7 @@ export type RoutineSuggestionCard = {
 export type RoutineSuggestions = {
     status: GenerationStatus;
     /**
-     * Per surface, AI's first, best first, then Macro's templates, so each
+     * Per surface, AI's first, best first, then Rox's templates, so each
      * surface has at least one and ideally three. A suggestion with
      * several surfaces appears once.
      */
@@ -2229,7 +2229,7 @@ export type RoutineCatalogError = RoutineCatalogErrors[keyof RoutineCatalogError
 
 export type RoutineCatalogResponses = {
     /**
-     * Macro's routines, with schedules in the given zone; code steps only where code can be saved
+     * Rox's routines, with schedules in the given zone; code steps only where code can be saved
      */
     200: Array<CatalogEntry>;
 };
@@ -2439,7 +2439,7 @@ export type ListRoutineSuggestionsError = ListRoutineSuggestionsErrors[keyof Lis
 
 export type ListRoutineSuggestionsResponses = {
     /**
-     * Per surface, the routines AI suggested for the caller, then Macro's templates; reading never generates
+     * Per surface, the routines AI suggested for the caller, then Rox's templates; reading never generates
      */
     200: RoutineSuggestions;
 };

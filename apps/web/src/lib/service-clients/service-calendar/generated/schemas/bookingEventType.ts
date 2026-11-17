@@ -36,14 +36,14 @@ export interface BookingEventType {
   durationMinutes: number;
   /** Whether new bookings are accepted. */
   enabled: boolean;
-  /** Generate a Google Meet conference. Mutually exclusive with a Macro call. */
+  /** Generate a Google Meet conference. Mutually exclusive with a Rox call. */
   googleMeet: boolean;
   /**
    * Maximum days ahead.
    * @minimum 0
    */
   horizonDays: number;
-  /** Current Macro user identities selected as hosts. */
+  /** Current Rox user identities selected as hosts. */
   hosts: string[];
   /** Stable identity. */
   id: string;
@@ -54,9 +54,9 @@ export interface BookingEventType {
   intervalMinutes: number;
   /** Meeting location. */
   location: string;
-  /** Generate a Macro call and attach its join link when someone books.
+  /** Generate a Rox call and attach its join link when someone books.
 Mutually exclusive with Google Meet. Omitted on links saved before
-Macro calls were a booking option, which keep their previous conference. */
+Rox calls were a booking option, which keep their previous conference. */
   macroCall?: boolean;
   /** Host assignment policy. */
   mode: SchedulingMode;

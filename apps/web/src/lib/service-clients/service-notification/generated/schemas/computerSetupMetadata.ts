@@ -9,7 +9,7 @@ import type { ComputerSetupMetadataHarnessId } from './computerSetupMetadataHarn
 import type { ComputerSetupOutcome } from './computerSetupOutcome';
 
 /**
- * A team's Macro computer finished first-time setup, or could not be set
+ * A team's Rox computer finished first-time setup, or could not be set
 up. Sent to its buyer, who continues (or retries) from the setup flow.
  */
 export interface ComputerSetupMetadata {

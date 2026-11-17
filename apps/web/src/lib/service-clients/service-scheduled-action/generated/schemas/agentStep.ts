@@ -9,7 +9,7 @@ import type { AgentStepAgent } from './agentStepAgent';
 import type { AgentStepModel } from './agentStepModel';
 
 /**
- * Hand the run to a model running as Macro, or to an agent.
+ * Hand the run to a model running as Rox, or to an agent.
  */
 export interface AgentStep {
   agent?: AgentStepAgent;

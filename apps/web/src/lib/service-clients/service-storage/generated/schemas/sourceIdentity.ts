@@ -8,6 +8,6 @@ import type { SourceIdentityOneOf } from './sourceIdentityOneOf';
 import type { SourceIdentityOneOfThree } from './sourceIdentityOneOfThree';
 
 /**
- * Source identity supplied when creating a job. One binding per Macro team in v1.
+ * Source identity supplied when creating a job. One binding per Rox team in v1.
  */
 export type SourceIdentity = SourceIdentityOneOf | SourceIdentityOneOfThree;

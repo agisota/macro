@@ -674,19 +674,19 @@ export type ElicitationRequest =
       url: string;
     }
   /**
-   *  A Macro user tool (`SendEmail`, `CreateCalendarEvent`) paused for the
+   *  A Rox user tool (`SendEmail`, `CreateCalendarEvent`) paused for the
    *  user's review: the agent drafted the call and asks before it runs.
    *
    *  Recognized from the call the form is scoped to - a tool this fold
    *  already knows as a user tool - or from `_meta.macro.userTool`, which
-   *  Macro's own agent stamps. The draft is the call's arguments whole,
+   *  Rox's own agent stamps. The draft is the call's arguments whole,
    *  so a client with the tool's own composer renders that and answers
    *  with the whole edited draft; `schema` is the flat form the agent also
    *  sent, for a client without one.
    */
   | {
       kind: 'user_tool';
-      /**  The tool, by Macro's name. */
+      /**  The tool, by Rox's name. */
       tool: string;
       /**  The call's arguments - the tool's own JSON. */
       draft: unknown;
@@ -1200,7 +1200,7 @@ export type Harness =
   | 'codex'
   /**  Cursor cloud agents, through this repository's `cursor_cloud_agents`. */
   | 'cursor'
-  /**  Macro's own in-process agent, `agent_inmem`. */
+  /**  Rox's own in-process agent, `agent_inmem`. */
   | 'macro'
   /**  Nous Research's Hermes agent. */
   | 'hermes'
@@ -1268,7 +1268,7 @@ export type ImportSettlement_Deserialize = {
   outcome: ImportOutcome;
   /**  Why it failed, or what went wrong in a completed write. */
   error: string | null;
-  /**  Objects written into Macro. */
+  /**  Objects written into Rox. */
   imported: number;
   /**
    *  Objects the plan copies: as they are or as task lists from Notion,
@@ -1295,7 +1295,7 @@ export type ImportSettlement_Deserialize = {
   alreadyInMacro: number;
   /**  Objects a teammate is writing at the same time, linked once written. */
   waitingOnTeammates: number;
-  /**  The Macro folder the import writes into. */
+  /**  The Rox folder the import writes into. */
   rootFolderId: string | null;
   /**  Objects that could not be imported, at most [`MAX_IMPORT_ITEMS`]. */
   failures: ImportItem_Deserialize[];
@@ -1311,7 +1311,7 @@ export type ImportSettlement_Serialize = {
   outcome: ImportOutcome;
   /**  Why it failed, or what went wrong in a completed write. */
   error?: string | null;
-  /**  Objects written into Macro. */
+  /**  Objects written into Rox. */
   imported: number;
   /**
    *  Objects the plan copies: as they are or as task lists from Notion,
@@ -1338,7 +1338,7 @@ export type ImportSettlement_Serialize = {
   alreadyInMacro: number;
   /**  Objects a teammate is writing at the same time, linked once written. */
   waitingOnTeammates: number;
-  /**  The Macro folder the import writes into. */
+  /**  The Rox folder the import writes into. */
   rootFolderId?: string | null;
   /**  Objects that could not be imported, at most [`MAX_IMPORT_ITEMS`]. */
   failures: ImportItem_Serialize[];
@@ -3048,7 +3048,7 @@ export type ToolApprovalStatus =
  *  kind ACP defines - only for `switch_mode` (nothing a reader would want
  *  rendered) and a kind this fold does not yet know about.
  *
- *  Four variants are chosen by *name* rather than kind: Macro's own tools
+ *  Four variants are chosen by *name* rather than kind: Rox's own tools
  *  ([`Self::Macro`], [`Self::View`], [`Self::UserTool`]) arrive as ACP `other`, and what a
  *  reader wants for them is the tool's own JSON, not a generic card; a
  *  delegation ([`Self::Subagent`]) is a tool call by whatever name its
@@ -3068,7 +3068,7 @@ export type ToolDetail = ToolDetail_Serialize | ToolDetail_Deserialize;
  *  kind ACP defines - only for `switch_mode` (nothing a reader would want
  *  rendered) and a kind this fold does not yet know about.
  *
- *  Four variants are chosen by *name* rather than kind: Macro's own tools
+ *  Four variants are chosen by *name* rather than kind: Rox's own tools
  *  ([`Self::Macro`], [`Self::View`], [`Self::UserTool`]) arrive as ACP `other`, and what a
  *  reader wants for them is the tool's own JSON, not a generic card; a
  *  delegation ([`Self::Subagent`]) is a tool call by whatever name its
@@ -3315,8 +3315,8 @@ export type ToolDetail_Deserialize =
       view?: never;
     })
   /**
-   *  A Macro tool the fold knows by name - reached over Macro's MCP
-   *  server, or called in-process by Macro's own agent. Input and output
+   *  A Rox tool the fold knows by name - reached over Rox's MCP
+   *  server, or called in-process by Rox's own agent. Input and output
    *  are the tool's own JSON, any MCP envelope already removed, so a
    *  reader that knows the tool renders it without parsing the wire.
    */
@@ -3348,7 +3348,7 @@ export type ToolDetail_Deserialize =
       view?: never;
     })
   /**
-   *  A view shown to the person: Macro's `DisplayResults`, or the call the
+   *  A view shown to the person: Rox's `DisplayResults`, or the call the
    *  harness presents for `execution.views.present`. The server decodes
    *  the view into its result, so this is the view a reader renders.
    */
@@ -3376,7 +3376,7 @@ export type ToolDetail_Deserialize =
       title?: never;
     })
   /**
-   *  A Macro user tool: the agent drafted it, the user finishes it after
+   *  A Rox user tool: the agent drafted it, the user finishes it after
    *  the turn. See [`UserToolOutcome`].
    */
   | ({
@@ -3477,7 +3477,7 @@ export type ToolDetail_Deserialize =
  *  kind ACP defines - only for `switch_mode` (nothing a reader would want
  *  rendered) and a kind this fold does not yet know about.
  *
- *  Four variants are chosen by *name* rather than kind: Macro's own tools
+ *  Four variants are chosen by *name* rather than kind: Rox's own tools
  *  ([`Self::Macro`], [`Self::View`], [`Self::UserTool`]) arrive as ACP `other`, and what a
  *  reader wants for them is the tool's own JSON, not a generic card; a
  *  delegation ([`Self::Subagent`]) is a tool call by whatever name its
@@ -3724,8 +3724,8 @@ export type ToolDetail_Serialize =
       view?: never;
     })
   /**
-   *  A Macro tool the fold knows by name - reached over Macro's MCP
-   *  server, or called in-process by Macro's own agent. Input and output
+   *  A Rox tool the fold knows by name - reached over Rox's MCP
+   *  server, or called in-process by Rox's own agent. Input and output
    *  are the tool's own JSON, any MCP envelope already removed, so a
    *  reader that knows the tool renders it without parsing the wire.
    */
@@ -3757,7 +3757,7 @@ export type ToolDetail_Serialize =
       view?: never;
     })
   /**
-   *  A view shown to the person: Macro's `DisplayResults`, or the call the
+   *  A view shown to the person: Rox's `DisplayResults`, or the call the
    *  harness presents for `execution.views.present`. The server decodes
    *  the view into its result, so this is the view a reader renders.
    */
@@ -3785,7 +3785,7 @@ export type ToolDetail_Serialize =
       title?: never;
     })
   /**
-   *  A Macro user tool: the agent drafted it, the user finishes it after
+   *  A Rox user tool: the agent drafted it, the user finishes it after
    *  the turn. See [`UserToolOutcome`].
    */
   | ({
@@ -3889,8 +3889,8 @@ export type ToolDetail_Serialize =
  */
 export type ToolName =
   /**
-   *  A tool the harness owns: `Bash`, `Read`, `Write`, or a Macro tool
-   *  called in-process by Macro's own agent.
+   *  A tool the harness owns: `Bash`, `Read`, `Write`, or a Rox tool
+   *  called in-process by Rox's own agent.
    */
   | {
       kind: 'native';

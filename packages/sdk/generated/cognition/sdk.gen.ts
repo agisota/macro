@@ -347,7 +347,7 @@ export class Sdk extends HeyApiClient {
 
     /**
      * Track an external item in the ledger: stage it as a candidate, or record a
-     * Macro entity already created from it. Says when the item was already
+     * Rox entity already created from it. Says when the item was already
      * imported, so callers do not create a duplicate.
      */
     public trackImportEntity<ThrowOnError extends boolean = false>(options: Options<TrackImportEntityData, ThrowOnError>): RequestResult<TrackImportEntityResponses, TrackImportEntityErrors, ThrowOnError> {
@@ -385,7 +385,7 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Import one Notion page as a Macro document through the caller's Notion
+     * Import one Notion page as a Rox document through the caller's Notion
      * connection, deduplicated against the ledger. Notion databases are not
      * imported; a whole workspace goes through a reviewed import instead.
      */
@@ -495,7 +495,7 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Return Macro's public OAuth Client ID Metadata Document.
+     * Return Rox's public OAuth Client ID Metadata Document.
      */
     public mcpOauthClientMetadata<ThrowOnError extends boolean = false>(options?: Options<McpOauthClientMetadataData, ThrowOnError>): RequestResult<McpOauthClientMetadataResponses, unknown, ThrowOnError> {
         return (options?.client ?? this.client).get<McpOauthClientMetadataResponses, unknown, ThrowOnError>({ url: '/mcp/servers/auth/client-metadata', ...options });
@@ -626,7 +626,7 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Record an app the user connected through Macro Connect.
+     * Record an app the user connected through Rox Connect.
      *
      * Answers 404 until Connect lists an active connection for this user and
      * app, so the frontend can poll it while the consent window is open.
@@ -705,7 +705,7 @@ export class Sdk extends HeyApiClient {
      * By default, a short-lived Pipedream Connect token: the frontend opens
      * Pipedream's hosted Connect UI with it, and the user picks (or is
      * deep-linked into) an app and authorizes it there. When the body names an
-     * app Macro Connect serves and the `macro-connect` rollout is on for the
+     * app Rox Connect serves and the `macro-connect` rollout is on for the
      * user, a Connect URL instead.
      */
     public createPipedreamMcpToken<ThrowOnError extends boolean = false>(options?: Options<CreatePipedreamMcpTokenData, ThrowOnError>): RequestResult<CreatePipedreamMcpTokenResponses, CreatePipedreamMcpTokenErrors, ThrowOnError> {

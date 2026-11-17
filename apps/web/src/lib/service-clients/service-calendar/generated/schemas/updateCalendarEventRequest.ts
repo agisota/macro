@@ -41,9 +41,9 @@ mismatch is refused whoever sends it. */
   inbox?: UpdateCalendarEventRequestInbox;
   /** Replacement location; an empty string clears it. */
   location?: UpdateCalendarEventRequestLocation;
-  /** Switch the event to a Macro call in this write: mint one, write its
+  /** Switch the event to a Rox call in this write: mint one, write its
 join link into the description and location, and detach any provider
-conference. An event already holding a Macro call keeps it. Cannot be
+conference. An event already holding a Rox call keeps it. Cannot be
 combined with `conference`. */
   macroCall?: boolean;
   outOfOffice?: UpdateCalendarEventRequestOutOfOffice;

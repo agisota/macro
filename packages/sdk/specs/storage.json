@@ -65314,7 +65314,7 @@
       },
       "WhatsAppCannotAdd": {
         "type": "string",
-        "description": "Why a chat can't be added to Macro; the app words it from the code.",
+        "description": "Why a chat can't be added to Rox; the app words it from the code.",
         "enum": ["not_in_group", "community", "own_chat", "not_in_chat_list"]
       },
       "WhatsAppChat": {

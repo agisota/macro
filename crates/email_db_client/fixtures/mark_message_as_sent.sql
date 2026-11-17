@@ -1,4 +1,4 @@
--- A Rox message already queued for sending: no provider delivery time yet.
+-- A Macro message already queued for sending: no provider delivery time yet.
 -- The old draft/envelope timestamps must not determine its Sent recency.
 INSERT INTO email_links (id, macro_id, fusionauth_user_id, email_address, provider, is_sync_active)
 VALUES ('019a0000-0000-7000-8000-000000000001', 'macro|sent-cache@example.com',

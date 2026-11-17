@@ -6,6 +6,6 @@
  */
 
 /**
- * The Macro user who linked it, for links a person made.
+ * The Rox user who linked it, for links a person made.
  */
 export type SessionPullRequestLinkLinkedBy = string | null;

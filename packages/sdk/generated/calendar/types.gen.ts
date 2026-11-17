@@ -194,7 +194,7 @@ export type BookingEventType = {
      */
     enabled: boolean;
     /**
-     * Generate a Google Meet conference. Mutually exclusive with a Macro call.
+     * Generate a Google Meet conference. Mutually exclusive with a Rox call.
      */
     googleMeet: boolean;
     /**
@@ -202,7 +202,7 @@ export type BookingEventType = {
      */
     horizonDays: number;
     /**
-     * Current Macro user identities selected as hosts.
+     * Current Rox user identities selected as hosts.
      */
     hosts: Array<string>;
     /**
@@ -218,9 +218,9 @@ export type BookingEventType = {
      */
     location: string;
     /**
-     * Generate a Macro call and attach its join link when someone books.
+     * Generate a Rox call and attach its join link when someone books.
      * Mutually exclusive with Google Meet. Omitted on links saved before
-     * Macro calls were a booking option, which keep their previous conference.
+     * Rox calls were a booking option, which keep their previous conference.
      */
     macroCall?: boolean;
     /**
@@ -352,7 +352,7 @@ export type BookingLinkEvent = {
      */
     horizonDays: number;
     /**
-     * Current Macro user identities selected as hosts.
+     * Current Rox user identities selected as hosts.
      */
     hosts: Array<string>;
     /**
@@ -364,9 +364,9 @@ export type BookingLinkEvent = {
      */
     location: string;
     /**
-     * Attach a Macro call when someone books. A join link is created for that
+     * Attach a Rox call when someone books. A join link is created for that
      * booking and written onto the calendar invitation. Mutually exclusive
-     * with `googleMeet`. Prefer this for a Macro booking; omit or false when
+     * with `googleMeet`. Prefer this for a Rox booking; omit or false when
      * the link should use Google Meet or no video. False is omitted so drafts
      * saved before this field still round-trip unchanged.
      */
@@ -656,7 +656,7 @@ export type CalendarCapabilities = {
      */
     customRecurrence: boolean;
     /**
-     * Whether email reminders are delivered by the provider or Macro.
+     * Whether email reminders are delivered by the provider or Rox.
      */
     emailReminders: boolean;
     /**
@@ -679,7 +679,7 @@ export type CalendarCapabilities = {
 export type CalendarDeletionScopeParam = 'all' | 'this_event' | 'this_and_following';
 
 /**
- * A stable, first-class Macro calendar event entity.
+ * A stable, first-class Rox calendar event entity.
  *
  * Content fields hold the canonical source's values: the account's primary
  * calendar copy when one is synced, else the freshest remaining copy.
@@ -734,7 +734,7 @@ export type CalendarEvent = {
      */
     icalUid: string;
     /**
-     * Macro entity identifier.
+     * Rox entity identifier.
      */
     id: string;
     /**
@@ -743,7 +743,7 @@ export type CalendarEvent = {
     isReadOnly: boolean;
     /**
      * Whether this is a snapshot of a meeting shared with the owner, which
-     * Macro added to their calendar as a private copy: the meeting's changes
+     * Rox added to their calendar as a private copy: the meeting's changes
      * never reach it, and nothing done to it reaches the meeting.
      */
     isSnapshot: boolean;
@@ -760,7 +760,7 @@ export type CalendarEvent = {
      */
     organizerName?: string | null;
     /**
-     * Macro user who owns this event entity.
+     * Rox user who owns this event entity.
      */
     ownerId: string;
     /**
@@ -918,7 +918,7 @@ export type CalendarJoinRequest = {
      */
     requesterEmail: string;
     /**
-     * Macro user asking to join.
+     * Rox user asking to join.
      */
     requesterId: string;
     /**
@@ -1106,7 +1106,7 @@ export type CreateCalendarEventRequest = {
      */
     location?: string | null;
     /**
-     * Mint a Macro call and write its join link into the description and
+     * Mint a Rox call and write its join link into the description and
      * location before creating the event, so the invitation carries it.
      * Cannot be combined with `conference`.
      */
@@ -1583,9 +1583,9 @@ export type UpdateCalendarEventRequest = {
      */
     location?: string | null;
     /**
-     * Switch the event to a Macro call in this write: mint one, write its
+     * Switch the event to a Rox call in this write: mint one, write its
      * join link into the description and location, and detach any provider
-     * conference. An event already holding a Macro call keeps it. Cannot be
+     * conference. An event already holding a Rox call keeps it. Cannot be
      * combined with `conference`.
      */
     macroCall?: boolean;
@@ -1672,7 +1672,7 @@ export type VisibleCalendar = {
      */
     emailLinkId: string;
     /**
-     * Persisted Macro calendar identifier.
+     * Persisted Rox calendar identifier.
      */
     id: string;
     /**
@@ -1786,7 +1786,7 @@ export type CreateCalendarEventErrors = {
      */
     409: CalendarMutationApiError;
     /**
-     * Transient provider failure, or the Macro call could not be created
+     * Transient provider failure, or the Rox call could not be created
      */
     503: CalendarMutationApiError;
 };
@@ -1903,7 +1903,7 @@ export type UpdateCalendarEventErrors = {
      */
     409: CalendarMutationApiError;
     /**
-     * Transient provider failure, or the Macro call could not be created
+     * Transient provider failure, or the Rox call could not be created
      */
     503: CalendarMutationApiError;
 };
@@ -2246,7 +2246,7 @@ export type ListBookingsData = {
     path?: never;
     query?: {
         /**
-         * Existing Macro team; omit for personal bookings.
+         * Existing Rox team; omit for personal bookings.
          */
         teamId?: string;
         /**
@@ -2353,7 +2353,7 @@ export type GetBookingInsightsData = {
     path?: never;
     query?: {
         /**
-         * Existing Macro team; omit for the caller's personal booking links.
+         * Existing Rox team; omit for the caller's personal booking links.
          */
         teamId?: string;
     };
@@ -2376,7 +2376,7 @@ export type ListBookingLinksData = {
     path?: never;
     query?: {
         /**
-         * Existing Macro team; omit for personal links.
+         * Existing Rox team; omit for personal links.
          */
         teamId?: string;
         /**
@@ -2402,7 +2402,7 @@ export type CreateBookingLinkData = {
     path?: never;
     query?: {
         /**
-         * Existing Macro team; omit for the caller's personal booking links.
+         * Existing Rox team; omit for the caller's personal booking links.
          */
         teamId?: string;
     };
@@ -2431,7 +2431,7 @@ export type EditBookingLinkData = {
     };
     query?: {
         /**
-         * Existing Macro team; omit for the caller's personal booking links.
+         * Existing Rox team; omit for the caller's personal booking links.
          */
         teamId?: string;
     };
@@ -2456,7 +2456,7 @@ export type GetBookingSettingsData = {
     path?: never;
     query?: {
         /**
-         * Existing Macro team; omit for the caller's personal booking links.
+         * Existing Rox team; omit for the caller's personal booking links.
          */
         teamId?: string;
     };
@@ -2479,7 +2479,7 @@ export type SaveBookingSettingsData = {
     path?: never;
     query?: {
         /**
-         * Existing Macro team; omit for the caller's personal booking links.
+         * Existing Rox team; omit for the caller's personal booking links.
          */
         teamId?: string;
     };

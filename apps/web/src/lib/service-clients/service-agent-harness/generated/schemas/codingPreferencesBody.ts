@@ -9,7 +9,7 @@
  * Request or response body for the caller's coding preferences.
  */
 export interface CodingPreferencesBody {
-  /** Whether new coding sessions research prior work and link a Macro task. */
+  /** Whether new coding sessions research prior work and link a Rox task. */
   createTasks: boolean;
   /** Whether new coding sessions deliver their work as a pull request. */
   openPullRequests: boolean;

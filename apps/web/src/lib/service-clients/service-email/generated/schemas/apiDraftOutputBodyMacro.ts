@@ -6,6 +6,6 @@
  */
 
 /**
- * Macro body.
+ * Rox body.
  */
 export type ApiDraftOutputBodyMacro = string | null;

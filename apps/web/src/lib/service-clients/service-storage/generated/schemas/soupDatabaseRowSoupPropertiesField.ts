@@ -8,7 +8,7 @@ import type { SoupDatabaseRowSoupPropertiesFieldAllOf } from './soupDatabaseRowS
 import type { SoupDatabaseRowSoupPropertiesFieldAllOfTwo } from './soupDatabaseRowSoupPropertiesFieldAllOfTwo';
 
 /**
- * A row of a Macro database table in the Soup feed. Its cells are its
+ * A row of a Rox database table in the Soup feed. Its cells are its
 entity properties; access is its database's.
  */
 export type SoupDatabaseRowSoupPropertiesField =

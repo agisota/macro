@@ -17,7 +17,7 @@ import type { SlackUserId } from './slackUserId';
  * Full selected conversation metadata, persisted before granting any uploads.
  */
 export interface ConversationMetadata {
-  /** Source archived flag (does not silently archive a reused Macro target). */
+  /** Source archived flag (does not silently archive a reused Rox target). */
   archived: boolean;
   createdAt?: ConversationMetadataCreatedAt;
   creatorId?: ConversationMetadataCreatorId;
@@ -25,7 +25,7 @@ export interface ConversationMetadata {
   folder: KeySegment;
   /** Source conversation kind. */
   kind: ConversationKind;
-  /** Complete source member list, including members unknown to Macro. */
+  /** Complete source member list, including members unknown to Rox. */
   memberIds: SlackUserId[];
   /**
    * Advisory only; null means not yet counted, not zero.

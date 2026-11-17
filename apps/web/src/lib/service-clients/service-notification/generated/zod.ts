@@ -500,7 +500,7 @@ export const listTypedNotificationsResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -586,7 +586,7 @@ export const listTypedNotificationsResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -674,7 +674,7 @@ export const listTypedNotificationsResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -2328,12 +2328,12 @@ export const listTypedNotificationsResponse = zod
                             ),
                         })
                         .describe(
-                          "The account a team's Macro computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
+                          "The account a team's Rox computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
                         ),
                       tag: zod.enum(['agent_sign_in_expiry']),
                     })
                     .describe(
-                      "An agent's sign-in on one of the team's Macro computers is about\nto expire, expired, or was rejected."
+                      "An agent's sign-in on one of the team's Rox computers is about\nto expire, expired, or was rejected."
                     ),
                   zod
                     .object({
@@ -2350,7 +2350,7 @@ export const listTypedNotificationsResponse = zod
                                   userId: zod
                                     .string()
                                     .describe(
-                                      "The agent's Macro user id, to open a DM with it."
+                                      "The agent's Rox user id, to open a DM with it."
                                     ),
                                 })
                                 .describe(
@@ -2397,12 +2397,12 @@ export const listTypedNotificationsResponse = zod
                             .describe("How a computer's first setup ended."),
                         })
                         .describe(
-                          "A team's Macro computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
+                          "A team's Rox computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
                         ),
                       tag: zod.enum(['computer_setup']),
                     })
                     .describe(
-                      'A Macro computer the user bought finished first-time setup, or\ncould not be set up.'
+                      'A Rox computer the user bought finished first-time setup, or\ncould not be set up.'
                     ),
                   zod
                     .object({
@@ -2786,7 +2786,7 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -2872,7 +2872,7 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -2960,7 +2960,7 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -4614,12 +4614,12 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                             ),
                         })
                         .describe(
-                          "The account a team's Macro computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
+                          "The account a team's Rox computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
                         ),
                       tag: zod.enum(['agent_sign_in_expiry']),
                     })
                     .describe(
-                      "An agent's sign-in on one of the team's Macro computers is about\nto expire, expired, or was rejected."
+                      "An agent's sign-in on one of the team's Rox computers is about\nto expire, expired, or was rejected."
                     ),
                   zod
                     .object({
@@ -4636,7 +4636,7 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                                   userId: zod
                                     .string()
                                     .describe(
-                                      "The agent's Macro user id, to open a DM with it."
+                                      "The agent's Rox user id, to open a DM with it."
                                     ),
                                 })
                                 .describe(
@@ -4683,12 +4683,12 @@ export const bulkGetTypedNotificationsByEventItemIdsResponse = zod
                             .describe("How a computer's first setup ended."),
                         })
                         .describe(
-                          "A team's Macro computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
+                          "A team's Rox computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
                         ),
                       tag: zod.enum(['computer_setup']),
                     })
                     .describe(
-                      'A Macro computer the user bought finished first-time setup, or\ncould not be set up.'
+                      'A Rox computer the user bought finished first-time setup, or\ncould not be set up.'
                     ),
                   zod
                     .object({
@@ -5022,7 +5022,7 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -5108,7 +5108,7 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -5196,7 +5196,7 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                             .string()
                             .nullish()
                             .describe(
-                              'Public bot name when the author is an agent rather than a Macro user.'
+                              'Public bot name when the author is an agent rather than a Rox user.'
                             ),
                           senderProfilePictureUrl: zod.string().nullish(),
                           subType: zod
@@ -6850,12 +6850,12 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                             ),
                         })
                         .describe(
-                          "The account a team's Macro computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
+                          "The account a team's Rox computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
                         ),
                       tag: zod.enum(['agent_sign_in_expiry']),
                     })
                     .describe(
-                      "An agent's sign-in on one of the team's Macro computers is about\nto expire, expired, or was rejected."
+                      "An agent's sign-in on one of the team's Rox computers is about\nto expire, expired, or was rejected."
                     ),
                   zod
                     .object({
@@ -6872,7 +6872,7 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                                   userId: zod
                                     .string()
                                     .describe(
-                                      "The agent's Macro user id, to open a DM with it."
+                                      "The agent's Rox user id, to open a DM with it."
                                     ),
                                 })
                                 .describe(
@@ -6919,12 +6919,12 @@ export const getTypedNotificationsByEventItemIdResponse = zod
                             .describe("How a computer's first setup ended."),
                         })
                         .describe(
-                          "A team's Macro computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
+                          "A team's Rox computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
                         ),
                       tag: zod.enum(['computer_setup']),
                     })
                     .describe(
-                      'A Macro computer the user bought finished first-time setup, or\ncould not be set up.'
+                      'A Rox computer the user bought finished first-time setup, or\ncould not be set up.'
                     ),
                   zod
                     .object({
@@ -7251,7 +7251,7 @@ export const getTypedNotificationByIdResponse = zod
                     .string()
                     .nullish()
                     .describe(
-                      'Public bot name when the author is an agent rather than a Macro user.'
+                      'Public bot name when the author is an agent rather than a Rox user.'
                     ),
                   senderProfilePictureUrl: zod.string().nullish(),
                   subType: zod
@@ -7329,7 +7329,7 @@ export const getTypedNotificationByIdResponse = zod
                     .string()
                     .nullish()
                     .describe(
-                      'Public bot name when the author is an agent rather than a Macro user.'
+                      'Public bot name when the author is an agent rather than a Rox user.'
                     ),
                   senderProfilePictureUrl: zod.string().nullish(),
                   subType: zod
@@ -7409,7 +7409,7 @@ export const getTypedNotificationByIdResponse = zod
                     .string()
                     .nullish()
                     .describe(
-                      'Public bot name when the author is an agent rather than a Macro user.'
+                      'Public bot name when the author is an agent rather than a Rox user.'
                     ),
                   senderProfilePictureUrl: zod.string().nullish(),
                   subType: zod
@@ -8926,12 +8926,12 @@ export const getTypedNotificationByIdResponse = zod
                     ),
                 })
                 .describe(
-                  "The account a team's Macro computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
+                  "The account a team's Rox computer signed an agent in to is about to\nstop working, or has. Sent to whoever signed it in and to the team's\nadmins and owner, who can sign it in again from Settings → Machines."
                 ),
               tag: zod.enum(['agent_sign_in_expiry']),
             })
             .describe(
-              "An agent's sign-in on one of the team's Macro computers is about\nto expire, expired, or was rejected."
+              "An agent's sign-in on one of the team's Rox computers is about\nto expire, expired, or was rejected."
             ),
           zod
             .object({
@@ -8946,7 +8946,7 @@ export const getTypedNotificationByIdResponse = zod
                           userId: zod
                             .string()
                             .describe(
-                              "The agent's Macro user id, to open a DM with it."
+                              "The agent's Rox user id, to open a DM with it."
                             ),
                         })
                         .describe(
@@ -8991,12 +8991,12 @@ export const getTypedNotificationByIdResponse = zod
                     .describe("How a computer's first setup ended."),
                 })
                 .describe(
-                  "A team's Macro computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
+                  "A team's Rox computer finished first-time setup, or could not be set\nup. Sent to its buyer, who continues (or retries) from the setup flow."
                 ),
               tag: zod.enum(['computer_setup']),
             })
             .describe(
-              'A Macro computer the user bought finished first-time setup, or\ncould not be set up.'
+              'A Rox computer the user bought finished first-time setup, or\ncould not be set up.'
             ),
           zod
             .object({

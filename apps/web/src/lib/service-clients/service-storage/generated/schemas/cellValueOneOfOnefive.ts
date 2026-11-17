@@ -8,12 +8,12 @@ import type { CellValueOneOfOnefiveType } from './cellValueOneOfOnefiveType';
 import type { EntityRef } from './entityRef';
 
 /**
- * References to Macro entities of the kind the column points at; at
+ * References to Rox entities of the kind the column points at; at
 most one for a single-valued column.
  */
 export type CellValueOneOfOnefive = {
   type: CellValueOneOfOnefiveType;
-  /** References to Macro entities of the kind the column points at; at
+  /** References to Rox entities of the kind the column points at; at
 most one for a single-valued column. */
   value: EntityRef[];
 };

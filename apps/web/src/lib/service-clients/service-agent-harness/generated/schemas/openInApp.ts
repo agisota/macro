@@ -15,7 +15,7 @@ export interface OpenInApp {
 current turn. */
   executionId: ExecutionId;
   /** An app path, such as `/md/<id>` or `/channels/<id>?s0.channels.messageId=<id>`:
-what follows `/app` in a Macro link. Never an origin. */
+what follows `/app` in a Rox link. Never an origin. */
   path: string;
   /** Where to put it; beside the agent by default. */
   placement?: UiPlacement;

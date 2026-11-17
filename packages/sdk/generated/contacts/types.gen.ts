@@ -39,7 +39,7 @@ export type SearchPeopleResponse = {
  */
 export type SearchedPerson = {
     /**
-     * Whether the person is an agent rather than a human; false for non-Macro contacts.
+     * Whether the person is an agent rather than a human; false for non-Rox contacts.
      */
     isAgent: boolean;
     /**

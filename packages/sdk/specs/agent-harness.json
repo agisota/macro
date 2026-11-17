@@ -5851,7 +5851,7 @@
           },
           "signedInBy": {
             "type": ["string", "null"],
-            "description": "Who signed it in through Macro; absent once that user is deleted or\nwhen it was signed in on the computer itself."
+            "description": "Who signed it in through Rox; absent once that user is deleted or\nwhen it was signed in on the computer itself."
           }
         }
       },

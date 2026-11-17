@@ -19,6 +19,6 @@ export interface TeamMemberAvailability {
   coverage: AvailabilityCoverage;
   /** Reasons gaps in the busy intervals cannot be called free. */
   unknownReasons: AvailabilityUnknownReason[];
-  /** Macro identifier of the included person. */
+  /** Rox identifier of the included person. */
   userId: string;
 }

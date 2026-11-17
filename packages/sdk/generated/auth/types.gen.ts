@@ -399,7 +399,7 @@ export type ComputerStatus = {
      */
     poweredOn: boolean;
     /**
-     * The Macro user who bought it. The team's owner and admins, not the
+     * The Rox user who bought it. The team's owner and admins, not the
      * buyer, finish its setup and manage its Claude account.
      */
     purchasedBy: string;
@@ -774,7 +774,7 @@ export type EmailConnectionProviders = {
      */
     outlook: boolean;
     /**
-     * Where a Microsoft 365 administrator approves Macro for their whole
+     * Where a Microsoft 365 administrator approves Rox for their whole
      * directory. Present when Outlook is configured and the request named an
      * `original_url` for the administrator's browser to return to.
      */
@@ -1299,7 +1299,7 @@ export type GtmInviteLink = {
      */
     createdAt: string;
     /**
-     * The Macro user id of the staff member who created the link.
+     * The Rox user id of the staff member who created the link.
      */
     createdBy: string;
     /**
@@ -1343,7 +1343,7 @@ export type GtmInviteLink = {
      */
     redeemedAt?: string | null;
     /**
-     * The Macro user id of the account that signed up through the link.
+     * The Rox user id of the account that signed up through the link.
      */
     redeemedBy?: string | null;
     /**
@@ -2405,12 +2405,12 @@ export type Team = {
 };
 
 /**
- * An agent teammate: an AI member of a team with its own Macro account and
- * its own Macro computer.
+ * An agent teammate: an AI member of a team with its own Rox account and
+ * its own Rox computer.
  */
 export type TeamAgent = {
     /**
-     * The agent's Macro computer, once bought.
+     * The agent's Rox computer, once bought.
      */
     computerId?: string | null;
     /**
@@ -3793,7 +3793,7 @@ export type RefreshErrors = {
     400: string;
     401: string;
     /**
-     * Refresh already in progress for this user, or the access token lacks the Macro claims and was issued too recently to refresh
+     * Refresh already in progress for this user, or the access token lacks the Rox claims and was issued too recently to refresh
      */
     429: string;
     500: string;
@@ -5329,7 +5329,7 @@ export type DeleteTeamAgentData = {
     body?: never;
     path: {
         /**
-         * The agent's Macro user id.
+         * The agent's Rox user id.
          */
         agent_user_id: string;
     };
@@ -5358,7 +5358,7 @@ export type GetTeamAgentVoiceData = {
     body?: never;
     path: {
         /**
-         * The agent's Macro user id.
+         * The agent's Rox user id.
          */
         agent_user_id: string;
     };
@@ -5387,7 +5387,7 @@ export type SetTeamAgentVoiceData = {
     body: AgentVoice;
     path: {
         /**
-         * The agent's Macro user id.
+         * The agent's Rox user id.
          */
         agent_user_id: string;
     };

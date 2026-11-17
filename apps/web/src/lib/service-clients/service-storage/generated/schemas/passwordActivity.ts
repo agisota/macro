@@ -19,6 +19,6 @@ export interface PasswordActivity {
   itemId: PasswordItemId;
   /** Time this activity was recorded. */
   occurredAt: string;
-  /** Authenticated Macro user identity; never a provider credential. */
+  /** Authenticated Rox user identity; never a provider credential. */
   userId: string;
 }

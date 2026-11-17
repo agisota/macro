@@ -16,7 +16,7 @@ export type ExternalChatDetailAllOf = {
   accessLevel: AccessLevel;
   /**
    * The provider's disappearing-messages timer in seconds while it is on;
-Macro keeps the messages anyway. `null` when off or unknown.
+Rox keeps the messages anyway. `null` when off or unknown.
    * @minimum 0
    */
   disappearingSeconds?: ExternalChatDetailAllOfDisappearingSeconds;

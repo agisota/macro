@@ -299,7 +299,7 @@ pub async fn recompute_thread_metadata(
     sqlx::query!(r#"
         WITH facts AS (
             SELECT m.*, f.in_inbox,f.in_trash,f.in_junk,f.in_sent,
-                -- Outlook drafts composed in Rox gain a provider id once synced; their shadow row keeps them Rox drafts.
+                -- Outlook drafts composed in Macro gain a provider id once synced; their shadow row keeps them Macro drafts.
                 m.is_draft AND (m.provider_id IS NULL OR EXISTS (
                     SELECT 1 FROM email_mailbox_drafts d WHERE d.message_id = m.id AND NOT d.delete_requested
                 )) AS macro_draft,
@@ -317,7 +317,7 @@ pub async fn recompute_thread_metadata(
                 greatest(max(COALESCE(internal_date_ts, CASE WHEN is_draft THEN created_at END)) FILTER (WHERE NOT in_trash AND NOT in_junk),max(updated_at) FILTER (WHERE macro_draft AND NOT in_trash AND NOT in_junk)) AS all_ts
             FROM facts
         ), effective AS (
-            -- A Rox draft brings a thread back to the inbox only as a reply to received mail.
+            -- A Macro draft brings a thread back to the inbox only as a reply to received mail.
             SELECT a.*, a.mailbox_visible OR (t.has_received_mail AND a.has_macro_draft)
                     OR (t.reminder_returned_at IS NOT NULL AND a.has_inbox) AS visible,
                 greatest(a.received_ts, CASE WHEN t.has_received_mail THEN a.draft_ts END) AS inbound_ts

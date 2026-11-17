@@ -7,7 +7,7 @@
 import type { PipedreamConnectCompleteRequestServerName } from './pipedreamConnectCompleteRequestServerName';
 
 /**
- * Request body for recording a finished Macro Connect flow.
+ * Request body for recording a finished Rox Connect flow.
  */
 export interface PipedreamConnectCompleteRequest {
   /** The app that was connected, by Pipedream slug. */

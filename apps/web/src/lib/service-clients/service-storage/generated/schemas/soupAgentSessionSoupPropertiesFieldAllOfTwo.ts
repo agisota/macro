@@ -35,7 +35,7 @@ export type SoupAgentSessionSoupPropertiesFieldAllOfTwo = {
   name: string;
   /** Who the session belongs to */
   ownerId: string;
-  /** The linked pull request's Macro entity, when visible to the viewer. */
+  /** The linked pull request's Rox entity, when visible to the viewer. */
   pullRequestId?: SoupAgentSessionSoupPropertiesFieldAllOfTwoPullRequestId;
   pullRequestState?: SoupAgentSessionSoupPropertiesFieldAllOfTwoPullRequestState;
   /** The persisted pull request associated with the session. */

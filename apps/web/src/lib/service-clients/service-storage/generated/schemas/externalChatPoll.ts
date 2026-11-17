@@ -7,7 +7,7 @@
 import type { ExternalChatPollOption } from './externalChatPollOption';
 
 /**
- * A poll, read-only in Macro.
+ * A poll, read-only in Rox.
  */
 export interface ExternalChatPoll {
   /** Options in order, with tallies. */

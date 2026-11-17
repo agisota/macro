@@ -9,7 +9,7 @@ import type { ColumnKindOneOfOnenineType } from './columnKindOneOfOnenineType';
 import type { EntityKind } from './entityKind';
 
 /**
- * References to Macro entities.
+ * References to Rox entities.
  */
 export type ColumnKindOneOfOnenine = {
   /** Whether a cell holds several references. */

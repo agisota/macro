@@ -6,7 +6,7 @@
  */
 
 /**
- * Slack conversation kind. Public Slack channels map to Macro Team, never Public.
+ * Slack conversation kind. Public Slack channels map to Rox Team, never Public.
  */
 export type ConversationKind =
   (typeof ConversationKind)[keyof typeof ConversationKind];

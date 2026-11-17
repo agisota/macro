@@ -3095,7 +3095,7 @@
       },
       "AgentStep": {
         "type": "object",
-        "description": "Hand the run to a model running as Macro, or to an agent.",
+        "description": "Hand the run to a model running as Rox, or to an agent.",
         "required": ["instructions"],
         "properties": {
           "agent": {
@@ -5214,7 +5214,7 @@
             "properties": {
               "from": {
                 "$ref": "#/components/schemas/SuggestionFrom",
-                "description": "Who suggests it: AI, for this person, or Macro, as a template."
+                "description": "Who suggests it: AI, for this person, or Rox, as a template."
               },
               "id": {
                 "type": "string",

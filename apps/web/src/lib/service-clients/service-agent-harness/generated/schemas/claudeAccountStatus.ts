@@ -16,7 +16,7 @@ export interface ClaudeAccountStatus {
   expiresAt?: ClaudeAccountStatusExpiresAt;
   /** When it was signed in. */
   signedInAt: string;
-  /** Who signed it in through Macro; absent once that user is deleted or
+  /** Who signed it in through Rox; absent once that user is deleted or
 when it was signed in on the computer itself. */
   signedInBy?: ClaudeAccountStatusSignedInBy;
 }

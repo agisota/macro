@@ -8,7 +8,7 @@ import type { GenerateImageReferenceOneOf } from './generateImageReferenceOneOf'
 import type { GenerateImageReferenceOneOfThree } from './generateImageReferenceOneOfThree';
 
 /**
- * A reference image already stored in Macro.
+ * A reference image already stored in Rox.
  */
 export type GenerateImageReference =
   | GenerateImageReferenceOneOf

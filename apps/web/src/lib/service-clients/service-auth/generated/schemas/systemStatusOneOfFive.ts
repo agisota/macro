@@ -7,7 +7,7 @@
 import type { SystemStatusOneOfFiveStatus } from './systemStatusOneOfFiveStatus';
 
 /**
- * Macro is largely unavailable.
+ * Rox is largely unavailable.
  */
 export type SystemStatusOneOfFive = {
   /** What users should know. */

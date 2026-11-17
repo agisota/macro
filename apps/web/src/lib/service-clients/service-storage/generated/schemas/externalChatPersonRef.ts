@@ -8,7 +8,7 @@ import type { ExternalChatPersonRefPictureFileId } from './externalChatPersonRef
 import type { ExternalChatPersonRefUserId } from './externalChatPersonRefUserId';
 
 /**
- * A person named in a message: a Macro user when verified, else their name
+ * A person named in a message: a Rox user when verified, else their name
 at the provider, else their phone number.
  */
 export interface ExternalChatPersonRef {
@@ -17,6 +17,6 @@ export interface ExternalChatPersonRef {
   /** Their profile picture as the chat owner's account sees it: a static
 file id; `null` when hidden, unset or not fetched yet. */
   pictureFileId?: ExternalChatPersonRefPictureFileId;
-  /** Verified Macro user, if any. */
+  /** Verified Rox user, if any. */
   userId?: ExternalChatPersonRefUserId;
 }

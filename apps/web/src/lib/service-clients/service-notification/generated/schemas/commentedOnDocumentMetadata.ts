@@ -23,7 +23,7 @@ export interface CommentedOnDocumentMetadata {
   fileType?: CommentedOnDocumentMetadataFileType;
   /** The owner of the document. */
   owner: string;
-  /** Public bot name when the author is an agent rather than a Macro user. */
+  /** Public bot name when the author is an agent rather than a Rox user. */
   senderDisplayName?: CommentedOnDocumentMetadataSenderDisplayName;
   senderProfilePictureUrl?: CommentedOnDocumentMetadataSenderProfilePictureUrl;
   subType?: CommentedOnDocumentMetadataSubType;

@@ -11,7 +11,7 @@ import type { ActionTriggerOneOfSeven } from './actionTriggerOneOfSeven';
 import type { ActionTriggerOneOfThree } from './actionTriggerOneOfThree';
 
 /**
- * A routine may run on one trigger or any of several schedules and Macro events.
+ * A routine may run on one trigger or any of several schedules and Rox events.
  */
 export type ActionTrigger =
   | ActionTriggerOneOf

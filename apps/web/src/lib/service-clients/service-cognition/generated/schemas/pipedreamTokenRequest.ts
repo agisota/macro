@@ -10,7 +10,7 @@ import type { PipedreamTokenRequestAppSlug } from './pipedreamTokenRequestAppSlu
  * Request body for starting a connect flow.
  */
 export interface PipedreamTokenRequest {
-  /** The app to connect, by Pipedream slug. With it, an app Macro Connect
+  /** The app to connect, by Pipedream slug. With it, an app Rox Connect
 serves can answer with a Connect URL instead of a Pipedream token. */
   app_slug?: PipedreamTokenRequestAppSlug;
 }

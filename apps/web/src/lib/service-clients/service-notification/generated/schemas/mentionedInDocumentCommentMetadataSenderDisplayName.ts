@@ -6,6 +6,6 @@
  */
 
 /**
- * Public bot name when the author is an agent rather than a Macro user.
+ * Public bot name when the author is an agent rather than a Rox user.
  */
 export type MentionedInDocumentCommentMetadataSenderDisplayName = string | null;

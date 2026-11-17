@@ -14,7 +14,7 @@ export interface GithubSelector {
   actions?: string[];
   /** GitHub event names, such as `workflow_run` or `pull_request`; any when empty. */
   events?: string[];
-  /** Also run for deliveries caused by bots and apps, including Macro's own. */
+  /** Also run for deliveries caused by bots and apps, including Rox's own. */
   includeBots?: boolean;
   /** Repositories as `owner/name`, matched without regard to case; every
 repository the owner's installations cover when empty. A renamed

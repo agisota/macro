@@ -1672,7 +1672,7 @@ export type BomPart = {
 };
 
 /**
- * An existing native Macro scheduling event offered after an accepted response.
+ * An existing native Rox scheduling event offered after an accepted response.
  */
 export type BookingTarget = {
     /**
@@ -1996,7 +1996,7 @@ export type CalendarAttendee = {
 };
 
 /**
- * A stable, first-class Macro calendar event entity.
+ * A stable, first-class Rox calendar event entity.
  *
  * Content fields hold the canonical source's values: the account's primary
  * calendar copy when one is synced, else the freshest remaining copy.
@@ -2051,7 +2051,7 @@ export type CalendarEvent = {
      */
     icalUid: string;
     /**
-     * Macro entity identifier.
+     * Rox entity identifier.
      */
     id: string;
     /**
@@ -2060,7 +2060,7 @@ export type CalendarEvent = {
     isReadOnly: boolean;
     /**
      * Whether this is a snapshot of a meeting shared with the owner, which
-     * Macro added to their calendar as a private copy: the meeting's changes
+     * Rox added to their calendar as a private copy: the meeting's changes
      * never reach it, and nothing done to it reaches the meeting.
      */
     isSnapshot: boolean;
@@ -2077,7 +2077,7 @@ export type CalendarEvent = {
      */
     organizerName?: string | null;
     /**
-     * Macro user who owns this event entity.
+     * Rox user who owns this event entity.
      */
     ownerId: string;
     /**
@@ -2241,7 +2241,7 @@ export type CalendarJoinRequest = {
      */
     requesterEmail: string;
     /**
-     * Macro user asking to join.
+     * Rox user asking to join.
      */
     requesterId: string;
     /**
@@ -2801,7 +2801,7 @@ export type CallRecordParticipant = {
      */
     leftAt?: string | null;
     /**
-     * The Macro user id.
+     * The Rox user id.
      */
     userId: string;
 };
@@ -3298,7 +3298,7 @@ export type CellValue = {
 } | {
     type: 'entities';
     /**
-     * References to Macro entities of the kind the column points at; at
+     * References to Rox entities of the kind the column points at; at
      * most one for a single-valued column.
      */
     value: Array<EntityRef>;
@@ -4182,8 +4182,8 @@ export type ClaimedPairing = {
 };
 
 /**
- * How Claude Code on a Macro computer is paid for: its own Claude account
- * when it has an active Claude login, otherwise Macro credits.
+ * How Claude Code on a Rox computer is paid for: its own Claude account
+ * when it has an active Claude login, otherwise Rox credits.
  */
 export type ClaudeMode = 'macro_credits' | 'own_account';
 
@@ -4767,7 +4767,7 @@ export type ContactEmailRequest = {
 export type ConversationId = string;
 
 /**
- * Slack conversation kind. Public Slack channels map to Macro Team, never Public.
+ * Slack conversation kind. Public Slack channels map to Rox Team, never Public.
  */
 export type ConversationKind = 'public_channel' | 'private_channel' | 'direct_message' | 'group_direct_message';
 
@@ -4776,7 +4776,7 @@ export type ConversationKind = 'public_channel' | 'private_channel' | 'direct_me
  */
 export type ConversationMetadata = {
     /**
-     * Source archived flag (does not silently archive a reused Macro target).
+     * Source archived flag (does not silently archive a reused Rox target).
      */
     archived: boolean;
     createdAt?: null | SlackTimestamp;
@@ -4790,7 +4790,7 @@ export type ConversationMetadata = {
      */
     kind: ConversationKind;
     /**
-     * Complete source member list, including members unknown to Macro.
+     * Complete source member list, including members unknown to Rox.
      */
     memberIds: Array<SlackUserId>;
     /**
@@ -4829,7 +4829,7 @@ export type ConversationProgress = {
      */
     kind: ConversationKind;
     /**
-     * Persisted source display name, never the reused Macro target's name.
+     * Persisted source display name, never the reused Rox target's name.
      */
     name: string;
     /**
@@ -6440,7 +6440,7 @@ export type CropMode = 'fill' | 'fit';
  */
 export type CustomSpeakerAssignment = {
     /**
-     * Macro user id to attribute matching rows to, or `None` to clear.
+     * Rox user id to attribute matching rows to, or `None` to clear.
      */
     customSpeaker: string;
     /**
@@ -6506,7 +6506,7 @@ export type DatabaseDetail = {
 };
 
 /**
- * Identifier of reusable database storage. Its optional Macro entity uses
+ * Identifier of reusable database storage. Its optional Rox entity uses
  * the same identity, so existing routes and grants keep their IDs.
  */
 export type DatabaseId = string;
@@ -9574,7 +9574,7 @@ export type EntityFilters = {
 };
 
 /**
- * A kind of Macro entity a reference column can point at.
+ * A kind of Rox entity a reference column can point at.
  */
 export type EntityKind = 'USER' | 'DOCUMENT' | 'TASK' | 'COMPANY' | 'CONTACT' | 'CALL_RECORD' | 'CHANNEL' | 'CHAT' | 'PROJECT' | 'THREAD' | 'CALENDAR_EVENT' | 'INITIATIVE';
 
@@ -9617,7 +9617,7 @@ export type EntityPermissionResponse = {
 };
 
 /**
- * A reference to one Macro entity.
+ * A reference to one Rox entity.
  */
 export type EntityRef = {
     /**
@@ -10088,7 +10088,7 @@ export type ExternalChatDetail = ExternalChatSummary & {
     accessLevel: AccessLevel;
     /**
      * The provider's disappearing-messages timer in seconds while it is on;
-     * Macro keeps the messages anyway. `null` when off or unknown.
+     * Rox keeps the messages anyway. `null` when off or unknown.
      */
     disappearingSeconds?: number | null;
     /**
@@ -10264,7 +10264,7 @@ export type ExternalChatMessage = {
      */
     reactions: Array<ExternalChatReaction>;
     /**
-     * Timestamp first received by Macro.
+     * Timestamp first received by Rox.
      */
     receivedAt: string;
     /**
@@ -10281,7 +10281,7 @@ export type ExternalChatMessage = {
      */
     sentAt: string;
     /**
-     * Sent as view-once; Macro shows it like any media.
+     * Sent as view-once; Rox shows it like any media.
      */
     viewOnce: boolean;
 };
@@ -10325,7 +10325,7 @@ export type ExternalChatMessages = {
 export type ExternalChatMutation = 'reaction' | 'edit' | 'delete';
 
 /**
- * Someone in an external chat; Macro access is a separate grant.
+ * Someone in an external chat; Rox access is a separate grant.
  */
 export type ExternalChatParticipant = {
     /**
@@ -10357,7 +10357,7 @@ export type ExternalChatParticipant = {
 };
 
 /**
- * A person named in a message: a Macro user when verified, else their name
+ * A person named in a message: a Rox user when verified, else their name
  * at the provider, else their phone number.
  */
 export type ExternalChatPersonRef = {
@@ -10371,13 +10371,13 @@ export type ExternalChatPersonRef = {
      */
     pictureFileId?: string | null;
     /**
-     * Verified Macro user, if any.
+     * Verified Rox user, if any.
      */
     userId?: string | null;
 };
 
 /**
- * A poll, read-only in Macro.
+ * A poll, read-only in Rox.
  */
 export type ExternalChatPoll = {
     /**
@@ -10592,7 +10592,7 @@ export type ExternalChatSender = {
      */
     pictureFileId?: string | null;
     /**
-     * Verified Macro user association, if present.
+     * Verified Rox user association, if present.
      */
     userId?: string | null;
 };
@@ -12626,7 +12626,7 @@ export type GuestChatThread = {
  * A non-account guest of a single call session.
  *
  * The id doubles as the guest's RTC participant identity, so identities are
- * opaque UUIDs and never share a namespace (or a column) with Macro user
+ * opaque UUIDs and never share a namespace (or a column) with Rox user
  * ids. Only the server mints them; Macro users keep `macro|…` identities,
  * so an RTC identity classifies as exactly one of the two.
  */
@@ -12711,7 +12711,7 @@ export type Harness = {
     allow_permission_bypass?: boolean;
     /**
      * How Claude Code on this machine is paid for, derived from whether
-     * it has an active Claude login. Only meaningful for Macro computers.
+     * it has an active Claude login. Only meaningful for Rox computers.
      */
     claude_mode?: ClaudeMode;
     computer_id?: null | ComputerId;
@@ -12876,7 +12876,7 @@ export type HighlightType = 1 | 2 | 3;
 
 /**
  * A companies CSV to import: exactly one of its text or a CSV file in
- * Macro, and at most one of `pipelineId` or `newPipeline` for its Stage,
+ * Rox, and at most one of `pipelineId` or `newPipeline` for its Stage,
  * Owner and Revenue values (a new private pipeline when neither is given).
  */
 export type ImportCompaniesCsvRequest = {
@@ -12992,7 +12992,7 @@ export type ImportPage = {
 };
 
 /**
- * A CSV to import: exactly one of its text or a CSV file in Macro.
+ * A CSV to import: exactly one of its text or a CSV file in Rox.
  */
 export type ImportPipelineCsvRequest = {
     /**
@@ -13444,7 +13444,7 @@ export type InvalidDatabaseWebhookPayloadResponse = {
  */
 export type InviteMeetingRequest = {
     /**
-     * Recipient email; no Macro account is required.
+     * Recipient email; no Rox account is required.
      */
     email: string;
 };
@@ -13743,7 +13743,7 @@ export type LiveCallParticipant = {
      */
     tracks: Array<LiveCallTrack>;
     /**
-     * Macro account identifier, if this is a user.
+     * Rox account identifier, if this is a user.
      */
     userId?: string | null;
 };
@@ -13954,7 +13954,7 @@ export type MeetingInvitePermissions = {
  */
 export type MeetingParticipant = {
     /**
-     * Profile image, when available for a Macro member.
+     * Profile image, when available for a Rox member.
      */
     avatarUrl?: string | null;
     /**
@@ -14018,7 +14018,7 @@ export type Message = {
     attachments: Array<MessageAttachment>;
     bot_profile?: null | BotSenderProfile;
     /**
-     * Macro Markdown body.
+     * Rox Markdown body.
      */
     content: string;
     /**
@@ -14369,7 +14369,7 @@ export type MessageListItem = Message & {
  */
 export type MessageMentionedMetadata = {
     /**
-     * Macro Markdown body.
+     * Rox Markdown body.
      */
     content: string;
     /**
@@ -14487,7 +14487,7 @@ export type MessagePatchedMetadata = {
     actor: ChannelSender;
     completed_reply?: null | MessagePostedMetadata;
     /**
-     * Macro Markdown body after the patch.
+     * Rox Markdown body after the patch.
      */
     content: string;
     /**
@@ -14525,7 +14525,7 @@ export type MessagePostedMetadata = {
      */
     attachments: Array<MessageEventAttachment>;
     /**
-     * Macro Markdown body.
+     * Rox Markdown body.
      */
     content: string;
     /**
@@ -15454,7 +15454,7 @@ export type PasswordActivity = {
      */
     occurredAt: string;
     /**
-     * Authenticated Macro user identity; never a provider credential.
+     * Authenticated Rox user identity; never a provider credential.
      */
     userId: string;
 };
@@ -16487,7 +16487,7 @@ export type PostMessage = {
      */
     attachments?: Array<NewAttachment>;
     /**
-     * Macro Markdown body.
+     * Rox Markdown body.
      */
     content: string;
     /**
@@ -18297,7 +18297,7 @@ export type SharedExternalChatReference = {
      */
     name: string;
     /**
-     * Macro user who added the chat and shared it.
+     * Rox user who added the chat and shared it.
      */
     ownerId: string;
 };
@@ -18643,7 +18643,7 @@ export type SoupAgentSessionSoupPropertiesField = {
      */
     ownerId: string;
     /**
-     * The linked pull request's Macro entity, when visible to the viewer.
+     * The linked pull request's Rox entity, when visible to the viewer.
      */
     pullRequestId?: string | null;
     pullRequestState?: null | AgentPullRequestState;
@@ -18859,7 +18859,7 @@ export type SoupCalendarEventSoupPropertiesField = {
      */
     organizerName?: string | null;
     /**
-     * Owning Macro user.
+     * Owning Rox user.
      */
     ownerId: string;
     /**
@@ -18923,7 +18923,7 @@ export type SoupCallRecordParticipant = {
      */
     leftAt?: string | null;
     /**
-     * The Macro user id.
+     * The Rox user id.
      */
     userId: string;
 };
@@ -19302,7 +19302,7 @@ export type SoupCrmDomain = {
 };
 
 /**
- * A row of a Macro database table in the Soup feed. Its cells are its
+ * A row of a Rox database table in the Soup feed. Its cells are its
  * entity properties; access is its database's.
  */
 export type SoupDatabaseRowSoupPropertiesField = {
@@ -20008,7 +20008,7 @@ export type SourceBinding = {
 export type SourceId = string;
 
 /**
- * Source identity supplied when creating a job. One binding per Macro team in v1.
+ * Source identity supplied when creating a job. One binding per Rox team in v1.
  */
 export type SourceIdentity = {
     kind: 'known';
@@ -20797,7 +20797,7 @@ export type SqlCell = {
 };
 
 /**
- * What an entity column's references point at: a kind of Macro entity, or
+ * What an entity column's references point at: a kind of Rox entity, or
  * the rows of another table for a relation.
  *
  * Spelled as the properties system spells entity types (`USER`,
@@ -20983,7 +20983,7 @@ export type StarterDatabase = {
  */
 export type StarterDocumentsResponse = {
     /**
-     * Id of the user's "Macro how to guide".
+     * Id of the user's "Rox how to guide".
      */
     how_to_guide_id: string;
 };
@@ -21035,7 +21035,7 @@ export type StorageRowsQuery = {
 };
 
 /**
- * A GitHub pull request as Macro stores it, read through one of the caller's records.
+ * A GitHub pull request as Rox stores it, read through one of the caller's records.
  */
 export type StoredGithubPullRequest = {
     /**
@@ -21434,7 +21434,7 @@ export type TallyBucket = {
      */
     value: TallyValue;
     /**
-     * Who chose it, as Macro user ids in submission order: present only
+     * Who chose it, as Rox user ids in submission order: present only
      * for the form's editors, or its viewers when it shares its responses,
      * and never when it hides respondents. Rows no signed-in respondent
      * submitted count without a voter.
@@ -21664,7 +21664,7 @@ export type TeamCalendarMember = {
      */
     sharing: TeamCalendarSharing;
     /**
-     * Macro user identifier.
+     * Rox user identifier.
      */
     userId: string;
 };
@@ -21709,7 +21709,7 @@ export type TeamMemberAvailability = {
      */
     unknownReasons: Array<AvailabilityUnknownReason>;
     /**
-     * Macro identifier of the included person.
+     * Rox identifier of the included person.
      */
     userId: string;
 };
@@ -21727,7 +21727,7 @@ export type TeamOutOfOfficeItem = {
      */
     occurrenceKey: string;
     /**
-     * Macro user id of the teammate who is out.
+     * Rox user id of the teammate who is out.
      */
     ownerId: string;
     /**
@@ -23264,7 +23264,7 @@ export type WhatsAppAccountView = {
 };
 
 /**
- * Why a chat can't be added to Macro; the app words it from the code.
+ * Why a chat can't be added to Rox; the app words it from the code.
  */
 export type WhatsAppCannotAdd = 'not_in_group' | 'community' | 'own_chat' | 'not_in_chat_list';
 

@@ -65,7 +65,7 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Get the Macro document id for an email attachment, uploading it if it doesn't already exist.
+     * Get the Rox document id for an email attachment, uploading it if it doesn't already exist.
      */
     public getAttachmentDocumentId<ThrowOnError extends boolean = false>(options: Options<GetAttachmentDocumentIdData, ThrowOnError>): RequestResult<GetAttachmentDocumentIdResponses, GetAttachmentDocumentIdErrors, ThrowOnError> {
         return (options.client ?? this.client).get<GetAttachmentDocumentIdResponses, GetAttachmentDocumentIdErrors, ThrowOnError>({ url: '/email/attachments/{id}/document_id', ...options });

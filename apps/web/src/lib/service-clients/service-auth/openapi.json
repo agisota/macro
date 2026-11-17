@@ -1638,7 +1638,7 @@
     "/gtm-invite/links": {
       "get": {
         "tags": ["gtm_invite"],
-        "summary": "Lists invite links, newest first. Macro staff only.",
+        "summary": "Lists invite links, newest first. Rox staff only.",
         "operationId": "list_gtm_invite_links",
         "parameters": [
           {
@@ -1696,7 +1696,7 @@
       },
       "post": {
         "tags": ["gtm_invite"],
-        "summary": "Creates an invite link. Macro staff only.",
+        "summary": "Creates an invite link. Rox staff only.",
         "operationId": "create_gtm_invite_link",
         "requestBody": {
           "content": {
@@ -1765,7 +1765,7 @@
     "/gtm-invite/links/{id}": {
       "delete": {
         "tags": ["gtm_invite"],
-        "summary": "Revokes an invite link nobody has signed up through. Macro staff only.",
+        "summary": "Revokes an invite link nobody has signed up through. Rox staff only.",
         "operationId": "revoke_gtm_invite_link",
         "parameters": [
           {
@@ -2141,7 +2141,7 @@
             }
           },
           "429": {
-            "description": "Refresh already in progress for this user, or the access token lacks the Macro claims and was issued too recently to refresh",
+            "description": "Refresh already in progress for this user, or the access token lacks the Rox claims and was issued too recently to refresh",
             "content": {
               "text/plain": {
                 "schema": {
@@ -3732,7 +3732,7 @@
       "post": {
         "tags": ["system_status"],
         "summary": "Sets the status every user sees and pushes it to every open app. Macro\nstaff only.",
-        "description": "Authenticate with a Macro session, or from a script with a personal API\nkey (Settings → API keys) in the `x-macro-user-api-key` header. The body\nis the new status:\n\n- `{\"status\": \"operational\"}` clears the banner. It takes no message.\n- `{\"status\": \"degraded\", \"message\": \"Search is slow to update.\"}`\n- `{\"status\": \"major_outage\", \"message\": \"Macro is unavailable. We're on it.\"}`\n\nMessages are trimmed and must be 1–500 characters. Every call is kept in\nthe history, even when it repeats the current status.",
+        "description": "Authenticate with a Rox session, or from a script with a personal API\nkey (Settings → API keys) in the `x-macro-user-api-key` header. The body\nis the new status:\n\n- `{\"status\": \"operational\"}` clears the banner. It takes no message.\n- `{\"status\": \"degraded\", \"message\": \"Search is slow to update.\"}`\n- `{\"status\": \"major_outage\", \"message\": \"Rox is unavailable. We're on it.\"}`\n\nMessages are trimmed and must be 1–500 characters. Every call is kept in\nthe history, even when it repeats the current status.",
         "operationId": "set_system_status",
         "requestBody": {
           "content": {
@@ -3794,7 +3794,7 @@
     "/system-status/history": {
       "get": {
         "tags": ["system_status"],
-        "summary": "Recent status updates, newest first, with who set each. Macro staff only.",
+        "summary": "Recent status updates, newest first, with who set each. Rox staff only.",
         "operationId": "list_system_status_history",
         "responses": {
           "200": {
@@ -4659,7 +4659,7 @@
     "/team/domain-notice": {
       "post": {
         "tags": ["teams::inbound::axum_router::domain_notice"],
-        "summary": "Emails the caller's contacts on the team's auto-join domain that the team\nexists, so they can sign up and join. Contacts already on Macro, on the\nteam, invited, or emailed before are skipped, and a team emails at most 25\npeople in total. Call it after sending the team's invites. Requires the\ncaller to be an Admin or Owner of the team.",
+        "summary": "Emails the caller's contacts on the team's auto-join domain that the team\nexists, so they can sign up and join. Contacts already on Rox, on the\nteam, invited, or emailed before are skipped, and a team emails at most 25\npeople in total. Call it after sending the team's invites. Requires the\ncaller to be an Admin or Owner of the team.",
         "operationId": "send_team_domain_notice",
         "responses": {
           "200": {
@@ -6003,7 +6003,7 @@
           {
             "name": "agent_user_id",
             "in": "path",
-            "description": "The agent's Macro user id.",
+            "description": "The agent's Rox user id.",
             "required": true,
             "schema": {
               "type": "string"
@@ -6086,7 +6086,7 @@
           {
             "name": "agent_user_id",
             "in": "path",
-            "description": "The agent's Macro user id.",
+            "description": "The agent's Rox user id.",
             "required": true,
             "schema": {
               "type": "string"
@@ -6174,7 +6174,7 @@
           {
             "name": "agent_user_id",
             "in": "path",
-            "description": "The agent's Macro user id.",
+            "description": "The agent's Rox user id.",
             "required": true,
             "schema": {
               "type": "string"
@@ -8228,7 +8228,7 @@
           },
           "purchasedBy": {
             "type": "string",
-            "description": "The Macro user who bought it. The team's owner and admins, not the\nbuyer, finish its setup and manage its Claude account."
+            "description": "The Rox user who bought it. The team's owner and admins, not the\nbuyer, finish its setup and manage its Claude account."
           },
           "retainedUntil": {
             "type": ["string", "null"],
@@ -8688,7 +8688,7 @@
           },
           "outlook_admin_consent_url": {
             "type": ["string", "null"],
-            "description": "Where a Microsoft 365 administrator approves Macro for their whole\ndirectory. Present when Outlook is configured and the request named an\n`original_url` for the administrator's browser to return to."
+            "description": "Where a Microsoft 365 administrator approves Rox for their whole\ndirectory. Present when Outlook is configured and the request named an\n`original_url` for the administrator's browser to return to."
           }
         }
       },
@@ -9377,7 +9377,7 @@
           },
           "createdBy": {
             "type": "string",
-            "description": "The Macro user id of the staff member who created the link."
+            "description": "The Rox user id of the staff member who created the link."
           },
           "expiresAt": {
             "type": "string",
@@ -9428,7 +9428,7 @@
           },
           "redeemedBy": {
             "type": ["string", "null"],
-            "description": "The Macro user id of the account that signed up through the link."
+            "description": "The Rox user id of the account that signed up through the link."
           },
           "revokedAt": {
             "type": ["string", "null"],
@@ -10820,7 +10820,7 @@
           },
           {
             "type": "object",
-            "description": "Macro is largely unavailable.",
+            "description": "Rox is largely unavailable.",
             "required": ["message", "status"],
             "properties": {
               "message": {
@@ -10918,7 +10918,7 @@
       },
       "TeamAgent": {
         "type": "object",
-        "description": "An agent teammate: an AI member of a team with its own Macro account and\nits own Macro computer.",
+        "description": "An agent teammate: an AI member of a team with its own Rox account and\nits own Rox computer.",
         "required": [
           "userId",
           "teamId",
@@ -10932,7 +10932,7 @@
           "computerId": {
             "type": ["string", "null"],
             "format": "uuid",
-            "description": "The agent's Macro computer, once bought."
+            "description": "The agent's Rox computer, once bought."
           },
           "createdAt": {
             "type": "string",
@@ -11545,7 +11545,7 @@
   "tags": [
     {
       "name": "auth service",
-      "description": "Macro Authentication Service"
+      "description": "Rox Authentication Service"
     }
   ]
 }

@@ -19,7 +19,7 @@ export interface CalendarJoinRequest {
   id: string;
   /** Address the sharer invites when accepting. */
   requesterEmail: string;
-  /** Macro user asking to join. */
+  /** Rox user asking to join. */
   requesterId: string;
   /** Where the request stands. */
   status: CalendarJoinRequestStatus;

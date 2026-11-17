@@ -8,11 +8,11 @@ import type { ComputerSetupMetadata } from './computerSetupMetadata';
 import type { NotifEventOneOfSevenoneTag } from './notifEventOneOfSevenoneTag';
 
 /**
- * A Macro computer the user bought finished first-time setup, or
+ * A Rox computer the user bought finished first-time setup, or
 could not be set up.
  */
 export type NotifEventOneOfSevenone = {
-  /** A Macro computer the user bought finished first-time setup, or
+  /** A Rox computer the user bought finished first-time setup, or
 could not be set up. */
   content: ComputerSetupMetadata;
   tag: NotifEventOneOfSevenoneTag;

@@ -1806,7 +1806,7 @@ export const listOccurrencesResponse = zod
                 .describe(
                   'RFC 5545 UID used to reconcile provider and email sources.'
                 ),
-              id: zod.uuid().describe('Macro entity identifier.'),
+              id: zod.uuid().describe('Rox entity identifier.'),
               isReadOnly: zod
                 .boolean()
                 .describe(
@@ -1831,7 +1831,7 @@ export const listOccurrencesResponse = zod
                 .describe('Organizer display name.'),
               ownerId: zod
                 .string()
-                .describe('Macro user who owns this event entity.'),
+                .describe('Rox user who owns this event entity.'),
               recurrenceLines: zod
                 .array(zod.string())
                 .describe(
@@ -2045,7 +2045,7 @@ export const listOccurrencesResponse = zod
                 .describe('Visibility of event details.'),
             })
             .describe(
-              "A stable, first-class Macro calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy."
+              "A stable, first-class Rox calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy."
             ),
           occurrence: zod
             .object({
@@ -2463,7 +2463,7 @@ export const listTeamCalendarResponse = zod
             sharing: zod
               .enum(['all', 'busy_only', 'none'])
               .describe('What a user exposes through their team membership.'),
-            userId: zod.string().describe('Macro user identifier.'),
+            userId: zod.string().describe('Rox user identifier.'),
           })
           .describe("A current member of the requester's team.")
       )
@@ -2513,7 +2513,7 @@ export const listTeamOutOfOfficeResponse = zod
             .describe('Stable occurrence key within the event.'),
           ownerId: zod
             .string()
-            .describe('Macro user id of the teammate who is out.'),
+            .describe('Rox user id of the teammate who is out.'),
           time: zod
             .union([
               zod
@@ -2645,7 +2645,7 @@ export const getTeamAvailabilityResponse = zod
               ),
             userId: zod
               .string()
-              .describe('Macro identifier of the included person.'),
+              .describe('Rox identifier of the included person.'),
           })
           .describe(
             'Busy time and confidence for one explicitly included person.'
@@ -2701,7 +2701,7 @@ export const listJoinRequestsResponse = zod
             requesterEmail: zod
               .string()
               .describe('Address the sharer invites when accepting.'),
-            requesterId: zod.string().describe('Macro user asking to join.'),
+            requesterId: zod.string().describe('Rox user asking to join.'),
             status: zod
               .enum(['pending', 'accepted', 'declined'])
               .describe(
@@ -2736,7 +2736,7 @@ export const requestToJoinResponse = zod
     requesterEmail: zod
       .string()
       .describe('Address the sharer invites when accepting.'),
-    requesterId: zod.string().describe('Macro user asking to join.'),
+    requesterId: zod.string().describe('Rox user asking to join.'),
     status: zod
       .enum(['pending', 'accepted', 'declined'])
       .describe(
@@ -2941,7 +2941,7 @@ export const guestCallChatPostMessageResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -3134,7 +3134,7 @@ export const guestCallChatPatchMessageResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -3321,7 +3321,7 @@ export const guestCallChatReactMessageResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -3523,7 +3523,7 @@ export const guestCallChatReadThreadResponse = zod
                           ),
                       ])
                       .optional(),
-                    content: zod.string().describe('Macro Markdown body.'),
+                    content: zod.string().describe('Rox Markdown body.'),
                     created_at: zod.iso.datetime({}).describe('Creation time.'),
                     deleted_at: zod.iso
                       .datetime({})
@@ -3738,7 +3738,7 @@ export const guestCallChatReadThreadResponse = zod
                       ),
                   ])
                   .optional(),
-                content: zod.string().describe('Macro Markdown body.'),
+                content: zod.string().describe('Rox Markdown body.'),
                 created_at: zod.iso.datetime({}).describe('Creation time.'),
                 deleted_at: zod.iso
                   .datetime({})
@@ -4147,7 +4147,7 @@ export const meetingGuestParticipantsResponse = zod
             avatarUrl: zod
               .string()
               .nullish()
-              .describe('Profile image, when available for a Macro member.'),
+              .describe('Profile image, when available for a Rox member.'),
             displayName: zod
               .string()
               .describe('Name displayed in the waiting room.'),
@@ -4347,7 +4347,7 @@ export const meetingInviteBody = zod
   .object({
     email: zod
       .string()
-      .describe('Recipient email; no Macro account is required.'),
+      .describe('Recipient email; no Rox account is required.'),
   })
   .describe('A single email recipient for a call invitation.');
 
@@ -4429,7 +4429,7 @@ export const meetingParticipantsResponse = zod
             avatarUrl: zod
               .string()
               .nullish()
-              .describe('Profile image, when available for a Macro member.'),
+              .describe('Profile image, when available for a Rox member.'),
             displayName: zod
               .string()
               .describe('Name displayed in the waiting room.'),
@@ -4717,7 +4717,7 @@ export const getCallRecordResponse = zod
               .describe(
                 'When the user left (None if still in an active call).'
               ),
-            userId: zod.string().describe('The Macro user id.'),
+            userId: zod.string().describe('The Rox user id.'),
           })
           .describe(
             'A participant as returned in a [`CallRecord`] (historic — includes `left_at`).'
@@ -5102,7 +5102,7 @@ export const getCallParticipantsResponse = zod
             userId: zod
               .string()
               .nullish()
-              .describe('Macro account identifier, if this is a user.'),
+              .describe('Rox account identifier, if this is a user.'),
           })
           .describe('A connected participant in an RTC room.')
       )
@@ -5166,7 +5166,7 @@ export const editCallTranscriptBody = zod
             customSpeaker: zod
               .string()
               .describe(
-                'Macro user id to attribute matching rows to, or `None` to clear.'
+                'Rox user id to attribute matching rows to, or `None` to clear.'
               ),
             diarizedSpeakerId: zod
               .string()
@@ -11937,12 +11937,12 @@ export const applyCrmPipelineOpsBody = zod
                                             'INITIATIVE',
                                           ])
                                           .describe(
-                                            'A kind of Macro entity a reference column can point at.'
+                                            'A kind of Rox entity a reference column can point at.'
                                           ),
                                         type: zod.enum(['entity']),
                                       })
                                       .describe(
-                                        'References to Macro entities.'
+                                        'References to Rox entities.'
                                       ),
                                     zod
                                       .object({
@@ -12142,11 +12142,11 @@ export const applyCrmPipelineOpsBody = zod
                                     'INITIATIVE',
                                   ])
                                   .describe(
-                                    'A kind of Macro entity a reference column can point at.'
+                                    'A kind of Rox entity a reference column can point at.'
                                   ),
                                 type: zod.enum(['entity']),
                               })
-                              .describe('References to Macro entities.'),
+                              .describe('References to Rox entities.'),
                             zod
                               .object({
                                 database: zod
@@ -12450,19 +12450,19 @@ export const applyCrmPipelineOpsBody = zod
                                                       'INITIATIVE',
                                                     ])
                                                     .describe(
-                                                      'A kind of Macro entity a reference column can point at.'
+                                                      'A kind of Rox entity a reference column can point at.'
                                                     ),
                                                 })
                                                 .describe(
-                                                  'A reference to one Macro entity.'
+                                                  'A reference to one Rox entity.'
                                                 )
                                             )
                                             .describe(
-                                              'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                              'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                             ),
                                         })
                                         .describe(
-                                          'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                          'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                         ),
                                       zod
                                         .object({
@@ -12651,19 +12651,19 @@ export const applyCrmPipelineOpsBody = zod
                                                             'INITIATIVE',
                                                           ])
                                                           .describe(
-                                                            'A kind of Macro entity a reference column can point at.'
+                                                            'A kind of Rox entity a reference column can point at.'
                                                           ),
                                                       })
                                                       .describe(
-                                                        'A reference to one Macro entity.'
+                                                        'A reference to one Rox entity.'
                                                       )
                                                   )
                                                   .describe(
-                                                    'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                    'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                                   ),
                                               })
                                               .describe(
-                                                'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                               ),
                                             zod
                                               .object({
@@ -12880,19 +12880,19 @@ export const applyCrmPipelineOpsBody = zod
                                                                     'INITIATIVE',
                                                                   ])
                                                                   .describe(
-                                                                    'A kind of Macro entity a reference column can point at.'
+                                                                    'A kind of Rox entity a reference column can point at.'
                                                                   ),
                                                               })
                                                               .describe(
-                                                                'A reference to one Macro entity.'
+                                                                'A reference to one Rox entity.'
                                                               )
                                                           )
                                                           .describe(
-                                                            'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                            'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                                           ),
                                                       })
                                                       .describe(
-                                                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                                       ),
                                                     zod
                                                       .object({
@@ -17042,7 +17042,7 @@ export const listDatabasesResponseItem = zod
                               ),
                           })
                           .describe(
-                            "A stable name from Macro's original, distinct icon catalog."
+                            "A stable name from Rox's original, distinct icon catalog."
                           ),
                         zod
                           .object({
@@ -17224,7 +17224,7 @@ export const queryDatabasesBody = zod
         zod
           .uuid()
           .describe(
-            'Identifier of reusable database storage. Its optional Macro entity uses\nthe same identity, so existing routes and grants keep their IDs.'
+            'Identifier of reusable database storage. Its optional Rox entity uses\nthe same identity, so existing routes and grants keep their IDs.'
           ),
       ])
       .optional(),
@@ -17344,7 +17344,7 @@ export const queryDatabasesResponse = zod
                             'DATABASE_ROW',
                           ])
                           .describe(
-                            "What an entity column's references point at: a kind of Macro entity, or\nthe rows of another table for a relation.\n\nSpelled as the properties system spells entity types (`USER`,\n`DATABASE_ROW`), on the wire and in SQL, where it parses\ncase-insensitively."
+                            "What an entity column's references point at: a kind of Rox entity, or\nthe rows of another table for a relation.\n\nSpelled as the properties system spells entity types (`USER`,\n`DATABASE_ROW`), on the wire and in SQL, where it parses\ncase-insensitively."
                           ),
                       ])
                       .optional(),
@@ -17476,7 +17476,7 @@ export const queryDatabasesResponse = zod
             databaseId: zod
               .uuid()
               .describe(
-                'Identifier of reusable database storage. Its optional Macro entity uses\nthe same identity, so existing routes and grants keep their IDs.'
+                'Identifier of reusable database storage. Its optional Rox entity uses\nthe same identity, so existing routes and grants keep their IDs.'
               ),
             kind: zod.enum(['schema']),
             summary: zod
@@ -17546,7 +17546,7 @@ export const queryDatabasesResponse = zod
         zod
           .uuid()
           .describe(
-            'Identifier of reusable database storage. Its optional Macro entity uses\nthe same identity, so existing routes and grants keep their IDs.'
+            'Identifier of reusable database storage. Its optional Rox entity uses\nthe same identity, so existing routes and grants keep their IDs.'
           )
       )
       .describe(
@@ -17654,7 +17654,7 @@ export const getDatabaseResponse = zod
                               ),
                           })
                           .describe(
-                            "A stable name from Macro's original, distinct icon catalog."
+                            "A stable name from Rox's original, distinct icon catalog."
                           ),
                         zod
                           .object({
@@ -18479,7 +18479,7 @@ export const setDatabaseAppearanceBody = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -18536,7 +18536,7 @@ export const setDatabaseAppearanceResponse = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -19019,12 +19019,12 @@ export const applyDatabaseOpsBody = zod
                                             'INITIATIVE',
                                           ])
                                           .describe(
-                                            'A kind of Macro entity a reference column can point at.'
+                                            'A kind of Rox entity a reference column can point at.'
                                           ),
                                         type: zod.enum(['entity']),
                                       })
                                       .describe(
-                                        'References to Macro entities.'
+                                        'References to Rox entities.'
                                       ),
                                     zod
                                       .object({
@@ -19224,11 +19224,11 @@ export const applyDatabaseOpsBody = zod
                                     'INITIATIVE',
                                   ])
                                   .describe(
-                                    'A kind of Macro entity a reference column can point at.'
+                                    'A kind of Rox entity a reference column can point at.'
                                   ),
                                 type: zod.enum(['entity']),
                               })
-                              .describe('References to Macro entities.'),
+                              .describe('References to Rox entities.'),
                             zod
                               .object({
                                 database: zod
@@ -19532,19 +19532,19 @@ export const applyDatabaseOpsBody = zod
                                                       'INITIATIVE',
                                                     ])
                                                     .describe(
-                                                      'A kind of Macro entity a reference column can point at.'
+                                                      'A kind of Rox entity a reference column can point at.'
                                                     ),
                                                 })
                                                 .describe(
-                                                  'A reference to one Macro entity.'
+                                                  'A reference to one Rox entity.'
                                                 )
                                             )
                                             .describe(
-                                              'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                              'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                             ),
                                         })
                                         .describe(
-                                          'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                          'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                         ),
                                       zod
                                         .object({
@@ -19733,19 +19733,19 @@ export const applyDatabaseOpsBody = zod
                                                             'INITIATIVE',
                                                           ])
                                                           .describe(
-                                                            'A kind of Macro entity a reference column can point at.'
+                                                            'A kind of Rox entity a reference column can point at.'
                                                           ),
                                                       })
                                                       .describe(
-                                                        'A reference to one Macro entity.'
+                                                        'A reference to one Rox entity.'
                                                       )
                                                   )
                                                   .describe(
-                                                    'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                    'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                                   ),
                                               })
                                               .describe(
-                                                'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                               ),
                                             zod
                                               .object({
@@ -19962,19 +19962,19 @@ export const applyDatabaseOpsBody = zod
                                                                     'INITIATIVE',
                                                                   ])
                                                                   .describe(
-                                                                    'A kind of Macro entity a reference column can point at.'
+                                                                    'A kind of Rox entity a reference column can point at.'
                                                                   ),
                                                               })
                                                               .describe(
-                                                                'A reference to one Macro entity.'
+                                                                'A reference to one Rox entity.'
                                                               )
                                                           )
                                                           .describe(
-                                                            'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                            'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                                           ),
                                                       })
                                                       .describe(
-                                                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                                                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                                                       ),
                                                     zod
                                                       .object({
@@ -22603,11 +22603,11 @@ export const convertDatabaseColumnBody = zod
                 'INITIATIVE',
               ])
               .describe(
-                'A kind of Macro entity a reference column can point at.'
+                'A kind of Rox entity a reference column can point at.'
               ),
             type: zod.enum(['entity']),
           })
-          .describe('References to Macro entities.'),
+          .describe('References to Rox entities.'),
         zod
           .object({
             database: zod.uuid().describe('The database of the related table.'),
@@ -22747,17 +22747,17 @@ export const convertDatabaseColumnResponse = zod
                                 'INITIATIVE',
                               ])
                               .describe(
-                                'A kind of Macro entity a reference column can point at.'
+                                'A kind of Rox entity a reference column can point at.'
                               ),
                           })
-                          .describe('A reference to one Macro entity.')
+                          .describe('A reference to one Rox entity.')
                       )
                       .describe(
-                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                       ),
                   })
                   .describe(
-                    'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                    'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                   ),
                 zod
                   .object({
@@ -23286,17 +23286,17 @@ export const getDatabaseRowHistoryResponse = zod
                                     'INITIATIVE',
                                   ])
                                   .describe(
-                                    'A kind of Macro entity a reference column can point at.'
+                                    'A kind of Rox entity a reference column can point at.'
                                   ),
                               })
-                              .describe('A reference to one Macro entity.')
+                              .describe('A reference to one Rox entity.')
                           )
                           .describe(
-                            'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                            'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                           ),
                       })
                       .describe(
-                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                       ),
                     zod
                       .object({
@@ -23449,17 +23449,17 @@ export const getDatabaseRowHistoryResponse = zod
                                     'INITIATIVE',
                                   ])
                                   .describe(
-                                    'A kind of Macro entity a reference column can point at.'
+                                    'A kind of Rox entity a reference column can point at.'
                                   ),
                               })
-                              .describe('A reference to one Macro entity.')
+                              .describe('A reference to one Rox entity.')
                           )
                           .describe(
-                            'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                            'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                           ),
                       })
                       .describe(
-                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                       ),
                     zod
                       .object({
@@ -23704,7 +23704,7 @@ export const getUserDocumentsHandlerResponse = zod.object({
                                   ),
                               })
                               .describe(
-                                "A stable name from Macro's original, distinct icon catalog."
+                                "A stable name from Rox's original, distinct icon catalog."
                               ),
                             zod
                               .object({
@@ -23956,7 +23956,7 @@ export const createDocumentResponse = zod.object({
                                 ),
                             })
                             .describe(
-                              "A stable name from Macro's original, distinct icon catalog."
+                              "A stable name from Rox's original, distinct icon catalog."
                             ),
                           zod
                             .object({
@@ -24184,7 +24184,7 @@ export const createCanvasHandlerResponse = zod
                             ),
                         })
                         .describe(
-                          "A stable name from Macro's original, distinct icon catalog."
+                          "A stable name from Rox's original, distinct icon catalog."
                         ),
                       zod
                         .object({
@@ -24363,7 +24363,7 @@ export const createMarkdownHandlerResponse = zod
                             ),
                         })
                         .describe(
-                          "A stable name from Macro's original, distinct icon catalog."
+                          "A stable name from Rox's original, distinct icon catalog."
                         ),
                       zod
                         .object({
@@ -24786,7 +24786,7 @@ export const createTaskHandlerResponse = zod
                             ),
                         })
                         .describe(
-                          "A stable name from Macro's original, distinct icon catalog."
+                          "A stable name from Rox's original, distinct icon catalog."
                         ),
                       zod
                         .object({
@@ -25121,7 +25121,7 @@ export const getBatchPreviewHandlerResponse = zod.object({
                                 ),
                             })
                             .describe(
-                              "A stable name from Macro's original, distinct icon catalog."
+                              "A stable name from Rox's original, distinct icon catalog."
                             ),
                           zod
                             .object({
@@ -25436,7 +25436,7 @@ export const handlerResponse = zod
   .object({
     how_to_guide_id: zod
       .string()
-      .describe('Id of the user\'s \"Macro how to guide\".'),
+      .describe('Id of the user\'s \"Rox how to guide\".'),
   })
   .describe('The deterministic starter document ids for the current user.');
 
@@ -25554,7 +25554,7 @@ export const getDocumentResponse = zod.object({
                                 ),
                             })
                             .describe(
-                              "A stable name from Macro's original, distinct icon catalog."
+                              "A stable name from Rox's original, distinct icon catalog."
                             ),
                           zod
                             .object({
@@ -25805,7 +25805,7 @@ export const saveDocumentHandlerResponse = zod.object({
                             ),
                         })
                         .describe(
-                          "A stable name from Macro's original, distinct icon catalog."
+                          "A stable name from Rox's original, distinct icon catalog."
                         ),
                       zod
                         .object({
@@ -26549,7 +26549,7 @@ export const setDocumentAppearanceBody = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -26606,7 +26606,7 @@ export const setDocumentAppearanceResponse = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -26962,7 +26962,7 @@ export const commentOnDocumentTextResponse = zod
               ),
           ])
           .optional(),
-        content: zod.string().describe('Macro Markdown body.'),
+        content: zod.string().describe('Rox Markdown body.'),
         created_at: zod.iso.datetime({}).describe('Creation time.'),
         deleted_at: zod.iso
           .datetime({})
@@ -27199,7 +27199,7 @@ export const copyDocumentResponse = zod
                                   ),
                               })
                               .describe(
-                                "A stable name from Macro's original, distinct icon catalog."
+                                "A stable name from Rox's original, distinct icon catalog."
                               ),
                             zod
                               .object({
@@ -35951,7 +35951,7 @@ export const simpleSaveResponse = zod.object({
                             ),
                         })
                         .describe(
-                          "A stable name from Macro's original, distinct icon catalog."
+                          "A stable name from Rox's original, distinct icon catalog."
                         ),
                       zod
                         .object({
@@ -39186,7 +39186,7 @@ export const getDocumentViewsHandlerResponse = zod.object({
 
 /**
  * @summary Read an uploaded Word document as it stands now, including edits made in
-Macro, with the caller's view access: every paragraph, table cell and
+Rox, with the caller's view access: every paragraph, table cell and
 content control with its stable id, style and text, tracked changes, and
 Word comments. Long documents are paged.
  */
@@ -39463,7 +39463,7 @@ export const getDocumentVersionResponse = zod.object({
                             ),
                         })
                         .describe(
-                          "A stable name from Macro's original, distinct icon catalog."
+                          "A stable name from Rox's original, distinct icon catalog."
                         ),
                       zod
                         .object({
@@ -40404,7 +40404,7 @@ export const externalChatResponse = zod
                         ),
                     })
                     .describe(
-                      'Someone in an external chat; Macro access is a separate grant.'
+                      'Someone in an external chat; Rox access is a separate grant.'
                     )
                 )
                 .describe('Everyone in the chat.'),
@@ -40731,10 +40731,10 @@ export const externalChatMessagesResponse = zod
                     userId: zod
                       .string()
                       .nullish()
-                      .describe('Verified Macro user, if any.'),
+                      .describe('Verified Rox user, if any.'),
                   })
                   .describe(
-                    'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                    'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                   )
                   .and(
                     zod.object({
@@ -40772,10 +40772,10 @@ export const externalChatMessagesResponse = zod
                             userId: zod
                               .string()
                               .nullish()
-                              .describe('Verified Macro user, if any.'),
+                              .describe('Verified Rox user, if any.'),
                           })
                           .describe(
-                            'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                            'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                           )
                       )
                       .describe(
@@ -40826,11 +40826,11 @@ export const externalChatMessagesResponse = zod
                                           .string()
                                           .nullish()
                                           .describe(
-                                            'Verified Macro user, if any.'
+                                            'Verified Rox user, if any.'
                                           ),
                                       })
                                       .describe(
-                                        'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                                        'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                                       )
                                   )
                                   .describe('Who chose it.'),
@@ -40989,10 +40989,10 @@ export const externalChatMessagesResponse = zod
                                 userId: zod
                                   .string()
                                   .nullish()
-                                  .describe('Verified Macro user, if any.'),
+                                  .describe('Verified Rox user, if any.'),
                               })
                               .describe(
-                                'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                                'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                               ),
                           ])
                           .optional(),
@@ -41041,10 +41041,10 @@ export const externalChatMessagesResponse = zod
                                 userId: zod
                                   .string()
                                   .nullish()
-                                  .describe('Verified Macro user, if any.'),
+                                  .describe('Verified Rox user, if any.'),
                               })
                               .describe(
-                                'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                                'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                               )
                           )
                           .describe(
@@ -41085,7 +41085,7 @@ export const externalChatMessagesResponse = zod
                 userId: zod
                   .string()
                   .nullish()
-                  .describe('Verified Macro user association, if present.'),
+                  .describe('Verified Rox user association, if present.'),
               })
               .describe(
                 'Message sender from protocol-verified identity evidence.'
@@ -41095,7 +41095,7 @@ export const externalChatMessagesResponse = zod
               .describe('Timestamp assigned by the provider.'),
             viewOnce: zod
               .boolean()
-              .describe('Sent as view-once; Macro shows it like any media.'),
+              .describe('Sent as view-once; Rox shows it like any media.'),
           })
           .describe('One message in an external chat.')
       )
@@ -41297,10 +41297,10 @@ export const externalChatMessageResponse = zod
             userId: zod
               .string()
               .nullish()
-              .describe('Verified Macro user, if any.'),
+              .describe('Verified Rox user, if any.'),
           })
           .describe(
-            'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+            'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
           )
           .and(
             zod.object({
@@ -41336,10 +41336,10 @@ export const externalChatMessageResponse = zod
                     userId: zod
                       .string()
                       .nullish()
-                      .describe('Verified Macro user, if any.'),
+                      .describe('Verified Rox user, if any.'),
                   })
                   .describe(
-                    'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                    'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                   )
               )
               .describe('The people who reacted with it, earliest first.'),
@@ -41382,10 +41382,10 @@ export const externalChatMessageResponse = zod
                                 userId: zod
                                   .string()
                                   .nullish()
-                                  .describe('Verified Macro user, if any.'),
+                                  .describe('Verified Rox user, if any.'),
                               })
                               .describe(
-                                'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                                'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                               )
                           )
                           .describe('Who chose it.'),
@@ -41524,10 +41524,10 @@ export const externalChatMessageResponse = zod
                         userId: zod
                           .string()
                           .nullish()
-                          .describe('Verified Macro user, if any.'),
+                          .describe('Verified Rox user, if any.'),
                       })
                       .describe(
-                        'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                        'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                       ),
                   ])
                   .optional(),
@@ -41571,10 +41571,10 @@ export const externalChatMessageResponse = zod
                         userId: zod
                           .string()
                           .nullish()
-                          .describe('Verified Macro user, if any.'),
+                          .describe('Verified Rox user, if any.'),
                       })
                       .describe(
-                        'A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.'
+                        'A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.'
                       )
                   )
                   .describe(
@@ -41613,7 +41613,7 @@ export const externalChatMessageResponse = zod
         userId: zod
           .string()
           .nullish()
-          .describe('Verified Macro user association, if present.'),
+          .describe('Verified Rox user association, if present.'),
       })
       .describe('Message sender from protocol-verified identity evidence.'),
     sentAt: zod.iso
@@ -41621,7 +41621,7 @@ export const externalChatMessageResponse = zod
       .describe('Timestamp assigned by the provider.'),
     viewOnce: zod
       .boolean()
-      .describe('Sent as view-once; Macro shows it like any media.'),
+      .describe('Sent as view-once; Rox shows it like any media.'),
   })
   .describe('One message in an external chat.');
 
@@ -42459,7 +42459,7 @@ export const listFormsResponseItem = zod
                           .describe('Catalog name without the SVG extension.'),
                       })
                       .describe(
-                        "A stable name from Macro's original, distinct icon catalog."
+                        "A stable name from Rox's original, distinct icon catalog."
                       ),
                     zod
                       .object({
@@ -42675,7 +42675,7 @@ export const listAccessibleFormsResponseItem = zod
                               ),
                           })
                           .describe(
-                            "A stable name from Macro's original, distinct icon catalog."
+                            "A stable name from Rox's original, distinct icon catalog."
                           ),
                         zod
                           .object({
@@ -42867,7 +42867,7 @@ export const getFormResponse = zod
                               ),
                           })
                           .describe(
-                            "A stable name from Macro's original, distinct icon catalog."
+                            "A stable name from Rox's original, distinct icon catalog."
                           ),
                         zod
                           .object({
@@ -43082,11 +43082,11 @@ export const getFormResponse = zod
                                     'INITIATIVE',
                                   ])
                                   .describe(
-                                    'A kind of Macro entity a reference column can point at.'
+                                    'A kind of Rox entity a reference column can point at.'
                                   ),
                                 type: zod.enum(['entity']),
                               })
-                              .describe('References to Macro entities.'),
+                              .describe('References to Rox entities.'),
                             zod
                               .object({
                                 database: zod
@@ -43573,7 +43573,7 @@ export const getFormResponse = zod
                   })
                   .optional()
                   .describe(
-                    'An existing native Macro scheduling event offered after an accepted response.'
+                    'An existing native Rox scheduling event offered after an accepted response.'
                   ),
                 title: zod.string().describe('Its title.'),
               })
@@ -43708,7 +43708,7 @@ export const updateFormResponse = zod
                           .describe('Catalog name without the SVG extension.'),
                       })
                       .describe(
-                        "A stable name from Macro's original, distinct icon catalog."
+                        "A stable name from Rox's original, distinct icon catalog."
                       ),
                     zod
                       .object({
@@ -43857,7 +43857,7 @@ export const setFormAppearanceBody = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -43914,7 +43914,7 @@ export const setFormAppearanceResponse = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -44006,7 +44006,7 @@ export const collaborateFormResponse = zod
                                   ),
                               })
                               .describe(
-                                "A stable name from Macro's original, distinct icon catalog."
+                                "A stable name from Rox's original, distinct icon catalog."
                               ),
                             zod
                               .object({
@@ -44233,11 +44233,11 @@ export const collaborateFormResponse = zod
                                         'INITIATIVE',
                                       ])
                                       .describe(
-                                        'A kind of Macro entity a reference column can point at.'
+                                        'A kind of Rox entity a reference column can point at.'
                                       ),
                                     type: zod.enum(['entity']),
                                   })
-                                  .describe('References to Macro entities.'),
+                                  .describe('References to Rox entities.'),
                                 zod
                                   .object({
                                     database: zod
@@ -44734,7 +44734,7 @@ export const collaborateFormResponse = zod
                       })
                       .optional()
                       .describe(
-                        'An existing native Macro scheduling event offered after an accepted response.'
+                        'An existing native Rox scheduling event offered after an accepted response.'
                       ),
                     title: zod.string().describe('Its title.'),
                   })
@@ -45370,7 +45370,7 @@ export const putFormLayoutBody = zod
                       .describe('The scheduling profile that owns the event.'),
                   })
                   .describe(
-                    'An existing native Macro scheduling event offered after an accepted response.'
+                    'An existing native Rox scheduling event offered after an accepted response.'
                   ),
                 title: zod.string().describe('Its title.'),
               })
@@ -45449,7 +45449,7 @@ export const putFormLayoutResponse = zod
                                   ),
                               })
                               .describe(
-                                "A stable name from Macro's original, distinct icon catalog."
+                                "A stable name from Rox's original, distinct icon catalog."
                               ),
                             zod
                               .object({
@@ -45676,11 +45676,11 @@ export const putFormLayoutResponse = zod
                                         'INITIATIVE',
                                       ])
                                       .describe(
-                                        'A kind of Macro entity a reference column can point at.'
+                                        'A kind of Rox entity a reference column can point at.'
                                       ),
                                     type: zod.enum(['entity']),
                                   })
-                                  .describe('References to Macro entities.'),
+                                  .describe('References to Rox entities.'),
                                 zod
                                   .object({
                                     database: zod
@@ -46177,7 +46177,7 @@ export const putFormLayoutResponse = zod
                       })
                       .optional()
                       .describe(
-                        'An existing native Macro scheduling event offered after an accepted response.'
+                        'An existing native Rox scheduling event offered after an accepted response.'
                       ),
                     title: zod.string().describe('Its title.'),
                   })
@@ -46590,17 +46590,17 @@ export const submitFormResponseBody = zod
                                 'INITIATIVE',
                               ])
                               .describe(
-                                'A kind of Macro entity a reference column can point at.'
+                                'A kind of Rox entity a reference column can point at.'
                               ),
                           })
-                          .describe('A reference to one Macro entity.')
+                          .describe('A reference to one Rox entity.')
                       )
                       .describe(
-                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                       ),
                   })
                   .describe(
-                    'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                    'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                   ),
                 zod
                   .object({
@@ -46650,7 +46650,7 @@ export const submitFormResponseResponse = zod
                   .describe('The scheduling profile that owns the event.'),
               })
               .describe(
-                'An existing native Macro scheduling event offered after an accepted response.'
+                'An existing native Rox scheduling event offered after an accepted response.'
               ),
             title: zod.string().describe('Its title.'),
           })
@@ -46813,17 +46813,17 @@ export const getMyFormResponseResponse = zod
                                     'INITIATIVE',
                                   ])
                                   .describe(
-                                    'A kind of Macro entity a reference column can point at.'
+                                    'A kind of Rox entity a reference column can point at.'
                                   ),
                               })
-                              .describe('A reference to one Macro entity.')
+                              .describe('A reference to one Rox entity.')
                           )
                           .describe(
-                            'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                            'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                           ),
                       })
                       .describe(
-                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                       ),
                     zod
                       .object({
@@ -46868,7 +46868,7 @@ export const getMyFormResponseResponse = zod
                   .describe('The scheduling profile that owns the event.'),
               })
               .describe(
-                'An existing native Macro scheduling event offered after an accepted response.'
+                'An existing native Rox scheduling event offered after an accepted response.'
               ),
             title: zod.string().describe('Its title.'),
           })
@@ -47051,17 +47051,17 @@ export const editMyFormResponseBody = zod
                                 'INITIATIVE',
                               ])
                               .describe(
-                                'A kind of Macro entity a reference column can point at.'
+                                'A kind of Rox entity a reference column can point at.'
                               ),
                           })
-                          .describe('A reference to one Macro entity.')
+                          .describe('A reference to one Rox entity.')
                       )
                       .describe(
-                        'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                        'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                       ),
                   })
                   .describe(
-                    'References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.'
+                    'References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.'
                   ),
                 zod
                   .object({
@@ -47111,7 +47111,7 @@ export const editMyFormResponseResponse = zod
                   .describe('The scheduling profile that owns the event.'),
               })
               .describe(
-                'An existing native Macro scheduling event offered after an accepted response.'
+                'An existing native Rox scheduling event offered after an accepted response.'
               ),
             title: zod.string().describe('Its title.'),
           })
@@ -47227,7 +47227,7 @@ export const getFormTallyResponse = zod
                       .array(zod.string())
                       .nullish()
                       .describe(
-                        "Who chose it, as Macro user ids in submission order: present only\nfor the form's editors, or its viewers when it shares its responses,\nand never when it hides respondents. Rows no signed-in respondent\nsubmitted count without a voter."
+                        "Who chose it, as Rox user ids in submission order: present only\nfor the form's editors, or its viewers when it shares its responses,\nand never when it hides respondents. Rows no signed-in respondent\nsubmitted count without a voter."
                       ),
                   })
                   .describe('How many rows hold one value.')
@@ -47664,7 +47664,7 @@ export const getGithubPullRequestResponse = zod
     url: zod.string().describe("The pull request's page on GitHub."),
   })
   .describe(
-    "A GitHub pull request as Macro stores it, read through one of the caller's records."
+    "A GitHub pull request as Rox stores it, read through one of the caller's records."
   );
 
 /**
@@ -47916,7 +47916,7 @@ export const approveHarnessPairingResponse = zod
       .enum(['macro_credits', 'own_account'])
       .optional()
       .describe(
-        'How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.'
+        'How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.'
       ),
     computer_id: zod.union([zod.null(), zod.string()]).optional(),
     connected: zod
@@ -47991,7 +47991,7 @@ export const claimHarnessPairingResponse = zod
           .enum(['macro_credits', 'own_account'])
           .optional()
           .describe(
-            'How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.'
+            'How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.'
           ),
         computer_id: zod.union([zod.null(), zod.string()]).optional(),
         connected: zod
@@ -48054,7 +48054,7 @@ export const listHarnessesResponseItem = zod
       .enum(['macro_credits', 'own_account'])
       .optional()
       .describe(
-        'How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.'
+        'How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.'
       ),
     computer_id: zod.union([zod.null(), zod.string()]).optional(),
     connected: zod
@@ -48111,7 +48111,7 @@ export const listHarnessDirectoryResponseItem = zod
       .enum(['macro_credits', 'own_account'])
       .optional()
       .describe(
-        'How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.'
+        'How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.'
       ),
     computer_id: zod.union([zod.null(), zod.string()]).optional(),
     connected: zod
@@ -48170,7 +48170,7 @@ export const getSelfHarnessResponse = zod
       .enum(['macro_credits', 'own_account'])
       .optional()
       .describe(
-        'How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.'
+        'How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.'
       ),
     computer_id: zod.union([zod.null(), zod.string()]).optional(),
     connected: zod
@@ -48290,7 +48290,7 @@ export const patchHarnessResponse = zod
       .enum(['macro_credits', 'own_account'])
       .optional()
       .describe(
-        'How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.'
+        'How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.'
       ),
     computer_id: zod.union([zod.null(), zod.string()]).optional(),
     connected: zod
@@ -48604,7 +48604,7 @@ export const listInitiativesResponse = zod
                                   ),
                               })
                               .describe(
-                                "A stable name from Macro's original, distinct icon catalog."
+                                "A stable name from Rox's original, distinct icon catalog."
                               ),
                             zod
                               .object({
@@ -48883,7 +48883,7 @@ export const createInitiativeResponse = zod
                           .describe('Catalog name without the SVG extension.'),
                       })
                       .describe(
-                        "A stable name from Macro's original, distinct icon catalog."
+                        "A stable name from Rox's original, distinct icon catalog."
                       ),
                     zod
                       .object({
@@ -49064,7 +49064,7 @@ export const pageInitiativesResponse = zod
                                   ),
                               })
                               .describe(
-                                "A stable name from Macro's original, distinct icon catalog."
+                                "A stable name from Rox's original, distinct icon catalog."
                               ),
                             zod
                               .object({
@@ -49206,7 +49206,7 @@ export const getInitiativeResponse = zod
                           .describe('Catalog name without the SVG extension.'),
                       })
                       .describe(
-                        "A stable name from Macro's original, distinct icon catalog."
+                        "A stable name from Rox's original, distinct icon catalog."
                       ),
                     zod
                       .object({
@@ -49425,7 +49425,7 @@ export const updateInitiativeResponse = zod
                           .describe('Catalog name without the SVG extension.'),
                       })
                       .describe(
-                        "A stable name from Macro's original, distinct icon catalog."
+                        "A stable name from Rox's original, distinct icon catalog."
                       ),
                     zod
                       .object({
@@ -49648,7 +49648,7 @@ export const setInitiativeAppearanceBody = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -49705,7 +49705,7 @@ export const setInitiativeAppearanceResponse = zod
                   .describe('Catalog name without the SVG extension.'),
               })
               .describe(
-                "A stable name from Macro's original, distinct icon catalog."
+                "A stable name from Rox's original, distinct icon catalog."
               ),
             zod
               .object({
@@ -50117,7 +50117,7 @@ export const getItemsSoupResponse = zod
                                           ),
                                       })
                                       .describe(
-                                        "A stable name from Macro's original, distinct icon catalog."
+                                        "A stable name from Rox's original, distinct icon catalog."
                                       ),
                                     zod
                                       .object({
@@ -51157,7 +51157,7 @@ export const getItemsSoupResponse = zod
                                           ),
                                       })
                                       .describe(
-                                        "A stable name from Macro's original, distinct icon catalog."
+                                        "A stable name from Rox's original, distinct icon catalog."
                                       ),
                                     zod
                                       .object({
@@ -52371,7 +52371,7 @@ export const getItemsSoupResponse = zod
                               .describe(
                                 'When the user left (None if still in an active call).'
                               ),
-                            userId: zod.string().describe('The Macro user id.'),
+                            userId: zod.string().describe('The Rox user id.'),
                           })
                           .describe(
                             'A Macro-account participant in a call record, as displayed in Soup.'
@@ -52710,7 +52710,7 @@ export const getItemsSoupResponse = zod
                     .string()
                     .nullish()
                     .describe('Organizer display name.'),
-                  ownerId: zod.string().describe('Owning Macro user.'),
+                  ownerId: zod.string().describe('Owning Rox user.'),
                   status: zod.string().describe('Canonical status.'),
                   time: zod
                     .union([
@@ -53763,7 +53763,7 @@ export const getItemsSoupResponse = zod
                       .uuid()
                       .nullish()
                       .describe(
-                        "The linked pull request's Macro entity, when visible to the viewer."
+                        "The linked pull request's Rox entity, when visible to the viewer."
                       ),
                     pullRequestState: zod
                       .union([
@@ -54141,7 +54141,7 @@ export const getItemsSoupResponse = zod
                   })
                 )
                 .describe(
-                  "A row of a Macro database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
+                  "A row of a Rox database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
                 ),
               tag: zod.enum(['databaseRow']),
             })
@@ -55279,7 +55279,7 @@ export const postItemsSoupResponse = zod
                                           ),
                                       })
                                       .describe(
-                                        "A stable name from Macro's original, distinct icon catalog."
+                                        "A stable name from Rox's original, distinct icon catalog."
                                       ),
                                     zod
                                       .object({
@@ -56319,7 +56319,7 @@ export const postItemsSoupResponse = zod
                                           ),
                                       })
                                       .describe(
-                                        "A stable name from Macro's original, distinct icon catalog."
+                                        "A stable name from Rox's original, distinct icon catalog."
                                       ),
                                     zod
                                       .object({
@@ -57533,7 +57533,7 @@ export const postItemsSoupResponse = zod
                               .describe(
                                 'When the user left (None if still in an active call).'
                               ),
-                            userId: zod.string().describe('The Macro user id.'),
+                            userId: zod.string().describe('The Rox user id.'),
                           })
                           .describe(
                             'A Macro-account participant in a call record, as displayed in Soup.'
@@ -57872,7 +57872,7 @@ export const postItemsSoupResponse = zod
                     .string()
                     .nullish()
                     .describe('Organizer display name.'),
-                  ownerId: zod.string().describe('Owning Macro user.'),
+                  ownerId: zod.string().describe('Owning Rox user.'),
                   status: zod.string().describe('Canonical status.'),
                   time: zod
                     .union([
@@ -58925,7 +58925,7 @@ export const postItemsSoupResponse = zod
                       .uuid()
                       .nullish()
                       .describe(
-                        "The linked pull request's Macro entity, when visible to the viewer."
+                        "The linked pull request's Rox entity, when visible to the viewer."
                       ),
                     pullRequestState: zod
                       .union([
@@ -59303,7 +59303,7 @@ export const postItemsSoupResponse = zod
                   })
                 )
                 .describe(
-                  "A row of a Macro database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
+                  "A row of a Rox database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
                 ),
               tag: zod.enum(['databaseRow']),
             })
@@ -59880,7 +59880,7 @@ export const postItemsSoupAstResponse = zod
                                           ),
                                       })
                                       .describe(
-                                        "A stable name from Macro's original, distinct icon catalog."
+                                        "A stable name from Rox's original, distinct icon catalog."
                                       ),
                                     zod
                                       .object({
@@ -60920,7 +60920,7 @@ export const postItemsSoupAstResponse = zod
                                           ),
                                       })
                                       .describe(
-                                        "A stable name from Macro's original, distinct icon catalog."
+                                        "A stable name from Rox's original, distinct icon catalog."
                                       ),
                                     zod
                                       .object({
@@ -62136,7 +62136,7 @@ export const postItemsSoupAstResponse = zod
                               .describe(
                                 'When the user left (None if still in an active call).'
                               ),
-                            userId: zod.string().describe('The Macro user id.'),
+                            userId: zod.string().describe('The Rox user id.'),
                           })
                           .describe(
                             'A Macro-account participant in a call record, as displayed in Soup.'
@@ -62475,7 +62475,7 @@ export const postItemsSoupAstResponse = zod
                     .string()
                     .nullish()
                     .describe('Organizer display name.'),
-                  ownerId: zod.string().describe('Owning Macro user.'),
+                  ownerId: zod.string().describe('Owning Rox user.'),
                   status: zod.string().describe('Canonical status.'),
                   time: zod
                     .union([
@@ -63528,7 +63528,7 @@ export const postItemsSoupAstResponse = zod
                       .uuid()
                       .nullish()
                       .describe(
-                        "The linked pull request's Macro entity, when visible to the viewer."
+                        "The linked pull request's Rox entity, when visible to the viewer."
                       ),
                     pullRequestState: zod
                       .union([
@@ -63906,7 +63906,7 @@ export const postItemsSoupAstResponse = zod
                   })
                 )
                 .describe(
-                  "A row of a Macro database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
+                  "A row of a Rox database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
                 ),
               tag: zod.enum(['databaseRow']),
             })
@@ -64937,7 +64937,7 @@ export const postItemsSoupAstGroupedResponse = zod
                                                 ),
                                             })
                                             .describe(
-                                              "A stable name from Macro's original, distinct icon catalog."
+                                              "A stable name from Rox's original, distinct icon catalog."
                                             ),
                                           zod
                                             .object({
@@ -65989,7 +65989,7 @@ export const postItemsSoupAstGroupedResponse = zod
                                                 ),
                                             })
                                             .describe(
-                                              "A stable name from Macro's original, distinct icon catalog."
+                                              "A stable name from Rox's original, distinct icon catalog."
                                             ),
                                           zod
                                             .object({
@@ -67279,7 +67279,7 @@ export const postItemsSoupAstGroupedResponse = zod
                                     ),
                                   userId: zod
                                     .string()
-                                    .describe('The Macro user id.'),
+                                    .describe('The Rox user id.'),
                                 })
                                 .describe(
                                   'A Macro-account participant in a call record, as displayed in Soup.'
@@ -67632,7 +67632,7 @@ export const postItemsSoupAstGroupedResponse = zod
                           .string()
                           .nullish()
                           .describe('Organizer display name.'),
-                        ownerId: zod.string().describe('Owning Macro user.'),
+                        ownerId: zod.string().describe('Owning Rox user.'),
                         status: zod.string().describe('Canonical status.'),
                         time: zod
                           .union([
@@ -68713,7 +68713,7 @@ export const postItemsSoupAstGroupedResponse = zod
                             .uuid()
                             .nullish()
                             .describe(
-                              "The linked pull request's Macro entity, when visible to the viewer."
+                              "The linked pull request's Rox entity, when visible to the viewer."
                             ),
                           pullRequestState: zod
                             .union([
@@ -69093,7 +69093,7 @@ export const postItemsSoupAstGroupedResponse = zod
                         })
                       )
                       .describe(
-                        "A row of a Macro database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
+                        "A row of a Rox database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
                       ),
                     tag: zod.enum(['databaseRow']),
                   })
@@ -69510,7 +69510,7 @@ export const postItemsSoupAstGroupedResponse = zod
                                                 ),
                                             })
                                             .describe(
-                                              "A stable name from Macro's original, distinct icon catalog."
+                                              "A stable name from Rox's original, distinct icon catalog."
                                             ),
                                           zod
                                             .object({
@@ -70562,7 +70562,7 @@ export const postItemsSoupAstGroupedResponse = zod
                                                 ),
                                             })
                                             .describe(
-                                              "A stable name from Macro's original, distinct icon catalog."
+                                              "A stable name from Rox's original, distinct icon catalog."
                                             ),
                                           zod
                                             .object({
@@ -71852,7 +71852,7 @@ export const postItemsSoupAstGroupedResponse = zod
                                     ),
                                   userId: zod
                                     .string()
-                                    .describe('The Macro user id.'),
+                                    .describe('The Rox user id.'),
                                 })
                                 .describe(
                                   'A Macro-account participant in a call record, as displayed in Soup.'
@@ -72205,7 +72205,7 @@ export const postItemsSoupAstGroupedResponse = zod
                           .string()
                           .nullish()
                           .describe('Organizer display name.'),
-                        ownerId: zod.string().describe('Owning Macro user.'),
+                        ownerId: zod.string().describe('Owning Rox user.'),
                         status: zod.string().describe('Canonical status.'),
                         time: zod
                           .union([
@@ -73286,7 +73286,7 @@ export const postItemsSoupAstGroupedResponse = zod
                             .uuid()
                             .nullish()
                             .describe(
-                              "The linked pull request's Macro entity, when visible to the viewer."
+                              "The linked pull request's Rox entity, when visible to the viewer."
                             ),
                           pullRequestState: zod
                             .union([
@@ -73666,7 +73666,7 @@ export const postItemsSoupAstGroupedResponse = zod
                         })
                       )
                       .describe(
-                        "A row of a Macro database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
+                        "A row of a Rox database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
                       ),
                     tag: zod.enum(['databaseRow']),
                   })
@@ -73802,7 +73802,7 @@ export const messageTimelineResponse = zod
                   ),
               ])
               .optional(),
-            content: zod.string().describe('Macro Markdown body.'),
+            content: zod.string().describe('Rox Markdown body.'),
             created_at: zod.iso.datetime({}).describe('Creation time.'),
             deleted_at: zod.iso
               .datetime({})
@@ -74145,7 +74145,7 @@ export const messageTimelineResponse = zod
                             .optional(),
                           content: zod
                             .string()
-                            .describe('Macro Markdown body.'),
+                            .describe('Rox Markdown body.'),
                           created_at: zod.iso
                             .datetime({})
                             .describe('Creation time.'),
@@ -74496,7 +74496,7 @@ export const entityMessageCreateBody = zod
       )
       .optional()
       .describe('Initial attachments.'),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     id: zod
       .uuid()
       .nullish()
@@ -74556,7 +74556,7 @@ export const entityMessageCreateResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -74736,7 +74736,7 @@ export const entityMessageGetMessageResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -74920,7 +74920,7 @@ export const entityMessageDeleteMessageResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -75200,7 +75200,7 @@ export const entityMessageEditResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -75388,7 +75388,7 @@ export const entityMessageReactResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -75575,7 +75575,7 @@ export const entityMessageLegacyResponse = zod
           .describe('Public bot profile attached to bot-authored messages.'),
       ])
       .optional(),
-    content: zod.string().describe('Macro Markdown body.'),
+    content: zod.string().describe('Rox Markdown body.'),
     created_at: zod.iso.datetime({}).describe('Creation time.'),
     deleted_at: zod.iso
       .datetime({})
@@ -75772,7 +75772,7 @@ export const entityMessageGetThreadResponse = zod
                   ),
               ])
               .optional(),
-            content: zod.string().describe('Macro Markdown body.'),
+            content: zod.string().describe('Rox Markdown body.'),
             created_at: zod.iso.datetime({}).describe('Creation time.'),
             deleted_at: zod.iso
               .datetime({})
@@ -75959,7 +75959,7 @@ export const entityMessageGetThreadResponse = zod
               ),
           ])
           .optional(),
-        content: zod.string().describe('Macro Markdown body.'),
+        content: zod.string().describe('Rox Markdown body.'),
         created_at: zod.iso.datetime({}).describe('Creation time.'),
         deleted_at: zod.iso
           .datetime({})
@@ -76557,7 +76557,7 @@ export const messageTimelineEntriesResponse = zod
                           ),
                       ])
                       .optional(),
-                    content: zod.string().describe('Macro Markdown body.'),
+                    content: zod.string().describe('Rox Markdown body.'),
                     created_at: zod.iso.datetime({}).describe('Creation time.'),
                     deleted_at: zod.iso
                       .datetime({})
@@ -76932,7 +76932,7 @@ export const messageTimelineEntriesResponse = zod
                                     .optional(),
                                   content: zod
                                     .string()
-                                    .describe('Macro Markdown body.'),
+                                    .describe('Rox Markdown body.'),
                                   created_at: zod.iso
                                     .datetime({})
                                     .describe('Creation time.'),
@@ -77217,7 +77217,7 @@ export const messageTimelineEntriesResponse = zod
                           ),
                       ])
                       .optional(),
-                    content: zod.string().describe('Macro Markdown body.'),
+                    content: zod.string().describe('Rox Markdown body.'),
                     created_at: zod.iso.datetime({}).describe('Creation time.'),
                     deleted_at: zod.iso
                       .datetime({})
@@ -77592,7 +77592,7 @@ export const messageTimelineEntriesResponse = zod
                                     .optional(),
                                   content: zod
                                     .string()
-                                    .describe('Macro Markdown body.'),
+                                    .describe('Rox Markdown body.'),
                                   created_at: zod.iso
                                     .datetime({})
                                     .describe('Creation time.'),
@@ -78736,7 +78736,7 @@ export const passwordsActivityResponseItem = zod
     userId: zod
       .string()
       .describe(
-        'Authenticated Macro user identity; never a provider credential.'
+        'Authenticated Rox user identity; never a provider credential.'
       ),
   })
   .describe('Bounded audit entry, correlated by opaque item\/event IDs.');
@@ -81787,12 +81787,12 @@ export const listSlackImportsResponse = zod
                         'group_direct_message',
                       ])
                       .describe(
-                        'Slack conversation kind. Public Slack channels map to Macro Team, never Public.'
+                        'Slack conversation kind. Public Slack channels map to Rox Team, never Public.'
                       ),
                     name: zod
                       .string()
                       .describe(
-                        "Persisted source display name, never the reused Macro target's name."
+                        "Persisted source display name, never the reused Rox target's name."
                       ),
                     partCount: zod
                       .number()
@@ -82001,7 +82001,7 @@ export const listSlackImportsResponse = zod
                   ),
               ])
               .describe(
-                'Source identity supplied when creating a job. One binding per Macro team in v1.'
+                'Source identity supplied when creating a job. One binding per Rox team in v1.'
               ),
             status: zod
               .enum([
@@ -82138,7 +82138,7 @@ export const createSlackImportBody = zod
             archived: zod
               .boolean()
               .describe(
-                'Source archived flag (does not silently archive a reused Macro target).'
+                'Source archived flag (does not silently archive a reused Rox target).'
               ),
             createdAt: zod
               .union([
@@ -82173,7 +82173,7 @@ export const createSlackImportBody = zod
                 'group_direct_message',
               ])
               .describe(
-                'Slack conversation kind. Public Slack channels map to Macro Team, never Public.'
+                'Slack conversation kind. Public Slack channels map to Rox Team, never Public.'
               ),
             memberIds: zod
               .array(
@@ -82242,7 +82242,7 @@ export const createSlackImportBody = zod
           ),
       ])
       .describe(
-        'Source identity supplied when creating a job. One binding per Macro team in v1.'
+        'Source identity supplied when creating a job. One binding per Rox team in v1.'
       ),
   })
   .describe('Create command. Team identity is deliberately absent.');
@@ -82370,12 +82370,12 @@ export const createSlackImportResponse = zod
                 'group_direct_message',
               ])
               .describe(
-                'Slack conversation kind. Public Slack channels map to Macro Team, never Public.'
+                'Slack conversation kind. Public Slack channels map to Rox Team, never Public.'
               ),
             name: zod
               .string()
               .describe(
-                "Persisted source display name, never the reused Macro target's name."
+                "Persisted source display name, never the reused Rox target's name."
               ),
             partCount: zod
               .number()
@@ -82560,7 +82560,7 @@ export const createSlackImportResponse = zod
           ),
       ])
       .describe(
-        'Source identity supplied when creating a job. One binding per Macro team in v1.'
+        'Source identity supplied when creating a job. One binding per Rox team in v1.'
       ),
     status: zod
       .enum([
@@ -82716,12 +82716,12 @@ export const getSlackImportResponse = zod
                 'group_direct_message',
               ])
               .describe(
-                'Slack conversation kind. Public Slack channels map to Macro Team, never Public.'
+                'Slack conversation kind. Public Slack channels map to Rox Team, never Public.'
               ),
             name: zod
               .string()
               .describe(
-                "Persisted source display name, never the reused Macro target's name."
+                "Persisted source display name, never the reused Rox target's name."
               ),
             partCount: zod
               .number()
@@ -82906,7 +82906,7 @@ export const getSlackImportResponse = zod
           ),
       ])
       .describe(
-        'Source identity supplied when creating a job. One binding per Macro team in v1.'
+        'Source identity supplied when creating a job. One binding per Rox team in v1.'
       ),
     status: zod
       .enum([
@@ -83062,12 +83062,12 @@ export const cancelSlackImportResponse = zod
                 'group_direct_message',
               ])
               .describe(
-                'Slack conversation kind. Public Slack channels map to Macro Team, never Public.'
+                'Slack conversation kind. Public Slack channels map to Rox Team, never Public.'
               ),
             name: zod
               .string()
               .describe(
-                "Persisted source display name, never the reused Macro target's name."
+                "Persisted source display name, never the reused Rox target's name."
               ),
             partCount: zod
               .number()
@@ -83252,7 +83252,7 @@ export const cancelSlackImportResponse = zod
           ),
       ])
       .describe(
-        'Source identity supplied when creating a job. One binding per Macro team in v1.'
+        'Source identity supplied when creating a job. One binding per Rox team in v1.'
       ),
     status: zod
       .enum([
@@ -83408,12 +83408,12 @@ export const finalizeSlackImportResponse = zod
                 'group_direct_message',
               ])
               .describe(
-                'Slack conversation kind. Public Slack channels map to Macro Team, never Public.'
+                'Slack conversation kind. Public Slack channels map to Rox Team, never Public.'
               ),
             name: zod
               .string()
               .describe(
-                "Persisted source display name, never the reused Macro target's name."
+                "Persisted source display name, never the reused Rox target's name."
               ),
             partCount: zod
               .number()
@@ -83598,7 +83598,7 @@ export const finalizeSlackImportResponse = zod
           ),
       ])
       .describe(
-        'Source identity supplied when creating a job. One binding per Macro team in v1.'
+        'Source identity supplied when creating a job. One binding per Rox team in v1.'
       ),
     status: zod
       .enum([
@@ -83996,12 +83996,12 @@ export const completeSlackImportUploadsResponse = zod
                 'group_direct_message',
               ])
               .describe(
-                'Slack conversation kind. Public Slack channels map to Macro Team, never Public.'
+                'Slack conversation kind. Public Slack channels map to Rox Team, never Public.'
               ),
             name: zod
               .string()
               .describe(
-                "Persisted source display name, never the reused Macro target's name."
+                "Persisted source display name, never the reused Rox target's name."
               ),
             partCount: zod
               .number()
@@ -84190,7 +84190,7 @@ export const completeSlackImportUploadsResponse = zod
           ),
       ])
       .describe(
-        'Source identity supplied when creating a job. One binding per Macro team in v1.'
+        'Source identity supplied when creating a job. One binding per Rox team in v1.'
       ),
     status: zod
       .enum([
@@ -84868,7 +84868,7 @@ export const whatsappAccountResponse = zod
 
 /**
  * @summary The caller's WhatsApp chat list (groups and direct chats), newest
-activity first, with what can be added to Macro.
+activity first, with what can be added to Rox.
  */
 export const whatsappChatsResponse = zod
   .object({
@@ -84902,7 +84902,7 @@ export const whatsappChatsResponse = zod
                     'not_in_chat_list',
                   ])
                   .describe(
-                    "Why a chat can't be added to Macro; the app words it from the code."
+                    "Why a chat can't be added to Rox; the app words it from the code."
                   ),
               ])
               .optional(),
@@ -84961,7 +84961,7 @@ export const whatsappChatsResponse = zod
                       .describe('Display name, following WhatsApp.'),
                     ownerId: zod
                       .string()
-                      .describe('Macro user who added the chat and shared it.'),
+                      .describe('Rox user who added the chat and shared it.'),
                   })
                   .describe(
                     "Another person's external chat entity the caller can view."

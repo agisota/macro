@@ -397,14 +397,14 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Lists invite links, newest first. Macro staff only.
+     * Lists invite links, newest first. Rox staff only.
      */
     public listGtmInviteLinks<ThrowOnError extends boolean = false>(options?: Options<ListGtmInviteLinksData, ThrowOnError>): RequestResult<ListGtmInviteLinksResponses, ListGtmInviteLinksErrors, ThrowOnError> {
         return (options?.client ?? this.client).get<ListGtmInviteLinksResponses, ListGtmInviteLinksErrors, ThrowOnError>({ url: '/gtm-invite/links', ...options });
     }
 
     /**
-     * Creates an invite link. Macro staff only.
+     * Creates an invite link. Rox staff only.
      */
     public createGtmInviteLink<ThrowOnError extends boolean = false>(options: Options<CreateGtmInviteLinkData, ThrowOnError>): RequestResult<CreateGtmInviteLinkResponses, CreateGtmInviteLinkErrors, ThrowOnError> {
         return (options.client ?? this.client).post<CreateGtmInviteLinkResponses, CreateGtmInviteLinkErrors, ThrowOnError>({
@@ -418,7 +418,7 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Revokes an invite link nobody has signed up through. Macro staff only.
+     * Revokes an invite link nobody has signed up through. Rox staff only.
      */
     public revokeGtmInviteLink<ThrowOnError extends boolean = false>(options: Options<RevokeGtmInviteLinkData, ThrowOnError>): RequestResult<RevokeGtmInviteLinkResponses, RevokeGtmInviteLinkErrors, ThrowOnError> {
         return (options.client ?? this.client).delete<RevokeGtmInviteLinkResponses, RevokeGtmInviteLinkErrors, ThrowOnError>({ url: '/gtm-invite/links/{id}', ...options });
@@ -722,13 +722,13 @@ export class Sdk extends HeyApiClient {
      * Sets the status every user sees and pushes it to every open app. Macro
      * staff only.
      *
-     * Authenticate with a Macro session, or from a script with a personal API
+     * Authenticate with a Rox session, or from a script with a personal API
      * key (Settings → API keys) in the `x-macro-user-api-key` header. The body
      * is the new status:
      *
      * - `{"status": "operational"}` clears the banner. It takes no message.
      * - `{"status": "degraded", "message": "Search is slow to update."}`
-     * - `{"status": "major_outage", "message": "Macro is unavailable. We're on it."}`
+     * - `{"status": "major_outage", "message": "Rox is unavailable. We're on it."}`
      *
      * Messages are trimmed and must be 1–500 characters. Every call is kept in
      * the history, even when it repeats the current status.
@@ -745,7 +745,7 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Recent status updates, newest first, with who set each. Macro staff only.
+     * Recent status updates, newest first, with who set each. Rox staff only.
      */
     public listSystemStatusHistory<ThrowOnError extends boolean = false>(options?: Options<ListSystemStatusHistoryData, ThrowOnError>): RequestResult<ListSystemStatusHistoryResponses, ListSystemStatusHistoryErrors, ThrowOnError> {
         return (options?.client ?? this.client).get<ListSystemStatusHistoryResponses, ListSystemStatusHistoryErrors, ThrowOnError>({ url: '/system-status/history', ...options });
@@ -921,7 +921,7 @@ export class Sdk extends HeyApiClient {
 
     /**
      * Emails the caller's contacts on the team's auto-join domain that the team
-     * exists, so they can sign up and join. Contacts already on Macro, on the
+     * exists, so they can sign up and join. Contacts already on Rox, on the
      * team, invited, or emailed before are skipped, and a team emails at most 25
      * people in total. Call it after sending the team's invites. Requires the
      * caller to be an Admin or Owner of the team.

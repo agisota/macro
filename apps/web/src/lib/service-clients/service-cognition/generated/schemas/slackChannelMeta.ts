@@ -26,7 +26,7 @@ export interface SlackChannelMeta {
   members_resolved?: boolean;
   /** Channel name without the leading `#`. */
   name: string;
-  /** Slack members matched to the Macro team roster when discovery resolved membership. */
+  /** Slack members matched to the Rox team roster when discovery resolved membership. */
   participants?: SlackParticipant[];
   /** The channel's purpose/topic, when set. */
   purpose?: SlackChannelMetaPurpose;

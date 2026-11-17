@@ -19,7 +19,7 @@ export interface PostMessage {
   anchor?: PostMessageAnchor;
   /** Initial attachments. */
   attachments?: NewAttachment[];
-  /** Macro Markdown body. */
+  /** Rox Markdown body. */
   content: string;
   /** Client-minted UUIDv7 for the new message, so an optimistic message
 already carries its final id; the server mints one when absent. */

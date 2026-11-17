@@ -42,7 +42,7 @@ export interface SoupCalendarEventSoupPropertiesField {
   organizerEmail?: SoupCalendarEventSoupPropertiesFieldOrganizerEmail;
   /** Organizer display name. */
   organizerName?: SoupCalendarEventSoupPropertiesFieldOrganizerName;
-  /** Owning Macro user. */
+  /** Owning Rox user. */
   ownerId: string;
   /** Canonical status. */
   status: string;

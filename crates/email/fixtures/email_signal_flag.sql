@@ -18,7 +18,7 @@
 --   draft must send it back out of the inbox (is_signal stays true via the
 --   SENT label, but inbox_visible/latest_inbound_message_ts reset).
 -- Thread e207 (is_signal=true, stale on purpose): unlabeled message from
---   Rox's own digest sender (no-reply@notification.rox.one) — Rox
+--   Macro's own digest sender (no-reply@notification.rox.one) — Macro
 --   notification emails are never signal, so update_thread_metadata must
 --   clear it, and marking the sender important must not promote it.
 

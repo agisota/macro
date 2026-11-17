@@ -6,6 +6,6 @@
  */
 
 /**
- * The Macro user id of the account that signed up through the link.
+ * The Rox user id of the account that signed up through the link.
  */
 export type GtmInviteLinkRedeemedBy = string | null;
