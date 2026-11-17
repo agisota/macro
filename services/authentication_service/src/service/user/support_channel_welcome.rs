@@ -94,7 +94,7 @@ pub async fn post_support_channel_welcome(
     let welcome = format!(
         "Hey {new_user_mention},\n\
 \n\
-Welcome to Macro, we're excited for you to try it out.\n\
+Welcome to Rox, we're excited for you to try it out.\n\
 \n\
 This is your own personal support Channel, with {} (ceo) and {} (cto) and me (julia).\n\
 \n\
