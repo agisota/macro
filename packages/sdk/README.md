@@ -1,4 +1,4 @@
-Rox's SDK: a Typescript library for harnessing the power of Macro
+Rox's SDK: a Typescript library for harnessing the power of Rox
 
 **[Read the SDK documentation](https://sdk.rox.one)** — a quick start,
 plain-English entity guide, and complete API reference, served by the SDK docs Worker.

@@ -48,7 +48,7 @@ impl PostHogFeatureFlags {
     /// entire load, including reading the response body.
     ///
     /// Every load sends `environment` (`prod`, `dev`, or `local`) as a person
-    /// property, so a flag can target one deployment even though the same Macro
+    /// property, so a flag can target one deployment even though the same Rox
     /// user ID exists in each.
     pub fn new(
         host: &str,

@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! This crate is used to define an enumeration of all the [FileType] and [ContentType] that are compatible with Macro
+//! This crate is used to define an enumeration of all the [FileType] and [ContentType] that are compatible with Rox
 
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;

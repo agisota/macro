@@ -19,7 +19,7 @@ use crate::outbound::pg_soup_repo::notified::ID_SQL;
 /// The `harnesses` row aliased `alias` is visible to the viewer `$1`: they
 /// own it, or share a team with it or its owner. A runtime is only ever
 /// shared among its owner's teammates, so this covers its owner, everyone
-/// who asked for it and everyone whose access to it was removed. A Macro
+/// who asked for it and everyone whose access to it was removed. A Rox
 /// computer's harness belongs to its team, so `harness_access_level` decides
 /// instead, never its recorded owner.
 fn visible_harness(alias: &str) -> String {

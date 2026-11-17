@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of the Databases feature: runs the `database_sql` engine over Macro
+Part of the Databases feature: runs the `database_sql` engine over Rox
 databases for agents and authenticated HTTP clients, alongside the browser's direct
 `database_sql` wasm usage. Reads go through Soup and contacts, writes go
 through `databases`' typed ops.

@@ -1,4 +1,4 @@
-# Build with Macro
+# Build with Rox
 
 The Rox SDK lets you work with documents, email, conversations, tasks, and
 structured data from JavaScript or TypeScript. Use it to build integrations,

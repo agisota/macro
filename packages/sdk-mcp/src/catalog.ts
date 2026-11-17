@@ -33,7 +33,7 @@ export type Property = {
 
 /**
  * Which tool an operation lands in. `read` only reads, `write` changes data
- * in a way the user can undo, `send` only sends something new outside Macro
+ * in a way the user can undo, `send` only sends something new outside Rox
  * (such as an email), and `delete` removes, overwrites or otherwise changes
  * something in a way that cannot be taken back.
  */

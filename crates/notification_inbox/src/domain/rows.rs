@@ -516,7 +516,7 @@ fn row_type(slot: &Slot, channel: bool, mention: bool) -> InboxRowType {
     }
 }
 
-/// Who a notification is from: the agent for agent session events, Macro
+/// Who a notification is from: the agent for agent session events, Rox
 /// for reminders and AI chat responses, otherwise the user who sent it.
 fn actor(notification: &FeedNotification) -> Option<InboxActor> {
     let agent = |session: &AgentSessionNotificationRef| InboxActor::Agent {

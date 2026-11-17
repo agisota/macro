@@ -1,4 +1,4 @@
-//! The SQL subset agents and the console use to read and write Macro
+//! The SQL subset agents and the console use to read and write Rox
 //! databases.
 //!
 //! The grammar is the contract: only statements this crate can carry all the

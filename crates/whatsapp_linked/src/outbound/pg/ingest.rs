@@ -187,7 +187,7 @@ pub(super) async fn reserve_in(
         macro_user = stored.macro_user,
     )
     .in_scope(|| {});
-    // A new person's picture is checked once; Rox users show their Macro
+    // A new person's picture is checked once; Rox users show their Rox
     // avatar. Phones key people by LID, so ask by LID when one is known.
     // A direct chat's other person is already tracked by the chat's
     // `remote_id` from adoption.

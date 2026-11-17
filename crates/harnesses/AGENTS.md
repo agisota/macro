@@ -15,7 +15,7 @@ claim rotate the secret; retries after claim revoke old tokens and re-key the
 same harness. Both preserve owner, grants, agent bindings, and computer identity.
 Claim and re-key serialize on the harness row. `revoke_hosted_harness`,
 `harness_computer` and `computer_harnesses` are the other trusted control-plane
-entry points. `delete_harness` locks the row `FOR UPDATE` first; a Macro
+entry points. `delete_harness` locks the row `FOR UPDATE` first; a Rox
 computer's harness keeps its agents bound when deleted (the unbind trigger
 skips it) so the control plane can delete them after `revoke_hosted_harness`.
 Neither its owner (`delete_harness`) nor its own daemon (`delete_self`) may

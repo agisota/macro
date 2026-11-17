@@ -24,7 +24,7 @@ any other purpose.
 
 **Legally binding section follows:**
 
-By submitting a Contribution to CoParse Inc., doing business as Macro
+By submitting a Contribution to CoParse Inc., doing business as Rox
 ("Company"), you hereby accept and agree to the terms and conditions set
 forth in this Contributor License Agreement (the "Agreement") for Your
 present and future Contributions submitted to Company. Except for the

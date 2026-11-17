@@ -49,7 +49,7 @@ For Playwright UI mode, run:
 just local-e2e-ui
 ```
 
-## Tauri 🤝 Macro
+## Tauri 🤝 Rox
 
 We are currently in the process of bundling the frontend javascript application as a [Tauri](https://tauri.app/) app.
 You will need the following dependencies installed on your system to develop in this environment.

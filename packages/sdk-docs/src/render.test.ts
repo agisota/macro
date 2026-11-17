@@ -6,7 +6,7 @@ const pages = new URL('markdown/', output);
 
 test('the homepage explains entities and links to their reference without test modules', async () => {
   const html = await readFile(new URL('html/index.html', output), 'utf8');
-  expect(html).toContain('Build with Macro');
+  expect(html).toContain('Build with Rox');
   expect(html).toContain('Quick start');
   expect(html).toContain('Find the right entity');
   expect(html).toContain('Connected mailboxes');

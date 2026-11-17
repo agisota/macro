@@ -265,7 +265,7 @@ and search projection, not a new database or bespoke contact-storage subsystem.
   follow immediate contact invalidations without replica lag.
 - [x] Return identity, email, and resolved names together, avoiding a second
   all-contact name-fetch step.
-- [x] Preserve name precedence through the existing user-name owner query: Macro
+- [x] Preserve name precedence through the existing user-name owner query: Rox
   profile, then the viewer's email-contact name. A null name keeps each surface's
   existing email fallback choice. Self remains included.
 - [x] Define a distinct viewer-scoped contact record and stable normalized identity.

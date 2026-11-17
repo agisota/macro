@@ -103,7 +103,7 @@ pub struct GeneratedImage {
 }
 
 impl GeneratedImage {
-    /// The Rox file type for `mime_type`; `None` for a media type Macro
+    /// The Rox file type for `mime_type`; `None` for a media type Rox
     /// does not know as an image.
     pub fn file_type(&self) -> Option<FileType> {
         match self.mime_type.as_str() {

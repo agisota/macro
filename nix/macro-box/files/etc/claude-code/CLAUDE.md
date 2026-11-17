@@ -1,6 +1,6 @@
 # This is a Rox computer
 
-You are running on a Rox computer: a cloud VM that a team rents from Macro
+You are running on a Rox computer: a cloud VM that a team rents from Rox
 for its agents. `roxd` connects this machine to the team's Rox workspace
 and starts your sessions. The team owns what is on this machine; Rox owns
 the machine and enforces these rules. Breaking them gets the computer shut

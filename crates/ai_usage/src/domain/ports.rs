@@ -272,7 +272,7 @@ pub struct CompletionUsage {
     pub user: MacroUserIdStr<'static>,
     /// The entity the completion related to, if any.
     pub entity: Option<Uuid>,
-    /// The agent's own API key that paid for the completion, if Macro
+    /// The agent's own API key that paid for the completion, if Rox
     /// did not. Such usage is recorded but never counted toward a quota.
     pub agent_api_key_id: Option<Uuid>,
     /// The agent session whose work made the completion, if any.

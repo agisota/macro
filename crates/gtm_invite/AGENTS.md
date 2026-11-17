@@ -2,7 +2,7 @@
 
 ## What it is
 
-Belongs to growth/GTM tooling: personal, time-limited signup links Macro
+Belongs to growth/GTM tooling: personal, time-limited signup links Rox
 staff create for prospects. Redeeming one attributes the new account to the
 staff member and carries a promotional first month of Premium through
 checkout.

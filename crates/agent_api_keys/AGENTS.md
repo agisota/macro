@@ -40,7 +40,7 @@ of the agent runs on it instead of Rox's allowance. See the crate doc in
 - Never cache a decrypted key or a plan answer across turns: `usable_key` is
   called per turn.
 - A key counts only while the agent is in-memory, its model's provider is the
-  key's, and its owner's plan includes keys. Otherwise the agent runs on Macro
+  key's, and its owner's plan includes keys. Otherwise the agent runs on Rox
   usage and the key stays stored (shown and removable).
 - Prefixes are enforced twice: `ProviderApiKey::parse` and the
   `agent_api_keys_key_prefix` check. Change both together.

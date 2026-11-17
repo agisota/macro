@@ -19,7 +19,7 @@ pub use external_chat::{ExternalChatKind, ExternalChatProvider};
 mod appearance;
 pub use appearance::{AppearanceColor, AppearanceIcon, EntityAppearance};
 
-/// The type of an entity in Macro
+/// The type of an entity in Rox
 #[derive(
     Debug,
     Clone,
@@ -179,7 +179,7 @@ impl TryFrom<String> for EntityType {
     }
 }
 
-/// The Entity describes the minimum amount of information required to describe a unique thing in Macro
+/// The Entity describes the minimum amount of information required to describe a unique thing in Rox
 /// This contains the type of the entity [EntityType] and the string id of that entity
 #[non_exhaustive]
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone, ToSchema, Hash, PartialEq, Eq)]

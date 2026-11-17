@@ -37,7 +37,7 @@ late responses and captured mutations cannot cross account/session or entry gene
 Cancel obsolete transports and bound request lifetime; native participant metadata
 must publish fallbacks for pending new-scope names rather than retain old labels.
 Debug name seeds require a mounted authenticated scope, not module initialization.
-Editable own-profile queries stay separate and session-keyed. Reset cached Macro
+Editable own-profile queries stay separate and session-keyed. Reset cached Rox
 bearer tokens on login/account replacement, including pending token responses.
 
 Key channel lists/activity, cached Quick Access channels, email links and inbox
@@ -508,7 +508,7 @@ mentions) rank with `NAME_MATCH_RANKING` in `@core/util/freshSort`: names equal
 to the query first, then names starting with it, then other matches, with tight
 matches near the start scoring higher. Each menu's recency weights and type
 boosts (Cmd+K's channel and DM boosts) order rows within those groups and never
-lift a row past a better name match. The one exception: Cmd+K then keeps Macro
+lift a row past a better name match. The one exception: Cmd+K then keeps Rox
 users and DMs ahead of CRM contacts across the people positions, whatever their
 match. Among equally good name matches Cmd+K lists Rox users and DMs before
 other rows. Personal contact rows keep policy-5 source order among equally good

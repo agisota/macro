@@ -20,7 +20,7 @@ caller, so no tool is handwritten.
   operations and a hash of its input schema (descriptions left out, so doc
   edits don't churn them).
 - `src/call.ts` validates input with the Zod schemas `src/validate.ts` builds
-  from the same catalog, mints the handles references name (an id, a Macro
+  from the same catalog, mints the handles references name (an id, a Rox
   URL, or the ids a nested `byId` takes), calls the method and returns its
   JSON-safe result plus the entity's `url`.
 

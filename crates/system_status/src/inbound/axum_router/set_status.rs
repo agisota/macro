@@ -7,7 +7,7 @@ use super::SystemStatusRouterState;
 use crate::domain::models::{StatusUpdate, SystemStatus, SystemStatusError};
 use crate::domain::ports::SystemStatusService;
 
-/// Sets the status every user sees and pushes it to every open app. Macro
+/// Sets the status every user sees and pushes it to every open app. Rox
 /// staff only.
 ///
 /// Authenticate with a Rox session, or from a script with a personal API

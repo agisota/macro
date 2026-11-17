@@ -18,7 +18,7 @@ calendar whose grant works, and every calendar that counts toward their busy tim
 must be current (`macro_services/sync_health.rs`, over
 `CalendarSyncHealthReader`): a calendar failing transiently still offers time
 around its stored events for 45 minutes after its next sync was due (its last
-successful sync; for a Google system calendar such as holidays, which Macro
+successful sync; for a Google system calendar such as holidays, which Rox
 syncs daily, a day after it), while a
 permanent or reauthorization failure, a calendar or inbox still on its first
 sync, or a failure past that window refuses availability. A calendar with Busy

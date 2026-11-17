@@ -4,7 +4,7 @@
 
 Part of billing: the Stripe event inbox. The webhook stores each verified
 event; per-consumer cursors apply them in order per Stripe customer, with
-retries and dead-lettering; a daily audit compares Stripe with what Macro
+retries and dead-lettering; a daily audit compares Stripe with what Rox
 holds. Design: `docs/architecture/stripe-event-inbox.md`.
 
 ## Start here

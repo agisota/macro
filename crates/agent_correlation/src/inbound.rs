@@ -89,7 +89,7 @@ async fn verified_api_token(parts: &mut Parts, jwt: &JwtValidationArgs) -> Optio
             .to_owned(),
     };
     // Authentication remains the route's responsibility. Public webhooks and
-    // non-Rox credentials may share the listener; only a verified Macro
+    // non-Rox credentials may share the listener; only a verified Rox
     // JWT can introduce attribution, never an unsigned header or claim.
     match macro_auth::middleware::decode_jwt::handler(jwt, &token) {
         Ok(JwtToken::MacroApiToken(token)) => Some(token),

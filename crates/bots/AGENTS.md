@@ -47,7 +47,7 @@ for bot mutations that channel bots, agent triggers, and memory build on.
 - Agent create/update/patch must persist `has_agent = true` atomically with
   configuration writes; mention dispatch gates on this flag for every harness.
 - Soft-deleting a harness unbinds its agents (a trigger nulls
-  `agent_configs.harness_id`), leaving `roxd` agents unbound. A Macro
+  `agent_configs.harness_id`), leaving `roxd` agents unbound. A Rox
   computer's harness keeps them bound, and its release then deletes them through
   the trusted `HarnessAgentDeletion::delete_harness_agents` (no caller check;
   never a route).

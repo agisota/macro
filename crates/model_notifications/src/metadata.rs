@@ -124,7 +124,7 @@ impl GithubPrNotificationCommon {
         snippet
     }
 
-    /// The displayed actor is always the GitHub login, never the linked Macro
+    /// The displayed actor is always the GitHub login, never the linked Rox
     /// user (whose id still rides along as the notification sender).
     fn actor_name(&self) -> Option<String> {
         self.sender_github_login.clone()

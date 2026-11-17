@@ -66,7 +66,7 @@ paths, queries, or fragments. There is no silently disabled configuration. HTTP
 is accepted for local tests/self-hosting; production should use HTTPS. No
 configuration is loaded from the environment by this crate.
 
-Each load makes one POST to `/flags/?v=2` with the project token and exact Macro
+Each load makes one POST to `/flags/?v=2` with the project token and exact Rox
 user ID. `evaluation_runtime: "server"` requests server/all-runtime flags;
 `geoip_disable: true` prevents targeting by the backend's IP. Person targeting
 uses PostHog's stored properties plus one override, `environment` (`prod`,

@@ -59,7 +59,7 @@ Parsed message responses expose the draft generation captured in the same SQL sn
   wherever a message's attachments change or a message is deleted; the MIME
   prefixes in `threads/update.rs` mirror the web client's attachment filters.
 - Undated provider drafts use creation time for All Mail eligibility; spam/junk
-  and trash remain excluded, including the timestamp override for synced Macro
+  and trash remain excluded, including the timestamp override for synced Rox
   drafts. Keep ingestion, recomputation, and cached projections aligned.
 
 - Message deletion may return `Deferred` while an accepted send owns the row; reconcile retained deletions under the message lock and compare both provider identity and draft generation.

@@ -1,6 +1,6 @@
 //! Warning a team before its computer's Claude sign-in runs out.
 //!
-//! A computer whose Claude Code runs on an account signed in through Macro
+//! A computer whose Claude Code runs on an account signed in through Rox
 //! stops working when that sign-in expires or Claude rejects it. The control
 //! plane checks every such computer each pass and tells whoever signed it in,
 //! plus the team's admins and owner: [`ClaudeSignInStage::ExpiresSoon`]

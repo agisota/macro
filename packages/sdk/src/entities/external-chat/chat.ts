@@ -33,7 +33,7 @@ export type ExternalChatContent =
     };
 
 /**
- * A chat from an external messaging provider (WhatsApp today), added to Macro
+ * A chat from an external messaging provider (WhatsApp today), added to Rox
  * by its owner and shareable like any other entity: a group or a direct chat.
  */
 export class ExternalChat extends FavoritableEntity<ExternalChatDetail> {
