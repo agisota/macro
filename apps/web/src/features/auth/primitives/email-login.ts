@@ -157,9 +157,10 @@ export function createEmailLogin(
   /** Send (or resend) the code. `withHandle` carries the chosen address. */
   const send = async (withHandle: boolean): Promise<boolean> => {
     const address = email().trim();
+    const chosen = handle().trim().toLowerCase();
     if (sending() || !address) return false;
-    if (withHandle && !handle().trim()) return false;
-    if (withHandle && !isAllowedHandle(handle())) {
+    if (withHandle && !chosen) return false;
+    if (withHandle && !isAllowedHandle(chosen)) {
       setSendError(HANDLE_ERROR);
       return false;
     }
@@ -169,7 +170,7 @@ export function createEmailLogin(
     try {
       const result = await context.sendEmailCode({
         email: address,
-        handle: withHandle ? handle() : undefined,
+        handle: withHandle ? chosen : undefined,
         password: passwordRequired() ? password() : undefined,
         isAgent: options.intent === 'agent-signup',
       });
@@ -274,12 +275,16 @@ export function createEmailLogin(
       if (!(await send(createdAccount()))) setResendIn(0);
     },
     back: () => {
-      if (step() === 'passkey') return;
       resetAttempt();
-      if (step() === 'verify' || step() === 'address') {
+      if (
+        step() === 'verify' ||
+        step() === 'address' ||
+        step() === 'passkey'
+      ) {
         setCode('');
         setVerifyError();
         setSendError();
+        setPasskeyError();
         setStep('email');
       } else {
         setSendError();

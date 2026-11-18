@@ -13,7 +13,7 @@ export function AddressForm(props: {
   onBack: () => void;
 }) {
   const preview = () => {
-    const local = props.local.trim();
+    const local = props.local.trim().toLowerCase();
     return local ? mailboxAddress(local) : '';
   };
   return (
@@ -30,9 +30,10 @@ export function AddressForm(props: {
         hyphens.
       </p>
       <FormInput
-        id="address"
+        id="rox-handle"
         type="text"
         placeholder="Your name"
+        autocomplete="off"
         value={props.local}
         onInput={props.onLocalInput}
       />

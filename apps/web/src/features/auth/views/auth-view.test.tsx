@@ -188,7 +188,7 @@ describe('email sign-in', () => {
     await typeEmail('new@person.test');
     click('Continue');
     const name = await screen.findByPlaceholderText('Your name');
-    fireEvent.input(name, { target: { value: 'ada' } });
+    fireEvent.input(name, { target: { value: 'Ada' } });
     expect(screen.getByText('ada@rox.one')).toBeTruthy();
     click('Use this address');
     await typeCode('424242');

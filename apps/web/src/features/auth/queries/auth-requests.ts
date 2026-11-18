@@ -216,12 +216,18 @@ export async function registerPasskey(input: {
   if ('message' in issued) return { t: 'failed', message: issued.message };
   let credential: Credential | null;
   try {
+    const userId = new Uint8Array(
+      await crypto.subtle.digest(
+        'SHA-256',
+        new TextEncoder().encode(input.email)
+      )
+    );
     credential = await navigator.credentials.create({
       publicKey: {
         challenge: issued.challenge,
         rp: { name: 'Rox', id: window.location.hostname },
         user: {
-          id: new TextEncoder().encode(input.email),
+          id: userId,
           name: input.email,
           displayName: input.email,
         },

@@ -8,6 +8,7 @@ export function FormInput(props: {
   required?: boolean;
   value: string;
   autoFocus?: boolean;
+  autocomplete?: string;
   onInput: (value: string) => void;
 }) {
   let inputEl: HTMLInputElement | undefined;
@@ -36,7 +37,7 @@ export function FormInput(props: {
       placeholder={props.placeholder}
       value={props.value}
       required={props.required ?? true}
-      autocomplete={props.id}
+      autocomplete={props.autocomplete ?? props.id}
       onInput={(event) => props.onInput(event.currentTarget.value)}
       class="obf-input w-full rounded-2xl border border-edge bg-input px-4 py-3 text-sm text-ink placeholder:text-ink-placeholder transition-colors focus:border-ink/40 focus:outline-none user-invalid:border-failure"
     />
