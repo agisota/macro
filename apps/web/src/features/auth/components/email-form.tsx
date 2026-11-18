@@ -5,16 +5,11 @@ import { AuthButton, FormError, FormInput } from './form-fields';
 
 export function EmailForm(props: {
   email: string;
-  handle?: string;
-  signup: boolean;
-  /** The service answered that this address is new and needs a handle. */
-  handleRequired: boolean;
   password: string;
   passwordRequired: boolean;
   sending: boolean;
   error?: string;
   onEmailInput: (value: string) => void;
-  onHandleInput: (value: string) => void;
   onPasswordInput: (value: string) => void;
   onSubmit: () => void;
   onBack: () => void;
@@ -37,22 +32,6 @@ export function EmailForm(props: {
         value={props.email}
         onInput={props.onEmailInput}
       />
-      <Show when={props.signup || props.handleRequired}>
-        {/* The field appears mid-sign-in because the server said this address
-            is new, so say why before asking for the handle. */}
-        <Show when={!props.signup}>
-          <p class="text-xs text-ink-muted leading-snug">
-            This address is new. Choose a handle for your Rox account.
-          </p>
-        </Show>
-        <FormInput
-          id="handle"
-          type="text"
-          placeholder="Your Rox handle"
-          value={props.handle ?? ''}
-          onInput={props.onHandleInput}
-        />
-      </Show>
       <Show when={props.passwordRequired}>
         <FormInput
           id="password"

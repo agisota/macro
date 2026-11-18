@@ -29,6 +29,9 @@ function setup() {
     completeLogin,
     identify: vi.fn(),
     track: vi.fn(),
+    passkeyMode: vi.fn(async () => 'none' as const),
+    registerPasskey: vi.fn(async () => ({ t: 'registered' as const })),
+    assertPasskey: vi.fn(async () => ({ t: 'asserted' as const })),
   };
   const owner = createRoot((dispose) => ({
     login: createEmailLogin(context, {

@@ -89,6 +89,10 @@ use model::user::{
 
                 /// /login
                 login::passwordless::handler,
+                login::passkey::lookup,
+                login::passkey::challenge,
+                login::passkey::register_passkey,
+                login::passkey::assert_passkey,
                 login::sso::handler,
                 login::password::handler,
                 login::apple::handler,

@@ -11,6 +11,7 @@ use super::middleware;
 
 // needs to be public in api crate for swagger
 pub(in crate::api) mod apple;
+pub(in crate::api) mod passkey;
 pub(in crate::api) mod password;
 pub(in crate::api) mod passwordless;
 pub(in crate::api) mod sso;
@@ -20,6 +21,42 @@ pub fn router(state: ApiContext) -> Router<ApiContext> {
         .route(
             "/passwordless",
             post(passwordless::handler).layer(ServiceBuilder::new().layer(
+                axum::middleware::from_fn_with_state(
+                    state.clone(),
+                    middleware::rate_limit::passwordless::handler,
+                ),
+            )),
+        )
+        .route(
+            "/passwordless/passkey/lookup",
+            post(passkey::lookup).layer(ServiceBuilder::new().layer(
+                axum::middleware::from_fn_with_state(
+                    state.clone(),
+                    middleware::rate_limit::passwordless::handler,
+                ),
+            )),
+        )
+        .route(
+            "/passwordless/passkey/challenge",
+            post(passkey::challenge).layer(ServiceBuilder::new().layer(
+                axum::middleware::from_fn_with_state(
+                    state.clone(),
+                    middleware::rate_limit::passwordless::handler,
+                ),
+            )),
+        )
+        .route(
+            "/passwordless/passkey",
+            post(passkey::register_passkey).layer(ServiceBuilder::new().layer(
+                axum::middleware::from_fn_with_state(
+                    state.clone(),
+                    middleware::rate_limit::passwordless::handler,
+                ),
+            )),
+        )
+        .route(
+            "/passwordless/passkey/assert",
+            post(passkey::assert_passkey).layer(ServiceBuilder::new().layer(
                 axum::middleware::from_fn_with_state(
                     state.clone(),
                     middleware::rate_limit::passwordless::handler,

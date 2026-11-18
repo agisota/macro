@@ -8,13 +8,16 @@ import type {
 } from '../context/auth-context';
 import { isCompleteCode, RESEND_AFTER_SECONDS } from '../core/email-code';
 
-export type LoginStep = 'choose' | 'email' | 'verify';
+export type LoginStep = 'choose' | 'email' | 'address' | 'verify' | 'passkey';
 
 const VERIFY_ERRORS = {
   'invalid-code': 'Invalid code.',
   'rate-limited': 'Too many attempts. Wait a minute, then try again.',
   failed: 'Unable to perform verification.',
 } satisfies Record<Exclude<VerifyCodeResult['t'], 'verified'>, string>;
+
+const HANDLE_ERROR =
+  'Choose 3–32 lowercase letters, numbers, dots, underscores, or hyphens. Reserved names and consecutive dots are not allowed.';
 
 type EmailLoginCapabilities = Pick<
   AuthContext,
@@ -24,11 +27,15 @@ type EmailLoginCapabilities = Pick<
   | 'completeLogin'
   | 'identify'
   | 'track'
+  | 'passkeyMode'
+  | 'registerPasskey'
+  | 'assertPasskey'
 >;
 
 /**
  * Sign-in by emailed one-time code (or, for a few accounts, a password):
- * choose a method, send the code, verify it, then refresh the session.
+ * email, then a chosen @rox.one address when the person is new, then the
+ * code, then a passkey for a new account or an existing one.
  */
 export function createEmailLogin(
   context: EmailLoginCapabilities,
@@ -50,11 +57,13 @@ export function createEmailLogin(
   const [handle, setHandle] = createSignal('');
   const [password, setPassword] = createSignal('');
   const [passwordRequired, setPasswordRequired] = createSignal(false);
-  /**
-   * The service answered that this address is new, so a handle is needed even
-   * though the screen is a sign-in. Cleared once a code goes out.
-   */
-  const [handleRequired, setHandleRequired] = createSignal(false);
+  /** A code went out with a chosen address, so this person is creating an account. */
+  const [createdAccount, setCreatedAccount] = createSignal(false);
+  const [passkeyKind, setPasskeyKind] = createSignal<'enroll' | 'assert'>(
+    'enroll'
+  );
+  const [passkeyError, setPasskeyError] = createSignal<string>();
+  const [passkeyBusy, setPasskeyBusy] = createSignal(false);
   const [sending, setSending] = createSignal(false);
   const [sendError, setSendError] = createSignal<string | undefined>(
     options.fallbackNotice
@@ -119,6 +128,25 @@ export function createEmailLogin(
       verifiedAttempt = currentAttempt;
     }
     try {
+      if (createdAccount()) {
+        setPasskeyKind('enroll');
+        setPasskeyError();
+        setStep('passkey');
+        setVerifying(false);
+        return;
+      }
+      const mode = await context.passkeyMode(address);
+      if (attempt !== currentAttempt) {
+        setVerifying(false);
+        return;
+      }
+      if (mode === 'assert') {
+        setPasskeyKind('assert');
+        setPasskeyError();
+        setStep('passkey');
+        setVerifying(false);
+        return;
+      }
       await finish();
     } catch (error) {
       setVerifying(false);
@@ -126,17 +154,13 @@ export function createEmailLogin(
     }
   };
 
-  /** Send (or resend) the code; reports whether a code went out. */
-  const send = async (): Promise<boolean> => {
+  /** Send (or resend) the code. `withHandle` carries the chosen address. */
+  const send = async (withHandle: boolean): Promise<boolean> => {
     const address = email().trim();
     if (sending() || !address) return false;
-    // Signup always takes a handle; sign-in asks for one once the service says
-    // the address is new.
-    const needsHandle = options.intent !== 'login' || handleRequired();
-    if (needsHandle && !isAllowedHandle(handle())) {
-      setSendError(
-        'Choose 3–32 lowercase letters, numbers, dots, underscores, or hyphens. Reserved names and consecutive dots are not allowed.'
-      );
+    if (withHandle && !handle().trim()) return false;
+    if (withHandle && !isAllowedHandle(handle())) {
+      setSendError(HANDLE_ERROR);
       return false;
     }
     resetAttempt();
@@ -145,13 +169,13 @@ export function createEmailLogin(
     try {
       const result = await context.sendEmailCode({
         email: address,
-        handle: needsHandle ? handle() : undefined,
+        handle: withHandle ? handle() : undefined,
         password: passwordRequired() ? password() : undefined,
         isAgent: options.intent === 'agent-signup',
       });
       switch (result.t) {
         case 'code-sent':
-          setHandleRequired(false);
+          if (withHandle) setCreatedAccount(true);
           setEmail(address);
           setCode('');
           setStep('verify');
@@ -165,10 +189,8 @@ export function createEmailLogin(
           setPasswordRequired(true);
           return false;
         case 'handle-required':
-          // Not an error the person can fix by retrying: the form grows a
-          // handle field and the next submit carries it.
-          setHandleRequired(true);
           setSendError();
+          setStep('address');
           return false;
         case 'signed-in':
           await finish();
@@ -184,21 +206,44 @@ export function createEmailLogin(
     }
   };
 
+  const submitPasskey = async () => {
+    if (passkeyBusy()) return;
+    setPasskeyBusy(true);
+    setPasskeyError();
+    const outcome =
+      passkeyKind() === 'assert'
+        ? await context.assertPasskey({ email: email() })
+        : await context.registerPasskey({ email: email() });
+    if (outcome.t === 'failed') {
+      setPasskeyBusy(false);
+      setPasskeyError(outcome.message);
+      return;
+    }
+    try {
+      await finish();
+    } catch (error) {
+      setPasskeyBusy(false);
+      throw error;
+    }
+  };
+
   if (options.autoStart && options.initialEmail)
-    fireAndForget(send(), 'email-login');
+    fireAndForget(send(false), 'email-login');
 
   return {
     step,
     email,
     handle,
     setHandle,
-    handleRequired,
-    isSignup: () => options.intent !== 'login',
+    createdAccount,
+    passkeyKind,
+    passkeyError,
+    passkeyBusy,
     setEmail: (address: string) => {
       if (address !== email()) {
         resetAttempt();
-        // A different address may already have an account.
-        setHandleRequired(false);
+        setCreatedAccount(false);
+        setHandle('');
       }
       return setEmail(address);
     },
@@ -219,18 +264,22 @@ export function createEmailLogin(
         context.track('sign_up_click', { method: 'email' });
       setStep('email');
     },
-    submitEmail: () => fireAndForget(send(), 'email-login'),
+    submitEmail: () => fireAndForget(send(false), 'email-login'),
+    submitAddress: () => fireAndForget(send(true), 'email-login'),
     verify: (value?: string) => fireAndForget(verify(value), 'email-login'),
+    submitPasskey: () => fireAndForget(submitPasskey(), 'email-login'),
     resend: async () => {
       setVerifyError();
       // A failed resend may be retried at once; a sent one restarts the wait.
-      if (!(await send())) setResendIn(0);
+      if (!(await send(createdAccount()))) setResendIn(0);
     },
     back: () => {
+      if (step() === 'passkey') return;
       resetAttempt();
-      if (step() === 'verify') {
+      if (step() === 'verify' || step() === 'address') {
         setCode('');
         setVerifyError();
+        setSendError();
         setStep('email');
       } else {
         setSendError();

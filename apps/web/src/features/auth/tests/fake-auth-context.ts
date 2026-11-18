@@ -29,6 +29,16 @@ export type FakeAuthWorld = {
   ssoDomains: string[];
   /** Return the code with the send, like a local backend. */
   autoCode: boolean;
+  /**
+   * When set, an email that is not already an account must choose an address
+   * before a code goes out. Off by default so existing sign-in tests stay
+   * on the code step.
+   */
+  unknownNeedsHandle: boolean;
+  /** Address local parts chosen during signup, keyed by the person's email. */
+  chosenHandles: Record<string, string>;
+  /** Stored passkey ids. Presence means the next sign-in must assert. */
+  passkeys: Record<string, string>;
   /** Session tokens the fake auth service will redeem, keyed to an email. */
   sessionTokens: Record<string, string>;
   /** Pending email login across a page reload. */
@@ -49,6 +59,9 @@ export function defaultFakeAuthWorld(): FakeAuthWorld {
     passwordAccounts: {},
     ssoDomains: [],
     autoCode: false,
+    unknownNeedsHandle: false,
+    chosenHandles: {},
+    passkeys: {},
     sessionTokens: {},
     pendingEmail: undefined,
     mobileWelcome: 'sent',
@@ -129,7 +142,7 @@ export function createFakeAuth(
         return options.ssoRedirect(provider, intent, email);
       signIn(email);
     },
-    sendEmailCode: async ({ email, password, isAgent }) => {
+    sendEmailCode: async ({ email, handle, password, isAgent }) => {
       call(isAgent ? `sendAgentCode:${email}` : `sendCode:${email}`);
       const failure = world.failures.sendCode;
       if (failure !== undefined) return { t: 'failed', message: failure };
@@ -147,8 +160,12 @@ export function createFakeAuth(
       }
       if (world.ssoDomains.some((domain) => email.endsWith(`@${domain}`)))
         return { t: 'redirected' };
+      const known = Object.prototype.hasOwnProperty.call(world.accounts, email);
+      if (world.unknownNeedsHandle && !known && !handle)
+        return { t: 'handle-required' };
       update((draft) => {
         draft.pendingEmail = email;
+        if (handle) draft.chosenHandles[email] = handle;
       });
       return world.autoCode
         ? { t: 'code-sent', autoCode: world.code }
@@ -167,7 +184,11 @@ export function createFakeAuth(
         draft.codeAttempts[email] = attempts + 1;
       });
       if (code !== world.code) return { t: 'invalid-code' };
-      signIn(email);
+      // The code only proves the mailbox. The session starts in completeLogin,
+      // so a passkey step can still mount before the workspace replaces it.
+      update((draft) => {
+        draft.pendingEmail = email;
+      });
       return { t: 'verified' };
     },
     redeemSessionToken: async (token) => {
@@ -177,8 +198,23 @@ export function createFakeAuth(
       signIn(email);
       return true;
     },
+    passkeyMode: async (email) => (world.passkeys[email] ? 'assert' : 'none'),
+    registerPasskey: async ({ email }) => {
+      const id = `passkey:${email}`;
+      update((draft) => {
+        draft.passkeys[email] = id;
+      });
+      return { t: 'registered' };
+    },
+    assertPasskey: async ({ email }) => {
+      if (!world.passkeys[email])
+        return { t: 'failed', message: 'No passkey was created.' };
+      return { t: 'asserted' };
+    },
     completeLogin: async () => {
       call('completeLogin');
+      const email = world.pendingEmail;
+      if (email) signIn(email);
     },
     sendMobileWelcomeEmail: async (email) => {
       call(`mobileWelcome:${email}`);

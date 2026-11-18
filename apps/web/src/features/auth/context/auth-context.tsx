@@ -37,6 +37,14 @@ export type VerifyCodeResult =
   | { t: 'rate-limited' }
   | { t: 'failed' };
 
+/** Whether this email already has a passkey. Enroll is a screen, not a lookup. */
+export type PasskeyLookup = 'assert' | 'none';
+
+export type PasskeyResult =
+  | { t: 'registered' }
+  | { t: 'asserted' }
+  | { t: 'failed'; message: string };
+
 type AuthEventName =
   | 'login'
   | 'sign_up_click'
@@ -64,6 +72,12 @@ export type AuthContext = {
     email: string;
     code: string;
   }): Promise<VerifyCodeResult>;
+  /** `assert` when a passkey is already stored for this email. */
+  passkeyMode(email: string): Promise<PasskeyLookup>;
+  /** Creates a passkey from a server challenge. A failure does not sign the person in. */
+  registerPasskey(input: { email: string }): Promise<PasskeyResult>;
+  /** Uses the passkey already stored for this email. */
+  assertPasskey(input: { email: string }): Promise<PasskeyResult>;
   /** Exchanges the auth service's return-URL code for session cookies. */
   redeemSessionToken(token: string): Promise<boolean>;
   /** Refreshes everything that depends on who is signed in. */
