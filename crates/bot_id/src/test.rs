@@ -65,6 +65,28 @@ fn macro_new_id_is_stable_and_distinct_from_macro() {
 }
 
 #[test]
+fn recognizes_the_names_earlier_releases_showed() {
+    let ai = system_bot(MACRO_AI_BOT_ID).unwrap();
+    let new = system_bot(MACRO_NEW_BOT_ID).unwrap();
+    let coder = system_bot(MACRO_CODER_BOT_ID).unwrap();
+
+    // Mention tags and rows written before the rename name the same bots.
+    assert!(is_legacy_display_name(ai, "Macro"));
+    assert!(is_legacy_display_name(ai, "  macro "));
+    assert!(is_legacy_display_name(new, "MACRO"));
+    assert!(is_legacy_display_name(coder, "Macro Coder"));
+
+    // The current names and unrelated names are not legacy aliases.
+    assert!(!is_legacy_display_name(ai, "Rox"));
+    assert!(!is_legacy_display_name(ai, "Macro Coder"));
+    assert!(!is_legacy_display_name(coder, "Macro"));
+    assert!(!is_legacy_display_name(
+        system_bot(CURSOR_BOT_ID).unwrap(),
+        "Macro"
+    ));
+}
+
+#[test]
 fn rejects_non_bot_storage_string() {
     assert!(BotIdStr::parse_from_str("macro|teo@rox.one").is_err());
 }

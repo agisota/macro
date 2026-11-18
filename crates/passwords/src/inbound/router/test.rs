@@ -222,6 +222,41 @@ async fn every_route_rejects_non_session_origins_and_keeps_responses_private() {
         }
     }
 }
+/// The marker header moved with the rename: the Rox name passes, a page from
+/// before the rename still passes with the old name, and when both are sent
+/// the Rox one decides.
+#[test]
+fn csrf_header_accepts_both_names_and_prefers_the_rox_one() {
+    let headers = |entries: &[(&'static str, &'static str)]| {
+        entries
+            .iter()
+            .map(|(name, value)| {
+                (
+                    axum::http::HeaderName::from_static(name),
+                    axum::http::HeaderValue::from_static(value),
+                )
+            })
+            .collect::<axum::http::HeaderMap>()
+    };
+
+    assert_eq!(
+        csrf_header(&headers(&[("x-rox-passwords", "1")])),
+        Some("1")
+    );
+    assert_eq!(
+        csrf_header(&headers(&[("x-macro-passwords", "1")])),
+        Some("1")
+    );
+    assert_eq!(
+        csrf_header(&headers(&[
+            ("x-macro-passwords", "1"),
+            ("x-rox-passwords", "0")
+        ])),
+        Some("0")
+    );
+    assert_eq!(csrf_header(&headers(&[])), None);
+}
+
 #[tokio::test]
 async fn mutations_reject_missing_header_and_cross_site_requests() {
     for (method, path, body) in routes()

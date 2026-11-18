@@ -16,12 +16,22 @@ mod test;
 type HmacSha256 = Hmac<Sha256>;
 
 /// Header carrying the signature on a delivery.
-pub const SIGNATURE_HEADER: &str = "x-macro-signature";
+pub const SIGNATURE_HEADER: &str = "x-rox-signature";
 
 /// Header carrying the timestamp the signature covers.
-pub const TIMESTAMP_HEADER: &str = "x-macro-timestamp";
+pub const TIMESTAMP_HEADER: &str = "x-rox-timestamp";
 
-/// Sign a delivery: the `x-macro-signature` header value.
+/// Signature header deliveries carried before the rename.
+///
+/// Deliveries still send it, so an endpoint that verifies the old name keeps
+/// working; a receiver that reads both takes the timestamp from the pair that
+/// carried the signature it checks.
+pub const LEGACY_SIGNATURE_HEADER: &str = "x-macro-signature";
+
+/// Timestamp header deliveries carried before the rename.
+pub const LEGACY_TIMESTAMP_HEADER: &str = "x-macro-timestamp";
+
+/// Sign a delivery: the `x-rox-signature` header value.
 ///
 /// `None` only when the secret cannot key an HMAC, which for HMAC-SHA256
 /// cannot happen for any length - kept fallible so a future algorithm
@@ -35,7 +45,8 @@ pub fn sign(secret: &str, timestamp: &str, raw_body: &[u8]) -> Option<String> {
     Some(format!("v1={}", hex::encode(mac.finalize().into_bytes())))
 }
 
-/// Verify a delivery's `x-macro-signature` value in constant time.
+/// Verify a delivery's `x-rox-signature` (or legacy `x-macro-signature`)
+/// value in constant time.
 ///
 /// An empty secret can never verify: HMAC accepts a zero-length key, so a
 /// caller that has not yet learned its real secret would otherwise accept

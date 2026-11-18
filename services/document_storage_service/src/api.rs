@@ -71,6 +71,9 @@ pub(crate) async fn setup_and_serve(state: ApiContext) -> anyhow::Result<()> {
                 ))
                 .layer(
                     macro_cors::cors_layer_with_headers(vec![
+                        // The vault's CSRF marker under its current name and
+                        // the one clients sent before the rename.
+                        axum::http::HeaderName::from_static("x-rox-passwords"),
                         axum::http::HeaderName::from_static("x-macro-passwords"),
                         axum::http::HeaderName::from_static(
                             complete_graph::MAIL_CACHE_PROFILE_HEADER,

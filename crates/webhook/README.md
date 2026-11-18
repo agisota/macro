@@ -239,13 +239,17 @@ queue and delivery fields are not wrapped around or merged into it. Its shape is
 The request includes:
 
 - `Content-Type: application/json`
-- `X-Macro-Event`: the exact event name
-- `X-Macro-Event-Id`: the broker event ID
-- `X-Macro-Timestamp`: the request time as Unix seconds
-- `X-Macro-Signature`: `v1=<hex HMAC-SHA256>`
+- `X-Rox-Event`: the exact event name
+- `X-Rox-Event-Id`: the broker event ID
+- `X-Rox-Timestamp`: the request time as Unix seconds
+- `X-Rox-Signature`: `v1=<hex HMAC-SHA256>`
+
+Each of those is also sent under the `X-Macro-*` names earlier releases used
+(`X-Macro-Event`, `X-Macro-Event-Id`, `X-Macro-Timestamp`, `X-Macro-Signature`)
+with the same values, so a receiver written before the rename keeps working.
 
 The signature input is the raw byte sequence
-`<X-Macro-Timestamp>.<request-body>`, using the webhook signing secret. Custom
+`<X-Rox-Timestamp>.<request-body>`, using the webhook signing secret. Custom
 headers are included, but case-insensitive attempts to override a Rox header
 are permanent configuration failures. Delivery applies the same HTTPS, DNS,
 blocked-address, reserved-header, signing, and no-redirect protections as
@@ -310,7 +314,8 @@ constraint suppress ordinary duplicates, and a terminal database record
 prevents another request. There is still an unavoidable crash window: an
 endpoint can accept the HTTP request before the process records the result. A
 redelivery can then recover the interrupted attempt and call the endpoint again.
-Webhook receivers should use `X-Macro-Event-Id` as an idempotency key.
+Webhook receivers should use `X-Rox-Event-Id` (or its legacy
+`X-Macro-Event-Id` alias) as an idempotency key.
 
 ## Operations
 

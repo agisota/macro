@@ -119,7 +119,27 @@ fn accepts_public_https_endpoint() {
 
 #[test]
 fn detects_reserved_headers_case_insensitively() {
-    assert!(is_reserved_macro_header("X-Macro-Signature"));
-    assert!(is_reserved_macro_header("x-macro-event-id"));
-    assert!(!is_reserved_macro_header("X-External-Trace"));
+    for name in [
+        "X-Rox-Signature",
+        "x-rox-event-id",
+        "X-Rox-Timestamp",
+        "X-Rox-Event",
+        "X-Macro-Signature",
+        "x-macro-event-id",
+        "X-Macro-Timestamp",
+        "x-macro-event",
+    ] {
+        assert!(is_reserved_header(name), "{name} should be reserved");
+    }
+    assert!(!is_reserved_header("X-External-Trace"));
+}
+
+/// A delivery carries the Rox header names and the pre-rename ones, so an
+/// endpoint that verifies either keeps validating the same signature.
+#[test]
+fn emits_both_header_families() {
+    assert_eq!(EVENT_HEADER, "x-rox-event");
+    assert_eq!(EVENT_ID_HEADER, "x-rox-event-id");
+    assert_eq!(LEGACY_EVENT_HEADER, "x-macro-event");
+    assert_eq!(LEGACY_EVENT_ID_HEADER, "x-macro-event-id");
 }

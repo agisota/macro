@@ -209,6 +209,33 @@ pub fn system_bot_by_handle(handle: &str) -> Option<&'static SystemBot> {
     SYSTEM_BOTS.iter().find(|bot| bot.handle == handle)
 }
 
+/// Names earlier releases showed for the first-party bots.
+///
+/// Rows, mention tags and messages written while the product was called Macro
+/// still carry these, and they name the same bots the registry does now, so
+/// a reader of an old mention should see the current name.
+const LEGACY_AI_NAMES: &[&str] = &["Macro"];
+const LEGACY_CODER_NAMES: &[&str] = &["Macro Coder"];
+
+/// Whether `name` is a name earlier releases showed for `bot`.
+///
+/// Matching ignores case and surrounding spaces: the name reached us through
+/// hand-written markup.
+#[must_use]
+pub fn is_legacy_display_name(bot: &SystemBot, name: &str) -> bool {
+    let name = name.trim();
+    let legacy = if bot.id == MACRO_AI_BOT_ID || bot.id == MACRO_NEW_BOT_ID {
+        LEGACY_AI_NAMES
+    } else if bot.id == MACRO_CODER_BOT_ID {
+        LEGACY_CODER_NAMES
+    } else {
+        &[]
+    };
+    legacy
+        .iter()
+        .any(|legacy| legacy.eq_ignore_ascii_case(name))
+}
+
 /// The handle users type to reach the bot `id`, whose own handle is `handle`.
 ///
 /// Rox's agent-session bot is reached through `@macro`; its own handle,

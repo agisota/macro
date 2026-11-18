@@ -171,9 +171,7 @@ pub fn mcp_guides() -> &'static str {
     static MCP: LazyLock<String> = LazyLock::new(|| {
         MCP_GUIDES
             .iter()
-            .filter_map(|name| {
-                entity_guide(name).map(|guide| format!("\n# Macro {name}\n{guide}\n"))
-            })
+            .filter_map(|name| entity_guide(name).map(|guide| format!("\n# Rox {name}\n{guide}\n")))
             .collect()
     });
     &MCP
@@ -204,8 +202,7 @@ pub fn inline_guides(host: GuideHost) -> &'static str {
             .filter(|doc| doc.name != SEARCH_ENTITY)
             .filter(|doc| host == GuideHost::Code || !SDK_ONLY_GUIDES.contains(&doc.name.as_str()))
             .filter_map(|doc| {
-                guide_with_skill(doc, host)
-                    .map(|guide| format!("\n# Macro {}\n{guide}\n", doc.name))
+                guide_with_skill(doc, host).map(|guide| format!("\n# Rox {}\n{guide}\n", doc.name))
             })
             .collect()
     }

@@ -16,6 +16,14 @@ use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 use uuid::Uuid;
 
+/// CSRF marker header: any non-simple value (clients send `1`) proves the
+/// request was not a cross-site form post.
+const CSRF_HEADER: &str = "x-rox-passwords";
+
+/// CSRF marker header earlier clients sent. Still accepted so a page loaded
+/// from a build before the rename can save a password.
+const LEGACY_CSRF_HEADER: &str = "x-macro-passwords";
+
 /// Composition-owned domain service and authenticated transport state.
 pub struct PasswordRouterState<A> {
     /// Vault use-case service; owns all product authorization decisions.
@@ -110,11 +118,7 @@ async fn csrf(request: axum::extract::Request, next: Next) -> Response {
     if !matches!(
         *request.method(),
         axum::http::Method::GET | axum::http::Method::HEAD | axum::http::Method::OPTIONS
-    ) && (request
-        .headers()
-        .get("x-macro-passwords")
-        .and_then(|value| value.to_str().ok())
-        != Some("1")
+    ) && (csrf_header(request.headers()) != Some("1")
         || request
             .headers()
             .get("sec-fetch-site")
@@ -124,6 +128,15 @@ async fn csrf(request: axum::extract::Request, next: Next) -> Response {
         return StatusCode::FORBIDDEN.into_response();
     }
     next.run(request).await
+}
+
+/// The CSRF marker header, under its Rox name or the name clients sent before
+/// the rename. The Rox name wins when both are present.
+fn csrf_header(headers: &axum::http::HeaderMap) -> Option<&str> {
+    headers
+        .get(CSRF_HEADER)
+        .or_else(|| headers.get(LEGACY_CSRF_HEADER))
+        .and_then(|value| value.to_str().ok())
 }
 async fn no_store(mut response: Response) -> Response {
     if matches!(
@@ -295,7 +308,7 @@ pub async fn list<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_create",post,path="/passwords/teams/{team}/items",params(("team"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=WriteItem,responses((status=200,body=ItemView),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_create",post,path="/passwords/teams/{team}/items",params(("team"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=WriteItem,responses((status=200,body=ItemView),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Create one item using an idempotent logical operation identifier.
 pub async fn create<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -338,7 +351,7 @@ pub async fn username<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_copy_username",post,path="/passwords/teams/{team}/items/{item}/username/copy",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),responses((status=200,body=Username),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_copy_username",post,path="/passwords/teams/{team}/items/{item}/username/copy",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),responses((status=200,body=Username),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Read only the current account identifier and record an explicit clipboard action.
 pub async fn copy_username<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -352,7 +365,7 @@ pub async fn copy_username<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_update",put,path="/passwords/teams/{team}/items/{item}",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=WriteItem,responses((status=200,body=ItemView),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_update",put,path="/passwords/teams/{team}/items/{item}",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=WriteItem,responses((status=200,body=ItemView),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Save a new protected value version and its metadata.
 pub async fn update<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -367,7 +380,7 @@ pub async fn update<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_patch",patch,path="/passwords/teams/{team}/items/{item}",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=PatchItem,responses((status=200,body=ItemView),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_patch",patch,path="/passwords/teams/{team}/items/{item}",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=PatchItem,responses((status=200,body=ItemView),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Change metadata without resolving private values.
 pub async fn patch<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -382,7 +395,7 @@ pub async fn patch<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_remove",delete,path="/passwords/teams/{team}/items/{item}",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_remove",delete,path="/passwords/teams/{team}/items/{item}",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Delete an owned item with a resumable provider fence.
 pub async fn remove<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -395,7 +408,7 @@ pub async fn remove<A: MacroAuthorizationService>(
         .await?;
     Ok(StatusCode::NO_CONTENT)
 }
-#[utoipa::path(operation_id = "passwords_reveal",post,path="/passwords/teams/{team}/items/{item}/reveal",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=RevealBody,responses((status=200,body=Revealed),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_reveal",post,path="/passwords/teams/{team}/items/{item}/reveal",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=RevealBody,responses((status=200,body=Revealed),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Disclose a current or historical value with normal human-session item access.
 pub async fn reveal<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -416,7 +429,7 @@ pub async fn reveal<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_copy",post,path="/passwords/teams/{team}/items/{item}/copy",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=RevealBody,responses((status=200,body=Revealed),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_copy",post,path="/passwords/teams/{team}/items/{item}/copy",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=RevealBody,responses((status=200,body=Revealed),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Disclose values for an explicitly audited clipboard action.
 pub async fn copy<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -473,7 +486,7 @@ pub async fn grants<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_share",put,path="/passwords/teams/{team}/items/{item}/share",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=ShareBody,responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_share",put,path="/passwords/teams/{team}/items/{item}/share",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=ShareBody,responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Replace the owned item’s explicit recipient set.
 pub async fn share<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -498,7 +511,7 @@ pub async fn folders<A: MacroAuthorizationService>(
         state.service.folders(&actor(user)?, TeamId(team)).await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_create_folder",post,path="/passwords/teams/{team}/folders",params(("team"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=CreateFolderBody,responses((status=200,body=Folder),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_create_folder",post,path="/passwords/teams/{team}/folders",params(("team"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=CreateFolderBody,responses((status=200,body=Folder),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Create a folder within the authenticated team.
 pub async fn create_folder<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -513,7 +526,7 @@ pub async fn create_folder<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_remove_folder",delete,path="/passwords/teams/{team}/folders/{folder}",params(("team"=Uuid,Path),("folder"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_remove_folder",delete,path="/passwords/teams/{team}/folders/{folder}",params(("team"=Uuid,Path),("folder"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Delete a folder within the authenticated team.
 pub async fn remove_folder<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -526,7 +539,7 @@ pub async fn remove_folder<A: MacroAuthorizationService>(
         .await?;
     Ok(StatusCode::NO_CONTENT)
 }
-#[utoipa::path(operation_id = "passwords_set_totp",put,path="/passwords/teams/{team}/items/{item}/totp",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=TotpBody,responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_set_totp",put,path="/passwords/teams/{team}/items/{item}/totp",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=TotpBody,responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Enroll or replace a verification-code seed with normal human-session edit access.
 pub async fn set_totp<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -540,7 +553,7 @@ pub async fn set_totp<A: MacroAuthorizationService>(
         .await?;
     Ok(StatusCode::NO_CONTENT)
 }
-#[utoipa::path(operation_id = "passwords_remove_totp",delete,path="/passwords/teams/{team}/items/{item}/totp",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_remove_totp",delete,path="/passwords/teams/{team}/items/{item}/totp",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),responses((status=204),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Remove a verification-code seed with normal human-session edit access.
 pub async fn remove_totp<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -553,7 +566,7 @@ pub async fn remove_totp<A: MacroAuthorizationService>(
         .await?;
     Ok(StatusCode::NO_CONTENT)
 }
-#[utoipa::path(operation_id = "passwords_totp",post,path="/passwords/teams/{team}/items/{item}/totp/code",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),responses((status=200,body=TotpCode),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_totp",post,path="/passwords/teams/{team}/items/{item}/totp/code",params(("team"=Uuid,Path),("item"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),responses((status=200,body=TotpCode),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Resolve the current verification code with normal human-session item access.
 pub async fn totp<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -568,7 +581,7 @@ pub async fn totp<A: MacroAuthorizationService>(
     ))
 }
 
-#[utoipa::path(operation_id = "passwords_rename_folder",put,path="/passwords/teams/{team}/folders/{folder}",params(("team"=Uuid,Path),("folder"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=FolderBody,responses((status=200,body=Folder),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_rename_folder",put,path="/passwords/teams/{team}/folders/{folder}",params(("team"=Uuid,Path),("folder"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=FolderBody,responses((status=200,body=Folder),(status=403,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Rename a folder within the authenticated team.
 pub async fn rename_folder<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,
@@ -583,7 +596,7 @@ pub async fn rename_folder<A: MacroAuthorizationService>(
             .await?,
     ))
 }
-#[utoipa::path(operation_id = "passwords_move_folder",put,path="/passwords/teams/{team}/folders/{folder}/parent",params(("team"=Uuid,Path),("folder"=Uuid,Path),("X-Macro-Passwords"=String,Header,description="Required CSRF header; send 1")),request_body=MoveFolderBody,responses((status=200,body=Folder),(status=400,body=Failure),(status=403,body=Failure),(status=404,body=Failure),(status=409,body=Failure)),tag="passwords")]
+#[utoipa::path(operation_id = "passwords_move_folder",put,path="/passwords/teams/{team}/folders/{folder}/parent",params(("team"=Uuid,Path),("folder"=Uuid,Path),("X-Rox-Passwords"=String,Header,description="Required CSRF header; send 1"),("X-Macro-Passwords"=String,Header,deprecated,description="Legacy CSRF header; still accepted")),request_body=MoveFolderBody,responses((status=200,body=Folder),(status=400,body=Failure),(status=403,body=Failure),(status=404,body=Failure),(status=409,body=Failure)),tag="passwords")]
 /// Move a folder under another folder of the team, or to the top level.
 pub async fn move_folder<A: MacroAuthorizationService>(
     State(state): State<PasswordRouterState<A>>,

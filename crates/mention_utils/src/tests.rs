@@ -191,6 +191,14 @@ fn bot_mention_renders_display_name() {
 }
 
 #[test]
+fn legacy_coder_name_renders_the_current_name() {
+    let input = r#"<m-user-mention>{"userId":"bot|00000000-0000-0000-0000-00000000a9e7","email":"Macro Coder"}</m-user-mention>"#;
+    let parsed = ParsedXmlText::parse(input).unwrap();
+    let rendered = PlainTextFormatter::format_xml_text(parsed).0;
+    assert_eq!(rendered, "Rox Coder");
+}
+
+#[test]
 fn cursor_bot_mention_renders_cursor_not_macro() {
     let input = r#"<m-user-mention>{"userId":"bot|00000000-0000-0000-0000-00000000c5c5","email":"Cursor","displayName":"Cursor"}</m-user-mention> investigate this"#;
     let parsed = ParsedXmlText::parse(input).unwrap();
@@ -627,8 +635,7 @@ fn parse_plain_message_no_mentions() {
 
 #[test]
 fn parse_user_mention_invalid_json_with_suffix() {
-    let input =
-        r#"<m-user-mention>{"userId":"macro|chase@rox.one",INVALID}</m-user-mention> asdf"#;
+    let input = r#"<m-user-mention>{"userId":"macro|chase@rox.one",INVALID}</m-user-mention> asdf"#;
     let result = ParsedXmlText::parse(input);
     assert!(result.is_err());
 }
