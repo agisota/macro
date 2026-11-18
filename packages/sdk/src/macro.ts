@@ -142,7 +142,7 @@ export type { RequestActivity } from './utils/activity';
  *
  * @routing Use when a request is only about the Rox SDK client itself or its shared plumbing, such as live events or an item's access requests; not any request about the user's content, people or settings.
  */
-export class Macro<T extends MacroOpts = MacroOpts> {
+export class Rox<T extends MacroOpts = MacroOpts> {
   /** routines resources and operations. */
   readonly routines: RoutineNamespace;
 
@@ -342,8 +342,8 @@ export class Macro<T extends MacroOpts = MacroOpts> {
    * @readonly
    * @mcp-exclude Returns a new SDK client, which an MCP result cannot carry.
    */
-  requestedAs(user: User): Macro<T> {
-    return new Macro({ ...this.opts, requestedAs: user.id });
+  requestedAs(user: User): Rox<T> {
+    return new Rox({ ...this.opts, requestedAs: user.id });
   }
 }
 
@@ -623,3 +623,9 @@ export type {
   WorkspaceTag,
   WorkspaceType,
 } from './entities/workspace/types';
+/**
+ * @deprecated The client class is now `Rox`. This alias keeps existing
+ * `import { Macro }` code working and will be removed in a future major
+ * version.
+ */
+export { Rox as Macro };

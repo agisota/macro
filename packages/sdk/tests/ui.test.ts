@@ -111,7 +111,7 @@ describe('macro.ui', () => {
       'javascript:alert(1)',
       '/app/md/x',
     ]) {
-      expect(() => macro.ui.link(url), url).toThrow('Not a Macro app link');
+      expect(() => macro.ui.link(url), url).toThrow('Not a Rox app link');
     }
     expect(macro.ui.link('https://www.rox.one/app/channels/c').path).toBe(
       '/channels/c',

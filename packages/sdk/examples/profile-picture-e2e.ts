@@ -8,7 +8,7 @@
 
 import { StaticImage } from '../src/entities/images/image';
 import { resolveLocalPortmap } from '../src/local-portmap';
-import { Macro } from '../src/macro';
+import { Rox } from '../src/macro';
 import { MacroError } from '../src/utils';
 
 const portmap = resolveLocalPortmap();
@@ -64,7 +64,7 @@ const tokens = Object.fromEntries(
   await Promise.all(names.map(async (n) => [n, await login(n)] as const)),
 ) as Record<(typeof names)[number], string>;
 const sdk = (n: (typeof names)[number]) =>
-  new Macro({ env: 'local', auth: { type: 'user', token: tokens[n] } });
+  new Rox({ env: 'local', auth: { type: 'user', token: tokens[n] } });
 
 const alice = sdk('alice');
 const aliceId = `macro|${emailOf('alice')}`;

@@ -2,7 +2,7 @@ import { parseArgs } from 'node:util';
 import type { Env } from '../src/config';
 import type { EventName } from '../src/events/types';
 import { resolveLocalPortmap } from '../src/local-portmap';
-import { Macro } from '../src/macro';
+import { Rox } from '../src/macro';
 
 const localEndpoint = 'http://sdk-webhook-relay:8787/macro-events';
 
@@ -56,7 +56,7 @@ async function register(): Promise<void> {
 
   const namespace = values.namespace ?? crypto.randomUUID();
 
-  const macro = new Macro({ env, requestedAs: userId });
+  const macro = new Rox({ env, requestedAs: userId });
   const webhook = await macro.webhooks.create({
     url: endpointUrl,
     namespace,
@@ -87,7 +87,7 @@ async function receive(id: string): Promise<void> {
     values.port ?? resolveLocalPortmap()?.sdkWebhookHostReceiverPort ?? 8787,
   );
   const userId = values['user-id'];
-  const macro = new Macro({
+  const macro = new Rox({
     env,
     webhookSecret: secret,
     requestedAs: userId,

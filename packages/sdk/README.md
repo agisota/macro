@@ -18,9 +18,9 @@ included static docs Worker.
 To get started, make a Rox client
 
 ```ts
-import { Macro } from '@macro-inc/sdk';
+import { Rox } from '@macro-inc/sdk';
 
-const macro = new Macro({ }); // uses MACRO_API_KEY env var
+const macro = new Rox({ }); // uses MACRO_API_KEY env var
 ```
 
 ### Authenticating
@@ -38,22 +38,22 @@ Every request the SDK sends carries exactly one Rox credential. There are three 
 The default for scripts and integrations. Put the key in `MACRO_API_KEY` and construct with no options.
 
 ```ts
-import { Macro } from '@macro-inc/sdk';
+import { Rox } from '@macro-inc/sdk';
 
-const macro = new Macro({});
+const macro = new Rox({});
 const me = await macro.users.me();
 ```
 
 Or pass it in code. `token` accepts an API key or a bearer token. The SDK picks the header from the prefix.
 
 ```ts
-const macro = new Macro({ token: process.env.MACRO_API_KEY });
+const macro = new Rox({ token: process.env.MACRO_API_KEY });
 ```
 
 The explicit form names the credential kind. Use it when the key is not from an env var, or when it predates the `mak_` prefix.
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   auth: { type: 'user', apiKey: process.env.MACRO_API_KEY },
 });
 ```
@@ -100,7 +100,7 @@ in Settings → Account Managers.
 #### Bot token
 
 ```ts
-const asBot = new Macro({ auth: { type: 'bot', token: process.env.MACRO_BOT_TOKEN } });
+const asBot = new Rox({ auth: { type: 'bot', token: process.env.MACRO_BOT_TOKEN } });
 const asWolf = asBot.requestedAs('macro|wolf@rox.one');
 ```
 
@@ -111,7 +111,7 @@ Bot requests carry an access scope. `user` uses the requested-as user's access, 
 A session token, for code running with a signed-in user. Sent as `Authorization: Bearer`. The function form refreshes it.
 
 ```ts
-const macro = new Macro({ auth: { type: 'user', token: () => session.accessToken() } });
+const macro = new Rox({ auth: { type: 'user', token: () => session.accessToken() } });
 ```
 
 #### Which header goes out
@@ -457,7 +457,7 @@ The web UI can hand you a webhook URL and token for a channel. That token is a
 bot token, so it goes in the normal place:
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   auth: { type: 'bot', token: process.env.MACRO_WEBHOOK_TOKEN },
 });
 
@@ -844,7 +844,7 @@ may report that it is not yet available. Tools can perform writes unless disable
 stream — no public URL, persisted webhook, or signing secret required.
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   token: process.env.MACRO_API_KEY,
 });
 
@@ -904,7 +904,7 @@ Use a framework like Hono or Express to handle the request; the SDK verifies
 the signature and dispatches.
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   token: process.env.MACRO_API_KEY,
   webhookSecret: process.env.MACRO_WEBHOOK_SECRET,
 });
@@ -1137,7 +1137,7 @@ never send. Adding and removing require a personal bearer session. Each user is
 limited to one send request per second across all chats.
 
 ```ts
-const personal = new Macro({
+const personal = new Rox({
   auth: { type: 'user', token: () => session.accessToken() },
 });
 let chat;

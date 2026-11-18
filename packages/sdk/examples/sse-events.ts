@@ -1,6 +1,6 @@
 import type { Env } from '../src/config';
 import type { EventName } from '../src/events/types';
-import { Macro } from '../src/macro';
+import { Rox } from '../src/macro';
 
 const actAs = process.argv[2];
 const botToken = process.env.MACRO_BOT_TOKEN;
@@ -12,7 +12,7 @@ if (!actAs || !botToken) {
 }
 
 const env = (process.env.MACRO_ENV ?? 'dev') as Env;
-const bot = new Macro({ env, auth: { type: 'bot', token: botToken } });
+const bot = new Rox({ env, auth: { type: 'bot', token: botToken } });
 const macro = bot.requestedAs(bot.users.byId(actAs));
 
 const ALL_EVENTS = [

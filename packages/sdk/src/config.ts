@@ -106,7 +106,7 @@ export type MacroAuth =
   | { type: 'user'; apiKey: string; token?: never }
   | { type: 'bot'; token: TokenSource; scope?: BotScope };
 
-/** Options passed to `new Macro(opts)` and stored on `MacroClient`. */
+/** Options passed to `new Rox(opts)` and stored on `MacroClient`. */
 export interface MacroOpts {
   /** Optional generated API operation events; excludes arguments, URLs and response data. */
   onRequest?: (event: import('./utils/activity').RequestActivity) => void;

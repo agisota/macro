@@ -30,10 +30,10 @@ const { connectRoom } = await import('@macro-inc/sdk/calls/browser');
 ## Voice agent (Node or Bun)
 
 ```ts
-import { Macro } from '@macro-inc/sdk';
+import { Rox } from '@macro-inc/sdk';
 import { connectRoom } from '@macro-inc/sdk/calls/node';
 
-const macro = new Macro();
+const macro = new Rox();
 const call = await macro.channels.byId(channelId).activeCall();
 if (!call) throw new Error('No active call');
 

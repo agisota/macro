@@ -9,7 +9,7 @@
  * message is attributed to the bot). Set MACRO_ENV for dev/prod/local.
  */
 import type { Env } from '../src/config';
-import { Macro } from '../src/macro';
+import { Rox } from '../src/macro';
 
 const [channelId, actAs] = process.argv.slice(2);
 const botToken = process.env.MACRO_BOT_TOKEN;
@@ -21,7 +21,7 @@ if (!channelId || !actAs || !botToken) {
 }
 
 const env = (process.env.MACRO_ENV ?? 'dev') as Env;
-const bot = new Macro({ env, auth: { type: 'bot', token: botToken } });
+const bot = new Rox({ env, auth: { type: 'bot', token: botToken } });
 const macro = bot.requestedAs(bot.users.byId(actAs));
 const channel = macro.channels.byId(channelId);
 
