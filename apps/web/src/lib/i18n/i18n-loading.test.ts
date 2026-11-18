@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { DEFAULT_LANGUAGE } from './languages';
 
 type LoadState = 'loaded' | 'failing' | 'hanging';
 
@@ -47,10 +48,10 @@ afterEach(() => {
 });
 
 describe('the first language', () => {
-  it('follows the browser before anything is chosen', async () => {
+  it('starts in Russian and does not copy the browser', async () => {
     const i18n = await startInBrowser(['de-AT', 'en']);
-    expect(i18n.browserInterfaceLanguage).toBe('de');
-    expect(i18n.interfaceLanguage()).toBe('de');
+    expect(i18n.browserInterfaceLanguage).toBeUndefined();
+    expect(i18n.interfaceLanguage()).toBe(DEFAULT_LANGUAGE);
   });
 
   it('keeps the language remembered on the device', async () => {
@@ -58,23 +59,23 @@ describe('the first language', () => {
     expect(i18n.interfaceLanguage()).toBe('en');
   });
 
-  it('is English for a browser language the app is not offered in', async () => {
+  it('is Russian when the browser language is not offered', async () => {
     const i18n = await startInBrowser(['ar-EG']);
     expect(i18n.browserInterfaceLanguage).toBeUndefined();
-    expect(i18n.interfaceLanguage()).toBe('en');
+    expect(i18n.interfaceLanguage()).toBe(DEFAULT_LANGUAGE);
   });
 });
 
 describe('formatLocale', () => {
   it('keeps the browser locale when it is in the interface language', async () => {
-    const i18n = await startInBrowser(['en-GB']);
+    const i18n = await startInBrowser(['en-GB'], 'en');
     expect(i18n.formatLocale()).toBe('en-GB');
     i18n.setInterfaceLanguage('de');
     expect(i18n.formatLocale()).toBe('de');
   });
 
   it('keeps a regional variant of the interface language', async () => {
-    const i18n = await startInBrowser(['de-AT']);
+    const i18n = await startInBrowser(['de-AT'], 'de');
     expect(i18n.formatLocale()).toBe('de-AT');
   });
 
@@ -86,7 +87,7 @@ describe('formatLocale', () => {
 
 describe('plural messages', () => {
   it('pick the form for the count, in English and in the translation', async () => {
-    const i18n = await startInBrowser(['en-US']);
+    const i18n = await startInBrowser(['en-US'], 'en');
     expect(i18n.t('entityActions.toastCopiedCount', { count: 1 })).toBe(
       'Copied 1 item'
     );

@@ -3,9 +3,9 @@
   "name": "Rox",
   "icons": [
     {
-      "src": "./macro-favicon.svg",
+      "src": "./rox-eye.png",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/png"
     }
   ],
   "start_url": ".",
