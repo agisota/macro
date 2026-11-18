@@ -106,6 +106,8 @@ export default {
     more: 'Ещё',
     search: 'Поиск',
     settings: 'Настройки',
+    back: 'Назад',
+    retry: 'Повторить',
   },
   create: {
     emailLabel: 'Письмо',
@@ -985,5 +987,73 @@ export default {
     only: 'Только',
     startedFrom: 'Запущено из {{origin}}',
     personal: 'Личное',
+    inbox: 'Входящие',
+    projects: 'Проекты',
+  },
+  accountManager: {
+    cancel: 'Отмена',
+  },
+  calls: {
+    cancelPermissionHelp: 'Отмена',
+    detailRetry: 'Повторить',
+  },
+  channelComposer: {
+    newDocument: 'Новый документ',
+  },
+  channelSections: {
+    team_channels: 'Каналы команды',
+    channels: 'Каналы',
+    direct_messages: 'Личные сообщения',
+    retry: 'Повторить',
+    expandSection: 'Развернуть раздел',
+    collapseSection: 'Свернуть раздел',
+    newChannel: 'Новый канал',
+    cancel: 'Отмена',
+  },
+  computers: {
+    retry: 'Повторить',
+  },
+  crm: {
+    cancel: 'Отмена',
+    company: 'Компания',
+    retryContact: 'Повторить',
+    privacyRetry: 'Повторить',
+    privacyClose: 'Закрыть',
+  },
+  emailViews: {
+    documents: 'Документы',
+  },
+  entityIcons: {
+    'icon_calendar-blank': 'Календарь',
+  },
+  localRuntime: {
+    close: 'Закрыть',
+  },
+  markdownEditor: {
+    collapseSection: 'Свернуть раздел',
+    expandSection: 'Развернуть раздел',
+  },
+  notificationsInbox: {
+    accessGranted: 'Доступ открыт',
+    categoryMentions: 'Упоминания',
+    categoryTasks: 'Задачи',
+    categoryCalendar: 'Календарь',
+  },
+  passwords: {
+    folders: 'Папки',
+    retry: 'Повторить',
+    cancel: 'Отмена',
+    back: 'Назад',
+  },
+  routineSuggestions: {
+    surfaceCalendar: 'Календарь',
+    surfaceTasks: 'Задачи',
+  },
+  tabs: {
+    'record-tasks': 'Задачи',
+    'project-tasks': 'Задачи',
+  },
+  teamAgents: {
+    retrySetup: 'Повторить',
   },
 } satisfies PartialDictionary;
