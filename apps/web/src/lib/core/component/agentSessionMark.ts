@@ -4,7 +4,7 @@ import {
 } from '@core/component/firstPartyBotMark';
 import { isCodexBotId } from '@core/constant/codexAgent';
 import { isCursorBotId } from '@core/constant/cursorAgent';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import SparkleIcon from '@icon/system/regular/sparkle.svg';
 import ClaudeIcon from '@icon/wide-claude.svg';
 import CodexIcon from '@icon/wide-codex-ide.svg';
@@ -13,7 +13,7 @@ import type { Component, ComponentProps } from 'solid-js';
 
 /** The mark a session reference wears, and the text color that tints it. */
 export type AgentSessionMark = {
-  Icon: Component<ComponentProps<'svg'>>;
+  Icon: Component<{ class?: string }>;
   class: string;
 };
 
@@ -23,7 +23,7 @@ const CLAUDE: AgentSessionMark = {
 };
 const CODEX: AgentSessionMark = { Icon: CodexIcon, class: 'text-ink' };
 const CURSOR: AgentSessionMark = { Icon: CursorIcon, class: 'text-ink' };
-const MACRO: AgentSessionMark = { Icon: MacroLogo, class: 'text-accent' };
+const MACRO: AgentSessionMark = { Icon: RoxMark, class: 'text-accent' };
 /** Harnesses Rox ships no logo for (OpenCode, OpenClaw, Hermes, ...). */
 const GENERIC: AgentSessionMark = { Icon: SparkleIcon, class: 'text-chat' };
 

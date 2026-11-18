@@ -791,8 +791,9 @@ async fn upsert_projection_rejects_empty_id_and_prompt() {
 }
 
 #[test]
-fn only_gemini_flash_is_available_without_professional_features() {
-    assert!(!requires_professional_features(Some(
+fn only_the_free_model_is_available_without_professional_features() {
+    assert!(!requires_professional_features(Some("groq/gpt-oss-120b")));
+    assert!(requires_professional_features(Some(
         "google/gemini-3.8-flash"
     )));
     assert!(requires_professional_features(Some(

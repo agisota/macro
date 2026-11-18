@@ -23,7 +23,7 @@ use std::time::{Duration, Instant};
 use ai_toolset::RequestContext;
 use ai_usage::{UsageContext, UsageRecorder};
 use futures::StreamExt;
-use macro_env_var::env_var;
+use macro_env_var::{env_var, maybe_env_var};
 use rig_agent::agent::{Agent, AgentBuilder, MultiTurnStreamItem};
 use rig_agent::streaming::StreamingPrompt;
 use rig_agent::tool::server::ToolServerHandle;
@@ -60,6 +60,11 @@ env_var! {
     }
 }
 
+maybe_env_var! {
+    struct GroqApiKey;
+    struct GroqApiBase;
+}
+
 /// Provider segment for native Anthropic.
 const ANTHROPIC_PROVIDER: &str = "anthropic";
 /// Provider segment the built-in OpenAI client is registered under.
@@ -76,10 +81,13 @@ const FIREWORKS_PROVIDER: &str = "fireworks";
 const FIREWORKS_BASE_URL: &str = "https://api.fireworks.ai/inference/v1";
 /// Provider segment Google Gemini is registered under (native GenerateContent).
 const GOOGLE_PROVIDER: &str = "google";
+/// Provider segment Groq is registered under (OpenAI-compatible Chat Completions).
+const GROQ_PROVIDER: &str = "groq";
+/// Public Groq OpenAI-compatible endpoint, used when `GROQ_API_BASE` is unset.
+const GROQ_DEFAULT_BASE_URL: &str = "https://api.groq.com/openai/v1";
 /// Output cap for OpenAI-compatible Chat Completions hosts, whose limits
 /// differ per host and model.
 const COMPATIBLE_MAX_TOKENS: u64 = 16_000;
-
 /// A routed model id bound to the provider client that serves it.
 pub(crate) enum RoutedModel<'a, H = MeteredHttpClient> {
     /// A model on Anthropic's native API.
@@ -405,13 +413,14 @@ impl<H: HttpClientExt + Clone + 'static> ModelRouter<H> {
         }
     }
 }
-
 impl ModelRouter {
     /// Build a router with the built-in providers from the environment.
     ///
     /// Requires `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`,
-    /// `FIREWORK_API_KEY`, and `GOOGLE_GENERATIVE_AI_API_KEY`. Chain
-    /// `with_openai_provider` on the returned router to add more.
+    /// `FIREWORK_API_KEY`, and `GOOGLE_GENERATIVE_AI_API_KEY`. Groq is
+    /// registered when `GROQ_API_KEY` is set, using `GROQ_API_BASE` or the
+    /// public Groq endpoint. Chain `with_openai_provider` on the returned
+    /// router to add more.
     pub fn try_from_env() -> Result<ModelRouter<MeteredHttpClient>, AgentError> {
         let env = ApiKeys::new()?;
         // No executions may hide below the financial HTTP boundary.
@@ -450,14 +459,15 @@ impl ModelRouter {
                 WireProtocol::Gemini,
             ))
             .build()?;
-        ModelRouter::new(anthropic, openai)
+        let router = ModelRouter::new(anthropic, openai)
             .with_gemini_client(gemini)
             .with_openai_provider(CEREBRAS_PROVIDER, CEREBRAS_BASE_URL, &env.cerebras_api_key)?
             .with_openai_provider(
                 FIREWORKS_PROVIDER,
                 FIREWORKS_BASE_URL,
                 &env.firework_api_key,
-            )
+            )?;
+        register_groq(router)
     }
 
     /// The process-wide full router, built from the environment on first use.
@@ -474,6 +484,22 @@ impl ModelRouter {
         let router = Self::try_from_env()?;
         Ok(ROUTER.get_or_init(|| router))
     }
+}
+
+/// Register Groq when its key is present. A missing key leaves other
+/// providers usable and logs that `groq/` ids will not route.
+fn register_groq(
+    router: ModelRouter<MeteredHttpClient>,
+) -> Result<ModelRouter<MeteredHttpClient>, AgentError> {
+    let Some(key) = GroqApiKey::new().filter(|key| !key.trim().is_empty()) else {
+        tracing::warn!("GROQ_API_KEY is unset; groq model ids will not route");
+        return Ok(router);
+    };
+    let base = GroqApiBase::new()
+        .map(|base| base.trim().to_string())
+        .filter(|base| !base.is_empty())
+        .unwrap_or_else(|| GROQ_DEFAULT_BASE_URL.to_string());
+    router.with_openai_provider(GROQ_PROVIDER, &base, key.as_ref())
 }
 
 impl<H: HttpClientExt + Clone + 'static> ModelRouter<H> {

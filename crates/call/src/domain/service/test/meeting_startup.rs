@@ -357,6 +357,7 @@ fn test_egress_config() -> EgressS3Config {
         region: "test".into(),
         access_key: "test".into(),
         secret: "test".into(),
+        endpoint: None,
     }
 }
 

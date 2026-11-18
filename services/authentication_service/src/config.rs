@@ -411,6 +411,12 @@ impl Config {
         nonblank_value(self.posthog_api_key.value())
     }
 
+    /// The PostHog ingestion origin, when one is configured. A blank value
+    /// counts as none: there is no company default.
+    pub(crate) fn posthog_host(&self) -> Option<&str> {
+        nonblank_value(self.posthog_host.value())
+    }
+
     /// Resolves Microsoft credentials, enforcing that all values are configured together.
     pub(crate) fn microsoft_credentials(&self) -> anyhow::Result<Option<MicrosoftCredentials>> {
         resolve_microsoft_credentials(

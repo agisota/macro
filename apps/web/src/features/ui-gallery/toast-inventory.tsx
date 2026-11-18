@@ -1,7 +1,7 @@
 import { t } from '@app/lib/i18n';
 import { type ToastContent, ToastType } from '@core/component/Toast/Toast';
 import { isTouchDevice } from '@core/mobile/isTouchDevice';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowCounterClockwise from '@icon/system/regular/arrow-counter-clockwise.svg';
 import ArrowSquareOutIcon from '@icon/system/regular/arrow-square-out.svg';
 import Bell from '@icon/system/regular/bell.svg';
@@ -287,7 +287,7 @@ export const TOAST_INVENTORY: ToastInventoryEntry[] = [
     create: (dismiss) => ({
       custom: {
         title: 'A new version of Rox is ready',
-        icon: MacroLogo,
+        icon: RoxMark,
         color: 'var(--color-accent)',
         dismissLabel: t('common.maybeLater'),
         actions: [{ label: 'Reload', variant: 'accent', onClick: dismiss }],

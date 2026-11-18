@@ -25,7 +25,7 @@ import { OutlookBetaBadge } from '@core/email-link/OutlookBetaBadge';
 import type { EmailProvider } from '@core/email-link/ProviderDialog';
 import { fireAndForget } from '@core/util/fireAndForget';
 import GmailIcon from '@icon/gmail-color.svg';
-import RoxLogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import OutlookIcon from '@icon/outlook-color.svg';
 import ArrowsClockwiseIcon from '@icon/system/regular/arrows-clockwise.svg?component-solid';
 import CalendarSlashIcon from '@icon/system/regular/calendar-slash.svg?component-solid';
@@ -466,14 +466,14 @@ function ProviderIcon(props: { provider: EmailLink['provider'] }) {
   return (
     <span
       aria-hidden="true"
-      class="flex size-9 shrink-0 items-center justify-center [&_svg]:size-6"
+      class="flex size-9 shrink-0 items-center justify-center [&_svg]:size-6 [&_img]:size-6"
     >
       <Switch fallback={<GmailIcon />}>
         <Match when={props.provider === 'OUTLOOK'}>
           <OutlookIcon />
         </Match>
         <Match when={props.provider === 'ROX'}>
-          <RoxLogoIcon />
+          <RoxMark />
         </Match>
       </Switch>
     </span>

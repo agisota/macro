@@ -78,18 +78,13 @@ const initializeGoogleAnalytics = () => {
 // Meta Pixel base code is inlined in index.html so it fires before the JS
 // bundle parses (cold-load bouncers were silent when init lived here).
 
-// Same PostHog project + proxy as the app (js/app analytics.ts). The app is
-// served same-origin at rox.one/app/*, so the anonymous distinct_id created
-// here is the same person PostHog sees after signup — ad-landing UTMs become
-// $initial_utm_* on the eventual identified user.
+// Sends only when both the project key and the ingestion origin are set.
+// An empty key sends nothing, and the origin is never a baked proxy.
 const initializePosthog = () => {
-  // Public client-side key (ships in the bundle either way); env var wins so
-  // dev deploys can point elsewhere.
-  const key =
-    import.meta.env.VITE_POSTHOG_API_KEY ||
-    'phc_eSQcxAxPf0FAmnCTckz84305pNlMlOdDKciSKkuX0GO';
-
-  return createDeferredPosthog(key);
+  const key = import.meta.env.VITE_POSTHOG_API_KEY?.trim();
+  const host = import.meta.env.VITE_POSTHOG_HOST?.trim();
+  if (!key || !host) return undefined;
+  return createDeferredPosthog(key, host);
 };
 
 const generateEventId = (): string => {

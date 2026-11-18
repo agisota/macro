@@ -249,12 +249,13 @@ async fn run_server() -> anyhow::Result<()> {
     };
     tracing::trace!("initialized auth client");
     // Gates new Outlook connections per user (`enable-outlook`). Without a
-    // PostHog key the deployment switch alone decides.
+    // PostHog key, or without POSTHOG_HOST, the deployment switch alone decides.
     let feature_flags = config
         .posthog_api_key()
-        .map(|key| {
+        .zip(config.posthog_host())
+        .map(|(key, host)| {
             feature_flags::outbound::posthog::PostHogFeatureFlags::new(
-                config.posthog_host.value().unwrap_or(DEFAULT_POSTHOG_HOST),
+                host,
                 key.to_owned(),
                 Duration::from_secs(3),
                 config.environment,
@@ -352,56 +353,67 @@ async fn run_server() -> anyhow::Result<()> {
         .email_backfill_queue(&email_backfill_queue);
     tracing::trace!("initialized sqs client");
 
-    // Initialize analytics client with configured providers
+    // Initialize analytics client with configured providers. The local product
+    // does not send to the company Google pixel, Meta pixel, or Loops audience.
+    let local_product = matches!(config.environment, Environment::Local);
     let analytics_client = Arc::new(AnalyticsClient::new(AnalyticsClientConfig {
-        google_analytics: config
-            .ga_measurement_id
-            .value()
-            .zip(config.ga_api_secret.value())
-            .map(|(measurement_id, api_secret)| {
-                tracing::info!("configuring Google Analytics");
-                GoogleAnalyticsConfig {
-                    measurement_id: measurement_id.to_string(),
-                    api_secret: api_secret.to_string(),
+        google_analytics: if local_product {
+            None
+        } else {
+            config
+                .ga_measurement_id
+                .value()
+                .zip(config.ga_api_secret.value())
+                .map(|(measurement_id, api_secret)| {
+                    tracing::info!("configuring Google Analytics");
+                    GoogleAnalyticsConfig {
+                        measurement_id: measurement_id.to_string(),
+                        api_secret: api_secret.to_string(),
+                    }
+                })
+        },
+        meta: if local_product {
+            None
+        } else {
+            config
+                .meta_pixel_id
+                .value()
+                .zip(config.meta_access_token.value())
+                .map(|(pixel_id, access_token)| {
+                    tracing::info!("configuring Meta Conversions API");
+                    MetaConfig {
+                        pixel_id: pixel_id.to_string(),
+                        access_token: access_token.to_string(),
+                        test_event_code: config.meta_test_event_code.value().map(str::to_string),
+                    }
+                })
+        },
+        posthog: config
+            .posthog_api_key()
+            .zip(config.posthog_host())
+            .map(|(api_key, host)| {
+                tracing::info!("configuring PostHog");
+                PostHogConfig {
+                    api_key: api_key.to_string(),
+                    host: host.to_string(),
                 }
             }),
-        meta: config
-            .meta_pixel_id
-            .value()
-            .zip(config.meta_access_token.value())
-            .map(|(pixel_id, access_token)| {
-                tracing::info!("configuring Meta Conversions API");
-                MetaConfig {
-                    pixel_id: pixel_id.to_string(),
-                    access_token: access_token.to_string(),
-                    test_event_code: config.meta_test_event_code.value().map(str::to_string),
-                }
-            }),
-        posthog: config.posthog_api_key().map(|api_key| {
-            tracing::info!("configuring PostHog");
-            PostHogConfig {
-                api_key: api_key.to_string(),
-                host: config
-                    .posthog_host
-                    .value()
-                    .unwrap_or(DEFAULT_POSTHOG_HOST)
-                    .to_string(),
-            }
-        }),
     }));
     tracing::trace!("initialized analytics client");
 
-    // Initialize Loops client. Production and develop sign-ups are added to
-    // Loops; on localhost, or wherever no API key is configured, this is a
-    // no-op. Note there is one Loops audience — a develop sign-up creates a
-    // real contact and can trigger live workflows, so leave the key unset in
-    // any environment that should not send.
-    let loops_client = match (config.environment, config.loops_api_key.value()) {
-        (Environment::Production | Environment::Develop, Some(api_key)) => {
-            tracing::info!("configuring Loops");
-            LoopsClient::new(api_key.to_string())
+    // Production and develop sign-ups are added to Loops when a key is set.
+    // The local product never sends, even if a key is present: that audience
+    // is foreign and a develop sign-up can trigger live workflows.
+    let loops_client = if local_product {
+        LoopsClient::noop()
+    } else {
+        match config.loops_api_key.value() {
+            Some(api_key) if !api_key.trim().is_empty() => {
+                tracing::info!("configuring Loops");
+                LoopsClient::new(api_key.to_string())
+            }
+            _ => LoopsClient::noop(),
         }
-        _ => LoopsClient::noop(),
     };
     tracing::trace!("initialized loops client");
 
@@ -1080,8 +1092,6 @@ const STRIPE_INBOX_READS_PER_SECOND: u32 = 2;
 /// Stripe reads for the daily audit, which one replica runs.
 const STRIPE_AUDIT_READS_PER_SECOND: u32 = 5;
 const MICROSOFT_GRANT_CLEANUP_INTERVAL: Duration = Duration::from_secs(5 * 60);
-/// PostHog's US ingestion origin, used when `POSTHOG_HOST` is unset.
-const DEFAULT_POSTHOG_HOST: &str = "https://us.i.posthog.com";
 
 // SAFETY: this is not a secret value
 const IOS_DEVELOPMENT_TEAM_ID: &str = "TY74Q77JBD";

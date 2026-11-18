@@ -94,6 +94,23 @@ fn fireworks_provider_routes_to_chat_completions() {
 }
 
 #[test]
+fn groq_provider_routes_to_chat_completions() {
+    let router = test_router().with_openai_client(
+        "groq",
+        openai::CompletionsClient::builder()
+            .api_key("test-groq-key")
+            .base_url("https://api.groq.com/openai/v1")
+            .build()
+            .unwrap(),
+    );
+
+    let routed = router.route("groq/gpt-oss-120b").unwrap();
+    assert!(matches!(routed, RoutedModel::OpenAiChatCompletions(_)));
+    assert_eq!(routed.provider(), "groq");
+    assert_eq!(routed.model_name(), "gpt-oss-120b");
+}
+
+#[test]
 fn google_provider_routes_to_native_gemini() {
     let router = test_router().with_gemini_client(
         gemini::Client::builder()

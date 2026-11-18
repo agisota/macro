@@ -15,8 +15,9 @@ const EMAIL_ACCOUNTS_POLL_MS = 5_000;
 export type InboxSlot = 'work' | 'personal';
 
 /**
- * Connecting Google and Outlook inboxes. On web, connecting is a full-page OAuth redirect,
- * so a landed link is detected against a baseline saved before leaving.
+ * Connecting Google and Outlook inboxes, with the person's Rox mailbox listed
+ * after them. On web, connecting is a full-page OAuth redirect, so a landed
+ * link is detected against a baseline saved before leaving.
  */
 export function createEmailAccounts(
   context: Pick<OnboardingContext, 'viewer' | 'connectInbox' | 'track'>,
@@ -39,18 +40,20 @@ export function createEmailAccounts(
     const state = source.accounts();
     if (state.t !== 'ready') return state;
     const viewer = context.viewer();
+    const viewerId = viewer.t === 'signed-in' ? viewer.viewer.id : undefined;
     return {
       t: 'ready',
-      value: orderEmailAccounts(
-        state.value.filter((account) => account.provider !== 'ROX'),
-        viewer.t === 'signed-in' ? viewer.viewer.id : undefined
-      ),
+      value: mailAccountsAfterProviders(state.value, viewerId),
     };
   };
   const list = () => {
     const state = accounts();
     return state.t === 'ready' ? state.value : [];
   };
+  // Linking stays Google and Outlook. A Rox mailbox in the list must not
+  // take the slot that marks work or personal mail as already connected.
+  const linking = () =>
+    list().filter((account) => account.provider !== 'ROX');
 
   createEffect(() => {
     const state = source.accounts();
@@ -82,11 +85,30 @@ export function createEmailAccounts(
 
   return {
     accounts,
-    primary: () => list()[0],
-    secondary: () => list()[1],
+    primary: () => linking()[0],
+    secondary: () => linking()[1],
     connecting,
     connectingProvider,
     connect,
     retry: () => fireAndForget(source.refresh(), 'onboarding'),
   };
+}
+
+/**
+ * Google and Outlook stay ahead of the person's Rox mailbox. Shared inboxes
+ * from someone else stay in the provider group; another person's Rox mailbox
+ * is not this list.
+ */
+function mailAccountsAfterProviders(
+  accounts: readonly EmailAccount[],
+  viewerId: string | undefined
+): EmailAccount[] {
+  const ordered = orderEmailAccounts(accounts, viewerId);
+  const providers = ordered.filter((account) => account.provider !== 'ROX');
+  const rox = ordered.filter(
+    (account) =>
+      account.provider === 'ROX' &&
+      (viewerId === undefined || account.ownerId === viewerId)
+  );
+  return [...providers, ...rox];
 }

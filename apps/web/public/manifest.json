@@ -3,7 +3,7 @@
   "name": "Rox",
   "icons": [
     {
-      "src": "./rox-eye.png",
+      "src": "./rox-mark.png",
       "sizes": "any",
       "type": "image/png"
     }

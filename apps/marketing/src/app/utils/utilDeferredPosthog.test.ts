@@ -34,7 +34,11 @@ const setup = () => {
         resolve = done;
       })
   );
-  const analytics = createDeferredPosthog('public-key', load);
+  const analytics = createDeferredPosthog(
+    'public-key',
+    'https://analytics.example',
+    load
+  );
   return {
     analytics,
     load,

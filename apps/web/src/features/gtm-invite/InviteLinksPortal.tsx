@@ -3,7 +3,7 @@ import { toast } from '@core/component/Toast/Toast';
 import { useEmail, useIsAuthenticated } from '@core/context/user';
 import { idToDisplayName } from '@core/user/util';
 import { fireAndForget } from '@core/util/fireAndForget';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import CopyIcon from '@icon/system/regular/copy.svg';
 import LinkIcon from '@icon/system/regular/link.svg';
 import XIcon from '@icon/system/regular/x.svg';
@@ -59,7 +59,7 @@ export function InviteLinksPortal() {
     <div class="size-full overflow-y-auto bg-surface font-sans text-ink">
       <div class="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-10">
         <header class="flex items-center gap-3">
-          <LogoIcon class="size-8 text-accent" />
+          <RoxMark class="size-8" />
           <div class="flex flex-col">
             <h1 class="text-xl font-semibold tracking-tight">Invite links</h1>
             <p class="text-sm text-ink-muted">

@@ -1,14 +1,7 @@
-//! The Outlook emulator (`crates/outlook_emulator`) as part of a local stack.
+//! The Outlook emulator (`crates/outlook_emulator`).
 //!
-//! A stack with no real Microsoft OAuth client cannot reach Microsoft: Sign
-//! in with Microsoft and Outlook linking have no application to consent to.
-//! Such a stack runs the emulator instead. FusionAuth's `microsoft` identity
-//! provider and the services' Microsoft service URLs point at it, so a
-//! person signs in by picking a seeded user on the emulator's page and their
-//! mailbox is the emulator's.
-//!
-//! A stack whose env carries a real Microsoft client (Doppler, `--env-file`)
-//! talks to Microsoft as before and does not start the emulator.
+//! Local sign-in is an emailed code, so the runner does not start this
+//! emulator and does not register a Microsoft login provider against it.
 
 use std::collections::BTreeMap;
 
@@ -31,14 +24,9 @@ const CLIENT_SECRET: &str = "local-microsoft-client-secret";
 /// The tenant name that admits accounts of every directory, as deployed.
 const TENANT: &str = "common";
 
-/// Whether this stack runs the emulator in place of Microsoft: it runs its
-/// own FusionAuth, and its resolved env names no real Microsoft client.
-pub fn stands_in(mode: Mode, env: &BTreeMap<String, String>) -> bool {
-    let real_client = env.get("MICROSOFT_CLIENT_ID").is_some_and(|client_id| {
-        let client_id = client_id.trim();
-        !client_id.is_empty() && client_id != CLIENT_ID
-    });
-    mode.spec().runs_local_infra && !real_client
+/// Local sign-in does not fake Microsoft, so the runner never starts this emulator.
+pub fn stands_in(_mode: Mode, _env: &BTreeMap<String, String>) -> bool {
+    false
 }
 
 fn in_network(path: &str) -> String {

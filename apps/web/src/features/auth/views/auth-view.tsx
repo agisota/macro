@@ -41,12 +41,10 @@ export type SignupJourneySlots = {
   showingEmail: boolean;
 };
 
-/** Sign-in and sign-up: SSO or an emailed code, then whatever comes next. */
+/** Sign-in and sign-up by an emailed code, then whatever comes next. */
 export function AuthView(props: {
   intent: AuthIntent;
   showApple: boolean;
-  /** Continue with Microsoft, behind `enable-microsoft-signup`. */
-  showMicrosoft?: boolean;
   /** The header yields to the on-screen keyboard on phones. */
   compact: boolean;
   initialEmail?: string;
@@ -92,10 +90,8 @@ export function AuthView(props: {
       <Match when={props.signupJourney}>
         {(journey) =>
           journey()({
-            onGoogle: () => context.startSso('google', 'signup'),
-            onMicrosoft: props.showMicrosoft
-              ? () => context.startSso('microsoft', 'signup')
-              : undefined,
+            onGoogle: () => Promise.resolve(),
+            onMicrosoft: undefined,
             onBackFromEmail: login.back,
             onSignIn: () => props.onSignIn?.(),
             onAgentSignup: () => props.onAgentSignup?.(),
@@ -136,19 +132,6 @@ export function AuthView(props: {
             <Stepper.Step>
               <LoginPicker
                 showApple={props.showApple}
-                showMicrosoft={props.showMicrosoft === true}
-                onGoogle={() =>
-                  fireAndForget(
-                    context.startSso('google', props.intent),
-                    'auth'
-                  )
-                }
-                onMicrosoft={() =>
-                  fireAndForget(
-                    context.startSso('microsoft', props.intent),
-                    'auth'
-                  )
-                }
                 onApple={() =>
                   fireAndForget(context.startSso('apple', props.intent), 'auth')
                 }
@@ -240,6 +223,7 @@ function PasskeyStep(props: { login: EmailLogin }) {
       busy={props.login.passkeyBusy()}
       error={props.login.passkeyError()}
       onSubmit={props.login.submitPasskey}
+      onBack={props.login.back}
     />
   );
 }

@@ -2,7 +2,7 @@ import { ListSkeleton } from '@app/components/view-shell/ListSkeleton';
 import { useAnalytics } from '@app/lib/analytics/analytics-context';
 import { NoiseBackground } from '@core/component/NoiseBackground';
 import { useIsAuthenticated } from '@core/context/user';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowRight from '@icon/system/regular/arrow-right.svg';
 import {
   usePublicGtmInviteLinkQuery,
@@ -136,7 +136,7 @@ export function InviteWelcome() {
 
       <div class="gtm-card relative z-10 w-full max-w-sm px-4 sm:max-w-lg sm:px-8">
         <div class="flex flex-col gap-8">
-          <LogoIcon class="size-12 text-accent" />
+          <RoxMark class="size-12" />
 
           <Switch>
             <Match when={view().kind === 'loading'}>

@@ -1012,15 +1012,13 @@ fn prepare(
         portmap::write(instance)?;
     }
     if mode.spec().runs_local_infra {
-        // Without a real Google client the stack's Gmail emulator is Google.
-        let google = kickstart::GoogleIdp::from_env(&env.merged)
-            .unwrap_or_else(|| google_emulator::idp(instance));
+        // Email code is the only local sign-in. A real Google client still
+        // configures `google_gmail` for mailbox and calendar linking. The
+        // plain `google` and `microsoft` login providers are not registered,
+        // and their local fakes are not started.
+        let google = kickstart::GoogleIdp::from_env(&env.merged);
         let github = kickstart::GithubIdp::from_env(&env.merged);
-        // Without a real Microsoft client the stack's Outlook emulator is
-        // Microsoft.
-        let microsoft =
-            microsoft_emulator::stands_in(mode, &env.merged).then(microsoft_emulator::idp);
-        fusionauth::write_kickstart(instance, Some(&google), github.as_ref(), microsoft.as_ref())?;
+        fusionauth::write_kickstart(instance, google.as_ref(), github.as_ref(), None)?;
     }
     if args.build.build_aux_services {
         build_aux_service_images(stage, instance, &env)?;
@@ -1295,78 +1293,32 @@ fn ensure_tracing_backend(stage: &Stage, backend: cli::TracesBackend) -> Result<
              the shell you run this from)"
         );
     }
-    // `services = true` in the local telemetry settings: lgtm copies what it
-    // receives to the Grafana forwarder. Only this backend can. A forwarder
-    // that fails to start leaves lgtm's copy as it was.
-    let forwarder = (backend == cli::TracesBackend::Lgtm)
-        .then(|| grafana_forwarder::Forwarder::from_settings(stage))
-        .flatten()
-        .filter(|forwarder| {
-            forwarder
-                .reconcile(stage)
-                .inspect_err(|e| {
-                    stage.note(&format!(
-                        "  WARNING: could not start or update the Grafana forwarder \
-                         ({e:#}); forwarding left as it was"
-                    ));
-                })
-                .is_ok()
-        });
-    let copy_to = forwarder
-        .as_ref()
-        .map(grafana_forwarder::Forwarder::lgtm_endpoint);
-    let env: Vec<(&str, &str)> = copy_to
-        .map(|endpoint| (grafana_forwarder::LGTM_FORWARD_VAR, endpoint))
-        .into_iter()
-        .collect();
-    // `--no-recreate` would start a stopped lgtm with its old Grafana copy.
-    let start = |container: &str| match copy_to
-        .filter(|endpoint| grafana_forwarder::lgtm_differs(container, endpoint))
-    {
-        Some(endpoint) => grafana_forwarder::recreate_lgtm(stage, container, endpoint),
-        None => start_global_compose_service(stage, profile, service, "trace collector", &env),
-    };
-    let (container, started) = match collector_action(otlp_port_holder().as_deref(), service) {
+    // Launch-timing export stays off unless `MACRO_LOCAL_TELEMETRY` is explicitly
+    // on. Unset means off (`xtask_local_telemetry::config::Switch::from_env`).
+    // The foreign Grafana copy is a separate switch and stays off: this runner
+    // does not start the forwarder and does not set a copy endpoint. Nothing
+    // here writes `services = true`.
+    let env: &[(&str, &str)] = &[];
+    let start =
+        || start_global_compose_service(stage, profile, service, "trace collector", env);
+    let started = match collector_action(otlp_port_holder().as_deref(), service) {
         CollectorAction::Reuse(name) => {
             // Never `up` a running collector: Compose would recreate it
             // whenever its config hash differs (each worktree bind-mounts
             // its own `docker/lgtm` path), dropping the `otel-collector`
-            // attachments other running instances added to it. Only a change
-            // of its Grafana copy recreates it, restoring those.
-            match copy_to.filter(|endpoint| grafana_forwarder::lgtm_differs(&name, endpoint)) {
-                Some(endpoint) => {
-                    let recreated = grafana_forwarder::recreate_lgtm(stage, &name, endpoint);
-                    (name, recreated)
-                }
-                None => {
-                    stage.note(&format!("  reusing running trace collector {name}"));
-                    if let Some(forwarder) = &forwarder {
-                        forwarder.settle(stage, &name);
-                    }
-                    return Ok(());
-                }
-            }
+            // attachments other running instances added to it.
+            stage.note(&format!("  reusing running trace collector {name}"));
+            return Ok(());
         }
         CollectorAction::Replace(name) => {
             stage.note(&format!(
                 "  replacing running trace collector {name} (all collectors share the OTLP ports)"
             ));
             let _ = Command::new("docker").args(["rm", "-f", &name]).output();
-            let container = grafana_forwarder::LGTM_CONTAINER.to_owned();
-            let started = start(&container);
-            (container, started)
+            start()
         }
-        CollectorAction::Start => {
-            let container = grafana_forwarder::LGTM_CONTAINER.to_owned();
-            let started = start(&container);
-            (container, started)
-        }
+        CollectorAction::Start => start(),
     };
-    if started.is_ok()
-        && let Some(forwarder) = &forwarder
-    {
-        forwarder.settle(stage, &container);
-    }
     let result = started.and_then(|()| {
         // `up -d` returns once the container starts, not once it's accepting
         // connections; `env_layer::resolve` (which runs right after this, in

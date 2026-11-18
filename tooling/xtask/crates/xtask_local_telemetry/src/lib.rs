@@ -3,18 +3,20 @@
 //! sent to Loki as OTLP logs (the same design as CI's
 //! `service_name="ci-telemetry"` events) and, as spans, to Tempo.
 //!
-//! On by default. Opted out (see [`config`]), [`Recorder::start`] returns `None`
-//! and nothing is written or sent; it does the same while a recent attempt to
-//! provision the token failed (see [`provision`]). On, every event is appended to
-//! a buffer file first and a background thread provisions the token if needed
-//! and sends it, so recording never waits on the network or on Doppler. A
+//! Off unless `MACRO_LOCAL_TELEMETRY` is explicitly on (see [`config`]). Unset
+//! means off for this local runner, and the runner does not create a settings
+//! file. [`Recorder::start`] then returns `None` and nothing is written or sent;
+//! it does the same while a recent attempt to provision the token failed (see
+//! [`provision`]). When a caller has already opted in and a settings file allows
+//! sending, every event is appended to a buffer file first and a background
+//! thread sends it, so recording never waits on the network or on Doppler. A
 //! process killed mid-run leaves its file behind, and the next recording process
 //! sends it, closed off as an `interrupted` run.
 //!
-//! `services = true` in the settings also forwards the local stack's own
-//! telemetry, which [`forwarding`] decides and `xtask_local` runs. Its runs, and
-//! those of a machine with a `machine` setting, carry the readable machine name
-//! as `host_name`; every run carries `machine`, that name or the hashed host.
+//! A settings file that says `services = true` can ask to forward the local
+//! stack's own telemetry. This runner does not write that line, and the foreign
+//! Grafana copy stays off. [`forwarding`] still decides whether a file that
+//! already says so would forward; this runner does not start that copy.
 //!
 //! A run's trace id is its `run_id`. An event with a span key ([`Event::span`])
 //! is the parent of the events naming that key ([`Event::under`]); the others

@@ -414,6 +414,70 @@ pub struct EgressS3Config {
     pub access_key: String,
     /// AWS secret access key.
     pub secret: String,
+    /// Custom S3 API address. Empty means the provider default.
+    /// LiveKit Cloud must be able to open this address.
+    pub endpoint: Option<String>,
+}
+
+impl EgressS3Config {
+    /// Warehouse address to send to LiveKit Cloud, if one is configured.
+    ///
+    /// A loopback or in-network name is omitted. LiveKit Cloud cannot open
+    /// `localhost` or `localstack`, so those are not presented as reachable.
+    pub fn cloud_upload_endpoint(&self) -> Option<&str> {
+        let endpoint = self.endpoint.as_deref()?.trim();
+        cloud_reachable_warehouse_endpoint(endpoint)
+    }
+}
+
+/// Returns `endpoint` when LiveKit Cloud can open it.
+///
+/// Loopback, `.local`, and the in-network warehouse name are not reachable
+/// from LiveKit Cloud. A public address, including a published Tailscale URL,
+/// is kept.
+pub fn cloud_reachable_warehouse_endpoint(endpoint: &str) -> Option<&str> {
+    let endpoint = endpoint.trim();
+    let host = warehouse_endpoint_host(endpoint)?;
+    if is_laptop_only_host(host) {
+        None
+    } else {
+        Some(endpoint)
+    }
+}
+
+fn warehouse_endpoint_host(endpoint: &str) -> Option<&str> {
+    let rest = endpoint
+        .strip_prefix("https://")
+        .or_else(|| endpoint.strip_prefix("http://"))?;
+    let authority = rest.split(['/', '?', '#']).next().unwrap_or(rest);
+    let hostport = authority.rsplit('@').next().unwrap_or(authority);
+    let host = if let Some(host) = hostport.strip_prefix('[') {
+        host.split(']').next()?
+    } else {
+        hostport.split(':').next().unwrap_or(hostport)
+    };
+    if host.is_empty() {
+        None
+    } else {
+        Some(host)
+    }
+}
+
+fn is_laptop_only_host(host: &str) -> bool {
+    host.eq_ignore_ascii_case("localhost")
+        || host.eq_ignore_ascii_case("localstack")
+        || host.eq_ignore_ascii_case("host.docker.internal")
+        || host.eq_ignore_ascii_case("0.0.0.0")
+        || host.eq_ignore_ascii_case("::1")
+        || host.starts_with("127.")
+        || ends_ignore_ascii_case(host, ".localhost")
+        || ends_ignore_ascii_case(host, ".localstack")
+        || ends_ignore_ascii_case(host, ".local")
+}
+
+fn ends_ignore_ascii_case(value: &str, suffix: &str) -> bool {
+    value.len() >= suffix.len()
+        && value[value.len() - suffix.len()..].eq_ignore_ascii_case(suffix)
 }
 
 impl fmt::Debug for EgressS3Config {
@@ -421,6 +485,7 @@ impl fmt::Debug for EgressS3Config {
         f.debug_struct("EgressS3Config")
             .field("bucket", &self.bucket)
             .field("region", &self.region)
+            .field("endpoint", &self.cloud_upload_endpoint())
             .field("access_key", &"<redacted>")
             .field("secret", &"<redacted>")
             .finish()

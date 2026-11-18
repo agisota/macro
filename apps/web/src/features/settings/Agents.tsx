@@ -21,7 +21,7 @@ import { useChannelsContext } from '@core/context/channels';
 import { useUserId } from '@core/context/user';
 import { usePipedreamMcpFlag } from '@core/pipedream/flag';
 import { fireAndForget } from '@core/util/fireAndForget';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowLeftIcon from '@icon/system/regular/arrow-left.svg';
 import ChatIcon from '@icon/system/regular/chat-circle.svg';
 import PencilIcon from '@icon/system/regular/pencil-simple.svg';
@@ -629,7 +629,7 @@ function AgentAvatar(props: { agent: AgentSummary }) {
               when={props.agent.id === MACRO_AGENT_BOT_ID}
               fallback={<AgentIcon class="size-5" />}
             >
-              <MacroLogo class="size-5" />
+              <RoxMark class="size-5" />
             </Show>
           </Avatar.Fallback>
         }
@@ -1360,7 +1360,7 @@ function AgentEditorPage(props: {
                     value="in-memory"
                     title={`In ${displayName}`}
                     description={`Fast and built in. Uses ${displayName} tools and your connected apps.`}
-                    icon={<MacroLogo />}
+                    icon={<RoxMark />}
                     checked={harnessId() === IN_MEMORY_HARNESS.id}
                     onSelect={() => handleHarnessChange(IN_MEMORY_HARNESS.id)}
                   >

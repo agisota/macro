@@ -37,17 +37,19 @@ export function EmailSettings() {
         title="Accounts"
         description="Connect email accounts and manage their sync with Rox."
       >
-        <Suspense
-          fallback={
-            <p role="status" class="text-sm text-ink-muted">
-              Loading accounts…
-            </p>
-          }
-        >
-          <EmailCard />
-        </Suspense>
+        <div class="flex flex-col gap-2" aria-label="Mail accounts">
+          <Suspense
+            fallback={
+              <p role="status" class="text-sm text-ink-muted">
+                Loading accounts…
+              </p>
+            }
+          >
+            <EmailCard />
+          </Suspense>
+          <RoxMailboxSettings />
+        </div>
       </SettingsSection>
-      <RoxMailboxSettings />
       <Show when={signatures().enabled}>
         <SettingsSection
           title="Signatures"

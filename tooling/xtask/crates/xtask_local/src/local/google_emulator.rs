@@ -1,15 +1,9 @@
-//! The Gmail emulator (`crates/gmail_emulator`) as part of a local stack.
+//! The Gmail emulator (`crates/gmail_emulator`).
 //!
-//! A stack with no real Google OAuth client cannot reach Google: sign-in with
-//! Google and Gmail linking would dead-end at a consent screen for a client
-//! that does not exist. Such a stack runs the emulator instead. FusionAuth's
-//! `google` and `google_gmail` identity providers and the services' Google
-//! service URLs point at it, so a person signs in by picking a seeded user
-//! on the emulator's page and their mailbox and calendars are the
-//! emulator's.
-//!
-//! A stack whose env carries a real Google client (Doppler, `--env-file`)
-//! talks to Google as before and does not start the emulator.
+//! Local sign-in is an emailed code, so the runner does not start this
+//! emulator and does not point FusionAuth's login providers at it. The
+//! helpers remain for a stack that is explicitly given a real Google client
+//! for mailbox and calendar linking.
 
 use std::collections::BTreeMap;
 
@@ -35,10 +29,9 @@ const CALENDAR_WEBHOOK: &str = "http://calendar-service:8080/notifications";
 /// notification. Only the emulator ever sends it.
 const CALENDAR_WATCH_TOKEN: &str = "local-calendar-watch-token";
 
-/// Whether this stack runs the emulator in place of Google: it runs its own
-/// FusionAuth, and its resolved env names no real Google client.
-pub fn stands_in(mode: Mode, env: &BTreeMap<String, String>) -> bool {
-    mode.spec().runs_local_infra && kickstart::GoogleIdp::from_env(env).is_none()
+/// Local sign-in does not fake Google, so the runner never starts this emulator.
+pub fn stands_in(_mode: Mode, _env: &BTreeMap<String, String>) -> bool {
+    false
 }
 
 fn in_network(path: &str) -> String {

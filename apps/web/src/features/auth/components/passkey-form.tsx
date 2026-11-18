@@ -1,3 +1,4 @@
+import ArrowLeft from '@icon/system/regular/arrow-left.svg';
 import { Show } from 'solid-js';
 import { AuthButton, FormError } from './form-fields';
 
@@ -6,7 +7,7 @@ export function PasskeyForm(props: {
   mode: 'enroll' | 'assert';
   busy: boolean;
   error?: string;
-  onSubmit: () => void;
+  onBack: () => void;
 }) {
   const enroll = () => props.mode === 'enroll';
   return (
@@ -28,6 +29,10 @@ export function PasskeyForm(props: {
       <FormError message={props.error} />
       <AuthButton type="submit" disabled={props.busy}>
         {enroll() ? 'Add a passkey' : 'Use your passkey'}
+      </AuthButton>
+      <AuthButton variant="secondary" onClick={props.onBack}>
+        <ArrowLeft class="size-5 shrink-0" />
+        Back
       </AuthButton>
     </form>
   );

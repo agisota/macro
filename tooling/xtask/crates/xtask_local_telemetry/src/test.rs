@@ -524,33 +524,28 @@ fn opting_out_wins_over_working_settings() {
 }
 
 #[test]
-fn a_first_run_provisions_its_token_and_sends() {
+fn a_first_run_writes_a_disabled_settings_file_and_sends_nothing() {
     let endpoint = Endpoint::start(ResponseTemplate::new(204));
     let dir = tempfile::tempdir().expect("tempdir");
     let paths = unprovisioned(dir.path(), &endpoint.server.uri(), &format!("echo {TOKEN}"));
 
     let recorder = Recorder::start(&paths, SystemTime::now(), common)
         .expect("start")
-        .expect("on by default");
+        .expect("recording starts before the file exists");
     recorder.record(Event::new("step").with("step", "Running migrations"));
     recorder.finish(BTreeMap::new(), SystemTime::now(), Duration::from_secs(20));
 
-    let requests = endpoint.requests("/v1/logs");
-    assert!(!requests.is_empty());
-    let authorization = requests[0]
-        .headers
-        .get("authorization")
-        .and_then(|value| value.to_str().ok())
-        .map(str::to_owned);
-    assert_eq!(authorization, Some(format!("Bearer {TOKEN}")));
+    assert!(endpoint.requests("/v1/logs").is_empty());
     let mode = std::fs::metadata(&paths.config)
         .expect("settings written")
         .permissions()
         .mode();
     assert_eq!(mode & 0o777, 0o600);
     let written = std::fs::read_to_string(&paths.config).expect("read");
+    assert!(written.contains("enabled = false"));
     assert!(written.contains("provisioned = true"));
-    assert!(buffered_files(&paths).is_empty());
+    assert!(!written.contains("services = true"));
+    assert!(!buffered_files(&paths).is_empty());
 }
 
 #[test]
@@ -621,13 +616,13 @@ fn a_rejected_provisioned_token_is_fetched_again() {
     recorder.finish(BTreeMap::new(), SystemTime::now(), Duration::from_secs(20));
 
     let written = std::fs::read_to_string(&paths.config).expect("read");
+    assert!(written.contains("enabled = false"));
     assert!(written.contains(FRESH));
-    // The user's forwarding choices survive the new token.
-    assert!(written.contains("services = true\n"));
+    assert!(!written.contains("services = true"));
     assert!(written.contains("machine = \"build-box\"\n"));
     assert!(
-        buffered_files(&paths).is_empty(),
-        "sent with the fresh token"
+        !buffered_files(&paths).is_empty(),
+        "a disabled settings file does not send"
     );
 }
 
@@ -684,5 +679,7 @@ fn a_fetch_left_by_an_exited_process_is_used_by_the_next_run() {
     assert!(!leftover.exists());
     let written = std::fs::read_to_string(&paths.config).expect("settings written");
     assert!(written.contains(TOKEN));
-    assert!(!endpoint.requests("/v1/logs").is_empty());
+    assert!(written.contains("enabled = false"));
+    assert!(!written.contains("services = true"));
+    assert!(endpoint.requests("/v1/logs").is_empty());
 }

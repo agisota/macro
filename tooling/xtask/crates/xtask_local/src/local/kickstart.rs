@@ -438,12 +438,10 @@ pub fn build(
         }),
     ];
 
-    // Google OIDC identity providers — only when a real Google client is
-    // configured (see `GoogleIdp::from_env`). Mirrors the dev instance's IdP
-    // config field-for-field (generic OIDC, NOT FusionAuth's built-in Google
-    // type: auth-service and the IdP must share the same OAuth client, and the
-    // endpoints stay per-IdP config). Appended last: `applicationConfiguration`
-    // references the application, which must already exist.
+    // Mailbox and calendar linking only, and only with a real Google client.
+    // The plain `google` login provider is not created: local sign-in is an
+    // emailed code. `applicationConfiguration` references the application,
+    // which must already exist.
     if let Some(google) = google {
         let oauth2_base = |scope: &str| {
             json!({
@@ -461,7 +459,7 @@ pub fn build(
             })
         };
         let app_config = json!({
-            identity::APPLICATION_ID: { "enabled": true, "createRegistration": true }
+            identity::APPLICATION_ID: { "enabled": true, "createRegistration": false }
         });
         requests.push(json!({
             "method": "POST",
@@ -472,20 +470,6 @@ pub fn build(
                 "type": "OpenIDReconcile",
                 "enabled": true,
                 "body": reconcile_lambda_body,
-            }}
-        }));
-        requests.push(json!({
-            "method": "POST",
-            "url": format!("/api/identity-provider/{}", identity::GOOGLE_IDP_ID),
-            "body": { "identityProvider": {
-                "type": "OpenIDConnect",
-                "name": "google",
-                "enabled": true,
-                "debug": true,
-                "buttonText": "Google",
-                "linkingStrategy": "LinkByEmail",
-                "oauth2": oauth2_base("openid profile email"),
-                "applicationConfiguration": app_config.clone(),
             }}
         }));
         requests.push(json!({

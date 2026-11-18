@@ -217,6 +217,15 @@ maybe_env_vars! {
     struct SnsApnsVoipPlatformArn;
 }
 
+/// Published warehouse address for LiveKit Cloud, when one can be opened
+/// from outside this machine. The in-network name `localstack` is not used.
+fn recording_warehouse_endpoint() -> Option<String> {
+    let candidate = macro_aws_config::LocalAwsPublicUrl::new()
+        .map(|url| url.as_ref().to_owned())
+        .or_else(|| macro_aws_config::LocalAwsUrl::new().map(|url| url.as_ref().to_owned()))?;
+    call::domain::models::cloud_reachable_warehouse_endpoint(&candidate).map(str::to_owned)
+}
+
 /// Build the service from the environment and serve until shutdown.
 // Not a `pub async fn`: see CS-73.
 pub fn run() -> impl Future<Output = anyhow::Result<()>> {
@@ -814,12 +823,18 @@ async fn run_server() -> anyhow::Result<()> {
         config::CallRecordingS3Secret::new(),
     ) {
         (Some(bucket), Some(region), Some(access_key), Some(secret)) => {
-            tracing::info!(bucket = bucket.as_ref(), "call recording enabled");
+            let endpoint = recording_warehouse_endpoint();
+            tracing::info!(
+                bucket = bucket.as_ref(),
+                warehouse_endpoint = endpoint.is_some(),
+                "call recording enabled"
+            );
             Some(call::domain::models::EgressS3Config {
                 bucket: bucket.as_ref().to_string(),
                 region: region.as_ref().to_string(),
                 access_key: access_key.as_ref().to_string(),
                 secret: secret.as_ref().to_string(),
+                endpoint,
             })
         }
         _ => None,

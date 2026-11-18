@@ -11,8 +11,8 @@ use crate::domain::model::TeamError;
 
 /// Repository for team-level CRM enable/disable state.
 pub trait TeamCrmSettingsRepository: Clone + Send + Sync + 'static {
-    /// Returns the current `crm_enabled` state for the team, or `false`
-    /// if no row exists yet (the default).
+    /// Returns the current `crm_enabled` state for the team, or `true`
+    /// if no row exists yet (the default for a new team).
     fn get_crm_enabled(
         &self,
         team_id: &uuid::Uuid,

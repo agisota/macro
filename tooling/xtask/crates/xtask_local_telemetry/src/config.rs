@@ -1,13 +1,15 @@
 //! The per-user settings file, the opt-out switches, and where events wait to be
 //! sent.
 //!
-//! Telemetry is on by default. `~/.config/macro/local-telemetry.toml` holds the
-//! endpoint and the token; when it doesn't exist, the sender writes it from
-//! Doppler (see [`crate::provision`]). The file lives outside every repository and
-//! is read only by this process, so the token never reaches a commit, a generated
-//! env file, or a container's environment. `enabled = false` in it, or
-//! `MACRO_LOCAL_TELEMETRY=off`, turns telemetry off; so does `CI`. `services =
-//! true` also forwards the local stack's own telemetry (see [`crate::forwarding`]).
+//! Launch-timing export is off unless `MACRO_LOCAL_TELEMETRY` is explicitly on.
+//! Unset means off for this local runner ([`Switch::from_env`]). The settings
+//! file `~/.config/macro/local-telemetry.toml` is not created by this runner, so
+//! a missing file never turns sending on. The file lives outside every repository
+//! and is read only by this process, so a token already in it never reaches a
+//! commit, a generated env file, or a container's environment. `enabled = false`
+//! in it, or `MACRO_LOCAL_TELEMETRY=off`, also turns telemetry off; so does `CI`
+//! unless the variable is explicitly on. This runner does not write `services =
+//! true`; the foreign Grafana copy is a separate switch and stays off.
 
 use std::ffi::OsString;
 use std::fmt;
@@ -59,7 +61,9 @@ impl Paths {
             config: config_home?.join(CONFIG_FILE),
             buffer_dir: state_home?.join(BUFFER_DIR),
             switch: Switch::from_env(),
-            provision: Some(Provision::doppler()),
+            // Never create a settings file from this runner. A created file
+            // would send; leaving it missing keeps launch timing off.
+            provision: None,
         })
     }
 
@@ -84,17 +88,23 @@ impl Paths {
 /// What the environment says about telemetry, read once per process.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum Switch {
-    /// Nothing set: on, as the settings file allows.
+    /// No environment switch was applied. Callers that manage the settings file
+    /// themselves use this. An unset `MACRO_LOCAL_TELEMETRY` is not this: it is
+    /// [`Switch::Off`].
     #[default]
     Default,
-    /// `MACRO_LOCAL_TELEMETRY=on`: on even under `CI`.
+    /// `MACRO_LOCAL_TELEMETRY=on`: on even under `CI`, if a settings file already
+    /// allows it. This runner still does not create that file.
     On,
-    /// `MACRO_LOCAL_TELEMETRY=off`, or `CI` is set: nothing is written or sent.
+    /// Off. This is the local runner's default when `MACRO_LOCAL_TELEMETRY` is
+    /// unset, and also `MACRO_LOCAL_TELEMETRY=off` or `CI` without an explicit on.
+    /// Nothing is written or sent.
     Off,
 }
 
 impl Switch {
-    /// Read `MACRO_LOCAL_TELEMETRY`, then `CI`.
+    /// Read `MACRO_LOCAL_TELEMETRY`, then `CI`. Unset means off: this local runner
+    /// does not export launch timing unless the variable is explicitly on.
     pub fn from_env() -> Self {
         let value = |name: &str| {
             std::env::var_os(name)
@@ -107,10 +117,11 @@ impl Switch {
 
     pub(crate) fn parse(switch: Option<&str>, ci: bool) -> Self {
         match switch {
-            Some("0" | "off" | "false" | "no") => Self::Off,
             Some("1" | "on" | "true" | "yes") => Self::On,
+            Some("0" | "off" | "false" | "no") | None => Self::Off,
             _ if ci => Self::Off,
-            _ => Self::Default,
+            // An unrecognized value is not an opt-in.
+            _ => Self::Off,
         }
     }
 }

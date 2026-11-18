@@ -35,7 +35,7 @@ import { lazyNamed } from '@core/util/lazyNamed';
 import { createSelectionAnchor } from '@core/util/selection-anchor';
 import { type EntityData, isGithubPrEntity } from '@entity';
 import { EntitySelectionBadge } from '@entity/components/EntitySelectionBadge';
-import Rox from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowLeft from '@icon/system/regular/arrow-left.svg';
 import { useDatabaseDiscoverySync } from '@queries/storage/databases';
 import {
@@ -420,7 +420,7 @@ function CommandMenuLogo() {
       class="flex size-5 shrink-0 items-center justify-center text-accent"
       classList={{ hidden: multiline() }}
     >
-      <Rox class="size-3" />
+      <RoxMark class="size-3" />
     </span>
   );
 }

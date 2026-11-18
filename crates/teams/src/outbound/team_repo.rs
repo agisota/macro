@@ -113,7 +113,7 @@ impl TeamRepositoryImpl {
                 owner_id: MacroUserIdStr::parse_from_str(&row.owner_id)
                     .map_err(type_err)?
                     .into_owned(),
-                // New teams have no team_crm_settings row yet.
+                // The card file starts on; the settings row below records that.
                 crm_enabled: true,
                 auto_join_domain: row.auto_join_domain,
                 enterprise: row.enterprise,
@@ -137,13 +137,12 @@ impl TeamRepositoryImpl {
         .execute(&mut *transaction)
         .await?;
 
-        // Seed governance/view settings. The retired `crm_enabled` column
-        // stays false for compatibility with old workers during rollout;
-        // current CRM access is independent of mailbox contribution consent.
+        // Seed governance/view settings with the card file on. An explicit
+        // off row is left untouched; this insert only runs for a new team.
         sqlx::query!(
             r#"
-            INSERT INTO team_crm_settings (team_id)
-            VALUES ($1)
+            INSERT INTO team_crm_settings (team_id, crm_enabled)
+            VALUES ($1, TRUE)
             "#,
             &team.id,
         )

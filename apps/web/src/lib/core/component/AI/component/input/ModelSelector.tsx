@@ -30,6 +30,7 @@ const ALL_AVAILABLE: ModelOption[] = PAID_MODELS.map((id) => ({
 }));
 
 const MODEL_DESCRIPTION: Record<TModel, string> = {
+  [Model.roxR1Max]: 'Writing, coding, and everyday questions',
   [Model.sonnet55]: 'Everyday writing, coding, and questions',
   [Model.opus55]: 'Complex tasks and deeper analysis',
   [Model.haiku45]: 'Quick answers and lighter tasks',

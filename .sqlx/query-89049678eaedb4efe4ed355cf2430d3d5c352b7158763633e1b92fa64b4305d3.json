@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            INSERT INTO team_crm_settings (team_id, crm_enabled)\n            VALUES ($1, TRUE)\n            ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "89049678eaedb4efe4ed355cf2430d3d5c352b7158763633e1b92fa64b4305d3"
+}

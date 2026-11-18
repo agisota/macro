@@ -31,12 +31,11 @@ fn read_lambda(file: xtask_paths::RepoFile<'static>) -> Result<String> {
 /// Generate `kickstart.json` into the instance's kickstart dir, which the
 /// FusionAuth container mounts. The kickstart is pure identity-provider config:
 /// run_local pre-seeds no users — passwordless login auto-creates any user on
-/// demand. `google` (a real client from the resolved run env, or the stack's
-/// Gmail emulator) configures the `google`/`google_gmail` OIDC IdPs so
-/// Google sign-in and the email connect flows work locally,
-/// `github` the `github` IdP that `POST /link/github` resolves, and
-/// `microsoft` (the stack's Outlook emulator) the `microsoft` IdP that Sign
-/// in with Microsoft and `POST /link/outlook` resolve; the
+/// demand. `google`, only when the resolved env has a real Google client,
+/// configures `google_gmail` for mailbox and calendar linking. It does not
+/// create a Google or Microsoft login provider, and the local fakes of those
+/// logins are not started. `github` configures the `github` IdP that
+/// `POST /link/github` resolves. The
 /// generated file is gitignored, and the init-snapshot key hashes it, so
 /// adding/removing any of them re-inits the stack automatically.
 pub fn write_kickstart(
@@ -69,21 +68,27 @@ pub fn write_kickstart(
 /// Block until the kickstart has fully applied (first boot against an empty DB
 /// is slow). Runs as a stage so it shows the spinner.
 ///
-/// Polls the kickstart's OWN last artifact — a fetch of the entity its final
-/// request creates, authorized by the kickstart API key — NOT `/api/status`:
-/// FusionAuth reports status Ok, and serves its API, while the kickstart is
-/// still applying, and the snapshot save stops the containers right after
-/// this wait. Gating on status alone once froze a mid-kickstart DB into a
-/// snapshot (no tenant), and every stack restored from it 500'd at login with
-/// `InvalidTenantIdException` — while the key never changed, so the bad
-/// snapshot was sticky. Gating on the application, which the kickstart
-/// creates midway, let a start go on before the identity providers after it
-/// existed. The final request is always an identity provider, created at its
-/// own URL.
+/// Polls the kickstart's own last artifact, authorized by the kickstart API
+/// key, not `/api/status`: FusionAuth reports status Ok while the kickstart is
+/// still applying. An identity provider, when one is configured, is created
+/// last and can be fetched by id. Email-only kickstart ends on the webhooks,
+/// which have no id, so those are counted instead.
 pub fn wait_ready(stage: &Stage, instance: &Instance) -> Result<()> {
     let base = format!("http://localhost:{}", instance.port(Port::FusionAuth));
-    let url = format!("{base}{}", last_kickstart_request(instance)?);
     let application = format!("{base}/api/application/{}", identity::APPLICATION_ID);
+    let (probe, ready) = match kickstart_ready(instance)? {
+        KickstartReady::Entity(path) => {
+            let url = format!("{base}{path}");
+            (url.clone(), format!("[ \"$(code '{url}')\" = 200 ]"))
+        }
+        KickstartReady::Webhooks(count) => {
+            let url = format!("{base}/api/webhook");
+            (
+                url.clone(),
+                format!("[ \"$(webhook_count '{url}')\" -ge {count} ]"),
+            )
+        }
+    };
     // Require an actual 200: `curl -f` only fails on 400+, so FusionAuth's
     // maintenance-mode 302 (e.g. after a boot-time DB connect failure) would
     // otherwise pass as ready and every later login would 500.
@@ -95,37 +100,58 @@ pub fn wait_ready(stage: &Stage, instance: &Instance) -> Result<()> {
     // whole timeout.
     let script = format!(
         "code() {{ curl -sS -o /dev/null -w '%{{http_code}}' --max-time 3 -H 'Authorization: {key}' \"$1\" 2>/dev/null; }}; \
+         webhook_count() {{ curl -sS --max-time 3 -H 'Authorization: {key}' \"$1\" 2>/dev/null | python3 -c 'import json,sys\ntry:\n print(len(json.load(sys.stdin).get(\"webhooks\") or []))\nexcept Exception:\n print(0)'; }}; \
          settled=0; for i in $(seq 1 480); do \
-         [ \"$(code {url})\" = 200 ] && exit 0; \
+         if {ready}; then exit 0; fi; \
          if [ \"$(code {application})\" = 200 ]; then settled=$((settled + 1)); fi; \
-         if [ \"$settled\" -ge 240 ]; then echo 'FusionAuth was initialised by an older kickstart, which did not create {url}. FusionAuth does not rerun a kickstart on a database it has filled: start the stack with --fresh'; exit 1; fi; \
+         if [ \"$settled\" -ge 240 ]; then echo 'FusionAuth was initialised by an older kickstart, which did not finish {probe}. FusionAuth does not rerun a kickstart on a database it has filled: start the stack with --fresh'; exit 1; fi; \
          sleep 0.5; done; \
          echo 'timed out waiting for the FusionAuth kickstart (a 302 here means maintenance mode: FusionAuth could not reach its db)'; exit 1",
         key = identity::FUSIONAUTH_API_KEY,
+        ready = ready,
+        application = application,
+        probe = probe,
     );
     let mut cmd = Command::new("bash");
     cmd.arg("-lc").arg(script);
     stage.run("Waiting for FusionAuth (kickstart)", &mut cmd)
 }
 
-/// The API path of the entity the kickstart creates last.
-fn last_kickstart_request(instance: &Instance) -> Result<String> {
+/// What proves the kickstart has applied its last request.
+enum KickstartReady {
+    /// A created entity whose URL can be fetched.
+    Entity(String),
+    /// Email-only kickstart ends on webhook creates, which have no id.
+    Webhooks(usize),
+}
+
+fn kickstart_ready(instance: &Instance) -> Result<KickstartReady> {
     let path = gen_compose::kickstart_dir(instance).join("kickstart.json");
     let raw = std::fs::read(&path).with_context(|| format!("reading {}", path.display()))?;
     let doc: serde_json::Value =
         serde_json::from_slice(&raw).with_context(|| format!("parsing {}", path.display()))?;
-    let url = doc
+    let requests = doc
         .pointer("/requests")
         .and_then(serde_json::Value::as_array)
-        .and_then(|requests| requests.last())
-        .and_then(|request| request.get("url"))
-        .and_then(serde_json::Value::as_str)
         .with_context(|| format!("{} has no requests", path.display()))?;
-    anyhow::ensure!(
-        url.starts_with("/api/identity-provider/"),
-        "the kickstart's last request must create an identity provider, whose URL can be polled; it is {url}"
+    let url = |request: &serde_json::Value| request.get("url").and_then(serde_json::Value::as_str);
+    let last = requests
+        .last()
+        .and_then(url)
+        .with_context(|| format!("{} has no requests", path.display()))?;
+    if last.starts_with("/api/identity-provider/") {
+        return Ok(KickstartReady::Entity(last.to_string()));
+    }
+    let webhooks = requests
+        .iter()
+        .filter(|request| url(request).is_some_and(|path| path.starts_with("/api/webhook")))
+        .count();
+    if webhooks > 0 {
+        return Ok(KickstartReady::Webhooks(webhooks));
+    }
+    anyhow::bail!(
+        "the kickstart's last request must be fetchable so readiness can be polled; it is {last}"
     );
-    Ok(url.to_string())
 }
 
 fn redirect_urls(instance: &Instance) -> Result<Vec<String>> {

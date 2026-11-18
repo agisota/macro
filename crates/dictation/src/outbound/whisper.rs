@@ -1,9 +1,8 @@
-//! OpenAI Whisper adapter for the [`TranscriptionProvider`] port.
+//! Groq Whisper adapter for the [`TranscriptionProvider`] port.
 //!
-//! `/v1/audio/transcriptions` is eligible for OpenAI's Zero Data Retention and
-//! has no abuse-monitoring retention by default, so an enterprise key with ZDR
-//! can serve dictation without audio or transcripts being stored by the
-//! provider. This adapter never logs either.
+//! Requests go to Groq's OpenAI-compatible `/v1/audio/transcriptions` endpoint.
+//! The key is read from `GROQ_API_KEY` and is never logged. `GROQ_API_BASE`
+//! overrides the public Groq address when set.
 
 use crate::domain::{DictationError, Recording, Transcript, TranscriptionProvider};
 use async_openai::{
@@ -12,24 +11,33 @@ use async_openai::{
     error::OpenAIError,
     types::audio::{AudioInput, AudioResponseFormat, CreateTranscriptionRequest},
 };
-use macro_env_var::env_vars;
+use macro_env_var::{env_vars, maybe_env_vars};
 use serde::Deserialize;
 use std::time::Duration;
 use tracing::instrument::WithSubscriber;
 
 env_vars! {
-    /// Server-side OpenAI credential, injected as `OPENAI_API_KEY`. Never
-    /// exposed to the browser.
+    /// Legacy constructor argument. Callers still pass it; field dictation
+    /// does not send it to the provider.
     pub struct OpenaiApiKey;
+    /// Server-side Groq credential, read as `GROQ_API_KEY`.
+    struct GroqApiKey;
 }
 
-const MODEL: &str = "whisper-1";
+maybe_env_vars! {
+    /// Optional override for the Groq OpenAI-compatible base.
+    struct GroqApiBase;
+}
+
+const MODEL: &str = "whisper-large-v3-turbo";
+/// Public Groq OpenAI-compatible endpoint, used when `GROQ_API_BASE` is unset.
+const DEFAULT_API_BASE: &str = "https://api.groq.com/openai/v1";
 /// Overall request deadline, including the SDK's retries.
 const REQUEST_TIMEOUT: Duration = Duration::from_secs(90);
 /// Total budget for retrying provider 429/5xx responses before giving up.
 const RETRY_BUDGET: Duration = Duration::from_secs(10);
 
-/// Speech-to-text through OpenAI Whisper.
+/// Speech-to-text through Groq Whisper.
 pub struct WhisperTranscriber {
     client: Client<OpenAIConfig>,
 }
@@ -42,9 +50,20 @@ struct VerboseTranscription {
 }
 
 impl WhisperTranscriber {
-    /// Construct once at startup against the public OpenAI API.
+    /// Construct once at startup against Groq.
+    ///
+    /// `api_key` is the legacy injected credential. The request uses
+    /// `GROQ_API_KEY` and `GROQ_API_BASE` from the environment.
     pub fn new(api_key: &OpenaiApiKey) -> Result<Self, WhisperConfigError> {
-        Self::with_api_base(api_key, None)
+        if api_key.trim().is_empty() {
+            return Err(WhisperConfigError::EmptyApiKey);
+        }
+        let groq_key = GroqApiKey::new().map_err(|_| WhisperConfigError::MissingApiKey)?;
+        if groq_key.trim().is_empty() {
+            return Err(WhisperConfigError::MissingApiKey);
+        }
+        let api_base = groq_api_base();
+        Self::from_key_and_base(groq_key.as_ref(), Some(api_base.as_str()))
     }
 
     /// Construct against a custom API base, e.g. a test server.
@@ -52,12 +71,19 @@ impl WhisperTranscriber {
         api_key: &OpenaiApiKey,
         api_base: Option<&str>,
     ) -> Result<Self, WhisperConfigError> {
+        Self::from_key_and_base(api_key.as_ref(), api_base)
+    }
+
+    fn from_key_and_base(
+        api_key: &str,
+        api_base: Option<&str>,
+    ) -> Result<Self, WhisperConfigError> {
         if api_key.trim().is_empty() {
             return Err(WhisperConfigError::EmptyApiKey);
         }
         let config = OpenAIConfig::new()
-            .with_api_key(api_key.as_ref())
-            .with_api_base(api_base.unwrap_or("https://api.openai.com/v1"));
+            .with_api_key(api_key)
+            .with_api_base(api_base.unwrap_or(DEFAULT_API_BASE));
         let http_client = reqwest::Client::builder()
             .timeout(REQUEST_TIMEOUT)
             .build()?;
@@ -70,11 +96,21 @@ impl WhisperTranscriber {
     }
 }
 
+fn groq_api_base() -> String {
+    GroqApiBase::new()
+        .map(|base| base.trim().to_string())
+        .filter(|base| !base.is_empty())
+        .unwrap_or_else(|| DEFAULT_API_BASE.to_owned())
+}
+
 /// Startup failures for [`WhisperTranscriber::new`].
 #[derive(Debug, thiserror::Error)]
 pub enum WhisperConfigError {
-    /// The required credential contains no usable key.
-    #[error("OPENAI_API_KEY must not be empty")]
+    /// `GROQ_API_KEY` is missing.
+    #[error("GROQ_API_KEY must be set")]
+    MissingApiKey,
+    /// The credential that would be sent contains no usable key.
+    #[error("API key must not be empty")]
     EmptyApiKey,
     /// The HTTP client could not be constructed.
     #[error(transparent)]
@@ -86,10 +122,10 @@ impl TranscriptionProvider for WhisperTranscriber {
         MODEL
     }
 
-    #[tracing::instrument(name = "transcribe whisper-1", skip_all, err, fields(
+    #[tracing::instrument(name = "transcribe whisper-large-v3-turbo", skip_all, err, fields(
         otel.kind = "client",
         gen_ai.operation.name = "transcribe",
-        gen_ai.provider.name = "openai",
+        gen_ai.provider.name = "groq",
         gen_ai.request.model = MODEL,
         audio.format = recording.format().extension(),
         audio.bytes = recording.bytes().len(),
@@ -125,7 +161,7 @@ impl TranscriptionProvider for WhisperTranscriber {
         .map_err(|error| {
             if let OpenAIError::ApiError(api_error) = &error {
                 genai_telemetry::provider_account::report_provider_error(
-                    "openai",
+                    "groq",
                     None,
                     &api_error.to_string(),
                 );

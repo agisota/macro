@@ -1,6 +1,6 @@
 import { LoadingBlock } from '@core/component/LoadingBlock';
 import { ThrownResultError } from '@core/util/result';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import UsersThreeIcon from '@icon/system/regular/users-three.svg';
 import { useUserInfo } from '@queries/auth';
 import { useJoinChannelByCodeMutation } from '@queries/channel/join-links';
@@ -48,7 +48,7 @@ export function ChannelInviteAcceptance() {
         <Surface>
           <div class="flex flex-col gap-6 p-6">
             <div class="flex justify-center">
-              <LogoIcon class="size-10 text-accent" />
+              <RoxMark class="size-10" />
             </div>
             <div class="flex flex-col items-center">
               <Switch>

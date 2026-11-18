@@ -1,5 +1,6 @@
 import OpenAiIcon from '@core/component/AI/assets/openai.svg';
 import ClaudeIcon from '@icon/wide-claude.svg';
+import SparkleIcon from '@icon/system/regular/sparkle.svg';
 import GoogleIcon from '@phosphor-fill/google-logo-fill.svg';
 import { FreeTierModel } from '@service-cognition/generated/schemas/freeTierModel';
 
@@ -10,11 +11,13 @@ import { FreeTierModel } from '@service-cognition/generated/schemas/freeTierMode
  * exposed to the frontend. Reference these constants instead of hardcoding
  * strings.
  *
- * Sonnet 5.5 and Opus 5.5 are the current Anthropic generation. Haiku 4.5
- * stays as the fast model; older Sonnet, Opus, and Fable ids are absent, so a
- * persisted chat on one falls back to the default.
+ * Rox R1 Max is the free and paid default. Sonnet 5.5 and Opus 5.5 are the
+ * current Anthropic generation. Haiku 4.5 stays as the fast model; older
+ * Sonnet, Opus, and Fable ids are absent, so a persisted chat on one falls
+ * back to the default.
  */
 export const Model = {
+  roxR1Max: 'groq/gpt-oss-120b',
   sonnet55: 'anthropic/claude-sonnet-5-5',
   opus55: 'anthropic/claude-opus-5-5',
   haiku45: 'anthropic/claude-haiku-4-5',
@@ -35,6 +38,7 @@ type ExhaustiveMap = {
 };
 
 export const MODEL_PRETTYNAME: ExhaustiveMap = {
+  'groq/gpt-oss-120b': 'Rox R1 Max',
   'anthropic/claude-sonnet-5-5': 'Sonnet 5.5',
   'anthropic/claude-opus-5-5': 'Opus 5.5',
   'anthropic/claude-haiku-4-5': 'Haiku 4.5',
@@ -46,6 +50,7 @@ export const MODEL_PRETTYNAME: ExhaustiveMap = {
 } as const;
 
 export const MODEL_PROVIDER_ICON: ExhaustiveMap = {
+  'groq/gpt-oss-120b': SparkleIcon,
   'anthropic/claude-sonnet-5-5': ClaudeIcon,
   'anthropic/claude-opus-5-5': ClaudeIcon,
   'anthropic/claude-haiku-4-5': ClaudeIcon,
@@ -57,7 +62,7 @@ export const MODEL_PROVIDER_ICON: ExhaustiveMap = {
 };
 
 /** Default model for paid users. */
-export const DEFAULT_MODEL: TModel = Model.sonnet55;
+export const DEFAULT_MODEL: TModel = Model.roxR1Max;
 
 /**
  * Models a free user may select, generated from the backend's free tier
@@ -101,6 +106,7 @@ export function databaseModelForPlan(hasPaidAccess: boolean): TModel {
 
 /** Provider serving each model — mirrors the backend `provider` field. */
 export const MODEL_PROVIDER: ExhaustiveMap = {
+  'groq/gpt-oss-120b': 'groq',
   'anthropic/claude-sonnet-5-5': 'anthropic',
   'anthropic/claude-opus-5-5': 'anthropic',
   'anthropic/claude-haiku-4-5': 'anthropic',

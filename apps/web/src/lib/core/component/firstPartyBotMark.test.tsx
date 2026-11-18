@@ -6,7 +6,7 @@ import {
 import { MACRO_AGENT_PRINCIPAL_ID } from '@core/constant/macroAgent';
 import { MACRO_CODER_PRINCIPAL_ID } from '@core/constant/macroCoder';
 import { MACRO_NEW_PRINCIPAL_ID } from '@core/constant/macroNew';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import CodexIcon from '@icon/wide-codex-ide.svg';
 import CursorIcon from '@icon/wide-cursor-ide.svg';
 import { cleanup, render } from '@solidjs/testing-library';
@@ -45,7 +45,7 @@ describe('firstPartyBotMark', () => {
       MACRO_CODER_PRINCIPAL_ID,
     ]) {
       expect(firstPartyBotMark(id)).toEqual({
-        Icon: MacroLogo,
+        Icon: RoxMark,
         tone: 'accent',
       });
     }
@@ -97,12 +97,13 @@ describe('UserIcon for first-party bots', () => {
     expect(svgOf(cursor)?.innerHTML).toBe(svgOf(reference)?.innerHTML);
   });
 
-  it('draws the Rox logo for the agent-session Rox bot', () => {
+  it('draws the Rox eye for the agent-session Rox bot', () => {
     const { container: macro } = render(() => (
       <UserIcon id={MACRO_NEW_PRINCIPAL_ID} />
     ));
-    const { container: reference } = render(() => <MacroLogo />);
-    expect(svgOf(macro)?.innerHTML).toBe(svgOf(reference)?.innerHTML);
+    expect(macro.querySelector('img')?.getAttribute('src')).toContain(
+      'rox-mark.png'
+    );
   });
 
   it('keeps the generic robot for a team bot without an avatar', () => {

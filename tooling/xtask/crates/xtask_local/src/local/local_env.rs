@@ -5,8 +5,12 @@
 //! LocalStack dummy creds, fixed queue/bucket names, the fixed FusionAuth
 //! kickstart identity, and per-instance internal secrets. Anything that needs a
 //! *real* secret or a real integration (Gmail, Stripe, …) comes from Doppler or
-//! `--env-file`; [`BootStubEnv`] only supplies placeholder fallbacks so a
-//! `--no-doppler` stack's config loaders don't crash at startup.
+//! `--env-file`. When `~/.config/macro/rox-local-secrets.env` exists, the
+//! owner's LiveKit, PostHog project key, and Groq values are written by
+//! [`LocalEnv::to_env`] so the next generate does not put the boot-stub fakes
+//! back. The personal PostHog key is never copied. [`BootStubEnv`] only
+//! supplies placeholder fallbacks so a `--no-doppler` stack's config loaders
+//! don't crash at startup.
 //!
 //! [`LocalEnv::for_instance`] builds the struct. Two boundaries flatten it to
 //! env maps: [`LocalEnv::to_env`] (authoritative, layered above Doppler) and
@@ -16,10 +20,55 @@
 
 use std::collections::BTreeMap;
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 
 use super::instance::{Instance, Port};
 use super::{Mode, frontend, identity, proxy, resources};
+
+/// Allowlisted names copied from the owner's local secrets file.
+/// `POSTHOG_PERSONAL_API_KEY` is absent on purpose: it must not reach a
+/// running service.
+const OWNER_SECRET_KEYS: &[&str] = &[
+    "LIVEKIT_URL",
+    "LIVEKIT_SERVER_URL",
+    "LIVEKIT_API_KEY",
+    "LIVEKIT_API_SECRET",
+    "POSTHOG_API_KEY",
+    "POSTHOG_HOST",
+    "GROQ_API_KEY",
+    "GROQ_API_BASE",
+    "LIVEKIT_TRANSCRIPTION_AGENT_NAME",
+    "INTERNAL_CALL_SECRET",
+];
+
+fn owner_secrets_path() -> Option<std::path::PathBuf> {
+    let home = std::env::var_os("HOME")?;
+    let path = std::path::PathBuf::from(home).join(".config/macro/rox-local-secrets.env");
+    path.is_file().then_some(path)
+}
+
+/// Read the allowlisted owner values. Missing file means keep the local
+/// fakes. A present file that cannot be parsed fails the generate, so a
+/// bad read cannot silently put the fakes back.
+fn load_owner_secrets() -> Result<BTreeMap<String, String>> {
+    let Some(path) = owner_secrets_path() else {
+        return Ok(BTreeMap::new());
+    };
+    let mut values = BTreeMap::new();
+    for item in dotenvy::from_path_iter(&path)
+        .with_context(|| format!("reading owner secrets {}", path.display()))?
+    {
+        let (key, value) =
+            item.with_context(|| format!("parsing owner secrets {}", path.display()))?;
+        if key == "POSTHOG_PERSONAL_API_KEY" || value.is_empty() {
+            continue;
+        }
+        if OWNER_SECRET_KEYS.contains(&key.as_str()) {
+            values.insert(key, value);
+        }
+    }
+    Ok(values)
+}
 
 /// The public hostnames `--with-cf-tunnel` minted for this run.
 ///
@@ -68,6 +117,11 @@ pub struct LocalEnv {
     service_auth: ServiceAuthEnv,
     fusionauth: FusionAuthEnv,
     boot_stubs: BootStubEnv,
+    /// Instance name. The rox stack keeps the owner's call secret; other
+    /// instances keep their own so they do not share it.
+    instance_name: String,
+    /// Allowlisted owner values. Empty when the secrets file is absent.
+    owner_secrets: BTreeMap<String, String>,
 }
 
 impl LocalEnv {
@@ -102,6 +156,7 @@ impl LocalEnv {
         // machine (a laptop on the tailnet), so they use this machine's name,
         // which the proxy certificate covers in both flavors, not localhost.
         let infra = InfraEnv::local(&public_origin);
+        let owner_secrets = load_owner_secrets()?;
         Ok(LocalEnv {
             // Both local flavors run against local infra (`local` env defaults).
             environment: mode.environment_var(),
@@ -127,6 +182,8 @@ impl LocalEnv {
             service_auth: ServiceAuthEnv::for_instance(name),
             fusionauth: FusionAuthEnv::for_instance(instance),
             boot_stubs: BootStubEnv,
+            instance_name: name.to_string(),
+            owner_secrets,
         })
     }
 
@@ -216,6 +273,7 @@ impl LocalEnv {
         self.agent_harness.write(&mut env);
         self.service_auth.write(&mut env);
         self.fusionauth.write(&mut env);
+        self.write_owner_integrations(&mut env);
         env
     }
 
@@ -225,8 +283,34 @@ impl LocalEnv {
     /// plumbing is layered ABOVE Doppler and wins.
     pub fn boot_stub_env(&self) -> BTreeMap<String, String> {
         let mut env = BTreeMap::new();
-        self.boot_stubs.write(&mut env);
+        self.boot_stubs.write(&mut env, &self.owner_secrets);
         env
+    }
+
+    /// Owner integrations. These sit in the authoritative layer so Doppler
+    /// and the next generate cannot put the boot-stub fakes back.
+    fn write_owner_integrations(&self, env: &mut BTreeMap<String, String>) {
+        env.insert(
+            "LIVEKIT_TRANSCRIPTION_AGENT_NAME".into(),
+            "rox-transcriber".into(),
+        );
+        let posthog_host = self
+            .owner_secrets
+            .get("POSTHOG_HOST")
+            .cloned()
+            .unwrap_or_else(|| "https://us.i.posthog.com".into());
+        env.insert("POSTHOG_HOST".into(), posthog_host);
+        for (key, value) in &self.owner_secrets {
+            if key == "POSTHOG_HOST" || key == "LIVEKIT_TRANSCRIPTION_AGENT_NAME" {
+                continue;
+            }
+            // Other instances keep a distinct call secret. Only the rox stack
+            // replaces its generated secret with the owner's.
+            if key == "INTERNAL_CALL_SECRET" && self.instance_name != "rox" {
+                continue;
+            }
+            env.insert(key.clone(), value.clone());
+        }
     }
 }
 
@@ -266,6 +350,9 @@ impl InfraEnv {
         env.insert("LAST_ONLINE_REDIS_URI".into(), self.redis_uri.clone());
         env.insert("OPENSEARCH_URL".into(), self.opensearch_url.clone());
         env.insert("LOCAL_AWS_URL".into(), self.local_aws_url.clone());
+        // File bytes live on MinIO. Queues, tables, and KMS stay on LocalStack
+        // via LOCAL_AWS_URL above.
+        env.insert("LOCAL_S3_URL".into(), "http://minio:8333".into());
         env.insert(
             "LOCAL_AWS_PUBLIC_URL".into(),
             self.local_aws_public_url.clone(),
@@ -434,8 +521,22 @@ impl StorageEnv {
     }
 
     fn write(&self, env: &mut BTreeMap<String, String>) {
+        let mut recording_bucket = None;
         for bucket in resources::BUCKETS {
             env.insert(bucket.env_key.into(), bucket.name.into());
+            if bucket.env_key == "CALL_RECORDING_BUCKET_NAME" {
+                recording_bucket = Some(bucket.name);
+            }
+        }
+        // Finished-call files stay in the local warehouse. The bucket is the
+        // catalog name already exported above; playback dials LOCAL_AWS_URL
+        // (http://localstack:4566). Credentials are LocalStack's dummy pair,
+        // not a public cloud account.
+        if let Some(bucket) = recording_bucket {
+            env.insert("CALL_RECORDING_S3_BUCKET".into(), bucket.into());
+            env.insert("CALL_RECORDING_S3_REGION".into(), "us-east-1".into());
+            env.insert("CALL_RECORDING_S3_ACCESS_KEY".into(), "test".into());
+            env.insert("CALL_RECORDING_S3_SECRET".into(), "test".into());
         }
         for table in resources::TABLES {
             env.insert(table.env_key.into(), table.name.into());
@@ -711,13 +812,17 @@ impl FusionAuthEnv {
 /// applies them below Doppler (see `env_layer::resolve`), so a developer with
 /// Doppler access keeps every real integration value. A key here must never
 /// also appear in [`LocalEnv::to_env`] — that would make precedence ambiguous
-/// (a test enforces this).
+/// (a test enforces this). When the owner secrets file supplies PostHog or
+/// LiveKit, those keys are omitted here and written by `to_env` instead.
 struct BootStubEnv;
 
 impl BootStubEnv {
-    fn write(&self, env: &mut BTreeMap<String, String>) {
-        // DSS requires a project key at boot; real flag evaluation needs Doppler.
-        env.insert("POSTHOG_API_KEY".into(), "local-posthog-project-key".into());
+    fn write(&self, env: &mut BTreeMap<String, String>, owner: &BTreeMap<String, String>) {
+        // DSS requires a project key at boot. The owner file, when present,
+        // supplies the real key from the authoritative layer instead.
+        if !owner.contains_key("POSTHOG_API_KEY") {
+            env.insert("POSTHOG_API_KEY".into(), "local-posthog-project-key".into());
+        }
         // The worker is opt-in and ships paused; an explicit env-file can enable it.
         env.insert("SLACK_IMPORT_ENABLED".into(), "false".into());
         env.insert("SLACK_IMPORT_CONCURRENCY".into(), "1".into());
@@ -928,9 +1033,15 @@ impl BootStubEnv {
             "GITHUB_SYNC_APP_PEM_SECRET_KEY".into(),
             "local-github-sync-pem".into(),
         );
-        env.insert("LIVEKIT_SERVER_URL".into(), "http://localhost:7880".into());
-        env.insert("LIVEKIT_API_KEY".into(), "local-livekit-key".into());
-        env.insert("LIVEKIT_API_SECRET".into(), "local-livekit-secret".into());
+        if !owner.contains_key("LIVEKIT_SERVER_URL") {
+            env.insert("LIVEKIT_SERVER_URL".into(), "http://localhost:7880".into());
+        }
+        if !owner.contains_key("LIVEKIT_API_KEY") {
+            env.insert("LIVEKIT_API_KEY".into(), "local-livekit-key".into());
+        }
+        if !owner.contains_key("LIVEKIT_API_SECRET") {
+            env.insert("LIVEKIT_API_SECRET".into(), "local-livekit-secret".into());
+        }
         env.insert("OPENAI_API_KEY".into(), "local-openai-key".into());
         // Required by the agent router. Present so it builds on a stack with no
         // Doppler; real provider calls still fail on the dummy keys.

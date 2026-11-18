@@ -8,8 +8,9 @@ import { resolveInterfaceLanguage } from './languages';
 
 /**
  * Keeps the interface language in step with the account: the user's own
- * language, else their team's, else the browser's, else English. Until both
- * settings have loaded the language remembered on this device stays in place.
+ * language, else their team's, else Russian. Until both settings have loaded,
+ * the language remembered on this device stays in place, so an explicit
+ * choice is not replaced before it can be read.
  */
 export function useInterfaceLanguageSync() {
   const analytics = useAnalytics();

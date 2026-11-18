@@ -13,15 +13,15 @@
     <meta name="macro-bundle-build" content="__MACRO_BUNDLE_BUILD__" />
     <link
       rel="shortcut icon"
-      href="%ASSETS_PATH%/macro-favicon.svg"
-      type="image/svg+xml"
+      href="%ASSETS_PATH%/rox-mark.png"
+      type="image/png"
     />
     <link
       rel="icon"
-      href="%ASSETS_PATH%/macro-favicon.svg"
-      type="image/svg+xml"
+      href="%ASSETS_PATH%/rox-mark.png"
+      type="image/png"
     />
-    <link rel="apple-touch-icon" href="%ASSETS_PATH%/logo192.png" />
+    <link rel="apple-touch-icon" href="%ASSETS_PATH%/rox-mark.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -128,7 +128,7 @@
         }
         if (localStorage.getItem("macro:login") !== "true") {
           shell.style.background = "var(--bs-page)";
-          shell.innerHTML = `<img class="bs-mark" src="%ASSETS_PATH%/macro-favicon.svg" alt="" />`;
+          shell.innerHTML = `<img class="bs-mark" src="%ASSETS_PATH%/rox-mark.png" alt="" width="1024" height="1024" />`;
         } else {
           shell.innerHTML = `<div class="bs-rail"></div><div class="bs-content"></div>`;
         }

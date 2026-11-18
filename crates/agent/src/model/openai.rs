@@ -9,11 +9,14 @@ use rig_core::streaming::StreamingCompletionResponse;
 use rig_core::{client::CompletionClient, http_client::HttpClientExt, providers::openai};
 
 /// Fireworks' Chat Completions `model` field is the account-scoped path, not
-/// the short catalog slug. Routing ids stay `fireworks/<slug>` so the picker,
-/// usage, and pricing can use the bare name.
+/// the short catalog slug. Groq's catalog slug `groq/gpt-oss-120b` is sent as
+/// `openai/gpt-oss-120b`, the id Groq's API expects. Routing ids stay
+/// `provider/<slug>` so the picker, usage, and pricing can use the bare name.
 fn completion_model_id(model: &Model<'_>) -> String {
     if model.provider() == "fireworks" && !model.name().starts_with("accounts/") {
         format!("accounts/fireworks/models/{}", model.name())
+    } else if model.provider() == "groq" && model.name() == "gpt-oss-120b" {
+        "openai/gpt-oss-120b".to_string()
     } else {
         model.name().to_string()
     }
@@ -25,8 +28,9 @@ fn completion_model_id(model: &Model<'_>) -> String {
 /// [`CompletionsClient`](openai::CompletionsClient)'s base URL and key, never
 /// by Rust type, so routing can hold any number of them without new variants.
 /// Which provider serves an id is decided by routing (the `provider/…`
-/// segment). Fireworks is the one exception on the wire: its API wants the
-/// account-scoped path, which [`completion_model_id`] derives from the
+/// segment). Fireworks and Groq are the wire exceptions: Fireworks wants the
+/// account-scoped path, and Groq's `gpt-oss-120b` slug is sent as
+/// `openai/gpt-oss-120b`. [`completion_model_id`] derives both from the
 /// catalog slug.
 pub struct OpenAiChatCompletionsModel<'a, H = rig_core::http_client::ReqwestClient> {
     model: Model<'a>,

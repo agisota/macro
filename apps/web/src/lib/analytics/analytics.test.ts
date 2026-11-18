@@ -166,6 +166,7 @@ describe('Meta pixel platform support', () => {
 describe('PostHog flag environment', () => {
   it('sends the build environment with flag requests from load and after reset', async () => {
     vi.stubEnv('VITE_POSTHOG_API_KEY', 'test-key');
+    vi.stubEnv('VITE_POSTHOG_HOST', 'https://analytics.example');
     const { analytics } = await import('./analytics');
     const { loaded } = mocks.init.mock.calls[0][1];
 
@@ -192,6 +193,7 @@ describe('PostHog flag environment', () => {
 describe('PostHog exception frames', () => {
   it('overwrites persisted document identity on automatic events, including after reset', async () => {
     vi.stubEnv('VITE_POSTHOG_API_KEY', 'test-key');
+    vi.stubEnv('VITE_POSTHOG_HOST', 'https://analytics.example');
     const { analytics } = await import('./analytics');
     const { frontendInstanceId } = await import(
       '@app/observability/frontend-instance'
@@ -209,6 +211,7 @@ describe('PostHog exception frames', () => {
   });
   async function beforeSendException(value: string, filenames: string[]) {
     vi.stubEnv('VITE_POSTHOG_API_KEY', 'test-key');
+    vi.stubEnv('VITE_POSTHOG_HOST', 'https://analytics.example');
     await import('./analytics');
     const beforeSend = mocks.init.mock.calls[0][1].before_send;
     return beforeSend({

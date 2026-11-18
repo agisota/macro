@@ -433,6 +433,12 @@ fn local_env_flavor(
                     "run-dev must not set LOCAL_AWS_URL (would point SES/S3 at LocalStack)".into(),
                 );
             }
+            if env.get("LOCAL_S3_URL").is_some() {
+                failures.push(
+                    "run-dev must not set LOCAL_S3_URL (would point S3 at the local warehouse)"
+                        .into(),
+                );
+            }
             match env.get("DATABASE_URL") {
                 None => failures.push("run-dev requires a dev DATABASE_URL (none found)".into()),
                 Some(v) if env_layer::is_local_database_url(v) => {

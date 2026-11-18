@@ -59,7 +59,7 @@ fn kickstart_without_google_has_no_idp_requests() {
 }
 
 #[test]
-fn kickstart_with_google_adds_lambda_and_both_idps_after_the_application() {
+fn kickstart_with_google_links_a_mailbox_and_does_not_add_a_login_provider() {
     let google = GoogleIdp {
         client_id: "abc.apps.googleusercontent.com".into(),
         client_secret: "GOCSPX-real".into(),
@@ -84,9 +84,16 @@ fn kickstart_with_google_adds_lambda_and_both_idps_after_the_application() {
     };
     let app = pos(identity::APPLICATION_ID);
     let reconcile = pos(identity::RECONCILE_LAMBDA_ID);
-    let google_idp = pos(identity::GOOGLE_IDP_ID);
     let gmail_idp = pos(identity::GOOGLE_GMAIL_IDP_ID);
-    assert!(app < reconcile && reconcile < google_idp && google_idp < gmail_idp);
+    assert!(app < reconcile && reconcile < gmail_idp);
+    assert!(
+        !requests.iter().any(|request| {
+            request["url"]
+                .as_str()
+                .is_some_and(|url| url.contains(identity::GOOGLE_IDP_ID))
+        }),
+        "the plain google login provider must not be registered"
+    );
 
     let gmail = &requests[gmail_idp]["body"]["identityProvider"];
     assert_eq!(gmail["name"], "google_gmail");
@@ -106,31 +113,22 @@ fn kickstart_with_google_adds_lambda_and_both_idps_after_the_application() {
     );
     assert_eq!(
         gmail["applicationConfiguration"][identity::APPLICATION_ID]["createRegistration"],
-        true
+        false
     );
-
-    let plain = &requests[google_idp]["body"]["identityProvider"];
-    assert_eq!(plain["name"], "google");
     assert_eq!(
-        plain["oauth2"]["authorization_endpoint"],
+        gmail["oauth2"]["authorization_endpoint"],
         "http://localhost:8480/o/oauth2/v2/auth?prompt=consent&access_type=offline"
-    );
-    assert_eq!(
-        plain["oauth2"]["token_endpoint"],
-        "http://gmail-emulator:8080/token"
     );
 
     // The browser-facing endpoint names an instance port, so it stays out of
     // the snapshot key; the in-network ones are the same for every instance.
     let keyed = without_instance_urls(doc.clone());
-    let keyed_plain = &keyed["requests"][google_idp]["body"]["identityProvider"]["oauth2"];
-    assert!(keyed_plain.get("authorization_endpoint").is_none());
+    let keyed_gmail = &keyed["requests"][gmail_idp]["body"]["identityProvider"]["oauth2"];
+    assert!(keyed_gmail.get("authorization_endpoint").is_none());
     assert_eq!(
-        keyed_plain["token_endpoint"],
+        keyed_gmail["token_endpoint"],
         "http://gmail-emulator:8080/token"
     );
-    assert_eq!(plain["oauth2"]["scope"], "openid profile email");
-    assert!(plain["lambdaConfiguration"].is_null());
 }
 
 #[test]

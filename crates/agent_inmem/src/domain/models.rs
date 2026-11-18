@@ -82,6 +82,11 @@ pub fn advertised_models() -> &'static [&'static str] {
 #[must_use]
 pub fn supports_images(id: &str) -> Option<bool> {
     let id = resolve(id);
+    // gpt-oss does not read images. The chat catalog blanket would otherwise
+    // advertise the default model as vision-capable.
+    if id == "groq/gpt-oss-120b" {
+        return Some(false);
+    }
     if CHAT_MODELS.contains(&id) {
         return Some(true);
     }
@@ -126,7 +131,7 @@ pub fn context_window(id: &str) -> Option<u64> {
         "fireworks/qwen3p8-max" => 262_144,
         "fireworks/nemotron-lightning-3p5-30b-a3b" => 262_000,
         "fireworks/muse-glimmer-30b" => 131_000,
-        "cerebras/gpt-oss-120b" => 131_072,
+        "cerebras/gpt-oss-120b" | "groq/gpt-oss-120b" => 131_072,
         _ => return None,
     })
 }

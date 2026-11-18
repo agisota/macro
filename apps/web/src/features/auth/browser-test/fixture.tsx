@@ -9,7 +9,6 @@ import { createFakeOnboarding } from '../../onboarding/tests/fake-onboarding-con
 import { renderInviteOfferStub } from '../../onboarding/tests/invite-offer-stub';
 import { OnboardingFlowView } from '../../onboarding/views/onboarding-flow-view';
 import { OnboardingPendingView } from '../../onboarding/views/onboarding-pending-view';
-import { SignupJourneyView } from '../../onboarding/views/signup-journey-view';
 import { AuthProvider, type AuthUser } from '../context/auth-context';
 import { sessionTokenParam } from '../core/email-code';
 import {
@@ -177,14 +176,6 @@ function EnterApp() {
   return null;
 }
 
-/** The signed-out slides only read presentation state; nothing to persist. */
-function SignupJourney(props: Parameters<typeof SignupJourneyView>[0]) {
-  return (
-    <OnboardingProvider value={createFakeOnboarding({ viewer: null }).context}>
-      <SignupJourneyView {...props} />
-    </OnboardingProvider>
-  );
-}
 
 function Fixture() {
   return (
@@ -205,17 +196,10 @@ function Fixture() {
           <AuthView
             intent={page === 'signup' ? 'signup' : 'login'}
             showApple={params.apple !== undefined}
-            // On, as in dev builds; `?microsoft=off` is the production default.
-            showMicrosoft={params.microsoft !== 'off'}
             compact={false}
             initialEmail={params.email}
             token={sessionTokenParam(params.token)}
             ssoFallbackNotice={ssoFallbackNotice(params.sso_error)}
-            signupJourney={
-              page === 'signup'
-                ? (slots) => <SignupJourney {...slots} />
-                : undefined
-            }
             onSignIn={() => location.assign(`${location.pathname}?page=login`)}
             pending={
               page === 'signup' ? () => <OnboardingPendingView /> : undefined

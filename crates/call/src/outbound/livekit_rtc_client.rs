@@ -96,6 +96,12 @@ fn build_room_composite_egress_request(
     room_name: &str,
     s3_config: &EgressS3Config,
 ) -> RoomCompositeEgressRequest {
+    let endpoint = s3_config
+        .cloud_upload_endpoint()
+        .unwrap_or_default()
+        .to_owned();
+    // A path-prefixed local warehouse only accepts path-style keys.
+    let force_path_style = !endpoint.is_empty();
     let output = EgressOutput::File(EncodedFileOutput {
         file_type: EncodedFileType::Mp4 as i32,
         filepath: format!("calls/{room_name}/{{time}}"),
@@ -104,6 +110,8 @@ fn build_room_composite_egress_request(
             region: s3_config.region.clone(),
             access_key: s3_config.access_key.clone(),
             secret: s3_config.secret.clone(),
+            endpoint,
+            force_path_style,
             ..Default::default()
         })),
         ..Default::default()

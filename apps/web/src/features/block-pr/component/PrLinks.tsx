@@ -8,7 +8,7 @@ import {
   rowPillClasses,
   rowPillTriggerClasses,
 } from '@entity/components/row-pill';
-import MacroIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import BuildingsIcon from '@icon/system/regular/buildings.svg';
 import HashIcon from '@icon/system/regular/hash.svg';
 import ListChecksIcon from '@icon/system/regular/list-checks.svg';
@@ -390,7 +390,7 @@ export function PrOriginIcon(props: { tool: PrOriginTool; class?: string }) {
       .with('claude', () => ClaudeIcon)
       .with('codex', () => CodexIcon)
       .with('cursor', () => CursorIcon)
-      .with('macro', () => MacroIcon)
+      .with('macro', () => RoxMark)
       .with('copilot', () => GithubIcon)
       .with('devin', 'jules', () => RobotIcon)
       .exhaustive();

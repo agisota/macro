@@ -37,6 +37,13 @@ const EGRESS_SERVICE: &str = "agent_harness_service";
 const EGRESS_CONTAINER_PORT: u16 = 8102;
 
 pub const LOCALSTACK_IMAGE: &str = "localstack/localstack:4";
+pub const MINIO_IMAGE: &str = "chrislusf/seaweedfs:latest";
+/// Access key `s3_client` sends. `local_aws_config` uses the AWS SDK test pair,
+/// not the env pair `test`/`test`.
+pub(super) const MINIO_ROOT_USER: &str = "ANOTREAL";
+/// Secret `s3_client` sends. Current MinIO refuses a secret shorter than 8
+/// characters, so the env pair cannot be the root password.
+pub(super) const MINIO_ROOT_PASSWORD: &str = "notrealrnrELgWzOk3IfjzDKtFBhDby";
 pub const MAILPIT_IMAGE: &str = "axllent/mailpit:v1.20";
 pub const CADDY_IMAGE: &str = "caddy:2-alpine";
 const SDK_WEBHOOK_RELAY_IMAGE: &str = "macro-sdk-webhook-relay";
@@ -373,7 +380,13 @@ fn add_localstack_service(
             // LocalStack only starts the services named here, so an omission
             // shows up as `"kms": "disabled"` on its health endpoint rather
             // than as a connection error.
-            environment: kv(&[("SERVICES", "sqs,dynamodb,s3,kms")]),
+            // Community LocalStack ignores PERSISTENCE for object bytes.
+            // Durable uploads live on MinIO. These volumes stay so
+            // certificates, logs, and leftover LocalStack state still survive.
+            environment: kv(&[
+                ("SERVICES", "sqs,dynamodb,s3,kms"),
+                ("PERSISTENCE", "1"),
+            ]),
             // Probe the readiness endpoint over loopback instead of the
             // image's own healthcheck, which shells out to `localstack status
             // services`. That CLI resolves `localhost.localstack.cloud`, a
@@ -397,10 +410,36 @@ fn add_localstack_service(
                 ..Default::default()
             }),
             ports: dct::Ports::Short(vec![format!("{}:4566", instance.port(Port::LocalStack))]),
+            volumes: vec![
+                dct::Volumes::Simple("localstack_data:/var/lib/localstack".to_string()),
+                dct::Volumes::Simple(
+                    "localstack_s3:/tmp/localstack-s3-storage".to_string(),
+                ),
+            ],
             networks: net_aliases(&[
                 ("databases", &["localstack"]),
                 ("services", &["localstack"]),
             ]),
+            ..Default::default()
+        }),
+    );
+}
+
+/// Durable object storage. Community LocalStack keeps S3 bytes in memory, and
+/// the MinIO image is no longer public, so this is SeaweedFS. Reachable as
+/// `minio` on the services network. S3 listens on 8333. No host port.
+fn add_minio_service(services: &mut IndexMap<String, Option<dct::Service>>) {
+    services.insert(
+        "minio".to_string(),
+        Some(dct::Service {
+            image: Some(MINIO_IMAGE.to_string()),
+            command: Some(dct::Command::Simple("mini -dir=/data".to_string())),
+            environment: kv(&[
+                ("AWS_ACCESS_KEY_ID", MINIO_ROOT_USER),
+                ("AWS_SECRET_ACCESS_KEY", MINIO_ROOT_PASSWORD),
+            ]),
+            volumes: vec![dct::Volumes::Simple("minio_data:/data".to_string())],
+            networks: net_aliases(&[("services", &["minio"])]),
             ..Default::default()
         }),
     );
@@ -607,6 +646,8 @@ fn add_local_infra(
         // `!override []` merge tag).
     }
 
+    add_minio_service(services);
+
     // Every instance, the default one included, runs the content-tagged images.
     for image in content_tagged_images() {
         let tag = image.tag()?;
@@ -715,6 +756,19 @@ fn set_networks_and_volumes(value: &mut Value, mode: Mode, instance: &Instance) 
         }))
         .expect("volume configuration is serializable"),
     );
+    for (key, suffix) in [
+        ("localstack_data", "localstack_data"),
+        ("localstack_s3", "localstack_s3"),
+        ("minio_data", "minio_data"),
+    ] {
+        volumes.insert(
+            key.into(),
+            serde_yaml::to_value(serde_json::json!({
+                "name": format!("{}_{}", instance.project_name(), suffix)
+            }))
+            .expect("volume configuration is serializable"),
+        );
+    }
 }
 
 /// Define the per-instance external networks and volumes (named-instance only).

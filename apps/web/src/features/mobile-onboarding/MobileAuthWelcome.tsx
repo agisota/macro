@@ -1,5 +1,5 @@
 import { useAnalytics } from '@app/lib/analytics/analytics-context';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import { useNavigate } from '@solidjs/router';
 import { Button, Surface } from '@ui';
 import { onMount } from 'solid-js';
@@ -22,7 +22,7 @@ export function MobileAuthWelcome() {
       <div class="w-full max-w-105">
         <Surface depth={1}>
           <div class="flex flex-col items-center gap-2 py-10">
-            <LogoIcon class="size-20 text-ink" />
+            <RoxMark class="size-20" />
             <div class="text-lg font-medium">Welcome to Rox</div>
           </div>
           <div class="flex flex-col gap-3 px-8 pb-8">

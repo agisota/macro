@@ -169,6 +169,10 @@ fn run_seed(endpoints: &Endpoints) -> Result<()> {
     env.insert("LOCAL_E2E_SEED".into(), "true".into());
     env.insert("DATABASE_URL".into(), endpoints.postgres_url.clone());
     env.insert("LOCAL_AWS_URL".into(), endpoints.localstack_url.clone());
+    // Generated LOCAL_S3_URL is the in-network MinIO name. This seed runs on
+    // the host, which cannot resolve it; fall back to the LocalStack URL set
+    // just above.
+    env.remove("LOCAL_S3_URL");
     env.insert(
         "FUSIONAUTH_BASE_URL".into(),
         endpoints.fusionauth_url.clone(),

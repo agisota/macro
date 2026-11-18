@@ -28,7 +28,7 @@ pub const READ_PROFESSIONAL_FEATURES: &str = "read:professional_features";
 /// Must equal the chat free tier (`chat::domain::models::FREE_MODEL`), which
 /// the web client generates from the published `FreeTierModel` schema;
 /// `agent_harness_service::cognition` tests the two together.
-pub const FREE_TIER_MODELS: &[&str] = &["google/gemini-3.8-flash"];
+pub const FREE_TIER_MODELS: &[&str] = &["groq/gpt-oss-120b"];
 
 /// Whether a requested projection model requires the
 /// [`READ_PROFESSIONAL_FEATURES`] permission.

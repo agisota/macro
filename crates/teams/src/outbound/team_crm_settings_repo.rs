@@ -33,7 +33,7 @@ impl TeamCrmSettingsRepository for TeamCrmSettingsRepositoryImpl {
         .fetch_optional(&self.pool)
         .await?;
 
-        Ok(enabled.unwrap_or(false))
+        Ok(enabled.unwrap_or(true))
     }
 
     #[tracing::instrument(skip(self), err)]

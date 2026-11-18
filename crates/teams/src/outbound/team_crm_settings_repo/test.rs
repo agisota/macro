@@ -92,7 +92,8 @@ async fn legacy_enable_and_disable_abort_before_purge_with_or_without_settings(
             .await?,
             Some(1)
         );
-        assert!(!old.get_crm_enabled(&team).await?);
+        // A stored off row stays off. No row is the new-team default: on.
+        assert_eq!(old.get_crm_enabled(&team).await?, !settings_exist);
         assert_eq!(
             sqlx::query_scalar!(
                 "SELECT count(*) FROM crm_email_consent WHERE team_id=$1",
