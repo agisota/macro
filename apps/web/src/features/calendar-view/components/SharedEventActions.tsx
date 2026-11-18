@@ -25,7 +25,7 @@ import {
  * Actions for a meeting the viewer sees only because it was shared with one
  * of their channels: ask the person who shared it to add them as a guest,
  * add a snapshot of it to one of their Google calendars, or download it for a
- * calendar Macro does not write to.
+ * calendar Rox does not write to.
  */
 export function SharedEventActions(props: {
   /** The channel-shared event the mention names. */

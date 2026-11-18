@@ -57,7 +57,7 @@ mod tests {
     #[sqlx::test(fixtures(path = "../../../fixtures", scripts("invite_user")))]
     async fn test_invite_user(pool: Pool<Postgres>) -> anyhow::Result<()> {
         // invite user already exists
-        invite_user(pool.clone(), 1, "new@macro.com", false).await?;
+        invite_user(pool.clone(), 1, "new@rox.one", false).await?;
 
         // invite user with allow list only
         invite_user(pool.clone(), 2, "new@test.com", true).await?;

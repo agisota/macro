@@ -3,7 +3,7 @@
 ## What it is
 
 External chats: a chat from another messaging service (WhatsApp is the one
-provider) added to Macro as an independently shared `ExternalChat` entity.
+provider) added to Rox as an independently shared `ExternalChat` entity.
 This crate is the provider-neutral part: list and detail, timeline, read
 state, sharing, deliberate sends and uploads, attachment import into static
 files, notification effects and the `/external-chats` routes, over the

@@ -82,7 +82,7 @@ There is no implicit fetch client or native-platform detection in this package.
 - Prefer supplied replyless HTML. If absent/empty, derive it by removing the
   first recognized `.macro_quote`; otherwise show the full body. Missing
   generated replyless data must never blank a valid HTML message.
-- Collapse recognized Gmail and Macro signatures and trailing breaks by default.
+- Collapse recognized Gmail and Rox signatures and trailing breaks by default.
   `showQuotedContent` restores the original body, signature, and trailing breaks.
   `showFullContent` chooses the full body while retaining signature trimming.
 - Parse with parse5 before DOM insertion. Drop active/embedded markup, form
@@ -118,7 +118,7 @@ There is no implicit fetch client or native-platform detection in this package.
   the same allow/block policy but keep direct URLs; authenticated backgrounds
   are not supported by that native adapter. Escaped CSS URL functions that the
   parser cannot normalize as URL nodes are excluded. `hiddenUrlPrefixes` drops
-  matching HTTP(S) `img[src]` values before proxying. The app passes Macro's
+  matching HTTP(S) `img[src]` values before proxying. The app passes Rox's
   read-receipt pixel URLs for every quoted reply or forward, and in the reader
   for every copy except one a recipient received, so only a recipient's view
   counts as an open.
@@ -129,7 +129,7 @@ There is no implicit fetch client or native-platform detection in this package.
   adapts personal/table-less email and preserves designed newsletters on a white
   background. Sender classification and Macro-specific rendering stay in the app.
 
-The app sends ordinary HTML through this package. Plaintext and Macro Markdown
+The app sends ordinary HTML through this package. Plaintext and Rox Markdown
 retain the app's existing Markdown renderer, including document mentions and
 other app semantics. Those paths do not start an invisible HTML renderer or its
 resources. This package does not render a thread, message header, attachments

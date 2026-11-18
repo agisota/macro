@@ -28,24 +28,24 @@ vi.mock('@core/context/quickAccess', () => ({
   }),
 }));
 vi.mock('@core/context/user', () => ({
-  useEmail: () => () => 'gab@macro.com',
+  useEmail: () => () => 'gab@rox.one',
   useUserId: () => () => 'macro|morgan@macro.com',
 }));
 
 const seamus: IUser = {
-  id: 'macro|seamus@macro.com',
+  id: 'macro|seamus@rox.one',
   name: 'Seamus Edson',
-  email: 'seamus@macro.com',
+  email: 'seamus@rox.one',
 };
 const alias: IUser = {
-  id: 'macro|seamus+05@macro.com',
+  id: 'macro|seamus+05@rox.one',
   name: 'seamus+05',
-  email: 'seamus+05@macro.com',
+  email: 'seamus+05@rox.one',
 };
 const sean: IUser = {
-  id: 'macro|sean@macro.com',
+  id: 'macro|sean@rox.one',
   name: 'Sean Aye',
-  email: 'sean@macro.com',
+  email: 'sean@rox.one',
 };
 const viewer: IUser = {
   id: 'macro|morgan@macro.com',
@@ -578,9 +578,9 @@ it('keeps @here out of composers that do not post to a channel', () => {
 it('lists people before @here for a partial alias and @here first once it is typed in full', () => {
   createRoot((dispose) => {
     const helen: IUser = {
-      id: 'macro|helen@macro.com',
+      id: 'macro|helen@rox.one',
       name: 'Helen Park',
-      email: 'helen@macro.com',
+      email: 'helen@rox.one',
     };
     const [searchTerm, setSearchTerm] = createSignal('he');
     const mention = useUsersMention({

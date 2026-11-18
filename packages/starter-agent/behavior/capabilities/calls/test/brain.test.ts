@@ -80,7 +80,7 @@ test('the system prompt is the same for every call: what differs goes in the fir
   });
   expect(
     first.startsWith(
-      'BRIEF\n\nYou just joined call call-1 in Macro channel ch-1'
+      'BRIEF\n\nYou just joined call call-1 in Rox channel ch-1'
     )
   ).toBe(true);
   expect(first).toContain(
@@ -219,10 +219,10 @@ test("post_chat posts in this call's chat and tells the brain; a failure comes b
       emit,
     },
     'call-1',
-    'https://macro.com/app/x'
+    'https://rox.one/app/x'
   );
   expect(ok).toEqual({ ok: true, said: "Posted in the call's chat." });
-  expect(posted).toEqual([['call-1', 'https://macro.com/app/x']]);
+  expect(posted).toEqual([['call-1', 'https://rox.one/app/x']]);
   const failed = await postInChat(
     { postChat: () => Promise.reject(new Error('403')), emit },
     'call-1',

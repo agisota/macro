@@ -1,3 +1,4 @@
+import { displayName } from '@core/constant/brand';
 import IconAirtable from '@icon/import/airtable.svg';
 import IconAsana from '@icon/import/asana.svg';
 import IconBox from '@icon/import/box.svg';
@@ -28,14 +29,14 @@ import type {
 export const IMPORT_CATEGORIES: Record<ImportCategory, ImportCategoryConfig> = {
   files: {
     category: 'files',
-    headline: 'Bring your files to Macro',
+    headline: 'Import files into Drive',
     pitch:
-      'Import docs and files from Notion, Google Drive, Dropbox, and more.',
+      'Your native documents and files live in Drive. Import copies from Notion, Google Drive, Dropbox, and more.',
     action: 'Import files',
     dialogDescription:
       'Connect an app, then pick what to bring into your Drive with the agent.',
     items: 'documents and files',
-    destination: 'my Macro Drive',
+    destination: 'my Drive',
     providers: [
       {
         appSlug: 'notion',
@@ -47,7 +48,7 @@ export const IMPORT_CATEGORIES: Record<ImportCategory, ImportCategoryConfig> = {
       {
         appSlug: 'google_drive',
         name: 'Google Drive',
-        detail: 'Docs, PDFs, and files',
+        detail: 'Import docs, PDFs, and files',
         icon: IconGoogleDrive as ImportIcon,
       },
       {
@@ -78,14 +79,14 @@ export const IMPORT_CATEGORIES: Record<ImportCategory, ImportCategoryConfig> = {
   },
   tasks: {
     category: 'tasks',
-    headline: 'Bring your tasks to Macro',
+    headline: `Bring your tasks to ${displayName}`,
     pitch:
       'Import issues and tasks from Linear, Jira, Asana, GitHub, and more.',
     action: 'Import tasks',
     dialogDescription:
       'Connect an app, then pick which tasks to bring over with the agent.',
     items: 'issues and tasks',
-    destination: 'Macro tasks',
+    destination: `${displayName} tasks`,
     providers: [
       {
         appSlug: 'linear',
@@ -130,13 +131,13 @@ export const IMPORT_CATEGORIES: Record<ImportCategory, ImportCategoryConfig> = {
   },
   crm: {
     category: 'crm',
-    headline: 'Bring your customers to Macro',
+    headline: `Bring your customers to ${displayName}`,
     pitch: 'Import companies and contacts from HubSpot, Salesforce, and more.',
     action: 'Import customers',
     dialogDescription:
       'Connect an app, and the agent brings its companies and contacts into your CRM.',
     items: 'companies and contacts',
-    destination: 'the Macro CRM',
+    destination: `the ${displayName} CRM`,
     providers: [
       {
         appSlug: 'hubspot',
@@ -173,7 +174,7 @@ export const IMPORT_CATEGORIES: Record<ImportCategory, ImportCategoryConfig> = {
     dialogDescription:
       'Connect Slack to pick channels with the agent, or upload an export to bring history.',
     items: 'channels',
-    destination: 'Macro channels',
+    destination: `${displayName} channels`,
     providers: [
       {
         appSlug: 'slack',
@@ -186,7 +187,7 @@ export const IMPORT_CATEGORIES: Record<ImportCategory, ImportCategoryConfig> = {
   },
 };
 
-/** Where Macro can import an app's data from, if it can. */
+/** Where Rox can import an app's data from, if it can. */
 export function importSourceFor(
   appSlug: string
 ): { config: ImportCategoryConfig; provider: ImportProvider } | undefined {

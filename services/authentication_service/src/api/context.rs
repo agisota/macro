@@ -49,7 +49,7 @@ use rate_limit::domain::service::RateLimitServiceImpl;
 use referral::{domain::service::ReferralServiceImpl, outbound::pg_referral_repo::PgReferralRepo};
 use remote_env_var::LocalOrRemoteSecret;
 use roles_and_permissions::{
-    domain::service::UserRolesAndPermissionsServiceImpl, outbound::pgpool::MacroDB,
+    domain::service::UserRolesAndPermissionsServiceImpl, outbound::pgpool::RoxDB,
 };
 use sqlx::PgPool;
 use system_status::{
@@ -91,7 +91,7 @@ pub(crate) type ChannelServiceType = ChannelServiceImpl<
 /// resolved through roles + teams and collected through Stripe.
 pub(crate) type AiBillingServiceType = ai_billing::domain::BillingServiceImpl<
     ai_billing::outbound::RolesTeamsEntitlementSource<
-        UserRolesAndPermissionsServiceImpl<MacroDB>,
+        UserRolesAndPermissionsServiceImpl<RoxDB>,
         teams::outbound::team_repo::TeamRepositoryImpl,
     >,
     ai_billing::outbound::PgUsageReader,
@@ -108,7 +108,7 @@ pub(crate) type StripePlanGatewayType = crate::outbound::subscription_plan::Stri
 pub(crate) type SubscriptionStatusServiceType =
     crate::service::subscription_status::SubscriptionStatusService<
         ai_billing::outbound::RolesTeamsEntitlementSource<
-            UserRolesAndPermissionsServiceImpl<MacroDB>,
+            UserRolesAndPermissionsServiceImpl<RoxDB>,
             teams::outbound::team_repo::TeamRepositoryImpl,
         >,
         StripePlanGatewayType,
@@ -128,7 +128,7 @@ pub(crate) type TeamsServiceType = teams::domain::team_service::TeamServiceImpl<
     teams::outbound::team_repo::TeamRepositoryImpl,
     teams::outbound::customer_repo::CustomerRepositoryImpl,
     ChannelServiceType,
-    UserRolesAndPermissionsServiceImpl<MacroDB>,
+    UserRolesAndPermissionsServiceImpl<RoxDB>,
     NotificationIngressType,
     teams::outbound::crm_enqueuer::SqsCrmEnqueuer,
     teams::outbound::team_crm_settings_repo::TeamCrmSettingsRepositoryImpl,
@@ -148,7 +148,7 @@ pub(crate) type RateLimiter = RateLimitServiceImpl<RedisRateLimitAdapter<redis::
 
 pub(crate) type InviteRewardsType = crate::outbound::invite_rewards::BillingInviteRewards<
     ai_billing::outbound::RolesTeamsEntitlementSource<
-        UserRolesAndPermissionsServiceImpl<MacroDB>,
+        UserRolesAndPermissionsServiceImpl<RoxDB>,
         teams::outbound::team_repo::TeamRepositoryImpl,
     >,
     ai_billing::outbound::PgCreditGrantRepo,
@@ -176,7 +176,7 @@ pub(crate) type GithubLinkServiceType = GithubLinkServiceImpl<
 
 pub(crate) type EntityAccessServiceType = EntityAccessServiceImpl<PgAccessRepository>;
 
-/// Buys and manages Macro computers on team subscriptions.
+/// Buys and manages Rox computers on team subscriptions.
 pub(crate) type ComputerServiceType = hosted_runtimes::domain::service::ComputerService<
     hosted_runtimes::outbound::pg::PgComputerRepo,
     crate::outbound::computer_billing::TeamComputerBilling<TeamsServiceType>,
@@ -186,7 +186,7 @@ pub(crate) type ComputerServiceType = hosted_runtimes::domain::service::Computer
 
 /// The authentication service's Stripe inbox consumers.
 pub(crate) type StripeConsumersType = crate::outbound::stripe_consumers::StripeConsumers<
-    UserRolesAndPermissionsServiceImpl<MacroDB>,
+    UserRolesAndPermissionsServiceImpl<RoxDB>,
     TeamsServiceType,
     AiBillingServiceType,
     GtmInviteServiceType,
@@ -201,7 +201,7 @@ pub(crate) type StripeInboxType = stripe_inbox::domain::service::InboxService<
     StripeConsumersType,
 >;
 
-/// Agent teammates on the team's Macro computers.
+/// Agent teammates on the team's Rox computers.
 pub(crate) type TeamAgentsServiceType = team_agents::domain::service::TeamAgentServiceImpl<
     team_agents::outbound::pg_team_agents_repo::PgTeamAgentsRepo,
     team_agents::outbound::team_membership::TeamsMembership<TeamsServiceType>,
@@ -234,7 +234,7 @@ pub(crate) type AgentApiKeysType = agent_api_keys::domain::AgentKeyService<
     agent_api_keys::outbound::KmsAgentKeyCipher<cursor_api_key::cipher::AwsKmsCiphertexts>,
     agent_api_keys::outbound::EntitlementKeyPlans<
         ai_billing::outbound::RolesTeamsEntitlementSource<
-            UserRolesAndPermissionsServiceImpl<MacroDB>,
+            UserRolesAndPermissionsServiceImpl<RoxDB>,
             teams::outbound::team_repo::TeamRepositoryImpl,
         >,
     >,
@@ -297,8 +297,9 @@ pub(crate) struct ApiContext {
     pub token_context: MacroApiTokenContext,
     pub internal_api_key: InternalApiKey,
     pub stripe_webhook_secret: LocalOrRemoteSecret<StripeWebhookSecretKey>,
-    pub user_roles_and_permissions_service: Arc<UserRolesAndPermissionsServiceImpl<MacroDB>>, // Note: since FromRef doesn't support generics we have to specify the concrete types here
+    pub user_roles_and_permissions_service: Arc<UserRolesAndPermissionsServiceImpl<RoxDB>>, // Note: since FromRef doesn't support generics we have to specify the concrete types here
     pub teams_service: Arc<TeamsServiceType>,
+    pub enterprise: Arc<crate::outbound::enterprise::EnterpriseServiceType>,
     pub domain_notice_service: Arc<DomainNoticeServiceType>,
     pub channel_service: Arc<ChannelServiceType>,
     pub channel_messages: Arc<dyn messages::domain::api::MessageCommands>,
@@ -316,9 +317,9 @@ pub(crate) struct ApiContext {
     pub event_broker: AuthenticationEventBroker,
     /// The stripe price ids for each paid plan's seat
     pub stripe_prices: crate::api::user::stripe::StripePrices,
-    /// The Stripe prices Macro computers bill at.
+    /// The Stripe prices Rox computers bill at.
     pub computer_prices: crate::domain::computer_billing::ComputerPrices,
-    /// Buys and manages Macro computers; also runs their billing effects.
+    /// Buys and manages Rox computers; also runs their billing effects.
     pub computer_service: Arc<ComputerServiceType>,
     /// Stores verified Stripe events for the inbox's consumers to apply.
     pub stripe_inbox: Arc<StripeInboxType>,

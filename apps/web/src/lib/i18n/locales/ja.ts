@@ -117,7 +117,7 @@ export default {
     agentHint: '専用のエージェントセッション',
     routineLabel: 'ルーティン',
     routineDescription:
-      'スケジュールやMacroのアクティビティに応じてモデルやエージェントを実行',
+      'スケジュールやRoxのアクティビティに応じてモデルやエージェントを実行',
     routineHint: 'スケジュールとアクティビティのトリガー',
     databaseLabel: 'データベース',
     databaseDescription: 'データベースを作成',
@@ -323,7 +323,7 @@ export default {
     projectShortTagline: '関連するタスクを整理',
     reminderTagline: '指定した時間に自分に通知',
     reminderDetails:
-      'あとで見直したいことのリマインダーを設定できます。\n時間を選ぶと、Macroがお知らせします。',
+      'あとで見直したいことのリマインダーを設定できます。\n時間を選ぶと、Roxがお知らせします。',
     reminderExample1: '折り返し電話',
     reminderExample2: '金曜日に確認',
     reminderExample3: 'ライセンスを更新',
@@ -402,7 +402,7 @@ export default {
       '作業にタグを付けて、プロジェクトをまたいで整理・絞り込みできます。',
     guideConversation: '既存のエージェントとの会話を始めます。',
     guideWorkAgent:
-      '指示とMacroワークスペースへのアクセス権を持つアシスタントを作成します。',
+      '指示とRoxワークスペースへのアクセス権を持つアシスタントを作成します。',
     guideCodingAgent:
       '連携したコーディング環境で動作するエージェントを作成します。',
     guideRoutine: '定期的なスケジュールで実行するエージェントを設定します。',
@@ -670,20 +670,20 @@ export default {
     updateAvailable: 'アップデートがあります',
     updateNewVersionTitle: '新しいバージョンがあります',
     updateWebDescription:
-      'Macroの新しいバージョンの準備ができました。ページを再読み込みすると利用できます。',
+      'Roxの新しいバージョンの準備ができました。ページを再読み込みすると利用できます。',
     updateWebFailedLoadDescription:
-      '新しいバージョンが公開されたため、Macroの一部を読み込めませんでした。ページを再読み込みすると利用できます。',
+      '新しいバージョンが公開されたため、Roxの一部を読み込めませんでした。ページを再読み込みすると利用できます。',
     updateReload: '再読み込み',
     updateReadyTitle: 'アップデートの準備完了',
     updateBundleDescription:
-      'Macroデスクトップアプリの新しいバージョンをダウンロードしました。アップデートすると利用できます。',
+      'Roxデスクトップアプリの新しいバージョンをダウンロードしました。アップデートすると利用できます。',
     updateAction: 'アップデート',
     updateDesktopReadyTitle: 'デスクトップアプリのアップデートの準備完了',
     updateNativeDescription:
-      'Macroを再起動してインストールするか、このまま作業を続けて終了時にインストールします。',
+      'Roxを再起動してインストールするか、このまま作業を続けて終了時にインストールします。',
     updateRestartAndUpdate: '再起動してアップデート',
     updateNativePreparingDescription:
-      'アップデートのインストールでMacroを再起動する前に、作業内容を保存しています。',
+      'アップデートのインストールでRoxを再起動する前に、作業内容を保存しています。',
     updatePreparingRestart: '再起動の準備中…',
   },
   settingsLanguage: {
@@ -696,7 +696,7 @@ export default {
     yourLanguageDescription:
       '自分にのみ適用され、チームの言語より優先されます。',
     yourLanguageNoTeamDescription:
-      'Macroの表示に使用する言語です。「自動」ではブラウザの言語に従います。',
+      'Roxの表示に使用する言語です。「自動」ではブラウザの言語に従います。',
     useTeamLanguage: 'チームの言語を使用（{{language}}）',
     automatic: '自動（{{language}}）',
     teamAutomatic: '自動（各メンバーのブラウザの言語）',

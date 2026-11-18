@@ -53,7 +53,7 @@ pub struct MessagePostedMetadata {
     pub sender: ChannelSender<'static>,
     /// User whose invocation produced a bot response.
     pub triggered_by: Option<String>,
-    /// Macro Markdown body.
+    /// Rox Markdown body.
     pub content: String,
     /// Explicit mentions recorded with the post.
     pub mentions: Vec<SimpleMention>,
@@ -115,7 +115,7 @@ pub struct MessageMentionedMetadata {
     pub root_id: Uuid,
     /// Message author; may be a bot.
     pub sender: ChannelSender<'static>,
-    /// Macro Markdown body.
+    /// Rox Markdown body.
     pub content: String,
     /// The mentioned entity this fact is about (`user`, `bot`, `document`, …).
     pub mentioned: SimpleMention,
@@ -142,7 +142,7 @@ pub struct MessagePatchedMetadata {
     pub root_id: Uuid,
     /// Actor that patched the message.
     pub actor: ChannelSender<'static>,
-    /// Macro Markdown body after the patch.
+    /// Rox Markdown body after the patch.
     pub content: String,
     /// Edit timestamp, when the patch marked the message edited.
     pub edited_at: Option<DateTime<Utc>>,

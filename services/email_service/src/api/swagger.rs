@@ -60,7 +60,7 @@ use utoipa::OpenApi;
 #[derive(OpenApi)]
 #[openapi(
     info(
-        terms_of_service = "https://macro.com/terms",
+        terms_of_service = "https://rox.one/terms",
     ),
     paths(
         crate::api::calendar_invitations::handler,
@@ -210,7 +210,7 @@ use utoipa::OpenApi;
         ),
     ),
     tags(
-            (name = "Email Service", description = "Macro Email Service")
+            (name = "Email Service", description = "Rox Email Service")
     )
 )]
 pub struct ApiDoc;

@@ -125,8 +125,8 @@ const otherPages = [
     'Main benefits',
     'features/marketing/views/ReplaceAppsPage.tsx',
   ],
-  ['/download', 'Download Macro', 'Website', 'app/routes/RouteDownload.tsx'],
-  ['/demo', 'Try Macro', 'Website', 'app/routes/RouteDemo.tsx'],
+  ['/download', 'Download Rox', 'Website', 'app/routes/RouteDownload.tsx'],
+  ['/demo', 'Try Rox', 'Website', 'app/routes/RouteDemo.tsx'],
   [
     '/tour',
     'Product tour',

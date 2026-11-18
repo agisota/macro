@@ -49,7 +49,7 @@ table.
 ## Checks
 
 - `cargo test -p collab_surface` (`SQLX_OFFLINE` unset; exercises
-  `src/outbound/pg_collab_surface_repo/test.rs` against MacroDB).
+  `src/outbound/pg_collab_surface_repo/test.rs` against RoxDB).
 
 ## Gotchas
 

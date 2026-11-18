@@ -49,7 +49,7 @@ impl databases::domain::ports::TableEventPublisher for Unheard {
 /// A user id no other test in this process shares: entity access caches
 /// answers process-wide.
 fn unique_user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from(format!("macro|webhooks-{}@macro.com", uuid::Uuid::new_v4())).unwrap()
+    MacroUserIdStr::try_from(format!("macro|webhooks-{}@rox.one", uuid::Uuid::new_v4())).unwrap()
 }
 
 async fn insert_user(pool: &PgPool, user_id: &str) {

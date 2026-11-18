@@ -27,7 +27,7 @@ export type Work = {
 
 /** Provided by the people area as `people`. */
 export type People = {
-  /** What the agent knows of these people (by Macro id), as text for a prompt. Empty if there is nothing. Never throws. */
+  /** What the agent knows of these people (by Rox id), as text for a prompt. Empty if there is nothing. Never throws. */
   readonly cards: (
     ids: readonly string[],
     purpose: 'reply' | 'call',

@@ -6,8 +6,8 @@
  */
 
 /**
- * How Claude Code on a Macro computer is paid for: its own Claude account
-when it has an active Claude login, otherwise Macro credits.
+ * How Claude Code on a Rox computer is paid for: its own Claude account
+when it has an active Claude login, otherwise Rox credits.
  */
 export type ClaudeMode = (typeof ClaudeMode)[keyof typeof ClaudeMode];
 

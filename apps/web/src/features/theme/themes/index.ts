@@ -13,8 +13,8 @@ import { satsumaTheme } from './satsuma';
 import { spiritTheme } from './spirit';
 import { voidTheme } from './void';
 
-// Ordered for the theme picker: dark themes first (led by Macro Dark), then
-// light themes (led by Macro Light).
+// Ordered for the theme picker: dark themes first (led by Rox Dark), then
+// light themes (led by Rox Light).
 export const DEFAULT_THEMES = [
   macroDarkTheme,
   macroGruvboxTheme,

@@ -8,7 +8,7 @@ import type { ImportPipelineCsvRequestCsv } from './importPipelineCsvRequestCsv'
 import type { ImportPipelineCsvRequestDocumentId } from './importPipelineCsvRequestDocumentId';
 
 /**
- * A CSV to import: exactly one of its text or a CSV file in Macro.
+ * A CSV to import: exactly one of its text or a CSV file in Rox.
  */
 export interface ImportPipelineCsvRequest {
   /** The CSV text. */

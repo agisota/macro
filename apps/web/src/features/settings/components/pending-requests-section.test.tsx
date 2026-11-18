@@ -83,7 +83,7 @@ const machine = (
 ): Harness => ({
   allow_permission_bypass: false,
   id,
-  kind: 'macrod',
+  kind: 'roxd',
   name,
   owner: { type: 'user', user_id: owner },
   access,

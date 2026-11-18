@@ -116,7 +116,7 @@ export default {
     agentDescription: '新建智能体会话',
     agentHint: '专属智能体会话',
     routineLabel: '例行任务',
-    routineDescription: '按计划或 Macro 活动运行模型或智能体',
+    routineDescription: '按计划或 Rox 活动运行模型或智能体',
     routineHint: '计划与活动触发器',
     databaseLabel: '数据库',
     databaseDescription: '新建数据库',
@@ -313,7 +313,7 @@ export default {
     projectShortTagline: '组织相关任务',
     reminderTagline: '在指定时间提醒自己',
     reminderDetails:
-      '为想要回头处理的事情设置提醒。\n选择时间，Macro 会准时提醒你。',
+      '为想要回头处理的事情设置提醒。\n选择时间，Rox 会准时提醒你。',
     reminderExample1: '回电话',
     reminderExample2: '周五跟进',
     reminderExample3: '续订许可证',
@@ -389,7 +389,7 @@ export default {
     guideProject: '围绕共同目标汇集相关任务。',
     guideTag: '为工作添加标签，便于跨项目整理和筛选。',
     guideConversation: '与现有智能体开始对话。',
-    guideWorkAgent: '创建一个带有指令、可访问你的 Macro 工作区的助手。',
+    guideWorkAgent: '创建一个带有指令、可访问你的 Rox 工作区的助手。',
     guideCodingAgent: '创建在已连接的编程环境中工作的智能体。',
     guideRoutine: '设置按固定计划运行的智能体。',
     guideCompany: '跟踪一个组织、其人员以及你与它的关系。',
@@ -651,20 +651,20 @@ export default {
     reorderItem: '调整{{label}}的顺序',
     updateAvailable: '有可用更新',
     updateNewVersionTitle: '有新版本可用',
-    updateWebDescription: 'Macro 新版本已就绪。重新加载页面即可使用。',
+    updateWebDescription: 'Rox 新版本已就绪。重新加载页面即可使用。',
     updateWebFailedLoadDescription:
-      '由于新版本已发布，Macro 的部分内容无法加载。重新加载页面即可使用。',
+      '由于新版本已发布，Rox 的部分内容无法加载。重新加载页面即可使用。',
     updateReload: '重新加载',
     updateReadyTitle: '更新已就绪',
     updateBundleDescription:
-      'Macro 桌面应用的新版本已下载完成。更新后即可使用。',
+      'Rox 桌面应用的新版本已下载完成。更新后即可使用。',
     updateAction: '更新',
     updateDesktopReadyTitle: '桌面应用更新已就绪',
     updateNativeDescription:
-      '重启 Macro 以安装更新，或继续工作，退出时将自动安装。',
+      '重启 Rox 以安装更新，或继续工作，退出时将自动安装。',
     updateRestartAndUpdate: '重启并更新',
     updateNativePreparingDescription:
-      '正在保存你的工作，随后 Macro 将重启以安装更新。',
+      '正在保存你的工作，随后 Rox 将重启以安装更新。',
     updatePreparingRestart: '正在准备重启…',
   },
   settingsLanguage: {
@@ -676,7 +676,7 @@ export default {
     yourLanguage: '我的语言',
     yourLanguageDescription: '仅对你自己覆盖团队语言。',
     yourLanguageNoTeamDescription:
-      'Macro 向你显示的语言。选择“自动”时跟随浏览器语言。',
+      'Rox 向你显示的语言。选择“自动”时跟随浏览器语言。',
     useTeamLanguage: '使用团队语言（{{language}}）',
     automatic: '自动（{{language}}）',
     teamAutomatic: '自动（每位成员的浏览器语言）',

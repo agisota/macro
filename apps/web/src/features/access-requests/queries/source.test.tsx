@@ -45,7 +45,7 @@ const first: ShareEntity = { entityType: 'document', entityId: 'first' };
 const second: ShareEntity = { entityType: 'document', entityId: 'second' };
 const request: AccessRequest = {
   id: 'request',
-  requesterId: 'macro|requester@macro.com',
+  requesterId: 'macro|requester@rox.one',
   requestedLevel: 'edit',
   status: 'pending',
   revision: 1,
@@ -146,7 +146,7 @@ it('loads direct grants for an authorized reviewer without file access', async (
 });
 
 it('keeps loaded request and grant rows available through a failed background refresh', async () => {
-  const grants = [{ userId: 'macro|reader@macro.com', accessLevel: 'view' }];
+  const grants = [{ userId: 'macro|reader@rox.one', accessLevel: 'view' }];
   mocks.grants.mockImplementation(() => okAsync(grants));
   const { source } = mount({ accessLevel: 'view', mine: request });
   await source.refresh();
@@ -164,7 +164,7 @@ it('keeps loaded request and grant rows available through a failed background re
 });
 
 it('does not show the previous document grant rows while the new document is pending', async () => {
-  const grants = [{ userId: 'macro|reader@macro.com', accessLevel: 'view' }];
+  const grants = [{ userId: 'macro|reader@rox.one', accessLevel: 'view' }];
   mocks.grants.mockImplementation(() => okAsync(grants));
   const { source, navigate } = mount({ accessLevel: 'view', mine: request });
   await source.refresh();
@@ -210,7 +210,7 @@ it('refreshes grants from the refetched state, not the cached one', async () => 
 });
 
 it('hides grant rows once the viewer can no longer read them', async () => {
-  const grants = [{ userId: 'macro|reader@macro.com', accessLevel: 'view' }];
+  const grants = [{ userId: 'macro|reader@rox.one', accessLevel: 'view' }];
   mocks.grants.mockImplementation(() => okAsync(grants));
   const { source, update } = mount({ accessLevel: 'view' });
   await source.refresh();
@@ -220,7 +220,7 @@ it('hides grant rows once the viewer can no longer read them', async () => {
 });
 
 it('keeps grant rows while another page of requests loads', async () => {
-  const grants = [{ userId: 'macro|reader@macro.com', accessLevel: 'view' }];
+  const grants = [{ userId: 'macro|reader@rox.one', accessLevel: 'view' }];
   mocks.grants.mockImplementation(() => okAsync(grants));
   const { source } = mount({ accessLevel: 'view' });
   await source.refresh();

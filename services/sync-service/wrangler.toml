@@ -63,9 +63,9 @@ name = "sync-service-playground"
 INTERNAL_API_SECRET_KEY = "SYNC_SERVICE_KEY_PLAYGROUND"
 DOCUMENT_PERMISSIONS_SECRET = "local"
 ENVIRONMENT = "development"
-SPS_URL = "https://dev-gateway.macro.com/search-processing"
-DSS_URL = "https://dev-gateway.macro.com/dss"
-LEXICAL_SERVICE_URL = "https://dev-gateway.macro.com/lexical"
+SPS_URL = "https://dev-gateway.rox.one/search-processing"
+DSS_URL = "https://dev-gateway.rox.one/dss"
+LEXICAL_SERVICE_URL = "https://dev-gateway.rox.one/lexical"
 
 [env.playground.durable_objects]
 bindings = [
@@ -104,9 +104,9 @@ INTERNAL_API_SECRET_KEY = "SYNC_SERVICE_KEY_DEV"
 ENVIRONMENT = "development"
 # The proxy injects the Datadog key; the exporter appends the signal path.
 OTEL_EXPORTER_OTLP_ENDPOINT = "https://macro-prox-dev.macroverse.workers.dev/i/otlp"
-SPS_URL = "https://dev-gateway.macro.com/search-processing"
-DSS_URL = "https://dev-gateway.macro.com/dss"
-LEXICAL_SERVICE_URL = "https://dev-gateway.macro.com/lexical"
+SPS_URL = "https://dev-gateway.rox.one/search-processing"
+DSS_URL = "https://dev-gateway.rox.one/dss"
+LEXICAL_SERVICE_URL = "https://dev-gateway.rox.one/lexical"
 
 [env.dev.durable_objects]
 bindings = [
@@ -145,9 +145,9 @@ INTERNAL_API_SECRET_KEY = "SYNC_SERVICE_KEY_PROD"
 ENVIRONMENT = "production"
 # The proxy injects the Datadog key; the exporter appends the signal path.
 OTEL_EXPORTER_OTLP_ENDPOINT = "https://macro-prox-prod.macroverse.workers.dev/i/otlp"
-SPS_URL = "https://gateway.macro.com/search-processing"
-DSS_URL = "https://gateway.macro.com/dss"
-LEXICAL_SERVICE_URL = "https://gateway.macro.com/lexical"
+SPS_URL = "https://gateway.rox.one/search-processing"
+DSS_URL = "https://gateway.rox.one/dss"
+LEXICAL_SERVICE_URL = "https://gateway.rox.one/lexical"
 
 [env.prod.durable_objects]
 bindings = [

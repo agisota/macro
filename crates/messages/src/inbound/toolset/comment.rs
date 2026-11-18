@@ -18,7 +18,7 @@ use crate::domain::{
 #[serde(rename_all = "camelCase")]
 #[schemars(
     title = "Comment",
-    description = "Add a comment to the Discussion of a document, task, Tasks project (initiative), CRM company or CRM contact on behalf of the user, or reply in an existing comment thread on any of them. For a new comment, address the item by entityType and entityId. For a reply, pass threadId; a thread id is enough to find its item, so entityType and entityId may be omitted. Thread ids come from ReadDiscussion, or from ReadContent for a document. Only use this when explicitly asked to comment or reply. Write content in Macro markdown and link people and items with the same mention tags as in documents; they render as chips and notify the people mentioned. To comment on a passage of text in a document, use CommentOnText instead; for a message in a channel, use SendChannelMessage."
+    description = "Add a comment to the Discussion of a document, task, Tasks project (initiative), CRM company or CRM contact on behalf of the user, or reply in an existing comment thread on any of them. For a new comment, address the item by entityType and entityId. For a reply, pass threadId; a thread id is enough to find its item, so entityType and entityId may be omitted. Thread ids come from ReadDiscussion, or from ReadContent for a document. Only use this when explicitly asked to comment or reply. Write content in Rox markdown and link people and items with the same mention tags as in documents; they render as chips and notify the people mentioned. To comment on a passage of text in a document, use CommentOnText instead; for a message in a channel, use SendChannelMessage."
 )]
 /// Post a Discussion comment on an item, or a reply in one of its threads.
 pub struct Comment {
@@ -40,9 +40,9 @@ pub struct Comment {
     )]
     pub thread_id: Option<Uuid>,
 
-    /// Macro Markdown body.
+    /// Rox Markdown body.
     #[schemars(
-        description = "Comment content in Macro markdown, the same syntax as markdown documents, including mention tags."
+        description = "Comment content in Rox markdown, the same syntax as markdown documents, including mention tags."
     )]
     pub content: String,
 }

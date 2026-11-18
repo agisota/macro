@@ -256,7 +256,7 @@ pub async fn disconnect<Auth: MacroAuthorizationService>(
 }
 
 /// The caller's WhatsApp chat list (groups and direct chats), newest
-/// activity first, with what can be added to Macro.
+/// activity first, with what can be added to Rox.
 #[utoipa::path(get, path = "/whatsapp/chats", operation_id = "whatsapp_chats", responses((status = 200, body = ChatList)))]
 pub async fn chats<Auth: MacroAuthorizationService>(
     State(state): State<WhatsAppRouterState<Auth>>,

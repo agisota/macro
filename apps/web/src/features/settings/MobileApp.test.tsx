@@ -69,7 +69,7 @@ describe('MobileApp', () => {
   it('renders the QR code and text', () => {
     render(() => <MobileApp />);
 
-    expect(screen.getByText(/Download Macro on the/)).toBeTruthy();
+    expect(screen.getByText(/Download Rox on the/)).toBeTruthy();
     // Use getAllByText and check it appears multiple times (in the paragraph and in the button)
     const appStoreText = screen.getAllByText(/App Store/);
     expect(appStoreText.length).toBeGreaterThan(0);
@@ -154,19 +154,19 @@ describe('MobileApp', () => {
     [
       'an iPhone',
       'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)',
-      'Download Macro from the App Store.',
+      'Download Rox from the App Store.',
       [['App Store', APP_STORE_URL]],
     ],
     [
       'an Android phone',
       'Mozilla/5.0 (Linux; Android 14; Pixel 8)',
-      'Download Macro from Google Play.',
+      'Download Rox from Google Play.',
       [['Google Play', PLAY_STORE_URL]],
     ],
     [
       'an unrecognized phone',
       'Mozilla/5.0 (Mobile; rv:48.0)',
-      'Download Macro from your app store.',
+      'Download Rox from your app store.',
       [
         ['App Store', APP_STORE_URL],
         ['Google Play', PLAY_STORE_URL],

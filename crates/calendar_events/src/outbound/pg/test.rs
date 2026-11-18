@@ -4012,7 +4012,7 @@ async fn upsert_materializes_popup_reminder_firings(pool: PgPool) {
             10,
             starts_at - Duration::minutes(10)
         )],
-        "only popup reminders fire Macro notifications"
+        "only popup reminders fire Rox notifications"
     );
 
     // Removing the overrides (back to empty defaults) clears the schedule.
@@ -4505,7 +4505,7 @@ async fn reminder_decline_follows_owner_inbox_not_calendar_self(pool: PgPool) {
 }
 
 /// The provider classification has to survive the write and come back on the
-/// read path: it is what tells the product a conference is one Macro may
+/// read path: it is what tells the product a conference is one Rox may
 /// detach, so losing it in persistence would put a third-party conference at
 /// risk of being destroyed by an edit.
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]

@@ -1,7 +1,7 @@
 import { wrapXml } from '../../mentions';
 import type { MacroClient } from '../../utils/client';
 
-/** The box Macro's editors fit a message image into, as the composer does. */
+/** The box Rox's editors fit a message image into, as the composer does. */
 const MESSAGE_IMAGE_BOX = 400;
 
 /**

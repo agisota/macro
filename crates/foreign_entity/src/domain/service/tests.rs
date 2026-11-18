@@ -740,7 +740,7 @@ impl EntityAccessService for FakeEntityAccessService {
     }
 }
 
-const TEST_USER_ID: &str = "macro|user@macro.com";
+const TEST_USER_ID: &str = "macro|user@rox.one";
 const PULL_REQUEST_SOURCE: &str = "github_pull_request";
 const PULL_REQUEST_KEY: &str = "macro/app/pull/42";
 

@@ -71,7 +71,7 @@ export type SpreadsheetEdited = Omit<
   Extract<SpreadsheetResponse, { action: 'edit' }>,
   'action'
 > & {
-  /** Link to the spreadsheet in the Macro web app. */
+  /** Link to the spreadsheet in the Rox web app. */
   webUrl: string;
 };
 
@@ -96,7 +96,7 @@ function sheetId(sheet: SpreadsheetSheet | undefined): string | undefined {
 }
 
 /**
- * A native Macro spreadsheet: a workbook of sheets, calculated by the same
+ * A native Rox spreadsheet: a workbook of sheets, calculated by the same
  * engine as the editor. Imported Excel files are not native spreadsheets.
  * Get one with `macro.documents.spreadsheet(document)` or
  * `macro.documents.createSpreadsheet()`.
@@ -315,7 +315,7 @@ export class Spreadsheet extends Document {
   }
 
   /**
-   * The spreadsheet's URL in the Macro web app.
+   * The spreadsheet's URL in the Rox web app.
    *
    * @readonly
    */

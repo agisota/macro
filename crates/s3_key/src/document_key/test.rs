@@ -1,6 +1,6 @@
 use super::*;
 
-const USER_PRINCIPAL: &str = "macro|hutch@macro.com";
+const USER_PRINCIPAL: &str = "macro|hutch@rox.one";
 const BOT_PRINCIPAL: &str = "bot|00000000-0000-0000-0000-00000000a1a1";
 const TEAM_PRINCIPAL: &str = "019ce2bb-e97e-7fdb-b6b4-d6b36fbe9da0";
 const DOCUMENT_ID: &str = "01a0914f-1fde-7873-80ba-6eef315d3b50";
@@ -27,19 +27,19 @@ fn user_owned_keys_are_byte_identical_to_legacy_keys() {
 
     assert_eq!(
         build_cloud_storage_bucket_document_key(&owner, DOCUMENT_ID, 789),
-        "macro|hutch@macro.com/01a0914f-1fde-7873-80ba-6eef315d3b50/789"
+        "macro|hutch@rox.one/01a0914f-1fde-7873-80ba-6eef315d3b50/789"
     );
     assert_eq!(
         build_docx_to_pdf_converted_document_key(&owner, DOCUMENT_ID),
-        "macro|hutch@macro.com/01a0914f-1fde-7873-80ba-6eef315d3b50/converted.pdf"
+        "macro|hutch@rox.one/01a0914f-1fde-7873-80ba-6eef315d3b50/converted.pdf"
     );
     assert_eq!(
         build_docx_staging_bucket_document_key(&owner, DOCUMENT_ID, 789),
-        "macro|hutch@macro.com/01a0914f-1fde-7873-80ba-6eef315d3b50/789.docx"
+        "macro|hutch@rox.one/01a0914f-1fde-7873-80ba-6eef315d3b50/789.docx"
     );
     assert_eq!(
         build_cloud_storage_bucket_document_prefix(&owner, DOCUMENT_ID),
-        "macro|hutch@macro.com/01a0914f-1fde-7873-80ba-6eef315d3b50"
+        "macro|hutch@rox.one/01a0914f-1fde-7873-80ba-6eef315d3b50"
     );
 }
 
@@ -53,13 +53,13 @@ fn user_owned_url_path_is_byte_identical_to_legacy_url_path() {
     let versioned = build_cloud_storage_bucket_document_key(&owner, DOCUMENT_ID, 789);
     assert_eq!(
         document_key_url_path(&versioned),
-        "macro%7Chutch%40macro.com/01a0914f-1fde-7873-80ba-6eef315d3b50/789"
+        "macro%7Chutch%40rox.one/01a0914f-1fde-7873-80ba-6eef315d3b50/789"
     );
 
     let converted = build_docx_to_pdf_converted_document_key(&owner, DOCUMENT_ID);
     assert_eq!(
         document_key_url_path(&converted),
-        "macro%7Chutch%40macro.com/01a0914f-1fde-7873-80ba-6eef315d3b50/converted.pdf"
+        "macro%7Chutch%40rox.one/01a0914f-1fde-7873-80ba-6eef315d3b50/converted.pdf"
     );
 }
 
@@ -172,12 +172,12 @@ fn url_path_leaves_owner_less_keys_unchanged() {
 /// percent sequence. Parsing must not decode it into a different owner.
 #[test]
 fn owner_with_a_literal_percent_sequence_round_trips_unchanged() {
-    let owner = owner("macro|a%2bb@macro.com");
+    let owner = owner("macro|a%2bb@rox.one");
     let key = build_cloud_storage_bucket_document_key(&owner, DOCUMENT_ID, 1);
-    assert_eq!(key, format!("macro|a%2bb@macro.com/{DOCUMENT_ID}/1"));
+    assert_eq!(key, format!("macro|a%2bb@rox.one/{DOCUMENT_ID}/1"));
 
     let parsed = DocumentKey::from_s3_key(&key).unwrap();
-    assert_eq!(parsed.owner_segment(), Some("macro|a%2bb@macro.com"));
+    assert_eq!(parsed.owner_segment(), Some("macro|a%2bb@rox.one"));
     assert_eq!(parsed.to_key(), key);
     assert_eq!(
         Owner::from_principal_str(parsed.owner_segment().unwrap()).unwrap(),
@@ -189,13 +189,13 @@ fn owner_with_a_literal_percent_sequence_round_trips_unchanged() {
 /// boundary; the parser never guesses.
 #[test]
 fn from_s3_key_keeps_a_percent_encoded_owner_segment_verbatim() {
-    let encoded = "macro%7Chutch%40macro.com/01a0914f-1fde-7873-80ba-6eef315d3b50/789";
+    let encoded = "macro%7Chutch%40rox.one/01a0914f-1fde-7873-80ba-6eef315d3b50/789";
     let key = DocumentKey::from_s3_key(encoded).unwrap();
 
     assert_eq!(
         key,
         DocumentKey::Versioned {
-            owner_segment: "macro%7Chutch%40macro.com".to_string(),
+            owner_segment: "macro%7Chutch%40rox.one".to_string(),
             document_id: DOCUMENT_ID.to_string(),
             version_id: 789,
         }

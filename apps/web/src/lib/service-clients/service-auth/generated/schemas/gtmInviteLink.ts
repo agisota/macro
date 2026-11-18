@@ -22,7 +22,7 @@ export interface GtmInviteLink {
   convertedAt?: GtmInviteLinkConvertedAt;
   /** When the link was created. */
   createdAt: string;
-  /** The Macro user id of the staff member who created the link. */
+  /** The Rox user id of the staff member who created the link. */
   createdBy: string;
   /** When the link stops being openable. */
   expiresAt: string;
@@ -47,7 +47,7 @@ export interface GtmInviteLink {
   recipientEmail?: GtmInviteLinkRecipientEmail;
   /** When that account redeemed the link. */
   redeemedAt?: GtmInviteLinkRedeemedAt;
-  /** The Macro user id of the account that signed up through the link. */
+  /** The Rox user id of the account that signed up through the link. */
   redeemedBy?: GtmInviteLinkRedeemedBy;
   /** When staff revoked the link. */
   revokedAt?: GtmInviteLinkRevokedAt;

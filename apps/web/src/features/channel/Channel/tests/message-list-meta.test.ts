@@ -190,11 +190,11 @@ describe('buildChannelMessageListMeta', () => {
     const agentSender = (triggeredBy: string): MessageSender => ({
       type: 'bot',
       id: '00000000-0000-0000-0000-000000000000',
-      name: 'Macro',
+      name: 'Rox',
       triggered_by: triggeredBy,
     });
     const messages = [
-      // Two Macro-agent messages with the same bot sender_id but triggered by
+      // Two Rox-agent messages with the same bot sender_id but triggered by
       // different users must not merge under one "from" pill.
       createMessage(
         'm1',

@@ -2,6 +2,7 @@ import { useCalendarPager } from '@app/features/calendar/components/CalendarPage
 import { isCalendarRangeSupported } from '@app/features/calendar/utils/calendar-supported-range';
 import { useUserId } from '@core/context/user';
 import { useAddInboxFlow } from '@core/email-link';
+import { isExternalEmailLink } from '@core/email-link/consent';
 import { fireAndForget } from '@core/util/fireAndForget';
 import { useVisibleCalendarsQuery } from '@queries/calendar/calendars';
 import { useEmailLinksQuery } from '@queries/email/link';
@@ -18,12 +19,12 @@ const SETUP_MESSAGES = {
   },
   permission: {
     title: 'Enable calendar',
-    description: 'Grant calendar access to show your events in Macro.',
+    description: 'Grant calendar access to show your events in Rox.',
     action: 'Grant access',
   },
   disabled: {
     title: 'Calendar is off',
-    description: 'Grant calendar access again to show your events in Macro.',
+    description: 'Grant calendar access again to show your events in Rox.',
     action: 'Turn on',
   },
   reauth: {
@@ -52,14 +53,14 @@ export function SetupStatus() {
   const startAddInbox = useAddInboxFlow();
   const userId = useUserId();
 
-  // The links list also carries inboxes another Macro user delegated to the
+  // The links list also carries inboxes another Rox user delegated to the
   // viewer. Whether that user's calendar syncs is theirs to decide, as in the
   // calendar settings, so setup counts and acts on the viewer's own alone.
   const ownLinks = () =>
     linksQuery.isSuccess
-      ? (linksQuery.data?.links ?? []).filter(
-          (link) => link.macro_id === userId()
-        )
+      ? (linksQuery.data?.links ?? [])
+          .filter(isExternalEmailLink)
+          .filter((link) => link.macro_id === userId())
       : [];
 
   const hasEvents = () =>

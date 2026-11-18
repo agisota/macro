@@ -12,7 +12,7 @@ use uuid::Uuid;
 pub struct NotionAlreadyImported {
     /// The teammate who imported it, by email.
     pub by: String,
-    /// The Macro entity it became.
+    /// The Rox entity it became.
     pub entity_id: String,
     /// That entity's type (`md`, `project`).
     pub entity_type: String,

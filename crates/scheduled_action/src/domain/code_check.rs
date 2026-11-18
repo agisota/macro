@@ -39,7 +39,7 @@ fn describe(steps: &[StepProblems]) -> String {
         .iter()
         .map(|step| {
             format!(
-                "code step \"{}\" doesn't type-check against Macro's SDK; fix these problems and save again:\n\n{}",
+                "code step \"{}\" doesn't type-check against Rox's SDK; fix these problems and save again:\n\n{}",
                 step.title,
                 step.problems.join("\n\n")
             )

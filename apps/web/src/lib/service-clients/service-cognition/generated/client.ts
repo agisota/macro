@@ -1721,7 +1721,7 @@ export const listImportEntities = async (
 
 /**
  * @summary Track an external item in the ledger: stage it as a candidate, or record a
-Macro entity already created from it. Says when the item was already
+Rox entity already created from it. Says when the item was already
 imported, so callers do not create a duplicate.
  */
 export type trackImportEntityResponse200 = {
@@ -1951,7 +1951,7 @@ export const cancelNotionHandler = async (
 };
 
 /**
- * @summary Import one Notion page as a Macro document through the caller's Notion
+ * @summary Import one Notion page as a Rox document through the caller's Notion
 connection, deduplicated against the ledger. Notion databases are not
 imported; a whole workspace goes through a reviewed import instead.
  */
@@ -2564,7 +2564,7 @@ export const mcpAuthCallback = async (
 };
 
 /**
- * @summary Return Macro's public OAuth Client ID Metadata Document.
+ * @summary Return Rox's public OAuth Client ID Metadata Document.
  */
 export type mcpOauthClientMetadataResponse200 = {
   data: void;
@@ -3239,7 +3239,7 @@ export const completePipedreamMcpConnection = async (
 /**
  * Answers 404 until Connect lists an active connection for this user and
 app, so the frontend can poll it while the consent window is open.
- * @summary Record an app the user connected through Macro Connect.
+ * @summary Record an app the user connected through Rox Connect.
  */
 export type completePipedreamMcpConnectResponse200 = {
   data: PipedreamConnectionResponse;
@@ -3650,7 +3650,7 @@ export const recoverPipedreamMcpConnection = async (
  * By default, a short-lived Pipedream Connect token: the frontend opens
 Pipedream's hosted Connect UI with it, and the user picks (or is
 deep-linked into) an app and authorizes it there. When the body names an
-app Macro Connect serves and the `macro-connect` rollout is on for the
+app Rox Connect serves and the `macro-connect` rollout is on for the
 user, a Connect URL instead.
  * @summary Start a connect flow for the authenticated user.
  */

@@ -1,5 +1,5 @@
-//! The Macro API tokens the OAuth broker issues to MCP servers that hand their
-//! bearer straight to Macro's APIs.
+//! The Rox API tokens the OAuth broker issues to MCP servers that hand their
+//! bearer straight to Rox's APIs.
 
 use agent_egress::outbound::macro_mcp::{MINTED_TOKEN_LIFETIME_SECONDS, MacroApiTokenSigner};
 use ai_toolset::ToolCaller;
@@ -13,7 +13,7 @@ use mcp_auth_proxy::domain::{
 use std::time::Duration;
 
 /// Signs, for the user a FusionAuth access token names, the attribution the
-/// public MCP gives an OAuth client: the Macro bot, labelled with the client's
+/// public MCP gives an OAuth client: the Rox bot, labelled with the client's
 /// name, as public `ExecuteCode` signs into its SDK token.
 pub struct SignedMacroApiTokens {
     pub signer: MacroApiTokenSigner,
@@ -36,7 +36,7 @@ impl MacroApiTokenMinter for SignedMacroApiTokens {
             let user = MacroUserIdStr::try_from(access.macro_user_id)
                 .context("upstream access token names an invalid user")?;
             // The signer refuses lifetimes past its cap, so a long FusionAuth
-            // token gets a shorter Macro API token; the client refreshes.
+            // token gets a shorter Rox API token; the client refreshes.
             let seconds = lifetime
                 .as_secs()
                 .clamp(1, u64::try_from(MINTED_TOKEN_LIFETIME_SECONDS)?);

@@ -34,7 +34,7 @@ AI system prompts: one module per prompt section, each exporting a
   is long) exporting a `pub static PROMPT: StaticPrompt` → `pub mod` it in
   `src/lib.rs` → compose it where the caller builds its prompt.
 - Guidance for one tool goes in that tool's description, and how an area of
-  Macro works (databases, CRM, email, calendar, channels, tasks, routines,
+  Rox works (databases, CRM, email, calendar, channels, tasks, routines,
   documents, search) in its SDK namespace's `@agent` TSDoc block, never here:
   `ai_tools` inlines it from the generated catalog, and routed turns load it
   per entity. Only cross-cutting rules live in this crate. `code_mode.rs` is

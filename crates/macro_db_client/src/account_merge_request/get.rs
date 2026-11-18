@@ -70,7 +70,7 @@ mod tests {
             VALUES ($1, $2, $3, $4)
         "#,
             &macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?,
-            "test@macro.com",
+            "test@rox.one",
             "cus_123",
             "u1",
         )
@@ -83,7 +83,7 @@ mod tests {
             VALUES ($1, $2, $3, $4)
         "#,
             &macro_uuid::string_to_uuid("22222222-2222-2222-2222-222222222222")?,
-            "test2@macro.com",
+            "test2@rox.one",
             "cus_124",
             "u2",
         )

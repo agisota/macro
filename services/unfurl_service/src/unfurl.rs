@@ -485,7 +485,7 @@ mod tests {
         let linear_url2 =
             "https://linear.app/macro-eng/issue/M-3421/add-macro-permissions-to-jwt-token";
         let title2 = GetUnfurlResponse::get_title(linear_url2, &empty_tags);
-        assert_eq!(title2, "Add Macro Permissions To Jwt Token");
+        assert_eq!(title2, "Add Rox Permissions To Jwt Token");
 
         // Test fallback for invalid Linear URL
         let linear_fallback = "https://linear.app";

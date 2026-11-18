@@ -11,14 +11,14 @@ use macro_uuid::Uuid;
 
 #[test]
 fn return_urls_must_be_https_on_the_calling_origin() {
-    let origin = Some("https://macro.com");
+    let origin = Some("https://rox.one");
     assert_eq!(
-        validate_return_url("https://macro.com/app/settings/billing?x=1", origin),
+        validate_return_url("https://rox.one/app/settings/billing?x=1", origin),
         Ok(())
     );
     // Without an Origin header any https URL without credentials passes.
     assert_eq!(
-        validate_return_url("https://preview.macro.com/app", None),
+        validate_return_url("https://preview.rox.one/app", None),
         Ok(())
     );
     assert_eq!(
@@ -26,11 +26,11 @@ fn return_urls_must_be_https_on_the_calling_origin() {
         Ok(())
     );
     assert_eq!(
-        validate_return_url("https://macro.com:443/app", origin),
+        validate_return_url("https://rox.one:443/app", origin),
         Ok(())
     );
     assert_eq!(
-        validate_return_url("https://macro.com:8443/app", origin),
+        validate_return_url("https://rox.one:8443/app", origin),
         Err(ReturnUrlError::Origin)
     );
     assert_eq!(
@@ -38,7 +38,7 @@ fn return_urls_must_be_https_on_the_calling_origin() {
         Err(ReturnUrlError::Origin)
     );
     assert_eq!(
-        validate_return_url("http://macro.com/app", None),
+        validate_return_url("http://rox.one/app", None),
         Err(ReturnUrlError::Scheme)
     );
     assert_eq!(
@@ -50,7 +50,7 @@ fn return_urls_must_be_https_on_the_calling_origin() {
         Err(ReturnUrlError::Unparseable)
     );
     assert_eq!(
-        validate_return_url("https://user:pw@macro.com/app", None),
+        validate_return_url("https://user:pw@rox.one/app", None),
         Err(ReturnUrlError::Credentials)
     );
 }

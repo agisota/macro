@@ -34,7 +34,7 @@ fn creates_a_config_from_setup_flags() {
     let directory = tempfile::tempdir().expect("temp dir");
     // Neither the config directory nor the workspace exist yet; setup
     // creates both.
-    let path = directory.path().join("state").join("macrod.toml");
+    let path = directory.path().join("state").join("roxd.toml");
     let workspace = directory.path().join("workspace");
     let agent = agent_catalog::custom("hermes acp").expect("custom agent");
 
@@ -62,7 +62,7 @@ fn creates_a_config_from_setup_flags() {
 #[test]
 fn reconfigures_without_dropping_credentials() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let workspace = directory.path().join("workspace");
     let agent = agent_catalog::custom("hermes acp").expect("custom agent");
     configure(
@@ -112,7 +112,7 @@ fn reconfigures_without_dropping_credentials() {
 #[test]
 fn reconfiguring_drops_settings_older_releases_wrote() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let workspace = directory.path().join("workspace");
     std::fs::write(
         &path,
@@ -171,7 +171,7 @@ path = "{workspace}"
 #[test]
 fn creating_a_config_requires_an_agent() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let error = configure(
         &path,
         &ServiceOptions {

@@ -42,7 +42,7 @@ import { flattenConsecutiveParagraphs } from './flatten-consecutive-paragraphs';
 
 export { TOGGLE_APPEND_EMAIL_THREAD_COMMAND } from './email-editor-commands';
 
-// Quotes always drop Macro pixels: the composer would count an open, and a
+// Quotes always drop Rox pixels: the composer would count an open, and a
 // reply or forward must not carry the original's pixel to new recipients.
 const QUOTED_IMAGES: ImagePolicy = {
   remote: 'allow',
@@ -489,7 +489,7 @@ export function prepareEmailBodyFromHtml(
   // Apply image scale to width/height attributes so the recipient sees the resized dimensions
   applyMediaScale(parsed.body);
 
-  // Convert Macro mentions to HTML links in the parsed DOM
+  // Convert Rox mentions to HTML links in the parsed DOM
   const mentions = convertDocumentMentionsToLinks(parsed.body);
   convertBookingLinkMentionsToLinks(parsed.body);
 

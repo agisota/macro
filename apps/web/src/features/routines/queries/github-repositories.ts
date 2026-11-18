@@ -4,7 +4,7 @@ import { repositoryLabel } from '../../agents-view/core/repository';
 import type { GithubRepositoryOptions } from '../core/routine-triggers';
 
 /**
- * The repositories Macro's GitHub app reaches for the user, as `owner/name`:
+ * The repositories Rox's GitHub app reaches for the user, as `owner/name`:
  * the same listing a coding session picks from. Status-gated, so a pending
  * listing never suspends the trigger panel.
  */

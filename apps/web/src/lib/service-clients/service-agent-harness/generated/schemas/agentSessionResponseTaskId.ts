@@ -6,6 +6,6 @@
  */
 
 /**
- * The Macro task the session was linked to.
+ * The Rox task the session was linked to.
  */
 export type AgentSessionResponseTaskId = string | null;

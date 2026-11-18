@@ -67,7 +67,7 @@ export function selectEmlMessage(thread: EmailThread) {
   return newest;
 }
 
-/** When a message happened, falling back to when Macro first saw it. */
+/** When a message happened, falling back to when Rox first saw it. */
 function messageTime(message: EmailMessage) {
   return Date.parse(
     message.internal_date_ts ?? message.sent_at ?? message.created_at

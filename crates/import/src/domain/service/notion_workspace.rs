@@ -491,7 +491,7 @@ where
             )
             .await?;
         self.notify(user).await;
-        // Objects already in Macro need no decision, so they cost no model call.
+        // Objects already in Rox need no decision, so they cost no model call.
         let items = tree.triage_items(&already_imported);
         let usage = ai_usage::UsageContext::new(ai_usage::AiFeature::Import, user.clone());
         let batches = triage::decide(

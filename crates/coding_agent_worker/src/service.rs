@@ -1,13 +1,13 @@
 //! Headless mode for embedders: the serving core without the terminal panel.
 //!
-//! The Macro desktop app bundles macrod and manages it as a child process.
-//! `macrod service` is the contract between them: setup flags configure
-//! `macrod.toml` (the same `~/.macrod/macrod.toml` the TUI uses, or the
+//! The Rox desktop app bundles roxd and manages it as a child process.
+//! `roxd service` is the contract between them: setup flags configure
+//! `roxd.toml` (the same `~/.roxd/roxd.toml` the TUI uses, or the
 //! `--profile` it names, locked while serving) without a TUI, state changes
 //! stream to stdout as one JSON object per line, and the process shuts down
 //! on SIGTERM, Ctrl-C, or stdin closing (the embedder exited), unless
-//! `--ignore-stdin-eof` is set for a system service. `macrod detect-agents`
-//! and `macrod inspect`
+//! `--ignore-stdin-eof` is set for a system service. `roxd detect-agents`
+//! and `roxd inspect`
 //! are the matching one-shot queries.
 
 use std::path::{Path, PathBuf};
@@ -30,7 +30,7 @@ mod test;
 /// How often the serving core's liveness is re-checked once running.
 const DAEMON_WATCH: Duration = Duration::from_secs(5);
 
-/// Everything `macrod service` accepts. Runtime settings (name, ownership,
+/// Everything `roxd service` accepts. Runtime settings (name, ownership,
 /// permission bypass) are set on the web, never here.
 pub struct ServiceOptions {
     /// Keep running without an embedder holding stdin open.
@@ -38,7 +38,7 @@ pub struct ServiceOptions {
     /// Config file; absent uses `profile`, or else the default config the
     /// TUI also uses.
     pub config: Option<PathBuf>,
-    /// Named profile, `~/.macrod/profiles/<name>.toml`.
+    /// Named profile, `~/.roxd/profiles/<name>.toml`.
     pub profile: Option<ProfileName>,
     /// Agent preset id from `detect-agents` to configure.
     pub agent: Option<String>,
@@ -288,7 +288,7 @@ pub(crate) fn installed_agent(id: &str) -> rootcause::Result<DetectedAgent> {
         .find(|agent| agent.kind.id() == id)
         .ok_or_else(|| {
             rootcause::report!(
-                "agent `{id}` is not installed on this machine; run `macrod detect-agents`"
+                "agent `{id}` is not installed on this machine; run `roxd detect-agents`"
             )
         })
 }

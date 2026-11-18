@@ -14,12 +14,12 @@ TypeScript, state is data, and the two never mix.
 ```
 index.ts                       builds the real context, the agent and the behavior
 cli.ts, bin/agent              run the agent, or call any function from a shell
-agent.json                     who it is in Macro, who owns it, the name it commits under
+agent.json                     who it is in Rox, who owns it, the name it commits under
 AGENT.md                       the charter: every run's system prompt
 secrets.enc.json, .sops.yaml   credentials, encrypted with SOPS (age)
 behavior/
   index.ts                     the whole behavior, composed from the areas
-  context/                     the one place IO happens: disk, clock, shell, credentials, Macro
+  context/                     the one place IO happens: disk, clock, shell, credentials, Rox
   agent/                       the agent as Claude Code (Agent SDK), its limits per event, its guards
   events/sources/<area>.ts     where events come from
   events/handlers/<area>.ts    what happens when one fires

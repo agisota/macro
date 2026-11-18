@@ -71,15 +71,15 @@ describe('agent model discovery', () => {
     ).toEqual([
       { harness: 'in-memory' },
       { harness: 'cursor' },
-      { harness: 'macrod', harnessId: 'harness-a' },
-      { harness: 'macrod', harnessId: 'harness-b' },
+      { harness: 'roxd', harnessId: 'harness-a' },
+      { harness: 'roxd', harnessId: 'harness-b' },
     ]);
   });
 
   it('omits Cursor when it is not registered', () => {
     expect(buildAgentModelTargets(false, [{ id: 'harness-a' }])).toEqual([
       { harness: 'in-memory' },
-      { harness: 'macrod', harnessId: 'harness-a' },
+      { harness: 'roxd', harnessId: 'harness-a' },
     ]);
   });
 

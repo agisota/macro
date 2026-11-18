@@ -1,4 +1,4 @@
-//! Immediate email delivery for human DMs to people without Macro accounts.
+//! Immediate email delivery for human DMs to people without Rox accounts.
 
 use super::*;
 

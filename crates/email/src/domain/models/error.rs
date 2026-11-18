@@ -115,7 +115,7 @@ pub enum EmailErr {
     /// names attachments cannot be honoured.
     #[error("Email attachments are not available here")]
     AttachmentsUnavailable,
-    /// A referenced document cannot be attached: it is not a file (a Macro
+    /// A referenced document cannot be attached: it is not a file (a Rox
     /// document with no stored bytes), is gone, or could not be read.
     #[error("Cannot attach \"{name}\": {reason}")]
     AttachmentUnavailable {

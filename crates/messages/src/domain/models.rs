@@ -421,7 +421,7 @@ pub struct SimpleMention {
 }
 
 impl SimpleMention {
-    /// Construct a tracked mention of a Macro user.
+    /// Construct a tracked mention of a Rox user.
     pub fn user(user_id: &macro_user_id::user_id::MacroUserIdStr<'_>) -> Self {
         Self {
             entity_type: "user".to_string(),
@@ -483,7 +483,7 @@ pub struct Message {
     /// as "Claude Code"; a display label only.
     #[serde(default)]
     pub triggered_via: Option<String>,
-    /// Macro Markdown body.
+    /// Rox Markdown body.
     pub content: String,
     /// Creation time.
     pub created_at: DateTime<Utc>,
@@ -598,7 +598,7 @@ pub struct PostMessage {
     /// already carries its final id; the server mints one when absent.
     #[serde(default)]
     pub id: Option<Uuid>,
-    /// Macro Markdown body.
+    /// Rox Markdown body.
     pub content: String,
     /// Root to reply to, if this is a reply.
     pub thread_id: Option<Uuid>,

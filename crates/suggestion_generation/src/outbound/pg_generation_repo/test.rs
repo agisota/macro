@@ -6,8 +6,8 @@ use macro_db_migrator::MACRO_DB_MIGRATIONS;
 
 use super::*;
 
-const OWNER: &str = "macro|generation-repo@macro.com";
-const OTHER: &str = "macro|generation-repo-other@macro.com";
+const OWNER: &str = "macro|generation-repo@rox.one";
+const OTHER: &str = "macro|generation-repo-other@rox.one";
 
 async fn insert_user(pool: &PgPool, id: &str) {
     let macro_user_id = Uuid::now_v7();
@@ -233,7 +233,7 @@ async fn the_sweep_interrupts_generations_whose_heartbeat_stopped(pool: PgPool) 
     // One person per status: only one generation of a person may run.
     let mut stale = Vec::new();
     for status in GenerationStatus::iter() {
-        let user = format!("macro|lost-{}@macro.com", status.as_ref());
+        let user = format!("macro|lost-{}@rox.one", status.as_ref());
         insert_user(&pool, &user).await;
         let generation = insert_generation(
             &pool,

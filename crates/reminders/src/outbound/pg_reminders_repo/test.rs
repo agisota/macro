@@ -4,8 +4,8 @@ use chrono::{Duration, TimeZone};
 use macro_db_migrator::MACRO_DB_MIGRATIONS;
 
 mod email_collection;
-const USER_A: &str = "macro|reminders-a@macro.com";
-const USER_B: &str = "macro|reminders-b@macro.com";
+const USER_A: &str = "macro|reminders-a@rox.one";
+const USER_B: &str = "macro|reminders-b@rox.one";
 fn user(id: &str) -> MacroUserIdStr<'_> {
     MacroUserIdStr::parse_from_str(id).unwrap()
 }

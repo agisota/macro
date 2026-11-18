@@ -48,7 +48,7 @@ pub enum RemindersRepoErr {
     /// Underlying database error.
     #[error(transparent)]
     Db(#[from] sqlx::Error),
-    /// A stored owner is not a parseable Macro user id.
+    /// A stored owner is not a parseable Rox user id.
     #[error("invalid user id stored for reminder {reminder_id}")]
     InvalidUserId {
         /// Snooze carrying the invalid owner.

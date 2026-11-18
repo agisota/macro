@@ -106,6 +106,8 @@ export default {
     more: 'Ещё',
     search: 'Поиск',
     settings: 'Настройки',
+    back: 'Назад',
+    retry: 'Повторить',
   },
   create: {
     emailLabel: 'Письмо',
@@ -117,7 +119,7 @@ export default {
     agentHint: 'Отдельный сеанс агента',
     routineLabel: 'Рутина',
     routineDescription:
-      'Запуск модели или агента по расписанию или по событиям в Macro',
+      'Запуск модели или агента по расписанию или по событиям в Rox',
     routineHint: 'Расписания и триггеры событий',
     databaseLabel: 'База данных',
     databaseDescription: 'Создать базу данных',
@@ -324,7 +326,7 @@ export default {
     projectShortTagline: 'Связанные задачи вместе',
     reminderTagline: 'Напоминание в удобное время',
     reminderDetails:
-      'Поставьте напоминание о том, к чему хотите вернуться.\nВыберите время, и Macro напомнит вам.',
+      'Поставьте напоминание о том, к чему хотите вернуться.\nВыберите время, и Rox напомнит вам.',
     reminderExample1: 'Перезвонить',
     reminderExample2: 'Проверить в пятницу',
     reminderExample3: 'Продлить лицензию',
@@ -405,7 +407,7 @@ export default {
       'Помечайте работу, чтобы упорядочивать и фильтровать её во всех проектах.',
     guideConversation: 'Начните беседу с существующим агентом.',
     guideWorkAgent:
-      'Создайте помощника с инструкциями и доступом к вашему рабочему пространству Macro.',
+      'Создайте помощника с инструкциями и доступом к вашему рабочему пространству Rox.',
     guideCodingAgent:
       'Создайте агента, который работает в подключённой среде для программирования.',
     guideRoutine: 'Настройте агента для запуска по регулярному расписанию.',
@@ -752,20 +754,20 @@ export default {
     updateAvailable: 'Доступно обновление',
     updateNewVersionTitle: 'Доступна новая версия',
     updateWebDescription:
-      'Новая версия Macro готова. Перезагрузите страницу, чтобы начать ею пользоваться.',
+      'Новая версия Rox готова. Перезагрузите страницу, чтобы начать ею пользоваться.',
     updateWebFailedLoadDescription:
-      'Часть Macro не загрузилась, так как вышла новая версия. Перезагрузите страницу, чтобы начать ею пользоваться.',
+      'Часть Rox не загрузилась, так как вышла новая версия. Перезагрузите страницу, чтобы начать ею пользоваться.',
     updateReload: 'Перезагрузить',
     updateReadyTitle: 'Обновление готово',
     updateBundleDescription:
-      'Новая версия приложения Macro для компьютера загружена. Обновите, чтобы начать ею пользоваться.',
+      'Новая версия приложения Rox для компьютера загружена. Обновите, чтобы начать ею пользоваться.',
     updateAction: 'Обновить',
     updateDesktopReadyTitle: 'Обновление приложения для компьютера готово',
     updateNativeDescription:
-      'Перезапустите Macro, чтобы установить его, или продолжайте работать — оно установится при выходе.',
+      'Перезапустите Rox, чтобы установить его, или продолжайте работать — оно установится при выходе.',
     updateRestartAndUpdate: 'Перезапустить и обновить',
     updateNativePreparingDescription:
-      'Сохраняем вашу работу перед перезапуском Macro для установки обновления.',
+      'Сохраняем вашу работу перед перезапуском Rox для установки обновления.',
     updatePreparingRestart: 'Подготовка к перезапуску…',
   },
   settingsLanguage: {
@@ -778,7 +780,7 @@ export default {
     yourLanguage: 'Ваш язык',
     yourLanguageDescription: 'Заменяет язык команды только для вас.',
     yourLanguageNoTeamDescription:
-      'Язык интерфейса Macro для вас. В автоматическом режиме используется язык браузера.',
+      'Язык интерфейса Rox для вас. В автоматическом режиме используется язык браузера.',
     useTeamLanguage: 'Язык команды ({{language}})',
     automatic: 'Автоматически ({{language}})',
     teamAutomatic: 'Автоматически (язык браузера каждого участника)',
@@ -979,5 +981,73 @@ export default {
     only: 'Только',
     startedFrom: 'Запущено из {{origin}}',
     personal: 'Личное',
+    inbox: 'Входящие',
+    projects: 'Проекты',
+  },
+  accountManager: {
+    cancel: 'Отмена',
+  },
+  calls: {
+    cancelPermissionHelp: 'Отмена',
+    detailRetry: 'Повторить',
+  },
+  channelComposer: {
+    newDocument: 'Новый документ',
+  },
+  channelSections: {
+    team_channels: 'Каналы команды',
+    channels: 'Каналы',
+    direct_messages: 'Личные сообщения',
+    retry: 'Повторить',
+    expandSection: 'Развернуть раздел',
+    collapseSection: 'Свернуть раздел',
+    newChannel: 'Новый канал',
+    cancel: 'Отмена',
+  },
+  computers: {
+    retry: 'Повторить',
+  },
+  crm: {
+    cancel: 'Отмена',
+    company: 'Компания',
+    retryContact: 'Повторить',
+    privacyRetry: 'Повторить',
+    privacyClose: 'Закрыть',
+  },
+  emailViews: {
+    documents: 'Документы',
+  },
+  entityIcons: {
+    'icon_calendar-blank': 'Календарь',
+  },
+  localRuntime: {
+    close: 'Закрыть',
+  },
+  markdownEditor: {
+    collapseSection: 'Свернуть раздел',
+    expandSection: 'Развернуть раздел',
+  },
+  notificationsInbox: {
+    accessGranted: 'Доступ открыт',
+    categoryMentions: 'Упоминания',
+    categoryTasks: 'Задачи',
+    categoryCalendar: 'Календарь',
+  },
+  passwords: {
+    folders: 'Папки',
+    retry: 'Повторить',
+    cancel: 'Отмена',
+    back: 'Назад',
+  },
+  routineSuggestions: {
+    surfaceCalendar: 'Календарь',
+    surfaceTasks: 'Задачи',
+  },
+  tabs: {
+    'record-tasks': 'Задачи',
+    'project-tasks': 'Задачи',
+  },
+  teamAgents: {
+    retrySetup: 'Повторить',
   },
 } satisfies PartialDictionary;

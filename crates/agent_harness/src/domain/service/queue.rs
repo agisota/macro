@@ -890,7 +890,7 @@ where
                 // the session. Say so where the person who asked is looking.
                 // This is not an in-memory special case: it is the fallback
                 // for any runtime this harness does not control - a user-run
-                // macrod, a third-party agent - that elicits from a channel
+                // roxd, a third-party agent - that elicits from a channel
                 // turn.
                 self.resolve_reply(
                     session_id,

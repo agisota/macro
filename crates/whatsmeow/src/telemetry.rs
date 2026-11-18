@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-// A Macro addition with no whatsmeow counterpart.
+// A Rox addition with no whatsmeow counterpart.
 
 //! Helpers for the tracing spans this port adds to whatsmeow's flows. Span
 //! fields hold kinds, counts and outcomes only: never JIDs, phone numbers,

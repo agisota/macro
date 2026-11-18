@@ -10,7 +10,7 @@ import type { CodeStepSentence } from './codeStepSentence';
 import type { RoutineKnob } from './routineKnob';
 
 /**
- * TypeScript written against Macro's SDK, usually by the AI that built the
+ * TypeScript written against Rox's SDK, usually by the AI that built the
 routine. It is type-checked before it is saved and runs with its owner's
 access.
  */

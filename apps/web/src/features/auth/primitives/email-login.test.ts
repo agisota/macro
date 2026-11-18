@@ -29,6 +29,9 @@ function setup() {
     completeLogin,
     identify: vi.fn(),
     track: vi.fn(),
+    passkeyMode: vi.fn(async () => 'none' as const),
+    registerPasskey: vi.fn(async () => ({ t: 'registered' as const })),
+    assertPasskey: vi.fn(async () => ({ t: 'asserted' as const })),
   };
   const owner = createRoot((dispose) => ({
     login: createEmailLogin(context, {
@@ -40,6 +43,29 @@ function setup() {
   }));
   return { ...owner, context, failure, completeLogin, verified };
 }
+
+it('sends a mixed-case address in lowercase and returns from the passkey step', async () => {
+  const { login, dispose, context, completeLogin } = setup();
+  try {
+    login.setHandle('Ada');
+    login.submitAddress();
+    await pending.at(-1);
+    expect(context.sendEmailCode).toHaveBeenCalledWith(
+      expect.objectContaining({ handle: 'ada' })
+    );
+    expect(login.createdAccount()).toBe(true);
+    login.setCode('424242');
+    login.verify();
+    await pending.at(-1);
+    expect(login.step()).toBe('passkey');
+    login.back();
+    expect(login.step()).toBe('email');
+    expect(login.createdAccount()).toBe(true);
+    expect(completeLogin).not.toHaveBeenCalled();
+  } finally {
+    dispose();
+  }
+});
 
 it('retries local completion without resubmitting a consumed code', async () => {
   const { login, dispose, context, failure, completeLogin, verified } = setup();

@@ -470,5 +470,5 @@ async fn connect_db(config: &LocalE2eConfig) -> anyhow::Result<PgPool> {
         .max_connections(2)
         .connect(&database_url)
         .await
-        .context("failed to connect to MacroDB for scoped bot E2E setup")
+        .context("failed to connect to RoxDB for scoped bot E2E setup")
 }

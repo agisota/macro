@@ -252,7 +252,7 @@ or table's Name column, sets its type. A plain number
 becomes Number; starting with `@` and choosing an item makes it the corresponding
 reference type. Other entries keep Text, and identifiers with leading zeros stay
 text. Choosing Text explicitly disables inference. Populated columns never infer a
-new type. Reference cells use Macro’s native mention menu, limited to the selected
+new type. Reference cells use Rox’s native mention menu, limited to the selected
 kind (for example, People shows users, Tasks shows tasks). Arrow keys navigate and
 Enter chooses; Escape returns without changing the value. Delete clears a selected
 reference cell. Click a populated document/file reference (or press Enter) to open
@@ -351,7 +351,7 @@ stores `0.25`. A trailing `%` is accepted. Changing Number to Percentage does no
 rescale existing values. Filters and column totals use the displayed percent, not
 the stored fraction.
 
-Date cells open Macro's date selector (the one tasks use): type a date or phrase
+Date cells open Rox's date selector (the one tasks use): type a date or phrase
 such as `tomorrow`, `3d`, or `feb 17` and press Enter, or pick **Custom date...**
 for a calendar. Typing on a selected date cell starts that search; Delete clears
 the date, and Tab leaves the selector without changing it.
@@ -709,7 +709,7 @@ rows in Guests**, **Changed Price to number**, or **Queried Party Planner**) and
 never show the statement. Query tool results render inline. Their display menu switches between a table,
 a scalar answer, or compatible bar, line, area, scatter, and pie charts. A saved-view tool result
 offers **Open view**, which opens that database/table and selects the created view.
-The same tools are exposed to agent sessions through the Macro MCP server.
+The same tools are exposed to agent sessions through the Rox MCP server.
 
 In a document, channel composer, or the task/document creation composer,
 `/query` → **Query** opens the question box with the AI prompt focused
@@ -792,7 +792,7 @@ parse error asking the assistant to simplify the condition.
 
 ## Sharing and files
 
-**Share** opens Macro's standard sharing dialog. The owner can share with people
+**Share** opens Rox's standard sharing dialog. The owner can share with people
 or channels and change or remove their access, and an owner on a team sets
 **Team access** (view, comment, or edit for the owner's team; rows follow the
 database). Databases do not offer a public link. **Share** and viewer avatars (other people currently looking at the
@@ -913,11 +913,11 @@ every record where the card has no splits to open into (call chat).
 
 The shared editor also runs under a host's `DatabaseProvider`, using schema reads,
 row queries and operation batches from that host's API. Verify cell edits and
-column edits on the host surface, not only in the Macro database block. A host
+column edits on the host surface, not only in the Rox database block. A host
 without schema-edit permission offers no add, rename, delete or type-change
 actions. Board card dragging requires a supplied position writer; a board without
 one is still readable and must not report a successful move.
 
 For local UI regression coverage, the database browser fixtures include an API
-host with no Macro database entity. Its reads are paginated and its edits pass
+host with no Rox database entity. Its reads are paginated and its edits pass
 through the same controller used by the database block.

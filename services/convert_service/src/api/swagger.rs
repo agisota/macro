@@ -26,7 +26,7 @@ impl Modify for SecurityAddon {
 #[openapi(
         modifiers(&SecurityAddon),
         info(
-                terms_of_service = "https://macro.com/terms",
+                terms_of_service = "https://rox.one/terms",
         ),
         paths(
                 /// /health
@@ -46,7 +46,7 @@ impl Modify for SecurityAddon {
             ("internal" = [])
         ),
         tags(
-            (name = "convert service", description = "Macro Convert Service")
+            (name = "convert service", description = "Rox Convert Service")
         )
     )]
 pub struct ApiDoc;

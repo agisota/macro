@@ -45,7 +45,7 @@ fn principal_id(bot_id: BotId) -> String {
 /// refusing a deleted one with [`HarnessRemoved`].
 ///
 /// Deleting a harness locks the same row `FOR UPDATE` first. So a bind either
-/// commits before the delete takes the lock (and a Macro computer's release
+/// commits before the delete takes the lock (and a Rox computer's release
 /// then deletes the agent with the rest, since it lists bindings after its
 /// harness delete commits), or waits for the delete and finds the row gone.
 async fn hold_live_harness(

@@ -96,7 +96,7 @@ export function createDraftSyncStatus(options: {
           ? 'Saved on this device; waiting to sync'
           : 'Draft synchronization unavailable',
         detail:
-          'Queued changes are preserved. Update or reload Macro to recover local storage.',
+          'Queued changes are preserved. Update or reload Rox to recover local storage.',
         failed: true,
         action: 'reload',
         canKeepEditing: false,

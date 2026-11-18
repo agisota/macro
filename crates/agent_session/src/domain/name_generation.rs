@@ -21,7 +21,7 @@ conversation from its title, because the title is generic (like \"Investigate Is
 \"Review Comment\") or names a different topic than the conversation is now about? Answer no \
 when the title already names the conversation's specific subject.";
 
-/// Admits Macro-funded naming while leaving the existing session name on refusal.
+/// Admits Rox-funded naming while leaving the existing session name on refusal.
 #[derive(Clone)]
 pub struct AdmittedAgentSessionNameGenerator<N> {
     generator: N,

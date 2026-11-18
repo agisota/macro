@@ -4,10 +4,10 @@ import { EntityEmailParticipants } from '../extractors/entity-email-participants
 import type { EmailEntity } from '../types/entity';
 
 // The viewer's address book knows notifications@cal.com as "Nathan Flurry"
-// (the first person who booked through it) and wolf@macro.com as a Macro user.
+// (the first person who booked through it) and wolf@rox.one as a Rox user.
 const addressBook: Record<string, string> = {
   'macro|notifications@cal.com': 'Nathan Flurry',
-  'macro|wolf@macro.com': 'Wolf Ryan',
+  'macro|wolf@rox.one': 'Wolf Ryan',
 };
 
 vi.mock('@core/user', () => ({
@@ -15,7 +15,7 @@ vi.mock('@core/user', () => ({
   getDisplayName: (id: string) => addressBook[id] ?? id.replace('macro|', ''),
 }));
 vi.mock('@core/context/user', () => ({
-  useEmail: () => () => 'teo@macro.com',
+  useEmail: () => () => 'teo@rox.one',
 }));
 vi.mock('@queries/email/link', () => ({
   useEmailLinksQuery: () => ({
@@ -84,10 +84,10 @@ describe('EntityEmailParticipants', () => {
     expect(container.textContent).toBe('Cal.com, Nathan');
   });
 
-  it('falls back to the Macro display name when the message carries no From name', () => {
+  it('falls back to the Rox display name when the message carries no From name', () => {
     const { container } = render(() => (
       <EntityEmailParticipants
-        entity={emailEntity([{ email: 'wolf@macro.com' }])}
+        entity={emailEntity([{ email: 'wolf@rox.one' }])}
       />
     ));
 
@@ -116,7 +116,7 @@ describe('EntityEmailParticipants', () => {
     expect(container.textContent).toBe('Nathan Flurry');
   });
 
-  it("treats the row's inbox address, not the Macro login, as me", () => {
+  it("treats the row's inbox address, not the Rox login, as me", () => {
     const { container } = render(() => (
       <EntityEmailParticipants
         entity={emailEntity(
@@ -135,7 +135,7 @@ describe('EntityEmailParticipants', () => {
         entity={emailEntity(
           [
             { email: 'Owner@Tenant.example.com', name: 'Riley Park' },
-            { email: 'wolf@macro.com' },
+            { email: 'wolf@rox.one' },
           ],
           'outlook'
         )}

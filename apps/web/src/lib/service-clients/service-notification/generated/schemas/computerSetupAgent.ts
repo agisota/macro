@@ -12,6 +12,6 @@ the agent rather than the machine.
 export interface ComputerSetupAgent {
   /** The agent's name. */
   name: string;
-  /** The agent's Macro user id, to open a DM with it. */
+  /** The agent's Rox user id, to open a DM with it. */
   userId: string;
 }

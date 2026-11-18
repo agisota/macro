@@ -1,4 +1,4 @@
-//! Pixel size and length of a file someone sends from Macro, read from its
+//! Pixel size and length of a file someone sends from Rox, read from its
 //! headers so the timeline and recipients' phones can reserve space for it.
 
 use super::models::MediaKind;

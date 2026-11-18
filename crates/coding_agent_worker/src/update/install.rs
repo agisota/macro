@@ -11,9 +11,9 @@ mod test;
 
 /// The binary's name inside a release archive.
 const EXECUTABLE_NAME: &str = if cfg!(windows) {
-    "macrod.exe"
+    "roxd.exe"
 } else {
-    "macrod"
+    "roxd"
 };
 
 /// Why a downloaded archive could not be staged.
@@ -61,7 +61,7 @@ impl Installation {
     /// The verified new binary, waiting to be swapped in.
     #[cfg(not(windows))]
     fn staged_path(&self, _tag: &str) -> PathBuf {
-        self.executable.with_file_name(".macrod.new")
+        self.executable.with_file_name(".roxd.new")
     }
 
     #[cfg(windows)]
@@ -215,7 +215,7 @@ pub fn relaunch(
             }
             Err(error) => {
                 method = ApplyMethod::FreshAgentFallback;
-                tracing::warn!(error = %error, "could not hand the agent over; it restarts with macrod");
+                tracing::warn!(error = %error, "could not hand the agent over; it restarts with roxd");
             }
         }
     }

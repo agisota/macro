@@ -15,7 +15,7 @@ const SECTIONED: &[u8] =
 
 fn receipt<T: RequiredPermission>(access_level: AccessLevel) -> EntityAccessReceipt<T> {
     EntityAccessReceipt::try_new_authenticated_user(
-        MacroUserIdStr::try_from("macro|slides@macro.com".to_owned()).unwrap(),
+        MacroUserIdStr::try_from("macro|slides@rox.one".to_owned()).unwrap(),
         Entity {
             entity_id: DOCUMENT.to_owned(),
             entity_type: EntityType::Document,

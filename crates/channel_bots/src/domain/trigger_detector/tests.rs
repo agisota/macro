@@ -235,7 +235,7 @@ async fn agents_handing_a_thread_back_and_forth_stop_at_the_hop_limit() {
         (messages::domain::agent_hops::MAX_AGENT_HOPS, true),
         (messages::domain::agent_hops::MAX_AGENT_HOPS + 1, false),
     ] {
-        // Cursor posts hop `hop`; Macro and Cursor alternate before it.
+        // Cursor posts hop `hop`; Rox and Cursor alternate before it.
         let mut replies: Vec<_> = (1..hop)
             .map(|n| {
                 let bot = if (hop - n) % 2 == 0 {
@@ -434,7 +434,7 @@ async fn an_inferred_agent_chain_stops_at_the_hop_limit_before_classifying() {
         reply.triggered_by = Some(user().to_string());
         reply
     };
-    // Cursor posts the hop past the limit; Macro and Cursor alternate before it.
+    // Cursor posts the hop past the limit; Rox and Cursor alternate before it.
     let mut replies: Vec<_> = (1..hop)
         .map(|n| {
             let bot = if (hop - n) % 2 == 0 {

@@ -117,7 +117,7 @@ export default {
     agentHint: 'Sesi agen khusus',
     routineLabel: 'Rutinitas',
     routineDescription:
-      'Jalankan model atau agen sesuai jadwal atau aktivitas di Macro',
+      'Jalankan model atau agen sesuai jadwal atau aktivitas di Rox',
     routineHint: 'Jadwal dan pemicu aktivitas',
     databaseLabel: 'Database',
     databaseDescription: 'Buat database',
@@ -323,7 +323,7 @@ export default {
     projectShortTagline: 'Atur tugas terkait',
     reminderTagline: 'Ingatkan diri sendiri pada waktu pilihan Anda',
     reminderDetails:
-      'Atur pengingat untuk hal yang ingin Anda tinjau lagi.\nPilih waktunya dan biarkan Macro mengingatkan Anda.',
+      'Atur pengingat untuk hal yang ingin Anda tinjau lagi.\nPilih waktunya dan biarkan Rox mengingatkan Anda.',
     reminderExample1: 'Telepon balik',
     reminderExample2: 'Cek lagi hari Jumat',
     reminderExample3: 'Perpanjang lisensi',
@@ -405,7 +405,7 @@ export default {
       'Beri label pada pekerjaan agar dapat diatur dan difilter di semua proyek.',
     guideConversation: 'Mulai percakapan dengan agen yang sudah ada.',
     guideWorkAgent:
-      'Buat asisten dengan petunjuk dan akses ke ruang kerja Macro Anda.',
+      'Buat asisten dengan petunjuk dan akses ke ruang kerja Rox Anda.',
     guideCodingAgent:
       'Buat agen yang bekerja di harness coding yang terhubung.',
     guideRoutine: 'Siapkan agen untuk berjalan sesuai jadwal berulang.',
@@ -677,20 +677,20 @@ export default {
     updateAvailable: 'Update tersedia',
     updateNewVersionTitle: 'Versi baru tersedia',
     updateWebDescription:
-      'Versi baru Macro sudah siap. Muat ulang halaman untuk menggunakannya.',
+      'Versi baru Rox sudah siap. Muat ulang halaman untuk menggunakannya.',
     updateWebFailedLoadDescription:
-      'Sebagian Macro tidak dapat dimuat karena versi baru telah dirilis. Muat ulang halaman untuk menggunakannya.',
+      'Sebagian Rox tidak dapat dimuat karena versi baru telah dirilis. Muat ulang halaman untuk menggunakannya.',
     updateReload: 'Muat ulang',
     updateReadyTitle: 'Update siap',
     updateBundleDescription:
-      'Versi baru aplikasi desktop Macro sudah didownload. Update untuk mulai menggunakannya.',
+      'Versi baru aplikasi desktop Rox sudah didownload. Update untuk mulai menggunakannya.',
     updateAction: 'Update',
     updateDesktopReadyTitle: 'Update aplikasi desktop siap',
     updateNativeDescription:
-      'Mulai ulang Macro untuk menginstalnya, atau lanjutkan bekerja dan update akan diinstal saat Anda keluar.',
+      'Mulai ulang Rox untuk menginstalnya, atau lanjutkan bekerja dan update akan diinstal saat Anda keluar.',
     updateRestartAndUpdate: 'Mulai ulang dan update',
     updateNativePreparingDescription:
-      'Menyimpan pekerjaan Anda sebelum Macro dimulai ulang untuk menginstal update.',
+      'Menyimpan pekerjaan Anda sebelum Rox dimulai ulang untuk menginstal update.',
     updatePreparingRestart: 'Bersiap memulai ulang…',
   },
   settingsLanguage: {
@@ -702,7 +702,7 @@ export default {
     yourLanguage: 'Bahasa Anda',
     yourLanguageDescription: 'Menggantikan bahasa tim hanya untuk Anda.',
     yourLanguageNoTeamDescription:
-      'Bahasa yang digunakan Macro untuk Anda. Otomatis mengikuti browser Anda.',
+      'Bahasa yang digunakan Rox untuk Anda. Otomatis mengikuti browser Anda.',
     useTeamLanguage: 'Gunakan bahasa tim ({{language}})',
     automatic: 'Otomatis ({{language}})',
     teamAutomatic: 'Otomatis (bahasa browser masing-masing orang)',

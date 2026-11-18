@@ -14,7 +14,7 @@ pub mod create_link;
 pub mod dto;
 /// The signed-in user's offer.
 pub mod get_offer;
-/// Extractor that admits only Macro staff.
+/// Extractor that admits only Rox staff.
 pub mod gtm_macro_staff;
 /// List links for the dashboard.
 pub mod list_links;

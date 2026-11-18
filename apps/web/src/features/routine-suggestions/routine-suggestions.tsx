@@ -69,7 +69,7 @@ import {
 } from './views/suggestion-list-view';
 
 /**
- * The suggestions as cards, with the routine each saves, and Macro's
+ * The suggestions as cards, with the routine each saves, and Rox's
  * templates; each undefined until it loads.
  */
 function useSuggestionItems() {

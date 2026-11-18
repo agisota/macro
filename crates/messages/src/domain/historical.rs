@@ -64,7 +64,7 @@ pub struct HistoricalMessage {
     pub thread_id: Option<Uuid>,
     /// Original author, or the system bot for an unmapped author.
     pub sender: ChannelSender<'static>,
-    /// Display attribution for imported authors without a Macro identity.
+    /// Display attribution for imported authors without a Rox identity.
     pub imported_author: Option<String>,
     /// Nonempty converted Markdown; attachment bytes are not accepted.
     pub content: String,

@@ -346,7 +346,7 @@ fn inline_guides_carry_every_area_but_the_search_guide() {
 fn mcp_clients_get_the_database_crm_and_document_content_rules() {
     let mcp = mcp_guides();
     assert!(mcp.contains("check every database's tables"));
-    assert!(mcp.contains("A pipeline is not a Macro database"));
+    assert!(mcp.contains("A pipeline is not a Rox database"));
     assert!(mcp.contains("<m-document-mention>"));
     assert!(mcp.contains("even when `CreateDocument` is called through the MCP server"));
     assert!(!mcp.contains("A form for a channel is a poll:"));
@@ -590,7 +590,7 @@ async fn a_follow_up_keeps_the_previous_requests_entities() {
         &user(),
         RoutingRequest {
             latest: "now do the same for the other one",
-            previous: Some("switch my intro call booking link from Google Meet to a Macro call"),
+            previous: Some("switch my intro call booking link from Google Meet to a Rox call"),
         },
         Some(&classifier),
         Guidance::Inline,

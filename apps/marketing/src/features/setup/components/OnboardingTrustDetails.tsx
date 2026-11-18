@@ -15,7 +15,7 @@ function EvidenceLink(props: { href: string; children: JSX.Element }) {
   );
 }
 
-/** Optional reading, grounded in Macro's privacy policy, DPA, and security material. */
+/** Optional reading, grounded in Rox's privacy policy, DPA, and security material. */
 export function OnboardingTrustDetails(props: {
   topic: 'security' | 'google';
 }) {
@@ -27,20 +27,19 @@ export function OnboardingTrustDetails(props: {
             title: 'Why does Google ask for these permissions?',
             answer: (
               <>
-                Gmail access lets Macro read, send, organize, and move messages
-                to trash. Contacts help suggest recipients; mail settings
-                support your signature and filters. When you connect Calendar,
-                its permissions let Macro show your calendars and create or
-                update events. Google shows the exact permissions before you
-                approve.
+                Gmail access lets Rox read, send, organize, and move messages to
+                trash. Contacts help suggest recipients; mail settings support
+                your signature and filters. When you connect Calendar, its
+                permissions let Rox show your calendars and create or update
+                events. Google shows the exact permissions before you approve.
               </>
             ),
           },
           {
-            title: 'Does Macro get my Google password?',
+            title: 'Does Rox get my Google password?',
             answer: (
               <>
-                No. You sign in and approve access on Google. Google gives Macro
+                No. You sign in and approve access on Google. Google gives Rox
                 authorization for the permissions you approve; your Google
                 password stays with Google.
               </>
@@ -51,9 +50,9 @@ export function OnboardingTrustDetails(props: {
             answer: (
               <>
                 Data received through Google Workspace APIs is not used to
-                develop or train generalized AI models. Macro also maintains
-                zero data retention agreements with OpenAI and Anthropic for
-                model processing.
+                develop or train generalized AI models. Rox also maintains zero
+                data retention agreements with OpenAI and Anthropic for model
+                processing.
               </>
             ),
           },
@@ -61,11 +60,11 @@ export function OnboardingTrustDetails(props: {
             title: 'How do I revoke access?',
             answer: (
               <>
-                You can disconnect in Macro’s Settings or revoke access from
-                your Google account. Revoking access and deleting data already
-                stored in Macro are separate actions. You can request account
-                and data deletion as described in our{' '}
-                <EvidenceLink href="https://macro.com/privacy/">
+                You can disconnect in Rox’s Settings or revoke access from your
+                Google account. Revoking access and deleting data already stored
+                in Rox are separate actions. You can request account and data
+                deletion as described in our{' '}
+                <EvidenceLink href="https://rox.one/privacy/">
                   Privacy Policy
                 </EvidenceLink>
                 .
@@ -81,7 +80,7 @@ export function OnboardingTrustDetails(props: {
                 When you use an agent, information needed for your request is
                 processed by its model provider. Our agreements with OpenAI and
                 Anthropic provide zero data retention and no training on that
-                data. This concerns model processing: Macro still stores the
+                data. This concerns model processing: Rox still stores the
                 workspace content needed to provide the service.
               </>
             ),
@@ -97,17 +96,11 @@ export function OnboardingTrustDetails(props: {
             ),
           },
           {
-            title: 'Can my team review the security evidence?',
+            title: 'Can my team review data handling?',
             answer: (
               <>
-                Yes. Our security program includes SOC 2, ISO 27001, and Google
-                CASA Tier 2, with external audits and penetration testing. Visit
-                our{' '}
-                <EvidenceLink href="https://security.macro.com">
-                  Trust Center
-                </EvidenceLink>{' '}
-                for security information. Our{' '}
-                <EvidenceLink href="https://macro.com/dpa">
+                Yes. Our{' '}
+                <EvidenceLink href="https://rox.one/dpa">
                   Data Processing Agreement
                 </EvidenceLink>{' '}
                 describes confidentiality, safeguards, subprocessors, and data
@@ -116,10 +109,10 @@ export function OnboardingTrustDetails(props: {
             ),
           },
           {
-            title: 'Is Macro open source?',
+            title: 'Is Rox open source?',
             answer: (
               <>
-                Macro is open source: you can inspect our{' '}
+                Rox is open source: you can inspect our{' '}
                 <EvidenceLink href="https://github.com/macro-inc/macro">
                   code on GitHub
                 </EvidenceLink>
@@ -147,8 +140,8 @@ export function OnboardingTrustDetails(props: {
           fallback={
             <>
               <p>
-                Macro stores your workspace content to provide the service. We
-                do not sell your data.
+                Rox stores your workspace content to provide the service. We do
+                not sell your data.
               </p>
               <p>
                 Your data is encrypted in transit and at rest. Production access
@@ -156,7 +149,7 @@ export function OnboardingTrustDetails(props: {
                 in a separate environment.
               </p>
               <p>
-                Macro is open source. Our security program includes independent
+                Rox is open source. Our security program includes independent
                 audits and penetration testing. The FAQs below link to our code,
                 security information, and data policies.
               </p>
@@ -164,19 +157,19 @@ export function OnboardingTrustDetails(props: {
           }
         >
           <p>
-            Macro requests Google account access to read, send, and organize
-            email and manage connected calendars. Google lists the permissions
-            before you approve the connection.
+            Rox requests Google account access to read, send, and organize email
+            and manage connected calendars. Google lists the permissions before
+            you approve the connection.
           </p>
           <p>
-            Macro’s email agents show you the draft and ask for your approval
+            Rox’s email agents show you the draft and ask for your approval
             before sending.
           </p>
           <p>
-            You sign in through Google. Macro does not receive your Google
-            password. Your work Google account becomes your Macro sign-in;
-            adding a personal account is optional. You can disconnect in Macro’s
-            Settings or revoke access from your Google account.
+            You sign in through Google. Rox does not receive your Google
+            password. Your work Google account becomes your Rox sign-in; adding
+            a personal account is optional. You can disconnect in Rox’s Settings
+            or revoke access from your Google account.
           </p>
         </Show>
       </div>
@@ -201,11 +194,11 @@ export function OnboardingTrustDetails(props: {
       </div>
       <p class="mt-8 text-xs leading-6 text-ink-extra-muted">
         More detail in our{' '}
-        <EvidenceLink href="https://macro.com/privacy/">
+        <EvidenceLink href="https://rox.one/privacy/">
           Privacy Policy
         </EvidenceLink>{' '}
         and{' '}
-        <EvidenceLink href="https://security.macro.com">
+        <EvidenceLink href="https://security.rox.one">
           Trust Center
         </EvidenceLink>
         .

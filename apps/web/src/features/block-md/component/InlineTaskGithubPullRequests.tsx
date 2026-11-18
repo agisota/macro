@@ -106,7 +106,7 @@ function PullRequestPillFace(props: { pr: GithubPullRequest }): JSX.Element {
 }
 
 /**
- * Opens the pull request's Macro block in a new split once GitHub has synced
+ * Opens the pull request's Rox block in a new split once GitHub has synced
  * it; until then the pill links to GitHub.
  */
 function PullRequestPill(props: { pr: GithubPullRequest }): JSX.Element {

@@ -124,8 +124,8 @@ function Fixture() {
 // Apply dark explicitly too: `dark-mode:` styles key off the theme attribute.
 applyTheme(
   new URLSearchParams(location.search).get('theme') === 'light'
-    ? 'Macro Light'
-    : 'Macro Dark'
+    ? 'Rox Light'
+    : 'Rox Dark'
 );
 const root = document.getElementById('root');
 if (root) render(() => <Fixture />, root);

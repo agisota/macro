@@ -14,7 +14,7 @@ import { createMemo } from 'solid-js';
 import { historyPromptText, waitingForPhone } from '../core/history-import';
 
 /**
- * The bottom-right prompt to import earlier WhatsApp messages. Macro asks the
+ * The bottom-right prompt to import earlier WhatsApp messages. Rox asks the
  * owner's phone only when they press Import: each request wakes WhatsApp on
  * the phone, and on iOS one it can't finish in the background shows a
  * "syncing stopped" notification. One prompt covers all the owner's chats

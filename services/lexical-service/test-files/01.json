@@ -28,8 +28,8 @@
 						"$": {
 							"id": "FMA7dklV"
 						},
-						"userId": "macro|seamus@macro.com",
-						"email": "seamus@macro.com"
+						"userId": "macro|seamus@rox.one",
+						"email": "seamus@rox.one"
 					}
 				],
 				"direction": "ltr",
@@ -39,7 +39,7 @@
 				"version": 1,
 				"$": {
 					"id": "hzEghima",
-					"searchText": "user mention:\nseamus@macro.com"
+					"searchText": "user mention:\nseamus@rox.one"
 				},
 				"textFormat": 0,
 				"textStyle": ""

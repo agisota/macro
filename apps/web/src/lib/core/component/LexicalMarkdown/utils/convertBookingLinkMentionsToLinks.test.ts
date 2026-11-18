@@ -11,24 +11,24 @@ function convert(html: string) {
 describe('convertBookingLinkMentionsToLinks', () => {
   it('converts a booking link mention span to an anchor tag', () => {
     const { link } = convert(
-      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="30min" data-booking-label="30 Minute Meeting" data-booking-url="https://macro.com/app/book/abc123/30min">30 Minute Meeting</span>'
+      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="30min" data-booking-label="30 Minute Meeting" data-booking-url="https://rox.one/app/book/abc123/30min">30 Minute Meeting</span>'
     );
 
     expect(link).not.toBeNull();
-    expect(link?.href).toBe('https://macro.com/app/book/abc123/30min');
+    expect(link?.href).toBe('https://rox.one/app/book/abc123/30min');
     expect(link?.textContent).toBe('30 Minute Meeting');
     expect(link?.getAttribute('data-booking-link-mention')).toBe('true');
     expect(link?.getAttribute('data-booking-profile-id')).toBe('abc123');
     expect(link?.getAttribute('data-booking-slug')).toBe('30min');
     expect(link?.getAttribute('data-booking-label')).toBe('30 Minute Meeting');
     expect(link?.getAttribute('data-booking-url')).toBe(
-      'https://macro.com/app/book/abc123/30min'
+      'https://rox.one/app/book/abc123/30min'
     );
   });
 
   it('uses slug as fallback label when label is missing', () => {
     const { link } = convert(
-      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="quick-call" data-booking-url="https://macro.com/app/book/abc123/quick-call">quick-call</span>'
+      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="quick-call" data-booking-url="https://rox.one/app/book/abc123/quick-call">quick-call</span>'
     );
 
     expect(link?.textContent).toBe('quick-call');
@@ -36,7 +36,7 @@ describe('convertBookingLinkMentionsToLinks', () => {
 
   it('uses text content as fallback when label and slug are missing', () => {
     const { link } = convert(
-      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-url="https://macro.com/app/book/abc123">Book a meeting</span>'
+      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-url="https://rox.one/app/book/abc123">Book a meeting</span>'
     );
 
     expect(link?.textContent).toBe('Book a meeting');
@@ -52,7 +52,7 @@ describe('convertBookingLinkMentionsToLinks', () => {
 
   it('does not add slug attribute when slug is empty', () => {
     const { link } = convert(
-      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="" data-booking-url="https://macro.com/app/book/abc123">Booking link</span>'
+      '<span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="" data-booking-url="https://rox.one/app/book/abc123">Booking link</span>'
     );
 
     expect(link?.hasAttribute('data-booking-slug')).toBe(false);

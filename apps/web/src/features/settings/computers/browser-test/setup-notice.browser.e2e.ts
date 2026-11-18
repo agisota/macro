@@ -47,7 +47,7 @@ const computer: ComputerStatus = {
 const harness: RegisteredHarness = {
   id: 'harness-1',
   name: "Maya's Agent Box",
-  kind: 'macrod',
+  kind: 'roxd',
   owner: { type: 'user', user_id: 'maya@example.com' },
   access: 'owner',
   shared_team_ids: [],
@@ -89,7 +89,7 @@ const row = (page: Page) =>
 // The fixture's service clients point at the hosted dev gateway; anything a
 // test does not answer itself is refused, so nothing reaches a real backend.
 test.beforeEach(async ({ page }) => {
-  await page.route(/\.macro\.com\//, (route) => route.abort());
+  await page.route(/\.rox\.one\//, (route) => route.abort());
   page.on('pageerror', (error) => console.log('pageerror', error.stack));
 });
 
@@ -200,7 +200,7 @@ test('closes during setup, is told the computer is ready, and finishes from the 
   await dialog(page).getByRole('link', { name: 'Open claude.ai' }).click();
   await (await claudeTab).close();
   await dialog(page)
-    .getByRole('button', { name: 'Use Macro credits instead' })
+    .getByRole('button', { name: 'Use Rox credits instead' })
     .click();
   await expect(
     dialog(page).getByRole('heading', { name: "Maya's Agent is ready" })
@@ -213,10 +213,10 @@ test('closes during setup, is told the computer is ready, and finishes from the 
   await expect(
     form
       .getByRole('group', { name: 'Where it runs' })
-      .getByRole('radio', { name: /On a Macro computer/ })
+      .getByRole('radio', { name: /On a Rox computer/ })
   ).toBeChecked();
   await form
-    .getByText('On a Macro computer')
+    .getByText('On a Rox computer')
     .evaluate((label) => label.scrollIntoView({ block: 'center' }));
   // Hold on the result so the recording ends on it.
   await page.waitForTimeout(1_500);
@@ -277,7 +277,7 @@ test('a failed setup notice says why and reopens setup to Retry', async ({
     'Everyone using this computer can use this Claude sign-in'
   );
   await expect(
-    dialog(page).getByRole('button', { name: 'Use Macro credits instead' })
+    dialog(page).getByRole('button', { name: 'Use Rox credits instead' })
   ).toHaveCount(0);
   await shoot(page, 'notice-failed-reopened');
 });

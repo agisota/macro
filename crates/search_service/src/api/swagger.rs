@@ -39,7 +39,7 @@ use models_search::{MatchType, SearchHighlight, TermMatching};
 #[derive(OpenApi)]
 #[openapi(
         info(
-                terms_of_service = "https://macro.com/terms",
+                terms_of_service = "https://rox.one/terms",
         ),
         paths(
                 /// /search
@@ -94,7 +94,7 @@ use models_search::{MatchType, SearchHighlight, TermMatching};
                 ),
         ),
         tags(
-            (name = "search service", description = "Macro Search Service")
+            (name = "search service", description = "Rox Search Service")
         )
     )]
 pub struct ApiDoc;

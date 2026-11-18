@@ -39,7 +39,7 @@ export type SuggestionRow = {
   byline: SuggestionByline;
 };
 
-/** Who suggests it: AI for this person with its reason, or Macro's template. */
+/** Who suggests it: AI for this person with its reason, or Rox's template. */
 export type SuggestionByline =
   | { from: 'for_you'; reason?: string }
   | { from: 'macro' };
@@ -61,7 +61,7 @@ export function suggestionByline(
 
 /** The line under a suggestion's name that says who suggests it. */
 export function bylineText(byline: SuggestionByline): string {
-  if (byline.from === 'macro') return 'Template from Macro';
+  if (byline.from === 'macro') return 'Template from Rox';
   return byline.reason ? `For you · ${byline.reason}` : 'For you';
 }
 
@@ -89,7 +89,7 @@ export type SuggestionsView = {
   arriving: boolean;
   /** The wait ran out or AI finished: templates fill in. */
   settled: boolean;
-  /** No suggestion from AI shows, only Macro's templates. */
+  /** No suggestion from AI shows, only Rox's templates. */
   fallback: boolean;
 };
 
@@ -108,7 +108,7 @@ export function emptySurfaces(
 }
 
 /**
- * The server fills every surface to three with Macro's templates. While AI
+ * The server fills every surface to three with Rox's templates. While AI
  * is suggesting, only its suggestions show, as they land. Once the wait
  * runs out, `filled` names the surfaces that were still empty then, and
  * their templates show. Once AI is done (or never ran), the list shows as

@@ -67,7 +67,7 @@ export type SheetPivotTable = {
   location: string;
   /** The cells it summarizes, such as `'Orders'!$A$1:$F$500`. */
   source?: string;
-  /** The records Excel saved of a source Macro does not hold. */
+  /** The records Excel saved of a source Rox does not hold. */
   records?: string;
   /** The other workbook a cache reads, as Excel linked it. */
   workbook?: string;

@@ -1,6 +1,6 @@
 //! `PR Privacy Check` — fails a PR whose title, body, or commit messages carry
 //! personal or support-channel details (emails, phone numbers, @mentions,
-//! chat-channel names, support-tool or Macro workspace links). The rule is the
+//! chat-channel names, support-tool or Rox workspace links). The rule is the
 //! Privacy section of `.agents/skills/git/SKILL.md`; `just pr-privacy` runs the
 //! same script locally.
 //!

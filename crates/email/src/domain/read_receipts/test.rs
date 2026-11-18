@@ -1,8 +1,8 @@
 use super::*;
 use std::sync::{Arc, Mutex};
 
-const BASE: &str = "https://gateway.macro.com/email/";
-const PREFIX: &str = "https://gateway.macro.com/email/opens/";
+const BASE: &str = "https://gateway.rox.one/email/";
+const PREFIX: &str = "https://gateway.rox.one/email/opens/";
 
 #[derive(Default)]
 struct State {

@@ -1,4 +1,4 @@
-//! Notification sent when a Macro computer's agent sign-in is running out.
+//! Notification sent when a Rox computer's agent sign-in is running out.
 use super::*;
 
 /// How close a computer's agent sign-in is to no longer working.
@@ -13,7 +13,7 @@ pub enum AgentSignInExpiryStage {
     Expired,
 }
 
-/// The account a team's Macro computer signed an agent in to is about to
+/// The account a team's Rox computer signed an agent in to is about to
 /// stop working, or has. Sent to whoever signed it in and to the team's
 /// admins and owner, who can sign it in again from Settings → Machines.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, ToSchema)]

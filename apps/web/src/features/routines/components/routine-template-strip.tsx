@@ -140,7 +140,7 @@ export function StarterTemplateCard(props: {
 }
 
 /**
- * Macro's routine templates above the list, as raised cards. Choosing one
+ * Rox's routine templates above the list, as raised cards. Choosing one
  * opens New routine already started from it, ready to review.
  */
 export function RoutineTemplateStrip(props: {

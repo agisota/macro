@@ -19,7 +19,7 @@ pub struct PgCrmParentReader {
 }
 
 impl PgCrmParentReader {
-    /// Create a reader over the shared MacroDB pool.
+    /// Create a reader over the shared RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

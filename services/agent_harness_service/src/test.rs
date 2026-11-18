@@ -7,9 +7,9 @@ fn macro_mcp_endpoint_preserves_the_gateway_prefix() {
         (McpServiceUrl::local(), "http://localhost:8101/mcp"),
         (
             McpServiceUrl::dev(),
-            "https://dev-gateway.macro.com/mcp/mcp",
+            "https://dev-gateway.rox.one/mcp/mcp",
         ),
-        (McpServiceUrl::prod(), "https://gateway.macro.com/mcp/mcp"),
+        (McpServiceUrl::prod(), "https://gateway.rox.one/mcp/mcp"),
     ] {
         assert_eq!(macro_mcp_endpoint(&base).unwrap().as_str(), expected);
     }

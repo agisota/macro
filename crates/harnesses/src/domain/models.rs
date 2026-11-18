@@ -77,7 +77,7 @@ pub struct Harness {
     pub allow_permission_bypass: bool,
     /// Harness id.
     pub id: HarnessId,
-    /// Runtime kind. Currently always `macrod`.
+    /// Runtime kind. Currently always `roxd`.
     pub kind: String,
     /// Display name.
     pub name: String,
@@ -100,7 +100,7 @@ pub struct Harness {
     pub connected: bool,
     /// When the daemon last attached a runtime connection.
     pub last_connected_at: Option<DateTime<Utc>>,
-    /// The Macro computer (hosted VM) this harness runs on; absent for a
+    /// The Rox computer (hosted VM) this harness runs on; absent for a
     /// machine the user paired themselves.
     #[serde(default)]
     pub computer_id: Option<ComputerId>,
@@ -110,18 +110,18 @@ pub struct Harness {
     #[serde(default)]
     pub team_agent_user_id: Option<MacroUserIdStr<'static>>,
     /// How Claude Code on this machine is paid for, derived from whether
-    /// it has an active Claude login. Only meaningful for Macro computers.
+    /// it has an active Claude login. Only meaningful for Rox computers.
     #[serde(default)]
     pub claude_mode: ClaudeMode,
 }
 
-/// How Claude Code on a Macro computer is paid for: its own Claude account
-/// when it has an active Claude login, otherwise Macro credits.
+/// How Claude Code on a Rox computer is paid for: its own Claude account
+/// when it has an active Claude login, otherwise Rox credits.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "inbound", derive(utoipa::ToSchema))]
 #[serde(rename_all = "snake_case")]
 pub enum ClaudeMode {
-    /// Macro credits, through Macro's Anthropic gateway.
+    /// Rox credits, through Rox's Anthropic gateway.
     #[default]
     MacroCredits,
     /// A Claude account signed in on the computer.
@@ -161,7 +161,7 @@ pub enum HarnessPermission {
     Manage,
 }
 
-/// A pre-approved pairing for a Macro computer, minted by the control plane.
+/// A pre-approved pairing for a Rox computer, minted by the control plane.
 #[derive(Debug, Clone)]
 pub struct CreateHostedPairing {
     /// Team the computer belongs to: its owner and admins own the harness
@@ -175,7 +175,7 @@ pub struct CreateHostedPairing {
     pub computer_id: ComputerId,
 }
 
-/// The claim material a Macro computer's macrod enrolls with.
+/// The claim material a Rox computer's roxd enrolls with.
 #[derive(Debug, Clone)]
 pub struct HostedPairing {
     /// Pairing id the device secret claims.

@@ -69,6 +69,7 @@ fn room_composite_egress_uses_speaker_layout() {
             region: "us-east-1".to_owned(),
             access_key: "test-access-key".to_owned(),
             secret: "test-secret".to_owned(),
+            endpoint: None,
         },
     );
 

@@ -115,7 +115,7 @@ export function createWhatsAppLinkedCapabilities(host: {
                 () => ({
                   kind: 'passkey-failed' as const,
                   message:
-                    "Your phone confirmed, but Macro couldn't pass it on to WhatsApp. Try again.",
+                    "Your phone confirmed, but Rox couldn't pass it on to WhatsApp. Try again.",
                 })
               ).map(() => undefined)
           ),

@@ -164,7 +164,7 @@ fn search_names_a_matching_tool_that_is_already_advertised() {
     // search for it once returned nothing and the model concluded it was gone.
     let advertised = [ToolMatch {
         name: "ExecuteCode".to_string(),
-        description: "Run JavaScript against the Macro SDK".to_string(),
+        description: "Run JavaScript against the Rox SDK".to_string(),
     }];
     let (loader, loaded) = recording_loader();
     let response = search_and_stage(&catalog(), &advertised, "ExecuteCode", Some(&loader));
@@ -183,7 +183,7 @@ fn search_names_a_matching_tool_that_is_already_advertised() {
 fn search_omits_already_available_when_nothing_advertised_matches() {
     let advertised = [ToolMatch {
         name: "ExecuteCode".to_string(),
-        description: "Run JavaScript against the Macro SDK".to_string(),
+        description: "Run JavaScript against the Rox SDK".to_string(),
     }];
     let response = search_and_stage(&catalog(), &advertised, "linear", None);
     let json = serde_json::to_value(&response).unwrap();
@@ -194,7 +194,7 @@ fn search_omits_already_available_when_nothing_advertised_matches() {
 fn blank_search_names_no_already_available_tools() {
     let advertised = [ToolMatch {
         name: "ExecuteCode".to_string(),
-        description: "Run JavaScript against the Macro SDK".to_string(),
+        description: "Run JavaScript against the Rox SDK".to_string(),
     }];
     let response = search_and_stage(&catalog(), &advertised, "  ", None);
     assert!(response.already_available.is_empty());

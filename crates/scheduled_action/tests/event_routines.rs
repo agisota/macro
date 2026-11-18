@@ -68,8 +68,8 @@ use tokio::sync::{Semaphore, mpsc};
 use tokio_util::{sync::CancellationToken, task::TaskTracker};
 use tower::ServiceExt;
 
-const USER: &str = "macro|event-run@macro.com";
-const ACTOR: &str = "macro|event-actor@macro.com";
+const USER: &str = "macro|event-run@rox.one";
+const ACTOR: &str = "macro|event-actor@rox.one";
 const BOT: &str = "bot|01900000-0000-7000-8000-000000000004";
 const TEST_TIMEOUT: Duration = Duration::from_secs(10);
 
@@ -124,7 +124,7 @@ impl CurrentOwnerAccess for FakeAccess {
                 EventEntityType::EmailThread => EntityType::EmailThread,
                 EventEntityType::Call => EntityType::Call,
                 EventEntityType::GithubInstallation => {
-                    unreachable!("these routines watch Macro events only")
+                    unreachable!("these routines watch Rox events only")
                 }
             },
         };
@@ -168,7 +168,7 @@ impl CurrentOwnerAccess for FakeAccess {
                 .unwrap(),
             ),
             EventEntityType::GithubInstallation => {
-                unreachable!("these routines watch Macro events only")
+                unreachable!("these routines watch Rox events only")
             }
         };
         Ok(Some(access))

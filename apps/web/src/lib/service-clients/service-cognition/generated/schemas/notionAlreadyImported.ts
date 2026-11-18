@@ -11,7 +11,7 @@
 export interface NotionAlreadyImported {
   /** The teammate who imported it, by email. */
   by: string;
-  /** The Macro entity it became. */
+  /** The Rox entity it became. */
   entityId: string;
   /** That entity's type (`md`, `project`). */
   entityType: string;

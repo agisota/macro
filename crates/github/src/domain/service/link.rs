@@ -449,7 +449,7 @@ impl<R: GithubRepo, U: GithubOauth, F: Auth, E: GithubPullRequestService> Github
             .await?
             .ok_or(GithubError::NoLinkFound)?;
 
-        // Count how many Macro users share this GitHub account. The FusionAuth
+        // Count how many Rox users share this GitHub account. The FusionAuth
         // IdP link + token live on the owner's row and are reused by every
         // sharer, so we must only tear the grant down when this is the last row.
         let link_count = self
@@ -459,7 +459,7 @@ impl<R: GithubRepo, U: GithubOauth, F: Auth, E: GithubPullRequestService> Github
             .map_err(|e| GithubError::Internal(e.into()))?;
 
         if link_count > 1 {
-            // Other Macro users still share this GitHub account: leave the
+            // Other Rox users still share this GitHub account: leave the
             // FusionAuth grant in place so the remaining sharers keep working.
             //
             // Note: if the row being deleted is the OWNER's, the FusionAuth link

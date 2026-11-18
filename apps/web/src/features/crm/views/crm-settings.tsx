@@ -470,7 +470,7 @@ function StagesSection() {
         onConfirm={handleReset}
         body={
           <>
-            Your team returns to Macro's default stages. Companies keep their
+            Your team returns to Rox's default stages. Companies keep their
             stored stage values, and stages whose names match a default display
             as before.
           </>

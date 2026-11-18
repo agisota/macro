@@ -6,7 +6,7 @@
  */
 
 /**
- * What an entity column's references point at: a kind of Macro entity, or
+ * What an entity column's references point at: a kind of Rox entity, or
 the rows of another table for a relation.
 
 Spelled as the properties system spells entity types (`USER`,

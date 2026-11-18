@@ -199,7 +199,7 @@ fn managed(selected: SelectedPersona) -> super::SelectedManagedPersona {
     }
 }
 
-/// An agent bound to its owner's own macrod, as the composer now starts it.
+/// An agent bound to its owner's own roxd, as the composer now starts it.
 fn external_facts(selected_channels: bool) -> BotFacts {
     BotFacts {
         is_managed: false,

@@ -26,7 +26,7 @@ use crate::domain::ports::DatabasesService;
 #[schemars(
     title = "SaveDatabaseView",
     description = "\
-Save a table or kanban board view of one table of a Macro database. Views are shared with \
+Save a table or kanban board view of one table of a Rox database. Views are shared with \
 everyone who can open the database, so saving one needs edit access. Call DescribeDatabase \
 first: a view names columns and select options by their ids, never by name. The filter's \
 conditions combine with one `and` or `or`, each test fitting its column's type (text, \

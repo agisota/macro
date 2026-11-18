@@ -2,7 +2,7 @@
 //! evaluation suite.
 //!
 //! This is read-only against the source database. It selects tasks created by
-//! Macro employees (owner `macro|…@macro.com`) — internal dogfooding data,
+//! Macro employees (owner `macro|…@rox.one`) — internal dogfooding data,
 //! deliberately excluding customer tasks — and emits **two** corpora:
 //!
 //! - a *title-only* set (tasks whose lexical body is empty), and
@@ -15,9 +15,9 @@
 //!    (Haiku) which flags sensitive content (HR/personnel decisions, comp,
 //!    payments/financial detail, SSNs/government ids, secrets, personal/medical
 //!    info). Flagged tasks — and any the model fails to judge — are dropped.
-//! 2. **Email anonymization.** Every real `…@macro.com` email in the owner,
+//! 2. **Email anonymization.** Every real `…@rox.one` email in the owner,
 //!    title, body, and property values is replaced with a fictitious
-//!    `macro|<name>@macro.com` drawn from a fixed set of 20 names, mapped
+//!    `macro|<name>@rox.one` drawn from a fixed set of 20 names, mapped
 //!    deterministically so the same person maps to the same fake email.
 //!
 //! Neither the sensitivity model call nor anything else writes back to the
@@ -53,7 +53,7 @@ use sqlx::PgPool;
 use task_dedup::eval::{CorpusTask, EvalCorpus, TaskSource};
 
 /// Fictitious names used to anonymize employee emails. Real owner/assignee
-/// emails are mapped deterministically onto `macro|<name>@macro.com`.
+/// emails are mapped deterministically onto `macro|<name>@rox.one`.
 const FAKE_NAMES: [&str; 20] = [
     "alex.rivera",
     "sam.chen",
@@ -166,7 +166,7 @@ fn fnv1a(text: &str) -> u64 {
     hash
 }
 
-/// Maps one real `…@macro.com` token to a fictitious one, preserving a leading
+/// Maps one real `…@rox.one` token to a fictitious one, preserving a leading
 /// `macro|` prefix when present. The mapping is stable per local part.
 fn fake_for(token: &str) -> String {
     let (prefix, rest) = match token.strip_prefix("macro|") {
@@ -175,14 +175,14 @@ fn fake_for(token: &str) -> String {
     };
     let local = rest.split('@').next().unwrap_or(rest);
     let name = FAKE_NAMES[(fnv1a(local) % FAKE_NAMES.len() as u64) as usize];
-    format!("{prefix}{name}@macro.com")
+    format!("{prefix}{name}@rox.one")
 }
 
-/// Collects every `…@macro.com` email token in `text`, including a leading
+/// Collects every `…@rox.one` email token in `text`, including a leading
 /// `macro|` prefix when present, longest first so replacements don't clobber
 /// each other (the prefixed form is replaced before its bare substring).
 fn collect_macro_emails(text: &str) -> Vec<String> {
-    const DOMAIN: &str = "@macro.com";
+    const DOMAIN: &str = "@rox.one";
     let is_local = |c: char| c.is_ascii_alphanumeric() || matches!(c, '.' | '_' | '%' | '+' | '-');
 
     let mut tokens = Vec::new();
@@ -215,7 +215,7 @@ fn collect_macro_emails(text: &str) -> Vec<String> {
     tokens
 }
 
-/// Replaces every `…@macro.com` email in `text` with its fictitious mapping.
+/// Replaces every `…@rox.one` email in `text` with its fictitious mapping.
 fn anonymize(text: &str) -> String {
     let mut out = text.to_string();
     for token in collect_macro_emails(text) {
@@ -553,7 +553,7 @@ async fn fetch_candidates(
         JOIN "Document" d ON d.id = dst.document_id
         WHERE dst.sub_type = 'task'
           AND d."deletedAt" IS NULL
-          AND d.owner LIKE 'macro|%@macro.com'
+          AND d.owner LIKE 'macro|%@rox.one'
           AND length(btrim(d.name)) >= $1
         ORDER BY d."createdAt" DESC
         LIMIT $2

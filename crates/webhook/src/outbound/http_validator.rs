@@ -18,8 +18,17 @@ use reqwest::{
     redirect::Policy,
 };
 use std::{str::FromStr, sync::Arc, time::Duration};
+use webhook_signature::{
+    LEGACY_SIGNATURE_HEADER, LEGACY_TIMESTAMP_HEADER, SIGNATURE_HEADER, TIMESTAMP_HEADER,
+};
 
 const EVENT_NAME: &str = "webhook.validation.test";
+pub(super) const EVENT_HEADER: &str = "x-rox-event";
+pub(super) const EVENT_ID_HEADER: &str = "x-rox-event-id";
+/// Event headers earlier deliveries sent; still emitted so an endpoint that
+/// only knows the pre-rename names keeps receiving them.
+pub(super) const LEGACY_EVENT_HEADER: &str = "x-macro-event";
+pub(super) const LEGACY_EVENT_ID_HEADER: &str = "x-macro-event-id";
 pub(super) const REQUEST_TIMEOUT: Duration = Duration::from_secs(5);
 
 /// Reqwest-backed implementation of [`WebhookValidationClient`].
@@ -102,14 +111,18 @@ impl WebhookValidationClient for ReqwestWebhookValidationClient {
             .client
             .post(url)
             .header(reqwest::header::CONTENT_TYPE, "application/json")
-            .header("X-Macro-Event", EVENT_NAME)
-            .header("X-Macro-Event-Id", event_id)
-            .header("X-Macro-Timestamp", &timestamp)
-            .header("X-Macro-Signature", signature);
+            .header(EVENT_HEADER, EVENT_NAME)
+            .header(EVENT_ID_HEADER, &event_id)
+            .header(TIMESTAMP_HEADER, &timestamp)
+            .header(SIGNATURE_HEADER, &signature)
+            .header(LEGACY_EVENT_HEADER, EVENT_NAME)
+            .header(LEGACY_EVENT_ID_HEADER, event_id)
+            .header(LEGACY_TIMESTAMP_HEADER, &timestamp)
+            .header(LEGACY_SIGNATURE_HEADER, &signature);
 
         for (name, value) in webhook.headers {
-            if is_reserved_macro_header(&name) {
-                return Ok(failure(None, "reserved Macro headers cannot be overridden"));
+            if is_reserved_header(&name) {
+                return Ok(failure(None, "reserved Rox headers cannot be overridden"));
             }
             request = request.header(name, value);
         }
@@ -253,10 +266,19 @@ fn validate_endpoint_url(
     Ok(url)
 }
 
-pub(super) fn is_reserved_macro_header(name: &str) -> bool {
+/// Headers the delivery itself sets, under both their Rox and pre-rename
+/// names: a webhook's custom headers must not replace either.
+pub(super) fn is_reserved_header(name: &str) -> bool {
     matches!(
         name.to_ascii_lowercase().as_str(),
-        "x-macro-event" | "x-macro-event-id" | "x-macro-timestamp" | "x-macro-signature"
+        "x-rox-event"
+            | "x-rox-event-id"
+            | "x-rox-timestamp"
+            | "x-rox-signature"
+            | "x-macro-event"
+            | "x-macro-event-id"
+            | "x-macro-timestamp"
+            | "x-macro-signature"
     )
 }
 

@@ -122,7 +122,7 @@ word docs, Illustrator/Photoshop files).
 - Create a document from a Notion page: `DocumentCreator::create_notion_markdown`
   (`src/domain/create.rs`) with a `NotionMarkdown` (`src/domain/notion_markdown.rs`);
   lexical-service converts it through `MarkdownInitializationPort::initialize_existing_notion`
-  and returns the Macro markdown that mention tracking reads.
+  and returns the Rox markdown that mention tracking reads.
 - Create a document with its source's dates (an import): set
   `NewDocumentMetadata::builder(..).created_at(..).updated_at(..)`. Its folder
   and every folder above it then widen to those dates (`extend_project_dates`)
@@ -143,7 +143,7 @@ realtime appearance events do not re-ingest history.
 ## Checks
 
 - `cargo test -p documents --all-features` (`SQLX_OFFLINE` unset; needs a
-  migrated local MacroDB for `outbound`/`document_create_adapters` tests).
+  migrated local RoxDB for `outbound`/`document_create_adapters` tests).
 - Point `REDIS_URL` at the local Redis endpoint for editing-session tests;
   the default is `redis://127.0.0.1:6379`.
 - `just -f crates/documents/justfile check` for an all-features `cargo check`.

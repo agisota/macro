@@ -1,14 +1,16 @@
 /** A connected Google inbox as onboarding shows it. */
 export type EmailAccount = {
   address: string;
+  /** Absent in older fixtures, which represent external imports. */
+  provider?: 'GMAIL' | 'OUTLOOK' | 'ROX';
   isPrimary: boolean;
-  /** The Macro user who owns the link — another user's for a shared inbox. */
+  /** The Rox user who owns the link — another user's for a shared inbox. */
   ownerId: string;
 };
 
 /**
  * The viewer's own primary inbox first. No ownership filter: linking a mailbox
- * owned by another Macro user creates a SHARED link carrying the owner's id —
+ * owned by another Rox user creates a SHARED link carrying the owner's id —
  * filtering would hide an inbox the user just connected.
  */
 export function orderEmailAccounts(

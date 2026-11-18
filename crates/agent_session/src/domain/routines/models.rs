@@ -165,7 +165,7 @@ pub enum RoutineFailureReason {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, thiserror::Error)]
 #[serde(rename_all = "snake_case")]
 pub enum RoutineSessionError {
-    /// Definitive refusal before Macro-funded work was accepted.
+    /// Definitive refusal before Rox-funded work was accepted.
     #[cfg(feature = "admission")]
     #[error(transparent)]
     Admission(#[from] crate::domain::error::AiAdmissionError),

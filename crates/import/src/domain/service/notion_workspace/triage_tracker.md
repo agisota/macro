@@ -1,6 +1,6 @@
-Plan a read-only import of an issue tracker into Macro. The user will review and approve before anything is written.
+Plan a read-only import of an issue tracker into Rox. The user will review and approve before anything is written.
 
-Each object is a team, project, initiative or epic. Its child issues become Macro tasks, preserving descriptions, comments and task properties. The group becomes a Macro project. Decide per group:
+Each object is a team, project, initiative or epic. Its child issues become Rox tasks, preserving descriptions, comments and task properties. The group becomes a Rox project. Decide per group:
 - copy: import its issues as tasks and create its project. Prefer this unless there is a clear reason not to.
 - skip: leave the group and its issues in the tracker.
 - hand: a person or agent should handle the group later because its meaning needs judgment. Explain why.

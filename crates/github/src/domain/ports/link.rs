@@ -26,13 +26,13 @@ pub trait GithubRepo: Send + Sync + 'static {
     /// Held until the complete cross-system link operation finishes.
     type LinkGuard: Send;
 
-    /// Serializes callbacks and disconnects for one Macro user.
+    /// Serializes callbacks and disconnects for one Rox user.
     fn lock_user_link(
         &self,
         user_id: &str,
     ) -> impl Future<Output = Result<Self::LinkGuard, Self::Err>> + Send;
 
-    /// Serializes mutations of a grant shared by multiple Macro users.
+    /// Serializes mutations of a grant shared by multiple Rox users.
     fn lock_github_account(
         &self,
         guard: &mut Self::LinkGuard,
@@ -47,7 +47,7 @@ pub trait GithubRepo: Send + Sync + 'static {
     ) -> impl Future<Output = Result<Option<GithubLink>, Self::Err>> + Send;
 
     /// Gets the owner's github link for the github user id, or `None` when no
-    /// Macro user has linked that GitHub account.
+    /// Rox user has linked that GitHub account.
     fn get_github_link_by_github_user_id(
         &self,
         github_user_id: &str,

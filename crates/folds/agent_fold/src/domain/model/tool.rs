@@ -27,8 +27,8 @@ use super::user_tool::UserToolOutcome;
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Type)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum ToolName {
-    /// A tool the harness owns: `Bash`, `Read`, `Write`, or a Macro tool
-    /// called in-process by Macro's own agent.
+    /// A tool the harness owns: `Bash`, `Read`, `Write`, or a Rox tool
+    /// called in-process by Rox's own agent.
     Native {
         /// The name as the harness reported it.
         name: String,
@@ -154,7 +154,7 @@ impl From<ToolCallStatus> for ToolStatus {
 /// kind ACP defines - only for `switch_mode` (nothing a reader would want
 /// rendered) and a kind this fold does not yet know about.
 ///
-/// Four variants are chosen by *name* rather than kind: Macro's own tools
+/// Four variants are chosen by *name* rather than kind: Rox's own tools
 /// ([`Self::Macro`], [`Self::View`], [`Self::UserTool`]) arrive as ACP `other`, and what a
 /// reader wants for them is the tool's own JSON, not a generic card; a
 /// delegation ([`Self::Subagent`]) is a tool call by whatever name its
@@ -240,8 +240,8 @@ pub enum ToolDetail {
         /// The error text, when the harness's wrapper reported failure.
         error: Option<String>,
     },
-    /// A Macro tool the fold knows by name - reached over Macro's MCP
-    /// server, or called in-process by Macro's own agent. Input and output
+    /// A Rox tool the fold knows by name - reached over Rox's MCP
+    /// server, or called in-process by Rox's own agent. Input and output
     /// are the tool's own JSON, any MCP envelope already removed, so a
     /// reader that knows the tool renders it without parsing the wire.
     Macro {
@@ -255,7 +255,7 @@ pub enum ToolDetail {
         /// The error text, when the call failed.
         error: Option<String>,
     },
-    /// A view shown to the person: Macro's `DisplayResults`, or the call the
+    /// A view shown to the person: Rox's `DisplayResults`, or the call the
     /// harness presents for `execution.views.present`. The server decodes
     /// the view into its result, so this is the view a reader renders.
     View {
@@ -264,7 +264,7 @@ pub enum ToolDetail {
         /// The error text, when the call failed.
         error: Option<String>,
     },
-    /// A Macro user tool: the agent drafted it, the user finishes it after
+    /// A Rox user tool: the agent drafted it, the user finishes it after
     /// the turn. See [`UserToolOutcome`].
     UserTool {
         /// The draft, as the tool defines its arguments; patched as the

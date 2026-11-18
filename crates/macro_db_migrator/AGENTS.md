@@ -2,7 +2,7 @@
 
 ## What it is
 
-Exposes MacroDB's embedded SQLx migrator without pulling in the database client.
+Exposes RoxDB's embedded SQLx migrator without pulling in the database client.
 Migration files belong in `../macro_db_client/migrations/`.
 
 ## Start here
@@ -14,7 +14,7 @@ Migration files belong in `../macro_db_client/migrations/`.
 ## Scope
 
 - Owns: embedding migrations and testing migration sequencing and atomicity.
-- Not here: application queries or schema files; use the owning crate or MacroDB client.
+- Not here: application queries or schema files; use the owning crate or RoxDB client.
 
 ## Checks
 

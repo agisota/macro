@@ -19,7 +19,7 @@ responses, with SSRF protections since both accept user-supplied URLs.
 ## Scope
 
 - Owns: fetching and parsing link metadata, and safely proxying external
-  images, for any caller inside Macro.
+  images, for any caller inside Rox.
 - Not here: anything unrelated to fetching third-party URLs.
 
 ## Checks

@@ -8,7 +8,7 @@ import {
   rowPillClasses,
   rowPillTriggerClasses,
 } from '@entity/components/row-pill';
-import MacroIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import BuildingsIcon from '@icon/system/regular/buildings.svg';
 import HashIcon from '@icon/system/regular/hash.svg';
 import ListChecksIcon from '@icon/system/regular/list-checks.svg';
@@ -390,7 +390,7 @@ export function PrOriginIcon(props: { tool: PrOriginTool; class?: string }) {
       .with('claude', () => ClaudeIcon)
       .with('codex', () => CodexIcon)
       .with('cursor', () => CursorIcon)
-      .with('macro', () => MacroIcon)
+      .with('macro', () => RoxMark)
       .with('copilot', () => GithubIcon)
       .with('devin', 'jules', () => RobotIcon)
       .exhaustive();
@@ -403,19 +403,19 @@ export function PrOriginIcon(props: { tool: PrOriginTool; class?: string }) {
   );
 }
 
-/** "Claude, from its branch name"; Macro sessions say which tool they ran. */
+/** "Claude, from its branch name"; Rox sessions say which tool they ran. */
 export function prOriginDescription(origin: PrOrigin) {
   const tool = PR_ORIGIN_LABELS[origin.tool];
   if (origin.signal === 'agent-session')
     return origin.tool === 'macro'
-      ? 'Started from a Macro agent session'
-      : `Started from ${tool} in a Macro agent session`;
+      ? 'Started from a Rox agent session'
+      : `Started from ${tool} in a Rox agent session`;
   return `Started from ${tool}, ${PR_ORIGIN_SIGNAL_LABELS[origin.signal]}`;
 }
 
 /**
  * Where the pull request was started. Opens the originating session: the
- * Macro agent session in a split, or the external session link in a tab.
+ * Rox agent session in a split, or the external session link in a tab.
  */
 export function PrOriginBadge(props: { origin: PrOrigin; onOpen: OpenPrLink }) {
   const target = () => props.origin.sessionId ?? props.origin.url;

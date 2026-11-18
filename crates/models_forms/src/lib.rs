@@ -1,5 +1,5 @@
 #![deny(missing_docs)]
-//! The wire types of Macro Forms: ids, the layout a form shows a table's
+//! The wire types of Rox Forms: ids, the layout a form shows a table's
 //! columns in, answers, submission outcomes, summaries and errors. A form is
 //! a view of one database table, so answers are `models_databases` cells and
 //! gate rules are `models_databases` filters.

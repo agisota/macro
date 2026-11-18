@@ -1045,7 +1045,7 @@
         meta.mainProgram = "goalert-mcp";
       };
 
-      # Starts goalert-mcp against Macro's GoAlert with the admin login read
+      # Starts goalert-mcp against Rox's GoAlert with the admin login read
       # from Doppler at launch, read-only unless GOALERT_READ_ONLY=false.
       goalert-mcp-macro = pkgs.writeShellApplication {
         name = "goalert-mcp-macro";
@@ -1425,7 +1425,7 @@
 
         # Keep release builds independent of optional developer tools in the
         # default shell. In particular, adding Hermes there must not make
-        # macrod releases fetch or realize Hermes and its Python/npm closure.
+        # roxd releases fetch or realize Hermes and its Python/npm closure.
         agent-daemon = pkgs.mkShell {
           packages = [
             rustToolchain

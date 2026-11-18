@@ -25,7 +25,7 @@ sudo security add-trusted-cert -d -r trustRoot \
   -k /Library/Keychains/System.keychain infra/local/certs/ca.pem
 
 # Linux (Debian/Ubuntu)
-sudo cp infra/local/certs/ca.pem /usr/local/share/ca-certificates/macro-local-ca.crt
+sudo cp infra/local/certs/ca.pem /usr/local/share/ca-certificates/rox-local-ca.crt
 sudo update-ca-certificates
 ```
 

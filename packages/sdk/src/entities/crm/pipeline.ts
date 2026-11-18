@@ -599,7 +599,7 @@ export class CrmPipeline extends MacroEntity<AccessiblePipeline> {
   /**
    * Save up to 5000 entries as a CSV file; check `complete` before treating it as a full export.
    *
-   * Saved in the caller's Macro files, laid out as {@link CrmPipeline.exportCsv} returns it.
+   * Saved in the caller's Rox files, laid out as {@link CrmPipeline.exportCsv} returns it.
    *
    * @write
    */

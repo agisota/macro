@@ -9,7 +9,7 @@ type ReactionChipProps = {
   emoji: string;
   count: number;
   users: string[];
-  /** Names of reactors outside Macro, by their id in `users`. */
+  /** Names of reactors outside Rox, by their id in `users`. */
   names?: Record<string, string>;
   currentUserId: string | undefined;
   selected?: boolean;
@@ -21,7 +21,7 @@ type ReactionChipProps = {
  * Format a list of user display names with Oxford comma style.
  * Current user ("You") is always listed first regardless of input order.
  * e.g. "You", "You and Alice", "You, Alice, and Bob"
- * Reactors outside Macro go by their entry in `externalNames`; without one they
+ * Reactors outside Rox go by their entry in `externalNames`; without one they
  * are counted as other people.
  */
 export function formatReactorNames(

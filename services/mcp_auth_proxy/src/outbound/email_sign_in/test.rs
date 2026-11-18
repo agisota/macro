@@ -18,7 +18,7 @@ const EMAIL: &str = "user+tag@example.com";
 async fn provider(server: &MockServer) -> AuthServiceEmailCodes {
     AuthServiceEmailCodes::new(
         &format!("{}/auth", server.uri()),
-        "https://mcp.macro.com/oauth/callback".to_owned(),
+        "https://mcp.rox.one/oauth/callback".to_owned(),
     )
     .expect("provider should build")
 }
@@ -29,7 +29,7 @@ async fn answer_code_request(status: u16, body: serde_json::Value) -> MockServer
         .and(path("/auth/login/passwordless"))
         .and(body_partial_json(serde_json::json!({
             "email": EMAIL,
-            "redirect_uri": "https://mcp.macro.com/oauth/callback",
+            "redirect_uri": "https://mcp.rox.one/oauth/callback",
         })))
         .respond_with(ResponseTemplate::new(status).set_body_json(body))
         .mount(&server)

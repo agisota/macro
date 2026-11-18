@@ -30,7 +30,7 @@ const PROMPTS: &[(&str, &[&str])] = &[
         &["workspace"],
     ),
     (
-        "What did I ask Macro in my AI chat about the offsite?",
+        "What did I ask Rox in my AI chat about the offsite?",
         &["chats"],
     ),
     (

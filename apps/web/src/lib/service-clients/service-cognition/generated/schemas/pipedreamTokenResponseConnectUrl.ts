@@ -6,7 +6,7 @@
  */
 
 /**
- * URL to open in a popup or browser tab for Macro Connect's consent
+ * URL to open in a popup or browser tab for Rox Connect's consent
 flow; once it finishes, call `/pipedream/mcp/connect/complete`.
 Connect only.
  */

@@ -3,7 +3,7 @@ import { toast } from '@core/component/Toast/Toast';
 import { useEmail, useIsAuthenticated } from '@core/context/user';
 import { idToDisplayName } from '@core/user/util';
 import { fireAndForget } from '@core/util/fireAndForget';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import CopyIcon from '@icon/system/regular/copy.svg';
 import LinkIcon from '@icon/system/regular/link.svg';
 import XIcon from '@icon/system/regular/x.svg';
@@ -34,7 +34,7 @@ import {
   type InviteStatusTone,
 } from './core/invite-link';
 
-const STAFF_EMAIL_DOMAIN = '@macro.com';
+const STAFF_EMAIL_DOMAIN = '@rox.one';
 
 /**
  * Internal portal for the GTM team: mint personal 48-hour invite links and
@@ -59,7 +59,7 @@ export function InviteLinksPortal() {
     <div class="size-full overflow-y-auto bg-surface font-sans text-ink">
       <div class="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-10">
         <header class="flex items-center gap-3">
-          <LogoIcon class="size-8 text-accent" />
+          <RoxMark class="size-8" />
           <div class="flex flex-col">
             <h1 class="text-xl font-semibold tracking-tight">Invite links</h1>
             <p class="text-sm text-ink-muted">
@@ -73,7 +73,7 @@ export function InviteLinksPortal() {
           <Match when={isAuthenticated() === false}>
             <Gate
               title="Log in to continue"
-              body="This page is for Macro staff."
+              body="This page is for Rox staff."
               action={
                 <Button
                   variant="primary"
@@ -91,8 +91,8 @@ export function InviteLinksPortal() {
           </Match>
           <Match when={isAuthenticated() === true && !isStaff()}>
             <Gate
-              title="Macro staff only"
-              body="Invite links can only be created from a @macro.com account."
+              title="Rox staff only"
+              body="Invite links can only be created from a @rox.one account."
             />
           </Match>
           <Match when={isAuthenticated() === true && isStaff()}>

@@ -1,17 +1,17 @@
 ---
 title: Add Macro MCP
 icon: "plug"
-description: Connect AI clients to the Macro MCP server.
+description: Connect AI clients to the Rox MCP server.
 ---
 
-Macro's MCP endpoint is:
+Rox's MCP endpoint is:
 
 ```text
-https://mcp-server.macro.com/mcp
+https://mcp-server.rox.one/mcp
 ```
 
-The server is remote; no local process is required. Authentication happens through Macro's OAuth flow when the client connects. Sign in with Google, a code sent to your email, or a password.
-MCP access is available on every Macro plan, including Free.
+The server is remote; no local process is required. Authentication happens through Rox's OAuth flow when the client connects. Sign in with Google, a code sent to your email, or a password.
+MCP access is available on every Rox plan, including Free.
 
 ## Claude
 
@@ -24,7 +24,7 @@ If your ChatGPT workspace supports [custom MCP apps](https://help.openai.com/en/
 ## Claude Code
 
 ```bash
-claude mcp add --transport http macro https://mcp-server.macro.com/mcp
+claude mcp add --transport http macro https://mcp-server.rox.one/mcp
 ```
 
 Start Claude Code, use the `macro` MCP server, and complete the browser sign-in flow when prompted.
@@ -32,7 +32,7 @@ Start Claude Code, use the `macro` MCP server, and complete the browser sign-in 
 ## Codex CLI
 
 ```bash
-codex mcp add macro --url https://mcp-server.macro.com/mcp
+codex mcp add macro --url https://mcp-server.rox.one/mcp
 ```
 
 Start Codex CLI, invoke the `macro` MCP server, and complete the OAuth login flow in the browser.
@@ -44,7 +44,7 @@ If your client runs on another machine, such as over SSH or in a container, a br
 1. Start the login on the remote machine. For Claude Code, run `claude mcp login macro --no-browser`. For Codex CLI, run `codex mcp login macro`.
 2. Open the printed link in a browser on your computer.
 3. Select **The app I'm connecting runs on another machine**, then choose how to sign in.
-4. After you sign in, Macro shows a link and a `curl` command. If your client asks for a redirect URL, as Claude Code does, paste the link. Otherwise, run the `curl` command on the remote machine while the client is waiting, as with Codex CLI.
+4. After you sign in, Rox shows a link and a `curl` command. If your client asks for a redirect URL, as Claude Code does, paste the link. Otherwise, run the `curl` command on the remote machine while the client is waiting, as with Codex CLI.
 
 ## IDE / JSON Configuration
 
@@ -54,7 +54,7 @@ For editors that accept JSON MCP server config, add this under `mcpServers`:
 {
   "macro": {
     "type": "http",
-    "url": "https://mcp-server.macro.com/mcp"
+    "url": "https://mcp-server.rox.one/mcp"
   }
 }
 ```

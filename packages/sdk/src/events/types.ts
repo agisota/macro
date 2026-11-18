@@ -11,10 +11,10 @@ import type { hydrateDocumentEvent } from './hydrate/document';
 import type { hydrateMessageEvent } from './hydrate/message';
 import type { hydrateUserEvent } from './hydrate/user';
 
-/** A webhook delivery body, exactly as Macro serializes it. */
+/** A webhook delivery body, exactly as Rox serializes it. */
 export type MacroEvent = WebhookEvent;
 
-/** Every entity event name Macro can deliver. */
+/** Every entity event name Rox can deliver. */
 export type EventName = MacroEvent['event_type'];
 
 /** The raw `metadata` payload delivered with a given event. */
@@ -53,7 +53,7 @@ export type EventHandler<E extends EventName> = (
   event: EventMap[E],
 ) => void | Promise<void>;
 
-/** The headers Macro sends on every webhook delivery. */
+/** The headers Rox sends on every webhook delivery. */
 export interface DeliveryHeaders {
   event?: string; // X-Macro-Event
   eventId?: string; // X-Macro-Event-Id

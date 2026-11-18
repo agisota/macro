@@ -25,8 +25,8 @@ pub struct EditComment {
     )]
     pub comment_id: Uuid,
 
-    /// The replacement Macro Markdown body.
-    #[schemars(description = "The full replacement text of the comment, in Macro markdown.")]
+    /// The replacement Rox Markdown body.
+    #[schemars(description = "The full replacement text of the comment, in Rox markdown.")]
     pub content: String,
 }
 

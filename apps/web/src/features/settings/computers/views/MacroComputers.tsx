@@ -394,7 +394,7 @@ function ManagedComputerRow(props: {
 }
 
 /**
- * The team's Macro computers on Settings → Machines: every member sees the
+ * The team's Rox computers on Settings → Machines: every member sees the
  * list; team admins also get the call to buy one and the power and billing
  * controls; whoever may manage a computer's Claude gets those.
  */

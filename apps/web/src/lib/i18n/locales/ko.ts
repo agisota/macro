@@ -116,7 +116,7 @@ export default {
     agentDescription: '에이전트 세션 만들기',
     agentHint: '전용 에이전트 세션',
     routineLabel: '루틴',
-    routineDescription: '일정 또는 Macro 활동에 따라 모델이나 에이전트 실행',
+    routineDescription: '일정 또는 Rox 활동에 따라 모델이나 에이전트 실행',
     routineHint: '일정 및 활동 트리거',
     databaseLabel: '데이터베이스',
     databaseDescription: '데이터베이스 만들기',
@@ -322,7 +322,7 @@ export default {
     projectShortTagline: '관련 작업 정리',
     reminderTagline: '원하는 시간에 나에게 알림',
     reminderDetails:
-      '다시 확인하고 싶은 일에 리마인더를 설정합니다.\n시간을 선택하면 Macro가 다시 알려 줍니다.',
+      '다시 확인하고 싶은 일에 리마인더를 설정합니다.\n시간을 선택하면 Rox가 다시 알려 줍니다.',
     reminderExample1: '다시 전화하기',
     reminderExample2: '금요일에 확인하기',
     reminderExample3: '라이선스 갱신',
@@ -401,7 +401,7 @@ export default {
     guideTag: '작업에 태그를 붙여 프로젝트 전반에서 정리하고 필터링합니다.',
     guideConversation: '기존 에이전트와 대화를 시작합니다.',
     guideWorkAgent:
-      '지침과 Macro 워크스페이스 접근 권한을 갖춘 어시스턴트를 만듭니다.',
+      '지침과 Rox 워크스페이스 접근 권한을 갖춘 어시스턴트를 만듭니다.',
     guideCodingAgent: '연결된 코딩 환경에서 작동하는 에이전트를 만듭니다.',
     guideRoutine: '정기 일정에 따라 실행되는 에이전트를 설정합니다.',
     guideCompany: '조직과 소속 인물, 조직과의 관계를 추적합니다.',
@@ -668,20 +668,20 @@ export default {
     updateAvailable: '업데이트 가능',
     updateNewVersionTitle: '새 버전 사용 가능',
     updateWebDescription:
-      'Macro의 새 버전이 준비되었습니다. 페이지를 새로고침하면 사용할 수 있습니다.',
+      'Rox의 새 버전이 준비되었습니다. 페이지를 새로고침하면 사용할 수 있습니다.',
     updateWebFailedLoadDescription:
-      '새 버전이 출시되어 Macro의 일부를 불러오지 못했습니다. 페이지를 새로고침하면 사용할 수 있습니다.',
+      '새 버전이 출시되어 Rox의 일부를 불러오지 못했습니다. 페이지를 새로고침하면 사용할 수 있습니다.',
     updateReload: '새로고침',
     updateReadyTitle: '업데이트 준비 완료',
     updateBundleDescription:
-      'Macro 데스크톱 앱의 새 버전을 다운로드했습니다. 업데이트하면 사용할 수 있습니다.',
+      'Rox 데스크톱 앱의 새 버전을 다운로드했습니다. 업데이트하면 사용할 수 있습니다.',
     updateAction: '업데이트',
     updateDesktopReadyTitle: '데스크톱 앱 업데이트 준비 완료',
     updateNativeDescription:
-      'Macro를 다시 시작해 설치하거나, 계속 작업하면 종료할 때 설치됩니다.',
+      'Rox를 다시 시작해 설치하거나, 계속 작업하면 종료할 때 설치됩니다.',
     updateRestartAndUpdate: '다시 시작 및 업데이트',
     updateNativePreparingDescription:
-      '업데이트를 설치하기 위해 Macro를 다시 시작하기 전에 작업 내용을 저장하는 중입니다.',
+      '업데이트를 설치하기 위해 Rox를 다시 시작하기 전에 작업 내용을 저장하는 중입니다.',
     updatePreparingRestart: '다시 시작 준비 중…',
   },
   settingsLanguage: {
@@ -693,7 +693,7 @@ export default {
     yourLanguage: '내 언어',
     yourLanguageDescription: '나에게만 팀 언어 대신 적용됩니다.',
     yourLanguageNoTeamDescription:
-      'Macro가 나에게 표시되는 언어입니다. 자동으로 설정하면 브라우저 언어를 따릅니다.',
+      'Rox가 나에게 표시되는 언어입니다. 자동으로 설정하면 브라우저 언어를 따릅니다.',
     useTeamLanguage: '팀 언어 사용({{language}})',
     automatic: '자동({{language}})',
     teamAutomatic: '자동(각 구성원의 브라우저 언어)',

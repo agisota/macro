@@ -29,7 +29,7 @@ export type EventType = {
   description: string;
   durationMinutes: number;
   location: string;
-  /** Create a Macro call and attach its join link when someone books. */
+  /** Create a Rox call and attach its join link when someone books. */
   macroCall: boolean;
   googleMeet: boolean;
   enabled: boolean;
@@ -257,7 +257,7 @@ export function meetingPlaceLabel(event: {
   googleMeet: boolean;
   location: string;
 }): string {
-  if (event.macroCall) return 'Macro call';
+  if (event.macroCall) return 'Rox call';
   if (event.googleMeet) return 'Video meeting';
   return event.location || 'Meeting';
 }

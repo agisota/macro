@@ -6,6 +6,6 @@
  */
 
 /**
- * The Macro entity type (`task` | `md` | `channel`), once imported.
+ * The Rox entity type (`task` | `md` | `channel`), once imported.
  */
 export type ImportEntityEntityType = string | null;

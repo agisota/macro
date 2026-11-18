@@ -1,6 +1,6 @@
-//! Lists Macro's deferred tools so the model knows they exist.
+//! Lists Rox's deferred tools so the model knows they exist.
 //!
-//! Most of Macro's tools are not sent with every request: their parameter
+//! Most of Rox's tools are not sent with every request: their parameter
 //! schemas are large and most turns never use them. The model still needs to
 //! know they exist, so this section names each one with a one-line summary,
 //! and the model loads the ones it needs with `LoadTools`.
@@ -11,7 +11,7 @@
 #[cfg(test)]
 mod test;
 
-static TITLE: &str = "More Macro Tools";
+static TITLE: &str = "More Rox Tools";
 
 /// The most of a description a summary keeps when it has no sentence break.
 const MAX_SUMMARY_CHARS: usize = 200;

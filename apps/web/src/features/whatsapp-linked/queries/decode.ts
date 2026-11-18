@@ -20,7 +20,7 @@ export function decodeAccount(
   };
 }
 
-/** `ownerName` resolves a Macro user id; production reads the shared name cache. */
+/** `ownerName` resolves a Rox user id; production reads the shared name cache. */
 export function decodeChat(
   chat: WireChat,
   ownerName: (ownerId: string) => string

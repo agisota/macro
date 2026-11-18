@@ -22,8 +22,8 @@ import githubVideo from './assets/github.mp4';
 import githubPoster from './assets/github-poster.jpg';
 import homeVideo from './assets/home.mp4';
 import homePoster from './assets/home-poster.jpg';
-import macrodVideo from './assets/macrod.mp4';
-import macrodPoster from './assets/macrod-poster.jpg';
+import roxdVideo from './assets/roxd.mp4';
+import roxdPoster from './assets/roxd-poster.jpg';
 import mailVideo from './assets/mail.mp4';
 import mailPoster from './assets/mail-poster.jpg';
 import schedulingVideo from './assets/scheduling.mp4';
@@ -38,9 +38,9 @@ import type { TutorialId } from './core/tutorial-id';
 
 export type Tutorial = {
   id: TutorialId;
-  /** "Learn how to use Macro Mail" */
+  /** "Learn how to use Rox Mail" */
   readonly title: string;
-  /** The block's name in a sentence, like "Macro Mail". */
+  /** The block's name in a sentence, like "Rox Mail". */
   readonly block: string;
   /** One line under the title in a row. */
   readonly snippet: string;
@@ -313,22 +313,22 @@ export const TUTORIALS: Partial<Record<TutorialId, Tutorial>> = {
     videoUrl: webHostedUrl(agentsVideo),
     posterUrl: agentsPoster,
   },
-  macrod: {
-    id: 'macrod',
+  roxd: {
+    id: 'roxd',
     get title() {
-      return t('tutorials.macrodTitle');
+      return t('tutorials.roxdTitle');
     },
     get block() {
-      return t('tutorials.macrodBlock');
+      return t('tutorials.roxdBlock');
     },
     get snippet() {
-      return t('tutorials.macrodSnippet');
+      return t('tutorials.roxdSnippet');
     },
     get length() {
-      return t('tutorials.macrodLength');
+      return t('tutorials.roxdLength');
     },
-    videoUrl: webHostedUrl(macrodVideo),
-    posterUrl: macrodPoster,
+    videoUrl: webHostedUrl(roxdVideo),
+    posterUrl: roxdPoster,
   },
   drive: {
     id: 'drive',

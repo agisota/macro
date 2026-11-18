@@ -75,7 +75,7 @@ export function TeamInviteLinkAcceptance(props: { token: string }) {
             </h2>
             <p class="text-sm text-ink-muted">
               You've been invited to join{' '}
-              <span class="text-ink">{teamName()}</span> on Macro.
+              <span class="text-ink">{teamName()}</span> on Rox.
             </p>
           </div>
           <Button

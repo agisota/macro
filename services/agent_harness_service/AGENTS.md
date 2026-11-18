@@ -21,7 +21,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   crate's own router (`agent_session`, `agent_changes`, `agent_egress`,
   `agent_harness`).
 - `src/model_providers/`: per-harness runtime adapters — `cursor.rs`,
-  `macrod.rs`, `in_memory.rs`.
+  `roxd.rs`, `in_memory.rs`.
 - `src/containers.rs`: Daytona sandbox lifecycle; local Docker opt-in.
 - `src/runtime_gauges.rs`: one task recording, every minute, what the process
   holds per session as OTel gauges (`ahs.harness.workers`,
@@ -41,12 +41,12 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   sandbox's SDK calls join the session's trace.
 - `src/anthropic_gateway.rs` + `src/anthropic_gateway/`: `/anthropic/v1/messages`
   and `/anthropic/v1/messages/count_tokens` on the egress listener, for runtimes
-  on Macro credits (Claude Code on a Macro computer). Both values come from
+  on Rox credits (Claude Code on a Rox computer). Both values come from
   the `macro_internal` MCP server in `session/new`/`load`/`resume`:
   `ANTHROPIC_BASE_URL` is its URL with `/mcp/internal` replaced by
   `/anthropic`, and `ANTHROPIC_AUTH_TOKEN` is the session egress token from
   its `Authorization: Bearer` header (re-minted on every attach, so restart
-  the runtime with the latest one). Only sessions whose bot runs on a live Macro
+  the runtime with the latest one). Only sessions whose bot runs on a live Rox
   computer harness (`harnesses.computer_id`) are served; anything else, a
   failed lookup included, is a 403 with nothing forwarded. The
   `enable-macro-computers` rollout is not checked: it limits selling
@@ -61,7 +61,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   not stop the read: the rest is drained (up to ten minutes) so its usage is
   still recorded. Span: `anthropic_gateway.messages`.
   `/brain/anthropic/*` serves agent teammates' brains the same way, but
-  authenticates the agent's own Macro API key (`anthropic_gateway/brain.rs`)
+  authenticates the agent's own Rox API key (`anthropic_gateway/brain.rs`)
   and counts usage against the agent account, with no session entity. It
   serves only agents with `enable-agent-teammates` on for their creator
   (`BrainRollout` over `agent_credentials::rollout`; PostHog never targets an
@@ -91,9 +91,9 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   every computer creation asks the auth service's internal
   `/internal/team_agent_enrollment` route, so an agent computer never enrolls
   without its agent.
-- `src/computers.rs`: passes shared computer/pairing IDs and validated Macro buyer IDs
+- `src/computers.rs`: passes shared computer/pairing IDs and validated Rox buyer IDs
   directly between the hosted-runtime and harness services; configures the optional fleet operator, runs fleet effects,
-  timers and reconciliation, and reports macrod presence. `COMPUTERS_FLEET` selects
+  timers and reconciliation, and reports roxd presence. `COMPUTERS_FLEET` selects
   `incus` or local-only `docker`; absence means no attached fleet, emits one startup
   warning and starts no operator. Selected groups remain strictly validated.
   Shutdown stops computer passes through the shared CancellationToken and waits
@@ -111,7 +111,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   (Claude sign-in included) and every member can run agents on it.
   `src/computers/default_agent.rs` creates the team's `<buyer first name>'s Agent`
   (`Agent` without one, read from `macro_user_info`) coding agent through
-  `BotService::create_agent` as the buyer (macrod harness, `default` model, all
+  `BotService::create_agent` as the buyer (roxd harness, `default` model, all
   channels, owner connections, the bots default of bypassing permissions on a
   computer), skipping a harness `HarnessAssignments::bots_on_harness` already
   lists; the handle is the settings editor's slug, suffixed past handles the
@@ -120,7 +120,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   harnesses keep their agents bound when deleted, so a retry still finds them.
 - Computer lifecycle and gateway adapters carry canonical `ComputerId` and
   `HarnessId`; unwrap only at the harness/storage boundary.
-- `src/computers/claude.rs`: Claude sign-in on Macro computers. All routes
+- `src/computers/claude.rs`: Claude sign-in on Rox computers. All routes
   require the caller's `enable-macro-computers` flag through
   `hosted_runtimes::domain::rollout::ComputerRollout` (missing providers/flags
   and evaluation errors return 403) and an attached fleet (503).
@@ -191,7 +191,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   content. The test `every_sdk_host_holds_a_scoped_credential_to_its_scope`
   fails for a host the SDK can reach (`code_mode_assets::HOSTS`) that isn't
   an `SdkHost`, and records how each host's service holds a scoped session's
-  credential to its scope: `propagate`, `enforce_signed_scope`, or no Macro
+  credential to its scope: `propagate`, `enforce_signed_scope`, or no Rox
   credential accepted. A new host picks one before it ships.
   `src/public_mcp/analytics.rs` sends PostHog `$mcp_initialize` /
   `$mcp_tool_call` events (PostHog MCP analytics schema) in the background,
@@ -262,7 +262,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   Routine code steps run through `src/routine_code.rs`,
   on routines' own Deno executor (own slots, CPU limit, lower priority) and
   type checker, with a token for the owner's access (`mint_for_routine`):
-  attributed to Macro acting for them, or, when the routine sets
+  attributed to Rox acting for them, or, when the routine sets
   `dangerously_operate_as_user`, to the owner with no agent badge. Every such
   token carries the routine id, which the events its writes produce keep, so
   they never start routines. A dry run's token (a code upgrade's check of a
@@ -279,7 +279,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   every minute and starts nightly generations every five minutes, once the
   process is ready.
   Accepted background prompt suggestions run in hidden, billable sessions of the
-  in-process Macro agent (`SuggestionRunSessions` in `scheduling.rs`, which reads
+  in-process Rox agent (`SuggestionRunSessions` in `scheduling.rs`, which reads
   every page of a session's activity for what it created, each item once). Runs
   move from their sessions' lifecycle events and a reconcile sweep every five
   minutes. Reply suggestions read who they wait on from their email thread or
@@ -294,7 +294,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
   (`CalendarTimeZones`).
   A step waits up to five minutes for one of `ROUTINE_CODE_SLOTS` before its
   credential is minted, so its token and 30-second limit start when it runs;
-  a step that never gets one fails with "Macro was busy running other
+  a step that never gets one fails with "Rox was busy running other
   routines".
 - `src/preview.rs` + `src/preview/`: preview control routes, public HTTP and SSH listeners;
   lease/ticket and authorization logic lives in `crates/agent_preview`. The shared
@@ -346,7 +346,7 @@ network/resource-only Pulumi stacks; they do not host extra agent processes.
 
 The composition root wires `PgExternalReplyStore` into the harness and recovers
 unfinished external chat replies alongside conversation recovery every ten seconds.
-Both the backend and macrod's source-message action IDs are required for replies
+Both the backend and roxd's source-message action IDs are required for replies
 from newly triggered external chat turns to finish in their channel threads.
 
 The cancellable, tracked notification worker calls `recover_notifications`
@@ -397,8 +397,8 @@ Local orchestration supplies every value explicitly for each fleet; see
 All feature configs read the same harness `APP_SECRETS_JSON`; the harness
 Doppler validation binary validates each config. Stable public origins resolve
 once at startup through `macro_service_urls`: `McpPublicUrl` preserves the
-`mcp-server[-dev].macro.com` OAuth identity, `CognitionPublicUrl` preserves
-`document-cognition[-dev].macro.com` integration callbacks, and `AppServiceUrl`
+`mcp-server[-dev].rox.one` OAuth identity, `CognitionPublicUrl` preserves
+`document-cognition[-dev].rox.one` integration callbacks, and `AppServiceUrl`
 supplies browser links and preview form origin. Preview control accepts the
 `PreviewGatewayUrl` host (plus app/loopback hosts locally). Use process-level
 `OVERRIDE_*` values for local instances; each computer enrollment carries a
@@ -459,14 +459,14 @@ listener failure shuts down the process so ECS can replace the task.
   never add tool arguments or results to them.
 - Public MCP tool calls run for the `ToolCaller` the bearer middleware
   (`mcp_auth_proxy`) attached, and a call without one is refused: `Agent` (a
-  Macro API token's signed `agent_id`, which egress mints from the session's
+  Rox API token's signed `agent_id`, which egress mints from the session's
   `agent_session.bot_id`) writes as that agent, under the bot's own name (read
   per call, so its document edits label their live cursors with it);
-  `McpClient` (OAuth) writes as the Macro bot labelled with the client's name
-  (shown as the author); `ApiKey` writes as the Macro bot. Public `ExecuteCode`
+  `McpClient` (OAuth) writes as the Rox bot labelled with the client's name
+  (shown as the author); `ApiKey` writes as the Rox bot. Public `ExecuteCode`
   builds its context per call from the caller and signs the same attribution
-  into its SDK token: the agent, or the Macro bot plus the client name as
-  `agent_via`. The OAuth broker signs the same Macro bot attribution into the
+  into its SDK token: the agent, or the Rox bot plus the client name as
+  `agent_via`. The OAuth broker signs the same Rox bot attribution into the
   tokens it issues for the ChatGPT MCP Worker's resource
   (`McpChatgptServiceUrl`; `public_mcp/macro_api_tokens.rs`). Never read a bot
   id or client name from the request itself.
@@ -490,7 +490,7 @@ bridge hostname, preserving Host validation for other origins.
 Hosted computer Claude account requests require the operator-derived
 `FleetAttachment` after the existing rollout and Manage authorization (on a
 computer, the team's owner and admins); no
-attachment answers typed 503 before any command. macrod ingress keeps its
+attachment answers typed 503 before any command. roxd ingress keeps its
 existing authorization.
 Authentication checks the owning hosted host heartbeat per request, so its
 attachment observation can briefly differ from this service's operator presence.

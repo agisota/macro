@@ -400,7 +400,7 @@ async fn bound_agents_lists_only_live_agents_of_this_harness(pool: PgPool) {
     sqlx::query!(
         r#"
         INSERT INTO agent_configs (bot_id, instructions, harness, default_model, channel_scope, harness_id, is_coding)
-        VALUES ($1, 'prompt', 'macrod', 'default', 'all', $2, true)
+        VALUES ($1, 'prompt', 'roxd', 'default', 'all', $2, true)
         "#,
         bot_id,
         harness_id,
@@ -477,7 +477,7 @@ async fn sessions_list_only_this_harness_newest_first(pool: PgPool) {
     sqlx::query!(
         r#"
         INSERT INTO agent_configs (bot_id, instructions, harness, default_model, channel_scope, harness_id, is_coding)
-        VALUES ($1, 'prompt', 'macrod', 'default', 'all', $2, true)
+        VALUES ($1, 'prompt', 'roxd', 'default', 'all', $2, true)
         "#,
         bot_id,
         harness_id,
@@ -495,7 +495,7 @@ async fn sessions_list_only_this_harness_newest_first(pool: PgPool) {
             INSERT INTO agent_session
                 (id, owner_id, bot_id, model, harness, workspace, status, status_event_name,
                  created_at, modified_at)
-            VALUES ($1, $2, $3, 'default', 'macrod', '/workspace', $4, $5,
+            VALUES ($1, $2, $3, 'default', 'roxd', '/workspace', $4, $5,
                     now() - make_interval(mins => $6), now() - make_interval(mins => $6))
             "#,
             Uuid::new_v4(),
@@ -804,7 +804,7 @@ async fn hosted_pairing_is_born_approved_rotates_on_retry_and_claims_once(pool: 
     .unwrap();
     sqlx::query!(
         r#"INSERT INTO agent_configs (bot_id, instructions, harness, default_model, channel_scope, harness_id, is_coding)
-           VALUES ($1, 'prompt', 'macrod', 'default', 'all', $2, true)"#,
+           VALUES ($1, 'prompt', 'roxd', 'default', 'all', $2, true)"#,
         bot_id, harness_id.as_uuid(),
     ).execute(&pool).await.unwrap();
     let second_token = HashedHarnessToken::from_raw(&tokens::generate_harness_token());
@@ -1374,7 +1374,7 @@ async fn bound_agent(pool: &PgPool, harness: HarnessId, owner: &str, is_coding: 
     sqlx::query!(
         r#"
         INSERT INTO agent_configs (bot_id, instructions, harness, default_model, channel_scope, harness_id, is_coding)
-        VALUES ($1, 'prompt', 'macrod', 'default', 'all', $2, $3)
+        VALUES ($1, 'prompt', 'roxd', 'default', 'all', $2, $3)
         "#,
         bot_id,
         harness.as_uuid(),
@@ -1595,7 +1595,7 @@ async fn a_bot_has_a_computer_only_on_a_live_computer_harness(pool: PgPool) {
         sqlx::query!(
             r#"
             INSERT INTO agent_configs (bot_id, instructions, harness, default_model, channel_scope, harness_id, is_coding)
-            VALUES ($1, 'prompt', 'macrod', 'default', 'all', $2, true)
+            VALUES ($1, 'prompt', 'roxd', 'default', 'all', $2, true)
             "#,
             bot,
             harness,

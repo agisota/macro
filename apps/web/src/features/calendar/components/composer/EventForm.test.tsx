@@ -113,13 +113,13 @@ it('settles after a typed title instead of editing itself', async () => {
   expect(edits.count).toBeLessThan(10);
 });
 
-it('settles after a Macro call is picked', async () => {
+it('settles after a Rox call is picked', async () => {
   const user = userEvent.setup();
   const edits = showForm();
   const trigger = screen.getByRole('button', { name: /Video conferencing/ });
   await user.click(trigger);
-  await user.click(screen.getByRole('option', { name: 'Macro call' }));
-  expect(trigger.textContent).toContain('Macro call');
+  await user.click(screen.getByRole('option', { name: 'Rox call' }));
+  expect(trigger.textContent).toContain('Rox call');
   expect(edits.count).toBeLessThan(10);
 });
 

@@ -33,7 +33,7 @@ pub enum GraphqlSoupEntityType {
     CalendarEvent,
     /// AI coding agent session entity.
     AgentSession,
-    /// Row of a Macro database table.
+    /// Row of a Rox database table.
     DatabaseRow,
     /// A paired runtime, listed only by attention feeds.
     Harness,
@@ -91,11 +91,11 @@ pub enum GraphqlEntityType {
     ScheduledAction,
     /// Initiative entity.
     Initiative,
-    /// Macro Database entity (a collection of user-defined tables).
+    /// Rox Database entity (a collection of user-defined tables).
     Database,
-    /// Row of a Macro Database table.
+    /// Row of a Rox Database table.
     DatabaseRow,
-    /// Macro Form entity (a questionnaire answered into a database table).
+    /// Rox Form entity (a questionnaire answered into a database table).
     Form,
     /// Independently shared external chat.
     #[graphql(name = "EXTERNAL_CHAT")]

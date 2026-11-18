@@ -61,8 +61,8 @@ pub async fn handler(
         })?;
 
     // Need to explicitly add the markdown file to this list
-    documents.push(("Why use Macro?".to_string(), "md".to_string()));
-    documents.push(("Macro Canvas".to_string(), "canvas".to_string()));
+    documents.push(("Why use Rox?".to_string(), "md".to_string()));
+    documents.push(("Rox Canvas".to_string(), "canvas".to_string()));
 
     tracing::trace!(documents=?documents, elapsed_time=?start_time.elapsed(), "got documents");
 

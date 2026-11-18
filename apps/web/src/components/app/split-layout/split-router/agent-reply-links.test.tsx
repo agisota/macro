@@ -1,7 +1,7 @@
 /**
  * @vitest-environment jsdom
  *
- * A Macro app link in an agent's reply, in its session or in a channel, opens
+ * A Rox app link in an agent's reply, in its session or in a channel, opens
  * in the app in a new split, the way the reply's mention chips do; other links
  * and people's messages still open a browser tab.
  */
@@ -203,10 +203,10 @@ afterEach(() => {
 });
 
 const HOME = { type: 'component', id: 'home' };
-const NOTES = 'Read [the notes](https://dev.macro.com/app/md/doc-1).';
+const NOTES = 'Read [the notes](https://dev.rox.one/app/md/doc-1).';
 
 describe('links in an agent reply', () => {
-  it('opens a Macro document link in a new split', async () => {
+  it('opens a Rox document link in a new split', async () => {
     const { view, contents } = renderSplits(() => agentReply(NOTES));
 
     fireEvent.click(view.getByText('the notes'));
@@ -217,9 +217,9 @@ describe('links in an agent reply', () => {
     expect(windowOpen).not.toHaveBeenCalled();
   });
 
-  it('opens a Macro list view link in a new split', async () => {
+  it('opens a Rox list view link in a new split', async () => {
     const { view, contents } = renderSplits(() =>
-      agentReply('See [your tasks](https://dev.macro.com/app/tasks).')
+      agentReply('See [your tasks](https://dev.rox.one/app/tasks).')
     );
 
     fireEvent.click(view.getByText('your tasks'));
@@ -230,10 +230,10 @@ describe('links in an agent reply', () => {
     expect(windowOpen).not.toHaveBeenCalled();
   });
 
-  it('opens a nested Macro route at its full location', async () => {
+  it('opens a nested Rox route at its full location', async () => {
     const { view, lastRoute } = renderSplits(() =>
       agentReply(
-        'Change it in [appearance settings](https://dev.macro.com/app/settings/appearance).'
+        'Change it in [appearance settings](https://dev.rox.one/app/settings/appearance).'
       )
     );
 
@@ -263,9 +263,9 @@ describe('links in an agent reply', () => {
     expect(contents()).toEqual([HOME]);
   });
 
-  it('leaves a Macro link no route matches to a browser tab', () => {
+  it('leaves a Rox link no route matches to a browser tab', () => {
     const { view, contents } = renderSplits(() =>
-      agentReply('See [nothing](https://dev.macro.com/app/no-such-view/a/b/c).')
+      agentReply('See [nothing](https://dev.rox.one/app/no-such-view/a/b/c).')
     );
 
     fireEvent.click(view.getByText('nothing'));
@@ -291,7 +291,7 @@ describe('links in an agent reply', () => {
 });
 
 describe('links in a channel message', () => {
-  it('opens a Macro link from an agent in a new split', async () => {
+  it('opens a Rox link from an agent in a new split', async () => {
     const { view, contents } = renderSplits(() =>
       channelMessage('bot|agent-1', NOTES)
     );
@@ -304,7 +304,7 @@ describe('links in a channel message', () => {
     expect(windowOpen).not.toHaveBeenCalled();
   });
 
-  it("opens a Macro link from a person's message in a browser tab", () => {
+  it("opens a Rox link from a person's message in a browser tab", () => {
     const { view, contents } = renderSplits(() =>
       channelMessage('macro|person@example.com', NOTES)
     );

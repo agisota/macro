@@ -77,7 +77,7 @@ export function WhatsAppPage(props: {
   const chats = whatsapp.chats(connected);
   const [query, setQuery] = createSignal('');
   const pairing = createPairingFlow(connected, whatsapp);
-  // A pairing handed off from a browser opens here in Macro desktop.
+  // A pairing handed off from a browser opens here in Rox desktop.
   onMount(() => {
     if (props.resumePairingId) pairing.resume(props.resumePairingId);
   });
@@ -110,8 +110,8 @@ export function WhatsAppPage(props: {
     // the authority either way.
     toast.success(
       result.value.remoteUnlinkRequested
-        ? 'Disconnected. Macro will disappear from WhatsApp → Linked devices on your phone shortly.'
-        : 'Disconnected in Macro. To finish, remove Macro under WhatsApp → Linked devices on your phone.'
+        ? 'Disconnected. Rox will disappear from WhatsApp → Linked devices on your phone shortly.'
+        : 'Disconnected in Rox. To finish, remove Rox under WhatsApp → Linked devices on your phone.'
     );
   };
 
@@ -262,7 +262,7 @@ export function WhatsAppPage(props: {
                           <p class="px-4 py-2 text-sm text-ink-extra-muted">
                             {searching()
                               ? 'No chats or contacts match your search. To message someone else, start a new chat with their number.'
-                              : 'Every WhatsApp chat you can add is already in Macro.'}
+                              : 'Every WhatsApp chat you can add is already in Rox.'}
                           </p>
                         </Show>
                         <Show when={sections().unsupported.length}>
@@ -295,7 +295,7 @@ export function WhatsAppPage(props: {
                 open={confirmingDisconnect()}
                 onOpenChange={setConfirmingDisconnect}
                 title="Disconnect WhatsApp?"
-                body="Macro stops syncing and sending from this account. Chats and their history stay in Macro."
+                body="Rox stops syncing and sending from this account. Chats and their history stay in Rox."
                 confirmLabel="Disconnect"
                 tone="danger"
                 pending={whatsapp.isDisconnecting()}

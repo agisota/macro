@@ -139,7 +139,8 @@ the gateway `/email` prefix.
 
 ## Gotchas
 
-- A program (`macro_authorization::is_program_run`) reads Macro's own sign-in emails redacted: every API response passes `rewrite_program_json` with `models_email::sign_in_email::hide_sign_in_emails`, and `GET /email/messages/{id}/eml` refuses one with 403. A person reads them whole.
+- A program (`macro_authorization::is_program_run`) reads Rox's own sign-in emails redacted: every API response passes `rewrite_program_json` with `models_email::sign_in_email::hide_sign_in_emails`, and `GET /email/messages/{id}/eml` refuses one with 403. A person reads them whole.
+- `POST /email/init` without `link_id` returns or creates the claimed handle's non-syncing primary `ROX` link without calling Gmail. `link_id` remains the Gmail/Outlook import path. `outbound/rox_provisioning` calls only the existing mail-host contract with a caller-supplied broker token; no broker token source is wired yet.
 - The API's server spans come from `macro_tower_layers`
   (`api::traced`). tower-http's default `TraceLayer` span is DEBUG, below the
   exporter's INFO filter, so an API wrapped in it sends no server spans.
@@ -157,7 +158,7 @@ the gateway `/email` prefix.
 
 - Forwarded attachments use the source inbox's provider credentials; the email
   domain rechecks the scheduled actor's access before cross-inbox downloads.
-- Macro's own digest emails are filtered out of Signal/email notifications
+- Rox's own digest emails are filtered out of Signal/email notifications
   (#7039) — don't reintroduce a path that notifies on our own sends.
 - Remote signature images and contact photos are fetched only through
   `util/process_pre_insert/sfs_map/public_http.rs`, whose resolver and

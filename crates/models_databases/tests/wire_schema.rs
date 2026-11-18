@@ -128,7 +128,7 @@ fn every_cell_value() -> Vec<CellWrite> {
         CellValue::Number(2.5),
         CellValue::Boolean(true),
         CellValue::Date(Utc.with_ymd_and_hms(2026, 10, 1, 0, 0, 0).unwrap()),
-        CellValue::Link(vec!["https://macro.com".into()]),
+        CellValue::Link(vec!["https://rox.one".into()]),
         CellValue::Options(vec![OptionRef::Id(DONE), OptionRef::Label("Going".into())]),
         CellValue::Entities(vec![EntityRef {
             entity_type: EntityKind::CallRecord,
@@ -328,7 +328,7 @@ fn ops() -> Vec<DatabaseOp> {
         }),
         view(ViewChange::MoveCard {
             row: ROW,
-            lane: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+            lane: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
             before: None,
             after: None,
         }),

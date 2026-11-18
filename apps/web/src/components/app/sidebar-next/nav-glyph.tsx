@@ -2,7 +2,7 @@ import { cn } from '@ui';
 import { type Component, type JSX, Show } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 
-/** Any SVG component — the rail uses the original Macro icon family. */
+/** Any SVG component — the rail uses the original Rox icon family. */
 export type NavIcon = Component<JSX.SvgSVGAttributes<SVGSVGElement>>;
 
 const SWAP = 'absolute inset-0 size-full';

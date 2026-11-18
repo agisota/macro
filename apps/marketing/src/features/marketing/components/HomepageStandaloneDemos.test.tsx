@@ -51,7 +51,7 @@ describe('standalone website demos', () => {
     ).toBe('Austin Barron <austin@example.com>');
     expect(
       (view.getByRole('textbox', { name: 'Cc' }) as HTMLInputElement).value
-    ).toBe('Julia <julia@macro.com>');
+    ).toBe('Julia <julia@rox.one>');
     expect(
       view.getByRole('textbox', { name: 'Email body' }).textContent
     ).toContain('Thanks for joining the demo');
@@ -98,11 +98,11 @@ describe('standalone website demos', () => {
     const view = render(() => <HomepageSpreadsheet />);
     const company = view.getByRole('button', { name: 'Open Coparse' });
     fireEvent.click(company);
-    // The first linked record loads a separate chunk; include its cold test transform.
+    // Cold transforms of the linked-record chunk can exceed the default query budget.
     const dialog = await screen.findByRole(
       'dialog',
       { name: 'Coparse' },
-      { timeout: 3000 }
+      { timeout: 15000 }
     );
     expect(
       (
@@ -140,8 +140,9 @@ describe('standalone website demos', () => {
     fireEvent.click(view.getByRole('button', { name: 'Undo' }));
     expect(view.getByRole('button', { name: 'Open Coparse' })).toBeTruthy();
     expect(fetch).not.toHaveBeenCalled();
-  });
+  }, 20000);
 
+  // The 780-cell synchronous render can exceed 5s under full-suite CPU contention.
   it('edits cells, commits keyboard navigation, and restores edits with undo and redo', () => {
     const view = render(() => <HomepageSpreadsheet />);
     expect(view.getByRole('gridcell', { name: 'B2: Coparse' })).toBeTruthy();
@@ -183,5 +184,5 @@ describe('standalone website demos', () => {
       view.getByRole('gridcell', { name: 'A3: Maya' }).style.fontWeight
     ).toBe('500');
     expect(fetch).not.toHaveBeenCalled();
-  });
+  }, 15000);
 });

@@ -83,10 +83,13 @@ function setupWithTokenSignal(
 const click = (name: string | RegExp) =>
   fireEvent.click(screen.getByRole('button', { name }));
 // Stepper swaps steps on the next frame, so each step is awaited.
-const typeEmail = async (value: string) =>
+const typeEmail = async (value: string) => {
   fireEvent.input(await screen.findByPlaceholderText('you@company.com'), {
     target: { value },
   });
+  const handle = screen.queryByPlaceholderText('Your Rox handle');
+  if (handle) fireEvent.input(handle, { target: { value: 'ada' } });
+};
 const typeCode = async (value: string) =>
   fireEvent.input(await screen.findByLabelText(/code/i), {
     target: { value },
@@ -175,6 +178,46 @@ describe('email sign-in', () => {
       data: { method: 'email' },
     });
     expect(verified).toHaveBeenCalledOnce();
+  });
+
+  it('asks a new person for an address, then a code, then a passkey', async () => {
+    const { fake } = setup({
+      world: { unknownNeedsHandle: true },
+    });
+    click('Continue with email');
+    await typeEmail('new@person.test');
+    click('Continue');
+    const name = await screen.findByPlaceholderText('Your name');
+    fireEvent.input(name, { target: { value: 'Ada' } });
+    expect(screen.getByText('ada@rox.one')).toBeTruthy();
+    click('Use this address');
+    await typeCode('424242');
+    await screen.findByRole('button', { name: 'Add a passkey' });
+    click('Add a passkey');
+    await screen.findByTestId('signed-in');
+    expect(screen.getByTestId('signed-in').textContent).toBe(
+      'new@person.test new'
+    );
+    expect(fake.world.chosenHandles['new@person.test']).toBe('ada');
+    expect(fake.world.passkeys['new@person.test']).toBe('passkey:new@person.test');
+    expect(screen.queryByPlaceholderText('Your Rox handle')).toBeNull();
+  });
+
+  it('asks a known person with a passkey to use it, not to pick an address', async () => {
+    setup({
+      world: { passkeys: { 'returning@acme.com': 'cred-1' } },
+    });
+    click('Continue with email');
+    await typeEmail('returning@acme.com');
+    click('Continue');
+    await typeCode('424242');
+    expect(
+      await screen.findByRole('button', { name: 'Use your passkey' })
+    ).toBeTruthy();
+    expect(screen.queryByPlaceholderText('Your name')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Add a passkey' })).toBeNull();
+    click('Use your passkey');
+    await screen.findByTestId('signed-in');
   });
 
   it('keeps the verify step open on a wrong code', async () => {
@@ -471,11 +514,11 @@ describe('after a failed provider sign-in', () => {
     const { fake } = setup({
       intent: 'signup',
       ssoFallbackNotice:
-        'Your organization needs an admin to approve Macro. Continue with your email instead.',
+        'Your organization needs an admin to approve Rox. Continue with your email instead.',
     });
     expect(
       screen.getByText(
-        'Your organization needs an admin to approve Macro. Continue with your email instead.'
+        'Your organization needs an admin to approve Rox. Continue with your email instead.'
       )
     ).toBeTruthy();
     expect(

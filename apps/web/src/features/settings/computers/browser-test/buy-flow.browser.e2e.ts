@@ -82,7 +82,7 @@ const computer: ComputerStatus = {
 const harness: RegisteredHarness = {
   id: 'harness-1',
   name: "Maya's Agent Box",
-  kind: 'macrod',
+  kind: 'roxd',
   owner: { type: 'user', user_id: 'maya@example.com' },
   access: 'owner',
   shared_team_ids: [],
@@ -117,7 +117,7 @@ const dialog = (page: Page) => page.getByRole('dialog');
 // The fixture's service clients point at the hosted dev gateway; anything a
 // test does not answer itself is refused, so nothing reaches a real backend.
 test.beforeEach(async ({ page }) => {
-  await page.route(/\.macro\.com\//, (route) => route.abort());
+  await page.route(/\.rox\.one\//, (route) => route.abort());
   page.on('pageerror', (error) => console.log('pageerror', error.stack));
 });
 
@@ -193,10 +193,10 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
     });
 
     await page.goto('/');
-    // Get a Macro computer leads Machines, with its facts and price.
+    // Get a Rox computer leads Machines, with its facts and price.
     const entry = page.locator('[data-settings-target="get-macro-computer"]');
     await expect(
-      entry.getByRole('heading', { name: 'Get a Macro computer' })
+      entry.getByRole('heading', { name: 'Get a Rox computer' })
     ).toBeVisible();
     await page.getByRole('button', { name: 'Get a computer' }).click();
     await expect(dialog(page)).toBeVisible();
@@ -271,7 +271,7 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
         'Billing updated',
         /Creating the computer\s*\d+:\d\d/,
         'Starting up',
-        'Connecting to Macro',
+        'Connecting to Rox',
         'Sign in to Claude',
       ],
       { timeout: 10_000 }
@@ -289,7 +289,7 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
       name: 'Which Claude should it use?',
     });
     await expect(
-      claudeChoice.getByRole('radio', { name: 'Macro credits' })
+      claudeChoice.getByRole('radio', { name: 'Rox credits' })
     ).not.toBeChecked();
     await expect(
       page.locator('[data-runtime-row="Maya\'s Agent Box"]')
@@ -364,7 +364,7 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
     await shoot(page, 'buy-claude-code');
 
     await dialog(page)
-      .getByRole('button', { name: 'Use Macro credits instead' })
+      .getByRole('button', { name: 'Use Rox credits instead' })
       .click();
     await expect(
       dialog(page).getByRole('heading', { name: "Maya's Agent is ready" })
@@ -372,7 +372,7 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
     await expect(progress).toHaveCount(0);
     // Bring your AI was visited, so credits complete it rather than skip it.
     await expect(steps.getByRole('listitem').nth(2)).toContainText(
-      'Macro credits'
+      'Rox credits'
     );
     await expect(steps.getByRole('listitem').nth(2)).not.toContainText(
       'skipped'
@@ -419,12 +419,12 @@ for (const ending of ['Try it', 'Create an agent on this computer'] as const)
     await expect(form).toBeVisible({ timeout: 60_000 });
     const where = form.getByRole('group', { name: 'Where it runs' });
     await expect(
-      where.getByRole('radio', { name: /On a Macro computer/ })
+      where.getByRole('radio', { name: /On a Rox computer/ })
     ).toBeChecked();
     await expect(
-      where.getByRole('radio', { name: 'In Macro' })
+      where.getByRole('radio', { name: 'In Rox' })
     ).not.toBeChecked();
-    await where.getByText('On a Macro computer').evaluate((label) => {
+    await where.getByText('On a Rox computer').evaluate((label) => {
       label.scrollIntoView({ block: 'center' });
       for (const element of document.querySelectorAll('*'))
         element.scrollLeft = 0;
@@ -525,7 +525,7 @@ test('keeps both Claude options reachable above the footer at short heights, wit
       width: page.viewportSize()?.width ?? 1280,
       height,
     });
-    for (const name of ['Your Claude account', 'Macro credits']) {
+    for (const name of ['Your Claude account', 'Rox credits']) {
       // The option is the segment around its visually hidden radio.
       const option = claudeChoice.getByRole('radio', { name }).locator('..');
       await option.scrollIntoViewIfNeeded();
@@ -613,7 +613,7 @@ test('a team without a paid plan is told so and sent to Billing', async ({
   await expect(alert).toBeVisible();
   await shoot(page, 'error-no-plan');
   await expect(alert).toHaveText(
-    'Computers need a paid Macro plan. Your team does not have one yet.'
+    'Computers need a paid Rox plan. Your team does not have one yet.'
   );
   // A 422 is final: no retries, and no retry offered.
   expect(calls).toBe(1);
@@ -680,7 +680,7 @@ test('computers being unavailable, and a billing provider failure, each read as 
   status = 502;
   await dialog(page).getByRole('button', { name: 'Retry' }).click();
   await expect(alert).toHaveText(
-    "Macro's billing provider didn't answer. Try again in a moment."
+    "Rox's billing provider didn't answer. Try again in a moment."
   );
   await shoot(page, 'error-provider');
 });
@@ -694,7 +694,7 @@ test('a dropped connection says so and Retry loads the sizes', async ({
   );
   const alert = dialog(page).getByRole('alert');
   await expect(alert).toHaveText(
-    "Couldn't reach Macro. Check your connection and try again."
+    "Couldn't reach Rox. Check your connection and try again."
   );
   await shoot(page, 'error-network');
 
@@ -736,7 +736,7 @@ test('with no size on offer, the step shows only why', async ({ page }) => {
     'No computer sizes are available right now.'
   );
   await expect(dialog(page)).toContainText(
-    "Macro's hosts have no room for a new computer. Try again later."
+    "Rox's hosts have no room for a new computer. Try again later."
   );
   await expect(dialog(page).getByLabel('Name')).toHaveCount(0);
   await expect(dialog(page).getByRole('button', { name: /^Buy/ })).toHaveCount(

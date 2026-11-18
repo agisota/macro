@@ -11,7 +11,7 @@ use uuid::Uuid;
 use crate::domain::models::{DatabaseWebhook, NewWebhook, WebhookId};
 use crate::domain::ports::DatabaseWebhooksRepo;
 
-/// [`DatabaseWebhooksRepo`] over MacroDB.
+/// [`DatabaseWebhooksRepo`] over RoxDB.
 #[derive(Debug, Clone)]
 pub struct PgWebhooksRepo {
     pool: PgPool,

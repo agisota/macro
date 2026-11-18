@@ -78,7 +78,7 @@ pub async fn handler(
 
     // Get-or-create the dedicated mailbox user. In Develop, the mailbox email must be on
     // the signup allowlist; the create-user webhook then no-ops because the verified
-    // MacroDB User for this mailbox already exists (created during promotion), so no Stripe
+    // RoxDB User for this mailbox already exists (created during promotion), so no Stripe
     // customer is provisioned. Freshly created users start active; they are deactivated once
     // the grant is in place.
     let shared_user_id = match auth.get_user_id_by_email(&email).await {

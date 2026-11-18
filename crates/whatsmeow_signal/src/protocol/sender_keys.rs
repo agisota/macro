@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/sender_keys.rs and
-// modified by Macro: the state has no message version (WhatsApp sender keys
+// modified by Rox: the state has no message version (WhatsApp sender keys
 // are always version 3) and is looked up by WhatsApp's key ID. See NOTICE.
 
 use std::collections::VecDeque;

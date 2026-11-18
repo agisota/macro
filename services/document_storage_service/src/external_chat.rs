@@ -3,7 +3,7 @@
 //! entity access, notification and static file clients; the notification
 //! outbox worker, and the `external_chat_changed` pushes to open pages. The
 //! session service runs the WhatsApp sockets; it reaches DSS only through
-//! MacroDB rows and `NOTIFY`.
+//! RoxDB rows and `NOTIFY`.
 
 use crate::api::context::{AuthorizationService, EntityAccessService, NotificationIngressType};
 use async_trait::async_trait;

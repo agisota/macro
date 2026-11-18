@@ -74,7 +74,7 @@ link flow, following the hexagonal architecture pattern.
   statement timeouts. Never expire idle transactions while grant writes run.
 - Grant replacement is unlink/relink with best-effort restoration. A timeout
   leaves the remote result uncertain; a crash can leave no grant. Preserve
-  Macro links so a later verified OAuth attempt can recreate it.
+  Rox links so a later verified OAuth attempt can recreate it.
 
 - Webhook signature verification uses `hmac`/`subtle` for constant-time
   comparison — don't swap in a plain `==` when touching

@@ -3,7 +3,7 @@ import type { Component, JSX } from 'solid-js';
 
 export type ImportIcon = Component<JSX.SvgSVGAttributes<SVGSVGElement>>;
 
-/** The Macro surface an import fills: Drive, Tasks, the CRM, or Channels. */
+/** The Rox surface an import fills: Drive, Tasks, the CRM, or Channels. */
 export type ImportCategory = 'files' | 'tasks' | 'crm' | 'channels';
 
 export type ImportProvider = {
@@ -14,7 +14,7 @@ export type ImportProvider = {
   detail: string;
   icon: ImportIcon;
   /**
-   * Macro's native MCP server for the app, connected with Macro's own OAuth
+   * Rox's native MCP server for the app, connected with Rox's own OAuth
    * instead of Pipedream. Agents prefer it over a Pipedream connection.
    */
   mcpUrl?: string;
@@ -44,5 +44,5 @@ export type ImportCategoryConfig = ImportCategoryCopy & {
   providers: readonly ImportProvider[];
 };
 
-/** Shown on every card and dialog; grounded in Macro's security page. */
+/** Shown on every card and dialog; grounded in Rox's security page. */
 export const IMPORT_SECURITY_NOTE = 'Encrypted in transit and at rest.';

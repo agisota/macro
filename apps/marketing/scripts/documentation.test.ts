@@ -5,7 +5,7 @@ import { docsHref, isDocsAsset } from './documentation';
 describe('documentation URLs', () => {
   it('moves legacy guide links while retaining queries and headings', () => {
     expect(
-      docsHref('https://docs.macro.com/product/tasks?from=guide#status')
+      docsHref('https://docs.rox.one/product/tasks?from=guide#status')
     ).toBe('/tasks?from=guide#guide-status');
     expect(docsHref('/')).toBe('/docs/switch-to-macro');
     expect(docsHref('/index')).toBe('/docs/switch-to-macro');
@@ -16,8 +16,8 @@ describe('documentation URLs', () => {
   it('keeps in-page, external, and email links intact', () => {
     for (const url of [
       '#sharing',
-      'mailto:support@macro.com',
-      'https://macro.com/app/signup',
+      'mailto:support@rox.one',
+      'https://rox.one/app/signup',
       'https://github.com/macro-inc/macro',
     ])
       expect(docsHref(url)).toBe(url);
@@ -30,10 +30,10 @@ describe('documentation URLs', () => {
   it('uses the same asset paths for dev and production', () => {
     expect(docsHref('/images/email.png')).toBe('/docs-assets/images/email.png');
     expect(docsHref('/videos/demo.mp4')).toBe('/docs-assets/videos/demo.mp4');
-    expect(docsHref('https://macro.com/video/tutorials/docs.mp4')).toBe(
+    expect(docsHref('https://rox.one/video/tutorials/docs.mp4')).toBe(
       '/video/tutorials/docs.mp4'
     );
-    expect(docsHref('https://macro.com/video/tutorials/docs-poster.jpg')).toBe(
+    expect(docsHref('https://rox.one/video/tutorials/docs-poster.jpg')).toBe(
       '/video/tutorials/docs-poster.jpg'
     );
     expect(docsHref('/video/tutorials/docs.mp4')).toBe(

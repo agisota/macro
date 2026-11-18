@@ -83,7 +83,7 @@ export function createCallPlayback(duration: number) {
 }
 export type CallPlayback = ReturnType<typeof createCallPlayback>;
 
-/** The call recording block header: label, Call Again, Ask Macro, Share. */
+/** The call recording block header: label, Call Again, Ask Rox, Share. */
 export function CallRecordTopBar(props: {
   title: string;
   onBack?: () => void;
@@ -117,14 +117,14 @@ export function CallRecordTopBar(props: {
         <Button
           variant="plain"
           size="md"
-          aria-label="Ask Macro"
+          aria-label="Ask Rox"
           onClick={props.onAsk}
           disabled={!props.onAsk}
-          tooltip="Ask Macro"
+          tooltip="Ask Rox"
           class="call-bar-action"
         >
           <Sparkle />
-          <span class="call-bar-label">Ask Macro</span>
+          <span class="call-bar-label">Ask Rox</span>
         </Button>
         <Button
           variant="plain"

@@ -73,7 +73,7 @@ describe('email thread titles', () => {
       type: 'email',
       id: '019a1f40-2c7e-7d10-9a4b-6f2b0c1d2e3f',
       name: 'Re: hello from my outlook to your outlook',
-      ownerId: 'macro|teo@macro.com',
+      ownerId: 'macro|teo@rox.one',
       isRead: true,
       isDraft: false,
       isImportant: true,

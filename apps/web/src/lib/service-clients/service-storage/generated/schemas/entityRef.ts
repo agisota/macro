@@ -7,7 +7,7 @@
 import type { EntityKind } from './entityKind';
 
 /**
- * A reference to one Macro entity.
+ * A reference to one Rox entity.
  */
 export interface EntityRef {
   /** The entity's id. */

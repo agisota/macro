@@ -12,7 +12,7 @@ const DOCUMENT: &str = "019fd3b9-3c6c-7c05-89c2-a27f0121813b";
 const SECRET: &str = "local-spreadsheet-test-secret";
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|sheets@macro.com".to_owned()).unwrap()
+    MacroUserIdStr::try_from("macro|sheets@rox.one".to_owned()).unwrap()
 }
 
 fn receipt() -> EntityAccessReceipt<EditAccessLevel> {
@@ -45,7 +45,7 @@ impl AiAdmissionService for Admission {
         feature: AiFeature,
     ) -> AdmissionFuture<'a> {
         Box::pin(async move {
-            assert_eq!(caller.as_ref(), "macro|sheets@macro.com");
+            assert_eq!(caller.as_ref(), "macro|sheets@rox.one");
             assert_eq!(feature, AiFeature::AiEditing);
             self.0
         })
@@ -70,7 +70,7 @@ async fn an_edit_mints_edit_access_and_bills_the_writer() {
             let claims: serde_json::Value =
                 macro_sync_service_jwt::decode(token.as_str(), SECRET).unwrap();
             assert_eq!(claims["access_level"], "edit");
-            assert_eq!(claims["user_id"], "macro|sheets@macro.com");
+            assert_eq!(claims["user_id"], "macro|sheets@rox.one");
             assert_eq!(instructions, "Add a total row.");
             Box::pin(async {
                 Ok(SpreadsheetWriterResult {

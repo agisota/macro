@@ -65,7 +65,7 @@ const IMPORTED_TYPE_BYTES: usize = 8 * 1024;
 /// Where the SDK declares its entities.
 const ENTITY_DECLARATIONS: &str = "src/entities/";
 
-const REWRITE_INSTRUCTIONS: &str = "You maintain TypeScript that a Macro routine runs against Macro's SDK. Macro's SDK has changed and the code no longer type-checks. Rewrite it so it type-checks against the declarations you are given, changing only what the type checker's errors require. Keep exactly what it does: the same reads, the same changes, the same decisions and the same return value. Keep the module's shape, `export async function main(...: StepContext)` with no imports, and keep reading the step's settings from `knobs` as it did. If a call it made no longer exists, use the declarations' replacement for it.";
+const REWRITE_INSTRUCTIONS: &str = "You maintain TypeScript that a Rox routine runs against Rox's SDK. Rox's SDK has changed and the code no longer type-checks. Rewrite it so it type-checks against the declarations you are given, changing only what the type checker's errors require. Keep exactly what it does: the same reads, the same changes, the same decisions and the same return value. Keep the module's shape, `export async function main(...: StepContext)` with no imports, and keep reading the step's settings from `knobs` as it did. If a call it made no longer exists, use the declarations' replacement for it.";
 
 /// Mints the short-lived token a routine's code acts as its owner with.
 pub trait RoutineCredentials: Send + Sync + 'static {
@@ -286,7 +286,7 @@ impl<Credentials: RoutineCredentials> RoutineCode for SdkRoutineCode<Credentials
             tracing::Span::current().record("outcome", "busy");
             return CodeOutcome {
                 result: Err(format!(
-                    "Macro was busy running other routines; this run waited {} minutes for a turn.",
+                    "Rox was busy running other routines; this run waited {} minutes for a turn.",
                     SLOT_WAIT.as_secs() / 60
                 )),
                 calls: Vec::new(),
@@ -548,7 +548,7 @@ fn symbol_references(symbols: &[String], shown: &str, budget: usize) -> String {
     }
     if !missing.is_empty() {
         output.push_str(&format!(
-            "Macro's SDK has none of these; use what the indexes and references name instead: {}\n",
+            "Rox's SDK has none of these; use what the indexes and references name instead: {}\n",
             missing
                 .iter()
                 .map(|name| format!("`{name}`"))

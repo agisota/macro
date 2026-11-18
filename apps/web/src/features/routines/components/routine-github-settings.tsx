@@ -38,7 +38,7 @@ function NameList(props: {
   );
 }
 
-/** Which deliveries from Macro's GitHub app the trigger watches. */
+/** Which deliveries from Rox's GitHub app the trigger watches. */
 export function RoutineGithubSettings(props: {
   selector: GithubSelectorDraft;
   repositories: GithubRepositoryOptions;
@@ -111,7 +111,7 @@ export function RoutineGithubSettings(props: {
               when={options().length}
               fallback={
                 <p class="p-2 text-xs text-ink-muted">
-                  Install Macro’s GitHub app to watch a repository.
+                  Install Rox’s GitHub app to watch a repository.
                 </p>
               }
             >
@@ -138,7 +138,7 @@ export function RoutineGithubSettings(props: {
       />
       <Show when={props.selector.includeBots}>
         <p class="text-xs text-ink-muted">
-          Includes Macro’s own app: make sure what this routine does on GitHub
+          Includes Rox’s own app: make sure what this routine does on GitHub
           doesn’t trigger it again.
         </p>
       </Show>

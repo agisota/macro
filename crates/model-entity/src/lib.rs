@@ -19,7 +19,7 @@ pub use external_chat::{ExternalChatKind, ExternalChatProvider};
 mod appearance;
 pub use appearance::{AppearanceColor, AppearanceIcon, EntityAppearance};
 
-/// The type of an entity in Macro
+/// The type of an entity in Rox
 #[derive(
     Debug,
     Clone,
@@ -70,7 +70,7 @@ pub enum EntityType {
     CrmPipeline,
     /// The entity is a reminder set by a user
     Reminder,
-    /// A registered runtime: a computer running macrod. Shared with people and
+    /// A registered runtime: a computer running roxd. Shared with people and
     /// teams, never with channels or the public.
     Harness,
     /// The entity is an AI skill: either a skill document or a built-in
@@ -83,16 +83,16 @@ pub enum EntityType {
     ScheduledAction,
     /// The entity is an initiative (a named grouping of tasks)
     Initiative,
-    /// The entity is a Macro Database: a collection of user-defined tables
+    /// The entity is a Rox Database: a collection of user-defined tables
     /// (see the `databases` crate)
     Database,
-    /// The entity is a row of a table in a Macro Database
+    /// The entity is a row of a table in a Rox Database
     DatabaseRow,
-    /// The entity is a Macro Form: a questionnaire whose answers land as rows
+    /// The entity is a Rox Form: a questionnaire whose answers land as rows
     /// of one database table (see the `forms` crate)
     Form,
     /// A chat from another messaging service (see [`ExternalChatProvider`])
-    /// a person added to Macro as an independently shared entity.
+    /// a person added to Rox as an independently shared entity.
     ExternalChat,
 }
 
@@ -179,7 +179,7 @@ impl TryFrom<String> for EntityType {
     }
 }
 
-/// The Entity describes the minimum amount of information required to describe a unique thing in Macro
+/// The Entity describes the minimum amount of information required to describe a unique thing in Rox
 /// This contains the type of the entity [EntityType] and the string id of that entity
 #[non_exhaustive]
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone, ToSchema, Hash, PartialEq, Eq)]

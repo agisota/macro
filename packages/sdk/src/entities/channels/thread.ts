@@ -74,7 +74,7 @@ export class Thread {
    * @param body - Plain text, or a rich body composed with {@link msg}.
    * @param opts.images - Static images to attach, such as one from
    *   `macro.images.generate()`.
-   * @param opts.documents - Macro documents to attach as file chips, such as
+   * @param opts.documents - Rox documents to attach as file chips, such as
    *   a file from `macro.documents.upload()`.
    * @param opts.silent - Send no push, email or inbox entry to anyone,
    *   mentioned people included; the reply still appears in the thread.

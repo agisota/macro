@@ -33,7 +33,7 @@ export type ExternalChatContent =
     };
 
 /**
- * A chat from an external messaging provider (WhatsApp today), added to Macro
+ * A chat from an external messaging provider (WhatsApp today), added to Rox
  * by its owner and shareable like any other entity: a group or a direct chat.
  */
 export class ExternalChat extends FavoritableEntity<ExternalChatDetail> {
@@ -89,7 +89,7 @@ export class ExternalChat extends FavoritableEntity<ExternalChatDetail> {
       ExternalChatParticipant.from(this, record),
     ),
   );
-  /** The provider's disappearing-messages timer in seconds while on; Macro keeps the messages. */
+  /** The provider's disappearing-messages timer in seconds while on; Rox keeps the messages. */
   readonly disappearingSeconds = this.field('disappearingSeconds');
   /** Actual owner, independent of provider membership. */
   readonly owner = this.mappedField('userId', (id) =>

@@ -1,6 +1,6 @@
 /**
  * Pure helpers for GTM invite links: the personal, time-limited signup links
- * Macro staff hand to prospects. The welcome page (`/invite?token=…`) parks
+ * Rox staff hand to prospects. The welcome page (`/invite?token=…`) parks
  * the token in localStorage until the visitor has an account; the first
  * authenticated load redeems it and the plan step shows the offer.
  */
@@ -40,8 +40,8 @@ export function inviteLinkOrigin(): string {
     return window.location.origin;
   }
   return import.meta.env.MODE === 'development'
-    ? 'https://dev.macro.com'
-    : 'https://macro.com';
+    ? 'https://dev.rox.one'
+    : 'https://rox.one';
 }
 
 export function buildInviteLinkUrl(

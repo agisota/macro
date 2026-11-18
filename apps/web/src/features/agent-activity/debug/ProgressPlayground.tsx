@@ -264,7 +264,7 @@ const FETCH_FAILED = tool(
   'Fetch',
   {
     kind: 'fetch',
-    output: 'Could not reach status.macro.com/api: connection refused.',
+    output: 'Could not reach status.rox.one/api: connection refused.',
   },
   'failed'
 );
@@ -458,7 +458,7 @@ const SCENARIOS: Scenario[] = [
   {
     id: 'every-tool',
     title: 'Every kind of step',
-    note: 'One of each, done: Macro tools, files, shell, edits, plan, subagent.',
+    note: 'One of each, done: Rox tools, files, shell, edits, plan, subagent.',
     parts: [
       SEARCH_DOCS,
       SEARCH_NAMES,
@@ -753,7 +753,7 @@ function channelMessage(reply: AgentChatReply, id: string): MessageData {
     sender: {
       id: MACRO_AGENT_BOT_ID,
       type: 'bot',
-      name: 'Macro',
+      name: 'Rox',
       avatar_url: null,
     },
     created_at: POSTED_AT,
@@ -842,7 +842,7 @@ function ConversationView(props: {
         {/* What the live session tells a reader; the typing, everyone else. */}
         <TypingRow
           avatar={
-            <PersonaAvatar botId={MACRO_AGENT_BOT_ID} name="Macro" size="md" />
+            <PersonaAvatar botId={MACRO_AGENT_BOT_ID} name="Rox" size="md" />
           }
           rows={
             (props.reader && openRun(reply())?.rows) || [

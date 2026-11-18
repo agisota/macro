@@ -276,7 +276,7 @@ function Fixture() {
         setScreen('receipt');
       }
     },
-    openTeamSettings: () => setNotice('Macro team settings shortcut selected'),
+    openTeamSettings: () => setNotice('Rox team settings shortcut selected'),
     createBookingLinkWithAgent: async (scope) => {
       setNotice(`Agent draft (not sent): ${bookingLinkAgentSeed(scope).input}`);
     },
@@ -472,7 +472,7 @@ function Fixture() {
                   hosts: e.hosts,
                   status: e.requiresConfirmation ? 'pending' : 'confirmed',
                   location: e.macroCall
-                    ? 'https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef'
+                    ? 'https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef'
                     : e.googleMeet
                       ? 'Google Meet'
                       : e.location,

@@ -27,7 +27,7 @@ mod test;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub enum ConnectedAppKind {
-    /// An app connected through Macro Connect or Pipedream, keyed by its slug.
+    /// An app connected through Rox Connect or Pipedream, keyed by its slug.
     App,
     /// A custom MCP server the owner added by URL, keyed by a digest of the URL.
     Custom,

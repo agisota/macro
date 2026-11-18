@@ -51,7 +51,7 @@ pub(crate) fn codex(dir: &Path, servers: &[Value]) -> rootcause::Result<CodexMcp
                 let value = header["value"]
                     .as_str()
                     .ok_or_else(|| rootcause::report!("invalid MCP header value"))?;
-                let variable = format!("MACROD_MCP_{index}_{header_index}");
+                let variable = format!("ROXD_MCP_{index}_{header_index}");
                 headers.insert(name, variable.clone().into());
                 environment.push_str(&format!(
                     "export {variable}={}\n",

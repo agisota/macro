@@ -7,12 +7,12 @@
 import type { AgentHarnessSelectionHarnessId } from './agentHarnessSelectionHarnessId';
 
 /**
- * The runtime an agent runs on: a harness slug and, for `macrod`, the
+ * The runtime an agent runs on: a harness slug and, for `roxd`, the
 registered harness serving it. Travel together because one without the
 other is never a valid choice.
  */
 export interface AgentHarnessSelection {
-  /** Harness slug, e.g. `in-memory`, `cursor`, or `macrod`. */
+  /** Harness slug, e.g. `in-memory`, `cursor`, or `roxd`. */
   harness: string;
   harness_id?: AgentHarnessSelectionHarnessId;
 }

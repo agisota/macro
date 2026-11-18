@@ -64,7 +64,7 @@ pub(super) enum SessionPhase {
     Live {
         session_id: SessionId,
         /// The one `elicitation/create` this connection is holding for the
-        /// user to answer. Macro allows one at a time; a second is refused
+        /// user to answer. Rox allows one at a time; a second is refused
         /// while this is `Some`.
         elicitation: Option<PendingElicitation>,
     },

@@ -166,7 +166,7 @@ describe('independent email body', () => {
     expect(revoke).toHaveBeenCalledWith('blob:email');
     expect(disconnect).toHaveBeenCalled();
   });
-  it('loads Macro pixels only when the copy may count an open', async () => {
+  it('loads Rox pixels only when the copy may count an open', async () => {
     vi.stubGlobal(
       'ResizeObserver',
       class {

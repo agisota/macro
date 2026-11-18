@@ -8,7 +8,7 @@ export type AddRefusal =
   | { reason: 'already-added' }
   | { reason: 'disconnected' }
   | { reason: 'rate-limited' }
-  /** DSS's reason this chat can't be in Macro. */
+  /** DSS's reason this chat can't be in Rox. */
   | { reason: 'cannot-add'; why: CannotAdd }
   | { reason: 'unavailable' }
   /** DSS is behind on this account's WhatsApp work. */
@@ -31,7 +31,7 @@ export function addFailureMessage(failure: AddRefusal): string {
         "Your WhatsApp isn't allowed to add this chat. Check that you're still in it."
     )
     .with({ reason: 'gone' }, () => 'This chat is no longer on your WhatsApp.')
-    .with({ reason: 'already-added' }, () => 'This chat is already in Macro.')
+    .with({ reason: 'already-added' }, () => 'This chat is already in Rox.')
     .with(
       { reason: 'disconnected' },
       () => 'Your WhatsApp is disconnected. Reconnect it, then add the chat.'
@@ -43,12 +43,11 @@ export function addFailureMessage(failure: AddRefusal): string {
     .with({ reason: 'cannot-add' }, ({ why }) => `${cannotAddMessage(why)}.`)
     .with(
       { reason: 'busy' },
-      () => 'Macro is catching up with your WhatsApp. Try again in a moment.'
+      () => 'Rox is catching up with your WhatsApp. Try again in a moment.'
     )
     .with(
       { reason: 'server-error' },
-      () =>
-        'Macro hit an error adding this chat. If it keeps happening, tell us.'
+      () => 'Rox hit an error adding this chat. If it keeps happening, tell us.'
     )
     .with(
       { reason: 'unavailable' },
@@ -60,11 +59,11 @@ export function addFailureMessage(failure: AddRefusal): string {
     )
     .with(
       { reason: 'signed-out' },
-      () => 'Your Macro session expired. Sign in again to add this chat.'
+      () => 'Your Rox session expired. Sign in again to add this chat.'
     )
     .with(
       { reason: 'unreachable' },
-      () => "Couldn't reach Macro. Check your connection and try again."
+      () => "Couldn't reach Rox. Check your connection and try again."
     )
     .exhaustive();
 }

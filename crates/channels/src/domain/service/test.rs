@@ -856,7 +856,7 @@ async fn create_system_channel_event_uses_system_actor() {
             channel_type: ChannelType::Private,
             team_id: None,
             auto_join_team: false,
-            participants: HashSet::from([macro_id("macro|teo@macro.com")]),
+            participants: HashSet::from([macro_id("macro|teo@rox.one")]),
         },
     )
     .await
@@ -891,7 +891,7 @@ async fn create_channel_on_behalf_attributes_created_to_the_bot() {
             channel_type: ChannelType::Private,
             team_id: None,
             auto_join_team: false,
-            participants: HashSet::from([macro_id("macro|teo@macro.com")]),
+            participants: HashSet::from([macro_id("macro|teo@rox.one")]),
         },
     )
     .await
@@ -928,7 +928,7 @@ async fn signup_support_channel_via_user_create_channel_attributes_created_to_ow
             channel_type: ChannelType::Private,
             team_id: None,
             auto_join_team: false,
-            participants: HashSet::from([macro_id("macro|teo@macro.com")]),
+            participants: HashSet::from([macro_id("macro|teo@rox.one")]),
         },
     )
     .await

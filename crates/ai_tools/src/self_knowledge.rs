@@ -17,17 +17,17 @@ mod test;
 /// docs page is also served as plain Markdown (append `.md` to its URL), so the
 /// model can read any page with the WebFetch tool — no special docs integration
 /// is needed.
-static ABOUT_MACRO: &str = r##"# About Macro
+static ABOUT_MACRO: &str = r##"# About Rox
 
-Macro is a single, fast workspace that unifies the tools a team uses to get work
+Rox is a single, fast workspace that unifies the tools a team uses to get work
 done — email, messaging, tasks, documents, and more — into one linked database.
 Everything can reference everything else: a task can link to an email, a doc can
 @mention a channel message, and so on. The backend is Rust and the frontend is
 Solid, so it is built for speed.
 
-## What's in Macro
+## What's in Rox
 
-Macro is organized into "blocks":
+Rox is organized into "blocks":
 
 - **Email** — email, integrated directly into the workspace.
 - **Channels** — Slack-like messaging channels; the default way people communicate.
@@ -44,7 +44,7 @@ read via the ListEntities tool), **Unified Search**, **Unified Memory**,
 bidirectional **@mentions / linking**, and **permissions** that inherit from
 channels.
 
-## Core principles — read before answering questions about Macro
+## Core principles — read before answering questions about Rox
 
 1. **Accuracy over guessing.** Your training data may be outdated or wrong about
    Macro. When a user asks what Macro is, what a feature does, or how to do
@@ -125,7 +125,7 @@ endpoint or tunnel for webhooks, a bot token in a hand-written config file, and
 creating a bot under Settings → Bots. None of that applies any more; never give
 those steps.
 
-## Workflow for "what is Macro / how do I…" questions
+## Workflow for "what is Rox / how do I…" questions
 
 1. Identify what the user is asking about (a block, a concept, billing, etc.).
 2. If this page answers it, answer from this page. Otherwise fetch the relevant
@@ -162,7 +162,7 @@ pub struct SelfKnowledgeResponse {
 }
 
 impl ToolAnnotated for SelfKnowledge {
-    const ANNOTATIONS: ToolAnnotations = ToolAnnotations::read_only("About Macro");
+    const ANNOTATIONS: ToolAnnotations = ToolAnnotations::read_only("About Rox");
 }
 
 #[async_trait]

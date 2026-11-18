@@ -172,7 +172,7 @@ export const getAttachment = async (
 };
 
 /**
- * @summary Get the Macro document id for an email attachment, uploading it if it doesn't already exist.
+ * @summary Get the Rox document id for an email attachment, uploading it if it doesn't already exist.
  */
 export type getAttachmentDocumentIdResponse200 = {
   data: GetAttachmentDocumentIDResponse;

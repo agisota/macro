@@ -3,7 +3,7 @@
 ## What it is
 
 Belongs to notifications: domain models and Askama templates for invitation
-emails — referral-to-Macro invites, team invites, channel invites, call
+emails — referral-to-Rox invites, team invites, channel invites, call
 invites, and the colleague-joined email.
 
 ## Start here

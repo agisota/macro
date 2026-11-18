@@ -430,7 +430,7 @@ async fn a_join_request_notification_goes_with_the_last_copy_of_its_event(pool: 
         .unwrap();
     assert!(recipient_holds(&pool, asked).await);
 
-    // A delete through Macro retires the last copy, and open clients hear of it.
+    // A delete through Rox retires the last copy, and open clients hear of it.
     repo.remove_provider_source(account_id, second_id, &provider_event_id)
         .await
         .unwrap();

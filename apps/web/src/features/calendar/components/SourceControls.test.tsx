@@ -11,9 +11,9 @@ import { SourceControls } from './SourceControls';
 const SOURCES: CalendarSource[] = [
   {
     id: 'gab-primary',
-    name: 'gab@macro.com',
+    name: 'gab@rox.one',
     color: '#ff0000',
-    emailAddress: 'gab@macro.com',
+    emailAddress: 'gab@rox.one',
     emailLinkId: 'link-gab',
     isPrimary: true,
   },
@@ -21,15 +21,15 @@ const SOURCES: CalendarSource[] = [
     id: 'gab-holidays',
     name: 'Holidays in United States',
     color: '#00ff00',
-    emailAddress: 'gab@macro.com',
+    emailAddress: 'gab@rox.one',
     emailLinkId: 'link-gab',
     isSubscription: true,
   },
   {
     id: 'test-primary',
-    name: 'gabtest1@macro.com',
+    name: 'gabtest1@rox.one',
     color: '#0000ff',
-    emailAddress: 'gabtest1@macro.com',
+    emailAddress: 'gabtest1@rox.one',
     emailLinkId: 'link-test',
     isPrimary: true,
     syncError: 'Precondition check failed.',
@@ -104,16 +104,16 @@ describe('SourceControls', () => {
   it('folds each account collapsed by default', () => {
     const { getByRole, queryByText } = renderControls();
     // Every account renders a collapse control, but its calendars stay hidden.
-    expect(getByRole('button', { name: 'Expand gab@macro.com' })).toBeTruthy();
+    expect(getByRole('button', { name: 'Expand gab@rox.one' })).toBeTruthy();
     expect(
-      getByRole('button', { name: 'Expand gabtest1@macro.com' })
+      getByRole('button', { name: 'Expand gabtest1@rox.one' })
     ).toBeTruthy();
     expect(queryByText('Holidays in United States')).toBeNull();
   });
 
   it('shows the primary calendar color on the collapsed account header', () => {
     const { headerFor } = renderControls();
-    const swatch = headerFor('gab@macro.com').querySelector<HTMLElement>(
+    const swatch = headerFor('gab@rox.one').querySelector<HTMLElement>(
       '[aria-hidden="true"][style]'
     );
     expect(swatch?.style.backgroundColor).toBe('rgb(255, 0, 0)');
@@ -127,7 +127,7 @@ describe('SourceControls', () => {
       headerFor,
       onVisibilityChange,
     } = renderControls();
-    const header = headerFor('gab@macro.com');
+    const header = headerFor('gab@rox.one');
     const headerCheckbox = header.querySelector('input[type="checkbox"]');
     const headerText = header.querySelector('.truncate');
     expect(
@@ -136,11 +136,11 @@ describe('SourceControls', () => {
         headerCheckbox.compareDocumentPosition(headerText) &
           Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
-    const disclosure = getByRole('button', { name: 'Expand gab@macro.com' });
+    const disclosure = getByRole('button', { name: 'Expand gab@rox.one' });
     expect(disclosure.getAttribute('aria-expanded')).toBe('false');
-    expandAccount('gab@macro.com');
+    expandAccount('gab@rox.one');
     expect(
-      getByRole('button', { name: 'Collapse gab@macro.com' }).getAttribute(
+      getByRole('button', { name: 'Collapse gab@rox.one' }).getAttribute(
         'aria-expanded'
       )
     ).toBe('true');
@@ -154,13 +154,13 @@ describe('SourceControls', () => {
   });
   it('reveals an account calendars once expanded', () => {
     const { expandAccount, getByText } = renderControls();
-    expandAccount('gab@macro.com');
+    expandAccount('gab@rox.one');
     expect(getByText('Holidays in United States')).toBeTruthy();
   });
 
   it('toggles a single calendar when its row is clicked', () => {
     const { expandAccount, getByText, onVisibilityChange } = renderControls();
-    expandAccount('gab@macro.com');
+    expandAccount('gab@rox.one');
     fireEvent.click(getByText('Holidays in United States'));
     expect(onVisibilityChange).toHaveBeenCalledWith('gab-holidays', false);
   });
@@ -169,7 +169,7 @@ describe('SourceControls', () => {
     const { headerFor, onVisibilityChange, onGroupVisibilityChange } =
       renderControls();
     fireEvent.click(
-      within(headerFor('gab@macro.com')).getByText('gab@macro.com')
+      within(headerFor('gab@rox.one')).getByText('gab@rox.one')
     );
     expect(onGroupVisibilityChange).toHaveBeenCalledExactlyOnceWith(
       ['gab-primary', 'gab-holidays'],
@@ -180,7 +180,7 @@ describe('SourceControls', () => {
 
   it('marks a subscription calendar with an indicator', () => {
     const { expandAccount, container } = renderControls();
-    expandAccount('gab@macro.com');
+    expandAccount('gab@rox.one');
     const indicators = container.querySelectorAll(
       '[aria-label="Subscription calendar"]'
     );
@@ -189,7 +189,7 @@ describe('SourceControls', () => {
 
   it('names a calendar with a persistent sync failure by its error', () => {
     const { expandAccount, getByRole } = renderControls();
-    expandAccount('gabtest1@macro.com');
+    expandAccount('gabtest1@rox.one');
     expect(
       getByRole('checkbox', {
         name: /Sync failed: Precondition check failed\./,
@@ -199,15 +199,15 @@ describe('SourceControls', () => {
 
   it('leaves a healthy calendar without a sync failure', () => {
     const { expandAccount, queryByText } = renderControls();
-    expandAccount('gab@macro.com');
+    expandAccount('gab@rox.one');
     expect(queryByText(/^Sync failed:/)).toBeNull();
   });
 
   it('collapses an account again to hide its calendars', () => {
     const { expandAccount, getByRole, queryByText } = renderControls();
-    expandAccount('gab@macro.com');
+    expandAccount('gab@rox.one');
     expect(queryByText('Holidays in United States')).toBeTruthy();
-    fireEvent.click(getByRole('button', { name: 'Collapse gab@macro.com' }));
+    fireEvent.click(getByRole('button', { name: 'Collapse gab@rox.one' }));
     expect(queryByText('Holidays in United States')).toBeNull();
   });
 });

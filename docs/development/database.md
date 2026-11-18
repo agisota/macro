@@ -6,7 +6,7 @@ explicit Nix invocation. See also [Rust development](rust.md).
 
 ## Locate the schema and owner
 
-- MacroDB migrations live in [`crates/macro_db_client/migrations/`](../../crates/macro_db_client/migrations/).
+- RoxDB migrations live in [`crates/macro_db_client/migrations/`](../../crates/macro_db_client/migrations/).
   Check the owning crate's migrations/recipes before assuming another database
   uses the same setup.
 - Inspect migrations or use the [dump-schema skill](../../.agents/skills/dump-schema/SKILL.md)
@@ -28,7 +28,7 @@ just setup_macrodb
 ```
 
 `run_dbs` creates the required networks/volumes and starts Postgres and Redis.
-`setup_macrodb` creates and migrates MacroDB; `initialize_dbs` is its alias.
+`setup_macrodb` creates and migrates RoxDB; `initialize_dbs` is its alias.
 The default local URL is defined in [database.just](../../tooling/just/database.just).
 These recipes target that default database, not a named local-stack instance.
 
@@ -40,7 +40,7 @@ Apply any new migrations before testing.
 
 CI runs `just setup_test_template` after `initialize_dbs`. It migrates `template1`,
 which Postgres clones for every new database, so each `#[sqlx::test]` database
-starts with the MacroDB schema instead of replaying every migration. That
+starts with the RoxDB schema instead of replaying every migration. That
 replay used to be nearly all of the Rust test suite's runtime. Run the recipe
 locally only against a Postgres dedicated to one checkout; every database created
 on that server afterwards gets the schema too.
@@ -90,7 +90,7 @@ compatible with the service code currently deployed, not just the code in its PR
 ## Change queries or schema
 
 1. **If the schema changes, generate a migration with SQLx**, never by hand.
-   For MacroDB, from the root:
+   For RoxDB, from the root:
 
    ```bash
    sqlx migrate add --source crates/macro_db_client/migrations <descriptive_name>
@@ -165,7 +165,7 @@ cache entries for test queries.
 
 ### Checking query plans
 
-Local Postgres runs with default planner costs. Hosted MacroDB uses the
+Local Postgres runs with default planner costs. Hosted RoxDB uses the
 parameter group in `infra/stacks/macrodb/index.ts` (`random_page_cost = 1.1`,
 `work_mem = 16MB`, `jit = off`). Plans can differ between the two, so `SET`
 those values in your session before reading `EXPLAIN (ANALYZE, BUFFERS)`

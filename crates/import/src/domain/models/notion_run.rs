@@ -102,7 +102,7 @@ pub enum WrittenKind {
 }
 
 /// One thing a write created: `kind` for ledger row `import_id` (and, for
-/// per-row kinds, the Notion `object` it stands for) is Macro's `macro_id`.
+/// per-row kinds, the Notion `object` it stands for) is Rox's `macro_id`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WrittenObject {
     /// The ledger row it was written for.
@@ -111,7 +111,7 @@ pub struct WrittenObject {
     pub kind: WrittenKind,
     /// The Notion row or property it is for; empty for the row's own object.
     pub object: String,
-    /// The Macro id.
+    /// The Rox id.
     pub macro_id: Uuid,
 }
 

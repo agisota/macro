@@ -9,6 +9,6 @@ import type { CodeStep } from './codeStep';
 import type { RoutineStepOneOfAllOf } from './routineStepOneOfAllOf';
 
 /**
- * Run TypeScript against Macro's SDK, as the routine owner.
+ * Run TypeScript against Rox's SDK, as the routine owner.
  */
 export type RoutineStepOneOf = CodeStep & RoutineStepOneOfAllOf;

@@ -6,7 +6,7 @@
  * session's own. Tuning means setting LiveKit's documented options
  * (voices.ts).
  *
- * What is ours, and is here: who a finished line is for (Macro's
+ * What is ours, and is here: who a finished line is for (Rox's
  * `ai.decide`, in a group), the brain's text as the session's reply stream,
  * what the event log keeps, and the line it says before it's moved to
  * another call. None of it touches audio or timing.
@@ -31,10 +31,10 @@ export const namePattern = (name: string): RegExp => {
 };
 
 /**
- * The screen for a call: Macro's `ai.decide`, asked whether a line is spoken
+ * The screen for a call: Rox's `ai.decide`, asked whether a line is spoken
  * to the agent, with what was said before it. It answers in about a tenth of
  * a second, so every group line can ask. Tune the question and the
- * threshold to score better, never because someone on a call asked. Macro
+ * threshold to score better, never because someone on a call asked. Rox
  * caps a question at 500 characters.
  */
 export const callScreen = {

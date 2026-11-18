@@ -8,6 +8,7 @@ use crate::api::{ApiContext, context::EntityAccessServiceType};
 
 // needs to be public in api crate for swagger
 pub(in crate::api) mod agent_setup;
+pub(in crate::api) mod claim_handle;
 pub(in crate::api) mod delete_user;
 pub(in crate::api) mod get_legacy_user_permissions;
 pub(in crate::api) mod get_name;
@@ -52,6 +53,7 @@ fn router_with_auth(state: ApiContext) -> Router<ApiContext> {
             "/agent_setup",
             post(agent_setup::handler).layer(people_only),
         )
+        .route("/handle", put(claim_handle::handler))
         .route("/name", put(put_name::handler))
         .route("/name", get(get_name::handler))
         .route("/get_names", post(post_get_names::handler_external))

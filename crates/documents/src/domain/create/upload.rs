@@ -91,7 +91,7 @@ where
             ));
         }
         if file_type == Some(FileType::Spreadsheet) {
-            return Err(DocumentError::BadRequest("use CreateDocument to create a native Macro spreadsheet; upload an .xlsx or .csv file to preserve an existing workbook".to_string()));
+            return Err(DocumentError::BadRequest("use CreateDocument to create a native Rox spreadsheet; upload an .xlsx or .csv file to preserve an existing workbook".to_string()));
         }
         if file_type == Some(FileType::Md) && std::str::from_utf8(&bytes).is_err() {
             return Err(DocumentError::BadRequest(

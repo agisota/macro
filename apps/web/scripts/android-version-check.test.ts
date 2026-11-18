@@ -224,7 +224,7 @@ describe('PR Android version enforcement', () => {
     'apps/web/tauri/src-tauri/src/linux_notification.rs',
     'apps/web/tauri/src-tauri/README.md',
     'apps/web/tauri/desktop-release.json',
-    'apps/web/tauri/src-tauri/src/desktop/macrod.rs',
+    'apps/web/tauri/src-tauri/src/desktop/roxd.rs',
     'apps/web/tauri/src-tauri/src/desktop_update/desktop.rs',
     'apps/web/tauri/desktop-cef/src/main.rs',
   ])('ignores the iOS/desktop-only path %s', (path) => {

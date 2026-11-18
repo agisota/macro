@@ -93,6 +93,8 @@ pub enum GraphqlEmailProvider {
     Gmail,
     /// Microsoft Outlook and Microsoft 365.
     Outlook,
+    /// The account's first-party Rox mailbox.
+    Rox,
 }
 
 impl From<UserProvider> for GraphqlEmailProvider {
@@ -100,6 +102,7 @@ impl From<UserProvider> for GraphqlEmailProvider {
         match provider {
             UserProvider::Gmail => Self::Gmail,
             UserProvider::Outlook => Self::Outlook,
+            UserProvider::Rox => Self::Rox,
         }
     }
 }
@@ -163,7 +166,7 @@ pub struct GraphqlEmailLink<S: EmailUserService> {
     draft_is_signal: bool,
     /// Stable email link identifier.
     id: ID,
-    /// Macro user that owns the inbox.
+    /// Rox user that owns the inbox.
     macro_id: String,
     /// Provider email address for the inbox.
     email_address: String,

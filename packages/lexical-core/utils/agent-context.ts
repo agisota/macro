@@ -28,7 +28,7 @@ export type TriggerContext =
 
 /** A person or bot, as a reader would name them. */
 export type ContextPerson = {
-  /** A Macro user id or a bot id. */
+  /** A Rox user id or a bot id. */
   id: string;
   name: string;
   /** Absent for bots and imported authors. */
@@ -274,7 +274,7 @@ export type RoutineEvent =
   | { event: 'call_ended'; call: CallSnapshot }
   | { event: 'github'; delivery: GithubDelivery };
 
-/** A delivery from Macro's GitHub App. */
+/** A delivery from Rox's GitHub App. */
 export type GithubDelivery = {
   event: string;
   action?: string;

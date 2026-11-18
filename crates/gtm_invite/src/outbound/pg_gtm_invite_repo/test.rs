@@ -43,7 +43,7 @@ fn link(created_by: &str, first_name: &str) -> InviteLink {
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn insert_and_read_back_by_token_and_id(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
-    let created = link("valentina@macro.com", "Ada");
+    let created = link("valentina@rox.one", "Ada");
 
     repo.insert_link(&created).await.unwrap();
 
@@ -79,7 +79,7 @@ async fn unknown_tokens_and_ids_are_none(pool: Pool<Postgres>) {
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn tokens_are_unique(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
-    let first = link("valentina@macro.com", "Ada");
+    let first = link("valentina@rox.one", "Ada");
     let duplicate = InviteLink {
         id: Uuid::now_v7(),
         ..first.clone()
@@ -95,10 +95,10 @@ async fn list_is_newest_first_and_filters_by_creator(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
     let older = InviteLink {
         created_at: Utc::now() - Duration::hours(2),
-        ..link("valentina@macro.com", "Ada")
+        ..link("valentina@rox.one", "Ada")
     };
-    let newer = link("valentina@macro.com", "Grace");
-    let someone_elses = link("jacob@macro.com", "Linus");
+    let newer = link("valentina@rox.one", "Grace");
+    let someone_elses = link("jacob@rox.one", "Linus");
     for link in [&older, &newer, &someone_elses] {
         repo.insert_link(link).await.unwrap();
     }
@@ -116,7 +116,7 @@ async fn list_is_newest_first_and_filters_by_creator(pool: Pool<Postgres>) {
 
     let valentinas = repo
         .list_links(&ListInviteLinks {
-            created_by: Some(staff("valentina@macro.com")),
+            created_by: Some(staff("valentina@rox.one")),
             limit: 100,
         })
         .await
@@ -137,7 +137,7 @@ async fn list_is_newest_first_and_filters_by_creator(pool: Pool<Postgres>) {
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn record_open_counts_and_keeps_the_first_open_time(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
-    let created = link("valentina@macro.com", "Ada");
+    let created = link("valentina@rox.one", "Ada");
     repo.insert_link(&created).await.unwrap();
     let first_open = Utc::now() - Duration::minutes(10);
     let second_open = Utc::now();
@@ -156,7 +156,7 @@ async fn record_open_counts_and_keeps_the_first_open_time(pool: Pool<Postgres>) 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn revoke_only_touches_open_links(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
-    let created = link("valentina@macro.com", "Ada");
+    let created = link("valentina@rox.one", "Ada");
     repo.insert_link(&created).await.unwrap();
 
     assert!(repo.revoke_link(created.id, Utc::now()).await.unwrap());
@@ -165,7 +165,7 @@ async fn revoke_only_touches_open_links(pool: Pool<Postgres>) {
     let revoked = repo.get_link_by_id(created.id).await.unwrap().unwrap();
     assert_eq!(revoked.status(Utc::now()), InviteLinkStatus::Revoked);
 
-    let redeemed = link("valentina@macro.com", "Grace");
+    let redeemed = link("valentina@rox.one", "Grace");
     repo.insert_link(&redeemed).await.unwrap();
     repo.redeem_link(redeemed.id, &prospect(), Utc::now())
         .await
@@ -177,7 +177,7 @@ async fn revoke_only_touches_open_links(pool: Pool<Postgres>) {
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn redeem_is_first_come_and_idempotent_for_the_winner(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
-    let created = link("valentina@macro.com", "Ada");
+    let created = link("valentina@rox.one", "Ada");
     repo.insert_link(&created).await.unwrap();
     let now = Utc::now();
 
@@ -230,7 +230,7 @@ async fn redeem_refuses_expired_and_revoked_links(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
     let expired = InviteLink {
         expires_at: Utc::now() - Duration::minutes(1),
-        ..link("valentina@macro.com", "Ada")
+        ..link("valentina@rox.one", "Ada")
     };
     repo.insert_link(&expired).await.unwrap();
     assert!(
@@ -240,7 +240,7 @@ async fn redeem_refuses_expired_and_revoked_links(pool: Pool<Postgres>) {
             .is_none()
     );
 
-    let revoked = link("valentina@macro.com", "Grace");
+    let revoked = link("valentina@rox.one", "Grace");
     repo.insert_link(&revoked).await.unwrap();
     repo.revoke_link(revoked.id, Utc::now()).await.unwrap();
     assert!(
@@ -254,8 +254,8 @@ async fn redeem_refuses_expired_and_revoked_links(pool: Pool<Postgres>) {
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn a_user_can_only_hold_one_redeemed_link(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
-    let first = link("valentina@macro.com", "Ada");
-    let second = link("jacob@macro.com", "Ada");
+    let first = link("valentina@rox.one", "Ada");
+    let second = link("jacob@rox.one", "Ada");
     repo.insert_link(&first).await.unwrap();
     repo.insert_link(&second).await.unwrap();
 
@@ -275,7 +275,7 @@ async fn a_user_can_only_hold_one_redeemed_link(pool: Pool<Postgres>) {
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn mark_converted_records_the_subscription_once(pool: Pool<Postgres>) {
     let repo = PgGtmInviteRepo::new(pool);
-    let created = link("valentina@macro.com", "Ada");
+    let created = link("valentina@rox.one", "Ada");
     repo.insert_link(&created).await.unwrap();
 
     // Nobody redeemed it yet: nothing to convert.

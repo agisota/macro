@@ -174,7 +174,7 @@ impl<
                 "Codex session has a foreign provider mapping".into(),
             ));
         }
-        // Teardown removes only Macro's mapping. Remote work is cancelled through
+        // Teardown removes only Rox's mapping. Remote work is cancelled through
         // the explicit authorized session/cancel operation; deletion does not imply stop.
         ExternalSessionRepo::delete(&self.sessions, session).await?;
         Ok(())
@@ -184,7 +184,7 @@ impl<
     }
     async fn resize(&self, _session: AgentSessionId, _size: SandboxSize) -> Result<()> {
         Err(HarnessError::Container(
-            "Codex cloud compute cannot be resized from Macro".into(),
+            "Codex cloud compute cannot be resized from Rox".into(),
         ))
     }
 }

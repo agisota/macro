@@ -18,7 +18,7 @@ export interface RecordedToolCall {
   id: string;
   /** Arguments passed to the actual tool. */
   input: unknown;
-  /** Canonical Macro tool name from the allowlisted registry. */
+  /** Canonical Rox tool name from the allowlisted registry. */
   name: string;
   /** Original tool output, retained independently of the program's return value. */
   output?: unknown;

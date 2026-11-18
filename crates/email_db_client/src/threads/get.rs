@@ -403,8 +403,8 @@ mod tests {
     )]
     async fn test_get_threads_by_users_with_outbound(pool: Pool<Postgres>) -> anyhow::Result<()> {
         const _: &sqlx::migrate::Migrator = &MACRO_DB_MIGRATIONS; // Dummy reference for IDE
-        let user1 = "macro|user1@macro.com";
-        let user2 = "macro|user2@macro.com";
+        let user1 = "macro|user1@rox.one";
+        let user2 = "macro|user2@rox.one";
 
         // Test per-user pagination (limit 2, offset 0)
         let res = get_threads_by_user_with_outbound(&pool, user1, 2, 0).await?;
@@ -435,8 +435,8 @@ mod tests {
         pool: Pool<Postgres>,
     ) -> anyhow::Result<()> {
         // user1: threads 1 and 2, user2: thread 3
-        let user1 = "macro|user1@macro.com".to_string();
-        let user2 = "macro|user2@macro.com".to_string();
+        let user1 = "macro|user1@rox.one".to_string();
+        let user2 = "macro|user2@rox.one".to_string();
 
         let user_thread_ids = vec![
             UserThreadIds {
@@ -497,7 +497,7 @@ mod tests {
         pool: Pool<Postgres>,
     ) -> anyhow::Result<()> {
         // Assume user3 has no threads with outbound
-        let user3 = "macro|user3@macro.com".to_string();
+        let user3 = "macro|user3@rox.one".to_string();
 
         let user_thread_ids = vec![UserThreadIds {
             macro_user_id: user3.clone(),
@@ -519,7 +519,7 @@ mod tests {
     async fn test_get_outbound_threads_by_thread_ids_partial_match(
         pool: Pool<Postgres>,
     ) -> anyhow::Result<()> {
-        let user1 = "macro|user1@macro.com".to_string();
+        let user1 = "macro|user1@rox.one".to_string();
 
         // Only one thread has outbound
         let user_thread_ids = vec![UserThreadIds {

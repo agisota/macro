@@ -54,7 +54,7 @@ export const toolIcons: Record<
   superhuman: SuperhumanIcon,
 };
 
-/** Yearly cost of a team's current tools next to Macro's paid plan. */
+/** Yearly cost of a team's current tools next to Rox's paid plan. */
 export function SavingsCalculator(
   props: { apps?: readonly ReplacementApp[] } = {}
 ) {
@@ -319,14 +319,14 @@ export function SavingsCalculator(
                   </span>
                 </div>
                 <div class="pricing-savings-macro" aria-live="polite">
-                  <span>Macro</span>
+                  <span>Rox</span>
                   <span>{formatUsd(summary().macroCents)} per year</span>
                 </div>
               </>
             }
           >
             <div class="replacement-ledger-row">
-              <span>Macro cost</span>
+              <span>Rox cost</span>
               <span aria-live="polite">
                 {formatUsd(summary().macroCents)}
                 <small> / year</small>
@@ -336,7 +336,7 @@ export function SavingsCalculator(
               <span>
                 {savings() >= 0
                   ? 'Estimated savings'
-                  : 'Additional cost with Macro'}
+                  : 'Additional cost with Rox'}
               </span>
               <span class="replacement-ledger-total" aria-live="polite">
                 {formatUsd(Math.abs(savings()))}
@@ -358,7 +358,7 @@ export function SavingsCalculator(
         >
           Estimates use published plans and count bundled apps once.
         </Show>{' '}
-        Macro Pro is $40 per seat per month.
+        Rox Pro is $40 per seat per month.
       </p>
     </div>
   );

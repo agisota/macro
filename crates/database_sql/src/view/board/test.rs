@@ -443,9 +443,9 @@ fn assigned(rows: &[(RowId, Option<Cell>)]) -> Outcome {
 
 #[test]
 fn a_board_grouped_by_a_person_has_a_lane_per_person_its_cards_name() {
-    let sam = LaneKey::User("macro|sam@macro.com".try_into().unwrap());
-    let ana = LaneKey::User("macro|ana@macro.com".try_into().unwrap());
-    let gone = LaneKey::User("macro|gone@macro.com".try_into().unwrap());
+    let sam = LaneKey::User("macro|sam@rox.one".try_into().unwrap());
+    let ana = LaneKey::User("macro|ana@rox.one".try_into().unwrap());
+    let gone = LaneKey::User("macro|gone@rox.one".try_into().unwrap());
     let view = issues_view(
         ViewQuery::default(),
         ViewLayout::Board {
@@ -468,16 +468,16 @@ fn a_board_grouped_by_a_person_has_a_lane_per_person_its_cards_name() {
     let rows = assigned(&[
         (
             FIRST,
-            Some(Cell::Entities(vec!["macro|sam@macro.com".into()])),
+            Some(Cell::Entities(vec!["macro|sam@rox.one".into()])),
         ),
         (SECOND, None),
         (
             THIRD,
-            Some(Cell::Entities(vec!["macro|ana@macro.com".into()])),
+            Some(Cell::Entities(vec!["macro|ana@rox.one".into()])),
         ),
         (
             FOURTH,
-            Some(Cell::Entities(vec!["macro|sam@macro.com".into()])),
+            Some(Cell::Entities(vec!["macro|sam@rox.one".into()])),
         ),
     ]);
     let positions = vec![CardPosition {

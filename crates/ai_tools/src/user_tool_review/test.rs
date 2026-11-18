@@ -16,7 +16,7 @@ use super::*;
 use crate::{AiHost, tools_for};
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id")
 }
 
 fn field<'form>(form: &'form ReviewForm, name: &str) -> &'form ReviewField {

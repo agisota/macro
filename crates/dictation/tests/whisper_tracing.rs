@@ -73,6 +73,6 @@ async fn malformed_provider_responses_never_log_transcript_content() {
         );
         assert!(!output.contains("PRIVATE_TRANSCRIPT_SENTINEL"));
         assert!(!output.contains("test-server-key"));
-        assert!(output.contains("gen_ai.request.model=\"whisper-1\""));
+        assert!(output.contains("gen_ai.request.model=\"whisper-large-v3-turbo\""));
     }
 }

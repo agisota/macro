@@ -1,4 +1,4 @@
-//! Verified-grant adoption and Macro sharing policy, separate from provider sync.
+//! Verified-grant adoption and Rox sharing policy, separate from provider sync.
 
 use macro_user_id::user_id::MacroUserIdStr;
 use std::future::Future;

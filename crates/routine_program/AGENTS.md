@@ -29,7 +29,7 @@ no I/O.
   (parsed with nom); and `sentence_runs`, that sentence read with its knobs
   as text and values, as a routine suggestion's card shows it.
 - `src/plan.rs`: `StepRecord`, what each step of a run did.
-- `src/catalog.rs` + `src/catalog/*.ts`: the routine catalog, Macro's checked
+- `src/catalog.rs` + `src/catalog/*.ts`: the routine catalog, Rox's checked
   routines: surface, title, trigger (cron without a zone), a code step and/or
   Ask AI instructions, and authored `affects_others`, `safe_default`,
   `template`, `suggest` and `example` marks. The new-routine flow offers

@@ -29,7 +29,7 @@ mod test;
 pub struct LoadAgentModelsRequest {
     /// Provider to probe.
     pub harness: ModelHarnessDto,
-    /// Required for macrod and forbidden for other targets.
+    /// Required for roxd and forbidden for other targets.
     pub harness_id: Option<Uuid>,
 }
 
@@ -37,12 +37,12 @@ pub struct LoadAgentModelsRequest {
 #[derive(Debug, Deserialize, ToSchema)]
 #[serde(rename_all = "kebab-case")]
 pub enum ModelHarnessDto {
-    /// Macro's in-process agent.
+    /// Rox's in-process agent.
     InMemory,
     /// The caller's Cursor account.
     Cursor,
-    /// A paired macrod runtime.
-    Macrod,
+    /// A paired roxd runtime.
+    Roxd,
 }
 
 impl TryFrom<LoadAgentModelsRequest> for LoadAgentModels {
@@ -52,7 +52,7 @@ impl TryFrom<LoadAgentModelsRequest> for LoadAgentModels {
         let harness = match value.harness {
             ModelHarnessDto::InMemory => ModelHarness::InMemory,
             ModelHarnessDto::Cursor => ModelHarness::Cursor,
-            ModelHarnessDto::Macrod => ModelHarness::Macrod,
+            ModelHarnessDto::Roxd => ModelHarness::Roxd,
         };
         Ok(Self {
             harness,
@@ -218,8 +218,8 @@ where
         (status = 400, description = "Invalid target"),
         (status = 401, description = "Unauthenticated"),
         (status = 403, description = "Harness is not visible to caller"),
-        (status = 409, description = "Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)", content((CredentialRejectedResponse = "application/json"), (String = "text/plain"))),
-        (status = 504, description = "Macrod probe timed out"),
+        (status = 409, description = "Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)", content((CredentialRejectedResponse = "application/json"), (String = "text/plain"))),
+        (status = 504, description = "Roxd probe timed out"),
         (status = 502, description = "Provider probe failed"),
     )
 )]

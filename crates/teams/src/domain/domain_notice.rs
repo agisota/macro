@@ -1,6 +1,6 @@
 //! The one-time notice a team admin sends after creating a team for their work domain.
 //!
-//! It goes to the admin's contacts on that domain who are not on Macro yet. The join
+//! It goes to the admin's contacts on that domain who are not on Rox yet. The join
 //! announcement claim decides who is eligible and caps each team at
 //! [`MAX_RECIPIENTS_PER_TEAM`](super::join_announcement::MAX_RECIPIENTS_PER_TEAM).
 

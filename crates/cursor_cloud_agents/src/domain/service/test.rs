@@ -1277,7 +1277,7 @@ async fn foreign_runs_are_captured_before_the_next_prompt_and_shown_by_its_reloa
 }
 
 /// The host's poll: cursor.com activity reaches a session as it happens,
-/// without any Macro prompt — exactly once, checkpointed like a turn, and
+/// without any Rox prompt — exactly once, checkpointed like a turn, and
 /// with no reload to wait for.
 #[tokio::test]
 async fn sync_streams_foreign_runs_live_once_and_checkpoints_them() {

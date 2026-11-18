@@ -11,6 +11,6 @@ import type { SuggestedPick } from './suggestedPick';
 
 /**
  * A routine offered to one person: one AI suggested for them, or one of
-Macro's catalog routines filling a surface.
+Rox's catalog routines filling a surface.
  */
 export type RoutineSuggestion = SuggestedPick & RoutineSuggestionAllOf;

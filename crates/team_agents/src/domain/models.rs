@@ -37,8 +37,8 @@ pub enum TeamAgentStatus {
     Released,
 }
 
-/// An agent teammate: an AI member of a team with its own Macro account and
-/// its own Macro computer.
+/// An agent teammate: an AI member of a team with its own Rox account and
+/// its own Rox computer.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "inbound", derive(utoipa::ToSchema))]
 #[serde(rename_all = "camelCase")]
@@ -57,7 +57,7 @@ pub struct TeamAgent {
     /// Admin who invited the agent.
     #[cfg_attr(feature = "inbound", schema(value_type = Option<String>))]
     pub created_by: Option<MacroUserIdStr<'static>>,
-    /// The agent's Macro computer, once bought.
+    /// The agent's Rox computer, once bought.
     #[cfg_attr(feature = "inbound", schema(value_type = Option<Uuid>))]
     pub computer_id: Option<ComputerId>,
     /// Where the agent is.
@@ -121,7 +121,7 @@ pub struct PersonaSeed {
 /// An account to create for a new agent.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NewAgentAccount {
-    /// The agent's Macro user id.
+    /// The agent's Rox user id.
     pub user_id: MacroUserIdStr<'static>,
     /// Its placeholder address.
     pub email: String,
@@ -140,7 +140,7 @@ pub struct NewAgentAccount {
 /// A stored agent, before its computer is read.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct TeamAgentRecord {
-    /// The agent's Macro user id.
+    /// The agent's Rox user id.
     pub user_id: MacroUserIdStr<'static>,
     /// Team the agent belongs to.
     pub team_id: Uuid,
@@ -222,7 +222,7 @@ pub enum TeamAgentError {
     /// The avatar is not an HTTPS URL.
     #[error("the avatar must be an https URL")]
     InvalidAvatar,
-    /// The path is not a Macro user id.
+    /// The path is not a Rox user id.
     #[error("that is not a user id")]
     InvalidAgentId,
     /// No agent with that id on the caller's team.

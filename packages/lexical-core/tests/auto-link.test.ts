@@ -61,7 +61,7 @@ describe('Markdown URL imports', () => {
   ])(
     'links the original agent message through every import format',
     ({ transformers }) => {
-      const message = `hey! can you rate the Macro app on the App Store (5 stars if you're feeling it) and leave a quick review if you can? takes 30 seconds:\n${appStore}\n\n(sent by @macro on behalf of Jacob)`;
+      const message = `hey! can you rate the Rox app on the App Store (5 stars if you're feeling it) and leave a quick review if you can? takes 30 seconds:\n${appStore}\n\n(sent by @macro on behalf of Jacob)`;
       const editor = parse(message, transformers);
       editor.getEditorState().read(() => {
         expect(links($getRoot())).toEqual([{ text: appStore, url: appStore }]);

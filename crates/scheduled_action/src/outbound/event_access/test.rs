@@ -112,7 +112,7 @@ impl EntityAccessService for AccessService {
 
 #[tokio::test]
 async fn mints_entity_specific_receipts_for_exact_owner_and_entity() {
-    let owner = MacroUserIdStr::parse_from_str("macro|owner@macro.com").unwrap();
+    let owner = MacroUserIdStr::parse_from_str("macro|owner@rox.one").unwrap();
     for (name, kind, permission) in [
         (
             "email.message_received",
@@ -183,7 +183,7 @@ async fn mints_entity_specific_receipts_for_exact_owner_and_entity() {
 
 #[tokio::test]
 async fn wrong_permission_family_is_denied_not_reinterpreted() {
-    let owner = MacroUserIdStr::parse_from_str("macro|owner@macro.com").unwrap();
+    let owner = MacroUserIdStr::parse_from_str("macro|owner@rox.one").unwrap();
     for (name, permission) in [
         ("document.updated", EntityPermission::ChannelViewOnly),
         ("call.started", EntityPermission::ChannelViewOnly),
@@ -255,7 +255,7 @@ fn github_event(installation_id: u64) -> EventReference {
 
 #[tokio::test]
 async fn github_deliveries_follow_the_installation_claim_and_bind_to_it() {
-    let owner = MacroUserIdStr::parse_from_str("macro|owner@macro.com").unwrap();
+    let owner = MacroUserIdStr::parse_from_str("macro|owner@rox.one").unwrap();
     let service = AccessService {
         permission: EntityPermission::AccessLevel {
             access_level: AccessLevel::View,
@@ -268,7 +268,7 @@ async fn github_deliveries_follow_the_installation_claim_and_bind_to_it() {
     let capability = claimed.authorize(&owner, &event).await.unwrap().unwrap();
     assert!(capability.authorizes(&owner, &event));
     assert!(!capability.authorizes(&owner, &github_event(8)));
-    let stranger = MacroUserIdStr::parse_from_str("macro|stranger@macro.com").unwrap();
+    let stranger = MacroUserIdStr::parse_from_str("macro|stranger@rox.one").unwrap();
     assert!(!capability.authorizes(&stranger, &event));
 
     let unclaimed = EventAccessAdapter::new(service.clone(), Claims(false));

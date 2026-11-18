@@ -1,6 +1,7 @@
 # Version-control and local-agent state
 .git
 .jj
+.delta
 .agents
 .cursor
 .claude/.local
@@ -17,6 +18,13 @@
 # ignore file because it installs the root JavaScript workspace.
 /apps
 /packages
+
+# `agent_git`'s build script embeds the starter agent's files with include_str!,
+# so the crate cannot compile without them. Re-include the one package the
+# services image needs; the parent directories must be un-ignored first.
+!/packages
+/packages/*
+!/packages/starter-agent
 
 # Secrets and local configuration
 .env
@@ -47,3 +55,9 @@
 **/.vscode
 **/*.swp
 **/*.swo
+
+# Source directories named `build` are code, not compiled output: the blanket
+# `**/build` above would otherwise strip them from the build context and the
+# crate fails with "file not found for module".
+!crates/ai_engine/src/build
+!crates/ai_engine/src/build/**

@@ -18,7 +18,7 @@ fn args() -> JwtValidationArgs {
     }
 }
 
-/// An expired access token FusionAuth issued for this application without the Macro claims.
+/// An expired access token FusionAuth issued for this application without the Rox claims.
 fn claims_without_macro_claims() -> serde_json::Value {
     serde_json::json!({
         "aud": "macro-app", "exp": ISSUED_AT + 3600, "iat": ISSUED_AT, "iss": "auth.macro.test",
@@ -143,7 +143,7 @@ fn tokens_not_issued_by_fusionauth_for_this_application_are_rejected() {
             "issued-at out of range",
             hs256(with("iat", u64::MAX.into())),
         ),
-        ("Macro API token", macro_api_token),
+        ("Rox API token", macro_api_token),
         ("not a JWT", "not-a-jwt".into()),
     ];
 

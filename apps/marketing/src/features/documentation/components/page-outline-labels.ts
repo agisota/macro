@@ -104,7 +104,7 @@ export const pageOutlineLabels: Record<string, string> = {
   'whats-shared-with-a-team': 'Shared work',
   'managing-your-subscription': 'Subscriptions',
   'run-a-cursor-agent': 'Cursor agents',
-  'see-macros-sessions-in-cursor': 'Macro sessions',
+  'see-macros-sessions-in-cursor': 'Rox sessions',
   'on-the-macro-desktop-app': 'Desktop app',
   'create-an-agent-that-uses-your-runtime': 'Runtime agents',
   'keep-your-runtime-connected': 'Runtime connection',

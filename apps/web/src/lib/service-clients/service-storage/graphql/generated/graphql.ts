@@ -219,7 +219,7 @@ export type CreateCalendarEventInput = {
   /** Optional location label. */
   location?: string | null | undefined;
   /**
-   * Mint a Macro call and write its join link into the description and
+   * Mint a Rox call and write its join link into the description and
    * location before creating the event, so the invitation carries it.
    * Cannot be combined with `conference`.
    */
@@ -556,7 +556,7 @@ export type EmailMessageOperationIssue =
   | 'MOVE_PENDING'
   /** Source mailbox access must be restored. */
   | 'MOVE_REAUTHORIZATION'
-  /** The original was sent outside Macro. */
+  /** The original was sent outside Rox. */
   | 'MOVE_SOURCE_SENT'
   /** The provider definitively rejected delivery; a deliberate retry is safe. */
   | 'SEND_REJECTED'
@@ -660,7 +660,7 @@ export type FavoritesFilterInput = {
   entityTypes?: Array<GraphqlEntityType>;
 };
 
-/** The coding agent a Macro computer signs in to an account for. */
+/** The coding agent a Rox computer signs in to an account for. */
 export type GraphqlAgentProvider =
   /** An Anthropic Claude account, for Claude Code. */
   | 'CLAUDE';
@@ -755,7 +755,7 @@ export type GraphqlAgentSessionVisibility =
    */
   | 'UNLISTED';
 
-/** How close a Macro computer's agent sign-in is to no longer working. */
+/** How close a Rox computer's agent sign-in is to no longer working. */
 export type GraphqlAgentSignInExpiryStage =
   /** It expired, or the agent rejected it. */
   | 'EXPIRED'
@@ -1111,7 +1111,7 @@ export type GraphqlChatRole =
   /** The user option. */
   | 'USER';
 
-/** How a Macro computer's first setup ended. */
+/** How a Rox computer's first setup ended. */
 export type GraphqlComputerSetupOutcome =
   /** Setup gave up before the computer was ready. */
   | 'FAILED'
@@ -1455,7 +1455,9 @@ export type GraphqlEmailProvider =
   /** Google Gmail. */
   | 'GMAIL'
   /** Microsoft Outlook and Microsoft 365. */
-  | 'OUTLOOK';
+  | 'OUTLOOK'
+  /** The account's first-party Rox mailbox. */
+  | 'ROX';
 
 /** GraphQL input representing the email value. */
 export type GraphqlEmailValue =
@@ -1591,9 +1593,9 @@ export type GraphqlEntityType =
   | 'CRM_CONTACT'
   /** CRM pipeline entity. */
   | 'CRM_PIPELINE'
-  /** Macro Database entity (a collection of user-defined tables). */
+  /** Rox Database entity (a collection of user-defined tables). */
   | 'DATABASE'
-  /** Row of a Macro Database table. */
+  /** Row of a Rox Database table. */
   | 'DATABASE_ROW'
   /** Document entity. */
   | 'DOCUMENT'
@@ -1603,7 +1605,7 @@ export type GraphqlEntityType =
   | 'EXTERNAL_CHAT'
   /** Foreign entity. */
   | 'FOREIGN_ENTITY'
-  /** Macro Form entity (a questionnaire answered into a database table). */
+  /** Rox Form entity (a questionnaire answered into a database table). */
   | 'FORM'
   /** A registered runtime. */
   | 'HARNESS'
@@ -2039,7 +2041,7 @@ export type GraphqlPropertyTargetEntityType =
   | 'CHAT'
   /** CRM company target. */
   | 'COMPANY'
-  /** Row of a Macro database table. */
+  /** Row of a Rox database table. */
   | 'DATABASE_ROW'
   /** Document target, including tasks and snippets. */
   | 'DOCUMENT'
@@ -2194,7 +2196,7 @@ export type GraphqlSoupEntityType =
   | 'CRM_COMPANY'
   /** CRM contact entity. */
   | 'CRM_CONTACT'
-  /** Row of a Macro database table. */
+  /** Row of a Rox database table. */
   | 'DATABASE_ROW'
   /** Document entity. */
   | 'DOCUMENT'
@@ -2381,9 +2383,9 @@ export type NotificationEntityInput = {
 export type NotificationInboxActorKind =
   /** An agent. */
   | 'AGENT'
-  /** Macro itself. */
+  /** Rox itself. */
   | 'MACRO'
-  /** A Macro user. */
+  /** A Rox user. */
   | 'USER';
 
 /**
@@ -2613,7 +2615,7 @@ export type SaveEmailDraftInput = {
    * and sanitizes it before storing.
    */
   bodyHtml?: string | null | undefined;
-  /** Macro body. */
+  /** Rox body. */
   bodyMacro?: string | null | undefined;
   /** Plain text body. */
   bodyText?: string | null | undefined;

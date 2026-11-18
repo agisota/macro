@@ -87,7 +87,7 @@ describe('CalendarPermissionPrompt', () => {
     expect(screen.getAllByRole('status')).toHaveLength(1);
     expect(
       screen.getByText(
-        'Macro can now sync your calendar. Grant calendar access for own@example.com to turn it on.'
+        'Rox can now sync your calendar. Grant calendar access for own@example.com to turn it on.'
       )
     ).toBeTruthy();
     expect(screen.queryByText(/delegated@example\.com/)).toBeNull();

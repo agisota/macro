@@ -1,6 +1,6 @@
 import type { Env } from '../src/config';
 import type { EventName } from '../src/events/types';
-import { Macro } from '../src/macro';
+import { Rox } from '../src/macro';
 
 const [url, actAs] = process.argv.slice(2);
 const botToken = process.env.MACRO_BOT_TOKEN;
@@ -13,7 +13,7 @@ if (!url || !actAs || !botToken) {
 
 const env = (process.env.MACRO_ENV ?? 'dev') as Env;
 const port = Number(process.env.PORT ?? 8787);
-const bot = new Macro({ env, auth: { type: 'bot', token: botToken } });
+const bot = new Rox({ env, auth: { type: 'bot', token: botToken } });
 const macro = bot.requestedAs(bot.users.byId(actAs));
 
 // `as const` keeps the literal types so `.on()` infers each event's payload;
@@ -79,7 +79,7 @@ if (!secret)
 
 console.log(`webhook ${webhook.id} registered for ${url}, waiting for events`);
 
-const events = new Macro({
+const events = new Rox({
   env,
   auth: { type: 'bot', token: botToken },
   webhookSecret: secret,

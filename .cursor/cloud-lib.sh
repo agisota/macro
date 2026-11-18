@@ -4,16 +4,16 @@ TARGET_CACHE="${CACHE_ROOT}/target"
 export MACRO_STACK_SNAPSHOT_DIR="${CACHE_ROOT}/stack-snapshots"
 
 LOG_DIR="${HOME}/.cursor-cloud"
-MACRODB_URL='postgres://user:password@localhost:5432/macrodb'
+ROXDB_URL='postgres://user:password@localhost:5432/macrodb'
 DOCKER_SOCK='/var/run/docker.sock'
 DOCKER_IPTABLES_BACKEND='/usr/sbin/iptables-legacy'
 DOCKER_IP6TABLES_BACKEND='/usr/sbin/ip6tables-legacy'
 NIX_BIN='/nix/var/nix/profiles/default/bin/nix'
 NIX_SOCK='/nix/var/nix/daemon-socket/socket'
 NIX_CACHE_URL='s3://macro-nix-cache?region=us-east-1&compression=zstd'
-NIX_CACHE_PUBLIC_KEY='nix-cache.macro.com-1:UtlRPa6ac+o4IfY+wV8KUS+X0XPU0YMv18lPWEDYN5k='
+NIX_CACHE_PUBLIC_KEY='nix-cache.rox.one-1:UtlRPa6ac+o4IfY+wV8KUS+X0XPU0YMv18lPWEDYN5k='
 LOCAL_STACK_BINS="${CACHE_ROOT}/local-stack-bins"
-export DATABASE_URL="${MACRODB_URL}"
+export DATABASE_URL="${ROXDB_URL}"
 
 mkdir -p "${LOG_DIR}" "${TARGET_CACHE}" "${MACRO_STACK_SNAPSHOT_DIR}"
 

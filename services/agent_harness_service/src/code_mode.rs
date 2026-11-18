@@ -281,7 +281,7 @@ impl ExecutionCredentials for RunCredentials {
 
 /// Credentials for public MCP runs: the signed-in user, with no session, and
 /// the agent the run's posts are attributed to: an agent caller (a self-hosted
-/// agent's call through egress) as itself, any other caller as the Macro bot,
+/// agent's call through egress) as itself, any other caller as the Rox bot,
 /// labelled with the MCP client's name - the same attribution the direct MCP
 /// tools give. The MCP client asks the user before each tool call, so there is
 /// no owner gate.

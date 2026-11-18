@@ -22,7 +22,7 @@ function files(directory: string): string[] {
 // The host applies these before serving a page. This checks the committed
 // records, not a separate copy of the migration mapping.
 function destination(source: string): URL {
-  const url = new URL(source, 'https://docs.macro.com');
+  const url = new URL(source, 'https://docs.rox.one');
   const pathname = url.pathname.replace(/\/$/, '') || '/';
   const rule = config.redirects.find(
     (candidate) =>
@@ -36,7 +36,7 @@ function destination(source: string): URL {
   const result = new URL(rule.destination.replace(':path*', suffix));
   assert.equal(
     result.origin,
-    'https://macro.com',
+    'https://rox.one',
     `Wrong destination host: ${source}`
   );
   assert(!result.pathname.includes('*'), `Unresolved wildcard: ${source}`);
@@ -112,7 +112,7 @@ for (const rule of config.redirects)
   assert(!/[?#]/.test(rule.source + rule.destination));
 assert.equal(
   destination('/product/email?from=docs#sharing').href,
-  'https://macro.com/email?from=docs#sharing'
+  'https://rox.one/email?from=docs#sharing'
 );
 assert.equal(
   destination('/product/email.md').pathname,

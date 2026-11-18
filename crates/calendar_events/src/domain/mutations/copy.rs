@@ -99,7 +99,7 @@ where
             }
             ProviderImportOutcome::AlreadyHeld => {
                 // Google already has the meeting on that calendar, most likely
-                // an invitation Macro has not synced yet; pull it in so the
+                // an invitation Rox has not synced yet; pull it in so the
                 // mention resolves to it.
                 self.repository
                     .schedule_google_sync_for_link(target.email_link_id)

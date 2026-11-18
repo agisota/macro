@@ -2,8 +2,8 @@
 
 ## What it is
 
-Agent teammates: AI members of a team, each a real Macro account with its own
-Macro computer and workspace repository, behind the `enable-agent-teammates`
+Agent teammates: AI members of a team, each a real Rox account with its own
+Rox computer and workspace repository, behind the `enable-agent-teammates`
 PostHog flag. Served at `/team_agents` in authentication_service.
 
 ## How it works
@@ -20,8 +20,8 @@ undoes the repo, membership and account, newest first.
 When the computer operator creates the guest it calls the internal
 `POST /internal/team_agent_enrollment/{computer}/{generation}`; for an agent
 computer, `issue_enrollment` mints a fresh API key and repo token and returns
-them with the computer-facing addresses. macrod writes them to
-`/var/lib/macrod/agent.env`, which the guest's `macro-brain.service` reads.
+them with the computer-facing addresses. roxd writes them to
+`/var/lib/roxd/agent.env`, which the guest's `macro-brain.service` reads.
 
 An agent's call voice lives in its repo as `config/voice.json`, not here. The
 invite's optional `voice` seeds it (`PersonaSeed.voice`; none keeps the starter

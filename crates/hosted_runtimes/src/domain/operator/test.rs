@@ -153,11 +153,11 @@ impl Fleet for FakeFleet {
         Ok(())
     }
 
-    async fn restart_macrod(&self, id: ComputerId) -> Result<(), FakeFleetError> {
+    async fn restart_roxd(&self, id: ComputerId) -> Result<(), FakeFleetError> {
         self.calls
             .lock()
             .unwrap()
-            .push(format!("restart_macrod {id}"));
+            .push(format!("restart_roxd {id}"));
         Ok(())
     }
 
@@ -501,7 +501,7 @@ async fn an_agent_teammates_computer_gets_no_default_coding_agent() {
     let id = paid_computer(&operator).await;
     operator.repo.agents.lock().unwrap().insert(
         id,
-        macro_user_id::user_id::MacroUserIdStr::try_from("macro|ada-agent@macro.com".to_owned())
+        macro_user_id::user_id::MacroUserIdStr::try_from("macro|ada-agent@rox.one".to_owned())
             .unwrap(),
     );
     operator.run_fleet_effects().await.unwrap();
@@ -700,8 +700,8 @@ async fn reconcile_turns_a_missing_instance_into_a_crash_and_removes_orphans() {
         let computer = computers.get_mut(&id).unwrap();
         computer.state = ComputerState {
             phase: Phase::Running,
-            macrod_connected: true,
-            macrod_misses: 0,
+            roxd_connected: true,
+            roxd_misses: 0,
             ..computer.state.clone()
         };
     }
@@ -741,7 +741,7 @@ async fn retry_of_a_lost_guest_reprovisions_the_same_computer_and_harness() {
     .await;
     let id = paid_computer(&operator).await;
     operator.run_fleet_effects().await.unwrap();
-    operator.macrod_connected(HARNESS).await.unwrap();
+    operator.roxd_connected(HARNESS).await.unwrap();
     operator.run_fleet_effects().await.unwrap(); // The ready notice.
     operator
         .repo
@@ -772,7 +772,7 @@ async fn retry_of_a_lost_guest_reprovisions_the_same_computer_and_harness() {
         .into_healthy()
         .unwrap();
     assert_eq!(lost.state.phase, Phase::Provisioning { start: true });
-    assert!(!lost.state.macrod_connected);
+    assert!(!lost.state.roxd_connected);
     assert_eq!(lost.harness_id, Some(HARNESS));
     assert_eq!(operator.run_fleet_effects().await.unwrap(), 1);
     let recreated = operator
@@ -864,7 +864,7 @@ async fn a_lost_guest_is_recreated_with_a_fresh_pairing() {
     let id = paid_computer(&operator).await;
     operator.run_fleet_effects().await.unwrap();
     // Connecting happens after the guest claims its approved pairing.
-    operator.macrod_connected(HARNESS).await.unwrap();
+    operator.roxd_connected(HARNESS).await.unwrap();
     operator.run_fleet_effects().await.unwrap(); // The ready notice.
 
     operator.fleet.created.lock().unwrap().remove(&id);

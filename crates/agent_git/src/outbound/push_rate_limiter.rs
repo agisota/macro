@@ -14,7 +14,7 @@ pub struct PgPushRateLimiter {
 }
 
 impl PgPushRateLimiter {
-    /// A limiter over MacroDB's `agent_repos`.
+    /// A limiter over RoxDB's `agent_repos`.
     pub fn new(pool: PgPool, pushes_per_minute: u32) -> Self {
         Self {
             pool,

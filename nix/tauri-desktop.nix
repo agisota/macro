@@ -297,16 +297,16 @@
           doInstallCargoArtifacts = false;
         };
 
-      # The macrod agent daemon, bundled with the desktop app as a Tauri
+      # The roxd agent daemon, bundled with the desktop app as a Tauri
       # sidecar so "run agents on this computer" needs no separate download.
       # The standalone release tarballs keep their own musl/darwin pipeline in
       # build_agent_daemon_on_tag.yml.
-      macrodBinary = workspaceBinary {
-        pname = "macrod";
+      roxdBinary = workspaceBinary {
+        pname = "roxd";
         package = "coding_agent_worker";
       };
 
-      # The agent sign-in daemon baked into the Macro computer image
+      # The agent sign-in daemon baked into the Rox computer image
       # (nix/macro-box).
       harnessdBinary = workspaceBinary {
         pname = "harnessd";
@@ -316,9 +316,9 @@
       # Tauri sidecar sources carry the target triple in the file name; the
       # bundler strips it when placing the binary next to the app executable.
       rustHostTriple = pkgs.stdenv.hostPlatform.rust.rustcTarget;
-      installMacrodSidecar = ''
-        install -Dm0755 ${macrodBinary}/bin/macrod \
-          "src-tauri/binaries/macrod-${rustHostTriple}"
+      installRoxdSidecar = ''
+        install -Dm0755 ${roxdBinary}/bin/roxd \
+          "src-tauri/binaries/roxd-${rustHostTriple}"
       '';
 
       frontend = pkgs.stdenvNoCC.mkDerivation {
@@ -869,7 +869,7 @@
           active = true;
           targets = [ "appimage" ];
           useLocalToolsDir = true;
-          externalBin = [ "binaries/macrod" ];
+          externalBin = [ "binaries/roxd" ];
           linux.appimage.bundleMediaFramework = true;
           linux.appimage.files = {
             "/usr/bin/xdg-mime" = "${tauriXdgUtils}/bin/xdg-mime";
@@ -1065,7 +1065,7 @@
         bundle = {
           active = true;
           targets = [ "app" ];
-          externalBin = [ "binaries/macrod" ];
+          externalBin = [ "binaries/roxd" ];
           cef.embed = true;
         };
       };
@@ -1146,10 +1146,10 @@
           rm -rf apps/web/dist
           cp -r ${frontend} apps/web/dist
           printf production > apps/web/tauri/src-tauri/.macro-tauri-env
-          install -Dm0755 ${macrodBinary}/bin/macrod \
-            "apps/web/tauri/desktop-cef/binaries/macrod-${rustHostTriple}"
-          install -Dm0755 ${macrodBinary}/bin/macrod \
-            "apps/web/tauri/src-tauri/binaries/macrod-${rustHostTriple}"
+          install -Dm0755 ${roxdBinary}/bin/roxd \
+            "apps/web/tauri/desktop-cef/binaries/roxd-${rustHostTriple}"
+          install -Dm0755 ${roxdBinary}/bin/roxd \
+            "apps/web/tauri/src-tauri/binaries/roxd-${rustHostTriple}"
           cd apps/web/tauri/desktop-cef
         '';
         buildPhaseCargoCommand = ''
@@ -1297,7 +1297,7 @@
                 \( -name '*.framework' -o -name '*.app' \) -print0)
             fi
 
-            # Helper executables (the macrod sidecar) must be signed
+            # Helper executables (the roxd sidecar) must be signed
             # individually for notarization.
             while IFS= read -r -d "" file; do
               if otool -hv "$file" >/dev/null 2>&1; then
@@ -1307,7 +1307,7 @@
 
             # Nested code is signed above, so seal the bundle without --deep:
             # the app's restricted entitlements must not reach the CEF helpers
-            # or the macrod sidecar.
+            # or the roxd sidecar.
             local -a app_sign_args=("''${executable_sign_args[@]}")
             if [ "$APPLE_SIGNING_IDENTITY" != "-" ]; then
               cp "$MACOS_PROVISIONING_PROFILE" "$app/Contents/embedded.provisionprofile"
@@ -1447,7 +1447,7 @@
           preBuild = ''
             test -e ${tauriAppImagePackagingTests}
             ${tauriDesktopPreBuild}
-            ${installMacrodSidecar}
+            ${installRoxdSidecar}
 
             runtime_library_path="$(while IFS= read -r store_path; do
               if [ -d "$store_path/lib" ]; then
@@ -1501,13 +1501,13 @@
         tauri-desktop = {
           type = "app";
           program = "${wrappedTauriDesktop}/bin/app";
-          meta.description = "Run the Macro Tauri desktop app";
+          meta.description = "Run the Rox Tauri desktop app";
         };
       };
 
       packages = {
         js-node-modules = nodeModules;
-        macrod = macrodBinary;
+        roxd = roxdBinary;
         harnessd = harnessdBinary;
       }
       // lib.optionalAttrs isLinux {

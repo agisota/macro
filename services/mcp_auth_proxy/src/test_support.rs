@@ -60,14 +60,14 @@ pub const SSO_EMAIL_ADDRESS: &str = "user@sso.example";
 /// The only code the fake email provider accepts.
 pub const EMAIL_CODE: &str = "123456";
 /// The harness's public MCP, as its metadata advertises it.
-pub const HARNESS_RESOURCE: &str = "https://mcp.macro.com/mcp";
-/// The ChatGPT MCP server, which gets Macro API tokens.
-pub const CHATGPT_RESOURCE: &str = "https://mcp-chatgpt.macro.com/mcp";
+pub const HARNESS_RESOURCE: &str = "https://mcp.rox.one/mcp";
+/// The ChatGPT MCP server, which gets Rox API tokens.
+pub const CHATGPT_RESOURCE: &str = "https://mcp-chatgpt.rox.one/mcp";
 
 /// The longest token the fake minter signs, like the harness's signer cap.
 pub const MINTED_LIFETIME_CAP_SECONDS: u64 = 900;
 
-/// Minter that spells out what it signed, standing in for the harness's Macro
+/// Minter that spells out what it signed, standing in for the harness's Rox
 /// API token signer, and caps lifetimes as it does.
 pub struct FakeMacroApiTokens;
 
@@ -485,7 +485,7 @@ impl Harness {
         let provider = Arc::new(provider);
         let email_codes = Arc::new(FakeEmailCodes::default());
         let service = McpAuthProxyServiceImpl::new(McpAuthProxyServiceDeps {
-            public_url: "https://mcp.macro.com".to_owned(),
+            public_url: "https://mcp.rox.one".to_owned(),
             redirect_uri_policy: RedirectUriPolicy::new(["claude.ai", "chatgpt.com"]),
             inflight_auth: Arc::clone(&inflight),
             client_registrations: Arc::clone(&registry) as Arc<dyn ClientRegistrationStore>,

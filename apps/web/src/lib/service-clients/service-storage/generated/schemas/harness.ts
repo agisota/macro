@@ -25,7 +25,7 @@ in question, such as to the daemon itself. */
   /** Whether agents may bypass ACP permission requests on this harness. */
   allow_permission_bypass?: boolean;
   /** How Claude Code on this machine is paid for, derived from whether
-it has an active Claude login. Only meaningful for Macro computers. */
+it has an active Claude login. Only meaningful for Rox computers. */
   claude_mode?: ClaudeMode;
   computer_id?: HarnessComputerId;
   /** Whether the daemon currently holds a runtime connection. */
@@ -36,7 +36,7 @@ it has an active Claude login. Only meaningful for Macro computers. */
   created_by: string;
   /** Harness id. */
   id: HarnessId;
-  /** Runtime kind. Currently always `macrod`. */
+  /** Runtime kind. Currently always `roxd`. */
   kind: string;
   /** When the daemon last attached a runtime connection. */
   last_connected_at?: HarnessLastConnectedAt;

@@ -42,7 +42,7 @@ ended and the disk is still retained. */
   compReason?: ComputerStatusCompReason;
   /** Time the computer was reserved. */
   createdAt: string;
-  /** Bot id of the coding agent the computer came with; null until macrod
+  /** Bot id of the coding agent the computer came with; null until roxd
 first connects. It can name an agent the team since deleted. */
   defaultAgentId?: ComputerStatusDefaultAgentId;
   /** Root disk limit saved at purchase. */
@@ -62,7 +62,7 @@ when it failed and the cause is known. The full error is only in the logs. */
   pastDueSince?: ComputerStatusPastDueSince;
   /** Whether validated state requests power on; false for quarantined records. */
   poweredOn: boolean;
-  /** The Macro user who bought it. The team's owner and admins, not the
+  /** The Rox user who bought it. The team's owner and admins, not the
 buyer, finish its setup and manage its Claude account. */
   purchasedBy: string;
   /** When the disk is destroyed, for a computer whose billing ended. */

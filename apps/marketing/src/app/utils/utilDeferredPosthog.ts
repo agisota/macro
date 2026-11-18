@@ -70,6 +70,7 @@ const campaignKeys = [
 /** Website-only queue: the SDK downloads after paint, or immediately on an event. */
 export const createDeferredPosthog = (
   key: string,
+  host: string,
   load: () => Promise<PosthogClient> = () =>
     import('posthog-js').then((module) => module.default)
 ) => {
@@ -144,8 +145,7 @@ export const createDeferredPosthog = (
       .then(load)
       .then((loaded) => {
         loaded.init(key, {
-          api_host: 'https://macro-prox.macroverse.workers.dev/i/ph',
-          ui_host: 'https://us.posthog.com',
+          api_host: host,
           defaults: '2026-01-30',
           // Replay the original landing page and any early navigation exactly
           // once before handing future history-change pageviews to the SDK.

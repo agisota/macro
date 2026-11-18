@@ -226,7 +226,7 @@ async fn every_legacy_and_reconciliation_condition_keeps_the_existing_header_rul
             } else {
                 let header = result.message_id_header.unwrap();
                 assert!(header.starts_with(&format!("{MESSAGE}.")));
-                assert!(header.ends_with("@send.macro.com"));
+                assert!(header.ends_with("@send.rox.one"));
             }
             assert_eq!(
                 fake.trace(),

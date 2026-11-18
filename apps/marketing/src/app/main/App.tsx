@@ -22,6 +22,7 @@ import '../../styles/body-headings.css';
 import '../../features/setup/cream-preview.css';
 import { DemoMentionMenu } from '../../features/marketing/components/DemoMentionMenu';
 import { PageVignette } from '../../features/marketing/components/PageVignette';
+import { DEFAULT_DARK_THEME } from '../../lib/theme/constants/themeConstants';
 import {
   applyTheme,
   systemThemeEffect,
@@ -336,7 +337,7 @@ export const App: Component<{
   // The animal clock now starts itself while animate() subscribers exist —
   // no unconditional global rAF loop.
   systemThemeEffect();
-  applyTheme('Macro');
+  applyTheme(DEFAULT_DARK_THEME);
   utilFaviconEffect();
 
   return (

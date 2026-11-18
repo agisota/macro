@@ -201,7 +201,7 @@ where
         let file_type = self.documents.file_type(document_id).await?;
         if file_type.as_deref() != Some("docx") {
             return Err(WordDocumentRejected(
-                "This works on uploaded Word (.docx) documents only. Use EditDocument for Macro markdown documents and ReadContent for other files.".to_owned(),
+                "This works on uploaded Word (.docx) documents only. Use EditDocument for Rox markdown documents and ReadContent for other files.".to_owned(),
             )
             .into());
         }

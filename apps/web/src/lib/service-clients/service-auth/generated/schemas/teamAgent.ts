@@ -9,11 +9,11 @@ import type { TeamAgentCreatedBy } from './teamAgentCreatedBy';
 import type { TeamAgentStatus } from './teamAgentStatus';
 
 /**
- * An agent teammate: an AI member of a team with its own Macro account and
-its own Macro computer.
+ * An agent teammate: an AI member of a team with its own Rox account and
+its own Rox computer.
  */
 export interface TeamAgent {
-  /** The agent's Macro computer, once bought. */
+  /** The agent's Rox computer, once bought. */
   computerId?: TeamAgentComputerId;
   /** When the agent was invited. */
   createdAt: string;

@@ -1794,7 +1794,7 @@ fn agent_session_lifecycle_event(
         session_id: agent_session::domain::model::AgentSessionId::TEST_A,
         session_name: "Fix the flaky test".to_owned(),
         bot_id: bot_id::BotId::new_from_uuid(uuid::Uuid::from_u128(0xB07)),
-        bot_name: "Macro Coder".to_owned(),
+        bot_name: "Rox Coder".to_owned(),
         owner_id: macro_user_id::user_id::MacroUserIdStr::parse_from_str("macro|asker@example.com")
             .expect("valid user id")
             .into_owned(),

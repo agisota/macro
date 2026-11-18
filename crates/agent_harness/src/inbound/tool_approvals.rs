@@ -39,7 +39,7 @@ pub enum ToolApprovalAnswerDto {
     /// Let it run. Owner only.
     Approve,
     /// Let it run, and let the same person make the calls it covers in this
-    /// session without asking again: the same tool on Macro, every tool of a
+    /// session without asking again: the same tool on Rox, every tool of a
     /// connected app. Owner only.
     ApproveAndRemember,
     /// Refuse it. Owner only.

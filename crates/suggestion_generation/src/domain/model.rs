@@ -15,7 +15,7 @@ use super::session::SessionEnding;
 /// The agent generation sessions run as, and their model.
 #[derive(Debug, Clone)]
 pub struct GenerationAgent {
-    /// The in-process Macro agent.
+    /// The in-process Rox agent.
     pub bot: BotId,
     /// The model its sessions run on.
     pub model: String,

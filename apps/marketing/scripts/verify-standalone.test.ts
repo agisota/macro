@@ -202,14 +202,14 @@ describe('standalone website boundary', () => {
     write(
       'src/main.tsx',
       `
-      export const demo = <iframe src="https://macro.com/live-editor/index.html" />;
+      export const demo = <iframe src="https://rox.one/live-editor/index.html" />;
       export const image = <img src="/shared-only.png" />;
     `
     );
     expect(inspect().violations).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          reference: 'https://macro.com/live-editor/index.html',
+          reference: 'https://rox.one/live-editor/index.html',
           reason: expect.stringContaining('authenticated app'),
         }),
         expect.objectContaining({

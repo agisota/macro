@@ -1,9 +1,9 @@
-//! Keep every Macro-held copy of a Google meeting on the guest policy of the
-//! organizer's own copy, when Macro holds that copy.
+//! Keep every Rox-held copy of a Google meeting on the guest policy of the
+//! organizer's own copy, when Rox holds that copy.
 //!
 //! Google takes 4 to 12 seconds to carry an organizer's policy change to its
 //! guests' copies. A guest who invites someone in that window gets a 200
-//! while Google drops the guest without telling anyone, so Macro applies the
+//! while Google drops the guest without telling anyone, so Rox applies the
 //! organizer's change to every copy it holds as soon as it stores the
 //! organizer's copy, and a copy written back meanwhile keeps the organizer's
 //! switches instead of the stale ones Google echoes.

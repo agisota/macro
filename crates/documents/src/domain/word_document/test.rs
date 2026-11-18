@@ -8,7 +8,7 @@ const DOCUMENT: &str = "019fd3b9-3c6c-7c05-89c2-a27f0121813c";
 const SECRET: &str = "local-word-document-test-secret";
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|words@macro.com".to_owned()).unwrap()
+    MacroUserIdStr::try_from("macro|words@rox.one".to_owned()).unwrap()
 }
 
 fn receipt<T: RequiredPermission>(access_level: AccessLevel) -> EntityAccessReceipt<T> {
@@ -131,7 +131,7 @@ async fn read_through(
     .read(
         receipt(AccessLevel::View),
         &user(),
-        Some("macro|ai@macro.com"),
+        Some("macro|ai@rox.one"),
         None,
         None,
     )
@@ -232,8 +232,8 @@ async fn reads_mint_only_view_access_for_the_delegated_actor() {
             let claims = claims(token);
             assert_eq!(claims["document_id"], DOCUMENT);
             assert_eq!(claims["access_level"], "view");
-            assert_eq!(claims["user_id"], "macro|words@macro.com");
-            assert_eq!(claims["actor"], "macro|ai@macro.com");
+            assert_eq!(claims["user_id"], "macro|words@rox.one");
+            assert_eq!(claims["actor"], "macro|ai@rox.one");
             Box::pin(async { Ok(response("Word document with 3 blocks.")) })
         });
     let service = word_service(Arc::new(lookup("docx")), Arc::new(worker));
@@ -241,7 +241,7 @@ async fn reads_mint_only_view_access_for_the_delegated_actor() {
         .read(
             receipt(AccessLevel::View),
             &user(),
-            Some("macro|ai@macro.com"),
+            Some("macro|ai@rox.one"),
             Some(3),
             None,
         )
@@ -255,7 +255,7 @@ fn named(name: Option<&'static str>) -> MockWordDocumentLookup {
     let mut lookup = lookup("docx");
     lookup
         .expect_display_name()
-        .withf(|id| id == "macro|words@macro.com")
+        .withf(|id| id == "macro|words@rox.one")
         .returning(move |_| Box::pin(async move { Ok(name.map(str::to_owned)) }));
     lookup
 }
@@ -294,7 +294,7 @@ async fn edits_mint_edit_access_and_are_attributed_to_the_user() {
         .edit(
             receipt(AccessLevel::Edit),
             &user(),
-            Some("macro|ai@macro.com"),
+            Some("macro|ai@rox.one"),
             vec![rename("a"), rename("b")],
             WordEditOptions {
                 track_changes: Some(true),
@@ -316,7 +316,7 @@ async fn a_user_without_a_name_is_named_by_their_email() {
         .edit(
             receipt(AccessLevel::Edit),
             &user(),
-            Some("macro|ai@macro.com"),
+            Some("macro|ai@rox.one"),
             vec![rename("a"), rename("b")],
             WordEditOptions::default(),
         )
@@ -336,7 +336,7 @@ async fn an_explicit_author_replaces_the_user() {
         .edit(
             receipt(AccessLevel::Edit),
             &user(),
-            Some("macro|ai@macro.com"),
+            Some("macro|ai@rox.one"),
             vec![rename("a"), rename("b")],
             WordEditOptions {
                 track_changes: Some(false),
@@ -357,7 +357,7 @@ async fn authors_are_one_short_line() {
             .edit(
                 receipt(AccessLevel::Edit),
                 &user(),
-                Some("macro|ai@macro.com"),
+                Some("macro|ai@rox.one"),
                 vec![rename("a")],
                 WordEditOptions {
                     track_changes: None,
@@ -380,7 +380,7 @@ async fn other_file_types_never_reach_the_worker() {
             .read(
                 receipt(AccessLevel::View),
                 &user(),
-                Some("macro|ai@macro.com"),
+                Some("macro|ai@rox.one"),
                 None,
                 None,
             )
@@ -400,7 +400,7 @@ async fn edits_need_between_one_and_fifty_operations() {
             .edit(
                 receipt(AccessLevel::Edit),
                 &user(),
-                Some("macro|ai@macro.com"),
+                Some("macro|ai@rox.one"),
                 operations,
                 WordEditOptions::default(),
             )

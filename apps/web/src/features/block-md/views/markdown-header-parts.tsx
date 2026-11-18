@@ -7,7 +7,7 @@ import { useMarkdownName } from '../component/MarkdownNameProvider';
 import { useMarkdownDocument } from '../context/markdown-document-context';
 
 /**
- * Dispatch Agent, on a task, and Ask Macro, shown before Share in a desktop
+ * Dispatch Agent, on a task, and Ask Rox, shown before Share in a desktop
  * document header.
  */
 export function MarkdownHeaderActions() {

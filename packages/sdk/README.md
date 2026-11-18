@@ -1,9 +1,9 @@
-Macro's SDK: a Typescript library for harnessing the power of Macro
+Rox's SDK: a Typescript library for harnessing the power of Rox
 
-**[Read the SDK documentation](https://sdk.macro.com)** — a quick start,
+**[Read the SDK documentation](https://sdk.rox.one)** — a quick start,
 plain-English entity guide, and complete API reference, served by the SDK docs Worker.
 
-- **`generated/`**: generated Typescript types and a HeyAPI client from Macro's
+- **`generated/`**: generated Typescript types and a HeyAPI client from Rox's
   OpenAPI specs.
 - **`src/`**: a hand-written ergonomic SDK layer that provides an "orm"-y API.
 
@@ -15,17 +15,17 @@ included static docs Worker.
 
 ### Getting started
 
-To get started, make a Macro client
+To get started, make a Rox client
 
 ```ts
-import { Macro } from '@macro-inc/sdk';
+import { Rox } from '@macro-inc/sdk';
 
-const macro = new Macro({ }); // uses MACRO_API_KEY env var
+const macro = new Rox({ }); // uses MACRO_API_KEY env var
 ```
 
 ### Authenticating
 
-Every request the SDK sends carries exactly one Macro credential. There are three kinds.
+Every request the SDK sends carries exactly one Rox credential. There are three kinds.
 
 | Credential | Minted in | Prefix | Acts as |
 | --- | --- | --- | --- |
@@ -38,22 +38,22 @@ Every request the SDK sends carries exactly one Macro credential. There are thre
 The default for scripts and integrations. Put the key in `MACRO_API_KEY` and construct with no options.
 
 ```ts
-import { Macro } from '@macro-inc/sdk';
+import { Rox } from '@macro-inc/sdk';
 
-const macro = new Macro({});
+const macro = new Rox({});
 const me = await macro.users.me();
 ```
 
 Or pass it in code. `token` accepts an API key or a bearer token. The SDK picks the header from the prefix.
 
 ```ts
-const macro = new Macro({ token: process.env.MACRO_API_KEY });
+const macro = new Rox({ token: process.env.MACRO_API_KEY });
 ```
 
 The explicit form names the credential kind. Use it when the key is not from an env var, or when it predates the `mak_` prefix.
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   auth: { type: 'user', apiKey: process.env.MACRO_API_KEY },
 });
 ```
@@ -64,7 +64,7 @@ An API key always acts as the user who minted it. `requestedAs` is bot-only.
 
 An agent has its own account and seat. Invite one with
 `(await macro.teams.current()).invite('agent@example.com', { agent: true })` from your own
-key (an agent's program is refused), or sign up at https://macro.com/app/signup/agent. After signing in, the agent sees its API key once in the
+key (an agent's program is refused), or sign up at https://rox.one/app/signup/agent. After signing in, the agent sees its API key once in the
 web app and uses it like any other key. It can set up its profile with
 `macro.me.update({ name, profilePicture: await macro.me.uploadProfilePicture(bytes, options) })`
 and mint more keys with `macro.apiKeys.create(name)`.
@@ -102,8 +102,8 @@ in Settings → Account Managers.
 #### Bot token
 
 ```ts
-const asBot = new Macro({ auth: { type: 'bot', token: process.env.MACRO_BOT_TOKEN } });
-const asWolf = asBot.requestedAs('macro|wolf@macro.com');
+const asBot = new Rox({ auth: { type: 'bot', token: process.env.MACRO_BOT_TOKEN } });
+const asWolf = asBot.requestedAs('macro|wolf@rox.one');
 ```
 
 Bot requests carry an access scope. `user` uses the requested-as user's access, and is the default when `requestedAs` is set. `team` uses the owning team's access, for team-owned bots, and is the default otherwise. Pass `auth: { type: 'bot', token, scope: ... }` to override.
@@ -113,7 +113,7 @@ Bot requests carry an access scope. `user` uses the requested-as user's access, 
 A session token, for code running with a signed-in user. Sent as `Authorization: Bearer`. The function form refreshes it.
 
 ```ts
-const macro = new Macro({ auth: { type: 'user', token: () => session.accessToken() } });
+const macro = new Rox({ auth: { type: 'user', token: () => session.accessToken() } });
 ```
 
 #### Which header goes out
@@ -202,7 +202,7 @@ await doc.setAppearance({}); // restore the default icon and color
 
 Writes replace both overrides without changing content timestamps. Omit an
 override to restore its default. Colors use the same twelve-color palette as
-tags and only tint Macro icons; native emoji keep their own colors.
+tags and only tint Rox icons; native emoji keep their own colors.
 
 ### Sharing permissions
 Documents, projects, calls and chats change their link and channel sharing with
@@ -427,7 +427,7 @@ const user = macro.users.byId('user_1');
 await channel.send(msg`Hey ${user}, take a look at ${doc}. cc ${here}`);
 ```
 
-These will render as @mentions in the Macro UI.
+These will render as @mentions in the Rox UI.
 
 ### Generating images
 
@@ -459,7 +459,7 @@ The web UI can hand you a webhook URL and token for a channel. That token is a
 bot token, so it goes in the normal place:
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   auth: { type: 'bot', token: process.env.MACRO_WEBHOOK_TOKEN },
 });
 
@@ -500,7 +500,7 @@ const executions = await routine.history(); // Each retains its parent routine
 A cron `schedule` has 6 fields (second minute hour day-of-month month
 day-of-week) or 7 with a year. The older single agent task (`prompt` and
 `userPrompt`, with `model`, `agent` or both, instead of `steps`) still saves
-and runs as one Ask AI step. Code steps' writes are attributed to Macro's
+and runs as one Ask AI step. Code steps' writes are attributed to Rox's
 agent acting for the owner; set `dangerouslyOperateAsUser: true` only when the
 user explicitly asks for the routine to act, send or post as them:
 
@@ -815,7 +815,7 @@ to take over an existing connection for the same identity. Branch on
 `call.ringState()` reads this account's ring state, `call.participants()` reads
 the live roster with user handles, `call.decline()` declines its ring,
 `call.discussion()` returns the call chat or its channel thread, and
-`call.recording.bytes()` downloads through the Macro host. Historical
+`call.recording.bytes()` downloads through the Rox host. Historical
 participants remain available as `call.historicParticipants()`.
 
 
@@ -925,7 +925,7 @@ may report that it is not yet available. Tools can perform writes unless disable
 stream — no public URL, persisted webhook, or signing secret required.
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   token: process.env.MACRO_API_KEY,
 });
 
@@ -987,7 +987,7 @@ Use a framework like Hono or Express to handle the request; the SDK verifies
 the signature and dispatches.
 
 ```ts
-const macro = new Macro({
+const macro = new Rox({
   token: process.env.MACRO_API_KEY,
   webhookSecret: process.env.MACRO_WEBHOOK_SECRET,
 });
@@ -1208,7 +1208,7 @@ ordinary API: review cards offer a user workflow, not a separate security grant.
 
 ### External chats and WhatsApp
 
-Pair your personal account in Macro's External view first. Your WhatsApp chat
+Pair your personal account in Rox's External view first. Your WhatsApp chat
 list (`whatsapp.chats()`) holds groups and direct chats; adding one makes an
 independent `ExternalChat` entity (a group or a direct chat, with `provider`
 `whatsapp`) with its own history and ordinary sharing, and its earlier messages
@@ -1220,7 +1220,7 @@ never send. Adding and removing require a personal bearer session. Each user is
 limited to one send request per second across all chats.
 
 ```ts
-const personal = new Macro({
+const personal = new Rox({
   auth: { type: 'user', token: () => session.accessToken() },
 });
 let chat;

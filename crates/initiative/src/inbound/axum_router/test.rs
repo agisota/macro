@@ -33,7 +33,7 @@ use crate::domain::{
     ports::InitiativeService,
 };
 
-const USER_ID: &str = "macro|initiative-router@macro.com";
+const USER_ID: &str = "macro|initiative-router@rox.one";
 const VALID_JWT: &str = "valid";
 
 fn existing_id() -> InitiativeId {
@@ -695,7 +695,7 @@ async fn a_scoped_session_edits_an_initiative_but_not_its_sharing() {
     for (body, status) in [
         (share.clone(), StatusCode::FORBIDDEN),
         (
-            serde_json::json!({ "memberIds": ["macro|member@macro.com"] }),
+            serde_json::json!({ "memberIds": ["macro|member@rox.one"] }),
             StatusCode::OK,
         ),
         (serde_json::json!({ "name": "Renamed" }), StatusCode::OK),
@@ -825,7 +825,7 @@ async fn page_passes_filters_and_returns_rows_with_progress() {
     let response = send(
         build_router(service.clone(), FakeEntityAccessService::default()),
         authed(axum::http::Request::get(format!(
-            "/page?query=launch&status={status}&assignee=macro%7Cother%40macro.com\
+            "/page?query=launch&status={status}&assignee=macro%7Cother%40rox.one\
              &dueBefore=2026-09-15T12%3A00%3A00Z&sort=due&descending=false&limit=10&cursor=abc"
         )))
         .body(axum::body::Body::empty())
@@ -864,7 +864,7 @@ async fn page_passes_filters_and_returns_rows_with_progress() {
                 query: Some("launch".to_string()),
                 status: Some(status),
                 priority: None,
-                assignee: Some("macro|other@macro.com".to_string()),
+                assignee: Some("macro|other@rox.one".to_string()),
                 due_after: None,
                 due_before: Some(now()),
                 sort: crate::domain::reads::InitiativeSort::Due,

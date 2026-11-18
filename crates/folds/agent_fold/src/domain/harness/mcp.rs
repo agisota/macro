@@ -18,7 +18,7 @@ use serde_json::Value;
 /// MCP's `CallToolResult`, as far as the fold reads it.
 ///
 /// Deserializing an object into this is how an envelope is recognized: a
-/// tool's own JSON may well have a `content` field (Macro's `ReadContent`
+/// tool's own JSON may well have a `content` field (Rox's `ReadContent`
 /// returns `{ content: { text }, comments }`), but only an array of typed
 /// blocks deserializes as one, and an object with neither `content` nor
 /// `structuredContent` is no envelope at all.

@@ -34,7 +34,7 @@ export interface TrackedImport {
   /**
    * `staged` or `recorded_imported` when the ledger took it;
    * `already_imported` and `already_imported_by_teammate` mean it exists in
-   * Macro (`entry.item()`), so do not create a duplicate;
+   * Rox (`entry.item()`), so do not create a duplicate;
    * `previously_declined` means skip it; `import_in_progress` means leave it.
    */
   outcome: TrackImportOutcome;
@@ -46,7 +46,7 @@ export interface TrackedImport {
 export interface NotionPageImport {
   /**
    * `imported`, or `already_imported` / `already_imported_by_teammate` when
-   * the page was a Macro document before; `previously_declined` and
+   * the page was a Rox document before; `previously_declined` and
    * `import_in_progress` imported nothing.
    */
   outcome: ImportNotionPageResult;
@@ -65,7 +65,7 @@ export interface NotionPageImport {
  * @agent
  * Stage an item with `track` before creating anything for it, and stop when
  * the outcome says it already exists, was declined, or is being imported.
- * After creating the Macro item yourself, record it with `recordImported`.
+ * After creating the Rox item yourself, record it with `recordImported`.
  * Import a single Notion page with `importNotionPage`, never by fetching and
  * recreating it.
  */
@@ -103,7 +103,7 @@ export class ImportNamespace {
   }
 
   /**
-   * Record that `item` was created in Macro from the external item, so it is
+   * Record that `item` was created in Rox from the external item, so it is
    * not imported again. The ledger stores each source's kind of item: a task
    * for Linear and Jira, a document for Notion and a channel for Slack, and
    * any other handle is refused. An earlier mapping wins: the outcome is then
@@ -138,7 +138,7 @@ export class ImportNamespace {
   }
 
   /**
-   * Import one Notion page as a Macro document through the caller's Notion
+   * Import one Notion page as a Rox document through the caller's Notion
    * connection, deduplicated against the ledger. Notion databases are not
    * imported; import a whole workspace through a reviewed import instead.
    *

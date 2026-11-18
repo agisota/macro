@@ -1,7 +1,7 @@
 //! Emailed sign-in codes, through the authentication service's public login
 //! endpoints.
 //!
-//! The authentication service owns this flow for the Macro app: its address
+//! The authentication service owns this flow for the Rox app: its address
 //! checks, per-address rate limits, single sign-on routing, and signup policy all
 //! apply here without the broker repeating them. The limits count per address,
 //! so every sign-in arriving from this one caller does not share a budget.
@@ -119,6 +119,7 @@ impl EmailCodeProvider for AuthServiceEmailCodes {
                     .json(&PasswordlessRequest {
                         email: email.to_owned(),
                         redirect_uri: self.redirect_uri.clone(),
+                        handle: None,
                         referral_code: None,
                         is_agent: false,
                     })

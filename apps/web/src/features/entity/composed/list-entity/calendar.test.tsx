@@ -7,7 +7,7 @@ vi.mock('@core/user', () => ({
   emailToMacroId: (email: string) =>
     email.includes('@') ? `macro|${email}` : undefined,
   getDisplayName: (id: string) =>
-    id === 'macro|jacob@macro.com'
+    id === 'macro|jacob@rox.one'
       ? 'Jacob Beckerman'
       : id.replace(/^macro\|/, ''),
 }));
@@ -20,7 +20,7 @@ function event(
   return {
     id: 'event',
     name: 'Out of office',
-    ownerId: 'macro|gab@macro.com',
+    ownerId: 'macro|gab@rox.one',
     type: 'calendar_event',
     status: 'confirmed',
     isReadOnly: false,
@@ -38,20 +38,20 @@ describe('CalendarEventWhen organizer', () => {
     render(() => (
       <CalendarEventWhen
         entity={event({
-          name: 'Macro Vacation',
+          name: 'Rox Vacation',
           email: 'c_03728f99@group.calendar.google.com',
         })}
       />
     ));
 
-    expect(screen.getByText('Macro Vacation')).toBeTruthy();
+    expect(screen.getByText('Rox Vacation')).toBeTruthy();
     expect(screen.queryByText(/group\.calendar\.google\.com/)).toBeNull();
   });
 
-  it('prefers the Macro profile name when the organizer has one', () => {
+  it('prefers the Rox profile name when the organizer has one', () => {
     render(() => (
       <CalendarEventWhen
-        entity={event({ name: 'jacob', email: 'jacob@macro.com' })}
+        entity={event({ name: 'jacob', email: 'jacob@rox.one' })}
       />
     ));
 

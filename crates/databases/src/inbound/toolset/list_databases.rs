@@ -17,7 +17,7 @@ use crate::domain::ports::DatabasesService;
 #[schemars(
     title = "ListDatabases",
     description = "\
-List every accessible Macro database AND its table tabs, including owned and shared data. \
+List every accessible Rox database AND its table tabs, including owned and shared data. \
 A database is a container; its name can differ from a requested table's name. For example, \
 the Tickets table might be inside a database named Product. Search every entry's `tables`, \
 not just database names.\n\

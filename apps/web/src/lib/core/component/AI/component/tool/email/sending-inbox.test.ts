@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { resolveSendingInbox } from './sending-inbox';
 
-const primary = { id: 'primary', email_address: 'peter@macro.com' };
-const alt = { id: 'alt', email_address: 'retep@macro.com' };
+const primary = { id: 'primary', email_address: 'peter@rox.one' };
+const alt = { id: 'alt', email_address: 'retep@rox.one' };
 const inboxes = [primary, alt];
 
 describe('resolveSendingInbox', () => {
@@ -24,7 +24,7 @@ describe('resolveSendingInbox', () => {
   it('honours the sender the draft names over the reply target', () => {
     expect(
       resolveSendingInbox(inboxes, {
-        draftFrom: 'peter@macro.com',
+        draftFrom: 'peter@rox.one',
         replyTargetInboxId: 'alt',
         primaryInboxId: 'primary',
       })
@@ -33,7 +33,7 @@ describe('resolveSendingInbox', () => {
 
   it('matches a named sender whatever its case', () => {
     expect(
-      resolveSendingInbox(inboxes, { draftFrom: '  Retep@Macro.com ' })
+      resolveSendingInbox(inboxes, { draftFrom: '  Retep@rox.one ' })
     ).toBe(alt);
   });
 
@@ -50,7 +50,7 @@ describe('resolveSendingInbox', () => {
     expect(
       resolveSendingInbox(inboxes, {
         chosenInboxId: 'alt',
-        draftFrom: 'peter@macro.com',
+        draftFrom: 'peter@rox.one',
         replyTargetInboxId: 'primary',
         primaryInboxId: 'primary',
       })
@@ -61,7 +61,7 @@ describe('resolveSendingInbox', () => {
     expect(
       resolveSendingInbox(inboxes, {
         chosenInboxId: 'gone',
-        draftFrom: 'gone@macro.com',
+        draftFrom: 'gone@rox.one',
         replyTargetInboxId: 'gone',
         primaryInboxId: 'primary',
       })
@@ -71,7 +71,7 @@ describe('resolveSendingInbox', () => {
   it('does not replace an unavailable sender named by the draft', () => {
     expect(
       resolveSendingInbox(inboxes, {
-        draftFrom: 'gone@macro.com',
+        draftFrom: 'gone@rox.one',
         replyTargetInboxId: 'alt',
         primaryInboxId: 'primary',
       })

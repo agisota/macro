@@ -137,7 +137,7 @@ impl PgComputerRepo {
         }
 
         let waiting_for_capacity = state.waiting_for_capacity();
-        let (phase, connected) = (state.phase.clone(), state.macrod_connected);
+        let (phase, connected) = (state.phase.clone(), state.roxd_connected);
         let finished_setup = state
             .setup
             .as_mut()

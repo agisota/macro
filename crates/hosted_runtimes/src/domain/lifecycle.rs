@@ -26,10 +26,10 @@ pub use event::{Effect, EffectWorker, Event, InstanceStatus, Rejected, SetupOutc
 #[cfg(test)]
 mod test;
 
-/// Grace between fleet-backed checks of a missing macrod.
-pub const MACROD_GRACE: Duration = Duration::minutes(3);
-/// Consecutive missing connections on a running guest before restarting macrod.
-pub const MAX_MACROD_MISSES: u8 = 3;
+/// Grace between fleet-backed checks of a missing roxd.
+pub const ROXD_GRACE: Duration = Duration::minutes(3);
+/// Consecutive missing connections on a running guest before restarting roxd.
+pub const MAX_ROXD_MISSES: u8 = 3;
 /// Crashes inside this window count toward [`MAX_CRASHES`].
 pub const CRASH_WINDOW: Duration = Duration::minutes(15);
 /// This many crashes inside [`CRASH_WINDOW`] stop automatic restarts.
@@ -83,7 +83,7 @@ pub enum Phase {
         /// Whether creation should also start the guest.
         start: bool,
     },
-    /// The VM is starting (first boot, power on or restart); macrod not yet connected.
+    /// The VM is starting (first boot, power on or restart); roxd not yet connected.
     Booting,
     /// Guest is running.
     Running,
@@ -177,10 +177,10 @@ pub struct ComputerState {
     pub billing_changed_at: DateTime<Utc>,
     /// Requested power state.
     pub power: Power,
-    /// Whether macrod is currently connected.
-    pub macrod_connected: bool,
+    /// Whether roxd is currently connected.
+    pub roxd_connected: bool,
     /// Consecutive grace expirations while the guest remains running.
-    pub macrod_misses: u8,
+    pub roxd_misses: u8,
     /// Crash times inside the current [`CRASH_WINDOW`].
     pub recent_crashes: Vec<DateTime<Utc>>,
     /// A power-on is waiting for the computer to start.
@@ -305,8 +305,8 @@ pub fn provision(
         billing,
         billing_changed_at: context.now,
         power: Power::On,
-        macrod_connected: false,
-        macrod_misses: 0,
+        roxd_connected: false,
+        roxd_misses: 0,
         recent_crashes: Vec::new(),
         power_on_requested: !start,
         capacity_wait: None,
@@ -354,7 +354,7 @@ pub fn transition(
 
     match event {
         Event::InstanceLost => {
-            next.macrod_connected = false;
+            next.roxd_connected = false;
             if state.billing_ended(now) {
                 // The fleet still deletes the data volume the lost guest left.
                 destroy(&mut next, &mut effects, host);
@@ -375,7 +375,7 @@ pub fn transition(
         Event::InstanceStarted => {
             if let Phase::Provisioning { start: true } = state.phase {
                 if state.power == Power::On {
-                    if state.macrod_connected {
+                    if state.roxd_connected {
                         next.phase = Phase::Running;
                         next.power_on_requested = false;
                     } else {
@@ -390,7 +390,7 @@ pub fn transition(
         Event::InstanceStopped => {
             if matches!(state.phase, Phase::Provisioning { .. } | Phase::Stopping) {
                 next.phase = Phase::Stopped;
-                next.macrod_connected = false;
+                next.roxd_connected = false;
                 if state.power == Power::On && state.power_on_requested {
                     effects.push(Effect::ScheduleTimer {
                         kind: TimerKind::PowerOnRetry,
@@ -400,9 +400,9 @@ pub fn transition(
             }
         }
 
-        Event::MacrodConnected => {
-            next.macrod_connected = true;
-            next.macrod_misses = 0;
+        Event::RoxdConnected => {
+            next.roxd_connected = true;
+            next.roxd_misses = 0;
             if let Phase::Booting = state.phase {
                 if state.power == Power::On {
                     next.phase = Phase::Running;
@@ -414,33 +414,33 @@ pub fn transition(
             }
         }
 
-        Event::MacrodDisconnected => {
-            next.macrod_connected = false;
+        Event::RoxdDisconnected => {
+            next.roxd_connected = false;
             if let Phase::Running = state.phase {
                 effects.push(Effect::ScheduleTimer {
-                    kind: TimerKind::MacrodMissing,
-                    at: now + MACROD_GRACE,
+                    kind: TimerKind::RoxdMissing,
+                    at: now + ROXD_GRACE,
                 });
             }
         }
 
-        Event::MacrodMissing { instance_status } => {
+        Event::RoxdMissing { instance_status } => {
             let gone =
-                !state.macrod_connected && matches!(state.phase, Phase::Booting | Phase::Running);
+                !state.roxd_connected && matches!(state.phase, Phase::Booting | Phase::Running);
             if gone {
                 if *instance_status == Some(InstanceStatus::Running) {
-                    next.macrod_misses =
-                        state.macrod_misses.saturating_add(1).min(MAX_MACROD_MISSES);
+                    next.roxd_misses =
+                        state.roxd_misses.saturating_add(1).min(MAX_ROXD_MISSES);
                     effects.push(Effect::ScheduleTimer {
-                        kind: TimerKind::MacrodMissing,
-                        at: now + MACROD_GRACE,
+                        kind: TimerKind::RoxdMissing,
+                        at: now + ROXD_GRACE,
                     });
-                    if state.macrod_misses < MAX_MACROD_MISSES
-                        && next.macrod_misses == MAX_MACROD_MISSES
+                    if state.roxd_misses < MAX_ROXD_MISSES
+                        && next.roxd_misses == MAX_ROXD_MISSES
                     {
-                        effects.push(Effect::RestartMacrod { host });
+                        effects.push(Effect::RestartRoxd { host });
                         effects.push(Effect::PageOperator {
-                            reason: "macrod missing repeatedly while the guest is running"
+                            reason: "roxd missing repeatedly while the guest is running"
                                 .to_owned(),
                         });
                     }
@@ -454,7 +454,7 @@ pub fn transition(
             Phase::Booting | Phase::Running => crash(&mut next, &mut effects, now),
             Phase::Stopping => {
                 next.phase = Phase::Stopped;
-                next.macrod_connected = false;
+                next.roxd_connected = false;
             }
             Phase::Provisioning { .. }
             | Phase::Crashed { .. }
@@ -705,7 +705,7 @@ fn setup_outcome(
     now: DateTime<Utc>,
 ) -> Option<SetupOutcome> {
     state.setup.as_ref().filter(|setup| !setup.complete())?;
-    if !state.macrod_connected && next.macrod_connected {
+    if !state.roxd_connected && next.roxd_connected {
         return Some(SetupOutcome::Ready);
     }
     if !gave_up(&state.phase) && gave_up(&next.phase) {
@@ -744,7 +744,7 @@ pub fn restore_allowed(state: &ComputerState, now: DateTime<Utc>) -> Result<(), 
 }
 
 /// Enter Booting, optionally with the effect that starts the VM, and arm the
-/// timer that treats a macrod that never connects as a crash.
+/// timer that treats a roxd that never connects as a crash.
 fn boot(
     next: &mut ComputerState,
     effects: &mut Vec<Effect>,
@@ -753,13 +753,13 @@ fn boot(
 ) {
     next.phase = Phase::Booting;
     next.capacity_wait = None;
-    next.macrod_misses = 0;
+    next.roxd_misses = 0;
     next.power_on_requested = false;
-    next.macrod_connected = false;
+    next.roxd_connected = false;
     effects.extend(start);
     effects.push(Effect::ScheduleTimer {
-        kind: TimerKind::MacrodMissing,
-        at: now + MACROD_GRACE,
+        kind: TimerKind::RoxdMissing,
+        at: now + ROXD_GRACE,
     });
 }
 
@@ -767,7 +767,7 @@ fn boot(
 fn crash(next: &mut ComputerState, effects: &mut Vec<Effect>, now: DateTime<Utc>) {
     next.recent_crashes.retain(|at| now - *at < CRASH_WINDOW);
     next.recent_crashes.push(now);
-    next.macrod_connected = false;
+    next.roxd_connected = false;
 
     let crashes = next.recent_crashes.len();
     if crashes >= MAX_CRASHES {
@@ -807,7 +807,7 @@ fn give_up(next: &mut ComputerState, effects: &mut Vec<Effect>, failure: Failure
         retry: None,
     };
     next.power_on_requested = false;
-    next.macrod_connected = false;
+    next.roxd_connected = false;
     if next.retried_by_team {
         tracing::warn!(reason = %reason, "a computer the team retried gave up again; not paging");
     } else {
@@ -857,7 +857,7 @@ fn end_billing(
 fn destroy(next: &mut ComputerState, effects: &mut Vec<Effect>, host: HostId) {
     next.phase = Phase::Destroying;
     next.power_on_requested = false;
-    next.macrod_connected = false;
+    next.roxd_connected = false;
     effects.push(Effect::Destroy { host });
     effects.push(Effect::RevokeHarness);
 }

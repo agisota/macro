@@ -20,7 +20,7 @@ vi.mock('@core/component/Toast/Toast', () => ({
   toast: { success: vi.fn(), failure: vi.fn() },
 }));
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://macro.com',
+  getWebOrigin: () => 'https://rox.one',
 }));
 vi.mock('@core/util/dataTransfer', () => ({
   writeClipboardData: async (data: Record<string, string>) => {
@@ -97,7 +97,7 @@ describe('TeamInviteLinkSection', () => {
 
     await vi.waitFor(() =>
       expect(link.copied).toEqual([
-        'https://macro.com/app/team-invite?link=abc-123',
+        'https://rox.one/app/team-invite?link=abc-123',
       ])
     );
     expect(link.create).not.toHaveBeenCalled();

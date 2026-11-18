@@ -39,7 +39,7 @@ export interface DocumentEditOptions {
 export interface DocumentEditResult {
   /** The document's version after the edit (base64 Loro version vector). */
   revision: string;
-  /** Link to the document in the Macro web app. */
+  /** Link to the document in the Rox web app. */
   webUrl: string;
   /**
    * Set when the editor applied part of the edit and stopped: what it needs to

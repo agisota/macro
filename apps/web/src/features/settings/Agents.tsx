@@ -1,3 +1,4 @@
+import { displayName } from '@core/constant/brand';
 import { useOpenAgentDm } from '@app/features/agent-dms/open-agent-dm';
 import {
   type AgentKind,
@@ -15,13 +16,14 @@ import { toast } from '@core/component/Toast/Toast';
 import { ENABLE_AGENT_DMS } from '@core/constant/featureFlags';
 import {
   MACRO_AGENT_BOT_ID,
+  MACRO_AGENT_NAME,
   MACRO_HARNESS_NAME,
 } from '@core/constant/macroAgent';
 import { MACRO_NEW_BOT_ID } from '@core/constant/macroNew';
 import { useChannelsContext } from '@core/context/channels';
 import { useUserId } from '@core/context/user';
 import { fireAndForget } from '@core/util/fireAndForget';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowLeftIcon from '@icon/system/regular/arrow-left.svg';
 import ChatIcon from '@icon/system/regular/chat-circle.svg';
 import PencilIcon from '@icon/system/regular/pencil-simple.svg';
@@ -118,7 +120,7 @@ type AgentSummary = {
   tag: string;
   avatarUrl?: string;
   instructions: string;
-  /** "In Macro", "In Cursor", … for the row's subtitle. */
+  /** "In Rox", "In Cursor", … for the row's subtitle. */
   whereItRuns: string;
   defaultModel: string;
   channelSummary: string;
@@ -130,11 +132,11 @@ type AgentSummary = {
 type ConnectedHarness = {
   id: string;
   name: string;
-  kind: 'builtin' | 'macrod';
+  kind: 'builtin' | 'roxd';
   allowPermissionBypass: boolean;
   target: AgentModelTarget;
   connected?: boolean;
-  /** A team's Macro computer rather than a machine someone paired. */
+  /** A team's Rox computer rather than a machine someone paired. */
   computer?: boolean;
 };
 
@@ -153,10 +155,10 @@ const IN_MEMORY_HARNESS: ConnectedHarness = {
 
 const MACRO_AGENT: AgentSummary = {
   id: MACRO_AGENT_BOT_ID,
-  name: 'Macro',
+  name: MACRO_AGENT_NAME,
   tag: 'macro',
   instructions: '',
-  whereItRuns: 'In Macro',
+  whereItRuns: `In ${MACRO_AGENT_NAME}`,
   defaultModel: MODEL_PRETTYNAME[Model.sonnet55],
   channelSummary: 'All channels',
   share: 'Team',
@@ -180,7 +182,7 @@ export function Agents(props: {
   const [creating, setCreating] = createSignal(
     pendingCreate?.type === 'create'
   );
-  // A machine chosen elsewhere, such as a Macro computer just set up.
+  // A machine chosen elsewhere, such as a Rox computer just set up.
   const [createHarnessId, setCreateHarnessId] = createSignal(
     pendingCreate?.type === 'create' ? pendingCreate.harnessId : undefined
   );
@@ -239,7 +241,7 @@ export function Agents(props: {
             ]
               .filter(Boolean)
               .join(' · '),
-            kind: 'macrod',
+            kind: 'roxd',
             allowPermissionBypass: harness.allow_permission_bypass ?? false,
             target,
             connected: harness.connected,
@@ -251,13 +253,13 @@ export function Agents(props: {
           // Offline runtimes stay selectable: binding an agent to a machine
           // that is turned off is normal, and the label says what to expect.
           name: [
-            harness?.name ?? 'macrod',
+            harness?.name ?? 'roxd',
             harness?.shared_team_ids.length ? 'Team machine' : undefined,
             harness && !harness.connected ? 'Offline' : undefined,
           ]
             .filter(Boolean)
             .join(' · '),
-          kind: 'macrod',
+          kind: 'roxd',
           allowPermissionBypass: harness?.allow_permission_bypass ?? false,
           target,
           connected: harness?.connected,
@@ -565,9 +567,9 @@ function summarizeAgent(
 }
 
 function whereItRunsLabel(id: string, harness?: ConnectedHarness): string {
-  if (id === 'in-memory') return 'In Macro';
+  if (id === 'in-memory') return `In ${displayName}`;
   if (id === 'cursor') return 'In Cursor';
-  // Any other id is a registered macrod harness uuid; if it is not in the
+  // Any other id is a registered roxd harness uuid; if it is not in the
   // connected list any more, the harness has been removed.
   if (harness?.computer)
     return `${t('computers.onComputer')} · ${harness.name}`;
@@ -660,7 +662,7 @@ function AgentAvatar(props: { agent: AgentSummary }) {
               when={props.agent.id === MACRO_AGENT_BOT_ID}
               fallback={<AgentIcon class="size-5" />}
             >
-              <MacroLogo class="size-5" />
+              <RoxMark class="size-5" />
             </Show>
           </Avatar.Fallback>
         }
@@ -758,7 +760,7 @@ function AgentEditorPage(props: {
       props.initialHarnessId ??
       (props.initialKind === 'coder'
         ? props.connectedHarnesses.find((harness) =>
-            isCoderHarness(harness.kind === 'macrod' ? 'macrod' : harness.id)
+            isCoderHarness(harness.kind === 'roxd' ? 'roxd' : harness.id)
           )?.id
         : undefined) ??
       props.connectedHarnesses[0]?.id ??
@@ -869,7 +871,7 @@ function AgentEditorPage(props: {
     rememberedMcpServers = servers;
     setMcp({ scope: 'selected', servers });
   };
-  // A Macro computer is the team's own sandbox, so its agents bypass
+  // A Rox computer is the team's own sandbox, so its agents bypass
   // permission prompts unless someone chooses otherwise.
   const [autoAcceptPick, setAutoAcceptChoice] = createSignal<boolean>();
   const autoAcceptChoice = () =>
@@ -890,7 +892,7 @@ function AgentEditorPage(props: {
   );
   const harnessCodes = () => {
     const harness = selectedHarness();
-    return isCoderHarness(harness?.kind === 'macrod' ? 'macrod' : harness?.id);
+    return isCoderHarness(harness?.kind === 'roxd' ? 'roxd' : harness?.id);
   };
   const isCoding = () => codingChoice() ?? harnessCodes();
   let avatarInputRef: HTMLInputElement | undefined;
@@ -900,9 +902,9 @@ function AgentEditorPage(props: {
   const [advancedOpen, setAdvancedOpen] = createSignal(false);
   const cursorHarness = () =>
     props.connectedHarnesses.find((harness) => harness.id === 'cursor');
-  const macrodHarnesses = () =>
+  const roxdHarnesses = () =>
     props.connectedHarnesses.filter(
-      (harness) => harness.kind === 'macrod' && !harness.computer
+      (harness) => harness.kind === 'roxd' && !harness.computer
     );
   const computerHarnesses = () =>
     props.connectedHarnesses.filter((harness) => harness.computer);
@@ -910,8 +912,7 @@ function AgentEditorPage(props: {
   const finishSetup = () => {
     const finished = setup();
     setSetup(undefined);
-    const ready =
-      finished === 'cursor' ? cursorHarness() : macrodHarnesses()[0];
+    const ready = finished === 'cursor' ? cursorHarness() : roxdHarnesses()[0];
     if (ready) handleHarnessChange(ready.id);
   };
   const advancedSummary = () =>
@@ -1023,8 +1024,8 @@ function AgentEditorPage(props: {
   );
   const modelField = () => <div class="max-w-[280px]">{modelPicker()}</div>;
 
-  // An agent that runs in Macro on an Anthropic or OpenAI model can run on
-  // its own API key instead of Macro usage. The key is write-only: a saved
+  // An agent that runs in Rox on an Anthropic or OpenAI model can run on
+  // its own API key instead of Rox usage. The key is write-only: a saved
   // one shows masked, and is replaced by typing a new one.
   const apiKey = useAgentApiKeyQuery(() => props.agent?.bot.id);
   const [apiKeyDraft, setApiKeyDraft] = createSignal('');
@@ -1043,11 +1044,11 @@ function AgentEditorPage(props: {
     const saved = savedApiKey();
     if (apiKeyLocked())
       return saved
-        ? 'Agent API keys are part of the Premium and Max plans. This agent runs on Macro usage until you upgrade.'
+        ? 'Agent API keys are part of the Premium and Max plans. This agent runs on Rox usage until you upgrade.'
         : 'Agent API keys are part of the Premium and Max plans.';
     if (saved && saved.provider !== provider.id)
       return `The saved ${apiKeyProviderName(saved.provider)} key isn’t used with this model.`;
-    return `Bills this agent’s usage to your ${provider.name} account instead of Macro. Leave it empty to run on Macro.`;
+    return `Bills this agent’s usage to your ${provider.name} account instead of Rox. Leave it empty to run on Rox.`;
   };
   // Optional, so it stays a one-line offer until asked for or already set.
   const [apiKeyOpen, setApiKeyOpen] = createSignal(false);
@@ -1070,7 +1071,7 @@ function AgentEditorPage(props: {
                 <p class="mt-0.5 text-xs text-ink-extra-muted">
                   {apiKeyLocked()
                     ? apiKeyHelp(provider())
-                    : 'Runs on Macro usage unless you add one.'}
+                    : `Runs on ${displayName} usage unless you add one.`}
                 </p>
               </div>
               <Show when={!apiKeyLocked()}>
@@ -1223,10 +1224,10 @@ function AgentEditorPage(props: {
       channelScope: channelMode(),
       defaultModel: selectedDefaultModelId(),
       handle: slugAgentTag(tag()),
-      // Registered macrod harnesses send the 'macrod' slug plus their uuid;
+      // Registered roxd harnesses send the 'roxd' slug plus their uuid;
       // built-ins keep sending their own slug with no harness id.
-      harness: harness?.kind === 'macrod' ? 'macrod' : (harness?.id ?? ''),
-      harnessId: harness?.kind === 'macrod' ? harness.id : undefined,
+      harness: harness?.kind === 'roxd' ? 'roxd' : (harness?.id ?? ''),
+      harnessId: harness?.kind === 'roxd' ? harness.id : undefined,
       name: name().trim(),
       instructions: instructions().trim(),
       // Always sent, flag or no flag, so an editor without the Connections
@@ -1386,9 +1387,9 @@ function AgentEditorPage(props: {
                   <legend class="sr-only">Where it runs</legend>
                   <WhereItRunsOption
                     value="in-memory"
-                    title="In Macro"
-                    description="Fast and built in. Uses Macro tools and your connected apps."
-                    icon={<MacroLogo />}
+                    title={`In ${displayName}`}
+                    description={`Fast and built in. Uses ${displayName} tools and your connected apps.`}
+                    icon={<RoxMark />}
                     checked={harnessId() === IN_MEMORY_HARNESS.id}
                     onSelect={() => handleHarnessChange(IN_MEMORY_HARNESS.id)}
                   >
@@ -1430,14 +1431,14 @@ function AgentEditorPage(props: {
                   <WhereItRunsOption
                     value="harness"
                     title="On your machine"
-                    description="Your own agent on your own machine. Local Claude Code, Codex, or other harness, via Macrod."
+                    description="Your own agent on your own machine. Local Claude Code, Codex, or other harness, via Roxd."
                     icon={<TerminalIcon />}
-                    checked={macrodHarnesses().some(
+                    checked={roxdHarnesses().some(
                       (harness) => harness.id === harnessId()
                     )}
-                    disabled={macrodHarnesses().length === 0}
+                    disabled={roxdHarnesses().length === 0}
                     action={
-                      <Show when={macrodHarnesses().length === 0}>
+                      <Show when={roxdHarnesses().length === 0}>
                         <Button
                           type="button"
                           variant="ghost"
@@ -1452,7 +1453,7 @@ function AgentEditorPage(props: {
                       </Show>
                     }
                     onSelect={() => {
-                      const first = macrodHarnesses()[0];
+                      const first = roxdHarnesses()[0];
                       if (first) handleHarnessChange(first.id);
                     }}
                   >
@@ -1463,7 +1464,7 @@ function AgentEditorPage(props: {
                         </span>
                         <SettingsSelect
                           label="Machine"
-                          options={macrodHarnesses()}
+                          options={roxdHarnesses()}
                           value={harnessId()}
                           onChange={handleHarnessChange}
                         />
@@ -1585,7 +1586,7 @@ function AgentEditorPage(props: {
                         onChange={() => setCodingChoice(false)}
                       />
                     </fieldset>
-                    <Show when={selectedHarness()?.kind === 'macrod'}>
+                    <Show when={selectedHarness()?.kind === 'roxd'}>
                       <fieldset class="mt-4 grid gap-2 border-t border-ink/[0.06] pt-4">
                         <legend class="text-xs font-medium text-ink">
                           Permission requests

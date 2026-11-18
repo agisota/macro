@@ -18,7 +18,7 @@ fn agent(owner: BotOwner) -> Agent {
             has_agent: true,
         },
         instructions: "Fix the root cause and add tests.".to_string(),
-        harness: "macrod".to_string(),
+        harness: "roxd".to_string(),
         harness_id: Some(HarnessId::new_from_uuid(Uuid::new_v4())),
         default_model: "claude-sonnet-4-5".to_string(),
         channel_scope: AgentChannelScope::Selected,
@@ -75,7 +75,7 @@ fn user_owned_agent_stays_private() {
 
     assert_eq!(update.team_id, None);
     assert_eq!(update.instructions, "Diagnose first.");
-    assert_eq!(update.harness, "macrod");
+    assert_eq!(update.harness, "roxd");
 }
 
 #[test]
@@ -101,7 +101,7 @@ fn named_fields_replace_and_travel_with_their_partners() {
     }
     .apply_to(&current);
 
-    // Moving off macrod drops the registered harness with it, so the
+    // Moving off roxd drops the registered harness with it, so the
     // request can never name a harness id for a runtime that takes none.
     assert_eq!(update.harness, "in-memory");
     assert_eq!(update.harness_id, None);

@@ -33,7 +33,7 @@ const source: CalendarSource = {
   id: 'primary',
   name: 'Work',
   color: 'blue',
-  emailAddress: 'calendar@macro.com',
+  emailAddress: 'calendar@rox.one',
 };
 const sources = new Map([[source.id, source]]);
 const list = vi.mocked(storageServiceClient.listCalendarOccurrences);
@@ -186,7 +186,7 @@ describe('upcoming calendar events source', () => {
     );
     expect(result.events()[0].color).toBe(source.color);
     expect(result.events()[0].url).toBe(
-      'https://meet.google.com/room?authuser=calendar%40macro.com'
+      'https://meet.google.com/room?authuser=calendar%40rox.one'
     );
     expect(list).toHaveBeenCalledTimes(1);
     expect(result.loading()).toBe(false);
@@ -308,8 +308,8 @@ describe('upcoming calendar events source', () => {
     expect(result.events()).toEqual([]);
   });
 
-  it('keeps recurring occurrences and recognizes embedded Macro links', async () => {
-    const macroUrl = 'https://macro.com/app/meet/valid-token-1234567890';
+  it('keeps recurring occurrences and recognizes embedded Rox links', async () => {
+    const macroUrl = 'https://rox.one/app/meet/valid-token-1234567890';
     respond(
       [1, 2, 3, 4, 5].map((day) =>
         occurrence(day, {

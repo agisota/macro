@@ -4,7 +4,6 @@ use lambda_runtime::{
     Error, LambdaEvent,
     tracing::{self},
 };
-
 #[tracing::instrument(skip(ctx, _event))]
 pub(crate) async fn handler<S: RefreshService>(
     ctx: context::Context<S>,

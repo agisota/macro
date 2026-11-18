@@ -98,7 +98,7 @@ fn disconnected_harness_errors_keep_the_session_error_classification() {
 /// A sender whose email domain is `is_macro_staff` - the identity the
 /// Daytona staff gate admits.
 fn staff_sender() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("staff@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("staff@rox.one").expect("a valid user id")
 }
 
 fn open_command() -> OpenSession {
@@ -165,7 +165,7 @@ fn mention_origin_mut(command: &mut OpenSession) -> &mut MentionOrigin {
 /// the announcing case.
 fn forward_message(content: &str) -> DeliverAction {
     // Staff: `disconnected_session` is a Daytona coder bot, and the
-    // execute() gate admits only macro.com actors onto those.
+    // execute() gate admits only rox.one actors onto those.
     DeliverAction {
         context: Some(trigger()),
         ..DeliverAction::prompt(
@@ -830,7 +830,7 @@ async fn disconnected_session_owned_by(
     .await
 }
 
-/// [`disconnected_session`] served by Macro's in-process agent.
+/// [`disconnected_session`] served by Rox's in-process agent.
 async fn disconnected_in_memory_session(
     repo: &InMemoryAgentSessionRepo,
     containers: &MockContainerManager,
@@ -3203,19 +3203,19 @@ async fn prompt(
 }
 
 #[tokio::test]
-async fn a_macrod_session_selects_its_saved_model_before_the_first_prompt() {
+async fn a_roxd_session_selects_its_saved_model_before_the_first_prompt() {
     for accepted in [true, false] {
         let (service, repo, _, _, runtimes) = harness();
         let mut request = open_external_request("/home/operator/code");
         request.profile = Some(agent_session::domain::ports::ManagedAgentProfile {
             model: "gpt-5.6-luna".into(),
-            harness: harness_id::MACROD_HARNESS_SLUG.into(),
+            harness: harness_id::ROXD_HARNESS_SLUG.into(),
             instructions: String::new(),
             mcp_servers: AgentMcpServers::OwnerConnections,
         });
         let session = service.open_external_session(request).await.unwrap();
         assert_eq!(session.model, "gpt-5.6-luna");
-        assert_eq!(session.harness, harness_id::MACROD_HARNESS_SLUG);
+        assert_eq!(session.harness, harness_id::ROXD_HARNESS_SLUG);
         let runtime = ContainerMock::default();
         runtimes.attach(harness_for_bot(session.bot_id), runtime.clone());
 
@@ -4178,7 +4178,7 @@ mod lifecycle_events {
     #[tokio::test]
     async fn a_prompt_naming_others_publishes_mentioned_without_its_author() {
         let mentions = PromptMentionsMock::new();
-        let reviewer = MacroUserIdStr::try_from_email("reviewer@macro.com").unwrap();
+        let reviewer = MacroUserIdStr::try_from_email("reviewer@rox.one").unwrap();
         let ((service, _, containers, _, _), turns) = harness_with_mentions(
             PromptContextMock::default(),
             PromptComposerMock::default(),
@@ -4232,7 +4232,7 @@ mod lifecycle_events {
     #[tokio::test]
     async fn a_prompt_from_the_session_view_notifies_the_people_it_names() {
         let mentions = PromptMentionsMock::new();
-        let reviewer = MacroUserIdStr::try_from_email("reviewer@macro.com").unwrap();
+        let reviewer = MacroUserIdStr::try_from_email("reviewer@rox.one").unwrap();
         let ((service, _, containers, _, _), turns) = harness_with_mentions(
             PromptContextMock::default(),
             PromptComposerMock::default(),

@@ -924,8 +924,8 @@ async fn edit_token_carries_the_context_actor() {
     );
 }
 
-/// The default actor is Macro AI, a first-party bot whose name is a constant,
-/// so the cursor readers watch is labelled `Macro` without any host wiring.
+/// The default actor is Rox AI, a first-party bot whose name is a constant,
+/// so the cursor readers watch is labelled `Rox` without any host wiring.
 #[tokio::test]
 async fn edit_is_presented_as_the_default_actor_by_name() {
     let (result, editing) = call_edit_document("md").await;
@@ -938,7 +938,7 @@ async fn edit_is_presented_as_the_default_actor_by_name() {
 }
 
 /// A host running a named agent hands its name over with the actor, and that
-/// is the name the edit is presented under - not Macro's, not a pooled one.
+/// is the name the edit is presented under - not Rox's, not a pooled one.
 #[tokio::test]
 async fn edit_is_presented_as_the_named_actor() {
     let (result, editing) = call_edit_document_in("md", false, |context| {

@@ -78,7 +78,7 @@ export function BotCreationResult(props: {
               <CredentialField
                 label="Bot token"
                 value={token()}
-                help="Use with the Macro SDK, or send as x-macro-channel-bot-token for webhooks."
+                help="Use with the Rox SDK, or send as x-macro-channel-bot-token for webhooks."
               />
               <Show when={props.channels[0]}>
                 {(channel) => (

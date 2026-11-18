@@ -9,7 +9,7 @@ pub trait Fold {
     fn entry(&mut self, line: &str) -> Vec<LogEvent>;
 }
 
-/// Longest tool output forwarded to Macro, in characters.
+/// Longest tool output forwarded to Rox, in characters.
 const TOOL_OUTPUT_LIMIT: usize = 4_000;
 
 /// What one transcript line means for the ACP session.

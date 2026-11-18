@@ -1,7 +1,7 @@
 /**
  * The agent's context: the one place the outside world is touched.
  * Everything else in its behavior is given these and does no IO of its own, so it can
- * be run against a fake disk, clock, shell or Macro.
+ * be run against a fake disk, clock, shell or Rox.
  */
 
 import { readFileSync } from 'node:fs';
@@ -56,7 +56,7 @@ import { type Configured, type Startup, variables } from './startup.ts';
 import { state as makeState, type State } from './state.ts';
 import { trace } from './telemetry.ts';
 
-/** The credential holding the key of the agent's own Macro account. */
+/** The credential holding the key of the agent's own Rox account. */
 export const macroKey = 'MACRO_API_KEY';
 
 type Environment = Readonly<Record<string, string | undefined>>;
@@ -75,14 +75,14 @@ export type Base = {
   readonly log: Log;
   /** Joins path parts. Injected so nothing else imports a path library. */
   readonly join: (...parts: readonly string[]) => string;
-  /** The agent in Macro, as its own account. Connects on first use. */
+  /** The agent in Rox, as its own account. Connects on first use. */
   readonly macro: () => Promise<Macro>;
   /** The environment that makes a child process act as the agent. */
   readonly environment: () => Promise<
     Readonly<Record<string, string | undefined>>
   >;
   /**
-   * The relay this process reaches Macro through: the one it was given (a
+   * The relay this process reaches Rox through: the one it was given (a
    * script's or a call's process), or the agent's own, started on first use.
    */
   readonly relay: () => Promise<Relayed>;
@@ -99,17 +99,17 @@ export type Base = {
 /** A relay's address and the capability it takes. */
 export type Relayed = { readonly url: string; readonly token: string };
 
-/** How this process is wired to the world beyond its context: the launcher, its children and Macro. */
+/** How this process is wired to the world beyond its context: the launcher, its children and Rox. */
 export type Wiring = {
-  /** Where the agent reaches Macro, from its credentials. */
+  /** Where the agent reaches Rox, from its credentials. */
   readonly addresses: () => Promise<Addresses>;
   /**
    * The environment a child needs to call back into this agent (`bin/agent`,
-   * a script's process): its workspace, and Macro through this process's
+   * a script's process): its workspace, and Rox through this process's
    * relay, never its key. The relay starts on first use.
    */
   readonly relayed: () => Promise<Readonly<Record<string, string>>>;
-  /** What Claude Code needs to reach Anthropic, if enrollment gave it (Macro-credits mode); nothing otherwise. */
+  /** What Claude Code needs to reach Anthropic, if enrollment gave it (Rox-credits mode); nothing otherwise. */
   readonly claudeAccess: () => Promise<Readonly<Record<string, string>>>;
 };
 
@@ -276,14 +276,14 @@ const held = async (
     ).flat()
   );
 
-/** Where the credentials come from, and where Macro is: a startup error names what is wrong. */
+/** Where the credentials come from, and where Rox is: a startup error names what is wrong. */
 const source = (
   startup: Startup,
   secrets: { readonly file: string; readonly sops: string }
 ): Configured<{
   readonly credentials: Credentials;
   readonly addresses: () => Promise<Addresses>;
-  /** The relay a script reaches Macro through: given to a script's process, made by the agent's. */
+  /** The relay a script reaches Rox through: given to a script's process, made by the agent's. */
   readonly relay?: {
     readonly url: string;
     readonly token: string;
@@ -296,7 +296,7 @@ const source = (
       credentials: withheldCredentials(from.names),
       addresses: async () => {
         throw new Error(
-          "a script's process reaches Macro only through its relay"
+          "a script's process reaches Rox only through its relay"
         );
       },
       relay: { url: from.url, token: from.token, claude: from.claude },
@@ -328,7 +328,7 @@ const source = (
   const credentials = sopsCredentials({ ...secrets, shell });
   return configured({
     credentials,
-    // Decrypted on first use, so where Macro is is only known then.
+    // Decrypted on first use, so where Rox is is only known then.
     addresses: async () => {
       const found = addressesFrom(
         Object.fromEntries(

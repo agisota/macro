@@ -1,7 +1,7 @@
 //! GenAI spans projected from a live session's ACP frames.
 //!
 //! Every harness a session can run on - a sandboxed OpenCode, a Cursor cloud
-//! agent, Macro's own in-process agent, an external `macrod` - speaks ACP
+//! agent, Rox's own in-process agent, an external `roxd` - speaks ACP
 //! through the [`SessionActor`](super::actors::SessionActor), and the actor
 //! sees every frame in both directions exactly once. So this is the one place
 //! a session's turns and tool calls can be traced the same way for all of
@@ -550,9 +550,9 @@ impl GenAiProjector {
         }
     }
 
-    /// A listed tool's name as this harness calls it. Macro's in-process agent
-    /// calls Macro's tools natively, by their bare names, while the listing
-    /// sees them through Macro's MCP server as `mcp__macro__<tool>`; every
+    /// A listed tool's name as this harness calls it. Rox's in-process agent
+    /// calls Rox's tools natively, by their bare names, while the listing
+    /// sees them through Rox's MCP server as `mcp__macro__<tool>`; every
     /// other harness calls them by the listed name.
     fn definition_name(&self, listed: &str) -> String {
         let name: ToolName = listed.parse().unwrap_or_else(|never| match never {});

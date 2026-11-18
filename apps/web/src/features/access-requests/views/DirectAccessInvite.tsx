@@ -24,7 +24,7 @@ export function DirectAccessInvite(props: {
           value={invite.email()}
           onChange={invite.setEmail}
         >
-          <TextField.Label>Macro email address</TextField.Label>
+          <TextField.Label>Rox email address</TextField.Label>
           <TextField.Input
             type="email"
             required

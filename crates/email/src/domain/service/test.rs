@@ -77,7 +77,7 @@ fn validate_sender_address_rejects_too_long() {
 #[test]
 fn validate_sender_address_trims_and_lowercases() {
     assert_eq!(
-        validate_sender_address("  Teo@Macro.COM  ").unwrap(),
-        "teo@macro.com"
+        validate_sender_address("  Teo@ROX.ONE  ").unwrap(),
+        "teo@rox.one"
     );
 }

@@ -6,6 +6,6 @@
  */
 
 /**
- * The Macro entity it became, once imported.
+ * The Rox entity it became, once imported.
  */
 export type ImportEntityEntityId = string | null;

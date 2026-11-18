@@ -24,7 +24,7 @@ export function createDirectAccessInvite(source: SharingSource) {
     } catch {
       if (alive)
         setError(
-          "Couldn't add this person. Check their Macro email and try again."
+          "Couldn't add this person. Check their Rox email and try again."
         );
     }
   };

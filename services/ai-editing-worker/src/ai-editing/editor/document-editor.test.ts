@@ -455,7 +455,7 @@ describe('DocumentEditor — mention methods push insertInline ops', () => {
     ebl.mentionBookingLink('b1', 0, {
       profileId: 'profile-1',
       slug: 'intro',
-      url: 'https://macro.com/app/book/profile-1/intro',
+      url: 'https://rox.one/app/book/profile-1/intro',
     });
     expect(ebl.drain()[0]).toMatchObject({
       kind: 'insertInline',

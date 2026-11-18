@@ -1,6 +1,6 @@
 # Email Suppression Handler
 
-The email suppression handler is a lambda function trigged on the bounce and complaint events from SES for the macro.com identity.
+The email suppression handler is a lambda function trigged on the bounce and complaint events from SES for the rox.one identity.
 When triggered, we automatically add the email to the suppression list to ensure we do not send unwanted emails to the user.
 
 The SNS adapter in `src/handler.rs` decodes each message and delegates to the

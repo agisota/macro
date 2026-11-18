@@ -26,7 +26,7 @@ const PROVIDERS = Object.values(ExternalChatProvider);
 
 /**
  * External: accounts on outside messaging apps that bring conversations into
- * Macro, one sidebar entry per provider. Chats in Macro open in the main pane
+ * Rox, one sidebar entry per provider. Chats in Rox open in the main pane
  * at `/external/chat/:chatId`; on touch the list drills into the chat.
  * WhatsApp is the only provider today, so its account page is the default.
  */
@@ -119,14 +119,14 @@ export function ExternalView() {
         <div class="px-4 pt-2 empty:hidden">
           <TutorialSidebarItem tutorial="whatsapp" />
         </div>
-        {/* Touch has no sidebar: the chats in Macro lead the page. */}
+        {/* Touch has no sidebar: the chats in Rox lead the page. */}
         <Show when={isTouchDevice()}>
           <section aria-labelledby="external-chats" class="px-2">
             <h2
               id="external-chats"
               class="px-2 pt-4 pb-1 text-xs font-semibold tracking-tight text-ink-extra-muted"
             >
-              In Macro
+              In Rox
             </h2>
             <For each={PROVIDERS}>{(provider) => inMacroChats(provider)}</For>
           </section>

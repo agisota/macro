@@ -121,16 +121,16 @@ export type NotificationsInboxContext = {
   /** Create a feed for `scope` under the caller's owner. */
   createFeed: (scope: Accessor<InboxScope>) => InboxFeedSource;
   /**
-   * A Macro user's short name: their first name. Read reactively; it
+   * A Rox user's short name: their first name. Read reactively; it
    * resolves after it loads.
    */
   userName: (userId: string) => string | undefined;
   /**
-   * The sender a notification names itself, which outranks a Macro user's
+   * The sender a notification names itself, which outranks a Rox user's
    * name: a GitHub login, or a discussion's sender display name.
    */
   senderName: (notification: UnifiedNotification) => string | undefined;
-  /** Open a page outside Macro, such as a pull request. */
+  /** Open a page outside Rox, such as a pull request. */
   openUrl: (url: string) => void;
   /** Where the reader's filters are kept between visits. */
   filterStorage: {

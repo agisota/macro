@@ -1,5 +1,5 @@
 /**
- * Post to a channel using a webhook token copied out of the Macro web UI.
+ * Post to a channel using a webhook token copied out of the Rox web UI.
  *
  * The token is an ordinary bot token, so this is just `channel.send()` — the
  * SDK works out that the credential can only reach the webhook endpoint and
@@ -9,7 +9,7 @@
  * usage: MACRO_WEBHOOK_TOKEN=mbot_... bun examples/channel-webhook.ts <channel-id> [mention-user-id]
  */
 import type { Env } from '../src/config';
-import { here, Macro, msg } from '../src/macro';
+import { here, msg, Rox } from '../src/macro';
 
 const token = process.env.MACRO_WEBHOOK_TOKEN;
 const [channelId, mentionUserId] = process.argv.slice(2);
@@ -21,7 +21,7 @@ if (!token || !channelId) {
   process.exit(1);
 }
 
-const macro = new Macro({
+const macro = new Rox({
   env: (process.env.MACRO_ENV ?? 'dev') as Env,
   auth: { type: 'bot', token },
 });

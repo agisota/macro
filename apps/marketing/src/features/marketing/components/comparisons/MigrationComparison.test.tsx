@@ -18,7 +18,7 @@ it('renders accessible comparison headers and feature labels', () => {
   const table = view.getByRole('region', { name: 'Compare all tools' });
   expect(table.querySelectorAll('a')).toHaveLength(0);
   for (const name of [
-    'Macro',
+    'Rox',
     'Superhuman Mail',
     'Notion',
     'Slack',

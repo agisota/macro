@@ -1,8 +1,8 @@
 //! The Windows install layout: a launcher and the versions it starts.
 //!
 //! Windows cannot replace a running executable or `exec` into a new one, so
-//! the installed `macrod.exe` (the one on `PATH`) is a launcher. It runs the
-//! newest `versions\<tag>\macrod-core.exe` with its own arguments and console,
+//! the installed `roxd.exe` (the one on `PATH`) is a launcher. It runs the
+//! newest `versions\<tag>\roxd-core.exe` with its own arguments and console,
 //! waits, and exits with the core's exit code. An update is staged as a new
 //! version folder and used from the next launch; the launcher prunes older
 //! folders once the newest has started. The launcher is the same binary as
@@ -23,7 +23,7 @@ mod test;
 pub const VERSIONS_DIRECTORY: &str = "versions";
 
 /// The core binary's name inside each version folder.
-pub const CORE_EXECUTABLE: &str = "macrod-core.exe";
+pub const CORE_EXECUTABLE: &str = "roxd-core.exe";
 
 /// A version folder still being written; never launched.
 const PARTIAL_SUFFIX: &str = ".partial";
@@ -40,8 +40,8 @@ impl Versions {
     }
 
     /// The installation a core binary at `executable` belongs to: its
-    /// `versions\<tag>\` parent, or (a plain `macrod.exe` with no layout yet)
-    /// a `versions` folder beside it, which turns that `macrod.exe` into the
+    /// `versions\<tag>\` parent, or (a plain `roxd.exe` with no layout yet)
+    /// a `versions` folder beside it, which turns that `roxd.exe` into the
     /// launcher from its next start.
     pub fn of_executable(executable: &Path) -> Self {
         let folder = executable.parent().unwrap_or(Path::new("."));
@@ -98,9 +98,9 @@ impl Versions {
     }
 
     /// Remove every complete version folder but `keep`. Partial folders
-    /// stay: a running macrod may be staging one, and an abandoned one is
+    /// stay: a running roxd may be staging one, and an abandoned one is
     /// never launched and is overwritten when that version is staged again.
-    /// Best effort: a version another macrod is still running from cannot be
+    /// Best effort: a version another roxd is still running from cannot be
     /// removed on Windows, and stays until a later launch.
     pub fn prune(&self, keep: ReleaseVersion) {
         let Ok(entries) = std::fs::read_dir(&self.directory) else {
@@ -111,22 +111,22 @@ impl Versions {
             let Some(name) = name.to_str() else { continue };
             let stale = ReleaseVersion::parse(name).is_some_and(|version| version != keep);
             if stale && let Err(error) = std::fs::remove_dir_all(entry.path()) {
-                tracing::debug!(error = %error, folder = name, "could not prune an old macrod version");
+                tracing::debug!(error = %error, folder = name, "could not prune an old roxd version");
             }
         }
     }
 }
 
-/// Run as the launcher when this binary is the installed `macrod.exe` with a
+/// Run as the launcher when this binary is the installed `roxd.exe` with a
 /// `versions` folder beside it. Returns the core's exit code, or `None` when
-/// this process is not a launcher (and should run macrod itself).
+/// this process is not a launcher (and should run roxd itself).
 #[cfg(windows)]
 pub fn run_as_launcher() -> Option<i32> {
     let executable = std::env::current_exe().ok()?;
     if !executable
         .file_name()
         .and_then(|name| name.to_str())
-        .is_some_and(|name| name.eq_ignore_ascii_case("macrod.exe"))
+        .is_some_and(|name| name.eq_ignore_ascii_case("roxd.exe"))
     {
         return None;
     }
@@ -145,7 +145,7 @@ pub fn run_as_launcher() -> Option<i32> {
     {
         Ok(child) => child,
         Err(error) => {
-            eprintln!("macrod: could not start {}: {error}", core.display());
+            eprintln!("roxd: could not start {}: {error}", core.display());
             return Some(1);
         }
     };
@@ -153,7 +153,7 @@ pub fn run_as_launcher() -> Option<i32> {
     match child.wait() {
         Ok(status) => Some(status.code().unwrap_or(1)),
         Err(error) => {
-            eprintln!("macrod: lost track of {}: {error}", core.display());
+            eprintln!("roxd: lost track of {}: {error}", core.display());
             Some(1)
         }
     }

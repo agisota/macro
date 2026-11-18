@@ -25,7 +25,7 @@ pub const STEP_CONTEXT: &str = r#"import type { Macro } from '@macro-inc/sdk';
 declare global {
   /** What a routine code step's `main` receives. */
   interface RoutineStepContext<Steps, Knobs> {
-    /** Macro's SDK, acting as the routine's owner. */
+    /** Rox's SDK, acting as the routine's owner. */
     macro: Macro;
     /** This run. */
     run: RoutineRunInfo;

@@ -17,7 +17,7 @@
 			"fallthrough": true
 		}
 	],
-	// Served on workers.dev like the account's other workers (the macro.com
+	// Served on workers.dev like the account's other workers (the rox.one
 	// zone is on Route 53, so a Cloudflare custom domain isn't available).
 	// Moving to a vanity host later only means updating the OAuth app callback
 	// and WORKER_ORIGIN in tooling/xtask/.../workflows/cla.rs — the signature

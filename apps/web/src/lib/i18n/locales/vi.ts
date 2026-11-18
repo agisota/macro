@@ -117,7 +117,7 @@ export default {
     agentHint: 'Phiên tác nhân riêng',
     routineLabel: 'Quy trình',
     routineDescription:
-      'Chạy mô hình hoặc tác nhân theo lịch hoặc theo hoạt động trong Macro',
+      'Chạy mô hình hoặc tác nhân theo lịch hoặc theo hoạt động trong Rox',
     routineHint: 'Lịch và trình kích hoạt theo hoạt động',
     databaseLabel: 'Cơ sở dữ liệu',
     databaseDescription: 'Tạo cơ sở dữ liệu',
@@ -323,7 +323,7 @@ export default {
     projectShortTagline: 'Sắp xếp công việc liên quan',
     reminderTagline: 'Tự nhắc mình vào thời điểm bạn chọn',
     reminderDetails:
-      'Đặt lời nhắc cho điều bạn muốn xem lại.\nChọn thời gian và để Macro nhắc lại cho bạn.',
+      'Đặt lời nhắc cho điều bạn muốn xem lại.\nChọn thời gian và để Rox nhắc lại cho bạn.',
     reminderExample1: 'Gọi lại',
     reminderExample2: 'Hỏi lại vào thứ Sáu',
     reminderExample3: 'Gia hạn giấy phép',
@@ -401,7 +401,7 @@ export default {
     guideTag: 'Gắn thẻ công việc để sắp xếp và lọc trên mọi dự án.',
     guideConversation: 'Bắt đầu trò chuyện với một tác nhân có sẵn.',
     guideWorkAgent:
-      'Tạo trợ lý có hướng dẫn và quyền truy cập không gian làm việc Macro của bạn.',
+      'Tạo trợ lý có hướng dẫn và quyền truy cập không gian làm việc Rox của bạn.',
     guideCodingAgent:
       'Tạo tác nhân làm việc trong môi trường lập trình đã kết nối.',
     guideRoutine: 'Thiết lập tác nhân chạy theo lịch định kỳ.',
@@ -672,20 +672,20 @@ export default {
     updateAvailable: 'Có bản cập nhật',
     updateNewVersionTitle: 'Đã có phiên bản mới',
     updateWebDescription:
-      'Phiên bản mới của Macro đã sẵn sàng. Hãy tải lại trang để sử dụng.',
+      'Phiên bản mới của Rox đã sẵn sàng. Hãy tải lại trang để sử dụng.',
     updateWebFailedLoadDescription:
-      'Một phần của Macro không tải được vì đã có phiên bản mới. Hãy tải lại trang để sử dụng.',
+      'Một phần của Rox không tải được vì đã có phiên bản mới. Hãy tải lại trang để sử dụng.',
     updateReload: 'Tải lại',
     updateReadyTitle: 'Bản cập nhật đã sẵn sàng',
     updateBundleDescription:
-      'Phiên bản mới của ứng dụng Macro dành cho máy tính đã được tải xuống. Hãy cập nhật để bắt đầu sử dụng.',
+      'Phiên bản mới của ứng dụng Rox dành cho máy tính đã được tải xuống. Hãy cập nhật để bắt đầu sử dụng.',
     updateAction: 'Cập nhật',
     updateDesktopReadyTitle: 'Bản cập nhật ứng dụng máy tính đã sẵn sàng',
     updateNativeDescription:
-      'Khởi động lại Macro để cài đặt, hoặc tiếp tục làm việc và bản cập nhật sẽ được cài khi bạn thoát.',
+      'Khởi động lại Rox để cài đặt, hoặc tiếp tục làm việc và bản cập nhật sẽ được cài khi bạn thoát.',
     updateRestartAndUpdate: 'Khởi động lại và cập nhật',
     updateNativePreparingDescription:
-      'Đang lưu công việc của bạn trước khi Macro khởi động lại để cài đặt bản cập nhật.',
+      'Đang lưu công việc của bạn trước khi Rox khởi động lại để cài đặt bản cập nhật.',
     updatePreparingRestart: 'Đang chuẩn bị khởi động lại…',
   },
   settingsLanguage: {
@@ -698,7 +698,7 @@ export default {
     yourLanguage: 'Ngôn ngữ của bạn',
     yourLanguageDescription: 'Thay thế ngôn ngữ của nhóm, chỉ áp dụng cho bạn.',
     yourLanguageNoTeamDescription:
-      'Ngôn ngữ Macro hiển thị cho bạn. Chế độ tự động theo trình duyệt của bạn.',
+      'Ngôn ngữ Rox hiển thị cho bạn. Chế độ tự động theo trình duyệt của bạn.',
     useTeamLanguage: 'Dùng ngôn ngữ của nhóm ({{language}})',
     automatic: 'Tự động ({{language}})',
     teamAutomatic: 'Tự động (ngôn ngữ trình duyệt của từng người)',

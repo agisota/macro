@@ -10,7 +10,7 @@ adopted('web-app-errors-staging', {
   name: '[STAGING] Web-App Increased Error Count',
   type: 'rum alert',
   query:
-    'rum("@type:error @application.name:\\"Web App\\" env:production @view.url_host:staging.macro.com").rollup("count").last("5m") > 90',
+    'rum("@type:error @application.name:\\"Web App\\" env:production @view.url_host:staging.rox.one").rollup("count").last("5m") > 90',
   message: `The staging web app recorded {{value}} errors in 5 minutes.
 
 ${notify({ pages: false, environment: 'staging' })}`,
@@ -59,7 +59,7 @@ ${notify({ pages: true })}`,
         indexes: ['*'],
         search: {
           query:
-            '@type:view (@application.name:"Web App" OR service:web-app) env:production @view.url_host:(macro.com OR www.macro.com)',
+            '@type:view (@application.name:"Web App" OR service:web-app) env:production @view.url_host:(rox.one OR www.rox.one)',
         },
       },
       {
@@ -74,7 +74,7 @@ ${notify({ pages: true })}`,
         indexes: ['*'],
         search: {
           query:
-            '@type:error (@application.name:"Web App" OR service:web-app) env:production @view.url_host:(macro.com OR www.macro.com) @error.source:source',
+            '@type:error (@application.name:"Web App" OR service:web-app) env:production @view.url_host:(rox.one OR www.rox.one) @error.source:source',
         },
       },
     ],

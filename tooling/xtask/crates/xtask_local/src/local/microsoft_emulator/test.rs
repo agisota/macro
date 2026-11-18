@@ -8,7 +8,7 @@ fn env_of(pairs: &[(&str, &str)]) -> BTreeMap<String, String> {
 }
 
 #[test]
-fn the_emulator_stands_in_only_where_no_real_microsoft_client_is_configured() {
+fn the_emulator_does_not_stand_in_for_microsoft_login() {
     let none = env_of(&[]);
     let emulated = env_of(&[("MICROSOFT_CLIENT_ID", "local-microsoft-client")]);
     let real = env_of(&[(
@@ -16,11 +16,9 @@ fn the_emulator_stands_in_only_where_no_real_microsoft_client_is_configured() {
         "0195a000-0000-7000-8000-0000000c11e7",
     )]);
 
-    assert!(stands_in(Mode::Local, &none));
-    // A second resolve sees the client the first one wrote.
-    assert!(stands_in(Mode::Local, &emulated));
+    assert!(!stands_in(Mode::Local, &none));
+    assert!(!stands_in(Mode::Local, &emulated));
     assert!(!stands_in(Mode::Local, &real));
-    // `run-dev` uses the hosted FusionAuth, which only knows real Microsoft.
     assert!(!stands_in(Mode::Dev, &none));
 }
 

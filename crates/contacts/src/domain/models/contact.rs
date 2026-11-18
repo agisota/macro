@@ -52,7 +52,7 @@ impl ContactName {
 pub struct Contact {
     /// Identity of this viewer/person relationship, not the target user identity.
     pub id: ContactId,
-    /// Target user identifier; its email may belong to a non-Macro contact.
+    /// Target user identifier; its email may belong to a non-Rox contact.
     pub user_id: MacroUserIdStr<'static>,
     /// Resolved name. None lets each surface apply its existing email fallback.
     pub name: Option<String>,

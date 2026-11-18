@@ -1,0 +1,18 @@
+{
+  "signIn": "вход",
+  "roxMailbox": "ящик Rox",
+  "chooseName": "Выберите имя ящика",
+  "nameHint": "3–32 символа: строчные буквы, цифры и ._-. Без занятых и служебных имён.",
+  "addressPreview": "имя@rox.one",
+  "signInAddress": "Почта, которой человек вошёл",
+  "roxAddress": "Адрес имя@rox.one, отдельно от почты входа",
+  "defaultAddress": "Адрес по умолчанию",
+  "folders": "Папки",
+  "inbox": "Входящие",
+  "automaticTags": "Автоматические теги",
+  "processingRules": "Правила обработки",
+  "forwarding": "Пересылка",
+  "copyToChannel": "Копия входящего в канал",
+  "copyStaysInInbox": "Само письмо остаётся во входящих",
+  "channelChoice": "Канал для копии"
+}

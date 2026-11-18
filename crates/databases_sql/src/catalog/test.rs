@@ -27,7 +27,7 @@ fn details_become_the_schema_the_engine_builds_its_catalog_from() {
         database: Database {
             id: CRM,
             name: "CRM".into(),
-            owner_id: "macro|owner@macro.com".into(),
+            owner_id: "macro|owner@rox.one".into(),
             created_at: Utc::now(),
             trashed_at: None,
             appearance: None,
@@ -335,7 +335,7 @@ fn a_shared_relation_definition_relates_each_table_to_its_own_target() {
             database: Database {
                 id: CRM,
                 name: "CRM".into(),
-                owner_id: "macro|owner@macro.com".into(),
+                owner_id: "macro|owner@rox.one".into(),
                 created_at: Utc::now(),
                 trashed_at: None,
                 appearance: None,

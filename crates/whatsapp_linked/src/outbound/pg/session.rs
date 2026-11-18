@@ -301,7 +301,7 @@ impl SessionRepository for PgWhatsAppRepository {
                                 .await?;
                             rejection = Some(ExternalChatError::Conflict);
                         } else if taken.is_some() {
-                            // A verified identity belongs to one Macro person.
+                            // A verified identity belongs to one Rox person.
                             fail_pairing_in(&mut tx, pairing, account.id, account.generation)
                                 .await?;
                             rejection = Some(ExternalChatError::Forbidden);

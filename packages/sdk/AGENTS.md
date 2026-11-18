@@ -1,4 +1,4 @@
-# Macro SDK
+# Rox SDK
 
 ## What it is
 
@@ -22,7 +22,7 @@ enforced by the ordinary backend APIs.
   `edit(instructions)` overrides `Document.edit` with the worker's spreadsheet
   writer model; code mode hides `ReadSpreadsheet`, `CalculateSpreadsheet` and
   `EditSpreadsheet`.
-- File bytes must work inside code mode, whose sandbox reaches only Macro hosts:
+- File bytes must work inside code mode, whose sandbox reaches only Rox hosts:
   `documents.upload()` posts them to storage's `/documents/upload`, and
   `Document.bytes()` downloads through the CloudFront export host (`document-content`
   in the harness's `sdk_endpoints`). Never return a presigned S3 URL as the only path.
@@ -218,7 +218,7 @@ the existing gateway prefixes.
   run -u` there); doc text alone does not.
 - Every entity's namespace class carries one `@routing` sentence ("Use when …;
   not …") that agents route on, and may carry an `@agent` block: how that area
-  of Macro works, for agents only. Both are stripped from the public
+  of Rox works, for agents only. Both are stripped from the public
   reference, and code-mode generation fails without the routing sentence. Put
   an area's rules there, never in `crates/prompt`; cross-namespace search
   guidance lives on `SearchNamespace` in `search/namespace.ts`.

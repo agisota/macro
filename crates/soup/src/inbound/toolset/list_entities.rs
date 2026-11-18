@@ -96,11 +96,11 @@ impl EmailPreset {
 pub enum ItemType {
     /// Calendar event.
     CalendarEvent,
-    /// Macro document.
+    /// Rox document.
     Document,
     /// Agent session conversation.
     AgentSession,
-    /// Macro project.
+    /// Rox project.
     Project,
     /// Email thread.
     Email,
@@ -161,7 +161,7 @@ pub enum EntityItem {
         #[serde(default, skip_serializing_if = "Vec::is_empty")]
         tags: Vec<AppliedTag>,
     },
-    /// Macro document item.
+    /// Rox document item.
     #[serde(rename_all = "camelCase")]
     Document {
         /// Document id.
@@ -171,7 +171,7 @@ pub enum EntityItem {
         /// The document's file type (e.g. md, pdf, docx), when known.
         #[serde(skip_serializing_if = "Option::is_none")]
         file_type: Option<String>,
-        /// The document's sub type: "task" for Macro tasks, "snippet" for snippets,
+        /// The document's sub type: "task" for Rox tasks, "snippet" for snippets,
         /// "skill" for skills, "initiative_description" for an initiative's description.
         #[serde(skip_serializing_if = "Option::is_none")]
         sub_type: Option<String>,
@@ -466,7 +466,7 @@ pub struct ListEntities {
 
     /// Document entity AST filter.
     #[schemars(
-        description = "Full soup AST document filter (df). Use the same shape as /items/soup/ast, e.g. {\"l\":{\"id\":\"...\"}}. For Macro tasks, use {\"l\":{\"dst\":\"task\"}}; for skills, {\"l\":{\"dst\":\"skill\"}}. For \"completed yesterday\", AND the task subtype with updatedAt bounds, e.g. {\"&\":[{\"l\":{\"dst\":\"task\"}},{\"&\":[{\"l\":{\"ua\":{\"gte\":\"<start>\"}}},{\"l\":{\"ua\":{\"lt\":\"<end>\"}}}]}]} using ISO timestamps.",
+        description = "Full soup AST document filter (df). Use the same shape as /items/soup/ast, e.g. {\"l\":{\"id\":\"...\"}}. For Rox tasks, use {\"l\":{\"dst\":\"task\"}}; for skills, {\"l\":{\"dst\":\"skill\"}}. For \"completed yesterday\", AND the task subtype with updatedAt bounds, e.g. {\"&\":[{\"l\":{\"dst\":\"task\"}},{\"&\":[{\"l\":{\"ua\":{\"gte\":\"<start>\"}}},{\"l\":{\"ua\":{\"lt\":\"<end>\"}}}]}]} using ISO timestamps.",
         with = "Option<serde_json::Value>"
     )]
     #[serde(default, rename = "df")]

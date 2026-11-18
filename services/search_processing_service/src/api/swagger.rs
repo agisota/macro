@@ -6,7 +6,7 @@ use model::response::EmptyResponse;
 #[derive(OpenApi)]
 #[openapi(
         info(
-                terms_of_service = "https://macro.com/terms",
+                terms_of_service = "https://rox.one/terms",
         ),
         paths(
                 /// /health
@@ -18,7 +18,7 @@ use model::response::EmptyResponse;
                 ),
         ),
         tags(
-            (name = "search processing service", description = "Macro Search Processing Service")
+            (name = "search processing service", description = "Rox Search Processing Service")
         )
     )]
 pub struct ApiDoc;

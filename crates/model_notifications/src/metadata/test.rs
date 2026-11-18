@@ -28,9 +28,9 @@ fn calendar_join_requests_name_the_requester_and_the_event() {
     assert!(matches!(event, NotifEvent::CalendarEventJoinRequest(_)));
     assert_eq!(
         request
-            .format_title(Some(uid("macro|teo@macro.com")))
+            .format_title(Some(uid("macro|teo@rox.one")))
             .unwrap(),
-        "teo@macro.com asked to join Design review"
+        "teo@rox.one asked to join Design review"
     );
     assert_eq!(request.format_body(None).unwrap(), "Design review");
     let untitled = CalendarEventJoinRequestMetadata {
@@ -67,7 +67,7 @@ fn view_access_notifications_preserve_permission_and_format_copy() {
     assert_eq!(decoded.access_level, RequestedAccessLevel::View);
     assert!(
         decoded
-            .format_title(Some(uid("macro|teo@macro.com")))
+            .format_title(Some(uid("macro|teo@rox.one")))
             .unwrap()
             .contains("requested view access")
     );
@@ -80,7 +80,7 @@ fn view_access_notifications_preserve_permission_and_format_copy() {
     };
     assert!(
         granted
-            .format_title(Some(uid("macro|owner@macro.com")))
+            .format_title(Some(uid("macro|owner@rox.one")))
             .unwrap()
             .contains("granted you view access")
     );
@@ -98,11 +98,11 @@ fn runtime_access_removal_names_the_owner_the_runtime_and_the_stopped_agents() {
             })
             .collect(),
     };
-    let owner = || Some(uid("macro|owner@macro.com"));
+    let owner = || Some(uid("macro|owner@rox.one"));
 
     assert_eq!(
         stopped(&["Scout"]).format_title(owner()).unwrap(),
-        "owner@macro.com removed your access to Studio Mac"
+        "owner@rox.one removed your access to Studio Mac"
     );
     assert_eq!(
         stopped(&["Scout"]).format_body(owner()).unwrap(),
@@ -139,14 +139,14 @@ fn channel_reaction_formats_push_copy() {
     let reaction = channel_reaction();
     assert_eq!(
         reaction
-            .format_title(Some(uid("macro|teo@macro.com")))
+            .format_title(Some(uid("macro|teo@rox.one")))
             .unwrap(),
         "teo reacted with 👍 to “This is a useful message”"
     );
     assert_eq!(reaction.format_body(None).unwrap(), "#general");
     let apns = reaction
         .as_apns(
-            Some(uid("macro|teo@macro.com")),
+            Some(uid("macro|teo@rox.one")),
             &EntityType::Channel.with_entity_str("channel-1"),
             Uuid::nil(),
         )
@@ -165,7 +165,7 @@ fn channel_reaction_formats_push_copy() {
     multiline.message_content = "First line\nsecond line".to_string();
     assert_eq!(
         multiline
-            .format_title(Some(uid("macro|teo@macro.com")))
+            .format_title(Some(uid("macro|teo@rox.one")))
             .unwrap(),
         "teo reacted with 👍 to “First line second line”"
     );
@@ -198,9 +198,9 @@ fn channel_access_request_round_trips_and_names_the_channel() {
     assert_eq!(request.request_id, Uuid::from_u128(1));
     assert_eq!(
         event
-            .format_title(Some(uid("macro|teo@macro.com")))
+            .format_title(Some(uid("macro|teo@rox.one")))
             .unwrap(),
-        "teo@macro.com asked to join #design"
+        "teo@rox.one asked to join #design"
     );
     assert_eq!(event.format_body(None).unwrap(), "#design");
 }
@@ -302,9 +302,9 @@ fn github_pr_status_changed_tagged_content_serializes_with_type_name() {
 fn github_pr_status_changed_formats_title_and_body() {
     let event = github_pr_status_changed();
 
-    // The GitHub login names the actor even when a Macro sender id is present.
+    // The GitHub login names the actor even when a Rox sender id is present.
     let title = event
-        .format_title(Some(uid("macro|pr.sender@macro.com")))
+        .format_title(Some(uid("macro|pr.sender@rox.one")))
         .unwrap();
     let body = event.format_body(None).unwrap();
 
@@ -349,7 +349,7 @@ fn github_pr_status_changed_notif_event_deserializes_and_renders_in_app() {
 
     assert_eq!(
         event
-            .format_title(Some(uid("macro|pr.sender@macro.com")))
+            .format_title(Some(uid("macro|pr.sender@rox.one")))
             .unwrap(),
         "octocat merged a pull request"
     );
@@ -434,7 +434,7 @@ fn github_pr_check_run_formats_title_and_body_by_state() {
 
     assert_eq!(
         completed
-            .format_title(Some(uid("macro|ignored.sender@macro.com")))
+            .format_title(Some(uid("macro|ignored.sender@rox.one")))
             .unwrap(),
         "CI / tests completed on a pull request"
     );
@@ -496,7 +496,7 @@ fn github_review_requested_serializes_flat_and_formats() {
         serde_json::from_value(tagged["content"].clone()).unwrap();
     assert_eq!(
         notification
-            .format_title(Some(uid("macro|pr.sender@macro.com")))
+            .format_title(Some(uid("macro|pr.sender@rox.one")))
             .unwrap(),
         "octocat requested your review"
     );
@@ -505,7 +505,7 @@ fn github_review_requested_serializes_flat_and_formats() {
         "macro/app#42: Add GitHub PR notifications"
     );
 
-    // Without a GitHub login the title stays actor-less; the Macro sender id
+    // Without a GitHub login the title stays actor-less; the Rox sender id
     // never substitutes for the GitHub identity.
     let no_login = GithubReviewRequested {
         common: GithubPrNotificationCommon {
@@ -516,7 +516,7 @@ fn github_review_requested_serializes_flat_and_formats() {
     };
     assert_eq!(
         no_login
-            .format_title(Some(uid("macro|pr.sender@macro.com")))
+            .format_title(Some(uid("macro|pr.sender@rox.one")))
             .unwrap(),
         "Your review was requested"
     );
@@ -545,7 +545,7 @@ fn github_pr_comment_serializes_and_formats_with_snippet() {
     );
     assert_eq!(
         notification
-            .format_title(Some(uid("macro|pr.sender@macro.com")))
+            .format_title(Some(uid("macro|pr.sender@rox.one")))
             .unwrap(),
         "octocat commented on a pull request"
     );
@@ -586,7 +586,7 @@ fn github_pr_mention_serializes_and_formats() {
     );
     assert_eq!(
         notification
-            .format_title(Some(uid("macro|pr.sender@macro.com")))
+            .format_title(Some(uid("macro|pr.sender@rox.one")))
             .unwrap(),
         "octocat mentioned you on a pull request"
     );
@@ -618,7 +618,7 @@ fn github_pr_review_serializes_and_formats_by_state() {
     );
     assert_eq!(
         notification
-            .format_title(Some(uid("macro|pr.sender@macro.com")))
+            .format_title(Some(uid("macro|pr.sender@rox.one")))
             .unwrap(),
         "octocat requested changes on your pull request"
     );
@@ -660,7 +660,7 @@ fn channel_reply_title_uses_reply_sender_from_metadata() {
     let notification = ChannelReplyMetadata {
         thread_id: Uuid::nil().to_string(),
         message_id: Uuid::nil().to_string(),
-        user_id: Some(uid("macro|reply.sender@macro.com")),
+        user_id: Some(uid("macro|reply.sender@rox.one")),
         sender_display_name: None,
         message_content: "hello".to_string(),
         has_attachments: false,
@@ -673,7 +673,7 @@ fn channel_reply_title_uses_reply_sender_from_metadata() {
     };
 
     let title = notification
-        .format_title(Some(uid("macro|wrong.sender@macro.com")))
+        .format_title(Some(uid("macro|wrong.sender@rox.one")))
         .unwrap();
 
     assert_eq!(title, "Reply from reply.sender");
@@ -768,7 +768,7 @@ fn channel_mention_title_falls_back_to_bot_display_name() {
 #[test]
 fn channel_message_body_renders_mentioned_agent_by_its_own_name() {
     let notification = ChannelMessageSendMetadata {
-        sender: Some(uid("macro|teo@macro.com")),
+        sender: Some(uid("macro|teo@rox.one")),
         sender_display_name: None,
         message_content: r#"<m-user-mention>{"userId":"bot|00000000-0000-0000-0000-00000000c5c5","email":"Cursor","displayName":"Cursor"}</m-user-mention> push notifications resolve mentions wrong"#.to_string(),
         message_id: Uuid::nil().to_string(),
@@ -789,7 +789,7 @@ fn channel_message_body_renders_mentioned_agent_by_its_own_name() {
 fn document_mention(sub_type: Option<NotificationDocumentSubType>) -> DocumentMentionMetadata {
     DocumentMentionMetadata {
         document_name: "Q3 plan".to_string(),
-        owner: Owner::from_principal_str("macro|owner@macro.com").unwrap(),
+        owner: Owner::from_principal_str("macro|owner@rox.one").unwrap(),
         file_type: Some("md".to_string()),
         sub_type,
         channel: ChannelMentionMetadata {
@@ -813,21 +813,21 @@ fn document_mention_title_says_task_for_task_sub_type() {
     let doc = document_mention(None);
 
     assert_eq!(
-        task.format_title(Some(uid("macro|sender@macro.com")))
+        task.format_title(Some(uid("macro|sender@rox.one")))
             .unwrap(),
-        "sender@macro.com sent a task"
+        "sender@rox.one sent a task"
     );
     assert_eq!(
-        doc.format_title(Some(uid("macro|sender@macro.com")))
+        doc.format_title(Some(uid("macro|sender@rox.one")))
             .unwrap(),
-        "sender@macro.com sent a document"
+        "sender@rox.one sent a document"
     );
 }
 
 #[test]
 fn channel_message_send_legacy_json_deserializes_with_required_sender() {
     let legacy: ChannelMessageSendMetadata = serde_json::from_value(serde_json::json!({
-        "sender": "macro|user@macro.com",
+        "sender": "macro|user@rox.one",
         "messageId": "m1",
         "messageContent": "hi",
         "channelType": "public",
@@ -835,7 +835,7 @@ fn channel_message_send_legacy_json_deserializes_with_required_sender() {
     }))
     .unwrap();
 
-    assert_eq!(legacy.sender, Some(uid("macro|user@macro.com")));
+    assert_eq!(legacy.sender, Some(uid("macro|user@rox.one")));
     assert_eq!(legacy.sender_display_name, None);
 }
 
@@ -895,7 +895,7 @@ fn call_started_notif_event_deserializes_and_renders_in_app() {
 
     assert_eq!(
         event
-            .format_title(Some(uid("macro|caller@macro.com")))
+            .format_title(Some(uid("macro|caller@rox.one")))
             .unwrap(),
         "caller started a call"
     );
@@ -974,7 +974,7 @@ fn reminder_body_is_bounded_for_the_push_payload() {
 fn new_email_metadata() -> NewEmailMetadata {
     NewEmailMetadata {
         sender: Some("Ada Lovelace".to_string()),
-        to_email: "teo@macro.com".to_string(),
+        to_email: "teo@rox.one".to_string(),
         thread_id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa".to_string(),
         subject: "Quarterly plan".to_string(),
         snippet: "Here is the draft".to_string(),
@@ -1200,7 +1200,7 @@ fn agent_session_ref() -> AgentSessionNotificationRef {
         session_id: Uuid::parse_str("aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa").unwrap(),
         session_name: "Fix the flaky test".to_string(),
         bot_id: Uuid::parse_str("bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb").unwrap(),
-        bot_name: "Macro Coder".to_string(),
+        bot_name: "Rox Coder".to_string(),
         parent: Some(AgentSessionOriginParent {
             kind: "channel".to_string(),
             id: "cccccccc-cccc-4ccc-8ccc-cccccccccccc".to_string(),
@@ -1223,7 +1223,7 @@ fn agent_session_settled_serializes_flat_and_formats() {
 
     let value = serde_json::to_value(&metadata).unwrap();
     assert_eq!(value["sessionId"], "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa");
-    assert_eq!(value["botName"], "Macro Coder");
+    assert_eq!(value["botName"], "Rox Coder");
     assert_eq!(value["threadId"], "dddddddd-dddd-4ddd-8ddd-dddddddddddd");
     assert!(value.get("announcementMessageId").is_none());
     assert_eq!(value["turn"], 3);
@@ -1231,7 +1231,7 @@ fn agent_session_settled_serializes_flat_and_formats() {
     let parsed: AgentSessionSettledMetadata = serde_json::from_value(value).unwrap();
     assert_eq!(parsed, metadata);
 
-    assert_eq!(metadata.format_title(None).unwrap(), "Macro Coder finished");
+    assert_eq!(metadata.format_title(None).unwrap(), "Rox Coder finished");
     assert_eq!(metadata.format_body(None).unwrap(), "Done. All tests pass.");
 
     let event: NotifEvent = serde_json::from_value(serde_json::json!({
@@ -1275,7 +1275,7 @@ fn agent_session_settled_push_groups_with_the_thread_and_collapses_per_session()
     assert!(matches!(
         apns.aps.alert,
         Some(Alert::Dictionary(AlertDictionary { title: Some(ref title), body: Some(ref body), .. }))
-            if title == "Macro Coder finished" && body == "Done."
+            if title == "Rox Coder finished" && body == "Done."
     ));
     assert_eq!(apns.push_notification_data.notification_id, notification_id);
 
@@ -1301,7 +1301,7 @@ fn agent_session_waiting_for_input_is_time_sensitive() {
 
     assert_eq!(
         metadata.format_title(None).unwrap(),
-        "Macro Coder needs an answer"
+        "Rox Coder needs an answer"
     );
     assert_eq!(
         metadata.format_body(None).unwrap(),
@@ -1318,7 +1318,7 @@ fn agent_session_waiting_for_input_is_time_sensitive() {
 fn agent_session_mentioned_names_the_author_and_collapses_per_prompt() {
     let metadata = AgentSessionMentionedMetadata {
         session: agent_session_ref(),
-        mentioned_by: Some(uid("macro|wolf@macro.com")),
+        mentioned_by: Some(uid("macro|wolf@rox.one")),
         action_id: Uuid::parse_str("ffffffff-ffff-4fff-8fff-ffffffffffff").unwrap(),
     };
     let entity = EntityType::Channel.with_entity_str("cccccccc-cccc-4ccc-8ccc-cccccccccccc");

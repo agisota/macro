@@ -19,7 +19,7 @@ export function resolveLocalPortmap(): LocalPortmap | undefined {
   try {
     return JSON.parse(readFileSync(path, 'utf8')) as LocalPortmap;
   } catch (error) {
-    throw new Error(`failed to read Macro local port map ${path}`, {
+    throw new Error(`failed to read Rox local port map ${path}`, {
       cause: error,
     });
   }

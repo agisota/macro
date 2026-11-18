@@ -1,6 +1,6 @@
 /**
  * Someone wants the agent on their call while it's busy. Reply runs record
- * the ask with the `askOntoCall` capability, so Macro's record of the
+ * the ask with the `askOntoCall` capability, so Rox's record of the
  * message says who asked; the watcher's arbiter decides what happens to it,
  * and when it says weigh, one quick model call here compares what they need
  * with what's being said on its current call. The asks ledger is the queue,
@@ -24,7 +24,7 @@ const maxTopic = 2000;
 const maxNeed = 80;
 const maxWords = 1000;
 const bot = 'bot|';
-/** A mention tag is Macro's markup, not their words. */
+/** A mention tag is Rox's markup, not their words. */
 const mentionTag = /<m-[\w-]+>[^<]*<\/m-[\w-]+>/g;
 
 /** Where an ask was made, which is where it is answered: in its thread, or at the top level of a DM. */

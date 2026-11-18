@@ -1,4 +1,4 @@
-//! Which deliveries from Macro's GitHub App a routine watches.
+//! Which deliveries from Rox's GitHub App a routine watches.
 
 use github::domain::models::GithubWebhookReceived;
 use serde::{Deserialize, Serialize};
@@ -39,7 +39,7 @@ pub struct GithubSelectorInput {
     /// repository stops matching until it is chosen again.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub repositories: Vec<String>,
-    /// Also run for deliveries caused by bots and apps, including Macro's own.
+    /// Also run for deliveries caused by bots and apps, including Rox's own.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub include_bots: bool,
 }
@@ -134,7 +134,7 @@ impl GithubSelector {
     }
 
     /// Bots are left out unless asked for: a routine whose agent acts through
-    /// Macro's App would otherwise trigger itself.
+    /// Rox's App would otherwise trigger itself.
     pub fn accepts(&self, delivery: &GithubWebhookReceived) -> bool {
         (self.events.is_empty() || self.events.contains(&delivery.event))
             && (self.actions.is_empty()

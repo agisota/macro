@@ -1,7 +1,7 @@
 /**
  * After an interaction: what happened, and how it landed. One cheap model
  * call, made after the reply has gone. The model only proposes. Who an event
- * is about comes from the message's author in Macro's record, and rules.ts
+ * is about comes from the message's author in Rox's record, and rules.ts
  * decides what any of it is worth, so no text in a message can aim at anyone
  * or set a value.
  */
@@ -26,7 +26,7 @@ import {
 } from './rules.ts';
 import type { Person, Store } from './store.ts';
 
-/** Something a person said: a Macro message, or a turn of a call. */
+/** Something a person said: a Rox message, or a turn of a call. */
 export type Said = {
   readonly id: string;
   readonly sender_id: string;

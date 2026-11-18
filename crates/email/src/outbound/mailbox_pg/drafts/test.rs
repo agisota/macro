@@ -385,7 +385,7 @@ async fn inbox_state(db: &PgPool, thread: Uuid) -> (bool, Option<chrono::DateTim
     (row.inbox_visible, row.latest_inbound_message_ts)
 }
 
-/// Outlook accepts the Macro draft as provider draft "a", and sync reads it back.
+/// Outlook accepts the Rox draft as provider draft "a", and sync reads it back.
 async fn sync_draft(sync: &PgMailboxSync, link: Uuid) {
     let lease = sync
         .claim_draft(
@@ -1069,7 +1069,7 @@ async fn native_draft_first_edit_adopts_proven_organization_versions_before_proj
         Some("v1")
     );
     let mut edited = input.clone();
-    edited.subject = "First Macro edit".into();
+    edited.subject = "First Rox edit".into();
     repo.insert_message(
         &edited,
         &UpsertedContacts {

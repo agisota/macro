@@ -30,7 +30,7 @@ pub const FIELD_EXTRACTION_GUIDANCE: &str = include_str!("../prompts/extract_fie
 pub enum InputIntent {
     /// Ask an AI assistant to answer or generate content.
     Ai,
-    /// Find existing content in Macro.
+    /// Find existing content in Rox.
     Search,
     /// Compose an outgoing email.
     Email,

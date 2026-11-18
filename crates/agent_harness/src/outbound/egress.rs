@@ -54,7 +54,7 @@ where
         }
     }
 
-    /// Override only the address advertised to external runtimes, such as host macrod in a local stack.
+    /// Override only the address advertised to external runtimes, such as host roxd in a local stack.
     pub fn with_external_base_url(mut self, url: Option<String>) -> Self {
         self.external_base_url = url.map(|url| url.trim_end_matches('/').to_owned());
         self

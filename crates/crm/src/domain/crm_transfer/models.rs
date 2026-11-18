@@ -14,7 +14,7 @@ use super::super::{
 pub enum CsvInput {
     /// The CSV text itself.
     Text(String),
-    /// A CSV file in Macro the viewer can open.
+    /// A CSV file in Rox the viewer can open.
     File(Uuid),
 }
 
@@ -101,7 +101,7 @@ pub struct PipelineCsv {
 /// A pipeline saved as a CSV file.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PipelineExport {
-    /// The CSV file in Macro.
+    /// The CSV file in Rox.
     pub document_id: Uuid,
     /// The file's name.
     pub file_name: String,
@@ -112,7 +112,7 @@ pub struct PipelineExport {
     pub complete: bool,
 }
 
-/// A CSV file read from Macro.
+/// A CSV file read from Rox.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CsvFile {
     /// The file's name, without its extension.
@@ -194,7 +194,7 @@ pub trait TransferRecords: Send + Sync + 'static {
     ) -> impl Future<Output = Result<Created, TransferError>> + Send;
 }
 
-/// Reads and saves CSV files in Macro, as the viewer.
+/// Reads and saves CSV files in Rox, as the viewer.
 pub trait CsvFiles: Send + Sync + 'static {
     /// The CSV file `document` the viewer can open.
     fn read(

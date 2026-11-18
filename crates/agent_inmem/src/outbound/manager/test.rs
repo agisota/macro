@@ -169,7 +169,7 @@ async fn await_turns(engine: &ScriptedEngine, prompt: &str) {
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id")
 }
 
 fn manager(repo: &InMemoryAgentSessionRepo, engine: Arc<ScriptedEngine>) -> InMemAgentManager {
@@ -1330,7 +1330,7 @@ struct FixtureServer;
 impl rmcp::ServerHandler for FixtureServer {}
 
 /// A session that called MCP tools - a connected app's, and code mode's
-/// `ExecuteCode` on Macro's own server - rebuilds from its log exactly as the
+/// `ExecuteCode` on Rox's own server - rebuilds from its log exactly as the
 /// live agent recorded it, so the idle release lets it go.
 ///
 /// The servers and the toolset are real: each call is named and routed by a

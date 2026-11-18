@@ -48,7 +48,7 @@ scheduler's spec.
   it answers 409 with it as it is. A routine suggestion isn't restored (409):
   its routine suggestion has no way back.
 - The feed, `accept`, `dismiss` and `restore` (`UserOnly`) serve the person and anyone
-  acting for them: a code-mode credential is a Macro API token for the
+  acting for them: a code-mode credential is a Rox API token for the
   person, so it passes. The router labels the caller (`SuggestionCaller`, span
   field `suggestions.caller`): only the person's own session with no program's
   marks (no code-mode invocation, no code-execution header) is `user`; any

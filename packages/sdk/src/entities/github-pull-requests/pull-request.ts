@@ -6,7 +6,7 @@ import { unwrap } from '../../utils';
 import type { MacroClient } from '../../utils/client';
 import { MacroEntity } from '../entity';
 
-/** A stored GitHub pull request addressed by its Macro foreign entity. */
+/** A stored GitHub pull request addressed by its Rox foreign entity. */
 export class GithubPullRequest extends MacroEntity<StoredGithubPullRequest> {
   /** Construct a lazy pull request handle. */
   static byId(client: MacroClient, id: string): GithubPullRequest {

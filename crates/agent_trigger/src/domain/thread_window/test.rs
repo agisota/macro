@@ -9,7 +9,7 @@ fn thread(len: u128) -> Vec<ThreadMessage> {
         .map(|index| ThreadMessage {
             id: Uuid::from_u128(index),
             sender: ChannelSender::new_from_user(
-                MacroUserIdStr::parse_from_str("macro|thread-window-test@macro.com")
+                MacroUserIdStr::parse_from_str("macro|thread-window-test@rox.one")
                     .expect("a valid user id")
                     .into_owned(),
             ),

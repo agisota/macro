@@ -220,7 +220,7 @@ where
         Ok(Written::Done)
     }
 
-    /// Where the plan's pages and people resolve in Macro, known before
+    /// Where the plan's pages and people resolve in Rox, known before
     /// anything is written: the user's own document when it exists, the
     /// team's copy of a shared page (written, or being written by a
     /// teammate), otherwise the document the page becomes.

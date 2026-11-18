@@ -25,9 +25,9 @@ use std::sync::Arc;
 use system_properties::{StageOption, SystemPropertyKey};
 use uuid::Uuid;
 
-const OWNER: &str = "macro|backfill-owner@macro.com";
-const MEMBER: &str = "macro|backfill-member@macro.com";
-const OUTSIDER: &str = "macro|backfill-outsider@macro.com";
+const OWNER: &str = "macro|backfill-owner@rox.one";
+const MEMBER: &str = "macro|backfill-member@rox.one";
+const OUTSIDER: &str = "macro|backfill-outsider@rox.one";
 
 async fn migrate(pool: &PgPool) -> Result<(), sqlx::migrate::MigrateError> {
     MACRO_DB_MIGRATIONS.run(pool).await

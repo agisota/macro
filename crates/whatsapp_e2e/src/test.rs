@@ -63,7 +63,7 @@ async fn take_fleet_slot(pool: &PgPool) -> PgConnection {
 struct Allow;
 
 /// The database, the DSS-side domain service and the fake WhatsApp world:
-/// Alice and Bob (Macro users with their own WhatsApp) and a customer who is
+/// Alice and Bob (Rox users with their own WhatsApp) and a customer who is
 /// only on WhatsApp, all in one group.
 struct World {
     /// Holds the fleet lock until the scenario ends (see [`take_fleet_slot`]).
@@ -902,7 +902,7 @@ async fn group_renames_and_removals_in_whatsapp_reach_macro_live(pool: PgPool) {
     })
     .await;
     world
-        .expect(renamed, "the Macro group follows the WhatsApp rename")
+        .expect(renamed, "the Rox group follows the WhatsApp rename")
         .await;
     // WhatsApp did not say who renamed it: a system line without an actor.
     let line = wait_for_rows(&world.pool, TIMEOUT, || async {

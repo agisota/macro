@@ -269,13 +269,13 @@ where
         &id_str[self.email_part_offset..]
     }
 
-    /// True when this user belongs to the `macro.com` staff domain.
+    /// True when this user belongs to the `rox.one` staff domain.
     ///
-    /// Plus-aliases such as `name+tag@macro.com` still match.
+    /// Plus-aliases such as `name+tag@rox.one` still match.
     pub fn is_macro_staff(&self) -> bool {
         self.email_part()
             .domain_part()
-            .eq_ignore_ascii_case("macro.com")
+            .eq_ignore_ascii_case("rox.one")
     }
 }
 

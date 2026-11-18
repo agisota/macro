@@ -240,7 +240,7 @@ where
                 content_type: upload.content_type,
                 content_id: upload
                     .content_id
-                    .unwrap_or_else(|| format!("{}@attachments.macro.com", upload.id)),
+                    .unwrap_or_else(|| format!("{}@attachments.rox.one", upload.id)),
                 inline: upload.is_inline,
                 size: bytes.len() as u64,
                 sha256: format!("{:x}", Sha256::digest(&bytes)),
@@ -273,7 +273,7 @@ where
                     .trim_matches(['<', '>'])
                     .to_owned()
             } else {
-                format!("{}@attachments.macro.com", attachment.id)
+                format!("{}@attachments.rox.one", attachment.id)
             };
             files.push(DraftFile {
                 source,

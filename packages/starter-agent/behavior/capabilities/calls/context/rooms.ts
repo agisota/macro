@@ -1,5 +1,5 @@
 /**
- * Macro's room helpers, loaded when a room is first wanted. They bring in
+ * Rox's room helpers, loaded when a room is first wanted. They bring in
  * LiveKit's native library, which the agent's main process and every other
  * `bin/agent` call never need, and which logs debug lines to stdout (where a
  * capability's JSON goes) unless NODE_ENV says production before it loads.

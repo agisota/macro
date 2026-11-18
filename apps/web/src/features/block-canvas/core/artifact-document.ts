@@ -2,7 +2,7 @@ import type { ArtifactLibrary } from '@macro-inc/graphics/loro';
 
 /**
  * The iframe's `sandbox` gives the document an opaque origin, so it cannot reach
- * Macro's cookies, storage or DOM. This policy keeps it off the network: scripts
+ * Rox's cookies, storage or DOM. This policy keeps it off the network: scripts
  * and styles must be inline, and images and fonts must be embedded.
  */
 export const ARTIFACT_CSP = [
@@ -27,7 +27,7 @@ const THEME_TOKENS = [
   '--color-edge-muted',
 ];
 
-/** Macro's resolved theme colors, for artifacts that want to match the app. */
+/** Rox's resolved theme colors, for artifacts that want to match the app. */
 export function artifactThemeTokens(element: Element): Record<string, string> {
   const style = getComputedStyle(element);
   return Object.fromEntries(

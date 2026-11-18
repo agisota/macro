@@ -15,7 +15,7 @@ type HmacSha256 = Hmac<Sha256>;
 /// Authenticated context for a GitHub App installation flow.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct InstallationState {
-    /// The Macro user who began the installation flow.
+    /// The Rox user who began the installation flow.
     pub macro_user_id: MacroUserIdStr<'static>,
     /// The team to associate with the installation, or `None` for a personal installation.
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -3,7 +3,7 @@
 ## What it is
 
 Belongs to agent sessions: registration for user-run agent harnesses
-(macrod), called machines in the product. Owns device-code pairing (create,
+(roxd), called machines in the product. Owns device-code pairing (create,
 approve, claim), the usable list and teammate directory the UI renders, team
 access, residents, revocation, and the bound-agent listing the daemon reconciles
 its webhook feed from.
@@ -15,14 +15,14 @@ claim rotate the secret; retries after claim revoke old tokens and re-key the
 same harness. Both preserve owner, grants, agent bindings, and computer identity.
 Claim and re-key serialize on the harness row. `revoke_hosted_harness`,
 `harness_computer` and `computer_harnesses` are the other trusted control-plane
-entry points. `delete_harness` locks the row `FOR UPDATE` first; a Macro
+entry points. `delete_harness` locks the row `FOR UPDATE` first; a Rox
 computer's harness keeps its agents bound when deleted (the unbind trigger
 skips it) so the control plane can delete them after `revoke_hosted_harness`.
 Neither its owner (`delete_harness`) nor its own daemon (`delete_self`) may
 delete a computer's harness: both get `HarnessError::ComputerHarness` (409);
 releasing the computer retires it.
 `hosted_pairing_claimed(pairing_id)` reads the durable pairing claim for the
-fleet generation gate, including the interval before macrod connects. Hosted
+fleet generation gate, including the interval before roxd connects. Hosted
 claims take the same `hosted-enrollment:<computer UUID>` advisory guard as
 fleet Create before the harness lock, then recheck the presented device-secret
 hash while claiming. A claim waiting through rotation cannot use its old secret.
@@ -48,7 +48,7 @@ before acting"); paired machines keep it off until their owner turns it on.
 - Every harness has one person as owner. Everyone else has a role: No Access
   (sees it exists), Read (`view`, cannot run agents), User (`edit`, can run
   agents), or their agent is a Resident. A team machine is a team grant in
-  `entity_access` that makes every member a User. A Macro computer's harness
+  `entity_access` that makes every member a User. A Rox computer's harness
   belongs to the computer's team: its owner and admins are Owners, its other
   members Users, and nobody else, the buyer included once they leave. It takes
   no team access changes or direct shares (`HarnessError::ComputerHarness`,
@@ -98,7 +98,7 @@ before acting"); paired machines keep it off until their owner turns it on.
   `notice_expires_at`). Nothing else reads or writes these tables.
 - `patch_harness` lets managers change the name and permission bypass while
   preserving computer identity and Claude billing mode.
-- Harness rows carry `computer_id` (set only for Macro computers; unique
+- Harness rows carry `computer_id` (set only for Rox computers; unique
   among live rows).
 - An agent teammate's computer: `HarnessServiceImpl` takes a
   `ComputerTeamAgents` port (hosted_runtimes' `PgComputerAgents`). The usable
@@ -131,7 +131,7 @@ before acting"); paired machines keep it off until their owner turns it on.
   (`infra/stacks/monitoring/monitors/harness-presence.ts` alerts on it).
 - Deleting a harness only stamps `deleted_at`; a database trigger then nulls
   `agent_configs.harness_id` for its agents, as a hard delete's `SET NULL` would,
-  except on a Macro computer's harness, whose agents the release deletes.
+  except on a Rox computer's harness, whose agents the release deletes.
 
 ## Related
 

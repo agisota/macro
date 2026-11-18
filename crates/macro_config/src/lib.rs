@@ -38,7 +38,7 @@ pub trait FromRef<E> {
 /// Typed result
 pub type MacroConfigResult<T> = Result<T, MacroConfigError>;
 
-/// Macro config errors
+/// Rox config errors
 #[derive(Debug, thiserror::Error)]
 pub enum MacroConfigError {
     /// Missing required value

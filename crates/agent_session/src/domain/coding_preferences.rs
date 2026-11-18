@@ -5,7 +5,7 @@
 /// Every choice defaults to off.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub struct CodingPreferences {
-    /// Research prior work and link each session to a Macro task.
+    /// Research prior work and link each session to a Rox task.
     pub create_tasks: bool,
     /// Deliver the work as a pull request registered with the session.
     pub open_pull_requests: bool,

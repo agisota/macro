@@ -265,7 +265,7 @@ and search projection, not a new database or bespoke contact-storage subsystem.
   follow immediate contact invalidations without replica lag.
 - [x] Return identity, email, and resolved names together, avoiding a second
   all-contact name-fetch step.
-- [x] Preserve name precedence through the existing user-name owner query: Macro
+- [x] Preserve name precedence through the existing user-name owner query: Rox
   profile, then the viewer's email-contact name. A null name keeps each surface's
   existing email fallback choice. Self remains included.
 - [x] Define a distinct viewer-scoped contact record and stable normalized identity.
@@ -329,7 +329,7 @@ PostgreSQL 18; production PostgreSQL 14 was not run.
 
 Ordinary entities retain fixed per-row scores and command keyword matching.
 Personal suggestions instead use exact-name (full or first name)/word-prefix tiers, messaged people first, then literal-contains,
-recent-first within tiers and identity ties. Complete addresses and Macro IDs are
+recent-first within tiers and identity ties. Complete addresses and Rox IDs are
 identity lookups; no arbitrary-gap or domain/brevity scoring is applied to people.
 
 The new core person-policy API stores only local DM/inbox facts on existing

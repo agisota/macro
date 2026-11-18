@@ -14,7 +14,7 @@ pub struct PgPreviewRepository {
     pool: PgPool,
 }
 impl PgPreviewRepository {
-    /// Use the host's existing MacroDB pool.
+    /// Use the host's existing RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

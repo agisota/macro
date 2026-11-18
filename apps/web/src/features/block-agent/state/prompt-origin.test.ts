@@ -15,7 +15,7 @@ const teo = {
   name: 'Teo',
   email: 'teo@example.com',
 };
-const agent = { id: 'bot|00000000-0000-0000-0000-00000000c5c5', name: 'Macro' };
+const agent = { id: 'bot|00000000-0000-0000-0000-00000000c5c5', name: 'Rox' };
 
 /** The origin of a prompt the real composer wrote. */
 function originOf(input: AgentContextPrompt) {
@@ -124,7 +124,7 @@ describe('promptOrigin', () => {
         trigger: { kind: 'mentioned', ...discussion },
       })
     ).toEqual({
-      lead: 'Started by Macro for Julia in',
+      lead: 'Started by Rox for Julia in',
       place: '#eng',
       tail: undefined,
       destination,
@@ -135,7 +135,7 @@ describe('promptOrigin', () => {
         trigger: { kind: 'follow_up', addressed_by: 'mention', discussion },
       })
     ).toEqual({
-      lead: 'Asked by Macro for Julia in',
+      lead: 'Asked by Rox for Julia in',
       place: '#eng',
       tail: undefined,
       destination,

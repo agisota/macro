@@ -705,7 +705,7 @@ export default defineDoc({
       'Use a desktop close icon on navigation notices and put secondary Open split before primary Open.',
       'Use Not now for optional setup prompts and Maybe later for recovery and update-ready prompts.',
       'Use danger-colored recovery titles and icons with neutral descriptions and action buttons; keep the default error icon for draft-save failures.',
-      'Keep the standard neutral background and border for app updates, with an accent Macro logo and Reload action.',
+      'Keep the standard neutral background and border for app updates, with an accent Rox logo and Reload action.',
       'Omit the close icon on mobile; retain swipe dismissal in either direction.',
       'Place actions below descriptions; use actionLayout inline only for multiple actions without a description.',
       'Use consistent 16px icons where meaningful; put the Open icon after its label and keep View and generic forward actions text-only.',

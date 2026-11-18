@@ -34,11 +34,11 @@ Part of a three-step workflow to identify and clean up unused SFS files:
 ## Environment Variables
 
 ### Required
-- `DATABASE_URL`: PostgreSQL connection string for the MacroDB database
-- `SFS_URL`: The URL for the Static File Service (e.g., `https://static-file-service.macro.com`)
+- `DATABASE_URL`: PostgreSQL connection string for the RoxDB database
+- `SFS_URL`: The URL for the Static File Service (e.g., `https://static-file-service.rox.one`)
 - `INTERNAL_AUTH_KEY`: Internal auth key for SFS authentication
 - `DESTINATION_URL_PREFIX`: URL prefix for reconstructing destination URLs
-  - Example: `https://static-file-service.macro.com/file/`
+  - Example: `https://static-file-service.rox.one/file/`
   - Used to build full destination URL: `{prefix}{uuid}`
 
 ### Optional
@@ -60,9 +60,9 @@ cargo run --bin cleanup_unused_sfs
 ### With Custom Configuration
 ```bash
 export DATABASE_URL="postgresql://user:pass@localhost/macrodb"
-export SFS_URL="https://static-file-service-dev.macro.com"
+export SFS_URL="https://static-file-service-dev.rox.one"
 export INTERNAL_AUTH_KEY="your-auth-key-here"
-export DESTINATION_URL_PREFIX="https://static-file-service-dev.macro.com/file/"
+export DESTINATION_URL_PREFIX="https://static-file-service-dev.rox.one/file/"
 export BULK_BATCH_SIZE="100"
 export BULK_CONCURRENCY="10"
 cargo run --bin cleanup_unused_sfs
@@ -76,9 +76,9 @@ cargo run --bin cleanup_unused_sfs
 ### Using .env File
 Create a `.env` file in the binary's directory:
 ```env
-SFS_URL="https://static-file-service.macro.com"
+SFS_URL="https://static-file-service.rox.one"
 INTERNAL_AUTH_KEY="2a46d3ed0abe6d45118e0eb03f61e7bc"
-DESTINATION_URL_PREFIX="https://static-file-service.macro.com/file/"
+DESTINATION_URL_PREFIX="https://static-file-service.rox.one/file/"
 BULK_BATCH_SIZE="50"
 BULK_CONCURRENCY="5"
 ```
@@ -149,9 +149,9 @@ Note: With bulk operations, each request deletes up to 50 files (BULK_BATCH_SIZE
 
 Loading configuration...
 Configuration:
-  SFS URL: https://static-file-service.macro.com
+  SFS URL: https://static-file-service.rox.one
   Unused UUIDs file: unused_sfs_uuids.txt
-  Destination URL prefix: https://static-file-service.macro.com/file/
+  Destination URL prefix: https://static-file-service.rox.one/file/
   Concurrency: 20
 
 Counting UUIDs in unused_sfs_uuids.txt...

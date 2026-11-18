@@ -193,11 +193,11 @@ async fn a_ready_computer_gets_one_team_coding_agent(pool: PgPool) {
     assert_eq!(agent.bot.handle, "grace-s-agent-2");
     assert_eq!(agent.bot.owner, Some(BotOwner::Team { team_id }));
     assert_eq!(agent.bot.created_by.as_deref(), Some(BUYER));
-    assert_eq!(agent.harness, "macrod");
+    assert_eq!(agent.harness, "roxd");
     assert_eq!(agent.default_model, "default");
     assert_eq!(agent.channel_scope, AgentChannelScope::All);
     assert_eq!(agent.mcp, AgentMcpServers::OwnerConnections);
-    // A Macro computer is the team's sandbox: its agent runs without asking.
+    // A Rox computer is the team's sandbox: its agent runs without asking.
     assert_eq!(agent.auto_accept_permissions, Some(true));
     assert!(agent.is_coding);
 }
@@ -232,7 +232,7 @@ async fn revoking_a_computer_deletes_its_agents(pool: PgPool) {
                 description: None,
                 avatar_url: None,
                 instructions: String::new(),
-                harness: "macrod".to_owned(),
+                harness: "roxd".to_owned(),
                 default_model: "default".to_owned(),
                 channel_scope: AgentChannelScope::All,
                 channel_ids: Vec::new(),
@@ -290,8 +290,8 @@ async fn revoking_a_computer_deletes_its_agents(pool: PgPool) {
             },
             billing_changed_at: chrono::Utc::now(),
             power: hosted_runtimes::domain::lifecycle::Power::On,
-            macrod_connected: true,
-            macrod_misses: 0,
+            roxd_connected: true,
+            roxd_misses: 0,
             recent_crashes: vec![],
             power_on_requested: false,
             capacity_wait: None,
@@ -366,7 +366,7 @@ async fn revoking_a_computer_deletes_its_agents(pool: PgPool) {
         description: None,
         avatar_url: None,
         instructions: String::new(),
-        harness: "macrod".to_owned(),
+        harness: "roxd".to_owned(),
         default_model: "default".to_owned(),
         channel_scope: AgentChannelScope::All,
         channel_ids: Vec::new(),
@@ -417,7 +417,7 @@ async fn any_teammate_can_run_agents_on_a_team_computer(pool: PgPool) {
                     description: None,
                     avatar_url: None,
                     instructions: String::new(),
-                    harness: "macrod".to_owned(),
+                    harness: "roxd".to_owned(),
                     default_model: "default".to_owned(),
                     channel_scope: AgentChannelScope::All,
                     channel_ids: Vec::new(),
@@ -432,7 +432,7 @@ async fn any_teammate_can_run_agents_on_a_team_computer(pool: PgPool) {
     }
 }
 
-/// An agent put on a Macro computer later runs without asking unless the
+/// An agent put on a Rox computer later runs without asking unless the
 /// request picks prompting, which stays a choice.
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn agents_on_a_computer_default_to_bypassing_permissions(pool: PgPool) {
@@ -453,7 +453,7 @@ async fn agents_on_a_computer_default_to_bypassing_permissions(pool: PgPool) {
                     description: None,
                     avatar_url: None,
                     instructions: String::new(),
-                    harness: "macrod".to_owned(),
+                    harness: "roxd".to_owned(),
                     default_model: "default".to_owned(),
                     channel_scope: AgentChannelScope::All,
                     channel_ids: Vec::new(),

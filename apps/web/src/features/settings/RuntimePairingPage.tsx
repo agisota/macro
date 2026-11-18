@@ -29,7 +29,7 @@ function expiresInMinutes(expiresAt: string): number {
 }
 
 /**
- * Page that walks the user through approving a macrod pairing request:
+ * Page that walks the user through approving a roxd pairing request:
  * enter the printed code, review the request, and approve it as a private or
  * team runtime.
  */
@@ -131,7 +131,7 @@ export function RuntimePairingPage(props: {
           <Switch>
             <Match when={approved()}>
               <p class="text-sm leading-5 text-ink-muted">
-                Machine connected. macrod will finish pairing automatically.
+                Machine connected. roxd will finish pairing automatically.
               </p>
             </Match>
 
@@ -161,7 +161,7 @@ export function RuntimePairingPage(props: {
                       {pairing().code}
                     </div>
                     <p class="text-xs text-ink-muted">
-                      Confirm this matches the code macrod printed.
+                      Confirm this matches the code roxd printed.
                     </p>
                   </div>
 
@@ -280,7 +280,7 @@ export function RuntimePairingPage(props: {
                     id="harness-pairing-code-help"
                     class="text-xs text-ink-extra-muted"
                   >
-                    Already configured? Press <kbd>p</kbd> in macrod to get a
+                    Already configured? Press <kbd>p</kbd> in roxd to get a
                     new code.
                   </p>
                 </div>

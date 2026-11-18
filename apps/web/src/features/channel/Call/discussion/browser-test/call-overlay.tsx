@@ -54,8 +54,8 @@ function SeedVolume() {
 applyTheme(
   new URLSearchParams(location.search).get('themeId') ??
     (new URLSearchParams(location.search).get('theme') === 'light'
-      ? 'Macro Light'
-      : 'Macro Dark')
+      ? 'Rox Light'
+      : 'Rox Dark')
 );
 document.documentElement.dataset.touchDevice = String(isTouchDevice());
 queryClient.setQueryData(authKeys.userInfo.queryKey, {

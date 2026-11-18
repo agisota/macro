@@ -2145,23 +2145,23 @@ async fn insert_team_harness(pool: &PgPool, team_id: Uuid) -> anyhow::Result<Har
     Ok(harness)
 }
 
-fn macrod_agent_req(handle: &str, harness_id: Option<HarnessId>) -> CreateAgentRequest {
+fn roxd_agent_req(handle: &str, harness_id: Option<HarnessId>) -> CreateAgentRequest {
     CreateAgentRequest {
-        harness: "macrod".to_string(),
+        harness: "roxd".to_string(),
         harness_id,
         ..create_agent_req(handle, AgentChannelScope::All)
     }
 }
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
-async fn macrod_agents_require_a_registered_usable_harness(pool: PgPool) -> anyhow::Result<()> {
+async fn roxd_agents_require_a_registered_usable_harness(pool: PgPool) -> anyhow::Result<()> {
     let service = service(&pool);
     insert_user(&pool, USER_OWNER).await?;
     insert_user(&pool, USER_OTHER).await?;
 
     // The slug and the binding travel together.
     let missing_id = service
-        .create_agent(user_id(USER_OWNER), macrod_agent_req("macrod-agent", None))
+        .create_agent(user_id(USER_OWNER), roxd_agent_req("roxd-agent", None))
         .await;
     assert!(matches!(missing_id, Err(BotError::BadRequest(_))));
 
@@ -2174,7 +2174,7 @@ async fn macrod_agents_require_a_registered_usable_harness(pool: PgPool) -> anyh
     let unknown = service
         .create_agent(
             user_id(USER_OWNER),
-            macrod_agent_req(
+            roxd_agent_req(
                 "unknown-harness",
                 Some(HarnessId::new_from_uuid(Uuid::new_v4())),
             ),
@@ -2187,16 +2187,16 @@ async fn macrod_agents_require_a_registered_usable_harness(pool: PgPool) -> anyh
     let agent = service
         .create_agent(
             user_id(USER_OWNER),
-            macrod_agent_req("my-macrod-agent", Some(private_harness)),
+            roxd_agent_req("my-roxd-agent", Some(private_harness)),
         )
         .await?;
-    assert_eq!(agent.harness, "macrod");
+    assert_eq!(agent.harness, "roxd");
     assert_eq!(agent.harness_id, Some(private_harness));
 
     let stranger = service
         .create_agent(
             user_id(USER_OTHER),
-            macrod_agent_req("stolen-harness", Some(private_harness)),
+            roxd_agent_req("stolen-harness", Some(private_harness)),
         )
         .await;
     assert!(matches!(stranger, Err(BotError::Unauthorized)));
@@ -2218,7 +2218,7 @@ async fn no_agent_is_bound_to_an_agent_teammates_computer(pool: PgPool) -> anyho
     let created = service
         .create_agent(
             user_id(USER_OWNER),
-            macrod_agent_req("on-ada", Some(agent_computer)),
+            roxd_agent_req("on-ada", Some(agent_computer)),
         )
         .await;
     assert!(matches!(created, Err(BotError::AgentTeammateComputer)));
@@ -2226,7 +2226,7 @@ async fn no_agent_is_bound_to_an_agent_teammates_computer(pool: PgPool) -> anyho
     let agent = service
         .create_agent(
             user_id(USER_OWNER),
-            macrod_agent_req("on-my-machine", Some(own_machine)),
+            roxd_agent_req("on-my-machine", Some(own_machine)),
         )
         .await?;
     let moved = service
@@ -2235,7 +2235,7 @@ async fn no_agent_is_bound_to_an_agent_teammates_computer(pool: PgPool) -> anyho
             agent.bot.id,
             PatchAgentRequest {
                 harness: Some(AgentHarnessSelection {
-                    harness: "macrod".to_string(),
+                    harness: "roxd".to_string(),
                     harness_id: Some(agent_computer),
                 }),
                 ..PatchAgentRequest::default()
@@ -2264,9 +2264,9 @@ async fn patching_settings_keeps_every_runtime(pool: PgPool) -> anyhow::Result<(
         ..create_agent_req("in-memory-agent", AgentChannelScope::All)
     };
     let cursor = create_agent_req("cursor-agent", AgentChannelScope::All);
-    let macrod = macrod_agent_req("macrod-agent", Some(harness));
+    let roxd = roxd_agent_req("roxd-agent", Some(harness));
 
-    for create in [in_memory, cursor, macrod] {
+    for create in [in_memory, cursor, roxd] {
         let (runtime, host) = (create.harness.clone(), create.harness_id);
         let created = service.create_agent(user_id(USER_OWNER), create).await?;
 
@@ -2300,7 +2300,7 @@ async fn deleting_a_harness_leaves_its_agents_unbound_and_patchable(
     let agent = service
         .create_agent(
             user_id(TEAM_MEMBER),
-            macrod_agent_req("opencode", Some(team_harness)),
+            roxd_agent_req("opencode", Some(team_harness)),
         )
         .await?;
 
@@ -2316,7 +2316,7 @@ async fn deleting_a_harness_leaves_its_agents_unbound_and_patchable(
         .get_agent(agent.bot.id)
         .await?
         .expect("agent outlives its harness");
-    assert_eq!(unbound.harness, "macrod");
+    assert_eq!(unbound.harness, "roxd");
     assert_eq!(unbound.harness_id, None);
 
     // Settings other than the runtime stay editable while it is unbound.
@@ -2340,7 +2340,7 @@ async fn deleting_a_harness_leaves_its_agents_unbound_and_patchable(
             agent.bot.id,
             PatchAgentRequest {
                 harness: Some(AgentHarnessSelection {
-                    harness: "macrod".to_string(),
+                    harness: "roxd".to_string(),
                     harness_id: None,
                 }),
                 ..PatchAgentRequest::default()
@@ -2355,7 +2355,7 @@ async fn deleting_a_harness_leaves_its_agents_unbound_and_patchable(
             agent.bot.id,
             PatchAgentRequest {
                 harness: Some(AgentHarnessSelection {
-                    harness: "macrod".to_string(),
+                    harness: "roxd".to_string(),
                     harness_id: Some(team_harness),
                 }),
                 ..PatchAgentRequest::default()
@@ -2371,7 +2371,7 @@ async fn deleting_a_harness_leaves_its_agents_unbound_and_patchable(
             agent.bot.id,
             PatchAgentRequest {
                 harness: Some(AgentHarnessSelection {
-                    harness: "macrod".to_string(),
+                    harness: "roxd".to_string(),
                     harness_id: Some(rebound_harness),
                 }),
                 ..PatchAgentRequest::default()
@@ -2407,13 +2407,13 @@ async fn team_harnesses_back_member_agents_but_not_team_agents_on_private_harnes
     let member_agent = service
         .create_agent(
             user_id(TEAM_MEMBER),
-            macrod_agent_req("member-on-team-harness", Some(team_harness)),
+            roxd_agent_req("member-on-team-harness", Some(team_harness)),
         )
         .await?;
     assert_eq!(member_agent.harness_id, Some(team_harness));
 
     // A team agent may run on the team's own harness.
-    let mut team_agent = macrod_agent_req("team-on-team-harness", Some(team_harness));
+    let mut team_agent = roxd_agent_req("team-on-team-harness", Some(team_harness));
     team_agent.team_id = Some(team_id);
     let team_agent = service
         .create_agent(user_id(TEAM_MEMBER), team_agent)
@@ -2425,14 +2425,14 @@ async fn team_harnesses_back_member_agents_but_not_team_agents_on_private_harnes
     let outsider = service
         .create_agent(
             user_id(USER_OTHER),
-            macrod_agent_req("outsider-on-team-harness", Some(team_harness)),
+            roxd_agent_req("outsider-on-team-harness", Some(team_harness)),
         )
         .await;
     assert!(matches!(outsider, Err(BotError::Unauthorized)));
 
     // A team agent must never run on a private harness.
     let private_harness = insert_harness(&pool, Some(TEAM_MEMBER), None).await?;
-    let mut team_on_private = macrod_agent_req("team-on-private-harness", Some(private_harness));
+    let mut team_on_private = roxd_agent_req("team-on-private-harness", Some(private_harness));
     team_on_private.team_id = Some(team_id);
     let team_on_private = service
         .create_agent(user_id(TEAM_MEMBER), team_on_private)
@@ -2445,7 +2445,7 @@ async fn team_harnesses_back_member_agents_but_not_team_agents_on_private_harnes
     let refused = service
         .create_agent(
             user_id(TEAM_MEMBER),
-            macrod_agent_req("member-on-shared-harness", Some(shared_harness)),
+            roxd_agent_req("member-on-shared-harness", Some(shared_harness)),
         )
         .await;
     assert!(matches!(refused, Err(BotError::Unauthorized)));
@@ -2462,11 +2462,11 @@ async fn team_harnesses_back_member_agents_but_not_team_agents_on_private_harnes
     let on_shared = service
         .create_agent(
             user_id(TEAM_MEMBER),
-            macrod_agent_req("member-on-shared-harness", Some(shared_harness)),
+            roxd_agent_req("member-on-shared-harness", Some(shared_harness)),
         )
         .await?;
     assert_eq!(on_shared.harness_id, Some(shared_harness));
-    let mut team_on_shared = macrod_agent_req("team-on-shared-harness", Some(shared_harness));
+    let mut team_on_shared = roxd_agent_req("team-on-shared-harness", Some(shared_harness));
     team_on_shared.team_id = Some(team_id);
     let team_on_shared = service
         .create_agent(user_id(TEAM_MEMBER), team_on_shared)
@@ -2476,7 +2476,7 @@ async fn team_harnesses_back_member_agents_but_not_team_agents_on_private_harnes
     // Updates re-check the binding: moving the member's agent onto their own
     // private harness works, and clearing the slug clears the binding.
     let mut update = update_agent_req("member-on-team-harness", AgentChannelScope::All);
-    update.harness = "macrod".to_string();
+    update.harness = "roxd".to_string();
     update.harness_id = Some(private_harness);
     let updated = service
         .update_agent(user_id(TEAM_MEMBER), member_agent.bot.id, update)
@@ -2500,7 +2500,7 @@ async fn persona_create_and_update_cannot_bypass_a_prompt_only_harness(
     insert_user(&pool, USER_OWNER).await?;
     let harness = insert_harness(&pool, Some(USER_OWNER), None).await?;
     let service = service(&pool);
-    let mut request = macrod_agent_req("permission-policy", Some(harness));
+    let mut request = roxd_agent_req("permission-policy", Some(harness));
     request.auto_accept_permissions = Some(true);
     assert!(matches!(
         service
@@ -2511,7 +2511,7 @@ async fn persona_create_and_update_cannot_bypass_a_prompt_only_harness(
     request.auto_accept_permissions = Some(false);
     let agent = service.create_agent(user_id(USER_OWNER), request).await?;
     let mut update = update_agent_req("permission-policy", AgentChannelScope::All);
-    update.harness = "macrod".to_owned();
+    update.harness = "roxd".to_owned();
     update.harness_id = Some(harness);
     update.auto_accept_permissions = Some(true);
     assert!(matches!(
@@ -2555,14 +2555,14 @@ async fn a_resident_reads_stopped_once_its_owner_loses_access_to_its_runtime(
             user_id(TEAM_MEMBER),
             CreateAgentRequest {
                 is_coding: false,
-                ..macrod_agent_req("resident-agent", Some(harness))
+                ..roxd_agent_req("resident-agent", Some(harness))
             },
         )
         .await?;
     let coder = service
         .create_agent(
             user_id(TEAM_MEMBER),
-            macrod_agent_req("coding-agent", Some(harness)),
+            roxd_agent_req("coding-agent", Some(harness)),
         )
         .await?;
     let stopped = |agents: &[Agent], id: BotId| {

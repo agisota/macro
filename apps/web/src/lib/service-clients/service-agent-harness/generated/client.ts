@@ -4678,7 +4678,7 @@ export const completeClaudeSignIn = async (
 };
 
 /**
- * @summary Forget the computer's Claude credential and return it to Macro credits.
+ * @summary Forget the computer's Claude credential and return it to Rox credits.
  */
 export type claudeSignOutResponse200 = {
   data: ClaudeModeResponse;

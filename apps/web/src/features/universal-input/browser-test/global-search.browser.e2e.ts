@@ -35,7 +35,7 @@ test('search messages from Julia prepopulates the global Channels and From facet
     .getByRole('textbox', { name: 'Search for', exact: true })
     .fill('budget');
   await expect(page.getByTestId('global-search-requests')).toContainText(
-    '"sender_ids":["macro|julia@macro.com"]'
+    '"sender_ids":["macro|julia@rox.one"]'
   );
 });
 
@@ -56,7 +56,7 @@ test('task search applies status, priority, assignee and creator facets without 
     dialog.getByRole('textbox', { name: 'Search for', exact: true })
   ).toHaveText('android');
   await expect(page.getByTestId('global-search-requests')).toContainText(
-    'macro|julia@macro.com'
+    'macro|julia@rox.one'
   );
   await expect(page.getByTestId('global-search-requests')).toContainText(
     'macro|john@example.com'
@@ -79,7 +79,7 @@ test('global Search requests enforce sender and channel filters and render actua
   await expect(results.getByRole('option')).toHaveCount(1);
   await expect(results.locator('.soup-list-entity')).toHaveCount(1);
   await expect(page.getByTestId('global-search-requests')).toContainText(
-    '"sender_ids":["macro|julia@macro.com"]'
+    '"sender_ids":["macro|julia@rox.one"]'
   );
   await expect(page.getByTestId('global-search-requests')).toContainText(
     '"channel_ids":["sales-channel"]'
@@ -150,7 +150,7 @@ test('unresolved people do not issue an unfiltered search and can be corrected w
     dialog.getByRole('listbox', { name: 'Search results', exact: true })
   ).toContainText('Julia shared the budget');
   await expect(page.getByTestId('global-search-requests')).toContainText(
-    '"sender_ids":["macro|julia@macro.com"]'
+    '"sender_ids":["macro|julia@rox.one"]'
   );
 });
 
@@ -205,13 +205,13 @@ test('the shared global Search input keeps mention nodes when the host acknowled
     .getByRole('button', { name: 'Insert search mention', exact: true })
     .click();
   await expect(page.getByTestId('standalone-query')).toHaveText(
-    'julia@macro.com budget'
+    'julia@rox.one budget'
   );
   await expect(input.locator('[data-user-mention]')).toHaveCount(1);
   await input.press('End');
   await page.keyboard.type(' forecast');
   await expect(page.getByTestId('standalone-query')).toHaveText(
-    'julia@macro.com budget forecast'
+    'julia@rox.one budget forecast'
   );
   await expect(input.locator('[data-user-mention]')).toHaveCount(1);
   const changes = await page

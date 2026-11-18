@@ -174,7 +174,7 @@ impl Client {
             }
             want_snapshot = false;
             has_more = patches.has_more_patches;
-            // Macro addition: how much the sync applied.
+            // Rox addition: how much the sync applied.
             patch_count += patches.patches.len();
             tracing::Span::current().record("patches", patch_count);
             state = self

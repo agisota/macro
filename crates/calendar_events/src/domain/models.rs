@@ -18,17 +18,17 @@ pub const GOOGLE_CALENDAR_EVENTS_SCOPE: &str = "https://www.googleapis.com/auth/
 pub const GOOGLE_CALENDAR_LIST_SCOPE: &str =
     "https://www.googleapis.com/auth/calendar.calendarlist.readonly";
 
-/// The Google Calendar scopes Macro requests for the calendar capability.
+/// The Google Calendar scopes Rox requests for the calendar capability.
 pub const GOOGLE_CALENDAR_SCOPES: [&str; 2] =
     [GOOGLE_CALENDAR_EVENTS_SCOPE, GOOGLE_CALENDAR_LIST_SCOPE];
 
-/// The single broad scope Macro requested before narrowing to the two above.
+/// The single broad scope Rox requested before narrowing to the two above.
 /// Google keeps a granted scope for the life of the grant, so inboxes connected
 /// before the narrowing still report it; it is what [`GoogleScopeSet::without_calendar`]
-/// must strip beyond the two scopes Macro requests today. It deliberately does
-/// not count towards the capability: an inbox reports it without Macro having
+/// must strip beyond the two scopes Rox requests today. It deliberately does
+/// not count towards the capability: an inbox reports it without Rox having
 /// asked for calendar in this era, so the user re-grants through the normal
-/// prompt (or drops it entirely by removing Macro's access at Google).
+/// prompt (or drops it entirely by removing Rox's access at Google).
 pub const GOOGLE_CALENDAR_FULL_SCOPE: &str = "https://www.googleapis.com/auth/calendar";
 
 /// Build the space-delimited calendar scope fragment for an OAuth authorization URL.
@@ -66,7 +66,7 @@ impl GoogleScopeSet {
         self.0.contains(scope)
     }
 
-    /// Return whether the complete Macro calendar capability is present.
+    /// Return whether the complete Rox calendar capability is present.
     pub fn has_calendar_capability(&self) -> bool {
         GOOGLE_CALENDAR_SCOPES
             .iter()
@@ -75,7 +75,7 @@ impl GoogleScopeSet {
 
     /// Return the same grant without any Google Calendar scope, leaving the
     /// Gmail capability untouched. Every calendar scope is dropped, not just
-    /// the two Macro requests, so a grant that carries a broader calendar
+    /// the two Rox requests, so a grant that carries a broader calendar
     /// scope cannot keep the capability alive.
     pub fn without_calendar(self) -> Self {
         Self(
@@ -106,7 +106,7 @@ pub enum CalendarGrantIntent {
 /// A watch channel that must be closed at Google after its calendar is gone.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CalendarWatchRelease {
-    /// Channel identifier Macro opened the watch with.
+    /// Channel identifier Rox opened the watch with.
     pub channel_id: String,
     /// Provider-assigned resource identifier for the watched calendar.
     pub resource_id: String,
@@ -286,7 +286,7 @@ impl EventTransparency {
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(rename_all = "snake_case")]
 pub enum EventType {
-    /// Regular event; also the fallback for provider types Macro does not
+    /// Regular event; also the fallback for provider types Rox does not
     /// know, so a new Google type never breaks ingestion.
     #[default]
     Default,
@@ -401,7 +401,7 @@ pub enum ConferenceProvider {
     MicrosoftTeams,
     /// Google Meet.
     GoogleMeet,
-    /// A third-party or legacy conference Macro leaves untouched.
+    /// A third-party or legacy conference Rox leaves untouched.
     Other,
 }
 
@@ -482,7 +482,7 @@ impl AttendeeResponseStatus {
     }
 }
 
-/// Reminder method that fires a Macro notification. Google's other method,
+/// Reminder method that fires a Rox notification. Google's other method,
 /// `email`, is delivered by Google itself and is only stored for round-trip
 /// fidelity.
 pub const REMINDER_METHOD_POPUP: &str = "popup";
@@ -502,7 +502,7 @@ pub const REMINDER_OVERRIDES_MAX: usize = 5;
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct EventReminderOverride {
-    /// Provider method, stored verbatim; only `popup` fires Macro
+    /// Provider method, stored verbatim; only `popup` fires Rox
     /// notifications.
     pub method: String,
     /// Minutes before the event start.
@@ -540,7 +540,7 @@ impl EventReminders {
         self.use_default && self.overrides.is_empty()
     }
 
-    /// Resolve the deduplicated, sorted popup offsets that fire Macro
+    /// Resolve the deduplicated, sorted popup offsets that fire Rox
     /// notifications, applying the calendar defaults when configured.
     pub fn popup_minutes(&self, calendar_defaults: &[EventReminderOverride]) -> Vec<u32> {
         let overrides = if self.use_default {
@@ -594,7 +594,7 @@ pub struct CalendarEventSourceContent {
     pub creator_name: Option<String>,
 }
 
-/// A stable, first-class Macro calendar event entity.
+/// A stable, first-class Rox calendar event entity.
 ///
 /// Content fields hold the canonical source's values: the account's primary
 /// calendar copy when one is synced, else the freshest remaining copy.
@@ -602,9 +602,9 @@ pub struct CalendarEventSourceContent {
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct CalendarEvent {
-    /// Macro entity identifier.
+    /// Rox entity identifier.
     pub id: Uuid,
-    /// Macro user who owns this event entity.
+    /// Rox user who owns this event entity.
     pub owner_id: String,
     /// RFC 5545 UID used to reconcile provider and email sources.
     pub ical_uid: String,
@@ -675,7 +675,7 @@ pub struct CalendarEvent {
     #[cfg_attr(feature = "schema", schema(required = true))]
     pub guest_policy: GuestPolicy,
     /// Whether this is a snapshot of a meeting shared with the owner, which
-    /// Macro added to their calendar as a private copy: the meeting's changes
+    /// Rox added to their calendar as a private copy: the meeting's changes
     /// never reach it, and nothing done to it reaches the meeting.
     #[serde(default)]
     #[cfg_attr(feature = "schema", schema(required = true))]
@@ -946,7 +946,7 @@ impl OccurrenceListing {
 /// own connected primary calendar synced.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TeamOutOfOffice {
-    /// Macro user who is out of office.
+    /// Rox user who is out of office.
     pub owner_id: String,
     /// The teammate's calendar event entity id.
     pub event_id: Uuid,
@@ -1101,7 +1101,7 @@ pub enum CalendarSyncStatus {
 /// Why a calendar's latest sync attempt failed, while none has succeeded since.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub enum CalendarSyncFailure {
-    /// The provider or Macro may recover by itself; until it does, the
+    /// The provider or Rox may recover by itself; until it does, the
     /// calendar's stored events stop taking changes.
     Transient,
     /// The provider refused for a reason a retry will not fix.
@@ -1113,10 +1113,10 @@ pub enum CalendarSyncFailure {
 /// How current one visible calendar's stored events are.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CalendarFreshness {
-    /// Persisted Macro calendar identifier.
+    /// Persisted Rox calendar identifier.
     pub calendar_id: Uuid,
     /// When the calendar's next routine sync was due: its last successful
-    /// sync, which Macro repeats every few minutes, or a day after it for a
+    /// sync, which Rox repeats every few minutes, or a day after it for a
     /// system calendar synced daily (see [`SYSTEM_CALENDAR_SYNC_INTERVAL`]).
     /// `None` before its first sync finished.
     pub refresh_due_at: Option<DateTime<Utc>>,
@@ -1243,7 +1243,7 @@ mod test;
 /// Provider identity for an event source.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ProviderEventSource {
-    /// Explicit Macro-owned automatic invitation decline policy.
+    /// Explicit Rox-owned automatic invitation decline policy.
     pub automatic_decline: Option<AutomaticDeclinePolicy>,
     /// Credential binding that authorized this echo (Microsoft only).
     pub binding: Option<CalendarGrantBinding>,
@@ -1346,13 +1346,13 @@ pub struct ProviderCalendarTarget {
     pub binding: Option<CalendarGrantBinding>,
     /// Provider selected by the authorized calendar account.
     pub provider: CalendarProvider,
-    /// Macro user who owns the resulting entities.
+    /// Rox user who owns the resulting entities.
     pub owner_id: String,
     /// Connected inbox whose grant authorizes the request.
     pub email_link_id: Uuid,
     /// Calendar account persisted for the connected inbox.
     pub account_id: Uuid,
-    /// Persisted Macro calendar identifier.
+    /// Persisted Rox calendar identifier.
     pub calendar_id: Uuid,
     /// Provider calendar identifier used in API paths.
     pub provider_calendar_id: String,
@@ -1525,7 +1525,7 @@ pub struct CalendarGrantBinding {
 /// Everything a user mutation needs to address an event at its provider.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CalendarEventMutationTarget {
-    /// Macro entity identifier.
+    /// Rox entity identifier.
     pub event_id: Uuid,
     /// Whether the addressed copy's calendar prohibits mutation.
     pub is_read_only: bool,
@@ -1540,7 +1540,7 @@ pub struct CalendarEventMutationTarget {
     pub email_link_id: Uuid,
     /// Calendar account persisted for the connected inbox.
     pub account_id: Uuid,
-    /// Persisted Macro calendar identifier.
+    /// Persisted Rox calendar identifier.
     pub calendar_id: Uuid,
     /// Provider calendar identifier used in API paths.
     pub provider_calendar_id: String,
@@ -1620,7 +1620,7 @@ pub struct VisibleCalendar {
     pub provider: CalendarProvider,
     /// Provider features available on this actual calendar.
     pub capabilities: CalendarCapabilities,
-    /// Persisted Macro calendar identifier.
+    /// Persisted Rox calendar identifier.
     pub id: Uuid,
     /// Connected inbox that syncs this calendar.
     pub email_link_id: Uuid,
@@ -1683,7 +1683,7 @@ pub struct CalendarCapabilities {
     pub remove_conference: bool,
     /// Whether event-level automatic invitation declines are supported.
     pub auto_decline: bool,
-    /// Whether email reminders are delivered by the provider or Macro.
+    /// Whether email reminders are delivered by the provider or Rox.
     pub email_reminders: bool,
     /// Whether arbitrary RFC 5545 recurrence properties can be written.
     pub custom_recurrence: bool,
@@ -1722,13 +1722,13 @@ impl CalendarCapabilities {
 /// The writable calendar a new user-created event lands in.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CalendarCreationTarget {
-    /// Macro user who will own the created entity.
+    /// Rox user who will own the created entity.
     pub owner_id: String,
     /// Connected inbox whose grant authorizes the request.
     pub email_link_id: Uuid,
     /// Calendar account persisted for the connected inbox.
     pub account_id: Uuid,
-    /// Persisted Macro calendar identifier.
+    /// Persisted Rox calendar identifier.
     pub calendar_id: Uuid,
     /// Provider calendar identifier used in API paths.
     pub provider_calendar_id: String,
@@ -1766,7 +1766,7 @@ impl CalendarCreationTarget {
 /// Persisted state needed to choose an incremental or full provider sync.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct StoredGoogleCalendar {
-    /// Persisted Macro calendar identifier.
+    /// Persisted Rox calendar identifier.
     pub id: Uuid,
     /// Calendar metadata changed and may invalidate teammate OOO projections.
     pub team_ooo_changed: bool,
@@ -1921,7 +1921,7 @@ pub struct GoogleEventSyncBatch {
 /// so a later calendar's failure cannot discard this calendar's progress.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct GoogleCalendarSyncSnapshot {
-    /// Persisted Macro calendar identifier.
+    /// Persisted Rox calendar identifier.
     pub calendar_id: Uuid,
     /// Provider continuation token returned by the successful poll.
     pub next_sync_token: String,
@@ -2001,15 +2001,15 @@ pub enum RefreshCalendarEvent {
     },
 }
 
-/// Delivery channel of a reminder that Macro owns. Google email reminders
-/// remain provider-owned; Outlook email reminders use Macro's notification service.
+/// Delivery channel of a reminder that Rox owns. Google email reminders
+/// remain provider-owned; Outlook email reminders use Rox's notification service.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum ReminderDeliveryMethod {
     /// In-app and push notification.
     #[default]
     Popup,
-    /// Email delivered by Macro.
+    /// Email delivered by Rox.
     Email,
 }
 impl ReminderDeliveryMethod {
@@ -2048,7 +2048,7 @@ pub struct DueCalendarReminder {
     pub email_address: String,
     /// The scheduled firing.
     pub firing: CalendarReminderFiring,
-    /// Macro user the alert belongs to.
+    /// Rox user the alert belongs to.
     pub owner_id: String,
     /// Event display title.
     pub title: String,
@@ -2221,7 +2221,7 @@ pub struct ProviderCalendar {
     pub access_role: Option<String>,
     /// Whether this is the account's primary calendar.
     pub is_primary: bool,
-    /// Whether Macro should display/sync it by default.
+    /// Whether Rox should display/sync it by default.
     pub is_selected: bool,
     /// Default reminders applied to events that keep `useDefault`.
     pub default_reminders: Vec<EventReminderOverride>,

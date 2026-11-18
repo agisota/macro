@@ -6,7 +6,7 @@ It uses a live clock and checks that loading placeholders disappear before captu
 
 Imported own point events must render compactly with a single time,
 without drag/resize. Editing the point's title must omit time from its request.
-Adding a Macro call to a point must show a duration error before any mutation.
+Adding a Rox call to a point must show a duration error before any mutation.
 
 From `apps/web`, with Chromium installed:
 

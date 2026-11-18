@@ -19,7 +19,7 @@ pub const JWT_SIGNING_KEY_ID: &str = "d7d09513-a3f5-401c-9685-34ab6c552453";
 /// The HS256 secret. `macro_auth` reads this as `JWT_SECRET_KEY`.
 pub const JWT_SECRET: &str = "super-secret-jwt-signing-key-for-local-development-only";
 
-/// Public fixture key for local Macro API tokens, including CRM settings calls.
+/// Public fixture key for local Rox API tokens, including CRM settings calls.
 pub const MACRO_API_TOKEN_PUBLIC_KEY: &str =
     include_str!("identity/macro-api-token.local.public.pem");
 
@@ -37,7 +37,7 @@ pub const ATTACHMENT_LINK_SIGNING_KEY: &str = include_str!(
 /// The populate-JWT lambda id (the unlicensed local variant).
 pub const POPULATE_JWT_LAMBDA_ID: &str = "a7f3e8d2-4b91-4c5a-9e6f-1a2b3c4d5e6f";
 
-/// The Macro application id. Client id == application id == JWT `aud`
+/// The Rox application id. Client id == application id == JWT `aud`
 /// (`AUDIENCE`). Must NOT be FusionAuth's reserved built-in application id
 /// (`3c219e58-ed0e-4b18-ad48-f4f92793ae32`, the "FusionAuth" admin app), which
 /// already exists on every instance and would make the kickstart's
@@ -53,7 +53,7 @@ pub const TENANT_ID: &str = "11111111-1111-4111-8111-111111111111";
 pub const CLIENT_SECRET: &str = "c3VwZXItc2VjcmV0LWxvY2FsLWNsaWVudC1zZWNyZXQtMDE";
 
 /// The JWT issuer the tenant emits; `macro_auth` checks `iss` against this.
-pub const ISSUER: &str = "local.macro.com";
+pub const ISSUER: &str = "local.rox.one";
 
 /// Fixed id for the passwordless-login email template the kickstart creates.
 pub const PASSWORDLESS_EMAIL_TEMPLATE_ID: &str = "33333333-3333-4333-8333-333333333333";

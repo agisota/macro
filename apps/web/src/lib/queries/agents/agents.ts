@@ -11,7 +11,7 @@ import type { Accessor } from 'solid-js';
 import { agentKeys } from './keys';
 
 /**
- * `Agent` plus the macrod harness binding the backend now returns; the field
+ * `Agent` plus the roxd harness binding the backend now returns; the field
  * is not yet in the generated schema.
  */
 export type AgentWithHarnessId = Agent & { harness_id?: string | null };
@@ -24,7 +24,7 @@ export type CreateAgentParams = {
   description?: string;
   handle: string;
   harness: string;
-  /** The registered macrod harness to run on; omit for built-in harnesses. */
+  /** The registered roxd harness to run on; omit for built-in harnesses. */
   harnessId?: string;
   name: string;
   instructions: string;
@@ -34,7 +34,7 @@ export type CreateAgentParams = {
   /**
    * Whether the agent's sessions approve permission requests without asking.
    * Omit to defer to the runtime's default: built-in runtimes auto-accept,
-   * macrod prompts.
+   * roxd prompts.
    */
   autoAcceptPermissions?: boolean;
   /**

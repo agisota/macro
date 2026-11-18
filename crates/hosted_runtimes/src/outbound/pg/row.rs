@@ -124,7 +124,7 @@ impl TryFrom<ComputerRow> for Computer {
                 .map_err(|_| invalid_row("state must satisfy lifecycle field rules"))?,
             harness_id: row.harness_id.map(HarnessId::new_from_uuid),
             created_by: MacroUserIdStr::try_from(row.created_by)
-                .map_err(|_| invalid_row("created_by must be a valid Macro user identifier"))?,
+                .map_err(|_| invalid_row("created_by must be a valid Rox user identifier"))?,
             created_at: row.created_at,
             enrolled_at: row.enrolled_at,
             setup_completed_at: row.setup_completed_at,
@@ -161,7 +161,7 @@ impl TryFrom<ReservationRow> for Reservation {
                 .map_err(|_| invalid_row("catalog_entry must be a versioned catalog identifier"))?,
             funding: funding(row.price_id, row.comp_reason)?,
             created_by: MacroUserIdStr::try_from(row.created_by)
-                .map_err(|_| invalid_row("created_by must be a valid Macro user identifier"))?,
+                .map_err(|_| invalid_row("created_by must be a valid Rox user identifier"))?,
             extra_items: serde_json::from_value(row.extra_items)
                 .map_err(|_| invalid_row("extra_items must be subscription items"))?,
             provision_traceparent: row.provision_traceparent,
@@ -171,7 +171,7 @@ impl TryFrom<ReservationRow> for Reservation {
                 .agent_user_id
                 .map(MacroUserIdStr::try_from)
                 .transpose()
-                .map_err(|_| invalid_row("agent_user_id must be a valid Macro user identifier"))?,
+                .map_err(|_| invalid_row("agent_user_id must be a valid Rox user identifier"))?,
         })
     }
 }

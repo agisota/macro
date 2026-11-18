@@ -149,7 +149,7 @@ const POST_LINK_FALLBACK_ROUTE = `${DEFAULT_ROUTE}/~/settings/${settingsTabToSlu
 
 /**
  * The `email_link_notice` the auth service sends an administrator back with
- * after they approve Macro for their Microsoft 365 tenant.
+ * after they approve Rox for their Microsoft 365 tenant.
  */
 const ADMIN_CONSENT_GRANTED_NOTICE = 'admin_consent_granted';
 
@@ -215,7 +215,7 @@ function promptForEmailAccess(scopes: ConsentScopes | undefined) {
       titleColor: 'var(--color-failure)',
       dismissLabel: t('common.maybeLater'),
       content: () =>
-        "Macro connects an account's email and calendar together, so keep the email permissions checked. The account was not connected.",
+        "Rox connects an account's email and calendar together, so keep the email permissions checked. The account was not connected.",
       actions: [
         {
           label: 'Try again',

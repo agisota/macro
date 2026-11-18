@@ -42,7 +42,7 @@ impl ModelAccess {
 
 /// The models a session may run: its owner's plan access, unless the
 /// session's agent runs on its own key, in which case it is that key's
-/// provider's models. The plan limits only what Macro pays for.
+/// provider's models. The plan limits only what Rox pays for.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct SessionModels {
     access: ModelAccess,

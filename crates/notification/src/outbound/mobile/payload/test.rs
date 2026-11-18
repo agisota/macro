@@ -104,7 +104,7 @@ fn android_call_push_is_short_lived_data_only_and_recipient_scoped() {
         caller_name: "Alice".into(),
         livekit_server_url: Some("wss://livekit.example".into()),
         livekit_token: Some("recipient-token".into()),
-        ring_status_url: Some("https://dev.macro.com/call/ring-status/call-1".into()),
+        ring_status_url: Some("https://dev.rox.one/call/ring-status/call-1".into()),
     };
     let target: SnsTarget<'_, ()> = SnsTarget::AndroidCall(&payload, "macro|bob@example.com");
     let sns: Value = serde_json::from_str(&target.as_json().unwrap()).unwrap();

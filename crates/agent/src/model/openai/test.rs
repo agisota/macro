@@ -30,6 +30,12 @@ fn other_compatible_providers_keep_the_catalog_name() {
 }
 
 #[test]
+fn groq_gpt_oss_is_sent_as_the_groq_api_id() {
+    let model = Model::try_from("groq/gpt-oss-120b").expect("routable id");
+    assert_eq!(completion_model_id(&model), "openai/gpt-oss-120b");
+}
+
+#[test]
 fn compatible_transport_omits_native_tool_pixels_on_live_results_and_replay() {
     use rig_core::{
         OneOrMany,

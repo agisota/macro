@@ -35,7 +35,7 @@ pub enum EntityType {
     Chat,
     /// CRM company.
     Company,
-    /// A row of a Macro database table; its cells are its properties.
+    /// A row of a Rox database table; its cells are its properties.
     DatabaseRow,
     /// CRM contact.
     Contact,

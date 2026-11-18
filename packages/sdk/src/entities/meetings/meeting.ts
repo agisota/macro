@@ -156,7 +156,7 @@ export class Meeting extends MacroEntity<MeetingRecord> {
   }
 
   /**
-   * Invite Macro users.
+   * Invite Rox users.
    *
    * @write
    */

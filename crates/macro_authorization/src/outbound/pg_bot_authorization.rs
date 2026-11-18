@@ -41,7 +41,7 @@ pub enum PgBotAuthorizationRepoError {
     /// Persisted bot ownership data violated its schema invariant.
     #[error("invalid persisted bot ownership data")]
     InvalidBotOwner,
-    /// Persisted user data could not be represented as a Macro user identifier.
+    /// Persisted user data could not be represented as a Rox user identifier.
     #[error("invalid persisted user email")]
     InvalidUserEmail,
 }

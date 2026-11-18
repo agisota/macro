@@ -796,10 +796,10 @@ fn github_stands_alone_and_only_it_takes_a_payload_match() {
     assert!(parse(json!({ "events": ["webhook.received"] })).is_err());
     // A github filter names which deliveries; nothing else takes a selector.
     assert!(parse(json!({ "events": ["github"] })).is_err());
-    // GitHub does not combine with Macro events or entity ids.
+    // GitHub does not combine with Rox events or entity ids.
     assert!(parse(json!({ "events": ["github", "document.created"], "github": {} })).is_err());
     assert!(parse(json!({ "events": ["github"], "github": {}, "ids": [] })).is_err());
-    // Macro events are read again at dispatch; they have no payload to match.
+    // Rox events are read again at dispatch; they have no payload to match.
     assert!(
         parse(json!({
             "events": ["document.created"],

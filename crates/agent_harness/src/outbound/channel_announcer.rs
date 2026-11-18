@@ -6,7 +6,7 @@
 //! the turn itself;
 //! a chat agent's turn is a pending reply - the channel markdown's pulsing
 //! await node - that is patched into the answer when the turn ends, the way
-//! the original Macro bot replied, and that says so while the turn waits on
+//! the original Rox bot replied, and that says so while the turn waits on
 //! a question only the session view can answer. A chat agent's message
 //! leads with a link to its session in every state. The domain decides the
 //! shape, this module chooses the words, and Lexical composes every node:

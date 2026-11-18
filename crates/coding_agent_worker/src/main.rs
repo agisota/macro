@@ -1,7 +1,7 @@
 //! The agent harness daemon: serve a registered harness's agent sessions from
 //! this machine.
 //!
-//! `macrod` is one process and one command: the serving core (SSE listener,
+//! `roxd` is one process and one command: the serving core (SSE listener,
 //! harness bridge) running inside a terminal control panel that shows what
 //! it is serving - the registration, the agents bound to it, their sessions,
 //! and the daemon's own logs - and manages its own pairing, config, and
@@ -9,7 +9,7 @@
 //!
 //! A first run starts unpaired: the panel offers pairing (press `p`), the
 //! user approves the printed code in the web app, and the minted harness
-//! credential is embedded in the sensitive `~/.macrod/macrod.toml` (or a named
+//! credential is embedded in the sensitive `~/.roxd/roxd.toml` (or a named
 //! profile's config, see [`profiles`]). Once paired, the
 //! daemon connects to the runtime gateway and bridges the configured ACP
 //! harness, making model discovery available before any agents exist. Each
@@ -49,7 +49,7 @@ use std::process::ExitCode;
 use rootcause::prelude::ResultExt as _;
 
 use crate::config::{ConfigLock, LockError};
-use crate::profiles::{ConfigSelection, MacrodHome, ProfileName};
+use crate::profiles::{ConfigSelection, RoxdHome, ProfileName};
 
 /// The musl release is linked by zig, whose libc `malloc` keeps freed memory on
 /// the freeing thread's list and maps fresh memory rather than look past the
@@ -64,17 +64,17 @@ static ALLOCATOR: mimalloc::MiMalloc = mimalloc::MiMalloc;
 /// bound agents, live sessions, config editing, pairing, removal, and logs -
 /// one process.
 #[derive(Parser)]
-#[command(name = "macrod", version = update::VERSION)]
+#[command(name = "roxd", version = update::VERSION)]
 struct Args {
     /// Internal browser helper, isolated so terminal browsers cannot claim the TUI's stdin.
     #[arg(long, hide = true)]
     open_url: Option<String>,
-    /// Config file for the control panel; defaults to `~/.macrod/macrod.toml`,
-    /// the one `macrod service` also uses.
+    /// Config file for the control panel; defaults to `~/.roxd/roxd.toml`,
+    /// the one `roxd service` also uses.
     #[arg(long, conflicts_with = "profile")]
     config: Option<PathBuf>,
-    /// Serve the named profile, `~/.macrod/profiles/<name>.toml`: another
-    /// machine on this computer. `macrod profiles` lists them.
+    /// Serve the named profile, `~/.roxd/profiles/<name>.toml`: another
+    /// machine on this computer. `roxd profiles` lists them.
     #[arg(long)]
     profile: Option<ProfileName>,
     #[command(subcommand)]
@@ -83,12 +83,12 @@ struct Args {
 
 #[derive(clap::Subcommand)]
 enum Command {
-    /// Show one agent session live inside a herdr window. macrod opens these
+    /// Show one agent session live inside a herdr window. roxd opens these
     /// itself when it runs inside herdr.
     #[cfg(unix)]
     #[command(hide = true)]
     HerdrPane {
-        /// The running macrod's window socket.
+        /// The running roxd's window socket.
         #[arg(long)]
         socket: std::path::PathBuf,
         /// The ACP session to follow.
@@ -96,10 +96,10 @@ enum Command {
         session: String,
     },
     /// Serve ACP on stdio with each session as a live coding-agent TUI in
-    /// its own herdr window. Set as the harness of a macrod run inside herdr.
+    /// its own herdr window. Set as the harness of a roxd run inside herdr.
     #[cfg(unix)]
     HerdrAcp {
-        /// Private storage for this paired macrod instance.
+        /// Private storage for this paired roxd instance.
         #[arg(long)]
         state_dir: Option<std::path::PathBuf>,
         /// Native model ID for new sessions.
@@ -123,18 +123,18 @@ enum Command {
         #[arg(last = true)]
         agent_args: Vec<String>,
     },
-    /// Run headless, managed by an embedding app such as the Macro desktop
+    /// Run headless, managed by an embedding app such as the Rox desktop
     /// app: no terminal panel, state changes as JSON lines on stdout, and
     /// shutdown on SIGTERM, Ctrl-C, or stdin closing.
     Service {
         /// Keep running when stdin closes, for system service managers.
         #[arg(long)]
         ignore_stdin_eof: bool,
-        /// Config file; defaults to `~/.macrod/macrod.toml`, created when the
+        /// Config file; defaults to `~/.roxd/roxd.toml`, created when the
         /// setup flags are given.
         #[arg(long, conflicts_with = "profile")]
         config: Option<PathBuf>,
-        /// Named profile, `~/.macrod/profiles/<name>.toml`, instead of the
+        /// Named profile, `~/.roxd/profiles/<name>.toml`, instead of the
         /// default config.
         #[arg(long)]
         profile: Option<ProfileName>,
@@ -145,7 +145,7 @@ enum Command {
         #[arg(long)]
         workspace: Option<std::path::PathBuf>,
     },
-    /// Join this Macro computer to Macro at first boot: write the config,
+    /// Join this Rox computer to Rox at first boot: write the config,
     /// and claim the pre-approved pairing.
     #[cfg(unix)]
     Enroll {
@@ -153,7 +153,7 @@ enum Command {
         /// `file:<path>`.
         #[arg(long)]
         from: enroll::EnrollmentSource,
-        /// The config `macrod service` runs from; takes its directory's owner.
+        /// The config `roxd service` runs from; takes its directory's owner.
         #[arg(long)]
         config: std::path::PathBuf,
         /// Workspace for a newly created config.
@@ -170,25 +170,25 @@ enum Command {
     DetectAgents,
     /// Report the service config's state as JSON without running anything.
     Inspect {
-        /// Config file; defaults to `~/.macrod/macrod.toml`.
+        /// Config file; defaults to `~/.roxd/roxd.toml`.
         #[arg(long, conflicts_with = "profile")]
         config: Option<PathBuf>,
-        /// Named profile, `~/.macrod/profiles/<name>.toml`, instead of the
+        /// Named profile, `~/.roxd/profiles/<name>.toml`, instead of the
         /// default config.
         #[arg(long)]
         profile: Option<ProfileName>,
     },
     /// List this computer's machines: the default config and every named
-    /// profile, whether each is paired, and whether a macrod is running it.
+    /// profile, whether each is paired, and whether a roxd is running it.
     Profiles,
 }
 
 /// Why the control panel has no config to serve. Shown as one line.
 #[derive(Debug, thiserror::Error)]
 enum ConfigSelectionError {
-    /// Another macrod serves the default config and no new profile was chosen.
+    /// Another roxd serves the default config and no new profile was chosen.
     #[error(
-        "another macrod is already running with {}; run `macrod --profile {suggestion}` to start \
+        "another roxd is already running with {}; run `roxd --profile {suggestion}` to start \
          another machine on this computer",
         path.display()
     )]
@@ -214,10 +214,10 @@ impl From<rootcause::Report> for ConfigSelectionError {
 
 /// Pick and lock the config the control panel serves.
 ///
-/// With neither `--config` nor `--profile`: a `./macrod.toml` an older
-/// release read from this folder moves into `~/.macrod` and is served, so its
+/// With neither `--config` nor `--profile`: a `./roxd.toml` an older
+/// release read from this folder moves into `~/.roxd` and is served, so its
 /// runtime keeps its identity; otherwise the default config, and when another
-/// macrod already serves that, an offer (on a terminal) to start another
+/// roxd already serves that, an offer (on a terminal) to start another
 /// runtime under a new profile.
 fn select_tui_config(
     config: Option<PathBuf>,
@@ -228,13 +228,13 @@ fn select_tui_config(
         let lock = config::lock(&selection.path)?;
         return Ok((selection, lock));
     }
-    let home = MacrodHome::locate()?;
+    let home = RoxdHome::locate()?;
     let folder = std::env::current_dir()
         .context("could not read the current directory")
         .map_err(|report| ConfigSelectionError::Other(report.into_dynamic()))?;
     if let Some(adopted) = profiles::adopt_folder_config(&folder, &home)? {
         let announcement = adopted.announcement();
-        eprintln!("macrod: {announcement}");
+        eprintln!("roxd: {announcement}");
         tracing::info!(
             from = %adopted.from.display(),
             to = %adopted.selection.path.display(),
@@ -289,7 +289,7 @@ async fn main() -> ExitCode {
     // means somebody already did this.
     let _ = rustls::crypto::aws_lc_rs::default_provider().install_default();
 
-    // The installed `macrod.exe` on Windows only starts the newest version.
+    // The installed `roxd.exe` on Windows only starts the newest version.
     #[cfg(windows)]
     if let Some(code) = update::versions::run_as_launcher() {
         std::process::exit(code);
@@ -327,7 +327,7 @@ async fn main() -> ExitCode {
                 Ok(()) => ExitCode::SUCCESS,
                 Err(error) => {
                     service::emit_fatal(&format!("{error}"));
-                    eprintln!("macrod service: {error:?}");
+                    eprintln!("roxd service: {error:?}");
                     ExitCode::FAILURE
                 }
             };
@@ -352,7 +352,7 @@ async fn main() -> ExitCode {
             {
                 Ok(()) => ExitCode::SUCCESS,
                 Err(error) => {
-                    eprintln!("macrod enroll: {error:?}");
+                    eprintln!("roxd enroll: {error:?}");
                     ExitCode::FAILURE
                 }
             };
@@ -362,7 +362,7 @@ async fn main() -> ExitCode {
             return ExitCode::SUCCESS;
         }
         Some(Command::Profiles) => {
-            let listed = MacrodHome::locate().and_then(|home| {
+            let listed = RoxdHome::locate().and_then(|home| {
                 profiles::list(&home)
                     .context("could not list the profiles")
                     .map_err(Into::into)
@@ -373,7 +373,7 @@ async fn main() -> ExitCode {
                     ExitCode::SUCCESS
                 }
                 Err(error) => {
-                    eprintln!("macrod profiles: {error:?}");
+                    eprintln!("roxd profiles: {error:?}");
                     ExitCode::FAILURE
                 }
             };
@@ -385,7 +385,7 @@ async fn main() -> ExitCode {
                     ExitCode::SUCCESS
                 }
                 Err(error) => {
-                    eprintln!("macrod inspect: {error:?}");
+                    eprintln!("roxd inspect: {error:?}");
                     ExitCode::FAILURE
                 }
             };
@@ -395,7 +395,7 @@ async fn main() -> ExitCode {
             return match tui::run_herdr_pane(&socket, &session).await {
                 Ok(()) => ExitCode::SUCCESS,
                 Err(error) => {
-                    eprintln!("macrod herdr-pane: {error:?}");
+                    eprintln!("roxd herdr-pane: {error:?}");
                     ExitCode::FAILURE
                 }
             };
@@ -410,7 +410,7 @@ async fn main() -> ExitCode {
             no_focus,
             agent_args,
         }) => {
-            // stdout is the protocol: logs go to stderr, which macrod drains.
+            // stdout is the protocol: logs go to stderr, which roxd drains.
             tracing_subscriber::fmt()
                 .with_writer(std::io::stderr)
                 .init();
@@ -427,7 +427,7 @@ async fn main() -> ExitCode {
             {
                 Ok(()) => ExitCode::SUCCESS,
                 Err(error) => {
-                    eprintln!("macrod herdr-acp: {error:?}");
+                    eprintln!("roxd herdr-acp: {error:?}");
                     ExitCode::FAILURE
                 }
             };
@@ -443,12 +443,12 @@ async fn main() -> ExitCode {
     let (selection, _lock) = match select_tui_config(args.config, args.profile) {
         Ok(selected) => selected,
         Err(error) => {
-            eprintln!("macrod: {error}");
+            eprintln!("roxd: {error}");
             return ExitCode::FAILURE;
         }
     };
     let relaunch_arguments = relaunch_arguments(&selection, profile_flag_given);
-    // The agent the macrod this process replaced was relaying, if any.
+    // The agent the roxd this process replaced was relaying, if any.
     #[cfg(unix)]
     let mut inherited = handoff::take_inherited();
     #[cfg(not(unix))]
@@ -467,14 +467,14 @@ async fn main() -> ExitCode {
                 let error = restart
                     .installed
                     .relaunch(&relaunch_arguments, restart.agent);
-                tracing::error!(error = ?error, "could not restart into the updated macrod");
+                tracing::error!(error = ?error, "could not restart into the updated roxd");
             }
             #[cfg(not(unix))]
             Ok(Some(never)) => match never {},
             Err(error) => {
                 // The ring buffer dies with the process and the terminal is
                 // restored by now, so the exit error goes straight to stderr.
-                eprintln!("macrod exited with an error: {error:?}");
+                eprintln!("roxd exited with an error: {error:?}");
                 return ExitCode::FAILURE;
             }
         }

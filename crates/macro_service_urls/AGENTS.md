@@ -2,7 +2,7 @@
 
 ## What it is
 
-Belongs to shared infrastructure: typed per-environment URLs for every Macro
+Belongs to shared infrastructure: typed per-environment URLs for every Rox
 service and gateway, resolved from `macro_env::Environment` with an
 `OVERRIDE_<NAME>` env var escape hatch.
 

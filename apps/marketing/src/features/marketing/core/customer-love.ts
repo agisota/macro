@@ -8,14 +8,14 @@ export const customerLove = [
     priority: 4,
     // Advertising reference removed at the user’s request; incomplete migration caveat retained.
     quote:
-      "I recently switched from Notion to using Macro … I'm incredibly impressed!\n\nI haven't yet ported over all of our work but so far this is the single best solution I've seen.",
+      "I recently switched from Notion to using Rox … I'm incredibly impressed!\n\nI haven't yet ported over all of our work but so far this is the single best solution I've seen.",
   },
   {
     name: 'Daniel',
     initials: 'DG',
     priority: 6,
     quote:
-      "What you've built here, is incredible. Macro is an amazing piece of software, and my team and I are loving it each day.",
+      "What you've built here, is incredible. Rox is an amazing piece of software, and my team and I are loving it each day.",
   },
   {
     name: 'Jasen',
@@ -23,7 +23,7 @@ export const customerLove = [
     priority: 7,
     // Search-specific excerpt; Android availability was a separate adoption blocker.
     quote:
-      "I tested out Macro's AI searching on LOTS of email going back many years and it dramatically outperformed Superhuman.",
+      "I tested out Rox's AI searching on LOTS of email going back many years and it dramatically outperformed Superhuman.",
   },
   {
     name: 'Ben',
@@ -31,7 +31,7 @@ export const customerLove = [
     priority: 9,
     // Describes the desired workspace; more features were requested before client rollout.
     quote:
-      "we've basically been looking for a platform just like Macro that brings all the core functions into a single, AI accessible workspace.",
+      "we've basically been looking for a platform just like Rox that brings all the core functions into a single, AI accessible workspace.",
   },
   {
     name: 'Dan',
@@ -53,7 +53,7 @@ export const customerLove = [
     initials: 'DF',
     priority: 12,
     quote:
-      'Even the way your Macro Agent scheduled our recurring meeting [in real-time, within our chat] proved to me that you guys are on another level eating your own dog food.',
+      'Even the way your Rox Agent scheduled our recurring meeting [in real-time, within our chat] proved to me that you guys are on another level eating your own dog food.',
   },
   {
     name: 'Customer',
@@ -81,14 +81,14 @@ export const customerLove = [
     initials: 'SA',
     priority: 17,
     quote:
-      "I'm really enjoying Macro so far. There's a lot more under the hood than I thought and I'm still exploring and getting the setup just right.",
+      "I'm really enjoying Rox so far. There's a lot more under the hood than I thought and I'm still exploring and getting the setup just right.",
   },
   {
     name: 'Robin',
     initials: 'RF',
     priority: 22,
     quote:
-      'I am considering to use Macro to manage everything around my self-employment, switching from Notion and Google Workspace. Have been thinking a lot before about vibe-coding something similar but the maintenance is just not realistic.\n\nMacro looks amazing so far!',
+      'I am considering to use Rox to manage everything around my self-employment, switching from Notion and Google Workspace. Have been thinking a lot before about vibe-coding something similar but the maintenance is just not realistic.\n\nRox looks amazing so far!',
   },
   {
     name: 'James',
@@ -115,7 +115,7 @@ export const customerLove = [
     initials: 'SV',
     priority: 28,
     quote:
-      'First impression of Macro is a mix of wow and how. I am excited to try things out.',
+      'First impression of Rox is a mix of wow and how. I am excited to try things out.',
   },
   {
     name: 'Emile',
@@ -234,7 +234,7 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/ptaranat/status/2069988584925364268',
     quote:
-      'every early stage startup should be using @macrodotcom … the fastest UI i have ever seen for navigating Gmail like a StarCraft grandmaster',
+      'every early stage startup should be using @roxdotone … the fastest UI i have ever seen for navigating Gmail like a StarCraft grandmaster',
     note: 'Excerpts from X',
   },
   {
@@ -260,8 +260,8 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/macangel/status/2118810863301988475',
     quote:
-      'In @macrodotcom you ask the agent. It can search the whole company’s context — email, chat, docs, tasks, calls, CRM, and answer without interrupting a single human. That’s async that actually works!',
-    note: 'Excerpt from X · Macro partner',
+      'In @roxdotone you ask the agent. It can search the whole company’s context — email, chat, docs, tasks, calls, CRM, and answer without interrupting a single human. That’s async that actually works!',
+    note: 'Excerpt from X · Rox partner',
   },
   {
     name: 'Alex Hansen',
@@ -286,7 +286,7 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/ctres/status/2116866697592512543',
     quote:
-      'The next generation productivity software looks a lot more like @macrodotcom, @typedotcom.\n\nTable stakes:\nDocs\nChat\nKnowledge base\nBring your own harness',
+      'The next generation productivity software looks a lot more like @roxdotone, @typedotcom.\n\nTable stakes:\nDocs\nChat\nKnowledge base\nBring your own harness',
     note: 'From X',
   },
   {
@@ -299,7 +299,7 @@ export const socialLove = [
     bookmarks: 1,
     href: 'https://x.com/Connorclaw/status/2115612461529530501',
     quote:
-      'Macro is an open-source workspace bringing these tools together. An interesting take on the future of AI-powered productivity.',
+      'Rox is an open-source workspace bringing these tools together. An interesting take on the future of AI-powered productivity.',
     note: 'Excerpt from X',
   },
   {
@@ -312,7 +312,7 @@ export const socialLove = [
     bookmarks: 0,
     href: 'https://x.com/Clem_Descours/status/2087131512051319147',
     quote:
-      "What @macrodotcom is building is simply what I've always dreamed of...\n\nAn all-in-one open-source tool with thoughtfully designed keyboard shortcuts and central integration of agents.\n\nI think it's still missing a few features, but the essentials are there.",
+      "What @roxdotone is building is simply what I've always dreamed of...\n\nAn all-in-one open-source tool with thoughtfully designed keyboard shortcuts and central integration of agents.\n\nI think it's still missing a few features, but the essentials are there.",
     note: 'Excerpt · translated from French by X',
   },
 ];

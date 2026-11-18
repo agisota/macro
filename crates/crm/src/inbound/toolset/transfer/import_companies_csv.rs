@@ -23,16 +23,16 @@ use crate::domain::{
 #[serde(rename_all = "camelCase")]
 #[schemars(
     title = "ImportCompaniesCsv",
-    description = "Import companies into the team CRM from a CSV, such as a Macro companies export or a list from another CRM. Each row needs a domain (a Domain, Domains or Website column) and may name the company (Company or Name); a row takes its first valid domain, and companies the team already has are left as they are. Stage, Owner and Revenue live on pipeline entries rather than companies: when the CSV has them, they go on entries of pipelineId, or of a new pipeline (private unless shareNewPipeline) named after the file. Use it instead of adding companies one at a time. Give the CSV as text in csv, or as documentId for a CSV file in Macro, which is the way to pass an uploaded file. Returns counts and the rows that could not be imported. To add rows to a pipeline without this, use ImportPipelineCsv."
+    description = "Import companies into the team CRM from a CSV, such as a Rox companies export or a list from another CRM. Each row needs a domain (a Domain, Domains or Website column) and may name the company (Company or Name); a row takes its first valid domain, and companies the team already has are left as they are. Stage, Owner and Revenue live on pipeline entries rather than companies: when the CSV has them, they go on entries of pipelineId, or of a new pipeline (private unless shareNewPipeline) named after the file. Use it instead of adding companies one at a time. Give the CSV as text in csv, or as documentId for a CSV file in Rox, which is the way to pass an uploaded file. Returns counts and the rows that could not be imported. To add rows to a pipeline without this, use ImportPipelineCsv."
 )]
 pub struct ImportCompaniesCsv {
     /// The CSV text.
     #[schemars(description = "The CSV text with a header row. Give this or documentId, not both.")]
     #[serde(default)]
     pub csv: Option<String>,
-    /// A CSV file in Macro.
+    /// A CSV file in Rox.
     #[schemars(
-        description = "The id of a CSV file in Macro the user can open, e.g. one they uploaded. Give this or csv, not both."
+        description = "The id of a CSV file in Rox the user can open, e.g. one they uploaded. Give this or csv, not both."
     )]
     #[serde(default)]
     pub document_id: Option<Uuid>,

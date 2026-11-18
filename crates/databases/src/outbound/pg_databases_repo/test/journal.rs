@@ -28,8 +28,8 @@ use crate::domain::ports::{CellStore, DatabasesRepo, DatabasesService};
 use crate::outbound::pg_cell_store::PgCellStore;
 use crate::outbound::pg_databases_repo::PgDatabasesRepo;
 
-pub(super) const WOLF: &str = "macro|wolf@macro.com";
-pub(super) const JULIA: &str = "macro|julia@macro.com";
+pub(super) const WOLF: &str = "macro|wolf@rox.one";
+pub(super) const JULIA: &str = "macro|julia@rox.one";
 
 pub(super) fn user(id: &str) -> MacroUserIdStr<'static> {
     MacroUserIdStr::parse_from_str(id).unwrap().into_owned()

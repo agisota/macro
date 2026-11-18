@@ -1,5 +1,5 @@
 //! The newest messages across a user's own inboxes, read straight from Gmail
-//! and Outlook so they can be read before Macro has synchronized the mailbox.
+//! and Outlook so they can be read before Rox has synchronized the mailbox.
 
 use std::future::Future;
 

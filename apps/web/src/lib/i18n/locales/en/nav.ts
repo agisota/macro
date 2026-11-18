@@ -67,19 +67,19 @@ export default {
   updateAvailable: 'Update available',
   updateNewVersionTitle: 'New version available',
   updateWebDescription:
-    'A new version of Macro is ready. Reload the page to use it.',
+    'A new version of Rox is ready. Reload the page to use it.',
   updateWebFailedLoadDescription:
-    "Part of Macro couldn't load because a new version is out. Reload the page to use it.",
+    "Part of Rox couldn't load because a new version is out. Reload the page to use it.",
   updateReload: 'Reload',
   updateReadyTitle: 'Update ready',
   updateBundleDescription:
-    'A new version of the Macro desktop app has downloaded. Update to start using it.',
+    'A new version of the Rox desktop app has downloaded. Update to start using it.',
   updateAction: 'Update',
   updateDesktopReadyTitle: 'Desktop app update ready',
   updateNativeDescription:
-    'Restart Macro to install it, or keep working and it installs when you quit.',
+    'Restart Rox to install it, or keep working and it installs when you quit.',
   updateRestartAndUpdate: 'Restart and update',
   updateNativePreparingDescription:
-    'Saving your work before Macro restarts to install the update.',
+    'Saving your work before Rox restarts to install the update.',
   updatePreparingRestart: 'Preparing to restart…',
 };

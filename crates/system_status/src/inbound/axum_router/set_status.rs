@@ -7,16 +7,16 @@ use super::SystemStatusRouterState;
 use crate::domain::models::{StatusUpdate, SystemStatus, SystemStatusError};
 use crate::domain::ports::SystemStatusService;
 
-/// Sets the status every user sees and pushes it to every open app. Macro
+/// Sets the status every user sees and pushes it to every open app. Rox
 /// staff only.
 ///
-/// Authenticate with a Macro session, or from a script with a personal API
+/// Authenticate with a Rox session, or from a script with a personal API
 /// key (Settings → API keys) in the `x-macro-user-api-key` header. The body
 /// is the new status:
 ///
 /// - `{"status": "operational"}` clears the banner. It takes no message.
 /// - `{"status": "degraded", "message": "Search is slow to update."}`
-/// - `{"status": "major_outage", "message": "Macro is unavailable. We're on it."}`
+/// - `{"status": "major_outage", "message": "Rox is unavailable. We're on it."}`
 ///
 /// Messages are trimmed and must be 1–500 characters. Every call is kept in
 /// the history, even when it repeats the current status.

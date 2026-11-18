@@ -38,7 +38,7 @@ pub struct CalendarEventSearchInfo {
     pub organizer_email: Option<String>,
     /// Organizer display name, when the source names one.
     pub organizer_name: Option<String>,
-    /// Free-text event description, as stored: it still carries a Macro call's
+    /// Free-text event description, as stored: it still carries a Rox call's
     /// join line, which a reader must take out unless `holds_meeting`.
     pub description: Option<String>,
     /// Whether the requester holds the meeting rather than reading a channel

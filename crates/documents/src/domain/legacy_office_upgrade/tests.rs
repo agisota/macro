@@ -145,7 +145,7 @@ impl LegacyOfficeUpgradeRepoPort for Fake {
 }
 
 fn owner() -> Owner {
-    Owner::from_principal_str("macro|owner@macro.com").unwrap()
+    Owner::from_principal_str("macro|owner@rox.one").unwrap()
 }
 
 fn document(file_type: Option<&str>) -> DocumentBasic {

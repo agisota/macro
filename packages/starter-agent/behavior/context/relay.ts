@@ -1,6 +1,6 @@
 /**
- * The agent's relay to Macro, for its scripts. A script runs in a process of
- * its own that never holds the agent's Macro key: its Macro client points
+ * The agent's relay to Rox, for its scripts. A script runs in a process of
+ * its own that never holds the agent's Rox key: its Rox client points
  * every service at this relay, on loopback, with a capability made fresh for
  * each run of the agent, and the relay makes the call with the real key. It
  * forwards plain HTTP API calls to the services it has an address for, and
@@ -11,7 +11,7 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import type { Hosts } from './addresses.ts';
 import { anthropicRoute } from './children.ts';
 
-/** The header a user API key travels in, both from the script and on to Macro. */
+/** The header a user API key travels in, both from the script and on to Rox. */
 export const keyHeader = 'x-macro-user-api-key';
 
 /** Headers that say who is calling: the script's are dropped, and only the agent's key goes on. */
@@ -93,7 +93,7 @@ const forwardAnthropic = async ({
   if (anthropic === undefined)
     return refuse(
       404,
-      'the relay has no Anthropic gateway (not Macro-credits mode)'
+      'the relay has no Anthropic gateway (not Rox-credits mode)'
     );
   const rest = url.pathname.split('/').slice(2);
   if (
@@ -137,11 +137,11 @@ export const relayHandler =
     readonly targets: Hosts;
     /** What a script must present as its key. */
     readonly capability: string;
-    /** The agent's real Macro key. */
+    /** The agent's real Rox key. */
     readonly apiKey: string;
     readonly fetch: (request: Request) => Promise<Response>;
     readonly equal: (given: string, expected: string) => boolean;
-    /** The Anthropic gateway and its token, in Macro-credits mode. */
+    /** The Anthropic gateway and its token, in Rox-credits mode. */
     readonly anthropic?: { readonly url: string; readonly token: string };
   }) =>
   async (request: Request): Promise<Response> => {

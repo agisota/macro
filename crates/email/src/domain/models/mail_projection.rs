@@ -89,9 +89,9 @@ pub struct EmailDraftAggregate {
     pub is_signal: bool,
     /// Any message has a calendar attachment.
     pub has_calendar_attachment: bool,
-    /// Maximum inbound or Macro-draft timestamp.
+    /// Maximum inbound or Rox-draft timestamp.
     pub latest_inbound_message_ts: Option<DateTime<Utc>>,
-    /// Maximum non-spam or Macro-draft timestamp; provider drafts without a date
+    /// Maximum non-spam or Rox-draft timestamp; provider drafts without a date
     /// use creation time so each clean draft retains an All Mail contribution.
     pub latest_non_spam_message_ts: Option<DateTime<Utc>>,
     /// Maximum outbound timestamp.

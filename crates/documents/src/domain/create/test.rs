@@ -458,7 +458,7 @@ async fn native_spreadsheet_creation_uses_shared_service_without_upload_or_markd
     let project = uuid::Uuid::new_v4();
     let principal = CreationPrincipal::BotForUser {
         bot: bot_id::MACRO_AI_BOT_ID,
-        user: MacroUserIdStr::try_from_email("owner@macro.com").unwrap(),
+        user: MacroUserIdStr::try_from_email("owner@rox.one").unwrap(),
     };
     let result = creator
         .create_spreadsheet(

@@ -20,7 +20,7 @@ function macroAnswering(outcome: unknown) {
   const macro = new Macro({
     token: 'test-token',
     hosts: { 'agent-harness': 'https://agent.example.test' },
-    webAppUrl: 'https://macro.com',
+    webAppUrl: 'https://rox.one',
   });
   const execution = macro.agentSessions
     .byId(SESSION)
@@ -40,7 +40,7 @@ describe('macro.ui', () => {
 
     expect(result).toEqual({
       status: 'sent',
-      url: `https://macro.com/app/md/${DOC}`,
+      url: `https://rox.one/app/md/${DOC}`,
     });
     expect(requests).toEqual([
       {
@@ -60,7 +60,7 @@ describe('macro.ui', () => {
     const result = await macro.ui.open(execution, message);
 
     expect(result.url).toBe(
-      'https://macro.com/app/channel/c1?channel_message_id=m1',
+      'https://rox.one/app/channel/c1?channel_message_id=m1',
     );
     expect(requests[0]?.body).toEqual({
       executionId: EXECUTION,
@@ -69,7 +69,7 @@ describe('macro.ui', () => {
   });
 
   test('answers no_client and declined with the link to reply with', async () => {
-    const link = 'https://macro.com/app/tasks?s0.tasks.tab=mine';
+    const link = 'https://rox.one/app/tasks?s0.tasks.tab=mine';
 
     const none = macroAnswering({ status: 'no_client' });
     const noClient = await none.macro.ui.open(
@@ -99,21 +99,21 @@ describe('macro.ui', () => {
     });
   });
 
-  test('link refuses anything but a Macro app link', () => {
+  test('link refuses anything but a Rox app link', () => {
     const { macro } = macroAnswering({ status: 'no_client' });
 
     for (const url of [
       'https://evil.example.com/app/md/x',
-      'https://macro.com.evil.example.com/app/md/x',
-      'http://macro.com/app/md/x',
-      'https://macro.com/blog',
-      'https://macro.com/app/md/x#token',
+      'https://rox.one.evil.example.com/app/md/x',
+      'http://rox.one/app/md/x',
+      'https://rox.one/blog',
+      'https://rox.one/app/md/x#token',
       'javascript:alert(1)',
       '/app/md/x',
     ]) {
-      expect(() => macro.ui.link(url), url).toThrow('Not a Macro app link');
+      expect(() => macro.ui.link(url), url).toThrow('Not a Rox app link');
     }
-    expect(macro.ui.link('https://www.macro.com/app/channels/c').path).toBe(
+    expect(macro.ui.link('https://www.rox.one/app/channels/c').path).toBe(
       '/channels/c',
     );
   });

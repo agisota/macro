@@ -7,7 +7,7 @@ beforeEach(() => {
 
 it('pairs the homepage unification video with its clean image and X image card', () => {
   document.head.innerHTML = buildSeoTagsHtml({
-    title: 'Macro',
+    title: 'Rox',
     description: 'Team workspace',
     path: '/',
   }).join('');
@@ -36,14 +36,14 @@ it('pairs the homepage unification video with its clean image and X image card',
 });
 
 it('keeps product and article cards image-only and clears homepage video on navigation', () => {
-  setPageSeo({ title: 'Macro', description: 'Workspace', path: '/' });
+  setPageSeo({ title: 'Rox', description: 'Workspace', path: '/' });
   expect(document.querySelector('meta[property="og:video"]')).not.toBeNull();
   for (const path of ['/tasks', '/posts/example']) {
     const seo = {
       title: 'Example',
       description: 'Example',
       path,
-      image: 'https://macro.com/og/example.png',
+      image: 'https://rox.one/og/example.png',
     };
     setPageSeo(seo);
     expect(

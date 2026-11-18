@@ -91,9 +91,9 @@ targets:
       properties:
         aps-environment: production
         com.apple.developer.associated-domains:
-          - applinks:macro.com
-          - applinks:dev.macro.com
-          - applinks:staging.macro.com
+          - applinks:rox.one
+          - applinks:dev.rox.one
+          - applinks:staging.rox.one
         com.apple.developer.usernotifications.communication: true
         com.apple.developer.usernotifications.time-sensitive: true
         com.apple.security.application-groups:
@@ -146,7 +146,7 @@ targets:
     info:
       path: ShareExtension/Info.plist
       properties:
-        CFBundleDisplayName: Share to Macro
+        CFBundleDisplayName: Share to Rox
         CFBundleShortVersionString: 2.0.19
         CFBundleVersion: "200"
         LSApplicationQueriesSchemes:

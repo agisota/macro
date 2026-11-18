@@ -142,14 +142,14 @@ export function PipedreamAiProvider(props: {
       if (!url) return;
       if (linksGithub()) {
         setDisconnect({
-          title: 'Disconnect from Macro',
-          body: 'Disconnect GitHub? This unlinks your GitHub account from Macro, which pull request features also use.',
+          title: 'Disconnect from Rox',
+          body: 'Disconnect GitHub? This unlinks your GitHub account from Rox, which pull request features also use.',
           onConfirm: () =>
             unlinkGithub.mutate(undefined, {
               onSuccess: () => {
                 // Any GitHub server added before the link went with it.
                 native.remove.mutate({ url });
-                toast.success('Disconnected GitHub from Macro');
+                toast.success('Disconnected GitHub from Rox');
               },
               onError: () => toast.failure('Failed to disconnect'),
             }),
@@ -157,14 +157,14 @@ export function PipedreamAiProvider(props: {
         return;
       }
       setDisconnect({
-        title: 'Disconnect from Macro',
+        title: 'Disconnect from Rox',
         body: `Disconnect ${copy.name}?`,
         onConfirm: () =>
           native.remove.mutate(
             { url },
             {
               onSuccess: () =>
-                toast.success(`Disconnected ${copy.name} from Macro`),
+                toast.success(`Disconnected ${copy.name} from Rox`),
               onError: () => toast.failure('Failed to disconnect'),
             }
           ),
@@ -172,14 +172,14 @@ export function PipedreamAiProvider(props: {
       return;
     }
     setDisconnect({
-      title: 'Disconnect from Macro',
+      title: 'Disconnect from Rox',
       body: `Disconnect ${copy.name}?`,
       onConfirm: () =>
         remove.mutate(
           { app_slug: row()?.appSlug ?? props.provider },
           {
             onSuccess: () =>
-              toast.success(`Disconnected ${copy.name} from Macro`),
+              toast.success(`Disconnected ${copy.name} from Rox`),
             onError: () => toast.failure('Failed to disconnect'),
           }
         ),
@@ -230,7 +230,7 @@ export function PipedreamAiProvider(props: {
       onBack={view.closeProvider}
       backLabel="Integrations"
     >
-      <SettingsSection title="Macro AI">
+      <SettingsSection title="Rox AI">
         <SettingsCard>
           <IntegrationRow
             icon={providerIcon(props.provider)}

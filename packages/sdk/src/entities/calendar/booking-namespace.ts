@@ -99,7 +99,7 @@ export class BookingNamespace {
    * List {@link links} first and reuse what fits. Before creating, write the
    * whole proposal out for the user: personal or team ownership, the named
    * hosts and who attends, meeting name and description, duration, location,
-   * Macro call or Google Meet, time zone, weekly hours and date exceptions,
+   * Rox call or Google Meet, time zone, weekly hours and date exceptions,
    * link name, buffers, minimum notice, booking window, slot interval, daily
    * limit, guest questions and whether bookings are enabled. Ask whether to
    * proceed and stop. Never ask the user for ids, revisions or JSON.

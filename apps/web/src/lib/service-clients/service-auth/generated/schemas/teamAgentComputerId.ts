@@ -6,6 +6,6 @@
  */
 
 /**
- * The agent's Macro computer, once bought.
+ * The agent's Rox computer, once bought.
  */
 export type TeamAgentComputerId = string | null;

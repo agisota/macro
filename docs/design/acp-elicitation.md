@@ -131,7 +131,7 @@ Clients:
 - MUST NOT prefetch the URL or its metadata
 - MUST show the full URL and obtain consent before navigating
 - MUST highlight the host; SHOULD warn on Punycode / suspicious URIs
-  (Macro shows the full URL and highlights the host - the MUST. It does not
+  (Rox shows the full URL and highlights the host - the MUST. It does not
   warn on Punycode: a `xn--` test is a poor proxy for a hostile host, and it
   read as a security guarantee the client cannot make. Deliberately unmet.)
 - MUST open in a context the Client and the model cannot inspect
@@ -144,9 +144,9 @@ The RFD is explicit: keep elicitation and `session/request_permission`
 separate. Permission is "may this tool run?". Elicitation is "what should I
 do next?". Different UX, different policy, different defaults.
 
-## What Macro does today
+## What Rox does today
 
-Macro is an ACP **Client**. The harness does not care which agent is on the
+Rox is an ACP **Client**. The harness does not care which agent is on the
 other end of the pipe (`docs/architecture/cursor-agent-transport.md`). The pieces that
 matter:
 
@@ -220,7 +220,7 @@ request.
 
 `cursor_cloud_agents` is an ACP **Agent** (`AgentCapabilities::default()`).
 It never sends `session/request_permission` and would not send elicitation
-either. Out of scope for v1. When we want Macro-as-agent to ask Zed / Cursor
+either. Out of scope for v1. When we want Rox-as-agent to ask Zed / Cursor
 a question, that is a later slice against this same protocol.
 
 Cognition chat (`POST /cognition/stream/chat/message`) is not ACP. Do not
@@ -266,7 +266,7 @@ collapses each pair in `fold/elicitation.rs`; everything else is plain ACP.
 | Hermes Agent | `hermes-agent` | no (PR #30089 unmerged would add `answer` + `other_answer`) | `clarify` excluded from the ACP toolset | n/a |
 | OpenClaw bridge | `openclaw-acp` | no | `ask_user` shows as `tool_call` `title:"ask_user: …"`, blocks the Gateway run; cannot be answered over ACP | n/a (times out → `no_answer`) |
 | Goose | — | yes, form, MCP-originated | plain ACP | JSON-RPC response |
-| Macro in-memory agent | `macro-inmem` | yes — form, when the client advertises it | model-callable `AskUser` asks one required free-text or single-choice question; `/ask` remains the deterministic end-to-end rig | JSON-RPC response |
+| Rox in-memory agent | `macro-inmem` | yes — form, when the client advertises it | model-callable `AskUser` asks one required free-text or single-choice question; `/ask` remains the deterministic end-to-end rig | JSON-RPC response |
 | Gemini CLI, Kimi, Cursor cloud | — | no | — | — |
 
 Consequences already built in:
@@ -319,7 +319,7 @@ branch:
 - `scripts/convert_stdio_recording.py` turns a stdio recorder's log into a
   fold fixture.
 
-Second pass, same branch — Macro's own user tools reviewed through
+Second pass, same branch — Rox's own user tools reviewed through
 elicitation (see [User tools reviewed in the turn](#user-tools-reviewed-in-the-turn)):
 
 - `agent`: `AgentLoop::with_user_tool_finisher`. The stream bridge's
@@ -366,7 +366,7 @@ sandboxed harnesses.
 
 ## User tools reviewed in the turn
 
-Macro's user tools (`SendEmail`, `CreateCalendarEvent`) are registered with
+Rox's user tools (`SendEmail`, `CreateCalendarEvent`) are registered with
 `add_user_tool`: calling one returns `"PendingUserExecution"` and does
 nothing, and the *host* finishes the call with the pieces `ai_toolset`
 exposes for that — `is_valid_tool` for edited arguments,
@@ -404,8 +404,8 @@ Why this shape rather than a second, "reviewing" tool wrapper:
 - Generic forms. The flat elicitation form is projected from the tool's
   input schema (top-level string / boolean / number / enum arguments,
   pre-filled from the call); anything nested rides in one `draft` field of
-  Macro's `_macro/json` type. Any user tool is reviewable with no per-tool
-  code; a client without a composer edits the flat fields, Macro's client
+  Rox's `_macro/json` type. Any user tool is reviewable with no per-tool
+  code; a client without a composer edits the flat fields, Rox's client
   renders the tool's composer and sends the whole edited draft.
 - Fail closed. No form capability, a slot already taken, or a cancelled
   turn all read to the model as an error; nothing is created silently.
@@ -475,7 +475,7 @@ would leave the agent blocked on a request nothing could answer.
 
 ## Product decisions
 
-1. **Client first.** The product path is Macro receiving elicitation from
+1. **Client first.** The product path is Rox receiving elicitation from
    coding agents. `agent_inmem` also sends it through `AskUser`, both as a
    native harness feature and as the local integration path. Sending from
    `cursor_cloud_agents` remains a later slice.
@@ -489,7 +489,7 @@ would leave the agent blocked on a request nothing could answer.
    is answered `-32602`. Those fire before `session/new`; the session
    machine is the wrong place for them.
 6. **One outstanding elicitation per session.** The protocol allows many.
-   Macro holds one. A second `elicitation/create` while one is pending is
+   Rox holds one. A second `elicitation/create` while one is pending is
    answered `-32602` and never rendered. The first is not disturbed.
 7. **Permission and elicitation stay separate** parts, separate UX.
 8. **Stop cancels the pending elicitation** (`action: "cancel"`) before
@@ -1063,7 +1063,7 @@ send after the agent finishes.
 ### 5. Out of scope, restated
 
 No Postgres table. No new connection-gateway message type. No
-request-scoped elicitation. No Macro-as-Agent sending. No change to
+request-scoped elicitation. No Rox-as-Agent sending. No change to
 permissions or `session/request_permission`.
 
 ## Order of work

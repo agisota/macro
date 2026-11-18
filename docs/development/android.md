@@ -362,7 +362,7 @@ before the publishing API can find the package. See the
 2. Download `macro-<tag>-android-arm64.aab` and its checksum from the release (or
    from the `android-release` Actions artifact for a build-only run). Verify the
    checksum before upload.
-3. In Play Console, open Macro → **Testing → Internal testing**, create a release,
+3. In Play Console, open Rox → **Testing → Internal testing**, create a release,
    and enroll in [Play App Signing](https://developer.android.com/studio/publish/app-signing).
    Decide the installed-app signing key before enrollment: a Google-generated
    signing key differs from the existing sideloaded APK certificate. Updating
@@ -585,7 +585,7 @@ its internal upload and requires the approved PR identity grant described above.
 The launcher fetches Firebase configuration before both development and release
 builds. Remote notifications require the matching configuration and Google Play
 services on the device. Notification permission alone does not register the
-device: sign in to Macro and enable notifications in Settings. Android 13 and
+device: sign in to Rox and enable notifications in Settings. Android 13 and
 newer show a runtime permission prompt; older versions use the app's system
 notification setting. The **Activity** channel can also be disabled separately.
 
@@ -654,7 +654,7 @@ just android-build --firebase-config /absolute/path/google-services.json
 
 An explicit file bypasses the Doppler fetch and checksum pin. It still must
 contain `com.macro.workspace.mobile`, the current Android package. Other Firebase project
-IDs are allowed for forks; Macro's known dev/prod projects are still rejected
+IDs are allowed for forks; Rox's known dev/prod projects are still rejected
 when used with the opposite build command. Forks changing the Android package
 must also update the package validation in `scripts/android-firebase.ts` and
 configure their own backend. Local files under `firebase/dev` or `firebase/prod`
@@ -724,8 +724,8 @@ the authentication receiver, without an activity chooser.
 
 Login redeems a one-time code using the existing native HTTP cookie jar.
 Gmail/calendar/GitHub linking completes server-side and refreshes queries without
-replacing the Macro session. After process death mid-flow, restart authentication;
-orphaned callbacks must not silently log in the replacement process. Macro logout
+replacing the Rox session. After process death mid-flow, restart authentication;
+orphaned callbacks must not silently log in the replacement process. Rox logout
 does not sign out of Google/GitHub in the system browser.
 
 iOS retains its existing auth/keyboard plugins. Android uses `android_mobile_plugin`
@@ -781,7 +781,7 @@ storage roots. The app removes device-info's unused legacy read/write-storage an
 battery-stat permissions from the merged manifest. Downloads already authenticated/fetched by the app preserve those
 bytes rather than reopening a URL in an unauthenticated external browser.
 
-From `apps/web`, after installing the current debug APK and letting Macro load:
+From `apps/web`, after installing the current debug APK and letting Rox load:
 
 ```sh
 ANDROID_SERIAL=<dedicated-emulator-serial> bun tests/native/android/smoke.mjs
@@ -792,14 +792,14 @@ Use a dedicated emulator with no pending personal share. The smoke test injects 
 temporary input, exercises native clipboard/export and incoming-share commands,
 verifies font-scale and display-density changes retain the WebView/draft and
 keep bottom controls inside the CSS viewport at tablet/foldable-sized windows, force-stops/relaunches
-Macro, and writes results/screenshots under
+Rox, and writes results/screenshots under
 `/tmp/macro-task03-smoke`. It never sends a message; a signed-in share composer can
 upload the test attachment as it normally does. In Gboard's settings, Physical
 keyboard → Show on-screen keyboard must be enabled to test the docked IME; the
 system setting alone can leave Gboard showing only its physical-keyboard toolbar.
 
 The plugin's tests use an isolated package (`com.macro.mobile.test`) and never
-clear Macro's data. From the generated Gradle project, build/run them with:
+clear Rox's data. From the generated Gradle project, build/run them with:
 
 ```sh
 ./gradlew :tauri-plugin-android-mobile:testDebugUnitTest :tauri-plugin-android-mobile:assembleDebugAndroidTest
@@ -827,7 +827,7 @@ bun scripts/android-assetlinks.ts 'AA:BB:...32-byte-SHA256-fingerprint...'
 ```
 
 Publish the resulting JSON at `https://<host>/.well-known/assetlinks.json` for each
-intended host: `macro.com`, `dev.macro.com`, `staging.macro.com`. This repository
+intended host: `rox.one`, `dev.rox.one`, `staging.rox.one`. This repository
 does not automatically publish the source file to those domain roots. Production needs
 the **Play App Signing** fingerprint, not merely the upload key; keep debug
 certificates on the development host. Builds do not publish domain associations.
@@ -842,7 +842,7 @@ After installing an APK signed with an associated certificate:
 ```sh
 adb shell pm verify-app-links --re-verify com.macro.workspace.mobile
 adb shell pm get-app-links com.macro.workspace.mobile
-adb shell am start -W -a android.intent.action.VIEW -c android.intent.category.DEFAULT -c android.intent.category.BROWSABLE -d 'https://dev.macro.com/app/task/TASK_ID'
+adb shell am start -W -a android.intent.action.VIEW -c android.intent.category.DEFAULT -c android.intent.category.BROWSABLE -d 'https://dev.rox.one/app/task/TASK_ID'
 ```
 
 Adding `-p com.macro.workspace.mobile` tests routing but does not prove domain verification.
@@ -862,7 +862,7 @@ Publication procedure for the hosting owner:
    locally signed builds. If staging is used for such a test, explicitly select
    the local-release certificate; keep debug certificates confined to dev.
 3. Download and retain the existing association JSON, S3 ETag and object metadata.
-   Generate the candidate Macro statement from `apps/web`:
+   Generate the candidate Rox statement from `apps/web`:
 
    ```sh
    bun scripts/android-assetlinks.ts 'PLAY_APP_SIGNING_SHA256' > /tmp/macro-assetlinks-candidate.json
@@ -1060,8 +1060,8 @@ act on a replacement call. Android 14+ revokes full-screen access by default for
 Play installs unless the Play Console's full-screen intent declaration names calling
 as core functionality;
 check with `adb shell appops get <package> USE_FULL_SCREEN_INTENT`. Once
-notifications are on, Macro shows a toast while the setting is off; **Allow**
-opens Android's per-app setting, and the toast stays until returning to Macro
+notifications are on, Rox shows a toast while the setting is off; **Allow**
+opens Android's per-app setting, and the toast stays until returning to Rox
 finds access granted; **Dismiss** stops the prompt on that device. The return
 check runs when the page becomes visible again: the Android WebView fires no
 window `focus` when the app comes back from Settings. The
@@ -1132,15 +1132,15 @@ header and camera switching on the primary local video tile. Hold Speaker to
 select headset/Bluetooth routing.
 
 As on iOS, Back, tapping the scrim, or swiping the handle down shrinks the drawer
-to a thumbnail over Macro (you on the left, the active speaker on the right).
+to a thumbnail over Rox (you on the left, the active speaker on the right).
 Tapping it reopens the drawer, dragging snaps it to a corner, and dragging it
 past a side tucks it away; once someone else is in the call an edge tab brings
 it back, and **Open call controls** reopens the drawer. On a locked phone the drawer
-goes straight to PiP where the device supports it. Leaving Macro continues the call in system PiP:
-from the thumbnail, Macro's main activity enters PiP (auto-enter on Android 12+,
+goes straight to PiP where the device supports it. Leaving Rox continues the call in system PiP:
+from the thumbnail, Rox's main activity enters PiP (auto-enter on Android 12+,
 which needs `android:supportsPictureInPicture` on `MainActivity`) and hides the
 WebView so it keeps its size; from the drawer, the drawer enters PiP and
-reopens when Macro returns. PiP uses the same layout as iOS, its menu offers
+reopens when Rox returns. PiP uses the same layout as iOS, its menu offers
 Mute and Leave, and expanding it reopens the drawer. A tap on a system PiP
 always shows Android's menu first. Audio continues in the foreground service
 (`phoneCall|microphone|camera`) while backgrounded; camera capture stops once

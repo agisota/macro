@@ -39,7 +39,7 @@ pub(super) fn require_guest_policy_rights(
         patch.guest_policy = None;
         return Ok(());
     }
-    // Macro stores the policy on the series alone, so an occurrence's own
+    // Rox stores the policy on the series alone, so an occurrence's own
     // would be lost on the next read.
     if matches!(scope, CalendarUpdateScope::ThisEvent { .. }) {
         return Err(CalendarMutationError::InvalidInput(

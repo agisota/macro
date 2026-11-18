@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/error.rs and modified by
-// Macro: variants for features WhatsApp doesn't use (Kyber, sealed sender,
+// Rox: variants for features WhatsApp doesn't use (Kyber, sealed sender,
 // fingerprints, FFI) are gone, and addresses are kept out of the messages so
 // errors can be logged without leaking phone numbers. See NOTICE.
 

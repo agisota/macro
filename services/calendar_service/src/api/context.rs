@@ -31,7 +31,7 @@ pub type SchedulingService = calendar_scheduling::domain::service::Service<
         CalendarMutationSvc,
         calendar_scheduling::outbound::meeting_links::HttpMeetingLinks,
     >,
-    calendar_scheduling::outbound::macro_services::MacroDirectory<
+    calendar_scheduling::outbound::macro_services::RoxDirectory<
         teams::outbound::team_repo::TeamRepositoryImpl,
     >,
 >;
@@ -64,6 +64,6 @@ pub struct ApiContext {
     pub calendar_team_service: Arc<CalendarTeamSvc>,
     /// Personal and team scheduling service.
     pub scheduling_service: Arc<SchedulingService>,
-    /// Meeting-link client minting the Macro calls new events carry.
+    /// Meeting-link client minting the Rox calls new events carry.
     pub meeting_links: Arc<calendar_scheduling::outbound::meeting_links::HttpMeetingLinks>,
 }

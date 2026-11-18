@@ -560,7 +560,7 @@ app flags, clients, routes, or block signals through a convenience barrel.
 [`packages/email-renderer`](../../packages/email-renderer/README.md) demonstrates
 this split: HTML/CSS preparation compiles without DOM libraries and runs under
 Node; the browser layer handles Shadow DOM, computed colors, layout and resource
-lifetimes; the email-message adapter retains Solid and Macro Markdown integration.
+lifetimes; the email-message adapter retains Solid and Rox Markdown integration.
 Its vanilla fixture viewer and browser tests call the exact production API.
 Pure output determinism and pixel determinism are different guarantees: browser,
 fonts, viewport, theme, and resources must also be controlled for screenshots.
@@ -774,5 +774,5 @@ when applying the composition and source-contract rules.
 The four feature-rule families now cover these email packages as well as activity.
 Email additionally has error-level rules against block dependencies and an import
 graph regression test. Its two narrow shared pure utility exceptions are the
-base64 codec and validated Macro identity helper; see the email document for the
+base64 codec and validated Rox identity helper; see the email document for the
 remaining shared UI integration limits.

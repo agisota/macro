@@ -3,7 +3,7 @@
   "name": "macro-sdk-docs",
   "compatibility_date": "2026-07-15",
   "workers_dev": true,
-  "routes": [{ "pattern": "sdk.macro.com", "custom_domain": true }],
+  "routes": [{ "pattern": "sdk.rox.one", "custom_domain": true }],
   "build": {
     "command": "bun run build",
     "watch_dir": [

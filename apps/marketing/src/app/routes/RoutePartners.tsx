@@ -13,16 +13,16 @@ import { setPageSeo } from '../utils/utilSeo';
 import '../../routes/posts/posts-shell.css';
 import './partners-hero.css';
 
-const SUPPORT_EMAIL = 'support@macro.com';
+const SUPPORT_EMAIL = 'support@rox.one';
 const KICKOFF_URL =
-  'https://macro.com/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/partnerships-program';
+  'https://rox.one/app/book/6de4003c-15e4-549f-b5a9-0e930bbf56e4/partnerships-program';
 
 const partnerFaq: FaqItem[] = [
   {
     q: 'What does it cost to join?',
     a: (
       <>
-        The Macro Partnership costs $100 a year mostly as a filter for serious
+        The Rox Partnership costs $100 a year mostly as a filter for serious
         candidates. Eligible applicants and open source contributors maybe have
         this fee waived.
       </>
@@ -59,12 +59,12 @@ const partnerFaq: FaqItem[] = [
     ),
   },
   {
-    q: 'Can I white-label Macro?',
+    q: 'Can I white-label Rox?',
     a: (
       <>
-        White-labeling is not currently supported in Macro. However, if you
-        would like to join the wait list for a white-labeled version, please
-        email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
+        White-labeling is not currently supported in Rox. However, if you would
+        like to join the wait list for a white-labeled version, please email{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
       </>
     ),
   },
@@ -72,8 +72,8 @@ const partnerFaq: FaqItem[] = [
     q: 'What can I call myself?',
     a: (
       <>
-        An &ldquo;Official Macro Partner,&rdquo; using the approved badges and
-        brand kit. Official Macro Partners will gain exclusive product previews
+        An &ldquo;Official Rox Partner,&rdquo; using the approved badges and
+        brand kit. Official Rox Partners will gain exclusive product previews
         and event invites.
       </>
     ),
@@ -82,7 +82,7 @@ const partnerFaq: FaqItem[] = [
     q: 'Do partners get access to customer data?',
     a: (
       <>
-        No. Program membership doesn&apos;t grant access to internal Macro
+        No. Program membership doesn&apos;t grant access to internal Rox
         customer data.
       </>
     ),
@@ -91,11 +91,11 @@ const partnerFaq: FaqItem[] = [
     q: 'Is our workspace data secure?',
     a: (
       <>
-        Yes. Open source means the Macro application code is available to
-        inspect. It does not make your workspace public. Data in your Macro
-        account, including your team&apos;s email, documents, messages, and
-        other workspace content, remains private and secure. For more
-        information on security in Macro please visit our{' '}
+        Yes. Open source means the Rox application code is available to inspect.
+        It does not make your workspace public. Data in your Rox account,
+        including your team&apos;s email, documents, messages, and other
+        workspace content, remains private and secure. For more information on
+        security in Rox please visit our{' '}
         <a href="/docs/security" target="_blank" rel="noreferrer">
           docs page
         </a>
@@ -118,7 +118,7 @@ function PartnerCtaBar() {
       </a>
       <a
         class="partners-action partners-action-secondary"
-        href="mailto:partner@macro.com"
+        href="mailto:partner@rox.one"
       >
         Get in touch
       </a>
@@ -147,18 +147,18 @@ function PartnerAnnouncementPlayer() {
         poster={partnerAnnouncementPoster}
         preload="metadata"
         src={partnerAnnouncementVideo}
-        aria-label="Partnership program announcement from Macro"
+        aria-label="Partnership program announcement from Rox"
       />
       <Show when={!playing()}>
         <button
           class="partners-play"
           onClick={handlePlay}
-          aria-label="Play Macro Partnership Overview"
+          aria-label="Play Rox Partnership Overview"
         >
           <span class="partners-play-icon" aria-hidden="true">
             ▶
           </span>
-          <span>Macro Partnership Overview</span>
+          <span>Rox Partnership Overview</span>
         </button>
       </Show>
     </div>
@@ -167,9 +167,9 @@ function PartnerAnnouncementPlayer() {
 
 export const RoutePartners: Component = () => {
   setPageSeo({
-    title: 'Macro Partner Program — Refer, Implement, and Build on Macro',
+    title: 'Rox Partner Program — Refer, Implement, and Build on Rox',
     description:
-      'Join the Macro Partner Program: official partner status, a directory listing, demo and early access, and 30% of first-year subscription revenue on every qualified referral.',
+      'Join the Rox Partner Program: official partner status, a directory listing, demo and early access, and 30% of first-year subscription revenue on every qualified referral.',
     path: '/partners',
   });
 
@@ -404,10 +404,10 @@ export const RoutePartners: Component = () => {
       <article class="posts-shell posts-article posts-article--with-footer partners-article">
         <header class="posts-article-header partners-hero">
           <div class="partners-hero-copy">
-            <h1 class="posts-title">Build your business with Macro.</h1>
+            <h1 class="posts-title">Build your business with Rox.</h1>
             <h2 class="partners-subtitle">
-              Help clients adopt Macro. Earn on referrals and get early access
-              to new features.
+              Help clients adopt Rox. Earn on referrals and get early access to
+              new features.
             </h2>
             <div class="partners-header-cta">
               <PartnerCtaBar />
@@ -453,34 +453,27 @@ export const RoutePartners: Component = () => {
             </ul>
           </div>
 
-          <h2>Why become a Macro partner?</h2>
+          <h2>Why become a Rox partner?</h2>
           <p>
-            Macro combines docs, tasks, email, calendar, calls, messaging, CRM,
+            Rox combines docs, tasks, email, calendar, calls, messaging, CRM,
             and agents. Partners can help clients migrate their work, configure
             channel access, and use agents to edit documents and update customer
             records. The code is open source, so you can inspect and extend the
             product you recommend.
           </p>
           <p>
-            Our product is completely open source and holds an AGPLv3 license.
-            Partners interested in setting up a self-hosted workspace for their
-            clients can email{' '}
-            <a href="mailto:contact@macro.com">contact@macro.com</a> to get
-            started.
-          </p>
-          <p>
-            As a Macro partner, you will receive <strong>30%</strong> of a
+            As a Rox partner, you will receive <strong>30%</strong> of a
             referred new user&apos;s first-year subscription revenue. You will
             also gain access to product resources, new feature previews, partner
-            events, and are able to call yourself an official Macro Partner.
+            events, and are able to call yourself an official Rox Partner.
           </p>
 
           <h2>Where partners come in.</h2>
           <p>
             System integrators, consultants, and agencies help clients set up
-            Macro and bring their existing work into it. Email, documents,
-            tasks, and customer records use one workspace, with shared
-            navigation, search, and agent tools.
+            Rox and bring their existing work into it. Email, documents, tasks,
+            and customer records use one workspace, with shared navigation,
+            search, and agent tools.
           </p>
 
           <h2>How to become a partner</h2>
@@ -498,7 +491,7 @@ export const RoutePartners: Component = () => {
               <span>Get approved as a partner.</span>
             </li>
             <li>
-              <span>Roll out Macro to your clients.</span>
+              <span>Roll out Rox to your clients.</span>
             </li>
           </ol>
 
@@ -512,7 +505,7 @@ export const RoutePartners: Component = () => {
       <div class="posts-home-cta-wrap posts-shell">
         <section class="partners-closing-cta" aria-label="Become a partner">
           <div class="posts-home-cta-copy">
-            <h2>Become a Macro partner.</h2>
+            <h2>Become a Rox partner.</h2>
           </div>
           <PartnerCtaBar />
           <A href="/partners/terms" class="partners-terms-link">

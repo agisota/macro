@@ -289,7 +289,7 @@ impl WhatsAppService {
         self.accounts.expire_retained().await
     }
 
-    /// The Macro user who linked this account.
+    /// The Rox user who linked this account.
     pub async fn account_owner(&self, account: Uuid) -> ExternalChatResult<Option<String>> {
         self.accounts.account_owner(account).await
     }

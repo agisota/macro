@@ -98,7 +98,7 @@ describe('suggestion cards', () => {
       within(pick!).getByText('You answer most mail within a day.')
     ).toBeTruthy();
     expect(within(macro!).getByText('Template')).toBeTruthy();
-    expect(within(macro!).getByText('From Macro')).toBeTruthy();
+    expect(within(macro!).getByText('From Rox')).toBeTruthy();
     expect(within(drafts!).getByText('Draft')).toBeTruthy();
     expect(
       within(drafts!).getByText('Suppliers write every week.')
@@ -155,7 +155,7 @@ describe('suggestion cards', () => {
     expect(host.created).toEqual([]);
   });
 
-  it('send a drafted routine and Macro’s template to the editor, never saving them from the card', () => {
+  it('send a drafted routine and Rox’s template to the editor, never saving them from the card', () => {
     const host = renderCards();
     fireEvent.click(
       screen.getByRole('button', { name: 'Review Supplier digest' })

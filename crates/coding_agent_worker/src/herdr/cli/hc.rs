@@ -3,7 +3,7 @@
 //! it carries the app's `herdr.space` and `herdr.tab` labels.
 //!
 //! A program's status is whatever it reports through OSC 7501. Claude Code
-//! reports it; a TUI that does not (Codex today) has none, so macrod cannot
+//! reports it; a TUI that does not (Codex today) has none, so roxd cannot
 //! see it working or blocked.
 
 use std::path::{Path, PathBuf};
@@ -34,12 +34,12 @@ const SETTLED_POLLS: u32 = 8;
 #[derive(Debug, Clone)]
 pub(super) struct Core {
     pub(super) bin: PathBuf,
-    /// macrod's own terminal, whose space new tabs open in.
+    /// roxd's own terminal, whose space new tabs open in.
     pub(super) terminal: String,
     pub(super) space: Arc<OnceCell<Option<String>>>,
 }
 
-/// The parts of a core `Terminal` record macrod reads.
+/// The parts of a core `Terminal` record roxd reads.
 #[derive(Debug, Deserialize)]
 pub(super) struct Terminal {
     address: String,
@@ -214,7 +214,7 @@ impl Core {
         self.run(&args).await.map(drop)
     }
 
-    /// Run a terminal in `space`'s tab `tab`, outliving macrod like a tab
+    /// Run a terminal in `space`'s tab `tab`, outliving roxd like a tab
     /// someone opened by hand. With no `command`, it runs the user's shell.
     async fn start(
         &self,
@@ -314,7 +314,7 @@ impl Core {
         parse_terminal("get", &output)
     }
 
-    /// The herdr app space macrod's terminal is in; a new one when macrod
+    /// The herdr app space roxd's terminal is in; a new one when roxd
     /// runs outside the app.
     async fn space(&self) -> String {
         let space = self
@@ -323,7 +323,7 @@ impl Core {
                 match self.get(&self.terminal).await {
                     Ok(terminal) => terminal.label(SPACE_LABEL).map(str::to_owned),
                     Err(error) => {
-                        tracing::warn!(%error, "could not read macrod's herdr-core terminal");
+                        tracing::warn!(%error, "could not read roxd's herdr-core terminal");
                         None
                     }
                 }

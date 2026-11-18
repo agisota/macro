@@ -25,7 +25,7 @@ internal data class CallOffer(
             val server = data.getString("livekitServerUrl")
             require(URI(server).let { it.scheme == "wss" && it.host != null && it.userInfo == null })
             val ring = data.getString("ringStatusUrl")
-            require(URI(ring).let { it.scheme == "https" && (it.host == "macro.com" || it.host?.endsWith(".macro.com") == true) && it.userInfo == null })
+            require(URI(ring).let { it.scheme == "https" && (it.host == "rox.one" || it.host?.endsWith(".rox.one") == true) && it.userInfo == null })
             return CallOffer(id, data.getString("channelId"), data.optString("channelName", "Macro call"), server,
                 data.getString("livekitToken"), ring, sentTime,
                 data.optString("callerName").takeIf { !data.isNull("callerName") && it.isNotBlank() },

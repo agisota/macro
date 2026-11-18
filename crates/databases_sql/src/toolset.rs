@@ -49,7 +49,7 @@ impl<Databases, Access, Soup, Contacts> Clone
 }
 
 impl<Databases, Access, Soup, Contacts> DatabasesSqlToolContext<Databases, Access, Soup, Contacts> {
-    /// The tools over `sql`, acting as the Macro AI bot.
+    /// The tools over `sql`, acting as the Rox AI bot.
     pub fn new(sql: DatabasesSql<Databases, Access, Soup, Contacts>) -> Self {
         Self {
             sql,
@@ -58,7 +58,7 @@ impl<Databases, Access, Soup, Contacts> DatabasesSqlToolContext<Databases, Acces
     }
 
     /// Run the tools as `actor`, delegated for the requesting user, instead
-    /// of the default Macro AI bot.
+    /// of the default Rox AI bot.
     pub fn with_actor(mut self, actor: BotId) -> Self {
         self.actor = actor;
         self

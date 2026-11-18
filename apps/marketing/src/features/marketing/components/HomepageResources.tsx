@@ -39,7 +39,7 @@ export function HomepageResources() {
         <a
           aria-label="X / Twitter"
           title="X / Twitter"
-          href="https://x.com/macrodotcom"
+          href="https://x.com/roxdotone"
           target="_blank"
           rel="noreferrer"
         >
@@ -48,7 +48,7 @@ export function HomepageResources() {
         <a
           aria-label="LinkedIn"
           title="LinkedIn"
-          href="https://www.linkedin.com/company/macrocom"
+          href="https://www.linkedin.com/company/roxdotone"
           target="_blank"
           rel="noreferrer"
         >
@@ -68,7 +68,7 @@ export function HomepageResources() {
         <a
           aria-label="Instagram"
           title="Instagram"
-          href="https://www.instagram.com/macrodotcom/"
+          href="https://www.instagram.com/roxdotone/"
           target="_blank"
           rel="noreferrer"
         >

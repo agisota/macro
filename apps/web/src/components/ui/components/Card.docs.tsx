@@ -69,7 +69,7 @@ function SetupDemo() {
           </Card.Icon>
           <Item.Content>
             <Card.Title>Connect your editor</Card.Title>
-            <Card.Description>Add Macro as a context source.</Card.Description>
+            <Card.Description>Add Rox as a context source.</Card.Description>
             <Card.Metadata>Setup guide · Example configuration</Card.Metadata>
           </Item.Content>
         </Item>

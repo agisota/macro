@@ -34,7 +34,7 @@ export interface ActivityRange {
 }
 
 /**
- * The acting user's own action history across Macro.
+ * The acting user's own action history across Rox.
  *
  * @routing Use when reading what the user did, opened, edited or sent in a time range, or a teammate's or project's history; not everything that changed in the workspace (`macro.workspace`).
  *

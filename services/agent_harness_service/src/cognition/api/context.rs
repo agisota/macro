@@ -39,10 +39,10 @@ pub type DcsEntityAccessService = EntityAccessServiceImpl<PgAccessRepository>;
 /// Type alias for the authorization service.
 pub type DcsAuthorizationService = MacroAuthorizationServiceImpl<MacroAuthJwtValidator>;
 
-/// Type alias for the roles-and-permissions service backed by MacroDB.
+/// Type alias for the roles-and-permissions service backed by RoxDB.
 pub type DcsUserPermissionsService =
     roles_and_permissions::domain::service::UserRolesAndPermissionsServiceImpl<
-        roles_and_permissions::outbound::pgpool::MacroDB,
+        roles_and_permissions::outbound::pgpool::RoxDB,
     >;
 
 /// The AI billing gate: reads plan allowances, credits, and overage state.

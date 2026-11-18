@@ -12,9 +12,9 @@ import type { PostMeta } from '../../registry';
 
 const NOTION_VIDEO_ID = 'hyU1XYmxkYM';
 const DOCS_DEMO_SRC =
-  'https://mintcdn.com/macro-a2d84caa/g-jFam3ihlnP-Mh7/videos/Macro-Markdown-Demo.mp4?fit=max&auto=format&n=g-jFam3ihlnP-Mh7&q=85&s=f88af808e21b06ae431cf5ce950277b6';
+  'https://mintcdn.com/macro-a2d84caa/g-jFam3ihlnP-Mh7/videos/Rox-Markdown-Demo.mp4?fit=max&auto=format&n=g-jFam3ihlnP-Mh7&q=85&s=f88af808e21b06ae431cf5ce950277b6';
 const ARTICLE_PARAGRAPHS = [
-  'Before Macro, we used to run the company on Notion. I was so excited when I first discovered it… it was early on in our startup and I was looking for one place to run the company out of, instead of a bunch of different tools. I really liked its @mentioning system to link things together (though back in 2020 it was very slow) and the promise of Notion databases to organize things how I wanted.',
+  'Before Rox, we used to run the company on Notion. I was so excited when I first discovered it… it was early on in our startup and I was looking for one place to run the company out of, instead of a bunch of different tools. I really liked its @mentioning system to link things together (though back in 2020 it was very slow) and the promise of Notion databases to organize things how I wanted.',
   `Notion held up for us for 2.5 years, until we hired a sales team and our VP of Sales requested a proper CRM, and our engineering team demanded Linear. We never used Notion Mail (now defunct) because we used Superhuman. Anyways, my point is Notion didn't really deliver on its promise of "all in one" and the core reason it didn't is that a database of markdown files isn't really competitive with well-built software built for a specific purpose. Salesforce, Attio and HubSpot are a better CRM than Notion will ever be. Linear is a better task tracker. And so on.`,
 ] as const;
 const ARTICLE_PREVIEW = ARTICLE_PARAGRAPHS.join(' ');
@@ -95,13 +95,13 @@ function SectionGlyph(props: { route: string }) {
 
 export const postMeta: PostMeta = {
   slug: 'notion-alternative',
-  title: 'Macro vs Notion',
-  seoTitle: 'Macro vs Notion — The Open-Source Notion Alternative',
+  title: 'Rox vs Notion',
+  seoTitle: 'Rox vs Notion — The Open-Source Notion Alternative',
   subtitle:
-    'Macro is the open source alternative to Notion with your whole stack built in.',
+    'Rox is the open source alternative to Notion with your whole stack built in.',
   date: '2026-06-25',
   description:
-    'Macro is the open-source alternative to Notion: email, chat, docs, tasks, calls and a CRM already built in one fast app, instead of markdown and databases you assemble yourself.',
+    'Rox is the open-source alternative to Notion: email, chat, docs, tasks, calls and a CRM already built in one fast app, instead of markdown and databases you assemble yourself.',
   preview: ARTICLE_PREVIEW,
   tags: ['macro', 'notion', 'comparison'],
   category: 'Comparison',
@@ -115,7 +115,7 @@ export const postMeta: PostMeta = {
   image: '/og/notion-alternative.png',
   showTOC: true,
   tocDepth: 2,
-  author: { name: 'Jacob Beckerman', role: 'Macro', avatar: avatarJacob },
+  author: { name: 'Jacob Beckerman', role: 'Rox', avatar: avatarJacob },
   ctaButtonName: 'macro_vs_notion_cta',
 };
 
@@ -139,8 +139,8 @@ export default function MacroVsNotionPost() {
           in class?"
         </p>
         <p>
-          That's the goal of Macro: everything in one place, and each thing
-          (e.g. email, CRM, messaging) is better than the competitor — Slack,
+          That's the goal of Rox: everything in one place, and each thing (e.g.
+          email, CRM, messaging) is better than the competitor — Slack,
           Superhuman, Notion, and so on.
         </p>
         <p>
@@ -150,8 +150,8 @@ export default function MacroVsNotionPost() {
           company to compete against all others.
         </p>
         <p>
-          But now coding has gotten much faster, and a product like Macro has
-          recently become possible. There are still a couple things Macro lacks
+          But now coding has gotten much faster, and a product like Rox has
+          recently become possible. There are still a couple things Rox lacks
           compared to competitors, but it's, in our opinion, the best
           combination of all worlds, especially for individuals, startups and
           small businesses that don't need all the enterprise complexity (and
@@ -177,14 +177,14 @@ export default function MacroVsNotionPost() {
           become its own part-time job.
         </p>
         <p>
-          Macro does the opposite. We ship dedicated, purpose-built blocks for
-          the things you actually do: a real editor, a real email client,
-          channels, tasks, calls and a CRM, each one built to stand next to the
-          best dedicated tool in its category, and all of them designed together
-          as a single system. This is not a philosophical nicety. It is the
-          reason we moved our own company off Notion and onto Linear before we
-          ever built Macro. Purpose-built software that knows why it exists and
-          who it is for beats DIY blocks every time.
+          Rox does the opposite. We ship dedicated, purpose-built blocks for the
+          things you actually do: a real editor, a real email client, channels,
+          tasks, calls and a CRM, each one built to stand next to the best
+          dedicated tool in its category, and all of them designed together as a
+          single system. This is not a philosophical nicety. It is the reason we
+          moved our own company off Notion and onto Linear before we ever built
+          Rox. Purpose-built software that knows why it exists and who it is for
+          beats DIY blocks every time.
         </p>
         <p>
           The abstraction argument has only gotten stronger with AI. Markdown
@@ -205,13 +205,13 @@ export default function MacroVsNotionPost() {
           is a layer on top of Gmail rather than a replacement for your stack.
         </p>
         <p>
-          Macro has all of it, for real, and none of it is a bolt-on. Macro Mail
-          is Superhuman-fast and backed by your own database instead of being
+          Rox has all of it, for real, and none of it is a bolt-on. Rox Mail is
+          Superhuman-fast and backed by your own database instead of being
           throttled by Gmail's API. The channels are quieter than Slack and have
           a real inbox, so messages wait for you instead of scrolling away.
           Calls record, transcribe and feed your team's memory by default. The
           CRM updates itself and lives one block away instead of in a separate
-          tool nobody opens. So when you put Macro next to Notion, you are not
+          tool nobody opens. So when you put Rox next to Notion, you are not
           comparing two editors.{' '}
           <span class="mvn-hl">
             You are comparing one editor to your entire stack.
@@ -233,7 +233,7 @@ export default function MacroVsNotionPost() {
         <SectionGlyph route="/agents" />
         <h2>Open source vs. a closed box</h2>
         <p>
-          Macro is open source, end to end:{' '}
+          Rox is open source, end to end:{' '}
           <a
             href="https://github.com/macro-inc/macro"
             target="_blank"
@@ -243,13 +243,12 @@ export default function MacroVsNotionPost() {
           </a>
           . That matters for two reasons. Your data is yours, in the open and
           portable, not trapped in someone's proprietary format. And the thing
-          is extensible, so you can read the code, build on it, and self-host
-          the parts that matter to you.
+          is extensible, so you can read the code and build on it.
         </p>
         <p>
           People already love Obsidian for half of this, your notes as local
           markdown files you own. But Obsidian itself is closed source, so the
-          openness stops at the file. Macro gives you that data openness and is
+          openness stops at the file. Rox gives you that data openness and is
           fully open source on top, so it goes all the way down. Notion is the
           opposite end of the spectrum: closed source, your data in their box.
           For technical teams that care about control and longevity, this is
@@ -262,18 +261,18 @@ export default function MacroVsNotionPost() {
             controls
             preload="metadata"
             playsinline
-            aria-label="Macro markdown editor demo"
+            aria-label="Rox markdown editor demo"
           />
         </div>
         <p class="mvn-figcaption">
           Markdown-native docs with @mentions, real-time collaboration and the
-          same editor everywhere in Macro.
+          same editor everywhere in Rox.
         </p>
 
         <SectionGlyph route="/documents" />
         <h2>A real editor: CRDTs, offline, and an agent with a live cursor</h2>
         <p>
-          Macro's editor brings together three things that normally do not
+          Rox's editor brings together three things that normally do not
           coexist: Notion's @-mentioning, the local-first simplicity of
           Obsidian, and real agentic editing on top of plain markdown. As far as
           we know, nothing else gives you all three, which is why we think it is
@@ -287,8 +286,8 @@ export default function MacroVsNotionPost() {
         <p>
           Collaboration is where the architecture shows. Notion resolves edits
           last-write-wins on a per-block basis, where a block is roughly a
-          paragraph. Macro treats the whole document as one cohesive object
-          backed by a CRDT, with sync running on Cloudflare durable objects. The
+          paragraph. Rox treats the whole document as one cohesive object backed
+          by a CRDT, with sync running on Cloudflare durable objects. The
           practical effect is live collaboration and offline editing that does
           not conflict and stays fast no matter where in the world you and your
           collaborator are. Editing a doc with someone really feels like you are
@@ -303,7 +302,7 @@ export default function MacroVsNotionPost() {
         <p>
           Then there is the agent. Most products that claim AI editing just
           rewrite the markdown and hand you a diff or a new version, which falls
-          apart the moment more than one person is in the document. Macro gives
+          apart the moment more than one person is in the document. Rox gives
           the agent a live cursor into the doc, the same way a human
           collaborator has one. We do not know of another product that does
           this, and it is the only approach that actually holds up in a live,
@@ -313,7 +312,7 @@ export default function MacroVsNotionPost() {
         <SectionGlyph route="/github" />
         <h2>Everything links to everything</h2>
         <p>
-          In Notion you can @-mention another markdown doc. In Macro you can
+          In Notion you can @-mention another markdown doc. In Rox you can
           @-mention anything in your company: a doc, a task, a file, a customer
           email, a support ticket, a channel message, a recorded call. The links
           are bidirectional, so the doc and the message both know about each
@@ -338,10 +337,10 @@ export default function MacroVsNotionPost() {
         <p>
           This is the thing Notion, and frankly every tool built before this
           era, simply does not have. ChatGPT and Claude build memory from your
-          chats. Macro builds memory from everything: your docs, your email,
-          your tasks, your channels, your calls, and the deals moving through
-          your CRM, and it does it across your whole team, not just you. It
-          refreshes nightly.
+          chats. Rox builds memory from everything: your docs, your email, your
+          tasks, your channels, your calls, and the deals moving through your
+          CRM, and it does it across your whole team, not just you. It refreshes
+          nightly.
         </p>
         <p>
           Because the memory spans the company, the agents can do things a
@@ -355,13 +354,13 @@ export default function MacroVsNotionPost() {
 
         <h2 class="post-faq-title">Frequently asked questions</h2>
         <div class="post-faq">
-          <PostFaqItem question="Should I switch from Notion to Macro?">
+          <PostFaqItem question="Should I switch from Notion to Rox?">
             <p>
               If your setup is Notion plus Slack plus a mail client plus a CRM,
-              yes — that is four tools that do not share context. Run Macro
+              yes — that is four tools that do not share context. Run Rox
               alongside Notion for a week: move your active docs over, point
-              your mail and chat at Macro, and keep Notion open for the
-              long-tail database stuff while you decide what comes across.
+              your mail and chat at Rox, and keep Notion open for the long-tail
+              database stuff while you decide what comes across.
             </p>
           </PostFaqItem>
 
@@ -375,9 +374,9 @@ export default function MacroVsNotionPost() {
             </p>
           </PostFaqItem>
 
-          <PostFaqItem question="How is Macro's editor different from Notion's?">
+          <PostFaqItem question="How is Rox's editor different from Notion's?">
             <p>
-              Notion resolves edits per block, last-write-wins. Macro treats the
+              Notion resolves edits per block, last-write-wins. Rox treats the
               whole document as one CRDT-backed object, which gives you live
               collaboration and offline editing without conflicts, and lets an
               agent edit with a live cursor instead of handing you a diff. It
@@ -385,7 +384,7 @@ export default function MacroVsNotionPost() {
             </p>
           </PostFaqItem>
 
-          <PostFaqItem question="Is Macro open source?">
+          <PostFaqItem question="Is Rox open source?">
             <p>
               Yes, end to end:{' '}
               <a
@@ -402,7 +401,7 @@ export default function MacroVsNotionPost() {
 
           <PostFaqItem question="Can I import my Notion content?">
             <p>
-              You can move your docs and notes into Macro and run both side by
+              You can move your docs and notes into Rox and run both side by
               side while you switch, so there is no big-bang migration and
               nothing to lose along the way.
             </p>
@@ -412,7 +411,7 @@ export default function MacroVsNotionPost() {
         <p class="post-footnote">
           For the editor, @mentions, collaboration and shortcuts, see the{' '}
           <a href="/documents#guide" target="_blank" rel="noreferrer">
-            Macro Docs documentation
+            Rox Docs documentation
           </a>
           .
         </p>

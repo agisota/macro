@@ -12,7 +12,7 @@ Usage:
   bun scripts/generate-jwt-from-secrets.ts [options]
 
 Options:
-  --email EMAIL           Email address (default: gab@macro.com)
+  --email EMAIL           Email address (default: gab@rox.one)
   --env ENV               Environment: dev or prod (default: dev)
   --expiry MINUTES        Token expiry in minutes (default: 480)
   --output FORMAT         Output format: cookies, json, or env (default: cookies)
@@ -27,8 +27,8 @@ const ENV_CONFIG = {
     jwtSecretKey: "fusionauth-jwt-secret-dev",
     macroApiTokenPrivateKey: "macro-api-token-private-key-dev",
     fusionauthClientId: "fusionauth-client-id-key-dev",
-    issuer: "fusionauth-dev.macro.com",
-    macroApiTokenIssuer: "authentication-service-dev.macro.com",
+    issuer: "fusionauth-dev.rox.one",
+    macroApiTokenIssuer: "authentication-service-dev.rox.one",
     accessTokenCookie: "dev-macro-access-token",
     refreshTokenCookie: "dev-macro-refresh-token",
     tid: "tenant-dev",
@@ -37,8 +37,8 @@ const ENV_CONFIG = {
     jwtSecretKey: "fusionauth-jwt-secret-prod",
     macroApiTokenPrivateKey: "macro-api-token-private-key-prod",
     fusionauthClientId: "fusionauth-client-id-key-prod",
-    issuer: "auth.macro.com",
-    macroApiTokenIssuer: "authentication-service.macro.com",
+    issuer: "auth.rox.one",
+    macroApiTokenIssuer: "authentication-service.rox.one",
     accessTokenCookie: "macro-access-token",
     refreshTokenCookie: "macro-refresh-token",
     tid: "tenant-prod",
@@ -165,7 +165,7 @@ async function main() {
     options: {
       email: {
         type: "string",
-        default: "gab@macro.com",
+        default: "gab@rox.one",
       },
       env: {
         type: "string",
@@ -270,12 +270,12 @@ async function main() {
 
     console.log(`\nBrowser console:`);
     console.log(
-      `document.cookie = '${config.accessTokenCookie}=${accessToken}; domain=.macro.com; path=/; expires=${cookieExpiry}; SameSite=None; Secure';`
+      `document.cookie = '${config.accessTokenCookie}=${accessToken}; domain=.rox.one; path=/; expires=${cookieExpiry}; SameSite=None; Secure';`
     );
 
     console.log(`\nCurl:`);
     console.log(
-      `curl -H 'Authorization: Bearer ${accessToken}' https://auth-service${serviceSuffix}.macro.com/user/me`
+      `curl -H 'Authorization: Bearer ${accessToken}' https://auth-service${serviceSuffix}.rox.one/user/me`
     );
   }
 }

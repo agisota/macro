@@ -17,8 +17,8 @@ const SYNC_SERVICE_WORKER_URL = `${SYNC_SERVICE_HOSTS['worker']}`;
 
 const SYNC_ORIGIN =
   import.meta.env.MODE === 'development'
-    ? 'https://dev.macro.com'
-    : 'https://macro.com';
+    ? 'https://dev.rox.one'
+    : 'https://rox.one';
 
 const WAKEUP_TTL = 55 * 1000;
 const WAKEUP_DEBOUNCE_MS = 200;

@@ -99,7 +99,7 @@ function ComputerSubtitle(props: {
 }
 
 /**
- * A Macro computer in Settings → Machines, laid out like every other machine
+ * A Rox computer in Settings → Machines, laid out like every other machine
  * row: status dot and name, one muted line, at most one action, and
  * everything else in the ⋯ menu.
  */

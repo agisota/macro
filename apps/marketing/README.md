@@ -1,6 +1,6 @@
 # Standalone public website
 
-This directory owns the Macro public website and its public signup introduction.
+This directory owns the Rox public website and its public signup introduction.
 It shares the repository with the authenticated application, but has its own
 package manifest, Vite entry points, TypeScript aliases, styles, assets, and UI
 components. Application UI changes must not alter the website.
@@ -14,11 +14,11 @@ future re-enablement.
 
 Use a pale blue selection highlight (#b8d5ff) with dark text (#101820) in both website entry styles. Keep public website text selectable with native browser behavior; restrict `user-select: none` to interactive controls that need it, never the page globally.
 
-The homepage uses one opening section on desktop and phones: a large Macro mark
+The homepage uses one opening section on desktop and phones: a large Rox mark
 surrounded by the production welcome graphic's app logos, followed by `MacroHero`'s
 current H1, supporting H2, Sign Up button, and backing/security badges. Reuse
 `ContextScene` unchanged on desktop and phones, including its radial rings,
-Macro bubble, and varied logo sizes. Render the concentric rings at 75% opacity and keep the two major rings only slightly stronger. Add a very faint, wide oval peach, rose, and warm-gold accent wash around the outer bubbles and reuse onboarding’s `WorkspaceTexture` at subdued dot/grain opacity. Give the logo bubbles a nearly transparent glass surface with background blur, a faint gradient edge at 40% of the earlier rim strength, and no bevel or cast shadow; use solid surfaces for reduced transparency. On desktop, scale the graphic to 110%, add 20px above it and 10px below it, and reserve the scaled height in the layout. Keep its orbit tiles centered on their
+Rox bubble, and varied logo sizes. Render the concentric rings at 75% opacity and keep the two major rings only slightly stronger. Add a very faint, wide oval peach, rose, and warm-gold accent wash around the outer bubbles and reuse onboarding’s `WorkspaceTexture` at subdued dot/grain opacity. Give the logo bubbles a nearly transparent glass surface with background blur, a faint gradient edge at 40% of the earlier rim strength, and no bevel or cast shadow; use solid surfaces for reduced transparency. On desktop, scale the graphic to 110%, add 20px above it and 10px below it, and reserve the scaled height in the layout. Keep its orbit tiles centered on their
 positions and the graphic within the reading column. Onboarding retains its
 existing feature diagrams. The hero stays readable without motion and does not
 morph into another section. Follow it with the connected sidebar breakdown,
@@ -152,7 +152,7 @@ competitor by name when the comparison is specific, and why we built it.
 Feature and benefit introductions use two paragraphs (one for Calls) from `product-introductions.ts` immediately
 below the hero tutorial and above the feature sections. On phones, align product introductions and hero tutorials to the same 20px viewport inset: 12px from the page shell plus 8px from the product page, with no extra width inset on either element. Use the H2 section body
 typography: explain what we wanted from existing tools, then
-the one or two concrete benefits of Macro. Keep comparisons specific, distinguish
+the one or two concrete benefits of Rox. Keep comparisons specific, distinguish
 product goals from shipped integrations, and preserve the founder's emphasis on
 agents in Chat, prioritization in Mail, writing and collaboration in Docs, and the
 unified event system in Routines.
@@ -169,7 +169,7 @@ Demos are faithful to the signed-in app: its labels, layout, icons, and
 hover-only controls (the message toolbar appears on hover, as in the app).
 Interface icons are explicitly frozen from app revision
 `9aa2c2a8740a330289373121b93c786640b0d97e` in
-`src/assets/app-icons/system` (plus `share.svg`). Use that original Macro family
+`src/assets/app-icons/system` (plus `share.svg`). Use that original Rox family
 for navigation, feature diagrams, demo controls, entity links, task status and
 priority glyphs; retain third-party brand logos and authored animated illustrations.
 Import only individual used assets through `@icon/system`, keeping the website
@@ -271,12 +271,12 @@ public feature and blog routes, `/download`, and `/start`;
 `/onboarding-preview.html` remains a development review entry. It does not host
 the authenticated `/app/*` routes. In standalone dev and preview servers,
 GET/HEAD navigation to `/app` or `/app/*` redirects to the same path and query
-on `VITE_APP_BASE_URL` (default `https://macro.com`), where signup and the real
+on `VITE_APP_BASE_URL` (default `https://rox.one`), where signup and the real
 app run. Set it to the separate `apps/web` origin for local signup testing. This prevents Vite's
 website fallback from rendering an empty shell for app links. Keep `target="_self"` on the hero and header signup links so the website router cannot intercept the app handoff; phone clicks still open `/mobile-signup`. Verify a real document navigation, not only a changed URL. Production routing
 is unchanged; run `apps/web` separately when testing local signup changes.
 
-`/download` is headed “Download Macro Alpha”, says “Available for macOS and
+`/download` is headed “Download Rox Alpha”, says “Available for macOS and
 Linux”, and has one download button.
 Desktop Linux browsers receive the x86_64 AppImage; other browsers default to
 the Apple silicon DMG, with the selected platform named in the button.
@@ -324,13 +324,13 @@ Verify the email link, direct navigation, and readability on desktop and mobile.
 
 See [the migration audit and cutover checklist](seo/MIGRATION.md). The committed
 `seo/migration-baseline.json` records the indexable URLs and schema types on
-macro.com. Keep the baseline when adding pages; do not remove a URL from it to
+rox.one. Keep the baseline when adding pages; do not remove a URL from it to
 silence a regression.
 
 `bun run check:seo` verifies the built metadata, schema, sitemap, internal links,
 signup noindex, and initial JavaScript budget. The deployment probe is
 `bun scripts/verify-seo-live.ts https://candidate-host`.
-`VITE_APP_BASE_URL` sets the expected canonical origin (default `macro.com`).
+`VITE_APP_BASE_URL` sets the expected canonical origin (default `rox.one`).
 
 Publish `apps/marketing/dist/` at the public origin, resolving extensionless
 public paths to `<path>/index.html`. Preserve the existing authenticated
@@ -384,7 +384,7 @@ Feature chapters pair the working demo with a related conversation, rather than
 adding feature-card guides or explanatory drawers.
 
 Feature-page hero labels pair the matching app icon with “MACRO [PRODUCT]”
-(e.g. “MACRO CRM”), without a slash or the Macro logo. The label links home.
+(e.g. “MACRO CRM”), without a slash or the Rox logo. The label links home.
 Feature-page hero titles are short strings. Let them wrap naturally and balance
 across up to three lines on phones. Keep the font size steady and every line
 at the same color. Add 0.1em of leading between wrapped lines and preserve the
@@ -403,7 +403,7 @@ Let longer headings wrap at 33px on desktop and phones instead of shrinking them
 to fit one line. Phones keep 17.5px body copy and inset page gutters. Full-width
 section rules use 5.4% ink, with 20px more space below each rule than above.
 Feature subpages use `FeatureDemoArt` for an upright workspace card with the homepage email composer's quiet surface and edge. Put avatar-backed conversation bubbles, contextual mentions, and agent tool activity outside the workspace, with clear vertical separation. Do not rotate cards, overlap windows, or wrap the conversation in a second panel. Collaborative docs retain their live conversations. The email-sharing feature graphic uses a single-panel sequence. Only add external illustrative messages when they explain context not already shown in the working UI.
-Keep feature-demo channel and reply composers single-line. Disable native textarea resizing across website demos; composer layout controls their height. Preserve the default header height and add 12px of horizontal spacing before its conversation tabs. Draw the thread spine once; clip overlapping vertical strokes from reply branches. During each pending response, show the channel-style “Macro is thinking” avatar row with animated dots, and clear it when the response arrives or the visitor takes over.
+Keep feature-demo channel and reply composers single-line. Disable native textarea resizing across website demos; composer layout controls their height. Preserve the default header height and add 12px of horizontal spacing before its conversation tabs. Draw the thread spine once; clip overlapping vertical strokes from reply branches. During each pending response, show the channel-style “Rox is thinking” avatar row with animated dots, and clear it when the response arrives or the visitor takes over.
 Keep feature-demo property, tag, pull-request, and progress badges on the same translucent glass surface. Reserve the pull-request badge’s footprint while hidden and keep the status badge width stable so animation never resizes the card.
 Feature app windows omit redundant introductory message bubbles and default to `FeatureDemoArt.glassFrame` for an 8px glass surround with an onboarding-style dotted, grainy accent wash outside the working UI. Keep the glass-framed gradient at 25% intensity and extend the backdrop 108px vertically and 120px horizontally beyond its container. Give the inner card a 64% charcoal fill and 16px backdrop blur, keeping it more opaque than the outer surround; use a solid fill when reduced transparency is requested.
 Keep glass surrounds concentric: outer radius equals inner radius plus the 8px inset. Actual `FeatureDemoArt` frames use `--feature-frame-radius` (26.25px) for standard and custom app windows; standalone illustration cards expose `--illustration-radius` so their pseudo-surround follows their desktop/mobile corner size. Do not apply window radii to nested menus, controls, or scaled Paper artwork.
@@ -419,13 +419,13 @@ UI; never tint or blur the text. On phones, reduce the spacing, not the UI's tex
 Product heroes use inline tutorial videos where available. Agent connection
 options stack in the same reading column.
 FAQ disclosures align with the same 640px prose and comparison reading measure.
-Use “Questions about Macro [product]” for every product FAQ title, matching the
+Use “Questions about Rox [product]” for every product FAQ title, matching the
 page’s product name (Mail, Chat, Docs, Tasks, Calls, CRM, Agents, or for GitHub).
 Put FAQ questions directly below that title without an introduction or second
 heading. Order questions by setup and compatibility, core capabilities, sharing
 and permissions, practical limitations, then pricing. Lead each answer with the
 answer, keep useful detail in the relevant question, and link to the specific
-Macro product, setup guide, migration page, privacy policy, or pricing page.
+Rox product, setup guide, migration page, privacy policy, or pricing page.
 Verify permissions and availability against current app guides before making
 claims; distinguish pipeline fields from company properties, and channel-call
 team sharing from standalone meeting access.
@@ -451,7 +451,7 @@ in demo-only passes. These demos use local fixtures, with no live account, email
 sharing, or agent requests.
 
 `email-demo-story.ts` supplies 31 emails for the retained inbox fixture and multi-account story,
-with Macro, Gmail, and Outlook sample addresses. `EmailAccountsDemo` adds two
+with Rox, Gmail, and Outlook sample addresses. `EmailAccountsDemo` adds two
 sample accounts, one per connection click. It stays in All inboxes, focuses an
 individual account, then returns to the combined list. Do not click All inboxes
 while it is already selected. Google authorization is deliberately omitted from this local demonstration;
@@ -532,7 +532,7 @@ Retain FAQ class markers so prerendering emits matching FAQPage structured data.
 
 Product heroes put **Watch demo** beside Get started (`ProductHero`'s
 `tutorial`, and the Email hero); the Agents page's Bring your own agent
-section also has one for MacroD. It opens `TutorialVideoDialog`: the app's
+section also has one for RoxD. It opens `TutorialVideoDialog`: the app's
 Block tutorial, paused behind the app's play pill (play disc, presenter, "Watch
 demo · m:ss") until the visitor presses it. Escape and the backdrop close it,
 and focus returns to the button. Titles and lengths in
@@ -540,7 +540,7 @@ and focus returns to the button. Titles and lengths in
 together.
 
 The videos and posters live once, in `public/video/tutorials/` (mp4s through
-Git LFS), and deploy to `macro.com/video/tutorials/`. docs.macro.com embeds
+Git LFS), and deploy to `rox.one/video/tutorials/`. docs.rox.one embeds
 them from there, including Blocks without a page here (Home, Drive, Calendar,
 Scheduling, Spreadsheets, Databases, Canvas). Replacing a video keeps its
 name; the deploy's `--size-only` sync skips a same-size file, and CloudFront
@@ -557,7 +557,7 @@ savings calculator, and a closing "Pick a time" button.
 `core/sales-savings.ts` reduces the pricing calculator to one plan tier for all
 tools and reads prices from `core/savings-calculator.ts`; update prices there,
 not on the page. "Book a demo" and "Pick a time" are demo links: they open the
-Macro team booking link in `DemoBookingDialog`, which reports a booking made
+Rox team booking link in `DemoBookingDialog`, which reports a booking made
 there to Meta. Verify at phone width: no horizontal scroll, calculator steppers
 and toggles, and that the dialog opens.
 
@@ -727,9 +727,9 @@ Superhuman/Gmail on Email; Notion on Docs; Linear/Jira on Tasks; Slack on Chat;
 Google Meet/Granola on Calls. CRM uses the same visible layout and legend, with
 Salesforce, HubSpot, and Attio. Omit generic records/email-history rows and end
 with the native workspace distinction;
-sales reporting is checked for those CRMs and partial for Macro’s agent summaries.
-Connected collaboration tools receive partial credit alongside Macro’s native workspace.
-Credit Macro’s Granola connection for reading captured notes, not for native
+sales reporting is checked for those CRMs and partial for Rox’s agent summaries.
+Connected collaboration tools receive partial credit alongside Rox’s native workspace.
+Credit Rox’s Granola connection for reading captured notes, not for native
 recording of other meeting apps or every feature of the connected product. ClickUp
 stays in the migration overview. The migration overview uses the same framed
 `FeatureComparisons` renderer with plain, unlinked headers and row labels. Its
@@ -757,8 +757,8 @@ are scoped to product tables so legacy migration tables retain their styling.
 - A personal agent progressively checks the calendar, reads the email and call,
   then presents its findings and creates the brief. Visitors can inspect those
   sources. Reduced motion shows the finished brief; interaction stops playback.
-- Macro produces a folder-upload mockup from the client brief. Julia asks to
-  preserve nested folders; Macro clarifies the design before Jacob asks Cursor
+- Rox produces a folder-upload mockup from the client brief. Julia asks to
+  preserve nested folders; Rox clarifies the design before Jacob asks Cursor
   to build it. Cursor returns one completed PR card, and Julia checks
   the preview. The sequence stops on interaction and completes without motion
   when reduced motion is enabled. The attachment uses FolderComposerMockup,
@@ -812,7 +812,7 @@ sidebar collapses. Measure the embedded container, not the browser viewport.
 Check section source panes after resizing, including around 895px browser width.
 
 
-BYOA presents macrod and external MCP as two
+BYOA presents roxd and external MCP as two
 connection paths, stacked in one reading column on desktop and phones. Both setup links
 remain visible. MCP commands reuse `AgentMcpSetup` inside an optional disclosure
 without a fixed-height demo window. Verify each client expands and copies its
@@ -844,7 +844,7 @@ Verified against `block-project/component/Block.tsx`,
 `crates/projects/src/inbound/toolset/move_to_project.rs` at e2bd582d.
 Folders and tags are separate organization mechanisms, not multiple physical
 copies or nested docs. Keep competitor comparisons in the comparison table;
-the FAQ leads with writing, importing, collaboration, and sharing in Macro.
+the FAQ leads with writing, importing, collaboration, and sharing in Rox.
 
 Verify folder and tag navigation, search, source open/close with Escape and focus
 restoration, edits surviving navigation, local sharing, tool inspection,
@@ -919,7 +919,7 @@ Source navigation shares task state; Close and Escape return to the task and
 restore focus. The channel agent creates proposal and pricing tasks, then reassigns the proposal
 only after the illustrated request. Both responses are threaded replies to
 Jacob. The first request types into the channel composer. The follow-up is a
-plain-text reply in that same thread, without another @Macro mention. Playback
+plain-text reply in that same thread, without another @Rox mention. Playback
 waits 1.4 seconds before each agent reply and holds the first result for 2.2
 seconds before the follow-up. It starts when the main composer is fully visible.
 Composer handles and explicit reply state drive playback; no synthetic input or
@@ -951,7 +951,7 @@ return navigation, the agent’s reassignment, and comparison FAQs on desktop an
 Comparisons live in individual FAQ answers for Jira, Linear, Notion, and ClickUp;
 keep them specific to workflows. Notion supports task databases, subtasks, and
 dependencies. Do not describe it as lacking granular tasks or imply that all
-Macro Tasks complete automatically. Keep migration, pricing, and comparison links.
+Rox Tasks complete automatically. Keep migration, pricing, and comparison links.
 
 ## Chat page
 
@@ -970,7 +970,7 @@ uses the full workspace email view and an original two-message thread. Share typ
 shows the channel's access grant, then opens the delivered file from the channel.
 Autoplay and manual sharing use the same form actions. Reset both the grant and
 the delivered message between untouched loops; public-link access stays separate. The agent story
-continues from Macro creating Julia’s task to Julia mentioning Cursor and Cursor
+continues from Rox creating Julia’s task to Julia mentioning Cursor and Cursor
 investigating in the same thread with one response. Keep Julia as owner while work starts.
 The final catch-up demo focuses on inline replies in a full-width channel,
 without the Home sidebar or inbox shortcuts. Three original conversations show
@@ -1049,10 +1049,10 @@ recording navigation, transcript seeking, and phone layout. CRM linking remains
 on the CRM page; this scene demonstrates channel-call team sharing only.
 
 In the retained email demo, Austin uses the fictional address `austin@example.com` and
-Julia’s Cc address is `julia@macro.com`. Spreadsheet and pipeline contacts use
+Julia’s Cc address is `julia@rox.one`. Spreadsheet and pipeline contacts use
 their company’s domain; fictional companies use reserved `.example` domains.
 
-The document animation renders saved scheduling links as calendar mentions with a short label, matching Macro’s booking link presentation.
+The document animation renders saved scheduling links as calendar mentions with a short label, matching Rox’s booking link presentation.
 
 ### Retained spreadsheet and CRM demo components
 
@@ -1065,7 +1065,7 @@ Escape/close, and phone-width record tabs.
 
 The Drive page is `DriveStories`: eight sections that all read one small set of files from `driveFiles.ts`, so a file keeps its name, kind, source, and tags from graphic to graphic. `DriveFileRows` is the shared file list, with entity icons coloured as the app colours them. Sharing reuses `DocumentSharingDemo`, the agent section uses the agent session replica, and the record section opens the CRM record on its Files tab. Paper graphics on the Drive and Spreadsheets pages sit in the section's glass frame (`demo={{ tone, glassFrame: true }}` with `backdrop={false}` on the graphic) so they get the same dot-matrix and glow as the product demos.
 
-The Mail feature page's sharing, drafting, and routine sections use the app's own replicas, not drawn diagrams. Sharing uses `EmailChatSharingDemo`: a single chat window types an email mention and a contact-record mention into the shared rich composer, sends them, and receives a short acknowledgment. Manual typing pauses autoplay; both scripted and manual sends preserve the mention tokens. Reserve a fixed desktop/mobile frame height through typing, replies, and loop resets so the surrounding page never shifts. Keep `EmailSharingDemo` for the inbox sandbox’s Share form. Drafting is `EmailDraftStory`, the homepage's conversation and composer; both read their messages from `emailDraftMessages`. `EmailRoutineDemo` shows a routine's effects in order: the email arrives in the inbox, Macro posts it to a channel, and a push notification drops in. Reduced motion shows each finished result immediately.
+The Mail feature page's sharing, drafting, and routine sections use the app's own replicas, not drawn diagrams. Sharing uses `EmailChatSharingDemo`: a single chat window types an email mention and a contact-record mention into the shared rich composer, sends them, and receives a short acknowledgment. Manual typing pauses autoplay; both scripted and manual sends preserve the mention tokens. Reserve a fixed desktop/mobile frame height through typing, replies, and loop resets so the surrounding page never shifts. Keep `EmailSharingDemo` for the inbox sandbox’s Share form. Drafting is `EmailDraftStory`, the homepage's conversation and composer; both read their messages from `emailDraftMessages`. `EmailRoutineDemo` shows a routine's effects in order: the email arrives in the inbox, Rox posts it to a channel, and a push notification drops in. Reduced motion shows each finished result immediately.
 
 The retained `HomepageCrm` illustration has no playback footer or Pause/Replay controls;
 it still pauses offscreen and when a visitor enters the demo.
@@ -1081,8 +1081,8 @@ Pickup and drop must preserve the card’s screen-space bounds on phones too.
 
 ### Product copy
 
-Use [Jacob’s product notes](https://macro.com/app/drive/md/019ef55a-ea39-7fef-9014-da8e4b25c845)
-and [CRM notes](https://macro.com/app/drive/md/019f852e-c8b0-7fe1-a228-11be3161b321)
+Use [Jacob’s product notes](https://rox.one/app/drive/md/019ef55a-ea39-7fef-9014-da8e4b25c845)
+and [CRM notes](https://rox.one/app/drive/md/019f852e-c8b0-7fe1-a228-11be3161b321)
 as wording sources for the homepage and feature pages. Check Jacob-authored
 messages for cadence, excluding pasted agent output and automated summaries.
 Prefer concrete actions and examples over generic claims about context or
@@ -1101,18 +1101,18 @@ Desktop navigation stays persistently open with a search icon aligned with the n
 website. Keep it flush with the left edge and full height, with a vertical
 separator and an independently scrolling guide list, rather than a floating card.
 Lead the navigation with a Home row using the app’s house icon, then the graphic-led feature pages.
-Use `target="_self"` on Home to load the standalone homepage, bypassing the app router’s signup redirect. Group Email, Tasks, Chat, Docs, Calls, CRM, Agents, Databases, Calendar, and Coding under Top features, in that order. Coding links to `/github`; keep the route and guide unchanged. Follow with Main benefits (Save money, Graph DB, Autotagging, Permissions, Event system, and Omnisearch), with an icon on each link, then More features for Drive, Sheets, Forms, Canvas, Snippets, Booking links, Routines, and Skills. Use the Macro @ icon for Graph DB, the graph icon for Permissions, and the Macro tag, lightning, and magnifying-glass icons for Autotagging, Event system, and Omnisearch. Match Omnisearch to the sidebar search field. Keep these short labels local to navigation; retain the existing guide titles and URLs. Keep all groups expanded. Show each product once:
+Use `target="_self"` on Home to load the standalone homepage, bypassing the app router’s signup redirect. Group Email, Tasks, Chat, Docs, Calls, CRM, Agents, Databases, Calendar, and Coding under Top features, in that order. Coding links to `/github`; keep the route and guide unchanged. Follow with Main benefits (Save money, Graph DB, Autotagging, Permissions, Event system, and Omnisearch), with an icon on each link, then More features for Drive, Sheets, Forms, Canvas, Snippets, Booking links, Routines, and Skills. Use the Rox @ icon for Graph DB, the graph icon for Permissions, and the Rox tag, lightning, and magnifying-glass icons for Autotagging, Event system, and Omnisearch. Match Omnisearch to the sidebar search field. Keep these short labels local to navigation; retain the existing guide titles and URLs. Keep all groups expanded. Show each product once:
 remove its matching guide from the default navigation, including Folders under
 Drive and Reviews under GitHub. Keep the written guides in each feature page’s expandable reference section; direct legacy URLs redirect to that feature, and search opens its reference section. Keep the remaining reference under muted section
 labels, with all links visible rather than chevron dropdowns. Use matching 20px outer gutters on both sides of the website sidebar; keep search and row backgrounds inset from the separator. Match the app’s inner ViewSidebar with 8px row insets on both sides (including headings), 32px desktop rows,
 square rows with no filled selection background, regular 14px labels, and 20px icon slots with 16px glyphs. Use the app navigation’s `chats-circle` icon for Chat in both the sidebar and product hero, not the single-channel hash icon.
 Match the sidebar background to the page in every theme, with a subtle 1px separator at 7% navigation ink. Dim inactive sidebar labels and icons to 60% navigation ink against the sidebar background, and group headings to 70%; keep selected and hovered links at full navigation ink. Keep the desktop sidebar permanently open with no collapse or resize controls: 200px at 768–1439px viewport widths and 241px on wider screens. In the compact sidebar, use 16px left/12px right scroll padding, “Vs Superhuman,” and “Search” plus the keyboard shortcut so navigation labels retain about 20px of trailing clearance. Drive the sidebar and content offsets from `--documentation-nav-width`. Keep mobile navigation full-width. Hide the sidebar scrollbar while preserving scrolling; keep the search field pinned at the top. Use the app’s 16px search icon in the same 20px slot and 8px inset as navigation icons; align the search text with row labels. Use “Search pages ⌘F” on Mac and “Search pages Ctrl+F” elsewhere in a faded 14px placeholder matching the navigation label size. Keep the desktop search field and header actions 40px tall, starting 20px from the viewport top; wide pages with an outline stack Book a demo beneath Sign Up. Keep the pinned search field 40px tall with a faint flat border;
 use 44px rows and a 48px search field on phones. Keep consistent link alignment and use the default arrow cursor on sidebar links. Search feature pages, setup guides, comparisons, customer stories, and useful website pages by title and content, using the app Settings search pattern: icon, title, and muted location. Rank title matches first and tolerate minor title typos. Merge each feature guide into its feature result. Exclude changelogs, the retired Tool Reference, engineering posts, legal pages, and company pages; show at most eight results. Command/Control+K and Command/Control+F open and focus search; arrow keys navigate results and Enter opens one. Escape clears a query first, then closes the mobile drawer; the clear button returns focus to the input. Load the search index only when search is focused or typed into. Build the index in `scripts/site-search.ts` and `scripts/documentation.ts`; register new informational routes there.
-Keep /docs/switch-to-macro focused on bulk importers and MCP migration paths, titled “Switching guide”. Its Switch to Macro sidebar group links to that guide with a setup icon and the Linear, Notion, Superhuman, Slack, and ClickUp comparison posts labelled “Versus [product]” with their monochrome brand icons. Use /download for Get the app and permanently redirect retired guides to their consolidated destination.
+Keep /docs/switch-to-macro focused on bulk importers and MCP migration paths, titled “Switching guide”. Its Switch to Rox sidebar group links to that guide with a setup icon and the Linear, Notion, Superhuman, Slack, and ClickUp comparison posts labelled “Versus [product]” with their monochrome brand icons. Use /download for Get the app and permanently redirect retired guides to their consolidated destination.
 Keep Changelog as one sidebar link; monthly archives remain accessible from its page, outside search.
 Keep the outdated Tool Reference unpublished and redirect its former URLs to Add Macro MCP.
 Keep concise FAQs on feature pages and put the full written setup, shortcut, and limitation reference in the expandable Setup and reference section below. Do not replace interactive demos
-with documentation screenshots. Desktop navigation remains open and pushes the content aside. Phones keep the article visible and use a full-screen drawer on demand; Escape closes it and restores focus. The mobile toggle folds its three bars into a close mark while the drawer is open and never shows the Macro logo; it keeps a 54px touch target, shows its highlight only on hover-capable pointers and keyboard focus, and sits in a 68px bar matching the drawer background, with the search field 8px below. Use the foreground color for the mark (white in dark mode). Reduced-motion mode skips drawer transitions.
+with documentation screenshots. Desktop navigation remains open and pushes the content aside. Phones keep the article visible and use a full-screen drawer on demand; Escape closes it and restores focus. The mobile toggle folds its three bars into a close mark while the drawer is open and never shows the Rox logo; it keeps a 54px touch target, shows its highlight only on hover-capable pointers and keyboard focus, and sits in a 68px bar matching the drawer background, with the search field 8px below. Use the foreground color for the mark (white in dark mode). Reduced-motion mode skips drawer transitions.
 
 `src/features/documentation` owns the reading page, MDX components, and sidebar. Start guide headers with the title and description, without a Documentation eyebrow.
 Use the matching app block icons beside feature links, block guides, and their
@@ -1160,7 +1160,7 @@ remain unchanged. Keep the player borderless, with 44px squircle corners
 `corner-shape` support retain rounded corners.
 `ProductHero` keys the player by tutorial ID so switching tutorials resets playback
 and the presenter pill before the next video starts.
-Spreadsheets, Databases, and Canvas use their tutorials in the feature hero. The MacroD tutorial sits in the Agents page’s “Your agent, inside Macro” section.
+Spreadsheets, Databases, and Canvas use their tutorials in the feature hero. The RoxD tutorial sits in the Agents page’s “Your agent, inside Rox” section.
 Company graph, AI tagging, Automatic permissions, Workspace events, and Unified search use `BenefitVideoPoster` (`preview: 'benefit'`): floating product diagrams on black with a soft neutral glow, faint dot texture, and precise callouts. Keep color in the small product accents rather than a surrounding frame. Keep benefit page backgrounds black, with only a faint, localized neutral glow behind diagrams (4% at the hero glow center). Keep the play control below the focal artwork, with a separate control lane on narrow screens. The decorative poster disappears when playback starts. Routines, Skills, and Forms use the shared app-window preview and their own feature wallpaper. Extract Routines at 8s, and Skills and Forms at 3.8s, using the same 1920×1080 frame and window crop as the other features.
 Pages without an app tutorial keep a text hero until a video is available. Keep the titles and durations in `core/tutorial-videos.ts`
 in sync with the app; the Docs tutorial is the 1:15 version focused on @mentions.
@@ -1187,7 +1187,7 @@ panes stay flat; Paper annotation pills use their lighter floating-shadow token.
 palettes, including the guides and articles that reuse them.
 
 
-Keep the Tasks hero and section copy grounded in the existing Macro vs. Linear
+Keep the Tasks hero and section copy grounded in the existing Rox vs. Linear
 article and task documentation: explain source links, assignments, views, and
 GitHub status updates rather than adding generic task-management claims. Let the
 hero description wrap at readable text sizes on phones. Give the desktop Tasks hero a 600px text track so its description uses two lines. Keep the Tasks hero
@@ -1235,7 +1235,7 @@ illustrations, not functioning product controls.
 Keep the database column/record illustration background-free on desktop and mobile: omit the grid, rulers, backdrop, and opaque edge fades; use a transparency mask for its cropped table edge.
 Size custom Paper scenes through `height` and `mobileHeight` instead of leaving empty artboard space. The email auto-tag scene highlights one inbox row against faded neighboring rows, with pill callouts above and below on desktop and below the tags on mobile.
 Keep the Chat agent illustration focused on the conversation: use the app’s
-circular Macro-logo avatar, sender-line Agent and Open Session chips, and plain
+circular Rox-logo avatar, sender-line Agent and Open Session chips, and plain
 reply text; omit the unrelated call toolbar and boxed completion card.
 
 ### Additional workspace feature pages
@@ -1280,22 +1280,22 @@ Feature hero videos render with `TutorialVideoEmbed`, using the shared player di
 
 `/replace-apps` is the first Main benefits link. It shares feature hero typography, combines app selection with the existing pricing `SavingsCalculator`. Keep its route registered for preload, prerender, and site search.
 
-Use `ProductCopy` in feature section headings and descriptions to render explicit product names as linked icon-and-name mentions. Every mention's `href` must be a prerendered route (benefit pages live under `/docs/product/`): the build's link check in `scripts/verify-seo.ts` fails the deploy on a broken internal link, and pull request CI does not run it, so run `bun run build` after adding one. Display only the icon and short product name (Mail, Tasks, etc.), omitting the Macro prefix. Keep them contextual: only the products a section links to, with no pills in hero copy or decorative examples. Agents appears on nearly every page, so mention it in one section per page, the one about agents. Keep each section heading to one line on desktop; a pill's icon adds about a character's width. A product must be listed in `ProductMention.tsx` to render as a mention. Link to the product page, preserve readable mobile wrapping, and use the actual product icon. Render mentions as underlined inline links with a 1px underline at 40% of the text color and no border, padding, or resting background; show a subtly rounded background only on hover, fading over 160ms and respecting reduced motion.
+Use `ProductCopy` in feature section headings and descriptions to render explicit product names as linked icon-and-name mentions. Every mention's `href` must be a prerendered route (benefit pages live under `/docs/product/`): the build's link check in `scripts/verify-seo.ts` fails the deploy on a broken internal link, and pull request CI does not run it, so run `bun run build` after adding one. Display only the icon and short product name (Mail, Tasks, etc.), omitting the Rox prefix. Keep them contextual: only the products a section links to, with no pills in hero copy or decorative examples. Agents appears on nearly every page, so mention it in one section per page, the one about agents. Keep each section heading to one line on desktop; a pill's icon adds about a character's width. A product must be listed in `ProductMention.tsx` to render as a mention. Link to the product page, preserve readable mobile wrapping, and use the actual product icon. Render mentions as underlined inline links with a 1px underline at 40% of the text color and no border, padding, or resting background; show a subtly rounded background only on hover, fading over 160ms and respecting reduced motion.
 
 Pricing uses `ProductPage` and `ProductHero`, open Free/Pro/Max plan rows, an expandable semantic comparison table, the shared savings calculator, and `FeaturePageFaq`. Keep pricing FAQ typography identical to feature FAQs; do not reintroduce slab FAQ headings or separate pricing disclosure styles. Use `HomepageClosing` inside the feature-page wrapper.
 
-On `/replace-apps`, combine the replacement logos and savings calculator into one selectable app grid, separated from the hero by a thin rule. Use an 80px rounded icon surface, a plus badge, a 1px green selected border, a 22px selected check badge, and 11px app labels at weight 350. Use the higher listed comparison plan without a dropdown, and group Google apps into one Google Workspace entry. Show only the app name under each icon; keep plan prices and inputs out of the grid. Keep the apps in one horizontally scrolling row with a styled range control and arrow buttons; retain touch and keyboard scrolling. Calculate estimated annual savings automatically in a right-aligned ledger below, with per-seat cost, seats and annual total, Macro cost, and a double-underlined savings total. Keep all four ledger rows equal in height and the seat picker borderless. Count bundled Microsoft apps as one subscription; automatic supplementary rates live in `replacement-app-costs.ts`. Keep the standard calculator on `/pricing`.
+On `/replace-apps`, combine the replacement logos and savings calculator into one selectable app grid, separated from the hero by a thin rule. Use an 80px rounded icon surface, a plus badge, a 1px green selected border, a 22px selected check badge, and 11px app labels at weight 350. Use the higher listed comparison plan without a dropdown, and group Google apps into one Google Workspace entry. Show only the app name under each icon; keep plan prices and inputs out of the grid. Keep the apps in one horizontally scrolling row with a styled range control and arrow buttons; retain touch and keyboard scrolling. Calculate estimated annual savings automatically in a right-aligned ledger below, with per-seat cost, seats and annual total, Rox cost, and a double-underlined savings total. Keep all four ledger rows equal in height and the seat picker borderless. Count bundled Microsoft apps as one subscription; automatic supplementary rates live in `replacement-app-costs.ts`. Keep the standard calculator on `/pricing`.
 
 
 ### Forms feature page
 
 `/forms` appears under More features and uses `ProductFormsPage` with the shared hero, presenter video player, linked product names, glass illustrations, and footer. Its 49-second tutorial comes from `macro-inc/meta-ads` PR #62, through the web-optimized assets in `macro-inc/macro` PR #10113. Keep form responses mapped to database rows, booking after accepted submission, and sharing limited to invited people, channels, or anyone with the link. The canonical setup guide is `apps/docs/product/forms.mdx`, embedded on the feature page.
 
-Feature, benefits, and documentation pages share `PageOutline`: the reading column is balanced between site navigation and a quiet section outline on wide screens. Use short topic labels from `page-outline-labels.ts` for feature and benefit sections, keyed to their heading IDs, and label question sections “FAQ”. Keep full headings in the page content. At narrower widths the outline is hidden so the content keeps its space. Sidebar groups use continuous subtle vertical guide lines, with a bright straight active marker and no rounded selection background, matching docs.macro.com. Match the right outline to the left sidebar: inactive links at 60% ink, its heading at 70%, and active or hovered links at full ink. Style “On this page” like the left group headings: 12px type, 1.6 line-height, weight 370, and an 8px gap below. The right outline uses 14px labels, 16px link indentation, and 32px horizontal padding inside a 241px column matching the left sidebar. On wide feature, benefit, and documentation pages, stack Sign Up above Book a demo in a 177px column aligned with the outline; retain the compact horizontal actions on smaller screens.
+Feature, benefits, and documentation pages share `PageOutline`: the reading column is balanced between site navigation and a quiet section outline on wide screens. Use short topic labels from `page-outline-labels.ts` for feature and benefit sections, keyed to their heading IDs, and label question sections “FAQ”. Keep full headings in the page content. At narrower widths the outline is hidden so the content keeps its space. Sidebar groups use continuous subtle vertical guide lines, with a bright straight active marker and no rounded selection background, matching docs.rox.one. Match the right outline to the left sidebar: inactive links at 60% ink, its heading at 70%, and active or hovered links at full ink. Style “On this page” like the left group headings: 12px type, 1.6 line-height, weight 370, and an 8px gap below. The right outline uses 14px labels, 16px link indentation, and 32px horizontal padding inside a 241px column matching the left sidebar. On wide feature, benefit, and documentation pages, stack Sign Up above Book a demo in a 177px column aligned with the outline; retain the compact horizontal actions on smaller screens.
 
 The homepage uses the same wide-screen right rail and stacked signup/demo actions as feature pages. `HomepageResources` has two matching groups: Downloads for iOS, Mac, and Android, followed by Links for GitHub, X / Twitter, LinkedIn, YouTube, and Instagram. Separate the groups by 24px. Display Links as a horizontal row of social icons with accessible names and hover titles, without a star count. Keep Blog and Documentation out of this resource rail. Keep mobile downloads aligned with the native app's store URLs; resolve the Mac installer through `desktopDownloads.ts`, retaining a verified direct fallback when GitHub is unavailable. Below 1440px the resources follow the homepage content.
 
-Use full first and last names for people in channel mockups. Rotate stories across Peter Chinman, Wolf Mermelstein, Eric Hayes, Rahul Batra, and Austin Barron as well as the existing cast. Use the shared `homepagePeople` profile photos; Rahul has an initials avatar because his Macro profile has no photo. Keep Valentina out of demo fixtures.
+Use full first and last names for people in channel mockups. Rotate stories across Peter Chinman, Wolf Mermelstein, Eric Hayes, Rahul Batra, and Austin Barron as well as the existing cast. Use the shared `homepagePeople` profile photos; Rahul has an initials avatar because his Rox profile has no photo. Keep Valentina out of demo fixtures.
 
 The Agents teamwork walkthrough uses a compact 600px frame and finishes on the completed Cursor session card. Keep that card visible at the bottom of the conversation, including with reduced motion; do not loop back to the initial design request.
 

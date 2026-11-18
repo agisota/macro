@@ -1,5 +1,5 @@
 /**
- * A Macro user tool: the agent drafted it, the user finishes it after the
+ * A Rox user tool: the agent drafted it, the user finishes it after the
  * turn - `SendEmail`, `CreateCalendarEvent`.
  *
  * A transcript is a record of the session, not a place to act from, so this

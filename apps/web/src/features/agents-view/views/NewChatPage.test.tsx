@@ -1011,7 +1011,7 @@ describe('agent-led new conversation', () => {
       [
         {
           bot: { id: 'local-agent', name: 'Laptop agent', handle: 'laptop' },
-          harness: 'macrod',
+          harness: 'roxd',
           harness_id: 'laptop',
           default_model: 'default',
         },
@@ -1043,7 +1043,7 @@ describe('agent-led new conversation', () => {
   it('selects a requested agent once the roster has it, and again on every request', async () => {
     const computerAgent: PersistedAgentLike = {
       bot: { id: 'computer-agent', name: "Maya's Agent", handle: 'maya' },
-      harness: 'macrod',
+      harness: 'roxd',
       harness_id: 'computer',
       default_model: 'default',
     };
@@ -1092,7 +1092,7 @@ describe('agent-led new conversation', () => {
       [
         {
           bot: { id: 'paired-agent', name: 'Laptop agent', handle: 'laptop' },
-          harness: 'macrod',
+          harness: 'roxd',
           harness_id: 'offline-machine',
           default_model: 'saved-default',
         },
@@ -1118,13 +1118,13 @@ describe('agent-led new conversation', () => {
         agents: [
           {
             bot: { id: 'reviewer', name: 'Reviewer', handle: 'reviewer' },
-            harness: 'macrod',
+            harness: 'roxd',
             harness_id: 'laptop',
             default_model: 'claude-sonnet-5-5',
           },
           {
             bot: { id: 'offline', name: 'Offline agent', handle: 'offline' },
-            harness: 'macrod',
+            harness: 'roxd',
             harness_id: 'offline',
             default_model: 'default',
           },
@@ -1286,7 +1286,7 @@ describe('agent-led new conversation', () => {
       'Cursor default'
     );
   });
-  it('groups the Macro catalog and selects direct models with readable names and icons', async () => {
+  it('groups the Rox catalog and selects direct models with readable names and icons', async () => {
     const send = page(true, [
       {
         bot: { id: 'saved-agent', name: 'Reviewer', handle: 'reviewer' },
@@ -1310,7 +1310,7 @@ describe('agent-led new conversation', () => {
     expect(screen.getByTitle('GLM 5.3 Flash')).toBeTruthy();
     fireEvent.input(search, { target: { value: '' } });
     expect(screen.queryByRole('menuitem', { name: /Cursor/ })).toBeNull();
-    expect(screen.queryByRole('menuitem', { name: /^Macro/ })).toBeNull();
+    expect(screen.queryByRole('menuitem', { name: /^Rox/ })).toBeNull();
     const models = within(screen.getByRole('group', { name: 'Suggested' }));
     expect(
       models.queryByRole('menuitem', { name: /Cursor default/ })
@@ -1350,7 +1350,7 @@ describe('agent-led new conversation', () => {
       repoUrl: undefined,
       modelOverride: 'anthropic/claude-sonnet-5-5',
     });
-    // Macro Models picks stick: a second send still uses the preferred model.
+    // Rox Models picks stick: a second send still uses the preferred model.
     expect(screen.getByRole('button', { name: 'Agent' }).title).toBe(
       'Sonnet 5.5'
     );
@@ -1359,7 +1359,7 @@ describe('agent-led new conversation', () => {
       modelOverride: 'anthropic/claude-sonnet-5-5',
     });
   });
-  it('keeps unavailable Macro models disabled throughout the catalog', async () => {
+  it('keeps unavailable Rox models disabled throughout the catalog', async () => {
     const roster = buildAgentRoster({
       agents: [],
       runtimes: [],
@@ -1403,7 +1403,7 @@ describe('agent-led new conversation', () => {
     fireEvent.click(extra);
     expect(onSelect).not.toHaveBeenCalled();
   });
-  it('restores a preferred Macro model on a fresh composer', () => {
+  it('restores a preferred Rox model on a fresh composer', () => {
     mocks.preferredInmemModel = 'anthropic/claude-sonnet-5-5';
     page();
     expect(screen.getByRole('button', { name: 'Agent' }).title).toBe(

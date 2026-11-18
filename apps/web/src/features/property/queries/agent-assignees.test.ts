@@ -123,7 +123,7 @@ describe('task agent assignees', () => {
     });
   });
 
-  it('offers the session agent and excludes classic Macro', () => {
+  it('offers the session agent and excludes classic Rox', () => {
     fixture.codexRollout = true;
     fixture.cursorRollout = true;
     createRoot((dispose) => {

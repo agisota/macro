@@ -312,7 +312,7 @@ describe('createBuilder', () => {
       expect(builder.updateQuestion('q-name', { required: false })).toBe(true);
       shared.setStatus({
         kind: 'error',
-        message: 'This form was edited by a newer version of Macro.',
+        message: 'This form was edited by a newer version of Rox.',
       });
       expect(builder.layout()?.sections[0].questions[0].required).toBe(false);
       expect(builder.updateQuestion('q-name', { helpText: 'Lost' })).toBe(

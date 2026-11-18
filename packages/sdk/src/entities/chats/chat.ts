@@ -21,7 +21,7 @@ type ChatDetail = GetChatResponses[200]['chat'];
 
 type ChatHistory = GetChatHistoryHandlerResponses[200]['conversation'];
 
-/** A Macro AI chat. */
+/** A Rox AI chat. */
 export class Chat extends PropertiedEntity<ChatDetail> implements Mentionable {
   /**
    * Send a message and start a background generation. Tools may perform writes.
@@ -213,7 +213,7 @@ export class Chat extends PropertiedEntity<ChatDetail> implements Mentionable {
   }
 
   /**
-   * The chat's URL in the Macro web app.
+   * The chat's URL in the Rox web app.
    *
    * @readonly
    */

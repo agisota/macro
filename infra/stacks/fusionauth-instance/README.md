@@ -29,7 +29,7 @@ Run `just setup` to setup the local fusionauth instance and get everything ready
 Important Keys:
 
 ```
-username: admin@macro.com
+username: admin@rox.one
 password: macroIsGreat!
 api-key: bf69486b-4733-4954-a44e-2e1b5f2c8a91
 ```

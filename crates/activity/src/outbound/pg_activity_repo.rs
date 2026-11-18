@@ -1,4 +1,4 @@
-//! Postgres adapter for the `activity_events` table (MacroDB).
+//! Postgres adapter for the `activity_events` table (RoxDB).
 
 mod team_feed;
 #[cfg(test)]
@@ -28,14 +28,14 @@ use crate::domain::{
     },
 };
 
-/// Writes activities to MacroDB.
+/// Writes activities to RoxDB.
 #[derive(Debug, Clone)]
 pub struct PgActivityRepo {
     pool: PgPool,
 }
 
 impl PgActivityRepo {
-    /// Builds the adapter over a MacroDB pool.
+    /// Builds the adapter over a RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

@@ -889,7 +889,7 @@ impl<R: MessageRepository, E: MessageEventPublisher> MessageService<R, E> {
             };
             let entity_type = match kind {
                 MessageReferenceKind::User if mention => {
-                    // Macro AI is surfaced through the user mention UI. Other bots
+                    // Rox AI is surfaced through the user mention UI. Other bots
                     // use the explicit bot tag, which the trigger service authorizes.
                     let sender = ChannelSender::try_from(id)
                         .map_err(|_| MessageError::Invalid("invalid mentioned user"))?;

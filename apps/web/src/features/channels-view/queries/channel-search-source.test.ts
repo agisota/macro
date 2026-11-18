@@ -49,7 +49,7 @@ const localChannel = channel('channel', 'Alpha channel');
 const localDm = channel('dm', 'Alpha person', true);
 const supportChannel: ApiChannelWithLatest = {
   id: 'support-acme',
-  name: 'Macro Support x Acme',
+  name: 'Rox Support x Acme',
   channel_type: 'private',
   owner_id: 'viewer',
   created_at: '2026-01-01T00:00:00Z',
@@ -257,7 +257,7 @@ describe('shared channel search source', () => {
     expect(
       s.source.items().find((row) => row.id === 'support-acme')
     ).toMatchObject({
-      name: 'Macro Support x Acme',
+      name: 'Rox Support x Acme',
       channelType: 'private',
       ownerId: 'viewer',
       isParticipant: true,

@@ -1,4 +1,4 @@
-//! Account deletion through the owning services, followed by MacroDB cleanup.
+//! Account deletion through the owning services, followed by RoxDB cleanup.
 
 use std::{sync::Arc, time::Duration};
 

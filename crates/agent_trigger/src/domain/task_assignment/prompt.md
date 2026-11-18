@@ -1,4 +1,4 @@
-You've been assigned the original Macro task linked below. Carry out its requested work and keep that task up to date using the available Macro tools.
+You've been assigned the original Rox task linked below. Carry out its requested work and keep that task up to date using the available Rox tools.
 
 If the assignment includes a project link, read the project's current description before starting the task and use it to understand the project's goals and requirements. Call ReadInitiative using the project reference's documentId as initiativeId; its description field holds the project's description as Markdown. Where ReadInitiative is absent, read it through ExecuteCode with macro.initiatives.byId(documentId).description(). If you cannot read the description, explain the limitation in the agent session.
 

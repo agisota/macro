@@ -10,7 +10,7 @@ import { analytics } from '@app/lib/analytics';
  *
  * Distinct from `import.meta.env.DEV` (true under vite serve *and* local-backend
  * static bundles, including test builds) and `DEV_MODE_ENV` (true whenever
- * MODE=development, including dev.macro.com).
+ * MODE=development, including dev.rox.one).
  */
 export const LOCAL_ONLY =
   !!import.meta.hot || import.meta.env.VITE_LOCAL_ONLY === 'true';
@@ -36,7 +36,7 @@ export function resolveFeatureFlag(
 /**
  * This constant reflects whether the app is running in development mode with dev backend environment
  *
- * @returns true in dev.macro.com and bun run dev, false otherwise
+ * @returns true in dev.rox.one and bun run dev, false otherwise
  */
 export const DEV_MODE_ENV = import.meta.env.MODE === 'development';
 
@@ -116,6 +116,26 @@ export function isFeatureEnabled(flag: Flag): boolean {
   return flag.enabled;
 }
 
+/** Databases rollout. Local HMR is on; deployed environments defer to PostHog. */
+export const enableDatabases = defineFlag({
+  key: 'enable-databases',
+  env: 'ENABLE_DATABASES',
+  default: LOCAL_ONLY || undefined,
+});
+
+/**
+ * Rox Forms (`block-form`): questionnaires whose answers land as rows of a
+ * database table. On under local HMR, like databases; deployed environments
+ * follow PostHog. The flag gates authoring (create entries, builder, `/poll`,
+ * `/form`, database controls); responding, form cards and mentions follow the
+ * service's access whatever it says.
+ */
+export const enableForms = defineFlag({
+  key: 'enable-forms',
+  env: 'ENABLE_FORMS',
+  default: LOCAL_ONLY || undefined,
+});
+
 /**
  * Shows the SQL behind database answers and tool results. Off everywhere;
  * turn on locally with VITE_SHOW_DATABASE_SQL=true.
@@ -128,7 +148,7 @@ export const showDatabaseSql = defineFlag({
 /**
  * This constant reflects whether the app is running in production mode with prod backend environment
  *
- * @returns true in macro.com, false otherwise
+ * @returns true in rox.one, false otherwise
  */
 export const PROD_MODE_ENV = import.meta.env.MODE === 'production';
 
@@ -142,7 +162,7 @@ export const enableEntityAppearance = defineFlag({
 });
 
 /**
- * Connect apps Macro Connect serves through it instead of Pipedream. The
+ * Connect apps Rox Connect serves through it instead of Pipedream. The
  * backend reads the same PostHog key and decides per app; this side only
  * reserves the consent popup inside the click. Off in dev too: dev has no
  * Connect customer key until one is added to Doppler.
@@ -160,7 +180,7 @@ export const enableDesktopTabs = defineFlag({
 });
 
 /**
- * Macro computers: the whole computer UI (Settings → Machines, Billing,
+ * Rox computers: the whole computer UI (Settings → Machines, Billing,
  * Agents). Off hides it; existing computers keep running and billing.
  * No dev default: dev follows PostHog like the backend, which fails closed.
  */
@@ -171,7 +191,7 @@ export const enableMacroComputers = defineFlag({
 
 /**
  * Agent teammates: team admins invite an AI agent, with its own account and
- * Macro computer, from Settings → Team → Members.
+ * Rox computer, from Settings → Team → Members.
  */
 export const enableAgentTeammates = defineFlag({
   key: 'enable-agent-teammates',
@@ -181,7 +201,7 @@ export const enableAgentTeammates = defineFlag({
 
 /**
  * Auto in the agent composer's mode switch: the agent harness picks Chat or
- * Code per prompt. Macro employees only; the backend checks the same key.
+ * Code per prompt. Rox employees only; the backend checks the same key.
  */
 export const enableComposerAutoMode = defineFlag({
   key: 'enable-composer-auto-mode',
@@ -476,8 +496,42 @@ export const ENABLE_GRAPHQL_BACKFILL = defineFlag({
 
 export const ENABLE_CALLS = true;
 
+export const enableQuickCalls = defineFlag({
+  key: 'enable-quick-calls',
+  env: 'ENABLE_QUICK_CALLS',
+  default: true,
+});
+
+// Email signatures: the settings editor, the compose / reply / AI-chat signature
+// previews, and the per-message include toggle. PostHog-gated with a dev-mode
+// default; override with VITE_ENABLE_EMAIL_SIGNATURES.
+export const enableEmailSignatures = defineFlag({
+  key: 'enable-email-signatures',
+  env: 'ENABLE_EMAIL_SIGNATURES',
+  default: onInDev,
+});
+
+// Email read receipts: the per-inbox switch in Settings › Email and the
+// opened status on sent messages. Which copies load Rox's pixels, and so
+// count as opens, does not depend on this flag.
+export const enableEmailReadReceipts = defineFlag({
+  key: 'enable-email-read-receipts',
+  env: 'ENABLE_EMAIL_READ_RECEIPTS',
+  default: onInDev,
+});
+
+// CRM companies & contacts frontend: the Companies view + sidebar entry, the
+// company/contact detail blocks, CRM mentions / quick-access, and CRM rows in
+// global search. PostHog-gated (currently targeted at the Rox team in prod)
+// with a dev-mode default; override with VITE_ENABLE_CRM.
+export const enableCrm = defineFlag({
+  key: 'enable-crm',
+  env: 'ENABLE_CRM',
+  default: onInDev,
+});
+
 // Emergency stop for CRM contact results in @ mentions and Command K/mobile
-// name searches. Companies and Macro users remain searchable. Off until
+// name searches. Companies and Rox users remain searchable. Off until
 // PostHog enables it; override with VITE_DISABLE_CRM_CONTACT_SEARCH.
 export const disableCrmContactSearch = defineFlag({
   key: 'disable-crm-contact-search',
@@ -556,6 +610,20 @@ export const enableSoupGroupBy = defineFlag({
 export const enableSoupFilterPersistence = defineFlag({
   key: 'enable-soup-filter-persistence',
   env: 'ENABLE_SOUP_FILTER_PERSISTENCE',
+});
+
+export const enableTaskDuplicates = defineFlag({
+  key: 'enable-task-duplicates',
+  default: onInDev,
+});
+
+// Snippets: reusable markdown documents, the `c` launcher entry, and the `;`
+// insert menu. PostHog-gated (currently targeted at the Rox team) with a
+// dev-mode default; override with VITE_ENABLE_SNIPPETS.
+export const enableSnippets = defineFlag({
+  key: 'enable-snippets',
+  env: 'ENABLE_SNIPPETS',
+  default: onInDev,
 });
 
 export const enableSupportedSoupForeignEntities = defineFlag({
@@ -792,7 +860,16 @@ export const enableCodexAgents = defineFlag({
   env: 'ENABLE_CODEX_AGENTS',
 });
 
-// Macro's built-in routine templates (Sort my inbox, Morning brief, ...): the
+// Yes/no conditions on routine event triggers, checked by the Jev classifier
+// before a run starts. The scheduled-action service rejects conditions until
+// its TYPESAFE_API_KEY is set. Override with VITE_ENABLE_ROUTINE_CONDITIONS.
+export const enableRoutineConditions = defineFlag({
+  key: 'enable-routine-conditions',
+  env: 'ENABLE_ROUTINE_CONDITIONS',
+  default: onInDev,
+});
+
+// Rox's built-in routine templates (Sort my inbox, Morning brief, ...): the
 // strip above the routines list and New routine's Templates section. Not
 // shared templates, which follow enable-routine-sharing.
 export const enableRoutineStarterTemplates = defineFlag({
@@ -836,7 +913,7 @@ export const enableRoutineSharing = defineFlag({
   env: 'ENABLE_ROUTINE_SHARING',
 });
 
-// Event triggers (Macro and GitHub events). The server checks the same key per
+// Event triggers (Rox and GitHub events). The server checks the same key per
 // routine owner, on save and before each run, so follow PostHog even in
 // development.
 export const enableEventRoutines = defineFlag({
@@ -910,7 +987,7 @@ export const enableInAppTours = defineFlag({
 
 /**
  * Personal WhatsApp linked devices: the External tab, pairing, adding chats
- * to Macro and sharing them by mention in channels. The only rollout gate;
+ * to Rox and sharing them by mention in channels. The only rollout gate;
  * the backend always serves the routes. Follows PostHog everywhere; override
  * locally with VITE_ENABLE_WHATSAPP_LINKED=true.
  */

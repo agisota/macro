@@ -6,6 +6,7 @@ mod codex;
 mod herdr_tui;
 mod hermes;
 mod npm_adapter;
+mod omp;
 mod open_claw;
 mod open_code;
 
@@ -40,6 +41,7 @@ static PRESETS: &[&dyn AgentPreset] = &[
     &codex::Codex,
     &open_claw::OpenClaw,
     &open_code::OpenCode,
+    &omp::Omp,
 ];
 
 /// A command and arguments that start an ACP agent.
@@ -112,6 +114,7 @@ pub enum AgentKind {
     Codex,
     OpenClaw,
     OpenCode,
+    Omp,
     Custom,
 }
 
@@ -121,7 +124,7 @@ impl AgentKind {
         matches!(self, Self::HerdrClaude | Self::HerdrCodex)
     }
 
-    /// Stable id used by `macrod detect-agents` and `macrod service --agent`.
+    /// Stable id used by `roxd detect-agents` and `roxd service --agent`.
     pub fn id(self) -> &'static str {
         match self {
             Self::Hermes => "hermes",
@@ -131,6 +134,7 @@ impl AgentKind {
             Self::Codex => "codex",
             Self::OpenClaw => "openclaw",
             Self::OpenCode => "opencode",
+            Self::Omp => "omp",
             Self::Custom => "custom",
         }
     }
@@ -149,7 +153,7 @@ pub enum Availability {
 pub trait CommandLookup {
     /// Resolve an executable through the environment's command search path.
     fn resolve(&self, command: &str) -> Option<&Path>;
-    /// Directory macrod installs npm ACP adapters under, when there is one.
+    /// Directory roxd installs npm ACP adapters under, when there is one.
     fn adapter_root(&self) -> Option<&Path>;
 }
 
@@ -171,6 +175,7 @@ impl PathCommands {
             "codex",
             "herdr",
             "npm",
+            "omp",
             "openclaw",
             "opencode",
         ] {
@@ -183,7 +188,7 @@ impl PathCommands {
         let home = home.or_else(|| {
             environment::Userprofile::new().and_then(|home| home.value().map(PathBuf::from))
         });
-        let adapter_root = home.map(|home| home.join(".macrod").join("adapters"));
+        let adapter_root = home.map(|home| home.join(".roxd").join("adapters"));
         Self {
             found,
             adapter_root,

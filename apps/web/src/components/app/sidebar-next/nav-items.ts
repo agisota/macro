@@ -59,7 +59,7 @@ export type SidebarNextMenuItem = Omit<
 /**
  * SidebarRail's nav buttons, in default render order.
  *
- * Original Macro icons inherit `currentColor`, so the active button's `text-ink-muted` colours
+ * Original Rox icons inherit `currentColor`, so the active button's `text-ink-muted` colours
  * the glyph.
  *
  * Every destination is an existing view id, so the `hotkeyToken`s are the ones

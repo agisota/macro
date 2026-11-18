@@ -66,9 +66,9 @@ fn team_share(level: Option<ShareAccessLevel>) -> UpdateSharePermissionRequestV2
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn a_teammate_reads_and_writes_a_team_shared_database_until_it_is_unshared(pool: PgPool) {
     let run = Uuid::now_v7();
-    let owner = insert_user(&pool, &format!("macro|team-share-owner-{run}@macro.com")).await;
-    let teammate = insert_user(&pool, &format!("macro|team-share-mate-{run}@macro.com")).await;
-    let outsider = insert_user(&pool, &format!("macro|team-share-out-{run}@macro.com")).await;
+    let owner = insert_user(&pool, &format!("macro|team-share-owner-{run}@rox.one")).await;
+    let teammate = insert_user(&pool, &format!("macro|team-share-mate-{run}@rox.one")).await;
+    let outsider = insert_user(&pool, &format!("macro|team-share-out-{run}@rox.one")).await;
     let team = Uuid::now_v7();
     sqlx::query!(
         "INSERT INTO team (id, name, owner_id, seat_count) VALUES ($1, 'Team', $2, 2)",

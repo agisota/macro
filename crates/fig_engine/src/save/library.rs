@@ -2,10 +2,10 @@
 //! (`componentKey` too on a copy of a library component), whether it is
 //! published and its versions (`isSymbolPublishable`/`isPublishable`,
 //! `sharedSymbolVersion`/`version`, `publishedVersion`), a copy's library
-//! (`sourceLibraryKey`, `publishID`) and `overrideKey`, and Macro's own
+//! (`sourceLibraryKey`, `publishID`) and `overrideKey`, and Rox's own
 //! values as `pluginData` (other plugins' entries are kept). Copies of
 //! library variables and collections get their fields written where their
-//! record lacks them (a file made in Macro had no variables to keep them).
+//! record lacks them (a file made in Rox had no variables to keep them).
 
 use super::Build;
 use super::schema::FieldType::Named;
@@ -174,7 +174,7 @@ impl Build<'_> {
         m.set(s, "variableSetModes", Value::List(list));
     }
 
-    /// Macro's `pluginData` entries replaced by `p`'s.
+    /// Rox's `pluginData` entries replaced by `p`'s.
     fn plugin_data(&self, m: &mut Msg, p: &Props) {
         let s = self.schema;
         let Some(def) = self.sub(m.def, "pluginData") else {

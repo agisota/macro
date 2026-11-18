@@ -63,7 +63,7 @@ pub enum AccountLoginChange {
         /// When the machine's credential stops working.
         expires_at: Option<DateTime<Utc>>,
         /// The person whose request completed the sign-in; `None` when the
-        /// machine reported a sign-in nobody made through Macro.
+        /// machine reported a sign-in nobody made through Rox.
         signed_in_by: Option<MacroUserIdStr<'static>>,
     },
     /// The provider's active login on the machine was signed out.
@@ -107,7 +107,7 @@ pub struct AccountLoginNotice {
     pub expires_at: Option<DateTime<Utc>>,
 }
 
-/// An active login on a Macro computer's harness, with the notice last sent
+/// An active login on a Rox computer's harness, with the notice last sent
 /// for it.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ComputerAccountLogin {

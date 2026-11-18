@@ -4,12 +4,12 @@ pub static ALLOWED_ORIGINS: &[&str] = &[
     "http://localhost:5173",
     "http://localhost:3000",
     "http://host.local:3000",
-    "https://dev.macro.com",
-    "https://staging.macro.com",
-    "https://www.macro.com",
-    "https://macro.com",
+    "https://dev.rox.one",
+    "https://staging.rox.one",
+    "https://www.rox.one",
+    "https://rox.one",
     "capacitor://localhost",
-    "https://apollo-testing.macro.com",
+    "https://apollo-testing.rox.one",
 ];
 
 pub fn is_origin_allowed(origin: &str) -> bool {
@@ -25,9 +25,9 @@ pub fn is_origin_allowed(origin: &str) -> bool {
     {
         return (3000..=3999).contains(&port) || (20000..=60000).contains(&port);
     }
-    // Allow feature branch previews: https://{subdomain}.preview.macro.com
+    // Allow feature branch previews: https://{subdomain}.preview.rox.one
     if let Some(host) = origin.strip_prefix("https://")
-        && let Some(subdomain) = host.strip_suffix(".preview.macro.com")
+        && let Some(subdomain) = host.strip_suffix(".preview.rox.one")
     {
         return !subdomain.is_empty() && !subdomain.contains('/');
     }

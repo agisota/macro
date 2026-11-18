@@ -28,11 +28,11 @@ interface DocNode {
 type NavigationItem = string | { group: string; pages: NavigationItem[] };
 
 export function docsHref(href: string, slug = ''): string {
-  if (href.startsWith('https://macro.com/video/tutorials/'))
-    return href.slice('https://macro.com'.length);
+  if (href.startsWith('https://rox.one/video/tutorials/'))
+    return href.slice('https://rox.one'.length);
   if (href.startsWith('/video/tutorials/')) return href;
-  if (/^https:\/\/docs\.macro\.com(?:\/|$)/.test(href)) {
-    href = href.slice('https://docs.macro.com'.length) || '/';
+  if (/^https:\/\/docs\.rox\.one(?:\/|$)/.test(href)) {
+    href = href.slice('https://docs.rox.one'.length) || '/';
   }
   const isFeature = FEATURE_PAGES.some(
     (page) => page.guide === `/docs/${slug}`
@@ -100,7 +100,7 @@ function files(directory: string): string[] {
 
 function docsIndex(full = false): string {
   return (
-    '# Macro documentation\n\n' +
+    '# Rox documentation\n\n' +
     files(docsRoot)
       .filter((file) => file.endsWith('.mdx'))
       .sort()
@@ -109,7 +109,7 @@ function docsIndex(full = false): string {
         const { title, description } = readDoc(filename);
         return full
           ? markdownDoc(filename, slug)
-          : `- [${title}](https://macro.com${docsHref(`/${slug}`)}): ${description}`;
+          : `- [${title}](https://rox.one${docsHref(`/${slug}`)}): ${description}`;
       })
       .join(full ? '\n\n---\n\n' : '\n') +
     '\n'

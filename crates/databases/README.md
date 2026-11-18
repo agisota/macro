@@ -9,14 +9,14 @@ rows of core storage alone do not acquire app access. There is one cell store.
 
 Each `databases` row identifies reusable storage. Tables, column definitions, views,
 saved queries, rows and their cells belong to that resource. A resource has no
-app name, owner, or trash state and can exist without any Macro entity.
+app name, owner, or trash state and can exist without any Rox entity.
 
 An optional `database_entities` row holds the app metadata: `name`, `user_id` (the owner),
 `created_at`, `updated_at`, and `trashed_at`. Its `database_id` is both its primary
 key and a foreign key to `databases.id`. The app uses that shared identity for
 routes, grants, references and API responses. `Database` remains the app-facing
 Rust model. Soup discovery and database/row access require this entity; merely
-creating core storage does not make it a shareable Macro database.
+creating core storage does not make it a shareable Rox database.
 
 This is the first use of the plural `<kind>_entities` convention for databases.
 New app entities should follow it, keeping reusable technology separate from
@@ -29,7 +29,7 @@ without app metadata. The CRM pipeline domain holds its own reference to core
 storage and authorizes access through its own service. Its composition root
 supplies the storage adapter. The port is trusted persistence, not a new public
 API: consumers validate their own commands and authorize their own resources.
-The Macro database service creates its entity and owner grant atomically through
+The Rox database service creates its entity and owner grant atomically through
 its repository and uses `CellStore` to hold the entity's lifecycle lock during writes.
 Both paths use the same transaction engine, table versions, cells and journal.
 An app entity's foreign key prevents deleting its storage through the core port.

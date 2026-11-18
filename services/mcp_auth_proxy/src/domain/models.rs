@@ -255,7 +255,7 @@ pub enum SignInMethod {
     /// Straight to Google.
     #[default]
     Google,
-    /// A one-time code sent by email, the way the Macro app signs users in.
+    /// A one-time code sent by email, the way the Rox app signs users in.
     Email,
     /// FusionAuth's login page: password and every other provider.
     Login,

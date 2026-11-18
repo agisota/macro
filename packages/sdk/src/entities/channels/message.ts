@@ -137,7 +137,7 @@ export class Message extends FavoritableEntity<MessageRecord> {
   }
 
   /**
-   * The message's URL in the Macro web app: its channel, scrolled to it. Pass
+   * The message's URL in the Rox web app: its channel, scrolled to it. Pass
    * the message to `macro.ui.open` to show it to the user.
    *
    * @readonly

@@ -78,7 +78,7 @@ maybe_env_vars! {
     /// deploy before the price exists in Stripe; until it is set, Max checkout
     /// and plan changes answer 400 and every subscription maps to Premium.
     pub struct StripeMaxPriceId;
-    /// Stripe price ids for Macro computers, one per size and billing
+    /// Stripe price ids for Rox computers, one per size and billing
     /// interval. Absent as a group means computers are not sold here.
     pub struct StripeComputerStandardMonthlyPriceId;
     pub struct StripeComputerLargeMonthlyPriceId;
@@ -191,12 +191,12 @@ pub struct Config {
     pub posthog_api_key: PosthogApiKey,
     /// PostHog host (optional)
     pub posthog_host: PosthogHost,
-    /// Loops API key (optional). When set, Macro sign-ups are added to our
+    /// Loops API key (optional). When set, Rox sign-ups are added to our
     /// Loops audience.
     pub loops_api_key: LoopsApiKey,
-    /// JSON array of exact non-Macro email addresses allowed to sign up in Develop.
+    /// JSON array of exact non-Rox email addresses allowed to sign up in Develop.
     ///
-    /// All `@macro.com` email addresses are allowed by the Develop policy automatically.
+    /// All `@rox.one` email addresses are allowed by the Develop policy automatically.
     pub development_signup_allowlist_json: DevelopmentSignupAllowlistJson,
     /// Whether Develop allows every public signup without reading
     /// `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON`. Production and Local ignore it.
@@ -212,18 +212,18 @@ pub struct Config {
     /// The stripe price id for the Max plan seat (optional, see
     /// [`StripeMaxPriceId`])
     pub stripe_max_price_id: StripeMaxPriceId,
-    /// Macro computer prices: all six or none, independent of fleet attachment.
+    /// Rox computer prices: all six or none, independent of fleet attachment.
     pub stripe_computer_standard_monthly_price_id: StripeComputerStandardMonthlyPriceId,
     pub stripe_computer_large_monthly_price_id: StripeComputerLargeMonthlyPriceId,
     pub stripe_computer_xl_monthly_price_id: StripeComputerXlMonthlyPriceId,
     pub stripe_computer_standard_yearly_price_id: StripeComputerStandardYearlyPriceId,
     pub stripe_computer_large_yearly_price_id: StripeComputerLargeYearlyPriceId,
     pub stripe_computer_xl_yearly_price_id: StripeComputerXlYearlyPriceId,
-    /// Days a Macro computer whose billing ended keeps its disk, restorable,
+    /// Days a Rox computer whose billing ended keeps its disk, restorable,
     /// before it is destroyed.
     #[macro_config_default(14)]
     pub computer_retention_days: u32,
-    /// Days a Macro computer keeps running on a past-due subscription before
+    /// Days a Rox computer keeps running on a past-due subscription before
     /// it is turned off.
     #[macro_config_default(7)]
     pub computer_past_due_grace_days: u32,
@@ -310,7 +310,7 @@ impl Config {
         Ok(())
     }
 
-    /// Macro computers' retention and past-due grace.
+    /// Rox computers' retention and past-due grace.
     pub fn computer_billing_policy(
         &self,
     ) -> anyhow::Result<hosted_runtimes::domain::lifecycle::BillingPolicy> {
@@ -409,6 +409,12 @@ impl Config {
     /// file is shared with services that require a key.
     pub(crate) fn posthog_api_key(&self) -> Option<&str> {
         nonblank_value(self.posthog_api_key.value())
+    }
+
+    /// The PostHog ingestion origin, when one is configured. A blank value
+    /// counts as none: there is no company default.
+    pub(crate) fn posthog_host(&self) -> Option<&str> {
+        nonblank_value(self.posthog_host.value())
     }
 
     /// Resolves Microsoft credentials, enforcing that all values are configured together.

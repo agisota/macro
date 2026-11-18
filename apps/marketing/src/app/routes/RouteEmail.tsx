@@ -31,8 +31,8 @@ const faqItems = [
     q: 'Which email accounts can I connect?',
     a: (
       <>
-        Macro supports Gmail and Google Workspace. Connect an account in
-        Settings and keep using Gmail or Superhuman alongside Macro. Macro
+        Rox supports Gmail and Google Workspace. Connect an account in
+        Settings and keep using Gmail or Superhuman alongside Rox. Rox
         connects directly to your Gmail account, so you don’t need to stop using
         another email client. See the{' '}
         <a href="/email#guide">email setup guide</a>.
@@ -55,7 +55,7 @@ const faqItems = [
       <>
         Yes. Ask an agent to draft a reply using the thread, your docs, or a
         call transcript. Edit the draft before sending. Learn more about{' '}
-        <a href="/agents">Macro Agents</a>.
+        <a href="/agents">Rox Agents</a>.
       </>
     ),
   },
@@ -75,11 +75,11 @@ const faqItems = [
   },
   {
     q: 'What happens when I mention a document in an email?',
-    a: 'Macro inserts a link and makes the document viewable by anyone with that link. Check the document before including it in an external email.',
+    a: 'Rox inserts a link and makes the document viewable by anyone with that link. Check the document before including it in an external email.',
   },
   {
-    q: 'Does Macro get my Google password?',
-    a: 'No. You authorize the connection on Google, and Macro receives access tokens rather than your password.',
+    q: 'Does Rox get my Google password?',
+    a: 'No. You authorize the connection on Google, and Rox receives access tokens rather than your password.',
   },
   {
     q: 'Is my email used to train AI?',
@@ -95,17 +95,17 @@ const faqItems = [
     q: 'How do I disconnect an account?',
     a: (
       <>
-        Disconnect in Macro’s Settings or revoke access from your Google
-        account. Disconnecting does not delete data already stored in Macro. See
+        Disconnect in Rox’s Settings or revoke access from your Google
+        account. Disconnecting does not delete data already stored in Rox. See
         the <a href="/privacy">Privacy Policy</a> for deletion details.
       </>
     ),
   },
   {
-    q: 'Can I try Macro for free?',
+    q: 'Can I try Rox for free?',
     a: (
       <>
-        Yes. Macro has a free plan with usage limits. See{' '}
+        Yes. Rox has a free plan with usage limits. See{' '}
         <a href="/pricing">plans and limits</a> for details.
       </>
     ),
@@ -114,9 +114,9 @@ const faqItems = [
 
 export function RouteEmail() {
   setPageSeo({
-    title: 'Macro Mail — Brilliantly fast email',
+    title: 'Rox Mail — Brilliantly fast email',
     description:
-      'Macro brings all of your email accounts into one inbox, with unified search. Share emails with internal channels and draft and send emails from the agent.',
+      'Rox brings all of your email accounts into one inbox, with unified search. Share emails with internal channels and draft and send emails from the agent.',
     path: '/email',
   });
 
@@ -126,7 +126,7 @@ export function RouteEmail() {
         <ProductBrand product="Email" />
         <h1>Organized and prioritized email.</h1>
         <p class="email-page-hero-description">
-          Macro Mail tags and prioritizes email from all your accounts, with
+          Rox Mail tags and prioritizes email from all your accounts, with
           Superhuman shortcuts and frontier intelligence.
         </p>
         <div class="email-page-provider-actions">
@@ -190,7 +190,7 @@ export function RouteEmail() {
           tone: 'email',
         }}
         title="Signal vs. Noise."
-        description="Signal is your important email. Noise is the newsletters, receipts, and inbound you don’t need to see first. Macro separates them for you, so you can focus on what matters."
+        description="Signal is your important email. Noise is the newsletters, receipts, and inbound you don’t need to see first. Rox separates them for you, so you can focus on what matters."
       >
         <DemoInteractionBoundary
           class="feature-page-visual"
@@ -200,14 +200,14 @@ export function RouteEmail() {
       <FeaturePageSection
         id="email-sharing"
         demo={{ tone: 'email' }}
-        title="Share email in Macro Chat, no screenshots."
+        title="Share email in Rox Chat, no screenshots."
         description="Share an email in a channel without taking a screenshot of Gmail and pasting it in Slack. Your team sees the full thread, including future replies, so they’re not asking what happened after your screenshot."
       >
         <EmailChatSharingDemo />
       </FeaturePageSection>
       <FeaturePageSection
         id="agentic-editing"
-        title="Draft and send with Macro Agents."
+        title="Draft and send with Rox Agents."
         description="The agent can search prior interactions with people and build up context before drafting the email. You can iterate with it and then hit send without leaving the agent."
       >
         <EmailDraftStory />
@@ -217,7 +217,7 @@ export function RouteEmail() {
         demo={{
           tone: 'email',
         }}
-        title="Turn emails into Macro Tasks."
+        title="Turn emails into Rox Tasks."
         description="Create a task from the thread and assign it without leaving your inbox. The email stays linked as the source, so the original conversation is one click away, and you can see when it’s resolved."
       >
         <DemoInteractionBoundary
@@ -230,7 +230,7 @@ export function RouteEmail() {
         demo={{
           tone: 'email',
         }}
-        title="Your Macro CRM, one click from any email."
+        title="Your Rox CRM, one click from any email."
         description="Open a company or contact record from any email to see every email between your team and that company, without opening a heavyweight CRM. Catch up on the relationship without leaving your inbox."
       >
         <DemoInteractionBoundary
@@ -240,7 +240,7 @@ export function RouteEmail() {
       </FeaturePageSection>
       <FeaturePageSection
         id="auto-tags"
-        title="Unified Macro Tags across your workspace."
+        title="Unified Rox Tags across your workspace."
         description="Tag incoming email by customer, project, or topic. Use Jev, an extraction model, to set up any tags you want, or frontier AI if you’d like. The same tags work across emails, docs, and tasks."
       >
         <PaperFeatureGraphic
@@ -256,7 +256,7 @@ export function RouteEmail() {
         demo={{
           tone: 'email',
         }}
-        title="Kick off Macro Routines from any email."
+        title="Kick off Rox Routines from any email."
         description="Set up a routine that runs when an email arrives and kicks off work across your workspace. When an important customer email comes in, it can message an internal channel and send you a push notification."
       >
         <DemoInteractionBoundary
@@ -268,7 +268,7 @@ export function RouteEmail() {
       <FeaturePageFaq
         guide={{ href: '/email#guide', label: 'email' }}
         id="email-faq-title"
-        title="Questions about Macro Mail"
+        title="Questions about Rox Mail"
         items={faqItems}
       />
       <HomepageClosing />

@@ -5,7 +5,7 @@ import { runnableHarnesses } from './runnable';
 const laptop: Harness = {
   allow_permission_bypass: false,
   id: '0198a805-3e22-75b2-97eb-d9c6b91accb0',
-  kind: 'macrod',
+  kind: 'roxd',
   name: 'erics-macbook',
   owner: { type: 'user', user_id: 'macro|owner@example.com' },
   access: 'owner',

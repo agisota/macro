@@ -95,7 +95,7 @@ fn address_book_connections(link: &Link, contacts: &[Contact]) -> Vec<ContactCon
 
 /// Connects the link's owner to everyone in their synced address book, so the
 /// people they know, not only the people they have emailed, show up wherever
-/// Macro suggests or @mentions a contact.
+/// Rox suggests or @mentions a contact.
 async fn connect_address_book<I: ContactsIngress>(
     contacts_ingress: &I,
     link: &Link,

@@ -2,6 +2,7 @@ import { SlackImport } from '@app/features/slack-import/slack-import';
 import { ENABLE_EMAIL } from '@core/constant/featureFlags';
 import { useEmailLinks } from '@core/email-link';
 import { OutlookBetaBadge } from '@core/email-link/OutlookBetaBadge';
+import type { EmailProvider } from '@core/email-link/ProviderDialog';
 import { PipedreamConnectorIcon } from '@core/pipedream/ConnectorIcon';
 import { fireAndForget } from '@core/util/fireAndForget';
 import { openExternalUrl } from '@core/util/url';
@@ -62,7 +63,7 @@ function agentToolStatus(
 }
 
 function emailItem(
-  provider: EmailLink['provider'],
+  provider: EmailProvider,
   links: Accessor<EmailLink[]>,
   actions: IntegrationItem['Actions']
 ): IntegrationItem {
@@ -106,13 +107,9 @@ export function useEmailItems(
   const connectInbox = useConnectInbox();
   const outlookOffered = useOutlookAvailable();
   const links = () => (query.isSuccess ? query.data.links : []);
-  const linksFor = (provider: EmailLink['provider']) =>
-    links().filter((link) =>
-      provider === 'OUTLOOK'
-        ? link.provider === 'OUTLOOK'
-        : link.provider !== 'OUTLOOK'
-    );
-  const actionsFor = (provider: EmailLink['provider']) => () => (
+  const linksFor = (provider: EmailProvider) =>
+    links().filter((link) => link.provider === provider);
+  const actionsFor = (provider: EmailProvider) => () => (
     <>
       <Show when={provider !== 'OUTLOOK' || outlookOffered()}>
         <ConnectAction
@@ -215,7 +212,7 @@ export function useGithubItem(
     icon: providerIcon('github'),
     get description() {
       const summary =
-        'Pull request reviews and status in Macro, and repository access for agents.';
+        'Pull request reviews and status in Rox, and repository access for agents.';
       const username = github.username();
       return username ? `@${username} · ${summary}` : summary;
     },
@@ -280,7 +277,7 @@ const AGENT_PROVIDER_CATEGORIES: Record<CuratedAiProvider, string[]> = {
   slack: ['Chat', 'Agent tools'],
 };
 
-/** Slack, Linear and Notion: agent tools with Macro's importer beside them. */
+/** Slack, Linear and Notion: agent tools with Rox's importer beside them. */
 export function useAgentProviderItem(
   model: Accessor<ConnectionsModel>,
   provider: Exclude<CuratedAiProvider, 'github'>
@@ -384,7 +381,7 @@ export function useGranolaItem(): IntegrationItem {
   };
 }
 
-/** Macro MCP setup for AI apps, and local coding agents when available. */
+/** Rox MCP setup for AI apps, and local coding agents when available. */
 export function aiAppItems(hosts: IntegrationItemHosts): IntegrationItem[] {
   const items: IntegrationItem[] = [
     {
@@ -393,14 +390,14 @@ export function aiAppItems(hosts: IntegrationItemHosts): IntegrationItem[] {
       kind: 'mcp',
       icon: <ClaudeIcon />,
       description:
-        'Use your Macro workspace from Claude Code, Codex, ChatGPT, Claude.ai, and IDEs through the Macro MCP server.',
+        'Use your Rox workspace from Claude Code, Codex, ChatGPT, Claude.ai, and IDEs through the Rox MCP server.',
       categories: ['AI apps'],
       status: 'available',
       Actions: () => (
         <ConnectAction
           label="Set up"
           variant="neutral"
-          ariaLabel="Set up Macro in AI apps"
+          ariaLabel="Set up Rox in AI apps"
           onClick={hosts.onOpenMacroMcp}
         />
       ),
@@ -414,7 +411,7 @@ export function aiAppItems(hosts: IntegrationItemHosts): IntegrationItem[] {
       kind: 'native',
       icon: <DesktopIcon />,
       description:
-        'Pair your computer so Macro agents run on Claude Code, Codex, OpenCode, OpenClaw, or Hermes there, with each session streamed into Macro.',
+        'Pair your computer so Rox agents run on Claude Code, Codex, OpenCode, OpenClaw, or Hermes there, with each session streamed into Rox.',
       categories: ['AI apps'],
       status: 'available',
       Actions: () => (

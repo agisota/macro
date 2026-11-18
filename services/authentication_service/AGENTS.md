@@ -25,7 +25,7 @@ key issuance, and account merge/link flows.
   allowlisting, OAuth/OAuth2 account linking, GTM invite links, the platform
   status banner API (`crates/system_status`), shared-mailbox
   relocation signup, Cursor/Codex API key endpoints, introductory trial
-  eligibility and subscription checkout, and Macro computer purchase and
+  eligibility and subscription checkout, and Rox computer purchase and
   billing (the `hosted_runtimes` team and internal routers, mounted with a
   `ComputerService` built here), and agent teammates (`crates/team_agents`
   at `/team_agents`, plus its internal enrollment route; computer-facing
@@ -58,7 +58,7 @@ key issuance, and account merge/link flows.
   test-only queries need a live `DATABASE_URL`) and
   `cargo run -p authentication_service --bin authentication_service_doppler_config`.
 
-## Macro computers billing
+## Rox computers billing
 
 Team computer purchase and offers use the shared fail-closed
 `enable-macro-computers` rollout via `ComputerService::with_rollout`; compose
@@ -221,11 +221,13 @@ inputs cannot select an agent, and ordinary user credentials remain unattributed
   marks the address verified and, only for that call, joins the domain team and
   tracks the referral before the session starts
   (`src/service/user/email_code_signup.rs`). Never grant anything on the code
-  request alone.
+  request alone. New accounts also require a valid unique mailbox handle before
+  FusionAuth user creation. Existing users keep their username until `PUT /user/handle`
+  claims it; never allocate a suffix for a taken handle or change `macro|{email}` user ids.
 - `POST /user/agent_setup` refuses an agent's program or a bot (`middleware::refuse_program_agent_setup`, 403): it returns the agent account's lasting API key and replaces the old one. The operator finishes setup in the browser, signed in as the agent.
 - `POST /link/gmail` and `POST /link/github` refuse an agent's program or a bot (`middleware::refuse_program_link`, 403): the consent URL they return works in any browser, and whoever finishes it gets a sign-in on this account. A person links in Settings. The callback is not bound to the browser that started the link; binding it is the deeper fix.
 - `GET /jwt/macro_api_token` refuses a program (`macro_authorization::is_program_run`, 403): it would turn a run's minute-long credential into an hour-long token the model can read. A person's session or API key still exchanges.
-- Match Google link email display names without ASCII case sensitivity: FusionAuth preserves Google's capitalization, while Macro normalizes email addresses. Keep refresh, token lookup, removal, and grant relocation consistent.
+- Match Google link email display names without ASCII case sensitivity: FusionAuth preserves Google's capitalization, while Rox normalizes email addresses. Keep refresh, token lookup, removal, and grant relocation consistent.
 - `/mobile-welcome-email` copies allowlisted ad parameters from the capture
   request onto the desktop signup link and always sets
   `signup_flow=mobile_email`. The web app keeps that set on the PostHog person
@@ -235,7 +237,7 @@ inputs cannot select an agent, and ordinary user credentials remain unattributed
   `FusionAuthClientError` whose `upstream()` is set with that error's
   `into_response()`. Document 502/503 with `UpstreamErrorResponse` in the
   route's `utoipa::path`.
-- Name-lookup spans record batch counts, never request bodies: Macro user IDs contain email addresses.
+- Name-lookup spans record batch counts, never request bodies: Rox user IDs contain email addresses.
 
 - Fail closed if team cleanup encounters an external chat: external chats require human ownership.
 
@@ -249,19 +251,19 @@ inputs cannot select an agent, and ordinary user credentials remain unattributed
   for this user (`InvalidGrant`, and `GrantBlocked` for policy codes such as
   `access_not_configured`); email and calendar callers then mark the link for
   reauthorization instead of retrying. Keep it 4xx: a 500 makes callers retry
-  and trips the HTTP server-errors monitor. Macro's own OAuth client failing
+  and trips the HTTP server-errors monitor. Rox's own OAuth client failing
   (`invalid_client`) stays a 500.
 - FusionAuth reports a link owner that was deleted as `UserDoesNotExist`. That
   user has no links or grants left, so answer the route's "not linked" outcome
   (404 no grant, 200 for an idempotent removal), not a 500.
-- Develop admits new accounts only for `@macro.com` and allowlisted addresses;
+- Develop admits new accounts only for `@rox.one` and allowlisted addresses;
   `DEVELOPMENT_BYPASS_SIGNUP_ALLOWLIST=true` opens it to everyone. See
   `README.md` before changing signup behavior.
 - Denial responses and policy errors must never disclose configured allowlist
   addresses; never paste operational addresses into code, logs, or docs.
 - New Outlook connections need the deployment switch
   `OUTLOOK_CONNECTIONS_ENABLED` and the user's PostHog flag `enable-outlook`
-  (`src/domain/microsoft.rs`), read with `crates/feature_flags` for the Macro
+  (`src/domain/microsoft.rs`), read with `crates/feature_flags` for the Rox
   user id the web app identifies with. `/link/email/providers` answers
   `outlook: false` and `/link/outlook` answers 404 for a new connection when
   either is off; reconnecting an inbox reads neither. A failed flag load
@@ -283,9 +285,9 @@ inputs cannot select an agent, and ordinary user credentials remain unattributed
   the pending row is deleted, the partial grant is revoked at Google so the
   next consent screen lists every scope again, and the flow returns with
   `email_link_error=gmail_not_granted`. Google's revocation drops the account's
-  whole grant to Macro, so it is skipped when an inbox for that address still
+  whole grant to Rox, so it is skipped when an inbox for that address still
   works (`needs_reauth` false); the refusal stands either way. Mirrors
-  Outlook's required-scope check in `src/domain/microsoft.rs`; Macro has no
+  Outlook's required-scope check in `src/domain/microsoft.rs`; Rox has no
   mailbox-less link for either provider.
 - `/oauth/redirect` without a code logs `auth_handoff_failure=missing_code`
   with FusionAuth's error. When the state names an allowed `original_url`, it
@@ -313,7 +315,7 @@ inputs cannot select an agent, and ordinary user credentials remain unattributed
   a refresh token in spans, logs, or `Debug`; the span records `outcome`.
 - When the FusionAuth JWT populate lambda fails (its `fetch` to
   `/webhooks/user/jwt` times out after 2 s or gets a non-200), FusionAuth still
-  issues the access token, just without the Macro claims. `/jwt/refresh`
+  issues the access token, just without the Rox claims. `/jwt/refresh`
   refreshes such tokens instead of rejecting them, and warns when FusionAuth
   returns one. It answers 429 for one issued under 30 s ago, so client retries
   (websocket reconnects refresh on every attempt) can't turn a lambda outage

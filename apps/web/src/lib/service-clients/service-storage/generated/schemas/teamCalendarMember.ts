@@ -15,6 +15,6 @@ export interface TeamCalendarMember {
   coverage: TeamCalendarCoverage;
   /** Current team-sharing policy. */
   sharing: TeamCalendarSharing;
-  /** Macro user identifier. */
+  /** Rox user identifier. */
   userId: string;
 }

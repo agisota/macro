@@ -1,6 +1,6 @@
-//! Macro meeting links carried by calendar events.
+//! Rox meeting links carried by calendar events.
 //!
-//! A Macro call is not provider conferencing: Google knows nothing about it,
+//! A Rox call is not provider conferencing: Google knows nothing about it,
 //! so the link travels in the event's ordinary location and description
 //! fields, in the exact shape the calendar UI recognizes and can later
 //! strip or replace. This module owns that shape, finding and stripping it
@@ -17,7 +17,7 @@ use super::{
     },
 };
 
-/// Inputs for minting a Macro meeting to accompany a calendar event.
+/// Inputs for minting a Rox meeting to accompany a calendar event.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct MeetingLinkRequest {
     /// Display title, normally the event title. Adapters trim it to the
@@ -54,7 +54,7 @@ impl MeetingLinkRequest {
     }
 }
 
-/// A minted Macro meeting invitation.
+/// A minted Rox meeting invitation.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct MeetingLink {
     /// Persistent meeting identifier, used to cancel the meeting again.
@@ -63,21 +63,21 @@ pub struct MeetingLink {
     pub url: String,
 }
 
-/// Failures minting or cancelling a Macro meeting link.
+/// Failures minting or cancelling a Rox meeting link.
 #[derive(Debug, thiserror::Error)]
 pub enum MeetingLinkError {
     /// The meeting provider rejected the request as malformed.
     #[error("invalid meeting link request: {0}")]
     InvalidInput(String),
     /// The host cannot mint meeting links at all.
-    #[error("Macro meeting links are not available in this host")]
+    #[error("Rox meeting links are not available in this host")]
     Unavailable,
     /// The meeting provider failed; the calendar event was not written.
     #[error("meeting link provider failed: {0}")]
     Failed(String),
 }
 
-/// A created event together with the Macro call it carries.
+/// A created event together with the Rox call it carries.
 #[derive(Clone, Debug)]
 pub struct EventWithMacroCall {
     /// The event as the provider echoed it back.
@@ -86,7 +86,7 @@ pub struct EventWithMacroCall {
     pub meeting_link: MeetingLink,
 }
 
-/// Failures writing an event that carries a Macro call.
+/// Failures writing an event that carries a Rox call.
 #[derive(Debug, thiserror::Error)]
 pub enum MacroCallEventError {
     /// The calendar write failed. A meeting minted for it was cancelled on a
@@ -95,13 +95,17 @@ pub enum MacroCallEventError {
     Calendar(#[from] CalendarMutationError),
     /// The meeting link could not be minted; nothing was written to the
     /// calendar.
-    #[error("could not create the Macro call for the event: {0}")]
+    #[error("could not create the Rox call for the event: {0}")]
     MeetingLink(#[from] MeetingLinkError),
 }
 
 /// Text prefixing the generated join line. The calendar UI matches on it
 /// to recognize the paragraph as generated rather than user-written.
-const JOIN_LINE_LABEL: &str = "Join Macro call";
+const JOIN_LINE_LABEL: &str = "Join Rox call";
+
+/// The wording earlier releases wrote into the same join line. Events saved
+/// before the rename still carry it, so finding and stripping recognize both.
+const LEGACY_JOIN_LINE_LABEL: &str = "Join Macro call";
 
 /// Write a meeting link into an event's location and description.
 ///
@@ -163,10 +167,17 @@ pub fn strip_macro_call(description_text: &str, location: &str, url: &str) -> (S
     (description.trim().to_string(), location)
 }
 
-/// Whether `line` is the generated join line: the label alone, or the label
-/// followed by a Macro call link.
+/// Whether `line` is the generated join line: one of the labels the calendar
+/// writes alone, or a label followed by a Rox call link.
 fn is_join_line(line: &str) -> bool {
-    match line.strip_prefix(JOIN_LINE_LABEL) {
+    [JOIN_LINE_LABEL, LEGACY_JOIN_LINE_LABEL]
+        .into_iter()
+        .any(|label| is_labeled_join_line(line, label))
+}
+
+/// Whether `line` is `label` alone, or `label` followed by a Rox call link.
+fn is_labeled_join_line(line: &str, label: &str) -> bool {
+    match line.strip_prefix(label) {
         Some("") => true,
         Some(rest) => rest
             .strip_prefix(": ")
@@ -175,7 +186,7 @@ fn is_join_line(line: &str) -> bool {
     }
 }
 
-/// Create an event that carries a Macro call.
+/// Create an event that carries a Rox call.
 ///
 /// The meeting is minted first so the single invitation attendees receive
 /// already names the call, instead of an invitation followed by an update.
@@ -198,13 +209,13 @@ where
 {
     if draft.out_of_office.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "out-of-office events cannot have a Macro call".to_string(),
+            "out-of-office events cannot have a Rox call".to_string(),
         )
         .into());
     }
     if draft.conference.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "an event carries either a Macro call or provider conferencing, not both".to_string(),
+            "an event carries either a Rox call or provider conferencing, not both".to_string(),
         )
         .into());
     }
@@ -235,11 +246,11 @@ where
     }
 }
 
-/// Switch an existing event to a Macro call, in one write so attendees get
+/// Switch an existing event to a Rox call, in one write so attendees get
 /// one update: the patch gains the call's join link and drops the provider
 /// conference, on top of the changes it already carries.
 ///
-/// An event that already holds a Macro call keeps it, so retrying after an
+/// An event that already holds a Rox call keeps it, so retrying after an
 /// unknown outcome neither mints a second meeting nor writes a second join
 /// line; only what is left of the patch is written. An Outlook event's Teams
 /// meeting cannot be removed, which the calendar write refuses.
@@ -259,13 +270,13 @@ where
 {
     if patch.out_of_office.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "out-of-office events cannot have a Macro call".to_string(),
+            "out-of-office events cannot have a Rox call".to_string(),
         )
         .into());
     }
     if patch.conference.is_some() {
         return Err(CalendarMutationError::InvalidInput(
-            "an event carries either a Macro call or provider conferencing, not both".to_string(),
+            "an event carries either a Rox call or provider conferencing, not both".to_string(),
         )
         .into());
     }
@@ -294,7 +305,7 @@ where
         }
         if patch.is_empty() {
             return Err(CalendarMutationError::InvalidInput(
-                "this event already carries a Macro call".to_string(),
+                "this event already carries a Rox call".to_string(),
             )
             .into());
         }
@@ -353,7 +364,7 @@ async fn release_meeting_after_failed_write<L: MeetingLinkProvider>(
 
 /// Whether a failed write may still have left the event at the provider.
 ///
-/// `PersistFailed` means the provider accepted the event and only Macro's
+/// `PersistFailed` means the provider accepted the event and only Rox's
 /// copy lagged; `Retryable` covers transport failures whose delivery is
 /// unknown, including a timeout after the write landed. Cancelling the
 /// meeting in either case would strand attendees on a dead link, so an

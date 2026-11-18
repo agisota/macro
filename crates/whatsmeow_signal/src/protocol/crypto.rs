@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/crypto.rs and
-// rust/crypto/src/aes_cbc.rs, modified by Macro: AES-256-CBC comes from the
+// rust/crypto/src/aes_cbc.rs, modified by Rox: AES-256-CBC comes from the
 // RustCrypto `cbc` crate instead of libsignal's `signal-crypto`, and the
 // AES-CTR helpers (sealed sender only) are gone. See NOTICE.
 

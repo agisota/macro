@@ -1,6 +1,6 @@
 // Demonstration data only; no customer inbox content or app service access.
 export const demoMailAccounts = [
-  { id: 'work', label: 'jacob@macro.com' },
+  { id: 'work', label: 'jacob@rox.one' },
   { id: 'personal', label: 'jacob@gmail.com' },
   { id: 'outlook', label: 'jacob@outlook.com' },
 ] as const;

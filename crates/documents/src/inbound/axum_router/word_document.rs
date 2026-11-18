@@ -77,7 +77,7 @@ fn word_document_error(error: anyhow::Error) -> DocumentError {
 }
 
 /// Read an uploaded Word document as it stands now, including edits made in
-/// Macro, with the caller's view access: every paragraph, table cell and
+/// Rox, with the caller's view access: every paragraph, table cell and
 /// content control with its stable id, style and text, tracked changes, and
 /// Word comments. Long documents are paged.
 #[utoipa::path(

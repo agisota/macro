@@ -25,7 +25,7 @@ import type { GuestPolicy } from './guestPolicy';
 import type { ViewerCapabilities } from './viewerCapabilities';
 
 /**
- * A stable, first-class Macro calendar event entity.
+ * A stable, first-class Rox calendar event entity.
 
 Content fields hold the canonical source's values: the account's primary
 calendar copy when one is synced, else the freshest remaining copy.
@@ -59,12 +59,12 @@ Google's defaults for an event synced before the policy was modeled. */
   guestPolicy: GuestPolicy;
   /** RFC 5545 UID used to reconcile provider and email sources. */
   icalUid: string;
-  /** Macro entity identifier. */
+  /** Rox entity identifier. */
   id: string;
   /** Whether the canonical source's calendar prohibits editing it. */
   isReadOnly: boolean;
   /** Whether this is a snapshot of a meeting shared with the owner, which
-Macro added to their calendar as a private copy: the meeting's changes
+Rox added to their calendar as a private copy: the meeting's changes
 never reach it, and nothing done to it reaches the meeting. */
   isSnapshot: boolean;
   /** Optional physical or virtual location label. */
@@ -73,7 +73,7 @@ never reach it, and nothing done to it reaches the meeting. */
   organizerEmail?: CalendarEventOrganizerEmail;
   /** Organizer display name. */
   organizerName?: CalendarEventOrganizerName;
-  /** Macro user who owns this event entity. */
+  /** Rox user who owns this event entity. */
   ownerId: string;
   /** Raw RFC 5545 recurrence properties (`RRULE`, `RDATE`, `EXDATE`). */
   recurrenceLines: string[];

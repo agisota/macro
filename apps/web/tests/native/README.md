@@ -96,7 +96,7 @@ boundary so no real browser or external network request is started.
 
 Checks include the plain PR anchor inside a propagation-stopping panel, pointer
 and keyboard activation, a normal `_blank` link, same-frame external navigation,
-`window.open`, and absolute/relative Macro app links. Each external activation
+`window.open`, and absolute/relative Rox app links. Each external activation
 must launch exactly once and retain the original webview. Prevented clicks and
 browser-only/local-file popup URLs must not launch anything. The desktop JS click
 interceptor must be absent. A trusted standalone HTML document must open in a
@@ -117,7 +117,7 @@ without navigation, and explicit close. Artifacts are in
 `test-results/native/notifications-*`.
 
 This is not a compositor focus test: Xvfb has no Wayland activation protocol. On a
-real desktop, separately check clicking a notification with Macro minimized,
+real desktop, separately check clicking a notification with Rox minimized,
 hidden, or on another workspace. Both the shell and GTK must support activation
 tokens for Wayland focus. It also does not test process relaunch or authenticated
 notification-target rendering (the callback navigates a local fixture).

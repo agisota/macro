@@ -40,8 +40,8 @@ export const claude = (): string => {
 };
 
 /**
- * How Claude Code reaches Anthropic: through Macro's gateway when enrollment
- * gave these keys (Macro-credits mode), and otherwise with nothing here, since
+ * How Claude Code reaches Anthropic: through Rox's gateway when enrollment
+ * gave these keys (Rox-credits mode), and otherwise with nothing here, since
  * the `claude` wrapper on PATH signs in with harnessd's token itself. Never
  * an OAuth token of the agent's own.
  */
@@ -52,8 +52,8 @@ export const claudeKeys = [
 ] as const;
 
 /**
- * Where the Anthropic gateway is in Macro-credits mode, and its token, which
- * is the agent's Macro key: only the relay uses them. Undefined in harnessd
+ * Where the Anthropic gateway is in Rox-credits mode, and its token, which
+ * is the agent's Rox key: only the relay uses them. Undefined in harnessd
  * sign-in mode, where the `claude` wrapper signs in itself.
  */
 export const anthropicUpstream = (
@@ -71,7 +71,7 @@ export const anthropicRoute = 'anthropic';
 
 /**
  * How a Claude Code started by the agent (its own, or a call's brain) reaches
- * Anthropic in Macro-credits mode: through the relay, with the relay's
+ * Anthropic in Rox-credits mode: through the relay, with the relay's
  * capability as its token, so no child holds the real one. Nothing in
  * sign-in mode.
  */

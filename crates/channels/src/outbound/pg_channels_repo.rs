@@ -341,7 +341,7 @@ async fn resolve_channel_display_name(
 }
 
 /// Display name for a participant principal: users resolve through the name
-/// lookup, bots through the bot-name lookup (Macro AI is code-defined).
+/// lookup, bots through the bot-name lookup (Rox AI is code-defined).
 /// Unrecognized principals yield `None`.
 pub(super) fn principal_display_name(
     principal: &str,

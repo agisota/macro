@@ -89,7 +89,7 @@ async fn registration_refuses_a_name_claiming_to_be_macro() {
     let error = harness
         .service
         .register_client(ClientRegistrationRequest {
-            client_name: Some("Macro Security".to_owned()),
+            client_name: Some("Rox Security".to_owned()),
             redirect_uris: vec![LOOPBACK_REDIRECT_URI.to_owned()],
         })
         .await
@@ -1071,7 +1071,7 @@ async fn revocation_refuses_every_token_in_the_family() {
 #[test]
 fn authorization_server_metadata_advertises_revocation() {
     let json = Harness::new().service.authorization_server_metadata();
-    assert_eq!(json["revocation_endpoint"], "https://mcp.macro.com/revoke");
+    assert_eq!(json["revocation_endpoint"], "https://mcp.rox.one/revoke");
     assert_eq!(
         json["revocation_endpoint_auth_methods_supported"],
         serde_json::json!(["none"])
@@ -1314,9 +1314,9 @@ fn protected_resource_metadata_includes_required_resource_url() {
     assert_eq!(
         json,
         serde_json::json!({
-            "resource": "https://mcp.macro.com/mcp",
-            "authorization_server": "https://mcp.macro.com",
-            "authorization_servers": ["https://mcp.macro.com"],
+            "resource": "https://mcp.rox.one/mcp",
+            "authorization_server": "https://mcp.rox.one",
+            "authorization_servers": ["https://mcp.rox.one"],
         })
     );
 }
@@ -1374,7 +1374,7 @@ async fn authorize_accepts_any_resource() {
     for resource in [
         HARNESS_RESOURCE,
         CHATGPT_RESOURCE,
-        "https://gateway.macro.com/mcp/mcp",
+        "https://gateway.rox.one/mcp/mcp",
         "https://other.example/mcp",
     ] {
         let mut request = harness.authorize_request(
@@ -1412,8 +1412,8 @@ async fn the_harness_resource_gets_the_upstream_access_token() {
     assert_eq!(response.access_token.as_str(), UPSTREAM_ACCESS_TOKEN);
 }
 
-/// The ChatGPT server hands its token straight to Macro's APIs, so the token
-/// is a Macro API token for the same user, labelled with the client's name and
+/// The ChatGPT server hands its token straight to Rox's APIs, so the token
+/// is a Rox API token for the same user, labelled with the client's name and
 /// expiring when the upstream token would.
 #[tokio::test]
 async fn the_chatgpt_resource_gets_a_macro_api_token_naming_the_client() {
@@ -1473,7 +1473,7 @@ async fn an_unrecognized_resource_gets_the_upstream_access_token() {
         .complete_flow_to_code(&client_id, TRUSTED_REDIRECT_URI, VICTIM_CODE_VERIFIER)
         .await;
     let mut request = authorization_code_request(&code, &client_id);
-    request.resource = Some("https://mcp-chatgpt.macro.com".to_owned());
+    request.resource = Some("https://mcp-chatgpt.rox.one".to_owned());
 
     let response = harness
         .service
@@ -1490,7 +1490,7 @@ async fn a_refresh_with_an_unrecognized_resource_gets_the_upstream_access_token(
     let client_id = harness.register(&[TRUSTED_REDIRECT_URI]).await;
     let refresh_token = obtain_refresh_token(&harness, &client_id).await;
     let mut request = refresh_request(refresh_token, &client_id);
-    request.resource = Some("http://mcp-chatgpt.macro.com/mcp".to_owned());
+    request.resource = Some("http://mcp-chatgpt.rox.one/mcp".to_owned());
 
     let response = harness
         .service

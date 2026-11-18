@@ -101,7 +101,7 @@ impl CreateMeetingRequest {
     pub fn validate(self) -> Result<Self, CallError> {
         let title = self
             .title
-            .unwrap_or_else(|| "Macro call".to_string())
+            .unwrap_or_else(|| "Rox call".to_string())
             .trim()
             .to_string();
         if title.is_empty()
@@ -153,8 +153,8 @@ impl GuestJoinRequest {
 /// A non-account guest of a single call session.
 ///
 /// The id doubles as the guest's RTC participant identity, so identities are
-/// opaque UUIDs and never share a namespace (or a column) with Macro user
-/// ids. Only the server mints them; Macro users keep `macro|…` identities,
+/// opaque UUIDs and never share a namespace (or a column) with Rox user
+/// ids. Only the server mints them; Rox users keep `macro|…` identities,
 /// so an RTC identity classifies as exactly one of the two.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, serde::Serialize, serde::Deserialize)]
 #[cfg_attr(feature = "inbound", derive(utoipa::ToSchema))]
@@ -344,7 +344,7 @@ pub struct MeetingRtcParticipant {
 pub struct MeetingParticipant {
     /// Name displayed in the waiting room.
     pub display_name: String,
-    /// Profile image, when available for a Macro member.
+    /// Profile image, when available for a Rox member.
     pub avatar_url: Option<String>,
 }
 

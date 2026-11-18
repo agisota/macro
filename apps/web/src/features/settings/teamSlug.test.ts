@@ -78,8 +78,8 @@ describe('team slug validation', function () {
 
 describe('GitHub autolink target URL', function () {
   it('builds the numeric target template for the team slug', function () {
-    expect(buildTeamTaskAutolinkTargetUrl('ENG', 'https://macro.com/')).toBe(
-      'https://macro.com/app/task-slug/ENG-<num>'
+    expect(buildTeamTaskAutolinkTargetUrl('ENG', 'https://rox.one/')).toBe(
+      'https://rox.one/app/task-slug/ENG-<num>'
     );
   });
 });

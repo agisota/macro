@@ -8,8 +8,8 @@ use super::UserLanguageServiceImpl;
 use crate::domain::models::UserLanguageError;
 use crate::domain::ports::{UserLanguageRepo, UserLanguageService};
 
-const USER: &str = "macro|user@macro.com";
-const MISSING_USER: &str = "macro|missing@macro.com";
+const USER: &str = "macro|user@rox.one";
+const MISSING_USER: &str = "macro|missing@rox.one";
 
 fn user(id: &str) -> MacroUserIdStr<'_> {
     MacroUserIdStr::parse_from_str(id).expect("valid user id")

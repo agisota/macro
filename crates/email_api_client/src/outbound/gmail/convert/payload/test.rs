@@ -80,7 +80,7 @@ fn honors_declared_non_utf8_charsets() {
 
 #[test]
 fn prefers_valid_utf8_over_a_misdeclared_single_byte_charset() {
-    let body = "<p>• A dedicated Macro product walkthrough</p>";
+    let body = "<p>• A dedicated Rox product walkthrough</p>";
     let encoded = URL_SAFE.encode(body);
     let mut part = payload("text/html", &encoded);
     part.headers.push(Header {
@@ -91,7 +91,7 @@ fn prefers_valid_utf8_over_a_misdeclared_single_byte_charset() {
     let parsed = parse_gmail_payload(&part, "message").unwrap();
     let html = parsed.body_html_sanitized.unwrap();
 
-    assert!(html.contains("• A dedicated Macro product walkthrough"));
+    assert!(html.contains("• A dedicated Rox product walkthrough"));
     assert!(!html.contains("â€¢"));
 }
 

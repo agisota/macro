@@ -10,7 +10,7 @@ older JSON at the host boundary, and shares edits through SyncService.
 | --- | --- |
 | Scene and transforms | Tree structure, grouping, ordering, rotation, resize, alignment, and distribution are implemented |
 | Everyday editing | Selection, marquee, move, duplicate, clipboard, nudge, undo/redo, and context actions are implemented |
-| Content | Shapes, pencil, rich text and labels, connectors, images, video, Macro entity cards, and document embeds are implemented |
+| Content | Shapes, pencil, rich text and labels, connectors, images, video, Rox entity cards, and document embeds are implemented |
 | Presentation | Solid rendering, overlays, fit/pan/zoom, inspectors, and shared controls are implemented |
 | Persistence | Versioned JSON import/export, single-winner shared initialization, snapshot/WAL recovery and live sync are connected |
 | Collaboration | Production shared runtime and awareness are connected; three-peer and rendered collaboration tests exist; capacity is unmeasured |
@@ -19,7 +19,7 @@ older JSON at the host boundary, and shares edits through SyncService.
 
 Graphics owns reusable document structure, geometry, commands, queries, shape
 contracts, and optional browser/Solid/Loro adapters. Canvas owns tools, shortcuts,
-Lexical, colors and defaults, assets, Macro content, permissions, persistence,
+Lexical, colors and defaults, assets, Rox content, permissions, persistence,
 migration, sharing, and product rollout.
 
 ## Remaining priorities

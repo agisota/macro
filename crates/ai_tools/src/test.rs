@@ -1051,7 +1051,7 @@ fn unrouted_prompts_inline_the_sdk_area_guidance_and_routed_ones_leave_it_to_the
     let unrouted = code.prompt.to_string();
     let routed = code.routed_prompt.to_string();
     assert!(unrouted.contains(inline_guides(GuideHost::Code)));
-    assert!(!routed.contains("How Macro databases work"));
+    assert!(!routed.contains("How Rox databases work"));
     assert_eq!(
         unrouted.replacen(inline_guides(GuideHost::Code), "", 1),
         routed

@@ -117,7 +117,7 @@ export type FormLayoutResult = {
   publicationError?: FormPublicationProblem;
 };
 
-/** The public Macro booking destination selected by a form editor. */
+/** The public Rox booking destination selected by a form editor. */
 export type FormBookingTarget = BookingTarget;
 
 /** A booking step released after the form accepts the caller's answers. */
@@ -744,7 +744,7 @@ export class Form extends MacroEntity<FormDetail> {
   }
 
   /**
-   * Open the form's builder in Macro.
+   * Open the form's builder in Rox.
    *
    * @readonly
    */

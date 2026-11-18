@@ -23,7 +23,7 @@ outside development.
 
 The shared Rust `model_entity::EntityAppearance` contains an optional icon and
 an optional named key from the shared tag color palette. Icons are distinct
-original Macro SVG names or single native emoji. Emoji retain native colors.
+original Rox SVG names or single native emoji. Emoji retain native colors.
 Each entity domain owns its nullable JSON field, eligibility, authorization,
 writes, and lifecycle.
 

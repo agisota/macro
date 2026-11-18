@@ -89,7 +89,7 @@ function calendarItem(event: Partial<CalendarMentionEvent>): PreviewItem {
       occurrenceKey: '2026-09-23T23:00:00+00:00',
       isRecurring: false,
       attendeeCount: 1,
-      organizerEmail: 'gab@macro.com',
+      organizerEmail: 'gab@rox.one',
       updatedAt: '2026-09-23T17:04:00Z',
       viewerEventId: 'viewer-copy',
       ...event,
@@ -217,7 +217,7 @@ describe('calendar mention preview card', () => {
   it('opens description links like the event view does', () => {
     mocks.item = calendarItem({
       description:
-        'See <a href="https://macro.com/app/md/doc-1?line=3">notes</a> and <a href="https://zoom.us/j/1">Zoom</a>',
+        'See <a href="https://rox.one/app/md/doc-1?line=3">notes</a> and <a href="https://zoom.us/j/1">Zoom</a>',
     });
     renderCard();
 
@@ -234,8 +234,8 @@ describe('calendar mention preview card', () => {
   });
 });
 
-describe('calendar mention card for a Macro call', () => {
-  const callUrl = 'https://macro.com/app/meet/join/abcdefghijklmnop';
+describe('calendar mention card for a Rox call', () => {
+  const callUrl = 'https://rox.one/app/meet/join/abcdefghijklmnop';
   const call = {
     location: callUrl,
     description: `<p>Agenda</p><p>Join Macro call: <a href="${callUrl}">${callUrl}</a></p>`,
@@ -248,7 +248,7 @@ describe('calendar mention card for a Macro call', () => {
     expect(view.container.textContent).not.toContain('/meet/join/');
     expect(view.container.textContent).toContain('Agenda');
 
-    fireEvent.click(screen.getByRole('button', { name: 'Join Macro call' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Join Rox call' }));
     expect(mocks.openExternalUrl).toHaveBeenCalledWith(callUrl);
   });
 
@@ -257,9 +257,7 @@ describe('calendar mention card for a Macro call', () => {
     const view = renderCard();
 
     expect(view.container.textContent).toContain('Room 2');
-    expect(
-      screen.getByRole('button', { name: 'Join Macro call' })
-    ).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Join Rox call' })).toBeTruthy();
   });
 
   // Channel shares carry the meeting, not a way into its call: the .ics
@@ -270,9 +268,7 @@ describe('calendar mention card for a Macro call', () => {
 
     expect(view.container.textContent).not.toContain('/meet/join/');
     expect(view.container.textContent).toContain('Agenda');
-    expect(
-      screen.queryByRole('button', { name: 'Join Macro call' })
-    ).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Join Rox call' })).toBeNull();
   });
 
   it('leaves a Google Meet link where it was', () => {
@@ -281,9 +277,7 @@ describe('calendar mention card for a Macro call', () => {
     const view = renderCard();
 
     expect(view.container.textContent).toContain(meetUrl);
-    expect(
-      screen.queryByRole('button', { name: 'Join Macro call' })
-    ).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Join Rox call' })).toBeNull();
   });
 
   // Native apps route the link in-app, behind the sheet.
@@ -304,7 +298,7 @@ describe('calendar mention card for a Macro call', () => {
     ));
 
     fireEvent.click(
-      await screen.findByRole('button', { name: 'Join Macro call' })
+      await screen.findByRole('button', { name: 'Join Rox call' })
     );
 
     expect(mocks.openExternalUrl).toHaveBeenCalledWith(callUrl);

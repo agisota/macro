@@ -11,9 +11,9 @@ type Needs = Pick<CallsContext, "calls" | "config" | "clock" | "log"> & {
 };
 
 /**
- * The world of calls, read again every few seconds: Macro's live calls and
+ * The world of calls, read again every few seconds: Rox's live calls and
  * meetings in channels the agent is in, the channels it always joins, and
- * the calls it was told to leave. Sooner when Macro says a call changed, a
+ * the calls it was told to leave. Sooner when Rox says a call changed, a
  * join of its exits, or a failed join's retry comes due. Quiet, reading
  * nothing, until calls have their speech key.
  */
@@ -29,7 +29,7 @@ const readings = ({
 	return worlds({
 		ready: async () => {
 			const ready = await credentials.has(deepgramKey);
-			// Macro's call events only matter once a call could be joined.
+			// Rox's call events only matter once a call could be joined.
 			if (ready && !following) {
 				following = true;
 				void followCalls({

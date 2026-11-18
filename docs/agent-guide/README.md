@@ -1,7 +1,7 @@
-# Agent Guide to the Macro App
+# Agent Guide to the Rox App
 
 How an automated agent (driving a real browser via the chrome-devtools MCP server, or
-observing via the Grafana MCP server) should operate the Macro web app. Everything here was
+observing via the Grafana MCP server) should operate the Rox web app. Everything here was
 verified live against a local stack (`just run_local`, which needs no terminal: see
 [Run without a terminal](../development/running-locally.md#run-without-a-terminal)).
 
@@ -63,10 +63,10 @@ route module delayed: prerendered content must remain until the page is ready.
 On mobile, the single hamburger opens and closes navigation; there is no separate
 caret. Check Escape focus return and keyboard wrapping inside the open menu.
 Standalone marketing dev/preview servers hand `/app/*` navigation to
-`VITE_APP_BASE_URL` (`https://macro.com` by default); verify that signup leaves the local website instead of
+`VITE_APP_BASE_URL` (`https://rox.one` by default); verify that signup leaves the local website instead of
 showing an empty header. Click both the hero and header signup links and confirm a document request to `/app/signup`, not only a client-side URL change. On touch phones, both should load `/mobile-signup`. Use an `apps/web` preview for local signup testing.
 
-For the homepage, verify one opening section on desktop and mobile: the Macro
+For the homepage, verify one opening section on desktop and mobile: the Rox
 logo surrounded by the 12 decorative app logos from the production welcome
 constellation, the unified-workspace H1 and supporting H2, signup action, and
 backing/security badges. Check visible keyboard focus on signup, sidebar, and

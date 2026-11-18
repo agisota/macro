@@ -1,16 +1,16 @@
 {
 	"display_information": {
-		"name": "Macro",
-		"description": "Macro's MCP integration for Slack",
+		"name": "Rox",
+		"description": "Rox's MCP integration for Slack",
 		"background_color": "#000000",
-		"long_description": "The Macro : Slack MCP integration will allow users to effortlessly use slack communication in the macro workspace. The macro workspace provides a chat client that can act on user requests to do things within the Macro platform and to act on behalf of the user in connected apps."
+		"long_description": "The Rox : Slack MCP integration will allow users to effortlessly use slack communication in the macro workspace. The macro workspace provides a chat client that can act on user requests to do things within the Rox platform and to act on behalf of the user in connected apps."
 	},
 	"oauth_config": {
 		"redirect_urls": [
-			"https://document-cognition.macro.com/mcp/servers/auth/callback",
-			"https://document-cognition-dev.macro.com/mcp/servers/auth/callback",
-			"https://gateway.macro.com/cognition/mcp/servers/auth/callback",
-			"https://dev-gateway.macro.com/cognition/mcp/servers/auth/callback"
+			"https://document-cognition.rox.one/mcp/servers/auth/callback",
+			"https://document-cognition-dev.rox.one/mcp/servers/auth/callback",
+			"https://gateway.rox.one/cognition/mcp/servers/auth/callback",
+			"https://dev-gateway.rox.one/cognition/mcp/servers/auth/callback"
 		],
 		"scopes": {
 			"user": [

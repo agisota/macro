@@ -423,7 +423,7 @@ async fn own_sender_filter_keeps_its_debug_event_and_thread_identity() {
     assert_event(
         &output,
         tracing::Level::DEBUG,
-        "skipping new-email notification for Macro's own notification sender",
+        "skipping new-email notification for Rox's own notification sender",
         "send_notifications",
         [("thread_id", THREAD.to_string())],
     );

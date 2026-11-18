@@ -6,7 +6,7 @@ async fn test_generate_upsert() {
         appearance: None,
         document_id: "AAA".to_string(),
         document_version_id: 0,
-        owner: "macro|nobody@macro.com".to_string().try_into().unwrap(),
+        owner: "macro|nobody@rox.one".to_string().try_into().unwrap(),
         document_name: "test_document".to_string(),
         file_type: Some("md".to_string()),
         sha: None,
@@ -52,7 +52,7 @@ async fn test_generate_upsert_with_sub_type() {
         appearance: None,
         document_id: "BBB".to_string(),
         document_version_id: 0,
-        owner: "macro|nobody@macro.com".to_string().try_into().unwrap(),
+        owner: "macro|nobody@rox.one".to_string().try_into().unwrap(),
         document_name: "test_task".to_string(),
         file_type: Some("md".to_string()),
         sha: None,
@@ -87,7 +87,7 @@ fn parent_only_document_info(file_type: Option<&str>) -> DocumentMetadata {
         appearance: None,
         document_id: "CCC".to_string(),
         document_version_id: 0,
-        owner: "macro|nobody@macro.com".to_string().try_into().unwrap(),
+        owner: "macro|nobody@rox.one".to_string().try_into().unwrap(),
         document_name: "pdf copy".to_string(),
         file_type: file_type.map(|ft| ft.to_string()),
         sha: None,
@@ -131,7 +131,7 @@ fn test_generate_parent_only_upsert() {
 
     assert_eq!(args.document_id, "CCC");
     assert_eq!(args.document_name, "pdf copy");
-    assert_eq!(args.owner_id, "macro|nobody@macro.com");
+    assert_eq!(args.owner_id, "macro|nobody@rox.one");
     assert_eq!(args.file_type, "zip");
     assert_eq!(args.sub_type, None);
     assert_eq!(args.node_id, "");
@@ -185,7 +185,7 @@ fn test_generate_canvas_parent_only_upsert_has_no_content_chunk() {
 
     assert_eq!(args.document_id, "CCC");
     assert_eq!(args.document_name, "pdf copy");
-    assert_eq!(args.owner_id, "macro|nobody@macro.com");
+    assert_eq!(args.owner_id, "macro|nobody@rox.one");
     assert_eq!(args.file_type, "canvas");
     assert_eq!(args.node_id, "");
     assert_eq!(args.content, "");
@@ -212,7 +212,7 @@ fn test_design_content_is_indexed_but_other_vector_files_are_name_only() {
 
 #[test]
 fn raw_document_key_is_under_the_stored_owner() {
-    let owner: Owner = "macro|owner@macro.com".to_string().try_into().unwrap();
+    let owner: Owner = "macro|owner@rox.one".to_string().try_into().unwrap();
     let message = |user_id: &str, version: Option<&str>| SearchExtractorMessage {
         user_id: user_id.to_string(),
         document_id: "DDD".to_string(),
@@ -234,7 +234,7 @@ fn raw_document_key_is_under_the_stored_owner() {
     check(message("", None), "7", Some(&latest));
     check(message("", Some("7")), "7", Some(&latest));
     check(
-        message("macro|other@macro.com", Some("7")),
+        message("macro|other@rox.one", Some("7")),
         "7",
         Some(&latest),
     );

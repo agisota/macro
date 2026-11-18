@@ -120,7 +120,7 @@ export type AgentSessionWaitingForInputMetadata = AgentSessionNotificationRef & 
 };
 
 /**
- * The account a team's Macro computer signed an agent in to is about to
+ * The account a team's Rox computer signed an agent in to is about to
  * stop working, or has. Sent to whoever signed it in and to the team's
  * admins and owner, who can sign it in again from Settings → Machines.
  */
@@ -482,7 +482,7 @@ export type CommentedOnDocumentMetadata = {
      */
     owner: string;
     /**
-     * Public bot name when the author is an agent rather than a Macro user.
+     * Public bot name when the author is an agent rather than a Rox user.
      */
     senderDisplayName?: string | null;
     senderProfilePictureUrl?: string | null;
@@ -515,13 +515,13 @@ export type ComputerSetupAgent = {
      */
     name: string;
     /**
-     * The agent's Macro user id, to open a DM with it.
+     * The agent's Rox user id, to open a DM with it.
      */
     userId: string;
 };
 
 /**
- * A team's Macro computer finished first-time setup, or could not be set
+ * A team's Rox computer finished first-time setup, or could not be set
  * up. Sent to its buyer, who continues (or retries) from the setup flow.
  */
 export type ComputerSetupMetadata = {
@@ -535,7 +535,7 @@ export type ComputerSetupMetadata = {
      */
     computerName: string;
     /**
-     * The computer's harness, once macrod has connected.
+     * The computer's harness, once roxd has connected.
      */
     harnessId?: string | null;
     /**
@@ -1182,7 +1182,7 @@ export type MentionedInDocumentCommentMetadata = {
      */
     owner: string;
     /**
-     * Public bot name when the author is an agent rather than a Macro user.
+     * Public bot name when the author is an agent rather than a Rox user.
      */
     senderDisplayName?: string | null;
     senderProfilePictureUrl?: string | null;
@@ -1432,14 +1432,14 @@ export type NotifEvent = {
     tag: 'routine_run_finished';
 } | {
     /**
-     * An agent's sign-in on one of the team's Macro computers is about
+     * An agent's sign-in on one of the team's Rox computers is about
      * to expire, expired, or was rejected.
      */
     content: AgentSignInExpiryMetadata;
     tag: 'agent_sign_in_expiry';
 } | {
     /**
-     * A Macro computer the user bought finished first-time setup, or
+     * A Rox computer the user bought finished first-time setup, or
      * could not be set up.
      */
     content: ComputerSetupMetadata;
@@ -1656,7 +1656,7 @@ export type RepliedToDocumentCommentThreadMetadata = {
      */
     owner: string;
     /**
-     * Public bot name when the author is an agent rather than a Macro user.
+     * Public bot name when the author is an agent rather than a Rox user.
      */
     senderDisplayName?: string | null;
     senderProfilePictureUrl?: string | null;

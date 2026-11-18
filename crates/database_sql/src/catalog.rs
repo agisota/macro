@@ -53,7 +53,7 @@ pub struct Table {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize, Deserialize, Type)]
 #[serde(rename_all = "camelCase")]
 pub enum TableSource {
-    /// A Macro database table, read through Soup.
+    /// A Rox database table, read through Soup.
     #[default]
     Database,
     /// The people the viewer can see: `id`, `name`, `email`.
@@ -160,7 +160,7 @@ pub enum ColumnKind {
         /// The options, in display order.
         options: Vec<SelectOption>,
     },
-    /// One or more references to Macro entities.
+    /// One or more references to Rox entities.
     Entity {
         /// Whether a cell holds several references.
         multi: bool,
@@ -169,7 +169,7 @@ pub enum ColumnKind {
     },
 }
 
-/// What an entity column's references point at: a kind of Macro entity, or
+/// What an entity column's references point at: a kind of Rox entity, or
 /// the rows of another table for a relation.
 ///
 /// Spelled as the properties system spells entity types (`USER`,

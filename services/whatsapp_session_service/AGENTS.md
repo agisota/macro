@@ -145,7 +145,7 @@ current, ingests the traffic of added chats (`external_chat`) through `whatsapp_
   so it must be the RDS **instance** endpoint (`macro-db-<stack>`), never
   `macrodb-proxy-<stack>`: RDS Proxy multiplexes and reaps idle connections,
   which drops advisory locks and `LISTEN`. Never open a transaction on the
-  lock connection: MacroDB kills sessions idle in transaction after 5 minutes.
+  lock connection: RoxDB kills sessions idle in transaction after 5 minutes.
 - KMS key: `SessionKmsKey` (`src/config.rs`) picks
   `alias/whatsapp-session-service-<environment>` from `ENVIRONMENT`
   (GenerateDataKey + Decrypt); `xtask_local` creates the `-local` alias in

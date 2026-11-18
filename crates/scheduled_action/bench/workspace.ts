@@ -1,4 +1,4 @@
-// The eval's workspace: a person's Macro of realistic size, built the same
+// The eval's workspace: a person's Rox of realistic size, built the same
 // way on every run so each request finds the same items. `seed` writes it as
 // a seed CLI scenario; the few things the seed CLI can't make (due dates,
 // databases) are set up through the API by `setup` in drafts.ts.

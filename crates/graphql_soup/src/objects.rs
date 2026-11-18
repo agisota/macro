@@ -694,7 +694,7 @@ where
         }
     }
 
-    /// The owning Macro user.
+    /// The owning Rox user.
     async fn owner_id(&self) -> &str {
         &self.0.owner_id
     }
@@ -1121,7 +1121,7 @@ impl<E: SoupEntityEdges> GraphqlSoupInitiative<E> {
 /// GraphQL database row entity.
 pub struct GraphqlSoupDatabaseRow<E: SoupEntityEdges>(SoupDatabaseRow<()>, E, Option<f64>);
 
-/// A row of a Macro database table. Its cells are its `properties`, keyed
+/// A row of a Rox database table. Its cells are its `properties`, keyed
 /// by the columns' property definitions.
 #[Object(name = "GraphqlSoupDatabaseRow")]
 impl<E: SoupEntityEdges> GraphqlSoupDatabaseRow<E> {
@@ -1209,7 +1209,7 @@ impl<E: SoupEntityEdges> GraphqlSoupDatabaseRow<E> {
 /// GraphQL paired runtime entity.
 pub struct GraphqlSoupHarness<E: SoupEntityEdges>(SoupHarness, E, Option<f64>);
 
-/// A paired runtime (a macrod machine). Only attention feeds list it, for
+/// A paired runtime (a roxd machine). Only attention feeds list it, for
 /// the access notifications filed under it; it opens in Settings → Machines.
 #[Object(name = "GraphqlSoupHarness")]
 impl<E: SoupEntityEdges> GraphqlSoupHarness<E> {
@@ -1511,7 +1511,7 @@ where
         self.0.pull_request_state.map(Into::into)
     }
 
-    /// The linked pull request's Macro entity, when visible to the viewer.
+    /// The linked pull request's Rox entity, when visible to the viewer.
     async fn pull_request_id(&self) -> Option<ID> {
         self.0.pull_request_id.map(|id| ID(id.to_string()))
     }

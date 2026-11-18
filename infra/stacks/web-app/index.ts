@@ -191,7 +191,7 @@ const appRouteLambda = new aws.lambda.Function(
     publish: true,
     environment: {
       variables: {
-        PREVIEW_URL: `https://${stack === 'dev' ? 'dev-' : ''}gateway.macro.com/dss/documents/preview`,
+        PREVIEW_URL: `https://${stack === 'dev' ? 'dev-' : ''}gateway.rox.one/dss/documents/preview`,
       },
     },
   },

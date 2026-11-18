@@ -228,7 +228,7 @@ fn a_board_grouped_by_one_person_has_a_lane_per_person() {
         title: NAME,
         lanes: vec![
             Lane {
-                key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
                 hidden: true,
             },
             Lane {
@@ -478,7 +478,7 @@ fn a_view_that_does_not_fit_its_table_says_why() {
                 group_by: STATUS,
                 title: NAME,
                 lanes: vec![Lane {
-                    key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                    key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
                     hidden: false,
                 }],
                 card_fields: vec![],
@@ -497,11 +497,11 @@ fn a_view_that_does_not_fit_its_table_says_why() {
                 title: NAME,
                 lanes: vec![
                     Lane {
-                        key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                        key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
                         hidden: false,
                     },
                     Lane {
-                        key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                        key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
                         hidden: true,
                     },
                 ],
@@ -1005,7 +1005,7 @@ fn a_lane_key_crosses_the_wire_tagged_by_kind() {
             hidden: false,
         },
         Lane {
-            key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+            key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
             hidden: true,
         },
         Lane {
@@ -1015,7 +1015,7 @@ fn a_lane_key_crosses_the_wire_tagged_by_kind() {
     ];
     let written = json!([
         {"key": {"kind": "option", "id": GOING}, "hidden": false},
-        {"key": {"kind": "user", "id": "macro|sam@macro.com"}, "hidden": true},
+        {"key": {"kind": "user", "id": "macro|sam@rox.one"}, "hidden": true},
         {"key": {"kind": "none"}, "hidden": false},
     ]);
 
@@ -1032,9 +1032,9 @@ fn a_grouping_cell_names_its_cards_lane() {
     assert_eq!(
         LaneKey::of_cell(Some(&CellValue::Entities(vec![EntityRef {
             entity_type: EntityKind::User,
-            entity_id: "macro|sam@macro.com".into(),
+            entity_id: "macro|sam@rox.one".into(),
         }]))),
-        LaneKey::User("macro|sam@macro.com".try_into().unwrap())
+        LaneKey::User("macro|sam@rox.one".try_into().unwrap())
     );
     assert_eq!(
         LaneKey::of_cell(Some(&CellValue::Entities(vec![EntityRef {
@@ -1053,10 +1053,10 @@ fn a_card_moved_into_a_lane_takes_its_value() {
         CellValue::Options(vec![OptionRef::Id(GOING)])
     );
     assert_eq!(
-        LaneKey::User("macro|sam@macro.com".try_into().unwrap()).cell(),
+        LaneKey::User("macro|sam@rox.one".try_into().unwrap()).cell(),
         CellValue::Entities(vec![EntityRef {
             entity_type: EntityKind::User,
-            entity_id: "macro|sam@macro.com".into(),
+            entity_id: "macro|sam@rox.one".into(),
         }])
     );
     assert_eq!(LaneKey::None.cell(), CellValue::Clear);

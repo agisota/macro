@@ -34,7 +34,7 @@ use crate::outbound::pg_databases_repo::PgDatabasesRepo;
 use crate::outbound::pg_definition_store::PgDefinitionStore;
 use crate::wiring::{PgDatabasesService, build_service};
 
-const USER: &str = "macro|apply-ops@macro.com";
+const USER: &str = "macro|apply-ops@rox.one";
 
 pub(super) fn viewer() -> Viewer {
     Viewer {
@@ -934,10 +934,10 @@ async fn a_shared_property_is_editable_by_its_owner_alone(pool: PgPool) {
     use properties::domain::ports::PropertiesRepo;
 
     insert_user(&pool).await;
-    insert_named_user(&pool, "macro|someone-else@macro.com").await;
+    insert_named_user(&pool, "macro|someone-else@rox.one").await;
     let properties = PropertiesPgRepo::new(pool.clone());
     let owner = MacroUserIdStr::parse_from_str(USER).unwrap();
-    let someone_else = MacroUserIdStr::parse_from_str("macro|someone-else@macro.com").unwrap();
+    let someone_else = MacroUserIdStr::parse_from_str("macro|someone-else@rox.one").unwrap();
     let mine = properties
         .create_property_definition(
             PropertyDefinitionOwner::User(&owner),

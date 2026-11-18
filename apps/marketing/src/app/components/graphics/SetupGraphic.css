@@ -78,7 +78,7 @@
    state. The hovering modules fade out and the three cards fill in: their
    linework (currentColor, so a color change on .blocks carries the strokes and
    currentColor fills) and silhouette fills turn accent, and the left-face
-   shading fades away — leaving a solid accent Macro mark. Plain transitions,
+   shading fades away — leaving a solid accent Rox mark. Plain transitions,
    not keyframe animations, so a Suspense re-attach renders the end state
    rather than replaying it. (The white LED sparks are hidden here too, but the
    real guarantee is JS: SetupGraphic cancels the LED WAAPI animations when

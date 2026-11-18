@@ -88,7 +88,7 @@ describe('slide show', () => {
       expect(show.index()).toBe(3);
       show.follow('#nextslide');
       expect(show.ended()).toBe(true);
-      expect(show.follow('https://macro.com')).toBe('https://macro.com');
+      expect(show.follow('https://rox.one')).toBe('https://rox.one');
       expect(show.follow('javascript:alert(1)')).toBeUndefined();
       expect(onExit).not.toHaveBeenCalled();
       show.follow('#endshow');

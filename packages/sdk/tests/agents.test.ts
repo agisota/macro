@@ -30,7 +30,7 @@ describe('agents', () => {
               name: 'Web maintainer',
               description: null,
               instructions: 'Owns acme/web.',
-              harness: 'macrod',
+              harness: 'roxd',
               model: 'claude-sonnet',
             },
           ],
@@ -81,7 +81,7 @@ describe('agents', () => {
         name: 'Web maintainer',
         description: undefined,
         instructions: 'Owns acme/web.',
-        harness: 'macrod',
+        harness: 'roxd',
         model: 'claude-sonnet',
       },
     ]);
@@ -116,7 +116,7 @@ describe('agents', () => {
       channel_ids: ['0198a4cc-e138-7670-a308-a6b766602709'],
       channel_scope: 'selected',
       default_model: 'claude-sonnet',
-      harness: 'macrod',
+      harness: 'roxd',
       harness_id: '0198a4cc-e138-7670-a308-a6b766602708',
       instructions: 'Owns acme/web.',
       is_coding: true,
@@ -138,7 +138,7 @@ describe('agents', () => {
     if (!agent) return;
     await expect(agent.handle()).resolves.toBe('web-maintainer');
     await expect(agent.description()).resolves.toBe('Keeps acme/web healthy.');
-    await expect(agent.harness()).resolves.toBe('macrod');
+    await expect(agent.harness()).resolves.toBe('roxd');
     await expect(agent.isCoding()).resolves.toBe(true);
     await expect(agent.autoAcceptPermissions()).resolves.toBe(true);
     await expect(agent.channelScope()).resolves.toBe('selected');
@@ -175,7 +175,7 @@ describe('agents', () => {
     await agent.update({ instructions: 'Ship small diffs.' });
     await agent.update({
       runtime: {
-        harness: 'macrod',
+        harness: 'roxd',
         host: macro.harnesses.byId('0198a4cc-e138-7670-a308-a6b766602708'),
       },
       channels: {
@@ -206,7 +206,7 @@ describe('agents', () => {
     });
     await expect(requests[1]?.json()).resolves.toEqual({
       harness: {
-        harness: 'macrod',
+        harness: 'roxd',
         harness_id: '0198a4cc-e138-7670-a308-a6b766602708',
       },
       channels: {

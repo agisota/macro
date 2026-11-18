@@ -212,7 +212,7 @@ async fn gateway_with(
 ) -> (Router, AgentSession, Arc<RecordingUsage>) {
     let repo = InMemoryAgentSessionRepo::new();
     let mut session = test_agent_session(AgentSessionId::new());
-    session.harness = "macrod".into();
+    session.harness = "roxd".into();
     repo.insert_session(session.clone());
     repo.set_egress_token_hash(session.id, &SessionToken::new("session-secret").hash())
         .await
@@ -468,7 +468,7 @@ async fn a_model_off_the_allowlist_is_refused_before_anthropic_is_called() {
             "type": "error",
             "error": {
                 "type": "invalid_request_error",
-                "message": "model `claude-3-opus-20240229` is not available on Macro credits; use one of: claude-opus-4-8, claude-sonnet-4-6, claude-opus-5-5, claude-sonnet-5-5, claude-sonnet-5, claude-haiku-4-5-20251001, claude-fable-5-1",
+                "message": "model `claude-3-opus-20240229` is not available on Rox credits; use one of: claude-opus-4-8, claude-sonnet-4-6, claude-opus-5-5, claude-sonnet-5-5, claude-sonnet-5, claude-haiku-4-5-20251001, claude-fable-5-1",
             },
         })
     );
@@ -534,7 +534,7 @@ mod brain_route {
     use macro_user_id::{cowlike::CowLike, user_id::MacroUserIdStr};
 
     const AGENT: &str = "macro|sam-rivera-abc123@agents.macro.invalid";
-    const CREATOR: &str = "macro|admin@macro.com";
+    const CREATOR: &str = "macro|admin@rox.one";
     const TEAM: uuid::Uuid = uuid::Uuid::from_u128(0x0193_a1b2_0000_7000_8000_0000_0000_00aa);
 
     /// Knows exactly one agent key.

@@ -118,7 +118,7 @@ export default {
     agentHint: 'Sessão de agente dedicada',
     routineLabel: 'Rotina',
     routineDescription:
-      'Executar um modelo ou agente segundo um horário ou atividade no Macro',
+      'Executar um modelo ou agente segundo um horário ou atividade no Rox',
     routineHint: 'Horários e acionadores de atividade',
     databaseLabel: 'Base de dados',
     databaseDescription: 'Criar base de dados',
@@ -324,7 +324,7 @@ export default {
     projectShortTagline: 'Organizar tarefas relacionadas',
     reminderTagline: 'Lembrete à hora que escolher',
     reminderDetails:
-      'Crie um lembrete para algo que queira rever mais tarde.\nEscolha uma hora e o Macro trá-lo de volta.',
+      'Crie um lembrete para algo que queira rever mais tarde.\nEscolha uma hora e o Rox trá-lo de volta.',
     reminderExample1: 'Ligar de volta',
     reminderExample2: 'Verificar na sexta',
     reminderExample3: 'Renovar licença',
@@ -405,7 +405,7 @@ export default {
     guideTag: 'Etiquete o trabalho para o organizar e filtrar entre projetos.',
     guideConversation: 'Inicie uma conversa com um agente existente.',
     guideWorkAgent:
-      'Crie um assistente com instruções e acesso ao seu espaço de trabalho Macro.',
+      'Crie um assistente com instruções e acesso ao seu espaço de trabalho Rox.',
     guideCodingAgent:
       'Crie um agente que trabalha num ambiente de programação ligado.',
     guideRoutine:
@@ -728,20 +728,20 @@ export default {
     updateAvailable: 'Atualização disponível',
     updateNewVersionTitle: 'Nova versão disponível',
     updateWebDescription:
-      'Está disponível uma nova versão do Macro. Recarregue a página para a usar.',
+      'Está disponível uma nova versão do Rox. Recarregue a página para a usar.',
     updateWebFailedLoadDescription:
-      'Não foi possível carregar parte do Macro porque saiu uma nova versão. Recarregue a página para a usar.',
+      'Não foi possível carregar parte do Rox porque saiu uma nova versão. Recarregue a página para a usar.',
     updateReload: 'Recarregar',
     updateReadyTitle: 'Atualização pronta',
     updateBundleDescription:
-      'Foi transferida uma nova versão da app de computador do Macro. Atualize para começar a usá-la.',
+      'Foi transferida uma nova versão da app de computador do Rox. Atualize para começar a usá-la.',
     updateAction: 'Atualizar',
     updateDesktopReadyTitle: 'Atualização da app de computador pronta',
     updateNativeDescription:
-      'Reinicie o Macro para a instalar, ou continue a trabalhar e será instalada quando sair.',
+      'Reinicie o Rox para a instalar, ou continue a trabalhar e será instalada quando sair.',
     updateRestartAndUpdate: 'Reiniciar e atualizar',
     updateNativePreparingDescription:
-      'A guardar o seu trabalho antes de o Macro reiniciar para instalar a atualização.',
+      'A guardar o seu trabalho antes de o Rox reiniciar para instalar a atualização.',
     updatePreparingRestart: 'A preparar o reinício…',
   },
   settingsLanguage: {
@@ -754,7 +754,7 @@ export default {
     yourLanguage: 'O seu idioma',
     yourLanguageDescription: 'Substitui o idioma da equipa apenas para si.',
     yourLanguageNoTeamDescription:
-      'O idioma em que o Macro é apresentado para si. «Automático» segue o seu navegador.',
+      'O idioma em que o Rox é apresentado para si. «Automático» segue o seu navegador.',
     useTeamLanguage: 'Usar idioma da equipa ({{language}})',
     automatic: 'Automático ({{language}})',
     teamAutomatic: 'Automático (idioma do navegador de cada pessoa)',

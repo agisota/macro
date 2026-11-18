@@ -1,7 +1,7 @@
 //! Drops the `<img>` tags Cursor streams for its walkthrough artifacts.
 //!
 //! Cursor's walkthrough skill tells the agent to reference screenshots with
-//! HTML tags inline, and Macro tells it to use the bare file name, so a turn
+//! HTML tags inline, and Rox tells it to use the bare file name, so a turn
 //! that took a screenshot streams `<img src="shot.png" />` in its prose. That
 //! file lives in Cursor's sandbox: no reader can resolve the tag, and the
 //! transcript renders it as literal text. The image itself reaches the reader

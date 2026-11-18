@@ -4,7 +4,7 @@
 //! client ([`crate::api`]); [`SessionNotifier`] by whatever transport the
 //! session's updates travel over (the ACP stdio connection today, anything
 //! that can carry a `session/update` tomorrow); [`RepositoryChooser`] by
-//! a classifier for hosted Macro sessions or [`NoRepositoryChooser`] standalone.
+//! a classifier for hosted Rox sessions or [`NoRepositoryChooser`] standalone.
 //! Native records and polling bodies cross these
 //! contracts for capture before decoding; HTTP I/O, SSE framing, JSON-RPC, and
 //! subprocesses remain outside the service.

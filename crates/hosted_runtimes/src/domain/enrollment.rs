@@ -1,10 +1,10 @@
-//! What a computer reads at first boot to join Macro.
+//! What a computer reads at first boot to join Rox.
 //!
 //! The control plane writes one [`Enrollment`] as JSON into the instance
 //! config key [`INCUS_ENROLLMENT_KEY`] (read in the guest from `/dev/incus`),
-//! or into a file for Docker computers, and deletes it once macrod connects.
+//! or into a file for Docker computers, and deletes it once roxd connects.
 //! These types are the contract between the control plane and
-//! `macrod enroll`; macrod depends on this crate with default features off.
+//! `roxd enroll`; roxd depends on this crate with default features off.
 
 use crate::domain::ids::{ComputerId, PairingId};
 
@@ -29,15 +29,15 @@ pub struct Enrollment {
     pub device_secret: DeviceSecret,
     /// Display name the harness shows in Settings → Runtimes.
     pub name: ComputerName,
-    /// The Macro deployment macrod joins, resolved when this enrollment was
+    /// The Rox deployment roxd joins, resolved when this enrollment was
     /// issued.
     pub deployment: Deployment,
-    /// W3C context of the setup trace, so macrod's enrollment, claim and first
+    /// W3C context of the setup trace, so roxd's enrollment, claim and first
     /// reports join it. Opaque ids only.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub traceparent: Option<String>,
     /// The agent teammate this computer runs, if it was bought for one.
-    /// Older macrod builds ignore it.
+    /// Older roxd builds ignore it.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub agent: Option<crate::domain::agent::AgentEnrollment>,
 }
@@ -46,11 +46,11 @@ pub struct Enrollment {
 /// reaches them. Never persisted: each enrollment carries the current ones.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Deployment {
-    /// agent_harness_service: macrod's runtime gateway and API.
+    /// agent_harness_service: roxd's runtime gateway and API.
     pub agent_harness_url: url::Url,
     /// document_storage_service: pairing claim and capability reports.
     pub document_storage_url: url::Url,
-    /// The web app's origin, for links macrod prints.
+    /// The web app's origin, for links roxd prints.
     pub app_url: url::Url,
     /// Session egress: first-party MCP and the Anthropic gateway.
     pub egress_url: url::Url,

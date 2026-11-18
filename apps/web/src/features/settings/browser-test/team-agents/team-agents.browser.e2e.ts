@@ -119,7 +119,7 @@ async function scriptAuthService(
     failedVoiceSaves?: number;
     /** Invites the server refuses before one goes through. */
     failedCreates?: number;
-    /** Whether macrod on an agent's computer has connected. */
+    /** Whether roxd on an agent's computer has connected. */
     computerConnected?: boolean;
     /** Owners and admins own an agent computer's runtime; others don't see it. */
     viewerOwnsRuntimes?: boolean;
@@ -334,7 +334,7 @@ async function scriptAuthService(
         body: JSON.stringify(body),
       });
 
-    // macrod enrolls each agent's computer as a runtime its admins own.
+    // roxd enrolls each agent's computer as a runtime its admins own.
     if (path.endsWith('/harnesses') && request.method() === 'GET')
       return json(
         200,
@@ -343,7 +343,7 @@ async function scriptAuthService(
               .filter((agent) => agent.status !== 'provisioning')
               .map((agent) => ({
                 id: `harness-${agent.name.toLowerCase()}`,
-                kind: 'macrod',
+                kind: 'roxd',
                 name: agent.name,
                 owner: { type: 'user', user_id: agent.userId },
                 access: 'owner',
@@ -580,7 +580,7 @@ test('the inviter hears when the agent is ready: Message Ada, and Connect Claude
   await screenshot(page, testInfo, 'ready-notification-admin');
 
   // Connect Claude plan opens the sign-in on Ada's row, never blocking; the
-  // agent stays on Macro credits when it closes.
+  // agent stays on Rox credits when it closes.
   await page
     .getByLabel('Ada is ready')
     .getByRole('button', { name: 'Connect Claude plan' })
@@ -595,7 +595,7 @@ test('the inviter hears when the agent is ready: Message Ada, and Connect Claude
   await screenshot(page, testInfo, 'connect-claude-from-notification');
   expect(backend.claudeCalls).toContain('harness-ada claude-sign-in');
   await signIn
-    .getByRole('button', { name: 'Keep using Macro credits' })
+    .getByRole('button', { name: 'Keep using Rox credits' })
     .click();
   await expect(signIn).toBeHidden();
   expect(backend.claudeCalls).not.toContain('harness-ada claude-sign-out');
@@ -628,7 +628,7 @@ test("an admin signs the agent's computer in to Claude from its row", async ({
 
   const agentRow = page.locator('[data-member-kind="agent"]');
   const claude = agentRow.locator('[data-agent-claude]');
-  await expect(claude).toContainText('Claude: Macro credits');
+  await expect(claude).toContainText('Claude: Rox credits');
   await claude.getByRole('button', { name: 'Connect Claude plan' }).click();
   const dialog = page.getByRole('dialog');
   const open = dialog.getByRole('link', { name: 'Open claude.ai' });
@@ -649,13 +649,13 @@ test("an admin signs the agent's computer in to Claude from its row", async ({
   await expect(claude).toContainText('Claude: your plan');
   await screenshot(page, testInfo, 'row-signed-in');
 
-  await claude.getByRole('button', { name: 'Switch to Macro credits' }).click();
+  await claude.getByRole('button', { name: 'Switch to Rox credits' }).click();
   const confirm = page.getByRole('dialog');
-  await expect(confirm).toContainText('Switch Ada to Macro credits?');
+  await expect(confirm).toContainText('Switch Ada to Rox credits?');
   await confirm
-    .getByRole('button', { name: 'Switch to Macro credits' })
+    .getByRole('button', { name: 'Switch to Rox credits' })
     .click();
-  await expect(claude).toContainText('Claude: Macro credits');
+  await expect(claude).toContainText('Claude: Rox credits');
   expect(backend.claudeCalls).toContain('harness-ada claude-sign-out');
 });
 

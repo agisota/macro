@@ -376,7 +376,7 @@ pub(crate) fn world() -> Shared {
                             specific_message_id: None,
                         }]),
                     ),
-                    (CONTACT, reference("macro|maria@macro.com")),
+                    (CONTACT, reference("macro|maria@rox.one")),
                 ],
             },
             StoredRow {
@@ -407,7 +407,7 @@ pub(crate) fn world() -> Shared {
                 cells: vec![(PLAN_NAME, PropertyValue::Str("Launch".into()))],
             },
         ],
-        contacts: vec!["macro|maria@macro.com", "macro|sam@macro.com"],
+        contacts: vec!["macro|maria@rox.one", "macro|sam@rox.one"],
         ..World::default()
     }))
 }
@@ -664,7 +664,7 @@ async fn a_read_answers_typed_cells_with_what_renders_them() {
             rows: vec![vec![
                 Some(Cell::Text("Maria".into())),
                 Some(Cell::Options(vec![GOING])),
-                Some(Cell::Entities(vec!["macro|maria@macro.com".into()])),
+                Some(Cell::Entities(vec!["macro|maria@rox.one".into()])),
             ]],
             row_ids: vec![MARIA],
         }
@@ -754,7 +754,7 @@ async fn people_are_the_viewers_contacts() {
         outcome.result.as_ref().unwrap().rows,
         vec![vec![
             Some(Cell::Text("Maria".into())),
-            Some(Cell::Text("maria@macro.com".into())),
+            Some(Cell::Text("maria@rox.one".into())),
         ]]
     );
 }

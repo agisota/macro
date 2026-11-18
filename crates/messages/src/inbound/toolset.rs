@@ -43,7 +43,7 @@ pub struct MessageToolContext<ESvc: EntityAccessService> {
     /// Mints the capabilities the message service requires.
     pub entity_access_service: Arc<ESvc>,
     /// The bot these tools post as, on behalf of the requesting user.
-    /// Defaults to Macro AI; hosts running a specific agent set it with
+    /// Defaults to Rox AI; hosts running a specific agent set it with
     /// [`Self::with_actor`].
     pub actor: BotId,
     /// The client the requesting user works through, labelled on posts.
@@ -62,7 +62,7 @@ impl<ESvc: EntityAccessService> Clone for MessageToolContext<ESvc> {
 }
 
 impl<ESvc: EntityAccessService> MessageToolContext<ESvc> {
-    /// Create a discussion tool context acting as Macro AI.
+    /// Create a discussion tool context acting as Rox AI.
     pub fn new(messages: Arc<dyn MessageServiceApi>, entity_access_service: Arc<ESvc>) -> Self {
         Self {
             messages,
@@ -211,11 +211,11 @@ pub fn message_toolset<ESvc: EntityAccessService>() -> AsyncToolCollection<Messa
 #[serde(rename_all = "snake_case")]
 pub enum DiscussionParentType {
     /// A document of any type, including tasks, PDFs and uploaded files: the
-    /// id in a macro.com/app/<block>/<id> link such as /app/md/<id>,
+    /// id in a rox.one/app/<block>/<id> link such as /app/md/<id>,
     /// /app/task/<id> or /app/pdf/<id>.
     Document,
     /// A Tasks project, which the API calls an initiative: the id in a
-    /// macro.com/app/tasks/projects/<id> link, the kind ReadInitiative reads.
+    /// rox.one/app/tasks/projects/<id> link, the kind ReadInitiative reads.
     /// Not a folder: folders (ReadProject) have no Discussion.
     Initiative,
     /// A CRM company, the kind GetCompany reads.

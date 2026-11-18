@@ -205,7 +205,7 @@ fn hyperlinks_add_and_prune_relationships() {
             cell: None,
             start: None,
             end: None,
-            props: link("https://macro.com"),
+            props: link("https://rox.one"),
         }],
     );
     let part = pres.slide_part(256).unwrap();

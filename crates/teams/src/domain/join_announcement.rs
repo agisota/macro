@@ -68,7 +68,7 @@ pub struct ClaimedJoinEmail {
 /// Storage for the once-per-address claims.
 pub trait JoinAnnouncementRepository: Send + Sync + 'static {
     /// Claims every candidate who matches the team's auto-join domain, is neither a member, an
-    /// invitee, nor a Macro user, and was never claimed for this team, until the team has
+    /// invitee, nor a Rox user, and was never claimed for this team, until the team has
     /// `team_limit` claims. It is one statement, so concurrent claims of an address have
     /// exactly one winner. Returns nothing when the team has no auto-join domain.
     fn claim(

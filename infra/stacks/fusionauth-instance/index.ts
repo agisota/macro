@@ -66,13 +66,13 @@ const passwordlessEmailTemplate = new FusionAuthEMail(
   'passwordless-email-template',
   {
     name: 'Passwordless Login',
-    defaultSubject: 'Log into Macro - ${code}',
+    defaultSubject: 'Log into Rox - ${code}',
     defaultHtmlTemplate: fs.readFileSync(
       './templates/passwordless_email_template.html',
       'utf-8'
     ),
     defaultTextTemplate: 'Here is your temporary login code: ${code}',
-    defaultFromName: 'Macro',
+    defaultFromName: 'Rox',
   },
   { provider: fusionAuthProvider }
 );
@@ -82,13 +82,13 @@ const emailVerificationTemplate = new FusionAuthEMail(
   'email-verification-template',
   {
     name: 'Email Verification',
-    defaultSubject: 'Verify your Macro email',
+    defaultSubject: 'Verify your Rox email',
     defaultHtmlTemplate: fs
       .readFileSync('./templates/email_verification_template.html', 'utf-8')
       .replaceAll('{{AUTH_SERVICE_URL}}', AUTHENTICATION_SERVICE_DOMAIN),
     defaultTextTemplate:
       'Please verify your email by visiting: ${verificationId}',
-    defaultFromName: 'Macro',
+    defaultFromName: 'Rox',
   },
   { provider: fusionAuthProvider }
 );
@@ -147,7 +147,7 @@ const defaultTenant = new FusionAuthTenant(
       password: SMTP_CREDENTIALS.password,
       security: 'TLS',
       defaultFromEmail: config.require('default-from-email'),
-      defaultFromName: 'Macro',
+      defaultFromName: 'Rox',
       implicitEmailVerificationAllowed: true,
       passwordlessEmailTemplateId: passwordlessEmailTemplate.id,
       // Email Verification
@@ -156,7 +156,7 @@ const defaultTenant = new FusionAuthTenant(
       verificationEmailTemplateId: emailVerificationTemplate.id,
       verificationStrategy: 'ClickableLink',
     },
-    logoutUrl: `https://${stack === 'prod' ? '' : `${stack}.`}macro.com`,
+    logoutUrl: `https://${stack === 'prod' ? '' : `${stack}.`}rox.one`,
     // Delete unverified users
     userDeletePolicy: {
       unverifiedEnabled: true,
@@ -260,7 +260,7 @@ export const signingKeyId = signingKey.keyId;
 const macroApplication = new FusionAuthApplication(
   'macro-application',
   {
-    name: 'Macro',
+    name: 'Rox',
     tenantId: defaultTenant.tenantId,
     applicationId: FUSIONAUTH_APPLICATION_CLIENT_ID,
     authenticationTokenConfigurationEnabled: false,
@@ -302,7 +302,7 @@ const macroApplication = new FusionAuthApplication(
               `${getServiceUrl(ServiceUrl.AUTHENTICATION_SERVICE_URL)}/oauth/redirect`,
             ]
           : []),
-        `https://mcp-server${stack === 'prod' ? '' : `-${stack}`}.macro.com/oauth/callback`,
+        `https://mcp-server${stack === 'prod' ? '' : `-${stack}`}.rox.one/oauth/callback`,
         ...(stack === 'dev' || stack === 'prod'
           ? [`${getServiceUrl(ServiceUrl.MCP_SERVER_URL)}/oauth/callback`]
           : []),

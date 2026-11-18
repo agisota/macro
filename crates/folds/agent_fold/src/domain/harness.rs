@@ -39,15 +39,15 @@
 //!
 //! - [`mcp`] - the envelope MCP wraps every external tool's result in, which
 //!   a harness may copy into `rawOutput` whole.
-//! - [`macro_tools`] - Macro's own tools, which any harness may call (over
-//!   Macro's MCP server, or natively when the harness *is* Macro's agent).
-//!   Their names and result shapes are Macro's whichever harness relayed
+//! - [`macro_tools`] - Rox's own tools, which any harness may call (over
+//!   Rox's MCP server, or natively when the harness *is* Rox's agent).
+//!   Their names and result shapes are Rox's whichever harness relayed
 //!   them.
 //!
 //! The fold reads a call through the functions at the bottom of this file -
 //! [`tool_name`], [`tool_shape`], [`subagent_result`], [`user_tool_outcome`]
 //! - which decide whose shape a call is in and read it accordingly, so the
-//! fold itself never names a harness, MCP, or a Macro tool.
+//! fold itself never names a harness, MCP, or a Rox tool.
 //!
 //! Supporting a new harness is one file here and one arm in
 //! [`Harness::reader`]. The reader says how to recognize itself
@@ -64,9 +64,9 @@ pub mod cursor;
 pub mod generic;
 /// Nous Research's Hermes agent.
 pub mod hermes;
-/// Macro's own in-process agent (`agent_inmem`).
+/// Rox's own in-process agent (`agent_inmem`).
 pub mod macro_inmem;
-/// Macro's tools: their names and what they return.
+/// Rox's tools: their names and what they return.
 pub mod macro_tools;
 /// MCP's result envelope.
 pub mod mcp;
@@ -234,10 +234,10 @@ pub trait HarnessReader: Sync {
         generic::terminal_exit_code(frame)
     }
 
-    /// The Macro tool `name` refers to, if it is one of Macro's.
+    /// The Rox tool `name` refers to, if it is one of Rox's.
     ///
-    /// For most harnesses that means a tool reached over Macro's own MCP
-    /// server; Macro's in-process agent calls the same tools natively and
+    /// For most harnesses that means a tool reached over Rox's own MCP
+    /// server; Rox's in-process agent calls the same tools natively and
     /// says so by being the harness it is.
     fn macro_tool<'name>(&self, name: &'name ToolName) -> Option<&'name str> {
         macro_tools::mcp_tool(name)
@@ -409,21 +409,21 @@ pub fn tool_name(reader: &dyn HarnessReader, frame: &ToolFrame<'_>) -> ToolName 
 ///
 /// Decided once, from the opening frame, and never revisited: the detail a
 /// call opens with is the detail it keeps, so a subagent never turns into a
-/// Macro tool mid-flight or the other way round.
+/// Rox tool mid-flight or the other way round.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ToolShape<'name> {
     /// One of the harness's own tools, read by its ACP kind: `Bash`, `Read`,
     /// `Write`, or a tool from an MCP server the fold knows nothing about.
     Harness,
-    /// A Macro tool, by the name Macro gives it. Its input and output are the
+    /// A Rox tool, by the name Rox gives it. Its input and output are the
     /// tool's own JSON once the harness's wrapper is off.
     Macro(&'name str),
-    /// A Macro user tool, by name: the agent drafts it, the user finishes it.
+    /// A Rox user tool, by name: the agent drafts it, the user finishes it.
     UserTool(&'name str),
-    /// A Macro tool whose result is a view shown to the person.
+    /// A Rox tool whose result is a view shown to the person.
     View,
     /// Work delegated to another agent - the harness's own delegation tool
-    /// (Claude Code's `Agent`, Cursor's `task`) or Macro's `Subagent`. Which
+    /// (Claude Code's `Agent`, Cursor's `task`) or Rox's `Subagent`. Which
     /// of the two it is stays out of the fold's way: [`subagent_result`]
     /// reads either by the tool's name.
     Subagent,
@@ -431,7 +431,7 @@ pub enum ToolShape<'name> {
 
 /// Classify a tool call from its opening frame.
 ///
-/// Macro's tools are recognized by name before anything else, since the
+/// Rox's tools are recognized by name before anything else, since the
 /// kind ACP gives them is `other` and says nothing; among them, `Subagent`
 /// is a delegation like the harness's own. Everything else is the harness's,
 /// and whether it delegates is the reader's call.
@@ -452,8 +452,8 @@ pub fn tool_shape<'name>(
 }
 
 /// What a subagent reported on one frame, read in whichever shape the
-/// delegation tool named by `name` answers in: Macro's `Subagent` returns
-/// Macro's response inside the harness's wrapper, whoever the harness is;
+/// delegation tool named by `name` answers in: Rox's `Subagent` returns
+/// Rox's response inside the harness's wrapper, whoever the harness is;
 /// any other delegation tool is the harness's own, and its reader knows it.
 /// `None` when the frame carries no result.
 #[must_use]
@@ -469,7 +469,7 @@ pub fn subagent_result(
     reader.subagent_result(frame)
 }
 
-/// Where a Macro user tool got to, from a frame's `rawOutput`: the harness's
+/// Where a Rox user tool got to, from a frame's `rawOutput`: the harness's
 /// wrapper reporting failure is [`UserToolOutcome::Failed`]; otherwise the
 /// response inside it says.
 #[must_use]

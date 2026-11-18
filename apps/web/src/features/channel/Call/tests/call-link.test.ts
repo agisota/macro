@@ -7,7 +7,7 @@ import {
 } from '../call-link';
 
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://macro.com',
+  getWebOrigin: () => 'https://rox.one',
 }));
 
 const token = '01955c94-2576-7f3a-9d60-173d74b7f812';
@@ -16,16 +16,16 @@ describe('meeting paths', () => {
   it('shares a setup URL and uses a separate path for the active call', () => {
     expect(getMeetingPath(token)).toBe(`/meet/join/${token}`);
     expect(getMeetingUrl(token)).toBe(
-      `https://macro.com/app/meet/join/${token}`
+      `https://rox.one/app/meet/join/${token}`
     );
     expect(getActiveMeetingPath(token)).toBe(`/meet/${token}`);
   });
 
   it.each([
     `/meet/join/${token}`,
-    `https://macro.com/app/meet/join/${token}/?source=calendar#setup`,
+    `https://rox.one/app/meet/join/${token}/?source=calendar#setup`,
     `/meet/${token}`,
-    `https://macro.com/app/meet/${token}/?join=true`,
+    `https://rox.one/app/meet/${token}/?join=true`,
   ])('reads the invitation token from current and legacy URLs: %s', (url) => {
     expect(getMeetingShareToken(url)).toBe(token);
   });

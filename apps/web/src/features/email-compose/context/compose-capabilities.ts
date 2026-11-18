@@ -10,7 +10,7 @@ import type { LocalDraft } from '../core/local-draft';
 import type { DraftFormAttachment } from '../primitives/email-form-state';
 
 export interface EmailInbox extends SenderInbox {
-  provider?: 'GMAIL' | 'OUTLOOK';
+  provider?: 'GMAIL' | 'OUTLOOK' | 'ROX';
   settings: {
     signature?: string | null;
     signature_on_replies_forwards?: boolean | null;
@@ -405,7 +405,7 @@ export interface EmailComposePresentation {
   scheduleEnabled: boolean;
 }
 
-/** A file stored as a Macro document, as a body link names it. */
+/** A file stored as a Rox document, as a body link names it. */
 export interface UploadedDocument {
   documentId: string;
   name: string;

@@ -1,4 +1,4 @@
-//! The Macro task a coding session works on, and keeping the session's pull request linked to it.
+//! The Rox task a coding session works on, and keeping the session's pull request linked to it.
 //!
 //! A session has at most one task: the one its agent linked, else the task whose thread
 //! started it. Whenever a session has both a task and a pull request, the pull request is
@@ -22,7 +22,7 @@ mod test;
 pub enum SessionTaskError {
     /// The input names no task in a form this accepts.
     #[error(
-        "expected a Macro task id, a MACRO-<id> reference, or a task link like https://macro.com/app/task/<id>"
+        "expected a Rox task id, a MACRO-<id> reference, or a task link like https://rox.one/app/task/<id>"
     )]
     InvalidTaskReference,
     /// The task does not exist, or the session owner cannot view it.
@@ -105,7 +105,7 @@ pub struct LinkedTask {
     pub task_id: String,
     /// The task title.
     pub title: String,
-    /// Link to the task in Macro.
+    /// Link to the task in Rox.
     pub url: String,
     /// Put this in the pull request description so GitHub activity reaches the task.
     pub reference: String,
@@ -134,9 +134,9 @@ pub enum PullRequestState {
 pub struct TaskPullRequest {
     /// The pull request's GitHub URL.
     pub url: String,
-    /// The pull request title, once Macro has indexed it.
+    /// The pull request title, once Rox has indexed it.
     pub title: Option<String>,
-    /// The pull request state, once Macro has indexed it.
+    /// The pull request state, once Rox has indexed it.
     pub state: Option<PullRequestState>,
 }
 

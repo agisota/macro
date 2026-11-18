@@ -2,6 +2,9 @@
 //! `tooling/just/local_stack.just` recipes. Uses the AWS SDK (the dev shell ships no `aws`
 //! CLI) and runs the three independent resource groups concurrently.
 
+use std::process::Command;
+use std::time::{Duration, Instant};
+
 use anyhow::{Context, Result};
 use aws_sdk_dynamodb::types as ddb_types;
 use aws_sdk_s3::types as s3_types;
@@ -17,7 +20,11 @@ pub fn provision(instance: &Instance) -> Result<()> {
         .enable_all()
         .build()
         .context("building tokio runtime")?;
-    rt.block_on(provision_async(&url))
+    rt.block_on(provision_async(&url))?;
+    if minio_expected(instance) {
+        create_minio_buckets(instance)?;
+    }
+    Ok(())
 }
 
 async fn provision_async(url: &str) -> Result<()> {
@@ -47,6 +54,150 @@ async fn provision_async(url: &str) -> Result<()> {
     // Dependent: wire doc-storage ObjectCreated -> document-upload-finalizer-queue.
     wire_upload_finalizer(&sqs, &s3).await?;
     Ok(())
+}
+
+fn minio_expected(instance: &Instance) -> bool {
+    let path = instance
+        .artifact_dir()
+        .join("docker-compose.override.yml");
+    std::fs::read_to_string(path)
+        .is_ok_and(|text| text.contains("image: chrislusf/seaweedfs"))
+}
+
+/// Create [`resources::BUCKETS`] on MinIO. The host cannot resolve `minio`,
+/// and the service has no published port, so the request goes through the
+/// LocalStack container, which already sits on the services network.
+fn create_minio_buckets(instance: &Instance) -> Result<()> {
+    let deadline = Instant::now() + Duration::from_secs(180);
+    let mut last_error = String::from("MinIO did not become reachable");
+    while Instant::now() < deadline {
+        match try_create_minio_buckets(instance) {
+            Ok(()) => return Ok(()),
+            Err(err) => {
+                last_error = err.to_string();
+                std::thread::sleep(Duration::from_secs(2));
+            }
+        }
+    }
+    anyhow::bail!("creating MinIO buckets failed: {last_error}")
+}
+
+fn try_create_minio_buckets(instance: &Instance) -> Result<()> {
+    let container = localstack_container(instance)?;
+    for bucket in resources::BUCKETS {
+        create_minio_bucket(&container, bucket.name)?;
+        put_minio_bucket_cors(&container, bucket.name)?;
+    }
+    Ok(())
+}
+
+fn localstack_container(instance: &Instance) -> Result<String> {
+    let output = Command::new("docker")
+        .args([
+            "ps",
+            "-q",
+            "--filter",
+            "status=running",
+            "--filter",
+            &format!(
+                "label=com.docker.compose.project={}",
+                instance.project_name()
+            ),
+            "--filter",
+            "label=com.docker.compose.service=localstack",
+        ])
+        .output()
+        .context("listing the localstack container")?;
+    let id = String::from_utf8_lossy(&output.stdout);
+    let id = id.lines().next().unwrap_or("").trim();
+    if id.is_empty() {
+        anyhow::bail!("localstack container is not running");
+    }
+    Ok(id.to_string())
+}
+
+fn create_minio_bucket(container: &str, bucket: &str) -> Result<()> {
+    let output = minio_aws(
+        container,
+        &[
+            "s3",
+            "mb",
+            &format!("s3://{bucket}"),
+        ],
+    )?;
+    if output.status.success() {
+        return Ok(());
+    }
+    let text = command_text(&output);
+    if text.contains("BucketAlreadyOwnedByYou")
+        || text.contains("BucketAlreadyExists")
+        || text.contains("Your previous request to create the named bucket succeeded")
+    {
+        return Ok(());
+    }
+    anyhow::bail!("bucket {bucket}: {text}")
+}
+
+fn put_minio_bucket_cors(container: &str, bucket: &str) -> Result<()> {
+    const CORS: &str = r#"{"CORSRules":[{"AllowedOrigins":["*"],"AllowedMethods":["GET","PUT","POST","DELETE","HEAD"],"AllowedHeaders":["*"],"ExposeHeaders":["ETag"],"MaxAgeSeconds":3600}]}"#;
+    let output = minio_aws(
+        container,
+        &[
+            "s3api",
+            "put-bucket-cors",
+            "--bucket",
+            bucket,
+            "--cors-configuration",
+            CORS,
+        ],
+    )?;
+    if output.status.success() {
+        return Ok(());
+    }
+    anyhow::bail!("CORS on {bucket}: {}", command_text(&output))
+}
+
+fn minio_aws(container: &str, args: &[&str]) -> Result<std::process::Output> {
+    let access = format!(
+        "AWS_ACCESS_KEY_ID={}",
+        super::gen_compose::MINIO_ROOT_USER
+    );
+    let secret = format!(
+        "AWS_SECRET_ACCESS_KEY={}",
+        super::gen_compose::MINIO_ROOT_PASSWORD
+    );
+    let mut command = Command::new("docker");
+    command.args([
+        "exec",
+        "-e",
+        access.as_str(),
+        "-e",
+        secret.as_str(),
+        "-e",
+        "AWS_DEFAULT_REGION=us-east-1",
+        "-e",
+        "AWS_EC2_METADATA_DISABLED=true",
+        "-e",
+        "AWS_PAGER=",
+        container,
+        "aws",
+        "--endpoint-url",
+        "http://minio:8333",
+        "--cli-connect-timeout",
+        "5",
+        "--cli-read-timeout",
+        "10",
+    ]);
+    command.args(args);
+    command
+        .output()
+        .with_context(|| format!("running aws in {container} against MinIO"))
+}
+
+fn command_text(output: &std::process::Output) -> String {
+    let stdout = String::from_utf8_lossy(&output.stdout);
+    let stderr = String::from_utf8_lossy(&output.stderr);
+    format!("{stdout}{stderr}").trim().to_string()
 }
 
 /// The KMS key that encrypts users' Cursor API keys, addressed by a stable

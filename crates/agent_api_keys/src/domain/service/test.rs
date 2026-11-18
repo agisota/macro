@@ -228,7 +228,7 @@ async fn turns_run_on_the_key_only_while_the_agent_and_plan_still_fit_it() {
             .await
             .expect("read"),
         None,
-        "an agent moved to another provider's model runs on Macro usage"
+        "an agent moved to another provider's model runs on Rox usage"
     );
 
     *service.repo.agent.lock().expect("lock") =
@@ -270,7 +270,7 @@ async fn only_the_agents_owner_or_its_team_spends_its_key() {
             .await
             .expect("read")
             .is_none(),
-        "someone else's session of a personal agent runs on Macro usage"
+        "someone else's session of a personal agent runs on Rox usage"
     );
 
     let team = KeyedAgent {

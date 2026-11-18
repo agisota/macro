@@ -32,7 +32,7 @@ pub const SUPPORTED_API_VERSIONS: [&str; 2] = ["2019-12-03", "2025-09-30.clover"
 pub const TEAM_ID_METADATA_KEY: &str = "team_id";
 /// The metadata key a team subscription carries its owner in.
 pub const OWNER_ID_METADATA_KEY: &str = "owner_id";
-/// The metadata key Macro stamps on an immediate plan change.
+/// The metadata key Rox stamps on an immediate plan change.
 pub const PLAN_CHANGE_AT_METADATA_KEY: &str = "macro_plan_change_at";
 /// The metadata key a computer's subscription item (or its price) carries.
 pub const COMPUTER_ID_METADATA_KEY: &str = "computer_id";

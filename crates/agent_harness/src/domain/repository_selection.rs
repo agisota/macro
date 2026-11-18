@@ -32,7 +32,7 @@ pub(crate) fn fallback_repository<'a>(
 ) -> Result<&'a str, rootcause::Report> {
     recent_repository(candidates, recent)
         .or_else(|| candidates.first().map(String::as_str))
-        .ok_or_else(|| rootcause::report!("Connect GitHub and grant Macro access to a repository before starting a coding session"))
+        .ok_or_else(|| rootcause::report!("Connect GitHub and grant Rox access to a repository before starting a coding session"))
 }
 
 /// Validate a model choice against the owner's reachable repositories.

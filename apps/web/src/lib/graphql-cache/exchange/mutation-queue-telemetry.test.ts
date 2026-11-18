@@ -173,7 +173,7 @@ describe('recoverySkipReason', () => {
   it.each([
     ['Sign in to save drafts on this device.', 'recovery-signed-out'],
     [
-      'This draft session is no longer active. Reload Macro.',
+      'This draft session is no longer active. Reload Rox.',
       'recovery-session-inactive',
     ],
     ['Queue inspection is unavailable', 'recovery-inspection-unavailable'],

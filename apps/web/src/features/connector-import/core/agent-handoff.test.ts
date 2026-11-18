@@ -8,18 +8,18 @@ describe('agent import handoff', () => {
     const hubspot = crm.providers.find((p) => p.appSlug === 'hubspot')!;
     const handoff = agentImportHandoff(crm, hubspot);
     expect(handoff.input).toBe(
-      'Import my most recent companies and contacts from HubSpot into the Macro CRM.'
+      'Import my most recent companies and contacts from HubSpot into the Rox CRM.'
     );
     expect(handoff.instructions).toContain('ask which ones to bring over');
     expect(handoff.instructions).toContain('CreateCompany');
     expect(handoff.instructions).toContain('never edit or delete');
   });
 
-  it("imports the Notion workspace through Macro's importer", () => {
+  it("imports the Notion workspace through Rox's importer", () => {
     const files = IMPORT_CATEGORIES.files;
     const notion = files.providers.find((p) => p.appSlug === 'notion')!;
     const handoff = agentImportHandoff(files, notion);
-    expect(handoff.input).toBe('Import my Notion workspace into Macro.');
+    expect(handoff.input).toBe('Import my Notion workspace into Rox.');
     expect(handoff.instructions).toContain('ImportFromNotion');
     expect(handoff.instructions).not.toContain('CreateImportEntity');
   });

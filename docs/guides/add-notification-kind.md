@@ -34,7 +34,7 @@ In `crates/model_notifications/src/metadata.rs` (or a submodule like
 - Carry what clients need to render and navigate without another fetch (ids, a
   short content excerpt, display names). Do not carry anything you would not put
   in a push banner; the payload lands in the database, on phones, and in Kafka.
-- Display names: carry a display name when the actor is not a Macro user (a bot,
+- Display names: carry a display name when the actor is not a Rox user (a bot,
   a GitHub login, an agent). Kinds that only carried an id later showed raw ids or
   emails in the inbox and needed fixes for bot and agent senders.
 - Every field added *after* the first deploy must be `Option` or
@@ -111,8 +111,8 @@ the domain decides *whether* and *to whom*; an outbound adapter calls
 
 Pitfalls, each of which shipped once:
 
-- **Sender.** Set `sender_id` to the acting Macro user; ingress then drops the
-  sender from recipients. When the actor is not a Macro user id (GitHub, bots),
+- **Sender.** Set `sender_id` to the acting Rox user; ingress then drops the
+  sender from recipients. When the actor is not a Rox user id (GitHub, bots),
   filter the actor out yourself; users were notified of their own PR activity.
 - **Audience.** Recipients must be people who can open the entity, computed from
   live data. Participants from deleted messages, and the callee instead of the

@@ -10,7 +10,7 @@ import {
 } from '../core/message-operation';
 
 const labels: Record<MessageResolutionAction, string> = {
-  keep_local: 'Keep Macro version',
+  keep_local: 'Keep Rox version',
   use_provider: 'Use mailbox version',
   recheck: 'Check again',
   retry_send: 'Retry send',
@@ -102,8 +102,8 @@ export function MessageOperationRecovery(props: {
                     : decision()?.action === 'retry_send'
                       ? 'Send this email again? The earlier attempt may already have reached its recipients.'
                       : decision()?.action === 'use_provider'
-                        ? 'Replace the saved Macro draft with the mailbox version?'
-                        : 'Replace the mailbox draft with the saved Macro version?'}
+                        ? 'Replace the saved Rox draft with the mailbox version?'
+                        : 'Replace the mailbox draft with the saved Rox version?'}
                 </p>
                 <Show
                   when={

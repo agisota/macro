@@ -69,7 +69,7 @@ struct SuggestionRow {
     routine_suggestion_id: Option<Uuid>,
 }
 
-/// [`SuggestionRepo`] on MacroDB.
+/// [`SuggestionRepo`] on RoxDB.
 pub struct PgSuggestionRepo {
     pool: PgPool,
 }

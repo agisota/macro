@@ -3,8 +3,8 @@ import { BaseTool } from './BaseTool';
 import { createToolRenderer } from './ToolRenderer';
 
 /**
- * `SelfKnowledge` renders as a standard tool row: the Macro mark and a "Self
- * knowledge" label. The about-Macro page it returns is self-reflection the
+ * `SelfKnowledge` renders as a standard tool row: the Rox mark and a "Self
+ * knowledge" label. The about-Rox page it returns is self-reflection the
  * model did, not an action the user needs to inspect, so the result is hidden
  * and the row has no expand toggle.
  */

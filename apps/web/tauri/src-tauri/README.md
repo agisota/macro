@@ -36,7 +36,7 @@ and macOS. Keep credentials out of `$APPCACHE`: iOS may purge that directory
 under storage pressure. The same native jar supplies HTTP and WebSocket cookies;
 this is separate from the WebView's browser storage.
 
-Macro passes `$APPLOCALDATA` to the plugin fork's `init_with_cookie_store_dir`;
+Rox passes `$APPLOCALDATA` to the plugin fork's `init_with_cookie_store_dir`;
 the plugin owns the `.cookies` filename within that directory. Its default
 `init()` still uses the cache directory. Macro deliberately does not migrate
 the old cache file, so the first launch after this native update requires
@@ -91,7 +91,7 @@ This storage change requires a native app release.
 
 The optional `file_export_plugin` registers iOS save/share commands. The web
 client stages original bytes in bounded chunks, then UIKit opens the system
-save picker or share sheet without an intermediate Macro dialog. Android uses
+save picker or share sheet without an intermediate Rox dialog. Android uses
 its existing `android_mobile_plugin` export commands. Older iOS installations
 retain Web Share until the next native release; see
 [the bridge guide](../file_export_plugin/AGENTS.md).
@@ -376,7 +376,7 @@ Apps built with the iOS 27 SDK must use the scene lifecycle. Keep the
 
 - The fork at `957785f5` uses Tao 0.37, which enables the scene lifecycle from
   the manifest independently of multi-window support. Keep
-  `UIApplicationSupportsMultipleScenes` false to retain Macro's single-window
+  `UIApplicationSupportsMultipleScenes` false to retain Rox's single-window
   behavior on both iPhone and iPad.
 - Declare `TaoScene` under
   `UISceneConfigurations.UIWindowSceneSessionRoleApplication`.
@@ -594,7 +594,7 @@ position that no longer lands on a connected monitor is ignored and the OS
 places the window. State is written to `.window-state.json` in the app config
 directory on quit; delete that file to reset. Mobile is unaffected.
 
-Launching Macro while it is already running exits the new process in
+Launching Rox while it is already running exits the new process in
 `tauri-plugin-single-instance` before it creates a window. The running process
 then unhides the app and shows, unminimizes and focuses its window, rebuilding
 it from the startup config if it no longer exists (`src/desktop/main_window.rs`).
@@ -697,7 +697,7 @@ The frontend tags traces and logs with `app.runtime=tauri`, `app.platform`,
 `macro.native.version`. The shared `service.name=web-app` remains unchanged.
 Browser sessions instead have `app.runtime=browser`.
 
-Quit an existing Macro instance first, then launch the built **app bundle**:
+Quit an existing Rox instance first, then launch the built **app bundle**:
 
 ```sh
 open -a /absolute/path/to/Macro.app --args --record-memory \
@@ -716,7 +716,7 @@ frontend spans. This does not override sampling/drop policies in a downstream
 collector or backend, or add traces to operations that have no instrumentation.
 The title bar shows `Recording <short ID>`; the full `macro.recording.id` and
 `service.instance.id` appear in the startup telemetry log. Quit to stop recording.
-Launching again creates new IDs. A second launch while Macro is already running
+Launching again creates new IDs. A second launch while Rox is already running
 is handled by the existing single-instance plugin and does **not** enable recording
 in the running instance. Automatic bundle updates are disabled for a recording
 launch so the measured frontend stays on the embedded build.

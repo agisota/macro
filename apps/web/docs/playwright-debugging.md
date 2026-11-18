@@ -18,7 +18,7 @@ The app uses cookie-based authentication (`credentials: 'include'`) since `ENABL
    ```javascript
    async (page) => {
      const token = "YOUR_ACCESS_TOKEN_HERE";
-     await page.route('**/*.macro.com/**', async (route) => {
+     await page.route('**/*.rox.one/**', async (route) => {
        const headers = {
          ...route.request().headers(),
          'Authorization': `Bearer ${token}`
@@ -37,6 +37,6 @@ The app uses cookie-based authentication (`credentials: 'include'`) since `ENABL
    ```
    This second navigation will work because the route interception is now active and auth requests succeed.
 
-**Why this is needed:** The app checks authentication via API calls to `.macro.com` endpoints using `credentials: 'include'`. Without valid cookies or an auth header, `useIsAuthenticated()` returns false and the `Soup` component redirects to `/` → `/signup`. The initial redirect happens before route interception can authenticate the first requests, but forcing a second navigation resolves this.
+**Why this is needed:** The app checks authentication via API calls to `.rox.one` endpoints using `credentials: 'include'`. Without valid cookies or an auth header, `useIsAuthenticated()` returns false and the `Soup` component redirects to `/` → `/signup`. The initial redirect happens before route interception can authenticate the first requests, but forcing a second navigation resolves this.
 
 **Note:** WebSocket connections (for real-time features) won't be authenticated with this approach since Playwright's route interception only works for HTTP/HTTPS. This is fine for most UI testing scenarios.

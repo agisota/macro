@@ -4,7 +4,7 @@
 
 Documents feature: Lambda that extracts text and citations from uploaded
 documents (including PDF rendering via pdfium) and stores the result in
-MacroDB, feeding search and citations elsewhere.
+RoxDB, feeding search and citations elsewhere.
 
 ## Start here
 
@@ -29,7 +29,7 @@ MacroDB, feeding search and citations elsewhere.
 ## Checks
 
 - `cargo test -p document_text_extractor` (`SQLX_OFFLINE` unset; needs local
-  MacroDB — `just run_dbs`, `just initialize_dbs`).
+  RoxDB — `just run_dbs`, `just initialize_dbs`).
 - `just services/document_text_extractor/build` from the repo root for the
   deployable Lambda build (never build for deployment from this directory).
 

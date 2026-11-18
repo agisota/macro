@@ -2,7 +2,7 @@ import { Message } from '@channel/Message/Message';
 import { Thread } from '@channel/Thread/Thread';
 import { ThreadReplyRail } from '@channel/Thread/ThreadReplyRail';
 import type { MessageData } from '@core/messages/types';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import type { GithubPullRequestComment } from '@service-storage/generated/schemas';
 import { Key } from '@solid-primitives/keyed';
 import { createResizeObserver } from '@solid-primitives/resize-observer';
@@ -17,7 +17,7 @@ const PREVIEW_MAX_HEIGHT = 180;
 function GithubAvatarFallback() {
   return (
     <div class="size-full rounded-full bg-surface flex items-center justify-center">
-      <MacroLogo class="size-6 text-edge" />
+      <RoxMark class="size-6" />
     </div>
   );
 }
@@ -220,7 +220,7 @@ function GithubCommentMessage(props: {
  * A read-only GitHub comment rendered with the channel message components,
  * collapsed to a preview when long (bot comments tend to be walls of text).
  * Review-thread replies render indented under the root along the thread
- * rail, mirroring Macro discussion threads.
+ * rail, mirroring Rox discussion threads.
  */
 export function GithubMessageView(props: {
   comment: GithubPullRequestComment;

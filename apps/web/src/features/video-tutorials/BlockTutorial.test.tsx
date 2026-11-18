@@ -115,7 +115,7 @@ afterEach(() => {
 });
 
 const row = () =>
-  screen.queryByRole('button', { name: /Learn how to use Macro Mail/ });
+  screen.queryByRole('button', { name: /Learn how to use Rox Mail/ });
 const video = () => document.querySelector('video');
 const playButton = () => screen.getByRole('button', { name: /^Play / });
 // jsdom keeps Kobalte's dialog mounted for its exit; it is closed once marked so.
@@ -131,7 +131,7 @@ describe('block tutorial row', () => {
     expect(play).not.toHaveBeenCalled();
     // The play pill names the video and shows its presenter and length.
     const pill = screen.getByRole('button', {
-      name: 'Play Learn how to use Macro Mail, 1:42',
+      name: 'Play Learn how to use Rox Mail, 1:42',
     });
     expect(pill.textContent).toContain('Jacob Beckerman');
     expect(pill.textContent).toContain('Watch demo · 1:42');
@@ -189,22 +189,22 @@ describe('shelf after a video ends', () => {
     const dialog = await screen.findByRole('dialog');
     fireEvent.click(playButton());
     fireEvent.playing(video()!);
-    expect(screen.queryByText('More videos from Macro')).toBeNull();
+    expect(screen.queryByText('More videos from Rox')).toBeNull();
 
     fireEvent.ended(video()!);
 
-    screen.getByText('More videos from Macro');
+    screen.getByText('More videos from Rox');
     expect(
-      screen.queryByRole('button', { name: /^Learn how to use Macro Mail,/ })
+      screen.queryByRole('button', { name: /^Learn how to use Rox Mail,/ })
     ).toBeNull();
     expect(video()?.controls).toBe(false);
 
     fireEvent.click(
-      screen.getByRole('button', { name: /^Learn how to use Macro CRM,/ })
+      screen.getByRole('button', { name: /^Learn how to use Rox CRM,/ })
     );
 
-    expect(screen.queryByText('More videos from Macro')).toBeNull();
-    expect(dialog.textContent).toContain('Learn how to use Macro CRM');
+    expect(screen.queryByText('More videos from Rox')).toBeNull();
+    expect(dialog.textContent).toContain('Learn how to use Rox CRM');
     expect(video()?.getAttribute('src')).toBe(TUTORIALS.crm?.videoUrl);
     expect(document.activeElement).toBe(playButton());
     expect(track).toHaveBeenLastCalledWith('tutorial_video', {
@@ -234,7 +234,7 @@ describe('shelf after a video ends', () => {
 
     expect(play).toHaveBeenCalledTimes(1);
     expect(video()?.currentTime).toBe(0);
-    expect(screen.queryByText('More videos from Macro')).toBeNull();
+    expect(screen.queryByText('More videos from Rox')).toBeNull();
   });
 });
 
@@ -249,16 +249,16 @@ describe('support link under the video', () => {
       },
       {
         id: 'support-ada',
-        name: 'Macro Support x ada',
+        name: 'Rox Support x ada',
         owner_id: 'macro|ada@acme.test',
       },
     ];
     render(() => <TutorialPill tutorial="crm" />);
     fireEvent.click(
-      screen.getByRole('button', { name: /Learn how to use Macro CRM/ })
+      screen.getByRole('button', { name: /Learn how to use Rox CRM/ })
     );
     await screen.findByRole('dialog');
-    screen.getByText('Have questions about Macro CRM?');
+    screen.getByText('Have questions about Rox CRM?');
 
     fireEvent.click(
       screen.getByRole('button', {
@@ -277,8 +277,8 @@ describe('support link under the video', () => {
     await waitFor(() => expect(dialogClosed()).toBe(true));
   });
 
-  it("opens a Macro team member's most recently active support channel", async () => {
-    // A Macro team member is in customers' support channels but owns none.
+  it("opens a Rox team member's most recently active support channel", async () => {
+    // A Rox team member is in customers' support channels but owns none.
     channelList.channels = [
       {
         id: 'older-support',
@@ -316,7 +316,7 @@ describe('support link under the video', () => {
     fireEvent.click(row()!);
     await screen.findByRole('dialog');
 
-    expect(screen.queryByText('Have questions about Macro Mail?')).toBeNull();
+    expect(screen.queryByText('Have questions about Rox Mail?')).toBeNull();
   });
 });
 
@@ -324,7 +324,7 @@ describe('block tutorial pill', () => {
   it('opens the same paused video and dismisses separately from other tutorials', async () => {
     render(() => <TutorialPill tutorial="mail" />);
     fireEvent.click(
-      screen.getByRole('button', { name: /Learn how to use Macro Mail/ })
+      screen.getByRole('button', { name: /Learn how to use Rox Mail/ })
     );
     await screen.findByRole('dialog');
     expect(play).not.toHaveBeenCalled();
@@ -356,14 +356,14 @@ describe('block tutorial sidebar item', () => {
       </>
     ));
     const spreadsheets = screen.getByRole('button', {
-      name: 'Watch tutorial: Learn how to use Macro Spreadsheets, 0:56',
+      name: 'Watch tutorial: Learn how to use Rox Spreadsheets, 0:56',
     });
-    expect(spreadsheets.textContent).toContain('Macro Spreadsheets');
+    expect(spreadsheets.textContent).toContain('Rox Spreadsheets');
     expect(spreadsheets.textContent).not.toContain('Watch tutorial');
 
     fireEvent.click(spreadsheets);
     const dialog = await screen.findByRole('dialog');
-    expect(dialog.textContent).toContain('Learn how to use Macro Spreadsheets');
+    expect(dialog.textContent).toContain('Learn how to use Rox Spreadsheets');
     expect(video()?.getAttribute('src')).toBe(TUTORIALS.spreadsheets?.videoUrl);
     expect(track).toHaveBeenCalledWith('tutorial_video', {
       tutorial: 'macro-spreadsheets',
@@ -374,7 +374,7 @@ describe('block tutorial sidebar item', () => {
   it('says "Watch tutorial" on its own', () => {
     render(() => <TutorialSidebarItem tutorial="docs" />);
     const docs = screen.getByRole('button', {
-      name: /Learn how to use Macro Docs/,
+      name: /Learn how to use Rox Docs/,
     });
     expect(docs.textContent).toContain('Watch tutorial');
   });
@@ -397,7 +397,7 @@ describe('block tutorials on touch devices', () => {
     useDevice(size);
     renderEntries();
     expect(
-      screen.getAllByRole('button', { name: /Learn how to use Macro/ })
+      screen.getAllByRole('button', { name: /Learn how to use Rox/ })
     ).toHaveLength(3);
   });
 

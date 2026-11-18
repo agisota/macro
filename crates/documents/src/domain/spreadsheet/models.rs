@@ -224,7 +224,7 @@ pub enum SpreadsheetCellValue {
     /// A number, passed to the engine exactly as written.
     #[cfg_attr(feature = "axum", schema(value_type = f64))]
     Number(serde_json::Number),
-    /// Text, or a formula starting with =, at most 10,000 characters. Macro links render as mention pills.
+    /// Text, or a formula starting with =, at most 10,000 characters. Rox links render as mention pills.
     /// For named pills, use the same inline tags as docs: <m-user-mention>{"userId":"macro|person@example.com","email":"person@example.com","displayName":"Person"}</m-user-mention>
     /// or <m-document-mention>{"documentId":"UUID","documentName":"Budget","blockName":"spreadsheet"}</m-document-mention>.
     /// A date chip is <m-date-mention>{"date":"2026-09-28T00:00:00.000Z","displayFormat":"Sep 28"}</m-date-mention>; a cell holding only that chip calculates as the date.

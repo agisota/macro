@@ -167,7 +167,7 @@ async fn only_a_draft_sessions_own_check_is_kept_as_its_answer(pool: PgPool) {
 
     // Someone else's program can't answer this draft...
     let stranger = CreationPrincipal::User(
-        MacroUserIdStr::try_from("macro|stranger@macro.com".to_owned()).unwrap(),
+        MacroUserIdStr::try_from("macro|stranger@rox.one".to_owned()).unwrap(),
     );
     svc.check_action(&stranger, config.clone(), Vec::new(), Some(correlation))
         .await

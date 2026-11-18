@@ -1,4 +1,4 @@
-import type { MacrodDetectedAgent, MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdDetectedAgent, RoxdStatus } from '@macro/tauri/roxd';
 import { type Span, Telemetry } from '@macro-inc/observability';
 import { err, ok, type Result, ResultAsync } from 'neverthrow';
 import { createSignal } from 'solid-js';
@@ -34,10 +34,10 @@ const FALLBACK_ERRORS: Record<SetupStep, string> = {
  */
 export function createLocalRuntimeSetup(caps: SetupCapabilities) {
   const [state, setState] = createSignal<SetupState>({ kind: 'idle' });
-  const [agents, setAgents] = createSignal<MacrodDetectedAgent[]>();
+  const [agents, setAgents] = createSignal<RoxdDetectedAgent[]>();
   const [scanning, setScanning] = createSignal(false);
   /** The running daemon once connect succeeded, for resuming. */
-  let connected: MacrodStatus | undefined;
+  let connected: RoxdStatus | undefined;
   let lastChoices: SetupChoices = { fullAccess: false };
 
   const attempt = async <T>(
@@ -64,7 +64,7 @@ export function createLocalRuntimeSetup(caps: SetupCapabilities) {
   };
 
   /** Look for installed agents without running setup, for the options. */
-  const scan = async (): Promise<MacrodDetectedAgent[]> => {
+  const scan = async (): Promise<RoxdDetectedAgent[]> => {
     setScanning(true);
     const result = await ResultAsync.fromPromise(caps.detectAgents(), () => []);
     setScanning(false);
@@ -76,7 +76,7 @@ export function createLocalRuntimeSetup(caps: SetupCapabilities) {
   const connect = async (
     choices: SetupChoices,
     parent: Span
-  ): Promise<Result<MacrodStatus, string>> => {
+  ): Promise<Result<RoxdStatus, string>> => {
     const found = await attempt('detect', parent, async () => {
       const offered = await scan();
       return choices.agentId
@@ -126,7 +126,7 @@ export function createLocalRuntimeSetup(caps: SetupCapabilities) {
 
   /** Reuse an agent already bound to this runtime, or create one. */
   const ensureAgent = async (
-    status: MacrodStatus,
+    status: RoxdStatus,
     choices: SetupChoices,
     parent: Span
   ): Promise<ReadyAgent> => {
@@ -156,7 +156,7 @@ export function createLocalRuntimeSetup(caps: SetupCapabilities) {
   };
 
   const finish = async (
-    status: MacrodStatus,
+    status: RoxdStatus,
     choices: SetupChoices,
     parent: Span
   ) => {
@@ -183,7 +183,7 @@ export function createLocalRuntimeSetup(caps: SetupCapabilities) {
     const span = Telemetry.span('local_runtime.setup');
     span.setAttr('local_runtime.resumed', connected !== undefined);
     await span.run(async () => {
-      const status: Result<MacrodStatus, string> = connected
+      const status: Result<RoxdStatus, string> = connected
         ? ok(connected)
         : await connect(choices, span);
       if (status.isOk()) {
@@ -209,7 +209,7 @@ export function createLocalRuntimeSetup(caps: SetupCapabilities) {
   };
 
   /** Finish setup for a daemon that is already running. */
-  const adopt = async (status: MacrodStatus, choices: SetupChoices) => {
+  const adopt = async (status: RoxdStatus, choices: SetupChoices) => {
     if (inProgress()) return;
     connected = status;
     await run(choices);

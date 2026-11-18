@@ -53,7 +53,7 @@ top of it.
 ## Checks
 
 - `cargo test -p entity_access_db_utils` (`SQLX_OFFLINE` unset; requires
-  local MacroDB — `just setup_macrodb`).
+  local RoxDB — `just setup_macrodb`).
 
 ## Gotchas
 

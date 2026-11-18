@@ -45,7 +45,7 @@ pub enum PgUserApiKeyAuthorizationRepoError {
     /// A database operation failed.
     #[error("user api key authorization database operation failed")]
     Database(#[from] sqlx::Error),
-    /// Persisted user data could not be represented as a Macro user identifier.
+    /// Persisted user data could not be represented as a Rox user identifier.
     #[error("invalid persisted user identity")]
     InvalidUserIdentity,
 }

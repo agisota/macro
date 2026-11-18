@@ -4,7 +4,7 @@
 //! The disk size is not enforced (overlayfs has no per-container quota).
 //!
 //! Like an Incus computer's data disk, two named volumes hold `/home` and
-//! `/var/lib/macrod` (the enrollment marker and Claude credential).
+//! `/var/lib/roxd` (the enrollment marker and Claude credential).
 //! Destroy deletes them; a guest recreated after a loss reuses them. They
 //! carry the computer and control-plane labels, so a stack reset finds them.
 //!
@@ -272,8 +272,8 @@ impl Fleet for DockerFleet {
                         container_name(computer.id),
                         "systemctl".to_owned(),
                         "restart".to_owned(),
-                        "macrod-enroll.service".to_owned(),
-                        "macrod.service".to_owned(),
+                        "roxd-enroll.service".to_owned(),
+                        "roxd.service".to_owned(),
                     ],
                 )
                 .await?;
@@ -340,8 +340,8 @@ impl Fleet for DockerFleet {
         Ok(())
     }
 
-    #[tracing::instrument(name = "docker_fleet.restart_macrod", skip(self), err)]
-    async fn restart_macrod(&self, computer_id: ComputerId) -> Result<(), DockerFleetError> {
+    #[tracing::instrument(name = "docker_fleet.restart_roxd", skip(self), err)]
+    async fn restart_roxd(&self, computer_id: ComputerId) -> Result<(), DockerFleetError> {
         self.docker(
             "exec",
             &[
@@ -349,7 +349,7 @@ impl Fleet for DockerFleet {
                 container_name(computer_id),
                 "systemctl".to_owned(),
                 "restart".to_owned(),
-                "macrod".to_owned(),
+                "roxd".to_owned(),
             ],
         )
         .await?;
@@ -562,7 +562,7 @@ fn volumes(computer_id: ComputerId) -> [(String, &'static str); 2] {
     let name = container_name(computer_id);
     [
         (format!("{name}-home"), "/home"),
-        (format!("{name}-macrod"), "/var/lib/macrod"),
+        (format!("{name}-roxd"), "/var/lib/roxd"),
     ]
 }
 

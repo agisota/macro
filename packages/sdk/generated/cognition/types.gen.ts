@@ -743,11 +743,11 @@ export type GenerateImageErrorBody = {
 };
 
 /**
- * A reference image already stored in Macro.
+ * A reference image already stored in Rox.
  */
 export type GenerateImageReference = {
     /**
-     * The Macro document ID.
+     * The Rox document ID.
      */
     id: string;
     type: 'document';
@@ -915,11 +915,11 @@ export type ImportEntity = {
      */
     created_at: string;
     /**
-     * The Macro entity it became, once imported.
+     * The Rox entity it became, once imported.
      */
     entity_id?: string | null;
     /**
-     * The Macro entity type (`task` | `md` | `channel`), once imported.
+     * The Rox entity type (`task` | `md` | `channel`), once imported.
      */
     entity_type?: string | null;
     /**
@@ -1230,7 +1230,7 @@ export type NotionAlreadyImported = {
      */
     by: string;
     /**
-     * The Macro entity it became.
+     * The Rox entity it became.
      */
     entityId: string;
     /**
@@ -1269,7 +1269,7 @@ export type NotionDocMeta = {
  */
 export type NotionImportReport = {
     /**
-     * Who imported the objects already in Macro, most first.
+     * Who imported the objects already in Rox, most first.
      */
     alreadyImportedBy?: Array<NotionImporter>;
     /**
@@ -1336,7 +1336,7 @@ export type NotionImportReport = {
      */
     pages: number;
     /**
-     * Tracker groups written as Macro projects.
+     * Tracker groups written as Rox projects.
      */
     projects?: number;
     /**
@@ -1601,7 +1601,7 @@ export type PipedreamCompleteRequest = {
 };
 
 /**
- * Request body for recording a finished Macro Connect flow.
+ * Request body for recording a finished Rox Connect flow.
  */
 export type PipedreamConnectCompleteRequest = {
     /**
@@ -1676,7 +1676,7 @@ export type PipedreamRecoverRequest = {
  */
 export type PipedreamTokenRequest = {
     /**
-     * The app to connect, by Pipedream slug. With it, an app Macro Connect
+     * The app to connect, by Pipedream slug. With it, an app Rox Connect
      * serves can answer with a Connect URL instead of a Pipedream token.
      */
     app_slug?: string | null;
@@ -1684,7 +1684,7 @@ export type PipedreamTokenRequest = {
 
 /**
  * Response from starting a connect flow: a Pipedream Connect token, or for
- * `provider = connect` a Macro Connect URL.
+ * `provider = connect` a Rox Connect URL.
  */
 export type PipedreamTokenResponse = {
     /**
@@ -1693,7 +1693,7 @@ export type PipedreamTokenResponse = {
      */
     connect_link_url?: string | null;
     /**
-     * URL to open in a popup or browser tab for Macro Connect's consent
+     * URL to open in a popup or browser tab for Rox Connect's consent
      * flow; once it finishes, call `/pipedream/mcp/connect/complete`.
      * Connect only.
      */
@@ -2074,7 +2074,7 @@ export type SlackChannelMeta = {
      */
     name: string;
     /**
-     * Slack members matched to the Macro team roster when discovery resolved membership.
+     * Slack members matched to the Rox team roster when discovery resolved membership.
      */
     participants?: Array<SlackParticipant>;
     /**
@@ -2348,7 +2348,7 @@ export type ToolSet = {
  */
 export type TrackImportEntityRequest = {
     /**
-     * The Macro entity created from the item; required when `status` is
+     * The Rox entity created from the item; required when `status` is
      * `imported`.
      */
     entityId?: string | null;
@@ -3908,7 +3908,7 @@ export type McpOauthClientMetadataData = {
 
 export type McpOauthClientMetadataResponses = {
     /**
-     * Macro OAuth client metadata document
+     * Rox OAuth client metadata document
      */
     200: unknown;
 };

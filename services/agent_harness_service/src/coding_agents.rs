@@ -71,7 +71,7 @@ impl<Bots: BotService, Harnesses: HarnessRepo> CodingAgentDirectory
         // administer or list, so read only that persona's bound runtime facts.
         let harness_ids = agents
             .iter()
-            .filter(|agent| agent.harness == harness_id::MACROD_HARNESS_SLUG)
+            .filter(|agent| agent.harness == harness_id::ROXD_HARNESS_SLUG)
             .filter_map(|agent| agent.harness_id)
             .collect::<Vec<_>>();
         let harnesses = connected_harnesses(&self.harnesses, harness_ids).await?;
@@ -162,7 +162,7 @@ impl RuntimeConnections {
             "cursor" => self.cursor,
             "codex-cloud" => self.codex,
             "in-memory" | "macro-inmem" => true,
-            harness_id::MACROD_HARNESS_SLUG => harness_id
+            harness_id::ROXD_HARNESS_SLUG => harness_id
                 .and_then(|id| self.harnesses.get(&id))
                 .copied()
                 .unwrap_or(false),

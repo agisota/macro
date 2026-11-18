@@ -148,7 +148,7 @@ async fn main() -> Result<(), Report> {
     };
     let email_adapter = EmailAdapter::new(
         aws_sdk_sesv2::Client::new(&aws_config),
-        "notif-sandbox@macro.com".to_string(),
+        "notif-sandbox@rox.one".to_string(),
         None,
     );
 

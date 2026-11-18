@@ -1,4 +1,4 @@
-import type { MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdStatus } from '@macro/tauri/roxd';
 import { fireEvent, render, screen } from '@solidjs/testing-library';
 import { describe, expect, it, vi } from 'vitest';
 import type {
@@ -8,11 +8,11 @@ import type {
 } from '../core/setup';
 import { LocalRuntimeSetupPanel } from './local-runtime-setup-panel';
 
-const RUNNING: MacrodStatus = {
+const RUNNING: RoxdStatus = {
   phase: 'running',
   agentId: 'claude-code',
   agentName: 'Claude Code',
-  workspace: '/home/me/Macro',
+  workspace: '/home/me/Rox',
   pairingCode: null,
   pairingExpiresAt: null,
   harnessId: 'harness-1',
@@ -57,7 +57,7 @@ describe('LocalRuntimeSetupPanel', () => {
       <LocalRuntimeSetupPanel
         capabilities={capabilities()}
         onOpenSession={onOpenSession}
-        defaultWorkspace="/home/me/Macro"
+        defaultWorkspace="/home/me/Rox"
         onClose={onClose}
       />
     ));
@@ -68,7 +68,7 @@ describe('LocalRuntimeSetupPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Set up Claude Code' }));
 
     expect(await screen.findByText('@claude-code is ready')).toBeTruthy();
-    expect(screen.getByText('Sessions run in /home/me/Macro.')).toBeTruthy();
+    expect(screen.getByText('Sessions run in /home/me/Rox.')).toBeTruthy();
 
     fireEvent.click(screen.getByRole('button', { name: 'Start a session' }));
     expect(onOpenSession).toHaveBeenCalledWith({

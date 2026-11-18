@@ -1,4 +1,4 @@
-//! Repository-choice orchestration. Only ambiguous selection spends Macro AI quota.
+//! Repository-choice orchestration. Only ambiguous selection spends Rox AI quota.
 
 use std::{future::Future, num::NonZeroUsize, sync::Arc};
 

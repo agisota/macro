@@ -183,7 +183,7 @@ fn test_build_message_email_filter_sender_partial() {
 // backed by the expression index `idx_email_contacts_email_domain`.
 // These tests guard against three regressions:
 //   1. accidentally falling back to `ILIKE '%domain%'` (would re-introduce
-//      false positives like `macro.community` matching `macro.com`)
+//      false positives like `macro.community` matching `rox.one`)
 //   2. forgetting to lowercase the bound value before sending it (the index
 //      is built on `LOWER(...)`, so a mixed-case bind would miss the index)
 //   3. leaking the domain into raw SQL instead of binding it (sql injection)

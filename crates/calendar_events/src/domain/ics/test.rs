@@ -9,7 +9,7 @@ use crate::domain::{
     models::{ConferenceProvider, EventTime, EventType},
 };
 
-const CALL_URL: &str = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef";
+const CALL_URL: &str = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef";
 
 fn export(time: EventTime) -> CalendarEventExport {
     CalendarEventExport {
@@ -173,7 +173,7 @@ fn a_macro_call_keeps_a_physical_location_and_drops_an_empty_description() {
 
 #[test]
 fn the_join_line_goes_even_when_an_earlier_call_link_is_found_first() {
-    let earlier = "https://macro.com/app/meet/join/fedcba9876543210fedcba9876543210";
+    let earlier = "https://rox.one/app/meet/join/fedcba9876543210fedcba9876543210";
     let mut event = export(all_day());
     let (description, location) = attach_macro_call(
         Some(&format!("<p>Last week: {earlier}</p>")),
@@ -293,7 +293,7 @@ fn a_forward_keeps_the_macro_call_it_would_strip_from_a_share() {
         .expect("the description stays");
     assert!(description.contains("Bring the budget draft"), "{lines:?}");
     assert!(
-        description.ends_with(&format!("\\nJoin Macro call: {CALL_URL}")),
+        description.ends_with(&format!("\\nJoin Rox call: {CALL_URL}")),
         "{lines:?}"
     );
     assert!(lines.contains(&"METHOD:PUBLISH".to_string()));

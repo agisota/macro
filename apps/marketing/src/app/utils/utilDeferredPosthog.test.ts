@@ -34,7 +34,11 @@ const setup = () => {
         resolve = done;
       })
   );
-  const analytics = createDeferredPosthog('public-key', load);
+  const analytics = createDeferredPosthog(
+    'public-key',
+    'https://analytics.example',
+    load
+  );
   return {
     analytics,
     load,
@@ -61,7 +65,7 @@ describe('deferred website PostHog', () => {
     vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => {});
     vi.spyOn(console, 'error').mockImplementation(() => {});
     window.history.replaceState({}, '', '/?utm_source=launch&gclid=ad-click');
-    document.title = 'Macro';
+    document.title = 'Rox';
   });
 
   afterEach(() => {

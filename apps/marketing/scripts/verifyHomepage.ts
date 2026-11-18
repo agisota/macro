@@ -28,7 +28,11 @@ export async function verifyHomepage(
   });
   let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined;
   try {
-    browser = await browserType.launch();
+    browser = await browserType.launch(
+      browserType === chromium
+        ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH }
+        : {}
+    );
     const origin = `http://127.0.0.1:${server.port}`;
     if (browserType === chromium) await verifyDemo(browser, origin);
     // Verify both neutral homepage palettes before and after hydration.

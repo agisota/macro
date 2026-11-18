@@ -930,7 +930,7 @@ fn a_prompt_error_carrying_a_notice_fails_its_turn_with_the_notice() {
     );
 }
 
-/// A native Herdr turn stopped while a Macro prompt waited behind it: the
+/// A native Herdr turn stopped while a Rox prompt waited behind it: the
 /// native turn's own `cancelled` end arrives first and must not close the
 /// prompt's turn, so the prompt's not-delivered error is what the reader sees.
 #[test]

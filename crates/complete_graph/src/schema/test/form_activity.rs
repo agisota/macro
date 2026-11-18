@@ -5,7 +5,7 @@ pub(super) const EDITABLE_FORM_ID: &str = "0199a000-0000-7000-8000-00000000f0f0"
 /// A form the viewer only responds to (View): its timeline would name the
 /// other respondents, so it is not theirs to read.
 pub(super) const RESPONDED_FORM_ID: &str = "0199a000-0000-7000-8000-00000000f2f2";
-const OTHER_RESPONDENT_ID: &str = "macro|other-respondent@macro.com";
+const OTHER_RESPONDENT_ID: &str = "macro|other-respondent@rox.one";
 
 /// Another respondent's response, as ingestion records it.
 fn someone_elses_response(id: u128, form_id: &str) -> activity::ActivityRecord {

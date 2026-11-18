@@ -89,7 +89,7 @@ impl ExportUser {
 /// `bot_id::MACRO_SYSTEM_BOT_ID`; the parser neither hardcodes nor configures a bot ID.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ResolvedAuthor {
-    /// Lowercase raw-email Macro identity, without imported_author.
+    /// Lowercase raw-email Rox identity, without imported_author.
     User(MacroUserIdStr<'static>),
     /// System-bot sender with the source name retained for imported_author.
     SystemBot {
@@ -99,7 +99,7 @@ pub enum ResolvedAuthor {
 }
 
 /// Bounded by the users payload, not message history. Duplicate emails are allowed;
-/// they deliberately resolve to the same Macro identity.
+/// they deliberately resolve to the same Rox identity.
 #[derive(Debug, Clone, Default)]
 pub struct UserDirectory {
     users: BTreeMap<SlackUserId, ExportUser>,

@@ -10,7 +10,7 @@ const tags = {
 
 const BASE_NAME = 'search-event-queue';
 
-const SEARCH_TEAM_EMAILS = ['hutch@macro.com', 'evan@macro.com'];
+const SEARCH_TEAM_EMAILS = ['hutch@rox.one', 'evan@rox.one'];
 
 // SNS Topic for email notifications
 const emailTopic = new aws.sns.Topic('email-topic', {

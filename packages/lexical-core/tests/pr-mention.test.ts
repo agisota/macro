@@ -10,7 +10,7 @@ import { markdownToEmbeddingText, markdownToPlainText } from '../utils/parsers';
 const PR_URL = 'https://github.com/macro-inc/macro/pull/7945';
 
 describe('PullRequestMentionNode', () => {
-  it('round-trips a Macro id mention', () => {
+  it('round-trips a Rox id mention', () => {
     const markdown =
       '<m-pr-mention>{"id":"foreign-1","label":"macro-inc/macro#7945"}</m-pr-mention>';
     const state = markdownToSerializedEditorStateWithIds(markdown);
@@ -20,7 +20,7 @@ describe('PullRequestMentionNode', () => {
     expect(serializedEditorStateToMarkdown(state)).toBe(markdown);
   });
 
-  it('accepts a GitHub URL in place of the Macro id', () => {
+  it('accepts a GitHub URL in place of the Rox id', () => {
     const markdown = `<m-pr-mention>{"url":"${PR_URL}","label":""}</m-pr-mention>`;
     const state = markdownToSerializedEditorStateWithIds(markdown);
     expect(state.root.children[0]).toMatchObject({

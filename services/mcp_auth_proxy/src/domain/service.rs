@@ -179,7 +179,7 @@ pub struct McpAuthProxyServiceDeps<I> {
     pub email_codes: Arc<dyn EmailCodeProvider>,
     /// The MCP servers tokens may be issued for.
     pub resources: McpResources,
-    /// Mints the tokens of the resources that call Macro's APIs directly.
+    /// Mints the tokens of the resources that call Rox's APIs directly.
     pub macro_api_tokens: Arc<dyn MacroApiTokenMinter>,
 }
 
@@ -343,7 +343,7 @@ where
     }
 
     /// The access token `resource` is given for an upstream one, and the
-    /// seconds it is valid for: the upstream token itself, or a Macro API
+    /// seconds it is valid for: the upstream token itself, or a Rox API
     /// token signed with the client's name, which may expire sooner.
     async fn access_token_for(
         &self,
@@ -1083,7 +1083,7 @@ pub enum RegisterClientError {
         /// The rejected URI, for logging.
         uri: String,
     },
-    /// The client named itself as Macro.
+    /// The client named itself as Rox.
     #[error("client_name is reserved")]
     ReservedClientName,
     /// The registration could not be persisted.

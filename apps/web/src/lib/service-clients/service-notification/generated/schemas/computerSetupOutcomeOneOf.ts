@@ -7,7 +7,7 @@
 import type { ComputerSetupOutcomeOneOfKind } from './computerSetupOutcomeOneOfKind';
 
 /**
- * macrod connected for the first time: the computer is ready.
+ * roxd connected for the first time: the computer is ready.
  */
 export type ComputerSetupOutcomeOneOf = {
   kind: ComputerSetupOutcomeOneOfKind;

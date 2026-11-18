@@ -15,7 +15,7 @@ import {
 import { ConversationSection } from './conversation-sections';
 
 /**
- * One line per chat, like Macro's other lists: icon, name, muted kind and
+ * One line per chat, like Rox's other lists: icon, name, muted kind and
  * last activity. `actions` show on hover or focus (always on touch); `status`
  * stays visible.
  */
@@ -132,9 +132,7 @@ export function ChatList(props: {
                         variant="secondary"
                         size="sm"
                         aria-label={
-                          props.adding.has(chat.jid)
-                            ? 'Adding…'
-                            : 'Add to Macro'
+                          props.adding.has(chat.jid) ? 'Adding…' : 'Add to Rox'
                         }
                         disabled={props.adding.has(chat.jid)}
                         onClick={() => props.onAdd(chat)}
@@ -144,7 +142,7 @@ export function ChatList(props: {
                         <span class="mobile:hidden">
                           {props.adding.has(chat.jid)
                             ? 'Adding…'
-                            : 'Add to Macro'}
+                            : 'Add to Rox'}
                         </span>
                       </Button>
                     }
@@ -185,7 +183,7 @@ export function ChatList(props: {
   );
 }
 
-/** Chats Macro can't hold yet, folded away with the reason for each. */
+/** Chats Rox can't hold yet, folded away with the reason for each. */
 export function UnsupportedChatList(props: {
   chats: WhatsAppChat[];
   /** Searching unfolds the list so matches show. */

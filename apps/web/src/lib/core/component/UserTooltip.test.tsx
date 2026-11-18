@@ -309,11 +309,11 @@ describe('UserTooltip settings action', () => {
     });
   });
 
-  it('opens the Agents list for Macro', async () => {
+  it('opens the Agents list for Rox', async () => {
     const user = userEvent.setup({ skipHover: true });
     render(() => (
       <UserTooltip
-        displayName="Macro"
+        displayName="Rox"
         id="bot|00000000-0000-0000-0000-00000000a1a1"
       />
     ));

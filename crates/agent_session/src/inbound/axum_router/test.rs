@@ -330,8 +330,8 @@ impl OneBotDirectory {
         }
     }
 
-    /// A saved agent bound to the owner's paired macrod runtime.
-    fn macrod_agent() -> Self {
+    /// A saved agent bound to the owner's paired roxd runtime.
+    fn roxd_agent() -> Self {
         Self {
             shares_channel_with: Vec::new(),
             facts: BotFacts {
@@ -344,7 +344,7 @@ impl OneBotDirectory {
                 on_team_agent_computer: false,
                 managed_profile: Some(crate::domain::ports::ManagedAgentProfile {
                     model: "persona-model".to_owned(),
-                    harness: "macrod".to_owned(),
+                    harness: "roxd".to_owned(),
                     instructions: "persona instructions".to_owned(),
                     mcp_servers: Default::default(),
                 }),
@@ -458,14 +458,14 @@ impl BotDirectory for OneBotDirectory {
 
 /// What a requester says when no runtime creates the session.
 const RUNTIME_UNAVAILABLE_REASON: &str =
-    "this agent's machine did not open the session; make sure macrod is running and up to date";
+    "this agent's machine did not open the session; make sure roxd is running and up to date";
 
 /// Stands in for the bot's runtime: records what was asked and answers with
-/// a session under the requested id, as macrod would have created it.
+/// a session under the requested id, as roxd would have created it.
 #[derive(Default)]
 struct RecordingRequester {
     requested: Mutex<Vec<RequestedExternalSession>>,
-    /// No runtime answers, as when the operator's macrod is not running.
+    /// No runtime answers, as when the operator's roxd is not running.
     unavailable: bool,
     /// The id already names someone else's session.
     foreign: bool,
@@ -514,7 +514,7 @@ impl ExternalSessionRequester for RecordingRequester {
                 .model
                 .clone()
                 .unwrap_or_else(|| "persona-model".to_owned()),
-            harness: "macrod".to_owned(),
+            harness: "roxd".to_owned(),
             repo_url: None,
             workspace: "/home/operator/code".to_owned(),
             sandbox_size: crate::domain::model::SandboxSize::Default,
@@ -795,7 +795,7 @@ async fn an_external_session_receives_the_saved_agent_profile() {
     let mut bots = OneBotDirectory::external_agent();
     bots.facts.managed_profile = Some(crate::domain::ports::ManagedAgentProfile {
         model: "gpt-5.6-luna".into(),
-        harness: harness_id::MACROD_HARNESS_SLUG.into(),
+        harness: harness_id::ROXD_HARNESS_SLUG.into(),
         instructions: String::new(),
         mcp_servers: crate::domain::model::AgentMcpServers::OwnerConnections,
     });
@@ -814,7 +814,7 @@ async fn an_external_session_receives_the_saved_agent_profile() {
         .as_ref()
         .expect("saved profile is forwarded");
     assert_eq!(profile.model, "gpt-5.6-luna");
-    assert_eq!(profile.harness, harness_id::MACROD_HARNESS_SLUG);
+    assert_eq!(profile.harness, harness_id::ROXD_HARNESS_SLUG);
 }
 
 #[tokio::test]
@@ -1425,7 +1425,7 @@ async fn anyone_can_select_a_managed_system_bot() {
 /// No prompt travels with it - the caller sends its own through the session
 /// once this answers.
 #[tokio::test]
-async fn an_owner_starts_their_macrod_agent_from_the_composer() {
+async fn an_owner_starts_their_roxd_agent_from_the_composer() {
     let opener = Arc::new(RecordingOpener::default());
     let requests = Arc::new(RecordingRequester::default());
     let minted = macro_uuid::generate_uuid_v7();
@@ -1443,7 +1443,7 @@ async fn an_owner_starts_their_macrod_agent_from_the_composer() {
 
     let response = router_with_requests(
         opener.clone(),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         requests.clone(),
     )
     .oneshot(request)
@@ -1479,7 +1479,7 @@ async fn an_owner_starts_their_macrod_agent_from_the_composer() {
 /// then the prompt goes to it through the session's control path, as the
 /// owner's, under the id the caller named.
 #[tokio::test]
-async fn a_macrod_agent_gets_the_first_prompt_once_its_runtime_opens_the_session() {
+async fn a_roxd_agent_gets_the_first_prompt_once_its_runtime_opens_the_session() {
     let requests = Arc::new(RecordingRequester::default());
     let controls = Arc::new(RecordingControls::default());
     let minted = macro_uuid::generate_uuid_v7();
@@ -1497,7 +1497,7 @@ async fn a_macrod_agent_gets_the_first_prompt_once_its_runtime_opens_the_session
 
     let response = router_with_controls(
         Arc::new(RecordingOpener::default()),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         requests.clone(),
         controls.clone(),
         NonUserOwners::Disabled,
@@ -1525,7 +1525,7 @@ async fn a_macrod_agent_gets_the_first_prompt_once_its_runtime_opens_the_session
 /// Without a prompt nothing is sent: the composer delivers its own through
 /// the control endpoint once the create answers.
 #[tokio::test]
-async fn a_macrod_agent_opened_without_a_prompt_is_not_prompted() {
+async fn a_roxd_agent_opened_without_a_prompt_is_not_prompted() {
     let controls = Arc::new(RecordingControls::default());
     let request = as_user(
         OWNER,
@@ -1534,7 +1534,7 @@ async fn a_macrod_agent_opened_without_a_prompt_is_not_prompted() {
 
     let response = router_with_controls(
         Arc::new(RecordingOpener::default()),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         Arc::new(RecordingRequester::default()),
         controls.clone(),
         NonUserOwners::Disabled,
@@ -1562,7 +1562,7 @@ async fn a_refused_first_prompt_fails_the_create() {
 
     let response = router_with_controls(
         Arc::new(RecordingOpener::default()),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         Arc::new(RecordingRequester::default()),
         controls.clone(),
         NonUserOwners::Disabled,
@@ -1592,7 +1592,7 @@ async fn a_first_prompt_never_reaches_someone_elses_session() {
 
     let response = router_with_controls(
         Arc::new(RecordingOpener::default()),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         Arc::new(RecordingRequester {
             requested: Mutex::default(),
             unavailable: false,
@@ -1612,7 +1612,7 @@ async fn a_first_prompt_never_reaches_someone_elses_session() {
 /// A runtime that never creates the session is a conflict the operator can
 /// act on, not a server fault: the message says what to fix.
 #[tokio::test]
-async fn a_macrod_agent_whose_runtime_never_answers_is_a_conflict() {
+async fn a_roxd_agent_whose_runtime_never_answers_is_a_conflict() {
     let requests = Arc::new(RecordingRequester::unavailable());
     let request = as_user(
         OWNER,
@@ -1621,7 +1621,7 @@ async fn a_macrod_agent_whose_runtime_never_answers_is_a_conflict() {
 
     let response = router_with_requests(
         Arc::new(RecordingOpener::default()),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         requests.clone(),
     )
     .oneshot(request)
@@ -1640,7 +1640,7 @@ async fn a_macrod_agent_whose_runtime_never_answers_is_a_conflict() {
 }
 
 #[tokio::test]
-async fn a_stranger_cannot_start_someone_elses_macrod_agent() {
+async fn a_stranger_cannot_start_someone_elses_roxd_agent() {
     let requests = Arc::new(RecordingRequester::default());
     let request = as_user(
         STRANGER,
@@ -1649,7 +1649,7 @@ async fn a_stranger_cannot_start_someone_elses_macrod_agent() {
 
     let response = router_with_requests(
         Arc::new(RecordingOpener::default()),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         requests.clone(),
     )
     .oneshot(request)
@@ -1871,11 +1871,11 @@ async fn invalid_repository_branch_is_rejected_before_opening() {
 }
 
 #[tokio::test]
-async fn macrod_rejects_an_unsupported_base_before_dispatch() {
+async fn roxd_rejects_an_unsupported_base_before_dispatch() {
     let requests = Arc::new(RecordingRequester::default());
     let response = router_with_requests(
         Arc::new(RecordingOpener::default()),
-        OneBotDirectory::macrod_agent(),
+        OneBotDirectory::roxd_agent(),
         requests.clone(),
     )
     .oneshot(as_user(

@@ -226,7 +226,7 @@ describe('sortMobileMentions', () => {
 
   test('penalizes users whose match starts mid-string vs docs that match at start', () => {
     const now = new Date();
-    const lateMatchUser = userItem('u1', 'apple.testing@macro.com', now);
+    const lateMatchUser = userItem('u1', 'apple.testing@rox.one', now);
     const startMatchDoc = docItem('d1', 'test lexical api', now);
 
     const result = sortMobileMentions([lateMatchUser, startMatchDoc], 'test');

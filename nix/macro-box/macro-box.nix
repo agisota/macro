@@ -1,4 +1,4 @@
-# Flake outputs for the Macro computer guest, a NixOS configuration; see
+# Flake outputs for the Rox computer guest, a NixOS configuration; see
 # AGENTS.md.
 {
   inputs,
@@ -28,7 +28,7 @@ let
           module
           herdr
           {
-            macro.box.macrod = self'.packages.macrod;
+            macro.box.roxd = self'.packages.roxd;
             macro.box.harnessd.package = self'.packages.harnessd;
           }
         ];
@@ -132,7 +132,7 @@ in
               herdr
             ];
           };
-          inherit (self'.packages) macrod harnessd;
+          inherit (self'.packages) roxd harnessd;
         };
         macro-box-claude-wrapper = import ./_claude-wrapper-test.nix { inherit pkgs; };
         # start-agent's boot (lock adoption, rollback) and agent-stopped's

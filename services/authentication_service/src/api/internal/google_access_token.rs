@@ -57,7 +57,7 @@ async fn get_access_token(
 
     // a fusionauth user can have multiple links to the same identity provider with different email
     // addresses, but can only have one link with a given email. FusionAuth preserves
-    // Google's email capitalization, while Macro stores lowercase addresses.
+    // Google's email capitalization, while Rox stores lowercase addresses.
     let link = links
         .into_iter()
         .find(|l| l.display_name.eq_ignore_ascii_case(email))
@@ -166,7 +166,7 @@ fn refresh_error_response(
             tracing::warn!(error=?error, "refresh token rejected for userid {}", fusionauth_user_id);
             StatusCode::FORBIDDEN
         }
-        // The user's organization blocks Macro. Callers treat it like a
+        // The user's organization blocks Rox. Callers treat it like a
         // revoked grant, so they ask for reauthorization instead of retrying.
         FusionAuthClientError::GrantBlocked { reason } => {
             tracing::warn!(reason = %reason, "{} grant blocked by policy for userid {}", identity_provider_name, fusionauth_user_id);

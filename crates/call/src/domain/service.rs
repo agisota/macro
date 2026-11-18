@@ -1515,7 +1515,7 @@ impl<
                     .get_user_display_name(user)
                     .await
                     .map_err(|e| CallError::Internal(e.into()))?
-                    .unwrap_or_else(|| "Macro user".to_string());
+                    .unwrap_or_else(|| "Rox user".to_string());
             }
         }
         Ok(LiveCallParticipantsResponse { participants })
@@ -2214,6 +2214,7 @@ impl<
             .patch_call_record(
                 &call_id,
                 &EditCallRecordRepoArgs {
+                    actor_id: receipt.acting_user_id().cloned(),
                     share_permission,
                     custom_name: request.custom_name,
                     team_share,
@@ -2293,6 +2294,7 @@ impl<
                 .patch_call_record(
                     &call_id,
                     &EditCallRecordRepoArgs {
+                        actor_id: receipt.acting_user_id().cloned(),
                         share_permission: None,
                         custom_name: None,
                         team_share: None,
@@ -2685,7 +2687,7 @@ where
         .get_enhanced_call_record_transcripts(call_record_id)
         .await
         .map_err(Into::into)?;
-    // Never infer a Macro account identity for a guest speaker.
+    // Never infer a Rox account identity for a guest speaker.
     transcripts.retain(|segment| {
         super::meetings::GuestId::parse_rtc_identity(&segment.speaker_id).is_none()
     });

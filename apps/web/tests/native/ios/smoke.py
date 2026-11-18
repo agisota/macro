@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only lifecycle/link smoke test for an installed Macro debug simulator app."""
+"""Read-only lifecycle/link smoke test for an installed Rox debug simulator app."""
 
 import argparse
 from dataclasses import dataclass
@@ -38,7 +38,7 @@ def process_identity(pid):
 
 def check_process(process):
     if process_identity(process.pid) != process:
-        raise AssertionError(f"Macro PID {process.pid} was reused by another process incarnation")
+        raise AssertionError(f"Rox PID {process.pid} was reused by another process incarnation")
 
 
 def log_predicate(process):
@@ -104,7 +104,7 @@ class Smoke:
         result = xcrun("simctl", "launch", self.device, APP)
         match = re.search(rf"{re.escape(APP)}: (\d+)", result.stdout)
         if not match:
-            raise RuntimeError("simctl launch did not return Macro's PID")
+            raise RuntimeError("simctl launch did not return Rox's PID")
         return process_identity(int(match.group(1)))
 
     def stop(self):
@@ -151,13 +151,13 @@ class Smoke:
         process = self.link("macro://app/login")
         self.checkpoint("cold-login", process, 1, 0)
         if self.link("macro://app/welcome") != process:
-            raise AssertionError("Warm link unexpectedly restarted Macro")
+            raise AssertionError("Warm link unexpectedly restarted Rox")
         before = self.checkpoint("warm-welcome", process, 1, 1)
 
         xcrun("simctl", "launch", self.device, "com.apple.mobilesafari")
         time.sleep(3)
         if self.launch() != process:
-            raise AssertionError("Foregrounding unexpectedly restarted Macro")
+            raise AssertionError("Foregrounding unexpectedly restarted Rox")
         self.checkpoint("resumed", process, 1, 1, before["resumed"] + 1)
 
         self.stop()
@@ -167,13 +167,13 @@ class Smoke:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--device", required=True, type=uuid.UUID, help="Booted simulator UDID")
-    parser.add_argument("--allow-restart", action="store_true", help="Allow terminating Macro; save drafts first")
+    parser.add_argument("--allow-restart", action="store_true", help="Allow terminating Rox; save drafts first")
     parser.add_argument("--settle-seconds", type=float, default=10, help="Wait before each checkpoint (default: 10)")
     args = parser.parse_args()
     if sys.platform != "darwin":
         parser.error("This smoke test requires macOS and Xcode 27")
     if not args.allow_restart:
-        parser.error("Save any drafts, then pass --allow-restart; this test terminates Macro")
+        parser.error("Save any drafts, then pass --allow-restart; this test terminates Rox")
     if not 1 <= args.settle_seconds <= 60:
         parser.error("--settle-seconds must be between 1 and 60")
     device = str(args.device).upper()
@@ -185,7 +185,7 @@ def main():
         info = plistlib.load(file)
     manifest = info.get("UIApplicationSceneManifest", {})
     if manifest.get("UIApplicationSupportsMultipleScenes") is not False:
-        parser.error("Installed Macro must use the single-window scene manifest")
+        parser.error("Installed Rox must use the single-window scene manifest")
 
     # mkdtemp uses mode 0700: screenshots may contain real account data.
     output = Path(tempfile.mkdtemp(prefix="macro-ios-smoke-"))

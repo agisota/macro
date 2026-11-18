@@ -9,7 +9,7 @@ pub struct PostgresRepository {
     pool: PgPool,
 }
 impl PostgresRepository {
-    /// Use the application's MacroDB pool.
+    /// Use the application's RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

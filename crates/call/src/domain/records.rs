@@ -30,7 +30,7 @@ impl AsRef<str> for ExternalCallId {
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum CallCreatedVia {
-    /// A Macro RTC session.
+    /// A Rox RTC session.
     Native,
     /// An integration supplied the record.
     Import,
@@ -57,7 +57,7 @@ pub enum CallCreatedVia {
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum CallProvider {
-    /// A Macro-native call or transcript.
+    /// A Rox-native call or transcript.
     Macro,
     /// A call or transcript imported from Granola.
     Granola,
@@ -67,9 +67,9 @@ pub enum CallProvider {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CallEntity {
-    /// Stable Macro entity ID, preserved when a native call is archived.
+    /// Stable Rox entity ID, preserved when a native call is archived.
     pub id: Uuid,
-    /// Macro owner, independent of any external organizer.
+    /// Rox owner, independent of any external organizer.
     pub user_id: MacroUserIdStr<'static>,
     /// User-visible title, when known.
     pub title: Option<String>,
@@ -81,13 +81,13 @@ pub struct CallEntity {
     pub ended_at: Option<DateTime<Utc>>,
     /// Conversation duration, independent of a recording's length.
     pub duration_ms: Option<i64>,
-    /// Optional Macro channel association.
+    /// Optional Rox channel association.
     pub channel_id: Option<Uuid>,
-    /// Optional reusable Macro meeting invitation.
+    /// Optional reusable Rox meeting invitation.
     pub meeting_id: Option<Uuid>,
-    /// Creation time in Macro, usable for ordering when timing is unknown.
+    /// Creation time in Rox, usable for ordering when timing is unknown.
     pub created_at: DateTime<Utc>,
-    /// Last metadata modification in Macro.
+    /// Last metadata modification in Rox.
     pub updated_at: DateTime<Utc>,
 }
 
@@ -125,7 +125,7 @@ pub struct CallSource {
 pub struct CallParticipant {
     /// Call-local identity; never use an email address as a primary key.
     pub id: Uuid,
-    /// Resolved Macro account, if any. Does not confer access.
+    /// Resolved Rox account, if any. Does not confer access.
     pub user_id: Option<MacroUserIdStr<'static>>,
     /// Display name when supplied.
     pub display_name: Option<String>,
@@ -166,7 +166,7 @@ pub enum CallMediaType {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "kind", content = "value", rename_all = "snake_case")]
 pub enum CallRecordingLocation {
-    /// Macro-managed object storage key, not a signed URL.
+    /// Rox-managed object storage key, not a signed URL.
     StorageKey(String),
     /// External provider URL; never implies public access to the media.
     ExternalUrl(String),

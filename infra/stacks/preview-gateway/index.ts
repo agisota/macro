@@ -23,12 +23,12 @@ const gateway = getGatewayAlb();
 // A separate registrable domain is mandatory: previews execute agent-authored JavaScript.
 const domain = config.require('preview_domain');
 if (
-  domain === 'macro.com' ||
-  domain.endsWith('.macro.com') ||
+  domain === 'rox.one' ||
+  domain.endsWith('.rox.one') ||
   !/^[a-z0-9.-]+$/.test(domain)
 ) {
   throw new Error(
-    'preview_domain must be an isolated DNS name outside macro.com'
+    'preview_domain must be an isolated DNS name outside rox.one'
   );
 }
 const zoneId = config.require('preview_zone_id');

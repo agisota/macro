@@ -34,7 +34,7 @@ class ScanLineTest(unittest.TestCase):
 
     def test_allows_macro_and_test_tlds(self):
         empty = Exceptions(set(), set(), set())
-        line = "wolf@macro.com qa@billing.test local@foo.localhost"
+        line = "wolf@rox.one qa@billing.test local@foo.localhost"
         self.assertEqual(scan_line("note.md", 1, line, empty), [])
 
     def test_flags_phone_and_address_not_iso_dates(self):
@@ -44,6 +44,13 @@ class ScanLineTest(unittest.TestCase):
         self.assertEqual(values["phone"], "+1 415-555-0100")
         self.assertEqual(values["address"], "100 Market Street")
         self.assertNotIn("2026-10-27", values.values())
+
+    def test_does_not_treat_requirement_ids_as_street_numbers(self):
+        empty = Exceptions(set(), set(), set())
+        self.assertEqual(
+            scan_line("spec.md", 1, "FR-006 Native Drive and import copy", empty),
+            [],
+        )
 
     def test_flags_private_key_and_github_token(self):
         empty = Exceptions(set(), set(), set())

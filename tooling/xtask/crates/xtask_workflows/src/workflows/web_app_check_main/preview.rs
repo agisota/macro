@@ -1,6 +1,6 @@
 //! Preview deployment, as the last steps of the web `Build` job: the bundle that
 //! job already built is the preview. Deploys to
-//! `<branch>-<nanoid>-preview.macro.com`, built identically to dev.macro.com
+//! `<branch>-<nanoid>-preview.rox.one`, built identically to dev.rox.one
 //! (MODE=development, points at dev services).
 //!
 //! These steps must NOT block a merge, so each continues on error and the

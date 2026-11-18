@@ -62,7 +62,7 @@ impl<Workflows> Clone for PipelineToolContext<Workflows> {
 }
 
 impl<Workflows> PipelineToolContext<Workflows> {
-    /// The tools over `service`, acting as the Macro AI bot.
+    /// The tools over `service`, acting as the Rox AI bot.
     pub fn new(service: Workflows) -> Self {
         Self {
             service: Arc::new(service),
@@ -205,7 +205,7 @@ pub struct ToolNewField {
     pub name: String,
     /// Its type.
     #[schemars(
-        description = "text, number, checkbox, date, link, select (one label from a list, like a stage or priority), multi_select (several labels), person (one Macro user) or people (several)."
+        description = "text, number, checkbox, date, link, select (one label from a list, like a stage or priority), multi_select (several labels), person (one Rox user) or people (several)."
     )]
     #[serde(rename = "type")]
     pub field_type: ToolNewFieldType,
@@ -249,9 +249,9 @@ pub enum ToolFieldType {
     Select,
     /// Tags.
     Tags,
-    /// Macro users, written as "me", an email or a macro| id.
+    /// Rox users, written as "me", an email or a macro| id.
     Person,
-    /// Ids of other Macro items.
+    /// Ids of other Rox items.
     Item,
     /// Linked rows; read-only here.
     Relation,

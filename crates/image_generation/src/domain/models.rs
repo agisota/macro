@@ -46,7 +46,7 @@ pub struct ImageGenerationRequest {
 /// A saved image the caller wants to use as a reference.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ImageReference {
-    /// A Macro document, read with the caller's document permissions.
+    /// A Rox document, read with the caller's document permissions.
     Document(uuid::Uuid),
     /// An uploaded static file, identified by its public capability ID.
     StaticFile(uuid::Uuid),
@@ -103,7 +103,7 @@ pub struct GeneratedImage {
 }
 
 impl GeneratedImage {
-    /// The Macro file type for `mime_type`; `None` for a media type Macro
+    /// The Rox file type for `mime_type`; `None` for a media type Rox
     /// does not know as an image.
     pub fn file_type(&self) -> Option<FileType> {
         match self.mime_type.as_str() {

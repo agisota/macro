@@ -38,7 +38,7 @@ pub async fn handler(
     // This may seem dumb, but if you delete this account it will delete my fusionauth account and
     // we will then be locked out of fusionauth. So this is a way to prevent any accidental fuck
     // ups from occurring.
-    if user_context.user_id == "macro|hutch@macro.com" {
+    if user_context.user_id == "macro|hutch@rox.one" {
         return Err((StatusCode::FORBIDDEN, "you cannot delete hutch").into_response());
     }
     // Perform a logout for the user

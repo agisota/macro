@@ -33,8 +33,8 @@ def main():
                     merged[key] = value
     # Preserve the public OAuth identities even though the serving process moves.
     suffix = "" if args.config == "prd" else "-dev"
-    merged["MCP_PUBLIC_URL"] = f"https://mcp-server{suffix}.macro.com"
-    merged["MCP_CLIENT_PUBLIC_URL"] = f"https://document-cognition{suffix}.macro.com"
+    merged["MCP_PUBLIC_URL"] = f"https://mcp-server{suffix}.rox.one"
+    merged["MCP_CLIENT_PUBLIC_URL"] = f"https://document-cognition{suffix}.rox.one"
     if sources["document-cognition"].get("PIPEDREAM_WEBHOOK_URI"):
         merged["PIPEDREAM_WEBHOOK_URI"] = sources["document-cognition"]["PIPEDREAM_WEBHOOK_URI"]
     # Cognition resolves this setting through Secrets Manager in deployed

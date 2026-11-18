@@ -185,7 +185,7 @@ function writeFailure(
         ),
         () => ({
           kind: 'refused',
-          reason: "This chat can't be in Macro, so nothing was sent.",
+          reason: "This chat can't be in Rox, so nothing was sent.",
         })
       )
       .with(P.union('conflict', 'CONFLICT'), () => ({

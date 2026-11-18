@@ -138,7 +138,7 @@ fn deploy_mcp_chatgpt_worker() -> Job {
         .uses("./.github/workflows/deploy_mcp_chatgpt_worker.yml")
 }
 
-/// Also owns the macro.com CloudFront distribution in front of the web app.
+/// Also owns the rox.one CloudFront distribution in front of the web app.
 fn deploy_website() -> Job {
     Job::default()
         .name("Deploy Website")

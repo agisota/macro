@@ -112,9 +112,9 @@ test('inserts linked text at the caret and links whole shapes', async ({
   await expect(page.getByTestId('pptx-caret')).toBeAttached();
   await page.keyboard.type('Read ');
   await page.getByTestId('pptx-insert-link').click();
-  await page.getByTestId('pptx-link-address').fill('macro.com');
+  await page.getByTestId('pptx-link-address').fill('rox.one');
   // The address fills in the text to display until it is typed over.
-  await expect(page.getByTestId('pptx-link-text')).toHaveValue('macro.com');
+  await expect(page.getByTestId('pptx-link-text')).toHaveValue('rox.one');
   await page.getByTestId('pptx-link-text').fill('our site');
   await page.getByTestId('pptx-link-ok').click();
   // The new text box is the slide's last shape.
@@ -133,14 +133,14 @@ test('inserts linked text at the caret and links whole shapes', async ({
         };
       }, box.id)
     )
-    .toEqual({ text: 'Read our site', linked: ['5-13 https://macro.com'] });
+    .toEqual({ text: 'Read our site', linked: ['5-13 https://rox.one'] });
 
   // With the shape selected (not its text), the link goes on the shape.
   await page.keyboard.press('Escape');
   await page.keyboard.press('ControlOrMeta+k');
   await expect(page.getByTestId('pptx-link-text')).toBeDisabled();
   await page.getByTestId('pptx-link-kind-email').click();
-  await page.getByTestId('pptx-link-email').fill('team@macro.com');
+  await page.getByTestId('pptx-link-email').fill('team@rox.one');
   await page.getByTestId('pptx-link-subject').fill('Hello');
   await page.getByTestId('pptx-link-ok').click();
   await expect
@@ -148,7 +148,7 @@ test('inserts linked text at the caret and links whole shapes', async ({
       const shapes = (await outline(page)).slides[0].shapes;
       return shapes.find((s) => s.id === box.id)?.link;
     })
-    .toBe('mailto:team@macro.com?subject=Hello');
+    .toBe('mailto:team@rox.one?subject=Hello');
 });
 
 test('slide shows show ScreenTips and follow links on click', async ({

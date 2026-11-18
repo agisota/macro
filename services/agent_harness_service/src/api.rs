@@ -254,7 +254,7 @@ impl<T, R, Opener, Bots, Requests, Access, Auth, Models, Changes>
         self
     }
 
-    /// Attach Macro computer Claude sign-in routes.
+    /// Attach Rox computer Claude sign-in routes.
     pub fn with_claude_access(mut self, router: Router) -> Self {
         self.claude_access = router;
         self
@@ -272,7 +272,7 @@ impl<T, R, Opener, Bots, Requests, Access, Auth, Models, Changes>
         self
     }
 
-    /// Attach the route linking a session to the Macro task it works on.
+    /// Attach the route linking a session to the Rox task it works on.
     pub fn with_session_tasks(mut self, router: Router) -> Self {
         self.session_tasks = router;
         self
@@ -309,7 +309,7 @@ impl<T, R, Opener, Bots, Requests, Access, Auth, Models, Changes>
     }
 }
 
-/// Serve session egress, Macro Internal MCP, and the Anthropic gateway on the
+/// Serve session egress, Rox Internal MCP, and the Anthropic gateway on the
 /// existing egress listener.
 ///
 /// All authenticate session credentials and also serve external runtimes. No

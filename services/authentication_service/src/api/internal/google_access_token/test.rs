@@ -184,7 +184,7 @@ async fn a_deleted_user_has_no_google_grant() {
     let (_server, auth_client) = fusionauth_fixture::without_user("deleted-user").await;
     let params = GoogleAccessTokenParams {
         fusionauth_user_id: "deleted-user".into(),
-        email: "inbox@macro.com".into(),
+        email: "inbox@rox.one".into(),
     };
 
     let response = get_access_token(

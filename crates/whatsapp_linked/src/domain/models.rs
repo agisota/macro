@@ -179,7 +179,7 @@ impl Identity {
     }
 }
 
-/// Current remote participant; Macro access is a separate grant.
+/// Current remote participant; Rox access is a separate grant.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Participant {
@@ -243,7 +243,7 @@ pub struct SharedChatReference {
     pub id: Uuid,
     /// Display name, following WhatsApp.
     pub name: String,
-    /// Macro user who added the chat and shared it.
+    /// Rox user who added the chat and shared it.
     pub owner_id: String,
 }
 

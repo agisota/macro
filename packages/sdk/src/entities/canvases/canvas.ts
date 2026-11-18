@@ -102,7 +102,7 @@ export interface CanvasEditResult {
   operationsApplied: number;
   /** What the editor did, in words. */
   summary: string;
-  /** Link to the canvas in the Macro web app. */
+  /** Link to the canvas in the Rox web app. */
   webUrl: string;
   /**
    * Set when the editor applied part of the edit and stopped: what it needs to
@@ -185,7 +185,7 @@ export class CanvasEditRejectedError extends MacroApiError {
 }
 
 /**
- * A native Macro canvas: a live, shared scene of shapes, text, connectors,
+ * A native Rox canvas: a live, shared scene of shapes, text, connectors,
  * groups and artifacts. Get one with `document.canvas()`; it reads and edits
  * the scene everyone sees, never a file copy.
  *
@@ -205,7 +205,7 @@ export class Canvas {
   }
 
   /**
-   * The canvas's URL in the Macro web app.
+   * The canvas's URL in the Rox web app.
    *
    * @readonly
    */
@@ -370,7 +370,7 @@ export class Canvas {
   }
 
   /**
-   * Render the canvas to a PNG with Macro's real canvas renderer, kept as a
+   * Render the canvas to a PNG with Rox's real canvas renderer, kept as a
    * static image: show it in a reply with `toMarkdown()` (never a document
    * mention of its id), or attach it with `channel.send(text, { images })`.
    *

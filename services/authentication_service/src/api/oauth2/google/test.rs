@@ -49,7 +49,7 @@ fn a_refused_consent_returns_to_the_app_with_the_error() {
     let link_id = Uuid::parse_str("0192b8a0-6a2e-7c3e-9b1f-4d5e6f708192").unwrap();
 
     let response = mailbox_not_granted_response(
-        Some("https://macro.com/app/inbox-link-callback?view=all&email_link_error=cancelled"),
+        Some("https://rox.one/app/inbox-link-callback?view=all&email_link_error=cancelled"),
         &link_id,
     );
 

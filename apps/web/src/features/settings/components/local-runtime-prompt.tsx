@@ -5,11 +5,11 @@ import { lazyNamed } from '@core/util/lazyNamed';
 import { isDesktopPlatform } from '@core/util/platform';
 import { createUserScopedStorage } from '@core/util/userScopedStorage';
 import {
-  macrodInspect,
-  macrodStatus,
-  macrodSupport,
-  onMacrodStatus,
-} from '@macro/tauri/macrod';
+  roxdInspect,
+  roxdStatus,
+  roxdSupport,
+  onRoxdStatus,
+} from '@macro/tauri/roxd';
 import LaptopIcon from '@phosphor/laptop.svg';
 import XIcon from '@phosphor/x.svg';
 import type { UnlistenFn } from '@tauri-apps/api/event';
@@ -64,8 +64,8 @@ export function LocalRuntimePrompt() {
       const version = ++refreshVersion;
       try {
         const [config, status] = await Promise.all([
-          macrodInspect(),
-          macrodStatus(),
+          roxdInspect(),
+          roxdStatus(),
         ]);
         if (!disposed && !runningObserved && version === refreshVersion) {
           setAvailable(!config.paired && status.phase !== 'running');
@@ -77,14 +77,14 @@ export function LocalRuntimePrompt() {
 
     const inspect = async () => {
       try {
-        const support = await macrodSupport();
+        const support = await roxdSupport();
         if (!support.supported || disposed) return;
         setDefaultWorkspace(support.defaultWorkspace ?? undefined);
         fireAndForget(refresh(), 'local-runtime-prompt.refresh');
         fireAndForget(
           (async () => {
             try {
-              const stop = await onMacrodStatus((status) => {
+              const stop = await onRoxdStatus((status) => {
                 if (status.phase === 'running') {
                   runningObserved = true;
                   setAvailable(false);
@@ -140,7 +140,7 @@ export function LocalRuntimePrompt() {
                 Run agents on this computer
               </span>
               <span class="block text-xs text-ink-muted">
-                Use your installed agents and local files in Macro.
+                Use your installed agents and local files in Rox.
               </span>
             </span>
             <span class="shrink-0 text-xs font-medium text-accent">Set up</span>

@@ -12,14 +12,14 @@ import { documentComparisons } from '../core/feature-comparisons';
 
 const documentsFaq = [
   {
-    q: 'What can I write in Macro?',
+    q: 'What can I write in Rox?',
     a: 'Create notes, briefs, proposals, and handbooks with headings, checklists, tables, images, and code. Link relevant emails, tasks, and files directly in your document.',
   },
   {
     q: 'Can I import and export my documents?',
     a: (
       <>
-        Import Notion pages or upload files. Export native Macro documents as
+        Import Notion pages or upload files. Export native Rox documents as
         Markdown. See <a href="/docs/switch-to-macro">migration options</a> for
         your current tools.
       </>
@@ -31,7 +31,7 @@ const documentsFaq = [
       <>
         Yes. People and agents can edit the same document in real time, and
         teammates can comment on specific text. Ask an agent to update the
-        document while you keep writing. See <a href="/agents">Macro Agents</a>.
+        document while you keep writing. See <a href="/agents">Rox Agents</a>.
       </>
     ),
   },
@@ -52,10 +52,10 @@ const documentsFaq = [
     a: 'You can keep editing an open document if your connection drops. Changes save on your device and sync when you reconnect.',
   },
   {
-    q: 'Can I try Macro for free?',
+    q: 'Can I try Rox for free?',
     a: (
       <>
-        Yes. Macro has a free plan with usage limits. See{' '}
+        Yes. Rox has a free plan with usage limits. See{' '}
         <a href="/pricing">plans and limits</a> for details.
       </>
     ),
@@ -64,7 +64,7 @@ const documentsFaq = [
 
 export function RouteDocuments() {
   setPageSeo({
-    title: 'Macro Docs | Write With Your Team and Your Agents',
+    title: 'Rox Docs | Write With Your Team and Your Agents',
     description:
       'The local-first simplicity of Markdown, with mentioning and live collaboration with agents. Edit offline and sync your changes when you reconnect.',
     path: '/documents',
@@ -82,7 +82,7 @@ export function RouteDocuments() {
         <FeaturePageSection
           id="document-agents"
           demo={{ tone: 'documents', glassFrame: false }}
-          title="Macro Agents get a live cursor in the doc."
+          title="Rox Agents get a live cursor in the doc."
           description="Agents edit the document live, at the same time as you and your team, as opposed to editing the markdown file and giving you a diff. If you go offline and come back on, your changes sync to your peers and conflict resolution happens automatically."
         >
           <DemoInteractionBoundary
@@ -95,7 +95,7 @@ export function RouteDocuments() {
           id="document-links"
           demo={{ tone: 'documents', glassFrame: false }}
           title="@mention anything in your workspace."
-          description="@mention a customer email from Macro Mail, a task from Macro Tasks, a call, or another doc. Click any of them and it opens right next to the doc, in a split screen."
+          description="@mention a customer email from Rox Mail, a task from Rox Tasks, a call, or another doc. Click any of them and it opens right next to the doc, in a split screen."
         >
           <HomepageCollaborativeDoc showHistory={false} />
         </FeaturePageSection>
@@ -120,7 +120,7 @@ export function RouteDocuments() {
         </FeaturePageSection>
         <section
           id="documents-comparison"
-          aria-label="Compare Macro and Notion"
+          aria-label="Compare Rox and Notion"
         >
           <FeatureComparisons
             title="Compare Workspaces"
@@ -131,7 +131,7 @@ export function RouteDocuments() {
           <FeaturePageFaq
             guide={{ href: '/documents#guide', label: 'documents' }}
             id="documents-faq-title"
-            title="Questions about Macro Docs"
+            title="Questions about Rox Docs"
             items={documentsFaq}
           />
         </div>

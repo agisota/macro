@@ -3,7 +3,7 @@
 ## What it is
 
 Part of shared infrastructure (cloud storage). S3 key building and
-parsing for every cloud-storage bucket Macro uses: documents, bulk
+parsing for every cloud-storage bucket Rox uses: documents, bulk
 uploads, Slack imports, and static files.
 
 ## Start here

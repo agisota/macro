@@ -95,9 +95,9 @@ pub trait TeamMembership: Send + Sync + 'static {
     ) -> impl Future<Output = Result<(), TeamAgentError>> + Send;
 }
 
-/// The agent's own Macro API key.
+/// The agent's own Rox API key.
 pub trait AgentApiKeys: Send + Sync + 'static {
-    /// Revoke every key the agent has; it can't call Macro afterwards.
+    /// Revoke every key the agent has; it can't call Rox afterwards.
     fn revoke_all(
         &self,
         agent: &MacroUserIdStr<'_>,
@@ -134,7 +134,7 @@ pub trait AgentRepos: Send + Sync + 'static {
         team_id: Uuid,
     ) -> impl Future<Output = Result<Option<VoiceModel>, TeamAgentError>> + Send;
 
-    /// Commit a voice to the agent's repository as Macro.
+    /// Commit a voice to the agent's repository as Rox.
     fn set_voice(
         &self,
         agent: &MacroUserIdStr<'_>,
@@ -143,7 +143,7 @@ pub trait AgentRepos: Send + Sync + 'static {
     ) -> impl Future<Output = Result<(), TeamAgentError>> + Send;
 }
 
-/// The agent's Macro computer, through hosted_runtimes.
+/// The agent's Rox computer, through hosted_runtimes.
 pub trait Computers: Send + Sync + 'static {
     /// Buy a computer for the agent through the normal purchase path.
     fn purchase(

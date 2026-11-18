@@ -340,7 +340,7 @@ function resolveAuth(opts: MacroOpts): MacroAuth {
     typeof process !== 'undefined' ? process.env.MACRO_BOT_TOKEN : undefined;
   if (envApiKey && envBotToken) {
     throw new Error(
-      'both MACRO_API_KEY and MACRO_BOT_TOKEN are set — pass auth to new Macro() to pick one',
+      'both MACRO_API_KEY and MACRO_BOT_TOKEN are set — pass auth to new Rox() to pick one',
     );
   }
   if (envBotToken) return { type: 'bot', token: envBotToken };
@@ -350,7 +350,7 @@ function resolveAuth(opts: MacroOpts): MacroAuth {
       envApiKey ??
       (() => {
         throw new Error(
-          'no Macro credential. Set MACRO_API_KEY (API key or bearer token) or MACRO_BOT_TOKEN, or pass token/auth to new Macro().',
+          'no Macro credential. Set MACRO_API_KEY (API key or bearer token) or MACRO_BOT_TOKEN, or pass token/auth to new Rox().',
         );
       }),
   };

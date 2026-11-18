@@ -20,7 +20,7 @@ fn unknown_server_gets_no_default_scopes() {
 /// wrong is quiet and confusing: the pre-registered providers are exactly the
 /// ones that cannot register a client on the fly, so a missed match sends the
 /// flow to DCR and the connector fails with "Dynamic client registration not
-/// supported" for a provider Macro has credentials for.
+/// supported" for a provider Rox has credentials for.
 #[test]
 fn a_trailing_slash_names_the_same_server() {
     assert_eq!(

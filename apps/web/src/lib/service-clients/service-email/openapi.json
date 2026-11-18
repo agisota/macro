@@ -3,7 +3,7 @@
   "info": {
     "title": "email_service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -114,7 +114,7 @@
     "/email/attachments/{id}/document_id": {
       "get": {
         "tags": ["Attachments"],
-        "summary": "Get the Macro document id for an email attachment, uploading it if it doesn't already exist.",
+        "summary": "Get the Rox document id for an email attachment, uploading it if it doesn't already exist.",
         "operationId": "get_attachment_document_id",
         "parameters": [
           {
@@ -4240,7 +4240,7 @@
           },
           "body_macro": {
             "type": ["string", "null"],
-            "description": "Macro body format."
+            "description": "Rox body format."
           },
           "body_text": {
             "type": ["string", "null"],
@@ -4331,7 +4331,7 @@
           },
           "body_macro": {
             "type": ["string", "null"],
-            "description": "Macro body."
+            "description": "Rox body."
           },
           "body_text": {
             "type": ["string", "null"],
@@ -5339,7 +5339,7 @@
       },
       "CalendarEvent": {
         "type": "object",
-        "description": "A stable, first-class Macro calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy.",
+        "description": "A stable, first-class Rox calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy.",
         "required": [
           "id",
           "ownerId",
@@ -5419,7 +5419,7 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "Macro entity identifier."
+            "description": "Rox entity identifier."
           },
           "isReadOnly": {
             "type": "boolean",
@@ -5443,7 +5443,7 @@
           },
           "ownerId": {
             "type": "string",
-            "description": "Macro user who owns this event entity."
+            "description": "Rox user who owns this event entity."
           },
           "recurrenceLines": {
             "type": "array",
@@ -6551,7 +6551,7 @@
           },
           "has_calendar_data": {
             "type": "boolean",
-            "description": "Whether Macro holds calendar data for this inbox. Drives the turn-off\ncontrol on its own, so removing that data never depends on the recorded\nscopes still matching the set Macro requests today — a set that changes\nas the integration narrows, stranding data behind a capability check\nthat no longer recognizes an older grant."
+            "description": "Whether Rox holds calendar data for this inbox. Drives the turn-off\ncontrol on its own, so removing that data never depends on the recorded\nscopes still matching the set Rox requests today — a set that changes\nas the integration narrows, stranding data behind a capability check\nthat no longer recognizes an older grant."
           },
           "id": {
             "type": "string",
@@ -7896,7 +7896,7 @@
       },
       "UserProvider": {
         "type": "string",
-        "enum": ["GMAIL", "OUTLOOK"]
+        "enum": ["GMAIL", "OUTLOOK", "ROX"]
       },
       "Value": {},
       "ViewerCapabilities": {
@@ -7942,7 +7942,7 @@
   "tags": [
     {
       "name": "Email Service",
-      "description": "Macro Email Service"
+      "description": "Rox Email Service"
     }
   ]
 }

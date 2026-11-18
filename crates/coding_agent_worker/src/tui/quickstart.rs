@@ -10,7 +10,7 @@ use super::input::handle_text_input;
 use super::platform::{BYO_AGENT_URL, browser_status, launch_browser_helper};
 use crate::config::Config;
 
-/// Editable state shown until `macrod.toml` has a working credential.
+/// Editable state shown until `roxd.toml` has a working credential.
 pub(crate) struct Quickstart {
     pub(crate) agents: Vec<DetectedAgent>,
     pub(crate) selected_agent: Option<DetectedAgent>,

@@ -229,11 +229,11 @@ describe('desktop account linking', () => {
 it('keeps web consent on the originating host', async () => {
   mocks.mobile = false;
   vi.stubGlobal('window', {
-    location: { ...window.location, origin: 'https://www.macro.com' },
+    location: { ...window.location, origin: 'https://www.rox.one' },
   });
   await useAddInboxFlow()({ provider: 'GMAIL' });
   expect(mocks.start).toHaveBeenCalledWith({
-    originalUrl: 'https://www.macro.com/app/inbox-link-callback',
+    originalUrl: 'https://www.rox.one/app/inbox-link-callback',
     scopes: 'gmail',
   });
   expect(window.location.href).toBe('https://accounts.google.com/authorize');

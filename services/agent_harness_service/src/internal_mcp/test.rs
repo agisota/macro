@@ -72,7 +72,7 @@ impl SessionTasks for FixedTasks {
             Ok(LinkedTask {
                 task_id: task.to_owned(),
                 title: "Fix the thing".into(),
-                url: format!("https://macro.com/app/task/{task}"),
+                url: format!("https://rox.one/app/task/{task}"),
                 reference: "ENG-42".into(),
                 mention: format!(
                     r#"<m-document-mention>{{"documentId":"{task}","blockName":"task","documentName":"Fix the thing","blockParams":{{}},"collapsed":false}}</m-document-mention>"#
@@ -161,7 +161,7 @@ async fn rpc_host(
 
 #[tokio::test]
 async fn each_harness_gets_only_internal_tools_and_writes_only_its_session() {
-    for harness in ["cursor", "claude-code", "macrod"] {
+    for harness in ["cursor", "claude-code", "roxd"] {
         let repo = InMemoryAgentSessionRepo::new();
         let mut session = test_agent_session(AgentSessionId::new());
         session.harness = harness.into();
@@ -192,7 +192,7 @@ async fn each_harness_gets_only_internal_tools_and_writes_only_its_session() {
                 cognition: None,
                 reviews: Arc::new(OnceLock::new()),
                 gate: Arc::new(agent_inmem::domain::tool_gate::UngatedNativeTools),
-                app_url: "https://macro.com".into(),
+                app_url: "https://rox.one".into(),
             },
         );
         for (host, expected) in [
@@ -318,7 +318,7 @@ async fn each_harness_gets_only_internal_tools_and_writes_only_its_session() {
             serde_json::json!({
                 "task_id": "MACRO-abc",
                 "title": "Fix the thing",
-                "url": "https://macro.com/app/task/MACRO-abc",
+                "url": "https://rox.one/app/task/MACRO-abc",
                 "reference": "ENG-42",
                 "mention": "<m-document-mention>{\"documentId\":\"MACRO-abc\",\"blockName\":\"task\",\"documentName\":\"Fix the thing\",\"blockParams\":{},\"collapsed\":false}</m-document-mention>",
                 "pull_request": null,
@@ -369,7 +369,7 @@ async fn each_harness_gets_only_internal_tools_and_writes_only_its_session() {
             output,
             serde_json::json!({
                 "pull_request_url": "https://github.com/org/repo/pull/1",
-                "session_url": format!("https://macro.com/app/agent/{}", session.id),
+                "session_url": format!("https://rox.one/app/agent/{}", session.id),
             })
         );
         assert_eq!(

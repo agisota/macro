@@ -26,7 +26,7 @@ database. Nothing talks to WhatsApp or AWS (the KMS is
   image download for import, outbound attachment, a send cut off after
   submission is `unknown` and never resent, a send without an ack times out as
   `unknown`, a real client's group events through the service's mapping, and
-  WhatsApp renames and removals reaching Macro live (a rename WhatsApp made
+  WhatsApp renames and removals reaching Rox live (a rename WhatsApp made
   is a system line without an actor).
 - Message types (`src/test/message_types.rs`): media dimensions, durations
   and presentation (sticker, GIF, voice note), a media reply keeping its
@@ -36,12 +36,12 @@ database. Nothing talks to WhatsApp or AWS (the KMS is
   Macro; group changes made by a member (added, left, renamed) as system
   lines once with two observing accounts, never unread or notified.
 - Group kinds (`src/test/group_kinds.rs`): a disappearing group is added, an
-  ephemeral-wrapped phone message is kept, Macro's sends carry the timer
+  ephemeral-wrapped phone message is kept, Rox's sends carry the timer
   until it is turned off live; a community's group and announcement group
   are added and used, the community itself is refused.
 - Direct chats (`src/test/direct_chats.rs`): a direct chat from the chat
   list is added, its earlier messages imported from the phone, messages by
-  LID and by phone number and from the owner's phone land in it, Macro sends
+  LID and by phone number and from the owner's phone land in it, Rox sends
   to it, and a shared viewer reads but can't send.
 - Pictures (`src/test/pictures.rs`): an added group's and a sender's
   pictures are staged for the chat owner's account, an unchanged one is
@@ -53,7 +53,7 @@ database. Nothing talks to WhatsApp or AWS (the KMS is
 ## Checks
 
 - `cargo test -p whatsapp_e2e` with `SQLX_OFFLINE` unset and `DATABASE_URL`
-  pointing at a migrated MacroDB (the query macros check against it; each test
+  pointing at a migrated RoxDB (the query macros check against it; each test
   gets its own database on that server). If the shared `macrodb` is stale,
   create and migrate your own `macrodb_<name>` with
   `sqlx migrate run --source crates/macro_db_client/migrations`.

@@ -18,7 +18,7 @@ export default function WorkspaceFeaturePage() {
   const feature = () => workspaceFeatures[slug()];
   createRenderEffect(() =>
     setPageSeo({
-      title: `Macro ${feature().product} | ${feature().title}`,
+      title: `Rox ${feature().product} | ${feature().title}`,
       description: feature().description,
       path: `/${slug()}`,
     })

@@ -38,7 +38,7 @@ pub enum EmailMessageResolutionAction {
 /// Resolve exactly the message revision and provider version the user reviewed.
 #[derive(InputObject)]
 pub struct ResolveEmailMessageOperationInput {
-    /// Stable Macro message ID.
+    /// Stable Rox message ID.
     pub message_id: ID,
     /// Opaque revision returned by operationStatus.
     pub revision: String,
@@ -400,7 +400,7 @@ pub struct SaveEmailDraftInput {
     /// HTML body, base64 URL-safe (no padding) encoded; the server decodes
     /// and sanitizes it before storing.
     pub body_html: Option<String>,
-    /// Macro body.
+    /// Rox body.
     pub body_macro: Option<String>,
     /// Scheduled send time (RFC 3339), when the draft is scheduled.
     pub send_time: Option<String>,

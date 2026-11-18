@@ -4,7 +4,7 @@ import { isMacroAgentId } from '@core/constant/macroAgent';
 import { isMacroCoderId } from '@core/constant/macroCoder';
 import { isMacroNewId } from '@core/constant/macroNew';
 import { isMacroSystemId } from '@core/constant/macroSystem';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ClaudeIcon from '@icon/wide-claude.svg';
 import CodexIcon from '@icon/wide-codex-ide.svg';
 import CursorIcon from '@icon/wide-cursor-ide.svg';
@@ -12,12 +12,12 @@ import type { Component, ComponentProps } from 'solid-js';
 
 /** The brand mark a first-party bot wears wherever an avatar is drawn. */
 export type FirstPartyBotMark = {
-  Icon: Component<ComponentProps<'svg'>>;
-  /** Macro's own marks take the accent color; partner marks stay ink. */
+  Icon: Component<{ class?: string }>;
+  /** Rox's own marks take the accent color; partner marks stay ink. */
   tone: 'accent' | 'ink';
 };
 
-const MACRO_MARK: FirstPartyBotMark = { Icon: MacroLogo, tone: 'accent' };
+const MACRO_MARK: FirstPartyBotMark = { Icon: RoxMark, tone: 'accent' };
 const CURSOR_MARK: FirstPartyBotMark = { Icon: CursorIcon, tone: 'ink' };
 const CODEX_MARK: FirstPartyBotMark = { Icon: CodexIcon, tone: 'ink' };
 const CLAUDE_MARK: FirstPartyBotMark = { Icon: ClaudeIcon, tone: 'ink' };

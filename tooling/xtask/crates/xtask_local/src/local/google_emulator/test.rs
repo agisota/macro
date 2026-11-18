@@ -8,7 +8,7 @@ fn env_of(pairs: &[(&str, &str)]) -> BTreeMap<String, String> {
 }
 
 #[test]
-fn the_emulator_stands_in_only_where_no_real_google_client_is_configured() {
+fn the_emulator_does_not_stand_in_for_google_login() {
     let placeholders = env_of(&[
         ("GOOGLE_CLIENT_ID", "local-google-client"),
         ("GOOGLE_CLIENT_SECRET_KEY", "local-google-client-secret"),
@@ -18,9 +18,8 @@ fn the_emulator_stands_in_only_where_no_real_google_client_is_configured() {
         ("GOOGLE_CLIENT_SECRET_KEY", "GOCSPX-real"),
     ]);
 
-    assert!(stands_in(Mode::Local, &placeholders));
+    assert!(!stands_in(Mode::Local, &placeholders));
     assert!(!stands_in(Mode::Local, &real));
-    // `run-dev` uses the hosted FusionAuth, which only knows real Google.
     assert!(!stands_in(Mode::Dev, &placeholders));
 }
 

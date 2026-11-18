@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of the Databases feature: runs the `database_sql` engine over Macro
+Part of the Databases feature: runs the `database_sql` engine over Rox
 databases for agents and authenticated HTTP clients, alongside the browser's direct
 `database_sql` wasm usage. Reads go through Soup and contacts, writes go
 through `databases`' typed ops.
@@ -25,7 +25,7 @@ through `databases`' typed ops.
 
 ## Scope
 
-- Owns: binding the `database_sql` engine to live Macro data for agents, the HTTP
+- Owns: binding the `database_sql` engine to live Rox data for agents, the HTTP
   query and saved-question routes (`POST /databases/query`, `POST /databases/queries`),
   and the two SQL agent tools. Saving compiles the question here, so its route
   lives here rather than in `crates/databases`, which keeps `GET

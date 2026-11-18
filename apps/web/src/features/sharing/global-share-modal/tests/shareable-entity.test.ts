@@ -26,7 +26,7 @@ describe('isShareableEntity', () => {
       type,
       id: `${type}-1`,
       name: type,
-      ownerId: 'macro|me@macro.com',
+      ownerId: 'macro|me@rox.one',
     }) as EntityData;
 
   it('accepts rows of a shareable type', () => {

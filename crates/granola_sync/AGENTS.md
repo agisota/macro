@@ -2,7 +2,7 @@
 
 ## What it is
 
-Imports Granola meeting notes as private Macro calls. Sync follows the user's
+Imports Granola meeting notes as private Rox calls. Sync follows the user's
 Granola connection in Pipedream; there are no user controls or user routes.
 
 ## How it works

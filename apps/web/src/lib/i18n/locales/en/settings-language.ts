@@ -7,7 +7,7 @@ export default {
   yourLanguage: 'Your language',
   yourLanguageDescription: 'Overrides the team language for you only.',
   yourLanguageNoTeamDescription:
-    'The language Macro is shown in for you. Automatic follows your browser.',
+    'The language Rox is shown in for you. Automatic follows your browser.',
   useTeamLanguage: 'Use team language ({{language}})',
   automatic: 'Automatic ({{language}})',
   teamAutomatic: 'Automatic (each person’s browser language)',

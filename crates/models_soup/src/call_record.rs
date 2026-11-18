@@ -9,7 +9,7 @@ use uuid::Uuid;
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct SoupCallRecordParticipant {
-    /// The Macro user id.
+    /// The Rox user id.
     pub user_id: String,
     /// When the user joined the call.
     pub joined_at: DateTime<Utc>,

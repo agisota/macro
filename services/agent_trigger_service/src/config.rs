@@ -28,7 +28,7 @@ pub struct Config {
     /// Markup on paid AI usage past the allowance, as a whole percent of
     /// provider cost. Mandatory; set in Doppler.
     pub ai_usage_overage_markup_percent: ai_billing::OverageMarkupPercent,
-    /// MacroDB connection URL.
+    /// RoxDB connection URL.
     pub database_url: DatabaseUrl,
     /// Kafka bootstrap servers.
     pub kafka_brokers: KafkaBrokers,

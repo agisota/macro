@@ -22,7 +22,7 @@ function isRecurring(event: CalendarEvent): boolean {
 
 /**
  * The same span shape `DocumentMentionNode.exportDOM` copies, so pasting
- * into any Macro editor reconstructs a live calendar mention through
+ * into any Rox editor reconstructs a live calendar mention through
  * `importDOM`. A series mention names the whole event; an instance of a
  * recurring event pins its occurrence key.
  */

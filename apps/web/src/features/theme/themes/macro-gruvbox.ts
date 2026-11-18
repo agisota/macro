@@ -3,7 +3,7 @@ import type { ThemeV3 } from '../types/themeTypes';
 /** A dark theme built from the classic Gruvbox palette. */
 export const macroGruvboxTheme = {
   id: 'Macro-Gruvbox',
-  name: 'Macro-Gruvbox',
+  name: 'Rox-Gruvbox',
   version: 3,
   mode: 'dark',
   colorTokens: {

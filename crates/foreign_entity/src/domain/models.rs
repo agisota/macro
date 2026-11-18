@@ -108,7 +108,7 @@ pub struct PatchForeignEntity {
 pub enum ForeignEntityLookupCaller {
     /// An internally authenticated service with no acting user.
     Internal,
-    /// An authenticated Macro user. Every candidate record is access checked.
+    /// An authenticated Rox user. Every candidate record is access checked.
     User(MacroUserIdStr<'static>),
 }
 

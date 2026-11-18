@@ -18,7 +18,7 @@ import { notify, RENOTIFY_MINUTES } from './notify';
 export const appWelcomeHealthCheck = new datadog.SyntheticsTest(
   'app-welcome-health-check',
   {
-    name: 'Health check on macro.com/app/welcome',
+    name: 'Health check on rox.one/app/welcome',
     type: 'api',
     subtype: 'http',
     status: 'live',
@@ -26,7 +26,7 @@ export const appWelcomeHealthCheck = new datadog.SyntheticsTest(
     locations: ['aws:ca-central-1', 'aws:us-east-1', 'gcp:us-west2'],
     requestDefinition: {
       method: 'GET',
-      url: 'https://macro.com/app/welcome',
+      url: 'https://rox.one/app/welcome',
     },
     assertions: [
       { type: 'responseTime', operator: 'lessThan', target: '3000' },

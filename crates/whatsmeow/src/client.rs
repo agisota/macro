@@ -378,11 +378,11 @@ pub struct Client {
     /// `BackgroundEventCtx`).
     pub(crate) background: CancellationToken,
 
-    /// Macro addition: the span that was current when [`Client::connect`]
+    /// Rox addition: the span that was current when [`Client::connect`]
     /// was called. Connection spans, reconnects and received nodes nest
     /// under it.
     pub(crate) connection_parent: Mutex<tracing::Span>,
-    /// Macro addition: the `whatsmeow.connect.login` span between the
+    /// Rox addition: the `whatsmeow.connect.login` span between the
     /// handshake and the server's `success` or `failure`.
     pub(crate) pending_login: Mutex<Option<tracing::Span>>,
 }
@@ -461,16 +461,16 @@ impl Client {
     where
         Task: Future<Output = ()> + Send + 'static,
     {
-        // Macro addition: background work stays in the caller's trace.
+        // Rox addition: background work stays in the caller's trace.
         self.tasks.spawn(task.in_current_span());
     }
 
-    /// Macro addition: the span connection work nests under.
+    /// Rox addition: the span connection work nests under.
     pub(crate) fn connection_parent(&self) -> tracing::Span {
         lock(&self.connection_parent).clone()
     }
 
-    /// Macro addition: a `whatsmeow.connect` span under the connection's
+    /// Rox addition: a `whatsmeow.connect` span under the connection's
     /// parent span.
     fn connect_span(&self, reason: ConnectReason, attempt: u32) -> tracing::Span {
         tracing::info_span!(
@@ -483,7 +483,7 @@ impl Client {
         )
     }
 
-    /// Macro addition: ends the pending login span with an outcome.
+    /// Rox addition: ends the pending login span with an outcome.
     pub(crate) fn finish_login_span(
         &self,
         outcome: &'static str,
@@ -552,7 +552,7 @@ impl Client {
         self.connect_with_reason(ConnectReason::Initial).await
     }
 
-    /// Macro addition: [`Client::connect`] in a `whatsmeow.connect` span
+    /// Rox addition: [`Client::connect`] in a `whatsmeow.connect` span
     /// recording why it connects.
     pub(crate) async fn connect_with_reason(
         self: &Arc<Self>,
@@ -680,7 +680,7 @@ impl Client {
         state.connection = Some(connection.clone());
         state.handler_queue_wait = Some(close_wait_receiver);
 
-        // Macro addition: the connection's loops run under the caller's span,
+        // Rox addition: the connection's loops run under the caller's span,
         // not the connect span, so received nodes nest under the caller.
         let parent = self.connection_parent();
         let client = Arc::clone(self);
@@ -792,7 +792,7 @@ impl Client {
     /// Boxed with an explicit `Send` bound: reconnecting calls back into
     /// `connect`, whose tasks can start another reconnect, and the compiler
     /// can't infer `Send` through that cycle.
-    /// `reason` (a Macro addition) labels the reconnect's spans.
+    /// `reason` (a Rox addition) labels the reconnect's spans.
     pub(crate) fn auto_reconnect(self: Arc<Self>, reason: ConnectReason) -> BoxFuture<'static, ()> {
         Box::pin(self.auto_reconnect_inner(reason))
     }

@@ -24,12 +24,12 @@ abnormally.
 
 - Check that the consumer is running (`aws.ecs.service.running`) and not
   crashing (task stop reasons, error logs).
-- If it is running, check what it waits on. The email workers write to MacroDB
+- If it is running, check what it waits on. The email workers write to RoxDB
   and call Gmail per mailbox; a slow database or Gmail rate limits stall them.
-  See the [MacroDB runbook](macrodb.md).
+  See the [RoxDB runbook](macrodb.md).
 - A sudden rise in enqueues (`aws.sqs.number_of_messages_sent`) on the backfill
   queue means many mailboxes started backfilling at once, which also loads
-  MacroDB.
+  RoxDB.
 - Levers: scale the consumer if the database has headroom; otherwise throttle
   the producer or pause the backfill until the database recovers.
 

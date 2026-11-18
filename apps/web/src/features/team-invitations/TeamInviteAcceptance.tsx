@@ -1,6 +1,6 @@
 import { LoadingBlock } from '@core/component/LoadingBlock';
 import { getDisplayName, tryMacroId } from '@core/user';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import EnvelopeIcon from '@icon/system/regular/envelope.svg';
 import SpinnerIcon from '@icon/system/regular/spinner.svg';
 import UsersThreeIcon from '@icon/system/regular/users-three.svg';
@@ -108,7 +108,7 @@ export function TeamInviteAcceptance() {
         <Surface>
           <div class="flex flex-col gap-6 p-6">
             <div class="flex justify-center">
-              <LogoIcon class="size-10 text-accent" />
+              <RoxMark class="size-10" />
             </div>
             <div class="flex flex-col items-center">
               <Switch>

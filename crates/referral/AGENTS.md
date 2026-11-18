@@ -5,7 +5,7 @@
 Part of the billing feature (referrals). Generates referral codes, records a
 referral when a brand-new user signs up through one, and rewards the referrer
 ($10 of AI credit, or more free allowance) through the `ReferralRewarder`
-port. Also sends invite-to-Macro emails.
+port. Also sends invite-to-Rox emails.
 
 ## Start here
 
@@ -17,7 +17,7 @@ port. Also sends invite-to-Macro emails.
 
 ## Scope
 
-- Owns: referral code lifecycle and invite-to-Macro.
+- Owns: referral code lifecycle and invite-to-Rox.
 - Not here: the reward itself → `crates/ai_billing` (`InviteRewardService`,
   wired in `services/authentication_service/src/outbound/invite_rewards.rs`);
   sending the notification itself → `notification`.
@@ -30,7 +30,7 @@ port. Also sends invite-to-Macro emails.
 
 ## Checks
 
-- `cargo test -p referral` (`SQLX_OFFLINE` unset; requires local MacroDB).
+- `cargo test -p referral` (`SQLX_OFFLINE` unset; requires local RoxDB).
 
 ## Related
 

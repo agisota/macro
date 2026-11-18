@@ -13,7 +13,7 @@ pub struct OAuthClientMetadata {
 }
 
 impl OAuthClientMetadata {
-    /// Build Macro's public OAuth client metadata document.
+    /// Build Rox's public OAuth client metadata document.
     pub fn new(client_id: String, redirect_uri: String) -> Self {
         Self {
             client_id,
@@ -28,7 +28,7 @@ impl OAuthClientMetadata {
         }
     }
 
-    /// Return the HTTPS URL that identifies Macro to CIMD-capable servers.
+    /// Return the HTTPS URL that identifies Rox to CIMD-capable servers.
     pub fn client_id(&self) -> &str {
         &self.client_id
     }

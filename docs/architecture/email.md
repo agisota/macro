@@ -15,7 +15,7 @@ same application routes.
 | Package | Owns | Does not own |
 | --- | --- | --- |
 | `packages/email-renderer` | Deterministic preparation of HTML/plaintext bodies; framework-independent browser containment, colors, layout, and resource lifecycle | Solid, message DTOs, threads, app services, sender classification, block state |
-| `email-message` | A received or sent message, its sender/header, body renderer lifecycle and policy, Macro Markdown, quote expansion controls, and attachment presentation | Thread ordering, pagination, selection policy, drafts, reply placement, navigation, block state |
+| `email-message` | A received or sent message, its sender/header, body renderer lifecycle and policy, Rox Markdown, quote expansion controls, and attachment presentation | Thread ordering, pagination, selection policy, drafts, reply placement, navigation, block state |
 | `email-thread` | A conversation, chronological ordering, hidden middle messages, pagination, draft association, reading stops, selection, scroll coordination, and where a reply appears | Rendering the internals of an email, editing or sending a draft, block lifecycle |
 | `email-compose` | Form state, recipient rules, editor content, attachments, draft persistence, sending, scheduling, signatures, and undo recovery | Thread pagination/rendering, block identity, app routes or split navigation |
 | `block-email` | The legacy document-block adapter plus host-neutral thread body shared with the Email view: load gate, read marker, modals, side panel, and host actions | Reusable thread, message, composer state, or a host's top bar |
@@ -107,7 +107,7 @@ test exercises this ordering.
 | `EmailThreadContext` | Thread source, viewer and device state, recipients, and the command factory used by thread state and navigation |
 | `EmailThreadViewContext` | Thread and compose contexts, plus view callbacks and optional compose host behavior |
 | `EmailThreadHost` | Optional location target, focus, activation status, and keyboard registration |
-| `EmailRenderingContextValue` | Theme values, explicit image policy, Macro read-receipt pixel prefixes (hidden unless the thread lets a copy count an open), link preparation, and image resolution with an abortable resource lifetime |
+| `EmailRenderingContextValue` | Theme values, explicit image policy, Rox read-receipt pixel prefixes (hidden unless the thread lets a copy count an open), link preparation, and image resolution with an abortable resource lifetime |
 | `EmailFormContextInputs` | Viewer address and available inbox identities for recipient selection |
 | `EmailReplySession` | Thread identity, recipient options, personal-reply classification, a targeted reply request, and host intents for leaving the composer or removing its draft |
 | `EmailDraftStorage` | Save/delete and restore an undone draft, and drop a moved draft's working copy; inputs use domain inbox IDs and completion intent |
@@ -404,7 +404,7 @@ Production adapters supply theme, image proxy policy, CID resolution, native
 authenticated image fetching, and mailto interception. The package never imports
 the app to obtain those capabilities.
 
-Macro Markdown and the existing plaintext fallback remain app Markdown rendering
+Rox Markdown and the existing plaintext fallback remain app Markdown rendering
 paths because document mentions and editor semantics belong to the app. Neither
 branch mounts an invisible HTML renderer or starts its resource requests. The
 standalone package also offers literal plaintext preparation, but adopting that
@@ -768,7 +768,7 @@ document thread, on the user's quoted approval:
   `SendConfirmedEmail` tool with its Markdown rendering, inbox choice, reply
   threading and document attachments. A forward is a new email quoting the
   message under the forwarded-message header, with the message's attachments
-  as their Macro documents (`EmailMessage.forwardDraft` builds it, also for a
+  as their Rox documents (`EmailMessage.forwardDraft` builds it, also for a
   review).
 - `EmailDraft.send` and `EmailDraft.schedule` call the schedule route
   (`PUT /email/drafts/scheduled/{id}`), which admits a program only with a

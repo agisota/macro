@@ -35,9 +35,9 @@ pub use agent_credentials::AGENT_TEAMMATES_FLAG;
 /// Variables the brain reads from its enrollment, besides the addresses an
 /// [`EnrollmentEnvironment`] supplies.
 pub mod env_keys {
-    /// The agent's Macro API key: the credential every Macro call uses.
+    /// The agent's Rox API key: the credential every Rox call uses.
     pub const API_KEY: &str = "MACRO_API_KEY";
-    /// The agent's Macro user id.
+    /// The agent's Rox user id.
     pub const AGENT_USER_ID: &str = "MACRO_AGENT_USER_ID";
     /// The agent's display name; its workspace commits carry it.
     pub const AGENT_NAME: &str = "MACRO_AGENT_NAME";
@@ -49,7 +49,7 @@ pub mod env_keys {
     pub const REPO_URL: &str = "MACRO_REPO_URL";
     /// The workspace repository token (HTTP Basic password).
     pub const REPO_TOKEN: &str = "MACRO_REPO_TOKEN";
-    /// The token Claude calls through Macro's Anthropic gateway with: the
+    /// The token Claude calls through Rox's Anthropic gateway with: the
     /// agent's API key, so usage is attributed to it.
     pub const ANTHROPIC_AUTH_TOKEN: &str = "ANTHROPIC_AUTH_TOKEN";
 }

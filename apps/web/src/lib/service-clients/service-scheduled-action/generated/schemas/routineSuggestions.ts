@@ -13,7 +13,7 @@ import type { RoutineSuggestion } from './routineSuggestion';
  */
 export interface RoutineSuggestions {
   status: GenerationStatus;
-  /** Per surface, AI's first, best first, then Macro's templates, so each
+  /** Per surface, AI's first, best first, then Rox's templates, so each
 surface has at least one and ideally three. A suggestion with
 several surfaces appears once. */
   suggestions: RoutineSuggestion[];

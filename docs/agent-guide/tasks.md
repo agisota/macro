@@ -116,7 +116,7 @@ submenu also navigates with arrows; its Enter selects and closes. Phone filter
 drawers keep their existing searchable checkbox sections.
 
 New accounts are seeded with three sample tasks (`Intro to tasks`, `Advanced task features`,
-`How we use tasks at Macro`).
+`How we use tasks at Rox`).
 
 The Project column shows the linked project's name when one project is assigned,
 and `Project` when empty. Multiple linked projects show an item count.
@@ -739,12 +739,12 @@ priority. Date sorts group rows under the same headings as email (Today,
 Yesterday, Last 7 days, Earlier this month, Last month, Older) by the sorted
 date; Priority sorts and searches list rows flat. When visible PRs have GitHub
 labels, a **Labels** section below Favorites lists them with a colored dot and
-the name. These are GitHub labels, not Macro tags. Choosing a label shows only
+the name. These are GitHub labels, not Rox tags. Choosing a label shows only
 PRs with it, and choosing it again clears it. Above it, an **Agents** section
 lists the tools the loaded PRs were started from (Claude, Codex, Cursor, and so
 on, with their marks); choosing one shows only PRs started from it, using the same
 **Started from** filter as the filter menu. PR rows use the shared entity layout with selection checkboxes,
-author avatars and names, and a context menu. The current user's Macro display
+author avatars and names, and a context menu. The current user's Rox display
 name appears when their linked GitHub identity matches the PR author; other
 authors fall back to GitHub names. The virtualized list fetches more pages as
 you scroll, including when local filtering removes most fetched rows.
@@ -776,15 +776,15 @@ show `+N` and open a list. Items the viewer cannot access are omitted. When the
 pills would squeeze the title, they drop their text (keeping icons, dots, and
 tooltips) and overlap; they expand again once the row is wide enough. Rows show
 a pulsing placeholder while links load. The first pill names where the PR was started
-(Claude, Codex, Cursor, Devin, Copilot, Jules, or Macro), including PRs opened
-outside Macro: a Macro agent session that opened the PR wins and shows the tool
+(Claude, Codex, Cursor, Devin, Copilot, Jules, or Rox), including PRs opened
+outside Rox: a Rox agent session that opened the PR wins and shows the tool
 its harness ran; otherwise a session link in the description (`claude.ai/code/…`,
 `chatgpt.com/codex/tasks/…`, `cursor.com/agents…`, `app.devin.ai/sessions/…`,
-`jules.google.com/…`, `macro.com/app/agent/…`), then footers such as
+`jules.google.com/…`, `rox.one/app/agent/…`), then footers such as
 "Generated with Claude Code" or a `Co-Authored-By: Claude` trailer, then the
 bot author (for example `Copilot` or `devin-ai-integration[bot]`), then the
 branch prefix (`claude/`, `codex/`, `cursor/`, `devin/`, `copilot/`, `jules-`).
-Its tooltip names the signal; clicking it opens the Macro session in a split or
+Its tooltip names the signal; clicking it opens the Rox session in a split or
 the external session in a new tab. Filters add **Priority** (including No
 priority), **Linked to** (an agent session, a ticket, a customer, a channel),
 and **Started from** (each tool, or Unknown); these run on the loaded rows,
@@ -981,7 +981,7 @@ enable the experiment by default, while production defers to PostHog.
 
 Open the linked item from Source, or use its picker to replace or clear the value.
 A task opened without a source preset can add **Source** through **Add property**
-and select an existing Macro item, such as a document or task. Source uses the same
+and select an existing Rox item, such as a document or task. Source uses the same
 mobile picker sheet as other entity properties. Arbitrary external URLs and
 multiple sources are outside the experiment.
 
@@ -1286,7 +1286,7 @@ Users with view or comment access see the same pills read-only.
 
 Each GitHub pull request linked to an open task shows a pill beside its property pills
 with the PR's status, title, `owner/repo#N`, and line changes. Clicking it opens the PR in
-Macro in a new split (in place on touch devices); a PR Macro has not synced yet opens on
+Rox in a new split (in place on touch devices); a PR Rox has not synced yet opens on
 GitHub instead.
 
 Assignees lists and searches current team members and available agents, keeping

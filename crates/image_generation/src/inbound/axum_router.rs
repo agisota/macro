@@ -52,13 +52,13 @@ impl From<GenerateImageAspectRatio> for ImageAspectRatio {
     }
 }
 
-/// A reference image already stored in Macro.
+/// A reference image already stored in Rox.
 #[derive(Debug, Clone, Copy, Deserialize, Serialize, ToSchema)]
 #[serde(tag = "type", rename_all = "camelCase")]
 pub enum GenerateImageReference {
     /// An image document the caller can view.
     Document {
-        /// The Macro document ID.
+        /// The Rox document ID.
         id: uuid::Uuid,
     },
     /// An uploaded or previously generated static file.

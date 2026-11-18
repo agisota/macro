@@ -49,7 +49,7 @@ function SetupStrip(props: {
   );
 }
 
-/** Where agents can run besides Macro: Cursor, and your own paired machines. */
+/** Where agents can run besides Rox: Cursor, and your own paired machines. */
 export function AgentSetupStrips(props: {
   onCursor: () => void;
   onSetUpRuntime: () => void;
@@ -71,7 +71,7 @@ export function AgentSetupStrips(props: {
             icon={<CursorIcon />}
             title="Connect Cursor"
             subject="Cursor"
-            description="Use your Cursor subscription to run agents in Macro."
+            description="Use your Cursor subscription to run agents in Rox."
             action="Connect"
             onAction={props.onCursor}
           />
@@ -94,7 +94,7 @@ export function AgentSetupStrips(props: {
             icon={<TerminalIcon />}
             title="Bring your own agent"
             subject="your own agent"
-            description="Pair Claude Code, Codex, or another local agent with macrod."
+            description="Pair Claude Code, Codex, or another local agent with roxd."
             action="Set up"
             onAction={props.onSetUpRuntime}
           />

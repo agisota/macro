@@ -88,7 +88,7 @@ export function EmailDraft(props: {
                   focusOnMount={false}
                   disabled={s.sending()}
                   includeSelf
-                  placeholder="Macro users or email addresses"
+                  placeholder="Rox users or email addresses"
                 />
               </ComposeFieldRow>
             </Show>

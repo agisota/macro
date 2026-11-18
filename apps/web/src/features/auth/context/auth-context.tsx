@@ -22,6 +22,8 @@ export type SendCodeResult =
   | { t: 'code-sent'; autoCode?: string }
   /** This address signs in with a password; ask for it and send again. */
   | { t: 'password-required' }
+  /** The address is new and a handle is needed to create its account. */
+  | { t: 'handle-required' }
   /** A password login finished without a code. */
   | { t: 'signed-in' }
   /** The address belongs to an SSO domain; the page is navigating there. */
@@ -34,6 +36,14 @@ export type VerifyCodeResult =
   /** Too many attempts for this address; the code itself may be right. */
   | { t: 'rate-limited' }
   | { t: 'failed' };
+
+/** Whether this email already has a passkey. Enroll is a screen, not a lookup. */
+export type PasskeyLookup = 'assert' | 'none';
+
+export type PasskeyResult =
+  | { t: 'registered' }
+  | { t: 'asserted' }
+  | { t: 'failed'; message: string };
 
 type AuthEventName =
   | 'login'
@@ -53,6 +63,8 @@ export type AuthContext = {
   startSso(provider: SsoProvider, intent: AuthIntent): Promise<void>;
   sendEmailCode(input: {
     email: string;
+    /** Required when this address creates a new account. */
+    handle?: string;
     password?: string;
     isAgent: boolean;
   }): Promise<SendCodeResult>;
@@ -60,6 +72,12 @@ export type AuthContext = {
     email: string;
     code: string;
   }): Promise<VerifyCodeResult>;
+  /** `assert` when a passkey is already stored for this email. */
+  passkeyMode(email: string): Promise<PasskeyLookup>;
+  /** Creates a passkey from a server challenge. A failure does not sign the person in. */
+  registerPasskey(input: { email: string }): Promise<PasskeyResult>;
+  /** Uses the passkey already stored for this email. */
+  assertPasskey(input: { email: string }): Promise<PasskeyResult>;
   /** Exchanges the auth service's return-URL code for session cookies. */
   redeemSessionToken(token: string): Promise<boolean>;
   /** Refreshes everything that depends on who is signed in. */

@@ -5,16 +5,16 @@ import presenterPhoto from '../assets/presenter.jpg';
 import juliaPhoto from '../assets/support-julia.jpg';
 import teoPhoto from '../assets/support-teo.jpg';
 
-/** Three of the Macro team in every support channel, shown as faces only. */
+/** Three of the Rox team in every support channel, shown as faces only. */
 const SUPPORT_TEAM_PHOTOS = [juliaPhoto, teoPhoto, presenterPhoto];
 
 /**
  * The strip under the video, on the dialog's own surface: the faces of
- * people on the Macro team, overlapping like a block's live viewers, then
- * "Have questions about Macro CRM? Talk to us in your support channel."
+ * people on the Rox team, overlapping like a block's live viewers, then
+ * "Have questions about Rox CRM? Talk to us in your support channel."
  */
 export function TutorialSupportLip(props: {
-  /** The block the video teaches, like "Macro CRM". */
+  /** The block the video teaches, like "Rox CRM". */
   block: string;
   onSelect: () => void;
 }) {

@@ -8,7 +8,7 @@ use serde_json::json;
 
 fn sender() -> ChannelSender<'static> {
     ChannelSender::new_from_user(
-        MacroUserIdStr::parse_from_str("macro|agent-trigger@macro.com")
+        MacroUserIdStr::parse_from_str("macro|agent-trigger@rox.one")
             .expect("valid user id")
             .into_owned(),
     )
@@ -376,8 +376,8 @@ fn channel_kinds_round_trip_in_snake_case() {
 #[test]
 fn a_conversation_turn_carries_its_trigger_without_the_channel() {
     let person = trigger_context::ContextPerson {
-        id: "macro|agent-trigger@macro.com".to_owned(),
-        name: "agent-trigger@macro.com".to_owned(),
+        id: "macro|agent-trigger@rox.one".to_owned(),
+        name: "agent-trigger@rox.one".to_owned(),
         email: None,
     };
     let discussion = trigger_context::DiscussionContext {

@@ -1,7 +1,7 @@
-//! Self-update for a released `macrod`.
+//! Self-update for a released `roxd`.
 //!
 //! A release build polls the repository's latest GitHub release (or the
-//! `MACROD_UPDATE_SOURCE` mirror). When it is newer, the platform archive is
+//! `ROXD_UPDATE_SOURCE` mirror). When it is newer, the platform archive is
 //! downloaded, checked against its published SHA-256, and its binary staged
 //! and smoke-tested.
 //!
@@ -13,9 +13,9 @@
 //!
 //! Every failure is logged and leaves the running process alone; the next
 //! poll tries again. Only the terminal control panel updates itself.
-//! `macrod service` is driven by an embedding app (the desktop app ships and
+//! `roxd service` is driven by an embedding app (the desktop app ships and
 //! updates its own copy), builds without a release tag (local and branch
-//! builds) never update, and `[update] auto = false` or `MACROD_NO_UPDATE=1`
+//! builds) never update, and `[update] auto = false` or `ROXD_NO_UPDATE=1`
 //! turns updating off.
 
 use std::path::PathBuf;
@@ -41,22 +41,22 @@ mod test;
 mod environment {
     macro_env_var::maybe_env_var! {
         /// `1` (or any value but `0`/`false`) turns self-update off.
-        pub struct MacrodNoUpdate;
+        pub struct RoxdNoUpdate;
     }
     macro_env_var::maybe_env_var! {
         /// A mirror to update from instead of GitHub releases.
-        pub struct MacrodUpdateSource;
+        pub struct RoxdUpdateSource;
     }
     macro_env_var::maybe_env_var! {
         /// Seconds between checks, for testing against a mirror.
-        pub struct MacrodUpdateCheckSeconds;
+        pub struct RoxdUpdateCheckSeconds;
     }
 }
 
 /// The release tag this binary was built from, set by the release workflow.
-const RELEASE_TAG: Option<&str> = option_env!("MACROD_RELEASE_TAG");
+const RELEASE_TAG: Option<&str> = option_env!("ROXD_RELEASE_TAG");
 
-/// What `macrod --version` prints: the release tag, or the crate version for
+/// What `roxd --version` prints: the release tag, or the crate version for
 /// a build without one.
 pub const VERSION: &str = match RELEASE_TAG {
     Some(tag) => tag,
@@ -100,12 +100,12 @@ impl StagedUpdate {
     /// unaffected until [`Installed::relaunch`].
     #[cfg(unix)]
     pub fn swap(self) -> std::io::Result<Installed> {
-        let span = tracing::info_span!("macrod.update.apply", tag = %self.tag);
+        let span = tracing::info_span!("roxd.update.apply", tag = %self.tag);
         let _entered = span.enter();
         self.installation.swap(&self.staged).inspect_err(
-            |error| tracing::warn!(error = ?error, "could not install the new macrod binary"),
+            |error| tracing::warn!(error = ?error, "could not install the new roxd binary"),
         )?;
-        tracing::info!("installed the new macrod binary; restarting");
+        tracing::info!("installed the new roxd binary; restarting");
         Ok(Installed {
             executable: self.installation.executable().to_owned(),
             tag: self.tag,
@@ -135,7 +135,7 @@ impl Installed {
 }
 
 /// Whether this process may update itself: a release build, with updating
-/// left on in the config (`auto`) and not turned off by `MACROD_NO_UPDATE`.
+/// left on in the config (`auto`) and not turned off by `ROXD_NO_UPDATE`.
 fn updates_enabled(release_tag: Option<&str>, auto: bool, no_update: Option<&str>) -> bool {
     let turned_off = no_update.map(str::trim).is_some_and(|value| {
         !value.is_empty() && value != "0" && !value.eq_ignore_ascii_case("false")
@@ -154,7 +154,7 @@ pub struct UpdatePoller {
 /// itself or updating is turned off (`auto` is `[update] auto`).
 pub fn start_poller(auto: bool) -> Option<UpdatePoller> {
     let no_update =
-        environment::MacrodNoUpdate::new().and_then(|value| value.value().map(str::to_owned));
+        environment::RoxdNoUpdate::new().and_then(|value| value.value().map(str::to_owned));
     if !updates_enabled(RELEASE_TAG, auto, no_update.as_deref()) {
         tracing::info!(version = VERSION, "self-update is off");
         return None;
@@ -169,9 +169,9 @@ pub fn start_poller(auto: bool) -> Option<UpdatePoller> {
     };
     installation.remove_leftovers();
     let source =
-        environment::MacrodUpdateSource::new().and_then(|value| value.value().map(str::to_owned));
+        environment::RoxdUpdateSource::new().and_then(|value| value.value().map(str::to_owned));
     let source = ReleaseSource::new(source.as_deref());
-    tracing::info!(version = VERSION, source = ?source, "checking for macrod updates hourly");
+    tracing::info!(version = VERSION, source = ?source, "checking for roxd updates hourly");
     let client = match ReleaseClient::new(source) {
         Ok(client) => client,
         Err(error) => {
@@ -179,7 +179,7 @@ pub fn start_poller(auto: bool) -> Option<UpdatePoller> {
             return None;
         }
     };
-    let every = environment::MacrodUpdateCheckSeconds::new()
+    let every = environment::RoxdUpdateCheckSeconds::new()
         .and_then(|value| value.value()?.parse().ok())
         .map_or(CHECK_EVERY, Duration::from_secs);
     let (staged_tx, staged) = oneshot::channel();
@@ -205,7 +205,7 @@ async fn poll(
             }
             Ok(None) => {}
             Err(error) => {
-                tracing::warn!(error = ?error, "macrod self-update failed; retrying at the next check");
+                tracing::warn!(error = ?error, "roxd self-update failed; retrying at the next check");
             }
         }
         tokio::time::sleep(every).await;
@@ -218,7 +218,7 @@ async fn check_and_stage(
     installation: &Installation,
 ) -> Result<Option<StagedUpdate>, UpdateError> {
     let check = tracing::info_span!(
-        "macrod.update.check",
+        "roxd.update.check",
         current = %current,
         latest = tracing::field::Empty,
         outcome = tracing::field::Empty,
@@ -251,7 +251,7 @@ async fn check_and_stage(
         // build that failed or a platform that is not published.
         check.record("outcome", "no_asset");
         checked(Some(&latest.tag), CheckOutcome::NoAsset);
-        tracing::info!(parent: &check, tag = %latest.tag, "newer macrod has no build for this platform");
+        tracing::info!(parent: &check, tag = %latest.tag, "newer roxd has no build for this platform");
         return Ok(None);
     };
     check.record("outcome", "newer");
@@ -259,7 +259,7 @@ async fn check_and_stage(
 
     let download = tracing::info_span!(
         parent: &check,
-        "macrod.update.download",
+        "roxd.update.download",
         tag = %latest.tag,
         asset = %asset.archive_name,
         bytes = tracing::field::Empty,
@@ -316,7 +316,7 @@ async fn check_and_stage(
         committed.map_err(StageError::Io)?
     };
 
-    tracing::info!(tag = %latest.tag, "downloaded a newer macrod");
+    tracing::info!(tag = %latest.tag, "downloaded a newer roxd");
     Ok(Some(StagedUpdate {
         tag: latest.tag,
         staged,

@@ -31,7 +31,7 @@ export type SuggestionItem = {
   from: SuggestionFrom;
   kind: RoutineSuggestion['kind'];
   /**
-   * One of Macro's templates offered beside the suggestions, not a
+   * One of Rox's templates offered beside the suggestions, not a
    * suggestion: it can't be dismissed, and its routine doesn't point back
    * at one.
    */
@@ -211,7 +211,7 @@ export function suggestionTitle(
   return catalog.find((routine) => routine.key === suggestion.key)?.title;
 }
 
-/** One of Macro's templates as a card, beside the suggestions. */
+/** One of Rox's templates as a card, beside the suggestions. */
 export function templateItem(
   entry: RoutineTemplate,
   context: SuggestionContext
@@ -289,7 +289,7 @@ export function draftWithEdits(
 export type SuggestionAction = 'turn-on' | 'review' | 'use';
 
 /**
- * AI's catalog picks turn on in a click; a drafted routine and Macro's
+ * AI's catalog picks turn on in a click; a drafted routine and Rox's
  * templates open in the editor first.
  */
 export function suggestionAction(item: SuggestionItem): SuggestionAction {
@@ -337,7 +337,7 @@ export function stackLooks(
 }
 
 /**
- * Everything Discover offers: AI's picks first, then Macro's, each in the
+ * Everything Discover offers: AI's picks first, then Rox's, each in the
  * server's order, then the templates no suggestion already offers.
  */
 export function discoverItems(

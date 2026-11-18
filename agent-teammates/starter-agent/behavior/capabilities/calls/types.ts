@@ -1,6 +1,6 @@
 /**
  * What the parts of calls say to each other: the shapes that cross between
- * the arbiter, the ledgers, a call's process, and Macro. Each part owns its
+ * the arbiter, the ledgers, a call's process, and Rox. Each part owns its
  * own logic; these are the nouns they share.
  */
 import type { Room } from "@livekit/rtc-node";
@@ -17,7 +17,7 @@ export type Emit = (
 	data?: Readonly<Record<string, unknown>>,
 ) => void;
 
-/** Why Macro wouldn't seat the agent. */
+/** Why Rox wouldn't seat the agent. */
 export const Refusal = z.enum([
 	"in_other_call",
 	"already_connected",
@@ -47,7 +47,7 @@ export type ActiveMeeting = {
 	readonly id: string;
 	readonly callId: string;
 	readonly title: string;
-	/** Its invitation token, which is how it's joined. Null if Macro gave none. */
+	/** Its invitation token, which is how it's joined. Null if Rox gave none. */
 	readonly token: string | null;
 	readonly createdBy: string;
 };
@@ -63,7 +63,7 @@ export type ChannelMessage = {
 /** Who is speaking on a call, from the room, and whether they're alone with the agent. Never from what anyone says. */
 export type Speaker = { readonly id: string; readonly alone: boolean };
 
-/** Who asked for something, from Macro's own record of a message or the call's room, never from what a run claims. `sure` is false when a group call can't say who spoke. */
+/** Who asked for something, from Rox's own record of a message or the call's room, never from what a run claims. `sure` is false when a group call can't say who spoke. */
 export type Asked = { readonly id: string; readonly sure: boolean };
 
 /** A time as the ledgers store it, ISO 8601, read back as an instant. */
@@ -155,7 +155,7 @@ export const AskRow = z.object({
 export type AskRow = z.infer<typeof AskRow>;
 export type NewAskRow = Omit<AskRow, "at"> & { readonly at?: Temporal.Instant };
 
-/** Someone asked the agent to come. Who asked comes from Macro's record of their message. */
+/** Someone asked the agent to come. Who asked comes from Rox's record of their message. */
 export type Ask = {
 	readonly id: string;
 	readonly from: string;
@@ -184,7 +184,7 @@ export type PlaceVerdict =
 	| { readonly ok: true; readonly rule: string }
 	| { readonly ok: false; readonly rule: string; readonly why: string };
 
-/** A request to ring someone. Who asked is `asked` (from the room) or the author of `message` (from Macro), never a claim. */
+/** A request to ring someone. Who asked is `asked` (from the room) or the author of `message` (from Rox), never a claim. */
 export type PlaceInput = {
 	readonly target: string;
 	readonly reason: string;

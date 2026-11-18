@@ -1,5 +1,5 @@
 //! Pipedream app directory used when an agent pins MCP servers, and the
-//! connector backends (Pipedream plus Macro Connect) built from the
+//! connector backends (Pipedream plus Rox Connect) built from the
 //! environment.
 
 use std::sync::Arc;
@@ -32,7 +32,7 @@ maybe_env_var! {
         PipedreamApiUrl,
         /// Base URL of the Pipedream MCP server, shared with execution.
         PipedreamMcpUrl,
-        /// Macro's customer key for the Macro Connect API.
+        /// Rox's customer key for the Rox Connect API.
         ConnectCustomerKey,
         /// PostHog project token; reads the `macro-connect` rollout.
         PosthogApiKey,
@@ -41,7 +41,7 @@ maybe_env_var! {
     }
 }
 
-/// The Macro Connect adapter for `customer_key`, or `None` when the host has
+/// The Rox Connect adapter for `customer_key`, or `None` when the host has
 /// no key (Connect off). Connect sends consent back to the cognition
 /// service's callback page, whichever host builds the adapter.
 pub fn connect_adapter(customer_key: Option<&str>) -> anyhow::Result<Option<Arc<ConnectAdapter>>> {
@@ -59,11 +59,11 @@ pub fn connect_adapter(customer_key: Option<&str>) -> anyhow::Result<Option<Arc<
         customer_key: customer_key.to_owned(),
         callback_url,
     })
-    .context("building Macro Connect client")?;
+    .context("building Rox Connect client")?;
     Ok(Some(Arc::new(adapter)))
 }
 
-/// Pipedream plus Macro Connect when this process has credentials for both
+/// Pipedream plus Rox Connect when this process has credentials for both
 /// (Connect is optional), otherwise `None`.
 pub fn connector_backends_from_env(
     environment: Environment,
@@ -88,7 +88,7 @@ pub fn connector_backends_from_env(
     Ok(Some(Arc::new(backends)))
 }
 
-/// The PostHog flag that puts a user on Macro Connect alone. Keep in sync
+/// The PostHog flag that puts a user on Rox Connect alone. Keep in sync
 /// with the web flag of the same key.
 pub const MACRO_CONNECT_FLAG: &str = "macro-connect";
 

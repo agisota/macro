@@ -17,7 +17,7 @@ use feature_flags::{FlagSnapshot, FlagValue, outbound::fake::FakeFeatureFlags};
 
 const AGENT: &str = "macro|sam-rivera-abc123@agents.macro.invalid";
 const AGENT_KEY: &str = "mak_agent";
-const CREATOR: &str = "macro|admin@macro.com";
+const CREATOR: &str = "macro|admin@rox.one";
 const TEAM: Uuid = Uuid::from_u128(0x0193_a1b2_0000_7000_8000_0000_0000_00aa);
 
 /// Knows one agent key; `mak_down` fails the lookup.

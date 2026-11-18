@@ -48,7 +48,7 @@ export class EmailAttachment extends MacroEntity<EmailAttachmentData> {
   readonly contentId = this.field('content_id');
 
   /**
-   * The Macro document holding this attachment's content. Get-or-create: the
+   * The Rox document holding this attachment's content. Get-or-create: the
    * server returns the existing document's id, or downloads the attachment
    * from the provider and uploads it as a new document first (deduplicated
    * behind a server-side lock).

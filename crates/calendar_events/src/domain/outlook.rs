@@ -107,7 +107,7 @@ impl OutlookCalendarsChange {
 pub struct OutlookDiscovery {
     /// The account's calendars, each in the mailbox's time zone.
     pub calendars: Vec<OutlookCalendar>,
-    /// The mailbox time zone Microsoft named when Macro cannot map it to an
+    /// The mailbox time zone Microsoft named when Rox cannot map it to an
     /// IANA zone. The calendars then carry no time zone rather than failing
     /// discovery, and every reader treats it as unknown, as it does a Google
     /// calendar zone it cannot read.
@@ -178,7 +178,7 @@ pub enum OutlookCalendarProgress {
         /// Whether the current provider event still exists.
         exists: bool,
     },
-    /// The event exists but Macro cannot read it. Retire any copy stored
+    /// The event exists but Rox cannot read it. Retire any copy stored
     /// before, which would show a version Microsoft no longer has, but keep
     /// the event's page membership so later tombstones still resolve. A
     /// reader of a later revision reads it again on its next delta round.
@@ -214,18 +214,18 @@ pub enum OutlookEventRefresh {
     Refreshed {
         /// What the calendar stores.
         upsert: Box<CalendarEventUpsert>,
-        /// Occurrences of the series Macro could not read and left out, as
+        /// Occurrences of the series Rox could not read and left out, as
         /// Google sync never shows what it cannot normalize. The rest of the
         /// series is still imported.
         skipped: Vec<SkippedOccurrence>,
     },
     /// Microsoft no longer has the event on this calendar.
     Gone,
-    /// Microsoft has the event, but Macro cannot represent it. The sync skips
+    /// Microsoft has the event, but Rox cannot represent it. The sync skips
     /// it and retires any copy stored before, so the calendar never shows an
-    /// event Macro could not read, as Google sync never shows one.
+    /// event Rox could not read, as Google sync never shows one.
     Unreadable {
-        /// Path of the Graph property Macro rejected, such as
+        /// Path of the Graph property Rox rejected, such as
         /// `recurrence.range.endDate` or `instances.start.dateTime`.
         field: String,
     },
@@ -236,14 +236,14 @@ pub enum OutlookEventRefresh {
 pub struct SkippedOccurrence {
     /// Graph's id of the occurrence.
     pub provider_id: String,
-    /// Path of the Graph property Macro rejected, such as
+    /// Path of the Graph property Rox rejected, such as
     /// `instances.originalStart.missing`.
     pub field: String,
 }
 
 /// Provider reads with normalized results and no persistence policy.
 pub trait OutlookCalendarReader: Send + Sync + 'static {
-    /// Revision of the normalization. Raise it with a change that lets Macro
+    /// Revision of the normalization. Raise it with a change that lets Rox
     /// read events an older revision skipped: each delta calendar then reads
     /// those events again once, on its next round.
     const READER_REVISION: i16;
@@ -521,7 +521,7 @@ impl<
                                     provider_event_id = %id,
                                     occurrence_id = %occurrence.provider_id,
                                     rejected_field = %occurrence.field,
-                                    "skipping an Outlook occurrence Macro cannot read"
+                                    "skipping an Outlook occurrence Rox cannot read"
                                 );
                             }
                             self.repository
@@ -544,7 +544,7 @@ impl<
                                 calendar_id = %target.calendar_id,
                                 provider_event_id = %id,
                                 rejected_field = %field,
-                                "skipping an Outlook event Macro cannot read"
+                                "skipping an Outlook event Rox cannot read"
                             );
                             OutlookCalendarProgress::Unreadable { id }
                         }
@@ -624,7 +624,7 @@ impl<
                     tracing::warn!(
                         account_id = %lease.account_id,
                         unmapped_time_zone = %zone,
-                        "ignoring an Outlook mailbox time zone Macro cannot map"
+                        "ignoring an Outlook mailbox time zone Rox cannot map"
                     );
                 }
                 let change = self

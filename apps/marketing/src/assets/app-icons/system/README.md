@@ -2,7 +2,7 @@
 
 Frozen from `apps/web/src/components/icon/system` at app revision
 `9aa2c2a8740a330289373121b93c786640b0d97e`. The adjacent `../share.svg` is copied from the same
-revision. These are the app's original Macro drawings, not Phosphor glyphs.
+revision. These are the app's original Rox drawings, not Phosphor glyphs.
 
 Import individual files through `@icon/system/regular`, `fill`, or `bold`.
 Keep SVG geometry, `data-macro-icon`, accessibility attributes, and

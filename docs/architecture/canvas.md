@@ -2,7 +2,7 @@
 
 ## AI editing
 
-Ask Macro in the Drive header and standalone title menu attaches the canvas to the agent composer.
+Ask Rox in the Drive header and standalone title menu attaches the canvas to the agent composer.
 Documents owns `ReadCanvas` and `EditCanvas`, checked view/edit receipts, native
 file-type validation, scoped actor-bearing document tokens, AI admission and
 usage metering. Its existing tool context registers them for chat, agent
@@ -35,7 +35,7 @@ server-selected migration seed; tools report legacy migration requirements
 separately from transport and authorization failures. The scene overview is bounded to 300 items, with stable-ID filters
 for inspecting items beyond that overview.
 
-Canvas Next is the Macro host for a reusable graphics engine. The host owns
+Canvas Next is the Rox host for a reusable graphics engine. The host owns
 product UI and services; `@macro-inc/graphics` owns the portable scene and editing
 model.
 
@@ -60,7 +60,7 @@ library edits share one Loro commit with its scene change.
 
 | Layer | Responsibility |
 | --- | --- |
-| Canvas Next | Toolbars, inspectors, Lexical, assets, permissions, persistence, migration, and Macro embeds |
+| Canvas Next | Toolbars, inspectors, Lexical, assets, permissions, persistence, migration, and Rox embeds |
 | Graphics core | Immutable document tree, affine geometry, queries, commands, selection, and local history |
 | Browser adapter | Pointer, keyboard, clipboard, drag/drop, and capture behavior |
 | Solid adapter | Read-only rendering and editor overlays with stable component identity |
@@ -75,7 +75,7 @@ library edits share one Loro commit with its scene change.
 - Gestures preview transient state and commit one validated command when complete.
 
 Graphics treats rich text as opaque content and assets as stable references. It
-must not depend on Macro services, Lexical, the DOM, Solid, object URLs, or theme
+must not depend on Rox services, Lexical, the DOM, Solid, object URLs, or theme
 variables. Canvas adapters resolve those concerns at the edge.
 
 JSON is the import/export boundary and original migration seed. Once initialized,

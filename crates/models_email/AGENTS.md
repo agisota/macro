@@ -41,6 +41,7 @@ work ID, consent incarnation and policy version. Missing `live_mail` on a
 `PopulateCrmContact` payload means legacy history; new per-message hints set it
 true and reconcile current stored eligibility. Preserve this distinction during
 rolling upgrades; decoding old payloads must never attach a current generation.
+`UserProvider::Rox` identifies the account's first-party mailbox. New Gmail and Outlook links are non-primary unless explicitly promoted; the Rox link is primary.
 
 ## Related
 

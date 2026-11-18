@@ -148,9 +148,9 @@ const TIMED_COMMANDS: ReadonlySet<string> = new Set([
 const PAGE_STALL_MS = 1_000;
 
 const DRAFTS_NEED_UPDATE =
-  'Update Macro to sync drafts saved on this device. Your queued drafts are preserved until the app is updated.';
+  'Update Rox to sync drafts saved on this device. Your queued drafts are preserved until the app is updated.';
 const CACHE_NEEDS_UPDATE =
-  'Update Macro to use the local cache on this device. Until the app is updated, drafts saved here do not sync, and queued drafts are preserved.';
+  'Update Rox to use the local cache on this device. Until the app is updated, drafts saved here do not sync, and queued drafts are preserved.';
 
 /**
  * The installed native app is older than this OTA bundle and lacks a cache

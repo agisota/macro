@@ -282,7 +282,7 @@ fn nested_steps_name_their_parent_and_lanes_keep_their_own() {
 
     let lane =
         std::thread::spawn(move || background.run_step("Building frontend bundle", || Ok(())));
-    let result = stage.run_step("Building the Macro computer image", || {
+    let result = stage.run_step("Building the Rox computer image", || {
         stage
             .quiet()
             .run_step("Loading the image into Docker", || Ok(()))
@@ -298,14 +298,14 @@ fn nested_steps_name_their_parent_and_lanes_keep_their_own() {
             .unwrap_or_else(|| panic!("a step event for {name}"))
             .clone()
     };
-    let outer = step("Building the Macro computer image");
+    let outer = step("Building the Rox computer image");
     let inner = step("Loading the image into Docker");
     let frontend = step("Building frontend bundle");
 
     assert_eq!(inner["parent"], outer["span"]);
     assert_eq!(
         inner["fields"]["parent_step"],
-        json!("Building the Macro computer image")
+        json!("Building the Rox computer image")
     );
     assert!(outer.get("parent").is_none(), "{outer}");
     assert_eq!(outer["fields"]["lane"], json!("main"));

@@ -1,6 +1,6 @@
 /**
  * What a Notion import already knows about the objects a page refers to:
- * the Macro documents its pages became and the Macro users its people are.
+ * the Rox documents its pages became and the Rox users its people are.
  * Keys are Notion ids in their dashless, lowercase form.
  */
 export type NotionLinks = {
@@ -8,13 +8,13 @@ export type NotionLinks = {
   users: Record<string, NotionUserLink>;
 };
 
-/** The Macro document a Notion page became. */
+/** The Rox document a Notion page became. */
 export type NotionPageLink = {
   documentId: string;
   name: string;
 };
 
-/** The Macro user a Notion person is. */
+/** The Rox user a Notion person is. */
 export type NotionUserLink = {
   userId: string;
   email: string;

@@ -24,7 +24,7 @@ export interface MentionedInDocumentCommentMetadata {
   mentionId: string;
   /** The owner of the document. */
   owner: string;
-  /** Public bot name when the author is an agent rather than a Macro user. */
+  /** Public bot name when the author is an agent rather than a Rox user. */
   senderDisplayName?: MentionedInDocumentCommentMetadataSenderDisplayName;
   senderProfilePictureUrl?: MentionedInDocumentCommentMetadataSenderProfilePictureUrl;
   subType?: MentionedInDocumentCommentMetadataSubType;

@@ -17,7 +17,7 @@ use models_permissions::share_permission::access_level::AccessLevel;
 const DOCUMENT: &str = "019fd3b9-3c6c-7c05-89c2-a27f0121813b";
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|author@macro.com".to_owned()).unwrap()
+    MacroUserIdStr::try_from("macro|author@rox.one".to_owned()).unwrap()
 }
 
 fn receipt() -> EntityAccessReceipt<ViewAccessLevel> {
@@ -459,7 +459,7 @@ async fn message_failures_fail_the_read() {
 fn serializes_ids_kind_and_anchor_for_agents() {
     let mut bot = message(2, Some(1), "On it");
     bot.bot_profile = Some(BotSenderProfile {
-        name: "Macro AI".to_owned(),
+        name: "Rox AI".to_owned(),
         avatar_url: None,
     });
     let discussion = DocumentDiscussion {
@@ -485,14 +485,14 @@ fn serializes_ids_kind_and_anchor_for_agents() {
             "comments": [
                 {
                     "id": id(1),
-                    "author": "macro|author@macro.com",
+                    "author": "macro|author@rox.one",
                     "content": "Why?",
                     "createdAt": "2026-09-23T12:01:00Z"
                 },
                 {
                     "id": id(2),
-                    "author": "macro|author@macro.com",
-                    "authorName": "Macro AI",
+                    "author": "macro|author@rox.one",
+                    "authorName": "Rox AI",
                     "content": "On it",
                     "createdAt": "2026-09-23T12:02:00Z"
                 }

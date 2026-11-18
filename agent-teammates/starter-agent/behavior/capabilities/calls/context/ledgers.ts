@@ -151,7 +151,7 @@ const askClaude =
 		return ran.stdout;
 	};
 
-/** What this part needs from the rest of the agent: Macro's calls, work in flight, and a way to post (chat's). */
+/** What this part needs from the rest of the agent: Rox's calls, work in flight, and a way to post (chat's). */
 export type LedgerNeeds = Tell & {
 	readonly api: CallApi;
 	readonly work: Pick<Work, "inFlight">;

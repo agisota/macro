@@ -151,7 +151,7 @@ fn to_organizer(info: &CalendarEventSearchInfo) -> Option<CalendarEventOrganizer
 }
 
 /// The description the viewer may read. Only someone holding the meeting keeps
-/// its Macro call: the rest read a channel share, which carries no join link.
+/// its Rox call: the rest read a channel share, which carries no join link.
 /// The location plays no part, since search rows do not return it.
 fn to_description(info: &CalendarEventSearchInfo) -> Option<String> {
     if info.holds_meeting {

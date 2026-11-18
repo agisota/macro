@@ -59,7 +59,7 @@ const tasksFaq = [
       <>
         Yes. Assign an available agent to start an agent session and open that
         session from the task to follow its work. You can also ask an agent to
-        create or update tasks. See <a href="/agents">Macro Agents</a>.
+        create or update tasks. See <a href="/agents">Rox Agents</a>.
       </>
     ),
   },
@@ -79,10 +79,10 @@ const tasksFaq = [
     a: 'Tasks follow their sharing settings. In the task composer, choose whether to share with your team or keep access limited to yourself and the people you share it with.',
   },
   {
-    q: 'Can I try Macro for free?',
+    q: 'Can I try Rox for free?',
     a: (
       <>
-        Yes. Macro has a free plan with usage limits. See{' '}
+        Yes. Rox has a free plan with usage limits. See{' '}
         <a href="/pricing">plans and limits</a> for details.
       </>
     ),
@@ -91,7 +91,7 @@ const tasksFaq = [
 
 export function RouteTasks() {
   setPageSeo({
-    title: 'Macro Tasks — Task management for people and agents',
+    title: 'Rox Tasks — Task management for people and agents',
     description:
       'Create tasks from messages, email, or documents without leaving your work. Assign people or agents, keep the original context linked, and let GitHub pull requests update task status.',
     path: '/tasks',
@@ -113,8 +113,8 @@ export function RouteTasks() {
             tone: 'tasks',
             glassFrame: true,
           }}
-          title="Create tasks right from Macro Chat."
-          description="Click Create task on any message and the task is linked to that thread, so the conversation on the task and the conversation in the channel are deep linked together. Or mention @Macro and ask it to create tasks from what was just said; it can create many at once. Hit C then T to create one from anywhere."
+          title="Create tasks right from Rox Chat."
+          description="Click Create task on any message and the task is linked to that thread, so the conversation on the task and the conversation in the channel are deep linked together. Or mention @Rox and ask it to create tasks from what was just said; it can create many at once. Hit C then T to create one from anywhere."
         >
           <span id="ask-macro" />
           <DemoInteractionBoundary
@@ -127,7 +127,7 @@ export function RouteTasks() {
           demo={{
             tone: 'tasks',
           }}
-          title="Directly linked to customer Macro Mail."
+          title="Directly linked to customer Rox Mail."
           description="Create a task from a customer email, or highlight to-do boxes in a document to create many at once. Tasks are linked back to their source bidirectionally: the task remembers where it came from, and the source knows the task exists. Paste a task into a channel and the pill shows its status, assignee, and priority."
         >
           <DemoInteractionBoundary
@@ -140,8 +140,8 @@ export function RouteTasks() {
           demo={{
             tone: 'tasks',
           }}
-          title="Assign tasks to Macro Agents, like teammates."
-          description="Put an agent on a task and it picks it up and gets to work, with the context linked to the task. Open its session to follow along. Through Macro’s MCP server, Claude Code, Codex, and Cursor can find, create, and update your tasks without leaving your editor."
+          title="Assign tasks to Rox Agents, like teammates."
+          description="Put an agent on a task and it picks it up and gets to work, with the context linked to the task. Open its session to follow along. Through Rox’s MCP server, Claude Code, Codex, and Cursor can find, create, and update your tasks without leaving your editor."
         >
           <DemoInteractionBoundary
             class="feature-page-visual"
@@ -154,7 +154,7 @@ export function RouteTasks() {
             tone: 'tasks',
             glassFrame: true,
           }}
-          title="Linked to Macro GitHub, both ways."
+          title="Linked to Rox GitHub, both ways."
           description="As you create, review, and merge pull requests, the linked task moves through In Progress, In Review, and Completed. Click the GitHub pill to open the pull request from the task, or go back to the task from the pull request. Your team can see where the work stands without you having to update two systems."
         >
           <DemoInteractionBoundary
@@ -187,7 +187,7 @@ export function RouteTasks() {
         <FeaturePageFaq
           guide={{ href: '/tasks#guide', label: 'tasks' }}
           id="tasks-faq-title"
-          title="Questions about Macro Tasks"
+          title="Questions about Rox Tasks"
           items={tasksFaq}
         />
         <HomepageClosing />

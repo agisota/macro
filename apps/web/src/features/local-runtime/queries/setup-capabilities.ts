@@ -1,11 +1,11 @@
 import { fireAndForget } from '@core/util/fireAndForget';
 import {
-  type MacrodStatus,
-  macrodDetectAgents,
-  macrodStart,
-  macrodStatus,
-  onMacrodStatus,
-} from '@macro/tauri/macrod';
+  type RoxdStatus,
+  roxdDetectAgents,
+  roxdStart,
+  roxdStatus,
+  onRoxdStatus,
+} from '@macro/tauri/roxd';
 import {
   fetchAgentsList,
   useCreateAgentMutation,
@@ -23,16 +23,16 @@ const CONNECT_TIMEOUT_MS = 3 * 60 * 1000;
 
 /** Resolve once the daemon runs, reporting each phase on the way. */
 async function waitForRunning(
-  onPhase: (phase: MacrodStatus['phase']) => void
-): Promise<MacrodStatus> {
+  onPhase: (phase: RoxdStatus['phase']) => void
+): Promise<RoxdStatus> {
   // A promise settles once; later status events are no-ops.
-  let resolveRunning: (status: MacrodStatus) => void = () => {};
+  let resolveRunning: (status: RoxdStatus) => void = () => {};
   let rejectRunning: (error: Error) => void = () => {};
-  const running = new Promise<MacrodStatus>((resolve, reject) => {
+  const running = new Promise<RoxdStatus>((resolve, reject) => {
     resolveRunning = resolve;
     rejectRunning = reject;
   });
-  const handle = (status: MacrodStatus) => {
+  const handle = (status: RoxdStatus) => {
     onPhase(status.phase);
     if (status.phase === 'running' && status.harnessId) {
       resolveRunning(status);
@@ -43,14 +43,14 @@ async function waitForRunning(
     }
   };
 
-  const unlisten = await onMacrodStatus(handle);
+  const unlisten = await onRoxdStatus(handle);
   const timer = setTimeout(
     () => rejectRunning(new Error('Connecting this computer took too long.')),
     CONNECT_TIMEOUT_MS
   );
   try {
     // Listen first, then read: an event between the two is in the snapshot.
-    handle(await macrodStatus());
+    handle(await roxdStatus());
     return await running;
   } finally {
     clearTimeout(timer);
@@ -62,8 +62,8 @@ async function waitForRunning(
 export function useSetupCapabilities(): SetupCapabilities {
   const createAgent = useCreateAgentMutation();
   return {
-    detectAgents: macrodDetectAgents,
-    startDaemon: macrodStart,
+    detectAgents: roxdDetectAgents,
+    startDaemon: roxdStart,
     waitForRunning,
     allowPermissionBypass: async (harnessId) => {
       await patchHarness({ harnessId, allowPermissionBypass: true });
@@ -79,7 +79,7 @@ export function useSetupCapabilities(): SetupCapabilities {
     // just came online, so always ask again.
     loadModels: async (harnessId) =>
       await queryClient.fetchQuery({
-        ...agentModelsQueryOptions({ harness: 'macrod', harnessId }),
+        ...agentModelsQueryOptions({ harness: 'roxd', harnessId }),
         staleTime: 0,
       }),
     createAgent: async (agent) => {
@@ -87,7 +87,7 @@ export function useSetupCapabilities(): SetupCapabilities {
         name: agent.name,
         handle: agent.handle,
         description: agent.description,
-        harness: 'macrod',
+        harness: 'roxd',
         harnessId: agent.harnessId,
         defaultModel: agent.defaultModel,
         instructions: '',

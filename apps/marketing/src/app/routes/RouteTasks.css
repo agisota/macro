@@ -70,7 +70,7 @@
    stay as they are, because they are not the same thing:
      - the hero's brand tag is HeroEyebrow, shared by 8 files across email,
        agents, crm and github; restyling it here would change those pages
-     - the "Explore Macro Chat" anchors are navigational and deliberately
+     - the "Explore Rox Chat" anchors are navigational and deliberately
        mirror FeatureEyebrowLink in SectionFeatureGrid.tsx
      - the lifecycle stepper's "01/02/03" are tabular numerals, not labels */
 .tasks-eyebrow {

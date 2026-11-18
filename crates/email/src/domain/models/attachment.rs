@@ -80,7 +80,7 @@ pub struct AttachmentDraft {
 /// content is the safe ceiling the draft attachment API enforces too.
 pub const MAX_DRAFT_ATTACHMENTS_BYTES: usize = 18_000_000;
 
-/// A file resolved from a Macro document, ready to be staged as a draft
+/// A file resolved from a Rox document, ready to be staged as a draft
 /// attachment. Produced by a [`DraftAttachmentSource`].
 ///
 /// [`DraftAttachmentSource`]: crate::domain::ports::DraftAttachmentSource

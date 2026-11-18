@@ -4,7 +4,7 @@ import { WhatsAppAccount } from './account';
 import { WhatsAppChat } from './chat';
 
 /**
- * The current user's WhatsApp account, paired through the Macro app, and its
+ * The current user's WhatsApp account, paired through the Rox app, and its
  * chat list. Added chats are external chats: read and send in them through
  * `macro.externalChats`.
  *

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import * as publicSdk from '../../sdk/src/macro';
-import { Macro as PublicMacro } from '../../sdk/src/macro';
+import { Rox as PublicMacro } from '../../sdk/src/macro';
 import * as preinstalledSdk from './index';
 import { Macro } from './index';
 

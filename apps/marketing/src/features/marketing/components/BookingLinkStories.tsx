@@ -9,15 +9,15 @@ export function BookingGuestGraphic() {
     <div
       class="booking-story-card glass"
       role="img"
-      aria-label="Example guest booking page for a 30-minute Macro demo, with available dates and times."
+      aria-label="Example guest booking page for a 30-minute Rox demo, with available dates and times."
     >
       <div class="booking-story-topline">
-        MACRO <span>Booking preview</span>
+        ROX <span>Booking preview</span>
       </div>
       <div class="booking-story-guest">
         <div class="booking-story-meeting">
           <span class="booking-story-kicker">Meet the team</span>
-          <h3>Macro demo</h3>
+          <h3>Rox demo</h3>
           <p>30 minutes · Video call</p>
           <p>Tell us what you’re working on. We’ll show you around.</p>
           <span class="booking-story-zone">America / New York</span>
@@ -59,7 +59,7 @@ export function BookingLinkStories() {
       <FeaturePageSection
         id="booking-links-guests"
         title="Let guests choose a time to meet."
-        description="Guests see your available times in their own time zone and book without a Macro account. The meeting appears in Macro Calendar, and everyone gets an invitation."
+        description="Guests see your available times in their own time zone and book without a Rox account. The meeting appears in Rox Calendar, and everyone gets an invitation."
         demo={{
           tone: 'calls',
           message: {
@@ -74,7 +74,7 @@ export function BookingLinkStories() {
       <FeaturePageSection
         id="booking-links-team"
         title="Book one teammate or the whole team."
-        description="Book everyone together, or use round robin to find one available teammate. Macro checks each host’s calendar and working hours before offering a time."
+        description="Book everyone together, or use round robin to find one available teammate. Rox checks each host’s calendar and working hours before offering a time."
         demo={{
           tone: 'calls',
           message: {
@@ -122,7 +122,7 @@ export function BookingLinkStories() {
 
       <FeaturePageSection
         id="booking-links-forms"
-        title="Qualify guests first with Macro Forms."
+        title="Qualify guests first with Rox Forms."
         description="Put a form in front of the link. Add a gate to qualify requests, and people who pass it choose a time after their response is saved. Their answers land in a database, so you know who you’re meeting before the call."
       >
         <FormBookingGraphic />
@@ -130,7 +130,7 @@ export function BookingLinkStories() {
 
       <FeaturePageSection
         id="booking-links-agent"
-        title="Ask Macro Agents to create a booking link."
+        title="Ask Rox Agents to create a booking link."
         description="Describe the meeting, hosts, and availability you want. Your agent prepares the link and shows you the details for approval before saving."
         demo={{
           tone: 'calls',

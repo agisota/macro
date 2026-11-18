@@ -27,8 +27,8 @@ function titledHarness(harness: string): string {
 }
 
 /**
- * Label for a session's harness. Macro slugs would otherwise title-case to
- * "Macro Inmem" / "In Memory"; everything else stays a titled slug.
+ * Label for a session's harness. Rox slugs would otherwise title-case to
+ * "Rox Inmem" / "In Memory"; everything else stays a titled slug.
  */
 export function harnessTitle(harness: string | undefined): string {
   if (!harness) return 'Agent session';
@@ -67,7 +67,7 @@ export function sessionHarnessTitle(session: {
 
 /**
  * User-facing name for the runtime a persona runs on. Harness ids are
- * plumbing (`in-memory`, `macro-inmem`); the product name is Macro Agent.
+ * plumbing (`in-memory`, `macro-inmem`); the product name is Rox Agent.
  */
 export function harnessDisplayName(harness: string): string {
   switch (harness) {

@@ -25,7 +25,7 @@ export const intentLabels: Record<Intent, string> = {
 };
 export const actionLabels: Record<Intent, string> = {
   ai: 'Ask AI',
-  search: 'Search Macro',
+  search: 'Search Rox',
   email: 'Send email',
   note: 'Create note',
   task: 'Create task',

@@ -171,7 +171,7 @@ impl Replay {
     }
 
     pub(super) fn step(&mut self, committed: &mut FoldState, entry: AgentSessionLog) -> Outcome {
-        // One machine per Macro session. A multiplexed transport must route
+        // One machine per Rox session. A multiplexed transport must route
         // frames before folding; a foreign response must never commit a load.
         if self
             .session

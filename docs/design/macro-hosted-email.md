@@ -1,11 +1,11 @@
-# Macro-hosted email: architecture and implementation plan
+# Rox-hosted email: architecture and implementation plan
 
 **Status:** Proposal, November 7, 2026. Nothing here is built. Decisions marked
 **Decision** are the recommended calls; the open questions at the end need an
 owner before phase 1 starts.
 
-Today Macro is an email *client*: Gmail and Outlook own the mailbox and Macro
-syncs from them. This document designs Macro *hosting* the mailbox itself, so a
+Today Rox is an email *client*: Gmail and Outlook own the mailbox and Rox
+syncs from them. This document designs Rox *hosting* the mailbox itself, so a
 team can receive and send mail at addresses on its own domain with no Google or
 Microsoft account behind it. It also lists what is still Gmail- or
 Outlook-shaped in the provider layer and has to become generic before a third
@@ -15,17 +15,17 @@ provider fits.
 
 | In scope | Out of scope (v1) |
 | --- | --- |
-| Mailboxes on a team's own domain (bring your own domain), received and sent by Macro. | IMAP, POP or JMAP access from other mail clients. Mail is read in Macro apps only. |
+| Mailboxes on a team's own domain (bring your own domain), received and sent by Rox. | IMAP, POP or JMAP access from other mail clients. Mail is read in Rox apps only. |
 | Inbound spam, virus and authentication verdicts. | Running our own outbound IPs or an MTA. |
-| Sending with per-domain DKIM, SPF and DMARC alignment, bounce and complaint handling. | Free `@macro.com`-style consumer addresses (abuse magnet; see [Abuse](#abuse-and-trust)). |
-| Import of existing mail from Gmail/Outlook when a team moves its MX to Macro. | Selling domains (feasible later through a registrar API; see [Domains](#domains-and-dns)). |
+| Sending with per-domain DKIM, SPF and DMARC alignment, bounce and complaint handling. | Free `@rox.one`-style consumer addresses (abuse magnet; see [Abuse](#abuse-and-trust)). |
+| Import of existing mail from Gmail/Outlook when a team moves its MX to Rox. | Selling domains (feasible later through a registrar API; see [Domains](#domains-and-dns)). |
 | Everything users already get on Gmail: threads, read/star/archive/trash/labels, drafts, scheduled and undo send, search, attachments, Signal/Noise. | Calendar and contacts hosting (CalDAV/CardDAV). |
 
-## Decision: build on Amazon SES, Macro is the mailbox of record
+## Decision: build on Amazon SES, Rox is the mailbox of record
 
 | Option | What it is | Why not (or why) |
 | --- | --- | --- |
-| **SES receiving + SES sending** (chosen) | MX points at SES inbound; a receipt rule writes raw MIME to S3 and notifies us; we send through SES v2. | Macro already sends through SES in `us-east-1` (a receiving region) and already handles SES bounces (`services/email_suppression_handler`). SES owns IP reputation and warm-up; [tenants](https://docs.aws.amazon.com/ses/latest/dg/tenants.html) isolate each customer's reputation. We own storage, spam policy and abuse. |
+| **SES receiving + SES sending** (chosen) | MX points at SES inbound; a receipt rule writes raw MIME to S3 and notifies us; we send through SES v2. | Rox already sends through SES in `us-east-1` (a receiving region) and already handles SES bounces (`services/email_suppression_handler`). SES owns IP reputation and warm-up; [tenants](https://docs.aws.amazon.com/ses/latest/dg/tenants.html) isolate each customer's reputation. We own storage, spam policy and abuse. |
 | Self-host [Stalwart](https://stalw.art/) | One Rust binary: SMTP, IMAP, JMAP. Multi-tenancy needs the Enterprise licence (about €2/mailbox/year). | Gives IMAP for free, but we would run stateful mail servers and still relay outbound through SES. Revisit only if IMAP access becomes a requirement; Stalwart can then sit beside the SES ingest and read from the same store. |
 | Mailbox-as-a-service APIs (AgentMail, Shipmail, MailSlurp) | REST API for inboxes on custom domains. | Small vendors aimed at AI agents; per-inbox pricing; their store duplicates ours. |
 | Google Workspace reseller | Real Gmail seats. | 100-seat minimum and a partner agreement; Google still owns the mailbox. |
@@ -35,7 +35,7 @@ Precedent: Amazon WorkMail ran millions of mailboxes on SES for transport and
 spam scanning. AWS [ends WorkMail on March 31, 2027](https://docs.aws.amazon.com/workmail/latest/adminguide/workmail-end-of-support.html),
 so its customers need a new home in the same window this work targets.
 
-**Consequence:** Macro becomes the system of record. Raw messages and
+**Consequence:** Rox becomes the system of record. Raw messages and
 attachments are stored permanently in S3, and backups, retention, export and
 deletion become our job instead of Google's.
 
@@ -55,14 +55,14 @@ The email stack currently runs two provider architectures side by side:
   `email_messages.mailbox_state`, `email_mailbox_folders` with a `FolderRole`,
   and the durable command and send ledgers.
 
-**Decision: the Macro provider is built on the Outlook-shaped path.** It writes
+**Decision: the Rox provider is built on the Outlook-shaped path.** It writes
 `mailbox_state` directly, uses `email_mailbox_folders` for its folders, and
 implements the same domain gateways. Most of the remote-provider machinery
 (delta streams, reconciliation, pending overlays, provider subscriptions,
 draft transfers) collapses to nothing, because there is no remote copy to
 reconcile:
 
-| Domain port | Macro implementation |
+| Domain port | Rox implementation |
 | --- | --- |
 | `MailboxGateway` (content, folder changes) | Reads our own S3 object store; there is no change feed to poll. |
 | `MailboxCommandGateway` (read, star, archive, trash, junk, label) | Confirms immediately: the command's local write *is* the mailbox. No `email_pending_mailbox_state` overlay. |
@@ -75,7 +75,7 @@ reconcile:
 These are the Gmail/Outlook assumptions a third provider trips over. Each is a
 prerequisite PR in phase 0, behaviour-neutral for existing providers:
 
-1. **Provider discriminator.** Add `Macro` to `UserProvider`
+1. **Provider discriminator.** Add `Rox` to `UserProvider`
    (`crates/email/src/domain/models/link.rs`), its legacy copies in
    `models_email`, `DbUserProvider` (two crates plus a private copy in
    `services/email_refresh_handler`), the Postgres `email_user_provider_enum`,
@@ -102,7 +102,7 @@ prerequisite PR in phase 0, behaviour-neutral for existing providers:
    scheduled send and undo send stay in `email_scheduled_messages` and only the
    final submit is per provider.
 5. **Sync stream kinds.** `email_sync_streams.kind` is a CHECK list; add
-   `macro_import` for the one-off migration import (phase 3). The Macro mailbox
+   `macro_import` for the one-off migration import (phase 3). The Rox mailbox
    itself needs no stream.
 
 ## Inbound
@@ -126,7 +126,7 @@ flowchart LR
   No per-domain receipt rules.
 - **Recipient routing** uses the SMTP envelope recipients from the SES
   notification, never the `To` header (Bcc and mailing lists put the real
-  recipient only in the envelope). One delivered message with three Macro
+  recipient only in the envelope). One delivered message with three Rox
   recipients becomes three mailbox copies sharing one S3 object.
 - **Verdicts.** SES returns spam, virus, SPF, DKIM and DMARC verdicts with each
   notification. Virus → discard. DMARC `FAIL` with `p=reject` → discard.
@@ -148,7 +148,7 @@ flowchart LR
 ### Threading
 
 Gmail and Outlook hand us `provider_thread_id`; nothing groups threads from
-headers today. The Macro provider computes it:
+headers today. The Rox provider computes it:
 
 1. If `In-Reply-To` or any `References` id matches a message already in the same
    mailbox, join that message's thread.
@@ -157,7 +157,7 @@ headers today. The Macro provider computes it:
    than missed ones.
 
 This lives in a pure function in `crates/email/src/domain` with golden tests
-over the `.eml` corpus, and writes `provider_thread_id` as a Macro-minted id so
+over the `.eml` corpus, and writes `provider_thread_id` as a Rox-minted id so
 the existing thread queries work unchanged. Sent messages join their thread
 through the same headers, which the draft builder already sets.
 
@@ -183,9 +183,9 @@ override that later mail follows. Signal/Noise then works through
   `Content.Raw`, the tenant name and the user-mail configuration set → store the
   sent copy with `is_sent` and the SES message id. Bcc recipients go in the
   envelope only and stay on our stored copy.
-- **Separation from Macro's own mail.** User mail uses its own configuration set
-  and SES tenants; Macro's invites and notifications keep `macro.com` and
-  `notification.macro.com`. A spam incident on user mail must never pause
+- **Separation from Rox's own mail.** User mail uses its own configuration set
+  and SES tenants; Rox's invites and notifications keep `rox.one` and
+  `notification.rox.one`. A spam incident on user mail must never pause
   transactional mail.
 - **Events.** The user-mail configuration set publishes delivery, bounce,
   complaint and reject events to SNS. A handler updates the send attempt and the
@@ -202,7 +202,7 @@ override that later mail follows. Signal/Noise then works through
 
 ## Domains and DNS
 
-A team adds a domain in Macro settings; Macro shows the records to paste, or
+A team adds a domain in Rox settings; Rox shows the records to paste, or
 configures them in one click through [Domain Connect](https://www.domainconnect.org/)
 / [Entri](https://www.entri.com/) for supported DNS hosts.
 
@@ -218,7 +218,7 @@ Backend flow, behind an `EmailDomainProvider` port with an SES adapter and an
 in-memory fake for tests:
 
 ```text
-add domain    → CreateTenant (one per Macro team, idempotent)
+add domain    → CreateTenant (one per Rox team, idempotent)
               → CreateEmailIdentity(domain) + CreateTenantResourceAssociation
               → PutEmailIdentityMailFromAttributes(mail.<domain>)
               → persist email_hosted_domains row: status pending_dns
@@ -234,7 +234,7 @@ remove domain → suspend mailboxes, DeleteEmailIdentity, keep mail for export
   still points at the old host, so it can import mail and switch MX when ready.
 - **Drift.** The verify worker keeps rechecking active domains daily; DKIM or MX
   records removed later move the domain to `degraded` and notify team admins.
-- **Mailboxes** are rows keyed by `(domain_id, local_part)` and linked to a Macro
+- **Mailboxes** are rows keyed by `(domain_id, local_part)` and linked to a Rox
   user, so they appear as an `email_links` row with provider `MACRO` alongside any
   Gmail or Outlook links the user has. Aliases and group addresses route to one
   or more mailboxes.
@@ -245,13 +245,13 @@ remove domain → suspend mailboxes, DeleteEmailIdentity, keep mail for export
 
 ## Migration from Gmail or Outlook
 
-A team moving its MX to Macro keeps its history:
+A team moving its MX to Rox keeps its history:
 
 1. Verify the domain for sending (`active_send`).
 2. Each user's existing Gmail or Outlook link, already synced, is copied into
-   their Macro mailbox by an import job (`email_sync_streams` kind
+   their Rox mailbox by an import job (`email_sync_streams` kind
    `macro_import`), fetching raw MIME through the existing
-   `MailboxRawMessageClient` / `MailboxContentReader::mime` ports so the Macro
+   `MailboxRawMessageClient` / `MailboxContentReader::mime` ports so the Rox
    store holds real originals.
 3. The admin switches MX. Mail arriving at the old provider during DNS
    propagation keeps syncing through the old link until the import's final pass
@@ -264,13 +264,13 @@ out most bulk abuse. On top of that:
 
 - New tenants start with low daily send limits that rise with clean history.
 - SES tenant [reputation policies](https://aws.amazon.com/about-aws/whats-new/2025/08/amazon-ses-tenant-isolation-automated-reputation-policies)
-  pause only the offending tenant automatically; Macro mirrors that pause into
+  pause only the offending tenant automatically; Rox mirrors that pause into
   the UI and alerts on it.
 - Outbound content is not scanned for v1; complaint rate and bounce rate per
   tenant are the signals, with Datadog monitors next to the existing
   `infra/stacks/monitoring/monitors/ses.ts`.
 - An `abuse@` and `postmaster@` route per hosted domain goes to the tenant's
-  admins; Macro's own `abuse@macro.com` handles reports about the platform.
+  admins; Rox's own `abuse@rox.one` handles reports about the platform.
 
 ## Storage, retention and compliance
 
@@ -292,10 +292,10 @@ carries trace context:
   ingest, with `ses_message_id`, `mailbox_id`, `domain_id`, verdicts and
   attachment count; the SES notification can't carry `traceparent`, so the span
   records the SES message id for correlation.
-- `email.send` on the Macro gateway with tenant, configuration set and SES
+- `email.send` on the Rox gateway with tenant, configuration set and SES
   message id; delivery events link back to it by SES message id.
 - `email.domain_verify` per domain check with the resulting status.
-- A synthetic canary: a scheduled job sends Gmail → Macro and Macro → Gmail
+- A synthetic canary: a scheduled job sends Gmail → Rox and Rox → Gmail
   every few minutes; a monitor alerts on round-trip time. It is the only way to
   notice that inbound has stopped.
 
@@ -308,7 +308,7 @@ carries trace context:
 | Ingest and storage | DB tests (`#[sqlx::test]`) for ingest idempotency and `mailbox_state` writes; the existing facts-view tests cover Signal/Noise for `MACRO` messages. |
 | Local stack | Drop a raw message into the local S3 bucket and an SQS notification; assert rows. Outbound points at a local SMTP sink (Mailpit) so nothing leaves the machine. |
 | Real SES | The [mailbox simulator](https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html#send-email-simulator) (its success, bounce and complaint addresses) exercises real bounce and complaint events without touching reputation. |
-| Dev end to end | A dev subdomain (`mail.dev.macro.com`) with MX to the dev account, plus one throwaway domain to test bring-your-own-domain; mail exchanged with real Gmail and Outlook accounts; check "Show original" for SPF, DKIM and DMARC `PASS` and a mail-tester score. The dev SES account needs production access first (sandbox accounts only send to verified addresses). |
+| Dev end to end | A dev subdomain (`mail.dev.rox.one`) with MX to the dev account, plus one throwaway domain to test bring-your-own-domain; mail exchanged with real Gmail and Outlook accounts; check "Show original" for SPF, DKIM and DMARC `PASS` and a mail-tester score. The dev SES account needs production access first (sandbox accounts only send to verified addresses). |
 
 ## Cost
 
@@ -334,18 +334,18 @@ flag (new connections and settings UI), off by default.
    and hosted mailbox tables, verify worker, settings UI for adding a domain and
    mailboxes, Pulumi for the tenant-scoped IAM, configuration set and SNS topics.
 2. **Inbound.** Receipt rule, bucket, SNS → SQS, `email-inbound` worker, parser,
-   threading, verdict policy, `MailboxIngest` for the Macro provider.
-3. **Outbound.** Macro `DraftGateway` and `MailboxCommandGateway`, SES events
+   threading, verdict policy, `MailboxIngest` for the Rox provider.
+3. **Outbound.** Rox `DraftGateway` and `MailboxCommandGateway`, SES events
    into the suppression handler, per-tenant limits and suppression.
 4. **Migration import** from existing Gmail/Outlook links, MBOX export.
-5. **Rollout.** Dev end to end, canary and monitors, internal dogfood on a Macro
+5. **Rollout.** Dev end to end, canary and monitors, internal dogfood on a Rox
    test domain, then flagged customers.
 
 ## Open questions
 
 | Question | Recommendation |
 | --- | --- |
-| Does anyone need IMAP access from other clients (phones' native mail apps, Apple Mail)? | Not for v1; Macro has web, desktop and mobile apps. If it becomes a requirement, add Stalwart reading the same store rather than replacing SES. |
+| Does anyone need IMAP access from other clients (phones' native mail apps, Apple Mail)? | Not for v1; Rox has web, desktop and mobile apps. If it becomes a requirement, add Stalwart reading the same store rather than replacing SES. |
 | Pricing to customers: per mailbox, or included in a plan tier? | Product call; cost is under $1 per mailbox per month even for heavy users. |
-| Should Macro offer addresses on a Macro-owned domain for teams without one? | No for v1: it invites free-account abuse that every user's deliverability pays for. Domain purchase through a reseller is the better onboarding shortcut. |
+| Should Rox offer addresses on a Rox-owned domain for teams without one? | No for v1: it invites free-account abuse that every user's deliverability pays for. Domain purchase through a reseller is the better onboarding shortcut. |
 | Spam filtering beyond SES verdicts (rspamd)? | Start with SES verdicts and user "Report spam" feedback; measure false negatives on dogfood before adding a scorer. |

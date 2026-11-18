@@ -11,7 +11,7 @@ use crate::domain::{
 
 #[test]
 fn a_person_opening_a_session_is_their_own_work_from_the_moment_it_opens() {
-    let owner = MacroUserIdStr::parse_from_str("macro|owner@macro.com")
+    let owner = MacroUserIdStr::parse_from_str("macro|owner@rox.one")
         .expect("valid user id")
         .into_owned();
     let event_id = Uuid::now_v7();
@@ -20,7 +20,7 @@ fn a_person_opening_a_session_is_their_own_work_from_the_moment_it_opens() {
             session_id: AgentSessionId::TEST_A,
             session_name: "Fix the flaky test".to_owned(),
             bot_id: BotId::TEST_A,
-            bot_name: "Macro Coder".to_owned(),
+            bot_name: "Rox Coder".to_owned(),
             owner_id: owner.clone(),
             origin: None,
             audience: vec![owner.clone()],
@@ -47,7 +47,7 @@ fn a_person_opening_a_session_is_their_own_work_from_the_moment_it_opens() {
 
 #[test]
 fn sessions_started_by_an_agent_or_a_routine_are_nobodys_work() {
-    let owner = MacroUserIdStr::parse_from_str("macro|owner@macro.com")
+    let owner = MacroUserIdStr::parse_from_str("macro|owner@rox.one")
         .expect("valid user id")
         .into_owned();
     for source in [SessionSource::Agent, SessionSource::Routine] {
@@ -56,7 +56,7 @@ fn sessions_started_by_an_agent_or_a_routine_are_nobodys_work() {
                 session_id: AgentSessionId::TEST_A,
                 session_name: "Nightly triage".to_owned(),
                 bot_id: BotId::TEST_A,
-                bot_name: "Macro Coder".to_owned(),
+                bot_name: "Rox Coder".to_owned(),
                 owner_id: owner.clone(),
                 origin: None,
                 audience: vec![owner.clone()],
@@ -72,14 +72,14 @@ fn sessions_started_by_an_agent_or_a_routine_are_nobodys_work() {
 
 #[test]
 fn prompts_leave_own_work_alone_and_deleting_a_session_purges_it() {
-    let owner = MacroUserIdStr::parse_from_str("macro|owner@macro.com")
+    let owner = MacroUserIdStr::parse_from_str("macro|owner@rox.one")
         .expect("valid user id")
         .into_owned();
     let identity = SessionIdentity {
         session_id: AgentSessionId::TEST_A,
         session_name: "Fix the flaky test".to_owned(),
         bot_id: BotId::TEST_A,
-        bot_name: "Macro Coder".to_owned(),
+        bot_name: "Rox Coder".to_owned(),
         owner_id: owner.clone(),
         origin: None,
         audience: vec![owner.clone()],

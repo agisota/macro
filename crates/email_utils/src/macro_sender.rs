@@ -1,7 +1,7 @@
-//! Recognition of Macro's own outbound notification sender.
+//! Recognition of Rox's own outbound notification sender.
 //!
-//! Macro's notification service sends digest, invite, and other system
-//! emails from `no-reply[-<env>]@notification.macro.com` (the SES identity
+//! Rox's notification service sends digest, invite, and other system
+//! emails from `no-reply[-<env>]@notification.rox.one` (the SES identity
 //! the notification service is allowed to send from). Users receive those
 //! about activity they already see in-app, so the email pipeline treats
 //! them as noise and never raises a new-email notification for them.
@@ -9,11 +9,11 @@
 #[cfg(test)]
 mod test;
 
-/// Domain every Macro notification email is sent from, across environments
+/// Domain every Rox notification email is sent from, across environments
 /// (`no-reply@`, `no-reply-dev@`, ...). Lowercase; compare case-insensitively.
-pub const MACRO_NOTIFICATION_SENDER_DOMAIN: &str = "notification.macro.com";
+pub const MACRO_NOTIFICATION_SENDER_DOMAIN: &str = "notification.rox.one";
 
-/// Whether `email` is one of Macro's own notification senders, i.e. any
+/// Whether `email` is one of Rox's own notification senders, i.e. any
 /// address at [`MACRO_NOTIFICATION_SENDER_DOMAIN`].
 pub fn is_macro_notification_sender(email: &str) -> bool {
     email

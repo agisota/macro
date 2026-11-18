@@ -1,6 +1,6 @@
 # Core
 
-Shared app infrastructure used across Macro's web and desktop surfaces. This
+Shared app infrastructure used across Rox's web and desktop surfaces. This
 directory is internal to `apps/web`; it is not a standalone package or public
 API.
 

@@ -243,7 +243,7 @@ it('shows the source context before the editable draft and preserves edits', () 
   ).toBe('Austin Barron <austin@example.com>');
   expect(
     view.getByRole<HTMLInputElement>('textbox', { name: 'Cc' }).value
-  ).toBe('Julia <julia@macro.com>');
+  ).toBe('Julia <julia@rox.one>');
   const body = view.getByRole('textbox', { name: 'Email body' });
   expect(body.getAttribute('contenteditable')).toBe('true');
   expect(body.textContent).toContain('Thursday at 9');

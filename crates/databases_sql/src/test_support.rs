@@ -48,15 +48,15 @@ use uuid::Uuid;
 
 use crate::service::DatabasesSql;
 
-pub(crate) const OWNER: &str = "macro|owner@macro.com";
-pub(crate) const VIEWER: &str = "macro|viewer@macro.com";
-pub(crate) const STRANGER: &str = "macro|stranger@macro.com";
+pub(crate) const OWNER: &str = "macro|owner@rox.one";
+pub(crate) const VIEWER: &str = "macro|viewer@rox.one";
+pub(crate) const STRANGER: &str = "macro|stranger@rox.one";
 
 pub(crate) fn user(id: &'static str) -> MacroUserIdStr<'static> {
     MacroUserIdStr::parse_from_str(id).expect("valid user id")
 }
 
-/// `id` acting through the Macro AI bot, as the agent tools act.
+/// `id` acting through the Rox AI bot, as the agent tools act.
 pub(crate) fn agent_for(id: &'static str) -> Viewer {
     Viewer {
         user_id: user(id),

@@ -1,7 +1,7 @@
 use super::*;
 use crate::domain::meeting_links::attach_macro_call;
 
-const CALL_URL: &str = "https://macro.com/app/meet/join/abcdefghijklmnop";
+const CALL_URL: &str = "https://rox.one/app/meet/join/abcdefghijklmnop";
 
 async fn preview(
     repo: &PgCalendarRepository,

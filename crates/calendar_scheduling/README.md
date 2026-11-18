@@ -9,7 +9,7 @@ storage and provider operations.
 
 ## Integration
 
-Apply MacroDB migrations `20260918164303_calendar_scheduling.sql` and
+Apply RoxDB migrations `20260918164303_calendar_scheduling.sql` and
 `20260918175703_scheduling_recovery.sql`, then deploy the
 updated calendar service with its existing `CALENDAR_SYNC_ENABLED` setting enabled.
 The migration uses PostgreSQL multiranges (PostgreSQL 14+) and `btree_gist` for
@@ -18,7 +18,7 @@ calendar whose grant works, and every calendar that counts toward their busy tim
 must be current (`macro_services/sync_health.rs`, over
 `CalendarSyncHealthReader`): a calendar failing transiently still offers time
 around its stored events for 45 minutes after its next sync was due (its last
-successful sync; for a calendar Macro syncs daily, such as holidays from Google
+successful sync; for a calendar Rox syncs daily, such as holidays from Google
 or an Outlook mailbox's own read-only calendars, a day after it), while a
 permanent or reauthorization failure, a calendar or inbox still on its first
 sync, or a failure past that window refuses availability. A calendar with Busy
@@ -30,7 +30,7 @@ calendar service's HTTP listing), plus meetings the host is in on any calendar
 Deployed invitations include the private cancellation/rescheduling URL.
 
 The web entry points are Settings → Calendar, the calendar header shortcuts,
-`/app/book/:profile/:slug?`, and `/app/booking/:id#token`. Existing Macro team
+`/app/book/:profile/:slug?`, and `/app/booking/:id#token`. Existing Rox team
 owners/admins can manage team scheduling; members have read access. Current
 membership is checked again when booking or approving. Booking capabilities travel
 in request headers/bodies, and scheduling responses disable caching.

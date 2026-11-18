@@ -1,4 +1,4 @@
-/** The existing Macro mention encoding; ordinary cell text is never Markdown. */
+/** The existing Rox mention encoding; ordinary cell text is never Markdown. */
 export type CellMention =
   | { type: 'user'; userId: string; email: string; displayName?: string }
   | {

@@ -33,6 +33,8 @@ pub mod forwarded_attachments;
 pub mod mailbox_settings;
 /// Provider reads of a user's newest inbox messages.
 pub mod recent_inbox;
+/// Existing Rox mail-host provisioning, without a broker-token source.
+pub mod rox_provisioning;
 
 /// Atomic message-label batch persistence and undo.
 pub mod message_labels;

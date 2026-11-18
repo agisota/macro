@@ -204,7 +204,7 @@ describe('setShared', () => {
   });
 });
 
-describe('already in Macro', () => {
+describe('already in Rox', () => {
   const copy = (by: string) => ({
     by,
     entityId: `doc-${by}`,
@@ -248,7 +248,7 @@ describe('already in Macro', () => {
     expect(volumeLabel(importVolume(withCopies, []))).toBe('40 tasks');
     expect(planCounts(withCopies).pages).toBe(4);
     expect(alreadyInMacroSummary(withCopies)).toBe(
-      '2 already in Macro (imported by ana@acme.com, bo@acme.com)'
+      '2 already in Rox (imported by ana@acme.com, bo@acme.com)'
     );
     expect(alreadyInMacroSummary(entries)).toBe('');
   });
@@ -442,7 +442,7 @@ describe('planTotals', () => {
       { label: 'Databases', value: '1 (405 rows)' },
       { label: 'Task lists', value: '1 (40 tasks)' },
       { label: 'Skipped', value: '1' },
-      { label: 'Already in Macro', value: '1' },
+      { label: 'Already in Rox', value: '1' },
     ]);
   });
 });

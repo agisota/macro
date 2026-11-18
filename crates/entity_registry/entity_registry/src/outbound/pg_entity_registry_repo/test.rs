@@ -9,7 +9,7 @@ use super::{EntityRow, PgEntityRegistryRepository};
 use crate::domain::ports::EntityRegistryRepository;
 
 fn user_owner() -> Owner {
-    Owner::parse(OwnerType::User, "macro|hutch@macro.com").unwrap()
+    Owner::parse(OwnerType::User, "macro|hutch@rox.one").unwrap()
 }
 
 fn bot_owner() -> Owner {
@@ -359,7 +359,7 @@ async fn decode_of_a_row_outside_the_checks_is_corrupt_row(_pool: PgPool) {
         id,
         entity_type: "initiative".to_string(),
         owner_type: OwnerType::User,
-        owner_id: "macro|hutch@macro.com".to_string(),
+        owner_id: "macro|hutch@rox.one".to_string(),
         created_at: now,
         updated_at: now,
         deleted_at: None,

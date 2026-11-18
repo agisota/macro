@@ -86,7 +86,7 @@ pub mod flags {
     /// A page's or frame's ruler guides.
     pub const GUIDES: u64 = 1 << 35;
     /// Team libraries: an asset's key and publishing or library details,
-    /// a copy's override key, and Macro's data (the libraries a file
+    /// a copy's override key, and Rox's data (the libraries a file
     /// uses, what a library published).
     pub const LIBRARY: u64 = 1 << 36;
 }

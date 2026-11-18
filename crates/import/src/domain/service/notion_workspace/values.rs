@@ -1,4 +1,4 @@
-//! Notion values in Macro's terms: document properties and task fields.
+//! Notion values in Rox's terms: document properties and task fields.
 //! Database columns and cells are `import_notion::domain::macro_cells`.
 
 use import_notion::domain::macro_cells::{PeopleMap, date, is_web_url, text};
@@ -107,7 +107,7 @@ pub(super) fn task_properties(
     }
 }
 
-/// A Notion status label in Macro's status vocabulary.
+/// A Notion status label in Rox's status vocabulary.
 fn map_task_status(label: &str) -> Option<&'static str> {
     map_linear_status(label).or_else(|| {
         let label = label.trim().to_ascii_lowercase();

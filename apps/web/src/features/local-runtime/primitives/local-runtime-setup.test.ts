@@ -1,14 +1,14 @@
-import type { MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdStatus } from '@macro/tauri/roxd';
 import { createRoot } from 'solid-js';
 import { describe, expect, it, vi } from 'vitest';
 import type { NewLocalAgent, SetupCapabilities } from '../core/setup';
 import { createLocalRuntimeSetup } from './local-runtime-setup';
 
-const RUNNING: MacrodStatus = {
+const RUNNING: RoxdStatus = {
   phase: 'running',
   agentId: 'claude-code',
   agentName: 'Claude Code',
-  workspace: '/home/me/Macro',
+  workspace: '/home/me/Rox',
   pairingCode: null,
   pairingExpiresAt: null,
   harnessId: 'harness-1',
@@ -58,7 +58,7 @@ function withSetup(caps: SetupCapabilities) {
 }
 
 describe('createLocalRuntimeSetup', () => {
-  it('starts the preferred agent and creates a Macro agent on its runtime', async () => {
+  it('starts the preferred agent and creates a Rox agent on its runtime', async () => {
     const startDaemon = vi.fn(async () => RUNNING);
     const allowPermissionBypass = vi.fn(async () => {});
     const createAgent = vi.fn(async (agent: NewLocalAgent) => ({
@@ -88,7 +88,7 @@ describe('createLocalRuntimeSetup', () => {
     expect(setup.state()).toEqual({
       kind: 'ready',
       agent: { botId: 'bot-1', name: 'Claude Code', handle: 'claude-code' },
-      workspace: '/home/me/Macro',
+      workspace: '/home/me/Rox',
     });
     dispose();
   });

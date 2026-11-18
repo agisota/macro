@@ -30,7 +30,7 @@ impl SessionTasks for OwnerOnlyTasks {
             Ok(LinkedTask {
                 task_id: task.to_owned(),
                 title: "Fix the thing".into(),
-                url: format!("https://macro.com/app/task/{task}"),
+                url: format!("https://rox.one/app/task/{task}"),
                 reference: "MACRO-abc".into(),
                 mention: "<m-document-mention></m-document-mention>".into(),
                 pull_request: Some("https://github.com/acme/web/pull/7".into()),

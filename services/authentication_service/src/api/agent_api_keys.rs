@@ -113,7 +113,7 @@ pub enum AgentApiKeyError {
     #[error("value does not look like an API key for this agent's model")]
     MalformedKey,
     /// The agent is not an in-memory agent on an Anthropic or OpenAI model.
-    #[error("only agents that run in Macro on an Anthropic or OpenAI model can use an API key")]
+    #[error("only agents that run in Rox on an Anthropic or OpenAI model can use an API key")]
     UnsupportedAgent,
     /// The agent owner's plan does not include API keys.
     #[error("agent API keys are part of the Premium and Max plans")]

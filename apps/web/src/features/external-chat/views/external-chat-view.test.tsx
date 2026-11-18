@@ -387,7 +387,7 @@ it('mentions chat participants from the composer as WhatsApp mentions', async ()
     },
   });
   mount(fake);
-  // The group's own people, not the sender, Macro users or agents.
+  // The group's own people, not the sender, Rox users or agents.
   expect(mocks.composer?.participants?.()).toEqual([
     {
       id: '15550001111@s.whatsapp.net',
@@ -552,7 +552,7 @@ it('renders every WhatsApp message type with Chat parts and small cards', () => 
   ).toContain('Missed group video call');
 
   expect(screen.getByText('Forwarded')).toBeTruthy();
-  // A Macro user becomes Chat's mention chip; anyone else their name.
+  // A Rox user becomes Chat's mention chip; anyone else their name.
   expect(
     document.querySelector(
       '[data-user-mention][data-user-id="macro|ben@x.test"]'
@@ -677,7 +677,7 @@ it('shows a sent image at once and keeps it in place when WhatsApp stores it', a
       body: '',
       replyTo: undefined,
       sentAt: new Date().toISOString(),
-      // DSS stores no size for files sent from Macro.
+      // DSS stores no size for files sent from Rox.
       attachments: [
         {
           ordinal: 0,
@@ -717,7 +717,7 @@ it('names the community and notes disappearing messages quietly', () => {
   mount(fake);
   expect(screen.getByRole('heading', { name: 'Launch · Design' })).toBeTruthy();
   const note =
-    'Disappearing messages are on in WhatsApp (7 days). Macro keeps them.';
+    'Disappearing messages are on in WhatsApp (7 days). Rox keeps them.';
   expect(screen.getByLabelText(note)).toBeTruthy();
   expect(screen.getByText(note)).toBeTruthy();
   // Sending works as in any chat.
@@ -783,7 +783,7 @@ it('opens members, sharing and syncing in the side panel', async () => {
   );
   await waitFor(() => expect(fake.capabilities.stopSync).toHaveBeenCalled());
   expect(
-    await screen.findByText('Syncing stopped. Its history stays in Macro.')
+    await screen.findByText('Syncing stopped. Its history stays in Rox.')
   ).toBeTruthy();
   expect(screen.getByText('This chat is no longer syncing')).toBeTruthy();
 });

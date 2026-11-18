@@ -10,7 +10,7 @@ use uuid::Uuid;
 use super::SkillToolContext;
 use crate::domain::ports::SkillService;
 
-/// Read complete instructions for a skill discovered in Macro.
+/// Read complete instructions for a skill discovered in Rox.
 #[derive(Debug, Clone, Deserialize, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 #[schemars(

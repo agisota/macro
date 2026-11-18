@@ -34,7 +34,7 @@ admission and recording:
 OpenAI key (see [agent API keys](../agent-guide/ai-chat.md#agent-api-keys))
 skip admission and record `ai_usage.agent_api_key_id`, which keeps them out
 of `count_usage`. Only the loop's own model calls run on the key; tools,
-opening lines, and summaries in those turns still use Macro's keys and count.
+opening lines, and summaries in those turns still use Rox's keys and count.
 
 **Exempt:** Memory, AiProjection, CallSummary, Dictation, ChatRename.
 **Billable:** Chat, Automation, DynamicCompletionsApi, ChannelBot, AiEditing,
@@ -324,9 +324,9 @@ trusted caller and inherit the server's feature/entity. Never accept billing
 identity, feature exemption, or `count_usage` from a client; never substitute
 `SYSTEM_USER_ID` for a missing real caller. Non-user session owners remain rejected.
 
-Macro-funded in-memory and managed sandbox sessions require AgentSession admission.
+Rox-funded in-memory and managed sandbox sessions require AgentSession admission.
 Cursor, Codex Cloud, and externally paired runtime execution is funded
-externally and skips that gate; independently Macro-funded naming, repository
+externally and skips that gate; independently Rox-funded naming, repository
 selection, and tool calls still have their own gates.
 
 Links below identify the actual boundary, production injection/recorder constructor,

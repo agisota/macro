@@ -14,7 +14,7 @@ type Sync = OutlookCalendarSync<
     NoOpenClients,
 >;
 
-/// A meeting tomorrow that Macro can read.
+/// A meeting tomorrow that Rox can read.
 fn upcoming(id: &str) -> Value {
     meeting_in(id, chrono::Duration::days(1))
 }
@@ -28,9 +28,9 @@ fn meeting_in(id: &str, offset: chrono::Duration) -> Value {
     value
 }
 
-/// A daily out-of-office series as Graph returns it, carrying Macro's own
+/// A daily out-of-office series as Graph returns it, carrying Rox's own
 /// preferences property with an automatic-decline policy this build cannot
-/// read, as another Macro version could have written it. The reader rejects
+/// read, as another Rox version could have written it. The reader rejects
 /// it at `singleValueExtendedProperties.automaticDecline`.
 fn unreadable_series(id: &str) -> Value {
     let mut value = upcoming(id);
@@ -214,7 +214,7 @@ async fn a_stored_event_that_turns_unreadable_leaves_the_calendar(pool: PgPool) 
     sync_until_idle(&sync).await;
     assert_eq!(imported(&pool).await, vec!["AAMkChanged", "AAMkReadable"]);
 
-    // The organizer turns the meeting into a series Macro cannot read. Its
+    // The organizer turns the meeting into a series Rox cannot read. Its
     // stored copy would show a version Microsoft no longer has.
     server.reset().await;
     serve_delta(

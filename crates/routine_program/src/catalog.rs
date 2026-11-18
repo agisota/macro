@@ -52,7 +52,7 @@ pub enum NamedItemKind {
     Label,
 }
 
-/// A routine Macro offers: what it does, when it runs, and its step.
+/// A routine Rox offers: what it does, when it runs, and its step.
 #[derive(Debug, Clone, PartialEq)]
 pub struct CatalogRoutine {
     /// Names it for clients and suggestions, e.g. `inbox`.

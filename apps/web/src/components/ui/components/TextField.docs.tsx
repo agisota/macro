@@ -44,7 +44,7 @@ function TextAreaDemo() {
 function StatesDemo() {
   return (
     <div class="flex w-full max-w-sm flex-col gap-5">
-      <TextField disabled defaultValue="workspace@macro.com">
+      <TextField disabled defaultValue="workspace@rox.one">
         <TextField.Label>Account email</TextField.Label>
         <TextField.Input type="email" />
         <TextField.Description>

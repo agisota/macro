@@ -87,7 +87,7 @@ pub enum RoutineTrigger {
         /// IANA time zone, e.g. America/New_York.
         timezone: String,
     },
-    /// Run when matching activity happens in Macro. Only people's actions
+    /// Run when matching activity happens in Rox. Only people's actions
     /// trigger routines; changes made by routines and agents never do.
     Event {
         /// Any of these events starts a run.
@@ -174,7 +174,7 @@ pub struct RoutineConfiguration {
     /// user, with no agent badge, as if the user wrote them. Set it only
     /// when the user explicitly asks for the routine to act, send or post as
     /// them; never infer it. By default, and when false, code steps' writes
-    /// are attributed to Macro's agent acting for the user. Ask AI steps are
+    /// are attributed to Rox's agent acting for the user. Ask AI steps are
     /// always attributed to their agent. On update, omit it to keep the
     /// routine's current setting.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -249,7 +249,7 @@ mod steps_json {
 }
 
 /// A saved routine whose configuration these tools can't express without
-/// losing part of it, so it is only edited on its page in Macro.
+/// losing part of it, so it is only edited on its page in Rox.
 #[derive(Debug, Clone)]
 pub struct NotEditableHere(String);
 

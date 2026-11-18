@@ -3,8 +3,8 @@
 //! in step with each turn, and serves the windows over a local socket.
 //!
 //! Nothing here speaks ACP to the agent. Windows steer a session through the
-//! Macro control API, exactly as the web app does, so a prompt typed in herdr
-//! is the same turn Macro records, folds, and shows.
+//! Rox control API, exactly as the web app does, so a prompt typed in herdr
+//! is the same turn Rox records, folds, and shows.
 
 use std::collections::{HashMap, VecDeque};
 use std::path::{Path, PathBuf};
@@ -109,13 +109,13 @@ impl Hub {
         move |line, direction| inner.lock().observe(line, direction)
     }
 
-    /// The daemon opened a Macro session for `owner`; its ACP session is
+    /// The daemon opened a Rox session for `owner`; its ACP session is
     /// about to open (or just has).
     pub(crate) fn session_created(&self, session: AgentSessionId, owner: Owner) {
         self.inner.lock().session_created(session, owner);
     }
 
-    /// `owner` prompted an existing session from Macro.
+    /// `owner` prompted an existing session from Rox.
     pub(crate) fn owner_seen(&self, session: AgentSessionId, owner: Owner) {
         self.inner.lock().owners.insert(session, owner);
     }
@@ -175,8 +175,8 @@ pub(crate) struct HubState {
     tap: WireTap,
     sessions: HashMap<String, SessionView>,
     owners: HashMap<AgentSessionId, Owner>,
-    /// Macro sessions this daemon created that no ACP session has claimed,
-    /// for services that do not name the Macro session in `_meta`.
+    /// Rox sessions this daemon created that no ACP session has claimed,
+    /// for services that do not name the Rox session in `_meta`.
     unclaimed_macro: VecDeque<AgentSessionId>,
     unclaimed_acp: VecDeque<String>,
     work: mpsc::UnboundedSender<Work>,
@@ -424,7 +424,7 @@ impl Launcher {
 }
 
 fn socket_path() -> PathBuf {
-    std::env::temp_dir().join(format!("macrod-herdr-{}.sock", std::process::id()))
+    std::env::temp_dir().join(format!("roxd-herdr-{}.sock", std::process::id()))
 }
 
 fn restrict_to_owner(socket: &Path) -> std::io::Result<()> {
@@ -432,11 +432,11 @@ fn restrict_to_owner(socket: &Path) -> std::io::Result<()> {
     std::fs::set_permissions(socket, std::fs::Permissions::from_mode(0o600))
 }
 
-/// `macrod herdr-pane --socket …`, before the session argument.
+/// `roxd herdr-pane --socket …`, before the session argument.
 fn pane_command(socket: &Path) -> Vec<String> {
     let exe = std::env::current_exe()
         .map(|exe| exe.to_string_lossy().into_owned())
-        .unwrap_or_else(|_| "macrod".to_owned());
+        .unwrap_or_else(|_| "roxd".to_owned());
     vec![
         exe,
         "herdr-pane".to_owned(),
@@ -509,7 +509,7 @@ async fn serve_window(inner: Arc<Inner>, stream: UnixStream) {
     }
 }
 
-/// Carry a window's request to the session through Macro.
+/// Carry a window's request to the session through Rox.
 async fn steer(inner: &Inner, session: &str, request: FromPane) -> Result<(), String> {
     let action = match request {
         FromPane::Attach { .. } => return Ok(()),
@@ -519,12 +519,12 @@ async fn steer(inner: &Inner, session: &str, request: FromPane) -> Result<(), St
     let target = inner.lock().control_target(session);
     let Some((macro_session, owner)) = target else {
         return Err(
-            "this session was not opened by this macrod run; steer it from Macro".to_owned(),
+            "this session was not opened by this roxd run; steer it from Rox".to_owned(),
         );
     };
     inner
         .api
         .control(macro_session, &owner, action, None)
         .await
-        .map_err(|error| format!("Macro refused: {error}"))
+        .map_err(|error| format!("Rox refused: {error}"))
 }

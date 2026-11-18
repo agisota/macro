@@ -36,7 +36,7 @@ export const agentsTour = defineViewTour({
       entryLabel: 'Choose Chat or Code to pick an agent',
       title: 'Choose your agent and model',
       description:
-        'Open this picker to choose an agent for the current mode. In Chat, Macro’s models are listed here too; each agent’s submenu lets you choose a model for that conversation.',
+        'Open this picker to choose an agent for the current mode. In Chat, Rox’s models are listed here too; each agent’s submenu lets you choose a model for that conversation.',
     },
     {
       target: AGENTS_TOUR.agentList,
@@ -50,7 +50,7 @@ export const agentsTour = defineViewTour({
       ...openRoster,
       title: 'Coding agents work on code',
       description:
-        'Coding agents run in Cursor or on a machine you pair with macrod. Connect them here, then choose where each agent runs when you create it.',
+        'Coding agents run in Cursor or on a machine you pair with roxd. Connect them here, then choose where each agent runs when you create it.',
     },
     {
       target: AGENTS_TOUR.agentList,

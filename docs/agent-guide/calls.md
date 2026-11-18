@@ -7,7 +7,7 @@ The Calls list starts with the Calls `TutorialRow` (from `features/video-tutoria
 Above 720px on desktop, a collapsible sidebar starts with the shared outlined `New` button;
 `Search calls` is in the list header. The sidebar also holds
 the views `All` / `Missed` / `Unattended`, a `Type` section (`Internal` /
-`External`; External means at least one guest without a Macro account joined),
+`External`; External means at least one guest without a Rox account joined),
 a `Channels` section listing channels seen in loaded calls, and `Tags`. Choosing
 a type, channel, or tag shows only that one; choosing it again clears it. These
 refinements carry across the three views. The desktop header uses one row:
@@ -20,7 +20,7 @@ view/filter navigation in a sheet. Ordinary selections remain in the preview.
 call`, `Call a channel or contact`, and `Manage call links`. `Start an instant call` opens `/app/meet/new`
 without creating a meeting, the same setup reached from `New Call` beside
 Calendar's `New event` or `Create` → `Call` (`C C`). Scheduled calls are created
-through Calendar and can be shared with people who do not have a Macro account.
+through Calendar and can be shared with people who do not have a Rox account.
 Verify signed-in joins for both instant and scheduled links with
 `enable-programmatic-calls` on and off: the app's empty POST must work even
 with its `Content-Type: application/json` header. Guest joins send a JSON body
@@ -96,7 +96,7 @@ with Enter or Space to check keyboard-only audio activation.
 
 ### Saved call detail
 
-On desktop the header keeps the breadcrumb, the call's More menu, Call again before Ask Macro,
+On desktop the header keeps the breadcrumb, the call's More menu, Call again before Ask Rox,
 combined Share/copy-link control, and the details toggle. Calls and Drive use the
 same More menu for call actions, including rename, recording download and delete.
 The channel appears above the title, with the
@@ -149,7 +149,7 @@ Below that threshold, medium-size Summary/Transcript tabs sit below the recordin
 The inline transcript list has no horizontal padding, aligning its row edges with
 the tabs and Summary. The tab selection and one mounted video/transcript survive resizing in either
 direction. Summary has an AI icon before its tab label and wide-pane heading;
-hovering or focusing either shows “Written by Macro after the call” in a tooltip, rather than
+hovering or focusing either shows “Written by Rox after the call” in a tooltip, rather than
 a separate credit line. The credit remains the Summary tab's accessible description
 on touch, where tooltips stay disabled. Details starts closed and
 floats over content without moving it. Playback remains reachable in a pinned bar
@@ -172,7 +172,7 @@ On touch, the first tap reveals hidden controls; a tap with controls visible tog
 
 Phones use separate Back, title-menu, and Details header islands. The player
 comes before identity, then Summary/Transcript/Chat tabs with the real chat count.
-Ask Macro floats above the dock on Summary and Chat. The avatar chevron opens the
+Ask Rox floats above the dock on Summary and Chat. The avatar chevron opens the
 participant list. Details opens the same content in the standard bottom sheet. In the scrolled Transcript tab, manual downward
 scrolling replaces the navigation dock with the mini player; scrolling upward
 restores navigation below it. Search, the keyboard, and leaving the view release
@@ -369,7 +369,7 @@ same download flow and confirmations as Drive files.
 ### Call links and guests — `/app/meet/join/:shareToken`
 
 These routes require `enable-quick-calls` for both signed-in users and guests.
-In Calendar, create an event with `Macro call` selected (the default).
+In Calendar, create an event with `Rox call` selected (the default).
 The composer waits for the quick-call flag to load before choosing its default.
 Saving creates the call and includes its link in the invitation;
 the room starts on the first join. Use Calendar to edit the event or invite guests.
@@ -381,8 +381,8 @@ link`, and `Revoke link`. Revocation prevents new joins; it does not delete cale
 events or disconnect current participants. Each active channel call also shows its
 URL and `Copy link`. A channel call's link stops working when that call ends.
 
-Guests can use standalone meeting links without a Macro account. Links to channel
-calls only admit signed-in Macro users; visitors without an account see a sign-in
+Guests can use standalone meeting links without a Rox account. Links to channel
+calls only admit signed-in Rox users; visitors without an account see a sign-in
 prompt instead of the guest name form. Inside a channel call, the shareable link is
 created on request via `Get shareable call link`.
 
@@ -392,7 +392,7 @@ New calls use `/app/meet/new`; shared links open setup at
 hangup opens the call record when the server confirms the call ended (the last
 participant left). Leaving an ongoing channel call opens its channel; leaving
 an ongoing scheduled call opens Calendar. Ongoing instant calls return to Calls.
-Guests return to Macro without opening a private call record.
+Guests return to Rox without opening a private call record.
 An unexpected disconnection returns to setup so the user can retry.
 Opening or reloading an in-call URL returns to setup and requires a deliberate
 join; existing shared links continue to work.
@@ -422,7 +422,7 @@ Copying the meeting URL is available after joining, in the in-call header.
 
 The creator presses `Start call`; invitees press `Join call`. Loading the page or
 completing authentication never joins automatically, including old `?join=true`
-URLs. `Back to Macro` exits setup.
+URLs. `Back to Rox` exits setup.
 Channel-linked calls require sign-in. While authentication is loading or the
 viewer is signed out, setup must not request microphone or camera access; the
 guest name form is available only for standalone meetings.
@@ -463,7 +463,7 @@ responses carry opaque participant IDs, while signed-in quotes retain normal
 account IDs. Keep a signed-in chat open while a guest sends, reacts, edits, or
 deletes; the changes should appear live. Closing and reopening the chat refreshes
 the thread.
-A guest never receives Macro markup for things they cannot open. Have a signed-in
+A guest never receives Rox markup for things they cannot open. Have a signed-in
 participant send a quote reply, a pasted message link, a document mention, and a
 person mention: the guest sees the quote rendered and each reference as plain
 text with its name (a person as `@name`), never raw `<m-…>` text or a **No
@@ -511,7 +511,7 @@ The header shows the current local time before the call name. Owners can click t
 to rename it, then Save or press Enter; Cancel or Escape discards the edit. Guests and other participants see a
 read-only name.
 
-Join-preview and in-call controls use the standard Macro icon buttons.
+Join-preview and in-call controls use the standard Rox icon buttons.
 The full and compact call bars keep split and standalone controls at the same
 outer height (40px and 32px respectively), including each split frame's border.
 Desktop popover and floating-player controls use 14px glyphs, including their
@@ -692,11 +692,11 @@ its action groups when the sidebar is narrow, keeping the final actions inside
 the visible surface. Check the first and last visible messages while scrolling,
 with every action available. Check both signed-in and guest calls.
 
-In the macOS desktop app, Screen share opens Macro's own **Share your screen**
+In the macOS desktop app, Screen share opens Rox's own **Share your screen**
 picker (screens first, the main display preselected, then open windows), since
 its Chromium has no system picker. Share publishes the chosen source; Cancel
 leaves sharing off. Without macOS Screen Recording access the picker says so
-and macOS shows its prompt; the user reopens Macro after allowing it. A refused
+and macOS shows its prompt; the user reopens Rox after allowing it. A refused
 or failed capture shows its reason under the call controls. Browsers
 and older desktop builds keep the browser's own picker. Verify on a Mac by
 sharing a display and a window, stopping, and cancelling the picker.
@@ -821,7 +821,7 @@ After joining, the themed drawer shows a large participant tile and a horizontal
 scrolling participant strip without the transcription agent; tap a strip tile to make it primary. Speaker toggles
 speaker mode (hold it for headset/Bluetooth routing), Mute and Video control capture, and **Leave** ends the call.
 The local primary video tile exposes Switch camera. Swipe the drawer handle down,
-tap outside the drawer, or use Back to shrink it to a thumbnail over Macro, as on
+tap outside the drawer, or use Back to shrink it to a thumbnail over Rox, as on
 iOS: tap it to reopen the drawer, drag it to another corner, or drag it past a side
 to tuck it away (an edge tab brings it back once someone else is in the call). Leaving the app continues the call in system PiP (you and the
 active speaker); tapping PiP shows Android's menu with Mute, **Leave** and expand,
@@ -836,7 +836,7 @@ remains usable; Answer opens the call screen directly for microphone permission
 and retry errors. Verify allowed/denied full-screen access, missing microphone
 permission, cancellation/expiry and stale notification actions after a replacement
 call arrives. While Android 14+ blocks full-screen notifications, a toast
-offers **Allow** (system setting) or **Not now**; returning to Macro with access
+offers **Allow** (system setting) or **Not now**; returning to Rox with access
 granted removes it. PiP is a native, device-dependent
 flow. Browser-only tests cannot validate Telecom, FCM wakeup or background media;
 follow the hardware matrix in [Android development](../development/android.md#native-calling).
@@ -880,7 +880,7 @@ An agent teammate (`enable-agent-teammates`) joins calls from its own computer
 and speaks with the voice in its repository's `config/voice.json`: the one
 picked when it was invited, or set later from **Team → Members** (see
 [agent teammates](settings.md#agent-teammates)). A changed voice applies from
-the agent's next call. Its speech runs through Macro's speech gateway on the
+the agent's next call. Its speech runs through Rox's speech gateway on the
 agent harness service (`/brain/inference/stt` and `/brain/inference/tts`, the
 agent's own key), so call audio and synthesized text are billed as the agent's
 AI usage.

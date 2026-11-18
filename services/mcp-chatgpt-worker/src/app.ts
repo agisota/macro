@@ -38,7 +38,7 @@ export const PROTECTED_RESOURCE_PATH = '/.well-known/oauth-protected-resource';
 /** Where OpenAI checks that the app's MCP server is on a domain it owns. */
 export const OPENAI_APPS_CHALLENGE_PATH = '/.well-known/openai-apps-challenge';
 
-const SERVER_INFO = { name: 'macro', title: 'Macro', version: '1.0.0' };
+const SERVER_INFO = { name: 'macro', title: 'Rox', version: '1.0.0' };
 
 /** The tool that turns person tokens back into names and emails. */
 export const PEOPLE_TOOL = 'people_read';
@@ -120,7 +120,7 @@ function protectedResourceMetadata(config: Config) {
     resource: config.RESOURCE_URL,
     authorization_servers: [config.AUTHORIZATION_SERVER_URL],
     bearer_methods_supported: ['header'],
-    resource_name: 'Macro',
+    resource_name: 'Rox',
   };
 }
 
@@ -131,7 +131,7 @@ function unauthorized(config: Config) {
     config.RESOURCE_URL
   );
   return Response.json(
-    { error: 'invalid_token', error_description: 'Sign in to Macro.' },
+    { error: 'invalid_token', error_description: 'Sign in to Rox.' },
     {
       status: 401,
       headers: {

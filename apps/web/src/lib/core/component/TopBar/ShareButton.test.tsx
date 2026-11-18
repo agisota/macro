@@ -263,7 +263,7 @@ vi.mock('@core/util/currentBlockDocumentName', () => ({
 }));
 vi.mock('@core/util/url', () => ({
   buildSimpleEntityUrl: ({ type, id }: { type: string; id: string }) =>
-    `https://macro.com/app/${type}/${id}`,
+    `https://rox.one/app/${type}/${id}`,
 }));
 vi.mock('@service-cognition/client', () => ({
   cognitionApiServiceClient: {
@@ -303,7 +303,7 @@ vi.mock('@queries/call/call', () => ({
 vi.mock('@queries/team/teams', () => ({
   useCurrentTeamQuery: () => ({
     isSuccess: mocks.hasTeam,
-    data: mocks.hasTeam ? { team: { id: 'team-1', name: 'Macro' } } : undefined,
+    data: mocks.hasTeam ? { team: { id: 'team-1', name: 'Rox' } } : undefined,
   }),
 }));
 vi.mock('@solidjs/router', () => ({ useNavigate: () => vi.fn() }));
@@ -741,7 +741,7 @@ describe('agent session sharing', () => {
     ));
     fireEvent.click(screen.getByRole('button', { name: 'Copy Share Link' }));
     expect(mocks.copyLink).toHaveBeenCalledWith(
-      'https://macro.com/app/task/task-1'
+      'https://rox.one/app/task/task-1'
     );
   });
 
@@ -800,7 +800,7 @@ describe('agent session sharing', () => {
     setId('current-session');
     fireEvent.click(screen.getByRole('button', { name: 'Copy Share Link' }));
     expect(mocks.copyLink).toHaveBeenCalledWith(
-      'https://macro.com/app/agent/current-session'
+      'https://rox.one/app/agent/current-session'
     );
   });
   it('shares the persisted session instead of its enclosing launcher identity', async () => {
@@ -848,7 +848,7 @@ describe('agent session sharing', () => {
       expect(screen.queryByRole('tab', { name: 'Link' })).toBeNull();
       fireEvent.click(screen.getByRole('button', { name: 'Copy Link' }));
       expect(onCopyLink).toHaveBeenCalledWith(
-        'https://macro.com/app/agent/persisted-session'
+        'https://rox.one/app/agent/persisted-session'
       );
       expect(mocks.sendToChannel).not.toHaveBeenCalled();
       expect(mocks.updateAgentPermissions).not.toHaveBeenCalled();
@@ -1512,7 +1512,7 @@ describe('native project sharing', () => {
     ));
     fireEvent.click(screen.getByRole('button', { name: 'Copy Share Link' }));
     expect(mocks.copyLink).toHaveBeenCalledWith(
-      'https://macro.com/app/initiative/initiative-1'
+      'https://rox.one/app/initiative/initiative-1'
     );
   });
 });
@@ -1840,7 +1840,7 @@ describe('form share roles', () => {
     ));
     fireEvent.click(screen.getByRole('button', { name: 'Copy Share Link' }));
     expect(mocks.copyLink).toHaveBeenCalledWith(
-      'https://macro.com/app/form/form-id'
+      'https://rox.one/app/form/form-id'
     );
   });
 

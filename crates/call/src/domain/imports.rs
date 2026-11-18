@@ -1,5 +1,5 @@
 //! Trusted integration entry point. Import ownership comes from the connected
-//! Macro user, never from provider attendees; imports confer no attendee access.
+//! Rox user, never from provider attendees; imports confer no attendee access.
 #[cfg(test)]
 mod test;
 
@@ -25,7 +25,7 @@ pub struct ImportedCall {
     pub started_at: Option<DateTime<Utc>>,
     /// Observed conversation end.
     pub ended_at: Option<DateTime<Utc>>,
-    /// Provider attendees, without inferred Macro identities or attendance.
+    /// Provider attendees, without inferred Rox identities or attendance.
     pub participants: Vec<CallParticipant>,
     /// Available transcript, independent of recordings.
     pub transcript: Option<CallTranscript>,
@@ -35,22 +35,22 @@ pub struct ImportedCall {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ImportedCallPreview {
-    /// Macro call entity ID.
+    /// Rox call entity ID.
     pub id: Uuid,
     /// Display title.
     pub title: Option<String>,
     /// Observed call time, if available.
     pub started_at: Option<DateTime<Utc>>,
-    /// Time this record entered Macro.
+    /// Time this record entered Rox.
     pub created_at: DateTime<Utc>,
 }
 
 /// An imported call as its provider describes it, for mirroring elsewhere.
 #[derive(Debug, Clone)]
 pub struct ImportedCallRecord {
-    /// Macro call entity ID.
+    /// Rox call entity ID.
     pub id: Uuid,
-    /// Display title, including a title edited in Macro.
+    /// Display title, including a title edited in Rox.
     pub title: Option<String>,
     /// Observed call start, if available.
     pub started_at: Option<DateTime<Utc>>,

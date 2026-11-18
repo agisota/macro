@@ -28,9 +28,9 @@ use serde::Deserialize;
 /// Stores information about the JWT, this is used for the logout in particular call
 #[derive(Clone)]
 pub struct JwtContext {
-    /// Macro access token The audience of the token
+    /// Rox access token The audience of the token
     pub audience: String,
-    /// Macro access token The tenant id of the token
+    /// Rox access token The tenant id of the token
     pub tid: String,
 }
 

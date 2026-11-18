@@ -60,24 +60,24 @@ fn message_with(from: Option<ContactInfo>, to: Vec<ContactInfo>) -> message::Mes
 #[test]
 fn oversized_recipient_addresses_are_dropped_and_the_rest_kept() {
     let message = message_with(
-        Some(contact("sender@macro.com", None)),
+        Some(contact("sender@rox.one", None)),
         vec![
             contact(&oversized_address(), None),
-            contact("real@macro.com", None),
+            contact("real@rox.one", None),
         ],
     );
 
     let addresses = addresses_from_message(&message);
 
     assert_eq!(addresses.to.len(), 1);
-    assert_eq!(addresses.to[0].email_address, "real@macro.com");
+    assert_eq!(addresses.to[0].email_address, "real@rox.one");
     assert!(addresses.from.is_some());
 }
 
 #[test]
 fn an_address_exactly_at_the_column_width_is_kept() {
     let at_limit = format!(
-        "{}@macro.com",
+        "{}@rox.one",
         "a".repeat(column_limits::EMAIL_ADDRESS - 10)
     );
     assert_eq!(at_limit.chars().count(), column_limits::EMAIL_ADDRESS);
@@ -99,7 +99,7 @@ fn an_oversized_from_address_is_dropped_without_dropping_the_message() {
 #[test]
 fn oversized_contact_names_are_truncated() {
     let long_name = "n".repeat(column_limits::CONTACT_NAME + 100);
-    let message = message_with(None, vec![contact("real@macro.com", Some(&long_name))]);
+    let message = message_with(None, vec![contact("real@rox.one", Some(&long_name))]);
 
     let addresses = addresses_from_message(&message);
 
@@ -110,7 +110,7 @@ fn oversized_contact_names_are_truncated() {
 #[test]
 fn oversized_from_names_are_truncated_for_the_message_row() {
     let long_name = "n".repeat(column_limits::CONTACT_NAME + 100);
-    let mut message = message_with(Some(contact("sender@macro.com", Some(&long_name))), vec![]);
+    let mut message = message_with(Some(contact("sender@rox.one", Some(&long_name))), vec![]);
 
     let db_message = map_service_message_to_db(&mut message, Uuid::now_v7(), None);
 
@@ -158,7 +158,7 @@ fn oversized_synced_contact_names_are_truncated() {
         id: Uuid::now_v7(),
         link_id: Uuid::now_v7(),
         name: Some("n".repeat(column_limits::CONTACT_NAME + 1)),
-        email_address: Some("real@macro.com".to_string()),
+        email_address: Some("real@rox.one".to_string()),
         original_photo_url: None,
         sfs_photo_url: None,
     };

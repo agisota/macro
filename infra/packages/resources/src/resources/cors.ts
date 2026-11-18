@@ -29,25 +29,25 @@ const NON_PROD_LOCAL_ORIGINS = ['http://localhost:*', 'https://localhost:*'];
 
 const SHARED_ORIGINS = [
   'http://host.local:3000',
-  'https://app-dev.macro.com',
-  'https://app-staging.macro.com',
-  'https://app-prod.macro.com',
-  'https://app.macro.com',
-  'https://dev.macro.com',
-  'https://chat-dev.macro.com',
-  'https://chat.macro.com',
-  'https://staging.macro.com',
-  'https://prod.macro.com',
-  'https://www.macro.com',
-  'https://macro.com',
-  'https://website-dev.macro.com',
-  'https://website-staging.macro.com',
-  'https://website-prod.macro.com',
-  'https://apollo-testing.macro.com',
+  'https://app-dev.rox.one',
+  'https://app-staging.rox.one',
+  'https://app-prod.rox.one',
+  'https://app.rox.one',
+  'https://dev.rox.one',
+  'https://chat-dev.rox.one',
+  'https://chat.rox.one',
+  'https://staging.rox.one',
+  'https://prod.rox.one',
+  'https://www.rox.one',
+  'https://rox.one',
+  'https://website-dev.rox.one',
+  'https://website-staging.rox.one',
+  'https://website-prod.rox.one',
+  'https://apollo-testing.rox.one',
   // S3 CORS supports a single wildcard in AllowedOrigin. This lets feature
-  // preview apps (for example, https://branch.preview.macro.com) load
+  // preview apps (for example, https://branch.preview.rox.one) load
   // presigned S3 media such as call recordings.
-  'https://*.preview.macro.com',
+  'https://*.preview.rox.one',
   'tauri://localhost',
 ];
 

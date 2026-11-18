@@ -65,7 +65,7 @@ function importsClient() {
 }
 
 describe('ImportNamespace', () => {
-  test('list returns entries whose item is the Macro handle they became', async () => {
+  test('list returns entries whose item is the Rox handle they became', async () => {
     const { client, requests } = importsClient();
 
     const [entry] = await new ImportNamespace(client).list({

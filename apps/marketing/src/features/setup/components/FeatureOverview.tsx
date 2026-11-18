@@ -201,12 +201,12 @@ export function FeatureConstellation(
       role={props.linked ? 'navigation' : props.onSelect ? 'group' : 'img'}
       aria-label={
         props.linked
-          ? 'Explore Macro features'
+          ? 'Explore Rox features'
           : props.onSelect
             ? 'Features to try first'
             : `${items()
                 .map((feature) => feature.label)
-                .join(', ')}, connected in Macro`
+                .join(', ')}, connected in Rox`
       }
     >
       <div class="feature-flow-light" aria-hidden="true">

@@ -1,7 +1,7 @@
 import { t } from '@app/lib/i18n';
 import { type ToastContent, ToastType } from '@core/component/Toast/Toast';
 import { isTouchDevice } from '@core/mobile/isTouchDevice';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowCounterClockwise from '@icon/system/regular/arrow-counter-clockwise.svg';
 import ArrowSquareOutIcon from '@icon/system/regular/arrow-square-out.svg';
 import Bell from '@icon/system/regular/bell.svg';
@@ -46,7 +46,7 @@ export const TOAST_INVENTORY: ToastInventoryEntry[] = [
         icon: CalendarIcon,
         color: 'var(--color-accent)',
         content: () =>
-          'Macro can now sync your calendar. Grant calendar access for user@example.com to turn it on.',
+          'Rox can now sync your calendar. Grant calendar access for user@example.com to turn it on.',
         actions: [{ label: 'Grant access', onClick: dismiss }],
       },
     }),
@@ -271,7 +271,7 @@ export const TOAST_INVENTORY: ToastInventoryEntry[] = [
         titleColor: 'var(--color-failure)',
         dismissLabel: t('common.maybeLater'),
         content: () =>
-          "Macro connects an account's email and calendar together, so keep the email permissions checked. The account was not connected.",
+          "Rox connects an account's email and calendar together, so keep the email permissions checked. The account was not connected.",
         actions: [
           { label: 'Try again', icon: ArrowCounterClockwise, onClick: dismiss },
         ],
@@ -286,8 +286,8 @@ export const TOAST_INVENTORY: ToastInventoryEntry[] = [
     behavior: 'Persistent · touch devices only',
     create: (dismiss) => ({
       custom: {
-        title: 'A new version of Macro is ready',
-        icon: MacroLogo,
+        title: 'A new version of Rox is ready',
+        icon: RoxMark,
         color: 'var(--color-accent)',
         dismissLabel: t('common.maybeLater'),
         actions: [{ label: 'Reload', variant: 'accent', onClick: dismiss }],

@@ -392,7 +392,7 @@ function CalendarEventPreviewDetails(props: {
   );
   const descriptionHtml = () =>
     sanitizeCalendarDescription(eventContent().description);
-  // Opening a Macro link reads the split layout from context, so the handler
+  // Opening a Rox link reads the split layout from context, so the handler
   // keeps this component's owner.
   const openDescriptionLink = createCallback((event: MouseEvent) => {
     const anchor = (event.target as Element | null)?.closest('a[href]');
@@ -450,7 +450,7 @@ function CalendarEventPreviewDetails(props: {
                 props.onJoin?.();
               }}
             >
-              Join Macro call
+              Join Rox call
               <ArrowSquareOutIcon class="size-3.5 shrink-0" />
             </Button>
           </MetadataInfo>
@@ -910,7 +910,7 @@ export function DocumentPreviewContent(props: DocumentPreviewContentProps) {
             <Show when={canOpenInChat()}>
               <Dropdown.Item onSelect={handleOpenInChat}>
                 <SparkleIcon class="size-4" />
-                Ask Macro
+                Ask Rox
               </Dropdown.Item>
             </Show>
             <Dropdown.CopyItem

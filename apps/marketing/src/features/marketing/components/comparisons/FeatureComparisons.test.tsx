@@ -67,7 +67,7 @@ it('credits shared CRM capabilities and competitors’ dedicated reporting', () 
   expect(view.container.querySelector('details')).toBeNull();
   expect(within(table).getByText('Features')).toBeTruthy();
   expect(table.querySelector('[title$="logo placeholder"]')).toBeNull();
-  for (const label of ['Macro', 'Salesforce', 'HubSpot', 'Attio']) {
+  for (const label of ['Rox', 'Salesforce', 'HubSpot', 'Attio']) {
     expect(within(table).getByText(label)).toBeTruthy();
   }
   const contacts = within(table).getByText('Sales pipelines and custom fields');

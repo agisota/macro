@@ -20,6 +20,6 @@ export interface RoutineCheck {
   /** The routine as saving would store it: code steps named and the SDK
 their code checks against stamped. */
   routine: ActionConfiguration;
-  /** Code steps that don't type-check against Macro's SDK. */
+  /** Code steps that don't type-check against Rox's SDK. */
   steps: CheckedStepProblems[];
 }

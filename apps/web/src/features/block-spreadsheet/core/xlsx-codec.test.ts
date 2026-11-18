@@ -603,7 +603,7 @@ describe('Excel workbook files', () => {
     sheet.getCell('A4').value = { richText: [{ text: 'literal' }] };
     sheet.getCell('A5').value = {
       text: '=literal',
-      hyperlink: 'https://macro.com',
+      hyperlink: 'https://rox.one',
     };
     sheet.getCell('A6').value = '=SUM(A1:A2)';
     sheet.getCell('A7').value = { formula: 'TEXT(A1,"0.0")', result: '12.0' };
@@ -651,8 +651,8 @@ describe('Excel workbook files', () => {
     sheet.getRow(1).height = 50;
     sheet.getRow(2).hidden = true;
     sheet.getCell('C1').value = {
-      text: 'Macro',
-      hyperlink: 'https://macro.com',
+      text: 'Rox',
+      hyperlink: 'https://rox.one',
     };
     sheet.getCell('C2').value = {
       richText: [{ text: 'bold', font: { bold: true } }, { text: ' plain' }],
@@ -690,13 +690,13 @@ describe('Excel workbook files', () => {
     expect(imported.sheets[0].cells.C2.value).toBe('bold plain');
   });
 
-  it('shortens text longer than a Macro cell holds instead of rejecting the workbook', async () => {
+  it('shortens text longer than a Rox cell holds instead of rejecting the workbook', async () => {
     const workbook = new ExcelJS.Workbook();
     workbook.addWorksheet('Notes').getCell('A1').value = 'x'.repeat(12_000);
     const imported = await decodeXlsx(await file(workbook));
     expect(imported.sheets[0].cells.A1.value).toHaveLength(10_000);
     expect(imported.warnings).toContain(
-      'Text longer than 10,000 characters was shortened to fit Macro cells.'
+      'Text longer than 10,000 characters was shortened to fit Rox cells.'
     );
   });
 

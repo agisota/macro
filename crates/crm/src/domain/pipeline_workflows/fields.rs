@@ -40,9 +40,9 @@ pub enum FieldKind {
     Select,
     /// Colored tags.
     Tags,
-    /// Macro users.
+    /// Rox users.
     Person,
-    /// Other Macro items, by id.
+    /// Other Rox items, by id.
     Entity(EntityKind),
     /// Rows of another table; pipelines write these only through the app.
     Relation,
@@ -187,7 +187,7 @@ pub enum FieldValue {
     Labels(Vec<String>),
     /// URLs.
     Links(Vec<String>),
-    /// Macro ids: users, records or other items.
+    /// Rox ids: users, records or other items.
     References(Vec<String>),
 }
 
@@ -419,9 +419,9 @@ pub enum NewFieldKind {
     Select,
     /// Several labels from a list.
     MultiSelect,
-    /// One Macro user.
+    /// One Rox user.
     Person,
-    /// Several Macro users.
+    /// Several Rox users.
     People,
 }
 
@@ -519,7 +519,7 @@ fn date_range(field: &str, value: &str) -> Result<DateRange, String> {
     DateRange::parse_interval(value.trim(), |end| date(field, end).ok()).ok_or_else(refusal)
 }
 
-/// A person's Macro user id: `me`, an email address, or the id itself.
+/// A person's Rox user id: `me`, an email address, or the id itself.
 fn person(field: &str, value: &str, viewer: &MacroUserIdStr<'_>) -> Result<String, String> {
     let value = value.trim();
     if value.eq_ignore_ascii_case("me") {
@@ -536,7 +536,7 @@ fn person(field: &str, value: &str, viewer: &MacroUserIdStr<'_>) -> Result<Strin
         .map(|_| id.clone())
         .map_err(|_| {
             format!(
-                "\"{field}\" takes a person: \"me\", an email address, or a Macro user id like \
+                "\"{field}\" takes a person: \"me\", an email address, or a Rox user id like \
                  macro|sam@example.com, not \"{value}\"."
             )
         })

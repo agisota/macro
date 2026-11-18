@@ -49,7 +49,7 @@ export function ConnectedCalendars(props: {
   return (
     <SettingsSection
       title="Connected calendars"
-      description="Connect your accounts, choose which calendars appear in Macro, and which ones make you busy."
+      description="Connect your accounts, choose which calendars appear in Rox, and which ones make you busy."
     >
       <SettingsCard>
         <SettingsRow
@@ -59,7 +59,7 @@ export function ConnectedCalendars(props: {
               when={accountNeedingPermission()}
               fallback="Keep work and personal calendars together."
             >
-              {(account) => `Give Macro access to ${account().email}.`}
+              {(account) => `Give Rox access to ${account().email}.`}
             </Show>
           }
         >
@@ -175,7 +175,7 @@ export function ConnectedCalendars(props: {
                 <Show when={!account().calendars.length}>
                   <p class="mt-2 pl-7 text-xs text-ink-muted">
                     {account().needsPermission
-                      ? 'Connect to give Macro access to this calendar.'
+                      ? 'Connect to give Rox access to this calendar.'
                       : 'Your calendars will appear here after syncing.'}
                   </p>
                 </Show>

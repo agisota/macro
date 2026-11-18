@@ -55,7 +55,7 @@ import {
 } from './entity-action-context';
 import { makeDeleteAction } from './make-delete-action';
 
-const ME = 'macro|me@macro.com';
+const ME = 'macro|me@rox.one';
 
 const entity = (
   type: EntityData['type'],

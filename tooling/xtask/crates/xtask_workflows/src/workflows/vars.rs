@@ -49,7 +49,7 @@ pub const CLOUDFLARE_ACCOUNT_ID: &str = "${{ vars.CLOUDFLARE_ACCOUNT_ID }}";
 pub const NIX_CACHE_URL: &str = "${{ vars.NIX_CACHE_URL }}";
 
 /// Public counterpart of [`NIX_CACHE_SIGNING_KEY`], a repo *variable* — e.g.
-/// `nix-cache.macro.com-1:BASE64...`. Trusted by the nix daemon so substituted
+/// `nix-cache.rox.one-1:BASE64...`. Trusted by the nix daemon so substituted
 /// paths verify.
 pub const NIX_CACHE_PUBLIC_KEY: &str = "${{ vars.NIX_CACHE_PUBLIC_KEY }}";
 

@@ -90,7 +90,7 @@ const EditBody = z
     /**
      * The agent or persona the edit runs as. Its name labels every cursor the
      * edit draws, so readers see who is editing; omitted, cursors read
-     * `Macro (AI)`.
+     * `Rox (AI)`.
      */
     editor: z.object({ name: z.string().trim().min(1) }).optional(),
     typingAnimations: z.boolean().optional(),

@@ -1,5 +1,6 @@
 use crate::api::ApiContext;
 use crate::api::context::AuthorizationService;
+use enterprise::domain::MemberAccess;
 use axum::{
     extract::{Query, State},
     http::StatusCode,
@@ -36,12 +37,20 @@ impl std::fmt::Debug for InitError {
 #[derive(Debug, Error)]
 enum InitErrorKind {
     #[error(transparent)]
+    Enterprise(enterprise::domain::EnterpriseError),
+    #[error(transparent)]
     MailboxInitialization(InitializationError),
     #[error("User is already initialized")]
     AlreadyInitialized,
 
     #[error("No Gmail grant available to provision from")]
     NoGmailGrant,
+
+    #[error("A mailbox handle must be claimed before initializing Rox mail")]
+    HandleRequired,
+
+    #[error("Rox mailbox writes are not enabled in the reader-only rollout stage")]
+    RoxWriterDisabled,
 
     #[error("Failed to enqueue backfill message")]
     EnqueueError,
@@ -71,6 +80,9 @@ pub const ALREADY_INITIALIZED_CODE: &str = "ALREADY_INITIALIZED";
 
 /// Stable machine-readable code for [`ConnectionError::NoGmailGrant`].
 pub const NO_GMAIL_GRANT_CODE: &str = "NO_GMAIL_GRANT";
+
+/// Stable machine-readable code for [`InitErrorKind::HandleRequired`].
+pub const HANDLE_REQUIRED_CODE: &str = "HANDLE_REQUIRED";
 
 /// Structured 400 body carrying a machine-readable code. Clients branch on
 /// `code` instead of parsing the human message.
@@ -114,6 +126,33 @@ fn connection_error_status(error: &ConnectionError) -> StatusCode {
 impl InitError {
     fn status_code(&self) -> StatusCode {
         self.status
+    }
+
+    fn handle_required() -> Self {
+        Self {
+            status: StatusCode::BAD_REQUEST,
+            kind: InitErrorKind::HandleRequired,
+        }
+    }
+
+    fn rox_writer_disabled() -> Self {
+        Self {
+            status: StatusCode::SERVICE_UNAVAILABLE,
+            kind: InitErrorKind::RoxWriterDisabled,
+        }
+    }
+}
+
+impl From<enterprise::domain::EnterpriseError> for InitError {
+    fn from(error: enterprise::domain::EnterpriseError) -> Self {
+        let status = match &error {
+            enterprise::domain::EnterpriseError::MemberDisabled => StatusCode::FORBIDDEN,
+            _ => StatusCode::INTERNAL_SERVER_ERROR,
+        };
+        Self {
+            status,
+            kind: InitErrorKind::Enterprise(error),
+        }
     }
 }
 
@@ -174,6 +213,14 @@ impl IntoResponse for InitError {
                 }),
             )
                 .into_response(),
+            InitErrorKind::HandleRequired => (
+                status_code,
+                Json(InitErrorCodeResponse {
+                    code: HANDLE_REQUIRED_CODE.to_string(),
+                    message: InitErrorKind::HandleRequired.to_string(),
+                }),
+            )
+                .into_response(),
             other => (status_code, headers, other.to_string()).into_response(),
         }
     }
@@ -209,6 +256,7 @@ pub struct InitResponse {
 pub struct InitParams {
     /// Optional link id from a `/link/gmail` flow. When set, init provisions the inbox
     /// for the email recorded on the in_progress_user_link row instead of the JWT email.
+    /// Without it, init returns or creates the account's first-party Rox link.
     link_id: Option<Uuid>,
     /// When set, a connect that collides with a mailbox already connected by another
     /// macro user promotes it to a shared inbox instead of returning a 409 conflict.
@@ -242,6 +290,36 @@ pub(crate) async fn handler(
     query: Query<InitParams>,
     authorization: MacroAuthorizationExtractor<AuthorizationService, UserOrInternal>,
 ) -> Result<Response, InitError> {
+    // Axiom: a completed admin disable refuses every new init path before mailbox work begins.
+    ctx.member_access
+        .ensure_active(&authorization.authorization.user.macro_user_id)
+        .await?;
+
+    if query.link_id.is_none() {
+        let link = crate::outbound::mailbox_init::ensure_rox_mailbox(
+            &ctx.inbox_connection.links.db,
+            &authorization.authorization.user.user_context.fusion_user_id,
+            authorization.authorization.user.macro_user_id.clone(),
+            ctx.config.rox_mailbox_writes_enabled,
+        )
+        .await
+        .map_err(|error| InitError {
+            status: StatusCode::INTERNAL_SERVER_ERROR,
+            kind: InitErrorKind::DatabaseError(error),
+        })?
+        .ok_or_else(|| {
+            if ctx.config.rox_mailbox_writes_enabled {
+                InitError::handle_required()
+            } else {
+                InitError::rox_writer_disabled()
+            }
+        })?;
+        return Ok(Json(InitResponse {
+            link_id: link.id,
+            backfill_job_id: None,
+        })
+        .into_response());
+    }
     let request = ConnectionRequest {
         actor_macro_id: authorization.authorization.user.macro_user_id.clone(),
         actor_id: authorization

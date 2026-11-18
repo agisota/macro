@@ -10,7 +10,7 @@ export const whatsappProvider: ChatProvider = {
     fromMarkdown: markdownToWhatsApp,
   },
   // Text, formatting, files and mentions of the chat's own participants;
-  // nothing Macro-only.
+  // nothing Rox-only.
   composerFeatures: {
     mentions: 'participants',
     createItems: false,

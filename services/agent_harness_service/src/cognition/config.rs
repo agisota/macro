@@ -52,8 +52,8 @@ maybe_env_vars!(
     pub struct PipedreamMcpUrl;
     /// Comma-separated browser origins allowed to embed Pipedream's hosted
     /// Connect UI (sent as the Connect token's `allowed_origins`). Defaults
-    /// by deploy environment: the app origin (`https://macro.com` /
-    /// `https://dev.macro.com`) plus localhost outside production.
+    /// by deploy environment: the app origin (`https://rox.one` /
+    /// `https://dev.rox.one`) plus localhost outside production.
     pub struct PipedreamAllowedOrigins;
     /// Absolute URL Pipedream posts connect-flow outcomes to, minted into
     /// every Connect token. Must carry the shared secret as a `secret` query
@@ -68,7 +68,7 @@ maybe_env_vars!(
     pub struct PosthogApiKey;
     /// PostHog ingestion origin. Falls back to the US origin when unset.
     pub struct PosthogHost;
-    /// Macro's customer key for the Macro Connect API. When unset, Connect
+    /// Rox's customer key for the Rox Connect API. When unset, Connect
     /// is off and every connection goes through Pipedream.
     pub struct ConnectCustomerKey;
 );
@@ -155,7 +155,7 @@ pub struct Config {
     pub posthog_api_key: PosthogApiKey,
     /// PostHog ingestion origin for integration analytics.
     pub posthog_host: PosthogHost,
-    /// Customer key for Macro Connect, which serves the apps it has in its
+    /// Customer key for Rox Connect, which serves the apps it has in its
     /// catalog to users in the `macro-connect` rollout.
     pub connect_customer_key: ConnectCustomerKey,
     /// The internal api key

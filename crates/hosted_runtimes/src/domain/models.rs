@@ -101,15 +101,15 @@ pub struct Computer {
     pub host: HostId,
     /// Persisted lifecycle state: the machine phase and its billing.
     pub state: ComputerState,
-    /// The harness macrod claims, created when the instance is created.
+    /// The harness roxd claims, created when the instance is created.
     pub harness_id: Option<HarnessId>,
     /// Last guest creation begun by the fleet; retries keep the same generation.
     pub enrollment_generation: crate::domain::enrollment::EnrollmentGeneration,
-    /// Macro user who purchased the computer.
+    /// Rox user who purchased the computer.
     pub created_by: MacroUserIdStr<'static>,
     /// Time the computer was reserved.
     pub created_at: DateTime<Utc>,
-    /// When macrod first connected; setup is over from then on.
+    /// When roxd first connected; setup is over from then on.
     pub enrolled_at: Option<DateTime<Utc>>,
     /// When the team finished the guided setup after buying it.
     pub setup_completed_at: Option<DateTime<Utc>>,
@@ -158,7 +158,7 @@ pub struct ComputerDisplayMetadata {
     pub catalog_entry: String,
     /// Reservation timestamp.
     pub created_at: DateTime<Utc>,
-    /// The Macro user who bought it.
+    /// The Rox user who bought it.
     pub purchased_by: String,
 }
 
@@ -312,7 +312,7 @@ pub struct NewReservation {
     pub catalog_entry: CatalogEntryId,
     /// The saved price, or the comp reason.
     pub funding: Funding,
-    /// Macro user who purchased the computer.
+    /// Rox user who purchased the computer.
     pub created_by: MacroUserIdStr<'static>,
     /// Joined into the computer's subscription update, replayed exactly.
     pub extra_items: Vec<SubscriptionItem>,
@@ -343,7 +343,7 @@ pub struct Reservation {
     pub catalog_entry: CatalogEntryId,
     /// The saved price, or the comp reason.
     pub funding: Funding,
-    /// Macro user who purchased the computer.
+    /// Rox user who purchased the computer.
     pub created_by: MacroUserIdStr<'static>,
     /// Joined into the computer's subscription update, replayed exactly.
     pub extra_items: Vec<SubscriptionItem>,
@@ -443,7 +443,7 @@ pub struct PurchaseRequest {
     pub created_by: MacroUserIdStr<'static>,
     /// Purchased catalog size.
     pub size: ComputerSize,
-    /// Display name; defaults to "Macro computer".
+    /// Display name; defaults to "Rox computer".
     pub name: Option<String>,
     /// Additional subscription items included in the purchase.
     pub extra_items: Vec<SubscriptionItem>,
@@ -650,7 +650,7 @@ pub enum SetupStep {
     Creating,
     /// Starting the guest operating system.
     Booting,
-    /// Waiting for macrod to connect.
+    /// Waiting for roxd to connect.
     Connecting,
     /// Guest is connected and ready.
     Ready,
@@ -733,12 +733,12 @@ pub struct ComputerStatus {
     pub harness_id: Option<HarnessId>,
     /// Time the computer was reserved.
     pub created_at: DateTime<Utc>,
-    /// The Macro user who bought it. The team's owner and admins, not the
+    /// The Rox user who bought it. The team's owner and admins, not the
     /// buyer, finish its setup and manage its Claude account.
     pub purchased_by: String,
     /// When the team finished the guided setup; null while it is unfinished.
     pub setup_completed_at: Option<DateTime<Utc>>,
-    /// Bot id of the coding agent the computer came with; null until macrod
+    /// Bot id of the coding agent the computer came with; null until roxd
     /// first connects. It can name an agent the team since deleted.
     #[cfg_attr(feature = "inbound", schema(value_type = Option<Uuid>))]
     pub default_agent_id: Option<BotId>,

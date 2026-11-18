@@ -1,7 +1,7 @@
 /**
  * A call's ears and voice: LiveKit Inference (Deepgram Nova-3 and Aura-2),
- * reached through Macro's speech gateway, which holds the project's keys and
- * bills the team. A call's process has no Macro key either: it opens the
+ * reached through Rox's speech gateway, which holds the project's keys and
+ * bills the team. A call's process has no Rox key either: it opens the
  * socket on the agent's relay (`context/relay.ts`), which adds the key.
  *
  * LiveKit's inference classes sign their own token from a LiveKit key; these
@@ -13,7 +13,7 @@ import WebSocket from 'ws';
 import { keyHeader } from '../../../context/relay.ts';
 import type { Voice } from '../voices.ts';
 
-/** The relay a call's process reaches Macro through. */
+/** The relay a call's process reaches Rox through. */
 export type SpeechRelay = { readonly url: string; readonly token: string };
 
 const sttModel = 'deepgram/nova-3';

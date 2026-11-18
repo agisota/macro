@@ -51,7 +51,7 @@ pub enum CastKind {
         /// Whether a cell holds several options.
         multi: bool,
     },
-    /// References to Macro entities.
+    /// References to Rox entities.
     Entity {
         /// What the references point at.
         target: EntityKind,

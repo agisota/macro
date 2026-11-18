@@ -10,14 +10,14 @@ use std::str::FromStr;
 #[cfg(test)]
 mod test;
 
-/// Postgres-backed onboarding repository (MacroDB).
+/// Postgres-backed onboarding repository (RoxDB).
 #[derive(Clone)]
 pub struct PgOnboardingRepo {
     pool: PgPool,
 }
 
 impl PgOnboardingRepo {
-    /// Build the repository on the MacroDB pool.
+    /// Build the repository on the RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self { pool }
     }

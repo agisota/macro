@@ -146,7 +146,7 @@ it('keeps the phone step bar to short labels', () => {
   ]);
 });
 
-it('marks Bring your AI skipped, not struck, when the agent runs on Macro credits', () => {
+it('marks Bring your AI skipped, not struck, when the agent runs on Rox credits', () => {
   render(() => <StepHeader step="ready" claude="skipped" />);
 
   const items = screen
@@ -158,7 +158,7 @@ it('marks Bring your AI skipped, not struck, when the agent runs on Macro credit
   expect(items[1].textContent).toBe('Configure agent');
 });
 
-it('marks Bring your AI done on Macro credits once its sign-in was opened', () => {
+it('marks Bring your AI done on Rox credits once its sign-in was opened', () => {
   expect(claudeStepMark(undefined, false)).toBe('step');
   expect(claudeStepMark('own_account', true)).toBe('step');
   expect(claudeStepMark('macro_credits', false)).toBe('skipped');
@@ -168,7 +168,7 @@ it('marks Bring your AI done on Macro credits once its sign-in was opened', () =
   const items = screen
     .getByRole('list', { name: 'Setup steps' })
     .querySelectorAll('li');
-  expect(items[2].textContent).toBe('Bring your AI · Macro credits');
+  expect(items[2].textContent).toBe('Bring your AI · Rox credits');
   expect(items[2].className).toContain('text-ink-muted');
   expect(items[2].querySelector('svg')).toBeTruthy();
 });
@@ -269,7 +269,7 @@ it('drops the shared sign-in note from Bring your AI once setup has failed', () 
     screen.queryByText(/Everyone using this computer can use this sign-in/)
   ).toBeNull();
   expect(
-    screen.queryByRole('button', { name: 'Use Macro credits instead' })
+    screen.queryByRole('button', { name: 'Use Rox credits instead' })
   ).toBeNull();
 });
 
@@ -323,7 +323,7 @@ it('shows setup as one line under the steps, expanding to every stage', () => {
     'Billing updated',
     'Computer created',
     expect.stringMatching(/^Starting up\d+:\d\d$/),
-    'Connecting to Macro',
+    'Connecting to Rox',
     'Sign in to Claude',
   ]);
 });
@@ -343,7 +343,7 @@ it('asks for Claude with two one-line options, and no hint under Continue', () =
   });
   const options = choice.querySelectorAll('input[type="radio"]');
   expect(options).toHaveLength(2);
-  fireEvent.click(screen.getByRole('radio', { name: 'Macro credits' }));
+  fireEvent.click(screen.getByRole('radio', { name: 'Rox credits' }));
   expect(onChoice).toHaveBeenCalledWith('macro_credits');
 });
 

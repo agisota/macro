@@ -53,7 +53,7 @@ for bot mutations that channel bots, agent triggers, and memory build on.
 - Agent create/update/patch must persist `has_agent = true` atomically with
   configuration writes; mention dispatch gates on this flag for every harness.
 - Soft-deleting a harness unbinds its agents (a trigger nulls
-  `agent_configs.harness_id`), leaving `macrod` agents unbound. A Macro
+  `agent_configs.harness_id`), leaving `roxd` agents unbound. A Rox
   computer's harness keeps them bound, and its release then deletes them through
   the trusted `HarnessAgentDeletion::delete_harness_agents` (no caller check;
   never a route).
@@ -63,9 +63,9 @@ for bot mutations that channel bots, agent triggers, and memory build on.
 - Agent create and update hold a chosen harness's row `FOR SHARE` in their
   transaction and refuse a deleted one (`HarnessRemoved`, a 400), so no bind
   slips past a concurrent harness delete.
-- An agent created on a Macro computer's harness without a permission choice
+- An agent created on a Rox computer's harness without a permission choice
   gets `auto_accept_permissions = Some(true)` when the harness allows bypass. The
-  `macrod`⇔`harness_id` pairing is checked only for a runtime the request
+  `roxd`⇔`harness_id` pairing is checked only for a runtime the request
   chooses; a patch that omits `harness` keeps an unbound agent editable.
 - `POST /bots/{id}/tokens` and `POST /channels/{id}/bots/scoped` refuse an agent's program
   (`macro_authorization::is_program_run`, 403): the response carries the

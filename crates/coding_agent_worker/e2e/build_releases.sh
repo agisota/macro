@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Build macrod twice from this checkout, as two release tags, and package each
-# the way the release workflow does: macrod-<tag>-<os>-<arch>.tar.gz plus its
+# Build roxd twice from this checkout, as two release tags, and package each
+# the way the release workflow does: roxd-<tag>-<os>-<arch>.tar.gz plus its
 # .sha256 (a .zip on Windows). A debug build is enough to exercise the
 # updater.
 #
@@ -13,11 +13,11 @@ set -euo pipefail
 out=$1
 shift
 mkdir -p "$out"
-executable=macrod
+executable=roxd
 case "$(uname -s)" in
   Linux) os=linux ;;
   Darwin) os=macos ;;
-  MINGW* | MSYS* | CYGWIN*) os=windows executable=macrod.exe ;;
+  MINGW* | MSYS* | CYGWIN*) os=windows executable=roxd.exe ;;
   *) echo "unsupported OS" >&2; exit 1 ;;
 esac
 case "$(uname -m)" in
@@ -36,16 +36,16 @@ fi
 cargo_build=(${CARGO_BUILD:-cargo build})
 
 for tag in "$@"; do
-  MACROD_RELEASE_TAG="$tag" "${cargo_build[@]}" -p coding_agent_worker --bin macrod "${target_args[@]}"
+  ROXD_RELEASE_TAG="$tag" "${cargo_build[@]}" -p coding_agent_worker --bin roxd "${target_args[@]}"
   stage=$(mktemp -d)
   install -m 755 "$binary_dir/$executable" "$stage/$executable"
   "$stage/$executable" --version | grep -qF "$tag"
   if [ "$os" = windows ]; then
-    archive="macrod-$tag-$os-$arch.zip"
+    archive="roxd-$tag-$os-$arch.zip"
     powershell.exe -NoProfile -NonInteractive -Command \
       "Compress-Archive -Path '$(cygpath -w "$stage/$executable")' -DestinationPath '$(cygpath -w "$out/$archive")' -Force"
   else
-    archive="macrod-$tag-$os-$arch.tar.gz"
+    archive="roxd-$tag-$os-$arch.tar.gz"
     tar -czf "$out/$archive" -C "$stage" "$executable"
   fi
   (

@@ -28,7 +28,7 @@ export interface ConversationProgress {
   error?: ConversationProgressError;
   /** Persisted source kind. */
   kind: ConversationKind;
-  /** Persisted source display name, never the reused Macro target's name. */
+  /** Persisted source display name, never the reused Rox target's name. */
   name: string;
   /**
    * Null until sealed; zero is a valid sealed empty manifest.

@@ -1,4 +1,4 @@
-# MacroDB alerts
+# RoxDB alerts
 
 Runbook for the `macro-db-prod` and `macro-db-prod-read-replica` monitors in
 [`monitors/macrodb.ts`](../../infra/stacks/monitoring/monitors/macrodb.ts), and the
@@ -96,7 +96,7 @@ half; a steady drain at the same average rate leaves a little over two hours
 at 40%. Since the resize the replica has stayed at 99% and the primary, on a
 class that reports no balance, is not covered.
 
-- On the MacroDB alerts dashboard, check read plus write IOPS against the
+- On the RoxDB alerts dashboard, check read plus write IOPS against the
   instance's baseline (the graph marks the volume's 12,000). A nightly burst
   at about 06:00 UTC is an hour long and cost the old class a few percent; a
   drain is hours above the baseline.

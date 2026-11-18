@@ -317,7 +317,7 @@ describe('markdownToEmbeddingText', () => {
 
   it('reduces contact and theme mentions to their names', () => {
     const input =
-      'Ping <m-contact-mention>{"contactId":"c1","name":"Ness Chu","emailOrDomain":"ness@macro.com","isCompany":false}</m-contact-mention> re ' +
+      'Ping <m-contact-mention>{"contactId":"c1","name":"Ness Chu","emailOrDomain":"ness@rox.one","isCompany":false}</m-contact-mention> re ' +
       '<m-theme-mention>{"name":"onboarding","data":{}}</m-theme-mention>';
     expect(markdownToEmbeddingText(input)).toBe('Ping Ness Chu re onboarding');
   });
@@ -395,14 +395,14 @@ describe('markdownToEmbeddingText', () => {
 describe('parseUserMentionsForSearch', () => {
   it('flattens a user mention to the email, not the display name', () => {
     const input =
-      '<m-user-mention>{"userId":"macro|gab@macro.com","email":"gab@macro.com","displayName":"Gabriel"}</m-user-mention>';
-    expect(parseUserMentionsForSearch(input)).toBe('gab@macro.com');
+      '<m-user-mention>{"userId":"macro|gab@rox.one","email":"gab@rox.one","displayName":"Gabriel"}</m-user-mention>';
+    expect(parseUserMentionsForSearch(input)).toBe('gab@rox.one');
   });
 
   it('takes the email from the user id when the email field is missing', () => {
     const input =
-      '<m-user-mention>{"userId":"macro|gab@macro.com","displayName":"Gabriel"}</m-user-mention>';
-    expect(parseUserMentionsForSearch(input)).toBe('gab@macro.com');
+      '<m-user-mention>{"userId":"macro|gab@rox.one","displayName":"Gabriel"}</m-user-mention>';
+    expect(parseUserMentionsForSearch(input)).toBe('gab@rox.one');
   });
 
   it('flattens a bot mention to its display name', () => {
@@ -419,7 +419,7 @@ describe('parseUserMentionsForSearch', () => {
     ).toBe('Guest');
     expect(
       parseUserMentionsForSearch(
-        '<m-user-mention>{"userId":"macro|","email":"gab@macro.com"}</m-user-mention>'
+        '<m-user-mention>{"userId":"macro|","email":"gab@rox.one"}</m-user-mention>'
       )
     ).toBe('Guest');
   });
@@ -434,9 +434,9 @@ describe('parseUserMentionsForSearch', () => {
 describe('markdownToSearchText', () => {
   it('differs from markdownToPlainText only in user mentions', () => {
     const input =
-      'ping <m-user-mention>{"userId":"macro|gab@macro.com","email":"gab@macro.com","displayName":"Gabriel"}</m-user-mention> re <m-document-mention>{"documentName":"Roadmap"}</m-document-mention>';
+      'ping <m-user-mention>{"userId":"macro|gab@rox.one","email":"gab@rox.one","displayName":"Gabriel"}</m-user-mention> re <m-document-mention>{"documentName":"Roadmap"}</m-document-mention>';
     expect(markdownToPlainText(input)).toBe('ping Gabriel re Roadmap');
-    expect(markdownToSearchText(input)).toBe('ping gab@macro.com re Roadmap');
+    expect(markdownToSearchText(input)).toBe('ping gab@rox.one re Roadmap');
   });
 
   it('passes plain text through', () => {

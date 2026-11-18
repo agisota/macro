@@ -3,7 +3,7 @@
 ## What it is
 
 Supports agent sessions: lets external MCP clients (e.g. cursor.com)
-authenticate against Macro. A library crate (mounted into `agent_harness_service`, not
+authenticate against Rox. A library crate (mounted into `agent_harness_service`, not
 its own binary) implementing an OAuth 2.1 Dynamic Client Registration broker
 in front of FusionAuth, which doesn't support DCR itself.
 
@@ -58,7 +58,7 @@ in front of FusionAuth, which doesn't support DCR itself.
   (`DEFAULT_MCP_ALLOWED_REDIRECT_HOSTS`) if the default allowlist changes.
 - Support a new HTTPS MCP client: nothing; users approve it on the consent
   screen. Add its host to `DEFAULT_MCP_ALLOWED_REDIRECT_HOSTS` only to skip that
-  screen for a client Macro has vetted.
+  screen for a client Rox has vetted.
 - Sign clients in for another MCP server: a `McpResource` variant and its URL
   in `McpResources` (from `macro_service_urls`) → the token it gets in
   `access_token_for` (`src/domain/service.rs`) → `public_mcp.rs` wiring → README.
@@ -68,7 +68,7 @@ in front of FusionAuth, which doesn't support DCR itself.
 ## Checks
 
 - `cargo test -p mcp_auth_proxy --all-features` (`SQLX_OFFLINE` unset; the
-  Postgres adapter tests need a migrated local MacroDB).
+  Postgres adapter tests need a migrated local RoxDB).
 
 ## Shared listener
 
@@ -125,8 +125,8 @@ and other library consumers. Both retain OAuth metadata, CORS, and bearer auth.
 
 - Skill: `new-service` (for how this is wired as a dependency, not a deploy)
 
-- Only verified Macro JWT session provenance becomes `ManagedAgentSession`; external MCP callers remain uncorrelated.
-- `validate_bearer` refuses (403) a Macro API token that signs `agent_scope`: a scoped code-mode session or a routine dry run reaches no MCP tools, whose own credentials would carry no scope.
+- Only verified Rox JWT session provenance becomes `ManagedAgentSession`; external MCP callers remain uncorrelated.
+- `validate_bearer` refuses (403) a Rox API token that signs `agent_scope`: a scoped code-mode session or a routine dry run reaches no MCP tools, whose own credentials would carry no scope.
 
 Public MCP may additionally receive the existing `UserApiKeyAuthorizer` through
 `mounted_mcp_router`. `x-macro-user-api-key` resolves only the key owner and is

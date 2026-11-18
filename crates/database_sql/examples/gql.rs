@@ -1,4 +1,4 @@
-//! The engine over the real GraphQL API of a running Macro stack, with your
+//! The engine over the real GraphQL API of a running Rox stack, with your
 //! tasks as the table `macro.tasks`.
 //!
 //! ```sh

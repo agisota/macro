@@ -7,7 +7,7 @@ Both the Drive detail and block hosts use `queries/document.ts` to authorize and
 select shared content before fetching a legacy file seed. Native canvases never
 require a presigned blob URL.
 
-**Ask Macro** in the Drive header and standalone title menu attaches the canvas to an agent conversation
+**Ask Rox** in the Drive header and standalone title menu attaches the canvas to an agent conversation
 on desktop and mobile. `ReadCanvas` inspects its live scene; `EditCanvas` runs
 bounded SDK commands as a peer in that same Loro room. Results show acknowledged
 operation counts and expandable outcomes. Unrelated concurrent edits survive.
@@ -60,7 +60,7 @@ for the remaining editor and collaboration work.
 
 An `artifact` node runs a self-contained HTML
 document in `views/artifact-frame.tsx`. The frame's sandbox is `allow-scripts`
-only, so the document has an opaque origin with no access to Macro's cookies,
+only, so the document has an opaque origin with no access to Rox's cookies,
 storage or DOM. Never add `allow-same-origin`. `core/artifact-document.ts` writes
 a content security policy ahead of the artifact's own markup, which blocks network
 requests, nested frames and form posts. Images and fonts must be inline.
@@ -70,7 +70,7 @@ itself. Each composed document therefore announces its load to the host with a t
 a script that removes itself before artifact code runs. A load without the token puts
 the artifact's own document back, and an artifact that keeps leaving is stopped, but the first request of each navigation has already been
 sent. Browsers also do not apply the policy to WebRTC.
-So an artifact cannot reach Macro's data, but it can send out what it already holds:
+So an artifact cannot reach Rox's data, but it can send out what it already holds:
 treat artifact source, and anything typed into an
 artifact, as readable by whoever wrote it. Artifacts mount only while on screen, so
 off-screen scripts stop and restart with fresh state. With the flag off, a node
@@ -265,8 +265,8 @@ uses full opacity. Other style choices and existing shapes are preserved.
 | Forward / backward | Option/Alt+] / Option/Alt+[ |
 | Cancel and return to selection | Escape |
 
-Keyboard registration uses Macro's DOM scope and respects text/number inputs.
-Native clipboard events own the actual copy/cut/paste keystrokes; proxied Macro
+Keyboard registration uses Rox's DOM scope and respects text/number inputs.
+Native clipboard events own the actual copy/cut/paste keystrokes; proxied Rox
 commands expose those actions in the command UI without double handling.
 Clipboard context-menu actions use the browser clipboard API and report denied
 access. Fragments include whole selected subtrees, fresh IDs on insertion, stable
@@ -574,7 +574,7 @@ Workspace document drops insert a document reference rendered with
 and inserted at the front of the scene. Card text uses `text-base` and reflows at
 its actual width; resizing no longer scales a 320px snapshot. Titles, menus and
 task controls remain interactive; dragging the card background moves it. Select
-the card and use Open document. Workspace drops and pasted Macro links also insert
+the card and use Open document. Workspace drops and pasted Rox links also insert
 document cards. Preview loading/errors stay inside the card's
 Suspense/ErrorBoundary. Loading shows a pulsing icon dot and two title skeleton
 lines, shared with DocumentPreview. Signed URLs, query results, media players,

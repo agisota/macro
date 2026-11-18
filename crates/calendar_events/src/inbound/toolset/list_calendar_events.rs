@@ -37,7 +37,7 @@ const PAGES_MAX: usize = 10;
 #[derive(Debug, Serialize, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct CalendarEventListItem {
-    /// Macro calendar event id, used by UpdateCalendarEvent and
+    /// Rox calendar event id, used by UpdateCalendarEvent and
     /// DeleteCalendarEvent. Recurring events repeat it across occurrences.
     pub event_id: uuid::Uuid,
     /// Display title.

@@ -296,9 +296,9 @@ export function auditStandalone(websiteRoot: string) {
     if (/^(?:data:|blob:|#)/i.test(reference)) return;
     let value = reference;
     if (/^(?:https?:)?\/\//i.test(value)) {
-      const url = new URL(value, 'https://macro.com');
+      const url = new URL(value, 'https://rox.one');
       // Third-party media is intentional. App-hosted assets are not.
-      if (!/(^|\.)macro\.com$/.test(url.hostname)) return;
+      if (!/(^|\.)rox\.one$/.test(url.hostname)) return;
       if (LEGACY_ASSET.test(url.pathname))
         add(
           file,

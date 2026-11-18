@@ -29,7 +29,7 @@ use uuid::Uuid;
 /// How long one CSV download may take, body included.
 const DOWNLOAD_TIMEOUT: Duration = Duration::from_secs(60);
 
-/// [`CsvFiles`] over Macro documents: CSV uploads in, CSV documents out.
+/// [`CsvFiles`] over Rox documents: CSV uploads in, CSV documents out.
 pub struct DocumentCsvFiles<D: DocumentService + DocumentCreationService, A> {
     documents: Arc<D>,
     creator: DefaultDocumentToolCreator<D>,

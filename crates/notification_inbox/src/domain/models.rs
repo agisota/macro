@@ -114,10 +114,10 @@ impl InboxRowId {
     }
 }
 
-/// Who a row is from: a person, an agent, or Macro itself.
+/// Who a row is from: a person, an agent, or Rox itself.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum InboxActor {
-    /// A Macro user.
+    /// A Rox user.
     User(MacroUserIdStr<'static>),
     /// An agent, by the bot it runs as.
     Agent {
@@ -126,7 +126,7 @@ pub enum InboxActor {
         /// The bot's display name.
         name: String,
     },
-    /// Macro itself: reminders and AI chat responses.
+    /// Rox itself: reminders and AI chat responses.
     Macro,
 }
 
@@ -180,7 +180,7 @@ pub struct InboxRow {
     /// For a thread row, the channel root message or discussion root comment.
     pub thread_id: Option<String>,
     /// Who the row is from, per its newest shown notification; `None` when
-    /// that is no one in Macro (outside email senders, GitHub users).
+    /// that is no one in Rox (outside email senders, GitHub users).
     pub actor: Option<InboxActor>,
     /// What the viewer can do from the row, in presentation order.
     pub actions: Vec<InboxRowAction>,

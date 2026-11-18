@@ -62,7 +62,7 @@ describe('browser connection handoff', () => {
     );
     mountPipedreamBrowserConnect(document.body);
     expect(document.querySelector('iframe')).toBeNull();
-    expect(document.body.textContent).toContain('Start again in Macro');
+    expect(document.body.textContent).toContain('Start again in Rox');
     expect(location.hash).toBe('');
   });
 });

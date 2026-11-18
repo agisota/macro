@@ -25,9 +25,9 @@ pub(super) struct Reservation {
     pub message: Uuid,
     /// The group message does not exist yet.
     pub create: bool,
-    /// Macro user who deliberately sent it, when it is the echo of a send.
+    /// Rox user who deliberately sent it, when it is the echo of a send.
     pub actor: Option<String>,
-    /// Verified Macro association of the author, for display only.
+    /// Verified Rox association of the author, for display only.
     pub associated_user: Option<String>,
     /// Canonical source id, also for mutations of older messages.
     pub source: String,
@@ -187,7 +187,7 @@ pub(super) async fn reserve_in(
         macro_user = stored.macro_user,
     )
     .in_scope(|| {});
-    // A new person's picture is checked once; Macro users show their Macro
+    // A new person's picture is checked once; Rox users show their Rox
     // avatar. Phones key people by LID, so ask by LID when one is known.
     // A direct chat's other person is already tracked by the chat's
     // `remote_id` from adoption.
@@ -260,7 +260,7 @@ pub(super) async fn reserve_in(
     } else {
         message.source_id.clone()
     };
-    // The echo of a deliberate Macro send converges on the send's preallocated id.
+    // The echo of a deliberate Rox send converges on the send's preallocated id.
     // Edits and deletes keep the original message's author and attribution.
     let send = if revision {
         None

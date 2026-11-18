@@ -16,7 +16,7 @@ pub struct GetAttachmentDocumentIDResponse {
     pub document_id: String,
 }
 
-/// Get the Macro document id for an email attachment, uploading it if it doesn't already exist.
+/// Get the Rox document id for an email attachment, uploading it if it doesn't already exist.
 #[utoipa::path(
     get,
     tag = "Attachments",

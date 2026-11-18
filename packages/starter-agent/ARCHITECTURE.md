@@ -14,12 +14,12 @@ TypeScript, state is data, and the two never mix.
 ```
 index.ts                       builds the real context, the agent and the behavior
 cli.ts, bin/agent              run the agent, or call any function from a shell
-agent.json                     who it is in Macro, who owns it, the name it commits under
+agent.json                     who it is in Rox, who owns it, the name it commits under
 AGENT.md                       the charter: every run's system prompt
 secrets.enc.json, .sops.yaml   a self-hosted agent's credentials (SOPS, age); hosted ones come from enrollment
 behavior/
   index.ts                     the whole behavior, composed from the areas
-  context/                     the one place IO happens: disk, clock, shell, credentials, Macro, the relay
+  context/                     the one place IO happens: disk, clock, shell, credentials, Rox, the relay
   agent/                       the agent as Claude Code (Agent SDK), its limits per event, its guards
   events/sources/<area>.ts     where events come from
   events/handlers/<area>.ts    what happens when one fires
@@ -65,7 +65,7 @@ A handler decides cheaply and wakes the agent (`context.wake(request)`) only whe
 it is needed. The agent then acts through code mode: it writes a script that
 imports the functions it needs and calls them with `context`, in a process
 of its own (`bin/agent exec`), which builds the same context with no
-credential values: Macro is reached through the running agent's loopback
+credential values: Rox is reached through the running agent's loopback
 relay (`behavior/context/relay.ts`), which holds the key. So nothing a
 script keeps in memory outlives it, and areas share state through disk,
 not a script's memory. Anything outside the process (a call's brain, a person at a shell) calls the same functions with `bin/agent <name> '<json>'`,

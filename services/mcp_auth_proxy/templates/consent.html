@@ -4,35 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Connect an app to Macro</title>
+    <title>Connect an app to Rox</title>
     <style>
       {% include "broker_page.css" %}
     </style>
   </head>
   <body>
     <main>
-      <h1>Allow “{{ client_name }}” to access your Macro account?</h1>
+      <h1>Allow “{{ client_name }}” to access your Rox account?</h1>
       {% if manual_delivery %}
       <p>
-        If you allow it, Macro will sign you in and show you a link that gives
+        If you allow it, Rox will sign you in and show you a link that gives
         access to your account, to use in the app on your other machine.
       </p>
       {% else %}
       <p>
-        If you allow it, Macro will sign you in and send access to your account
+        If you allow it, Rox will sign you in and send access to your account
         to:
       </p>
       <p class="destination">{{ redirect_host }}</p>
       {% endif %}
       <p>
-        That app will be able to read and change your Macro documents,
+        That app will be able to read and change your Rox documents,
         messages and other data, as you, until you disconnect it.
       </p>
       <p class="warning">
-        Only allow this if you just started connecting this app to Macro
+        Only allow this if you just started connecting this app to Rox
         yourself{% if !manual_delivery %} and you recognize the address above{% endif %}. The name
         “{{ client_name }}” is provided by the app and is not verified by
-        Macro.
+        Rox.
       </p>
       <form method="post" action="authorize">
         <input type="hidden" name="response_type" value="{{ request.response_type }}" />

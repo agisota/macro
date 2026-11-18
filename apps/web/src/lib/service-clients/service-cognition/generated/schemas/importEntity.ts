@@ -22,9 +22,9 @@ import type { Initiator } from './initiator';
 export interface ImportEntity {
   /** When the row was first staged. */
   created_at: string;
-  /** The Macro entity it became, once imported. */
+  /** The Rox entity it became, once imported. */
   entity_id?: ImportEntityEntityId;
-  /** The Macro entity type (`task` | `md` | `channel`), once imported. */
+  /** The Rox entity type (`task` | `md` | `channel`), once imported. */
   entity_type?: ImportEntityEntityType;
   /** Stable id in the source system (see
 [`ImportSource::normalize_foreign_id`]). */

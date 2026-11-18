@@ -25,7 +25,7 @@ const secondaryLinks: {
     external: true,
     onClick: () => handleDemoClick('footer_book_demo'),
   },
-  { title: 'Switch to Macro', href: '/docs/switch-to-macro' },
+  { title: 'Switch to Rox', href: '/docs/switch-to-macro' },
   { title: 'Jobs', href: '/jobs' },
   { title: 'Partners', href: '/partners' },
   { title: 'Terms', href: '/terms' },
@@ -35,7 +35,7 @@ const secondaryLinks: {
 ];
 
 const socials: { title: string; Icon: IconComponent; href: string }[] = [
-  { title: 'X', Icon: IconTwitter, href: 'https://x.com/macrodotcom' },
+  { title: 'X', Icon: IconTwitter, href: 'https://x.com/roxdotone' },
   {
     title: 'GitHub',
     Icon: IconGithub,
@@ -44,12 +44,12 @@ const socials: { title: string; Icon: IconComponent; href: string }[] = [
   {
     title: 'LinkedIn',
     Icon: IconLinkedin,
-    href: 'https://www.linkedin.com/company/macrocom',
+    href: 'https://www.linkedin.com/company/roxdotone',
   },
   {
     title: 'Instagram',
     Icon: IconInstagram,
-    href: 'https://www.instagram.com/macrodotcom/',
+    href: 'https://www.instagram.com/roxdotone/',
   },
 ];
 
@@ -298,7 +298,7 @@ export function SectionMoreFeatures(props: {
             'text-align': 'center',
           }}
         >
-          &copy; {year} Macro. All rights reserved.
+          &copy; {year} Rox. All rights reserved.
         </p>
 
         <p

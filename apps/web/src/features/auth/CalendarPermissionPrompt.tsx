@@ -2,6 +2,7 @@ import { t } from '@app/lib/i18n';
 import { useKeyedPersistentToasts } from '@core/component/Toast/useKeyedPersistentToasts';
 import { useUserId } from '@core/context/user';
 import { useAddInboxFlow } from '@core/email-link';
+import { isExternalEmailLink } from '@core/email-link/consent';
 import { fireAndForget } from '@core/util/fireAndForget';
 import CalendarIcon from '@icon/system/regular/calendar.svg';
 import { useEmailLinksQuery } from '@queries/email/link';
@@ -14,7 +15,7 @@ import { useEmailLinksQuery } from '@queries/email/link';
  * grant to the existing link, which kicks off the calendar backfill.
  *
  * Only the viewer's own inboxes are prompted. The links list also carries
- * inboxes another Macro user delegated to the viewer; whether that user's
+ * inboxes another Rox user delegated to the viewer; whether that user's
  * calendar syncs is theirs to decide, as in the calendar settings.
  *
  * Inboxes that also need a full reconnect are skipped so the two prompts don't
@@ -35,13 +36,15 @@ export function CalendarPermissionPrompt() {
 
   useKeyedPersistentToasts({
     items: () =>
-      (linksQuery.isSuccess ? linksQuery.data.links : []).filter(
-        (link) =>
-          link.macro_id === userId() &&
-          link.needs_calendar_permission &&
-          !link.needs_reauth &&
-          !link.calendar_disabled
-      ),
+      (linksQuery.isSuccess ? linksQuery.data.links : [])
+        .filter(isExternalEmailLink)
+        .filter(
+          (link) =>
+            link.macro_id === userId() &&
+            link.needs_calendar_permission &&
+            !link.needs_reauth &&
+            !link.calendar_disabled
+        ),
     key: (link) => link.id,
     persistKey: 'macro:calendar-prompt:dismissed',
     // Until the links and the viewer's id resolve, the empty list
@@ -54,7 +57,7 @@ export function CalendarPermissionPrompt() {
       color: 'var(--color-accent)',
       dismissLabel: t('common.notNow'),
       content(): string {
-        return `Macro can now sync your calendar. Grant calendar access for ${link.email_address} to turn it on.`;
+        return `Rox can now sync your calendar. Grant calendar access for ${link.email_address} to turn it on.`;
       },
       actions: [
         {

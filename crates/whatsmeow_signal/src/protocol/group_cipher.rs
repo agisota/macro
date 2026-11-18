@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/group_cipher.rs and
-// modified by Macro: sender keys are named by the whatsmeow port's
+// modified by Rox: sender keys are named by the whatsmeow port's
 // `SenderKeyName` (group and sender) instead of a distribution UUID, states
 // are found by WhatsApp's key ID, and the stores are the port's
 // `SignalProtocolStore`. Creating a distribution message replaces an empty

@@ -4,7 +4,7 @@
 
 Attribution of work to the code-mode invocation (agent session) and/or the
 routine run that caused it. A code-mode correlation is durable and validated
-against its session; a routine id is a signed Macro API token claim
+against its session; a routine id is a signed Rox API token claim
 (`routine_id`) that needs no lookup. Neither grants access or changes the
 JWT's acting user. A correlation may carry a `SessionScope`, set where the
 harness mints the credential: then every service that accepts it refuses

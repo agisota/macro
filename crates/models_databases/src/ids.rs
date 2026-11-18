@@ -108,7 +108,7 @@ macro_rules! database_id {
 }
 
 database_id!(
-    /// Identifier of reusable database storage. Its optional Macro entity uses
+    /// Identifier of reusable database storage. Its optional Rox entity uses
     /// the same identity, so existing routes and grants keep their IDs.
     DatabaseId
 );

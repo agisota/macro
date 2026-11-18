@@ -121,7 +121,7 @@ describe('Reactions', () => {
 });
 
 describe('formatReactorNames', () => {
-  it('names reactors outside Macro by their given name', () => {
+  it('names reactors outside Rox by their given name', () => {
     expect(
       formatReactorNames(
         ['user-1', 'external-reactor:1', 'external-reactor:2'],
@@ -169,7 +169,7 @@ describe('formatReactorNames', () => {
     ).toBe('alice@test.com and bob@test.com');
   });
 
-  it('counts reactors outside Macro instead of naming them', () => {
+  it('counts reactors outside Rox instead of naming them', () => {
     expect(
       formatReactorNames(
         ['whatsapp-reactor:1', 'user-1', 'whatsapp-reactor:2'],

@@ -118,7 +118,7 @@ export default {
     agentHint: 'Dedikeret agentsession',
     routineLabel: 'Rutine',
     routineDescription:
-      'Kør en model eller agent efter en tidsplan eller ved aktivitet i Macro',
+      'Kør en model eller agent efter en tidsplan eller ved aktivitet i Rox',
     routineHint: 'Tidsplaner og aktivitetsudløsere',
     databaseLabel: 'Database',
     databaseDescription: 'Opret database',
@@ -324,7 +324,7 @@ export default {
     projectShortTagline: 'Organiser relaterede opgaver',
     reminderTagline: 'Påmind dig selv på et valgfrit tidspunkt',
     reminderDetails:
-      'Opret en påmindelse om noget, du vil vende tilbage til.\nVælg et tidspunkt, så minder Macro dig om det.',
+      'Opret en påmindelse om noget, du vil vende tilbage til.\nVælg et tidspunkt, så minder Rox dig om det.',
     reminderExample1: 'Ring tilbage',
     reminderExample2: 'Følg op fredag',
     reminderExample3: 'Forny licens',
@@ -405,7 +405,7 @@ export default {
       'Mærk arbejde med tags, så du kan organisere og filtrere det på tværs af projekter.',
     guideConversation: 'Start en samtale med en eksisterende agent.',
     guideWorkAgent:
-      'Opret en assistent med instruktioner og adgang til dit Macro-arbejdsområde.',
+      'Opret en assistent med instruktioner og adgang til dit Rox-arbejdsområde.',
     guideCodingAgent: 'Opret en agent, der arbejder i et tilknyttet kodemiljø.',
     guideRoutine: 'Lad en agent køre efter en tilbagevendende tidsplan.',
     guideCompany:
@@ -699,20 +699,20 @@ export default {
     updateAvailable: 'Opdatering tilgængelig',
     updateNewVersionTitle: 'Ny version tilgængelig',
     updateWebDescription:
-      'En ny version af Macro er klar. Genindlæs siden for at bruge den.',
+      'En ny version af Rox er klar. Genindlæs siden for at bruge den.',
     updateWebFailedLoadDescription:
-      'En del af Macro kunne ikke indlæses, fordi der er kommet en ny version. Genindlæs siden for at bruge den.',
+      'En del af Rox kunne ikke indlæses, fordi der er kommet en ny version. Genindlæs siden for at bruge den.',
     updateReload: 'Genindlæs',
     updateReadyTitle: 'Opdatering klar',
     updateBundleDescription:
-      'En ny version af Macros skrivebordsapp er downloadet. Opdater for at begynde at bruge den.',
+      'En ny version af Rox’ skrivebordsapp er downloadet. Opdater for at begynde at bruge den.',
     updateAction: 'Opdater',
     updateDesktopReadyTitle: 'Opdatering af skrivebordsappen er klar',
     updateNativeDescription:
-      'Genstart Macro for at installere den, eller arbejd videre, så installeres den, når du lukker.',
+      'Genstart Rox for at installere den, eller arbejd videre, så installeres den, når du lukker.',
     updateRestartAndUpdate: 'Genstart og opdater',
     updateNativePreparingDescription:
-      'Gemmer dit arbejde, før Macro genstarter for at installere opdateringen.',
+      'Gemmer dit arbejde, før Rox genstarter for at installere opdateringen.',
     updatePreparingRestart: 'Forbereder genstart…',
   },
   settingsLanguage: {
@@ -724,7 +724,7 @@ export default {
     yourLanguage: 'Dit sprog',
     yourLanguageDescription: 'Tilsidesætter teamets sprog kun for dig.',
     yourLanguageNoTeamDescription:
-      'Det sprog, Macro vises på for dig. »Automatisk« følger din browser.',
+      'Det sprog, Rox vises på for dig. »Automatisk« følger din browser.',
     useTeamLanguage: 'Brug teamets sprog ({{language}})',
     automatic: 'Automatisk ({{language}})',
     teamAutomatic: 'Automatisk (hver persons browsersprog)',

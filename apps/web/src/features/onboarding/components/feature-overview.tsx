@@ -1,5 +1,5 @@
 import { WorkspaceTexture } from '@app/components/WorkspaceTexture';
-import Logo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import CRM from '@icon/system/regular/buildings.svg';
 import Calendar from '@icon/system/regular/calendar-blank.svg';
 import Chat from '@icon/system/regular/chats-circle.svg';
@@ -187,7 +187,7 @@ function FeatureConstellation(
           ? 'Features to try first'
           : `${items()
               .map((feature) => feature.label)
-              .join(', ')}, connected in Macro`
+              .join(', ')}, connected in Rox`
       }
     >
       <div class="feature-flow-light" aria-hidden="true">
@@ -213,7 +213,7 @@ function FeatureConstellation(
         </div>
       </Show>
       <div class="feature-flow-core glass" aria-hidden="true">
-        <Logo />
+        <RoxMark class="size-full" />
       </div>
       <For each={items()}>
         {(feature) => (

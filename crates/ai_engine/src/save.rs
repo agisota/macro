@@ -145,12 +145,12 @@ pub fn save(doc: &Document) -> Result<Vec<u8>> {
     objects.set(catalog, Object::Dict(cat));
 
     let mut info = Dict::new();
-    info.set("Producer", Object::String(b"Macro".to_vec()));
+    info.set("Producer", Object::String(b"Rox".to_vec()));
     let creator = doc
         .file
         .as_ref()
         .and_then(|f| f.creator.clone())
-        .unwrap_or_else(|| "Macro".into());
+        .unwrap_or_else(|| "Rox".into());
     info.set("Creator", Object::String(crate::pdf::encode_text(&creator)));
     let info = objects.add(Object::Dict(info));
 

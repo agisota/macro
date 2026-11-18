@@ -13,7 +13,7 @@ const vpc = get_coparse_api_vpc();
 const gatewayApplicationLoadBalancer = new MacroApplicationLoadBalancer(
   `${stack}-gateway`,
   {
-    // We want `gateway.macro.com` for prod and `${stack}-gateway` for all non-prod environments
+    // We want `gateway.rox.one` for prod and `${stack}-gateway` for all non-prod environments
     subDomain: stack === 'prod' ? 'gateway' : `${stack}-gateway`,
     tags,
     isInternal: false,

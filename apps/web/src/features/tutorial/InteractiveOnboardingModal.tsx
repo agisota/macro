@@ -1,8 +1,7 @@
 import { useAnalytics } from '@app/lib/analytics/analytics-context';
 import { globalSplitManager } from '@app/signal/splitLayout';
-import MacroLogo from '@core/component/MacroLogo';
 import { isMobile } from '@core/mobile/isMobile';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowRightIcon from '@icon/system/regular/arrow-right.svg';
 import CloseIcon from '@icon/system/regular/x.svg';
 import { useCompleteTutorialMutation } from '@queries/auth/tutorial';
@@ -45,7 +44,7 @@ function DemoFallback() {
   return (
     <div class="flex items-center justify-center h-full">
       <div class="w-full m-12 opacity-10 max-w-80">
-        <MacroLogo class="fill-ink" />
+        <RoxMark class="size-full" />
       </div>
     </div>
   );
@@ -72,7 +71,7 @@ function StartScreen(props: { onStart: () => void; onSkip: () => void }) {
   return (
     <div class="flex-1 flex items-center justify-center px-6">
       <div class="max-w-2xl flex flex-col items-center text-center gap-5 onboarding-stagger">
-        <LogoIcon class="size-16 text-accent" />
+        <RoxMark class="size-16" />
         <Show
           when={!isMobile()}
           fallback={
@@ -95,9 +94,9 @@ function StartScreen(props: { onStart: () => void; onSkip: () => void }) {
           }
         >
           <div class="flex flex-col gap-2">
-            <h3 class="text-3xl font-semibold text-ink">Welcome to Macro</h3>
+            <h3 class="text-3xl font-semibold text-ink">Welcome to Rox</h3>
             <p class="text-base text-ink/60 text-balance">
-              Take a quick tour of Macro’s core features.
+              Take a quick tour of Rox’s core features.
             </p>
           </div>
           <div class="w-full max-w-xs flex flex-col gap-2 pt-2">
@@ -119,7 +118,7 @@ function EndScreen(props: { onFinish: () => void; onReplay: () => void }) {
   return (
     <div class="flex-1 flex items-center justify-center px-6">
       <div class="max-w-xl flex flex-col items-center text-center gap-5 onboarding-stagger">
-        <LogoIcon class="size-16 text-accent" />
+        <RoxMark class="size-16" />
         <div class="flex flex-col gap-2">
           <h3 class="text-3xl font-semibold text-ink">You’re ready to go</h3>
           <p class="text-base text-ink/60 text-balance">

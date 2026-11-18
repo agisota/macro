@@ -3,10 +3,10 @@
 ## Scope
 
 Owns the shareable external chat (entity type `external_chat`): a chat from
-an outside messaging provider (WhatsApp today) added to Macro, opened inside
+an outside messaging provider (WhatsApp today) added to Rox, opened inside
 External at `/external/chat/:chatId`. It has independent message storage and
 queries (DSS `/external-chats`). It renders with the channel components
-(`ChannelMessage`, `ChannelInput` with Macro-only features off) but never uses
+(`ChannelMessage`, `ChannelInput` with Rox-only features off) but never uses
 channel queries, services, membership or context. Pairing, account management,
 the provider's chat list and adding a chat belong to the provider feature
 (`features/whatsapp-linked`); the External shell and its per-provider lists
@@ -112,20 +112,20 @@ belong to `features/external-view`. Architecture:
   http(s) (`webLink`).
 - Received text is untrusted: the provider's `formatting.toMarkdown`
   (`whatsappToMarkdown`) turns every punctuation
-  mark into a `&#NN;` reference, so no Markdown, HTML or Macro tag a sender
+  mark into a `&#NN;` reference, so no Markdown, HTML or Rox tag a sender
   types takes effect. Only what it writes itself is Markdown: WhatsApp's
   formatting, links for bare http(s) URLs (so Chat's link preview applies),
   and for each `@<token>` DSS matched, Chat's user-mention chip (verified
-  Macro users) or the WhatsApp name in bold. Inline code stays a code span
+  Rox users) or the WhatsApp name in bold. Inline code stays a code span
   only when it holds nothing a tag could start with.
 - The composer runs `ChannelInput` with `mentions: 'participants'`: the `@`
   menu lists the members (ids are JIDs, minus the sender) and nothing else;
   `composerMentions` turns the chips into `@<digits>` plus `mentions` on the
   text send.
-- Macro users (senders, reactors and system-line people with a `userId`)
-  show their Macro name and avatar; everyone else shows the name DSS gives
+- Rox users (senders, reactors and system-line people with a `userId`)
+  show their Rox name and avatar; everyone else shows the name DSS gives
   (`imported_author`; reactors through the reaction's `names`, which
-  `ReactionChip` reads for ids outside Macro). DSS supplies sender and member
+  `ReactionChip` reads for ids outside Rox). DSS supplies sender and member
   names; render them as sent without client-side fallbacks. Their pictures
   (and a chat's, in the header and External's sidebar) are the static files
   DSS gives (`pictureFileId` → `pictureUrl`), drawn by

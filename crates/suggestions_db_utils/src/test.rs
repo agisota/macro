@@ -3,7 +3,7 @@ use sqlx::PgPool;
 
 use super::*;
 
-const OWNER: &str = "macro|suggestions-db-utils@macro.com";
+const OWNER: &str = "macro|suggestions-db-utils@rox.one";
 
 async fn setup(pool: &PgPool) -> (Uuid, Uuid) {
     let macro_user_id = Uuid::now_v7();

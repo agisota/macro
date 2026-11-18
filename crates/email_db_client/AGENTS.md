@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of the Email feature: SQLx access to MacroDB's email tables — messages,
+Part of the Email feature: SQLx access to RoxDB's email tables — messages,
 threads, contacts, labels, links, attachments, sync tokens, CRM cleanup and
 backfill — plus legacy storage/workflow helpers that remain to be separated.
 
@@ -46,7 +46,7 @@ backfill — plus legacy storage/workflow helpers that remain to be separated.
 ## Checks
 
 - `cargo test -p email_db_client` (`SQLX_OFFLINE` unset; requires local
-  MacroDB — `just setup_macrodb`).
+  RoxDB — `just setup_macrodb`).
 - Run root `just check` for shared formatting, dependency and code-rule checks.
 
 Parsed message responses expose the draft generation captured in the same SQL snapshot as their content.
@@ -62,7 +62,7 @@ Parsed message responses expose the draft generation captured in the same SQL sn
   same prefixes (`threads::search_filters`), since the kind flags are not
   backfilled everywhere.
 - Undated provider drafts use creation time for All Mail eligibility; spam/junk
-  and trash remain excluded, including the timestamp override for synced Macro
+  and trash remain excluded, including the timestamp override for synced Rox
   drafts. Keep ingestion, recomputation, and cached projections aligned.
 
 - Message deletion may return `Deferred` while an accepted send owns the row; reconcile retained deletions under the message lock and compare both provider identity and draft generation.
@@ -117,10 +117,12 @@ Parsed message responses expose the draft generation captured in the same SQL sn
   file. Media uploads to static files still include drafts.
 - Quote and alias camelCase columns to Rust field names; check
   `crates/macro_db_client/migrations/` for real column spelling, don't guess.
-- A Macro draft (no provider id, or a live `email_mailbox_drafts` row) puts its
+- A Rox draft (no provider id, or a live `email_mailbox_drafts` row) puts its
   thread in the inbox only when `email_threads.has_received_mail` is true.
   `recompute_thread_metadata` and the email crate's
   `thread_mail_projections_by_ids` restate this rule; change both together.
+
+`fetch_primary_link_by_macro_id` resolves CRM population and teardown through explicit `is_primary` ownership, which may be a Rox address rather than the legacy `macro|{email}` address.
 
 ## Related
 

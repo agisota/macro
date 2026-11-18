@@ -15,7 +15,7 @@ pub mod ports;
 /// DSS use cases.
 #[cfg(feature = "ports")]
 pub mod service;
-/// Pixel size and length of files sent from Macro.
+/// Pixel size and length of files sent from Rox.
 #[cfg(feature = "ports")]
 pub mod shape;
 /// Timeline, read state and sharing contracts.

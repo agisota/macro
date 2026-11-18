@@ -57,7 +57,7 @@ async fn teammates_rank_first_then_prefix_then_substring_matches(pool: PgPool) {
                 Some("Sam Rivera".to_string()),
                 false
             ),
-            // Not a Macro user: matched by email, named by the viewer's own address book.
+            // Not a Rox user: matched by email, named by the viewer's own address book.
             (
                 "macro|samantha.book@example.org".to_string(),
                 Some("Book Sam".to_string()),

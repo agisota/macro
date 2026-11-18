@@ -1,6 +1,6 @@
 ---
 name: coding-workflow
-description: How to take a coding task from prompt to pushed branch on this Macro computer. Use for any change to a repository.
+description: How to take a coding task from prompt to pushed branch on this Rox computer. Use for any change to a repository.
 ---
 
 # Coding workflow

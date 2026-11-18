@@ -151,7 +151,7 @@ describe('gatePasses', () => {
       test: { kind: 'text', operator: 'doesNotContain', value: 'example' },
       value: {
         type: 'link',
-        value: ['https://macro.com', 'https://example.com'],
+        value: ['https://rox.one', 'https://example.com'],
       },
       passes: false,
     },

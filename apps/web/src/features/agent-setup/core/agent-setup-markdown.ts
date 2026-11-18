@@ -10,22 +10,22 @@ await macro.me.update({ name: 'Your Name', profilePicture: image });`;
 
 const NEW_TOKEN_SNIPPET = `const { secret } = await macro.apiKeys.create('my token');`;
 
-const MACROD_INSTALL = `curl -fsSL https://raw.githubusercontent.com/macro-inc/macro/main/crates/coding_agent_worker/install/install.sh | sh
-~/.local/bin/macrod detect-agents`;
+const ROXD_INSTALL = `curl -fsSL https://raw.githubusercontent.com/macro-inc/macro/main/crates/coding_agent_worker/install/install.sh | sh
+~/.local/bin/roxd detect-agents`;
 
-const MACROD_START = `mkdir -p ~/.macrod && chmod 700 ~/.macrod
-tmux kill-session -t macrod-agent 2>/dev/null
-: > ~/.macrod/agent.log
-tmux new-session -d -s macrod-agent '~/.local/bin/macrod service --config ~/.macrod/agent.toml --agent <agent id> --workspace "<absolute path>" >> ~/.macrod/agent.log 2>&1'`;
+const ROXD_START = `mkdir -p ~/.roxd && chmod 700 ~/.roxd
+tmux kill-session -t roxd-agent 2>/dev/null
+: > ~/.roxd/agent.log
+tmux new-session -d -s roxd-agent '~/.local/bin/roxd service --config ~/.roxd/agent.toml --agent <agent id> --workspace "<absolute path>" >> ~/.roxd/agent.log 2>&1'`;
 
-const MACROD_PAIRING_CODE = `grep '"event":"pairing"' ~/.macrod/agent.log`;
+const ROXD_PAIRING_CODE = `grep '"event":"pairing"' ~/.roxd/agent.log`;
 
-const MACROD_APPROVE = `await macro.harnesses.pairing('<code>').approve();`;
+const ROXD_APPROVE = `await macro.harnesses.pairing('<code>').approve();`;
 
-const PRODUCT_DOCS_URL = 'https://macro.com/docs';
-const SDK_DOCS_URL = 'https://sdk.macro.com';
-const MACROD_DOCS_URL = 'https://macro.com/docs/AI/bring-your-own';
-const MACROD_SOURCE_URL =
+const PRODUCT_DOCS_URL = 'https://docs.rox.one';
+const SDK_DOCS_URL = 'https://sdk.rox.one';
+const ROXD_DOCS_URL = 'https://docs.rox.one/AI/bring-your-own';
+const ROXD_SOURCE_URL =
   'https://github.com/macro-inc/macro/tree/main/crates/coding_agent_worker';
 
 /** The page's wording, translated where it renders. */
@@ -39,13 +39,13 @@ export type AgentSetupCopy = {
   productDocs: string;
   sdkDocs: string;
   setProfile: string;
-  macrod: string;
-  macrodInstall: string;
-  macrodStart: string;
-  macrodApprove: string;
-  macrodNext: string;
-  macrodDocs: string;
-  macrodSource: string;
+  roxd: string;
+  roxdInstall: string;
+  roxdStart: string;
+  roxdApprove: string;
+  roxdNext: string;
+  roxdDocs: string;
+  roxdSource: string;
   anotherToken: string;
   anotherTokenSettings: string;
   openApp: string;
@@ -76,16 +76,16 @@ export function agentSetupMarkdown(input: {
     codeBlock(QUICK_START, 'sh'),
     `## ${copy.setProfile}`,
     codeBlock(PROFILE_SNIPPET, 'ts'),
-    `## ${copy.macrod}`,
-    copy.macrodInstall,
-    codeBlock(MACROD_INSTALL, 'sh'),
-    copy.macrodStart,
-    codeBlock(MACROD_START, 'sh'),
-    copy.macrodApprove,
-    codeBlock(MACROD_PAIRING_CODE, 'sh'),
-    codeBlock(MACROD_APPROVE, 'ts'),
-    copy.macrodNext,
-    `- [${copy.macrodDocs}](${MACROD_DOCS_URL})\n- [${copy.macrodSource}](${MACROD_SOURCE_URL})`,
+    `## ${copy.roxd}`,
+    copy.roxdInstall,
+    codeBlock(ROXD_INSTALL, 'sh'),
+    copy.roxdStart,
+    codeBlock(ROXD_START, 'sh'),
+    copy.roxdApprove,
+    codeBlock(ROXD_PAIRING_CODE, 'sh'),
+    codeBlock(ROXD_APPROVE, 'ts'),
+    copy.roxdNext,
+    `- [${copy.roxdDocs}](${ROXD_DOCS_URL})\n- [${copy.roxdSource}](${ROXD_SOURCE_URL})`,
     `## ${copy.anotherToken}`,
     codeBlock(NEW_TOKEN_SNIPPET, 'ts'),
     copy.anotherTokenSettings,

@@ -1,4 +1,4 @@
-//! A verified delivery from Macro's GitHub App, as other domains receive it.
+//! A verified delivery from Rox's GitHub App, as other domains receive it.
 //!
 //! Every delivery the App verifies is published, whatever its event, so a
 //! subscriber can act on events this crate never handles itself. A delivery is
@@ -12,7 +12,7 @@ use serde_json::Value;
 /// something that reads as a different event.
 pub const MAX_WEBHOOK_PAYLOAD_BYTES: usize = 64 * 1024;
 
-/// One delivery from Macro's GitHub App.
+/// One delivery from Rox's GitHub App.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct GithubWebhookReceived {
     /// GitHub's `X-GitHub-Delivery` id. A redelivery from GitHub's settings
@@ -85,7 +85,7 @@ struct SenderFields {
 impl GithubWebhookReceived {
     /// Read a verified delivery. None when it came through no installation,
     /// as App-level events such as `github_app_authorization` do: nobody in
-    /// Macro can be shown those.
+    /// Rox can be shown those.
     pub fn from_delivery(delivery_id: Option<String>, event: String, body: &Value) -> Option<Self> {
         let fields = DeliveryFields::deserialize(body).ok()?;
         let installation_id = fields.installation?.id;

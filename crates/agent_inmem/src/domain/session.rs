@@ -162,7 +162,7 @@ fn attachment_content(attachment: &PromptAttachment) -> AttachmentContent<'stati
         // name/reference fields. Keep the source visible even when a local
         // adapter replaces the image URL with inline bytes, so tools can reuse
         // an uploaded reference. This describes any image URL without claiming
-        // that a third-party image is a Macro static file.
+        // that a third-party image is a Rox static file.
         content.push(AttachmentPart::Metadata {
             key: "image_file_name".to_owned(),
             value: attachment.name.clone(),
@@ -333,7 +333,7 @@ pub fn end_of_turn(history: &[HistoryEntry], id: &RequestId) -> Option<usize> {
     )
 }
 
-/// Session state by Macro session id, shared between the manager (which
+/// Session state by Rox session id, shared between the manager (which
 /// creates and tears down entries) and the agent tasks (which read and extend
 /// them). Entries outlive individual agent tasks so a reattach keeps its
 /// conversation.

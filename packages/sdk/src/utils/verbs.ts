@@ -115,7 +115,10 @@ const methods: Record<string, Partial<Record<SdkVerb, string>>> = {
     sent: 'sendReferralCode',
     invited: 'inviteToTeam',
     deleted: 'deleteTeamInviteHandler',
-    edited: 'putUserName putProfilePictureFile patchTeam',
+    edited:
+      'putUserName putProfilePictureFile patchTeam setTeamRuntimePresets clearTeamRuntimePresets',
+    disabled: 'disableTeamMember',
+    enabled: 'enableTeamMember',
     uploaded: 'createProfilePictureUpload',
   },
   calendar: {

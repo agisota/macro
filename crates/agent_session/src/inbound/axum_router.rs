@@ -75,7 +75,7 @@ pub mod pull_requests;
 /// Auto-archive defaults and per-session choices.
 pub mod auto_archive;
 
-/// Linking a session to the Macro task it works on.
+/// Linking a session to the Rox task it works on.
 pub mod task;
 
 /// The caller's coding sessions waiting for them or stalled.
@@ -356,6 +356,13 @@ impl IntoResponse for AgentSessionApiError {
             // answers 409 with a reason rather than a 500 that reads as a bug
             // and buries the one fact worth showing a user.
             Self::Domain(AgentSessionError::Admission(error)) => error.into_response(),
+            Self::Domain(AgentSessionError::Enterprise(error)) => match error {
+                enterprise::domain::EnterpriseError::MemberDisabled
+                | enterprise::domain::EnterpriseError::RuntimePresetDenied => {
+                    (StatusCode::FORBIDDEN, error.to_string()).into_response()
+                }
+                _ => (StatusCode::INTERNAL_SERVER_ERROR, "internal server error").into_response(),
+            },
             Self::Domain(AgentSessionError::Disconnected(session_id)) => {
                 tracing::info!(%session_id, "action refused: the session's runtime is not connected");
                 (
@@ -658,7 +665,7 @@ pub struct AgentSessionResponse {
     pub repo_url: Option<String>,
     /// The session's linked pull request.
     pub pull_request_url: Option<String>,
-    /// The Macro task the session was linked to.
+    /// The Rox task the session was linked to.
     pub task_id: Option<String>,
     /// The directory the session's harness runs in on its runtime.
     pub workspace: String,
@@ -1488,7 +1495,7 @@ pub async fn put_agent_sandbox_size_handler<
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct CodingPreferencesBody {
-    /// Whether new coding sessions research prior work and link a Macro task.
+    /// Whether new coding sessions research prior work and link a Rox task.
     pub create_tasks: bool,
     /// Whether new coding sessions deliver their work as a pull request.
     pub open_pull_requests: bool,

@@ -9,7 +9,7 @@ import type { AgentSignInExpiryMetadataExpiresAt } from './agentSignInExpiryMeta
 import type { AgentSignInExpiryStage } from './agentSignInExpiryStage';
 
 /**
- * The account a team's Macro computer signed an agent in to is about to
+ * The account a team's Rox computer signed an agent in to is about to
 stop working, or has. Sent to whoever signed it in and to the team's
 admins and owner, who can sign it in again from Settings → Machines.
  */

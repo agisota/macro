@@ -30,14 +30,14 @@ impl CommandLookup for CodexOnly {
     }
 
     fn adapter_root(&self) -> Option<&Path> {
-        Some(Path::new("/home/test/.macrod/adapters"))
+        Some(Path::new("/home/test/.roxd/adapters"))
     }
 }
 
 #[test]
 fn creates_a_valid_production_config() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let agent = discover(&HermesOnly).remove(0);
 
     ConfigForm::create_for_deployment(&path, &agent, directory.path(), Deployment::Production)
@@ -49,15 +49,15 @@ fn creates_a_valid_production_config() {
     assert_eq!(config.workspace.path, directory.path());
     assert_eq!(
         config.macro_api.api_url,
-        "https://gateway.macro.com/agent-harness"
+        "https://gateway.rox.one/agent-harness"
     );
     assert_eq!(
         config.macro_api.gateway_url(),
-        "wss://gateway.macro.com/agent-harness/runtime/ws"
+        "wss://gateway.rox.one/agent-harness/runtime/ws"
     );
     assert_eq!(
         config.macro_api.storage_url,
-        "https://gateway.macro.com/dss"
+        "https://gateway.rox.one/dss"
     );
     assert_eq!(config.credentials, None);
     assert_private_mode(&path);
@@ -66,7 +66,7 @@ fn creates_a_valid_production_config() {
 #[test]
 fn creates_a_dev_config_when_dev_mode_is_set() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let agent = discover(&HermesOnly).remove(0);
 
     ConfigForm::create_for_deployment(&path, &agent, directory.path(), Deployment::Development)
@@ -75,11 +75,11 @@ fn creates_a_dev_config_when_dev_mode_is_set() {
 
     assert_eq!(
         config.macro_api.api_url,
-        "https://dev-gateway.macro.com/agent-harness"
+        "https://dev-gateway.rox.one/agent-harness"
     );
     assert_eq!(
         config.macro_api.gateway_url(),
-        "wss://dev-gateway.macro.com/agent-harness/runtime/ws"
+        "wss://dev-gateway.rox.one/agent-harness/runtime/ws"
     );
     assert_eq!(config.macro_api.storage_url, DEV_STORAGE_URL);
     assert_eq!(config.macro_api.web_url, DEV_WEB_URL);
@@ -88,12 +88,12 @@ fn creates_a_dev_config_when_dev_mode_is_set() {
 #[test]
 fn editing_a_setting_preserves_comments() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let agent = discover(&HermesOnly).remove(0);
     ConfigForm::create_for_deployment(&path, &agent, directory.path(), Deployment::Production)
         .expect("create config");
     let original = fs::read_to_string(&path).expect("read config");
-    assert!(original.contains("# macrod configuration"));
+    assert!(original.contains("# roxd configuration"));
 
     let workspace = directory.path().join("other");
     fs::create_dir(&workspace).expect("create workspace");
@@ -103,7 +103,7 @@ fn editing_a_setting_preserves_comments() {
     form.save().expect("save form");
 
     let edited = fs::read_to_string(&path).expect("read edited config");
-    assert!(edited.contains("# macrod configuration"));
+    assert!(edited.contains("# roxd configuration"));
     assert!(edited.contains(&format!("path = {:?}", workspace.to_string_lossy())));
     assert_private_mode(&path);
 }
@@ -111,7 +111,7 @@ fn editing_a_setting_preserves_comments() {
 #[test]
 fn persists_and_clears_embedded_credentials_without_losing_comments() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let agent = discover(&HermesOnly).remove(0);
     ConfigForm::create_for_deployment(&path, &agent, directory.path(), Deployment::Production)
         .expect("create config");
@@ -129,7 +129,7 @@ fn persists_and_clears_embedded_credentials_without_losing_comments() {
     assert!(
         fs::read_to_string(&path)
             .expect("read config")
-            .contains("# macrod configuration")
+            .contains("# roxd configuration")
     );
     assert_private_mode(&path);
 
@@ -149,7 +149,7 @@ fn quickstart_edits_preserve_existing_deployment_and_comments() {
     let directory = tempfile::tempdir().expect("temp dir");
     let workspace = directory.path().join("workspace");
     fs::create_dir(&workspace).expect("create workspace");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     fs::write(
         &path,
         format!(
@@ -181,7 +181,7 @@ fn quickstart_edits_preserve_existing_deployment_and_comments() {
 #[test]
 fn agent_environment_round_trips_and_is_replaced_with_the_agent() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let hermes = discover(&HermesOnly).remove(0);
     ConfigForm::create_for_deployment(&path, &hermes, directory.path(), Deployment::Production)
         .expect("create config");
@@ -216,7 +216,7 @@ fn agent_environment_round_trips_and_is_replaced_with_the_agent() {
 #[test]
 fn rejects_a_missing_workspace_edit() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let agent = discover(&HermesOnly).remove(0);
     ConfigForm::create_for_deployment(&path, &agent, directory.path(), Deployment::Production)
         .expect("create config");
@@ -231,7 +231,7 @@ fn rejects_a_missing_workspace_edit() {
 #[test]
 fn rejects_a_relative_workspace_edit() {
     let directory = tempfile::tempdir().expect("temp dir");
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let agent = discover(&HermesOnly).remove(0);
     ConfigForm::create_for_deployment(&path, &agent, directory.path(), Deployment::Production)
         .expect("create config");
@@ -259,7 +259,7 @@ fn assert_private_mode(_path: &Path) {}
 #[test]
 fn native_settings_round_trip_and_agent_switch_resets_provider_defaults() {
     let directory = tempfile::tempdir().unwrap();
-    let path = directory.path().join("macrod.toml");
+    let path = directory.path().join("roxd.toml");
     let agent = discover(&HermesOnly).remove(0);
     ConfigForm::create_for_deployment(&path, &agent, directory.path(), Deployment::Production)
         .unwrap();

@@ -46,10 +46,10 @@ pkgs.runCommand "macro-box-claude-wrapper" { nativeBuildInputs = [ pkgs.jq ]; } 
   # Unreadable, or no token: the gateway env and a warning without the token.
   chmod 000 $credential
   [ "$(run)" = "$gateway" ]
-  grep -q 'unreadable; using Macro credits' stderr
+  grep -q 'unreadable; using Rox credits' stderr
   chmod 600 $credential
   echo '{}' > $credential
   [ "$(run)" = "$gateway" ]
-  grep -q 'unreadable; using Macro credits' stderr
+  grep -q 'unreadable; using Rox credits' stderr
   touch $out
 ''

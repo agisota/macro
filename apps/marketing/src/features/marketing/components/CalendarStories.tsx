@@ -26,7 +26,7 @@ type CalendarBlock = {
 };
 
 const accounts = [
-  { email: 'julia@macro.com', tone: 'blue' },
+  { email: 'julia@rox.one', tone: 'blue' },
   { email: 'personal@example.com', tone: 'purple' },
   { email: 'family@example.com', tone: 'green' },
 ];
@@ -320,7 +320,7 @@ export function CalendarStories() {
         <div
           class="calendar-story"
           role="img"
-          aria-label="Julia asks Macro for a time with Teo and Priya. Macro finds Tuesday at 2 PM, shown on a day view where teammates’ shared calendars appear as busy blocks and the free slot is highlighted."
+          aria-label="Julia asks Rox for a time with Teo and Priya. Rox finds Tuesday at 2 PM, shown on a day view where teammates’ shared calendars appear as busy blocks and the free slot is highlighted."
         >
           <FeatureDemoBackdrop />
           <div class="calendar-story-conversation" inert aria-hidden="true">
@@ -330,7 +330,7 @@ export function CalendarStories() {
                   person: 'julia',
                   text: (
                     <>
-                      <span class="calendar-story-mention">@Macro</span> find 30
+                      <span class="calendar-story-mention">@Rox</span> find 30
                       minutes with Teo and Priya this week.
                     </>
                   ),
@@ -380,7 +380,7 @@ export function CalendarStories() {
         <div
           class="calendar-story"
           role="img"
-          aria-label="Julia asks Macro to move design review to Tuesday at 2 PM and add Priya. The event shows the new time and guest list for review before the update is sent."
+          aria-label="Julia asks Rox to move design review to Tuesday at 2 PM and add Priya. The event shows the new time and guest list for review before the update is sent."
         >
           <FeatureDemoBackdrop />
           <div class="calendar-story-conversation" inert aria-hidden="true">
@@ -390,7 +390,7 @@ export function CalendarStories() {
                   person: 'julia',
                   text: (
                     <>
-                      <span class="calendar-story-mention">@Macro</span> move
+                      <span class="calendar-story-mention">@Rox</span> move
                       design review to Tuesday at 2 PM and add Priya.
                     </>
                   ),
@@ -428,7 +428,7 @@ export function CalendarStories() {
             </div>
             <div class="calendar-event-row">
               <CalendarIcon />
-              <div>julia@macro.com</div>
+              <div>julia@rox.one</div>
             </div>
             <div class="calendar-event-actions">
               <span class="calendar-app-button">Discard</span>

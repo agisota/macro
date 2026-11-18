@@ -1,4 +1,4 @@
-//! Link the calling session to the Macro task it works on.
+//! Link the calling session to the Rox task it works on.
 
 use ai_toolset::{
     AsyncTool, RequestContext, ServiceContext, ToolAnnotated, ToolAnnotations, ToolCallError,
@@ -16,12 +16,12 @@ use crate::domain::session_task::LinkedTask;
 #[serde(deny_unknown_fields)]
 #[schemars(
     title = "link_task",
-    description = "Link this coding session to the Macro task it works on, replacing any earlier link. The session's pull request, now or later, is linked to the task. Returns the task's id, title, link, mention chip to paste when naming the task, and the reference to put in the pull request description."
+    description = "Link this coding session to the Rox task it works on, replacing any earlier link. The session's pull request, now or later, is linked to the task. Returns the task's id, title, link, mention chip to paste when naming the task, and the reference to put in the pull request description."
 )]
 pub struct LinkTask {
     /// The task to link.
     #[schemars(
-        description = "Macro task id, MACRO-<id> reference, or task link, e.g. https://macro.com/app/task/<id>"
+        description = "Rox task id, MACRO-<id> reference, or task link, e.g. https://rox.one/app/task/<id>"
     )]
     pub task: String,
 }

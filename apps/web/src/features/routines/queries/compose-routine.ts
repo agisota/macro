@@ -130,7 +130,7 @@ export function draftFromRoutine(
   defaultModel: string
 ): ScheduleDraft | string {
   const steps = stepsFromWire(routine.steps);
-  if (!steps) return 'The draft used steps Macro can’t run. Try rephrasing.';
+  if (!steps) return 'The draft used steps Rox can’t run. Try rephrasing.';
   const drafted = steps.map((step, index) => {
     const problems = routine.problems.find(
       (item) => item.index === index

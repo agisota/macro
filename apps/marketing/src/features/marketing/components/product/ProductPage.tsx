@@ -83,7 +83,7 @@ export function ProductBrand(props: { product: ProductName }) {
           height="20"
           aria-hidden="true"
         />
-        <span>Macro {props.product}</span>
+        <span>Rox {props.product}</span>
       </a>
     </p>
   );

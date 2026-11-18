@@ -1,16 +1,16 @@
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 
 export function MobileWebSignupSent(props: { onBackHome: () => void }) {
   return (
     <div class="flex flex-col size-full p-6 overflow-hidden relative">
       <div class="flex flex-col items-start gap-4 w-full max-w-md mx-auto mt-6">
-        <LogoIcon class="size-16 text-accent self-center" />
+        <RoxMark class="size-16 self-center" />
         <h2 class="text-3xl font-semibold text-ink mt-3">
-          Macro is better on desktop.
+          Rox is better on desktop.
         </h2>
         <p class="text-base text-ink/60 mt-4">
           We sent a link to your inbox - open it on your computer for the full
-          Macro experience.
+          Rox experience.
         </p>
 
         <button

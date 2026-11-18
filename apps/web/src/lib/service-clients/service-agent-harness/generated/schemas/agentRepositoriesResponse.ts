@@ -10,7 +10,7 @@ import type { AgentRepositoryDto } from './agentRepositoryDto';
  * Response body for `GET /agent-repositories`.
  */
 export interface AgentRepositoriesResponse {
-  /** Every repository the caller reaches through Macro's GitHub App, sorted
+  /** Every repository the caller reaches through Rox's GitHub App, sorted
 by `owner/name`. Empty when the App is installed nowhere the caller
 has a claim to. */
   repositories: AgentRepositoryDto[];

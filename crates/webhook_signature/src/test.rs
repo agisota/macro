@@ -26,6 +26,15 @@ fn an_empty_secret_never_verifies() {
     assert!(!verify("", "1755188000", b"{\"a\":1}", &forged));
 }
 
+/// The delivered header names, pinned so a receiver's constants cannot drift.
+#[test]
+fn header_names_are_rox_with_legacy_aliases() {
+    assert_eq!(SIGNATURE_HEADER, "x-rox-signature");
+    assert_eq!(TIMESTAMP_HEADER, "x-rox-timestamp");
+    assert_eq!(LEGACY_SIGNATURE_HEADER, "x-macro-signature");
+    assert_eq!(LEGACY_TIMESTAMP_HEADER, "x-macro-timestamp");
+}
+
 /// Pin the digest so the scheme can never drift from the TS verifier
 /// (`packages/sdk/src/events/verify.ts`) without a test moving.
 #[test]

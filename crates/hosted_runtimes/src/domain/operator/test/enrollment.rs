@@ -305,10 +305,10 @@ proptest::proptest! {
                         operator.repo.apply(id, Event::InstanceLost, now()).await.unwrap();
                     }
                     2 => {
-                        operator.repo.apply(id, Event::MacrodConnected, now()).await.unwrap();
+                        operator.repo.apply(id, Event::RoxdConnected, now()).await.unwrap();
                     }
                     3 => {
-                        operator.repo.apply(id, Event::MacrodDisconnected, now()).await.unwrap();
+                        operator.repo.apply(id, Event::RoxdDisconnected, now()).await.unwrap();
                     }
                     _ => {
                         let effect = if step == 4 && !effects.is_empty() {

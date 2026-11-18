@@ -821,7 +821,7 @@ impl ComputerRepo for PgComputerRepo {
     }
 
     #[tracing::instrument(skip(self), err)]
-    async fn postpone_macrod_timers(
+    async fn postpone_roxd_timers(
         &self,
         host: HostId,
         deadline: DateTime<Utc>,
@@ -833,7 +833,7 @@ impl ComputerRepo for PgComputerRepo {
             .filter_map(|record| record.healthy().map(|computer| computer.id.as_uuid()))
             .collect();
         sqlx::query!(
-            "UPDATE hosted_runtime_timer t SET fire_at = $2 FROM hosted_runtime c WHERE t.computer_id = c.id AND c.host_id = $1 AND t.kind = 'macrod_missing' AND t.computer_id = ANY($3)",
+            "UPDATE hosted_runtime_timer t SET fire_at = $2 FROM hosted_runtime c WHERE t.computer_id = c.id AND c.host_id = $1 AND t.kind = 'roxd_missing' AND t.computer_id = ANY($3)",
             host.into_inner(),
             deadline,
             &healthy_ids,

@@ -67,7 +67,7 @@ fn is_allowed_original_url_with_local_origin(url: &Url, local_origin: Option<&Ur
         "http" => matches!(url.host_str(), Some("localhost" | "tauri.localhost")),
         "https" => matches!(
             url.host_str(),
-            Some("localhost" | "tauri.localhost" | "dev.macro.com" | "macro.com" | "www.macro.com")
+            Some("localhost" | "tauri.localhost" | "dev.rox.one" | "rox.one" | "www.rox.one")
         ),
         _ => false,
     }

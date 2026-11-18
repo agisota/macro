@@ -1,6 +1,6 @@
 # Feature flags
 
-Await one load for the authenticated Macro user ID, then read the stable snapshot
+Await one load for the authenticated Rox user ID, then read the stable snapshot
 synchronously. Consumers depend on `FeatureFlags`; composition roots select an
 outbound adapter. A variant counts as enabled. Missing flags read `false`/`None`;
 a failed load returns `Err`, leaving fallback policy to the caller.
@@ -33,7 +33,7 @@ No flag is an authorization grant by itself.
 ## Global service evaluation
 
 Use `ServiceFeatureFlags::load_service(ServiceContext::new("service-name"))` for
-an explicit global rollout. Service contexts never fabricate Macro user IDs.
+an explicit global rollout. Service contexts never fabricate Rox user IDs.
 The strict transport and snapshot validation are shared with authenticated-user
 loads. Consumers use one stable service context across human routes, background
 jobs and lifecycle calls. Consumers may require a separate authenticated-user
@@ -66,7 +66,7 @@ paths, queries, or fragments. There is no silently disabled configuration. HTTP
 is accepted for local tests/self-hosting; production should use HTTPS. No
 configuration is loaded from the environment by this crate.
 
-Each load makes one POST to `/flags/?v=2` with the project token and exact Macro
+Each load makes one POST to `/flags/?v=2` with the project token and exact Rox
 user ID. `evaluation_runtime: "server"` requests server/all-runtime flags;
 `geoip_disable: true` prevents targeting by the backend's IP. Person targeting
 uses PostHog's stored properties plus one override, `environment` (`prod`,
@@ -77,7 +77,7 @@ not supported.
 Reads do not emit `$feature_flag_called` events, so this adapter alone does not
 provide experiment exposure tracking.
 
-Dev and prod share one PostHog project and the same Macro user IDs, so a flag
+Dev and prod share one PostHog project and the same Rox user IDs, so a flag
 targeted only at user IDs turns on in both. Target dev-only rollouts with
 `environment = dev`. The web client sends the same property: `prod`, `dev`,
 or `local` for local stack bundles.

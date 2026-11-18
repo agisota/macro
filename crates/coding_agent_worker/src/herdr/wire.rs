@@ -1,4 +1,4 @@
-//! The local protocol between macrod and a `macrod herdr-pane` window:
+//! The local protocol between roxd and a `roxd herdr-pane` window:
 //! newline-delimited JSON over a Unix socket only this user can open.
 
 use serde::{Deserialize, Serialize};
@@ -54,7 +54,7 @@ pub(crate) struct PermissionChoice {
     pub kind: String,
 }
 
-/// macrod to a pane window.
+/// roxd to a pane window.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub(crate) enum ToPane {
@@ -62,7 +62,7 @@ pub(crate) enum ToPane {
     Hello {
         /// The ACP session this window shows.
         session: String,
-        /// Where the session opens in the Macro web app, once known.
+        /// Where the session opens in the Rox web app, once known.
         web_url: Option<String>,
     },
     /// A prompt delivered to the agent, whoever sent it.
@@ -83,7 +83,7 @@ pub(crate) enum ToPane {
         detail: Option<String>,
     },
     /// The agent is waiting on a permission answer, which only a user in
-    /// Macro may give: the service refuses approvals a runtime forwards.
+    /// Rox may give: the service refuses approvals a runtime forwards.
     Permission {
         /// The agent's request id.
         request_id: serde_json::Value,
@@ -92,7 +92,7 @@ pub(crate) enum ToPane {
         /// What the agent offered.
         options: Vec<PermissionChoice>,
     },
-    /// A permission request was answered, from here or from Macro.
+    /// A permission request was answered, from here or from Rox.
     PermissionSettled,
     /// Something the window should tell its reader.
     Notice {
@@ -103,7 +103,7 @@ pub(crate) enum ToPane {
     },
 }
 
-/// A pane window to macrod.
+/// A pane window to roxd.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub(crate) enum FromPane {
@@ -112,7 +112,7 @@ pub(crate) enum FromPane {
         /// The ACP session id.
         session: String,
     },
-    /// Prompt the session through Macro.
+    /// Prompt the session through Rox.
     Prompt {
         /// The text to send.
         text: String,

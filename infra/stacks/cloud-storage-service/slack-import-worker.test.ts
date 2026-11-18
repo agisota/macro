@@ -55,8 +55,8 @@ beforeAll(async () => {
       stagingBucketName: 'bulk-upload-staging-dev',
       queueName: 'slack-import-queue-dev',
       dlqName: 'slack-import-dlq-dev',
-      gatewayUrl: 'https://dev-gateway.macro.com/connection-gateway',
-      searchProcessingUrl: 'https://dev-gateway.macro.com/search-processing',
+      gatewayUrl: 'https://dev-gateway.rox.one/connection-gateway',
+      searchProcessingUrl: 'https://dev-gateway.rox.one/search-processing',
       tags: {},
     })
   ).toBeDefined();

@@ -1,9 +1,9 @@
 //! `/brain/inference/{stt,tts}`: agent teammates' call speech, proxied to
-//! LiveKit Inference on Macro's project credentials.
+//! LiveKit Inference on Rox's project credentials.
 //!
-//! The runtime opens a WebSocket with its agent's own Macro API key as the
+//! The runtime opens a WebSocket with its agent's own Rox API key as the
 //! bearer token. The gateway authenticates the agent, admits it against
-//! Macro credits, opens the upstream socket with a short-lived
+//! Rox credits, opens the upstream socket with a short-lived
 //! `inference.perform` token, and relays events both ways. Client events are
 //! checked against a fixed session contract ([`protocol`]) and every
 //! forwarded second of audio or character of text is metered against the
@@ -134,7 +134,7 @@ impl SpeechGateway {
         })
     }
 
-    /// The agent behind the bearer key, admitted to spend Macro credits.
+    /// The agent behind the bearer key, admitted to spend Rox credits.
     async fn authorize(&self, headers: &HeaderMap) -> Result<BrainCaller, StatusCode> {
         let bearer = headers
             .typed_get::<Authorization<Bearer>>()

@@ -62,7 +62,7 @@ pub struct NewHarness {
     pub team_grant: Option<Uuid>,
     /// The approving user.
     pub created_by: MacroUserIdStr<'static>,
-    /// The Macro computer this harness runs on, for hosted harnesses.
+    /// The Rox computer this harness runs on, for hosted harnesses.
     pub computer_id: Option<ComputerId>,
 }
 
@@ -187,7 +187,7 @@ pub trait HarnessRepo: Send + Sync + 'static {
         provider: AgentProvider,
     ) -> impl Future<Output = Result<Option<HarnessAccountLogin>, Self::Err>> + Send;
 
-    /// Every active login at `provider` on a live Macro computer's harness.
+    /// Every active login at `provider` on a live Rox computer's harness.
     fn computer_account_logins(
         &self,
         provider: AgentProvider,
@@ -400,8 +400,8 @@ pub trait HarnessService: Send + Sync + 'static {
         harness_id: HarnessId,
     ) -> impl Future<Output = Result<Vec<HarnessSession>, HarnessError>> + Send;
 
-    /// Register a Macro computer's team harness, already approved, and return
-    /// the claim material its macrod enrolls with.
+    /// Register a Rox computer's team harness, already approved, and return
+    /// the claim material its roxd enrolls with.
     ///
     /// Trusted in-process callers only (the hosted runtime control plane,
     /// after it authorized the team admin): this takes no caller to check and
@@ -430,14 +430,14 @@ pub trait HarnessService: Send + Sync + 'static {
         computer_id: ComputerId,
     ) -> impl Future<Output = Result<(), HarnessError>> + Send;
 
-    /// Every harness a Macro computer has had, deleted ones included.
+    /// Every harness a Rox computer has had, deleted ones included.
     /// Trusted in-process callers only, like [`Self::create_hosted_pairing`].
     fn computer_harnesses(
         &self,
         computer_id: ComputerId,
     ) -> impl Future<Output = Result<Vec<HarnessId>, HarnessError>> + Send;
 
-    /// The computer a live harness runs on, if it is a Macro computer's.
+    /// The computer a live harness runs on, if it is a Rox computer's.
     fn harness_computer(
         &self,
         harness_id: HarnessId,
@@ -471,7 +471,7 @@ pub trait HarnessService: Send + Sync + 'static {
     ) -> impl Future<Output = Result<Option<HarnessAccountLogin>, HarnessError>> + Send;
 }
 
-/// Which agent teammate a Macro computer was bought for. The computer
+/// Which agent teammate a Rox computer was bought for. The computer
 /// service owns that link; the listings mark the computer's harness with it.
 #[cfg_attr(feature = "test-utils", mockall::automock(type Err = anyhow::Error;))]
 pub trait ComputerTeamAgents: Send + Sync + 'static {
@@ -521,11 +521,11 @@ pub enum HarnessError {
     /// Pairing creation is throttled.
     #[error("too many open pairing requests")]
     Throttled,
-    /// The harness belongs to a Macro computer, which belongs to its team:
+    /// The harness belongs to a Rox computer, which belongs to its team:
     /// only releasing the computer deletes it, and it is never shared with
     /// another team.
     #[error(
-        "This machine is a Macro computer, which belongs to its team. Manage it from Macro computers instead."
+        "This machine is a Rox computer, which belongs to its team. Manage it from Rox computers instead."
     )]
     ComputerHarness,
     /// Repository error.

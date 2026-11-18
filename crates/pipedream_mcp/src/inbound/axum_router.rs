@@ -119,7 +119,7 @@ where
             .ok_or(PipedreamHandlerErr::PipedreamNotConfigured)
     }
 
-    /// Whether `user_id` is on Macro Connect alone (see
+    /// Whether `user_id` is on Rox Connect alone (see
     /// [`MacroConnect::connect_only`]).
     async fn connect_only(
         &self,
@@ -203,9 +203,9 @@ where
         })
 }
 
-/// The public page Macro Connect sends the browser to after consent.
+/// The public page Rox Connect sends the browser to after consent.
 ///
-/// It records nothing: the page only tells the user to return to Macro and
+/// It records nothing: the page only tells the user to return to Rox and
 /// closes itself. The app, polling the authenticated
 /// `/pipedream/mcp/connect/complete`, records the connection once Connect
 /// confirms it, so nothing in this unauthenticated request is trusted.
@@ -233,8 +233,8 @@ async fn connect_callback(
     })
 }
 
-const CONNECT_CALLBACK_CONNECTED: &str = "<!doctype html><meta charset=utf-8><title>Connected</title><p>Connected. You can close this window and return to Macro.</p><script>window.close()</script>";
-const CONNECT_CALLBACK_FAILED: &str = "<!doctype html><meta charset=utf-8><title>Not connected</title><p>The connection did not finish. Close this window and try again in Macro.</p>";
+const CONNECT_CALLBACK_CONNECTED: &str = "<!doctype html><meta charset=utf-8><title>Connected</title><p>Connected. You can close this window and return to Rox.</p><script>window.close()</script>";
+const CONNECT_CALLBACK_FAILED: &str = "<!doctype html><meta charset=utf-8><title>Not connected</title><p>The connection did not finish. Close this window and try again in Rox.</p>";
 
 /// State for the public webhook route: the shared secret, nothing else.
 #[derive(Clone)]
@@ -325,7 +325,7 @@ pub struct PipedreamDeleteParams {
 /// Request body for starting a connect flow.
 #[derive(Debug, Default, Deserialize, ToSchema)]
 pub struct PipedreamTokenRequest {
-    /// The app to connect, by Pipedream slug. With it, an app Macro Connect
+    /// The app to connect, by Pipedream slug. With it, an app Rox Connect
     /// serves can answer with a Connect URL instead of a Pipedream token.
     #[serde(default)]
     app_slug: Option<String>,
@@ -337,7 +337,7 @@ pub struct PipedreamTokenRequest {
 pub enum PipedreamProviderResponse {
     /// Pipedream Connect.
     Pipedream,
-    /// Macro Connect.
+    /// Rox Connect.
     Connect,
 }
 
@@ -351,7 +351,7 @@ impl From<ConnectionProvider> for PipedreamProviderResponse {
 }
 
 /// Response from starting a connect flow: a Pipedream Connect token, or for
-/// `provider = connect` a Macro Connect URL.
+/// `provider = connect` a Rox Connect URL.
 #[derive(Debug, Serialize, ToSchema)]
 pub struct PipedreamTokenResponse {
     /// The backend this flow connects through.
@@ -363,13 +363,13 @@ pub struct PipedreamTokenResponse {
     /// Shareable link that opens the same connect flow in a browser tab.
     /// Pipedream only.
     connect_link_url: Option<String>,
-    /// URL to open in a popup or browser tab for Macro Connect's consent
+    /// URL to open in a popup or browser tab for Rox Connect's consent
     /// flow; once it finishes, call `/pipedream/mcp/connect/complete`.
     /// Connect only.
     connect_url: Option<String>,
 }
 
-/// Request body for recording a finished Macro Connect flow.
+/// Request body for recording a finished Rox Connect flow.
 #[derive(Debug, Deserialize, ToSchema)]
 pub struct PipedreamConnectCompleteRequest {
     /// The app that was connected, by Pipedream slug.
@@ -510,7 +510,7 @@ pub enum PipedreamHandlerErr {
     /// The app connects through its own MCP server, never Pipedream.
     #[error("{0}")]
     Overlaid(String),
-    /// The user is on Macro Connect alone, which this request would bypass.
+    /// The user is on Rox Connect alone, which this request would bypass.
     #[error("{0}")]
     ConnectOnly(&'static str),
     /// An internal error occurred.
@@ -703,7 +703,7 @@ where
 /// By default, a short-lived Pipedream Connect token: the frontend opens
 /// Pipedream's hosted Connect UI with it, and the user picks (or is
 /// deep-linked into) an app and authorizes it there. When the body names an
-/// app Macro Connect serves and the `macro-connect` rollout is on for the
+/// app Rox Connect serves and the `macro-connect` rollout is on for the
 /// user, a Connect URL instead.
 #[tracing::instrument(skip_all, err)]
 pub async fn create_connect_token<S, P, Auth>(
@@ -723,7 +723,7 @@ where
     // Pipedream token.
     if state.connect_only(&user.macro_user_id).await {
         let app_slug = app_slug.ok_or(PipedreamHandlerErr::ConnectOnly(
-            "name the app to connect through Macro Connect",
+            "name the app to connect through Rox Connect",
         ))?;
         let connect_url = start_connect_session(pipedream.as_ref(), &user.macro_user_id, &app_slug)
             .await?
@@ -764,7 +764,7 @@ where
         (status = 500, body = ErrorResponse),
     )
 )]
-/// Record an app the user connected through Macro Connect.
+/// Record an app the user connected through Rox Connect.
 ///
 /// Answers 404 until Connect lists an active connection for this user and
 /// app, so the frontend can poll it while the consent window is open.
@@ -835,7 +835,7 @@ where
     let user = &authorization.authorization.user;
     if state.connect_only(&user.macro_user_id).await {
         return Err(PipedreamHandlerErr::ConnectOnly(
-            "this account connects apps through Macro Connect, not Pipedream",
+            "this account connects apps through Rox Connect, not Pipedream",
         ));
     }
     let record = complete_pipedream_connection(

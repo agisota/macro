@@ -12,6 +12,8 @@ pub enum UserProvider {
     Gmail,
     /// Microsoft Outlook and Microsoft 365.
     Outlook,
+    /// The account's first-party Rox mailbox.
+    Rox,
 }
 
 impl UserProvider {
@@ -19,6 +21,7 @@ impl UserProvider {
         match self {
             UserProvider::Gmail => "GMAIL",
             UserProvider::Outlook => "OUTLOOK",
+            UserProvider::Rox => "ROX",
         }
     }
 }
@@ -93,7 +96,7 @@ pub struct UserEmailLinkSettings {
 pub struct EmailInboxDetails {
     /// Stable email link identifier.
     pub id: Uuid,
-    /// Macro user that owns the inbox.
+    /// Rox user that owns the inbox.
     pub macro_id: MacroUserIdStr<'static>,
     /// Provider email address for the inbox.
     pub email_address: EmailStr<'static>,
@@ -133,7 +136,7 @@ pub struct UserEmailLink {
     pub draft_is_signal: bool,
     /// Stable email link identifier.
     pub id: Uuid,
-    /// Macro user that owns the inbox.
+    /// Rox user that owns the inbox.
     pub macro_id: MacroUserIdStr<'static>,
     /// Provider email address for the inbox.
     pub email_address: EmailStr<'static>,

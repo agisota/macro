@@ -37,7 +37,7 @@ export interface ExternalChatMessage {
   mentions: ExternalChatMention[];
   /** Reactions grouped by emoji. */
   reactions: ExternalChatReaction[];
-  /** Timestamp first received by Macro. */
+  /** Timestamp first received by Rox. */
   receivedAt: string;
   /** Message quoted by this one. */
   replyTo?: ExternalChatMessageReplyTo;
@@ -46,6 +46,6 @@ export interface ExternalChatMessage {
   sender: ExternalChatSender;
   /** Timestamp assigned by the provider. */
   sentAt: string;
-  /** Sent as view-once; Macro shows it like any media. */
+  /** Sent as view-once; Rox shows it like any media. */
   viewOnce: boolean;
 }

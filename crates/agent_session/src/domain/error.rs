@@ -18,6 +18,9 @@ pub const TEAM_AGENT_COMPUTER_MESSAGE: &str =
 
 #[derive(Error, Debug)]
 pub enum AgentSessionError {
+    /// Enterprise member or runtime policy refused the start.
+    #[error(transparent)]
+    Enterprise(#[from] enterprise::domain::EnterpriseError),
     /// Invalid session activity paging input.
     #[error("{0}")]
     InvalidActivityQuery(&'static str),
@@ -27,7 +30,7 @@ pub enum AgentSessionError {
     /// No session has been created under this identity yet.
     #[error("agent session {0} was not found")]
     NotFound(AgentSessionId),
-    /// New Macro-funded work was refused before execution.
+    /// New Rox-funded work was refused before execution.
     #[cfg(feature = "admission")]
     #[error(transparent)]
     Admission(#[from] AiAdmissionError),

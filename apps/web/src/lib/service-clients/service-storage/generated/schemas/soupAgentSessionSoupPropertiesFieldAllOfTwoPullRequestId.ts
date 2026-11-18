@@ -6,7 +6,7 @@
  */
 
 /**
- * The linked pull request's Macro entity, when visible to the viewer.
+ * The linked pull request's Rox entity, when visible to the viewer.
  */
 export type SoupAgentSessionSoupPropertiesFieldAllOfTwoPullRequestId =
   | string

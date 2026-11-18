@@ -77,8 +77,8 @@ fn test_filters_are_applied() -> anyhow::Result<()> {
     let builder = CalendarEventQueryBuilder::new(vec!["review".to_string()])
         .user_id("user123")
         .statuses(vec!["confirmed".to_string()])
-        .organizer_emails(vec!["boss@macro.com".to_string()])
-        .attendee_emails(vec!["gab@macro.com".to_string()])
+        .organizer_emails(vec!["boss@rox.one".to_string()])
+        .attendee_emails(vec!["gab@rox.one".to_string()])
         .ids(vec!["event1".to_string()]);
 
     let json = builder.build_bool_query()?.build().to_json();
@@ -86,8 +86,8 @@ fn test_filters_are_applied() -> anyhow::Result<()> {
 
     for expected in [
         serde_json::json!({"terms": {"status": ["confirmed"]}}),
-        serde_json::json!({"terms": {"organizer_email": ["boss@macro.com"]}}),
-        serde_json::json!({"terms": {"attendee_emails": ["gab@macro.com"]}}),
+        serde_json::json!({"terms": {"organizer_email": ["boss@rox.one"]}}),
+        serde_json::json!({"terms": {"attendee_emails": ["gab@rox.one"]}}),
         serde_json::json!({"terms": {"entity_id": ["event1"]}}),
     ] {
         assert!(

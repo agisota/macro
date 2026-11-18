@@ -15,7 +15,7 @@ function operation(name: string) {
 
 type Recorded = { method: string; url: string; body: string | undefined };
 
-/** A Macro client whose requests answer from `respond`, recording each. */
+/** A Rox client whose requests answer from `respond`, recording each. */
 function macroAnswering(respond: (request: Recorded) => Response) {
   const requests: Recorded[] = [];
   vi.stubGlobal(
@@ -136,8 +136,8 @@ describe('runOperation', () => {
 
   test.each([
     'initiative-1',
-    'https://macro.com/app/initiative/initiative-1',
-    'https://macro.com/app/projects/initiative-1/overview/?tab=tasks',
+    'https://rox.one/app/initiative/initiative-1',
+    'https://rox.one/app/projects/initiative-1/overview/?tab=tasks',
   ])('task creation accepts initiative reference %s', async (initiative) => {
     const { macro, requests } = macroAnswering(() =>
       Response.json({ documentId: 'task-1' })
@@ -249,14 +249,14 @@ describe('runOperation', () => {
     });
   });
 
-  test('a Macro URL addresses the handle its last path segment names', async () => {
+  test('a Rox URL addresses the handle its last path segment names', async () => {
     const { macro, requests } = macroAnswering(() =>
       Response.json({ permission: 'edit' })
     );
 
     const result = await runOperation({
       operation: operation('Document.permission'),
-      input: { document: 'https://macro.com/app/md/0192f4c8-doc' },
+      input: { document: 'https://rox.one/app/md/0192f4c8-doc' },
       macro,
       catalog,
       classes: handleClasses,
@@ -314,7 +314,7 @@ describe('runOperation', () => {
     expect(missing.structuredContent).toEqual({
       error: {
         code: 'not_found',
-        message: 'Macro API error 404: document is gone',
+        message: 'Rox API error 404: document is gone',
       },
     });
 
@@ -330,7 +330,7 @@ describe('runOperation', () => {
       validators,
     });
     expect(failed.structuredContent).toEqual({
-      error: { code: 'internal', message: 'Macro API error 500' },
+      error: { code: 'internal', message: 'Rox API error 500' },
     });
   });
 

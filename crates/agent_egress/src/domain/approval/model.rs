@@ -108,7 +108,7 @@ pub struct StandingApproval {
     pub user: MacroUserIdStr<'static>,
     /// `macro`, or the connected app's slug.
     pub server_slug: String,
-    /// The one tool covered on Macro's server, which reaches all of the
+    /// The one tool covered on Rox's server, which reaches all of the
     /// owner's data; `None` covers a whole connected app.
     pub tool_name: Option<String>,
     /// The owner who said so.
@@ -116,7 +116,7 @@ pub struct StandingApproval {
 }
 
 impl StandingApproval {
-    /// What approving `approval` for good covers: the same tool on Macro,
+    /// What approving `approval` for good covers: the same tool on Rox,
     /// the whole app otherwise. `None` when no person asked, since there is
     /// nobody to remember.
     #[must_use]

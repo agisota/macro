@@ -1,4 +1,4 @@
-//! Which Macro account a Stripe customer belongs to, and the account's
+//! Which Rox account a Stripe customer belongs to, and the account's
 //! `has_trialed` flag.
 
 use macro_user_id::user_id::MacroUserIdStr;

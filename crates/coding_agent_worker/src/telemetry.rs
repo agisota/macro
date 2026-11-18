@@ -29,7 +29,7 @@ impl Drop for Telemetry {
         if let Some(provider) = &self.0
             && let Err(error) = provider.shutdown()
         {
-            eprintln!("macrod telemetry shutdown failed: {error}");
+            eprintln!("roxd telemetry shutdown failed: {error}");
         }
     }
 }
@@ -43,11 +43,11 @@ pub(crate) fn install() -> Telemetry {
             .with_tonic()
             .with_endpoint(endpoint.to_string())
             .build()
-            .expect("invalid macrod OTLP exporter configuration");
+            .expect("invalid roxd OTLP exporter configuration");
         SdkTracerProvider::builder()
             .with_resource(
                 opentelemetry_sdk::Resource::builder()
-                    .with_service_name("macrod")
+                    .with_service_name("roxd")
                     .with_attributes(
                         computer_id
                             .map(|id| opentelemetry::KeyValue::new("computer_id", id.to_string())),
@@ -63,9 +63,9 @@ pub(crate) fn install() -> Telemetry {
     let layer = provider.as_ref().map(|provider| {
         // Only audited metadata spans are exported; ACP and tool payloads stay private.
         tracing_opentelemetry::layer()
-            .with_tracer(provider.tracer("macrod"))
+            .with_tracer(provider.tracer("roxd"))
             .with_filter(tracing_subscriber::filter::filter_fn(|metadata| {
-                metadata.name().starts_with("macrod.enroll") || metadata.name() == "run_enroll"
+                metadata.name().starts_with("roxd.enroll") || metadata.name() == "run_enroll"
             }))
     });
     // Without a filter the registry logs every dependency at TRACE.

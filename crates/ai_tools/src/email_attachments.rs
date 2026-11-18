@@ -40,7 +40,7 @@ const DOWNLOAD_TIMEOUT: Duration = Duration::from_secs(60);
 /// Only single-file documents attach: uploads such as PDFs, images, and
 /// spreadsheets served from document storage. A Word document attaches as
 /// its PDF rendering, the one single-file form the storage keeps of it. A
-/// Macro-native document is sync-service content with no file, and is
+/// Rox-native document is sync-service content with no file, and is
 /// refused with a reason the model can relay.
 pub struct DocumentAttachmentSource<D> {
     documents: Arc<D>,
@@ -119,7 +119,7 @@ impl<D: DocumentService> DraftAttachmentSource for DocumentAttachmentSource<D> {
             | LocationResponseV3::SyncServiceContent { .. } => {
                 return Err(unavailable(
                     &name,
-                    "it is a Macro document rather than an uploaded file; link to it in the email instead",
+                    "it is a Rox document rather than an uploaded file; link to it in the email instead",
                 ));
             }
         };

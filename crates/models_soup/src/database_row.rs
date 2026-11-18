@@ -3,7 +3,7 @@ use model_owner::Owner;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-/// A row of a Macro database table in the Soup feed. Its cells are its
+/// A row of a Rox database table in the Soup feed. Its cells are its
 /// entity properties; access is its database's.
 #[derive(Serialize, Clone, Deserialize, Debug, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]

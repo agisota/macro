@@ -40,7 +40,7 @@ by policy.
 - Add a new axum policy: add the `AuthorizationPolicy` impl + its narrowed
   output type in `src/inbound/axum.rs` → document it in the `lib.rs` table →
   re-export both from `lib.rs`.
-- Wire a new service with MacroDB: `PgBotAuthorizer` + `PgUserApiKeyAuthorizer`
+- Wire a new service with RoxDB: `PgBotAuthorizer` + `PgUserApiKeyAuthorizer`
   (feature `postgres`) in the composition root — see `calendar_service` or
   any service in `services/` for the pattern.
 
@@ -49,8 +49,8 @@ by policy.
 - `cargo test -p macro_authorization` (`SQLX_OFFLINE` unset).
 
 `ValidatedIdentity` contains identity facts; `ValidatedCredential` and
-`MacroUserAuthentication` additionally carry `CredentialOrigin` (session, Macro API
-JWT, scoped Macro API JWT, user API key, or the acting user of a bot, harness or
+`MacroUserAuthentication` additionally carry `CredentialOrigin` (session, Rox API
+JWT, scoped Rox API JWT, user API key, or the acting user of a bot, harness or
 internal caller), set where the credential is verified. Every `JwtValidator` implements
 `validate_credential` (`validate` derives from it) and every
 `MacroAuthorizationService` implements `authorize_identity`; neither has a default
@@ -78,7 +78,7 @@ does not turn a user credential into bot authority or change endpoint policies.
 An account manager's credential arrives as a normal `x-macro-user-api-key` and
 authenticates as the managed account, with `CredentialOrigin::AccountManager`
 naming the grant and the agent holding it. `AccountHolderOrInternal` is
-`UserOrInternal` minus that credential and `ScopedMacroApiJwt` (a Macro API token
+`UserOrInternal` minus that credential and `ScopedMacroApiJwt` (a Rox API token
 that signs `agent_scope`, held by a scoped code-mode run or a routine dry run):
 use it on anything that mints credentials, changes who can sign in, deletes
 the account, or changes its managers.

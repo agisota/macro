@@ -78,7 +78,7 @@ mod reusable_preview_service;
 mod runners;
 mod sdk_check;
 mod steps;
-mod test_macrod_update;
+mod test_roxd_update;
 mod vars;
 mod web_app_check_main;
 mod web_artifact_paths;
@@ -173,9 +173,9 @@ const WORKFLOWS: &[WorkflowFile] = &[
         render_yaml: || render_gh_workflow(build_agent_daemon_on_tag::build_agent_daemon_on_tag)(),
     },
     WorkflowFile {
-        slug: "test_macrod_update",
-        file_name: "test_macrod_update.yml",
-        render_yaml: || render_gh_workflow(test_macrod_update::test_macrod_update)(),
+        slug: "test_roxd_update",
+        file_name: "test_roxd_update.yml",
+        render_yaml: || render_gh_workflow(test_roxd_update::test_roxd_update)(),
     },
     WorkflowFile {
         slug: "build_appimage_on_tag",

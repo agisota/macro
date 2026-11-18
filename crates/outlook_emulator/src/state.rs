@@ -113,7 +113,7 @@ pub(crate) struct State {
     pub(crate) outbox: Vec<NotificationJob>,
     /// Whether subscriptions may name `http://` notification URLs.
     pub(crate) allow_http_notification_urls: bool,
-    /// The mailbox of each Macro email link the authentication-service
+    /// The mailbox of each Rox email link the authentication-service
     /// stand-in answers for.
     pub(crate) links: HashMap<String, String>,
     /// The mailbox of each grant the authentication-service stand-in
@@ -226,7 +226,7 @@ impl State {
         }
     }
 
-    /// The access token for a Macro email link, as the authentication
+    /// The access token for a Rox email link, as the authentication
     /// service hands it out: the cached one while it has two minutes left,
     /// unless a fresh one is forced. Answers whether it was cached.
     pub(crate) fn link_access_token(

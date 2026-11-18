@@ -116,12 +116,12 @@ async function handle(
     await channel.post(toBody(`GoAlert verification code: ${payload.Code}`));
     return 'notice_posted';
   }
-  await channel.post(toBody('GoAlert test message for the Macro Alerts bot.'));
+  await channel.post(toBody('GoAlert test message for the Rox Alerts bot.'));
   return 'notice_posted';
 }
 
 /**
- * GoAlert → Macro Alerts channel bot.
+ * GoAlert → Rox Alerts channel bot.
  *
  * GoAlert's outgoing webhooks cannot set headers, so the URL carries a shared
  * secret: POST /goalert/{WEBHOOK_SECRET}. GoAlert abandons a webhook after

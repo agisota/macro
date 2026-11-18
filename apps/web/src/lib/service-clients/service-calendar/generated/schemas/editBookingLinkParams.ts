@@ -7,7 +7,7 @@
 
 export type EditBookingLinkParams = {
   /**
-   * Existing Macro team; omit for the caller's personal booking links.
+   * Existing Rox team; omit for the caller's personal booking links.
    */
   teamId?: string;
 };

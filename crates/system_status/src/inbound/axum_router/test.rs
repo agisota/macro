@@ -22,7 +22,7 @@ use crate::inbound::axum_router::{SystemStatusRouterState, system_status_router}
 
 const STAFF_JWT: &str = "staff";
 const OUTSIDER_JWT: &str = "outsider";
-const STAFF_USER_ID: &str = "macro|oncall@macro.com";
+const STAFF_USER_ID: &str = "macro|oncall@rox.one";
 const OUTSIDER_USER_ID: &str = "macro|ada@example.com";
 
 #[derive(Clone)]
@@ -100,14 +100,14 @@ async fn anyone_reads_the_status_staff_set() {
         .clone()
         .oneshot(post(
             Some(STAFF_JWT),
-            json!({ "status": "major_outage", "message": "Macro is down" }),
+            json!({ "status": "major_outage", "message": "Rox is down" }),
         ))
         .await
         .unwrap();
     assert_eq!(set.status(), StatusCode::OK);
     let update = read_json(set).await;
     assert_eq!(update["status"], "major_outage");
-    assert_eq!(update["message"], "Macro is down");
+    assert_eq!(update["message"], "Rox is down");
     assert_eq!(update["userId"], STAFF_USER_ID);
 
     let current = app.oneshot(get("/", None)).await.unwrap();
@@ -117,7 +117,7 @@ async fn anyone_reads_the_status_staff_set() {
         current,
         json!({
             "status": "major_outage",
-            "message": "Macro is down",
+            "message": "Rox is down",
             "id": update["id"],
             "updatedAt": update["createdAt"],
         })

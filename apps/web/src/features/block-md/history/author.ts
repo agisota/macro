@@ -15,7 +15,7 @@ export type PeerRecord = { userId: string; actor: string | null };
  * Who a peer's edits are attributed to. A peer an agent registered resolves to
  * the agent (`bot|<uuid>`); any other AI peer to `ai|<userId>`, the user it
  * edited for; a human peer to its user. An AI peer with no record (registered
- * anonymously) falls back to Macro.
+ * anonymously) falls back to Rox.
  */
 export function peerAuthorId(
   peer: string,

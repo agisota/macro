@@ -76,8 +76,8 @@ Boots on click; nothing streams until then. You will need to sign in inside the 
 # get-or-create-id.ts finds the *web* preview comment by this substring and
 # scrapes the preview id out of its body, so our comment must never contain it.
 case "$BODY" in
-  *preview.macro.com*)
-    echo "The iOS comment contains preview.macro.com, which would break web previews." >&2
+  *preview.rox.one*)
+    echo "The iOS comment contains preview.rox.one, which would break web previews." >&2
     exit 1
     ;;
 esac

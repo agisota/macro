@@ -6,7 +6,7 @@
  */
 
 /**
- * A kind of Macro entity a reference column can point at.
+ * A kind of Rox entity a reference column can point at.
  */
 export type EntityKind = (typeof EntityKind)[keyof typeof EntityKind];
 

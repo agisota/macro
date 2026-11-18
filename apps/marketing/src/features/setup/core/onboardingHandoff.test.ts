@@ -48,14 +48,14 @@ describe('Google work onboarding handoff', () => {
   it('preserves invitation, referral, and campaign parameters through the login URL', () => {
     const url = new URL(
       buildGoogleWorkOnboardingUrl(
-        'https://macro.com/app/login?utm_source=launch',
+        'https://rox.one/app/login?utm_source=launch',
         {
           next: '/app/team-invite?invite=team-123',
           referralCode: 'founder-referral',
         }
       )
     );
-    expect(url.origin + url.pathname).toBe('https://macro.com/app/login');
+    expect(url.origin + url.pathname).toBe('https://rox.one/app/login');
     expect(url.searchParams.get('onboarding')).toBe('google-work');
     expect(url.searchParams.get('next')).toBe('/team-invite?invite=team-123');
     expect(url.searchParams.get('referral_code')).toBe('founder-referral');
@@ -108,7 +108,7 @@ describe('Google work onboarding handoff', () => {
     ]) {
       expect(onboardingReturnPath(path)).toBeUndefined();
       const url = new URL(
-        buildGoogleWorkOnboardingUrl('https://macro.com/app/login', {
+        buildGoogleWorkOnboardingUrl('https://rox.one/app/login', {
           next: path,
         })
       );

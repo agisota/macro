@@ -9,7 +9,7 @@ import type { ExternalChatParticipantDisplayName } from './externalChatParticipa
 import type { ExternalChatParticipantPictureFileId } from './externalChatParticipantPictureFileId';
 
 /**
- * Someone in an external chat; Macro access is a separate grant.
+ * Someone in an external chat; Rox access is a separate grant.
  */
 export interface ExternalChatParticipant {
   /** Group admin. */

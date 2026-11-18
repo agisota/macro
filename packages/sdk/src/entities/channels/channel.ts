@@ -599,7 +599,7 @@ export class Channel extends PropertiedEntity<ChannelDetail> {
   }
 
   /**
-   * The channel's URL in the Macro web app.
+   * The channel's URL in the Rox web app.
    *
    * @readonly
    */

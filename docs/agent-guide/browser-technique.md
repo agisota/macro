@@ -1,11 +1,11 @@
-# chrome-devtools MCP Technique (learned on Macro)
+# chrome-devtools MCP Technique (learned on Rox)
 
 ## Snapshot-first loop
 
 - `take_snapshot` after every navigation or pane change; act only on uids from the latest
   snapshot. Uid prefixes bump (`7_x` → `9_x`) whenever the UI re-renders a region (the app
   is SolidJS); stale uids fail loudly — re-snapshot rather than guess.
-- Macro snapshots are huge (split panes duplicate the whole doc text; the Activity heatmap
+- Rox snapshots are huge (split panes duplicate the whole doc text; the Activity heatmap
   adds ~400 nodes). Save with `filePath:` and grep the file via Bash instead of dumping the
   snapshot into context. Strip lines matching `Notifications (alt` when reading.
 - The snapshot exposes contenteditable content as the element's `value` — use it to verify
@@ -13,7 +13,7 @@
 
 ## Interacting
 
-- `fill` only works on real `<input>`/`<textarea>`/`<select>`. All Macro editors and message
+- `fill` only works on real `<input>`/`<textarea>`/`<select>`. All Rox editors and message
   composers are contenteditable: **click to focus, then `type_text`** (optionally
   `submitKey: "Enter"`).
 - Token comboboxes (channel invites, participant add): click the combobox, `type_text` the

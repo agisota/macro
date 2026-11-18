@@ -8,7 +8,7 @@ use crate::domain::models::{EntityRecord, EntityTypeCount};
 use crate::domain::ports::{EntityRegistryRepository, EntityRegistryService};
 
 fn user_owner() -> Owner {
-    Owner::parse(OwnerType::User, "macro|hutch@macro.com").unwrap()
+    Owner::parse(OwnerType::User, "macro|hutch@rox.one").unwrap()
 }
 
 fn ts() -> DateTime<Utc> {

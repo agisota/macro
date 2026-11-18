@@ -560,7 +560,7 @@ impl<D: CanvasDocumentLookup, W: EditingWorkerService> CanvasService<D, W> {
             .map_err(CanvasError::Internal)?;
         ensure(
             file_type.as_deref() == Some("canvas"),
-            "This tool requires a Macro canvas. Use the matching document tool for other file types.",
+            "This tool requires a Rox canvas. Use the matching document tool for other file types.",
         )
     }
 

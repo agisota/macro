@@ -3,7 +3,7 @@
   "info": {
     "title": "properties_service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -2425,7 +2425,7 @@
   "tags": [
     {
       "name": "properties service",
-      "description": "Macro Properties Service"
+      "description": "Rox Properties Service"
     }
   ]
 }

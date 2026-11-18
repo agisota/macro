@@ -1,6 +1,6 @@
 import '@fontsource-variable/inter';
 import '../../../index.css';
-import type { MacrodStatus } from '@macro/tauri/macrod';
+import type { RoxdStatus } from '@macro/tauri/roxd';
 import { Button } from '@ui';
 import { createSignal, Show } from 'solid-js';
 import { render } from 'solid-js/web';
@@ -26,11 +26,11 @@ for (const [token, value] of Object.entries(theme.colorTokens)) {
 const scenario = params.get('scenario') ?? 'happy';
 const delay = Number(params.get('delay') ?? 150);
 
-const RUNNING: MacrodStatus = {
+const RUNNING: RoxdStatus = {
   phase: 'running',
   agentId: 'claude-code',
   agentName: 'Claude Code',
-  workspace: '/Users/sample/Macro',
+  workspace: '/Users/sample/Rox',
   pairingCode: null,
   pairingExpiresAt: null,
   harnessId: 'harness-1',
@@ -104,7 +104,7 @@ function Fixture() {
           <LocalRuntimeSetupPanel
             capabilities={capabilities}
             onOpenSession={(agent) => setAction(`Opened @${agent.handle}`)}
-            defaultWorkspace="/Users/sample/Macro"
+            defaultWorkspace="/Users/sample/Rox"
             autoStart={params.get('auto') !== 'false'}
             onClose={() => setOpen(false)}
           />

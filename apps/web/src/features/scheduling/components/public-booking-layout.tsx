@@ -31,7 +31,7 @@ export function PublicBookingLayout(
           </div>
           <Show when={!props.embedded}>
             <p class="mt-auto pt-8 text-center text-xs text-ink-muted">
-              Scheduling by Macro
+              Scheduling by Rox
             </p>
           </Show>
         </div>
@@ -43,13 +43,13 @@ export function PublicBookingLayout(
 export function PublicBookingBrand(props: { target?: '_blank' }) {
   return (
     <a
-      href="https://macro.com"
-      aria-label="Macro Scheduling"
+      href="https://rox.one"
+      aria-label="Rox Scheduling"
       target={props.target}
       rel={props.target ? 'noopener noreferrer' : undefined}
       class="inline-flex items-center gap-2 self-start text-sm font-semibold tracking-tight"
     >
-      Macro <span class="font-normal text-ink-muted">/ Scheduling</span>
+      Rox <span class="font-normal text-ink-muted">/ Scheduling</span>
     </a>
   );
 }

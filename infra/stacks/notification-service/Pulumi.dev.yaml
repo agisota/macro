@@ -6,7 +6,7 @@ config:
   notification-service:notification_retention_dry_run: false
   notification-service:jwt_secret_key: fusionauth-jwt-secret-dev
   notification-service:fusionauth_client_id: fusionauth-client-id-key-dev
-  notification-service:fusionauth_issuer: fusionauth-dev.macro.com
+  notification-service:fusionauth_issuer: fusionauth-dev.rox.one
   notification-service:internal_api_key: document-storage-service-auth-key-dev
   notification-service:apple_team_id: apple-team-id
   notification-service:apple_bundle_id: apple-bundle-id-prod

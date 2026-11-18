@@ -188,7 +188,7 @@ describe('editorSubmitValuesToCreateCalendarEvent', () => {
     expect(none.addConference).toBe(false);
   });
 
-  it('drops the Macro call from an out-of-office event', () => {
+  it('drops the Rox call from an out-of-office event', () => {
     const merged = editorSubmitValuesToCreateCalendarEvent(
       submitValues({
         conferenceChoice: 'macro',

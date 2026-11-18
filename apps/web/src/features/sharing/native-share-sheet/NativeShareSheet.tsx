@@ -496,7 +496,7 @@ export function NativeShareSheet() {
       >
         <MobileDrawer.Portal>
           <MobileDrawer.Overlay />
-          <MobileDrawer.Content aria-label="Share to Macro" targetHeight={80}>
+          <MobileDrawer.Content aria-label="Share to Rox" targetHeight={80}>
             <MobileDrawer.Handle />
             {/* Keyed on the batch so each incoming share remounts the composer. */}
             <Show when={isOpen() ? shareBatchKey() : undefined} keyed>

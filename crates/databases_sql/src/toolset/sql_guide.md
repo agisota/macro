@@ -1,4 +1,4 @@
-A small SQL subset, compiled by Macro. Row queries run through the shared SQL engine; schema commands run on the server through the same database service and atomic ops as the UI.
+A small SQL subset, compiled by Rox. Row queries run through the shared SQL engine; schema commands run on the server through the same database service and atomic ops as the UI.
 
 - **Reads:** `SELECT [DISTINCT] items FROM [database.]table [alias] {[LEFT] JOIN [database.]table [alias] ON a.col = b.col [AND ...]} [WHERE cond] [GROUP BY col] [ORDER BY col|alias|position [ASC|DESC], ...] [LIMIT n [OFFSET m]]`. Items are `*`, columns, or `COUNT(*)`, `COUNT(col)`, `SUM(col)`, `AVG(col)`, `MIN(col)`, `MAX(col)`, each optionally named with `AS name`; the alias names the result column and can be ordered by. GROUP BY takes one column, and a grouped SELECT lists only that column beside its aggregates. No other expressions or functions, no HAVING, and WHERE compares a column only with a literal.
 - **Joins** are how tables combine:

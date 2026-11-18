@@ -122,7 +122,7 @@ const scenes = {
   },
   'email-signal': {
     tone: 'email',
-    label: 'Signal and Noise in Macro Mail',
+    label: 'Signal and Noise in Rox Mail',
     load: () =>
       import('../../features/marketing/components/email/EmailInboxDemo').then(
         (m) => ({ default: m.EmailSignalNoiseDemo })
@@ -146,7 +146,7 @@ const scenes = {
   },
   'email-splits': {
     tone: 'email',
-    label: 'Read and compose email in Macro',
+    label: 'Read and compose email in Rox',
     load: () =>
       import('./PostWorkspaceScenes').then((m) => ({
         default: m.PostEmailSplits,

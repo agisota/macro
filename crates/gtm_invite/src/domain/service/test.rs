@@ -29,7 +29,7 @@ fn service(repo: MockGtmInviteRepo) -> GtmInviteServiceImpl<MockGtmInviteRepo> {
 }
 
 fn staff() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("valentina@macro.com").unwrap()
+    MacroUserIdStr::try_from_email("valentina@rox.one").unwrap()
 }
 
 fn outsider() -> MacroUserIdStr<'static> {

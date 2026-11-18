@@ -213,7 +213,7 @@ async fn a_user_on_connect_alone_never_reaches_pipedream() {
     assert!(
         error
             .to_string()
-            .contains("reconnect it through Macro Connect"),
+            .contains("reconnect it through Rox Connect"),
         "{error}"
     );
     assert_eq!(

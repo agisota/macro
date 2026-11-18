@@ -1,5 +1,5 @@
 /**
- * Keeps the agent "online" in Macro. Presence is a live websocket to the
+ * Keeps the agent "online" in Rox. Presence is a live websocket to the
  * connection gateway, kept by a text "ping": the gateway drops a connection
  * after 60s without one. Reconnects forever, with a doubling wait.
  */

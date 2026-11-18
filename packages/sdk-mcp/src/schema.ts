@@ -100,7 +100,7 @@ export class JsonSchemaWriter {
       : { ...schema, description: property.description };
   }
 
-  /** A handle reference: an id or Macro URL, or the ids its `byId` takes. */
+  /** A handle reference: an id or Rox URL, or the ids its `byId` takes. */
   handle(name: string): JsonSchema {
     const reference = this.catalog.handles[name];
     if (!reference) throw new Error(`unknown handle ${name}`);
@@ -110,7 +110,7 @@ export class JsonSchemaWriter {
         description: `Any of: ${subclasses.join(', ')}.`,
         properties: {
           kind: { enum: [...subclasses] },
-          id: { type: 'string', description: 'Its id or Macro URL.' },
+          id: { type: 'string', description: 'Its id or Rox URL.' },
         },
         required: ['kind', 'id'],
         additionalProperties: false,
@@ -123,7 +123,7 @@ export class JsonSchemaWriter {
         if (only && read.length === 1 && only.schema.type === 'string')
           return {
             type: 'string',
-            description: `${name} id or Macro URL.`,
+            description: `${name} id or Rox URL.`,
           };
         const object = this.object(
           Object.fromEntries(

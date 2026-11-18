@@ -2,12 +2,12 @@ use super::*;
 
 #[test]
 fn normalize_email_lowercases() {
-    assert_eq!(normalize_email("Evan@Macro.COM"), "evan@macro.com");
+    assert_eq!(normalize_email("Evan@ROX.ONE"), "evan@rox.one");
 }
 
 #[test]
 fn normalize_email_strips_plus_tag() {
-    assert_eq!(normalize_email("evan+mobile@macro.com"), "evan@macro.com");
+    assert_eq!(normalize_email("evan+mobile@rox.one"), "evan@rox.one");
 }
 
 #[test]
@@ -16,8 +16,8 @@ fn normalize_email_agrees_across_signup_paths() {
     // did not, so one person landed on two Loops contacts and the nurture
     // sequence never saw their registration.
     assert_eq!(
-        normalize_email("Evan+Test@Macro.com"),
-        normalize_email("evan@macro.com")
+        normalize_email("Evan+Test@rox.one"),
+        normalize_email("evan@rox.one")
     );
 }
 
@@ -35,7 +35,7 @@ fn normalize_email_only_strips_the_local_part() {
 fn idempotency_digest_fits_the_loops_header_limit() {
     // A `MacroUserId` embeds an email, so an untruncated key can run well past
     // the 100 characters Loops accepts.
-    let long_key = format!("user-registered-{}@macro.com", "a".repeat(300));
+    let long_key = format!("user-registered-{}@rox.one", "a".repeat(300));
     assert_eq!(idempotency_digest(&long_key).len(), 64);
 }
 

@@ -55,7 +55,7 @@ pub enum TeamCalendarCoverage {
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct TeamCalendarMember {
-    /// Macro user identifier.
+    /// Rox user identifier.
     pub user_id: String,
     /// Current team-sharing policy.
     pub sharing: TeamCalendarSharing,
@@ -68,7 +68,7 @@ pub struct TeamCalendarMember {
 pub struct TeamSourceOccurrence {
     /// User whose current source access permits the team read.
     pub shared_by: String,
-    /// Opaque provider-copy identifier internal to Macro.
+    /// Opaque provider-copy identifier internal to Rox.
     pub source_id: Uuid,
     /// Calendar containing this exact provider copy.
     pub calendar_id: Uuid,

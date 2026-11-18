@@ -20,7 +20,7 @@ pub trait Tunnel: Send + Sync {
     async fn close(&self);
 }
 
-/// Existing session authentication and entity access, supplied by Macro.
+/// Existing session authentication and entity access, supplied by Rox.
 #[async_trait]
 pub trait Authority: Send + Sync {
     /// Authenticate an agent's existing session token.

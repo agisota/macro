@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! Typed, authenticated Rust client for the Macro Connect API.
+//! Typed, authenticated Rust client for the Rox Connect API.
 
 pub mod wire;
 

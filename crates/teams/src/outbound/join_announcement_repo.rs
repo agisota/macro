@@ -1,4 +1,4 @@
-//! MacroDB-backed adapter for
+//! RoxDB-backed adapter for
 //! [`crate::domain::join_announcement::JoinAnnouncementRepository`].
 //!
 //! Owns the `team_joined_macro_email` ledger.
@@ -17,7 +17,7 @@ use crate::domain::join_announcement::{
     ClaimedJoinEmail, JoinAnnouncementError, JoinAnnouncementRepository,
 };
 
-/// [`JoinAnnouncementRepository`] over MacroDB.
+/// [`JoinAnnouncementRepository`] over RoxDB.
 #[derive(Clone)]
 pub struct JoinAnnouncementRepositoryImpl {
     pool: PgPool,

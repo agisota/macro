@@ -148,9 +148,9 @@ fn malformed_records_do_not_poison_following_records() {
     assert_eq!(actual, expected);
 }
 
-/// The ACP lines macrod sends the harness for a rollout, as `herdr::acp_agent`
+/// The ACP lines roxd sends the harness for a rollout, as `herdr::acp_agent`
 /// forwards them.
-fn macrod_wire(rollout: &str) -> Vec<String> {
+fn roxd_wire(rollout: &str) -> Vec<String> {
     let mut native = CodexLog::default();
     rollout
         .lines()
@@ -161,7 +161,7 @@ fn macrod_wire(rollout: &str) -> Vec<String> {
                 LogEvent::Update(update) => {
                     ("session/update", json!({"sessionId":"s", "update":update}))
                 }
-                // With no prompt waiting, macrod ends the late item's turn.
+                // With no prompt waiting, roxd ends the late item's turn.
                 LogEvent::LateUpdate(update) => {
                     return Some(vec![
                         json!({"direction":"to_server", "content":{"type":"acp", "jsonrpc":"2.0", "method":"session/update", "params":{"sessionId":"s", "update":update}}}).to_string(),
@@ -181,7 +181,7 @@ fn macrod_wire(rollout: &str) -> Vec<String> {
 
 #[test]
 fn api_messages_snapshot() {
-    let wire = macrod_wire(include_str!("../fixtures/conversation.jsonl")).join("\n");
+    let wire = roxd_wire(include_str!("../fixtures/conversation.jsonl")).join("\n");
     let messages = agent_fold::domain::fold::fold(agent_fold::testing::parse_log(&wire));
     assert!(messages.len() >= 3, "native turns must reach API messages");
     insta::assert_json_snapshot!(messages);
@@ -194,14 +194,14 @@ fn a_background_command_finishing_after_its_turn_leaves_the_session_idle() {
 
     // Recorded: Codex logs a background command's completion after the
     // `task_complete` of the turn that started it.
-    let wire = macrod_wire(include_str!("../fixtures/background_command.jsonl"));
+    let wire = roxd_wire(include_str!("../fixtures/background_command.jsonl"));
     let mut observed = LifecycleFold::new();
     for entry in agent_fold::testing::parse_log(&wire.join("\n")) {
         let _ = observed.push(entry);
     }
     assert_eq!(observed.inner().metadata().turn, TurnState::Idle);
 
-    // The same turn prompted from Macro: macrod answers the prompt when the
+    // The same turn prompted from Rox: roxd answers the prompt when the
     // turn ends, and the late command arrives after that answer.
     let (turn, late) = wire.split_at(wire.len() - 2);
     let mut prompted = vec![

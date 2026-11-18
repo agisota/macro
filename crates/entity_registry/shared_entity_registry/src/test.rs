@@ -96,7 +96,7 @@ fn deserializing_an_unregistered_kind_fails() {
 
 #[test]
 fn try_new_accepts_chat_and_rejects_initiative() {
-    let owner = Owner::parse(OwnerType::User, "macro|hutch@macro.com").unwrap();
+    let owner = Owner::parse(OwnerType::User, "macro|hutch@rox.one").unwrap();
     let id = Uuid::from_u128(1);
 
     let record = NewEntityRecord::try_new(id, EntityType::Chat, owner.clone()).unwrap();

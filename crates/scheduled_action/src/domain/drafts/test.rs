@@ -504,7 +504,7 @@ async fn a_draft_runs_in_a_hidden_read_only_session_and_hands_back_its_last_chec
         "{prompt}"
     );
     assert!(prompt.contains("You can't ask them anything"), "{prompt}");
-    // Macro's code routines are its worked examples.
+    // Rox's code routines are its worked examples.
     let inbox = routine_program::CATALOG
         .iter()
         .find(|routine| routine.key == "inbox")

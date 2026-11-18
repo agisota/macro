@@ -217,6 +217,15 @@ maybe_env_vars! {
     struct SnsApnsVoipPlatformArn;
 }
 
+/// Published warehouse address for LiveKit Cloud, when one can be opened
+/// from outside this machine. The in-network name `localstack` is not used.
+fn recording_warehouse_endpoint() -> Option<String> {
+    let candidate = macro_aws_config::LocalAwsPublicUrl::new()
+        .map(|url| url.as_ref().to_owned())
+        .or_else(|| macro_aws_config::LocalAwsUrl::new().map(|url| url.as_ref().to_owned()))?;
+    call::domain::models::cloud_reachable_warehouse_endpoint(&candidate).map(str::to_owned)
+}
+
 /// Build the service from the environment and serve until shutdown.
 // Not a `pub async fn`: see CS-73.
 pub fn run() -> impl Future<Output = anyhow::Result<()>> {
@@ -459,7 +468,7 @@ async fn run_server() -> anyhow::Result<()> {
         ),
     );
 
-    // Gmail send-as lookups for the composer and the Macro agent's email tools.
+    // Gmail send-as lookups for the composer and the Rox agent's email tools.
     let send_as_auth_client = Arc::new(authentication_service_client::AuthServiceClient::new(
         config
             .authentication_service_secret_key
@@ -828,12 +837,18 @@ async fn run_server() -> anyhow::Result<()> {
         config::CallRecordingS3Secret::new(),
     ) {
         (Some(bucket), Some(region), Some(access_key), Some(secret)) => {
-            tracing::info!(bucket = bucket.as_ref(), "call recording enabled");
+            let endpoint = recording_warehouse_endpoint();
+            tracing::info!(
+                bucket = bucket.as_ref(),
+                warehouse_endpoint = endpoint.is_some(),
+                "call recording enabled"
+            );
             Some(call::domain::models::EgressS3Config {
                 bucket: bucket.as_ref().to_string(),
                 region: region.as_ref().to_string(),
                 access_key: access_key.as_ref().to_string(),
                 secret: secret.as_ref().to_string(),
+                endpoint,
             })
         }
         _ => None,
@@ -1629,7 +1644,7 @@ async fn run_server() -> anyhow::Result<()> {
         }
     });
 
-    // Wire Macro AI to react to mentions with the classic in-channel chat
+    // Wire Rox AI to react to mentions with the classic in-channel chat
     // reply. The router posts replies through the channel service we just
     // built and runs the agent loop in-process with the channel-bot toolset:
     // a channel has no composer to finish a chat-deferred user tool in, so
@@ -1667,7 +1682,7 @@ async fn run_server() -> anyhow::Result<()> {
         ),
     )
     .await
-    .context("failed to build Macro agent tool context")?;
+    .context("failed to build Rox agent tool context")?;
     // Wire the agent's SendChannelMessage tool to this service's own
     // side-effect pipeline so agent-posted messages share the exact instance
     // used by the HTTP API, including the in-process bot trigger sender (the

@@ -1,4 +1,4 @@
-//! RFC 5545 export of one calendar event, for adding it to a calendar Macro
+//! RFC 5545 export of one calendar event, for adding it to a calendar Rox
 //! does not write to, or for a guest forwarding their copy by email.
 
 #[cfg(test)]
@@ -31,7 +31,7 @@ pub enum CalendarEventExportAccess {
 ///
 /// Attendees and the conference link are deliberately absent: a channel
 /// share exposes the meeting, not its guest list or join link, and the export
-/// has one shape however the requester sees the event. A Macro call travels
+/// has one shape however the requester sees the event. A Rox call travels
 /// in the description and location instead, so the renderer strips it there
 /// unless a guest is forwarding their own copy ([`IcsPurpose`]), which reads
 /// the conference link from that copy ([`ForwardedCopy`]).
@@ -112,7 +112,7 @@ pub struct EventSnapshot {
 }
 
 impl EventSnapshot {
-    /// The snapshot without its Macro call ([`content_without_macro_call`]).
+    /// The snapshot without its Rox call ([`content_without_macro_call`]).
     pub fn without_macro_call(self) -> Self {
         let (description, location) = content_without_macro_call(self.description, self.location);
         Self {
@@ -124,7 +124,7 @@ impl EventSnapshot {
 }
 
 /// A channel share's view of an event's description and location, without the
-/// Macro call join link
+/// Rox call join link
 /// [`attach_macro_call`](super::meeting_links::attach_macro_call) wrote into
 /// them: it shares the meeting, not a way into its call. A description holding
 /// the link is reduced to plain text to take its join line out; one without it
@@ -187,7 +187,7 @@ pub struct JoinLink {
 #[derive(Clone, Copy, Debug)]
 pub enum IcsPurpose<'a> {
     /// Sharing the meeting without inviting anyone: the .ics download. It
-    /// names no attendees and leaves out the join link, a Macro call's
+    /// names no attendees and leaves out the join link, a Rox call's
     /// included, since it shares the meeting, not a way into its call.
     Share,
     /// A guest forwarding their copy by email, which deliberately invites the
@@ -253,10 +253,10 @@ pub struct ForwardedCopy {
     /// Google calendar holding it: what Google keeps of an invitation from
     /// another calendar system, such as Exchange, and also of an imported
     /// event file. False for an Outlook copy, and for a Google source synced
-    /// before Macro kept Google's whole payload.
+    /// before Rox kept Google's whole payload.
     pub google_private_copy: bool,
     /// Whether the copy, or any calendar's projection of it, is a snapshot
-    /// Macro imported.
+    /// Rox imported.
     pub is_snapshot: bool,
     /// The copy's provider conference.
     pub join_link: Option<JoinLink>,
@@ -270,10 +270,10 @@ impl ForwardedCopy {
     /// The evidence is Google's private copy, which Google keeps of every
     /// invitation from another calendar system and reports as letting no
     /// guest invite, whatever the organizer chose. A snapshot is a private
-    /// copy Macro imported, and so is any event file a user imported into
+    /// copy Rox imported, and so is any event file a user imported into
     /// Google; one whose UID Google minted (`…@google.com`) belongs to a
     /// Google organizer, whose own choice about guests stands. Anything
-    /// short of that evidence, an organizer Macro cannot name included, falls
+    /// short of that evidence, an organizer Rox cannot name included, falls
     /// back to the shared-event file: a wrong guess would notify an organizer
     /// who turned inviting off.
     pub fn outside_organizer(&self, event: &CalendarEventExport) -> Option<IcsParticipant> {
@@ -329,7 +329,7 @@ pub fn render_event_ics(event: &CalendarEventExport, purpose: IcsPurpose<'_>) ->
     let mut lines = vec![
         "BEGIN:VCALENDAR".to_string(),
         "VERSION:2.0".to_string(),
-        "PRODID:-//Macro//Calendar//EN".to_string(),
+        "PRODID:-//Rox//Calendar//EN".to_string(),
         "CALSCALE:GREGORIAN".to_string(),
         method.to_string(),
         "BEGIN:VEVENT".to_string(),

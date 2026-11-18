@@ -65,7 +65,7 @@ fn posted(sender: channel_sender::ChannelSender<'static>) -> MessagePostedMetada
 
 fn user_sender() -> channel_sender::ChannelSender<'static> {
     channel_sender::ChannelSender::new_from_user(
-        macro_user_id::user_id::MacroUserIdStr::try_from_email("jev-judge-test@macro.com")
+        macro_user_id::user_id::MacroUserIdStr::try_from_email("jev-judge-test@rox.one")
             .expect("valid user id"),
     )
 }

@@ -10,7 +10,7 @@ import { type ConnectionState, StatusDot } from '../integration-ui';
 export type IntegrationStatus = ConnectionState | 'available';
 
 /**
- * How an integration reaches Macro: built into Macro (`native`), or as tools
+ * How an integration reaches Rox: built into Rox (`native`), or as tools
  * agents call through an MCP server (`mcp`).
  */
 export type IntegrationKind = 'native' | 'mcp';
@@ -23,7 +23,7 @@ export type IntegrationItem = {
   badge?: JSX.Element;
   kind: IntegrationKind;
   icon: JSX.Element;
-  /** What it does in Macro, or which accounts are connected. */
+  /** What it does in Rox, or which accounts are connected. */
   description: string;
   categories: string[];
   status: IntegrationStatus;
@@ -199,7 +199,7 @@ export function IntegrationListRow(props: {
               title={
                 props.kind === 'mcp'
                   ? 'Agents use it through an MCP server'
-                  : 'Built into Macro'
+                  : 'Built into Rox'
               }
             >
               {props.kind}

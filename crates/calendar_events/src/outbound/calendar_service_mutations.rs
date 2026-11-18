@@ -33,7 +33,7 @@ use crate::domain::{
 
 /// Header carrying the shared key for internal service authorization.
 const INTERNAL_API_KEY_HEADER: &str = "x-internal-auth-key";
-/// Header carrying the acting Macro user for internal authorization.
+/// Header carrying the acting Rox user for internal authorization.
 const INTERNAL_MACRO_USER_ID_HEADER: &str = "x-internal-macro-user-id";
 
 /// Calendar mutation client calling the calendar service with internal
@@ -189,7 +189,7 @@ fn fallback_error(status: StatusCode, message: String) -> CalendarMutationError 
     }
 }
 
-/// Map an error response of a create carrying a Macro call. The calendar
+/// Map an error response of a create carrying a Rox call. The calendar
 /// service reports a meeting it could not mint under its own code; every
 /// other failure is the calendar write's.
 fn macro_call_error_from_response(status: StatusCode, body: Option<String>) -> MacroCallEventError {

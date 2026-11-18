@@ -13,14 +13,14 @@ use crate::domain::models::Viewer;
 fn viewer_for_tests() -> Viewer {
     Viewer {
         user_id: macro_user_id::user_id::MacroUserIdStr::parse_from_str(
-            "macro|definitions-test@macro.com",
+            "macro|definitions-test@rox.one",
         )
         .expect("valid user id"),
         acting_bot: None,
     }
 }
 
-const USER: &str = "macro|databases-defs@macro.com";
+const USER: &str = "macro|databases-defs@rox.one";
 
 async fn insert_user(pool: &PgPool, id: &str) {
     let macro_user_id = macro_uuid::generate_uuid_v7();

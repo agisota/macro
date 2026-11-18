@@ -721,7 +721,7 @@ fn push_page_head(
     }
 
     // Provider attention is evidence. The Importance filter separately uses
-    // Macro Signal, including the user's overrides.
+    // Rox Signal, including the user's overrides.
     builder.push(
         r#"
             t.project_id,

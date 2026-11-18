@@ -2,7 +2,7 @@ import { ListSkeleton } from '@app/components/view-shell/ListSkeleton';
 import { useAnalytics } from '@app/lib/analytics/analytics-context';
 import { NoiseBackground } from '@core/component/NoiseBackground';
 import { useIsAuthenticated } from '@core/context/user';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import ArrowRight from '@icon/system/regular/arrow-right.svg';
 import {
   usePublicGtmInviteLinkQuery,
@@ -136,7 +136,7 @@ export function InviteWelcome() {
 
       <div class="gtm-card relative z-10 w-full max-w-sm px-4 sm:max-w-lg sm:px-8">
         <div class="flex flex-col gap-8">
-          <LogoIcon class="size-12 text-accent" />
+          <RoxMark class="size-12" />
 
           <Switch>
             <Match when={view().kind === 'loading'}>
@@ -154,7 +154,7 @@ export function InviteWelcome() {
                       Welcome, {details().firstName}
                     </h1>
                     <p class="max-w-md text-sm leading-relaxed text-ink-muted">
-                      Your Macro workspace is ready to set up. Bring your email,
+                      Your Rox workspace is ready to set up. Bring your email,
                       docs, and team together in one place — and your{' '}
                       {details().freeMonths === 1
                         ? 'first month'
@@ -193,21 +193,21 @@ export function InviteWelcome() {
             <Match when={view().kind === 'expired'}>
               <UnavailableInvite
                 title="This invite link has expired"
-                body="Invite links stay open for 48 hours. Ask your Macro contact for a fresh one and we'll pick up right where this one left off."
+                body="Invite links stay open for 48 hours. Ask your Rox contact for a fresh one and we'll pick up right where this one left off."
               />
             </Match>
 
             <Match when={view().kind === 'used'}>
               <UnavailableInvite
                 title="This invite link has already been used"
-                body="If that was you, log in to pick up where you left off. Otherwise, ask your Macro contact for a link of your own."
+                body="If that was you, log in to pick up where you left off. Otherwise, ask your Rox contact for a link of your own."
               />
             </Match>
 
             <Match when={view().kind === 'revoked'}>
               <UnavailableInvite
                 title="This invite link is no longer active"
-                body="Ask your Macro contact for a new link."
+                body="Ask your Rox contact for a new link."
               />
             </Match>
 
@@ -216,7 +216,7 @@ export function InviteWelcome() {
             >
               <UnavailableInvite
                 title="This invite link isn't valid"
-                body="Double-check the link you were sent, or ask your Macro contact for a new one."
+                body="Double-check the link you were sent, or ask your Rox contact for a new one."
               />
             </Match>
           </Switch>

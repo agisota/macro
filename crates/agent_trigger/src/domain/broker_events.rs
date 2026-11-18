@@ -93,7 +93,7 @@ pub struct AgentAssignedToTaskEvent {
     pub context: Option<TriggerContext>,
 }
 
-/// A session somebody asked for from Macro itself - the composer - rather
+/// A session somebody asked for from Rox itself - the composer - rather
 /// than by mentioning the bot. Nothing was posted anywhere, so there is no
 /// thread to announce into and no message to quote.
 ///

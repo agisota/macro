@@ -127,7 +127,7 @@ async fn declining_removes_the_guests_copy_and_cancelling_marks_it() {
         .await
         .unwrap();
 
-    // Macro declines for Bob while he is away.
+    // Rox declines for Bob while he is away.
     let budget = stored_id(&emulator, BOB, "Budget");
     let declined = api
         .decline_away_invitation(&bob, &bobs, &budget, Some("Out of office"))

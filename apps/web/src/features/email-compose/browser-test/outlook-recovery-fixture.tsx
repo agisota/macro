@@ -26,7 +26,7 @@ export function OutlookRecoveryFixture() {
     scenarios[scenario] ?? scenarios.uncertain
   );
   const [needsReload, setNeedsReload] = createSignal(false);
-  const [body, setBody] = createSignal('Saved Macro draft');
+  const [body, setBody] = createSignal('Saved Rox draft');
   const [actions, setActions] = createSignal<string[]>([]);
   const source: MessageOperationSource = {
     operation,

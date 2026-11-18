@@ -52,7 +52,7 @@ class IncomingCallPresentationTest {
             put("callId", id); put("channelId", "call-preview-channel")
             put("channelName", "Design team"); put("callerName", "Test caller")
             put("livekitServerUrl", "wss://unused.invalid"); put("livekitToken", "test-token")
-            put("ringStatusUrl", "https://unavailable-call-test.macro.com/status")
+            put("ringStatusUrl", "https://unavailable-call-test.rox.one/status")
         }
         instrumentation.runOnMainSync {
             Calls.receive(context, mapOf("recipientId" to "call-test-user", "payload" to payload.toString()), System.currentTimeMillis())

@@ -1,5 +1,5 @@
 /**
- * Macro, as the agent's own account. `macroClient` is a lazy SDK client;
+ * Rox, as the agent's own account. `macroClient` is a lazy SDK client;
  * `stayOnline` shows the account as online; chat is in its own directory
  * (`./chat`). A call's share lives in the agent (the starter agent's calls).
  *
@@ -10,8 +10,8 @@
  */
 import { Macro } from '@macro-inc/sdk';
 
-/** Macro's connection gateway, which presence is a socket to. */
-export const gateway = 'wss://gateway.macro.com/connection-gateway/';
+/** Rox's connection gateway, which presence is a socket to. */
+export const gateway = 'wss://gateway.rox.one/connection-gateway/';
 
 /** The SDK client, made on first use from the account's API key. */
 export const macroClient = ({
@@ -45,7 +45,7 @@ export const nextWait = (wait: number): number =>
   Math.min(wait * 2, longestWait);
 
 /**
- * Keeps the account "online" in Macro. Presence is a live socket to the
+ * Keeps the account "online" in Rox. Presence is a live socket to the
  * connection gateway, kept by a text "ping": the gateway drops a connection
  * after 60s without one. Reconnects until stopped, with a doubling wait.
  */

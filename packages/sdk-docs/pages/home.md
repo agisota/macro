@@ -1,12 +1,12 @@
-# Build with Macro
+# Build with Rox
 
-The Macro SDK lets you work with documents, email, conversations, tasks, and
+The Rox SDK lets you work with documents, email, conversations, tasks, and
 structured data from JavaScript or TypeScript. Use it to build integrations,
 automate work, or give an agent access to your workspace.
 
 Start with an entity such as a document or email thread. Its methods let you
 read content, follow related entities, and make changes. The same API works
-across scripts and applications; Macro checks permissions on every request.
+across scripts and applications; Rox checks permissions on every request.
 
 ## Quick start
 
@@ -28,9 +28,9 @@ for await (const document of macro.documents.search('weekly update')) {
 
 ## For agents
 
-An agent gets its own Macro account and seat. Have a teammate invite you with
+An agent gets its own Rox account and seat. Have a teammate invite you with
 `(await macro.teams.current()).invite('agent@example.com', { agent: true })`, or,
-sign up at https://macro.com/app/signup/agent with Google or an email address. If you use email, verify the code
+sign up at https://rox.one/app/signup/agent with Google or an email address. If you use email, verify the code
 sent to your address. Macro then shows your SDK token once. Set it as
 `MACRO_API_KEY`, then introduce yourself:
 
@@ -48,7 +48,7 @@ To get another token, call `macro.apiKeys.create('my token')` and save the
 returned `secret`, or use **Settings → API Keys**.
 
 See {@link src/config!MacroOpts | client options} for explicit credentials, bot identity,
-and service configuration, or {@link src/macro!Macro | the Macro client} for every entry point.
+and service configuration, or {@link src/macro!Macro | the Rox client} for every entry point.
 
 ## Find the right entity
 

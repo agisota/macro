@@ -7,7 +7,7 @@ use secretsmanager_client::LocalOrRemoteSecret;
 env_vars! {
     pub struct EmailServiceCloudfrontSignerPrivateKey;
     pub struct KafkaBrokers;
-    pub struct MacroDbUrl;
+    pub struct RoxDbUrl;
     pub struct RedisUri;
     pub struct GmailGcpQueue;
     #[derive(Debug)]
@@ -30,6 +30,10 @@ pub struct Config {
     /// Pause new provider writes; send outcome reconciliation always continues.
     #[macro_config_default(false)]
     pub outlook_writes_enabled: bool,
+    /// Create first-party ROX links only after every reader accepts ROX rows.
+    /// Disabled is the reader-only rollout stage: existing ROX links still load.
+    #[macro_config_default(false)]
+    pub rox_mailbox_writes_enabled: bool,
     /// Stop claiming Outlook import work (first imports and re-imports) while
     /// true; live changes keep importing. Read at startup, so a change takes
     /// effect when the pubsub workers restart.
@@ -43,7 +47,7 @@ pub struct Config {
     pub gmail_label_write_batches_enabled: bool,
     /// The connection URL for the macrodb instance this application should use.
     /// For deployed applications, this is a secret stored in AWS Secrets Manager.
-    pub macro_db_url: MacroDbUrl,
+    pub macro_db_url: RoxDbUrl,
 
     /// The port to listen for HTTP requests on.
     #[macro_config_default(8080)]

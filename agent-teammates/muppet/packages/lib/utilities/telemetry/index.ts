@@ -1,7 +1,7 @@
 /**
  * Wake telemetry: for every time a system wakes its agent, a record of what
  * triggered it and what came of it, in one format whatever the system (see
- * `record.ts`), sent wherever the system says: Macro's telemetry framework
+ * `record.ts`), sent wherever the system says: Rox's telemetry framework
  * (`macroTelemetry`), a JSON Lines file (`jsonlSink`), or a sink of its own.
  *
  * It is opt-in. A system that wants it builds one `wakeTelemetry` with its

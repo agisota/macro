@@ -10,15 +10,15 @@ Similarly, any Channel message can be turned into a task, by hovering the messag
 
 # GitHub integration
 
-Macro tasks integrate with GitHub: as you create, review, and merge branches, the task automatically moves to “In Progress,” “In Review,” or “Done,” and the task records which pull request is associated with it.
+Rox tasks integrate with GitHub: as you create, review, and merge branches, the task automatically moves to “In Progress,” “In Review,” or “Done,” and the task records which pull request is associated with it.
 
-To connect your GitHub, go to [the Connections page](https://macro.com/app/settings/connections) in Settings. 
+To connect your GitHub, go to [the Connections page](https://rox.one/app/settings/connections) in Settings. 
 
-To associate a task with a branch, simply copy a task's branch name, with its special Macro identifier, and use that as your branch name. There's a button for that under the task title, or press `cmd+k` and search "Copy branch name". 
+To associate a task with a branch, simply copy a task's branch name, with its special Rox identifier, and use that as your branch name. There's a button for that under the task title, or press `cmd+k` and search "Copy branch name". 
 
-# Macro MCP
+# Rox MCP
 
-[Connect the Macro MCP](https://macro.com/app/settings/mcp-server) to your coding agent to give your agent direct access to your tasks.
+[Connect the Rox MCP](https://rox.one/app/settings/mcp-server) to your coding agent to give your agent direct access to your tasks.
 
 # Cloud Agent Integration
 

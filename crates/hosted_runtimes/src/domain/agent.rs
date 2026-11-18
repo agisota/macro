@@ -3,7 +3,7 @@
 //! This crate knows only which agent account a computer runs; the persona
 //! (its credentials, workspace and prompt) belongs to `team_agents`. At
 //! enrollment the operator asks an [`AgentEnrollmentSource`] for the agent's
-//! environment and hands it to macrod inside the [`Enrollment`], which writes
+//! environment and hands it to roxd inside the [`Enrollment`], which writes
 //! it where the guest's brain reads it.
 //!
 //! [`Enrollment`]: crate::domain::enrollment::Enrollment
@@ -108,10 +108,10 @@ impl Drop for AgentEnv {
     }
 }
 
-/// What macrod needs to run the agent a computer was bought for.
+/// What roxd needs to run the agent a computer was bought for.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AgentEnrollment {
-    /// The agent's Macro account.
+    /// The agent's Rox account.
     pub agent_user_id: MacroUserIdStr<'static>,
     /// The environment the guest's brain runs with.
     pub env: AgentEnv,

@@ -6,8 +6,8 @@ The service fetches documents from the `sync-service/document/{id}/raw` endpoint
 utilities from the shared `packages/lexical-core` workspace package. In general the pattern should be to define the
 utilities in lexical-core and then bind them to endpoints here.
 
-It runs on ECS behind the gateway at [https://dev-gateway.macro.com/lexical](https://dev-gateway.macro.com/lexical)
-and [https://gateway.macro.com/lexical](https://gateway.macro.com/lexical) (`infra/stacks/lexical-service`,
+It runs on ECS behind the gateway at [https://dev-gateway.rox.one/lexical](https://dev-gateway.rox.one/lexical)
+and [https://gateway.rox.one/lexical](https://gateway.rox.one/lexical) (`infra/stacks/lexical-service`,
 `docker/lexical-service.Dockerfile`) and must be called internally with an 'x-internal-auth-key' header set.
 
 # Endpoints
@@ -28,7 +28,7 @@ Accepts `{ "markdown": "..." }` and returns an `application/octet-stream` Loro s
 
 ## POST /snapshot/notion
 Accepts `{ "markdown": "...", "links": { "pages": { "<notion id>": { "documentId", "name" } }, "users": { "<notion id>": { "userId", "email" } } } }`
-with a page in Notion's enhanced markdown and returns `{ "snapshot": "<base64 Loro snapshot>", "markdown": "<Macro markdown>" }`.
+with a page in Notion's enhanced markdown and returns `{ "snapshot": "<base64 Loro snapshot>", "markdown": "<Rox markdown>" }`.
 Notion ids are dashless and lowercase. Mapped page and people references become document and user mentions;
 the rest degrade to links or text (`packages/lexical-core/notion/`). Deploy this endpoint before the import backend that calls it.
 

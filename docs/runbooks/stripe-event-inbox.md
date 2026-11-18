@@ -99,7 +99,7 @@ WHERE state <> 'idle' GROUP BY consumer, state;
 ## Unknown price on a grant
 
 A personal subscription granting access on a price that is neither a sold
-seat price nor in `LEGACY_PREMIUM_PRICE_IDS` dead-letters by design: Macro
+seat price nor in `LEGACY_PREMIUM_PRICE_IDS` dead-letters by design: Rox
 does not guess a tier. Revokes on such a price still apply (they remove
 Premium). The `personal_plan` dead-letter monitor pages on-call. Recover:
 
@@ -111,7 +111,7 @@ Premium). The `personal_plan` dead-letter monitor pages on-call. Recover:
    dead event (do not skip it):
 
    ```sh
-   curl -sS -X POST "https://gateway.macro.com/auth/internal/stripe_inbox/replay_dead" \
+   curl -sS -X POST "https://gateway.rox.one/auth/internal/stripe_inbox/replay_dead" \
      -H "x-internal-auth-key: $INTERNAL_API_KEY" \
      -H "content-type: application/json" \
      -d '{"consumer": "personal_plan", "skipDeadEvent": false, "limit": 100}'
@@ -120,7 +120,7 @@ Premium). The `personal_plan` dead-letter monitor pages on-call. Recover:
 
    `INTERNAL_API_KEY` is the value of that key in the authentication-service
    Doppler config of the environment; the base URL is `AuthServiceUrl`
-   (`crates/macro_service_urls`), `https://dev-gateway.macro.com/auth` on dev.
+   (`crates/macro_service_urls`), `https://dev-gateway.rox.one/auth` on dev.
 4. Check the dead count is gone: the `stripe inbox dead cursors` log stops
    and the monitor recovers within 30 minutes.
 

@@ -15,7 +15,7 @@ export interface CalendarCapabilities {
   conferenceProvider?: CalendarCapabilitiesConferenceProvider;
   /** Whether arbitrary RFC 5545 recurrence properties can be written. */
   customRecurrence: boolean;
-  /** Whether email reminders are delivered by the provider or Macro. */
+  /** Whether email reminders are delivered by the provider or Rox. */
   emailReminders: boolean;
   /** Whether the organizer can set what guests may do. */
   guestPolicy: boolean;

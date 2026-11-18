@@ -5,8 +5,9 @@
 mod http_delivery_test;
 
 use super::http_validator::{
-    EndpointValidationError, ReqwestWebhookValidationClient, is_reserved_macro_header,
-    signature_header, validate_resolved_endpoint_url,
+    EVENT_HEADER, EVENT_ID_HEADER, EndpointValidationError, LEGACY_EVENT_HEADER,
+    LEGACY_EVENT_ID_HEADER, ReqwestWebhookValidationClient, is_reserved_header, signature_header,
+    validate_resolved_endpoint_url,
 };
 use crate::domain::{
     models::{
@@ -21,9 +22,9 @@ use reqwest::{
 };
 use std::time::{Duration, Instant};
 
-const EVENT_HEADER: &str = "x-macro-event";
-const EVENT_ID_HEADER: &str = "x-macro-event-id";
-use webhook_signature::{SIGNATURE_HEADER, TIMESTAMP_HEADER};
+use webhook_signature::{
+    LEGACY_SIGNATURE_HEADER, LEGACY_TIMESTAMP_HEADER, SIGNATURE_HEADER, TIMESTAMP_HEADER,
+};
 const REDACTED_HEADER_VALUE: &str = "[REDACTED]";
 const RESPONSE_PREVIEW_MAX_BYTES: usize = 4096;
 
@@ -101,12 +102,8 @@ fn delivery_headers(
     timestamp: &str,
     signature: &str,
 ) -> Result<HeaderMap, &'static str> {
-    if webhook
-        .headers
-        .keys()
-        .any(|name| is_reserved_macro_header(name))
-    {
-        return Err("reserved Macro headers cannot be overridden");
+    if webhook.headers.keys().any(|name| is_reserved_header(name)) {
+        return Err("reserved Rox headers cannot be overridden");
     }
 
     let mut headers = HeaderMap::new();
@@ -120,10 +117,16 @@ fn delivery_headers(
     }
 
     headers.insert(CONTENT_TYPE, HeaderValue::from_static("application/json"));
+    // Emit the Rox names first, then the names earlier deliveries used: an
+    // endpoint that only knows the old names keeps verifying the deliveries.
     insert_header(&mut headers, EVENT_HEADER, &event.event_name, false)?;
     insert_header(&mut headers, EVENT_ID_HEADER, &event.event_id, false)?;
     insert_header(&mut headers, TIMESTAMP_HEADER, timestamp, false)?;
     insert_header(&mut headers, SIGNATURE_HEADER, signature, true)?;
+    insert_header(&mut headers, LEGACY_EVENT_HEADER, &event.event_name, false)?;
+    insert_header(&mut headers, LEGACY_EVENT_ID_HEADER, &event.event_id, false)?;
+    insert_header(&mut headers, LEGACY_TIMESTAMP_HEADER, timestamp, false)?;
+    insert_header(&mut headers, LEGACY_SIGNATURE_HEADER, signature, true)?;
 
     Ok(headers)
 }

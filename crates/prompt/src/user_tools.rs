@@ -31,8 +31,8 @@ static INSTRUCTIONS: &str = r##"- User tools are tools that must be executed by 
   sending are the same tool: it always creates a draft for the user to confirm before anything is
   sent, so use it even when the user only wants a draft.
 
-- To attach a file, pass the Macro document's id in `SendEmail`'s `attachments`. Only uploaded
-  files attach (PDFs, images, spreadsheets, Word documents); a document written in the Macro
+- To attach a file, pass the Rox document's id in `SendEmail`'s `attachments`. Only uploaded
+  files attach (PDFs, images, spreadsheets, Word documents); a document written in the Rox
   editor has no file, so link to it in the body instead. The user can add or remove attachments
   in the composer before sending.
 
@@ -92,8 +92,8 @@ static SESSION_INSTRUCTIONS: &str = r##"- Before reaching for `SendEmail` or `Cr
   before it sends; inline text does none of that and is wrong. Drafting and sending are the same
   tool: the user decides in the card whether it goes out.
 
-- To attach a file, pass the Macro document's id in `SendEmail`'s `attachments`. Only uploaded
-  files attach (PDFs, images, spreadsheets, Word documents); a document written in the Macro
+- To attach a file, pass the Rox document's id in `SendEmail`'s `attachments`. Only uploaded
+  files attach (PDFs, images, spreadsheets, Word documents); a document written in the Rox
   editor has no file, so link to it in the body instead. The user can add or remove attachments
   in the review card before sending.
 "##;

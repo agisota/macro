@@ -7,7 +7,7 @@ use std::sync::Arc;
 
 use crate::domain::ports::mentions::DocumentMentionTrackingPort;
 
-/// Mention tracker backed by lexical-service and MacroDB.
+/// Mention tracker backed by lexical-service and RoxDB.
 #[derive(Clone)]
 pub struct LexicalCommsMentionTracker {
     db: PgPool,

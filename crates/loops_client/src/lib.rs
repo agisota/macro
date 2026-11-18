@@ -1,7 +1,7 @@
 #![deny(missing_docs)]
 //! Loops (loops.so) client for adding contacts to our Loops audience.
 //!
-//! Used to push Macro sign-ups into Loops so they receive our marketing emails.
+//! Used to push Rox sign-ups into Loops so they receive our marketing emails.
 
 #[cfg(test)]
 mod test;

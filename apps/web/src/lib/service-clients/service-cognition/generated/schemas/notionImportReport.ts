@@ -15,7 +15,7 @@ import type { NotionReportItem } from './notionReportItem';
  * Where a Notion workspace import stands.
  */
 export interface NotionImportReport {
-  /** Who imported the objects already in Macro, most first. */
+  /** Who imported the objects already in Rox, most first. */
   alreadyImportedBy?: NotionImporter[];
   /**
    * Plan objects a teammate already imported and shared with the team;
@@ -84,7 +84,7 @@ writes stays visible only to them. */
    */
   pages: number;
   /**
-   * Tracker groups written as Macro projects.
+   * Tracker groups written as Rox projects.
    * @minimum 0
    */
   projects?: number;

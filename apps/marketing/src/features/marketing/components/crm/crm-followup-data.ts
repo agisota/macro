@@ -16,7 +16,7 @@ export const followupPrompt =
 export const followupDraft = {
   subject: 'Re: Thursday demo',
   to: 'Ava Chen <ava@parlorstudio.example>',
-  cc: 'Julia <julia@macro.com>',
+  cc: 'Julia <julia@rox.one>',
   body: 'Hi Ava,\n\nThursday at 9 works. The folder-upload fix has merged, and Teo is checking the production release. I’ll confirm once it’s ready to try.\n\nJulia can help with setup. Could you send her the names of the people joining?\n\nSee you Thursday,\nJacob',
 };
 export const followupPr: DemoPullRequest = {
@@ -40,9 +40,9 @@ export const followupCall: SampleCall = {
   duration: 420,
   people: ['jacob', 'julia', 'teo'],
   participantEmails: {
-    jacob: 'jacob@macro.com',
-    julia: 'julia@macro.com',
-    teo: 'teo@macro.com',
+    jacob: 'jacob@rox.one',
+    julia: 'julia@rox.one',
+    teo: 'teo@rox.one',
   },
   poster: [
     { person: 'jacob', video: false },
@@ -116,7 +116,7 @@ export function seedCrmFollowup(w: DummyWorkspace) {
     {
       id: 'followup-intro',
       sender: 'Jacob',
-      subject: 'Getting started with Macro',
+      subject: 'Getting started with Rox',
       snippet: 'A short walkthrough for your team.',
       time: 'Fri',
       account: 'work',
@@ -241,7 +241,7 @@ export function seedCrmFollowup(w: DummyWorkspace) {
   ]);
   w.setData('companies', (c) => c.id === followupIds.company, {
     description:
-      'A design studio trying Macro for shared files and team communication.',
+      'A design studio trying Rox for shared files and team communication.',
     lastInteracted: 'today',
     updated: '9:40 AM',
     contacts: [{ name: 'Ava Chen', email: 'ava@parlorstudio.example' }],

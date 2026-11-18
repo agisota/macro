@@ -154,7 +154,7 @@ mod test {
     #[test]
     fn test_extract_uuid_from_url_basic() {
         let url =
-            "https://static-file-service-dev.macro.com/file/bc698c53-5a61-45f9-ac88-212e22cf8a33";
+            "https://static-file-service-dev.rox.one/file/bc698c53-5a61-45f9-ac88-212e22cf8a33";
         let uuid = extract_uuid_from_url(url);
         assert_eq!(uuid, "bc698c53-5a61-45f9-ac88-212e22cf8a33");
     }

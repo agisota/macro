@@ -112,7 +112,7 @@ describe('MacroForbiddenError', () => {
     expect(error).toBeInstanceOf(MacroForbiddenError);
     expect(error).toBeInstanceOf(MacroApiError);
     expect((error as MacroForbiddenError).status).toBe(403);
-    expect((error as Error).message).toBe('Macro API error 403: Access denied');
+    expect((error as Error).message).toBe('Rox API error 403: Access denied');
   });
 
   test('other failures stay plain API errors', async () => {

@@ -85,7 +85,7 @@ export const wallpapers: Record<
     ridge: 570,
     crest: 460,
   },
-  macrod: {
+  roxd: {
     colors: ['#d5e6f5', '#8badd5', '#686cb0', '#3b396b'],
     ridge: 920,
     crest: 300,

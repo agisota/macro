@@ -42,32 +42,29 @@ function placeholders(message: Message): string[] {
 }
 
 describe('resolveInterfaceLanguage', () => {
-  it('prefers the person, then the team, then the browser, then English', () => {
+  it('prefers the person, then the team, then the browser, then Russian', () => {
     expect(
       resolveInterfaceLanguage(Language.ja, Language.de, Language.fr)
     ).toBe('ja');
     expect(resolveInterfaceLanguage(null, Language.de, Language.fr)).toBe('de');
     expect(resolveInterfaceLanguage(null, null, Language.fr)).toBe('fr');
     expect(resolveInterfaceLanguage(undefined, undefined, undefined)).toBe(
-      'en'
+      'ru'
     );
   });
 });
 
 describe('browserLanguage', () => {
-  it('takes the first offered language, by language and script', () => {
-    expect(browserLanguage(['de-AT', 'en'])).toBe('de');
-    expect(browserLanguage(['fr-CA'])).toBe('fr');
-    expect(browserLanguage(['zh-TW'])).toBe('zh-Hant');
-    expect(browserLanguage(['zh-CN'])).toBe('zh-Hans');
-    expect(browserLanguage(['zh'])).toBe('zh-Hans');
-    expect(browserLanguage(['pt-BR'])).toBe('pt-PT');
-    expect(browserLanguage(['no'])).toBe('nb');
-  });
-
-  it('skips languages it is not offered in, and stops at English', () => {
-    expect(browserLanguage(['ar', 'he', 'it'])).toBe('it');
-    expect(browserLanguage(['en-GB', 'de'])).toBe('en');
+  it('does not copy the system language', () => {
+    expect(browserLanguage(['de-AT', 'en'])).toBeUndefined();
+    expect(browserLanguage(['fr-CA'])).toBeUndefined();
+    expect(browserLanguage(['zh-TW'])).toBeUndefined();
+    expect(browserLanguage(['zh-CN'])).toBeUndefined();
+    expect(browserLanguage(['zh'])).toBeUndefined();
+    expect(browserLanguage(['pt-BR'])).toBeUndefined();
+    expect(browserLanguage(['no'])).toBeUndefined();
+    expect(browserLanguage(['ar', 'he', 'it'])).toBeUndefined();
+    expect(browserLanguage(['en-GB', 'de'])).toBeUndefined();
     expect(browserLanguage(['ar'])).toBeUndefined();
     expect(browserLanguage(['not a tag'])).toBeUndefined();
   });

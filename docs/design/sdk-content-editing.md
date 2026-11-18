@@ -2,7 +2,7 @@
 
 **Status:** Proposed. Implementation follows the PR plan at the end.
 
-Macro tasks: MACRO-4588 (documents and tasks), MACRO-4587 (spreadsheets),
+Rox tasks: MACRO-4588 (documents and tasks), MACRO-4587 (spreadsheets),
 MACRO-4581 (Word and PowerPoint), MACRO-4584 (canvases), MACRO-4631
 (editing documents with Lexical).
 

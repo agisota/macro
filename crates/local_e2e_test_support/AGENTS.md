@@ -9,7 +9,7 @@ tests — fixture loading, local JWTs, and local-only service URLs.
 
 - `src/services.rs`: standard local service URLs for the `run_local` stack;
   refuses non-local URLs so tests can't mutate shared dev services.
-- `src/jwt.rs`: generates local Macro API JWTs via `macro_auth`.
+- `src/jwt.rs`: generates local Rox API JWTs via `macro_auth`.
 - `src/config.rs`: reads the xtask instance env file selected by
   `LOCAL_E2E_ENV_FILE` (falling back to `.env`), with process env overrides.
 - `src/fixtures.rs`: loads fixture data from `tooling/seed_cli/seed`.

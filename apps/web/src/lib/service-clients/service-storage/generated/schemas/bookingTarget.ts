@@ -6,7 +6,7 @@
  */
 
 /**
- * An existing native Macro scheduling event offered after an accepted response.
+ * An existing native Rox scheduling event offered after an accepted response.
  */
 export interface BookingTarget {
   /** The event type to book. */

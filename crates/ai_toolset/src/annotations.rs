@@ -59,7 +59,7 @@ pub struct ToolAnnotations {
     pub title: &'static str,
     /// What the tool does to the workspace.
     pub kind: ToolKind,
-    /// Whether the tool reaches systems outside Macro. Maps to the MCP
+    /// Whether the tool reaches systems outside Rox. Maps to the MCP
     /// `openWorldHint`.
     pub open_world: bool,
     /// Whether repeating the call with the same arguments has no further
@@ -100,7 +100,7 @@ impl ToolAnnotations {
         }
     }
 
-    /// Marks the tool as reaching systems outside Macro.
+    /// Marks the tool as reaching systems outside Rox.
     pub const fn with_open_world(mut self) -> Self {
         self.open_world = true;
         self

@@ -122,7 +122,7 @@ describe('SetupStatus', () => {
 
     expect(screen.getByRole('button', { name: 'Grant access' })).toBeTruthy();
     expect(
-      screen.queryByText('Grant calendar access to show your events in Macro.')
+      screen.queryByText('Grant calendar access to show your events in Rox.')
     ).toBeNull();
   });
 

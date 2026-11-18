@@ -60,7 +60,7 @@ export type SettingsTabItem = {
 
 /**
  * Whether `group` is the team group, whose nav label gets the team's name
- * (`Team · Macro`). Matched by its General tab, since the label is translated.
+ * (`Team · Rox`). Matched by its General tab, since the label is translated.
  */
 export function isTeamSettingsGroup(group: SettingsTabGroup): boolean {
   return group.items.some((item) => item.tab === 'Team');

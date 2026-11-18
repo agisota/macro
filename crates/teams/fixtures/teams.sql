@@ -16,7 +16,7 @@ VALUES ('11111111-1111-1111-1111-111111111111', 'team1', 'macro|user@user.com', 
        ('22222222-2222-2222-2222-222222222222', 'team2', 'macro|user4@user.com', NULL, 1);
 
 INSERT INTO team_invite (id, team_id, email, team_role, invited_by, created_at, last_sent_at)
-VALUES ('11111111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111', 'invite@macro.com', 'member', 'macro|user@user.com', NOW(), NOW()),
+VALUES ('11111111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111', 'invite@rox.one', 'member', 'macro|user@user.com', NOW(), NOW()),
        ('22222222-2222-2222-2222-222222222222', '11111111-1111-1111-1111-111111111111', 'user3@user.com', 'member', 'macro|user@user.com', NOW(), NOW());
 
 INSERT INTO team_user (team_id, user_id, team_role)

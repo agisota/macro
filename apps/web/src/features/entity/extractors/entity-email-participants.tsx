@@ -32,7 +32,7 @@ function getEmailLocalPart(email: string): string {
  * Priority: participant.name > macroDisplayName > email local part
  *
  * `participant.name` is the From display name of that sender's message in
- * this thread, so it comes first: the Macro lookup is keyed by address alone
+ * this thread, so it comes first: the Rox lookup is keyed by address alone
  * and falls back to the viewer's address book, which pins one person's name
  * onto every message from a shared sender such as notifications@cal.com.
  */
@@ -105,7 +105,7 @@ function ParticipantWithTooltip(props: {
 function resolveParticipants(
   participants: EmailThreadParticipants | undefined,
   viewerEmail: string | undefined,
-  getMacroDisplayName: (email: string) => string | undefined
+  getRoxDisplayName: (email: string) => string | undefined
 ): ResolvedParticipant[] {
   if (!participants || participants.length === 0) return [];
 
@@ -116,12 +116,12 @@ function resolveParticipants(
     if (!participant.email) continue;
     if (isViewerAddress(participant.email, viewerEmail)) continue;
 
-    // A sender's own display name wins, so look up the Macro name only
+    // A sender's own display name wins, so look up the Rox name only
     // when there is none.
     const macroDisplayName =
       participant.name && !isLikelyEmail(participant.name)
         ? undefined
-        : getMacroDisplayName(participant.email);
+        : getRoxDisplayName(participant.email);
     const displayName = resolveParticipantName(participant, macroDisplayName);
 
     if (seen.has(displayName)) continue;

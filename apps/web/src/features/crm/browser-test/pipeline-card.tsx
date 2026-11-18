@@ -24,7 +24,7 @@ import {
 // The record page's Pipelines card over a local row: the cells and their
 // writes are the adapter's, the storage is a signal.
 const params = new URLSearchParams(location.search);
-applyTheme(params.get('theme') === 'dark' ? 'Macro Dark' : 'Macro Light');
+applyTheme(params.get('theme') === 'dark' ? 'Rox Dark' : 'Rox Light');
 document.documentElement.dataset.touchDevice = String(
   matchMedia('(pointer: coarse)').matches
 );

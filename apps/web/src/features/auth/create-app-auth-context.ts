@@ -16,7 +16,10 @@ import { detect } from 'detect-browser';
 import { match } from 'ts-pattern';
 import type { AuthContext, AuthSession } from './context/auth-context';
 import {
+  assertPasskey,
   exchangeSessionCode,
+  passkeyMode,
+  registerPasskey,
   sendEmailCode,
   verifyEmailCode,
 } from './queries/auth-requests';
@@ -85,6 +88,9 @@ export function createAppAuthContext(): AuthContext {
     },
     sendEmailCode,
     verifyEmailCode,
+    passkeyMode,
+    registerPasskey,
+    assertPasskey,
     redeemSessionToken: async (token) => {
       if (!(await exchangeSessionCode(token))) return false;
       await completeLogin();

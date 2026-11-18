@@ -2,7 +2,7 @@ use super::*;
 use macro_user_id::email::EmailStr;
 use std::sync::Mutex;
 
-const FROM: &str = "no-reply@macro.com";
+const FROM: &str = "no-reply@rox.one";
 
 #[test]
 fn from_header_without_a_name_is_the_bare_address() {
@@ -14,7 +14,7 @@ fn from_header_without_a_name_is_the_bare_address() {
 fn from_header_quotes_an_ascii_name_marked_as_via_macro() {
     assert_eq!(
         from_header(FROM, Some("Alice Example")),
-        r#""Alice Example (via Macro)" <no-reply@macro.com>"#
+        r#""Alice Example (via Macro)" <no-reply@rox.one>"#
     );
 }
 
@@ -25,7 +25,7 @@ fn from_header_cannot_be_broken_out_of_by_the_name() {
             FROM,
             Some("Alice \"Admin\" \\\r\nBcc: victim@example.com\" <x@example.com>")
         ),
-        r#""Alice Admin Bcc: victim@example.com <x@example.com> (via Macro)" <no-reply@macro.com>"#
+        r#""Alice Admin Bcc: victim@example.com <x@example.com> (via Macro)" <no-reply@rox.one>"#
     );
 }
 
@@ -34,7 +34,7 @@ fn from_header_caps_the_name() {
     let header = from_header(FROM, Some(&"x".repeat(100)));
     assert_eq!(
         header,
-        format!("\"{} (via Macro)\" <no-reply@macro.com>", "x".repeat(64))
+        format!("\"{} (via Macro)\" <no-reply@rox.one>", "x".repeat(64))
     );
 }
 
@@ -42,7 +42,7 @@ fn from_header_caps_the_name() {
 fn from_header_encodes_a_non_ascii_name() {
     assert_eq!(
         from_header(FROM, Some("José")),
-        "=?UTF-8?Q?Jos=C3=A9_=28via_Macro=29?= <no-reply@macro.com>"
+        "=?UTF-8?Q?Jos=C3=A9_=28via_Macro=29?= <no-reply@rox.one>"
     );
 }
 
@@ -50,7 +50,7 @@ fn from_header_encodes_a_non_ascii_name() {
 fn from_header_splits_a_long_non_ascii_name_into_short_encoded_words() {
     let header = from_header(FROM, Some(&"é".repeat(64)));
     let (words, address) = header.rsplit_once(' ').unwrap();
-    assert_eq!(address, "<no-reply@macro.com>");
+    assert_eq!(address, "<no-reply@rox.one>");
 
     let words: Vec<&str> = words.split(' ').collect();
     assert!(words.len() > 1);
@@ -133,7 +133,7 @@ async fn sends_on_behalf_of_the_named_sender_with_a_text_part() {
     assert_eq!(
         *adapter.email_service.sent.lock().unwrap(),
         [Sent {
-            from: r#""Alice Example (via Macro)" <no-reply@macro.com>"#.to_string(),
+            from: r#""Alice Example (via Macro)" <no-reply@rox.one>"#.to_string(),
             to: "bob@example.com".to_string(),
             reply_to: Some("alice@example.com".to_string()),
             text_body: Some("Join us".to_string()),

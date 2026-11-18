@@ -160,7 +160,7 @@ export type ApiDraftInput = {
      */
     body_html?: string | null;
     /**
-     * Macro body format.
+     * Rox body format.
      */
     body_macro?: string | null;
     /**
@@ -231,7 +231,7 @@ export type ApiDraftOutput = {
      */
     body_html?: string | null;
     /**
-     * Macro body.
+     * Rox body.
      */
     body_macro?: string | null;
     /**
@@ -660,7 +660,7 @@ export type CalendarAttendee = {
 };
 
 /**
- * A stable, first-class Macro calendar event entity.
+ * A stable, first-class Rox calendar event entity.
  *
  * Content fields hold the canonical source's values: the account's primary
  * calendar copy when one is synced, else the freshest remaining copy.
@@ -715,7 +715,7 @@ export type CalendarEvent = {
      */
     icalUid: string;
     /**
-     * Macro entity identifier.
+     * Rox entity identifier.
      */
     id: string;
     /**
@@ -724,7 +724,7 @@ export type CalendarEvent = {
     isReadOnly: boolean;
     /**
      * Whether this is a snapshot of a meeting shared with the owner, which
-     * Macro added to their calendar as a private copy: the meeting's changes
+     * Rox added to their calendar as a private copy: the meeting's changes
      * never reach it, and nothing done to it reaches the meeting.
      */
     isSnapshot: boolean;
@@ -741,7 +741,7 @@ export type CalendarEvent = {
      */
     organizerName?: string | null;
     /**
-     * Macro user who owns this event entity.
+     * Rox user who owns this event entity.
      */
     ownerId: string;
     /**
@@ -1458,9 +1458,9 @@ export type Link = {
     email_address: string;
     fusionauth_user_id: string;
     /**
-     * Whether Macro holds calendar data for this inbox. Drives the turn-off
+     * Whether Rox holds calendar data for this inbox. Drives the turn-off
      * control on its own, so removing that data never depends on the recorded
-     * scopes still matching the set Macro requests today — a set that changes
+     * scopes still matching the set Rox requests today — a set that changes
      * as the integration narrows, stranding data behind a capability check
      * that no longer recognizes an older grant.
      */
@@ -2055,7 +2055,7 @@ export type UpsertScheduledResponse = {
     send_time: string;
 };
 
-export type UserProvider = 'GMAIL' | 'OUTLOOK';
+export type UserProvider = 'GMAIL' | 'OUTLOOK' | 'ROX';
 
 export type Value = unknown;
 

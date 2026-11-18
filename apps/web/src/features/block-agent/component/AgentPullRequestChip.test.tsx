@@ -81,7 +81,7 @@ function entity(status: string): ForeignEntity {
     foreignEntityId: 'macro-inc/macro/pull/6303',
     foreignEntitySource: 'github_pull_request',
     metadata: { status, name: 'Add the header chip', number: 6303 },
-    storedForId: 'macro|wolf@macro.com',
+    storedForId: 'macro|wolf@rox.one',
     storedForAuthEntity: 'user',
     createdAt: '2026-09-11T00:00:00Z',
     updatedAt: '2026-09-11T00:00:00Z',

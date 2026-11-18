@@ -420,7 +420,7 @@ fn with_writable_calendars(mut inbox: OwnedInbox, ids: &[&str]) -> OwnedInbox {
     inbox
 }
 
-/// An event made through Macro on the inbox's secondary calendar before the
+/// An event made through Rox on the inbox's secondary calendar before the
 /// creator stopped being listed: the calendar organizes it and the inbox's
 /// own address is its only guest.
 fn made_on_secondary_calendar() -> CalendarEvent {

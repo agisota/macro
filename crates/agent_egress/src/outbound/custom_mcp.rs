@@ -1,7 +1,7 @@
 //! Resolving a key to one of the owner's custom MCP servers.
 //!
 //! A custom server is one the owner added by URL under Agents → Connections,
-//! with Macro's own OAuth client holding the grant - the native stack in
+//! with Rox's own OAuth client holding the grant - the native stack in
 //! `mcp_client`, as opposed to the Pipedream one. The rows carry the owner's
 //! encrypted tokens, which is exactly why this traffic must flow through the
 //! proxy: the token is the owner's, the sandbox must never hold it, and
@@ -9,7 +9,7 @@
 //!
 //! Both halves come from `mcp_client`'s own port and service - the same rows
 //! the chat tool path reads, the same refresh-and-persist the in-process
-//! connector runs - so a server connected in Macro is a server the sandbox
+//! connector runs - so a server connected in Rox is a server the sandbox
 //! can reach, with nothing to keep in sync.
 
 use macro_user_id::user_id::MacroUserIdStr;

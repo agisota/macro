@@ -4,7 +4,7 @@
 
 Onboards new Channels (chat) customers from Slack: a composition root for
 importing Slack archive exports. Writes conversations, messages, and
-references into Macro as channels. It sends no emails or notifications.
+references into Rox as channels. It sends no emails or notifications.
 
 ## Start here
 
@@ -21,7 +21,7 @@ references into Macro as channels. It sends no emails or notifications.
 
 ## Scope
 
-- Owns: turning a parsed Slack archive into Macro channels/messages and
+- Owns: turning a parsed Slack archive into Rox channels/messages and
   reconciling references, as a durable, resumable process.
 - Not here: parsing the Slack export format or the import job ledger →
   `crates/import`; Slack API/domain types → `crates/slack_integration`.

@@ -45,7 +45,7 @@ late responses and captured mutations cannot cross account/session or entry gene
 Cancel obsolete transports and bound request lifetime; native participant metadata
 must publish fallbacks for pending new-scope names rather than retain old labels.
 Debug name seeds require a mounted authenticated scope, not module initialization.
-Editable own-profile queries stay separate and session-keyed. Reset cached Macro
+Editable own-profile queries stay separate and session-keyed. Reset cached Rox
 bearer tokens on login/account replacement, including pending token responses.
 
 Key channel lists/activity, cached Quick Access channels, email links and inbox
@@ -594,7 +594,7 @@ contacts included, follow however exactly their name matches. Names that only
 contain the query come last, with strangers after the other rows of each tier.
 Among equally good matches Cmd+K lists teammates, then other people the viewer
 knows, before other rows. Within a run of adjacent people rows in one of those
-groups, Macro users and DMs lead CRM contacts whatever their match; no person
+groups, Rox users and DMs lead CRM contacts whatever their match; no person
 moves past another result or into a better group to do it. Personal contact
 rows keep the native window order among people in the same group, matching
 equally well and equally close to the viewer, so a recent weaker match never
@@ -634,8 +634,8 @@ brevity, and type boosts. Task projects use the `initiative` bucket; `project`
 means a Drive folder. Preserve broader cache/server matches and the existing
 People preview/pinning. Group company and contact records under
 Contacts & Companies, separate from People; keep contact selection as a CRM link
-even for a matching Macro user.
-Only Macro users and groups participate in mobile People pinning.
+even for a matching Rox user.
+Only Rox users and groups participate in mobile People pinning.
 Rank scoped mention people by exact full or first name, prefix, literal match,
 then subsequence before recency and mobile pinning; preserve native directory order.
 The channel browser suite below also checks project
@@ -647,7 +647,7 @@ It checks draft blank lines across remounts, one shared draft for a channel
 mounted twice (two desktop tabs), that a sent message renders its
 lines with the spacing the draft showed, that the one-line composer centers its
 buttons on the text line, and pending sends on desktop and phone: clear immediately, restore failed sends, and preserve a new draft typed during delivery.
-It also pastes a Macro link and Markdown into a code block, which must keep both as literal text.
+It also pastes a Rox link and Markdown into a code block, which must keep both as literal text.
 It also covers phone attaching: the add drawer opens the file picker within the
 tap, and when the iOS app's native photo library fails, a toast's Choose files
 button opens it, because WKWebView ignores a file input click made after the
@@ -680,7 +680,7 @@ A frontend dev server runs against the **dev** backend, so this needs no local s
 cd apps/web && PORT=3003 bun run dev   # any free port in 3000-3009
 ```
 
-`import.meta.env.MODE === 'development'` resolves the service clients to `https://dev.macro.com` through Vite’s same-origin development proxy. Sign in on the development hostname; existing `.macro.com` cookies are separate. Vite prints `https://<hostname>:<port>/app/`; `https://localhost:<port>/app/` also works. Trust `infra/local/certs/ca.pem` once in the visiting browser (see `infra/local/certs/README.md`). `MACRO_DEV_HTTPS=false` restores HTTP for workflows that require it. Notes:
+`import.meta.env.MODE === 'development'` resolves the service clients to `https://dev.rox.one` through Vite’s same-origin development proxy. Sign in on the development hostname; existing `.rox.one` cookies are separate. Vite prints `https://<hostname>:<port>/app/`; `https://localhost:<port>/app/` also works. Trust `infra/local/certs/ca.pem` once in the visiting browser (see `infra/local/certs/README.md`). `MACRO_DEV_HTTPS=false` restores HTTP for workflows that require it. Notes:
 
 - On a remote devbox, open `https://<hostname>:<port>/app/` directly. The dev server serves HTTP/2, gzips modules and links source maps instead of inlining them, so a cold load of the ~7k dev modules moves ~13 MB instead of ~100 MB. Trust the CA on the visiting machine: Chrome caches nothing from a site whose certificate warning was clicked through, so every reload re-downloads every module. Tailscale Serve is an alternative that needs no CA: `sudo tailscale serve --bg --https=443 https+insecure://localhost:<port>`, then open `https://<devbox>.<tailnet>.ts.net/app/` and sign in again there (Serve offers HTTPS ports 443, 8443, and 10000). `MACRO_DEV_COMPRESSION=false` and `MACRO_DEV_INLINE_SOURCEMAPS=true` restore Vite's defaults.
 - Never assume port 3000 or 3002 is yours. Check with `lsof -nP -iTCP:<port> -sTCP:LISTEN -t` and confirm the owner's worktree via `lsof -p <pid> | awk '$4=="cwd"'`. Take a free port instead of killing another session's server, and reuse one only if its cwd is this worktree.
@@ -795,6 +795,7 @@ The backend-free desktop/phone/tablet regression is
 
 ## Development Patterns
 
+Onboarding requires a valid Rox handle only when the account has not already claimed one. Native documents and files are Drive; Gmail, Outlook, Google Drive, Dropbox, OneDrive, and Box are optional imports, not account-creation prerequisites.
 CRM pipeline schema adapters supply `currencyColumnId`, `fixedOptions` and
 `defaultValue` to the shared database editor. Pass the complete row to cell
 formatting and group monetary calculations by currency; CSV keeps amounts and
@@ -859,7 +860,7 @@ The native webviews load only the app's own origins; never add an exception
 for a third-party page (WebKit asks the navigation plugin about iframes and
 pages alike, so one would also let that page replace the app).
 `pipedream-connect.html` is a separate Vite entry, served at
-`/app/pipedream-connect.html`, without a Macro browser login. The Connect token
+`/app/pipedream-connect.html`, without a Rox browser login. The Connect token
 and one-time state travel only in its URL fragment, which the page removes on
 load. When Connect finishes it opens the `macro://` callback itself, keeping
 **Return to Macro** as a fallback link; the Tauri navigation bridge consumes it
@@ -872,7 +873,7 @@ without success, on web and native, asks `/pipedream/mcp/recover` to register
 the user's newest account for that app from the last fifteen minutes.
 Desktop Home and Agents new-conversation and active-session composers show the shared **Run agents
 on this computer** invitation until this installation is paired or the current
-user dismisses it locally. Keep the invitation tied to bundled macrod support,
+user dismisses it locally. Keep the invitation tied to bundled roxd support,
 not to account-wide paired machine count; a user can pair several computers.
 
 ### General
@@ -888,7 +889,7 @@ not to account-wide paired machine count; a user can pair several computers.
 - Keep model picker triggers bounded with full-name title tooltips; wrap model names in catalog rows, including effort submenus and touch sheets.
 
 - All Mail previews exclude spam/junk and trash. Keep draft edits from restoring
-  an excluded preview or timestamp, including synced Macro drafts; Drafts and
+  an excluded preview or timestamp, including synced Rox drafts; Drafts and
   Sent retain their own canonical membership.
 - Spam and Trash use scoped REST pages without shared preview normalization or
   service search; restore through the provider-neutral thread-state mutation.
@@ -999,7 +1000,7 @@ resolved session ID; keep the existing `AgentSessionProvider` subscription to
   Settings → Integrations: one searchable list row per integration, styled like
   the Drive/Tasks lists, custom MCP servers then connected ones first,
   described by what each does in Macro; preserve `agent-connections` and `team-connections` as aliases for existing links.
-- Keep Macro computers (`features/settings/computers`) team-only. Gate purchase
+- Keep Rox computers (`features/settings/computers`) team-only. Gate purchase
   and Claude account surfaces with `enableMacroComputers`
   (`enable-macro-computers`); keep existing lists in Runtimes and Billing and
   management actions available with rollout off. `useTeamComputers` loads by
@@ -1008,7 +1009,7 @@ resolved session ID; keep the existing `AgentSessionProvider` subscription to
   per Buy dialog on every retry (202 `confirming` is success), offer no power,
   billing or release while `purchasing`, confirm Restore before billing again,
   and release only after the computer's name is typed. See the
-  [Macro computers walkthrough](../../docs/agent-guide/settings.md#macro-computers).
+  [Rox computers walkthrough](../../docs/agent-guide/settings.md#macro-computers).
 - Keep bot setup focused on the token-and-SDK workflow; Agent and Ownership
   controls live under collapsed Advanced settings. See the
   [Bots walkthrough](../../docs/agent-guide/settings.md#bots).
@@ -1107,7 +1108,7 @@ resolved session ID; keep the existing `AgentSessionProvider` subscription to
 - Use `ChannelTitleIcon` for conversation breadcrumbs so DMs retain participant or agent avatars and named channels retain their pictures; suppress avatar actions inside breadcrumb buttons.
 - Normalize thread-only conversation URLs in `channelsSearch` before Home, Chat, or touch views derive their message target.
 - Mobile dock search owns transient category/mode state in `features/command/mobile`; reuse the shared entity source and explicit full-text adapter rather than overlaying the dock query on view tabs or saved facets. See `docs/agent-guide/search.md` at the repository root.
-- Include known Macro users in typed All/People name searches without requiring a DM or CRM contact; resolve a matching person against both recent DMs and DMs found by the current search while preserving name/email matching.
+- Include known Rox users in typed All/People name searches without requiring a DM or CRM contact; resolve a matching person against both recent DMs and DMs found by the current search while preserving name/email matching.
 - Key mobile name-result history ordering and scroll anchors by the other participant for one-to-one DMs, preserving a person's position when their conversation is created; keep group DMs keyed by channel.
 - Keep mobile Search history lightweight: save query/category/mode, account-scoped item anchors, and at most 200 ordering IDs per mode; never save row objects or virtualizer caches. Restore from current sources with at most three additional pages, fall back when an anchor disappears, and stop restoration on user interaction or scope changes. Dock navigation starts a fresh search session; cached rows belong to the source, not history.
 - Release per-history-entry state when its router entry is replaced, pruned, or closed; retain only the latest per-view session snapshot and the latest split event outside reachable Back/Forward history.
@@ -1188,7 +1189,7 @@ resolved session ID; keep the existing `AgentSessionProvider` subscription to
 - Render GitHub comment and PR description bodies through `normalizeGithubMarkdown` (`@macro-inc/lexical-core`), not ad hoc HTML stripping; `<details>` renders as a native collapsible section in `StaticMarkdown`. The backend-free desktop/phone regression over CodeRabbit-shaped comments is
   `bunx playwright test --config src/features/block-pr/browser-test/playwright.config.ts`.
 - Passive PR mentions must not retry initial GitHub status failures on remount; preserve confirmed status through refetch errors and keep pending data reads out of their parent Suspense boundary.
-- PR description and comment images are remote URL images: rewrite GitHub blob/`raw` links to `raw.githubusercontent.com` and load them through the image proxy so COEP does not block github.com. Load Macro's own static-file URLs and public Klipy GIFs directly with anonymous CORS, including in the image viewer. The proxy authenticates by session cookie, so a proxied `<img>` uses `crossorigin="use-credentials"` and a fetch of it `credentials: 'include'` (`isImageProxyUrl`); `anonymous` drops the cookie cross-origin and the proxy answers 401.
+- PR description and comment images are remote URL images: rewrite GitHub blob/`raw` links to `raw.githubusercontent.com` and load them through the image proxy so COEP does not block github.com. Load Rox's own static-file URLs and public Klipy GIFs directly with anonymous CORS, including in the image viewer. The proxy authenticates by session cookie, so a proxied `<img>` uses `crossorigin="use-credentials"` and a fetch of it `credentials: 'include'` (`isImageProxyUrl`); `anonymous` drops the cookie cross-origin and the proxy answers 401.
 - Download selected GIFs without re-encoding through the shared abortable static-file uploader, and insert an `sfs` image only after success; preserve the caret, discard failed or unaccepted uploads, reject stale completions, and keep failure retry in the picker. Give explicit GIF picker opens precedence over formatting and link menus, and anchor to the editor when the browser selection is missing or has no rendered geometry.
 - Keep native booking exit navigation in the route shell, outside page loading boundaries, and use the router so the native hash route stays intact.
 - Diagnose native full reloads with `native_webview_started`, `native_diagnostic_recovered`, and the shared `frontend_instance_id`; use `reloadApp(reason)` for frontend reloads and keep breadcrumbs content-free. Treat `previous_document_*` checkpoints as last-observed lifecycle evidence, never a crash verdict; clear them on logout. `previous_document_last_*` comes from the native navigation breadcrumb (route and entity type, never ids). See [frontend checkpoints](docs/native-reload-diagnostics.md) and `tauri/src-tauri/README.md`.
@@ -1488,7 +1489,7 @@ Generate APNs validators with `scripts/generate-api-schema.ts`; its compact
 `generated/push.ts` entry avoids importing every notification-service schema
 on the startup path. Carry known channel root IDs in push navigation (a null
 `threadId` means the message itself is the root), prefetch the target window
-alongside channel metadata, and keep the shared Macro loading indicator visible
+alongside channel metadata, and keep the shared Rox loading indicator visible
 until that target can be positioned.
 
 ## macOS notification activation
@@ -1653,7 +1654,7 @@ On a physical iPhone, WKWebView still synthesises the compatibility `mousedown`/
 
 2. **Add a temporary window-level event trace.** Log `touchstart`, `touchend`, `pointerdown`, `pointerup`, `mousedown`, `mouseup`, `click`, `focusin`, `focusout` and `selectionchange` with `event.target`, `event.defaultPrevented`, `event.relatedTarget` and `document.activeElement`. Register on `window` in the bubble phase so app handlers have already run and `defaultPrevented` is meaningful. Wrap the setter that closes the UI to log a short stack (`new Error().stack`). Prefix every line (e.g. `[md-popup]`) so it can be filtered.
 
-3. **Run it on the device, not the Simulator**, with Safari Web Inspector attached (Develop → the iPhone → the Macro webview), filter the console by the prefix, reproduce, and read the order. A `mousedown` arriving after a `pointerdown` logged with `defaultPrevented: true`, followed by `focusout` whose `relatedTarget` is a container, is this bug.
+3. **Run it on the device, not the Simulator**, with Safari Web Inspector attached (Develop → the iPhone → the Rox webview), filter the console by the prefix, reproduce, and read the order. A `mousedown` arriving after a `pointerdown` logged with `defaultPrevented: true`, followed by `focusout` whose `relatedTarget` is a container, is this bug.
 
 4. **Strip the instrumentation before committing.**
 
@@ -1742,7 +1743,7 @@ its own root, because choosing a context-menu item disposes the menu's owner.
 Download hands off directly to browser downloads
 or the native save picker. Show channel Download on hover or keyboard focus,
 always on touch, without a footer. Keep system Share inside the touch Download
-menu; desktop Share belongs to Macro permissions. Do not add a custom
+menu; desktop Share belongs to Rox permissions. Do not add a custom
 confirmation sheet. Snapshot file/version before loading, cancel on disposal or
 selection change, and preserve original filenames from static-file metadata.
 Native Android and iOS use bounded byte exports. Older iOS binaries use Web
@@ -1760,7 +1761,7 @@ phone, and tablet, and checks Space playback on opening and reopening the viewer
 `bunx playwright test --config src/lib/core/component/FileDownload/browser-test/playwright.config.ts`.
 See the [download walkthrough](../../docs/agent-guide/files.md#downloading-files).
 
-## Macro computers
+## Rox computers
 
 ### Claude access
 
@@ -1797,7 +1798,7 @@ ISK/UGX wire-format exceptions.
 null breakdown keeps the existing plan and computers UI. With the flag off the
 backend returns no breakdown and the page shows only the plan.
 
-Reuse `PriceBreakdown` for Macro computer purchase and
+Reuse `PriceBreakdown` for Rox computer purchase and
 subscription billing: item/spec subline/amount, divider, total and billing note.
 Keep included rows visible, use GiB throughout, and size confirmation/release
 dialogs to content. Billing renders each computer once and uses provider amounts;
@@ -1811,7 +1812,7 @@ on mobile; retain power controls and polling while waiting.
 
 ## Interface icons
 - Task rows, property values, document mention pills, and @mention menu rows use `TaskStatusIcon` with the current status property; use the task subtype completion flag only when a recognized status is unavailable. Task lists edit status and priority through leading `TaskPropertyControl` icons before the title, not duplicate columns or trailing pills. Mention pills show status only in that leading icon, not again among the trailing task badges. Keep generic navigation and creation on the custom checked-square task icon, independent of task state.
-- Read [the icon system rules](src/components/icon/system/README.md) before adding or changing interface icons. Reuse the original Macro SVG family via individual `@icon/system/...` imports; do not introduce another icon set.
+- Read [the icon system rules](src/components/icon/system/README.md) before adding or changing interface icons. Reuse the original Rox SVG family via individual `@icon/system/...` imports; do not introduce another icon set.
 - If a glyph is missing, author original SVG geometry on the 24-unit grid with round caps/joins, restrained detail, `currentColor`, and the documented theme-aware weight. Never trace or import proprietary symbol paths. Match active/bold variants and review 14/16/20/24 px in light and dark mode.
 - Interface glyphs never animate on press or hover; do not add shared or per-button bounce, turn, or scale effects. Disclosure carets and loading spinners keep their state-driven motion. Preserve accessible control names.
 
@@ -1819,7 +1820,7 @@ on mobile; retain power controls and polling while waiting.
 
 - Reuse `CreateMenuItem` for explanatory New menu entries (`CreateMenuRadioItem` when a create dialog picks a type in a `Dropdown.RadioGroup`): original icons, a title, and muted wrapping descriptions, preserving the existing `ViewCreateButton` trigger and each action's feature gates.
 - Keep transient toasts in their bounded stack and persistent prompts/reminders in separate regions; preserve keyboard dismissal, full mobile descriptions, and remaining-time pause on hover/focus. Mobile toasts dismiss by swiping left or right and have no corner close button. Phone prompts stay in their own stack under the modal layer, never on `z-toast-region`, and never hide with a document-wide `:has()` (#8840).
-- Notification sounds are off by default and saved per user per device; map each new notification event in `features/notification-sounds/core/categories.ts` and keep system alerts silent when Macro plays its own sound. Quiet hours on the same page silence those sounds and skip desktop alerts on a per-device weekly schedule; incoming calls still ring. See the [notification sounds walkthrough](../../docs/agent-guide/notifications.md#notification-sounds).
+- Notification sounds are off by default and saved per user per device; map each new notification event in `features/notification-sounds/core/categories.ts` and keep system alerts silent when Rox plays its own sound. Quiet hours on the same page silence those sounds and skip desktop alerts on a per-device weekly schedule; incoming calls still ring. See the [notification sounds walkthrough](../../docs/agent-guide/notifications.md#notification-sounds).
 - Keep browser-call join/leave cues on explicit visit announcements, never RTC roster diffs; recovery must stay silent. Their fixed two-note chimes use a default-on Call sounds toggle and share notification volume and quiet hours, not the default-off notification switch. See [call sounds](../../docs/agent-guide/calls.md#join-and-leave-sounds).
 
 ### Agent result task lists

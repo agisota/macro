@@ -68,7 +68,7 @@ impl ReferralRepo for PgReferralRepo {
         let referrer_id =
             referral_code_to_uuid(referral_code).map_err(|e| sqlx::Error::Decode(Box::new(e)))?;
 
-        // The referrer must exist; their Macro id is who earns the reward.
+        // The referrer must exist; their Rox id is who earns the reward.
         // One account can have several users (linked emails); the one on the
         // account's primary email earns the reward.
         let referrer = sqlx::query_scalar!(

@@ -565,7 +565,7 @@ async fn a_card_moved_to_a_persons_lane_is_stored_under_them(pool: PgPool) {
                 view: board,
                 change: ViewChange::MoveCard {
                     row: sam,
-                    lane: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                    lane: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
                     before: None,
                     after: None,
                 },
@@ -587,12 +587,12 @@ async fn a_card_moved_to_a_persons_lane_is_stored_under_them(pool: PgPool) {
         .await
         .unwrap();
 
-    assert_eq!(stored, vec!["user:macro|sam@macro.com".to_string()]);
+    assert_eq!(stored, vec!["user:macro|sam@rox.one".to_string()]);
     assert_eq!(
         positions,
         vec![CardPosition {
             row: sam,
-            lane: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+            lane: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
             position: "80".parse().unwrap(),
         }]
     );

@@ -4,7 +4,7 @@
 
 Belongs to shared infrastructure: a Kafka-backed event broker,
 ports-and-adapters style, giving services a typed publish/consume API over
-Macro's event topics.
+Rox's event topics.
 
 ## Start here
 
@@ -20,7 +20,7 @@ Macro's event topics.
 
 ## Scope
 
-- Owns: the publish/consume abstraction and Kafka wiring for Macro's event
+- Owns: the publish/consume abstraction and Kafka wiring for Rox's event
   topics.
 - Not here: topic definitions (those live in `macro_event_topics`) or
   per-domain event payload shapes (defined by each producing crate).
@@ -29,7 +29,7 @@ Macro's event topics.
 
 - Depends on: `macro_event_topics`, `agent_correlation`, `kafka_util` (optional, feature
   `outbound`).
-- Used by: crates and services that publish or consume Macro events
+- Used by: crates and services that publish or consume Rox events
   (`agent_session`, `agent_trigger`, `activity`, `bots`, `calendar_events`,
   `channels`, `chat`, `crm`, `databases`, `documents`, ...).
 

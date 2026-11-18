@@ -36,7 +36,7 @@ pub struct RoutineProgram {
     /// Code steps write as the owner, with no agent badge: their posts,
     /// comments and emails appear written by the owner. Set only when the
     /// owner explicitly asked for the routine to act or send as them; by
-    /// default code steps' writes are attributed to Macro's agent acting for
+    /// default code steps' writes are attributed to Rox's agent acting for
     /// the owner. Agent ("Ask AI") steps keep their own agent attribution
     /// either way: an agent session speaking as a person is a different
     /// change. A single agent task has no code steps, so it never applies.
@@ -49,7 +49,7 @@ pub struct RoutineProgram {
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 #[serde(rename_all = "snake_case")]
 pub enum CodeIdentity {
-    /// Macro's agent acting for the owner, with the owner's access: writes
+    /// Rox's agent acting for the owner, with the owner's access: writes
     /// show as the agent's, from the owner.
     #[default]
     Agent,
@@ -63,13 +63,13 @@ pub enum CodeIdentity {
 #[cfg_attr(feature = "schema", schema(as = RoutineStep))]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum Step {
-    /// Run TypeScript against Macro's SDK, as the routine owner.
+    /// Run TypeScript against Rox's SDK, as the routine owner.
     Code(CodeStep),
     /// Hand the run to a model or agent with instructions.
     Agent(AgentStep),
 }
 
-/// TypeScript written against Macro's SDK, usually by the AI that built the
+/// TypeScript written against Rox's SDK, usually by the AI that built the
 /// routine. It is type-checked before it is saved and runs with its owner's
 /// access.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -275,7 +275,7 @@ pub struct AgentTask {
     /// Required for model targets; overrides the persona default for agent targets.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub model: Option<RoutineModelId>,
-    /// Absent when using Macro's agent-session runtime with a selected model.
+    /// Absent when using Rox's agent-session runtime with a selected model.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub agent: Option<AgentSelection>,
     /// Apps the routine requires on top of the agent's own. The owner must

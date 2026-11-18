@@ -230,7 +230,7 @@ async fn a_board_by_person_saves_its_title_and_person_lanes() {
         group_by: COLUMN_ID,
         title: Some(COLUMN_ID),
         lanes: vec![Lane {
-            key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+            key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
             hidden: true,
         }],
         card_fields: vec![],

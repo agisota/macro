@@ -56,7 +56,7 @@ export function appendAttachmentLinks(
 }
 
 /**
- * Offers to share files that exceed the delivery limit as Macro links. Each
+ * Offers to share files that exceed the delivery limit as Rox links. Each
  * confirmed file is uploaded as a document, opened to anyone with the link,
  * and linked from the body, as a file dropped into the body would be. A send
  * must wait for `uploading`, and a composer that moves to another draft calls
@@ -101,8 +101,8 @@ export function createAttachmentLinkOffer(options: {
       const confirmed = await options.notices.confirm({
         title: `Attachments exceed ${limitLabel}`,
         body: single
-          ? `"${files[0].name}" won't fit as an attachment. Upload it to Macro and share a view-only link instead?`
-          : `${files.length} files won't fit as attachments. Upload them to Macro and share view-only links instead?`,
+          ? `"${files[0].name}" won't fit as an attachment. Upload it to Rox and share a view-only link instead?`
+          : `${files.length} files won't fit as attachments. Upload them to Rox and share view-only links instead?`,
         confirmLabel: single ? 'Share link' : 'Share links',
       });
       span.setAttr('email.attachment_links.confirmed', confirmed);

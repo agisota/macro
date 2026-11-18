@@ -24,7 +24,7 @@ export const PULUMI_AUTHORIZER_STACK = 'macro-authorizer-lambda';
 
 export const SERVICE_NAME = 'doc-storage';
 
-export const BASE_DOMAIN = 'macro.com';
+export const BASE_DOMAIN = 'rox.one';
 
 /**
  * Legacy per-service hostname for DSS. Still backs the dedicated ALB and its

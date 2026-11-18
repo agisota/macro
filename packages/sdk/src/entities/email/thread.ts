@@ -220,7 +220,7 @@ export class EmailThread extends PropertiedEntity<ThreadDetail> {
   }
 
   /**
-   * The thread's URL in the Macro web app; hand it to users as the link.
+   * The thread's URL in the Rox web app; hand it to users as the link.
    *
    * @readonly
    */

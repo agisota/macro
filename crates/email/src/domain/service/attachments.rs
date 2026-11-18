@@ -1,4 +1,4 @@
-//! Sending an email with files attached: Macro documents, or files the
+//! Sending an email with files attached: Rox documents, or files the
 //! caller produced itself, such as an event's iCalendar file.
 //!
 //! The scheduled sender attaches whatever `email_attachments_drafts` rows a

@@ -50,7 +50,7 @@ pub enum GroupKind {
     Epic,
 }
 
-/// A collection whose issues become tasks in a Macro project.
+/// A collection whose issues become tasks in a Rox project.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Group {
@@ -123,7 +123,7 @@ pub struct Issue {
     pub issue_type: Option<String>,
     /// Priority label.
     pub priority: Option<String>,
-    /// Visible assignee email, matched only against the Macro team.
+    /// Visible assignee email, matched only against the Rox team.
     pub assignee_email: Option<String>,
     /// ISO date.
     pub due_date: Option<String>,

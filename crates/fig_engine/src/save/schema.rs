@@ -1,5 +1,5 @@
 //! Adding Figma's types and fields to a file's schema when an edit writes
-//! some the file lacks (designs made in Macro carry a subset). Existing
+//! some the file lacks (designs made in Rox carry a subset). Existing
 //! types keep their indices and field ids, so the file's records read the
 //! same.
 

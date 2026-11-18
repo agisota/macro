@@ -21,7 +21,7 @@ export const emailDraftMessages = (
     person: 'jacob',
     text: (
       <>
-        <DemoMention item={{ id: 'macro', label: 'Macro', kind: 'person' }} />{' '}
+        <DemoMention item={{ id: 'macro', label: 'Rox', kind: 'person' }} />{' '}
         draft a followup from{' '}
         <HomepageMention
           kind="call"

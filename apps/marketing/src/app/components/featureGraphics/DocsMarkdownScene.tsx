@@ -171,7 +171,7 @@ const MENU_EVERYTHING: MenuSection[] = [
     title: 'People',
     count: 11842,
     rows: [
-      { initials: 'E', label: 'Evan', detail: 'evan@macro.com', active: true },
+      { initials: 'E', label: 'Evan', detail: 'evan@rox.one', active: true },
     ],
   },
   {
@@ -226,13 +226,13 @@ const SCRIPT: Block[] = [
               {
                 initials: 'E',
                 label: 'Evan',
-                detail: 'evan@macro.com',
+                detail: 'evan@rox.one',
                 active: true,
               },
               {
                 avatar: avatarGabriel,
                 label: 'Gabriel Birman',
-                detail: 'gab@macro.com',
+                detail: 'gab@rox.one',
               },
             ],
           },
@@ -259,7 +259,7 @@ const SCRIPT: Block[] = [
               {
                 avatar: avatarJulia,
                 label: 'Julia Westphal',
-                detail: 'julia@macro.com',
+                detail: 'julia@rox.one',
               },
             ],
           },
@@ -414,7 +414,7 @@ const SCRIPT: Block[] = [
               {
                 avatar: avatarGabriel,
                 label: 'Gabriel Birman',
-                detail: 'gab@macro.com',
+                detail: 'gab@rox.one',
               },
             ],
           },
@@ -2034,7 +2034,7 @@ export function DocsMarkdownGraphic() {
       ref={(element) => {
         frameEl = element;
       }}
-      label="A Macro document typing itself in markdown: headings, bullets and checkboxes form as the syntax lands, and one @ search resolves into a person, a task, a date, an email thread and a channel."
+      label="A Rox document typing itself in markdown: headings, bullets and checkboxes form as the syntax lands, and one @ search resolves into a person, a task, a date, an email thread and a channel."
     >
       <DocsMarkdownScene t={t} />
     </DocsGraphicFrame>

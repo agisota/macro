@@ -30,7 +30,7 @@ pub struct MacroCalendars<O, M, L = UnavailableMeetingLinks> {
     management_origin: Option<String>,
 }
 impl<O, M> MacroCalendars<O, M, UnavailableMeetingLinks> {
-    /// Wire the host's calendar domain capabilities without Macro call creation.
+    /// Wire the host's calendar domain capabilities without Rox call creation.
     pub fn new(occurrences: Arc<O>, mutations: Arc<M>, management_origin: Option<String>) -> Self {
         Self::with_meeting_links(
             occurrences,
@@ -41,7 +41,7 @@ impl<O, M> MacroCalendars<O, M, UnavailableMeetingLinks> {
     }
 }
 impl<O, M, L> MacroCalendars<O, M, L> {
-    /// Wire calendar capabilities and the meeting service that mints Macro calls.
+    /// Wire calendar capabilities and the meeting service that mints Rox calls.
     pub fn with_meeting_links(
         occurrences: Arc<O>,
         mutations: Arc<M>,
@@ -350,7 +350,7 @@ where
         };
         if event.macro_call {
             if event.google_meet {
-                tracing::error!("booking link requested both a Macro call and Google Meet");
+                tracing::error!("booking link requested both a Rox call and Google Meet");
                 return Err(Error::CalendarRejected);
             }
             return self
@@ -469,8 +469,8 @@ fn calendar_failure(error: &CalendarMutationError) -> Error {
     }
 }
 /// Membership adapter over the owning teams repository port.
-pub struct MacroDirectory<T>(pub T);
-impl<T: TeamRepository> Directory for MacroDirectory<T> {
+pub struct RoxDirectory<T>(pub T);
+impl<T: TeamRepository> Directory for RoxDirectory<T> {
     async fn user_teams(&self, user: &str) -> Result<Vec<Uuid>, Error> {
         let user = user.try_into().map_err(|_| Error::Forbidden)?;
         self.0

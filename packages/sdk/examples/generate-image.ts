@@ -6,7 +6,7 @@
  *
  * The image is charged to your AI allowance. Set MACRO_ENV for dev/prod/local.
  */
-import { Macro } from '../src/macro';
+import { Rox } from '../src/macro';
 
 const [channelId, prompt = 'A watercolor lighthouse at dusk, soft light'] =
   process.argv.slice(2);
@@ -17,7 +17,7 @@ if (!channelId) {
   process.exit(1);
 }
 
-const macro = new Macro();
+const macro = new Rox();
 
 const image = await macro.images.generate({
   prompt,

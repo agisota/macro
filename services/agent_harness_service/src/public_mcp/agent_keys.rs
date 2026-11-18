@@ -3,7 +3,7 @@
 //! invited its owner, as the brain checks. That check finds the inviter from
 //! the owner's `team_agents` row, so a key whose owner has none (any person)
 //! is refused by it too. Every other key holder signs in with a JWT or a
-//! Macro API token.
+//! Rox API token.
 
 use std::{future::Future, pin::Pin};
 

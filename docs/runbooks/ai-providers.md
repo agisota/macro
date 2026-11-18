@@ -4,7 +4,7 @@ Runbook for the AI provider account and spend monitors in
 [`monitors/ai-providers.ts`](../../infra/stacks/monitoring/monitors/ai-providers.ts).
 Every alert links the **AI providers** dashboard.
 
-Macro calls each provider with one account key per provider. When a provider
+Rox calls each provider with one account key per provider. When a provider
 suspends that account or it runs out of credit, every request on that provider
 fails until someone fixes billing. Retrying the same provider does not help;
 falling back to a model on another provider does.
@@ -17,7 +17,7 @@ falling back to a model on another provider does.
 
 ## Account suspended or out of credit
 
-A provider answered a request made with Macro's key with a suspension
+A provider answered a request made with Rox's key with a suspension
 (`suspended`: e.g. Fireworks' `412 Account … is suspended`, OpenAI's
 `account_deactivated`) or a billing refusal (`out_of_credit`: HTTP 402,
 Anthropic's low credit balance or usage limit, OpenAI's `insufficient_quota`).
@@ -38,7 +38,7 @@ Priced spend on a provider with a monthly cap has passed 50% (warning), 80%
 (critical) or 100% of that cap this calendar month. At the cap the provider
 suspends the account and the alert above fires.
 
-- Priced spend is Macro's estimate: tokens from each call times the
+- Priced spend is Rox's estimate: tokens from each call times the
   `ai_pricing` rate. The provider's console is the source of truth; check it
   before acting.
 - Spend is summed across environments, since one account serves dev and prod.

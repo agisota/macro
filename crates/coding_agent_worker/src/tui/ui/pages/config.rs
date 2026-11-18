@@ -13,7 +13,7 @@ use crate::tui::app::{App, Mode};
 use crate::tui::config_form::settings;
 
 pub(super) fn render(frame: &mut Frame, app: &App, area: Rect) {
-    let block = card(format!("macrod.toml  ·  {}", app.config_path.display()));
+    let block = card(format!("roxd.toml  ·  {}", app.config_path.display()));
     let inner = block.inner(area);
     frame.render_widget(block, area);
     let runtime = runtime_lines(app, inner.width);

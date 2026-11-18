@@ -1,4 +1,4 @@
-# Macro SDK documentation
+# Rox SDK documentation
 
 The public SDK source and its comments are the source of truth. TypeDoc and
 typedoc-plugin-markdown generate a canonical Markdown hierarchy and an HTML
@@ -31,7 +31,7 @@ Wrangler serves the HTML as static assets without a request handler, credentials
 database or model calls. It builds the docs before serving them. To publish to
 your configured Cloudflare account, run `bun run docs:deploy`.
 
-The production address is `https://sdk.macro.com`, configured as a Worker
+The production address is `https://sdk.rox.one`, configured as a Worker
 custom domain. The `Deploy SDK Docs` workflow publishes relevant changes on
 `main` using the repository's Cloudflare credentials; manual deployments are
 also restricted to `main`. The hostname becomes live with the first successful

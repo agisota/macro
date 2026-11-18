@@ -11,16 +11,16 @@ use tower_http::cors::{AllowOrigin, CorsLayer};
 
 static ALLOWED_ORIGINS: [&str; 11] = [
     "http://localhost:5173",
-    "https://dashboarddev.macro.com",
-    "https://dashboard.macro.com",
+    "https://dashboarddev.rox.one",
+    "https://dashboard.rox.one",
     "http://host.local:3000",
-    "https://dev.macro.com",
-    "https://staging.macro.com",
-    "https://www.macro.com",
-    "https://macro.com",
+    "https://dev.rox.one",
+    "https://staging.rox.one",
+    "https://www.rox.one",
+    "https://rox.one",
     "http://tauri.localhost",
     "tauri://localhost",
-    "https://apollo-testing.macro.com",
+    "https://apollo-testing.rox.one",
 ];
 
 static EXTRA_HEADERS: [&str; 4] = [
@@ -61,8 +61,8 @@ fn is_allowed_origin(origin: &str) -> bool {
         return true;
     }
 
-    // Allow all preview endpoints `https://*preview.macro.com`
-    if origin.ends_with("preview.macro.com") && origin.starts_with("https://") {
+    // Allow all preview endpoints `https://*preview.rox.one`
+    if origin.ends_with("preview.rox.one") && origin.starts_with("https://") {
         return true;
     }
 

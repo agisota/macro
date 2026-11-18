@@ -6,7 +6,7 @@
  */
 
 /**
- * The app to connect, by Pipedream slug. With it, an app Macro Connect
+ * The app to connect, by Pipedream slug. With it, an app Rox Connect
 serves can answer with a Connect URL instead of a Pipedream token.
  */
 export type PipedreamTokenRequestAppSlug = string | null;

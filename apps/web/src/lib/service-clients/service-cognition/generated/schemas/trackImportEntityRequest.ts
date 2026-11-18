@@ -14,7 +14,7 @@ import type { TrackImportStatus } from './trackImportStatus';
  * Body for tracking one external item in the ledger.
  */
 export interface TrackImportEntityRequest {
-  /** The Macro entity created from the item; required when `status` is
+  /** The Rox entity created from the item; required when `status` is
 `imported`. */
   entityId?: TrackImportEntityRequestEntityId;
   /** Stable id of the item in its source: a Linear identifier such as

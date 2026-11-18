@@ -34,7 +34,7 @@ impl IntoResponse for PreviewError {
             .into_response()
     }
 }
-/// Public listener. Mount only on the isolated preview domain, never a Macro cookie domain.
+/// Public listener. Mount only on the isolated preview domain, never a Rox cookie domain.
 pub fn router(service: PreviewService) -> Router {
     Router::new()
         .fallback(any(handle))

@@ -7,15 +7,25 @@ WORKDIR /app
 
 FROM chef AS builder
 ARG CARGO_BUILD_JOBS=0
+# The code-mode assets come prebuilt: their generator needs bun and the
+# packages/ JavaScript workspace, which this context deliberately omits.
+ENV CODE_MODE_ASSETS_DIR=/app/static_assets/code-mode-assets
+# Build scripts compile bundled C sources (librdkafka) and probe system
+# libraries; the Nix dev shell normally supplies these tools.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends cmake pkg-config perl libssl-dev clang libclang-dev protobuf-compiler nasm libzstd-dev \
+    && rm -rf /var/lib/apt/lists/*
 COPY . .
 
-# Build ALL standard service binaries at once (with BuildKit cache mounts for incremental builds)
+# Build the service binaries the local stack runs, in one invocation so the
+# dependency graph is compiled once (BuildKit cache mounts keep it incremental).
 RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=shared \
     --mount=type=cache,target=/usr/local/cargo/git/db,sharing=shared \
     --mount=type=cache,target=/app/target,id=rust-target-dev-debug,sharing=locked \
     jobs="${CARGO_BUILD_JOBS:-0}" \
     && if [ -z "${jobs}" ] || [ "${jobs}" = "0" ]; then jobs="$(nproc)"; fi \
     && cargo build -j "${jobs}" \
+        --features authentication_service/return_passwordless_code,authentication_service/no_rate_limit,search_processing_service/no_pdf \
         --bin authentication_service \
         --bin connection_gateway_service \
         --bin contacts_service \
@@ -28,6 +38,10 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=shared \
         --bin unfurl_service \
         --bin image_proxy_service \
         --bin agent_harness_service \
+        --bin seed_cli \
+        --bin calendar_service \
+        --bin search_processing_service \
+        --bin whatsapp_session_service \
     && mkdir -p /app/out \
     && cp /app/target/debug/authentication_service /app/out/ \
     && cp /app/target/debug/connection_gateway_service /app/out/ \
@@ -40,7 +54,11 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry,sharing=shared \
     && cp /app/target/debug/static_file_service /app/out/ \
     && cp /app/target/debug/unfurl_service /app/out/ \
     && cp /app/target/debug/image_proxy_service /app/out/ \
-    && cp /app/target/debug/agent_harness_service /app/out/
+    && cp /app/target/debug/agent_harness_service /app/out/ \
+    && cp /app/target/debug/seed_cli /app/out/ \
+    && cp /app/target/debug/calendar_service /app/out/ \
+    && cp /app/target/debug/search_processing_service /app/out/ \
+    && cp /app/target/debug/whatsapp_session_service /app/out/
 
 # Base runtime image
 FROM debian:trixie-slim AS base

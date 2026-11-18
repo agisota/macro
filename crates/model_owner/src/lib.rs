@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! Typed owner reference for Macro entities.
+//! Typed owner reference for Rox entities.
 //!
 //! [`Owner`] is the domain value. [`OwnerType`] is the closed string set for
 //! the sqlx type `entity_owner_type` and the matching wire discriminator.
@@ -8,8 +8,8 @@
 //! ```
 //! use model_owner::{Owner, OwnerType};
 //!
-//! let owner = Owner::parse(OwnerType::User, "macro|hutch@macro.com").unwrap();
-//! assert_eq!(owner.principal_id(), "macro|hutch@macro.com");
+//! let owner = Owner::parse(OwnerType::User, "macro|hutch@rox.one").unwrap();
+//! assert_eq!(owner.principal_id(), "macro|hutch@rox.one");
 //! ```
 
 use std::fmt::{Display, Formatter, Result as FmtResult};
@@ -58,7 +58,7 @@ pub enum Owner {
     sqlx(type_name = "entity_owner_type", rename_all = "lowercase")
 )]
 pub enum OwnerType {
-    /// A Macro user.
+    /// A Rox user.
     User,
     /// A bot.
     Bot,

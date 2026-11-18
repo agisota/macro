@@ -3,7 +3,7 @@
 //! This module implements a state machine for determining whether to send
 //! email notifications, following the decision flow:
 //! 1. Check if notification type is blocked (e.g., new_email notifications)
-//! 2. Check if user has a Macro account
+//! 2. Check if user has a Rox account
 //! 3. If no account: decide between single send (for invites) or batch send
 //! 4. If account exists: check push notification settings
 
@@ -111,7 +111,7 @@ impl NotificationSet {
 /// flowchart TD
 ///     Start["Send email for notification?"]
 ///     IsNewEmail{"Is new_email notification?"}
-///     HasAccount{"Has Macro account?"}
+///     HasAccount{"Has Rox account?"}
 ///     HasPush{"Push notifications on?"}
 ///     IsOnline{"Online recently?"}
 ///     GotPush{"Got push notification?"}
@@ -171,7 +171,7 @@ pub struct AllowedNotification<T> {
     inner: UserNotificationRow<Arc<T>>,
 }
 
-/// State indicating the notification recipient has a Macro account.
+/// State indicating the notification recipient has a Rox account.
 ///
 /// Next step: check if push notifications are enabled.
 pub struct AccountExists<T> {
@@ -179,7 +179,7 @@ pub struct AccountExists<T> {
 }
 
 impl<T> AllowedNotification<T> {
-    /// Check if the notification recipient has a Macro account.
+    /// Check if the notification recipient has a Rox account.
     ///
     /// Returns [`AccountExists`] if the user has an account (check push settings next),
     /// or [`DontSend`] if they don't (no account means skip email entirely).

@@ -1,6 +1,6 @@
 use super::*;
 
-const OWNER: &str = "macro|owner@macro.com";
+const OWNER: &str = "macro|owner@rox.one";
 const DOCUMENT_ID: &str = "01a0914f-1fde-7873-80ba-6eef315d3b50";
 
 fn owner() -> Owner {

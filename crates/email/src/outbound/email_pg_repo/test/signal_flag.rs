@@ -95,7 +95,7 @@ async fn update_thread_metadata_syncs_signal_flag(pool: Pool<Postgres>) -> anyho
 
 const THREAD_MACRO_DIGEST: &str = "00000000-0000-0000-0000-00000000e207";
 
-// Macro's own notification emails are never signal: update_thread_metadata
+// Rox's own notification emails are never signal: update_thread_metadata
 // clears a stale flag, and neither an address- nor a domain-important
 // override can promote the thread back.
 #[sqlx::test(
@@ -120,7 +120,7 @@ async fn macro_notification_sender_is_never_signal(pool: Pool<Postgres>) -> anyh
     repo.upsert_email_filter(
         link_id,
         UpsertEmailFilterInput {
-            email_address: Some("no-reply@notification.macro.com".to_string()),
+            email_address: Some("no-reply@notification.rox.one".to_string()),
             email_domain: None,
             is_important: true,
         },
@@ -132,7 +132,7 @@ async fn macro_notification_sender_is_never_signal(pool: Pool<Postgres>) -> anyh
         link_id,
         UpsertEmailFilterInput {
             email_address: None,
-            email_domain: Some("notification.macro.com".to_string()),
+            email_domain: Some("notification.rox.one".to_string()),
             is_important: true,
         },
     )

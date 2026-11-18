@@ -107,7 +107,7 @@ local stack, without Microsoft accounts.
   `instances`, create, patch, delete, `accept`, `tentativelyAccept`,
   `decline`); and what the sign-in and Outlook link code use of the Microsoft
   identity platform.
-- Not here: Gmail; SQS, Postgres and the other Macro services a local
+- Not here: Gmail; SQS, Postgres and the other Rox services a local
   `email_service` or `calendar_service` needs.
 - Not emulated, because our code does not depend on it: invitation and
   response mail for a meeting (`sendResponse`, `comment`), calendar change

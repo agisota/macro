@@ -6,6 +6,6 @@
  */
 
 /**
- * The computer's harness, once macrod has connected.
+ * The computer's harness, once roxd has connected.
  */
 export type ComputerSetupMetadataHarnessId = string | null;

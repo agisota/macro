@@ -1,4 +1,4 @@
-// MacroDB (macro-db-prod and its read replica) health.
+// RoxDB (macro-db-prod and its read replica) health.
 //
 // Thresholds come from two weeks of 5-minute data before the October overload.
 // Monitors on CloudWatch metrics also exist in Grafana
@@ -9,9 +9,9 @@ import { graphGroup, prodMonitor, thresholdGraph } from '../prod-monitor';
 
 // One graph per monitor below, titled like it, with its thresholds.
 const dashboard = new datadog.Dashboard('macrodb-alerts', {
-  title: 'MacroDB alerts',
+  title: 'RoxDB alerts',
   description:
-    'Every prod MacroDB monitor against its thresholds. Declared in infra/stacks/monitoring/monitors/macrodb.ts; see docs/runbooks/macrodb.md.',
+    'Every prod RoxDB monitor against its thresholds. Declared in infra/stacks/monitoring/monitors/macrodb.ts; see docs/runbooks/macrodb.md.',
   layoutType: 'ordered',
   widgets: [
     graphGroup('Memory', [

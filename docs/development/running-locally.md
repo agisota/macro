@@ -1,6 +1,6 @@
 # Running locally
 
-This guide covers two ways to run Macro on your machine.
+This guide covers two ways to run Rox on your machine.
 
 If you only change the frontend, run the frontend against hosted services. You do not need Docker or the local stack.
 
@@ -90,7 +90,7 @@ proxy or Tailscale is needed. Vite forwards hosted development API and WebSocket
 requests through `/__macro_dev/` on this same origin, so arbitrary machine
 hostnames do not need to be added to the deployed CORS allowlist. Authentication
 cookies are scoped to the visiting hostname; sign in with an email code on that
-hostname rather than relying on an existing `.macro.com` cookie. Google/SSO
+hostname rather than relying on an existing `.rox.one` cookie. Google/SSO
 redirects still use the hosted authentication service’s redirect allowlist, which
 does not currently include arbitrary development hostnames.
 
@@ -135,7 +135,7 @@ just run_local --no-doppler
 
 The local stack does not need Doppler. It uses the code-defined local configuration with dummy AWS credentials and fixed test secrets. Most contributors are not on the team, so this is the common path.
 
-Local authentication includes a working signing key pair for Macro API tokens,
+Local authentication includes a working signing key pair for Rox API tokens,
 which settings actions such as enabling CRM require. New teams start with CRM
 disabled; enable it in Settings > CRM before creating pipelines.
 
@@ -211,7 +211,7 @@ and `google_gmail` identity providers and the services' Google URLs
 - **Continue with Google** opens the emulator's page in place of Google's. Pick
   one of the seeded users (`ada@example.com`, `bob@example.com`,
   `carol@example.com`, from `crates/gmail_emulator/seed.example.yaml`). A first
-  sign-in creates the Macro account and connects that user's mailbox.
+  sign-in creates the Rox account and connects that user's mailbox.
 - **Connect another account** in Email, and the email steps of onboarding, open
   the same page; pick another seeded user to add their mailbox.
 - The page and the emulator's control API are at the `gmail_emulator` port,
@@ -222,7 +222,7 @@ and `google_gmail` identity providers and the services' Google URLs
 - Like FusionAuth's own pages, the sign-in page is addressed as `localhost`,
   so sign in with Google from a browser on this machine.
 - The emulator keeps its state in memory: restarting its container returns it
-  to the seed, while Macro's database keeps what it synced.
+  to the seed, while Rox's database keeps what it synced.
 - FusionAuth only gets the emulator's identity providers when its database
   is first filled. A stack created before the emulator existed, or with
   different Google keys, stops at "Waiting for FusionAuth" and says so:
@@ -254,7 +254,7 @@ The authentication service runs without a PostHog key there, so
 - **Continue with Microsoft** opens the emulator's page in place of Microsoft's.
   Pick one of the seeded users (`ada@example.com`, `bob@example.com`,
   `carol@example.com`, from `crates/outlook_emulator/seed.example.yaml`). A first
-  sign-in creates the Macro account.
+  sign-in creates the Rox account.
 - **Connect Outlook**, in onboarding and in Email, opens the same page; pick a
   seeded user to connect their mailbox. Sign-in and the mailbox are separate
   grants, as with Microsoft, so a Microsoft sign-up connects its mailbox in the
@@ -267,7 +267,7 @@ The authentication service runs without a PostHog key there, so
 - Like FusionAuth's own pages, the sign-in page is addressed as `localhost`,
   so sign in with Microsoft from a browser on this machine.
 - The emulator keeps its state in memory: restarting its container returns it
-  to the seed, while Macro's database keeps what it synced and the refresh
+  to the seed, while Rox's database keeps what it synced and the refresh
   tokens it holds stop working. Reconnect the mailbox after a restart.
 - Change notifications are delivered through the stack's proxy: Graph
   subscriptions need an HTTPS webhook, so the workers give the emulator
@@ -276,7 +276,7 @@ The authentication service runs without a PostHog key there, so
   mailbox's subscription exists (`GET /_emulator/subscriptions`).
 - A connected mailbox's Outlook calendars sync from the emulator too: the
   seed gives Ada and Bob calendars with repeating events, and events created
-  or changed in Macro are written to the emulator. The calendar service polls
+  or changed in Rox are written to the emulator. The calendar service polls
   every two minutes, so a change made in the emulator
   (`POST /_emulator/mailboxes/{email}/calendars/default/events`) shows up
   with the next poll.
@@ -321,12 +321,15 @@ To touch only the affected services, keep the instance's generated env/Compose f
 and recreate them with the same Compose project/files and
 `up -d --no-deps --no-build <service>`.
 
-If a local debug service aborts with `tokio-rt-worker` stack overflow, give only
-that service `RUST_MIN_STACK=16777216` in an additional local Compose override,
-then recreate it with the same project, generated environment, and volumes.
-Keep this runtime override outside feature commits. Verify the request that
-triggered the crash, not just the health endpoint: document storage can start
-successfully and then exhaust the default worker stack on a Soup request.
+If a local debug service aborts with `tokio-rt-worker` stack overflow, check the
+generated per-instance override first: `local::gen_compose` already sets
+`RUST_MIN_STACK=16777216` for `document_storage_service`, the only service that
+needs it. Regenerate with `cargo x gen-compose --instance <name>`, then recreate
+that service with the same project, generated environment, and volumes. A
+hand-written override for any other service stays outside feature commits. Verify
+the request that triggered the crash, not just the health endpoint: document
+storage can start successfully and then exhaust the default worker stack on a
+Soup request.
 
 On SELinux hosts, FusionAuth can become healthy while silently skipping an
 unreadable kickstart. The generated per-instance kickstart directory uses
@@ -612,7 +615,7 @@ An existing stack keeps its data. `just stack update` recreates its proxy with
 these rules; sign in once more afterwards. A client that calls the proxy with a
 hard-coded cookie name should send `Authorization: Bearer` instead or use the
 prefixed name. FusionAuth's own cookies stay unprefixed, as its port is published
-directly; they only hold its hosted-login session, not your Macro session.
+directly; they only hold its hosted-login session, not your Rox session.
 
 After changing the cookie rules (`cookie_rewrites` in `xtask_local`'s
 `proxy.rs`), also run them in a real Caddy, which CI doesn't have: from
@@ -674,9 +677,9 @@ The stack launches Vite directly with Node (available in the Nix shell), because
 Bun's Node HTTP compatibility currently hangs on Vite's proxied WebSocket
 upgrades. Bun is still used for dependency installation and builds.
 
-## Macro Computers
+## Rox Computers
 
-`agent_harness_service` runs the Macro computer control plane when
+`agent_harness_service` runs the Rox computer control plane when
 `COMPUTERS_FLEET` is `incus` or `docker`. The stack sets every `COMPUTERS_*`
 value from the fleet you pick. An enabled fleet requires explicit configuration;
 missing values fail startup with the variable name. With no attached fleet, omit
@@ -687,7 +690,7 @@ document storage, app and egress URLs) that the harness resolves through
 `OVERRIDE_*` values to the addresses the fleet's guests reach.
 
 `COMPUTER_RETENTION_DAYS` (default `14`) and `COMPUTER_PAST_DUE_GRACE_DAYS`
-(default `7`) set Macro computers' retention and past-due grace in both
+(default `7`) set Rox computers' retention and past-due grace in both
 authentication_service and agent_harness_service; set them only to override.
 
 Harness config required for either fleet:
@@ -762,14 +765,14 @@ the store path or the daemon's image changes
 `--no-computers` to skip it.
 
 Computers are privileged `macro-box` containers named `macro-computer-<id>`
-on the instance's `<project>_services` network, so macrod dials the agent
+on the instance's `<project>_services` network, so roxd dials the agent
 harness, document storage, and auth in-network. The harness drives the daemon
 through the Docker socket it already mounts for sandboxes. Enrollments are
 written to `infra/local/generated/<instance>/computers/enrollments`, which is
 mounted into the harness at the same absolute path, because the daemon resolves
 bind sources on the host. The harness writes them as root. Each computer's
-`/home` and `/var/lib/macrod` are named volumes (`macro-computer-<id>-home`,
-`-macrod`), like an Incus computer's data disk; releasing the computer
+`/home` and `/var/lib/roxd` are named volumes (`macro-computer-<id>-home`,
+`-roxd`), like an Incus computer's data disk; releasing the computer
 deletes them. Starting the stack again removes the
 instance's computer containers and volumes along with its data.
 
@@ -808,7 +811,7 @@ verifying the pinned SHA-256 fingerprint before saving it and on every start.
 The Incus client pins the certificate bytes, so SAN/name mismatch is expected
 and does not weaken verification.
 
-Enrollment stores the fleet-reachable egress URL in macrod’s config. Computer
+Enrollment stores the fleet-reachable egress URL in roxd’s config. Computer
 sessions use it for first-party MCP servers and the Anthropic gateway, while
 other paired runtimes keep the stack’s external egress URL.
 
@@ -1007,7 +1010,7 @@ For the default instance, omit `--instance`.
 ### Timings sent to Grafana (on by default)
 
 `run_local`, `run_dev`, `just stack up`/`update` and `cargo x build-services`
-send their timings to Loki and Tempo, as CI does, for the `Macro run_local`
+send their timings to Loki and Tempo, as CI does, for the `Rox run_local`
 dashboard. This is on by default. To turn it off, either:
 
 ```bash
@@ -1093,7 +1096,7 @@ the file as having unknown keys and send no timings until they are rebased. The 
 `docker/grafana-forwarder/`) and recreates the lgtm collector so it copies
 everything it receives there; stacks that are already running are sent from then
 on, but carry their instance name only after their next bring-up. The summary
-links the `Macro run_local` dashboard filtered to your machine: its last row
+links the `Rox run_local` dashboard filtered to your machine: its last row
 shows bring-ups, stacks, traces, error logs and logs by machine.
 
 **What is sent.** Everything your services send to the local collector, which

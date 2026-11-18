@@ -182,7 +182,7 @@ export function ShareTabView(props: {
             label={
               anonymityLocked()
                 ? 'People have responded, so this can’t change.'
-                : 'Nobody in Macro, you included, sees who gave which response.'
+                : 'Nobody in Rox, you included, sees who gave which response.'
             }
             class="self-start"
           >

@@ -108,12 +108,12 @@ import { hasSendableInputContent } from './utils/sendable-content';
  */
 type ChannelInputFeatures = {
   /**
-   * `@` mentions of people, agents and Macro items, including Ask Macro.
+   * `@` mentions of people, agents and Rox items, including Ask Rox.
    * `'participants'` offers only the `participants` prop: no agents, items,
    * `@here` or mention tracking (a WhatsApp group's own members).
    */
   mentions: boolean | 'participants';
-  /** Creating Macro items from the composer: tasks, documents, polls, forms. */
+  /** Creating Rox items from the composer: tasks, documents, polls, forms. */
   createItems: boolean;
   gifs: boolean;
   /** Blocks plain-text hosts can't carry: headings, checklists, tables, math, embeds. */
@@ -180,7 +180,7 @@ export type ChannelInputProps = InputCallbacks & {
   collapsible?: boolean;
   /** Defaults to every feature; calls are offered through `onStartCall`. */
   features?: Partial<ChannelInputFeatures>;
-  /** Uploads one picked or dropped file. Defaults to Macro's chat upload. */
+  /** Uploads one picked or dropped file. Defaults to Rox's chat upload. */
   uploadAttachment?: (file: File) => Promise<UploadResult>;
   /** File picker filter. Defaults to the media and documents channels accept. */
   fileAccept?: string;
@@ -497,7 +497,7 @@ export function ChannelInput(props: ChannelInputProps) {
     );
     editor.dispatchCommand(TYPE_AT_SYMBOL_COMMAND, undefined);
   };
-  // Whichever Macro the `@macro` typeahead offers: the classic chat reply or
+  // Whichever Rox the `@macro` typeahead offers: the classic chat reply or
   // the agent-session bot, depending on rollout.
   const macroUser = () =>
     (transformUsers ? transformUsers([]) : (mentionUsers() ?? [])).find(

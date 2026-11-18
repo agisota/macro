@@ -106,11 +106,11 @@ export const PARITY_VIEWS: ParityView[] = [
     id: 'document',
     path: '/drive',
     ready: async (page) => {
-      await expect(rowNamed(page, 'Macro how to guide')).toBeVisible();
+      await expect(rowNamed(page, 'Rox how to guide')).toBeVisible();
     },
     states: [
-      { name: 'detail', go: openDocument('Macro how to guide') },
-      { name: 'menu', only: 'touch', go: openTitleMenu('Macro how to guide') },
+      { name: 'detail', go: openDocument('Rox how to guide') },
+      { name: 'menu', only: 'touch', go: openTitleMenu('Rox how to guide') },
     ],
   },
   {

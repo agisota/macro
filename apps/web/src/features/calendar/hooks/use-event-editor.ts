@@ -74,10 +74,10 @@ const DETAIL_FIELDS = {
 } satisfies EventEditorDisabledFields;
 
 /**
- * Whether the editor addresses the copy whose reminders Macro's alerts
- * follow and whose guests and conferencing Macro records. Another copy's
+ * Whether the editor addresses the copy whose reminders Rox's alerts
+ * follow and whose guests and conferencing Rox records. Another copy's
  * reminders are Google's own and never fire here, and guests or a Meet link
- * written onto another copy never reach the event Macro shows.
+ * written onto another copy never reach the event Rox shows.
  */
 function editsPrimaryCopy(event: CalendarEvent) {
   return reminderCalendarIdOf(event) === event.calendarId;
@@ -207,7 +207,7 @@ export function useEventEditor(props: UseEventEditorProps) {
 
   /**
    * How an edit may change the guest list. Guests written onto a copy other
-   * than the primary one never reach the event Macro shows.
+   * than the primary one never reach the event Rox shows.
    */
   const guestEditing = createMemo<EventGuestEditing>(() => {
     const event = props.event();
@@ -328,11 +328,11 @@ export function useEventEditor(props: UseEventEditorProps) {
       values.time.kind === 'timed' &&
       Date.parse(values.time.endsAt) <= Date.parse(values.time.startsAt)
     ) {
-      setSaveError('Give this event a duration before adding a Macro call.');
+      setSaveError('Give this event a duration before adding a Rox call.');
       setPending(false);
       return;
     }
-    // Older events can carry both a generated Macro link and provider
+    // Older events can carry both a generated Rox link and provider
     // conferencing. Use the saved provider state when clearing either choice.
     const conference =
       values.conference ??

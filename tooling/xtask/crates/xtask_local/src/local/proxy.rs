@@ -243,7 +243,7 @@ fn cookie_block(instance: &Instance) -> String {
 
 /// Shared-dev gateway origin for Local-only inventory prefixes under `run-dev`.
 /// Keep the path (no strip) — gateway tenants are mounted under this prefix.
-const DEV_GATEWAY_ORIGIN: &str = "https://dev-gateway.macro.com";
+const DEV_GATEWAY_ORIGIN: &str = "https://dev-gateway.rox.one";
 
 /// Generate the reverse-proxy routes for every inventoried service that exposes
 /// a path prefix. The inventory is the single source, so adding a service's
@@ -419,7 +419,7 @@ const STATIC_FILE_LOCAL: &str = r#"    handle_path /local-storage/* {
             -Expires
             -Key-Pair-Id
         }
-        reverse_proxy localstack:4566
+        reverse_proxy minio:8333
     }
     handle_path /static-file/* {
         # Keep service dispatch before the S3 rewrite inside this exclusive handle.
@@ -427,7 +427,7 @@ const STATIC_FILE_LOCAL: &str = r#"    handle_path /local-storage/* {
             @svc path /api/* /internal/*
             reverse_proxy @svc static-file-service:8080
             rewrite * /static-file-storage{uri}
-            reverse_proxy localstack:4566
+            reverse_proxy minio:8333
         }
     }
 "#;

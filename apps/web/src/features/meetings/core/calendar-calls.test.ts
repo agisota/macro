@@ -4,14 +4,14 @@ import { calendarCallNavigation } from './calendar-calls';
 it('preserves a different environment host when joining a calendar invitation', () => {
   expect(
     calendarCallNavigation(
-      'https://macro.com/app/meet/secret',
-      'https://dev.macro.com'
+      'https://rox.one/app/meet/secret',
+      'https://dev.rox.one'
     )
-  ).toEqual({ kind: 'external', url: 'https://macro.com/app/meet/secret' });
+  ).toEqual({ kind: 'external', url: 'https://rox.one/app/meet/secret' });
   expect(
     calendarCallNavigation(
-      'https://dev.macro.com/app/meet/secret?join=true',
-      'https://dev.macro.com'
+      'https://dev.rox.one/app/meet/secret?join=true',
+      'https://dev.rox.one'
     )
   ).toEqual({ kind: 'internal', path: '/meet/secret?join=true' });
   expect(

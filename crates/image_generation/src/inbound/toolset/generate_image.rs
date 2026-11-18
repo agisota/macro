@@ -47,13 +47,13 @@ impl From<AspectRatio> for ImageAspectRatio {
     }
 }
 
-/// A reference photo already stored in Macro.
+/// A reference photo already stored in Rox.
 #[derive(Debug, Clone, Copy, Deserialize, JsonSchema)]
 #[serde(tag = "type", rename_all = "camelCase")]
 enum ImageReferenceInput {
     /// An image document the user can view.
     Document {
-        /// The Macro document ID.
+        /// The Rox document ID.
         id: uuid::Uuid,
     },
     /// An uploaded photo or a previously generated static image.
@@ -91,7 +91,7 @@ pub struct GenerateImage {
     aspect_ratio: Option<AspectRatio>,
     #[serde(default)]
     #[schemars(
-        description = "Up to three reference photos, in the order used by the prompt. Use type document with a Macro image document ID, or type staticFile with the UUID from /file/<id> in an uploaded attachment's source URL or the staticFileId of a previous generation. Use the actual IDs supplied in the conversation or by tools; do not invent IDs. Omit for text-only generation.",
+        description = "Up to three reference photos, in the order used by the prompt. Use type document with a Rox image document ID, or type staticFile with the UUID from /file/<id> in an uploaded attachment's source URL or the staticFileId of a previous generation. Use the actual IDs supplied in the conversation or by tools; do not invent IDs. Omit for text-only generation.",
         length(max = 3)
     )]
     reference_images: Option<Vec<ImageReferenceInput>>,

@@ -4,7 +4,7 @@ use macro_db_migrator::MACRO_DB_MIGRATIONS;
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn outbox_is_transactional_deduplicated_and_cascades(pool: PgPool) {
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let store = PgNotificationStore(pool.clone());
     let pending = PendingNotification::new(ProduceNotification {
@@ -50,7 +50,7 @@ async fn outbox_is_transactional_deduplicated_and_cascades(pool: PgPool) {
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn quiet_events_coalesce_and_expired_leases_keep_their_action_identity(pool: PgPool) {
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let store = PgNotificationStore(pool.clone());
     for subject in ["one", "two"] {
@@ -120,7 +120,7 @@ async fn quiet_events_coalesce_and_expired_leases_keep_their_action_identity(poo
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn waking_turn_leaves_quiet_events_for_a_real_prompt(pool: PgPool) {
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let store = PgNotificationStore(pool);
     for (subject, wake) in [("quiet", false), ("wake", true)] {
@@ -155,7 +155,7 @@ async fn waking_turn_leaves_quiet_events_for_a_real_prompt(pool: PgPool) {
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn legacy_review_writes_during_rollout_enter_the_typed_outbox_once(pool: PgPool) {
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let review = macro_uuid::generate_uuid_v7();
     let action = macro_uuid::generate_uuid_v7();
@@ -248,7 +248,7 @@ async fn read_prompter(
 async fn prior_actions_reconcile_before_fresh_inputs_and_interrupted_quiet_events_defer(
     pool: PgPool,
 ) {
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let store = PgNotificationStore(pool.clone());
     let pending = |subject: &str, wake| {
@@ -298,7 +298,7 @@ async fn prior_actions_reconcile_before_fresh_inputs_and_interrupted_quiet_event
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn discovery_pages_advance_while_previous_sessions_remain_eligible(pool: PgPool) {
-    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) SELECT lpad(to_hex(n),32,'0')::uuid,'macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace' FROM generate_series(1,101) n").execute(&pool).await.unwrap();
+    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) SELECT lpad(to_hex(n),32,'0')::uuid,'macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace' FROM generate_series(1,101) n").execute(&pool).await.unwrap();
     let store = PgNotificationStore(pool.clone());
     let mut transaction = pool.begin().await.unwrap();
     for value in 1..=101 {
@@ -334,7 +334,7 @@ async fn discovery_pages_advance_while_previous_sessions_remain_eligible(pool: P
 
 #[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
 async fn unreadable_fresh_events_wait_without_blocking_or_sharing_a_delivered_action(pool: PgPool) {
-    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let store = PgNotificationStore(pool.clone());
     for subject in ["future", "malformed", "valid"] {
@@ -391,7 +391,7 @@ async fn unreadable_fresh_events_wait_without_blocking_or_sharing_a_delivered_ac
 async fn unreadable_bound_events_keep_the_entire_original_action_for_a_compatible_consumer(
     pool: PgPool,
 ) {
-    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::query!("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let store = PgNotificationStore(pool.clone());
     for subject in ["future", "valid"] {
@@ -445,7 +445,7 @@ async fn stored_settlements_read_back_as_the_kind_they_were_written(pool: PgPool
         DecisionOutcome, DecisionVia, ImportOutcome, ImportSettlement, ImportWorkspace,
         ReviewOutcome, ReviewSettlement,
     };
-    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','macrod','/workspace')").execute(&pool).await.unwrap();
+    sqlx::raw_sql("INSERT INTO agent_session (id, owner_id, bot_id, model, harness, workspace) VALUES ('00000000-0000-0000-0000-000000000001','macro|owner@example.com','00000000-0000-0000-0000-00000000a9e7','test','roxd','/workspace')").execute(&pool).await.unwrap();
     let session = AgentSessionId::new_from_uuid(Uuid::from_u128(1));
     let store = PgNotificationStore(pool.clone());
     let import = ReviewSettlement::Import {

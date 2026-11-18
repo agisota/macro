@@ -79,7 +79,7 @@ type DocumentDetail = GetDocumentResponses[200]['data']['documentMetadata'];
 /** Thread reads in flight at once while `comments()` expands a document's roots. */
 const THREAD_FETCH_CONCURRENCY = 8;
 
-/** File types whose content lives in Macro's editors, not in a stored file. */
+/** File types whose content lives in Rox's editors, not in a stored file. */
 const NATIVE_FILE_TYPES = new Set(['md', 'canvas', 'spreadsheet']);
 
 /** One of a document's comment threads: its state and its comments. */
@@ -91,7 +91,7 @@ export interface CommentThread {
 }
 
 /**
- * A Macro document. Can be dropped into a {@link msg} template to render an
+ * A Rox document. Can be dropped into a {@link msg} template to render an
  * inline link to the document.
  */
 export class Document
@@ -1078,7 +1078,7 @@ export class Document
    * quote is placed. Needs comment access. Reply in the thread with
    * `comment.reply()`.
    *
-   * Comments stay in Macro and are not written into a Word file.
+   * Comments stay in Rox and are not written into a Word file.
    *
    * @param body - Plain text, or a rich body composed with {@link msg}.
    * @returns The comment and the text it is anchored to.
@@ -1208,7 +1208,7 @@ export class Document
   }
 
   /**
-   * The document's URL in the Macro web app. A native canvas or spreadsheet
+   * The document's URL in the Rox web app. A native canvas or spreadsheet
    * whose detail has loaded links to its own editor; use `canvas().webUrl()`
    * or `documents.spreadsheet()` when it has not.
    *

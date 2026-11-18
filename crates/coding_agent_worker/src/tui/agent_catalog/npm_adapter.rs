@@ -1,7 +1,7 @@
 //! Agents reached through an ACP adapter distributed on npm.
 //!
 //! The adapter is installed once, into a directory named after its pinned
-//! version under macrod's own adapter root, and launched from there directly.
+//! version under roxd's own adapter root, and launched from there directly.
 //! `npx -y <package>@<version>` would install the same thing, but it does so
 //! on every launch: an npm start-up plus a registry round trip before the
 //! adapter even runs, on every bridge start and every model probe.
@@ -72,7 +72,7 @@ impl NpmAdapter {
     }
 
     /// Whether `harness` launches this adapter at this version, installed by
-    /// macrod or through `npx` as earlier releases wrote it.
+    /// roxd or through `npx` as earlier releases wrote it.
     pub(super) fn recognizes(&self, harness: &Harness) -> bool {
         is_launch(harness, "npx", &["-y", self.package])
             || (harness.args.is_empty() && Path::new(&harness.command).ends_with(self.bin_path()))

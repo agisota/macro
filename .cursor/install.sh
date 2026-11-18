@@ -22,10 +22,10 @@ ensure_test_envs() {
   while IFS= read -r f; do
     [ -z "${f}" ] && continue
     mkdir -p "$(dirname "${f}")"
-    if [ -f "${f}" ] && grep -qxF "DATABASE_URL=${MACRODB_URL}" "${f}"; then
+    if [ -f "${f}" ] && grep -qxF "DATABASE_URL=${ROXDB_URL}" "${f}"; then
       continue
     fi
-    printf 'DATABASE_URL=%s\n' "${MACRODB_URL}" >>"${f}"
+    printf 'DATABASE_URL=%s\n' "${ROXDB_URL}" >>"${f}"
   done < <(crate_env_paths)
 }
 

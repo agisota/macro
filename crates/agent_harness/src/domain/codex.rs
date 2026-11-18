@@ -68,7 +68,7 @@ pub struct CodexRuntime<P, S, H = S> {
     pub owner: MacroUserIdStr<'static>,
     /// Immutable original connection/account identity.
     pub binding: RuntimeIdentity,
-    /// Macro session receiving the external task mapping.
+    /// Rox session receiving the external task mapping.
     pub session: AgentSessionId,
     /// Owning session persistence port.
     pub sessions: S,

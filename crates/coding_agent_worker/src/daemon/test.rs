@@ -72,7 +72,7 @@ async fn startup_without_agents_serves_model_probes_and_stop_closes_the_runtime(
         assert!(String::from_utf8_lossy(&request[..read]).contains("/harnesses/me/agents"));
         socket.write_all(b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 2\r\nConnection: close\r\n\r\n[]").await.unwrap();
     });
-    let daemon = Daemon::start(config, credentials, Path::new("macrod.toml"), None)
+    let daemon = Daemon::start(config, credentials, Path::new("roxd.toml"), None)
         .await
         .unwrap();
     let (socket, _) = tokio::time::timeout(Duration::from_secs(2), gateway.accept())
@@ -220,7 +220,7 @@ async fn a_handed_off_agent_keeps_running_and_streaming_under_the_next_daemon() 
     let first = Daemon::start(
         config.clone(),
         credentials.clone(),
-        Path::new("macrod.toml"),
+        Path::new("roxd.toml"),
         None,
     )
     .await
@@ -251,7 +251,7 @@ async fn a_handed_off_agent_keeps_running_and_streaming_under_the_next_daemon() 
         .expect("the running agent is handed off");
     let handed_pid = u64::try_from(agent.pid().as_raw_nonzero().get()).unwrap();
 
-    let second = Daemon::start(config, credentials, Path::new("macrod.toml"), Some(agent))
+    let second = Daemon::start(config, credentials, Path::new("roxd.toml"), Some(agent))
         .await
         .unwrap();
     let (socket, _) = gateway.accept().await.unwrap();

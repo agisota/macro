@@ -88,7 +88,7 @@ pub(crate) async fn api_context(deps: ApiDependencies) -> anyhow::Result<ApiCont
         MacroAuthJwtValidator::new(jwt_args.clone()),
         InternalAuthConfig {
             api_key: config.internal_api_key.to_string(),
-            default_user_id: Some("macro|INTERNAL@macro.com".to_string()),
+            default_user_id: Some("macro|INTERNAL@rox.one".to_string()),
         },
         macro_authorization::NoBotAuthorizer,
         PgUserApiKeyAuthorizer::new(PgUserApiKeyAuthorizationRepo::new(db.clone())),
@@ -439,6 +439,9 @@ pub(crate) async fn api_context(deps: ApiDependencies) -> anyhow::Result<ApiCont
             // calendar_service's sync kill switch rejects RSVP writes itself.
             CalendarInvitationResolver::new(PgCalendarRepository::new(db.clone())),
             calendar_mutation_service,
+        )),
+        member_access: Arc::new(enterprise::domain::MemberAccessService::new(
+            enterprise::outbound::PgEnterpriseRepository::new(db.clone()),
         )),
         correlation: agent_correlation::inbound::CorrelationState::new(db, jwt_args),
         internal_api_key: config.internal_api_key.clone(),

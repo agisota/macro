@@ -180,7 +180,7 @@ async fn import_writes_only_when_the_calendar_does_not_hold_the_meeting() {
     );
     assert_eq!(remote.imports.lock().unwrap().len(), 1);
 
-    // An invitation Google holds but Macro has not synced yet would lose its
+    // An invitation Google holds but Rox has not synced yet would lose its
     // guests and join link if the import updated it in place.
     remote.held.lock().unwrap().push(serde_json::json!({
         "id": "invitation-id",

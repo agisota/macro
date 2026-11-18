@@ -2,7 +2,7 @@ import { isServer } from 'solid-js/web';
 import { APP_BASE_URL } from './utilBaseUrl';
 
 export interface PageSeo {
-  /** Document/og title, e.g. 'Jobs at Macro'. */
+  /** Document/og title, e.g. 'Jobs at Rox'. */
   title: string;
   /** Meta description (aim for ~150-160 chars). */
   description: string;
@@ -26,7 +26,7 @@ export interface PageSeo {
   noindex?: boolean;
 }
 
-export const SITE_NAME = 'Macro';
+export const SITE_NAME = 'Rox';
 export const DEFAULT_OG_IMAGE = `${APP_BASE_URL}/og/home-unified-2026-10-27.png`;
 
 // Homepage only: other product and article cards retain their own images.
@@ -101,7 +101,7 @@ export function buildSeoTagsHtml(seo: PageSeo): string[] {
   tags.push(
     '<meta data-seo name="twitter:card" content="summary_large_image">',
     `<meta data-seo name="twitter:image" content="${escapeAttr(seo.image ?? DEFAULT_OG_IMAGE)}">`,
-    '<meta data-seo name="twitter:site" content="@macrodotcom">'
+    '<meta data-seo name="twitter:site" content="@roxdotone">'
   );
   if (seo.noindex) {
     tags.push('<meta data-seo name="robots" content="noindex, follow">');
@@ -190,7 +190,7 @@ export function setPageSeo(seo: PageSeo): void {
 
   upsertMeta('name', 'twitter:card', 'summary_large_image');
   upsertMeta('name', 'twitter:image', seo.image ?? DEFAULT_OG_IMAGE);
-  upsertMeta('name', 'twitter:site', '@macrodotcom');
+  upsertMeta('name', 'twitter:site', '@roxdotone');
 
   if (seo.noindex) {
     upsertMeta('name', 'robots', 'noindex, follow');

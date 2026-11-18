@@ -13,8 +13,8 @@ const mocks = vi.hoisted(() => ({
   dark: vi.fn(),
 }));
 vi.mock('@theme/constants', () => ({
-  DEFAULT_DARK_THEME: 'Macro Dark',
-  DEFAULT_LIGHT_THEME: 'Macro Light',
+  DEFAULT_DARK_THEME: 'Rox Dark',
+  DEFAULT_LIGHT_THEME: 'Rox Light',
 }));
 vi.mock('@theme/signals/themeSignals', () => ({
   currentThemeId: () => mocks.id,
@@ -48,7 +48,7 @@ describe('workspace palette', () => {
       applyWorkspaceAccent('#65d8ac', 'person');
       expect(mocks.apply).toHaveBeenNthCalledWith(
         1,
-        `Macro ${mode === 'dark' ? 'Dark' : 'Light'}`
+        `Rox ${mode === 'dark' ? 'Dark' : 'Light'}`
       );
       expect(mocks.token).toHaveBeenCalledWith('accent', '#65d8ac');
       expect(mocks.save).toHaveBeenCalledOnce();

@@ -126,7 +126,7 @@ impl GithubPrNotificationCommon {
         snippet
     }
 
-    /// The displayed actor is always the GitHub login, never the linked Macro
+    /// The displayed actor is always the GitHub login, never the linked Rox
     /// user (whose id still rides along as the notification sender).
     fn actor_name(&self) -> Option<String> {
         self.sender_github_login.clone()
@@ -1327,7 +1327,7 @@ fn comment_sender_label(
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct MentionedInDocumentCommentMetadata {
-    /// Public bot name when the author is an agent rather than a Macro user.
+    /// Public bot name when the author is an agent rather than a Rox user.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sender_display_name: Option<String>,
     /// The name of the document.
@@ -1380,7 +1380,7 @@ impl NotificationExtIos for MentionedInDocumentCommentMetadata {
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct RepliedToDocumentCommentThreadMetadata {
-    /// Public bot name when the author is an agent rather than a Macro user.
+    /// Public bot name when the author is an agent rather than a Rox user.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sender_display_name: Option<String>,
     /// The name of the document.
@@ -1452,7 +1452,7 @@ impl NotificationExtIos for RepliedToDocumentCommentThreadMetadata {
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentedOnDocumentMetadata {
-    /// Public bot name when the author is an agent rather than a Macro user.
+    /// Public bot name when the author is an agent rather than a Rox user.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sender_display_name: Option<String>,
     /// The name of the document.
@@ -1905,7 +1905,7 @@ impl Notification for AgentSessionMentionedMetadata {
 }
 
 /// The first `AGENT_EXCERPT_MAX_CHARS` of an agent's prose, on one line, with
-/// its Macro mention tags replaced by the names they show, as channel alerts
+/// its Rox mention tags replaced by the names they show, as channel alerts
 /// do for messages.
 fn agent_excerpt(text: &str) -> String {
     let plain = PlainTextFormatter::format_xml_text(ParsedXmlText::parse_lenient(text)).0;

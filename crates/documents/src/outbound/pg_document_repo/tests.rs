@@ -16,6 +16,29 @@ use sqlx::{Pool, Postgres, Row};
 mod email_import_deleted;
 mod email_link_trashed;
 
+async fn migrate_for_test(pool: &Pool<Postgres>) {
+    // Keep both colliding migration bodies in the isolated test database,
+    // remapping only the mailbox migration's in-memory version.
+    let migrations = MACRO_DB_MIGRATIONS
+        .iter()
+        .map(|migration| {
+            let mut migration = migration.clone();
+            if migration.version == 20261110150956 && migration.description == "rox mailbox handles"
+            {
+                migration.version = 20261110150959;
+            }
+            migration
+        })
+        .collect::<Vec<_>>();
+    sqlx::migrate::Migrator {
+        migrations: std::borrow::Cow::Owned(migrations),
+        ..sqlx::migrate::Migrator::DEFAULT
+    }
+    .run(pool)
+    .await
+    .unwrap();
+}
+
 use crate::domain::models::{
     CopyDocumentRepoArgs, CreateDocumentRepoArgs, EditDocumentRepoArgs, EmailImportRepoOutcome,
     FileTypeUpdate, GithubPullRequest, GithubPullRequestsResponse, ImportEmailAttachmentRepoArgs,
@@ -112,6 +135,7 @@ async fn team_edit_args(repo: &TestRepo, level: Option<AccessLevel>) -> EditDocu
     .unwrap()
     .unwrap();
     EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         document_id: TEST_DOCUMENT_ID.to_string(),
         document_name: Some("team-edit".to_string()),
         project_id: None,
@@ -1179,6 +1203,65 @@ async fn test_get_user_view_location(pool: Pool<Postgres>) {
     assert!(location.is_none());
 }
 
+#[sqlx::test(migrations = false)]
+async fn share_link_enable_writes_one_audit_and_repeated_enable_does_not_duplicate(
+    pool: Pool<Postgres>,
+) {
+    migrate_for_test(&pool).await;
+    sqlx::raw_sql(include_str!("../../../fixtures/documents_test_data.sql"))
+        .execute(&pool)
+        .await
+        .unwrap();
+    let repo = test_repo(pool.clone());
+    let mut private_permission = md_share_permission();
+    private_permission.link_share = None;
+    private_permission.link_share_access_level = None;
+    let document = repo
+        .create_document(
+            create_document_args(TEST_DOCUMENT_OWNER_ID, false, None),
+            private_permission,
+        )
+        .await
+        .unwrap();
+    let enable_link = || EditDocumentRepoArgs {
+        actor_id: TEST_DOCUMENT_OWNER_ID.to_string(),
+        document_id: document.document_id.clone(),
+        document_name: None,
+        project_id: None,
+        share_permission: Some(UpdateSharePermissionRequestV2 {
+            link_share: Some(Some(LinkShare::Public)),
+            link_share_access_level: Some(Some(AccessLevel::Edit)),
+            team_share_access_level: None,
+            channel_share_permissions: None,
+        }),
+        team_share: None,
+        revoke_non_owner_user_access: false,
+        file_type: None,
+    };
+
+    repo.edit_document(enable_link()).await.unwrap();
+    repo.edit_document(enable_link()).await.unwrap();
+
+    let audits = sqlx::query(
+        "SELECT actor_id, action, resource_id, result FROM enterprise_audit WHERE resource_id = $1",
+    )
+    .bind(&document.document_id)
+    .fetch_all(&pool)
+    .await
+    .unwrap();
+    assert_eq!(audits.len(), 1);
+    assert_eq!(
+        audits[0].get::<String, _>("actor_id"),
+        TEST_DOCUMENT_OWNER_ID
+    );
+    assert_eq!(audits[0].get::<String, _>("action"), "share_link_create");
+    assert_eq!(
+        audits[0].get::<String, _>("resource_id"),
+        document.document_id
+    );
+    assert_eq!(audits[0].get::<String, _>("result"), "success");
+}
+
 #[sqlx::test(
     migrator = "MACRO_DB_MIGRATIONS",
     fixtures(path = "../../../fixtures", scripts("documents_test_data"))
@@ -1230,6 +1313,7 @@ async fn test_edit_document_name(pool: Pool<Postgres>) {
     let repo = test_repo(pool.clone());
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: Some("new-name".to_string()),
@@ -1256,6 +1340,7 @@ async fn test_edit_document_set_file_type(pool: Pool<Postgres>) {
     let repo = test_repo(pool.clone());
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: None,
         project_id: None,
@@ -1282,6 +1367,7 @@ async fn test_edit_document_clear_file_type(pool: Pool<Postgres>) {
     let repo = test_repo(pool.clone());
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: None,
         project_id: None,
@@ -1308,6 +1394,7 @@ async fn test_edit_document_project(pool: Pool<Postgres>) {
     let repo = test_repo(pool.clone());
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: None,
@@ -1338,6 +1425,7 @@ async fn test_edit_document_remove_project(pool: Pool<Postgres>) {
 
     // First set a project
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: None,
@@ -1360,6 +1448,7 @@ async fn test_edit_document_remove_project(pool: Pool<Postgres>) {
 
     // Then remove it by passing empty string
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: None,
@@ -1387,6 +1476,7 @@ async fn test_edit_document_public_to_null_revokes_non_owner_access(pool: Pool<P
     insert_non_owner_user_access(&pool).await;
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: TEST_DOCUMENT_ID.to_string(),
         document_name: None,
@@ -1422,6 +1512,7 @@ async fn test_edit_document_public_to_team_revokes_non_owner_access(pool: Pool<P
     insert_non_owner_user_access(&pool).await;
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: TEST_DOCUMENT_ID.to_string(),
         document_name: None,
@@ -1457,6 +1548,7 @@ async fn test_edit_document_omitted_link_share_does_not_revoke(pool: Pool<Postgr
     insert_non_owner_user_access(&pool).await;
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         document_id: TEST_DOCUMENT_ID.to_string(),
         document_name: None,
         project_id: None,
@@ -1479,6 +1571,7 @@ async fn test_edit_document_omitted_link_share_does_not_revoke(pool: Pool<Postgr
     assert_eq!(result.link_share_access_level.as_deref(), Some("edit"));
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         document_id: TEST_DOCUMENT_ID.to_string(),
         document_name: None,
         project_id: None,
@@ -1516,6 +1609,7 @@ async fn test_edit_document_name_and_project(pool: Pool<Postgres>) {
     insert_non_owner_user_access(&pool).await;
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: Some("renamed".to_string()),
         team_share: None,
@@ -2406,6 +2500,7 @@ async fn test_edit_document_channel_share_creates_user_item_access(pool: Pool<Po
     let channel_id = "c0000000-0000-0000-0000-000000000001";
 
     repo.edit_document(EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: None,
@@ -2481,6 +2576,7 @@ async fn test_edit_document_channel_share_idempotent(pool: Pool<Postgres>) {
     let channel_id = "c0000000-0000-0000-0000-000000000001";
 
     let make_args = || EditDocumentRepoArgs {
+        actor_id: "macro|owner@example.com".to_string(),
         team_share: None,
         document_id: "d0000000-0000-0000-0000-000000000001".to_string(),
         document_name: None,

@@ -51,7 +51,7 @@ fn a_comp_confirmed_at_reservation_has_an_instant_payment_wait() {
 }
 
 #[test]
-fn macrod_connecting_before_create_completion_closes_create_and_boot_together() {
+fn roxd_connecting_before_create_completion_closes_create_and_boot_together() {
     let mut timeline = SetupTimeline::started(at(0));
     timeline.advance(&Phase::Provisioning { start: true }, false, false, at(2));
 
@@ -121,8 +121,8 @@ fn timelines_round_trip_and_states_without_one_still_decode() {
         "power": "on",
         "billing": { "billing": "active", "subscription_item": "si_untimed" },
         "billing_changed_at": "2026-11-04T12:00:00Z",
-        "macrod_connected": true,
-        "macrod_misses": 0,
+        "roxd_connected": true,
+        "roxd_misses": 0,
         "recent_crashes": [],
         "power_on_requested": false
     });

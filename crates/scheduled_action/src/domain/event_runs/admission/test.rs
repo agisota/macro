@@ -92,7 +92,7 @@ async fn permanent_rejections_do_not_query_candidates() {
     *payload = serde_json::from_value(json!({"event_type":"document.updated", "metadata": {
         "document_id":generate_uuid_v7(),"share_permission_updated":false,
         "actor":"bot|01900000-0000-7000-8000-000000000004",
-        "actor_user_id":"macro|event-actor@macro.com", "owner":"macro|event-actor@macro.com"
+        "actor_user_id":"macro|event-actor@rox.one", "owner":"macro|event-actor@rox.one"
     }}))
     .unwrap();
     assert_eq!(
@@ -139,7 +139,7 @@ async fn mentions_mail_and_calls_only_admit_their_recipient_even_when_others_hav
         subscribed.filters = serde_json::from_value(json!([{"events":[name]}])).unwrap();
         let mut other = subscribed.clone();
         other.action_id = generate_uuid_v7();
-        other.owner = Owner::User(MacroUserIdStr::parse_from_str("macro|other@macro.com").unwrap());
+        other.owner = Owner::User(MacroUserIdStr::parse_from_str("macro|other@rox.one").unwrap());
         let action_id = subscribed.action_id;
         let repo = Arc::new(Repo::default());
         repo.0.lock().unwrap().configurations = vec![subscribed, other];
@@ -168,16 +168,16 @@ async fn mentions_mail_and_calls_only_admit_their_recipient_even_when_others_hav
             })).unwrap()),
             "call.ended" => EventPayload::Call(serde_json::from_value(json!({
                 "event_type":"call.record_archived", "metadata": {
-                    "call_id": id, "channel_id": null, "created_by": "macro|host@macro.com",
+                    "call_id": id, "channel_id": null, "created_by": "macro|host@rox.one",
                     "started_at": Utc::now(), "ended_at": Utc::now(), "duration_ms": 1_000,
-                    "participant_count": 2, "participants": ["macro|host@macro.com", owner],
+                    "participant_count": 2, "participants": ["macro|host@rox.one", owner],
                     "has_recording": false, "archive_reason": "last_participant_left"
                 }
             })).unwrap()),
             _ => EventPayload::Message(MessageFact::Mentioned(
                 serde_json::from_value(json!({
                     "parent": {"type":"channel", "id": id}, "message_id": id, "root_id": id,
-                    "sender": "macro|sender@macro.com", "content":"", "created_at": Utc::now(),
+                    "sender": "macro|sender@rox.one", "content":"", "created_at": Utc::now(),
                     "mentioned": {"entity_type":"user", "entity_id": owner}
                 }))
                 .unwrap(),

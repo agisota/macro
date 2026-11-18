@@ -466,7 +466,7 @@ function DocumentCardInner(props: DocumentCardDecoratorProps) {
     try {
       let hostname = window.location.hostname.replace('www.', '').toLowerCase();
       if (hostname === 'localhost') {
-        hostname = 'dev.macro.com';
+        hostname = 'dev.rox.one';
       }
       let link = `https://${hostname}/app/${props.blockName}/${props.documentId}`;
 
@@ -636,7 +636,7 @@ function DocumentCardInner(props: DocumentCardDecoratorProps) {
                 <Show when={canOpenInChat()}>
                   <Dropdown.Item onSelect={handleOpenInChat}>
                     <Sparkle class="size-4 shrink-0" />
-                    <span class="flex-1 truncate">Ask Macro</span>
+                    <span class="flex-1 truncate">Ask Rox</span>
                   </Dropdown.Item>
                 </Show>
                 <Dropdown.CopyItem

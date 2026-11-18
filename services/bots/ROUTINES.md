@@ -1,4 +1,4 @@
-# Routines for Macro and integrations
+# Routines for Rox and integrations
 
 Routines complement the event-driven bots in this directory. The Stripe bot posts
 payment and cancellation notifications; the Anthropic status bot posts provider
@@ -12,7 +12,7 @@ Ideas to configure through **Agents → Routines → Create Routine**:
 | Start the day informed | Tasks, conversations, calendar | Weekdays, 09:00 | Deadlines, blockers, decisions, source links |
 | Keep the team in sync | Referenced project channels | Friday, 16:00 | Draft progress report and next priorities |
 | Catch work that slipped | Open tasks and project conversations | Monday/Wednesday/Friday, 15:00 | Prioritized follow-up list |
-| Walk into meetings prepared | Calendar and linked Macro context | Weekdays, 08:30 | Objectives, recent decisions, open questions |
+| Walk into meetings prepared | Calendar and linked Rox context | Weekdays, 08:30 | Objectives, recent decisions, open questions |
 | Prep before the call settles | The call and who has joined so far | **Call started** trigger | Talking points, open questions, linked context |
 | Follow up after calls | The call's transcript and participants | **Call ended** trigger | Recap, decisions, owners for action items |
 | Spot revenue signals | Stripe bot channel messages | Weekdays, 09:30 | Payment events and cancellation follow-ups |
@@ -43,7 +43,7 @@ inspect settings/results, and `UpdateRoutine` to pause or change future work. A
 routine should not create a replacement of itself on each run.
 
 Routines can also act without an agent: a `code` step runs TypeScript against
-Macro's SDK to label, archive, tag, set status, move to a folder, create a task
+Rox's SDK to label, archive, tag, set status, move to a folder, create a task
 or post in a channel, and decides with `macro.ai.decide` (yes/no questions about
 the triggering item or anything it has read). It is type-checked when saved,
 can change only the areas it lists in `writes`, and a later code step reads its

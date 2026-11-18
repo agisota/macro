@@ -30,7 +30,7 @@ test('edit sends the instructions and returns the revision', async () => {
 
   expect(result).toEqual({
     revision: 'AQID',
-    webUrl: 'https://macro.com/app/md/doc-1',
+    webUrl: 'https://rox.one/app/md/doc-1',
   });
   expect(requests).toHaveLength(1);
   expect(requests[0].method).toBe('POST');
@@ -139,7 +139,7 @@ test('a partial edit returns the clarification', async () => {
   expect(await macro().documents.byId('doc-1').edit('Fix both plans.')).toEqual(
     {
       revision: 'AQID',
-      webUrl: 'https://macro.com/app/md/doc-1',
+      webUrl: 'https://rox.one/app/md/doc-1',
       clarification: 'Which of the two plans?',
     },
   );

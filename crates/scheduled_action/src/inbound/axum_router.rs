@@ -829,7 +829,7 @@ pub struct CatalogQuery {
     operation_id = "routine_catalog",
     params(CatalogQuery),
     responses(
-        (status = 200, body = Vec<CatalogEntry>, description = "Macro's routines, with schedules in the given zone; code steps only where code can be saved"),
+        (status = 200, body = Vec<CatalogEntry>, description = "Rox's routines, with schedules in the given zone; code steps only where code can be saved"),
         (status = 400, body = String, description = "Not a time zone"),
         (status = 401, body = String),
     )

@@ -38,7 +38,7 @@ pub fn build_desktop_on_tag() -> Workflow {
         )
         // The installers users download must reach the release on their own.
         // Updater signing needs Doppler, Apple, and the stable channel; none of
-        // that may stand between a green build and macro.com/download.
+        // that may stand between a green build and rox.one/download.
         .add_job(
             "publish-installers",
             build_appimage_on_tag::publish_job(

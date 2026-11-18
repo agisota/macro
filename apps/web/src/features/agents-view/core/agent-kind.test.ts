@@ -21,7 +21,7 @@ describe('isCoderHarness', () => {
 
   it('treats every coding runtime as a coder', () => {
     expect(isCoderHarness('cursor')).toBe(true);
-    expect(isCoderHarness('macrod')).toBe(true);
+    expect(isCoderHarness('roxd')).toBe(true);
     expect(isCoderHarness('sandbox')).toBe(true);
     expect(kindForHarness('cursor')).toBe('coder');
     expect(kindForHarness('in-memory')).toBe('agent');

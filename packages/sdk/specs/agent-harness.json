@@ -3,7 +3,7 @@
   "info": {
     "title": "agent_harness_service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -132,7 +132,7 @@
             "description": "Harness is not visible to caller"
           },
           "409": {
-            "description": "Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
+            "description": "Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
             "content": {
               "application/json": {
                 "schema": {
@@ -150,7 +150,7 @@
             "description": "Provider probe failed"
           },
           "504": {
-            "description": "Macrod probe timed out"
+            "description": "Roxd probe timed out"
           }
         },
         "security": [
@@ -493,7 +493,7 @@
             "description": "Harness is not visible to caller"
           },
           "409": {
-            "description": "Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
+            "description": "Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)",
             "content": {
               "application/json": {
                 "schema": {
@@ -511,7 +511,7 @@
             "description": "Provider probe failed"
           },
           "504": {
-            "description": "Macrod probe timed out"
+            "description": "Roxd probe timed out"
           }
         },
         "security": [
@@ -3971,7 +3971,7 @@
     "/harnesses/{harness_id}/claude-sign-out": {
       "post": {
         "tags": ["computers"],
-        "summary": "Forget the computer's Claude credential and return it to Macro credits.",
+        "summary": "Forget the computer's Claude credential and return it to Rox credits.",
         "operationId": "claude_sign_out",
         "parameters": [
           {
@@ -4812,7 +4812,7 @@
             "items": {
               "$ref": "#/components/schemas/AgentRepositoryDto"
             },
-            "description": "Every repository the caller reaches through Macro's GitHub App, sorted\nby `owner/name`. Empty when the App is installed nowhere the caller\nhas a claim to."
+            "description": "Every repository the caller reaches through Rox's GitHub App, sorted\nby `owner/name`. Empty when the App is installed nowhere the caller\nhas a claim to."
           }
         }
       },
@@ -5227,7 +5227,7 @@
           },
           "taskId": {
             "type": ["string", "null"],
-            "description": "The Macro task the session was linked to."
+            "description": "The Rox task the session was linked to."
           },
           "threadChannelId": {
             "type": ["string", "null"],
@@ -5599,7 +5599,7 @@
       "CapabilityHarnessDto": {
         "type": "string",
         "description": "Harness names accepted by the capability-discovery endpoint.",
-        "enum": ["in-memory", "cursor", "macrod"]
+        "enum": ["in-memory", "cursor", "roxd"]
       },
       "CaptureAttemptDto": {
         "type": "object",
@@ -5857,13 +5857,13 @@
           },
           "signedInBy": {
             "type": ["string", "null"],
-            "description": "Who signed it in through Macro; absent once that user is deleted or\nwhen it was signed in on the computer itself."
+            "description": "Who signed it in through Rox; absent once that user is deleted or\nwhen it was signed in on the computer itself."
           }
         }
       },
       "ClaudeMode": {
         "type": "string",
-        "description": "How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.",
+        "description": "How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.",
         "enum": ["macro_credits", "own_account"]
       },
       "ClaudeModeResponse": {
@@ -5878,7 +5878,7 @@
               },
               {
                 "$ref": "#/components/schemas/ClaudeAccountStatus",
-                "description": "The active Claude sign-in; absent on Macro credits."
+                "description": "The active Claude sign-in; absent on Rox credits."
               }
             ]
           },
@@ -5974,7 +5974,7 @@
         "properties": {
           "createTasks": {
             "type": "boolean",
-            "description": "Whether new coding sessions research prior work and link a Macro task."
+            "description": "Whether new coding sessions research prior work and link a Rox task."
           },
           "openPullRequests": {
             "type": "boolean",
@@ -6409,7 +6409,7 @@
           "harnessId": {
             "type": ["string", "null"],
             "format": "uuid",
-            "description": "Required for macrod and forbidden for other targets."
+            "description": "Required for roxd and forbidden for other targets."
           },
           "model": {
             "type": ["string", "null"],
@@ -7228,7 +7228,7 @@
           "harnessId": {
             "type": ["string", "null"],
             "format": "uuid",
-            "description": "Required for macrod and forbidden for other targets."
+            "description": "Required for roxd and forbidden for other targets."
           }
         }
       },
@@ -7403,7 +7403,7 @@
       "ModelHarnessDto": {
         "type": "string",
         "description": "Harness names accepted by the model discovery endpoint.",
-        "enum": ["in-memory", "cursor", "macrod"]
+        "enum": ["in-memory", "cursor", "roxd"]
       },
       "MonthlyWeekday": {
         "type": "object",
@@ -7448,7 +7448,7 @@
           },
           "path": {
             "type": "string",
-            "description": "An app path, such as `/md/<id>` or `/channels/<id>?s0.channels.messageId=<id>`:\nwhat follows `/app` in a Macro link. Never an origin."
+            "description": "An app path, such as `/md/<id>` or `/channels/<id>?s0.channels.messageId=<id>`:\nwhat follows `/app` in a Rox link. Never an origin."
           },
           "placement": {
             "$ref": "#/components/schemas/UiPlacement",
@@ -7746,7 +7746,7 @@
           },
           "name": {
             "type": "string",
-            "description": "Canonical Macro tool name from the allowlisted registry."
+            "description": "Canonical Rox tool name from the allowlisted registry."
           },
           "output": {
             "description": "Original tool output, retained independently of the program's return value."
@@ -8408,7 +8408,7 @@
           },
           "linkedBy": {
             "type": ["string", "null"],
-            "description": "The Macro user who linked it, for links a person made."
+            "description": "The Rox user who linked it, for links a person made."
           },
           "source": {
             "$ref": "#/components/schemas/PullRequestLinkSource",
@@ -9046,7 +9046,7 @@
     },
     {
       "name": "computers",
-      "description": "Claude sign-in on Macro computers"
+      "description": "Claude sign-in on Rox computers"
     },
     {
       "name": "voices",

@@ -70,7 +70,7 @@ pub trait ConversationAccess: Send + Sync {
         parent: &MessageParent,
     ) -> Result<EntityAccessReceipt<MessageWrite>, rootcause::Report>;
 
-    /// Mint Macro AI's write capability on behalf of the invoking user, immediately
+    /// Mint Rox AI's write capability on behalf of the invoking user, immediately
     /// before a reply is persisted, so a revoked membership stops the reply.
     async fn bot_write(
         &self,

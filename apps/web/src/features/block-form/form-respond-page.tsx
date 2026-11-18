@@ -22,10 +22,10 @@ import { RespondView } from './views/respond-view';
 function RespondFooter() {
   return (
     <footer class="mx-auto flex w-full max-w-[680px] flex-col gap-1 px-4 pb-8 text-center text-[11px] text-ink-muted">
-      <p>Never submit passwords through Macro Forms.</p>
+      <p>Never submit passwords through Rox Forms.</p>
       <p>
         <a
-          href="mailto:abuse@macro.com?subject=Report%20a%20form"
+          href="mailto:abuse@rox.one?subject=Report%20a%20form"
           class="hover:underline"
         >
           Report this form

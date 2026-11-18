@@ -223,7 +223,7 @@ pub async fn backfill_link_attachment_kind_flags(
 /// Recomputes the denormalized `email_threads.is_signal` flag: true iff the
 /// thread has a non-TRASH message matching the importance heuristic. Mirrors
 /// the Importance(true) predicate in the email crate's dynamic query builder.
-/// Macro's own notification emails (`$2` domain) never count as signal,
+/// Rox's own notification emails (`$2` domain) never count as signal,
 /// regardless of labels or sender overrides.
 #[tracing::instrument(skip(tx), err)]
 pub async fn sync_thread_signal_flag(
@@ -235,7 +235,7 @@ pub async fn sync_thread_signal_flag(
 }
 
 /// Recomputes importance from normalized provider evidence and sender overrides.
-/// Exact address policy overrides domain policy; trash and Macro notification
+/// Exact address policy overrides domain policy; trash and Rox notification
 /// senders remain excluded for both providers.
 pub async fn recompute_signal(
     tx: &mut sqlx::PgConnection,
@@ -287,7 +287,7 @@ pub async fn sync_thread_received_mail(
     Ok(())
 }
 
-/// Shared thread projection for Gmail labels, Outlook folders, and Macro drafts.
+/// Shared thread projection for Gmail labels, Outlook folders, and Rox drafts.
 pub async fn recompute_thread_metadata(
     tx: &mut sqlx::PgConnection,
     thread_id: Uuid,

@@ -23,7 +23,7 @@ const callsFaq = [
     ),
   },
   {
-    q: 'Can someone join without a Macro account?',
+    q: 'Can someone join without a Rox account?',
     a: 'Yes. Guests can join standalone meeting links in their browser without an account. Channel-linked calls require sign-in.',
   },
   {
@@ -36,7 +36,7 @@ const callsFaq = [
       <>
         Yes. Ask an agent to use an accessible transcript to draft a follow-up,
         create tasks, or update customer records. See{' '}
-        <a href="/agents">Macro Agents</a>.
+        <a href="/agents">Rox Agents</a>.
       </>
     ),
   },
@@ -46,7 +46,7 @@ const callsFaq = [
   },
   {
     q: 'Can I use transcripts from another meeting app?',
-    a: 'You can bring a transcript into Macro as a document and use it as agent context. This is separate from recording a call in Macro.',
+    a: 'You can bring a transcript into Rox as a document and use it as agent context. This is separate from recording a call in Rox.',
   },
   {
     q: 'Which plan includes calls?',
@@ -61,7 +61,7 @@ const callsFaq = [
 
 export function RouteCalls() {
   setPageSeo({
-    title: 'Macro Calls — Team-level memory',
+    title: 'Rox Calls — Team-level memory',
     description:
       'Calls right in your channels. Recordings, speaker-identified transcripts, and summaries give your agents team-level memory.',
     path: '/calls',
@@ -94,7 +94,7 @@ export function RouteCalls() {
           demo={{
             tone: 'calls',
           }}
-          title="Macro Agents get the transcript and summary."
+          title="Rox Agents get the transcript and summary."
           description="Every speaker is identified, so the transcript knows who said what. Agents can read the full transcript, plus a summary of why the call matters and how it fits into the bigger picture of your company. Ask one to create tasks or draft a follow-up from what was discussed."
         >
           <DemoInteractionBoundary
@@ -108,7 +108,7 @@ export function RouteCalls() {
             tone: 'calls',
           }}
           title="As easy as a Slack huddle."
-          description="Start a call right in a channel or a DM in Macro Chat, or share a link with anyone, like Google Meet. They can join in a browser without installing anything."
+          description="Start a call right in a channel or a DM in Rox Chat, or share a link with anyone, like Google Meet. They can join in a browser without installing anything."
         >
           <DemoInteractionBoundary
             class="feature-page-visual"
@@ -124,7 +124,7 @@ export function RouteCalls() {
         <FeaturePageFaq
           guide={{ href: '/calls#guide', label: 'calls' }}
           id="calls-faq-title"
-          title="Questions about Macro Calls"
+          title="Questions about Rox Calls"
           items={callsFaq}
         />
         <HomepageClosing />

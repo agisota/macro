@@ -177,7 +177,7 @@ fn authored_html_keeps_editor_round_trip_markers() {
     // Reopening a draft rebuilds Lexical nodes from these; dropping them
     // silently degrades mentions, indentation, and list state.
     let authored = r#"<p style="padding-inline-start:40px" data-lexical-indent="1">indented</p>
-        <a href="https://app.macro.com/app/doc/1" data-document-mention="true" data-document-id="1" data-document-name="Spec" data-block-name="doc">Spec</a>
+        <a href="https://app.rox.one/app/doc/1" data-document-mention="true" data-document-id="1" data-document-name="Spec" data-block-name="doc">Spec</a>
         <div class="macro_quote"><p>quoted</p></div>
         <ol><li value="3">three</li></ol>"#;
 

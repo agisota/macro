@@ -165,7 +165,7 @@ impl UserBotOrHarnessAuthorization {
 /// Acting entity for policies that admit users, bots, and harnesses.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum UserBotOrHarnessEntity<'a> {
-    /// A directly authenticated Macro user.
+    /// A directly authenticated Rox user.
     User(&'a str),
     /// An authenticated bot.
     Bot(BotId),
@@ -205,7 +205,7 @@ pub struct InternalAuthorization {
 /// Acting entity for policies that admit users and internal services.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum UserOrInternalEntity<'a> {
-    /// A directly authenticated Macro user.
+    /// A directly authenticated Rox user.
     User(&'a str),
     /// An authenticated internal service.
     Internal,
@@ -223,7 +223,7 @@ impl fmt::Display for UserOrInternalEntity<'_> {
 /// Acting entity for policies that admit users and bots.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum UserOrBotEntity<'a> {
-    /// A directly authenticated Macro user.
+    /// A directly authenticated Rox user.
     User(&'a str),
     /// An authenticated bot.
     Bot(BotId),

@@ -61,7 +61,7 @@ impl<S, L, Auth> Clone for CalendarMutationRouterState<S, L, Auth> {
 
 impl<S, L, Auth> CalendarMutationRouterState<S, L, Auth> {
     /// Create router state from a shared mutation service, the meeting-link
-    /// provider minting Macro calls for new events, and authorization state.
+    /// provider minting Rox calls for new events, and authorization state.
     pub fn new(
         service: Arc<S>,
         meeting_links: Arc<L>,
@@ -175,7 +175,7 @@ pub struct CreateCalendarEventRequest {
     pub reminders: Option<EventReminders>,
     /// Conference to attach to the new event; omit to create it without one.
     pub conference: Option<ConferenceChange>,
-    /// Mint a Macro call and write its join link into the description and
+    /// Mint a Rox call and write its join link into the description and
     /// location before creating the event, so the invitation carries it.
     /// Cannot be combined with `conference`.
     #[serde(default)]
@@ -222,9 +222,9 @@ pub struct UpdateCalendarEventRequest {
     /// A third-party conference is replaced or detached like any other, since
     /// the request is explicit. Omit the field to leave it alone.
     pub conference: Option<ConferenceChange>,
-    /// Switch the event to a Macro call in this write: mint one, write its
+    /// Switch the event to a Rox call in this write: mint one, write its
     /// join link into the description and location, and detach any provider
-    /// conference. An event already holding a Macro call keeps it. Cannot be
+    /// conference. An event already holding a Rox call keeps it. Cannot be
     /// combined with `conference`.
     #[serde(default)]
     pub macro_call: bool,
@@ -426,7 +426,7 @@ pub enum CalendarMutationErrorCode {
     /// The provider applied the mutation but local persistence lagged;
     /// refetching converges.
     PersistFailed,
-    /// The Macro call for a new event could not be created; nothing was
+    /// The Rox call for a new event could not be created; nothing was
     /// written to the calendar.
     MacroCallFailed,
     /// The meeting is on several of the requester's inboxes and the agent
@@ -643,7 +643,7 @@ impl From<MacroCallEventError> for CalendarMutationApiError {
                 tracing::error!(error = ?error, "calendar event macro call creation failed");
                 Self {
                     code: CalendarMutationErrorCode::MacroCallFailed,
-                    message: "the Macro call for the event could not be created; the event was \
+                    message: "the Rox call for the event could not be created; the event was \
                               not saved"
                         .to_string(),
                     status: StatusCode::SERVICE_UNAVAILABLE,
@@ -666,7 +666,7 @@ impl From<MacroCallEventError> for CalendarMutationApiError {
         (status = 401, description = "Authentication required"),
         (status = 403, description = "Calendar is read-only or needs reauthorization, or an agent's program asked to create without a review or confirmation", body = CalendarMutationApiError),
         (status = 409, description = "No writable calendar or the provider rejected the event", body = CalendarMutationApiError),
-        (status = 503, description = "Transient provider failure, or the Macro call could not be created", body = CalendarMutationApiError),
+        (status = 503, description = "Transient provider failure, or the Rox call could not be created", body = CalendarMutationApiError),
     )
 )]
 pub async fn create_calendar_event<S, L, Auth>(
@@ -798,7 +798,7 @@ fn update_scope(
         (status = 403, description = "Calendar is read-only or needs reauthorization, or the event is a snapshot of a shared meeting", body = CalendarMutationApiError),
         (status = 404, description = "Event or targeted occurrence not found", body = CalendarMutationApiError),
         (status = 409, description = "The provider rejected the update", body = CalendarMutationApiError),
-        (status = 503, description = "Transient provider failure, or the Macro call could not be created", body = CalendarMutationApiError),
+        (status = 503, description = "Transient provider failure, or the Rox call could not be created", body = CalendarMutationApiError),
     )
 )]
 pub async fn update_calendar_event<S, L, Auth>(

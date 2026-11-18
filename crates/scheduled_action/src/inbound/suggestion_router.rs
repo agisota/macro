@@ -95,7 +95,7 @@ pub struct SuggestionsQuery {
     operation_id = "list_routine_suggestions",
     params(SuggestionsQuery),
     responses(
-        (status = 200, body = RoutineSuggestions, description = "Per surface, the routines AI suggested for the caller, then Macro's templates; reading never generates"),
+        (status = 200, body = RoutineSuggestions, description = "Per surface, the routines AI suggested for the caller, then Rox's templates; reading never generates"),
         (status = 401, body = String),
         (status = 404, body = String, description = "Routine suggestions are off for the caller"),
         (status = 500, body = String),

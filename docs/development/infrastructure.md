@@ -1,6 +1,6 @@
 # Infrastructure
 
-Macro's AWS infrastructure is Pulumi in TypeScript under `infra/`, run with Bun,
+Rox's AWS infrastructure is Pulumi in TypeScript under `infra/`, run with Bun,
 in `us-east-1`; the observability pilot (`infra/stacks/observability`) runs in
 `us-east-2`. Cloudflare Workers deploy with `wrangler`, not Pulumi. This
 guide covers how the code is laid out, the patterns to copy, how deploys happen,
@@ -79,7 +79,7 @@ egress-only security group, explicit CPU and memory, and a longer `stopTimeout`.
 
 ## Gateway routing
 
-`gateway.macro.com` (`dev-gateway.macro.com` in dev) is one ALB owned by the
+`gateway.rox.one` (`dev-gateway.rox.one` in dev) is one ALB owned by the
 `gateway` stack. Services attach to its HTTPS listener with path rules.
 
 - Rule priorities live only in `GATEWAY_PRIORITIES`
@@ -153,7 +153,7 @@ local resources.
 - Pass the stack's `tags` object (`environment`, `tech_lead`, `project`) to every
   resource; there are no default tags.
 - Inside components, pass `{ parent: this }`.
-- `protect` stateful or adopted resources (MacroDB, KMS keys, WAF, Kafka in prod).
+- `protect` stateful or adopted resources (RoxDB, KMS keys, WAF, Kafka in prod).
   Turning off a `deploy_*` config gate destroys what it guarded.
 - Remove `import:` options after adopting a resource, or the next run replaces it.
 - Format with Biome; `infra/biome.jsonc` excludes files uploaded verbatim.
@@ -190,7 +190,7 @@ build/deployment failure gates remain attempt-scoped.
 - `openbao` (dev only) is a deliberate exception to the gateway pattern: the
   vault API must never be gateway-reachable, so it has its own internal ALB.
   Don't copy it for ordinary services.
-- Dev MacroDB's primary and replica are both configured as `db.t4g.large`
+- Dev RoxDB's primary and replica are both configured as `db.t4g.large`
   (8 GiB). Replica resizing requires a separate `macrodb` deployment; dev's
   `applyImmediately` setting makes that resize interrupt replica connections.
   Resize the replica before deploying the DSS pool change through the service

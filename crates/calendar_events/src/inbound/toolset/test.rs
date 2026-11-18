@@ -202,7 +202,7 @@ impl CalendarMacroCallService for MockMutations {
             .push((event_id, patch, scope));
         Ok(crate::domain::models::CalendarEvent {
             description: Some(format!(
-                "<p>Join Macro call: <a href=\"{MEETING_URL}\">{MEETING_URL}</a></p>"
+                "<p>Join Rox call: <a href=\"{MEETING_URL}\">{MEETING_URL}</a></p>"
             )),
             ..sample_event(Vec::new())
         })
@@ -408,7 +408,7 @@ impl CalendarOccurrenceService for MockOccurrences {
     }
 }
 
-const MEETING_URL: &str = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+const MEETING_URL: &str = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
 #[derive(Default)]
 struct MockMeetingLinks {
@@ -861,7 +861,7 @@ async fn create_with_a_macro_call_mints_a_meeting_and_writes_its_link_into_the_e
         draft.description.as_deref(),
         Some(
             format!(
-                "<p>Agenda</p>\n<p>Join Macro call: <a href=\"{MEETING_URL}\">{MEETING_URL}</a></p>"
+                "<p>Agenda</p>\n<p>Join Rox call: <a href=\"{MEETING_URL}\">{MEETING_URL}</a></p>"
             )
             .as_str()
         )

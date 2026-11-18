@@ -1,6 +1,6 @@
 /**
- * A Macro tool the fold recognized by name — reached over Macro's MCP
- * server, or called natively by Macro's own agent.
+ * A Rox tool the fold recognized by name — reached over Rox's MCP
+ * server, or called natively by Rox's own agent.
  *
  * Successful calls reuse their registered result renderer and its disclosure.
  * Running, failed, and stopped calls reuse the same renderer without a result,
@@ -27,11 +27,11 @@ import { createMemo, ErrorBoundary, type JSX, Show, Suspense } from 'solid-js';
 import { isToolActive, ToolCard } from '../../ui';
 import type { ToolCallCommon, ToolCallContext } from './shared';
 
-type MacroDetail = Extract<ToolDetail, { kind: 'macro' }>;
+type RoxDetail = Extract<ToolDetail, { kind: 'macro' }>;
 type ToolResponse = NamedTool<ToolName, 'response'>;
 
 export function MacroToolCall(props: {
-  detail: MacroDetail;
+  detail: RoxDetail;
   common: ToolCallCommon;
   grouped?: boolean;
   context: ToolCallContext;

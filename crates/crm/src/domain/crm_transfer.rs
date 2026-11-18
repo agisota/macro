@@ -88,7 +88,7 @@ pub trait CrmTransferService: Send + Sync + 'static {
 }
 
 /// [`CrmTransferService`] over the pipeline workflows, the CRM's records and
-/// Macro's files.
+/// Rox's files.
 pub struct CrmTransferServiceImpl<Workflows, Records, Files> {
     workflows: Arc<Workflows>,
     records: Records,

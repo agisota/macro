@@ -81,7 +81,7 @@ fn stable_message_id_rejects_header_or_query_injection() {
     ] {
         assert!(super::validate_message_id(id).is_err());
     }
-    assert!(super::validate_message_id("email-send-123+attempt@macro.com").is_ok());
+    assert!(super::validate_message_id("email-send-123+attempt@rox.one").is_ok());
 }
 
 fn message(attachments: Vec<AttachmentToSend>) -> SendRequest {

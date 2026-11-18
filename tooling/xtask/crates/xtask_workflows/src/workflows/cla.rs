@@ -199,7 +199,7 @@ fn script() -> String {
                 owner, repo, issue_number: prNumber,
                 body: [
                   `@${{pr.user.login}} — we'd like to merge this. Before we can, we need you to sign the`,
-                  'Macro CLA (one time, covers all future contributions):',
+                  'Rox CLA (one time, covers all future contributions):',
                   `**${{SIGN_URL}}**`,
                   'Once signed, comment `/macro-cla check` here and the CLA check will go green.',
                 ].join('\n'),

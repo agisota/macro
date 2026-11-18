@@ -167,7 +167,7 @@ struct Addressed {
 ///
 /// The advertised URL is the proxy's base URL with a route appended, and that
 /// base may be a path on a shared host
-/// (`https://dev-gateway.macro.com/agent-harness-egress`). A sandbox dials it
+/// (`https://dev-gateway.rox.one/agent-harness-egress`). A sandbox dials it
 /// whole and the gateway strips the prefix, so the router only ever reads
 /// `/mcp/{slug}`. Nothing strips anything on the way here, so the base comes
 /// off first and what is left is read the way the router reads it.

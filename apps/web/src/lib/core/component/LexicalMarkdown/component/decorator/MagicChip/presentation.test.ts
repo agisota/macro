@@ -79,7 +79,7 @@ describe('deriveMagicChipPresentation', () => {
     });
   });
 
-  it('names a Macro tool and a drafted user tool by their tools', () => {
+  it('names a Rox tool and a drafted user tool by their tools', () => {
     const macro = deriveMagicChipPresentation({
       persistedStatus: 'booting',
       response: response({

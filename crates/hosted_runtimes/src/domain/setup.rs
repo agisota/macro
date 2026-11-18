@@ -1,4 +1,4 @@
-//! Setup milestones from purchase to the first macrod connection.
+//! Setup milestones from purchase to the first roxd connection.
 //!
 //! The timeline lives in [`crate::domain::lifecycle::ComputerState`] so every
 //! process that applies a lifecycle event can close the wait that event ends.
@@ -20,7 +20,7 @@ pub enum SetupPhase {
     Payment,
     /// Confirmation until the guest boots: outbox wait, fleet create, any capacity wait.
     Create,
-    /// Guest boot until macrod enrolls, claims its harness and connects.
+    /// Guest boot until roxd enrolls, claims its harness and connects.
     Boot,
 }
 
@@ -46,7 +46,7 @@ pub struct PhaseTiming {
     pub ended_at: DateTime<Utc>,
 }
 
-/// Milestones of one computer's first setup; latched once macrod connects.
+/// Milestones of one computer's first setup; latched once roxd connects.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SetupTimeline {
     /// The purchase reserved capacity (the reservation's creation).
@@ -57,7 +57,7 @@ pub struct SetupTimeline {
     /// The guest started booting.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub booting_at: Option<DateTime<Utc>>,
-    /// macrod first connected; setup is complete.
+    /// roxd first connected; setup is complete.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub connected_at: Option<DateTime<Utc>>,
     /// The guest waited for host capacity before it could boot.
@@ -77,12 +77,12 @@ impl SetupTimeline {
         }
     }
 
-    /// Whether macrod has connected once.
+    /// Whether roxd has connected once.
     pub fn complete(&self) -> bool {
         self.connected_at.is_some()
     }
 
-    /// Reservation until the first macrod connection, once complete.
+    /// Reservation until the first roxd connection, once complete.
     pub fn total(&self) -> Option<(DateTime<Utc>, DateTime<Utc>)> {
         self.connected_at.map(|end| (self.reserved_at, end))
     }
@@ -92,7 +92,7 @@ impl SetupTimeline {
     pub fn advance(
         &mut self,
         phase: &Phase,
-        macrod_connected: bool,
+        roxd_connected: bool,
         waiting_for_capacity: bool,
         now: DateTime<Utc>,
     ) -> Vec<PhaseTiming> {
@@ -114,7 +114,7 @@ impl SetupTimeline {
         }
         if let Some(paid_at) = self.paid_at
             && self.booting_at.is_none()
-            && (booting || macrod_connected)
+            && (booting || roxd_connected)
         {
             self.booting_at = Some(now);
             finished.push(PhaseTiming {
@@ -124,7 +124,7 @@ impl SetupTimeline {
             });
         }
         if let Some(booting_at) = self.booting_at
-            && macrod_connected
+            && roxd_connected
         {
             self.connected_at = Some(now);
             finished.push(PhaseTiming {

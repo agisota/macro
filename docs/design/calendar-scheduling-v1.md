@@ -1,9 +1,9 @@
 # Scheduling v1 parity
 
 Reference: signed-in Cal.com Links, event editor, Bookings, Availability, Teams,
-and Insights, inspected September 18, 2026. Macro keeps its own identity and UI
+and Insights, inspected September 18, 2026. Rox keeps its own identity and UI
 primitives while using the same sidebar/page hierarchy, settings sections,
-bordered lists, metric strips, and chart layout. Themes use Macro semantic tokens;
+bordered lists, metric strips, and chart layout. Themes use Rox semantic tokens;
 the isolated browser fixture defaults to the light reference appearance.
 
 | Core workflow | Implemented |
@@ -12,12 +12,12 @@ the isolated browser fixture defaults to the light reference appearance.
 | Booking form | Required name/email and configurable questions |
 | Availability | Multiple named schedules, explicit default, weekly ranges, per-day enable/add/remove/copy, timezone, date overrides, deletion protected while in use |
 | Scheduling policies | Notice, horizon, buffers, slot interval, daily limits; DST-aware server slot calculation and atomic conflict reservations |
-| Team scheduling | Existing Macro membership and permissions, collective and round robin; team hours intersect configured personal default hours and busy calendars |
+| Team scheduling | Existing Rox membership and permissions, collective and round robin; team hours intersect configured personal default hours and busy calendars |
 | Guest booking | Public links, visitor timezone, slots, confirmation, private cancellation/reschedule receipt; provider invitations and Google Meet |
 | Booking management | Upcoming/unconfirmed/past/cancelled, search/event/timezone filters, guest/host/answer details, legacy-request approval, cancellation confirmation, reschedule, attendance/no-show recording |
 | Insights | Personal/team scope, 7/30/90/custom dates, event/host filters, prior-period comparisons, completed/rescheduled/cancelled/no-show counts, scheduled meeting hours, duration, trends, hourly totals, event/host rankings, CSV |
 | Calendar integration | Existing connected calendars and permission checks, busy conflict exclusion, provider event create/update/cancel |
-| Macro entry points | Calendar settings tab; copy booking link and scheduling settings in calendar header; standalone public and receipt routes |
+| Rox entry points | Calendar settings tab; copy booking link and scheduling settings in calendar header; standalone public and receipt routes |
 
 ## Reporting semantics
 

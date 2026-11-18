@@ -285,7 +285,7 @@ async fn links_point_at_the_deployment_web_app() {
         token: "fixture-run-token".into(),
         endpoints: SdkEndpoints {
             hosts: BTreeMap::new(),
-            web_app_url: "https://dev.macro.com".into(),
+            web_app_url: "https://dev.rox.one".into(),
         },
         ..RunEnvironment::default()
     };
@@ -317,8 +317,8 @@ export async function main({token, hosts, webAppUrl, macro: supplied}) {
     assert_eq!(
         value,
         serde_json::json!({
-            "supplied": "https://dev.macro.com/app/form/fixture-form",
-            "constructed": "https://dev.macro.com/app/md/fixture-document",
+            "supplied": "https://dev.rox.one/app/form/fixture-form",
+            "constructed": "https://dev.rox.one/app/md/fixture-document",
         })
     );
     service.shutdown().await;

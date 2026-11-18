@@ -6,7 +6,7 @@ const ran = (code: number, stdout = ''): Ran => ({ code, stdout, stderr: '' });
 const local = '{ "model": "aura-2-thalia-en" }';
 const chosen = '{ "model": "aura-2-orion-en" }';
 
-test("a voice Macro committed since the checkout's last pull is the call's voice", async () => {
+test("a voice Rox committed since the checkout's last pull is the call's voice", async () => {
   const asked: string[][] = [];
   const text = await currentVoiceFile({
     git: async (args) => {

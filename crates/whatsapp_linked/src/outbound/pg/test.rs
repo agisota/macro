@@ -446,7 +446,7 @@ async fn an_unverified_lid_is_quarantined_instead_of_guessed(pool: PgPool) {
     assert_eq!(state, "quarantined");
 }
 
-/// The person and Macro user each alias of the binding resolves to.
+/// The person and Rox user each alias of the binding resolves to.
 async fn aliases(pool: &PgPool, binding: Uuid) -> Vec<(String, Uuid, Option<String>)> {
     sqlx::query!(
         "SELECT a.jid, a.person_id, p.user_id FROM whatsapp_identity_alias a JOIN external_chat_person p ON p.id = a.person_id WHERE a.chat_id = $1 ORDER BY a.jid",

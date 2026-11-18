@@ -145,7 +145,7 @@ export interface ConfirmedEmailOptions {
   /** The message this answers; the email is then sent as a reply in its thread. */
   replyingTo?: EmailMessage;
   /**
-   * Macro documents to attach as files: uploaded files (PDFs, images,
+   * Rox documents to attach as files: uploaded files (PDFs, images,
    * spreadsheets, Word documents) the user can view, 18 MB together. An
    * editor-native document has no file; link to it in the body instead.
    */
@@ -314,7 +314,7 @@ export class EmailMessage extends MacroEntity<EmailMessageData> {
   /**
    * This message as a forward: a SendEmail draft with the note, the quoted
    * message under the forwarded-message header, and its attachments as
-   * Macro documents. Pass it to `execution.reviews.create({kind: 'email'})`
+   * Rox documents. Pass it to `execution.reviews.create({kind: 'email'})`
    * in a session; in a thread, use {@link forwardConfirmed}.
    *
    * @write

@@ -118,7 +118,7 @@ it('clears a thread reply when switching to another conversation', () => {
   ).toBeTruthy();
 });
 
-it('keeps the populated Chat sidebar while opening documents and email in independent splits', () => {
+it('keeps the populated Chat sidebar while opening documents and email in independent splits', async () => {
   vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1440);
   const view = render(() => {
     const project = createChannelHeroProject();
@@ -139,12 +139,15 @@ it('keeps the populated Chat sidebar while opening documents and email in indepe
   expect(nav.getByRole('button', { name: 'Wolf Mermelstein' })).toBeTruthy();
   expect(nav.getByRole('button', { name: 'Austin Barron' })).toBeTruthy();
   fireEvent.click(view.getByRole('button', { name: CHANNEL_DOC }));
-  expect(
-    view.getByRole('textbox', { name: 'Document title' }).textContent
-  ).toBe(CHANNEL_DOC);
+  // The split renders on the next microtask; a fully loaded suite can push that
+  // past a bare `getBy`, so every post-click assertion waits.
+  const title = await view.findByRole('textbox', { name: 'Document title' });
+  expect(title.textContent).toBe(CHANNEL_DOC);
   expect(view.getByRole('log', { name: 'Channel launch' })).toBeTruthy();
   fireEvent.click(view.getByRole('button', { name: CHANNEL_EMAIL }));
-  expect(view.container.querySelectorAll('.channel-work-item')).toHaveLength(2);
+  await vi.waitFor(() =>
+    expect(view.container.querySelectorAll('.channel-work-item')).toHaveLength(2)
+  );
   expect(
     view.container.querySelector('.channel-work-split')?.getAttribute('style')
   ).toContain('--channel-pane-count: 3');
@@ -154,9 +157,11 @@ it('keeps the populated Chat sidebar while opening documents and email in indepe
   fireEvent.click(
     within(email).getByRole('button', { name: 'Close shared work' })
   );
-  expect(view.container.querySelectorAll('.channel-work-item')).toHaveLength(1);
+  await vi.waitFor(() =>
+    expect(view.container.querySelectorAll('.channel-work-item')).toHaveLength(1)
+  );
   fireEvent.click(nav.getByRole('button', { name: 'Austin Barron' }));
-  expect(view.getByRole('log', { name: 'Channel dm-austin' })).toBeTruthy();
+  await view.findByRole('log', { name: 'Channel dm-austin' });
   expect(view.getByText('looks much sharper, thanks')).toBeTruthy();
 });
 

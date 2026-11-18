@@ -36,7 +36,7 @@ const searchTypes: readonly SearchType[] = [
 ];
 
 /**
- * Search the user's Macro content across every kind of item in one call:
+ * Search the user's Rox content across every kind of item in one call:
  * documents and tasks, email, channels and their messages, projects, call
  * transcripts, calendar events, agent session transcripts, AI chats, and CRM
  * companies when asked for. Results come most relevant first, as typed entity

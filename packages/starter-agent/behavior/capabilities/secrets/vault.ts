@@ -1,5 +1,5 @@
 /**
- * Macro's vault API, the agent routes: one function per route, each
+ * Rox's vault API, the agent routes: one function per route, each
  * answering the parsed value or the code the vault refused with. Nothing here
  * throws for a refusal, and nothing it returns on failure holds anything the
  * vault sent: an answer that isn't the expected shape is `unexpected`, not a

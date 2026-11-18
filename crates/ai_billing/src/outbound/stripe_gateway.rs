@@ -33,13 +33,13 @@ pub const PURPOSE_AI_CREDITS: &str = "ai_credits";
 pub const PURPOSE_AI_OVERAGE: &str = "ai_overage";
 /// [`PURPOSE_METADATA_KEY`] value for an automatic credit-reload invoice.
 pub const PURPOSE_AI_CREDIT_RELOAD: &str = "ai_credit_reload";
-/// Metadata key carrying the payer's Macro user id.
+/// Metadata key carrying the payer's Rox user id.
 pub const PAYER_METADATA_KEY: &str = "macro_user_id";
 /// Metadata key carrying the `ai_overage_charge` id on overage invoices.
 pub const CHARGE_METADATA_KEY: &str = "macro_charge_id";
 /// Metadata key carrying the `ai_credit_reload` id on reload invoices.
 pub const RELOAD_METADATA_KEY: &str = "macro_reload_id";
-const CREDIT_RELOAD_INVOICE_DESCRIPTION: &str = "Macro AI credits (automatic reload)";
+const CREDIT_RELOAD_INVOICE_DESCRIPTION: &str = "Rox AI credits (automatic reload)";
 const BILLING_SCOPE_METADATA_KEY: &str = "macro_billing_scope";
 const PERSONAL_SCOPE_STAMP: &str = "personal";
 const TEAM_ID_METADATA_KEY: &str = "team_id";
@@ -439,7 +439,7 @@ impl PaymentGateway for StripePaymentGateway {
                     currency: Currency::USD,
                     unit_amount: Some(request.amount_cents),
                     product_data: Some(CreateCheckoutSessionLineItemsPriceDataProductData {
-                        name: format!("Macro AI credits ({})", dollars(request.amount_cents)),
+                        name: format!("Rox AI credits ({})", dollars(request.amount_cents)),
                         description: Some(
                             "Prepaid AI usage, applied after your plan's included AI is used."
                                 .to_string(),
@@ -452,7 +452,7 @@ impl PaymentGateway for StripePaymentGateway {
             }]),
             metadata: Some(metadata.clone()),
             payment_intent_data: Some(CreateCheckoutSessionPaymentIntentData {
-                description: Some("Macro AI credits".to_string()),
+                description: Some("Rox AI credits".to_string()),
                 metadata: Some(metadata),
                 ..Default::default()
             }),

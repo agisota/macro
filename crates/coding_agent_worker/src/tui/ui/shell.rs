@@ -34,7 +34,7 @@ pub(super) fn render_header(frame: &mut Frame, app: &App, area: Rect) {
     };
     let mut spans = vec![
         Span::styled(
-            " macrod ",
+            " roxd ",
             Style::new().fg(THEME.accent_text).bg(ACCENT).bold(),
         ),
         Span::raw(" "),
@@ -123,7 +123,7 @@ pub(super) fn render_footer(frame: &mut Frame, app: &App, area: Rect) {
     if let Some(tag) = &app.update_ready {
         frame.render_widget(
             Paragraph::new(Line::styled(
-                format!("Update {tag} ready — restart macrod to use it "),
+                format!("Update {tag} ready — restart roxd to use it "),
                 Style::new().fg(OK),
             ))
             .alignment(ratatui::layout::Alignment::Right),

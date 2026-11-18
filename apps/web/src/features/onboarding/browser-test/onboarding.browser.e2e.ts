@@ -33,7 +33,7 @@ test('a new user signs up, connects everything, and starts the trial', async ({
   expect((await fakeWorld(page)).accent).toBe('#f77d67');
 
   // Inbox OAuth is a full-page round-trip back into the same step.
-  await page.getByRole('button', { name: 'Connect work email' }).click();
+  await page.getByRole('button', { name: 'Import work email' }).click();
   await expect(page.getByText('ada@acme.com')).toBeVisible();
   await page.getByRole('button', { name: 'Continue' }).click();
 
@@ -67,7 +67,7 @@ test('a new user signs up, connects everything, and starts the trial', async ({
   await page.getByRole('button', { name: 'Start 30 day trial' }).click();
 
   // Stripe returns on the success leg; the flow waits for the webhook's license.
-  await expectLanded(page, 'Entered Macro at /home');
+  await expectLanded(page, 'Entered Rox at /home');
   const world = await fakeWorld(page);
   expect(world.viewer).toMatchObject({
     tutorialComplete: true,
@@ -83,7 +83,7 @@ test('a deep link survives the inbox OAuth round-trip', async ({ page }) => {
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
 
-  await page.getByRole('button', { name: 'Connect work email' }).click();
+  await page.getByRole('button', { name: 'Import work email' }).click();
   await expect(page.getByText('ada@acme.com')).toBeVisible();
   expect(new URL(page.url()).searchParams.get('next')).toBeNull();
 
@@ -95,7 +95,7 @@ test('a deep link survives the inbox OAuth round-trip', async ({ page }) => {
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Continue with Free' }).last().click();
 
-  await expectLanded(page, 'Entered Macro at /channel/launch');
+  await expectLanded(page, 'Entered Rox at /channel/launch');
 });
 
 test('an email link opens the dropped step and a new session keeps later progress', async ({
@@ -190,7 +190,7 @@ test('Free, Pro, and Max appear below the unchanged trial offer', async ({
   ).toBe(true);
   await page.getByRole('button', { name: 'Continue with Free' }).last().click();
 
-  await expectLanded(page, 'Entered Macro at /md/notes');
+  await expectLanded(page, 'Entered Rox at /md/notes');
   expect(await fakeEvents(page)).toContainEqual({
     event: 'onboarding_v4_completed',
     data: expect.objectContaining({ plan: 'free' }),
@@ -209,7 +209,7 @@ test('Max checkout returns with a licensed account and no trial', async ({
   });
   await page.reload();
   await page.getByRole('button', { name: 'Continue with Max' }).click();
-  await expectLanded(page, 'Entered Macro at /home');
+  await expectLanded(page, 'Entered Rox at /home');
   expect((await fakeWorld(page)).viewer).toMatchObject({
     tutorialComplete: true,
     licensed: true,
@@ -287,7 +287,7 @@ test('an invite’s free months replace the trial and keep its promotion', async
     page.getByRole('button', { name: 'Start 30 day trial' })
   ).toHaveCount(0);
   await page.getByRole('button', { name: 'Claim your free months' }).click();
-  await expectLanded(page, 'Entered Macro at /home');
+  await expectLanded(page, 'Entered Rox at /home');
   expect((await fakeWorld(page)).viewer?.licensed).toBe(true);
 });
 
@@ -337,15 +337,15 @@ test('a personal address refers friends instead of creating a team', async ({
 test('staff can bypass onboarding from any step', async ({ page }) => {
   await openFixture(page, '/?view=flow', {
     viewer: {
-      id: 'macro|wolf@macro.com',
-      email: 'wolf@macro.com',
+      id: 'macro|wolf@rox.one',
+      email: 'wolf@rox.one',
       tutorialComplete: false,
       licensed: false,
     },
   });
   await expect(heading(page, 'Create your workspace')).toBeVisible();
   await page.getByRole('button', { name: 'Bypass' }).click();
-  await expectLanded(page, 'Entered Macro at /home');
+  await expectLanded(page, 'Entered Rox at /home');
   expect((await fakeWorld(page)).record.status).toBe('completed');
 });
 
@@ -358,7 +358,7 @@ test('a finished user is sent straight into the app', async ({ page }) => {
       licensed: false,
     },
   });
-  await expectLanded(page, 'Entered Macro at /md/doc');
+  await expectLanded(page, 'Entered Rox at /md/doc');
 });
 
 test.describe('with motion', () => {
@@ -401,7 +401,7 @@ test.describe('with motion', () => {
     ).toBeVisible();
     await page.getByRole('button', { name: 'Continue' }).click();
     await expect(
-      page.getByRole('button', { name: 'Connect work email' })
+      page.getByRole('button', { name: 'Import work email' })
     ).toBeEnabled();
     await expect(page.locator('[inert]')).toHaveCount(0);
   });
@@ -473,7 +473,7 @@ for (const width of [1440, 390]) {
         )
       );
       await page.reload();
-      await page.getByRole('button', { name: 'Connect work email' }).click();
+      await page.getByRole('button', { name: 'Import work email' }).click();
       await expect(page.getByText('ada@acme.com')).toBeVisible();
       await expect(page.locator('.onboarding-flow')).toHaveCSS(
         'background-color',
@@ -793,7 +793,7 @@ for (const width of [1280, 390]) {
       page.getByText('30 days free, then', { exact: false })
     ).toHaveCount(0);
     await page.getByRole('button', { name: 'Get Pro', exact: true }).click();
-    await expectLanded(page, 'Entered Macro at /home');
+    await expectLanded(page, 'Entered Rox at /home');
   });
 }
 

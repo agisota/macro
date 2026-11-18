@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <title>Rox</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -8,19 +9,19 @@
     />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#FFFFFF" />
-    <meta name="description" content="Macro AI Workspace" />
+    <meta name="description" content="Rox AI Workspace" />
     <meta name="macro-bundle-build" content="__MACRO_BUNDLE_BUILD__" />
     <link
       rel="shortcut icon"
-      href="%ASSETS_PATH%/macro-favicon.svg"
-      type="image/svg+xml"
+      href="%ASSETS_PATH%/rox-mark.png"
+      type="image/png"
     />
     <link
       rel="icon"
-      href="%ASSETS_PATH%/macro-favicon.svg"
-      type="image/svg+xml"
+      href="%ASSETS_PATH%/rox-mark.png"
+      type="image/png"
     />
-    <link rel="apple-touch-icon" href="%ASSETS_PATH%/logo192.png" />
+    <link rel="apple-touch-icon" href="%ASSETS_PATH%/rox-mark.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -127,7 +128,7 @@
         }
         if (localStorage.getItem("macro:login") !== "true") {
           shell.style.background = "var(--bs-page)";
-          shell.innerHTML = `<svg class="bs-mark" viewBox="0 0 24 24"><path d="m6.25 4.038-2.242.879v5.818l-1.756-1.658-2.242.879v6.677c0 .257.106.502.292.678l2.794 2.642 2.244-.879v-5.818l7.084 6.697 2.244-.879v-5.818l7.086 6.698 2.24-.879v-6.677c0-.257-.104-.502-.292-.678l-8.124-7.682-2.244.879v5.818z"/></svg>`;
+          shell.innerHTML = `<img class="bs-mark" src="%ASSETS_PATH%/rox-mark.png" alt="" width="1024" height="1024" />`;
         } else {
           shell.innerHTML = `<div class="bs-rail"></div><div class="bs-content"></div>`;
         }

@@ -59,7 +59,7 @@ class IncomingCallTest {
             put("livekitServerUrl", "wss://unused.invalid")
             put("livekitToken", "test-token")
             // An unavailable status endpoint must never authorize an answer.
-            put("ringStatusUrl", "https://unavailable-call-test.macro.com/status")
+            put("ringStatusUrl", "https://unavailable-call-test.rox.one/status")
         }.toString(),
     )
 

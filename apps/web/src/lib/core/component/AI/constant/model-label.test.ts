@@ -4,6 +4,7 @@ import { catalogModelLabel, modelLabel } from './model-label';
 describe('modelLabel', () => {
   it('prefers the house name for models the app routes itself', () => {
     expect(modelLabel('anthropic/claude-sonnet-5-5')).toBe('Sonnet 5.5');
+    expect(modelLabel('groq/gpt-oss-120b')).toBe('Rox R1 Max');
     expect(modelLabel('openai/gpt-5.6-mini')).toBe('GPT-5.6 mini');
     // Runtimes that drop the provider segment still get the house name.
     expect(modelLabel('claude-opus-5-5')).toBe('Opus 5.5');

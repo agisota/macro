@@ -114,7 +114,7 @@ pub async fn delete_email_filter(
 /// email_filters change, since the override feeds the signal heuristic.
 /// The recompute mirrors sync_thread_signal_flag (thread.rs) / the
 /// Importance(true) predicate in the dynamic query builder, including the
-/// unconditional exclusion of Macro's own notification sender (`$4` domain).
+/// unconditional exclusion of Rox's own notification sender (`$4` domain).
 #[tracing::instrument(skip(conn, email_address), err)]
 pub async fn resync_signal_flags_for_sender(
     conn: &mut sqlx::PgConnection,

@@ -95,7 +95,7 @@ pub(crate) async fn fetch_unused_link_ids(
             LEFT JOIN
                 public.email_user_history h ON l.id = h.link_id
             WHERE
-                l.macro_id NOT LIKE '%@macro.com'
+                l.macro_id NOT LIKE '%@rox.one'
                 AND l.created_at < NOW() - (make_interval(days => $1))
             GROUP BY
                 l.id
@@ -122,7 +122,7 @@ pub(crate) async fn fetch_inactive_link_ids(
             JOIN
                 public.email_user_history h ON l.id = h.link_id
             WHERE
-                l.macro_id NOT LIKE '%@macro.com'
+                l.macro_id NOT LIKE '%@rox.one'
             GROUP BY
                 l.id
             HAVING

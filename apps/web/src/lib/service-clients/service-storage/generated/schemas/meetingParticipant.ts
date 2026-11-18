@@ -10,7 +10,7 @@ import type { MeetingParticipantAvatarUrl } from './meetingParticipantAvatarUrl'
  * Minimal waiting-room display data, without account identities or call content.
  */
 export interface MeetingParticipant {
-  /** Profile image, when available for a Macro member. */
+  /** Profile image, when available for a Rox member. */
   avatarUrl?: MeetingParticipantAvatarUrl;
   /** Name displayed in the waiting room. */
   displayName: string;

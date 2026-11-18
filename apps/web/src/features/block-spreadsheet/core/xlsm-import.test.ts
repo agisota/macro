@@ -15,7 +15,7 @@ import { inspectXlsxArchive } from './xlsx-archive';
 import { decodeXlsx, encodeXlsx } from './xlsx-codec';
 
 const VBA_WARNING =
-  'VBA macros are not imported. Cells, formulas and formatting are; the macros do not run in Macro.';
+  'VBA macros are not imported. Cells, formulas and formatting are; the macros do not run in Rox.';
 const MACRO_SHEET_WARNING = 'Excel 4.0 macro sheets are not imported.';
 const CONTROLS_WARNING = 'Form and ActiveX controls are not imported.';
 
@@ -53,7 +53,7 @@ function budgetSheet(): WorkbookFileSheet {
 }
 
 /**
- * A Macro-written workbook turned into the package Excel saves as .xlsm: the
+ * A Rox-written workbook turned into the package Excel saves as .xlsm: the
  * macro-enabled main content type, a VBA project and its signature, plus any
  * `extra` parts.
  */
@@ -164,7 +164,7 @@ describe('macro-enabled workbook import', () => {
     );
   });
 
-  it("still refuses macros in Macro's own export check", async () => {
+  it("still refuses macros in Rox's own export check", async () => {
     expect(() => inspectXlsxArchive(fixture('poi-simple-macro.xlsm'))).toThrow(
       'must not contain macros'
     );

@@ -97,12 +97,12 @@ pub struct EventType {
     pub duration_minutes: u16,
     /// Meeting location.
     pub location: String,
-    /// Generate a Macro call and attach its join link when someone books.
+    /// Generate a Rox call and attach its join link when someone books.
     /// Mutually exclusive with Google Meet. Omitted on links saved before
-    /// Macro calls were a booking option, which keep their previous conference.
+    /// Rox calls were a booking option, which keep their previous conference.
     #[serde(default)]
     pub macro_call: bool,
-    /// Generate a Google Meet conference. Mutually exclusive with a Macro call.
+    /// Generate a Google Meet conference. Mutually exclusive with a Rox call.
     pub google_meet: bool,
     /// Whether new bookings are accepted.
     pub enabled: bool,
@@ -110,7 +110,7 @@ pub struct EventType {
     pub schedule_id: Uuid,
     /// Host assignment policy.
     pub mode: SchedulingMode,
-    /// Current Macro user identities selected as hosts.
+    /// Current Rox user identities selected as hosts.
     pub hosts: Vec<String>,
     /// Protected time before a meeting.
     pub before_minutes: u16,
@@ -154,9 +154,9 @@ pub struct Profile {
 /// A profile's private ownership boundary.
 #[derive(Clone, Debug)]
 pub struct OwnedProfile {
-    /// Owning Macro user, absent for team profiles.
+    /// Owning Rox user, absent for team profiles.
     pub user_id: Option<String>,
-    /// Owning Macro team, absent for personal profiles.
+    /// Owning Rox team, absent for personal profiles.
     pub team_id: Option<Uuid>,
     /// Editable/public configuration.
     pub profile: Profile,
@@ -320,7 +320,7 @@ pub struct Slot {
 /// Membership facts from the owning teams domain.
 #[derive(Clone, Debug)]
 pub struct TeamMember {
-    /// Macro user identity.
+    /// Rox user identity.
     pub user_id: String,
     /// Whether this member is a team owner or admin, who may manage any host's bookings.
     pub admin: bool,
@@ -384,7 +384,7 @@ pub struct PublicEvent {
     pub duration_minutes: u16,
     /// Location shared by the host.
     pub location: String,
-    /// Whether a Macro call will be created for the booking.
+    /// Whether a Rox call will be created for the booking.
     pub macro_call: bool,
     /// Whether a Google Meet will be created.
     pub google_meet: bool,

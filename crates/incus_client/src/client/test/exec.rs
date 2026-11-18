@@ -7,7 +7,7 @@ async fn exec_runs_without_websockets_and_checks_the_guest_exit_code() {
         Mock::given(method("POST"))
             .and(path("/1.0/instances/mc-01900000000070008000000000000001/exec"))
             .and(body_json(json!({
-                "command": ["systemctl", "restart", "macrod"],
+                "command": ["systemctl", "restart", "roxd"],
                 "interactive": false,
                 "wait-for-websocket": false
             })))
@@ -30,7 +30,7 @@ async fn exec_runs_without_websockets_and_checks_the_guest_exit_code() {
         let result = client
             .exec(
                 &InstanceName::try_new("mc-01900000000070008000000000000001").unwrap(),
-                &["systemctl", "restart", "macrod"],
+                &["systemctl", "restart", "roxd"],
             )
             .await;
         if exit_code == 0 {

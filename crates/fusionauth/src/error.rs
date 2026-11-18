@@ -65,7 +65,7 @@ pub enum FusionAuthClientError {
     #[error("{SERVICE_NAME} refused the OAuth2 token request: {0}")]
     OAuth2TokenRefused(OAuth2TokenError),
     /// The provider refused to refresh this user's grant by policy, such as a
-    /// Google Workspace admin not approving Macro. Retrying will not help
+    /// Google Workspace admin not approving Rox. Retrying will not help
     /// until the user's organization allows access.
     #[error("access blocked by the user's organization: {reason}")]
     GrantBlocked {
@@ -113,16 +113,16 @@ impl std::fmt::Display for OAuth2TokenError {
 }
 
 /// Google OAuth error codes for a grant the user's organization does not let
-/// Macro use, such as a Workspace admin who has not approved the app. Only
+/// Rox use, such as a Workspace admin who has not approved the app. Only
 /// that organization can lift them. `invalid_client` and `unauthorized_client`
-/// are deliberately absent: they mean Macro's own OAuth client is broken.
+/// are deliberately absent: they mean Rox's own OAuth client is broken.
 #[derive(
     Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, strum::EnumString, strum::Display,
 )]
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum GrantBlockReason {
-    /// A Workspace admin has not reviewed and configured access for Macro.
+    /// A Workspace admin has not reviewed and configured access for Rox.
     AccessNotConfigured,
     /// A Workspace admin policy forbids the requested scopes.
     AdminPolicyEnforced,

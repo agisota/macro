@@ -1,5 +1,5 @@
 /**
- * Telemetry: the agent's spans, through Macro's Telemetry facade. Exported
+ * Telemetry: the agent's spans, through Rox's Telemetry facade. Exported
  * only when the computer gives an OTLP endpoint; otherwise spans are made and
  * dropped. Spans record ids, counts and outcomes, never content.
  */

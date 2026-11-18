@@ -1,5 +1,5 @@
 //! Access tokens: Microsoft's OAuth token endpoint, and a stand-in for the
-//! route of Macro's authentication service that the email service gets its
+//! route of Rox's authentication service that the email service gets its
 //! Microsoft access tokens from.
 
 use axum::extract::{Query, State as AxumState};

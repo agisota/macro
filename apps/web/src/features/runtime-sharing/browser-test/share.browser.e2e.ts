@@ -11,7 +11,7 @@ const REQUEST = '0198a4cc-e138-7670-a308-a6b766602703';
 const runtime = (id: string, name: string, owner: string, access: string) => ({
   allow_permission_bypass: false,
   id,
-  kind: 'macrod',
+  kind: 'roxd',
   name,
   owner: { type: 'user', user_id: owner },
   access,

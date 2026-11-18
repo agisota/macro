@@ -1,16 +1,16 @@
-//! Macro's own MCP server, answered on its own route.
+//! Rox's own MCP server, answered on its own route.
 //!
 //! Unlike the owner's connected apps, this destination is not resolved from
 //! their rows - every session gets it, because every session's owner is a
-//! Macro user. What has to be resolved per owner is the credential:
+//! Rox user. What has to be resolved per owner is the credential:
 //! `mcp_service` authenticates a *user*, so the proxy exchanges the session
-//! owner's identity for a short-lived Macro API token and stamps that. The
+//! owner's identity for a short-lived Rox API token and stamps that. The
 //! token also carries the session's bound agent as its signed `agent_id`
-//! claim, so the tools write as that agent rather than the generic Macro bot.
+//! claim, so the tools write as that agent rather than the generic Rox bot.
 //!
 //! The exchange is local signing with the same RS256 key
 //! `authentication_service` uses - this process holds a key that can
-//! impersonate any user at every service accepting Macro API tokens. That
+//! impersonate any user at every service accepting Rox API tokens. That
 //! custody is the cost of not putting a mint-for-anyone endpoint on the
 //! network; what limits the blast radius is that every token minted here is
 //! single-user, scoped to the session's owner, and minutes from expiry.
@@ -35,7 +35,7 @@ mod test;
 /// can stream for a while, and a token that expires mid-call fails it.
 const EXPIRY_MARGIN_MINUTES: i64 = 5;
 
-/// Exchange a session owner's identity for a short-lived Macro API token.
+/// Exchange a session owner's identity for a short-lived Rox API token.
 ///
 /// Implementations own the whole exchange - including finding whatever else
 /// the minting side needs to know about the owner beyond their id.
@@ -49,7 +49,7 @@ pub trait MacroApiTokens: Send + Sync {
     ) -> impl Future<Output = Result<String, EgressError>> + Send;
 }
 
-/// Layers Macro's own MCP destination over another resolver.
+/// Layers Rox's own MCP destination over another resolver.
 ///
 /// [`McpDestination::Macro`] is answered here; everything else passes
 /// straight through to `Inner`. The two destinations arrive from different
@@ -169,7 +169,7 @@ where
         }
 
         let token = BearerToken::new(self.token(owner, agent, session).await?);
-        // Every session has Macro's own server; there is no grant to lack.
+        // Every session has Rox's own server; there is no grant to lack.
         let call = if self.local_cleartext && self.url.scheme() != "https" {
             UpstreamCall::bearer_over_local_cleartext(self.url.clone(), token)
         } else {
@@ -197,7 +197,7 @@ fn token_expiry(token: &str) -> Result<DateTime<Utc>, EgressError> {
 
     let unreadable = |detail: &str| {
         EgressError::Upstream(rootcause::report!(
-            "minted Macro API token is unreadable: {detail}"
+            "minted Rox API token is unreadable: {detail}"
         ))
     };
 
@@ -230,7 +230,7 @@ fn token_expiry(token: &str) -> Result<DateTime<Utc>, EgressError> {
 /// document-permission JWT follows the same pattern), and this process is
 /// already the credential concentrator - it holds the GitHub App key and the
 /// Pipedream project token on the same terms. The key can act as any user
-/// wherever Macro API tokens are accepted, which is why everything minted
+/// wherever Rox API tokens are accepted, which is why everything minted
 /// here is short-lived and names only the one owner the grant did.
 pub struct MacroApiTokenSigner {
     pool: sqlx::PgPool,
@@ -333,7 +333,7 @@ impl MacroApiTokenSigner {
             )));
         }
         // The claims name the owner three ways - the FusionAuth root id, the
-        // Macro user id, and their organization - and the session row only
+        // Rox user id, and their organization - and the session row only
         // carries the second, so the rest is read off their `User` row. An
         // owner with no row is a session created wrong, which is ours to fix,
         // not something the sandbox can retry its way out of.
@@ -375,7 +375,7 @@ impl MacroApiTokenSigner {
         })
         .map_err(|error| {
             EgressError::Internal(rootcause::report!(
-                "could not sign a Macro API token: {error}"
+                "could not sign a Rox API token: {error}"
             ))
         })
     }

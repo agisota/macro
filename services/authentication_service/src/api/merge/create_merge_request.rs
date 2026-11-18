@@ -149,7 +149,7 @@ pub async fn handler(
     if let Err(e) = ctx
         .ses_client
         .send_email(
-            "auth@macro.com",        // from email
+            "auth@rox.one",        // from email
             &req.email,              // to email
             "Account Merge Request", // subject
             &content,                // content

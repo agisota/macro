@@ -93,7 +93,7 @@ export function CodeStepBody(props: {
               class="grid min-w-0 gap-1.5 rounded-xl border border-failure/30 bg-failure-bg px-3 py-2.5"
             >
               <span class="text-sm text-failure">
-                This code doesn’t type-check against Macro’s SDK yet, so the
+                This code doesn’t type-check against Rox’s SDK yet, so the
                 routine can’t be saved with it. Draft it again or remove this
                 step.
               </span>
@@ -130,7 +130,7 @@ export function CodeStepBody(props: {
             <code>{props.step.source}</code>
           </pre>
           <StepNote>
-            Written by AI and checked against Macro’s SDK when saved. Change the
+            Written by AI and checked against Rox’s SDK when saved. Change the
             underlined values yourself; Edit in the step’s menu changes the
             rest.
           </StepNote>

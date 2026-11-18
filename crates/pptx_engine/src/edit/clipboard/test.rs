@@ -112,7 +112,7 @@ fn source() -> Presentation {
                 start: None,
                 end: None,
                 props: crate::edit::RunPatch {
-                    link: Some("https://macro.com/".into()),
+                    link: Some("https://rox.one/".into()),
                     ..Default::default()
                 },
             },
@@ -160,7 +160,7 @@ fn shapes_paste_into_the_same_slide_with_fresh_ids_and_shared_media() {
         payload
             .rels
             .iter()
-            .any(|r| r.external && r.target == "https://macro.com/")
+            .any(|r| r.external && r.target == "https://rox.one/")
     );
     assert_eq!(payload.theme_colors.len(), 12);
     let media = parts_under(&pres, "/ppt/media/");
@@ -229,7 +229,7 @@ fn shapes_paste_into_another_deck_with_their_parts() {
     let rels = to.part_rels("/ppt/slides/slide2.xml").unwrap();
     assert!(
         rels.iter()
-            .any(|r| r.rel_type == rel_type::HYPERLINK && r.target == "https://macro.com/")
+            .any(|r| r.rel_type == rel_type::HYPERLINK && r.target == "https://rox.one/")
     );
     // Pasting again shares the picture part.
     apply(

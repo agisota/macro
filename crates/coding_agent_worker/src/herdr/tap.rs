@@ -21,7 +21,7 @@ pub(crate) enum TapEvent {
     Opened {
         /// The ACP session id.
         session: String,
-        /// The Macro session, when the service named it in `_meta`.
+        /// The Rox session, when the service named it in `_meta`.
         macro_session: Option<AgentSessionId>,
     },
     /// A prompt went to the agent.

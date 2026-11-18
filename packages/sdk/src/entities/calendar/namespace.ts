@@ -52,7 +52,7 @@ export interface CreateEventOptions {
   reminders?: EventReminders;
   /** Conference to attach; omit to create the event without one. */
   conference?: ConferenceChange;
-  /** Mint a Macro call with the event; its join link lands in the description
+  /** Mint a Rox call with the event; its join link lands in the description
    * and location. Cannot be combined with `conference`. */
   macroCall?: boolean;
   /** Out-of-office properties; present to create an out-of-office event. */
@@ -123,7 +123,7 @@ export type CalendarEventRole = 'organizer' | 'guest';
  *   teams and hosts from what it returns; never ask for IDs, revisions or JSON. Default to
  *   personal ownership unless a team is requested. Explain the complete proposal in readable
  *   prose: ownership and named hosts, who attends, meeting name and description, duration,
- *   location, Macro call or Google Meet, time zone, weekly hours and date exceptions, link name,
+ *   location, Rox call or Google Meet, time zone, weekly hours and date exceptions, link name,
  *   buffers, minimum notice, booking window, slot interval, daily limit, guest questions, and
  *   whether bookings are enabled. Group related settings so it is easy to review. Ask whether to
  *   proceed, and end the turn. Only after the user's reply approving that proposal, call
@@ -141,7 +141,7 @@ export type CalendarEventRole = 'organizer' | 'guest';
  *
  * - Nothing lands on a calendar, and no invitation goes out, without the user seeing the event. A program cannot call `createEvent`; it is refused.
  * - In an agent session, present the event as a review: `execution.reviews.create({kind: 'calendar', title, drafts})`, each draft with the same fields as `createConfirmed` (`calendarId` in place of `calendar`), then return `reviews: [await review.reference()]`. The user creates it from the card.
- * - For a prompt from a channel or document thread, where no card is seen: write the whole event into your reply (title, date and time with its time zone, duration, guests, location, conference or Macro call, recurrence), ask whether to create it, and stop. Only once the user replies approving that event, call `createConfirmed` with their reply quoted in `userConfirmation`. Being asked to schedule something is a request to draft the event, never the approval.
+ * - For a prompt from a channel or document thread, where no card is seen: write the whole event into your reply (title, date and time with its time zone, duration, guests, location, conference or Rox call, recurrence), ask whether to create it, and stop. Only once the user replies approving that event, call `createConfirmed` with their reply quoted in `userConfirmation`. Being asked to schedule something is a request to draft the event, never the approval.
  */
 export class CalendarNamespace {
   /**
@@ -417,7 +417,7 @@ export class CalendarNamespace {
    * user's approving reply. In the agent session view, present a review
    * (`execution.reviews.create({kind: 'calendar', ...})`) instead; its card
    * is the confirmation. Takes what the CreateCalendarEvent tool takes:
-   * guests, recurrence, reminders, a provider conference or a Macro call,
+   * guests, recurrence, reminders, a provider conference or a Rox call,
    * out-of-office and guest policy, and the calendar to write to. The event
    * is written to the provider at once and guests receive invitations; on an
    * error, look for the event before creating it again.

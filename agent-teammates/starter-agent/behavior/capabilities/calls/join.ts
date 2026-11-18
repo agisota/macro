@@ -70,7 +70,7 @@ const goodbyeStartMs = 300;
 const goodbyeMostMs = 8000;
 const goodbyePollMs = 100;
 const aloneCheckMs = 1000;
-/** The exit code of a join that failed for a reason Macro didn't name. */
+/** The exit code of a join that failed for a reason Rox didn't name. */
 export const failedExit = 1;
 
 /** A join's input, parsed again from a join process's arguments by the watcher. */
@@ -179,7 +179,7 @@ export type JoinPorts = {
 	/** The agent's name: how it greets, and what it answers to. */
 	readonly name: string;
 	readonly api: Pick<CallApi, "join" | "publishScreen">;
-	/** Makes Macro ready (its key decrypted), so the token request's deadline is spent on the request. */
+	/** Makes Rox ready (its key decrypted), so the token request's deadline is spent on the request. */
 	readonly secrets: () => Promise<void>;
 	readonly outbound: Outbound;
 	/** Tells the person it rang, and whoever asked, that nobody picked up. */
@@ -190,7 +190,7 @@ export type JoinPorts = {
 	readonly hungUp: Pick<IdList, "add">;
 	readonly makeShare?: MakeShare;
 	readonly people: CallPeople;
-	/** Macro's `ai.decide`, for whether a line on a group call is for the agent. Without it, only the rule: its name, or a follow-up. */
+	/** Rox's `ai.decide`, for whether a line on a group call is for the agent. Without it, only the rule: its name, or a follow-up. */
 	readonly screen?: CallScreen;
 	/** Hands a finished call to the people area, in a process that outlives this one. */
 	readonly appraise: (call: Appraisal) => void;
@@ -219,7 +219,7 @@ export type JoinPorts = {
 /**
  * The seat in the call, retried with a deadline per attempt; every attempt is
  * an event. A token request can hang for most of a minute, and a caller
- * hears nothing meanwhile. A refusal is Macro's answer, so it isn't retried.
+ * hears nothing meanwhile. A refusal is Rox's answer, so it isn't retried.
  */
 export const seat = (
 	api: Pick<CallApi, "join">,
@@ -568,7 +568,7 @@ export const joinCall = async (
 	proc.onSignal("SIGTERM", () => void finish("SIGTERM"));
 	proc.onSignal("SIGINT", () => void finish("SIGINT"));
 
-	/** A join that got a seat and then couldn't use it: give the seat back, so Macro doesn't hold the agent "in" this call. */
+	/** A join that got a seat and then couldn't use it: give the seat back, so Rox doesn't hold the agent "in" this call. */
 	const abandon = async (stage: string, error: unknown): Promise<Outcome> => {
 		finished = true;
 		clearInterval(aloneCheck);

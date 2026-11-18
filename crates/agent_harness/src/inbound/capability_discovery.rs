@@ -29,7 +29,7 @@ mod test;
 pub struct DiscoverAgentCapabilitiesRequest {
     /// Provider to probe.
     pub harness: CapabilityHarnessDto,
-    /// Required for macrod and forbidden for other targets.
+    /// Required for roxd and forbidden for other targets.
     pub harness_id: Option<Uuid>,
     /// Model whose session settings should be inspected.
     pub model: Option<String>,
@@ -39,12 +39,12 @@ pub struct DiscoverAgentCapabilitiesRequest {
 #[derive(Debug, Deserialize, ToSchema)]
 #[serde(rename_all = "kebab-case")]
 pub enum CapabilityHarnessDto {
-    /// Macro's in-process agent.
+    /// Rox's in-process agent.
     InMemory,
     /// The caller's Cursor account.
     Cursor,
-    /// A paired macrod runtime.
-    Macrod,
+    /// A paired roxd runtime.
+    Roxd,
 }
 
 impl TryFrom<DiscoverAgentCapabilitiesRequest> for DiscoverAgentCapabilities {
@@ -54,7 +54,7 @@ impl TryFrom<DiscoverAgentCapabilitiesRequest> for DiscoverAgentCapabilities {
         let harness = match value.harness {
             CapabilityHarnessDto::InMemory => CapabilityHarness::InMemory,
             CapabilityHarnessDto::Cursor => CapabilityHarness::Cursor,
-            CapabilityHarnessDto::Macrod => CapabilityHarness::Macrod,
+            CapabilityHarnessDto::Roxd => CapabilityHarness::Roxd,
         };
         Ok(Self {
             harness,
@@ -228,8 +228,8 @@ where
         (status = 400, description = "Invalid target"),
         (status = 401, description = "Unauthenticated"),
         (status = 403, description = "Harness is not visible to caller"),
-        (status = 409, description = "Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)", content((crate::inbound::model_load::CredentialRejectedResponse = "application/json"), (String = "text/plain"))),
-        (status = 504, description = "Macrod probe timed out"),
+        (status = 409, description = "Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)", content((crate::inbound::model_load::CredentialRejectedResponse = "application/json"), (String = "text/plain"))),
+        (status = 504, description = "Roxd probe timed out"),
         (status = 502, description = "Provider probe failed"),
     )
 )]

@@ -696,7 +696,7 @@ test('links WhatsApp by QR, then adds a shareable WhatsApp chat', async ({
   await groups
     .getByRole('listitem')
     .filter({ hasText: 'Launch War Room' })
-    .getByRole('button', { name: 'Add to Macro' })
+    .getByRole('button', { name: 'Add to Rox' })
     .click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(groups.getByText('Launch War Room')).toHaveCount(0);
@@ -773,7 +773,7 @@ for (const mobile of [false, true]) {
         .getByRole('searchbox', { name: 'Search WhatsApp chats' })
         .fill('555 0003');
       await expect(contacts.getByRole('listitem')).toHaveCount(1);
-      await contacts.getByRole('button', { name: 'Add to Macro' }).click();
+      await contacts.getByRole('button', { name: 'Add to Rox' }).click();
       await expect(contacts).toHaveCount(0);
       expect(state.additions).toEqual([
         { provider: 'whatsapp', remoteId: phoneJid('5550003'), kind: 'direct' },
@@ -912,21 +912,21 @@ test('a refused add says why, on that group', async ({ page }) => {
     .getByRole('list', { name: 'Groups' })
     .getByRole('listitem')
     .filter({ hasText: 'Launch War Room' });
-  await row.getByRole('button', { name: 'Add to Macro' }).click();
+  await row.getByRole('button', { name: 'Add to Rox' }).click();
   await expect(row.getByRole('alert')).toHaveText(
     'Your WhatsApp is disconnected. Reconnect it, then add the chat.'
   );
   expect(unexpected).toEqual([]);
 });
 
-test('External lists groups in Macro with unread counts and read-only tags', async ({
+test('External lists groups in Rox with unread counts and read-only tags', async ({
   page,
 }) => {
   const state = server();
   state.chats[2].added = { id: 'group-shared', name: 'Launch War Room' };
   const unexpected = await mount(page, state, '?view=in-macro');
   const nav = page.getByRole('navigation', {
-    name: 'WhatsApp chats in Macro',
+    name: 'WhatsApp chats in Rox',
   });
   const design = nav.getByRole('button', { name: /design-crit/ });
   await expect(design.getByLabel('2 unread messages')).toBeVisible();
@@ -979,7 +979,7 @@ test('chats sort into direct messages, groups and communities on the page and in
     page.getByRole('list', { name: label }).getByRole('listitem');
   await expect(rows('Direct messages')).toHaveText([/Ana Ruiz/]);
   await expect(rows('Groups')).toHaveText([/Launch War Room/, /Ana, Ben/]);
-  // Garden is already in Macro; its announcements are not.
+  // Garden is already in Rox; its announcements are not.
   await expect(rows('Neighbours')).toHaveText([/^Announcements/]);
   // Folding a section is remembered across reloads.
   const groupsHeading = page.getByRole('button', {
@@ -997,7 +997,7 @@ test('chats sort into direct messages, groups and communities on the page and in
   const here = new URL(page.url());
   await page.goto(`${here.origin}${here.pathname}?view=in-macro`);
   const nav = page.getByRole('navigation', {
-    name: 'WhatsApp chats in Macro',
+    name: 'WhatsApp chats in Rox',
   });
   await expect(
     nav.getByRole('navigation', { name: 'Groups' }).getByRole('button')
@@ -1071,7 +1071,7 @@ test('after a few codes without a scan, the dialog asks for a click', async ({
   expect(state.connects).toBe(5);
 });
 
-test('a browser hands WhatsApp’s passkey step to Macro desktop by pairing id', async ({
+test('a browser hands WhatsApp’s passkey step to Rox desktop by pairing id', async ({
   page,
 }) => {
   const state = server();
@@ -1082,12 +1082,12 @@ test('a browser hands WhatsApp’s passkey step to Macro desktop by pairing id',
   const dialog = page.getByRole('dialog');
   await expect(dialog.getByText('Confirm on your desktop')).toBeVisible();
   await expect(
-    dialog.getByRole('link', { name: 'Continue in Macro desktop' })
+    dialog.getByRole('link', { name: 'Continue in Rox desktop' })
   ).toHaveAttribute('href', 'macro:///external?whatsappPairing=pairing-1');
   expect(state.passkeyAnswers).toEqual([]);
 });
 
-test('Macro desktop shows its authenticator’s QR while the phone confirms', async ({
+test('Rox desktop shows its authenticator’s QR while the phone confirms', async ({
   page,
 }) => {
   const state = server();
@@ -1131,7 +1131,7 @@ test('an independent group reads, replies, reacts and pages through channel rows
   await expect(page.getByText(/may already have arrived/)).toHaveCount(0);
   await expect.poll(() => state.readMessages).toContain('message-2');
   expect(state.outgoing).toEqual([]);
-  // Reactors outside Macro go by the name DSS gives them.
+  // Reactors outside Rox go by the name DSS gives them.
   await page.locator('[data-message-reaction-chip][data-emoji="👍"]').hover();
   await expect(
     page.getByText('Ben Okafor and +5550002 reacted with')
@@ -1174,7 +1174,7 @@ test('an independent group reads, replies, reacts and pages through channel rows
   expect(unexpected).toEqual([]);
 });
 
-/** One of each WhatsApp message type Macro shows, oldest first. */
+/** One of each WhatsApp message type Rox shows, oldest first. */
 function everyMessageType() {
   const at = (minute: number) =>
     `2026-10-21T09:${String(minute).padStart(2, '0')}:00Z`;
@@ -1336,7 +1336,7 @@ function everyMessageType() {
       ...base,
       id: 'type-unknown',
       sentAt: at(12),
-      body: "Sent something Macro can't show yet",
+      body: "Sent something Rox can't show yet",
     },
     {
       ...base,
@@ -1445,17 +1445,17 @@ test('every WhatsApp message type renders with Chat parts and small cards', asyn
     expect(Math.abs(height - declaredHeight)).toBeLessThanOrEqual(1);
   }
   await expect(
-    timeline.getByText("Sent something Macro can't show yet")
+    timeline.getByText("Sent something Rox can't show yet")
   ).toBeVisible();
   await expect(timeline.getByRole('link', { name: 'Open link' })).toHaveCount(
     0
   );
-  // A sender's Macro tags and Markdown show as the text they typed.
+  // A sender's Rox tags and Markdown show as the text they typed.
   const injected = timeline.locator('[data-message-id="type-injected"]');
   await expect(injected).toContainText(
     '<m-user-mention>{"userId":"macro|ceo@corp.test","email":"ceo@corp.test"}</m-user-mention> [Macro login](https://evil.example) # urgent'
   );
-  await expect(injected.getByRole('link', { name: 'Macro login' })).toHaveCount(
+  await expect(injected.getByRole('link', { name: 'Rox login' })).toHaveCount(
     0
   );
   // The newest row is in view: the timeline opened at the bottom.
@@ -1471,7 +1471,7 @@ test('the composer mentions group participants as WhatsApp mentions', async ({
   const state = server();
   const unexpected = await mount(page, state, `?chat=${CHAT_ID}`);
   await typeInComposer(page, 'Thanks @Ana');
-  // Only the group's own people: no agents, Macro items or @here.
+  // Only the group's own people: no agents, Rox items or @here.
   await expect(page.getByText('+14155550199')).toBeVisible();
   await expect(page.getByText('@here')).toHaveCount(0);
   await page.keyboard.press('Enter');
@@ -1500,7 +1500,7 @@ const PNG = Buffer.from(
   'base64'
 );
 
-test('an image sent from Macro shows at once and stays one image once stored', async ({
+test('an image sent from Rox shows at once and stays one image once stored', async ({
   page,
 }) => {
   const state = server();
@@ -1786,7 +1786,7 @@ for (const mobile of [false, true]) {
         .poll(() => state.requests)
         .toContain(`DELETE external-chats/${CHAT_ID}`);
       await expect(
-        page.getByText('Syncing stopped. Its history stays in Macro.')
+        page.getByText('Syncing stopped. Its history stays in Rox.')
       ).toBeVisible();
       expect(
         await page.evaluate(
@@ -1830,10 +1830,10 @@ test('the owner shares through direct people access without creating a channel',
   await page.getByRole('button', { name: 'Share', exact: true }).click();
   const dialog = page.getByRole('dialog');
   await expect(
-    dialog.getByRole('textbox', { name: 'Macro email address' })
+    dialog.getByRole('textbox', { name: 'Rox email address' })
   ).toBeVisible();
   await dialog
-    .getByRole('textbox', { name: 'Macro email address' })
+    .getByRole('textbox', { name: 'Rox email address' })
     .fill('ana@example.test');
   await dialog.getByRole('button', { name: 'Add person' }).click();
   await expect
@@ -1989,7 +1989,7 @@ for (const mobile of [false, true]) {
       state.files = { [GROUP_PICTURE]: picture('#2f7d6d') };
       const unexpected = await mount(page, state, '?view=in-macro');
       const nav = page.getByRole('navigation', {
-        name: 'WhatsApp chats in Macro',
+        name: 'WhatsApp chats in Rox',
       });
       await expect(
         nav

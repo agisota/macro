@@ -7,7 +7,7 @@ import { type Accessor, createMemo } from 'solid-js';
 
 /**
  * Names the settings nav's team group after the viewer's team
- * (`Team · Macro`). Without a team only General stays, where the create-team
+ * (`Team · Rox`). Without a team only General stays, where the create-team
  * prompt and pending invitations live.
  */
 export function useTeamSettingsGroups(groups: Accessor<SettingsTabGroup[]>) {

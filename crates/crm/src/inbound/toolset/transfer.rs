@@ -68,14 +68,14 @@ pub fn crm_transfer_toolset<Transfer: CrmTransferService>()
         .add_tool::<ExportPipelineCsv, CrmTransferToolContext<Transfer>>()
 }
 
-/// The CSV a tool reads: exactly one of its text or a Macro file.
+/// The CSV a tool reads: exactly one of its text or a Rox file.
 fn csv_input(csv: &Option<String>, document_id: Option<Uuid>) -> Result<CsvInput, ToolCallError> {
     match (csv, document_id) {
         (Some(text), None) => Ok(CsvInput::Text(text.clone())),
         (None, Some(id)) => Ok(CsvInput::File(id)),
         _ => Err(ToolCallError {
             description: "Give exactly one of csv (the CSV text) or documentId (a CSV file in \
-                          Macro)."
+                          Rox)."
                 .to_owned(),
             internal_error: anyhow::anyhow!("csv input without exactly one source"),
         }),

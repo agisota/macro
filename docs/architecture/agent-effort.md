@@ -4,7 +4,7 @@ Effort belongs to a selected model in a particular harness. Native API support,
 Claude Code support, and Cursor variants are different contracts. The UI reads
 ACP `configOptions`, selecting category `thought_level` (legacy id fallback:
 `reasoning_effort`). External ids and values are opaque; `ultra`, for example,
-is not a native Macro effort level.
+is not a native Rox effort level.
 
 ## Cursor
 
@@ -31,7 +31,7 @@ provider serialization tests when adding support.
 | Haiku 4.5, retired Claude ids (Sonnet 5, Opus 5), and unknown models | No effort control |
 
 Every supported profile also offers **Default**, meaning no session override.
-It preserves Macro's existing adapter defaults (including low for GPT-5 mini).
+It preserves Rox's existing adapter defaults (including low for GPT-5 mini).
 It is distinct from OpenAI's explicit `none` and is never sent as a provider
 value. Anthropic receives `output_config.effort`; OpenAI Responses receives
 `reasoning.effort`. A compatible Chat Completions endpoint does not inherit

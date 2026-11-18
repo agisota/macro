@@ -165,7 +165,7 @@ impl<'a, T: NotificationExtIos, U> SendNotificationRequest<'a, T, U> {
 impl<'a, T: NotificationExtEmail, U> SendNotificationRequest<'a, T, U> {
     /// Deliver one user's notification to a connected address verified by the
     /// producing domain. Recipient preference/access filtering still uses the
-    /// actual Macro user. Multi-recipient redirection is deliberately rejected.
+    /// actual Rox user. Multi-recipient redirection is deliberately rejected.
     pub fn with_email_destination(
         mut self,
         owner: &MacroUserIdStr<'_>,

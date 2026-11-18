@@ -19,7 +19,7 @@ export default function Composer() {
       agents: agents().map((agent) => ({
         ...agent,
         bot: { ...agent.bot, handle: 'mayas-agent' },
-        harness: 'macrod',
+        harness: 'roxd',
         default_model: 'default',
         is_coding: true,
       })),

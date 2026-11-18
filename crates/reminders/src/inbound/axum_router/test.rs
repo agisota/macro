@@ -50,7 +50,7 @@ use model_entity::EntityType;
 #[cfg(feature = "postgres")]
 mod email_collection;
 
-const USER_ID: &str = "macro|reminders-user@macro.com";
+const USER_ID: &str = "macro|reminders-user@rox.one";
 const VALID_JWT: &str = "valid";
 /// The one entity the fake access service grants view access to.
 // Entity ids are uuids: `reminder.entity_id` is a uuid column, and the router

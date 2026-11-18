@@ -176,7 +176,7 @@ jobs:
       shell: bash
       env:
         TARGET: x86_64-unknown-linux-musl
-        MACROD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
+        ROXD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
     - name: Package daemon
       run: |
         set -euo pipefail
@@ -188,8 +188,8 @@ jobs:
         # here rather than assumed.
 
         case "$TARGET" in
-          *-windows-*) executable="macrod.exe" ;;
-          *) executable="macrod" ;;
+          *-windows-*) executable="roxd.exe" ;;
+          *) executable="roxd" ;;
         esac
         binary="target/$TARGET/release/$executable"
         if [ ! -x "$binary" ]; then
@@ -268,7 +268,7 @@ jobs:
         # Every archive is published twice: under the tag, and under a name without
         # it, which `releases/latest/download/<name>` serves — the URL the install
         # scripts download from.
-        for name in "macrod-${SAFE_TAG}-${SLUG}" "macrod-${SLUG}"; do
+        for name in "roxd-${SAFE_TAG}-${SLUG}" "roxd-${SLUG}"; do
           case "$TARGET" in
             *-windows-*)
               archive="${name}.zip"
@@ -300,10 +300,10 @@ jobs:
         SAFE_TAG: ${{ steps.metadata.outputs.safe_tag }}
         RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
         SMOKE_RUN: '1'
-    - name: Upload macrod-linux-x86_64-${{ steps.metadata.outputs.safe_tag }} artifact
+    - name: Upload roxd-linux-x86_64-${{ steps.metadata.outputs.safe_tag }} artifact
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
-        name: macrod-linux-x86_64-${{ steps.metadata.outputs.safe_tag }}
+        name: roxd-linux-x86_64-${{ steps.metadata.outputs.safe_tag }}
         path: artifacts/*
         if-no-files-found: error
         retention-days: '30'
@@ -417,7 +417,7 @@ jobs:
       shell: bash
       env:
         TARGET: aarch64-unknown-linux-musl
-        MACROD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
+        ROXD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
     - name: Package daemon
       run: |
         set -euo pipefail
@@ -429,8 +429,8 @@ jobs:
         # here rather than assumed.
 
         case "$TARGET" in
-          *-windows-*) executable="macrod.exe" ;;
-          *) executable="macrod" ;;
+          *-windows-*) executable="roxd.exe" ;;
+          *) executable="roxd" ;;
         esac
         binary="target/$TARGET/release/$executable"
         if [ ! -x "$binary" ]; then
@@ -509,7 +509,7 @@ jobs:
         # Every archive is published twice: under the tag, and under a name without
         # it, which `releases/latest/download/<name>` serves — the URL the install
         # scripts download from.
-        for name in "macrod-${SAFE_TAG}-${SLUG}" "macrod-${SLUG}"; do
+        for name in "roxd-${SAFE_TAG}-${SLUG}" "roxd-${SLUG}"; do
           case "$TARGET" in
             *-windows-*)
               archive="${name}.zip"
@@ -541,10 +541,10 @@ jobs:
         SAFE_TAG: ${{ steps.metadata.outputs.safe_tag }}
         RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
         SMOKE_RUN: '0'
-    - name: Upload macrod-linux-aarch64-${{ steps.metadata.outputs.safe_tag }} artifact
+    - name: Upload roxd-linux-aarch64-${{ steps.metadata.outputs.safe_tag }} artifact
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
-        name: macrod-linux-aarch64-${{ steps.metadata.outputs.safe_tag }}
+        name: roxd-linux-aarch64-${{ steps.metadata.outputs.safe_tag }}
         path: artifacts/*
         if-no-files-found: error
         retention-days: '30'
@@ -609,7 +609,7 @@ jobs:
       shell: bash
       env:
         TARGET: aarch64-apple-darwin
-        MACROD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
+        ROXD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
     - name: Package daemon
       run: |
         set -euo pipefail
@@ -621,8 +621,8 @@ jobs:
         # here rather than assumed.
 
         case "$TARGET" in
-          *-windows-*) executable="macrod.exe" ;;
-          *) executable="macrod" ;;
+          *-windows-*) executable="roxd.exe" ;;
+          *) executable="roxd" ;;
         esac
         binary="target/$TARGET/release/$executable"
         if [ ! -x "$binary" ]; then
@@ -701,7 +701,7 @@ jobs:
         # Every archive is published twice: under the tag, and under a name without
         # it, which `releases/latest/download/<name>` serves — the URL the install
         # scripts download from.
-        for name in "macrod-${SAFE_TAG}-${SLUG}" "macrod-${SLUG}"; do
+        for name in "roxd-${SAFE_TAG}-${SLUG}" "roxd-${SLUG}"; do
           case "$TARGET" in
             *-windows-*)
               archive="${name}.zip"
@@ -733,10 +733,10 @@ jobs:
         SAFE_TAG: ${{ steps.metadata.outputs.safe_tag }}
         RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
         SMOKE_RUN: '1'
-    - name: Upload macrod-macos-aarch64-${{ steps.metadata.outputs.safe_tag }} artifact
+    - name: Upload roxd-macos-aarch64-${{ steps.metadata.outputs.safe_tag }} artifact
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
-        name: macrod-macos-aarch64-${{ steps.metadata.outputs.safe_tag }}
+        name: roxd-macos-aarch64-${{ steps.metadata.outputs.safe_tag }}
         path: artifacts/*
         if-no-files-found: error
         retention-days: '30'
@@ -798,7 +798,7 @@ jobs:
       shell: bash
       env:
         TARGET: x86_64-apple-darwin
-        MACROD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
+        ROXD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
     - name: Package daemon
       run: |
         set -euo pipefail
@@ -810,8 +810,8 @@ jobs:
         # here rather than assumed.
 
         case "$TARGET" in
-          *-windows-*) executable="macrod.exe" ;;
-          *) executable="macrod" ;;
+          *-windows-*) executable="roxd.exe" ;;
+          *) executable="roxd" ;;
         esac
         binary="target/$TARGET/release/$executable"
         if [ ! -x "$binary" ]; then
@@ -890,7 +890,7 @@ jobs:
         # Every archive is published twice: under the tag, and under a name without
         # it, which `releases/latest/download/<name>` serves — the URL the install
         # scripts download from.
-        for name in "macrod-${SAFE_TAG}-${SLUG}" "macrod-${SLUG}"; do
+        for name in "roxd-${SAFE_TAG}-${SLUG}" "roxd-${SLUG}"; do
           case "$TARGET" in
             *-windows-*)
               archive="${name}.zip"
@@ -922,10 +922,10 @@ jobs:
         SAFE_TAG: ${{ steps.metadata.outputs.safe_tag }}
         RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
         SMOKE_RUN: '0'
-    - name: Upload macrod-macos-x86_64-${{ steps.metadata.outputs.safe_tag }} artifact
+    - name: Upload roxd-macos-x86_64-${{ steps.metadata.outputs.safe_tag }} artifact
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
-        name: macrod-macos-x86_64-${{ steps.metadata.outputs.safe_tag }}
+        name: roxd-macos-x86_64-${{ steps.metadata.outputs.safe_tag }}
         path: artifacts/*
         if-no-files-found: error
         retention-days: '30'
@@ -972,7 +972,7 @@ jobs:
         # See build_agent_daemon_linux.sh for why sqlx runs offline.
         export SQLX_OFFLINE=true
 
-        # Link the C runtime into the binary. Without this, macrod.exe needs the Visual
+        # Link the C runtime into the binary. Without this, roxd.exe needs the Visual
         # C++ redistributable's vcruntime DLLs, which a user's machine may not have.
         # With an explicit --target, RUSTFLAGS reach only target code, and the cc and
         # cmake builds of the C dependencies follow it to the static runtime.
@@ -993,7 +993,7 @@ jobs:
       shell: bash
       env:
         TARGET: x86_64-pc-windows-msvc
-        MACROD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
+        ROXD_RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
     - name: Package daemon
       run: |
         set -euo pipefail
@@ -1005,8 +1005,8 @@ jobs:
         # here rather than assumed.
 
         case "$TARGET" in
-          *-windows-*) executable="macrod.exe" ;;
-          *) executable="macrod" ;;
+          *-windows-*) executable="roxd.exe" ;;
+          *) executable="roxd" ;;
         esac
         binary="target/$TARGET/release/$executable"
         if [ ! -x "$binary" ]; then
@@ -1085,7 +1085,7 @@ jobs:
         # Every archive is published twice: under the tag, and under a name without
         # it, which `releases/latest/download/<name>` serves — the URL the install
         # scripts download from.
-        for name in "macrod-${SAFE_TAG}-${SLUG}" "macrod-${SLUG}"; do
+        for name in "roxd-${SAFE_TAG}-${SLUG}" "roxd-${SLUG}"; do
           case "$TARGET" in
             *-windows-*)
               archive="${name}.zip"
@@ -1117,10 +1117,10 @@ jobs:
         SAFE_TAG: ${{ steps.metadata.outputs.safe_tag }}
         RELEASE_TAG: ${{ steps.metadata.outputs.tag }}
         SMOKE_RUN: '1'
-    - name: Upload macrod-windows-x86_64-${{ steps.metadata.outputs.safe_tag }} artifact
+    - name: Upload roxd-windows-x86_64-${{ steps.metadata.outputs.safe_tag }} artifact
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
-        name: macrod-windows-x86_64-${{ steps.metadata.outputs.safe_tag }}
+        name: roxd-windows-x86_64-${{ steps.metadata.outputs.safe_tag }}
         path: artifacts/*
         if-no-files-found: error
         retention-days: '30'

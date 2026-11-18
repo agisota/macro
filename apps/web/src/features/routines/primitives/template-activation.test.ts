@@ -8,7 +8,7 @@ const DOC =
 
 const TEMPLATE: RoutineTemplate = {
   id: 'template-1',
-  author: 'macro|eric@macro.com',
+  author: 'macro|eric@rox.one',
   name: 'Weekly digest',
   description: '',
   active_count: 0,
@@ -30,8 +30,8 @@ const TEMPLATE: RoutineTemplate = {
 };
 
 const ACTIVATOR = {
-  userId: 'macro|jun@macro.com',
-  email: 'jun@macro.com',
+  userId: 'macro|jun@rox.one',
+  email: 'jun@rox.one',
   timezone: 'America/New_York',
 };
 
@@ -113,7 +113,7 @@ describe('createTemplateActivation', () => {
   it('fills the author in as the activator in the Ask AI step', () => {
     createRoot((dispose) => {
       const author =
-        '<m-user-mention>{"userId":"macro|eric@macro.com","email":"eric@macro.com"}</m-user-mention>';
+        '<m-user-mention>{"userId":"macro|eric@rox.one","email":"eric@rox.one"}</m-user-mention>';
       const activation = createTemplateActivation({
         template: () => ({
           ...TEMPLATE,
@@ -129,8 +129,8 @@ describe('createTemplateActivation', () => {
           variables: [
             {
               kind: 'user',
-              id: 'macro|eric@macro.com',
-              label: 'eric@macro.com',
+              id: 'macro|eric@rox.one',
+              label: 'eric@rox.one',
               fill: 'activator',
             },
           ],
@@ -139,8 +139,8 @@ describe('createTemplateActivation', () => {
         access: () => new Map(),
       });
       const text = JSON.stringify(activation.request()?.task);
-      expect(text).not.toContain('eric@macro.com');
-      expect(text.match(/jun@macro\.com/g)).toHaveLength(4);
+      expect(text).not.toContain('eric@rox.one');
+      expect(text.match(/jun@rox\.one/g)).toHaveLength(4);
       dispose();
     });
   });

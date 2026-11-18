@@ -240,7 +240,7 @@ export function createDesignCollabSession(
       setState({
         t: 'error',
         message:
-          'This design was edited by a newer version of Macro. Reload to open it.',
+          'This design was edited by a newer version of Rox. Reload to open it.',
       });
       return;
     }

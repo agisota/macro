@@ -28,7 +28,7 @@ pub mod user_tools;
 
 pub use types::{ComposedPrompt, Section, StaticPrompt};
 
-/// The base prompt: tone, math, citations, mentions, do-not rules, and Macro
+/// The base prompt: tone, math, citations, mentions, do-not rules, and Rox
 /// terms. Contains no tool use instructions.
 pub static BASE_PROMPT: ComposedPrompt = tone::PROMPT
     .compose(&math::PROMPT)
@@ -47,7 +47,7 @@ static SESSION_BASE_PROMPT: ComposedPrompt = math::PROMPT
 
 /// The tool-enabled prompt for hosts whose tools all execute directly in the
 /// agent loop (the channel-mention bot, the MCP server): [`BASE_PROMPT`] with
-/// the skill-following rules appended. How each area of Macro works is the
+/// the skill-following rules appended. How each area of Rox works is the
 /// SDK's `@agent` guidance, which `ai_tools` composes after this. Says nothing about
 /// composer-confirmed user tools — those hosts' toolsets execute
 /// `CreateCalendarEvent` directly and have no `SendEmail` at all.
@@ -79,14 +79,14 @@ pub static CODE_MODE_SESSION_TOOL_USE_PROMPT: ComposedPrompt = SESSION_BASE_PROM
 pub static DATABASE_READ_ONLY_TOOL_USE_PROMPT: ComposedPrompt =
     BASE_PROMPT.compose(&databases::READ_ONLY_PROMPT);
 
-/// Citation, do-not, Macro-terms and pull-request rules surfaced
+/// Citation, do-not, Rox-terms and pull-request rules surfaced
 /// to external MCP clients, composed together. These are static; the
 /// item-linking rules for the model's own replies are not, because they
 /// depend on the runtime app base URL — see [`mcp_instructions`].
 ///
 /// Deliberately omits the in-app [`mentions`] section (MCP clients cannot render
 /// `<m-document-mention>` tags in a chat reply) as well as chat tone/style and
-/// general tool-use instructions, which belong to the host client, not to Macro.
+/// general tool-use instructions, which belong to the host client, not to Rox.
 /// The areas MCP clients write into (databases, CRM, document content) are the
 /// SDK's `@agent` guidance, which the MCP server appends.
 static MCP_STATIC_INSTRUCTIONS: ComposedPrompt = citations::PROMPT
@@ -97,15 +97,15 @@ static MCP_STATIC_INSTRUCTIONS: ComposedPrompt = citations::PROMPT
 /// Builds the instructions surfaced to external MCP clients via the server
 /// `instructions` field.
 ///
-/// Carries the formatting/correctness rules Macro features depend on so that AI
+/// Carries the formatting/correctness rules Rox features depend on so that AI
 /// used through MCP produces valid output. Item links in the model's own chat
 /// replies are rendered as plain Markdown URLs (built from `base_url`, the
 /// runtime `APP_BASE_URL` value) and lists of items as Markdown tables — NOT
 /// the in-app `<m-document-mention>` markup, which MCP clients cannot render.
-/// Content the model writes *into* a Macro document via `CreateDocument` or
+/// Content the model writes *into* a Rox document via `CreateDocument` or
 /// `EditDocument` is the opposite: it must still use `<m-document-mention>`
 /// tags (`DocumentNamespace`'s `@agent` guidance, which the MCP server
-/// appends), since the Macro app renders that
+/// appends), since the Rox app renders that
 /// content regardless of which surface created it. `base_url` should already
 /// have any trailing slash trimmed.
 pub fn mcp_instructions(base_url: &str) -> String {
@@ -121,18 +121,18 @@ mod tests {
 
     #[test]
     fn mcp_instructions_link_items_as_urls_built_from_base_url() {
-        let instructions = mcp_instructions("https://macro.com");
+        let instructions = mcp_instructions("https://rox.one");
 
         // Item links are plain URLs built from the base url, including a
         // worked example for a document.
-        assert!(instructions.contains("https://macro.com/app/<type>/<id>"));
-        assert!(instructions.contains("[Name](https://macro.com/app/md/<id>)"));
-        assert!(instructions.contains("[Name](https://macro.com/app/routines/<id>)"));
+        assert!(instructions.contains("https://rox.one/app/<type>/<id>"));
+        assert!(instructions.contains("[Name](https://rox.one/app/md/<id>)"));
+        assert!(instructions.contains("[Name](https://rox.one/app/routines/<id>)"));
     }
 
     #[test]
     fn mcp_instructions_forbid_mention_tags_but_in_app_prompt_keeps_them() {
-        let instructions = mcp_instructions("https://macro.com");
+        let instructions = mcp_instructions("https://rox.one");
 
         // MCP responses must steer away from the in-app mention markup...
         assert!(instructions.contains("Do NOT emit `<m-document-mention>`"));
@@ -145,7 +145,7 @@ mod tests {
 
     #[test]
     fn mcp_instructions_describe_item_table_columns() {
-        let instructions = mcp_instructions("https://macro.com");
+        let instructions = mcp_instructions("https://rox.one");
 
         for column in ["number", "name", "link"] {
             assert!(
@@ -315,7 +315,7 @@ mod tests {
 
     #[test]
     fn mcp_and_coding_agents_open_ready_pull_requests_with_ci_passing() {
-        assert!(mcp_instructions("https://macro.com").contains(pull_requests::READY_PULL_REQUEST));
+        assert!(mcp_instructions("https://rox.one").contains(pull_requests::READY_PULL_REQUEST));
 
         let coding = coding_agents::PROMPT.to_string();
         assert!(coding.contains("ready for review, not a draft"));

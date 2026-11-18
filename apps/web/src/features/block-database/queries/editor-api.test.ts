@@ -5,7 +5,7 @@ import type { DatabaseDetail } from '@service-storage/generated/schemas/database
 import { errAsync, okAsync, ResultAsync } from 'neverthrow';
 import { afterEach, expect, it, vi } from 'vitest';
 import { RENAME_DETAIL } from '../browser-test/rename-data';
-import { createMacroDatabaseApi } from './editor-api';
+import { createRoxDatabaseApi } from './editor-api';
 
 const service = vi.hoisted(() => ({ applyOps: vi.fn(), get: vi.fn() }));
 vi.mock('@service-storage/client', () => ({
@@ -62,7 +62,7 @@ it('cancels an older schema read and shows the new column name before the respon
       ).map(() => ({ results: [], changes: [] }));
     });
   });
-  const api = createMacroDatabaseApi('db', queryClient);
+  const api = createRoxDatabaseApi('db', queryClient);
   const writing = api.applyOps({ ops: OPS });
   await submitted;
   expect(await reading).toEqual(RENAME_DETAIL);
@@ -78,7 +78,7 @@ it('restores the previous schema when a rename is refused', async () => {
     expect(cachedName()).toBe('Task');
     return errAsync([{ code: 'FORBIDDEN', refusal: null, message: 'Refused' }]);
   });
-  const result = await createMacroDatabaseApi('db', queryClient).applyOps({
+  const result = await createRoxDatabaseApi('db', queryClient).applyOps({
     ops: OPS,
   });
   expect(result.isErr()).toBe(true);
@@ -98,7 +98,7 @@ it('keeps a newer cached edit when an older rename is refused', async () => {
     );
     return errAsync([{ code: 'CONFLICT', refusal: null, message: 'Refused' }]);
   });
-  await createMacroDatabaseApi('db', queryClient).applyOps({ ops: OPS });
+  await createRoxDatabaseApi('db', queryClient).applyOps({ ops: OPS });
   expect(queryClient.getQueryData<DatabaseDetail>(KEY)?.database.name).toBe(
     'Roadmap'
   );
@@ -124,14 +124,14 @@ it('does not undo a newer column rename when an older request is refused', async
     );
     return errAsync([{ code: 'CONFLICT', refusal: null, message: 'Refused' }]);
   });
-  await createMacroDatabaseApi('db', queryClient).applyOps({ ops: OPS });
+  await createRoxDatabaseApi('db', queryClient).applyOps({ ops: OPS });
   expect(cachedName()).toBe('Latest');
 });
 
 it('sends other operations without cancelling schema reads', async () => {
   const cancel = vi.spyOn(queryClient, 'cancelQueries');
   service.applyOps.mockReturnValue(okAsync({ results: [], changes: [] }));
-  await createMacroDatabaseApi('db', queryClient).applyOps({ ops: [] });
+  await createRoxDatabaseApi('db', queryClient).applyOps({ ops: [] });
   expect(cancel).not.toHaveBeenCalled();
   cancel.mockRestore();
 });

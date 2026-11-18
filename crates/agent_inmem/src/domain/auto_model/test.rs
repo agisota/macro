@@ -69,7 +69,7 @@ fn selector(answer: Answer) -> (JevAutoModel, Arc<FakeCognition>) {
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").unwrap()
+    MacroUserIdStr::try_from_email("owner@rox.one").unwrap()
 }
 
 #[tokio::test]

@@ -3,7 +3,7 @@
 ## What it is
 
 Part of the notifications feature. Wire models for every notification kind
-Macro sends: metadata payloads, the digest state machine, device/unsubscribe
+Rox sends: metadata payloads, the digest state machine, device/unsubscribe
 types.
 
 ## Start here

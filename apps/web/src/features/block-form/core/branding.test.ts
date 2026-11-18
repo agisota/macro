@@ -13,7 +13,7 @@ describe('accentContrast', () => {
 });
 
 describe('brandingStyle', () => {
-  it('sets nothing without an accent, so the page keeps Macro’s colors', () => {
+  it('sets nothing without an accent, so the page keeps Rox’s colors', () => {
     expect(brandingStyle(null)).toBeUndefined();
   });
 

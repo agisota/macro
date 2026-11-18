@@ -1,4 +1,4 @@
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 
 /** The quiet placeholder while a step's data is still on its way. */
 export function StepFallback() {
@@ -8,7 +8,7 @@ export function StepFallback() {
       aria-label="Loading setup"
       class="flex justify-center py-10"
     >
-      <LogoIcon class="size-6 animate-pulse text-ink/30" />
+      <RoxMark class="size-6 animate-pulse" />
     </div>
   );
 }

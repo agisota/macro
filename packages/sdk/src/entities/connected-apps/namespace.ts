@@ -9,17 +9,17 @@ export type { ConnectMcpServerResponse };
 
 /**
  * The apps the user connected for their agents (Slack, Linear, GitHub,
- * Notion, Gmail and others through Macro Connect) and the custom MCP servers
+ * Notion, Gmail and others through Rox Connect) and the custom MCP servers
  * they added, reached from a session's code execution.
  *
- * @routing Use when the work needs a connected third-party app or MCP server (Slack, Linear, GitHub, Notion, Jira, Google Sheets, a custom MCP server): reading or changing data in it, or calling one of its tools; not Macro's own documents, email, channels or calendar.
+ * @routing Use when the work needs a connected third-party app or MCP server (Slack, Linear, GitHub, Notion, Jira, Google Sheets, a custom MCP server): reading or changing data in it, or calling one of its tools; not Rox's own documents, email, channels or calendar.
  *
  * @agent
  * ## Connected apps
  *
  * Connected apps are reached only from an agent session's ExecuteCode program: pass the `execution` that `main` receives. `macro.connectedApps.list(execution)` returns the apps this agent was given (every app the user connected, or the agent's own selection); an app missing from it is not connected for this agent. Find a tool across every app with `macro.connectedApps.searchTools(execution, 'linear issue')`, or read one app's tools with `app.tools()`; pick one by name and description, read its `inputSchema`, then `tool.call(args)`.
  *
- * Calls run in the user's real account through Macro's server, as the account this execution acts as, and take effect at once; the program never sees a credential. In a turn someone other than the session's owner prompted, each call that uses the owner's account waits for the owner to approve it, so make few such calls and expect a long wait or a refusal. Read before writing, and never repeat a write whose outcome is unknown: check the app's state first. A result with `isError` explains itself: when it says an app is not connected, tell the user and include the connect markup it gives you in your reply verbatim, then stop.
+ * Calls run in the user's real account through Rox's server, as the account this execution acts as, and take effect at once; the program never sees a credential. In a turn someone other than the session's owner prompted, each call that uses the owner's account waits for the owner to approve it, so make few such calls and expect a long wait or a refusal. Read before writing, and never repeat a write whose outcome is unknown: check the app's state first. A result with `isError` explains itself: when it says an app is not connected, tell the user and include the connect markup it gives you in your reply verbatim, then stop.
  *
  * Each account's calls to one app share a budget across its running programs on the same Macro server: a few run at once, paced, and the rest queue. Narrow first with the app's search or list tools and their own limits and filters (e.g. open PRs updated this week), then call per item only for the few items you need, in small batches; never `Promise.all` a call per item over a whole list. A call the app keeps refusing with HTTP 429 is retried after its `Retry-After`; one still refused throws a rate-limit error and did not run, so stop and report partial results rather than retrying in a loop.
  *

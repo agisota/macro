@@ -27,7 +27,7 @@ fn refs_that_are_not_release_tags_have_no_version() {
         "2026.10.27.0",
         "v2026.10.27.0-rc1",
         "v2026.10",
-        "wolf/macrod-self-update",
+        "wolf/roxd-self-update",
         "untagged",
         "",
     ] {
@@ -41,11 +41,11 @@ fn the_platform_asset_is_the_tagged_archive_with_its_checksum() {
         r#"{
             "tag_name": "v2026.10.27.2",
             "assets": [
-                {"name": "macrod-linux-x86_64.tar.gz", "browser_download_url": "https://example.test/latest.tar.gz"},
-                {"name": "macrod-linux-x86_64.tar.gz.sha256", "browser_download_url": "https://example.test/latest.tar.gz.sha256"},
-                {"name": "macrod-v2026.10.27.2-linux-x86_64.tar.gz", "browser_download_url": "https://example.test/tagged.tar.gz"},
-                {"name": "macrod-v2026.10.27.2-linux-x86_64.tar.gz.sha256", "browser_download_url": "https://example.test/tagged.tar.gz.sha256"},
-                {"name": "macrod-v2026.10.27.2-windows-x86_64.zip", "browser_download_url": "https://example.test/tagged.zip"}
+                {"name": "roxd-linux-x86_64.tar.gz", "browser_download_url": "https://example.test/latest.tar.gz"},
+                {"name": "roxd-linux-x86_64.tar.gz.sha256", "browser_download_url": "https://example.test/latest.tar.gz.sha256"},
+                {"name": "roxd-v2026.10.27.2-linux-x86_64.tar.gz", "browser_download_url": "https://example.test/tagged.tar.gz"},
+                {"name": "roxd-v2026.10.27.2-linux-x86_64.tar.gz.sha256", "browser_download_url": "https://example.test/tagged.tar.gz.sha256"},
+                {"name": "roxd-v2026.10.27.2-windows-x86_64.zip", "browser_download_url": "https://example.test/tagged.zip"}
             ]
         }"#,
     )
@@ -54,7 +54,7 @@ fn the_platform_asset_is_the_tagged_archive_with_its_checksum() {
     assert_eq!(
         release.asset_for(&ReleaseSource::GitHub, "linux", "x86_64", "tar.gz"),
         Some(PlatformAsset {
-            archive_name: "macrod-v2026.10.27.2-linux-x86_64.tar.gz".to_owned(),
+            archive_name: "roxd-v2026.10.27.2-linux-x86_64.tar.gz".to_owned(),
             archive_url: "https://example.test/tagged.tar.gz".to_owned(),
             checksum_url: "https://example.test/tagged.tar.gz.sha256".to_owned(),
         })
@@ -84,14 +84,14 @@ fn an_update_source_override_replaces_github() {
 fn a_mirror_serves_the_tagged_archive_beside_its_manifest() {
     // A mirror's manifest is GitHub's release object; only the tag is needed.
     let release: Release = serde_json::from_str(r#"{"tag_name": "v2026.10.28.2"}"#).unwrap();
-    let mirror = ReleaseSource::new(Some("/srv/macrod"));
+    let mirror = ReleaseSource::new(Some("/srv/roxd"));
 
     assert_eq!(
         release.asset_for(&mirror, "linux", "x86_64", "tar.gz"),
         Some(PlatformAsset {
-            archive_name: "macrod-v2026.10.28.2-linux-x86_64.tar.gz".to_owned(),
-            archive_url: "/srv/macrod/macrod-v2026.10.28.2-linux-x86_64.tar.gz".to_owned(),
-            checksum_url: "/srv/macrod/macrod-v2026.10.28.2-linux-x86_64.tar.gz.sha256".to_owned(),
+            archive_name: "roxd-v2026.10.28.2-linux-x86_64.tar.gz".to_owned(),
+            archive_url: "/srv/roxd/roxd-v2026.10.28.2-linux-x86_64.tar.gz".to_owned(),
+            checksum_url: "/srv/roxd/roxd-v2026.10.28.2-linux-x86_64.tar.gz.sha256".to_owned(),
         })
     );
 }
@@ -107,14 +107,14 @@ async fn a_directory_mirror_is_read_from_disk() {
     std::fs::write(
         mirror
             .path()
-            .join("macrod-v2026.10.28.2-linux-x86_64.tar.gz"),
+            .join("roxd-v2026.10.28.2-linux-x86_64.tar.gz"),
         b"archive",
     )
     .unwrap();
     std::fs::write(
         mirror
             .path()
-            .join("macrod-v2026.10.28.2-linux-x86_64.tar.gz.sha256"),
+            .join("roxd-v2026.10.28.2-linux-x86_64.tar.gz.sha256"),
         b"digest  name\n",
     )
     .unwrap();

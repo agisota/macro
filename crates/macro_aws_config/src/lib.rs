@@ -16,13 +16,34 @@ maybe_env_var! {
     pub struct LocalAwsPublicUrl;
 }
 
-/// Creates an S3 client
+maybe_env_var! {
+    /// Optional object-storage endpoint. When set, [`s3_client`] uses this
+    /// instead of [`LocalAwsUrl`], so file bytes can live elsewhere while
+    /// queues stay on `LOCAL_AWS_URL`.
+    #[derive(Clone)]
+    pub struct LocalS3Url;
+}
+
+/// Creates an S3 client.
+///
+/// `LOCAL_S3_URL`, when set, wins over `LOCAL_AWS_URL`. The SQS client keeps
+/// reading only `LOCAL_AWS_URL`.
 #[cfg(feature = "s3")]
 pub async fn s3_client() -> aws_sdk_s3::Client {
-    let s3_config = aws_sdk_s3::config::Builder::from(&get_macro_aws_config().await)
-        .force_path_style(is_local_aws())
+    let config = match LocalS3Url::new() {
+        Some(url) => local_aws_config(url.as_ref()).await,
+        None => get_macro_aws_config().await,
+    };
+    let s3_config = aws_sdk_s3::config::Builder::from(&config)
+        .force_path_style(is_local_object_store())
         .build();
     aws_sdk_s3::Client::from_conf(s3_config)
+}
+
+/// True when object storage is a local endpoint rather than real AWS.
+#[cfg(feature = "s3")]
+fn is_local_object_store() -> bool {
+    LocalS3Url::new().is_some() || is_local_aws()
 }
 
 /// Creates an SQS client
@@ -77,7 +98,7 @@ fn transform_local_url(url: &str, public_url: Option<&str>) -> String {
     // Path-style LocalStack URLs generated inside Docker use `localstack` as
     // the host, which the browser on the host machine cannot resolve. Keep the
     // existing path (`/{bucket}/{key}`) and use the browser-facing origin.
-    if host == "localstack" || host == "localhost" {
+    if host == "localstack" || host == "localhost" || host == "minio" {
         return format!("{origin}{path}{query}");
     }
 
@@ -86,6 +107,7 @@ fn transform_local_url(url: &str, public_url: Option<&str>) -> String {
     let Some(asset) = host
         .strip_suffix(".localstack")
         .or_else(|| host.strip_suffix(".localhost"))
+        .or_else(|| host.strip_suffix(".minio"))
     else {
         return url.to_owned();
     };
@@ -99,7 +121,7 @@ fn transform_local_url(url: &str, public_url: Option<&str>) -> String {
 /// `LOCAL_AWS_PUBLIC_URL`, when set by the local stack, supplies the browser-facing
 /// endpoint so named instances can use their HTTPS storage proxy.
 pub fn transform_aws_url(url: &str) -> String {
-    if is_local_aws() {
+    if is_local_aws() || LocalS3Url::new().is_some() {
         let public_url = LocalAwsPublicUrl::new();
         return transform_local_url(url, public_url.as_ref().map(|url| url.as_ref()));
     }
@@ -128,7 +150,7 @@ fn transform_internal_url(url: &str, local_aws_url: &str, public_url: Option<&st
     // resolves to the container itself. Use the SDK endpoint, including its
     // internal port, so service-to-service fetches reach LocalStack. Leave any other
     // host untouched.
-    if host == "localhost" || host == "localstack" {
+    if host == "localhost" || host == "localstack" || host == "minio" {
         return format!("{}{path}{query}", local_aws_url.trim_end_matches('/'));
     }
 
@@ -142,11 +164,14 @@ fn transform_internal_url(url: &str, local_aws_url: &str, public_url: Option<&st
 /// origin and proxy prefix so container clients reach LocalStack directly.
 /// Legacy localhost URLs are also supported. No-op outside local AWS.
 pub fn transform_aws_url_for_internal_fetch(url: &str) -> String {
-    if let Some(local_aws_url) = LocalAwsUrl::new() {
+    let endpoint = LocalS3Url::new()
+        .map(|url| url.as_ref().to_owned())
+        .or_else(|| LocalAwsUrl::new().map(|url| url.as_ref().to_owned()));
+    if let Some(endpoint) = endpoint {
         let public_url = LocalAwsPublicUrl::new();
         return transform_internal_url(
             url,
-            local_aws_url.as_ref(),
+            &endpoint,
             public_url.as_ref().map(|url| url.as_ref()),
         );
     }

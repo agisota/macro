@@ -28,7 +28,7 @@ use std::collections::HashMap;
 mod design;
 mod handoff;
 
-/// The schema of designs created in Macro: a subset of Figma's, with the
+/// The schema of designs created in Rox: a subset of Figma's, with the
 /// same type and field names, so the files are ordinary `.fig` files.
 pub const MACRO_SCHEMA: &str = "
 enum MessageType JOIN_START NODE_CHANGES USER_CHANGES JOIN_END SIGNAL STYLE STYLE_SET_CHANGES INTERACTIVE_SLIDE_CHANGE
@@ -1110,7 +1110,7 @@ impl<'s> Build<'s> {
         self.set_enum(m, "stackWrap", if al.wrap { "WRAP" } else { "NO_WRAP" });
     }
 
-    /// A complete record for a node created in Macro.
+    /// A complete record for a node created in Rox.
     fn create(&self, def: u32, node: &Node, doc: &Document) -> Msg {
         let mut m = Msg::new(def);
         let p = &node.props;
@@ -1578,7 +1578,7 @@ impl<'s> Window<'s> {
 }
 
 /// The schema with the boolean and vector fields this engine writes, when
-/// it lacks them (files made in Macro before it wrote them). Existing types
+/// it lacks them (files made in Rox before it wrote them). Existing types
 /// keep their indices and field ids, so the file's records read the same.
 fn with_shape_fields(bytes: &[u8]) -> Result<Option<Vec<u8>>> {
     with_fields(bytes, true, false)

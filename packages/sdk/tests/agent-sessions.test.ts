@@ -506,7 +506,7 @@ describe('AgentSession', () => {
       name: 'MacroApiError',
       status: 422,
       message:
-        'Macro API error 422: repoUrl needs a Cursor coding agent; choose a Cursor agent persona or omit repoUrl',
+        'Rox API error 422: repoUrl needs a Cursor coding agent; choose a Cursor agent persona or omit repoUrl',
     });
   });
 

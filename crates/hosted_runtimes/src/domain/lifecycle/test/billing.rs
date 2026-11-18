@@ -5,7 +5,7 @@ use super::*;
 #[test]
 fn past_due_subscription_stops_the_computer_after_grace_and_never_destroys_it() {
     let running = ComputerState {
-        macrod_connected: true,
+        roxd_connected: true,
         ..billed(Phase::Running)
     };
 

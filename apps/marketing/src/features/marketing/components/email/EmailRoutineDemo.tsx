@@ -51,7 +51,7 @@ const alert: HomepageMessage = {
 
 /**
  * A routine reacts to an important customer email: the email arrives in the
- * inbox, Macro posts it to the team's channel, and a push notification follows.
+ * inbox, Rox posts it to the team's channel, and a push notification follows.
  */
 export function EmailRoutineDemo() {
   let root!: HTMLDivElement;

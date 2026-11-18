@@ -1,6 +1,7 @@
 use super::*;
 use crate::domain::models::CHAT_MODELS;
 
+const ROX_R1_MAX: &str = "groq/gpt-oss-120b";
 const SONNET_5_5: &str = "anthropic/claude-sonnet-5-5";
 const OPUS_5_5: &str = "anthropic/claude-opus-5-5";
 const GEMINI_FLASH: &str = "google/gemini-3.8-flash";
@@ -16,8 +17,9 @@ fn free_user_only_has_the_free_model() {
     let svc = ModelAccessServiceImpl;
     assert_eq!(svc.best_model(false), FREE_MODEL);
     assert!(svc.has_access(false, FREE_MODEL));
-    assert_eq!(FREE_MODEL, GEMINI_FLASH);
-    assert!(svc.has_access(false, GEMINI_FLASH));
+    assert_eq!(FREE_MODEL, ROX_R1_MAX);
+    assert!(svc.has_access(false, ROX_R1_MAX));
+    assert!(!svc.has_access(false, GEMINI_FLASH));
     assert!(!svc.has_access(false, HAIKU_4_5));
     assert!(!svc.has_access(false, "unknown/model"));
     assert!(!svc.has_access(false, OPUS_5_5));
@@ -28,7 +30,8 @@ fn free_user_only_has_the_free_model() {
 #[test]
 fn professional_user_has_everything() {
     let svc = ModelAccessServiceImpl;
-    assert_eq!(svc.best_model(true), SONNET_5_5);
+    assert_eq!(svc.best_model(true), ROX_R1_MAX);
+    assert!(svc.has_access(true, ROX_R1_MAX));
     assert!(svc.has_access(true, SONNET_5_5));
     assert!(svc.has_access(true, OPUS_5_5));
     assert!(svc.has_access(true, HAIKU_4_5));

@@ -11,8 +11,8 @@ pub enum McpResource {
     /// the harness labels what the client writes from the access token's
     /// recorded client.
     Harness,
-    /// The ChatGPT MCP server. It passes its token straight to Macro's APIs,
-    /// which cannot look up the client, so it gets a Macro API token that
+    /// The ChatGPT MCP server. It passes its token straight to Rox's APIs,
+    /// which cannot look up the client, so it gets a Rox API token that
     /// signs the attribution in.
     Chatgpt,
 }

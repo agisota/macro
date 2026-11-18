@@ -10,7 +10,7 @@ const search = createPageSearch([
   },
   {
     href: '/posts/linear-alternative',
-    title: 'Macro vs Linear',
+    title: 'Rox vs Linear',
     context: 'Blog · Comparison',
     text: 'Customer emails link to tasks and pull requests. Calendar notifications.',
   },

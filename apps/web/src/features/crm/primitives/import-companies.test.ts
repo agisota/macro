@@ -192,7 +192,7 @@ describe('company import', () => {
               id: 'pipeline',
               teamId: 'team',
               name,
-              userId: 'macro|owner@macro.com',
+              userId: 'macro|owner@rox.one',
               recordType: 'company',
               databaseId: 'database',
               tableId: 'table',
@@ -226,11 +226,11 @@ describe('company import', () => {
               name: 'Gamma',
               domains: 'gamma.dev',
               stage: '',
-              owner: 'jane@macro.com',
+              owner: 'jane@rox.one',
             },
           ]
         ),
-        'Macro Customers Oct 16 2026.csv'
+        'Rox Customers Oct 16 2026.csv'
       )
     );
     expect(state.pipelineData()?.fields).toEqual(['Stage', 'Owner']);
@@ -245,7 +245,7 @@ describe('company import', () => {
     expect(create).toHaveBeenCalledTimes(3);
     expect(
       created.map((pipeline) => [pipeline.name, pipeline.sharing])
-    ).toEqual([['Macro Customers Oct 16 2026', 'private']]);
+    ).toEqual([['Rox Customers Oct 16 2026', 'private']]);
     expect(state.pipeline()?.added).toBe(2);
     expect(inserted).toEqual([
       [
@@ -273,7 +273,7 @@ describe('company import', () => {
           column: 'owner',
           value: {
             type: 'entities',
-            value: [{ entityType: 'USER', entityId: 'macro|jane@macro.com' }],
+            value: [{ entityType: 'USER', entityId: 'macro|jane@rox.one' }],
           },
         },
       ],
@@ -304,7 +304,7 @@ describe('company import', () => {
       id: 'deals',
       teamId: 'team',
       name: 'Deals',
-      userId: 'macro|owner@macro.com',
+      userId: 'macro|owner@rox.one',
       recordType: 'company',
       databaseId: 'database',
       tableId: 'table',

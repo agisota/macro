@@ -23,10 +23,10 @@ import {
 } from '../macro.ts';
 import { Refusal } from '../types.ts';
 
-/** What the fake Macro was asked to do, in order. */
+/** What the fake Rox was asked to do, in order. */
 type Actions = unknown[][];
 
-/** A seat as Macro's SDK returns one: it carries the room credential. */
+/** A seat as Rox's SDK returns one: it carries the room credential. */
 const seated = (id: string, actions: Actions, started = false) => ({
   url: 'wss://room',
   token: 'secret-room-token',
@@ -63,7 +63,7 @@ const record = (
     return {
       id: 'meet',
       title: async () => 'Standup',
-      webUrl: async () => over.url ?? 'https://macro.com/app/meet/join/share',
+      webUrl: async () => over.url ?? 'https://rox.one/app/meet/join/share',
     };
   },
 });
@@ -96,14 +96,14 @@ const fakePublish: typeof publishScreen = async (room, frames, options) => {
   published.push([room, frames, options]);
   return { stop: async () => {}, stopped: Promise.resolve() };
 };
-const apiOver = (macro: Macro): CallApi =>
+const apiOver = (macro: Rox): CallApi =>
   sdkCalls({
     macro: async () => macro,
     connectRoom: fakeConnect,
     publishScreen: fakePublish,
   });
 
-/** A Macro whose every way into a call is recorded. `live` is the channel's live call, if any. */
+/** A Rox whose every way into a call is recorded. `live` is the channel's live call, if any. */
 const joinable = (actions: Actions, live: string | null = null) =>
   fakeMacro({
     calls: {
@@ -219,7 +219,7 @@ test("a channel join with no call id joins the channel's live call, and is `ende
   expect(none).toEqual([['active', 'ch']]);
 });
 
-test('every join asks Macro to fail rather than evict the agent, unless told to switch', async () => {
+test('every join asks Rox to fail rather than evict the agent, unless told to switch', async () => {
   const actions: Actions = [];
   const api = apiOver(joinable(actions, 'live'));
   await api.join({ kind: 'channel', id: 'ch' });
@@ -362,7 +362,7 @@ test('a meeting whose link has no token has none, and a channel call with no cha
       calls: {
         active: async () => [
           record('m', 'standalone', counts, {
-            url: 'https://macro.com/app/meet/join/',
+            url: 'https://rox.one/app/meet/join/',
           }),
         ],
       },
@@ -382,9 +382,9 @@ test('a meeting whose link has no token has none, and a channel call with no cha
 });
 
 test("tokenOf is the decoded end of a meeting's link", () => {
-  expect(tokenOf('https://macro.com/app/meet/join/share')).toBe('share');
-  expect(tokenOf('https://macro.com/app/meet/join/a%2Fb%20c')).toBe('a/b c');
-  expect(tokenOf('https://macro.com/app/meet/join/')).toBe('');
+  expect(tokenOf('https://rox.one/app/meet/join/share')).toBe('share');
+  expect(tokenOf('https://rox.one/app/meet/join/a%2Fb%20c')).toBe('a/b c');
+  expect(tokenOf('https://rox.one/app/meet/join/')).toBe('');
   expect(tokenOf('')).toBe('');
 });
 
@@ -507,7 +507,7 @@ test("messagesSince is oldest first, at most 100, with the author's name or thei
   expect(many.at(-1)?.id).toBe('150');
 });
 
-test("who wrote a message is Macro's record of it, with whether it was a DM", async () => {
+test("who wrote a message is Rox's record of it, with whether it was a DM", async () => {
   const api = apiOver(
     fakeMacro({
       channels: {
@@ -616,7 +616,7 @@ test('watch listens for the five call events on a stream of its own, and stoppin
   expect(states).toEqual([true, false]);
 });
 
-// Refusals: why Macro wouldn't seat the agent, and how a join's exit says so.
+// Refusals: why Rox wouldn't seat the agent, and how a join's exit says so.
 
 test("refusal reads the SDK's own errors by name, and the rest by status", () => {
   expect(refusal(new InOtherCallError({}))).toBe('in_other_call');

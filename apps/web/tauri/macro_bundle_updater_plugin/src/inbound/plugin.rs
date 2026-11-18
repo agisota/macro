@@ -212,6 +212,21 @@ impl BundleUpdateEvent {
     }
 }
 
+/// Whether this build's webview is served by the local development stack.
+///
+/// On desktop `tauri::is_dev()` is true exactly for builds without Tauri's
+/// `custom-protocol` feature, i.e. builds that load `build.devUrl` — the Vite
+/// server on localhost — instead of the bundled assets. That dev server runs
+/// with `MODE=development` and picks the local service origins
+/// (`apps/web/src/lib/core/constant/servers.ts`), which is the same “local”
+/// decision the web bundle makes for `import.meta.hot` in `featureFlags.ts`.
+/// A local stack has no bundle endpoint, so an automatic check here would fall
+/// back to `auth_service_url()` and poll the shared gateway. Packaged builds
+/// enable `custom-protocol`, keep `is_dev()` false, and poll as before.
+fn runs_against_local_backend() -> bool {
+    cfg!(not(any(target_os = "ios", target_os = "android"))) && tauri::is_dev()
+}
+
 /// Tauri plugin that manages OTA bundle updates.
 pub struct MacroBundleUpdaterPlugin {
     base_url: Url,
@@ -516,6 +531,11 @@ impl<R: Runtime> Plugin<R> for MacroBundleUpdaterPlugin {
         let mut start_update_check = false;
         if !self.auto_update {
             tracing::info!("[bundle-update] automatic bundle updates are disabled in this build");
+        } else if runs_against_local_backend() {
+            tracing::info!(
+                base = %self.base_url,
+                "[bundle-update] skipping automatic bundle update check: dev-server build talks to the local stack"
+            );
         } else if let Ok(cache_dir) = bundle_storage_dir(app) {
             let startup = tauri::async_runtime::block_on(async {
                 service.load_bundle_root(&cache_dir, native_build).await

@@ -1,19 +1,19 @@
 # Android release tasks
 
-Created in Macro from `docs/design/android-readiness-audit.md` on September 21, 2026 (source snapshot `1c26a7c4fe`).
+Created in Rox from `docs/design/android-readiness-audit.md` on September 21, 2026 (source snapshot `1c26a7c4fe`).
 
-All six tasks verified: **Priority: High · Assignee: Peter (peter@macro.com) · Personal tag: android · Status: Not Started**. No due dates set.
+All six tasks verified: **Priority: High · Assignee: Peter (peter@rox.one) · Personal tag: android · Status: Not Started**. No due dates set.
 
-1. [Make the Android app build, authenticate, and open app links](https://macro.com/app/task/01a0c5bb-52fd-7c0d-b6c1-488945ec7dba)
-2. [Deliver Android push notifications end to end](https://macro.com/app/task/01a0c5bb-b55b-701e-b160-0e9fe90374d5)
-3. [Complete Android input, navigation, attachments, and sharing](https://macro.com/app/task/01a0c5bb-b65f-7115-b6c6-5ae1685cb749)
-4. [Implement native Android voice and video calling](https://macro.com/app/task/01a0c5bb-b746-75f4-840f-32aea38f59ed)
-5. [Make Android offline recovery and OTA updates reliable](https://macro.com/app/task/01a0c5bb-b846-7235-af24-2002ddaa6e85)
-6. [Qualify and release the Android app on Google Play](https://macro.com/app/task/01a0c5bb-ba45-7ac5-96c0-f6298a298d47)
+1. [Make the Android app build, authenticate, and open app links](https://rox.one/app/task/01a0c5bb-52fd-7c0d-b6c1-488945ec7dba)
+2. [Deliver Android push notifications end to end](https://rox.one/app/task/01a0c5bb-b55b-701e-b160-0e9fe90374d5)
+3. [Complete Android input, navigation, attachments, and sharing](https://rox.one/app/task/01a0c5bb-b65f-7115-b6c6-5ae1685cb749)
+4. [Implement native Android voice and video calling](https://rox.one/app/task/01a0c5bb-b746-75f4-840f-32aea38f59ed)
+5. [Make Android offline recovery and OTA updates reliable](https://rox.one/app/task/01a0c5bb-b846-7235-af24-2002ddaa6e85)
+6. [Qualify and release the Android app on Google Play](https://rox.one/app/task/01a0c5bb-ba45-7ac5-96c0-f6298a298d47)
 
 ## 1. Make the Android app build, authenticate, and open app links
 
-Deliver a reproducible Android app that launches, signs users in, connects their accounts, and opens Macro links correctly.
+Deliver a reproducible Android app that launches, signs users in, connects their accounts, and opens Rox links correctly.
 
 Scope:
 - Add Android shared-library output and separate shared/iOS/Android plugin capabilities. Repair or replace the pinned auth plugin's missing Android implementation and the keyboard plugin's invalid Android scaffold.

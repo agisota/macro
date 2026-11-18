@@ -13,6 +13,7 @@ import {
   saveStep,
 } from '../primitives/flow-storage';
 import {
+  defaultFakeWorld,
   FAKE_VIEWER_ID,
   type FakeOnboardingWorld,
 } from '../tests/fake-onboarding-context';
@@ -127,6 +128,22 @@ const click = (name: string | RegExp) =>
   fireEvent.click(screen.getByRole('button', { name }));
 
 describe('onboarding flow', () => {
+  it('requires a legacy account to claim a valid handle before imports', async () => {
+    const world = defaultFakeWorld();
+    if (world.viewer) world.viewer.handle = undefined;
+    const { fake } = setup({ world, resume: 'handle' });
+
+    await heading('Choose your Rox handle.');
+    fireEvent.input(screen.getByLabelText('Handle'), {
+      target: { value: 'ada' },
+    });
+    click('Continue');
+
+    await heading(/Connect your work/);
+    expect(fake.calls()).toContain('claimHandle:ada');
+    expect(fake.world.viewer?.handle).toBe('ada');
+  });
+
   it('walks every step and finishes with Free', async () => {
     const { fake, navigate } = setup({ next: '/channel/launch' });
 
@@ -141,7 +158,7 @@ describe('onboarding flow', () => {
     click('Continue');
 
     await heading(/Connect your work/);
-    click('Connect work email');
+    click('Import work email');
     await screen.findByText('ada@acme.com');
     click('Continue');
 
@@ -189,7 +206,7 @@ describe('onboarding flow', () => {
         .events()
         .filter((e) => e.event === 'onboarding_v4_step')
         .map((e) => e.data)
-    ).toContainEqual({ step: 'personal', index: 4, state: 'skipped' });
+    ).toContainEqual({ step: 'personal', index: 5, state: 'skipped' });
   });
 
   it('skips the personal account when the work account was skipped', async () => {
@@ -235,7 +252,7 @@ describe('onboarding flow', () => {
       screen
         .getByRole('button', { name: 'About the team email' })
         .getAttribute('aria-description')
-    ).toMatch(/contacts who aren't on Macro yet/);
+    ).toMatch(/contacts who aren't on Rox yet/);
 
     fireEvent.click(joinInfo);
     expect(domainJoin.checked).toBe(true);
@@ -782,7 +799,7 @@ describe('onboarding flow', () => {
   });
 
   it.each([
-    { account: 'staff', email: 'wolf@macro.com', local: false },
+    { account: 'staff', email: 'wolf@rox.one', local: false },
     { account: 'local non-staff', email: 'tester@example.com', local: true },
   ])(
     'lets $account accounts complete setup with Bypass',
@@ -847,7 +864,7 @@ describe('onboarding flow', () => {
     expect(
       screen.getByText('For you · You get a lot of newsletters.')
     ).toBeTruthy();
-    expect(screen.getByText('Template from Macro')).toBeTruthy();
+    expect(screen.getByText('Template from Rox')).toBeTruthy();
     const toggle = (name: string) =>
       screen.getByRole('switch', { name: `Turn on ${name}` });
     expect(toggle('Sort my inbox')).toHaveProperty('checked', true);
@@ -876,7 +893,7 @@ describe('onboarding flow', () => {
   it('streams AI’s suggestions in, fills only surfaces still empty after the wait, and tops up once AI is done', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     try {
-      // The server always fills each surface with Macro's templates.
+      // The server always fills each surface with Rox's templates.
       const emailTemplate = catalogSuggestion('updates', 'updates', {
         from: 'macro',
         surface: 'email',
@@ -991,7 +1008,7 @@ describe('onboarding flow', () => {
     });
   });
 
-  it('falls back to Macro’s templates when AI gave none in time', async () => {
+  it('falls back to Rox’s templates when AI gave none in time', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     try {
       const { fake } = setup({
@@ -1043,7 +1060,7 @@ describe('onboarding flow', () => {
     });
     await heading('Put your busywork on autopilot.');
     expect(screen.getByText('Share updates')).toBeTruthy();
-    expect(screen.getByText('Template from Macro')).toBeTruthy();
+    expect(screen.getByText('Template from Rox')).toBeTruthy();
   });
 
   it('keeps a routine that failed to turn on and retries only it', async () => {
@@ -1218,7 +1235,7 @@ describe('after a Microsoft sign-up', () => {
     const { fake } = setup({ world: { outlookAvailable: true } });
     await heading(/Continue with your work/);
     expect(connects(fake.calls())).toEqual([]);
-    click('Continue with Microsoft');
+    click('Import from Microsoft');
     expect(connects(fake.calls())).toEqual(['connectInbox:microsoft']);
   });
 });

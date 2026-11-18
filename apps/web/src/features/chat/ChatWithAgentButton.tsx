@@ -117,7 +117,7 @@ async function createAndOpenAgent(seed: {
 
 function entityMentionMarkdown(entity: ChatWithAgentEntity): string {
   if (entity.type === 'pr') {
-    // The Macro id lets the agent read the diff through the SDK.
+    // The Rox id lets the agent read the diff through the SDK.
     return buildMentionMarkdownString({
       type: 'pr',
       id: entity.id,

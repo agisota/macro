@@ -6,7 +6,7 @@ const pages = new URL('markdown/', output);
 
 test('the homepage explains entities and links to their reference without test modules', async () => {
   const html = await readFile(new URL('html/index.html', output), 'utf8');
-  expect(html).toContain('Build with Macro');
+  expect(html).toContain('Build with Rox');
   expect(html).toContain('Quick start');
   expect(html).toContain('Find the right entity');
   expect(html).toContain('Connected mailboxes');
@@ -43,7 +43,7 @@ test('agent routing and guidance never reach the public reference', async () => 
   for (const page of [markdown, html]) {
     expect(page).not.toContain('@agent');
     expect(page).not.toContain('@routing');
-    expect(page).not.toContain('Use when working with a Macro database');
+    expect(page).not.toContain('Use when working with a Rox database');
     expect(page).not.toContain("check every database's tables");
   }
 });

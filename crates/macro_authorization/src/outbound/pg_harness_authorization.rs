@@ -37,7 +37,7 @@ pub enum PgHarnessAuthorizationRepoError {
     /// A database operation failed.
     #[error("harness authorization database operation failed")]
     Database(#[from] sqlx::Error),
-    /// Persisted user data could not be represented as a Macro user identifier.
+    /// Persisted user data could not be represented as a Rox user identifier.
     #[error("invalid persisted user email")]
     InvalidUserEmail,
 }

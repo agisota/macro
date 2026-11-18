@@ -1,9 +1,9 @@
-# This machine's macrod config. The TUI and `macrod service` both read
-# ~/.macrod/macrod.toml unless given `--config <path>`. Another runtime on the
+# This machine's roxd config. The TUI and `roxd service` both read
+# ~/.roxd/roxd.toml unless given `--config <path>`. Another runtime on the
 # same machine is a named profile: `--profile <name>` reads
-# ~/.macrod/profiles/<name>.toml, and `macrod profiles` lists them.
+# ~/.roxd/profiles/<name>.toml, and `roxd profiles` lists them.
 #
-# This example omits credentials, so `macrod` starts in Quickstart. Pairing
+# This example omits credentials, so `roxd` starts in Quickstart. Pairing
 # shows a code for approval in the web app, then adds a `[credentials]` table
 # containing a bearer token to this file. Keep the resulting config private.
 #
@@ -11,14 +11,14 @@
 # not set here: change them on the web at Settings → Machines.
 
 # Optional development overrides. Every key defaults to production.
-# Macro computer enrollment may set egress_url to its fleet-reachable gateway.
+# Rox computer enrollment may set egress_url to its fleet-reachable gateway.
 # [macro]
 # # Base URL of the agent-harness service. Its ws(s) twin hosts the runtime
 # # gateway the daemon connects to on startup.
 # api_url = "http://localhost:50009/agent-harness"
 # # Base URL of the storage service (harness pairing + live event stream).
 # storage_url = "http://localhost:50009/dss"
-# # Base URL of the Macro web app, used for the pairing and settings links.
+# # Base URL of the Rox web app, used for the pairing and settings links.
 # web_url = "http://localhost:3000/app"
 
 [harness]
@@ -37,12 +37,12 @@ repo_url = "https://github.com/macro-inc/macro"
 
 # Optional defaults for the one native Herdr configuration (also editable in the TUI).
 # [herdr]
-# model = "sonnet"            # Launch fallback; Macro picks each agent's model.
+# model = "sonnet"            # Launch fallback; Rox picks each agent's model.
 # arguments = []              # Native CLI arguments, one word per element.
-# storage_path = "/path/to/agents" # Omit for ~/.macrod/herdr/<harness-id>.
+# storage_path = "/path/to/agents" # Omit for ~/.roxd/herdr/<harness-id>.
 # focus = true               # false opens new sessions in the background.
 
-# Optional: a released macrod checks for a newer release every hour and
-# installs it. Set auto = false (or MACROD_NO_UPDATE=1) to turn that off.
+# Optional: a released roxd checks for a newer release every hour and
+# installs it. Set auto = false (or ROXD_NO_UPDATE=1) to turn that off.
 # [update]
 # auto = true

@@ -30,7 +30,7 @@ it('opens the importer for just the chosen app', async () => {
   expect(dialog.textContent).toBe('Jira');
 });
 
-it('offers no import for apps Macro cannot import from', () => {
+it('offers no import for apps Rox cannot import from', () => {
   render(() => <ImportAction appSlug="zoom" name="Zoom" />);
   expect(screen.queryByRole('button', { name: 'Import from Zoom' })).toBeNull();
 });

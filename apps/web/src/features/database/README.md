@@ -46,7 +46,7 @@ components remain usable with props and without this context.
 - A successful commit remains successful if a subsequent refresh fails. The
   queries own refresh errors; retrying the mutation could duplicate an insert.
 
-The API does not require SQL reads, a Macro database entity, Soup, app block
+The API does not require SQL reads, a Rox database entity, Soup, app block
 context, or a particular URL layout. `DatabaseApi.key` must identify the host and
 resource within the query cache. Authentication and resource authorization belong
 to the host's API/service; UI capabilities only determine which controls appear.
@@ -96,7 +96,7 @@ View preferences in the example are local; hosts that save views pass their own
 view state and authorized persistence callback. Shared filter, sort, toolbar and
 view components are in `components/`.
 
-The Macro app's `DatabaseGrid` supplies an optimized `DatabaseDataSource` to the
+The Rox app's `DatabaseGrid` supplies an optimized `DatabaseDataSource` to the
 same provider, preserving SQL caching, incremental updates and first-value type
 inference. Normal API hosts use the provider's built-in paginated source. Both
 paths share row-op construction and the schema controller. The app keeps its

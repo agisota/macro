@@ -1,4 +1,4 @@
-//! Provider responses that mean Macro's account with an AI provider can no
+//! Provider responses that mean Rox's account with an AI provider can no
 //! longer serve anyone: the account is suspended, or it is out of credit or
 //! past its spending limit. Every request fails the same way until someone
 //! fixes billing, so each one is logged as `ai provider account unavailable`,
@@ -14,7 +14,7 @@
 #[cfg(test)]
 mod test;
 
-/// Why a provider refused to serve Macro's account.
+/// Why a provider refused to serve Rox's account.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, strum::IntoStaticStr)]
 #[strum(serialize_all = "snake_case")]
 pub enum AccountUnavailable {
@@ -75,8 +75,8 @@ pub fn account_unavailable(status: Option<u16>, body: &str) -> Option<AccountUna
 }
 
 /// Log `ai provider account unavailable` when a response from `provider`
-/// (`anthropic`, `fireworks`, …) means Macro's account there is unusable.
-/// Only call it for requests made with Macro's own key: an agent's own key
+/// (`anthropic`, `fireworks`, …) means Rox's account there is unusable.
+/// Only call it for requests made with Rox's own key: an agent's own key
 /// failing is that agent owner's billing, not an outage.
 pub fn report_provider_error(provider: &str, status: Option<u16>, body: &str) {
     if let Some(reason) = account_unavailable(status, body) {

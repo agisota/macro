@@ -1,6 +1,6 @@
-# Macro DB Client
+# Rox DB Client
 
-This crate handles all database queries for Macro DB.
+This crate handles all database queries for Rox DB.
 
 ## Testing
 

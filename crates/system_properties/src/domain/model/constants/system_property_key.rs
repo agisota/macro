@@ -4,7 +4,7 @@ use models_properties::EntityType;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-/// Macro to define system properties with all metadata in one place.
+/// Rox to define system properties with all metadata in one place.
 ///
 /// Each property is defined once with its variant name, const name, UUID suffix, and display name.
 /// The macro generates:

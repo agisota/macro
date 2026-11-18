@@ -1,6 +1,6 @@
-//! Whether one of Macro's own tools may run in this turn.
+//! Whether one of Rox's own tools may run in this turn.
 //!
-//! The sandboxed runtimes reach Macro's tools through the egress proxy, which
+//! The sandboxed runtimes reach Rox's tools through the egress proxy, which
 //! resolves the selected actor and holds calls whose account differs from
 //! the verified requester. This runtime applies that policy before each native
 //! call and passes the resolved identity into dispatch. Remote MCP tools use

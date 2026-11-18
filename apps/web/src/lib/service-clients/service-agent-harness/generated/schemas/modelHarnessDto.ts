@@ -15,5 +15,5 @@ export type ModelHarnessDto =
 export const ModelHarnessDto = {
   'in-memory': 'in-memory',
   cursor: 'cursor',
-  macrod: 'macrod',
+  roxd: 'roxd',
 } as const;

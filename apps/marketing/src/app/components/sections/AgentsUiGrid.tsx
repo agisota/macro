@@ -657,7 +657,7 @@ function PermissionsPanel() {
 // MCP / Platform — terminal connect card + tool tags. Simple card, no spotlight needed.
 function McpPanel() {
   const compact = () => viewportWidth() < 700;
-  const MCP_ENDPOINT = 'https://mcp-server.macro.com/mcp';
+  const MCP_ENDPOINT = 'https://mcp-server.rox.one/mcp';
   const connectors = ['Notion', 'Slack', 'Linear', 'GitHub', 'Drive'];
   const agentTools = [
     'Search',
@@ -889,7 +889,7 @@ type UiCell = {
 const cells: UiCell[] = [
   {
     title: 'Team-level memory',
-    body: 'Macro knows what everyone shipped and said — ask before you duplicate work.',
+    body: 'Rox knows what everyone shipped and said — ask before you duplicate work.',
     Graphic: TeamMemoryPanel,
   },
   {
@@ -899,7 +899,7 @@ const cells: UiCell[] = [
   },
   {
     title: 'Open platform via MCP',
-    body: 'Connect any tool in, or give your coding agent the same reach into Macro.',
+    body: 'Connect any tool in, or give your coding agent the same reach into Rox.',
     Graphic: McpPanel,
   },
   {

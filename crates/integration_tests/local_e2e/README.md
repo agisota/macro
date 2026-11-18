@@ -14,7 +14,7 @@ and Playwright.
 
 ## Scoped bot entity access
 
-`bot_entity_access` connects directly to MacroDB to create an isolated
+`bot_entity_access` connects directly to RoxDB to create an isolated
 team-owned bot, token, channels, and document grants, then exercises DSS's
 `/entity/{entity_type}/{entity_id}/permissions` endpoint under team and user
 scope. It uses random UUIDs and removes its rows after verification.
@@ -32,7 +32,7 @@ nix develop --command cargo test -p local_e2e_integration_tests --test bot_entit
 ```
 
 The test reads `LOCAL_E2E_DATABASE_URL` and
-`LOCAL_E2E_DOCUMENT_STORAGE_URL`, falling back to the standard local MacroDB
+`LOCAL_E2E_DOCUMENT_STORAGE_URL`, falling back to the standard local RoxDB
 and DSS addresses.
 
 ## Email-code signup

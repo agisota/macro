@@ -125,7 +125,7 @@ async fn preview_mcp_handler<Service: EgressService>(
     mcp_proxy(state, McpDestination::Preview, request).await
 }
 
-/// Macro's own MCP server, on its own route rather than under `/mcp/{slug}`:
+/// Rox's own MCP server, on its own route rather than under `/mcp/{slug}`:
 /// with no name shared between the built-in server and the owner's connected
 /// apps, no connected app can collide with it.
 #[tracing::instrument(skip_all, err(level = Level::INFO))]
@@ -207,7 +207,7 @@ impl IntoResponse for GitRefusal {
         if unauthenticated {
             response.headers_mut().insert(
                 http::header::WWW_AUTHENTICATE,
-                http::HeaderValue::from_static(r#"Basic realm="Macro egress", charset="UTF-8""#),
+                http::HeaderValue::from_static(r#"Basic realm="Rox egress", charset="UTF-8""#),
             );
         }
         response
@@ -302,7 +302,7 @@ impl IntoResponse for EgressError {
                 "No such connected MCP server."
             }
             Self::RepoUnavailable(_) => {
-                "This session's repository is not reachable with Macro's GitHub App."
+                "This session's repository is not reachable with Rox's GitHub App."
             }
             Self::MethodNotAllowed(_) => "That method is not allowed here.",
             Self::RequestTooLarge => "That request body is too large.",

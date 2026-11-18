@@ -12,7 +12,7 @@ struct UserMention<'a> {
     email: &'a str,
 }
 
-/// Serialize a Macro user as an in-app user mention node.
+/// Serialize a Rox user as an in-app user mention node.
 pub fn user_mention(user_id: &MacroUserIdStr<'_>) -> Result<String, serde_json::Error> {
     let payload = tag_json(&UserMention {
         user_id: user_id.as_ref(),
@@ -100,10 +100,10 @@ impl<'a> ExternalLink<'a> {
 /// Channel navigation parameters use snake_case inside camelCase mention JSON.
 #[derive(Debug, Clone, Copy, Default, Serialize)]
 pub struct ChannelMentionParams<'a> {
-    /// Canonical Macro message UUID, never a Slack timestamp.
+    /// Canonical Rox message UUID, never a Slack timestamp.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub channel_message_id: Option<&'a str>,
-    /// Canonical persisted Macro root UUID for a thread/reply target.
+    /// Canonical persisted Rox root UUID for a thread/reply target.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub channel_thread_id: Option<&'a str>,
 }

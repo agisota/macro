@@ -69,7 +69,6 @@ axum = { workspace = true, features = ["macros"] }
 base64 = { workspace = true }
 bot_id = { path = "../../crates/bot_id" }
 bots = { path = "../../crates/bots", default-features = false, features = ["outbound"] }
-harnesses = { path = "../../crates/harnesses", default-features = false, features = ["outbound"] }
 channels = { path = "../../crates/channels", default-features = false, features = [
   "outbound",
 ] }
@@ -95,6 +94,7 @@ entity_access = { path = "../../crates/entity_access" }
 entity_registry = { path = "../../crates/entity_registry/entity_registry", features = [
   "postgres",
 ] }
+enterprise = { path = "../../crates/enterprise", features = ["inbound", "outbound"] }
 foreign_entity = { path = "../../crates/foreign_entity" }
 favorites = { path = "../../crates/favorites", features = ["postgres"] }
 feature_flags = { path = "../../crates/feature_flags" }
@@ -112,6 +112,7 @@ github_pull_requests = { path = "../../crates/github_pull_requests", default-fea
   "outbound",
   "service",
 ] }
+harnesses = { path = "../../crates/harnesses", features = ["outbound", "ports"] }
 hmac = { workspace = true }
 hosted_runtimes = { path = "../../crates/hosted_runtimes", default-features = false, features = [
   "inbound",

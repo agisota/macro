@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Vendored from libsignal v0.74.1 rust/protocol/src/state/session.rs and
-// modified by Macro: no Kyber or post-quantum ratchet state, no pre-key
+// modified by Rox: no Kyber or post-quantum ratchet state, no pre-key
 // timestamp (go.mau.fi/libsignal never expires an unacknowledged session),
 // identity keys are plain curve public keys, and the logging-only accessors
 // are gone. See NOTICE.

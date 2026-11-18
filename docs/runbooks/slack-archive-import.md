@@ -41,7 +41,7 @@ and [the Settings interaction guide](../agent-guide/settings.md#slack-archive-im
 | --- | --- |
 | `SLACK_IMPORT_ENABLED` | DSS admits creates/registration/completion; worker admits new claims/publication. Default false. Set in both configurations deliberately. |
 | `SLACK_IMPORT_CONCURRENCY` | Worker, default 1; only 1 or 2 accepted. Start at 1. |
-| `DATABASE_URL` | Worker MacroDB; role needs the owning-domain historical transaction tables. |
+| `DATABASE_URL` | Worker RoxDB; role needs the owning-domain historical transaction tables. |
 | `INTERNAL_API_KEY` | Worker and search processing must agree; never log or include it in tickets. |
 | `UPLOAD_STAGING_BUCKET` | DSS/worker same bucket. Worker infrastructure supplies this value. |
 | `OVERRIDE_SLACK_IMPORT_QUEUE`, `OVERRIDE_SLACK_IMPORT_DLQ` | Typed queue names/URLs; worker infrastructure supplies them. Resolve both at startup. |
@@ -72,7 +72,7 @@ retry an overwrite**. Do not treat ETag as a SHA-256 checksum.
 
 ## Source and data semantics
 
-- V1 binds one Slack workspace to one Macro team. Known mismatches fail; unknown
+- V1 binds one Slack workspace to one Rox team. Known mismatches fail; unknown
   exports need explicit admin confirmation. Never clear a binding to bypass a
   mismatch. Existing onboarding mappings belong to that binding.
 - Unknown-source confirmation is **not** Slack domain evidence. Unproven Slack
@@ -241,7 +241,7 @@ team against that named instance. For an existing instance, follow
 instead: an attached `run_local` and `stack up` both wipe. Enable
 DSS/worker admission and the frontend override, and use the local E2E backend
 origin/JWT setup without invoking a stack-resetting harness. No-Doppler default
-Macro API signing keys are placeholders: supply a local-only generated RSA key
+Rox API signing keys are placeholders: supply a local-only generated RSA key
 pair to the services and token generator, or use local FusionAuth login. Never use
 hosted credentials. Warm the browser WASM builds before Playwright's 60-second
 server-start deadline, and do not run Docker teardown tests concurrently with

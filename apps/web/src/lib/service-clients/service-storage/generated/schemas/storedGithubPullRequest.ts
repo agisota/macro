@@ -23,7 +23,7 @@ import type { StoredGithubPullRequestStatus } from './storedGithubPullRequestSta
 import type { StoredGithubPullRequestTitle } from './storedGithubPullRequestTitle';
 
 /**
- * A GitHub pull request as Macro stores it, read through one of the caller's records.
+ * A GitHub pull request as Rox stores it, read through one of the caller's records.
  */
 export interface StoredGithubPullRequest {
   /**

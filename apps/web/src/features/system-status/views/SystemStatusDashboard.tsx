@@ -20,7 +20,7 @@ import {
   type StatusLevel,
 } from '../core/status';
 
-const STAFF_EMAIL_DOMAIN = '@macro.com';
+const STAFF_EMAIL_DOMAIN = '@rox.one';
 
 /**
  * Internal dashboard for setting the status banner every user sees. Reachable
@@ -39,17 +39,17 @@ export function SystemStatusDashboard() {
         <header class="flex flex-col gap-1">
           <h1 class="text-xl font-semibold tracking-tight">System status</h1>
           <p class="text-sm text-ink-muted">
-            While Macro isn't operational, every user sees a banner with the
+            While Rox isn't operational, every user sees a banner with the
             status and your message. Changes reach open apps immediately.
           </p>
         </header>
 
         <Switch>
           <Match when={isAuthenticated() === false}>
-            <Gate body="Log in with a @macro.com account to continue." />
+            <Gate body="Log in with a @rox.one account to continue." />
           </Match>
           <Match when={isAuthenticated() === true && !isStaff()}>
-            <Gate body="Only @macro.com accounts can set the system status." />
+            <Gate body="Only @rox.one accounts can set the system status." />
           </Match>
           <Match when={isAuthenticated() === true && isStaff()}>
             <CurrentStatus />
@@ -66,7 +66,7 @@ export function SystemStatusDashboard() {
 function Gate(props: { body: string }) {
   return (
     <div class="flex flex-col gap-1 rounded-xl border border-edge p-6">
-      <h2 class="text-base font-semibold">Macro staff only</h2>
+      <h2 class="text-base font-semibold">Rox staff only</h2>
       <p class="text-sm text-ink-muted">{props.body}</p>
     </div>
   );
@@ -279,8 +279,8 @@ function ApiDocs() {
     <Section title="API">
       <div class="flex flex-col gap-3 text-sm text-ink-muted">
         <p>
-          Any @macro.com account can set the status from a script with a
-          personal API key (Settings → API keys). <code>status</code> is{' '}
+          Any @rox.one account can set the status from a script with a personal
+          API key (Settings → API keys). <code>status</code> is{' '}
           <code>operational</code>, <code>degraded</code>, or{' '}
           <code>major_outage</code>; the latter two require a 1–
           {MAX_MESSAGE_LENGTH} character <code>message</code>, and operational

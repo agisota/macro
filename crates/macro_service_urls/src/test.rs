@@ -163,11 +163,11 @@ fn scheduled_action_service_url_parses() {
     );
     assert_eq!(
         ScheduledActionServiceUrl::dev().as_ref(),
-        "https://dev-gateway.macro.com/scheduled-action"
+        "https://dev-gateway.rox.one/scheduled-action"
     );
     assert_eq!(
         ScheduledActionServiceUrl::prod().as_ref(),
-        "https://gateway.macro.com/scheduled-action"
+        "https://gateway.rox.one/scheduled-action"
     );
 }
 
@@ -195,11 +195,11 @@ fn agent_harness_egress_url_selects_defaults_without_a_required_config_value() {
             (Environment::Local, "http://localhost:8102"),
             (
                 Environment::Develop,
-                "https://dev-gateway.macro.com/agent-harness-egress",
+                "https://dev-gateway.rox.one/agent-harness-egress",
             ),
             (
                 Environment::Production,
-                "https://gateway.macro.com/agent-harness-egress",
+                "https://gateway.rox.one/agent-harness-egress",
             ),
         ] {
             let url = AgentHarnessEgressUrl::new_for_environment(environment).unwrap();
@@ -235,8 +235,8 @@ fn mcp_service_url_defaults_are_bases_without_a_trailing_slash() {
     with_mock_override_env(missing_override, || {
         for (environment, expected) in [
             (Environment::Local, "http://localhost:8101"),
-            (Environment::Develop, "https://dev-gateway.macro.com/mcp"),
-            (Environment::Production, "https://gateway.macro.com/mcp"),
+            (Environment::Develop, "https://dev-gateway.rox.one/mcp"),
+            (Environment::Production, "https://gateway.rox.one/mcp"),
         ] {
             let url = McpServiceUrl::new_for_environment(environment).unwrap();
             assert_eq!(url.as_str(), expected);
@@ -350,8 +350,8 @@ crate::service_url! {
     #[derive(Debug, Clone)]
     pub struct TestServiceUrl {
         local: "http://localhost:8080",
-        dev: "https://test-dev.macro.com",
-        prod: "https://test.macro.com",
+        dev: "https://test-dev.rox.one",
+        prod: "https://test.rox.one",
     }
 }
 
@@ -372,13 +372,13 @@ fn defaults_are_selected_by_environment() {
             TestServiceUrl::new_for_environment(macro_env::Environment::Develop)
                 .unwrap()
                 .as_ref(),
-            "https://test-dev.macro.com",
+            "https://test-dev.rox.one",
         );
         assert_eq!(
             TestServiceUrl::new_for_environment(macro_env::Environment::Production)
                 .unwrap()
                 .as_ref(),
-            "https://test.macro.com",
+            "https://test.rox.one",
         );
     });
 }
@@ -396,7 +396,7 @@ fn default_values_are_borrowed() {
 
 fn mock_test_service_override(var_name: &'static str) -> Result<String, std::env::VarError> {
     (var_name == "OVERRIDE_TEST_SERVICE_URL")
-        .then(|| "https://override.macro.com".to_string())
+        .then(|| "https://override.rox.one".to_string())
         .ok_or(std::env::VarError::NotPresent)
 }
 
@@ -406,31 +406,31 @@ fn override_env_var_wins_over_environment_default() {
         TestServiceUrl::new_for_environment(macro_env::Environment::Local).unwrap()
     });
 
-    assert_eq!(service_url.as_ref(), "https://override.macro.com");
+    assert_eq!(service_url.as_ref(), "https://override.rox.one");
     assert_eq!(
         service_url.override_env_var_name(),
         "OVERRIDE_TEST_SERVICE_URL",
     );
     assert_eq!(
         service_url.inner().owned_inner().unwrap(),
-        "https://override.macro.com",
+        "https://override.rox.one",
     );
 }
 
 #[test]
 fn helpers_construct_expected_defaults() {
     assert_eq!(TestServiceUrl::local().as_ref(), "http://localhost:8080");
-    assert_eq!(TestServiceUrl::dev().as_ref(), "https://test-dev.macro.com");
-    assert_eq!(TestServiceUrl::prod().as_ref(), "https://test.macro.com");
+    assert_eq!(TestServiceUrl::dev().as_ref(), "https://test-dev.rox.one");
+    assert_eq!(TestServiceUrl::prod().as_ref(), "https://test.rox.one");
 }
 
 #[test]
 fn copied_returns_a_borrowed_view() {
-    let service_url = TestServiceUrl::from_owned("https://runtime.macro.com");
+    let service_url = TestServiceUrl::from_owned("https://runtime.rox.one");
     let copied = service_url.copied();
 
-    assert_eq!(copied.as_ref(), "https://runtime.macro.com");
-    assert_eq!(copied.borrowed_inner(), Some("https://runtime.macro.com"));
+    assert_eq!(copied.as_ref(), "https://runtime.rox.one");
+    assert_eq!(copied.borrowed_inner(), Some("https://runtime.rox.one"));
 }
 
 crate::service_url! {
@@ -439,21 +439,21 @@ crate::service_url! {
         #[derive(Debug, Clone)]
         pub TestDocumentStorageServiceUrl {
             local: "http://localhost:8086",
-            dev: "https://dev-gateway.macro.com/dss",
-            prod: "https://gateway.macro.com/dss",
+            dev: "https://dev-gateway.rox.one/dss",
+            prod: "https://gateway.rox.one/dss",
         },
         #[derive(Debug, Clone)]
         pub TestEmailServiceUrl {
             local: "http://localhost:8087",
-            dev: "https://dev-gateway.macro.com/email",
-            prod: "https://gateway.macro.com/email",
+            dev: "https://dev-gateway.rox.one/email",
+            prod: "https://gateway.rox.one/email",
         },
     }
 }
 
 fn mock_group_overrides(var_name: &'static str) -> Result<String, std::env::VarError> {
     match var_name {
-        "OVERRIDE_TEST_EMAIL_SERVICE_URL" => Ok("https://email-override.macro.com".to_string()),
+        "OVERRIDE_TEST_EMAIL_SERVICE_URL" => Ok("https://email-override.rox.one".to_string()),
         _ => Err(std::env::VarError::NotPresent),
     }
 }
@@ -466,11 +466,11 @@ fn grouped_macro_resolves_all_service_urls() {
 
     assert_eq!(
         service_urls.test_document_storage_service_url.as_ref(),
-        "https://dev-gateway.macro.com/dss",
+        "https://dev-gateway.rox.one/dss",
     );
     assert_eq!(
         service_urls.test_email_service_url.as_ref(),
-        "https://email-override.macro.com",
+        "https://email-override.rox.one",
     );
 }
 
@@ -480,11 +480,11 @@ fn grouped_defaults_do_not_check_overrides() {
 
     assert_eq!(
         service_urls.test_document_storage_service_url.as_ref(),
-        "https://gateway.macro.com/dss",
+        "https://gateway.rox.one/dss",
     );
     assert_eq!(
         service_urls.test_email_service_url.as_ref(),
-        "https://gateway.macro.com/email",
+        "https://gateway.rox.one/email",
     );
 }
 
@@ -576,79 +576,79 @@ fn exported_service_urls_match_dev_values() {
 
     assert_eq!(
         service_urls.app_service_url.as_ref(),
-        "https://dev.macro.com"
+        "https://dev.rox.one"
     );
     assert_eq!(
         service_urls.auth_service_url.as_ref(),
-        "https://dev-gateway.macro.com/auth",
+        "https://dev-gateway.rox.one/auth",
     );
     assert_eq!(
         service_urls.document_storage_service_url.as_ref(),
-        "https://dev-gateway.macro.com/dss",
+        "https://dev-gateway.rox.one/dss",
     );
     assert_eq!(
         service_urls.convert_service_url.as_ref(),
-        "https://dev-gateway.macro.com/convert",
+        "https://dev-gateway.rox.one/convert",
     );
     assert_eq!(
         service_urls.search_processing_service_url.as_ref(),
-        "https://dev-gateway.macro.com/search-processing",
+        "https://dev-gateway.rox.one/search-processing",
     );
     assert_eq!(
         service_urls.connection_gateway_url.as_ref(),
-        "https://dev-gateway.macro.com/connection-gateway",
+        "https://dev-gateway.rox.one/connection-gateway",
     );
     assert_eq!(
         service_urls.connection_gateway_websocket_url.as_ref(),
-        "wss://dev-gateway.macro.com/connection-gateway",
+        "wss://dev-gateway.rox.one/connection-gateway",
     );
     assert_eq!(
         service_urls.document_cognition_service_url.as_ref(),
-        "https://dev-gateway.macro.com/cognition",
+        "https://dev-gateway.rox.one/cognition",
     );
     assert_eq!(
         service_urls.notification_service_url.as_ref(),
-        "https://dev-gateway.macro.com/notification",
+        "https://dev-gateway.rox.one/notification",
     );
     assert_eq!(
         service_urls.static_file_service_url.as_ref(),
-        "https://static-file-service-dev.macro.com",
+        "https://static-file-service-dev.rox.one",
     );
     assert_eq!(
         service_urls.agent_harness_service_url.as_ref(),
-        "https://dev-gateway.macro.com/agent-harness",
+        "https://dev-gateway.rox.one/agent-harness",
     );
     assert_eq!(
         service_urls.agent_harness_egress_url.as_ref(),
-        "https://dev-gateway.macro.com/agent-harness-egress",
+        "https://dev-gateway.rox.one/agent-harness-egress",
     );
     assert_eq!(
         service_urls.mcp_service_url.as_ref(),
-        "https://dev-gateway.macro.com/mcp",
+        "https://dev-gateway.rox.one/mcp",
     );
     assert_eq!(
         service_urls.unfurl_service_url.as_ref(),
-        "https://dev-gateway.macro.com/unfurl",
+        "https://dev-gateway.rox.one/unfurl",
     );
     assert_eq!(
         service_urls.contacts_service_url.as_ref(),
-        "https://dev-gateway.macro.com/contacts",
+        "https://dev-gateway.rox.one/contacts",
     );
     assert_eq!(
         service_urls.email_service_url.as_ref(),
-        "https://dev-gateway.macro.com/email",
+        "https://dev-gateway.rox.one/email",
     );
     assert_eq!(
         service_urls.calendar_service_url.as_ref(),
-        "https://dev-gateway.macro.com/calendar",
+        "https://dev-gateway.rox.one/calendar",
     );
     assert_eq!(
         service_urls.image_proxy_service_url.as_ref(),
-        "https://dev-gateway.macro.com/image-proxy",
+        "https://dev-gateway.rox.one/image-proxy",
     );
     assert_eq!(
         service_urls.lexical_service_url.as_ref(),
-        "https://dev-gateway.macro.com/lexical",
+        "https://dev-gateway.rox.one/lexical",
     );
     assert_eq!(
         service_urls.sync_service_url.as_ref(),
@@ -660,78 +660,78 @@ fn exported_service_urls_match_dev_values() {
 fn exported_service_urls_match_prod_values() {
     let service_urls = ServiceUrls::default_for_environment(macro_env::Environment::Production);
 
-    assert_eq!(service_urls.app_service_url.as_ref(), "https://macro.com");
+    assert_eq!(service_urls.app_service_url.as_ref(), "https://rox.one");
     assert_eq!(
         service_urls.auth_service_url.as_ref(),
-        "https://gateway.macro.com/auth",
+        "https://gateway.rox.one/auth",
     );
     assert_eq!(
         service_urls.document_storage_service_url.as_ref(),
-        "https://gateway.macro.com/dss",
+        "https://gateway.rox.one/dss",
     );
     assert_eq!(
         service_urls.convert_service_url.as_ref(),
-        "https://gateway.macro.com/convert",
+        "https://gateway.rox.one/convert",
     );
     assert_eq!(
         service_urls.search_processing_service_url.as_ref(),
-        "https://gateway.macro.com/search-processing",
+        "https://gateway.rox.one/search-processing",
     );
     assert_eq!(
         service_urls.connection_gateway_url.as_ref(),
-        "https://gateway.macro.com/connection-gateway",
+        "https://gateway.rox.one/connection-gateway",
     );
     assert_eq!(
         service_urls.connection_gateway_websocket_url.as_ref(),
-        "wss://gateway.macro.com/connection-gateway",
+        "wss://gateway.rox.one/connection-gateway",
     );
     assert_eq!(
         service_urls.document_cognition_service_url.as_ref(),
-        "https://gateway.macro.com/cognition",
+        "https://gateway.rox.one/cognition",
     );
     assert_eq!(
         service_urls.notification_service_url.as_ref(),
-        "https://gateway.macro.com/notification",
+        "https://gateway.rox.one/notification",
     );
     assert_eq!(
         service_urls.static_file_service_url.as_ref(),
-        "https://static-file-service.macro.com",
+        "https://static-file-service.rox.one",
     );
     assert_eq!(
         service_urls.agent_harness_service_url.as_ref(),
-        "https://gateway.macro.com/agent-harness",
+        "https://gateway.rox.one/agent-harness",
     );
     assert_eq!(
         service_urls.agent_harness_egress_url.as_ref(),
-        "https://gateway.macro.com/agent-harness-egress",
+        "https://gateway.rox.one/agent-harness-egress",
     );
     assert_eq!(
         service_urls.mcp_service_url.as_ref(),
-        "https://gateway.macro.com/mcp",
+        "https://gateway.rox.one/mcp",
     );
     assert_eq!(
         service_urls.unfurl_service_url.as_ref(),
-        "https://gateway.macro.com/unfurl",
+        "https://gateway.rox.one/unfurl",
     );
     assert_eq!(
         service_urls.contacts_service_url.as_ref(),
-        "https://gateway.macro.com/contacts",
+        "https://gateway.rox.one/contacts",
     );
     assert_eq!(
         service_urls.email_service_url.as_ref(),
-        "https://gateway.macro.com/email",
+        "https://gateway.rox.one/email",
     );
     assert_eq!(
         service_urls.calendar_service_url.as_ref(),
-        "https://gateway.macro.com/calendar",
+        "https://gateway.rox.one/calendar",
     );
     assert_eq!(
         service_urls.image_proxy_service_url.as_ref(),
-        "https://gateway.macro.com/image-proxy",
+        "https://gateway.rox.one/image-proxy",
     );
     assert_eq!(
         service_urls.lexical_service_url.as_ref(),
-        "https://gateway.macro.com/lexical",
+        "https://gateway.rox.one/lexical",
     );
     assert_eq!(
         service_urls.sync_service_url.as_ref(),
@@ -821,10 +821,10 @@ fn exported_service_url_override_names_are_derived_from_env_var_names() {
 
 #[test]
 fn service_url_converts_to_string() {
-    let service_url = ServiceUrl::borrowed("https://borrowed.macro.com");
+    let service_url = ServiceUrl::borrowed("https://borrowed.rox.one");
     let url_string: String = service_url.into();
 
-    assert_eq!(url_string, "https://borrowed.macro.com");
+    assert_eq!(url_string, "https://borrowed.rox.one");
 }
 
 #[test]

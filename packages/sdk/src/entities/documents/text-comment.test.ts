@@ -87,7 +87,7 @@ describe('document.commentOnText', () => {
     const { client } = clientAnswering(() => ({
       error: {
         message:
-          'inline comments anchor to text in Macro markdown and Word documents only',
+          'inline comments anchor to text in Rox markdown and Word documents only',
       },
       response: { status: 400 },
     }));

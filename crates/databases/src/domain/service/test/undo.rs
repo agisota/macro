@@ -11,7 +11,7 @@ use super::*;
 use crate::domain::journal::{SkippedCell, UndoOutcome, UndoRefusal};
 use crate::domain::models::{ChangeId, CommittedChange};
 
-const JULIA: &str = "macro|julia@macro.com";
+const JULIA: &str = "macro|julia@rox.one";
 
 fn edit_as(database_id: DatabaseId, user: &'static str) -> EntityAccessReceipt<EditAccessLevel> {
     receipt::<EditAccessLevel>(database_id, user, AccessLevel::Edit)
@@ -448,7 +448,7 @@ fn hosted_board(
                     rows: vec![seeded.row_id],
                     cells: vec![CellWrite {
                         column,
-                        value: host("macro|sam@macro.com"),
+                        value: host("macro|sam@rox.one"),
                     }],
                 },
             },
@@ -463,7 +463,7 @@ fn hosted_board(
                     },
                     CellWrite {
                         column,
-                        value: host("macro|ana@macro.com"),
+                        value: host("macro|ana@rox.one"),
                     },
                 ]],
                 ids: None,
@@ -517,7 +517,7 @@ async fn undoing_a_move_into_a_persons_lane_hands_the_card_back_to_its_person() 
             view: board,
             change: ViewChange::MoveCard {
                 row: alex,
-                lane: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                lane: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
                 before: Some(seeded.row_id),
                 after: None,
             },
@@ -535,7 +535,7 @@ async fn undoing_a_move_into_a_persons_lane_hands_the_card_back_to_its_person() 
             view: board,
             change: ViewChange::MoveCard {
                 row: alex,
-                lane: LaneKey::User("macro|ana@macro.com".try_into().unwrap()),
+                lane: LaneKey::User("macro|ana@rox.one".try_into().unwrap()),
                 before: None,
                 after: None,
             },
@@ -551,7 +551,7 @@ async fn undoing_a_move_into_a_persons_lane_hands_the_card_back_to_its_person() 
         cell(&seeded.world, alex, definition),
         Some(PropertyValue::EntityRef(vec![
             models_properties::shared::EntityReference {
-                entity_id: "macro|ana@macro.com".into(),
+                entity_id: "macro|ana@rox.one".into(),
                 entity_type: PropertyEntityType::User,
                 specific_message_id: None,
             }
@@ -574,7 +574,7 @@ async fn undoing_a_move_into_a_persons_lane_is_refused_once_julia_reassigned_the
             view: board,
             change: ViewChange::MoveCard {
                 row: alex,
-                lane: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+                lane: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
                 before: None,
                 after: None,
             },
@@ -613,7 +613,7 @@ async fn undoing_a_board_change_brings_back_its_person_lanes() {
     let board = ViewId::new();
     let lanes = vec![
         Lane {
-            key: LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
+            key: LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
             hidden: true,
         },
         Lane {

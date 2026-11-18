@@ -442,7 +442,7 @@ impl ComputerRepo for FakeRepo {
         // Latch setup milestones like the Postgres applier.
         let (phase, connected, waiting) = (
             state.phase.clone(),
-            state.macrod_connected,
+            state.roxd_connected,
             state.waiting_for_capacity(),
         );
         if let Some(setup) = state.setup.as_mut() {
@@ -731,7 +731,7 @@ impl ComputerRepo for FakeRepo {
         )
     }
 
-    async fn postpone_macrod_timers(
+    async fn postpone_roxd_timers(
         &self,
         _host: HostId,
         _deadline: DateTime<Utc>,
@@ -799,8 +799,8 @@ pub fn state(phase: crate::domain::lifecycle::Phase) -> crate::domain::lifecycle
         },
         billing_changed_at: now(),
         power: crate::domain::lifecycle::Power::On,
-        macrod_connected: false,
-        macrod_misses: 0,
+        roxd_connected: false,
+        roxd_misses: 0,
         recent_crashes: vec![],
         power_on_requested: false,
         capacity_wait: None,

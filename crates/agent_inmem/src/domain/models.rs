@@ -1,10 +1,10 @@
-//! Models the in-memory Macro agent advertises over ACP.
+//! Models the in-memory Rox agent advertises over ACP.
 
 use std::sync::OnceLock;
 
 use chat::domain::models::CHAT_MODELS;
 
-/// Picker entry that lets Macro choose the model. Turns run on
+/// Picker entry that lets Rox choose the model. Turns run on
 /// [`AUTO_TARGET`]; [`resolve`] maps it before routing.
 pub const AUTO_MODEL: &str = "auto";
 
@@ -71,7 +71,7 @@ pub fn advertised_models() -> &'static [&'static str] {
         .as_slice()
 }
 
-/// Image input support for the models in Macro's catalog.
+/// Image input support for the models in Rox's catalog.
 ///
 /// This is model-specific, not provider-specific. Sources (2026-10-08):
 /// https://fireworks.ai/models (Vision versus LLM classification) and
@@ -82,6 +82,11 @@ pub fn advertised_models() -> &'static [&'static str] {
 #[must_use]
 pub fn supports_images(id: &str) -> Option<bool> {
     let id = resolve(id);
+    // gpt-oss does not read images. The chat catalog blanket would otherwise
+    // advertise the default model as vision-capable.
+    if id == "groq/gpt-oss-120b" {
+        return Some(false);
+    }
     if CHAT_MODELS.contains(&id) {
         return Some(true);
     }
@@ -99,8 +104,8 @@ pub fn supports_images(id: &str) -> Option<bool> {
     }
 }
 
-/// How many tokens of context each model in Macro's catalog takes, as the
-/// provider Macro routes it to serves it, which can be less than the model
+/// How many tokens of context each model in Rox's catalog takes, as the
+/// provider Rox routes it to serves it, which can be less than the model
 /// itself reads: Fireworks serves MiniMax M3 at 512k of its native 1M.
 ///
 /// Sources (2026-10-10): the model pages at https://developers.openai.com/api/docs/models
@@ -126,7 +131,7 @@ pub fn context_window(id: &str) -> Option<u64> {
         "fireworks/qwen3p8-max" => 262_144,
         "fireworks/nemotron-lightning-3p5-30b-a3b" => 262_000,
         "fireworks/muse-glimmer-30b" => 131_000,
-        "cerebras/gpt-oss-120b" => 131_072,
+        "cerebras/gpt-oss-120b" | "groq/gpt-oss-120b" => 131_072,
         _ => return None,
     })
 }

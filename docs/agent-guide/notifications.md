@@ -44,8 +44,8 @@ row brings it back. Each unfolded notification opens that notification:
 its message or reply, its comment, or an agent's turn. A channel invite and an
 email have no message of their own, so they open the channel or the thread.
 A stack stays open as new notifications land. The time always shows. With a pointer, the first line ends with the time and Mark done: Mark done shows on hover in a slot that stays empty otherwise, so it sits at the same spot on every row, stacked or not, read or not, and nothing moves. Touch has no Mark done button and no empty slot. The author is
-the row's actor: a Macro user by first name, an agent by its bot name, or
-**Macro**; a row from outside Macro names its email sender, and GitHub rows
+the row's actor: a Rox user by first name, an agent by its bot name, or
+**Rox**; a row from outside Rox names its email sender, and GitHub rows
 keep the GitHub login. A row type, author kind, or button this build doesn't
 know yet shows as a plain row with no author and no button.
 Date dividers split the list into Home's sections (**Last hour**, **This
@@ -183,16 +183,16 @@ not add read-on-open behavior to project routes or folder navigation.
 
 ## Notifications
 
-Browser notifications must arrive while Macro is in a background tab, not just
+Browser notifications must arrive while Rox is in a background tab, not just
 when it is visible. With browser permission and in-app delivery enabled, switch
 to an unrelated tab and trigger a notification from another session. Check that
-the alert arrives before returning to Macro and does not repeat on return. Try
-with one Macro tab and with several all hidden; only the elected notification
-leader should show the alert. This does not promise delivery after every Macro
+the alert arrives before returning to Rox and does not repeat on return. Try
+with one Rox tab and with several all hidden; only the elected notification
+leader should show the alert. This does not promise delivery after every Rox
 tab is closed or the browser suspends the page.
 
 GraphQL notification callbacks run on network receipt, independently of the local
-cache, which parks while all Macro tabs are hidden. Cache updates and channel
+cache, which parks while all Rox tabs are hidden. Cache updates and channel
 reconciliation catch up afterward. The backend-free `parking.browser.e2e.ts`
 regression exercises that boundary with real storage and simulated visibility;
 OS banner presentation still needs the manual check above.
@@ -211,19 +211,19 @@ Turning it off takes effect immediately and persists across app restarts; turnin
 it on requests permission and resumes delivery when authorized. On macOS the
 switch reads the actual system authorization, and enabling it requests macOS
 permission if it has not been decided. If macOS reports denial, enabling the switch
-shows directions to **System Settings → Notifications → Macro → Allow notifications**
-without requesting permission again; returning to Macro refreshes the switch.
+shows directions to **System Settings → Notifications → Rox → Allow notifications**
+without requesting permission again; returning to Rox refreshes the switch.
 It does not change inbox items or other devices. Focus and presentation settings
 can still suppress alerts even when authorization is granted.
 Verify off/on and persistence after restarting; on the Notifications page, a failed
 toggle should show an error toast and allow retry.
 
 On macOS builds with notification activation, clicking an alert restores and
-focuses Macro and opens that notification's message, thread, or document location.
+focuses Rox and opens that notification's message, thread, or document location.
 The native notification retains its destination across app restarts, and startup
 waits for the layout before opening it. Receipt and dismissal must not navigate.
 Verify two alerts with different targets by clicking the older one, then repeat
-with Macro minimized, hidden, and quit. Test a channel reply and a document
+with Rox minimized, hidden, and quit. Test a channel reply and a document
 comment to check the location inside the entity, not just the entity itself.
 This requires a full native macOS release; frontend-only updates cannot add the
 response delegate or repair destinations in previously delivered alerts.
@@ -232,19 +232,19 @@ In a signed macOS release, an alert from a person shows their avatar in place of
 the app icon, their name as the title, and the channel or document name beneath
 for group conversations; direct messages show only the sender. Alerts from one
 conversation stack together in Notification Center and play the default sound,
-unless Macro plays its own notification sound for that alert (see below).
+unless Rox plays its own notification sound for that alert (see below).
 Verify a channel message, a direct message, a document comment, and a reminder
 (no sender: app icon and the combined title). Local and ad-hoc builds lack the
 communication entitlement and show the app icon with the sender and subtitle.
 
 On Linux desktop builds with native notification activation, clicking a system
-notification (or its **Open** action) restores/presents Macro and opens that
+notification (or its **Open** action) restores/presents Rox and opens that
 notification's target using the normal in-app navigation. Dismissing or expiring
 an alert must not navigate. With two alerts, click the older one to check that the
-correct target opens. Also test with Macro hidden/minimized and on another
+correct target opens. Also test with Rox hidden/minimized and on another
 workspace: Wayland focus requires the notification daemon to supply an activation
 token. This needs a native AppImage update, not just a frontend update; an older
-binary reports **Update Macro to receive desktop notifications.** Activation is
+binary reports **Update Rox to receive desktop notifications.** Activation is
 supported while the app process is running, not after quitting it. The isolated
 Linux WebKit/D-Bus regression is `bun run native:e2e:notifications`; compositor
 focus behavior still needs a real Wayland/X11 desktop check.
@@ -280,19 +280,19 @@ delivery must not restart that deadline; a newer tap must get its own deadline.
 frontend recovery requires responsive JavaScript and native IPC; verify actual
 iOS presentation separately from browser bridge simulations.
 
-On iOS, Macro requests provisional authorization at launch, so
-**Settings → Apps → Macro → Notifications** exists before any prompt, and a
+On iOS, Rox requests provisional authorization at launch, so
+**Settings → Apps → Rox → Notifications** exists before any prompt, and a
 signed-in device registers for pushes that arrive quietly in Notification
 Center. A quiet push counts as delivered, so those users get no email digest
 for it. The in-app **Mobile notifications** switch and enable prompt stay off
 while delivery is provisional; turning either on shows the system prompt.
-A quiet notification's **Keep → Deliver Immediately** authorizes Macro but
+A quiet notification's **Keep → Deliver Immediately** authorizes Rox but
 leaves banners and the Lock Screen off: the switch shows on, iOS never prompts
 again, and only iOS Settings turns banners on.
 Verify on a fresh install: the Settings row appears without a prompt, the in-app
 prompt still appears, and upgrading from Settings or from a quiet notification's
-**Keep → Deliver Immediately** turns the switch on when Macro returns from the
-background. Notification Center pulled down over Macro does not background it,
+**Keep → Deliver Immediately** turns the switch on when Rox returns from the
+background. Notification Center pulled down over Rox does not background it,
 so the switch updates only after the next return.
 
 On native Android, enable notifications in Settings while signed in. Android 13+
@@ -333,9 +333,9 @@ reconnect and email access, a calendar for **Reconnect email and calendar**, and
 a plug for integration reconnect. Draft-save recovery uses the default error
 icon and danger color. Their descriptions and Save, Reconnect, and Try again
 buttons remain neutral, not destructive. The update-ready prompt is distinct:
-it uses the Macro logo, the standard neutral toast background and border, an
+it uses the Rox logo, the standard neutral toast background and border, an
 accent **Reload** button, and secondary **Maybe later**. Its title remains
-**A new version of Macro is ready** in neutral ink.
+**A new version of Rox is ready** in neutral ink.
 Leading icons align with the title's first line even when the title or actions wrap.
 
 Staff Noise emails still create in-app notification rows, but do not send a new-notification
@@ -389,7 +389,7 @@ Desktop and mobile share this scale, with accessibility text scaling preserved.
 
 Desktop channel and AI composers use an `Attach files` paperclip that opens the file picker directly, without a plus menu. Comment composers open the image picker directly. Channels and DMs always open in message mode; create tasks through the task creation dialog. Shift+Enter, including an empty new line, expands channel and AI inputs so text starts above the toolbar at the left inset. Sent AI message bubbles use the ink fill with a contrasting foreground in each theme.
 
-### Macro computer agent sign-ins
+### Rox computer agent sign-ins
 
 `agent_sign_in_expiry` notifications (inbox, browser, and phone push) carry the
 agent (`claude` for now) and warn the person who signed a team computer in to
@@ -398,7 +398,7 @@ admins, that the sign-in expires soon (three days out), expires today (its last
 day), or expired (passed). They name the computer and
 open **Settings → Runtimes**, where the computer's **Sign in with Claude** runs
 the paste-the-code flow; see the
-[Macro computers walkthrough](settings.md#macro-computers). To check one
+[Rox computers walkthrough](settings.md#macro-computers). To check one
 without waiting days, set the computer's active `harness_account_logins` row's
 `expires_at` to within three days on a local stack: the notice arrives within a
 minute.
@@ -408,7 +408,7 @@ computer's buyer that first-time setup finished ("Your computer is ready:
 connect your AI and finish setup") or failed ("<computer> could not be set
 up", with the failure reason the computer's status shows). They carry the
 computer id, name, and outcome; opening one reopens that computer's setup
-dialog on Bring your AI (see the Macro computers walkthrough in
+dialog on Bring your AI (see the Rox computers walkthrough in
 [settings.md](settings.md)). An agent teammate's computer notifies its
 inviter with the agent instead (`agent { userId, name }`): "<name> is ready",
 with **Message <name>** and, for owners and admins, **Connect Claude plan**, or
@@ -438,7 +438,7 @@ Sounds are synthesized with Web Audio (`features/notification-sounds`); there
 are no audio files. Event types map to rows in `core/categories.ts`; a new
 backend event type stays quiet until it is mapped there. Incoming calls keep
 their own ring and never use these sounds. Only unseen notifications play,
-notifications within 1.5 s of a sound share it, and only the Macro tab the
+notifications within 1.5 s of a sound share it, and only the Rox tab the
 person last focused or touched plays, so several tabs ding once. Closing that
 tab hands sound back to the others until one is focused. Mouse, touch, Enter,
 and Space activation unlock audio even while sounds are off, so enabling a
@@ -446,7 +446,7 @@ sound setting also unlocks playback. A cue that cannot resume audio within
 250 ms stays silent rather than playing on a later gesture. Notification sounds
 use the system-default output; call cues follow the selected call speaker.
 
-When Macro plays a sound for a notification, its browser or macOS alert is
+When Rox plays a sound for a notification, its browser or macOS alert is
 sent silent so the person hears one sound. macOS builds older than the
 `silent` argument on `send_macos_notification` ignore it and still play the
 system sound.
@@ -466,7 +466,7 @@ The backend-free desktop/phone regression drives the real settings section,
 persistence, previews, and delivery through a stand-in notification feed:
 `bunx playwright test --config src/features/notification-sounds/browser-test/playwright.config.ts`
 (from `apps/web`). To check real delivery, turn sounds on, click anywhere in
-Macro, and trigger a mention from another session; then turn Mentions off and
+Rox, and trigger a mention from another session; then turn Mentions off and
 check that the next mention is quiet.
 
 

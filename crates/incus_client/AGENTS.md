@@ -2,7 +2,7 @@
 
 ## What it is
 
-Rust client for the Incus REST API, for the Macro computers fleet adapter
+Rust client for the Incus REST API, for the Rox computers fleet adapter
 that creates, powers, and inspects box VMs on Incus hosts.
 
 ## How it works

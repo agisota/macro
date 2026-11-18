@@ -439,7 +439,7 @@ it('offers Finish setup until setup is done, and nothing once Claude is signed i
   const harness = {
     id: 'harness-build',
     name: 'Build machine',
-    kind: 'macrod' as const,
+    kind: 'roxd' as const,
     owner: { type: 'user' as const, user_id: 'viewer' },
     access: 'owner' as const,
     shared_team_ids: [],
@@ -511,7 +511,7 @@ it('offers Finish setup until setup is done, and nothing once Claude is signed i
     screen.queryByRole('button', { name: 'Sign in with Claude' })
   ).toBeNull();
   expect(screen.queryByRole('button', { name: 'Finish setup' })).toBeNull();
-  expect(screen.getByText(/Claude: Macro credits/)).toBeTruthy();
+  expect(screen.getByText(/Claude: Rox credits/)).toBeTruthy();
 });
 
 it('tells a trialing team computers are for paid plans and links to Billing', async () => {
@@ -543,7 +543,7 @@ it('tells a team with no paid plan to subscribe, on the row and in the dialog', 
 
   expect(
     await screen.findByText(
-      'Computers need a paid Macro plan. Your team does not have one yet.'
+      'Computers need a paid Rox plan. Your team does not have one yet.'
     )
   ).toBeTruthy();
   expect(screen.queryByRole('button', { name: 'Get a computer' })).toBeNull();
@@ -635,10 +635,10 @@ it("reopens a computer's setup at Bring your AI when a notification asks", async
   expect(computerSetupRequest()).toBeUndefined();
 });
 
-it('puts Get a Macro computer on top with its facts, or as one row when compact', () => {
+it('puts Get a Rox computer on top with its facts, or as one row when compact', () => {
   const first = render(() => <Machines />);
   expect(
-    screen.getByText('Get a Macro computer', { selector: 'h2' })
+    screen.getByText('Get a Rox computer', { selector: 'h2' })
   ).toBeTruthy();
   expect(
     screen.getByText("A hosted computer where your team's agents run.")
@@ -647,14 +647,14 @@ it('puts Get a Macro computer on top with its facts, or as one row when compact'
     screen.getAllByRole('listitem').map((item) => item.textContent)
   ).toEqual([
     'Always on, never sleeps',
-    'Runs on your Claude plan or Macro credits',
+    'Runs on your Claude plan or Rox credits',
     'From $40.00/month',
   ]);
   first.unmount();
 
   render(() => <GetComputerEntry variant="compact" onGet={() => {}} />);
   expect(
-    screen.queryByText('Get a Macro computer', { selector: 'h2' })
+    screen.queryByText('Get a Rox computer', { selector: 'h2' })
   ).toBeNull();
   expect(
     screen.getByText('Hosted, always on · from $40.00/month')

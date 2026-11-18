@@ -23,12 +23,12 @@ pub use agent_fold::domain::model::{
 
 /// The `_meta` key on `session/new`, `session/load` and `session/resume`
 /// whose string value is the [`AgentSessionId`] the ACP session serves.
-pub const MACRO_AGENT_SESSION_META_KEY: &str = "macro.com/agentSessionId";
+pub const MACRO_AGENT_SESSION_META_KEY: &str = "rox.one/agentSessionId";
 
 /// The `_meta` key on `session/new`, `session/load` and `session/resume`
 /// whose string value is how the session answers permission requests
 /// (`autoAccept` or `prompt`), so a runtime can tell its agent.
-pub const MACRO_PERMISSION_POLICY_META_KEY: &str = "macro.com/permissionPolicy";
+pub const MACRO_PERMISSION_POLICY_META_KEY: &str = "rox.one/permissionPolicy";
 
 /// A session a runtime reported on dial, as reconciliation sees it.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -493,7 +493,7 @@ pub struct AgentSession {
     pub repo_branch: Option<super::repository_branch::RepositoryBranch>,
     /// The pull request associated with this session, independent of conversation history.
     pub pull_request_url: Option<String>,
-    /// The Macro task the session was explicitly linked to.
+    /// The Rox task the session was explicitly linked to.
     pub task_id: Option<String>,
     /// Who started the session.
     pub source: SessionSource,
@@ -724,7 +724,7 @@ pub struct TurnPrompter {
     pub client: Option<UiClientId>,
 }
 
-/// One open Macro app tab, minted by the tab and kept for its lifetime.
+/// One open Rox app tab, minted by the tab and kept for its lifetime.
 ///
 /// Sent with a prompt typed in that tab, so what the turn shows the person
 /// reaches that tab and no other. It names a tab, not a person: it grants
@@ -1063,7 +1063,7 @@ pub struct HistoryBoundary {
     pub initialization_log_id: Uuid,
 }
 
-/// The `_meta` namespace Macro writes its own keys under on ACP frames.
+/// The `_meta` namespace Rox writes its own keys under on ACP frames.
 pub const META_NAMESPACE: &str = "macro";
 
 /// The key under [`META_NAMESPACE`] that marks a `tool_call` frame as a card

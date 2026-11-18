@@ -1,4 +1,4 @@
-//! WhatsApp JIDs as Macro stores them: a group (`<digits>[-<digits>]@g.us`), a
+//! WhatsApp JIDs as Rox stores them: a group (`<digits>[-<digits>]@g.us`), a
 //! person by phone number (`<digits>@s.whatsapp.net`) or by LID
 //! (`<digits>@lid`). Parsed once, with one length limit for every kind.
 
@@ -11,7 +11,7 @@ use nom::{
     sequence::{pair, preceded},
 };
 
-/// Longest user part (before `@`) Macro accepts.
+/// Longest user part (before `@`) Rox accepts.
 const USER_LIMIT: usize = 64;
 
 /// What a JID addresses.

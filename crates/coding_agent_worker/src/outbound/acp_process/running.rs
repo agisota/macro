@@ -1,5 +1,5 @@
 //! A spawned ACP agent relayed line by line, which on Unix can be handed to
-//! the next macrod process image without stopping.
+//! the next roxd process image without stopping.
 //!
 //! [`AcpProcess::connect_to`] drives an agent through the SDK, which owns
 //! the reads and writes. The harness bridge instead relays raw lines, and

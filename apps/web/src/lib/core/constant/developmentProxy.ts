@@ -1,9 +1,9 @@
 /** Fixed upstreams for the standalone Vite development proxy. */
 export const DEVELOPMENT_PROXY_TARGETS = {
-  gateway: 'https://dev-gateway.macro.com',
-  websocket: 'https://services-dev.macro.com',
-  static: 'https://static-file-service-dev.macro.com',
-  pdf: 'https://pdf-service-dev.macro.com',
+  gateway: 'https://dev-gateway.rox.one',
+  websocket: 'https://services-dev.rox.one',
+  static: 'https://static-file-service-dev.rox.one',
+  pdf: 'https://pdf-service-dev.rox.one',
   sync: 'https://sync-service-dev3.macroverse.workers.dev',
   editing: 'https://ai-editing-worker-dev.macroverse.workers.dev',
   // The machine's local LGTM collector (`just run_local` starts it).

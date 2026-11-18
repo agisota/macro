@@ -222,7 +222,7 @@ test("group: the screen failing or slow falls back to the rule", async () => {
 				return new Promise((resolve) =>
 					setTimeout(() => resolve(0), callScreen.waitMs + 200),
 				);
-			throw new Error("Macro is down");
+			throw new Error("Rox is down");
 		},
 	});
 	expect(await addressed.forAgent("a", "Ann", "Sam, you there?", 2, 0)).toEqual(
@@ -580,7 +580,7 @@ test("the voice throws: out, not heard", async () => {
 	expect(events).toContain("call.leave_line_failed");
 });
 
-test("the screen's question fits Macro's 500-character limit, with a name of up to 20 characters", () => {
+test("the screen's question fits Rox's 500-character limit, with a name of up to 20 characters", () => {
 	const question = callScreen.question("x".repeat(20));
 	expect(question.length).toBeGreaterThan(100);
 	expect(question.length).toBeLessThanOrEqual(500);

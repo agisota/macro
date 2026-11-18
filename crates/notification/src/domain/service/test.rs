@@ -2501,7 +2501,7 @@ impl DigestBatcher for ReadyDigestBatcher {
 async fn test_poll_email_digests_sends_email_for_ready_batch() {
     use std::sync::Arc;
 
-    let user = test_user_id("digest@macro.com");
+    let user = test_user_id("digest@rox.one");
     let notif = UserNotificationRow {
         owner_id: user.clone(),
         notification_id: Uuid::nil(),
@@ -2558,7 +2558,7 @@ async fn test_poll_email_digests_sends_email_for_ready_batch() {
 async fn test_poll_email_digests_skips_when_all_notifications_ineligible() {
     use std::sync::Arc;
 
-    let user = test_user_id("digest@macro.com");
+    let user = test_user_id("digest@rox.one");
     let notif = UserNotificationRow {
         owner_id: user.clone(),
         notification_id: Uuid::nil(),
@@ -2611,7 +2611,7 @@ async fn test_poll_email_digests_filters_ineligible_notifications_before_renderi
     use std::sync::Arc;
     use std::sync::atomic::{AtomicUsize, Ordering};
 
-    let user = test_user_id("digest@macro.com");
+    let user = test_user_id("digest@rox.one");
     let eligible_id = Uuid::parse_str("0193b1ea-c742-7589-893b-2b4a509c1e77").unwrap();
     let ineligible_id = Uuid::parse_str("0193b1ea-c742-7589-893b-2b4a509c1e78").unwrap();
 
@@ -3083,7 +3083,7 @@ impl NotificationSender for std::sync::Arc<TrackingMobileSender> {
 async fn test_poll_email_digests_skips_publish_when_user_disabled_type() {
     use std::sync::Arc;
 
-    let user = test_user_id("digest@macro.com");
+    let user = test_user_id("digest@rox.one");
     let notif = UserNotificationRow {
         owner_id: user.clone(),
         notification_id: Uuid::nil(),
@@ -3143,8 +3143,8 @@ async fn test_poll_email_digests_skips_publish_when_user_disabled_type() {
 async fn test_poll_email_digests_publishes_when_user_has_not_disabled_type() {
     use std::sync::Arc;
 
-    let user = test_user_id("digest@macro.com");
-    let other_user = test_user_id("other@macro.com");
+    let user = test_user_id("digest@rox.one");
+    let other_user = test_user_id("other@rox.one");
     let notif = UserNotificationRow {
         owner_id: user.clone(),
         notification_id: Uuid::nil(),

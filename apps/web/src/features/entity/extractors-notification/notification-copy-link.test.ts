@@ -29,7 +29,7 @@ vi.mock('@core/constant/featureFlags', async (importOriginal) => ({
   isFeatureEnabled: () => mocks.remindersEnabled,
 }));
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://macro.com',
+  getWebOrigin: () => 'https://rox.one',
 }));
 vi.mock('@notifications', () => ({
   getChannelNotificationParams: () => ({}),

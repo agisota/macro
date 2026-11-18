@@ -61,7 +61,7 @@ export function FeaturePage(props: {
       channels: 'chat',
       documents: 'docs',
       'booking-links': 'scheduling',
-      snippets: 'macrod',
+      snippets: 'roxd',
     };
     const benefit = BENEFIT_PAGES[location.pathname.replace(/^\/docs\//, '')];
     const id = benefit?.tutorial ?? aliases[slug] ?? slug;
@@ -197,7 +197,7 @@ export function FeaturePageFaq(props: {
       {props.children}
       <p class="feature-page-reading-links">
         Read our <a href="/privacy">Privacy Policy</a> or visit the{' '}
-        <a href="https://security.macro.com" target="_blank" rel="noreferrer">
+        <a href="https://security.rox.one" target="_blank" rel="noreferrer">
           Trust Center
         </a>
         .

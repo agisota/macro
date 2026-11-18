@@ -25,7 +25,7 @@ where
         return Ok(None);
     }
 
-    // upload attachments to Macro
+    // upload attachments to Rox
     let (document_atts, media_atts) = tokio::try_join!(
         async {
             if documents {
@@ -154,7 +154,7 @@ where
                 "skipped attachment deleted before it could be imported"
             ),
             // keep processing if it fails, best effort
-            Err(e) => tracing::error!("Failed to upload attachment to Macro: {e}"),
+            Err(e) => tracing::error!("Failed to upload attachment to Rox: {e}"),
         }
     }
 

@@ -104,7 +104,7 @@ where
                 owner: owner.clone(),
                 prompter,
                 server_slug: MACRO_SERVER_SLUG.to_owned(),
-                server_name: "Macro".to_owned(),
+                server_name: "Rox".to_owned(),
                 tool_name: tool.to_owned(),
                 arguments: arguments.clone(),
             })

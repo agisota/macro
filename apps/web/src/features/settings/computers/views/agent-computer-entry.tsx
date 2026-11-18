@@ -66,8 +66,8 @@ export function RunOnComputerRow() {
 }
 
 /**
- * The agent editor's Where it runs option for the team's Macro computers: a
- * computer picker and the model, or with none yet, New Macro computer. Buying
+ * The agent editor's Where it runs option for the team's Rox computers: a
+ * computer picker and the model, or with none yet, New Rox computer. Buying
  * from here selects the new computer once its runtime registers.
  */
 export function ComputerWhereItRuns(props: {

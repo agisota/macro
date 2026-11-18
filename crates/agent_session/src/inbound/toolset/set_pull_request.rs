@@ -15,7 +15,7 @@ use super::SessionToolContext;
 #[serde(deny_unknown_fields)]
 #[schemars(
     title = "set_pull_request",
-    description = "Set the pull request associated with this coding session. This records the link shown in Macro; it does not create or modify the GitHub PR. Returns the recorded URL and this session's Macro link, which belongs in the pull request description."
+    description = "Set the pull request associated with this coding session. This records the link shown in Rox; it does not create or modify the GitHub PR. Returns the recorded URL and this session's Rox link, which belongs in the pull request description."
 )]
 pub struct SetPullRequest {
     /// Link to the PR this session works on.
@@ -30,7 +30,7 @@ pub struct SetPullRequest {
 pub struct SetPullRequestOutput {
     /// The pull request URL as recorded.
     pub pull_request_url: String,
-    /// The calling session in the Macro app, to link from the pull request description.
+    /// The calling session in the Rox app, to link from the pull request description.
     pub session_url: String,
 }
 

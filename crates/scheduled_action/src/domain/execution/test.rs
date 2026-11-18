@@ -15,7 +15,7 @@ use std::sync::{
     atomic::{AtomicUsize, Ordering},
 };
 
-const USER: &str = "macro|runner@macro.com";
+const USER: &str = "macro|runner@rox.one";
 
 struct Admission {
     result: std::result::Result<(), AiAdmissionError>,

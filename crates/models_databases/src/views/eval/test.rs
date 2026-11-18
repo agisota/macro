@@ -817,7 +817,7 @@ fn entity_tests_compare_entity_and_row_ids_and_fail_on_empty_cells() {
     let sam = || {
         Some(CellValue::Entities(vec![EntityRef {
             entity_type: EntityKind::User,
-            entity_id: "macro|sam@macro.com".into(),
+            entity_id: "macro|sam@rox.one".into(),
         }]))
     };
     let row = RowId::from_uuid(Uuid::from_u128(0x40a));
@@ -825,25 +825,25 @@ fn entity_tests_compare_entity_and_row_ids_and_fail_on_empty_cells() {
     run(vec![
         Case {
             name: "is any of",
-            test: entities(SetOperator::IsAnyOf, vec!["macro|sam@macro.com"]),
+            test: entities(SetOperator::IsAnyOf, vec!["macro|sam@rox.one"]),
             cell: sam(),
             expected: true,
         },
         Case {
             name: "is any of, other",
-            test: entities(SetOperator::IsAnyOf, vec!["macro|alex@macro.com"]),
+            test: entities(SetOperator::IsAnyOf, vec!["macro|alex@rox.one"]),
             cell: sam(),
             expected: false,
         },
         Case {
             name: "is none of",
-            test: entities(SetOperator::IsNoneOf, vec!["macro|alex@macro.com"]),
+            test: entities(SetOperator::IsNoneOf, vec!["macro|alex@rox.one"]),
             cell: sam(),
             expected: true,
         },
         Case {
             name: "is none of, absent (strict)",
-            test: entities(SetOperator::IsNoneOf, vec!["macro|alex@macro.com"]),
+            test: entities(SetOperator::IsNoneOf, vec!["macro|alex@rox.one"]),
             cell: None,
             expected: false,
         },

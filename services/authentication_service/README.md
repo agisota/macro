@@ -37,7 +37,7 @@ or generated files.
 
 | Runtime environment | Doppler slug | Bypass | Effective signup policy |
 | --- | --- | --- | --- |
-| `Environment::Develop` | `dev` | Off | Allows `@macro.com` addresses and the addresses in `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON`, which must be present, nonblank, valid, and non-empty. Denies every other signup. |
+| `Environment::Develop` | `dev` | Off | Allows `@rox.one` addresses and the addresses in `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON`, which must be present, nonblank, valid, and non-empty. Denies every other signup. |
 | `Environment::Develop` | `dev` | On | Allows all public signups. The allowlist setting is ignored even if missing or malformed. |
 | `Environment::Production` | `prd` | No effect | Allows all public signups. The allowlist setting is ignored even if present or malformed. |
 | `Environment::Local` | `lcl` | No effect | Allows all public signups. The allowlist setting is ignored even if present or malformed. |
@@ -70,7 +70,7 @@ Matching rules:
 - Matching is exact after normalization.
 - Case differences do not matter.
 - `+` aliases remain distinct addresses.
-- Every `@macro.com` address is allowed without being listed; subdomains and
+- Every `@rox.one` address is allowed without being listed; subdomains and
   look-alike domains are not.
 - Domains, wildcards, suffixes, patterns, and regular expressions are not
   supported in the allowlist.
@@ -78,7 +78,7 @@ Matching rules:
 
 ## GTM invite links
 
-Macro staff (any `@macro.com` account) mint personal, 48-hour signup links from
+Rox staff (any `@rox.one` account) mint personal, 48-hour signup links from
 `/app/internal/invite-links`. The recipient opens `/app/invite?token=…`, signs up,
 and the account is attributed to the staff member who created the link. At the
 plan step of onboarding the account sees a free-month offer instead of the plan
@@ -93,7 +93,7 @@ Both settings are optional plain Doppler values (project
 | `GTM_INVITE_PROMO_CODE` | `1MF` | Customer-facing Stripe promotion code applied at checkout. Must exist and be active in Stripe (`1MF` is 100% off the first month). |
 | `GTM_INVITE_LINK_TTL_HOURS` | `48` | How long a link can be opened and redeemed after creation. |
 
-Links live in the `gtm_invite_link` MacroDB table (crate `gtm_invite`); the
+Links live in the `gtm_invite_link` RoxDB table (crate `gtm_invite`); the
 dashboard reads it through `GET /gtm-invite/links`.
 
 ## Shared mailboxes
@@ -140,7 +140,7 @@ To allow every public signup in Develop:
 
 To enforce the allowlist again:
 
-1. Confirm that `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON` lists every non-Macro
+1. Confirm that `DEVELOPMENT_SIGNUP_ALLOWLIST_JSON` lists every non-Rox
    address that still needs to sign up in Develop, including shared mailboxes.
 2. Set `DEVELOPMENT_BYPASS_SIGNUP_ALLOWLIST` to `false` in config `dev`, or
    delete it.

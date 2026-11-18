@@ -27,7 +27,7 @@ from the runtime `SLACK_IMPORT_ENABLED` intake flag.
 
    | Key | Initial value |
    | --- | --- |
-   | `DATABASE_URL` | Environment's MacroDB proxy URL with the worker's database access |
+   | `DATABASE_URL` | Environment's RoxDB proxy URL with the worker's database access |
    | `INTERNAL_API_KEY` | Same raw internal auth credential accepted by search-processing's backfill API |
    | `SLACK_IMPORT_ENABLED` | `false` |
    | `SLACK_IMPORT_CONCURRENCY` | `1` |
@@ -45,7 +45,7 @@ from the runtime `SLACK_IMPORT_ENABLED` intake flag.
    infrastructure-supplied names in Doppler's service configuration inventory,
    but do not add competing overrides. There is no `SEARCH_SERVICE_URL`
    dependency. No Slack OAuth/bot credentials are needed.
-5. Ensure private-subnet egress can reach MacroDB, AWS endpoints and the gateway.
+5. Ensure private-subnet egress can reach RoxDB, AWS endpoints and the gateway.
    The task role receives the `SlackImportQueue` worker policy only. That policy
    allows reading Slack staging objects and operating the import main queue and
    DLQ. The worker sends no emails or notifications. The task role does

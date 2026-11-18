@@ -444,7 +444,7 @@ async fn set_email_attachment_properties(
 
 /// Builds the attachment's properties from its message.
 ///
-/// Header addresses are stored as Gmail sent them, so some are not valid Macro
+/// Header addresses are stored as Gmail sent them, so some are not valid Rox
 /// user ids. Those are left out rather than dropping every property.
 fn email_attachment_property(p: &AttachmentUploadArgs) -> EmailAttachmentProperty<'static> {
     EmailAttachmentProperty {
@@ -477,7 +477,7 @@ fn macro_user_id(p: &AttachmentUploadArgs, email: &str) -> Option<MacroUserId<Lo
         Err(_) => {
             tracing::warn!(
                 message_id = %p.attachment_metadata.message_db_id,
-                "Leaving an address that is not a valid Macro user id out of attachment properties"
+                "Leaving an address that is not a valid Rox user id out of attachment properties"
             );
             None
         }

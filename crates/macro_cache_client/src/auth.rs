@@ -210,5 +210,45 @@ impl MacroCache {
     }
 }
 
+/// One-time passkey ceremony challenge for an email.
+macro_rules! macro_passkey_challenge {
+    ($email:expr) => {
+        format!("pw_passkey_challenge:{}", $email)
+    };
+}
+
+/// Stored passkey credential for an email.
+macro_rules! macro_passkey {
+    ($email:expr) => {
+        format!("pw_passkey:{}", $email)
+    };
+}
+
+impl MacroCache {
+    /// Stores a passkey ceremony challenge for five minutes.
+    pub async fn set_passkey_challenge(&self, email: &str, challenge: &str) -> anyhow::Result<()> {
+        let key = macro_passkey_challenge!(email.to_lowercase());
+        macro_redis::set::set_with_expiry(&self.inner, &key, challenge, 300).await
+    }
+
+    /// Reads and deletes the passkey ceremony challenge.
+    pub async fn take_passkey_challenge(&self, email: &str) -> anyhow::Result<Option<String>> {
+        let key = macro_passkey_challenge!(email.to_lowercase());
+        macro_redis::get::get_del_optional::<String>(&self.inner, &key).await
+    }
+
+    /// Stores the passkey credential JSON for an email.
+    pub async fn set_passkey(&self, email: &str, value: &str) -> anyhow::Result<()> {
+        let key = macro_passkey!(email.to_lowercase());
+        macro_redis::set::set_with_expiry(&self.inner, &key, value, 10 * 365 * 24 * 60 * 60).await
+    }
+
+    /// Reads the stored passkey credential JSON, if any.
+    pub async fn get_passkey(&self, email: &str) -> anyhow::Result<Option<String>> {
+        let key = macro_passkey!(email.to_lowercase());
+        macro_redis::get::get_optional::<String>(&self.inner, &key).await
+    }
+}
+
 #[cfg(test)]
 mod test;

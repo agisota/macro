@@ -43,14 +43,14 @@ fn enrollment_round_trips_through_json() {
         "mak_secret_value".to_owned(),
     );
     let enrollment = AgentEnrollment {
-        agent_user_id: MacroUserIdStr::try_from("macro|ada-agent@macro.com".to_owned()).unwrap(),
+        agent_user_id: MacroUserIdStr::try_from("macro|ada-agent@rox.one".to_owned()).unwrap(),
         env: AgentEnv::new(values).unwrap(),
     };
     let json = serde_json::to_value(&enrollment).unwrap();
     assert_eq!(
         json,
         serde_json::json!({
-            "agent_user_id": "macro|ada-agent@macro.com",
+            "agent_user_id": "macro|ada-agent@rox.one",
             "env": {"MACRO_API_KEY": "mak_secret_value"},
         })
     );
@@ -61,7 +61,7 @@ fn enrollment_round_trips_through_json() {
 #[test]
 fn enrollment_rejects_invalid_names_from_json() {
     let json = serde_json::json!({
-        "agent_user_id": "macro|ada-agent@macro.com",
+        "agent_user_id": "macro|ada-agent@rox.one",
         "env": {"PATH;rm": "x"},
     });
     assert!(serde_json::from_value::<AgentEnrollment>(json).is_err());

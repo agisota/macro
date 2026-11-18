@@ -16,7 +16,7 @@ use sqlx::postgres::PgPoolOptions;
 
 #[derive(Parser)]
 struct Args {
-    /// MacroDB to backfill. Never logged.
+    /// RoxDB to backfill. Never logged.
     #[arg(long)]
     database_url: String,
     /// Maximum number of session histories to fold in this invocation.

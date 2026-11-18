@@ -4,7 +4,7 @@ import { validate as validEmail } from 'email-validator';
 const UTF8 = new TextEncoder();
 export const MAX_CONTACT_ID_BYTES = 1024;
 
-/** Admit supported Macro identities, not every address accepted by email entry.
+/** Admit supported Rox identities, not every address accepted by email entry.
  * The Rust parser excludes '$' local parts; external addresses remain valid email recipients. */
 export function canonicalContactUserId(value: string): MacroId | undefined {
   if (value.length > MAX_CONTACT_ID_BYTES) return;

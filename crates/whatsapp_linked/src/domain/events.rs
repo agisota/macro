@@ -104,7 +104,7 @@ pub enum MessageKind {
     Edit,
     /// `target` was deleted for everyone.
     Delete,
-    /// A shape Macro does not import; `text` is a readable placeholder.
+    /// A shape Rox does not import; `text` is a readable placeholder.
     Unsupported,
     /// A poll, location, contact card or event: `rich` holds it, `text` any
     /// caption.

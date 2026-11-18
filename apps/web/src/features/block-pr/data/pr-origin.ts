@@ -21,7 +21,7 @@ export type PrOrigin = {
   signal: PrOriginSignal;
   /** The session the pull request came from, when one is linked. */
   url?: string;
-  /** The Macro agent session that opened the pull request. */
+  /** The Rox agent session that opened the pull request. */
   sessionId?: string;
 };
 
@@ -42,18 +42,18 @@ export const PR_ORIGIN_LABELS: Record<PrOriginTool, string> = {
   devin: 'Devin',
   copilot: 'Copilot',
   jules: 'Jules',
-  macro: 'Macro',
+  macro: 'Rox',
 };
 
 export const PR_ORIGIN_SIGNAL_LABELS: Record<PrOriginSignal, string> = {
-  'agent-session': 'opened by a Macro agent session',
+  'agent-session': 'opened by a Rox agent session',
   'session-link': 'session linked in the description',
   description: 'named in the description',
   author: 'opened by its bot account',
   branch: 'from its branch name',
 };
 
-/** The tool behind a Macro agent harness slug. */
+/** The tool behind a Rox agent harness slug. */
 export function toolForHarness(harness: string | undefined): PrOriginTool {
   if (!harness) return 'macro';
   if (harness.startsWith('claude')) return 'claude';
@@ -72,7 +72,7 @@ const SESSION_LINKS: readonly [PrOriginTool, RegExp][] = [
   ],
   ['devin', /https:\/\/app\.devin\.ai\/sessions\/[\w-]+/i],
   ['jules', /https:\/\/jules\.google\.com\/[^\s)\]"'>]+/i],
-  ['macro', /https:\/\/(?:[\w-]+\.)?macro\.com\/app\/agent\/[\w-]+/i],
+  ['macro', /https:\/\/(?:[\w-]+\.)?rox\.one\/app\/agent\/[\w-]+/i],
 ];
 
 /** Footers and trailers that name the tool without a session link. */
@@ -119,15 +119,15 @@ const firstMatch = (
 
 /**
  * Where a pull request was started, from the strongest signal it carries: a
- * Macro agent session that opened it, a session link or footer in its
+ * Rox agent session that opened it, a session link or footer in its
  * description, the bot account that opened it, or its branch name. Pull
- * requests opened outside Macro are recognized the same way.
+ * requests opened outside Rox are recognized the same way.
  */
 export function detectPrOrigin(input: {
   description?: string | null;
   headBranch?: string | null;
   authorLogin?: string | null;
-  /** Linked Macro agent sessions; only one whose agent opened the PR counts. */
+  /** Linked Rox agent sessions; only one whose agent opened the PR counts. */
   sessions?: readonly {
     id: string;
     source: 'agent' | 'user';

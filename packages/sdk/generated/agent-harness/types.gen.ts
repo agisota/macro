@@ -395,7 +395,7 @@ export type AgentPromptAction = {
  */
 export type AgentRepositoriesResponse = {
     /**
-     * Every repository the caller reaches through Macro's GitHub App, sorted
+     * Every repository the caller reaches through Rox's GitHub App, sorted
      * by `owner/name`. Empty when the App is installed nowhere the caller
      * has a claim to.
      */
@@ -703,7 +703,7 @@ export type AgentSessionResponse = {
      */
     status: SessionStatusDto;
     /**
-     * The Macro task the session was linked to.
+     * The Rox task the session was linked to.
      */
     taskId?: string | null;
     /**
@@ -987,7 +987,7 @@ export type Caller = {
 /**
  * Harness names accepted by the capability-discovery endpoint.
  */
-export type CapabilityHarnessDto = 'in-memory' | 'cursor' | 'macrod';
+export type CapabilityHarnessDto = 'in-memory' | 'cursor' | 'roxd';
 
 /**
  * The latest capture attempt.
@@ -1183,15 +1183,15 @@ export type ClaudeAccountStatus = {
      */
     signedInAt: string;
     /**
-     * Who signed it in through Macro; absent once that user is deleted or
+     * Who signed it in through Rox; absent once that user is deleted or
      * when it was signed in on the computer itself.
      */
     signedInBy?: string | null;
 };
 
 /**
- * How Claude Code on a Macro computer is paid for: its own Claude account
- * when it has an active Claude login, otherwise Macro credits.
+ * How Claude Code on a Rox computer is paid for: its own Claude account
+ * when it has an active Claude login, otherwise Rox credits.
  */
 export type ClaudeMode = 'macro_credits' | 'own_account';
 
@@ -1282,7 +1282,7 @@ export type CodingAgentsResponse = {
  */
 export type CodingPreferencesBody = {
     /**
-     * Whether new coding sessions research prior work and link a Macro task.
+     * Whether new coding sessions research prior work and link a Rox task.
      */
     createTasks: boolean;
     /**
@@ -1694,7 +1694,7 @@ export type DiscoverAgentCapabilitiesRequest = {
      */
     harness: CapabilityHarnessDto;
     /**
-     * Required for macrod and forbidden for other targets.
+     * Required for roxd and forbidden for other targets.
      */
     harnessId?: string | null;
     /**
@@ -2217,7 +2217,7 @@ export type LoadAgentModelsRequest = {
      */
     harness: ModelHarnessDto;
     /**
-     * Required for macrod and forbidden for other targets.
+     * Required for roxd and forbidden for other targets.
      */
     harnessId?: string | null;
 };
@@ -2333,7 +2333,7 @@ export type MessageSuggestions = {
 /**
  * Harness names accepted by the model discovery endpoint.
  */
-export type ModelHarnessDto = 'in-memory' | 'cursor' | 'macrod';
+export type ModelHarnessDto = 'in-memory' | 'cursor' | 'roxd';
 
 /**
  * Monthly ordinal weekday, such as the first Friday.
@@ -2374,7 +2374,7 @@ export type OpenInApp = {
     executionId: ExecutionId;
     /**
      * An app path, such as `/md/<id>` or `/channels/<id>?s0.channels.messageId=<id>`:
-     * what follows `/app` in a Macro link. Never an origin.
+     * what follows `/app` in a Rox link. Never an origin.
      */
     path: string;
     /**
@@ -2616,7 +2616,7 @@ export type RecordedToolCall = {
      */
     input: unknown;
     /**
-     * Canonical Macro tool name from the allowlisted registry.
+     * Canonical Rox tool name from the allowlisted registry.
      */
     name: string;
     /**
@@ -2939,7 +2939,7 @@ export type SessionPullRequestLink = {
      */
     githubKey: string;
     /**
-     * The Macro user who linked it, for links a person made.
+     * The Rox user who linked it, for links a person made.
      */
     linkedBy?: string | null;
     /**
@@ -3349,7 +3349,7 @@ export type DiscoverAgentCapabilitiesHandlerErrors = {
      */
     403: unknown;
     /**
-     * Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
+     * Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
      */
     409: CredentialRejectedResponse;
     /**
@@ -3357,7 +3357,7 @@ export type DiscoverAgentCapabilitiesHandlerErrors = {
      */
     502: unknown;
     /**
-     * Macrod probe timed out
+     * Roxd probe timed out
      */
     504: unknown;
 };
@@ -3576,7 +3576,7 @@ export type LoadAgentModelsHandlerErrors = {
      */
     403: unknown;
     /**
-     * Macrod machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
+     * Roxd machine or Cursor account is not connected (plain text), or the provider refused the connected credential (JSON)
      */
     409: CredentialRejectedResponse;
     /**
@@ -3584,7 +3584,7 @@ export type LoadAgentModelsHandlerErrors = {
      */
     502: unknown;
     /**
-     * Macrod probe timed out
+     * Roxd probe timed out
      */
     504: unknown;
 };

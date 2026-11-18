@@ -80,7 +80,7 @@ describe('prepareEmailBodyFromHtml', () => {
     expect(prepared.hasWrittenContent).toBe(false);
   });
   it.each(['reply', 'forward'] as const)(
-    'keeps quoted Macro document links re-importable as rich mentions in a %s',
+    'keeps quoted Rox document links re-importable as rich mentions in a %s',
     (replyType) => {
       const prepared = prepareEmailBodyFromHtml('<p>My reply</p>', {
         replyType,
@@ -167,7 +167,7 @@ describe('prepareEmailBodyFromHtml', () => {
     ]);
   });
   it.each(['reply', 'forward'] as const)(
-    'drops Macro read-receipt pixels from a quoted %s',
+    'drops Rox read-receipt pixels from a quoted %s',
     (replyType) => {
       const pixel = `${EMAIL_SERVICE_EMBEDDED_HOSTS[0]}/opens/token`;
       const original = {
@@ -230,14 +230,14 @@ describe('prepareEmailBodyFromHtml', () => {
 
   it('converts booking link mentions to clickable anchor tags', () => {
     const prepared = prepareEmailBodyFromHtml(
-      '<p>Book a meeting: <span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="30min" data-booking-label="30 Minute Meeting" data-booking-url="https://macro.com/app/book/abc123/30min">30 Minute Meeting</span></p>'
+      '<p>Book a meeting: <span data-booking-link-mention="true" data-booking-profile-id="abc123" data-booking-slug="30min" data-booking-label="30 Minute Meeting" data-booking-url="https://rox.one/app/book/abc123/30min">30 Minute Meeting</span></p>'
     );
     const decoded = decodeBase64Utf8(prepared.bodyHtml);
     const body = new DOMParser().parseFromString(decoded, 'text/html').body;
     const link = body.querySelector('a[data-booking-link-mention="true"]');
     expect(link).not.toBeNull();
     expect(link?.getAttribute('href')).toBe(
-      'https://macro.com/app/book/abc123/30min'
+      'https://rox.one/app/book/abc123/30min'
     );
     expect(link?.textContent).toBe('30 Minute Meeting');
   });

@@ -266,7 +266,7 @@ fn a_failed_mcp_call_marks_its_span_and_unwraps_the_envelope() {
         assert_eq!(
             string_attribute(tool, attr::MACRO_MCP_SERVER).as_deref(),
             Some("macro"),
-            "Macro's tools are reached over its MCP server: {tool:#?}"
+            "Rox's tools are reached over its MCP server: {tool:#?}"
         );
         // The MCP `CallToolResult` envelope is not what the tool returned:
         // a text result is recorded as its bare text, a structured one as

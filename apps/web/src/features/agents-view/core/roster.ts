@@ -12,7 +12,7 @@ import {
 import { type AgentKind, kindForHarness, systemBotKind } from './agent-kind';
 
 /**
- * Macro's own chat agent: the deployment's managed default. Started without a
+ * Rox's own chat agent: the deployment's managed default. Started without a
  * `botId`, so the server picks the runtime it is configured to run it on.
  */
 export const MACRO_PERSONA_ID = 'macro';
@@ -39,13 +39,13 @@ export type PersistedAgentLike = {
   default_model: string;
 };
 
-/** A registered macrod runtime, as far as the roster cares. */
+/** A registered roxd runtime, as far as the roster cares. */
 export type RuntimeLike = {
   id: string;
   name: string;
   connected: boolean;
   access?: 'owner' | 'user' | 'read' | 'none';
-  /** Set for a team's Macro computer, which is powered off when away. */
+  /** Set for a team's Rox computer, which is powered off when away. */
   computer_id?: string | null;
 };
 
@@ -53,9 +53,9 @@ type RosterShare = 'system' | 'team' | 'private';
 
 /** One agent or coder as the composer, carousel, and roster page show it. */
 export type RosterAgent = {
-  /** Persona id: the bot id, or `MACRO_PERSONA_ID` for Macro's default. */
+  /** Persona id: the bot id, or `MACRO_PERSONA_ID` for Rox's default. */
   id: string;
-  /** Bot to start sessions for; absent for Macro's default persona. */
+  /** Bot to start sessions for; absent for Rox's default persona. */
   botId?: string;
   kind: AgentKind;
   name: string;
@@ -77,7 +77,7 @@ export type RosterAgent = {
    * so surfaces mark it "Offline" rather than offering a connect flow.
    */
   offline?: boolean;
-  /** Its Macro computer is turned off; it starts again from the ⋯ menu. */
+  /** Its Rox computer is turned off; it starts again from the ⋯ menu. */
   poweredOff?: boolean;
   /** An unavailable agent with a setup action stays clickable. */
   connectLabel?: string;
@@ -109,7 +109,7 @@ export function runtimeLabel(
       return MACRO_HARNESS_NAME;
     case 'cursor':
       return 'Cursor';
-    case 'macrod':
+    case 'roxd':
       return (
         runtimes.find((runtime) => runtime.id === harnessId)?.name ??
         'Disconnected machine'
@@ -130,7 +130,7 @@ function runtimeConnected(
       return true;
     case 'cursor':
       return input.cursorConnected;
-    case 'macrod':
+    case 'roxd':
       return (
         input.runtimes.find((runtime) => runtime.id === harnessId)?.connected ??
         false
@@ -188,8 +188,8 @@ function persistedAgent(
   const runtime = input.runtimes.find((item) => item.id === harnessId);
   // A computer that is away is turned off; there is nothing to reconnect.
   const poweredOff =
-    agent.harness === 'macrod' && !connected && !!runtime?.computer_id;
-  const disconnected = agent.harness === 'macrod' && !connected && !poweredOff;
+    agent.harness === 'roxd' && !connected && !!runtime?.computer_id;
+  const disconnected = agent.harness === 'roxd' && !connected && !poweredOff;
   // A resident answers anyone who can reach it; a coding agent needs the person
   // prompting it to have access to its machine.
   const runtimeAccess = runtime?.access;
@@ -266,7 +266,7 @@ export function buildAgentRoster(input: RosterInput): RosterAgent[] {
   ];
 }
 
-/** Every agent belongs in the picker; Macro is represented by model choices. */
+/** Every agent belongs in the picker; Rox is represented by model choices. */
 export function rosterForAgentPicker(
   roster: readonly RosterAgent[]
 ): RosterAgent[] {

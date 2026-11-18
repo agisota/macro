@@ -72,14 +72,14 @@ pub struct DocumentMetadata {
 /// Response for the internal starter-docs initialization endpoint.
 #[derive(serde::Serialize, serde::Deserialize, Eq, PartialEq, Debug)]
 pub struct InitializeStarterDocsResponse {
-    /// The user's "Macro how to guide": freshly created, or resolved by name
+    /// The user's "Rox how to guide": freshly created, or resolved by name
     /// when the starter set had already been seeded. `None` when the guide
     /// could not be resolved (e.g. a partial seed created only the tasks).
     #[serde(default)]
     pub how_to_guide: Option<StarterDocHowToGuide>,
 }
 
-/// Reference to the seeded "Macro how to guide" document.
+/// Reference to the seeded "Rox how to guide" document.
 #[derive(serde::Serialize, serde::Deserialize, Eq, PartialEq, Debug, Clone)]
 pub struct StarterDocHowToGuide {
     /// Document id.

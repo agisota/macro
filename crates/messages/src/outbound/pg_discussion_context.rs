@@ -6,7 +6,7 @@ use crate::domain::{
 use sqlx::PgPool;
 use uuid::Uuid;
 
-/// Parent metadata and discussion audience facts from MacroDB.
+/// Parent metadata and discussion audience facts from RoxDB.
 #[derive(Clone)]
 pub struct PgDiscussionContext(pub PgPool);
 

@@ -2,7 +2,7 @@
 
 Pulumi project `macro-web-app` publishes the web bundle to S3 and supplies the
 routing Lambda used by the `website-infra` CloudFront distribution. Development
-is served at `https://dev.macro.com/app`; production is `https://macro.com/app`.
+is served at `https://dev.rox.one/app`; production is `https://rox.one/app`.
 Deployment requires explicit authorization; tests below do not contact AWS.
 
 ## Publication order

@@ -207,14 +207,14 @@ export const inviteRoute = defineRoute({
   externalSearch: '*',
 });
 
-/** Macro staff only: create and track GTM invite links. */
+/** Rox staff only: create and track GTM invite links. */
 export const internalInviteLinksRoute = defineRoute({
   id: 'internal-invite-links',
   path: 'internal/invite-links',
   externalSearch: '*',
 });
 
-/** Macro staff only: set the status banner every user sees. */
+/** Rox staff only: set the status banner every user sees. */
 export const internalSystemStatusRoute = defineRoute({
   id: 'internal-system-status',
   path: 'internal/status',
@@ -773,12 +773,12 @@ export const externalChatRoute = defineRoute({
   claim: ({ chatId }) => ({ namespace: 'external-chat', id: chatId }),
 });
 
-/** External: outside messaging accounts (WhatsApp) linked into Macro. */
+/** External: outside messaging accounts (WhatsApp) linked into Rox. */
 export const externalRoute = defineRoute({
   info: OPEN_TO_AGENTS,
   id: 'view-external',
   path: 'external',
-  // A WhatsApp pairing handed off to Macro desktop, by id only.
+  // A WhatsApp pairing handed off to Rox desktop, by id only.
   externalSearch: ['whatsappPairing'],
 });
 

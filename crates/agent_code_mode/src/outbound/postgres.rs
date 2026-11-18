@@ -9,7 +9,7 @@ use sqlx::{PgPool, types::Json};
 pub struct PgExecutionStore(PgPool);
 
 impl PgExecutionStore {
-    /// Use the application's MacroDB pool.
+    /// Use the application's RoxDB pool.
     pub fn new(pool: PgPool) -> Self {
         Self(pool)
     }

@@ -30,7 +30,7 @@ use system_properties::{PriorityOption, StatusOption, SystemPropertyKey};
 
 /// Also the name `get_starter_docs` resolves the guide by, so the two stay in
 /// sync from one definition.
-pub(in crate::api) const HOW_TO_GUIDE_NAME: &str = "Macro how to guide";
+pub(in crate::api) const HOW_TO_GUIDE_NAME: &str = "Rox how to guide";
 const HOW_TO_GUIDE_TEMPLATE: &str = include_str!("./template/macro_how_to_guide.md");
 
 /// A starter task the templates can mention. Mention tags embed the target's
@@ -65,7 +65,7 @@ const STARTER_TASKS: [StarterTask; 3] = [
         priority: PriorityOption::Medium,
     },
     StarterTask {
-        name: "How we use tasks at Macro",
+        name: "How we use tasks at Rox",
         template: include_str!("./template/how_we_use_tasks.md"),
         id_placeholder: "HOW_WE_USE_TASKS_ID",
         name_placeholder: "HOW_WE_USE_TASKS_NAME",
@@ -158,7 +158,7 @@ fn internal_error(message: &str) -> Response {
         .send(StatusCode::INTERNAL_SERVER_ERROR)
 }
 
-/// Creates the user's starter content — the "Macro how to guide" markdown
+/// Creates the user's starter content — the "Rox how to guide" markdown
 /// document plus the starter tasks it links to — records the mention
 /// backlinks between them, and pins the guide to the user's sidebar
 /// favorites. Called by the authentication service when a new user signs up.

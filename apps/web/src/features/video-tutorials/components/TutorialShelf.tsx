@@ -28,7 +28,7 @@ import type { TutorialId } from '../core/tutorial-id';
 export type ShelfTutorial = {
   id: TutorialId;
   title: string;
-  /** "Macro Mail" */
+  /** "Rox Mail" */
   block: string;
   length: string;
 };
@@ -63,7 +63,7 @@ const TILES: Record<TutorialId, Tile> = {
   },
   calls: { icon: PhoneCallIcon, from: '--color-lime', to: '--color-green' },
   agents: { icon: AgentIcon, from: '--color-purple', to: '--color-pink' },
-  macrod: { icon: LaptopIcon, from: '--color-cyan', to: '--color-violet' },
+  roxd: { icon: LaptopIcon, from: '--color-cyan', to: '--color-violet' },
   github: {
     icon: GitPullRequestIcon,
     from: '--color-purple',
@@ -102,7 +102,7 @@ function TileArt(props: { tutorial: ShelfTutorial }) {
 }
 
 /**
- * Shown over the bottom of the video once it ends: "More videos from Macro",
+ * Shown over the bottom of the video once it ends: "More videos from Rox",
  * a Replay action, and a row of the other tutorials that scrolls sideways
  * (arrows when it overflows). Arrow keys move between cards.
  */

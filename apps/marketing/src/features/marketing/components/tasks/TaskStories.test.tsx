@@ -138,7 +138,7 @@ it('types Peter’s requests into the composer before sending them', () => {
   const log = within(view.getByRole('log', { name: 'Channel sales' }));
   visible(true);
   vi.advanceTimersByTime(1400);
-  expect(input.textContent).toContain('@Macro');
+  expect(input.textContent).toContain('@Rox');
   expect(log.queryByText(/make tasks for this proposal/)).toBeNull();
   advanceTo(() => log.queryByText(/make tasks for this proposal/));
   expect(input.textContent).toBe('');
@@ -150,7 +150,7 @@ it('types Peter’s requests into the composer before sending them', () => {
   );
   const threadInput = view.getByRole('textbox', { name: 'Thread reply' });
   expect(threadInput.textContent).toContain('Wolf');
-  expect(threadInput.textContent).not.toContain('@Macro');
+  expect(threadInput.textContent).not.toContain('@Rox');
   expect(
     log.queryByText(/Wolf will draft/, { selector: 'article p' })
   ).toBeNull();
@@ -164,7 +164,7 @@ it('types Peter’s requests into the composer before sending them', () => {
   ).toBeNull();
 });
 
-it('lets @Macro create assigned tasks from one channel message', () => {
+it('lets @Rox create assigned tasks from one channel message', () => {
   const view = render(() => <TaskAgentChannelDemo />);
   expect(view.queryByText('Draft the customer proposal')).toBeNull();
   visible(true);
@@ -289,7 +289,7 @@ it('does not perform the scripted reassignment after the visitor takes over', ()
   vi.advanceTimersByTime(8000);
   fireEvent.pointerDown(
     view.getByRole('group', {
-      name: 'Ask Macro to create tasks and change an owner',
+      name: 'Ask Rox to create tasks and change an owner',
     })
   );
   reduce();
@@ -386,7 +386,7 @@ it('shows channel thinking status for each pending agent response', () => {
   visible(true);
   const waitForThinking = () => {
     for (let elapsed = 0; elapsed < 15000; elapsed += 50) {
-      if (view.queryByText('Macro is thinking')) return;
+      if (view.queryByText('Rox is thinking')) return;
       vi.advanceTimersByTime(50);
     }
     throw new Error('Expected the channel agent thinking indicator');
@@ -394,11 +394,11 @@ it('shows channel thinking status for each pending agent response', () => {
   waitForThinking();
   expect(view.queryByText('Created and assigned both tasks.')).toBeNull();
   vi.advanceTimersByTime(1400);
-  expect(view.queryByText('Macro is thinking')).toBeNull();
+  expect(view.queryByText('Rox is thinking')).toBeNull();
   expect(view.getByText('Created and assigned both tasks.')).toBeTruthy();
   waitForThinking();
   expect(view.queryByText('The proposal is now assigned to Wolf.')).toBeNull();
   vi.advanceTimersByTime(1400);
-  expect(view.queryByText('Macro is thinking')).toBeNull();
+  expect(view.queryByText('Rox is thinking')).toBeNull();
   expect(view.getByText('The proposal is now assigned to Wolf.')).toBeTruthy();
 });

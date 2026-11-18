@@ -557,3 +557,217 @@ async fn concurrent_gmail_and_outlook_connections_share_one_remaining_free_slot(
     let count=sqlx::query_scalar!("SELECT count(*) FROM email_links l WHERE l.macro_id=$1 OR EXISTS(SELECT 1 FROM macro_user_links a WHERE a.link_id=l.id AND a.primary_macro_id=$1)",owner.1.as_ref()).fetch_one(&db).await.unwrap();
     assert_eq!(count, Some(2));
 }
+
+#[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
+async fn rox_init_uses_the_claimed_handle_without_a_gmail_client(db: PgPool) {
+    let owner = actor(&db, "legacy@example.com").await;
+    assert_eq!(
+        macro_db_client::macro_user::get_macro_user(&db, &owner.0.to_string())
+            .await
+            .unwrap()
+            .username,
+        "macro|legacy@example.com"
+    );
+    assert_eq!(
+        macro_db_client::user::get::get_user_id_by_email(db.clone(), "legacy@example.com")
+            .await
+            .unwrap(),
+        owner.1.as_ref(),
+        "an existing macro|email fixture still resolves before a handle is claimed"
+    );
+    assert!(
+        ensure_rox_mailbox(&db, &owner.0.to_string(), owner.1.clone(), true)
+            .await
+            .unwrap()
+            .is_none()
+    );
+
+    let gmail = Uuid::now_v7();
+    sqlx::query!(
+        "INSERT INTO email_links(id,macro_id,fusionauth_user_id,email_address,provider,is_primary) VALUES($1,$2,$3,'legacy@example.com','GMAIL',true)",
+        gmail,
+        owner.1.as_ref(),
+        owner.0.to_string()
+    )
+    .execute(&db)
+    .await
+    .unwrap();
+    sqlx::query!(
+        "UPDATE macro_user SET username = 'ada', mailbox_handle_claimed_at = now() WHERE id = $1",
+        owner.0
+    )
+    .execute(&db)
+    .await
+    .unwrap();
+
+    let link = ensure_rox_mailbox(&db, &owner.0.to_string(), owner.1.clone(), true)
+        .await
+        .unwrap()
+        .unwrap();
+    let expected_address = format!("ada@{}", macro_user_id::handle::ROX_MAIL_DOMAIN);
+    assert_eq!(link.email_address.0.as_ref(), expected_address);
+    assert_eq!(
+        link.provider,
+        models_email::email::service::link::UserProvider::Rox
+    );
+    assert!(link.is_primary);
+    assert!(!link.is_sync_active);
+    let audit = sqlx::query!(
+        "SELECT actor_id, resource_id, result FROM enterprise_audit WHERE action = 'mailbox_provision'"
+    )
+    .fetch_all(&db)
+    .await
+    .unwrap();
+    assert_eq!(audit.len(), 1, "a newly committed ROX link is audited once");
+    assert_eq!(audit[0].actor_id, owner.1.as_ref());
+    assert_eq!(audit[0].resource_id, link.id.to_string());
+    assert_eq!(audit[0].result, "local_link_created");
+    assert_eq!(
+        sqlx::query_scalar!(
+            "SELECT count(*) FROM information_schema.columns WHERE table_name = 'enterprise_audit' AND column_name IN ('address', 'password', 'token', 'payload')"
+        )
+        .fetch_one(&db)
+        .await
+        .unwrap(),
+        Some(0)
+    );
+    assert_eq!(
+        ensure_rox_mailbox(&db, &owner.0.to_string(), owner.1.clone(), true)
+            .await
+            .unwrap()
+            .unwrap()
+            .id,
+        link.id
+    );
+    assert_eq!(
+        sqlx::query_scalar!(
+            "SELECT count(*) FROM enterprise_audit WHERE action = 'mailbox_provision'"
+        )
+        .fetch_one(&db)
+        .await
+        .unwrap(),
+        Some(1),
+        "idempotent re-init does not duplicate the mailbox audit"
+    );
+    assert!(
+        !sqlx::query_scalar!("SELECT is_primary FROM email_links WHERE id = $1", gmail)
+            .fetch_one(&db)
+            .await
+            .unwrap()
+    );
+    assert_eq!(
+        sqlx::query_scalar!(
+            "SELECT count(*) FROM email_backfill_jobs WHERE link_id = $1",
+            link.id
+        )
+        .fetch_one(&db)
+        .await
+        .unwrap(),
+        Some(0)
+    );
+}
+
+#[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
+async fn rox_writer_gate_enforces_reader_only_rollout(db: PgPool) {
+    let owner = actor(&db, "reader-rollout@example.com").await;
+    sqlx::query!(
+        "UPDATE macro_user SET username = 'ada', mailbox_handle_claimed_at = now() WHERE id = $1",
+        owner.0
+    )
+    .execute(&db)
+    .await
+    .unwrap();
+
+    assert!(
+        ensure_rox_mailbox(&db, &owner.0.to_string(), owner.1.clone(), false)
+            .await
+            .unwrap()
+            .is_none()
+    );
+    assert_eq!(
+        sqlx::query_scalar!("SELECT count(*) FROM email_links WHERE provider = 'ROX'")
+            .fetch_one(&db)
+            .await
+            .unwrap(),
+        Some(0)
+    );
+    assert_eq!(
+        sqlx::query_scalar!(
+            "SELECT count(*) FROM enterprise_audit WHERE action = 'mailbox_provision'"
+        )
+        .fetch_one(&db)
+        .await
+        .unwrap(),
+        Some(0)
+    );
+
+    let link = ensure_rox_mailbox(&db, &owner.0.to_string(), owner.1.clone(), true)
+        .await
+        .unwrap()
+        .unwrap();
+    assert!(
+        ensure_rox_mailbox(&db, &owner.0.to_string(), owner.1.clone(), false)
+            .await
+            .unwrap()
+            .is_some_and(|reader_link| reader_link.id == link.id),
+        "the reader-only stage still decodes an existing ROX link"
+    );
+    assert_eq!(
+        sqlx::query_scalar!(
+            "SELECT count(*) FROM enterprise_audit WHERE action = 'mailbox_provision'"
+        )
+        .fetch_one(&db)
+        .await
+        .unwrap(),
+        Some(1)
+    );
+}
+
+#[sqlx::test(migrator = "MACRO_DB_MIGRATIONS")]
+async fn gmail_connected_after_rox_stays_non_primary(db: PgPool) {
+    let owner = actor(&db, "owner@example.com").await;
+    sqlx::query!(
+        "UPDATE macro_user SET username = 'ada', mailbox_handle_claimed_at = now() WHERE id = $1",
+        owner.0
+    )
+    .execute(&db)
+    .await
+    .unwrap();
+    ensure_rox_mailbox(&db, &owner.0.to_string(), owner.1.clone(), true)
+        .await
+        .unwrap();
+
+    let email_address =
+        macro_user_id::email::EmailStr::try_from("owner@gmail.example".to_owned()).unwrap();
+    let gmail = models_email::email::service::link::Link {
+        id: Uuid::now_v7(),
+        macro_id: owner.1.clone(),
+        fusionauth_user_id: owner.0.to_string(),
+        email_address,
+        provider: models_email::email::service::link::UserProvider::Gmail,
+        is_sync_active: true,
+        is_primary: models_email::email::service::link::Link::derive_is_primary(
+            models_email::email::service::link::UserProvider::Gmail,
+        ),
+        needs_reauth: false,
+        last_sync_error_at: None,
+        created_at: Default::default(),
+        updated_at: Default::default(),
+    };
+    let mut tx = db.begin().await.unwrap();
+    let gmail = email_db_client::links::insert::upsert_link(&mut tx, gmail)
+        .await
+        .unwrap();
+    tx.commit().await.unwrap();
+
+    assert!(!gmail.is_primary);
+    assert!(
+        sqlx::query_scalar!(
+            "SELECT is_primary FROM email_links WHERE macro_id = $1 AND provider = 'ROX'",
+            owner.1.as_ref()
+        )
+        .fetch_one(&db)
+        .await
+        .unwrap()
+    );
+}

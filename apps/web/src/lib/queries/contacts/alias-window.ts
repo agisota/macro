@@ -67,7 +67,7 @@ export function createContactAliasWindow<T extends { id: string }>(options: {
   );
   // Resolution restarts whenever the listed rows change. Keep the users it
   // already found for emails still listed until the new answer lands, so a
-  // contact does not split from its Macro user and merge again.
+  // contact does not split from its Rox user and merge again.
   const users = createMemo<ContactUsers>((previous) => {
     const resolved = resolution.data()?.users;
     if (resolved) return resolved;

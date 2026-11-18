@@ -39,7 +39,7 @@ worker that sends email/mobile-push/websocket notifications.
 ## Checks
 
 - `cargo test -p notification_service` (`SQLX_OFFLINE` unset; needs local
-  MacroDB — `just run_dbs -d`, then `sqlx database setup` from
+  RoxDB — `just run_dbs -d`, then `sqlx database setup` from
   `crates/notification_db_client`).
 
 ## Gotchas

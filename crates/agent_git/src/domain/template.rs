@@ -33,7 +33,7 @@ pub const WORKSPACE_TEMPLATE: WorkspaceTemplate = WorkspaceTemplate {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PersonaSeed {
-    /// Creating admin's Macro user ID: the agent's owner, the only account
+    /// Creating admin's Rox user ID: the agent's owner, the only account
     /// that gives it orders.
     #[serde(default)]
     pub creator_id: Option<MacroUserIdStr<'static>>,

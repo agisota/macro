@@ -15,7 +15,7 @@ export interface TeamOutOfOfficeItem {
   eventId: string;
   /** Stable occurrence key within the event. */
   occurrenceKey: string;
-  /** Macro user id of the teammate who is out. */
+  /** Rox user id of the teammate who is out. */
   ownerId: string;
   /** Occurrence time span. */
   time: EventTime;

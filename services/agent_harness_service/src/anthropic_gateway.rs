@@ -1,10 +1,10 @@
-//! `/anthropic/v1/*`: the Anthropic Messages API for agent sessions on Macro credits.
+//! `/anthropic/v1/*`: the Anthropic Messages API for agent sessions on Rox credits.
 //!
-//! A runtime (Claude Code on a Macro computer) points `ANTHROPIC_BASE_URL` here
+//! A runtime (Claude Code on a Rox computer) points `ANTHROPIC_BASE_URL` here
 //! and sends its session's egress token as `ANTHROPIC_AUTH_TOKEN`. The request
-//! is forwarded unchanged with Macro's key; the response streams back
+//! is forwarded unchanged with Rox's key; the response streams back
 //! unchanged while its `usage` is read and recorded against the session owner.
-//! Only sessions whose bot runs on a Macro computer are served.
+//! Only sessions whose bot runs on a Rox computer are served.
 
 use std::future::Future;
 use std::pin::Pin;
@@ -118,7 +118,7 @@ const RETURNED_RESPONSE_HEADERS: &[&str] = &[
 const MESSAGES_PATH: &str = "/v1/messages";
 const COUNT_TOKENS_PATH: &str = "/v1/messages/count_tokens";
 
-/// Which Macro computer serves a bot right now, if any.
+/// Which Rox computer serves a bot right now, if any.
 pub(super) trait BotComputers: Send + Sync + 'static {
     fn computer_for(
         &self,
@@ -294,7 +294,7 @@ async fn unsupported() -> Response {
         status: StatusCode::NOT_FOUND,
         kind: "not_found_error",
         outcome: "unsupported_endpoint",
-        message: "Macro's Anthropic gateway serves only /v1/messages and /v1/messages/count_tokens"
+        message: "Rox's Anthropic gateway serves only /v1/messages and /v1/messages/count_tokens"
             .into(),
     }
     .into_response()
@@ -356,7 +356,7 @@ async fn forward<Sessions: AgentSessionRepo, Computers: BotComputers>(
         span.record("agent.harness", session.harness.as_str());
         let owner = session
             .owner_user()
-            .map_err(|_| Rejection::permission("this session's owner cannot spend Macro credits"))?
+            .map_err(|_| Rejection::permission("this session's owner cannot spend Rox credits"))?
             .clone();
         // The computer is the gate: the rollout limits selling computers, not
         // using them, so a teammate outside it, or anyone once it is off, still
@@ -636,7 +636,7 @@ impl Rejection {
         kind: "authentication_error",
         outcome: "unauthenticated",
         message: std::borrow::Cow::Borrowed(
-            "send the agent teammate's Macro API key as `Authorization: Bearer`",
+            "send the agent teammate's Rox API key as `Authorization: Bearer`",
         ),
     };
 
@@ -645,7 +645,7 @@ impl Rejection {
         kind: "authentication_error",
         outcome: "unauthenticated",
         message: std::borrow::Cow::Borrowed(
-            "send the agent session's Macro token as `Authorization: Bearer`",
+            "send the agent session's Rox token as `Authorization: Bearer`",
         ),
     };
 
@@ -658,14 +658,14 @@ impl Rejection {
         message: std::borrow::Cow::Borrowed("agent teammates are not enabled for this agent"),
     };
 
-    /// Fails closed: the session is not on a Macro computer, or its lookup
+    /// Fails closed: the session is not on a Rox computer, or its lookup
     /// failed.
     const NOT_ON_A_COMPUTER: Self = Self {
         status: StatusCode::FORBIDDEN,
         kind: "permission_error",
         outcome: "not_on_a_computer",
         message: std::borrow::Cow::Borrowed(
-            "Macro's Anthropic gateway serves only sessions on a Macro computer",
+            "Rox's Anthropic gateway serves only sessions on a Rox computer",
         ),
     };
 
@@ -673,7 +673,7 @@ impl Rejection {
         status: StatusCode::SERVICE_UNAVAILABLE,
         kind: "api_error",
         outcome: "not_configured",
-        message: std::borrow::Cow::Borrowed("Macro's Anthropic gateway has no API key configured"),
+        message: std::borrow::Cow::Borrowed("Rox's Anthropic gateway has no API key configured"),
     };
 
     const UPSTREAM_UNREACHABLE: Self = Self {
@@ -702,7 +702,7 @@ impl Rejection {
             kind: "invalid_request_error",
             outcome: "model_not_allowed",
             message: format!(
-                "model `{model}` is not available on Macro credits; use one of: {}",
+                "model `{model}` is not available on Rox credits; use one of: {}",
                 allowed.join(", ")
             )
             .into(),

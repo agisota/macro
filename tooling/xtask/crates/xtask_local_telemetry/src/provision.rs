@@ -297,7 +297,8 @@ pub(crate) fn token_is_valid(token: &str) -> bool {
 }
 
 /// Write the settings file. `replacing` is the provisioned config being
-/// replaced: its `services` and `machine` choices carry over.
+/// replaced: its `machine` choice carries over. This never writes a line that
+/// turns the foreign Grafana copy on.
 fn write_settings(
     path: &Path,
     endpoint: &str,
@@ -310,8 +311,9 @@ fn write_settings(
     let mut text = format!(
         "# Written by `just run_local` from Doppler (observability/lcl).\n\
          # Edit freely, but delete `provisioned = true` so it is never replaced.\n\
-         # `enabled = false` turns local telemetry off, and `services = true` also\n\
-         # sends your local stacks' traces, logs and metrics: docs/development/running-locally.md\n\
+         # `enabled = false` turns local telemetry off. This file does not\n\
+         # turn on the foreign Grafana copy.\n\
+         enabled = false\n\
          endpoint = {}\n\
          token = {}\n\
          provisioned = true\n",
@@ -319,9 +321,6 @@ fn write_settings(
         toml::Value::from(token),
     );
     if let Some(old) = replacing {
-        if old.services() {
-            text.push_str("services = true\n");
-        }
         if let Some(machine) = old.machine() {
             text.push_str(&format!(
                 "machine = {}\n",

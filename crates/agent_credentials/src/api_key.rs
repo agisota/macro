@@ -6,7 +6,7 @@ use zeroize::Zeroizing;
 
 use crate::InvalidAgentCredential;
 
-/// An agent's revocable Macro API key. Unlike the legacy user-key boundary,
+/// An agent's revocable Rox API key. Unlike the legacy user-key boundary,
 /// bootstrap keys must have the current minted shape. Debug reveals no suffix;
 /// the owned plaintext is zeroized when dropped.
 #[derive(Clone, Deserialize)]

@@ -690,7 +690,7 @@ where
     }
 
     /// Let in-memory sessions of agents with their own usable API key past
-    /// the allowance gate: their turns never run on Macro usage. Configure
+    /// the allowance gate: their turns never run on Rox usage. Configure
     /// before sharing the harness.
     pub fn with_agent_keys(
         mut self,

@@ -170,7 +170,7 @@ fn parse_id(id: ID, field: &str) -> InputResult<Uuid> {
         .map_err(|err| InputError::new(format!("invalid {field} UUID `{value}`: {err}")))
 }
 
-/// Parse a Macro user id with a field-specific error.
+/// Parse a Rox user id with a field-specific error.
 fn parse_macro_user_id(value: String, field: &str) -> InputResult<MacroUserIdStr<'static>> {
     MacroUserIdStr::parse_from_str(&value)
         .map(CowLike::into_owned)

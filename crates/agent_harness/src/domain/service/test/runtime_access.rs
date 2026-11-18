@@ -28,7 +28,7 @@ async fn external_session(repo: &InMemoryAgentSessionRepo) -> AgentSessionId {
             thread_id: None,
             originating_message_id: None,
             model: "model".into(),
-            harness: "macrod".into(),
+            harness: "roxd".into(),
             repo_url: None,
             repo_branch: None,
             workspace: "/workspace".into(),

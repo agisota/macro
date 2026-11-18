@@ -210,14 +210,14 @@ impl fmt::Debug for UpstreamCredential {
     }
 }
 
-/// The email domain Macro staff live under.
-const STAFF_EMAIL_DOMAIN: &str = "macro.com";
+/// The email domain Rox staff live under.
+const STAFF_EMAIL_DOMAIN: &str = "rox.one";
 
-/// Whether a user belongs to the Macro staff domain.
+/// Whether a user belongs to the Rox staff domain.
 ///
 /// The proxy is staff-only for now: every credential it stamps spends real
 /// upstream access on the owner's behalf, and until that has earned broader
-/// trust, "owned by somebody @macro.com" is the whole admission policy. In
+/// trust, "owned by somebody @rox.one" is the whole admission policy. In
 /// the domain rather than deployment configuration so it cannot be switched
 /// off by an unset env var.
 pub fn is_macro_staff(user: &MacroUserIdStr<'_>) -> bool {
@@ -237,7 +237,7 @@ pub struct SessionGrant {
     pub session: AgentSessionId,
     /// Whose connected servers it may reach.
     pub owner: MacroUserIdStr<'static>,
-    /// The agent the session is bound to. Macro's own tools write as it,
+    /// The agent the session is bound to. Rox's own tools write as it,
     /// never as a bot the sandbox names.
     pub agent: bot_id::BotId,
     /// The repository git egress is pinned to, if this session chose one.
@@ -788,7 +788,7 @@ impl EgressTarget {
 
 /// Which MCP server a request names.
 ///
-/// Macro's own server, the owner's connected apps, and the owner's custom
+/// Rox's own server, the owner's connected apps, and the owner's custom
 /// servers live on different routes (`/mcp-macro`, `/mcp/{slug}`,
 /// `/mcp-custom/{key}`), so they can never collide: there is no reserved
 /// word to shadow, and no connected app a name could hide.
@@ -796,16 +796,16 @@ impl EgressTarget {
 pub enum McpDestination {
     /// Internal, session-scoped live preview tools.
     Preview,
-    /// Macro's own MCP server, available to every session.
+    /// Rox's own MCP server, available to every session.
     Macro,
     /// One of the owner's Pipedream-connected apps.
     Connected(McpServerSlug),
-    /// One of the owner's custom MCP servers - added by URL, with Macro's
+    /// One of the owner's custom MCP servers - added by URL, with Rox's
     /// own OAuth client holding the grant.
     Custom(CustomMcpServerKey),
 }
 
-/// The route Macro's own MCP server is served on.
+/// The route Rox's own MCP server is served on.
 pub const MACRO_MCP_PATH: &str = "/mcp-macro";
 
 /// The route prefix a connected app's slug follows.
@@ -858,7 +858,7 @@ impl UpstreamCall {
     /// A call authorized by a bearer token, permitted over cleartext http.
     ///
     /// The one sanctioned exception to the https rule, for a destination that
-    /// never leaves the machine: a local dev stack's own Macro MCP server,
+    /// never leaves the machine: a local dev stack's own Rox MCP server,
     /// dialed across the compose bridge. TLS there would be theater - the
     /// bytes never touch a wire anyone else can see - and the alternative,
     /// looping through a public tunnel for a same-host hop, only *adds* an

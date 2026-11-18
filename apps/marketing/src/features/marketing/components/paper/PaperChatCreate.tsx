@@ -272,7 +272,7 @@ export function PaperChatCreate() {
                   stroke-linejoin="round"
                 />
               </svg>
-              <div class="paper-feature-node-98">Ask Macro</div>
+              <div class="paper-feature-node-98">Ask Rox</div>
             </div>
             <div class="paper-feature-node-97">
               <svg
@@ -378,7 +378,7 @@ export function PaperChatCreate() {
         <div class="paper-feature-node-113" />
         <div class="paper-feature-node-114" />
         <div class="paper-feature-node-115">
-          <div class="paper-feature-node-45">Ask Macro</div>
+          <div class="paper-feature-node-45">Ask Rox</div>
         </div>
       </div>
     </div>

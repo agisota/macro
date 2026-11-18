@@ -19,6 +19,7 @@ pub(super) async fn link_by_fusionauth_and_macro_id(
     let provider: DbUserProvider = match provider {
         UserProvider::Gmail => DbUserProvider::Gmail,
         UserProvider::Outlook => DbUserProvider::Outlook,
+        UserProvider::Rox => DbUserProvider::Rox,
     };
 
     let db_link = sqlx::query_as!(
@@ -53,6 +54,7 @@ pub(super) async fn link_by_fusionauth_email_provider(
     let provider: DbUserProvider = match provider {
         UserProvider::Gmail => DbUserProvider::Gmail,
         UserProvider::Outlook => DbUserProvider::Outlook,
+        UserProvider::Rox => DbUserProvider::Rox,
     };
 
     let db_link = sqlx::query_as!(
@@ -175,7 +177,7 @@ enum DbEmailBackfillStatus {
 struct DbInboxDetailsRow {
     /// Stable email link identifier.
     id: Uuid,
-    /// Macro user that owns the link.
+    /// Rox user that owns the link.
     macro_id: String,
     /// Provider email address.
     email_address: String,
@@ -218,6 +220,7 @@ impl DbInboxDetailsRow {
             provider: match self.provider {
                 DbUserProvider::Gmail => UserProvider::Gmail,
                 DbUserProvider::Outlook => UserProvider::Outlook,
+                DbUserProvider::Rox => UserProvider::Rox,
             },
             is_sync_active: self.is_sync_active,
             needs_reauth: self.needs_reauth,

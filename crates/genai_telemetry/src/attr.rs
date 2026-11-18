@@ -69,19 +69,19 @@ pub const MACRO_REQUEST_REASONING_EFFORT: &str = "macro.genai.request.reasoning_
 /// Macro-specific: the Anthropic inference speed the request asked for.
 pub const MACRO_REQUEST_SPEED: &str = "macro.genai.request.speed";
 
-/// Macro-specific: how many of the oldest messages were dropped from
+/// Rox-specific: how many of the oldest messages were dropped from
 /// [`INPUT_MESSAGES`] to fit the size budget (see [`crate::Limits`]).
 pub const MACRO_INPUT_MESSAGES_OMITTED: &str = "macro.genai.input_messages_omitted";
-/// Macro-specific: `true` when any content attribute on the span was cut to fit
+/// Rox-specific: `true` when any content attribute on the span was cut to fit
 /// the size budget (see [`crate::Limits`]).
 pub const MACRO_CONTENT_TRUNCATED: &str = "macro.genai.content_truncated";
-/// Macro-specific: tokens in the agent's context window after a turn, as the
+/// Rox-specific: tokens in the agent's context window after a turn, as the
 /// harness reported it (ACP `usage_update.used`).
 pub const MACRO_CONTEXT_USED_TOKENS: &str = "macro.genai.context.used_tokens";
-/// Macro-specific: the agent's context window size in tokens (ACP
+/// Rox-specific: the agent's context window size in tokens (ACP
 /// `usage_update.size`).
 pub const MACRO_CONTEXT_SIZE_TOKENS: &str = "macro.genai.context.size_tokens";
-/// Macro-specific: milliseconds from sending `session/prompt` to the first
+/// Rox-specific: milliseconds from sending `session/prompt` to the first
 /// output the harness streamed back (prose, reasoning or a tool call), as the
 /// session actor observed it. Absent when the turn ended without output.
 pub const MACRO_TIME_TO_FIRST_OUTPUT_MS: &str = "macro.genai.turn.time_to_first_output_ms";
@@ -94,11 +94,11 @@ pub const MACRO_TIME_TO_FIRST_TEXT_MS: &str = "macro.genai.turn.time_to_first_te
 pub const MACRO_TIME_TO_FIRST_REASONING_MS: &str = "macro.genai.turn.time_to_first_reasoning_ms";
 /// Milliseconds from sending `session/prompt` to the first tool call.
 pub const MACRO_TIME_TO_FIRST_TOOL_CALL_MS: &str = "macro.genai.turn.time_to_first_tool_call_ms";
-/// Macro-specific: milliseconds from a model call's request to the first chunk
+/// Rox-specific: milliseconds from a model call's request to the first chunk
 /// it streamed back (text, reasoning or a tool call), on its `chat` span. The
 /// call's duration includes generation; this is the provider's latency alone.
 pub const MACRO_CHAT_TIME_TO_FIRST_CHUNK_MS: &str = "macro.genai.chat.time_to_first_chunk_ms";
-/// Macro-specific: what a model call streamed first: `text`, `reasoning` or
+/// Rox-specific: what a model call streamed first: `text`, `reasoning` or
 /// `tool_call`.
 pub const MACRO_CHAT_FIRST_CHUNK_KIND: &str = "macro.genai.chat.first_chunk_kind";
 /// Macro-specific: how many tools a model call offered upfront.
@@ -123,18 +123,18 @@ pub const MACRO_PROMPT_TOOL_RESULTS: &str = "macro.genai.prompt.tool_results.cou
 /// Macro-specific: the bytes of the tool results a model call sent.
 pub const MACRO_PROMPT_TOOL_RESULTS_BYTES: &str = "macro.genai.prompt.tool_results.bytes";
 
-/// Macro-specific: the coarse ACP tool kind (`execute`, `edit`, `read`, …).
+/// Rox-specific: the coarse ACP tool kind (`execute`, `edit`, `read`, …).
 pub const MACRO_TOOL_KIND: &str = "macro.genai.tool.kind";
-/// Macro-specific: the human-readable title the harness gave a tool call.
+/// Rox-specific: the human-readable title the harness gave a tool call.
 pub const MACRO_TOOL_TITLE: &str = "macro.genai.tool.title";
-/// Macro-specific: the size of a tool's whole result in bytes (a string
+/// Rox-specific: the size of a tool's whole result in bytes (a string
 /// result's text, anything else's JSON), recorded whether or not content is,
 /// so an oversized result shows without the result itself.
 pub const MACRO_TOOL_RESULT_BYTES: &str = "macro.genai.tool.result_bytes";
-/// Macro-specific: whether the model read only the beginning of a tool's
+/// Rox-specific: whether the model read only the beginning of a tool's
 /// result because the whole of it was too long.
 pub const MACRO_TOOL_RESULT_CUT: &str = "macro.genai.tool.result_cut";
-/// Macro-specific: the MCP server a tool was reached through, when it was.
+/// Rox-specific: the MCP server a tool was reached through, when it was.
 pub const MACRO_MCP_SERVER: &str = "macro.genai.mcp.server";
 
 /// Well-known [`OPERATION_NAME`] values.

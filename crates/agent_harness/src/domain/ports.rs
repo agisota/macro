@@ -32,7 +32,7 @@ pub enum CommandTarget {
     Harness(HarnessId),
 }
 
-/// The repositories a user can reach through Macro's GitHub App.
+/// The repositories a user can reach through Rox's GitHub App.
 ///
 /// A port rather than the `github` crate's service directly, so the harness
 /// states what it needs - each repository's url and default branch, for one

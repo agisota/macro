@@ -42,7 +42,7 @@ export function EmailWorkflow() {
                 person: 'jacob',
                 text: (
                   <>
-                    <span class="homepage-person-mention">@Macro</span> draft
+                    <span class="homepage-person-mention">@Rox</span> draft
                     Austin Barron’s follow-up from{' '}
                     <HomepageMention
                       kind="call"

@@ -68,11 +68,11 @@ fn service() -> (Service, MemoryStore, RecordingAnnouncer) {
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").unwrap()
+    MacroUserIdStr::try_from_email("owner@rox.one").unwrap()
 }
 
 fn asker() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("asker@macro.com").unwrap()
+    MacroUserIdStr::try_from_email("asker@rox.one").unwrap()
 }
 
 fn tools_call(progress_token: Option<serde_json::Value>) -> ToolsCall {
@@ -111,7 +111,7 @@ fn held(
             client: None,
         },
         server_slug: "macro".to_owned(),
-        server_name: "Macro".to_owned(),
+        server_name: "Rox".to_owned(),
         call,
         request,
         forward: Box::new(move |request| {
@@ -212,7 +212,7 @@ async fn a_declined_call_never_runs_and_says_who_declined() {
     let answer = message(&next_event(&mut body).await);
     assert_eq!(answer["id"], 7);
     assert_eq!(answer["result"]["isError"], true);
-    assert!(result_text(&answer).starts_with("owner@macro.com declined this call"));
+    assert!(result_text(&answer).starts_with("owner@rox.one declined this call"));
     assert!(forwarded.await.is_err(), "nothing went upstream");
 }
 
@@ -275,7 +275,7 @@ async fn a_call_nobody_answers_expires_and_says_so() {
             break message(&event);
         }
     };
-    assert!(result_text(&answer).starts_with("owner@macro.com did not approve this call in time"));
+    assert!(result_text(&answer).starts_with("owner@rox.one did not approve this call in time"));
     assert_eq!(store.only().status, ToolApprovalStatus::Expired);
     assert_eq!(
         announcer.heard().last(),
@@ -427,7 +427,7 @@ fn in_process(session: AgentSessionId) -> InProcessCall {
             client: None,
         },
         server_slug: "macro".to_owned(),
-        server_name: "Macro".to_owned(),
+        server_name: "Rox".to_owned(),
         tool_name: "ListEmails".to_owned(),
         arguments: serde_json::json!({}),
     }
@@ -613,7 +613,7 @@ async fn approving_one_macro_tool_for_good_still_asks_about_anything_else() {
         prompter: TurnPrompter {
             kind: agent_session::domain::model::PrompterKind::User,
             action_id: AgentActionId::mint(),
-            user: Some(MacroUserIdStr::try_from_email("someone@macro.com").unwrap()),
+            user: Some(MacroUserIdStr::try_from_email("someone@rox.one").unwrap()),
             client: None,
         },
         ..in_process(session)

@@ -16,7 +16,7 @@ export interface SessionPullRequestLink {
   createdAt: string;
   /** The pull request's `owner/repo/pull/number` key. */
   githubKey: string;
-  /** The Macro user who linked it, for links a person made. */
+  /** The Rox user who linked it, for links a person made. */
   linkedBy?: SessionPullRequestLinkLinkedBy;
   /** Who associated the pull request with the session. */
   source: PullRequestLinkSource;

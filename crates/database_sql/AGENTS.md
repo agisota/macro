@@ -3,7 +3,7 @@
 ## What it is
 
 Part of the Databases feature: the SQL subset agents and the console use to
-read and write Macro databases. A pure parse → resolve → split → engine →
+read and write Rox databases. A pure parse → resolve → split → engine →
 fold pipeline, compiled natively and to `wasm32` (the browser's SQL editor
 uses the wasm build directly).
 

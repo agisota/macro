@@ -27,7 +27,7 @@ use crate::domain::{
     title = "CreateCalendarEvent",
     description = "\
 Prepare an event on the user's calendar, inviting any listed attendees through its connected \
-provider. In Macro chat this tool opens an inline composer so the user can review, edit, and \
+provider. In Rox chat this tool opens an inline composer so the user can review, edit, and \
 confirm the event; use the tool to present the proposal instead of asking for a redundant \
 confirmation in prose. When the pending call is executed, the event is written to the calendar provider \
 immediately and attendees receive invitations. Other clients should confirm attendee events \
@@ -41,9 +41,9 @@ targets another one. For recurring events pass RFC 5545 lines in `recurrenceLine
 [\"RRULE:FREQ=WEEKLY;BYDAY=MO\"]. Returns the created event with its `eventId` for later \
 updates or deletion. Fails if the user has no writable calendar connected.\n\
 \n\
-For video conferencing pick at most one of `addMacroCall` (a Macro meeting link, the \
-default choice for a Macro user's meeting) or `addConference` (Google Meet or Microsoft Teams, per calendar capabilities). \
-A Macro call is created for the user, scheduled to the event's times, and its join link is \
+For video conferencing pick at most one of `addMacroCall` (a Rox meeting link, the \
+default choice for a Rox user's meeting) or `addConference` (Google Meet or Microsoft Teams, per calendar capabilities). \
+A Rox call is created for the user, scheduled to the event's times, and its join link is \
 appended to the event's description so every attendee's invitation carries it; it also \
 becomes the event's `location` unless a physical `location` was supplied. The returned \
 event's `macroCallUrl` holds the link.\n\
@@ -108,9 +108,9 @@ pub struct CreateCalendarEvent {
     #[serde(default)]
     pub reminders: Option<EventRemindersInput>,
 
-    /// Whether to attach a Macro meeting link.
+    /// Whether to attach a Rox meeting link.
     #[schemars(
-        description = "Attach a freshly created Macro call to the event: a Macro meeting link \
+        description = "Attach a freshly created Rox call to the event: a Rox meeting link \
                        scheduled to the event's times, written into the event's location and \
                        description. Mutually exclusive with `addConference`."
     )]
@@ -188,7 +188,7 @@ where
                               one kind of video conferencing."
                     .to_string(),
                 internal_error: anyhow::Error::from_boxed(
-                    rootcause::report!("both Macro call and provider conference requested")
+                    rootcause::report!("both Rox call and provider conference requested")
                         .into_boxed_error(),
                 ),
             });

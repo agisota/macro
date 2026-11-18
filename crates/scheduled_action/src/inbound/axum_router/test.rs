@@ -102,8 +102,8 @@ fn manual_execution_documents_quota_and_retryable_validation_failures() {
     }
 }
 
-const OTHER: &str = "macro|other@macro.com";
-const VIEWER: &str = "macro|viewer@macro.com";
+const OTHER: &str = "macro|other@rox.one";
+const VIEWER: &str = "macro|viewer@rox.one";
 const BOT_TOKEN: &str = "team-bot-token";
 const TEAM_ID: macro_uuid::Uuid = macro_uuid::Uuid::from_u128(0x7EA4);
 
@@ -126,7 +126,7 @@ impl MacroAuthorizationService for FakeAuth {
                 ..Default::default()
             }),
             "stranger" => Ok(UserContext {
-                user_id: "macro|stranger@macro.com".into(),
+                user_id: "macro|stranger@rox.one".into(),
                 ..Default::default()
             }),
             _ => Err(Report::new(MacroAuthorizationError::InvalidCredentials)),
@@ -1178,7 +1178,7 @@ async fn reading_a_routine_answers_like_its_history() {
         assert_eq!(status, StatusCode::UNAUTHORIZED);
         assert!(body.get("task").is_none());
         assert_eq!(
-            internal_get(&app, path, Some("macro|stranger@macro.com")).await,
+            internal_get(&app, path, Some("macro|stranger@rox.one")).await,
             StatusCode::UNAUTHORIZED
         );
         assert_eq!(

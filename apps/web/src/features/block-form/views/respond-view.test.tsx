@@ -190,7 +190,7 @@ describe('RespondView', () => {
     }
   });
 
-  it('shows the owner’s logo, cover and accent, and Macro’s look when none is set', () => {
+  it('shows the owner’s logo, cover and accent, and Rox’s look when none is set', () => {
     const plain = offsite();
     const branded = offsite();
     branded.form.branding = {
@@ -372,7 +372,7 @@ describe('RespondView', () => {
     ));
     expect(
       screen.getByText(
-        '“Your host” picks from Macro, which needs you to sign in.'
+        '“Your host” picks from Rox, which needs you to sign in.'
       )
     ).toBeTruthy();
   });

@@ -60,13 +60,13 @@ fn available(kind: TuiAgent) -> Value {
             commands.extend([
                 json!({"name": "fast", "description": "Toggle Codex's fast service tier when available for the current model"}),
                 json!({"name": "ultrafast", "description": "Toggle Codex's ultrafast service tier when available for the current model"}),
-                json!({"name": "effort", "description": "Show or change this session's Codex reasoning effort in Macro", "input":{"hint":"low|medium|high|xhigh|max|ultra|default|status (optional)"}}),
+                json!({"name": "effort", "description": "Show or change this session's Codex reasoning effort in Rox", "input":{"hint":"low|medium|high|xhigh|max|ultra|default|status (optional)"}}),
                 json!({"name": "model", "description": "Open Codex's model and reasoning effort picker in Herdr"}),
             ]);
         }
     }
     // In particular, do not advertise /resume, /new or /fork: changing the
-    // native session identity would detach it from Macro's saved session.
+    // native session identity would detach it from Rox's saved session.
     json!({"sessionUpdate": "available_commands_update", "availableCommands": commands})
 }
 

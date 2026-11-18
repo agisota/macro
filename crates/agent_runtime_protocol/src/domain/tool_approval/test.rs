@@ -9,7 +9,7 @@ fn notice(status: ToolApprovalStatus) -> ToolApprovalNotice {
         server_name: "Macro".to_owned(),
         tool_name: "ListEmails".to_owned(),
         arguments: serde_json::json!({ "limit": 5 }),
-        requested_by: Some("macro|julia@macro.com".to_owned()),
+        requested_by: Some("macro|julia@rox.one".to_owned()),
         status,
         resolved_by: None,
         remembered: false,

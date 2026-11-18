@@ -35,7 +35,7 @@ describe('authenticateWhatsAppPasskey', () => {
     );
     const result = await authenticateWhatsAppPasskey('p', {}, vi.fn());
     expect(result._unsafeUnwrapErr().message).toBe(
-      'Update Macro desktop to confirm WhatsApp passkeys, then try again.'
+      'Update Rox desktop to confirm WhatsApp passkeys, then try again.'
     );
   });
 

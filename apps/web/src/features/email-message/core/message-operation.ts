@@ -129,7 +129,7 @@ export function operationDescription(
       'This draft changed in your mailbox. Choose which version to keep. Either choice cancels scheduled delivery.',
     UNCERTAIN:
       operation.issue === 'SEND_UNKNOWN'
-        ? 'Delivery could not be confirmed. Macro will not resend automatically. Check Sent mail or check again here.'
+        ? 'Delivery could not be confirmed. Rox will not resend automatically. Check Sent mail or check again here.'
         : 'A draft or attachment write could not be confirmed. Your local copy is preserved; check again before making further changes.',
     SUBMITTING: undefined,
     CONFIRMING: undefined,

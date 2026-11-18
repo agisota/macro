@@ -110,8 +110,8 @@ function CreateEntityContent(props: LessonContentProps) {
       class="flex flex-col gap-8 outline-none onboarding-stagger"
     >
       <p class="mt-2">
-        The <strong>Create Launcher</strong> lets you create Macro Editor
-        quickly, from anywhere.
+        The <strong>Create Launcher</strong> lets you create Rox Editor quickly,
+        from anywhere.
       </p>
       <div class="flex flex-col gap-3">
         <HotkeyCallout keys={['C']} label="" completed={completed()} />

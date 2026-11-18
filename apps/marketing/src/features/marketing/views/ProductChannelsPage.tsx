@@ -16,9 +16,9 @@ import { chatComparisons } from '../core/feature-comparisons';
 
 export function RouteChannels() {
   setPageSeo({
-    title: 'Macro Chat — Focused team chat',
+    title: 'Rox Chat — Focused team chat',
     description:
-      'Macro channels are filed into Signal or Noise, with an actual inbox like email. Mention work to share it with the channel, or create tasks from the conversation.',
+      'Rox channels are filed into Signal or Noise, with an actual inbox like email. Mention work to share it with the channel, or create tasks from the conversation.',
     path: '/channels',
   });
   return (
@@ -26,16 +26,16 @@ export function RouteChannels() {
       <ProductHero
         product="Chat"
         title="Chat for people and agents."
-        description="Macro Chat brings your people and agents together in channels. Share context and work on the same tasks."
+        description="Rox Chat brings your people and agents together in channels. Share context and work on the same tasks."
         cta="channels_hero_get_started"
         tutorial="chat"
       />
       <FeaturePageSection
         id="shared-work"
         title="Integrated with everything else."
-        description="Channels are already the lifeblood of your company. Macro makes that a feature rather than an anti-pattern: @mention an email, doc, or task, create a task right from any message, or ask Macro, without leaving the conversation."
+        description="Channels are already the lifeblood of your company. Rox makes that a feature rather than an anti-pattern: @mention an email, doc, or task, create a task right from any message, or ask Rox, without leaving the conversation."
       >
-        <PaperFeatureGraphic label="Create a task, share a document, or ask Macro from the channel composer.">
+        <PaperFeatureGraphic label="Create a task, share a document, or ask Rox from the channel composer.">
           <PaperChatCreate />
         </PaperFeatureGraphic>
       </FeaturePageSection>
@@ -57,7 +57,7 @@ export function RouteChannels() {
         demo={{
           tone: 'chat',
         }}
-        title="Macro Agents are first-class, like humans."
+        title="Rox Agents are first-class, like humans."
         description="@mention an agent to get it working on something, with the whole conversation as context. Or let it listen in and reply when it’s needed, like a teammate would, without @mentioning."
       >
         <DemoInteractionBoundary
@@ -83,8 +83,8 @@ export function RouteChannels() {
         demo={{
           tone: 'chat',
         }}
-        title="A real inbox, like Macro Mail."
-        description="Slack has no real inbox, only read and unread. Macro keeps messages waiting for later, so you don’t have to remember to reply, and you mark them done as you go. Mark a channel as Signal or Noise to decide what reaches your main inbox."
+        title="A real inbox, like Rox Mail."
+        description="Slack has no real inbox, only read and unread. Rox keeps messages waiting for later, so you don’t have to remember to reply, and you mark them done as you go. Mark a channel as Signal or Noise to decide what reaches your main inbox."
       >
         <span id="catch-up" />
         <DemoInteractionBoundary
@@ -99,7 +99,7 @@ export function RouteChannels() {
       <FeaturePageFaq
         guide={{ href: '/channels#guide', label: 'chat' }}
         id="channels-faq-title"
-        title="Questions about Macro Chat"
+        title="Questions about Rox Chat"
         items={[
           {
             q: 'How do I start a channel with my team?',
@@ -132,7 +132,7 @@ export function RouteChannels() {
               <>
                 Yes. Mention an available agent to answer questions, draft work,
                 or create and update tasks from the conversation. See{' '}
-                <a href="/agents">Macro Agents</a>.
+                <a href="/agents">Rox Agents</a>.
               </>
             ),
           },
@@ -145,10 +145,10 @@ export function RouteChannels() {
             a: 'Yes. Mute or snooze its notifications from the channel menu without leaving the conversation.',
           },
           {
-            q: 'Can I try Macro for free?',
+            q: 'Can I try Rox for free?',
             a: (
               <>
-                Yes. Macro has a free plan with usage limits. See{' '}
+                Yes. Rox has a free plan with usage limits. See{' '}
                 <a href="/pricing">plans and limits</a> for details.
               </>
             ),

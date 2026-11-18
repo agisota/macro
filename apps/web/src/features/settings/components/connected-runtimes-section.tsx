@@ -114,7 +114,7 @@ function MachineName(props: { dot?: JSX.Element; name: string }) {
 /**
  * The machine row every section of Machines uses: dot and name, one muted
  * meta line, and actions top-right that drop onto their own line on narrow
- * rows. A row that is not a machine (Get a Macro computer) has no dot.
+ * rows. A row that is not a machine (Get a Rox computer) has no dot.
  */
 export function MachineRow(props: {
   dot?: JSX.Element;
@@ -216,10 +216,10 @@ export function ConnectedRuntimesSection(props: {
 }
 
 /**
- * One paired macrod runtime: its dot and name, a meta line (access, waiting
+ * One paired roxd runtime: its dot and name, a meta line (access, waiting
  * requests, last connection), and actions at the top right that move onto
  * their own line on narrow rows. Its name, sharing and options live here on
- * the web; macrod.toml on the machine holds only machine-local config.
+ * the web; roxd.toml on the machine holds only machine-local config.
  */
 function PairedRuntimeRow(props: {
   harness: RegisteredHarness;
@@ -229,7 +229,7 @@ function PairedRuntimeRow(props: {
   onSharingChange: (open: boolean) => void;
 }) {
   const isOwner = () => props.harness.access === 'owner';
-  // A Macro computer belongs to its team: it is never shared or removed here.
+  // A Rox computer belongs to its team: it is never shared or removed here.
   const isComputer = () => Boolean(props.harness.computer_id);
   const requests = useShareRequests(
     () => shareEntity('harness', props.harness.id),

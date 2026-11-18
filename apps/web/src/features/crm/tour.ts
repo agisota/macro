@@ -17,7 +17,7 @@ export const companiesTour = defineViewTour({
   },
   video: {
     youtubeId: '5d2K_NYs50k',
-    title: 'Teams and CRM in Macro',
+    title: 'Teams and CRM in Rox',
     duration: '2:33',
   },
   steps: [

@@ -11,7 +11,7 @@ function VariantsDemo() {
         {(variant) => (
           <CopyButton
             variant={variant}
-            onClick={() => navigator.clipboard.writeText('Copied from Macro')}
+            onClick={() => navigator.clipboard.writeText('Copied from Rox')}
             icon={<CopyIcon class="size-4" />}
           >
             Copy {variant}
@@ -34,7 +34,7 @@ function SizesDemo() {
             tooltip="Copy example"
             size={size}
             variant="secondary"
-            onClick={() => navigator.clipboard.writeText('Copied from Macro')}
+            onClick={() => navigator.clipboard.writeText('Copied from Rox')}
             icon={<CopyIcon class="size-4" />}
           >
             {size !== 'icon-md' && 'Copy'}

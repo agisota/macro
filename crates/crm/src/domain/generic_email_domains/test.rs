@@ -221,7 +221,7 @@ fn ramp_is_a_company_domain() {
 #[test]
 fn legitimate_company_domains_pass_through() {
     for domain in [
-        "macro.com",
+        "rox.one",
         "acme.io",
         "zoho.com",
         // Real correspondents we must never filter: law firms, banks,

@@ -1,7 +1,7 @@
 export type StorePlatform = 'ios' | 'android';
 
 /**
- * The app store this browser's device installs Macro from, or undefined when
+ * The app store this browser's device installs Rox from, or undefined when
  * the user agent doesn't say (computers, other phones). iPadOS Safari reports
  * itself as a Mac, so a touch-capable "Macintosh" counts as iOS.
  */

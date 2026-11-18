@@ -6,6 +6,6 @@
  */
 
 /**
- * Verified Macro user, if any.
+ * Verified Rox user, if any.
  */
 export type ExternalChatPersonRefUserId = string | null;

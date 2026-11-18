@@ -186,13 +186,13 @@ export class WhatsappSessionService extends pulumi.ComponentResource {
       },
       child
     );
-    // MacroDB (direct instance endpoint and RDS Proxy) lives in this VPC.
+    // RoxDB (direct instance endpoint and RDS Proxy) lives in this VPC.
     const vpcCidr = aws.ec2.getVpcOutput({ id: args.vpc.vpcId }).cidrBlock;
     const postgresEgress = new aws.vpc.SecurityGroupEgressRule(
       `${BASE_NAME}-postgres-out`,
       {
         securityGroupId: this.serviceSg.id,
-        description: 'Postgres to MacroDB',
+        description: 'Postgres to RoxDB',
         cidrIpv4: vpcCidr,
         ipProtocol: 'tcp',
         fromPort: RDS_PORT,

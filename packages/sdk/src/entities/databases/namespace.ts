@@ -8,7 +8,7 @@ import {
 import { SavedQuery, type SaveQueryOptions } from './saved-query';
 
 /**
- * Macro databases: named collections of tables, owned and shared as one
+ * Rox databases: named collections of tables, owned and shared as one
  * entity.
  *
  * A table the user names can be a tab inside a database with another name,
@@ -32,10 +32,10 @@ import { SavedQuery, type SaveQueryOptions } from './saved-query';
  * await database.query(`UPDATE "Tickets" SET "Owner" = '${sam}' WHERE row_id IN (${ids})`);
  * ```
  *
- * @routing Use when working with a Macro database or table: creating one, querying, counting or filtering its rows, adding rows, columns or views; not CRM pipelines or spreadsheets.
+ * @routing Use when working with a Rox database or table: creating one, querying, counting or filtering its rows, adding rows, columns or views; not CRM pipelines or spreadsheets.
  *
  * @agent
- * ## How Macro databases work
+ * ## How Rox databases work
  *
  * A database holds tables, shown as tabs; a table holds rows; every column has a type. A cell holds one value, or a list of values in a multi-valued column. A row's title is its first column. Users may call a database or a tab a “table”; neither is a spreadsheet document. A named table may be a tab inside a database with another name: check every database's tables before saying it does not exist.
  *
@@ -44,7 +44,7 @@ import { SavedQuery, type SaveQueryOptions } from './saved-query';
  * | Values | Column type |
  * | --- | --- |
  * | a person: host, owner, assignee, attendee, author | person column, `entity(USER)` |
- * | a Macro document, task, company, call, channel or project | `entity(DOCUMENT)`, `entity(TASK)`, `entity(COMPANY)`, `entity(CALL_RECORD)`, `entity(CHANNEL)`, `entity(PROJECT)` |
+ * | a Rox document, task, company, call, channel or project | `entity(DOCUMENT)`, `entity(TASK)`, `entity(COMPANY)`, `entity(CALL_RECORD)`, `entity(CHANNEL)`, `entity(PROJECT)` |
  * | a row of another table in the database | relation |
  * | a status, stage or category | select; `select[]` or tag for several |
  * | money, counts, scores | number |
@@ -54,7 +54,7 @@ import { SavedQuery, type SaveQueryOptions } from './saved-query';
  * | URLs | link |
  * | anything else | text |
  *
- * Never use text for people or for Macro items: a typed name links to nothing and cannot be filtered by person.
+ * Never use text for people or for Rox items: a typed name links to nothing and cannot be filtered by person.
  *
  * **People.** “Me” and “I” mean the viewer, the signed-in user in your context; if your context does not say who that is, ask. When a name matches several people or none, ask. Never invent a person or an id.
  *

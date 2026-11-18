@@ -17,28 +17,28 @@ fn request_with_host(host: &str, proto: Option<&str>) -> Request<Body> {
 
 #[test]
 fn resource_metadata_uses_path_style_well_known_on_the_gateway_host() {
-    let request = request_with_host("gateway.macro.com", Some("https"));
+    let request = request_with_host("gateway.rox.one", Some("https"));
     assert_eq!(
         absolute_resource_metadata_url(&request),
-        "https://gateway.macro.com/mcp/.well-known/oauth-protected-resource"
+        "https://gateway.rox.one/mcp/.well-known/oauth-protected-resource"
     );
 }
 
 #[test]
 fn resource_metadata_uses_path_style_well_known_on_the_legacy_host() {
-    let request = request_with_host("mcp-server.macro.com", Some("https"));
+    let request = request_with_host("mcp-server.rox.one", Some("https"));
     assert_eq!(
         absolute_resource_metadata_url(&request),
-        "https://mcp-server.macro.com/mcp/.well-known/oauth-protected-resource"
+        "https://mcp-server.rox.one/mcp/.well-known/oauth-protected-resource"
     );
 }
 
 #[test]
 fn resource_metadata_defaults_to_http_without_forwarded_proto() {
-    let request = request_with_host("dev-gateway.macro.com", None);
+    let request = request_with_host("dev-gateway.rox.one", None);
     assert_eq!(
         absolute_resource_metadata_url(&request),
-        "http://dev-gateway.macro.com/mcp/.well-known/oauth-protected-resource"
+        "http://dev-gateway.rox.one/mcp/.well-known/oauth-protected-resource"
     );
 }
 

@@ -19,7 +19,7 @@ export type CreateBotOptions = {
   handle: string;
   /** Short description of what the bot does. */
   description?: string;
-  /** Profile picture URL, such as a Macro static-file URL. */
+  /** Profile picture URL, such as a Rox static-file URL. */
   avatarUrl?: string;
   /** Owning team; omit for a bot owned by the caller. Requires team admin or owner. */
   team?: Team;

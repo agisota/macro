@@ -89,7 +89,7 @@ const managed: PersistedAgentLike = {
 };
 const external: PersistedAgentLike = {
   bot: { id: externalId, name: 'Local worker', handle: 'worker' },
-  harness: 'macrod',
+  harness: 'roxd',
   harness_id: 'workstation',
   default_model: 'local-default',
 };
@@ -146,7 +146,7 @@ async function openModels(name: string) {
   const row = screen.getByRole('menuitem', { name: new RegExp(`^${name}`) });
   row.focus();
   fireEvent.keyDown(row, { key: 'ArrowRight' });
-  // The root Macro catalog also has a search box; wait for the agent submenu.
+  // The root Rox catalog also has a search box; wait for the agent submenu.
   const menu = await screen.findByRole('menu', {
     name: new RegExp(`^${name}`),
   });
@@ -187,7 +187,7 @@ afterEach(() => {
 });
 
 describe('routine execution picker', () => {
-  it('selects Macro models with the keyboard and restores trigger focus', async () => {
+  it('selects Rox models with the keyboard and restores trigger focus', async () => {
     const { selection } = mount({
       kind: 'agent',
       agentId: managedId,
@@ -322,7 +322,7 @@ describe('routine execution picker', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('preserves a missing agent and override visibly instead of falling back to Macro', () => {
+  it('preserves a missing agent and override visibly instead of falling back to Rox', () => {
     const { selection, onChange } = mount({
       kind: 'agent',
       agentId: missingId,
@@ -366,13 +366,13 @@ describe('routine execution picker', () => {
       'Its machine is disconnected'
     );
     let trigger = openPicker();
-    // A disconnected macrod agent stays clickable: selecting it is the
+    // A disconnected roxd agent stays clickable: selecting it is the
     // reconnect path (opens Settings → Runtimes) rather than a dead row.
     const reconnect = screen.getByRole('menuitem', { name: /Local worker/ });
     expect(reconnect.getAttribute('aria-disabled')).not.toBe('true');
     expect(reconnect.textContent).toContain('Reconnect machine');
     fireEvent.keyDown(reconnect, { key: 'Enter' });
-    expect(onConnect.mock.calls[0][0].harness).toBe('macrod');
+    expect(onConnect.mock.calls[0][0].harness).toBe('roxd');
     await expectClosed(trigger);
     trigger = openPicker();
     const connect = screen.getByRole('menuitem', { name: /Connect Cursor/ });

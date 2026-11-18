@@ -1,6 +1,6 @@
 # Public-site SEO / AEO migration audit
 
-Audited September 23, 2026 against the live `https://macro.com/sitemap.xml`,
+Audited September 23, 2026 against the live `https://rox.one/sitemap.xml`,
 its 30 listed pages, robots.txt, the imported marketing source, and the previous
 `solid-site` CloudFront configuration. No production infrastructure was changed.
 
@@ -49,7 +49,7 @@ The current monorepo app deploy does not publish the public site. Keep the old
 site origin available until the candidate passes the checks below.
 
 1. Install Chromium (`bunx playwright install chromium --only-shell --with-deps`
-   on Linux CI), fetch LFS assets, build with `VITE_APP_BASE_URL=https://macro.com`
+   on Linux CI), fetch LFS assets, build with `VITE_APP_BASE_URL=https://rox.one`
    and run `bun run build` in `apps/marketing`. Publish **apps/marketing/dist/**
    to the website origin; keep the app's **apps/web/dist/** on the existing app
    origin.
@@ -77,7 +77,7 @@ site origin available until the candidate passes the checks below.
 ## Cutover verification
 
 - Run `bun run check:seo:live https://candidate-host` against the candidate CDN,
-  then again against `https://macro.com` immediately after cutover. It checks
+  then again against `https://rox.one` immediately after cutover. It checks
   all 30 paths without JavaScript/cookies, metadata, sitemap, robots, `/start`,
   and unknown-path status. The local filesystem gate cannot validate CDN rules.
 - Separately exercise the existing `/resources/*` Ghost pages, app deep links,

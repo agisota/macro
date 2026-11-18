@@ -1,6 +1,6 @@
-# Macro spreadsheet block
+# Rox spreadsheet block
 
-A native Macro document with multiple worksheets of up to 100,000 rows and
+A native Rox document with multiple worksheets of up to 100,000 rows and
 16,384 columns (A–XFD), Excel-style formulas, keyboard navigation, rectangular selection, formula-aware copying and
 fill, dragging a selection to move it, resizable columns, added rows, rich cell
 formatting, named tables with typed columns, filters, group by views and totals,
@@ -30,7 +30,7 @@ frontend feature layers:
 
 | Layer | Responsibility |
 | --- | --- |
-| `definition.ts`, `SpreadsheetBlock.tsx` | Load the native document and compose Macro capabilities. |
+| `definition.ts`, `SpreadsheetBlock.tsx` | Load the native document and compose Rox capabilities. |
 | `core/spreadsheet-document.ts`, `core/spreadsheet-schema.ts`, `core/workbook-document.ts` | Cell vocabulary, layout, address bounds, stable sheet identities, Loro schema, and document validation. |
 | `core/calculation.ts` | Derive cell results from source text with IronCalc. |
 | `core/grid-selection.ts`, `core/cell-copy.ts` | Rectangular selection, clipboard validation, and fill planning. |
@@ -50,9 +50,9 @@ the sync acknowledgement, then opens the saved document's sharing dialog. Failed
 saves leave the draft editable. Retrying reuses the document and operation IDs so
 row additions are not duplicated after a lost acknowledgement.
 
-## Ask Macro and spreadsheet tools
+## Ask Rox and spreadsheet tools
 
-Ask Macro uses the shared agent session flow and opens an adjacent agent with one
+Ask Rox uses the shared agent session flow and opens an adjacent agent with one
 unsent document mention plus a trailing space. The mention includes the active sheet
 ID/name and selection snapshot. Local demos save through the existing acknowledged
 draft path first. Selection remains local presence, not persisted workbook data.
@@ -356,7 +356,7 @@ replace current help. The cell editor and formula bar share the same accessible
 listbox, keyboard insertion, and argument hints. The function catalog is adapted
 from IronCalc's `webapp/IronCalc/src/components/FormulaHelper/functions.json` at
 the vendored engine's upstream commit (`vendor/ironcalc/upstream.json`), without
-HYPERLINK (Macro shows its text) and with Macro's AGGREGATE and GETPIVOTDATA
+HYPERLINK (Rox shows its text) and with Rox's AGGREGATE and GETPIVOTDATA
 entries. Its MIT notice
 is in `core/formula-functions.LICENSE`; refresh and verify the catalog when
 updating the engine.
@@ -419,12 +419,12 @@ continues to work normally.
 | --- | --- |
 | [IronCalc](https://github.com/ironcalc/IronCalc) | Selected. The engine is MIT/Apache-2.0 licensed, implemented in Rust, and published with typed browser WASM bindings. It owns spreadsheet semantics instead of requiring a custom evaluator. |
 | [HyperFormula](https://hyperformula.handsontable.com/docs/guide/license-key.html) | Capable alternative with GPLv3 or a purchased proprietary license; not introduced as an unreviewed license obligation. |
-| [fast-formula-parser](https://github.com/LesterLyu/fast-formula-parser) | MIT parser/evaluator alternative. Its callback-based formula evaluation would leave more workbook dependency, cycle, and mutation behavior in Macro. |
+| [fast-formula-parser](https://github.com/LesterLyu/fast-formula-parser) | MIT parser/evaluator alternative. Its callback-based formula evaluation would leave more workbook dependency, cycle, and mutation behavior in Rox. |
 
 Primary integration references: [IronCalc JavaScript bindings](https://docs.ironcalc.com/programming/javascript-bindings.html),
 [engine-only versus XLSX bindings](https://github.com/ironcalc/IronCalc/blob/main/bindings/wasm/README.md),
 and [upstream WASM API](https://github.com/ironcalc/IronCalc/blob/main/bindings/wasm/src/lib.rs).
-The engine is vendored from upstream `main` in `vendor/ironcalc`, with Macro's
+The engine is vendored from upstream `main` in `vendor/ironcalc`, with Rox's
 patches listed in its README; upgrades should run the adapter and corpus tests and
 compare formula, error, and formatting behavior before replacing it.
 
@@ -515,7 +515,7 @@ compare formula, error, and formatting behavior before replacing it.
   move by dragging and keyboard arrows and size by their handles;
   `primitives/create-drawing-actions.ts` writes them, and the Edit chart
   dialog changes a chart's type, title, legend and data. Edited charts are
-  exported as Macro writes them, without the part Excel saved. Ctrl+Alt+5
+  exported as Rox writes them, without the part Excel saved. Ctrl+Alt+5
   selects a drawing from the grid and Tab moves between them.
 - **Format and data → Goal Seek…** finds the number that makes a formula cell
   reach a typed value, then writes it when confirmed. The search runs on a copy
@@ -583,7 +583,7 @@ Import keeps what Excel calculates and shows:
   adds, edits and removes list rules on the selection through
   `packages/spreadsheet/src/data-validation.ts`, which the AI `set_dropdown` and
   `clear_validation` operations share: a new rule takes its range out of the rules
-  it overlaps, since a cell has one rule. A list rule's `colors` are Macro's own,
+  it overlaps, since a cell has one rule. A list rule's `colors` are Rox's own,
   keyed by choice text ignoring case: cells showing a colored choice, and the open
   list, draw it as a chip (`components/ChoiceChip.tsx`). The dialog gives new
   choices the next unused color of a light palette and lists a range source's
@@ -610,13 +610,13 @@ Import keeps what Excel calculates and shows:
   above in bands of value, as Excel's contour charts. The chart part is
   kept without its cached values (theme colors resolved), and export writes it
   back with its current ranges and fresh caches; charts without it, or too large
-  to keep, are written from what Macro knows, with axes formatted like their
+  to keep, are written from what Rox knows, with axes formatted like their
   cells.
 - Excel 2016 charts. Histogram, pareto, waterfall, funnel, box and whisker,
   treemap and sunburst charts are `cx:` chartEx parts behind
   `mc:AlternateContent`. `core/xlsx-chartex.ts` reads them (series layout
   options, bins, totals, quartile method, parent labels and axis gaps), keeps
-  the part for export with fresh caches, and writes parts for charts Macro
+  the part for export with fresh caches, and writes parts for charts Rox
   describes, which drawing parts wrap with Excel's fallback note. Maps and
   other chartEx kinds import as that fallback. `core/chart-statistics.ts` holds
   the math (Scott's-rule bins, QUARTILE.INC/EXC and 1.5 IQR whiskers, running
@@ -648,7 +648,7 @@ Import keeps what Excel calculates and shows:
   import worker, and the PNG becomes the drawing's `preview`. Without a canvas
   the drawing shows its name in a placeholder.
 - Pivot tables. `core/xlsx-pivots.ts` keeps each pivot table's definition and its
-  cache definition in `metadata.pivotTables`, and Macro shows the values Excel
+  cache definition in `metadata.pivotTables`, and Rox shows the values Excel
   last saved. A table over this workbook's cells keeps no records and is marked
   to refresh on load: Excel or LibreOffice rebuilds it from its source cells
   when the download opens.
@@ -678,7 +678,7 @@ Import keeps what Excel calculates and shows:
   (`setPivotTables`); GETPIVOTDATA matches its data field and items to a row and
   a column and reads the cell, so it follows edits to the pivot table's cells.
   The incremental worker receives these layouts, not the tables. A lookup of a
-  pivot table Macro could not keep, or whose argument is not a plain reference,
+  pivot table Rox could not keep, or whose argument is not a plain reference,
   keeps its last value. A table whose cells were reshaped by inserting or
   deleting rows inside it gives #REF!, as its layout no longer holds; Excel
   rebuilds it on open.
@@ -694,8 +694,8 @@ do not flash as serial numbers.
 
 Export writes `fullCalcOnLoad`, cached results for every formula and spilled
 cell, `_xlfn` prefixes, dynamic-array metadata for formulas that need array
-evaluation, `@` as Excel stores it, and the same column default as Macro so that
-Excel → Macro → Excel round trips are stable. Each table becomes a table part with
+evaluation, `@` as Excel stores it, and the same column default as Rox so that
+Excel → Rox → Excel round trips are stable. Each table becomes a table part with
 its column names, total row functions (read from the total row's formulas, or a
 custom formula or label), value filters and style; header cells are written as
 text and structured references in Excel's file form
@@ -788,7 +788,7 @@ Deploy the spreadsheet-enabled document service, sync Worker, AI editing Worker,
 and frontend together to dev. The AI Worker deployment watches
 `packages/spreadsheet/**`, so shared schema/calculation updates cannot silently
 leave its bundle behind. After deploy, verify real staff login, creation, reopening,
-sharing with another staff user, two-user edits/cursors, and Ask Macro against a
+sharing with another staff user, two-user edits/cursors, and Ask Rox against a
 closed workbook. The isolated local tests cover the production editor/session and
 sync Worker, but do not exercise hosted authentication/token refresh or document
 publication/search.

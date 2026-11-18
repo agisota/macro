@@ -654,7 +654,7 @@ describe('executeGraphqlCreate', () => {
     }
   );
 
-  it('asks the server for a Macro call only when the create requests one', async () => {
+  it('asks the server for a Rox call only when the create requests one', async () => {
     const { calls, client } = fakeClient('committed', {
       event: graphqlEvent({ id: 'server-1', title: 'Lunch' }),
     });

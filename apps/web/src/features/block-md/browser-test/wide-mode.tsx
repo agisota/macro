@@ -223,7 +223,7 @@ function Providers(props: ParentProps) {
   );
 }
 
-applyTheme(PARAMS.get('theme') === 'dark' ? 'Macro Dark' : 'Macro Light');
+applyTheme(PARAMS.get('theme') === 'dark' ? 'Rox Dark' : 'Rox Light');
 document.documentElement.dataset.touchDevice = String(isTouchDevice());
 
 render(

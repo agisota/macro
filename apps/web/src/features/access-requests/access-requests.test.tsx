@@ -88,7 +88,7 @@ it.each(['pending', 'cancelled', 'denied'] as const)(
 it('lets a reviewer approve a request from the denied document screen without opening the file', () => {
   const request = {
     id: 'request',
-    requesterId: 'macro|requester@macro.com',
+    requesterId: 'macro|requester@rox.one',
     requestedLevel: 'view' as const,
     status: 'pending' as const,
     revision: 1,
@@ -120,7 +120,7 @@ it('lets a reviewer approve a request from the denied document screen without op
 it('preserves a reviewer’s selected grant level through a background request refresh', () => {
   const request = {
     id: 'request',
-    requesterId: 'macro|requester@macro.com',
+    requesterId: 'macro|requester@rox.one',
     requestedLevel: 'edit' as const,
     status: 'pending' as const,
     revision: 1,

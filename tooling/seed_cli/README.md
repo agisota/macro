@@ -17,7 +17,7 @@ Enable CRM for your local team in Settings → CRM, then run from the repository
 
 ```bash
 nix develop --command bun tooling/seed_cli/seed-crm.ts \
-  --origin https://localhost:23209 --email teo@macro.com
+  --origin https://localhost:23209 --email teo@rox.one
 ```
 
 Use your instance's HTTPS proxy port and local account email. The seed adds eight

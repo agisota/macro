@@ -2,7 +2,7 @@ config:
   aws-native:region: us-east-1
   aws:region: us-east-1
   document-cognition:fusionauth_client_id: fusionauth-client-id-key-dev
-  document-cognition:fusionauth_issuer: fusionauth-dev.macro.com
+  document-cognition:fusionauth_issuer: fusionauth-dev.rox.one
   document-cognition:gcp_service_account: gcp-service-account
   document-cognition:internal_auth_key: document-storage-service-auth-key-dev
   document-cognition:jwt_secret_key: fusionauth-jwt-secret-dev

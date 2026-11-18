@@ -51,16 +51,16 @@ fn skips_unparseable_primaries_keeping_valid_ones() {
 #[test]
 fn staff_recipients_are_split_onto_the_apns_path() {
     let (staff, customers) = partition_email_push_recipients(HashSet::from([
-        id("macro|staff@macro.com"),
-        id("macro|staff+notify@macro.com"),
+        id("macro|staff@rox.one"),
+        id("macro|staff+notify@rox.one"),
         id("macro|user@example.com"),
     ]));
 
     assert_eq!(
         staff,
         HashSet::from([
-            id("macro|staff@macro.com"),
-            id("macro|staff+notify@macro.com"),
+            id("macro|staff@rox.one"),
+            id("macro|staff+notify@rox.one"),
         ])
     );
     assert_eq!(customers, HashSet::from([id("macro|user@example.com")]));

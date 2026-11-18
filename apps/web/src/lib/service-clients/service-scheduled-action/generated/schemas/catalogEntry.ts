@@ -12,7 +12,7 @@ import type { CatalogEntryNamedKnobs } from './catalogEntryNamedKnobs';
 import type { Surface } from './surface';
 
 /**
- * One of Macro's routines, ready to start a new routine from.
+ * One of Rox's routines, ready to start a new routine from.
  */
 export interface CatalogEntry {
   /** What it does, in a few words, for the line beside its trigger. */
@@ -34,7 +34,7 @@ items (a tag, channel or label), by knob name. */
   request: string;
   /** It may be switched on before its owner changes anything. */
   safeDefault: boolean;
-  /** Offered unpicked as a suggestion from Macro. */
+  /** Offered unpicked as a suggestion from Rox. */
   suggest: boolean;
   /** Where it is offered, first the part of the app it belongs to most. */
   surfaces: Surface[];

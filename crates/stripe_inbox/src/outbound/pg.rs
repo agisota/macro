@@ -1,4 +1,4 @@
-//! The inbox and audit tables in MacroDB.
+//! The inbox and audit tables in RoxDB.
 
 use std::str::FromStr;
 

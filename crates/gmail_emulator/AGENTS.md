@@ -78,7 +78,7 @@ a local stack, without Google accounts.
 
 - Owns: the Google endpoints the email, calendar and sign-in code call. Add an
   endpoint when the code starts calling it, not before.
-- Not here: Microsoft Graph; SQS, Postgres and the other Macro services a
+- Not here: Microsoft Graph; SQS, Postgres and the other Rox services a
   local `email_service` needs.
 
 ## Recipes

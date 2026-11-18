@@ -1,4 +1,4 @@
-//! Shared JSON bodies for Macro Connect's customer-facing routes.
+//! Shared JSON bodies for Rox Connect's customer-facing routes.
 
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};

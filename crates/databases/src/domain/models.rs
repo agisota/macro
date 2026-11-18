@@ -1064,7 +1064,7 @@ impl ColumnDetail {
         self.definition.definition.is_multi_select || self.column.is_relation()
     }
 
-    /// The Macro entity kind the column references; a relation references
+    /// The Rox entity kind the column references; a relation references
     /// rows of a table instead.
     pub fn entity_type(&self) -> Option<models_properties::EntityType> {
         if self.column.is_relation() {

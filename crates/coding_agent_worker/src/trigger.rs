@@ -55,7 +55,7 @@ pub enum TriggerWork {
     /// the app shows the session directly and sends its own first prompt
     /// through the session once this create answers.
     OpenRequested {
-        /// Remote repository supplied by Macro, if selected.
+        /// Remote repository supplied by Rox, if selected.
         repo_url: Option<String>,
         /// The id to create the session under.
         session: AgentSessionId,

@@ -6,7 +6,7 @@ import { MacroEntity } from '../entity';
 import { type AccessRequest, EntityAccess } from '../sharing/access';
 import { User } from '../users/user';
 
-/** A registered host for agents: a teammate's computer running macrod. */
+/** A registered host for agents: a teammate's computer running roxd. */
 export class Harness extends MacroEntity<HarnessRecord> {
   /**
    * Access requests for this host. Asking for access works from any credential;

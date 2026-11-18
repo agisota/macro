@@ -2,14 +2,14 @@
 
 ## What it is
 
-Local build timings, on by default, for `just run_local`, `just stack` and
-`cargo x build-services`: each run, step, build and service health wait becomes
-one Loki line (`service_name="local-telemetry"`) and a Tempo span,
-mirroring CI's `ci-telemetry` events. `xtask_local` decides what to record; this
-crate buffers and sends it. With `services = true` in the settings it also
-decides whether the local stacks' own telemetry is forwarded, under which
-machine name, and writes the forwarder's token file; `xtask_local`'s
-`grafana_forwarder.rs` runs the containers.
+Local build timings for `just run_local`, `just stack` and `cargo x build-services`.
+Off unless `MACRO_LOCAL_TELEMETRY` is explicitly on. Unset means off, and this
+runner does not create a settings file and does not write `services = true`.
+The foreign Grafana copy stays off. When a caller has already opted in, each
+run, step, build and service health wait can become one Loki line
+(`service_name="local-telemetry"`) and a Tempo span, mirroring CI's
+`ci-telemetry` events. `xtask_local` decides what to record; this crate buffers
+and sends it only when the switch and the settings file both allow it.
 
 ## Start here
 
@@ -37,9 +37,10 @@ machine name, and writes the forwarder's token file; `xtask_local`'s
 
 ## Gotchas
 
-- Off (opted out, or provisioning failed within the hour) means
+- Unset `MACRO_LOCAL_TELEMETRY` is off for this runner. Off also means an
+  explicit opt-out, `CI`, or provisioning failed within the hour.
   `Recorder::start` returns `None` before creating anything; keep every new path
-  behind it, so opted-out runs make no file, no request and no Doppler call.
+  behind it, so an off run makes no file, no request and no Doppler call.
 - Never block the caller on the network or Doppler: `record` only appends to the
   file, provisioning runs on the sender thread, and `finish` waits at most the
   bound it is given. Nothing on the sender thread prints.

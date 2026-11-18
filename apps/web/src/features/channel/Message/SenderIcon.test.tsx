@@ -79,7 +79,7 @@ describe('SenderIcon', () => {
         message(MACRO_AGENT_PRINCIPAL_ID, {
           type: 'bot',
           id: '00000000-0000-0000-0000-00000000a1a1',
-          name: 'Macro',
+          name: 'Rox',
           triggered_by: 'macro|alice@example.com',
           triggered_via: client,
         })
@@ -100,7 +100,7 @@ describe('SenderIcon', () => {
       message(MACRO_AGENT_PRINCIPAL_ID, {
         type: 'bot',
         id: '00000000-0000-0000-0000-00000000a1a1',
-        name: 'Macro',
+        name: 'Rox',
         triggered_by: 'macro|alice@example.com',
         triggered_via: 'Zed',
       })
@@ -146,7 +146,7 @@ describe('SenderIcon', () => {
   });
 
   it('leaves people to the card UserIcon already draws', () => {
-    const { queryByTestId } = renderSender(message('macro|peter@macro.com'));
+    const { queryByTestId } = renderSender(message('macro|peter@rox.one'));
     expect(queryByTestId('user-card')).toBeNull();
   });
 
@@ -165,8 +165,8 @@ describe('SenderIcon', () => {
   });
 
   it('draws people through UserIcon', () => {
-    const { getByTestId } = renderSender(message('macro|peter@macro.com'));
-    expect(getByTestId('user-icon').textContent).toBe('macro|peter@macro.com');
+    const { getByTestId } = renderSender(message('macro|peter@rox.one'));
+    expect(getByTestId('user-icon').textContent).toBe('macro|peter@rox.one');
   });
 
   it('draws an opaque participant with initials and no profile card', () => {

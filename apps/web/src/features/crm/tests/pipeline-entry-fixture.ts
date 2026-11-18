@@ -13,14 +13,14 @@ export const FIXTURE_OWNER = {
 
 const DRAFT = [
   'Hi Marisol,',
-  'Saw you have been in Macro most days this week. Is there anything we could make easier for your team?',
+  'Saw you have been in Rox most days this week. Is there anything we could make easier for your team?',
   'Happy to set up a short call if that helps.',
   'Alex',
 ].join('\n\n');
 
 const AUTO_DRAFT = [
   'Hi Marisol,',
-  'Thanks for trying Macro. Teams on the free plan usually start by inviting one or two people to a shared channel.',
+  'Thanks for trying Rox. Teams on the free plan usually start by inviting one or two people to a shared channel.',
   'Reply here if you want a hand with that.',
 ].join('\n\n');
 
@@ -75,11 +75,11 @@ export function contactPipelineEntry(
       cell(
         'Why',
         'STRING',
-        'Most active 5/14 days · 2 emails sent from Macro · last seen Nov 4'
+        'Most active 5/14 days · 2 emails sent from Rox · last seen Nov 4'
       ),
       cell('Score', 'NUMBER', 12),
-      cell('History', 'STRING', 'Skipped: using Macro, 5 of the last 14 days'),
-      cell('Draft subject', 'STRING', 'How’s Macro going?'),
+      cell('History', 'STRING', 'Skipped: using Rox, 5 of the last 14 days'),
+      cell('Draft subject', 'STRING', 'How’s Rox going?'),
       cell('Draft', 'STRING', DRAFT),
       cell('First name', 'STRING', 'Marisol'),
       cell('Primary email', 'STRING', 'marisol@harborline.example.com'),

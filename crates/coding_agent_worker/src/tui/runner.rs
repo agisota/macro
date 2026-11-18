@@ -15,7 +15,7 @@ use crate::daemon::InheritedAgent;
 use crate::profiles::ConfigSelection;
 use crate::update::{self, StagedUpdate};
 
-/// What the caller does once the panel hands over to an updated macrod.
+/// What the caller does once the panel hands over to an updated roxd.
 #[cfg(unix)]
 pub struct Restart {
     /// The new binary, in place.
@@ -36,7 +36,7 @@ const TICK: Duration = Duration::from_millis(120);
 
 /// Run the control panel - and the daemon inside it - until the user quits,
 /// or until a self-update is installed and the caller should relaunch.
-/// `inherited` is the agent a previous macrod handed over.
+/// `inherited` is the agent a previous roxd handed over.
 pub async fn run(
     selection: &ConfigSelection,
     logs: LogBuffer,
@@ -236,7 +236,7 @@ async fn run_loop(
                         // Installed beside this one; the launcher starts it next time.
                         app.update_ready = Some(update.tag().to_owned());
                     } else {
-                        app.ok(format!("macrod {} is ready; restarting once no turn is running", update.tag()));
+                        app.ok(format!("roxd {} is ready; restarting once no turn is running", update.tag()));
                         staged = Some(update);
                     }
                 }
@@ -263,7 +263,7 @@ async fn run_loop(
 ///
 /// The agent process survives the restart, but the service ends a turn
 /// when its runtime connection closes, so a turn in flight would still be
-/// cut off in Macro: the swap waits for one to finish.
+/// cut off in Rox: the swap waits for one to finish.
 #[cfg(unix)]
 fn install_when_idle(
     app: &mut App,
@@ -279,7 +279,7 @@ fn install_when_idle(
     match update.swap() {
         Ok(installed) => Some(installed),
         Err(error) => {
-            app.fail(format!("Could not install macrod {tag}: {error}"));
+            app.fail(format!("Could not install roxd {tag}: {error}"));
             None
         }
     }

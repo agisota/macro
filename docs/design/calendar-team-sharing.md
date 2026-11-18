@@ -1,9 +1,9 @@
 # Team calendar sharing
 
-Team calendar sharing lets a current Macro teammate read a projection of events
+Team calendar sharing lets a current Rox teammate read a projection of events
 another member can access through their connected calendars. Google remains the
-authority for the connected account's upstream access. Macro owns the separate
-decision to show that account's synced content to a Macro teammate.
+authority for the connected account's upstream access. Rox owns the separate
+decision to show that account's synced content to a Rox teammate.
 
 This document describes the implementation contract and the rollout work needed
 before enabling it in an environment. A checklist item below is a release
@@ -13,14 +13,14 @@ requirement, not a claim that the check has already passed.
 
 | Boundary | What it authorizes |
 | --- | --- |
-| Google OAuth scopes | Operations Macro may request as the connected Google account. |
+| Google OAuth scopes | Operations Rox may request as the connected Google account. |
 | Google calendar ACL, event visibility, and Workspace policy | The representation Google returns to that connected account. |
-| Current Macro team membership and the sharer's setting | A read-only Macro projection from an eligible synced source. |
+| Current Rox team membership and the sharer's setting | A read-only Rox projection from an eligible synced source. |
 | A viewer's independent Google access | Actions and content available through that viewer's own Google credentials. |
 
-A Macro team share does not invite anyone, change a Google ACL, confer editing or
+A Rox team share does not invite anyone, change a Google ACL, confer editing or
 RSVP rights, or make an attachment or meeting accessible in its original service.
-The teammate does not need a Google grant to view the Macro projection. If they
+The teammate does not need a Google grant to view the Rox projection. If they
 also have their own authorized copy, that independent access remains separate.
 
 Google itself maintains organizer and attendee calendar copies. Those copies can
@@ -43,12 +43,12 @@ visible details and contribution to that member's availability can differ.
 Google ACL `owner` means calendar manager access; it does not establish that the
 connected account is the calendar's data owner. OAuth read permission also does
 not itself describe consent to team redistribution. The release must accurately
-disclose Macro's sharing behavior and review existing consent against the
+disclose Rox's sharing behavior and review existing consent against the
 [Google API Services User Data Policy][google-data-policy].
 
 ## Sharing and browsing
 
-The user's sharing choice applies to their current Macro teammates:
+The user's sharing choice applies to their current Rox teammates:
 
 | Setting | Teammates see |
 | --- | --- |
@@ -66,7 +66,7 @@ event contributes to personal availability.
 This includes synced system calendars and calendars unchecked in Google's
 calendar view. Unchecked (`selected = false`) is different from hidden from
 CalendarList; ingestion does not request Google's hidden-list entries.
-Directly delegated sources are shared under the delegate's own Macro setting,
+Directly delegated sources are shared under the delegate's own Rox setting,
 not the source owner's setting. A source owner's `none` does not revoke a
 delegate's independent access or sharing choice. Disclosures and consent review
 must cover this behavior before activation.
@@ -95,7 +95,7 @@ not a claim that the person has no time off.
 Calendar refresh notifications carry `team_ooo_changed`. Only an explicit `false`
 lets the frontend retain OOO rows and open details while refetching. The server
 certifies this for unchanged sources, changes to sources that were and remain
-non-OOO, and retiring sources stored as non-OOO, including a delete through Macro
+non-OOO, and retiring sources stored as non-OOO, including a delete through Rox
 and a cancellation from a sync, provided no calendar metadata or coverage failure
 makes the result uncertain. The overlay reads sources by their typed `event_type`,
 so a source stored as anything else never fed it. A clear blanks the overlay and
@@ -242,7 +242,7 @@ copy may still be visible. See [Google sync semantics][google-sync].
 Push notifications are hints: Google says they can be dropped, contain no event
 payload, and require channel renewal. Keep the existing scheduler/polling recovery
 active, and measure provider-revocation detection latency during rollout. A
-provider ACL change is not an instantaneous Macro notification; the service must
+provider ACL change is not an instantaneous Rox notification; the service must
 not promise immediate revocation before it has observed the provider change.
 See [Google push notifications][google-push].
 
@@ -306,7 +306,7 @@ Release checks:
 
 - [ ] Busy-only serializes no event metadata; private/confidential stays masked
   under details sharing, including recurrence snapshots.
-- [ ] A teammate without a Google connection can browse the permitted Macro view.
+- [ ] A teammate without a Google connection can browse the permitted Rox view.
   They cannot edit, RSVP, invite, or use ordinary event-detail routes through it.
 - [ ] A subscribed coworker's events are browsable but do not block the subscriber
   unless the subscriber attends or explicitly includes that calendar.

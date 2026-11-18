@@ -19,14 +19,13 @@ use presentation tables so the emails do not depend on web fonts or modern CSS.
 
 Mobile welcome/nurture emails are owned by Loops and are not defined here.
 
-## Logo and rollout
+## Wordmark and rollout
 
-Digest and invitation templates use the anonymously readable orange Macro PNG at
-`https://static-file-service.macro.com/file/b911aba9-94a6-435c-aa16-8404739f13b0`.
-It is 174 × 116, so the templates display it at 54 × 36; keep that 3:2 ratio when
-resizing it.
+Digest and invitation templates render the wordmark as text — `Rox` in a semibold
+20px/24px link to `https://rox.one`, matching the FusionAuth templates — so they fetch
+no image and need no asset deployed.
 
-Authentication templates use `https://macro.com/app/macro-email-logo.png`, served from
+Authentication templates use `https://rox.one/app/macro-email-logo.png`, served from
 `apps/web/public/macro-email-logo.png`. This 192 × 192 PNG is an export of the
 current `apps/web/src/components/icon/macro-logo.svg` with fill `#222222` on white.
 The opaque background keeps the mark legible when an email client changes colors.

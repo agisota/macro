@@ -6,7 +6,7 @@
  */
 
 /**
- * Why a chat can't be added to Macro; the app words it from the code.
+ * Why a chat can't be added to Rox; the app words it from the code.
  */
 export type WhatsAppCannotAdd =
   (typeof WhatsAppCannotAdd)[keyof typeof WhatsAppCannotAdd];

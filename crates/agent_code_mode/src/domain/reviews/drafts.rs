@@ -340,7 +340,7 @@ fn calendar_problem(draft: &CalendarDraft) -> Option<&'static str> {
         return Some("The event must end after it starts.");
     }
     if draft.add_macro_call && draft.add_conference {
-        return Some("Choose either a Macro call or a video meeting.");
+        return Some("Choose either a Rox call or a video meeting.");
     }
     None
 }

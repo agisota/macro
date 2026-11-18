@@ -11,22 +11,22 @@ afterEach(() => {
 });
 
 // jsdom's window.location.hostname is 'localhost', which
-// isValidMacroAppHostname pairs with dev.macro.com outside of Tauri.
+// isValidMacroAppHostname pairs with dev.rox.one outside of Tauri.
 describe('parseInternalAppLink', () => {
   it('parses a macro app link into path and query', () => {
     expect(
-      parseInternalAppLink('https://dev.macro.com/app/component/abc?foo=bar')
+      parseInternalAppLink('https://dev.rox.one/app/component/abc?foo=bar')
     ).toEqual({ path: '/component/abc', query: 'foo=bar' });
   });
 
   it('keeps the fragment of a booking receipt link', () => {
     expect(
-      parseInternalAppLink('https://dev.macro.com/app/booking/abc#token')
+      parseInternalAppLink('https://dev.rox.one/app/booking/abc#token')
     ).toEqual({ path: '/booking/abc', query: '', fragment: 'token' });
   });
 
   it('maps a bare /app path to the router root', () => {
-    expect(parseInternalAppLink('https://dev.macro.com/app')).toEqual({
+    expect(parseInternalAppLink('https://dev.rox.one/app')).toEqual({
       path: '/',
       query: '',
     });
@@ -39,7 +39,7 @@ describe('parseInternalAppLink', () => {
   });
 
   it('strips a www prefix from the hostname', () => {
-    expect(parseInternalAppLink('https://www.dev.macro.com/app/x')).toEqual({
+    expect(parseInternalAppLink('https://www.dev.rox.one/app/x')).toEqual({
       path: '/x',
       query: '',
     });
@@ -47,7 +47,7 @@ describe('parseInternalAppLink', () => {
 
   it('does not treat a mid-string www. as a macro host', () => {
     // Only a leading `www.` is stripped, so `macro.www.com` (a subdomain of
-    // the foreign `www.com`) must not collapse to `macro.com`. Checked under
+    // the foreign `www.com`) must not collapse to `rox.one`. Checked under
     // Tauri, where localhost is paired with the prod/dev/staging hosts.
     vi.mocked(isTauri).mockReturnValue(true);
     expect(
@@ -56,8 +56,8 @@ describe('parseInternalAppLink', () => {
   });
 
   it('rejects non-/app paths on a macro host', () => {
-    expect(parseInternalAppLink('https://dev.macro.com/pricing')).toBeNull();
-    expect(parseInternalAppLink('https://dev.macro.com/apple')).toBeNull();
+    expect(parseInternalAppLink('https://dev.rox.one/pricing')).toBeNull();
+    expect(parseInternalAppLink('https://dev.rox.one/apple')).toBeNull();
   });
 
   it('rejects /app paths on foreign hosts', () => {
@@ -66,15 +66,15 @@ describe('parseInternalAppLink', () => {
     ).toBeNull();
   });
 
-  it('rejects prod macro links outside of Tauri when not on macro.com', () => {
+  it('rejects prod macro links outside of Tauri when not on rox.one', () => {
     expect(
-      parseInternalAppLink('https://macro.com/app/component/abc')
+      parseInternalAppLink('https://rox.one/app/component/abc')
     ).toBeNull();
   });
 
   it('accepts prod macro links under Tauri', () => {
     vi.mocked(isTauri).mockReturnValue(true);
-    expect(parseInternalAppLink('https://macro.com/app/component/abc')).toEqual(
+    expect(parseInternalAppLink('https://rox.one/app/component/abc')).toEqual(
       {
         path: '/component/abc',
         query: '',
@@ -85,7 +85,7 @@ describe('parseInternalAppLink', () => {
   it('accepts staging macro links under Tauri', () => {
     vi.mocked(isTauri).mockReturnValue(true);
     expect(
-      parseInternalAppLink('https://staging.macro.com/app/component/abc')
+      parseInternalAppLink('https://staging.rox.one/app/component/abc')
     ).toEqual({
       path: '/component/abc',
       query: '',
@@ -103,7 +103,7 @@ describe('parseInternalAppLink', () => {
     });
     try {
       expect(
-        parseInternalAppLink('https://macro.com/app/component/abc')
+        parseInternalAppLink('https://rox.one/app/component/abc')
       ).toEqual({ path: '/component/abc', query: '' });
     } finally {
       Object.defineProperty(window, 'location', {

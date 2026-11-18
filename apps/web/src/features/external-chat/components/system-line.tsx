@@ -25,7 +25,7 @@ const ICONS = {
   timer: TimerIcon,
 } satisfies Record<SystemLineText['icon'], typeof PencilIcon>;
 
-/** Macro users go by their Macro name, as their messages do. */
+/** Rox users go by their Rox name, as their messages do. */
 function named(person: Person): Person {
   const id = person.userId ? tryMacroId(person.userId) : undefined;
   return id ? { ...person, name: getDisplayName(id) } : person;

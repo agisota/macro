@@ -9,24 +9,24 @@ beforeEach(() => {
   vi.stubGlobal(
     'window',
     Object.assign(new EventTarget(), {
-      location: new URL('https://macro.com/app'),
+      location: new URL('https://rox.one/app'),
     })
   );
 });
 afterEach(() => vi.unstubAllGlobals());
 
 it('checks shared dev credentials on a fresh preview origin without a local login marker', async () => {
-  window.location.hostname = 'branch-abc123.preview.macro.com';
+  window.location.hostname = 'branch-abc123.preview.rox.one';
   const { shouldQueryUserInfo } = await import('./user-info-gate');
   expect(shouldQueryUserInfo()).toBe(true);
 });
 
 it.each([
-  'macro.com',
-  'dev.macro.com',
+  'rox.one',
+  'dev.rox.one',
   'localhost',
-  'notpreview.macro.com',
-  'branch.preview.macro.com.example.com',
+  'notpreview.rox.one',
+  'branch.preview.rox.one.example.com',
 ])('keeps anonymous identity checks disabled on %s', async (hostname) => {
   window.location.hostname = hostname;
   const { shouldQueryUserInfo } = await import('./user-info-gate');

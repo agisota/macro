@@ -313,7 +313,7 @@ impl GithubSyncRepo for PgGithubSyncRepo {
                         team_id=%team_id,
                         user_id,
                         error=?error,
-                        "team_user.user_id is not a Macro user ID"
+                        "team_user.user_id is not a Rox user ID"
                     );
                     None
                 }

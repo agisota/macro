@@ -10,12 +10,12 @@ import { buildCommentBody, buildPreviewUrl } from './post-comment';
 describe('buildPreviewUrl', () => {
   it('appends /app to preview domain', () => {
     expect(buildPreviewUrl('my-feature-abc123')).toBe(
-      'https://my-feature-abc123.preview.macro.com/app'
+      'https://my-feature-abc123.preview.rox.one/app'
     );
   });
 
   it('handles simple preview ids', () => {
-    expect(buildPreviewUrl('test')).toBe('https://test.preview.macro.com/app');
+    expect(buildPreviewUrl('test')).toBe('https://test.preview.rox.one/app');
   });
 });
 
@@ -23,7 +23,7 @@ describe('buildCommentBody', () => {
   it('creates markdown link with /app suffix', () => {
     const body = buildCommentBody('my-feature-abc123', 'abcdef1234567890');
     expect(body).toBe(
-      '**Preview:** [https://my-feature-abc123.preview.macro.com/app](https://my-feature-abc123.preview.macro.com/app) (abcdef1)'
+      '**Preview:** [https://my-feature-abc123.preview.rox.one/app](https://my-feature-abc123.preview.rox.one/app) (abcdef1)'
     );
   });
 
@@ -36,13 +36,13 @@ describe('buildCommentBody', () => {
 describe('extractPreviewIdFromBody', () => {
   it('extracts preview id from url without path', () => {
     const body =
-      '**Preview:** [https://my-feature-abc123.preview.macro.com](...)';
+      '**Preview:** [https://my-feature-abc123.preview.rox.one](...)';
     expect(extractPreviewIdFromBody(body)).toBe('my-feature-abc123');
   });
 
   it('extracts preview id from url with /app path', () => {
     const body =
-      '**Preview:** [https://my-feature-abc123.preview.macro.com/app](https://my-feature-abc123.preview.macro.com/app) (abcdef1)';
+      '**Preview:** [https://my-feature-abc123.preview.rox.one/app](https://my-feature-abc123.preview.rox.one/app) (abcdef1)';
     expect(extractPreviewIdFromBody(body)).toBe('my-feature-abc123');
   });
 
@@ -51,19 +51,19 @@ describe('extractPreviewIdFromBody', () => {
   });
 
   it('handles complex preview ids with numbers and hyphens', () => {
-    const body = 'https://feat-123-some-thing-xyz789.preview.macro.com/app';
+    const body = 'https://feat-123-some-thing-xyz789.preview.rox.one/app';
     expect(extractPreviewIdFromBody(body)).toBe('feat-123-some-thing-xyz789');
   });
 });
 
 describe('PREVIEW_URL_REGEX', () => {
   it('matches urls with /app suffix', () => {
-    const url = 'https://test-abc123.preview.macro.com/app';
+    const url = 'https://test-abc123.preview.rox.one/app';
     expect(url.match(PREVIEW_URL_REGEX)?.[1]).toBe('test-abc123');
   });
 
   it('matches urls without path', () => {
-    const url = 'https://test-abc123.preview.macro.com';
+    const url = 'https://test-abc123.preview.rox.one';
     expect(url.match(PREVIEW_URL_REGEX)?.[1]).toBe('test-abc123');
   });
 });

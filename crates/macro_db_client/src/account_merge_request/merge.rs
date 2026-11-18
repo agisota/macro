@@ -68,7 +68,7 @@ mod tests {
             SELECT "macro_user_id" as "macro_user_id!" FROM "User" WHERE "macro_user_id" = $1 AND "id" = $2
             "#,
             macro_uuid::string_to_uuid("11111111-1111-1111-1111-111111111111")?,
-            "macro|test2@macro.com",
+            "macro|test2@rox.one",
         )
         .map(|row| row.macro_user_id)
         .fetch_one(&pool)

@@ -172,7 +172,7 @@ export function editorSubmitValuesToCreateCalendarEvent(
     recurrenceLines: values.recurrenceLines ?? original.recurrenceLines ?? [],
     calendarId: values.calendarId,
     // `conferenceChoice` is the user's current pick, including the
-    // client-recognized Macro call the provider-level `conference` never
+    // client-recognized Rox call the provider-level `conference` never
     // carries; an out-of-office event takes no conferencing at all.
     addMacroCall: !outOfOffice && values.conferenceChoice === 'macro',
     addConference:

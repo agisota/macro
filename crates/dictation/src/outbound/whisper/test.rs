@@ -45,7 +45,7 @@ async fn posts_whisper_multipart_with_server_credential_and_reads_duration() {
     let requests = server.received_requests().await.unwrap();
     let body = multipart_body(&requests[0]);
     for expected in [
-        "name=\"model\"\r\n\r\nwhisper-1",
+        "name=\"model\"\r\n\r\nwhisper-large-v3-turbo",
         "name=\"response_format\"\r\n\r\nverbose_json",
         "name=\"language\"\r\n\r\nen",
         "filename=\"dictation.ogg\"",

@@ -9,7 +9,7 @@ use super::{decode_permission_token, encode_principal_permission_token};
 const SECRET: &str = "creation-token-secret";
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|user@macro.com".to_string()).expect("valid user id")
+    MacroUserIdStr::try_from("macro|user@rox.one".to_string()).expect("valid user id")
 }
 
 fn identity_claims(principal: &CreationPrincipal) -> (Option<String>, Option<String>) {
@@ -33,7 +33,7 @@ fn identity_claims(principal: &CreationPrincipal) -> (Option<String>, Option<Str
 fn user_token_names_the_user_without_an_actor() {
     assert_eq!(
         identity_claims(&CreationPrincipal::User(user())),
-        (Some("macro|user@macro.com".to_string()), None),
+        (Some("macro|user@rox.one".to_string()), None),
     );
 }
 
@@ -46,7 +46,7 @@ fn bot_for_user_token_names_the_user_and_the_bot_actor() {
     assert_eq!(
         identity_claims(&principal),
         (
-            Some("macro|user@macro.com".to_string()),
+            Some("macro|user@rox.one".to_string()),
             Some("bot|00000000-0000-0000-0000-00000000a1a1".to_string()),
         ),
     );

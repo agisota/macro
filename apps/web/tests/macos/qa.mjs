@@ -1,10 +1,10 @@
 #!/usr/bin/env bun
-// macOS desktop QA harness: launches a built Macro.app on a real macOS GUI
+// macOS desktop QA harness: launches a built Rox.app on a real macOS GUI
 // session and checks what can honestly be checked there. Run by the
 // `Desktop QA macOS` workflow (.github/workflows/desktop_qa_macos.yml), and
 // runnable by hand on a Mac:
 //
-//   bun apps/web/tests/macos/qa.mjs --app path/to/Macro.app --out /tmp/qa --suite smoke
+//   bun apps/web/tests/macos/qa.mjs --app path/to/Rox.app --out /tmp/qa --suite smoke
 //
 // Writes <out>/summary.json, <out>/junit.xml, <out>/screenshots/*.png and the
 // app's own logs. Exits 1 when any check failed. A check is `pass`, `fail` or
@@ -45,7 +45,7 @@ const { values: args } = parseArgs({
 	},
 });
 if (!args.app || !args.out) {
-	console.error("usage: qa.mjs --app <Macro.app> --out <dir> [--suite smoke|full]");
+	console.error("usage: qa.mjs --app <Rox.app> --out <dir> [--suite smoke|full]");
 	process.exit(2);
 }
 if (args.suite !== "smoke" && args.suite !== "full") {

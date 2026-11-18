@@ -7,7 +7,7 @@ use agent_session::domain::model::{AgentSessionId, ManagerFence, ReplicaId};
 use sqlx::PgPool;
 use std::sync::{Arc, OnceLock};
 
-/// Journal for one Macro session and one activated runtime attachment.
+/// Journal for one Rox session and one activated runtime attachment.
 pub struct PgCodexJournal {
     pool: PgPool,
     session: AgentSessionId,

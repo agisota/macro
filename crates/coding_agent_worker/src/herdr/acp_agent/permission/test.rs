@@ -3,8 +3,8 @@ use std::os::unix::fs::PermissionsExt as _;
 use super::super::test::test_adapter;
 use super::*;
 
-const CODEX_RUN: &str = "  Would you like to run the following command?\n\n  $ cargo test -p macrod\n\n› 1. Yes, proceed (y)\n  2. No, and tell Codex what to do differently (esc)\n";
-const CODEX_RUN_REMEMBERABLE: &str = "  Would you like to run the following command?\n\n  $ cargo test -p macrod\n\n› 1. Yes, proceed (y)\n  2. Yes, and don't ask again for commands that start with `cargo test` (p)\n  3. No, and tell Codex what to do differently (esc)\n";
+const CODEX_RUN: &str = "  Would you like to run the following command?\n\n  $ cargo test -p roxd\n\n› 1. Yes, proceed (y)\n  2. No, and tell Codex what to do differently (esc)\n";
+const CODEX_RUN_REMEMBERABLE: &str = "  Would you like to run the following command?\n\n  $ cargo test -p roxd\n\n› 1. Yes, proceed (y)\n  2. Yes, and don't ask again for commands that start with `cargo test` (p)\n  3. No, and tell Codex what to do differently (esc)\n";
 
 /// A herdr whose agent is blocked on the dialog in `screen`, logging keys.
 fn fake_herdr(root: &Path) -> (HerdrCli, PathBuf, PathBuf) {
@@ -88,13 +88,13 @@ async fn always_allowing_a_command_without_a_native_answer_approves_it_for_the_r
         request["params"]["options"],
         json!([
             {"optionId": "allow", "name": "Allow once", "kind": "allow_once"},
-            {"optionId": "always", "name": "Always allow `cargo test -p macrod` in this session", "kind": "allow_always"},
+            {"optionId": "always", "name": "Always allow `cargo test -p roxd` in this session", "kind": "allow_always"},
             {"optionId": "reject", "name": "Reject", "kind": "reject_once"},
         ])
     );
     assert_eq!(std::fs::read_to_string(&keys).unwrap(), "y\n");
 
-    // The same command again is approved without asking Macro.
+    // The same command again is approved without asking Rox.
     adapter
         .answer_permission(&session, "macro-s1", None, 1, &blocked)
         .await;
@@ -104,7 +104,7 @@ async fn always_allowing_a_command_without_a_native_answer_approves_it_for_the_r
     // A different command still asks.
     std::fs::write(
         &screen,
-        CODEX_RUN.replace("cargo test -p macrod", "rm -rf target"),
+        CODEX_RUN.replace("cargo test -p roxd", "rm -rf target"),
     )
     .unwrap();
     let ((), request) = tokio::join!(
@@ -136,7 +136,7 @@ async fn always_allow_presses_the_dialogs_own_dont_ask_again_answer() {
         json!({"optionId": "always", "name": "Yes, and don't ask again for commands that start with `cargo test`", "kind": "allow_always"})
     );
     assert_eq!(std::fs::read_to_string(&keys).unwrap(), "p\n");
-    // The native agent remembers it; Macro keeps no standing approval.
+    // The native agent remembers it; Rox keeps no standing approval.
     assert!(lock(&session.always_allowed).is_empty());
     adapter.shutdown.cancel();
 }

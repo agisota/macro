@@ -4,7 +4,7 @@ import type { MacroClient } from '../../utils/client';
 import { MacroEntity } from '../entity';
 import { User } from '../users/user';
 
-/** The current user's WhatsApp account, connected through the Macro app. */
+/** The current user's WhatsApp account, connected through the Rox app. */
 export class WhatsAppAccount extends MacroEntity<WhatsAppAccountRecord> {
   /** Reference an account; reads still enforce the authenticated owner's scope. */
   static byId(client: MacroClient, id: string): WhatsAppAccount {
@@ -33,7 +33,7 @@ export class WhatsAppAccount extends MacroEntity<WhatsAppAccountRecord> {
   /** Verified remote identity, absent until pairing succeeds. */
   readonly identity = this.field('identityJid');
 
-  /** The Macro user who owns this account. */
+  /** The Rox user who owns this account. */
   readonly owner = this.mappedField('userId', (id) =>
     User.byId(this.client, id),
   );

@@ -219,8 +219,8 @@ async fn overlapping_harness_connections_execute_once() {
     second_consumer.abort();
 }
 
-fn empty_models(redis: redis::Client) -> MacrodModels {
-    MacrodModels::new(
+fn empty_models(redis: redis::Client) -> RoxdModels {
+    RoxdModels::new(
         agent_harness::outbound::runtime_registry::RuntimeRegistry::new(),
         redis,
         std::time::Duration::from_secs(2),

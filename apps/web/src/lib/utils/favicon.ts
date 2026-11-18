@@ -1,5 +1,4 @@
-import FaviconSvg from '@icon/macro-logo.svg?raw';
-import FaviconBadgeSvg from '@icon/macro-logo-badge.svg?raw';
+import { ROX_MARK_SRC } from '@core/component/RoxMark';
 
 const FAVICON_SIZE = 48;
 
@@ -20,26 +19,14 @@ function setFavicon(url: string): void {
   currentFaviconLink.href = url;
 }
 
-/** escapes a color value for use in SVG */
-function escapeColorForSvg(color: string): string {
-  return color.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
-
-/** insert color and url encode SVG */
-function processSvg(svg: string, color: string) {
-  return `data:image/svg+xml,${encodeURIComponent(svg.replace(/currentColor/g, escapeColorForSvg(color)))}`;
+/** The installed app icon, used for notifications and the tab. */
+export function getFaviconUrl(_color: string) {
+  return ROX_MARK_SRC;
 }
 
 /**
- * Return a data url for the macro logo svg filled with the given color.
- */
-export function getFaviconUrl(color: string) {
-  return processSvg(FaviconSvg, color);
-}
-
-/**
- * Update the site's live favicon with a new color, and optionally a notification
- * badge with its own color.
+ * Update the site's live favicon from the installed app icon, and optionally
+ * a notification badge.
  */
 export function updateFavicon(
   faviconColor: string,
@@ -63,7 +50,7 @@ export function updateFavicon(
   canvas.height = FAVICON_SIZE;
 
   const img = new Image();
-  img.src = processSvg(hasBadge ? FaviconBadgeSvg : FaviconSvg, faviconColor);
+  img.src = ROX_MARK_SRC;
 
   img.onload = () => {
     if (requestedIcon !== key) return;

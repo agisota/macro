@@ -118,7 +118,7 @@ test('the last step streams AI’s suggestions in, fills empty surfaces after th
   await stuck.focus();
   await stuck.press('Space');
   await page.getByRole('button', { name: 'Turn on 2 routines' }).click();
-  await expectLanded(page, 'Entered Macro at /home');
+  await expectLanded(page, 'Entered Rox at /home');
   expect((await fakeWorld(page)).routinesCreated).toEqual(['sort', 'stuck']);
   const events = await fakeEvents(page);
   expect(events).toContainEqual(
@@ -134,7 +134,7 @@ test('the last step streams AI’s suggestions in, fills empty surfaces after th
   );
 });
 
-test('without an inbox the last step shows Macro’s templates at once', async ({
+test('without an inbox the last step shows Rox’s templates at once', async ({
   page,
 }) => {
   await openFixture(page, '/?view=flow&step=routines&theme=dark', {
@@ -142,7 +142,7 @@ test('without an inbox the last step shows Macro’s templates at once', async (
     routineSuggestions: { status: 'none', suggestions: TEMPLATES },
   });
   await expect(page.getByText('Share updates', { exact: true })).toBeVisible();
-  await expect(page.getByText('Template from Macro')).toHaveCount(2);
+  await expect(page.getByText('Template from Rox')).toHaveCount(2);
   // A row opens to rename the routine before it is created.
   await page.getByRole('button', { name: /Share updates/ }).click();
   await expect(page.getByRole('textbox', { name: 'Name' })).toBeVisible();

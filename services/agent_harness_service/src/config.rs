@@ -24,16 +24,16 @@ macro_env_var::env_vars!(
     pub struct KafkaBrokers;
     /// PEM private key of the GitHub App installation tokens are minted with.
     pub struct GithubSyncAppPemSecretKey;
-    /// RSA key Macro API tokens are signed with - the same one
+    /// RSA key Rox API tokens are signed with - the same one
     /// `authentication_service` signs with. The egress proxy mints
     /// short-lived tokens for session owners inline.
     pub struct MacroApiTokenPrivateSecretKey;
-    /// Issuer stamped into minted Macro API tokens; must match what the
+    /// Issuer stamped into minted Rox API tokens; must match what the
     /// validators expect.
     pub struct MacroApiTokenIssuer;
     /// OAuth client ID for the Pipedream API. The same credentials
     /// `agent_harness_service::cognition` uses: the connections a sandbox spends
-    /// are the ones the person connected in Macro, in the same rows.
+    /// are the ones the person connected in Rox, in the same rows.
     pub struct PipedreamClientId;
     /// OAuth client secret for the Pipedream API.
     pub struct PipedreamClientSecret;
@@ -41,7 +41,7 @@ macro_env_var::env_vars!(
     pub struct PipedreamProjectId;
     /// AES key the `mcp_servers` rows' OAuth credentials are encrypted with -
     /// the same one `agent_harness_service::cognition` writes them with, so the
-    /// custom MCP servers a person added in Macro are the ones the egress
+    /// custom MCP servers a person added in Rox are the ones the egress
     /// proxy can refresh and stamp for their sandboxes.
     pub struct McpCredentialsKeySecretName;
     /// Dedicated KMS key the public MCP OAuth broker encrypts the upstream
@@ -63,7 +63,7 @@ macro_env_var::maybe_env_vars!(
     pub struct PosthogApiKey;
     /// Regional PostHog ingestion origin; defaults to the US origin.
     pub struct PosthogHost;
-    /// Macro's customer key for the Macro Connect API. When unset, Connect
+    /// Rox's customer key for the Rox Connect API. When unset, Connect
     /// is off and every connection goes through Pipedream.
     pub struct ConnectCustomerKey;
     /// Dedicated KMS key for encrypted per-owner Codex OAuth state.
@@ -132,7 +132,7 @@ pub struct Config {
     pub posthog_api_key: PosthogApiKey,
     /// Same regional origin as the frontend's PostHog project.
     pub posthog_host: PosthogHost,
-    /// Customer key for Macro Connect; sandboxes reach Connect-held grants
+    /// Customer key for Rox Connect; sandboxes reach Connect-held grants
     /// through its MCP gateway.
     pub connect_customer_key: ConnectCustomerKey,
     /// Pinned Deno executable. Unset hosts do not advertise code execution.
@@ -164,12 +164,12 @@ pub struct Config {
     pub environment: Environment,
     /// Optional physical fleet selection; absence attaches no computer fleet.
     pub computers_fleet: Option<ComputerFleetKind>,
-    /// Days a Macro computer whose billing ended keeps its disk before it is
+    /// Days a Rox computer whose billing ended keeps its disk before it is
     /// destroyed; the timers the fleet operator fires use it. The same value
     /// authentication_service reads.
     #[macro_config_default(14)]
     pub computer_retention_days: u32,
-    /// Days a Macro computer keeps running on a past-due subscription before
+    /// Days a Rox computer keeps running on a past-due subscription before
     /// it is turned off.
     #[macro_config_default(7)]
     pub computer_past_due_grace_days: u32,
@@ -177,7 +177,7 @@ pub struct Config {
     pub codex_oauth_kms_key_id: CodexOauthKmsKeyId,
     /// Comma-separated Kafka bootstrap servers.
     pub kafka_brokers: KafkaBrokers,
-    /// MacroDB connection string; `agent_sessions` lives here.
+    /// RoxDB connection string; `agent_sessions` lives here.
     pub database_url: DatabaseUrl,
     /// Shared Redis used for cross-replica command forwarding.
     pub redis_uri: RedisUri,
@@ -293,11 +293,11 @@ pub struct Config {
     /// URL of Pipedream's remote MCP server.
     #[macro_config_default(String::from(pipedream_mcp::outbound::api::DEFAULT_MCP_URL))]
     pub pipedream_mcp_url: String,
-    /// RSA key Macro API tokens are signed with.
+    /// RSA key Rox API tokens are signed with.
     pub macro_api_token_private_secret_key: LocalOrRemoteSecret<MacroApiTokenPrivateSecretKey>,
     /// AES key the custom MCP servers' stored OAuth credentials are encrypted with.
     pub mcp_credentials_key_secret_name: LocalOrRemoteSecret<McpCredentialsKeySecretName>,
-    /// Issuer stamped into minted Macro API tokens.
+    /// Issuer stamped into minted Rox API tokens.
     pub macro_api_token_issuer: MacroApiTokenIssuer,
     /// S3 bucket the Changes pane's patches are stored in, one object per
     /// capture under `agent-sessions/{session}/changes/`. Required: a
@@ -461,7 +461,7 @@ impl Config {
         Ok(())
     }
 
-    /// Macro computers' retention and past-due grace.
+    /// Rox computers' retention and past-due grace.
     pub fn computer_billing_policy(
         &self,
     ) -> macro_config::MacroConfigResult<hosted_runtimes::domain::lifecycle::BillingPolicy> {

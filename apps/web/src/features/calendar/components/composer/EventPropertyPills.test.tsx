@@ -290,7 +290,7 @@ describe('EventComposerGuestsPill for a guest who may only add guests', () => {
 });
 
 describe('EventComposerConferencePill', () => {
-  it('offers Macro only after the host flag resolves enabled', async () => {
+  it('offers Rox only after the host flag resolves enabled', async () => {
     const user = userEvent.setup();
     const [enabled, setEnabled] = createSignal(false);
     render(() => (
@@ -304,16 +304,16 @@ describe('EventComposerConferencePill', () => {
     await user.click(
       screen.getByRole('button', { name: /Video conferencing/ })
     );
-    expect(screen.queryByRole('option', { name: 'Macro call' })).toBeNull();
+    expect(screen.queryByRole('option', { name: 'Rox call' })).toBeNull();
     setEnabled(true);
     expect(
-      await screen.findByRole('option', { name: 'Macro call' })
+      await screen.findByRole('option', { name: 'Rox call' })
     ).toBeTruthy();
     setEnabled(false);
-    expect(screen.queryByRole('option', { name: 'Macro call' })).toBeNull();
+    expect(screen.queryByRole('option', { name: 'Rox call' })).toBeNull();
   });
 
-  it('shows the Macro selection and lets users switch to no link or Google Meet inside the composer dialog', async () => {
+  it('shows the Rox selection and lets users switch to no link or Google Meet inside the composer dialog', async () => {
     const user = userEvent.setup();
     render(() => {
       const [choice, setChoice] =
@@ -333,7 +333,7 @@ describe('EventComposerConferencePill', () => {
     const trigger = screen.getByRole('button', {
       name: /Video conferencing/,
     });
-    expect(trigger.textContent).toContain('Macro call');
+    expect(trigger.textContent).toContain('Rox call');
     screen.getByLabelText('Title').focus();
     await user.click(trigger);
     await user.click(screen.getByRole('option', { name: 'No meeting link' }));
@@ -342,8 +342,8 @@ describe('EventComposerConferencePill', () => {
     await user.click(screen.getByRole('option', { name: 'Google Meet' }));
     expect(trigger.textContent).toContain('Google Meet');
     await user.click(trigger);
-    await user.click(screen.getByRole('option', { name: 'Macro call' }));
-    expect(trigger.textContent).toContain('Macro call');
+    await user.click(screen.getByRole('option', { name: 'Rox call' }));
+    expect(trigger.textContent).toContain('Rox call');
   });
 
   it('keeps its selection to itself while the form around it changes', async () => {
@@ -364,7 +364,7 @@ describe('EventComposerConferencePill', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('does not offer a new Macro call when calls are unavailable', async () => {
+  it('does not offer a new Rox call when calls are unavailable', async () => {
     const user = userEvent.setup();
     render(() => (
       <EventComposerConferencePill
@@ -377,7 +377,7 @@ describe('EventComposerConferencePill', () => {
     await user.click(
       screen.getByRole('button', { name: /Video conferencing/ })
     );
-    expect(screen.queryByRole('option', { name: 'Macro call' })).toBeNull();
+    expect(screen.queryByRole('option', { name: 'Rox call' })).toBeNull();
     expect(screen.getByRole('option', { name: 'Google Meet' })).toBeTruthy();
   });
 });

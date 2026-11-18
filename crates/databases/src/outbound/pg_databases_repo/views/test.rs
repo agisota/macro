@@ -15,8 +15,8 @@ fn every_lane_is_stored_as_text_that_reads_back_as_it() {
             "00000000-0000-0000-0000-000000000d0e",
         ),
         (
-            LaneKey::User("macro|sam@macro.com".try_into().unwrap()),
-            "user:macro|sam@macro.com",
+            LaneKey::User("macro|sam@rox.one".try_into().unwrap()),
+            "user:macro|sam@rox.one",
         ),
         (LaneKey::None, ""),
     ];

@@ -1,11 +1,11 @@
 # Initiatives / Projects
 
-Research and delivery plan for Macro task `cEiKHzvtajyg6G48GtZXf`.
+Research and delivery plan for Rox task `cEiKHzvtajyg6G48GtZXf`.
 
 - Working branch: `synoet/macro-3564-initiativesprojects`.
 - Repository baseline: `b720f71a81`, inspected September 22, 2026.
 - This document records the initial backend audit, direct Linear UI research, and delivery plan. The audit describes the baseline before implementation; current behavior is documented in the app agent guides.
-- No Macro MCP tools were available in this session; task requirements come from the supplied task content. Backend findings are source-level findings, not claims about deployed behavior.
+- No Rox MCP tools were available in this session; task requirements come from the supplied task content. Backend findings are source-level findings, not claims about deployed behavior.
 
 The accepted delivery is a stack of six draft PRs: access and lifecycle, properties and GraphQL reads, discussions, backend activity, MCP, and the complete frontend. Backend contracts come first. Generated API contracts and minimal compatibility changes accompany their backend PRs. The Projects frontend and shared UI adjustments belong in the final PR; description editing is the last implementation step within that PR.
 
@@ -21,7 +21,7 @@ The accepted delivery is a stack of six draft PRs: access and lifecycle, propert
   composer, detail layout, side panel, property controls and Share menu. Any
   focused adjustments required to share those components are part of the
   frontend PR, together with their task/document consumers.
-- Overview and Tasks retain Macro's existing tab styling and sit in the top bar
+- Overview and Tasks retain Rox's existing tab styling and sit in the top bar
   next to the breadcrumbs, following the channel layout. Opening a project stays
   in the Tasks navigation context.
 - Tasks starts directly with the unified task list and controls. The title,
@@ -35,7 +35,7 @@ The accepted delivery is a stack of six draft PRs: access and lifecycle, propert
   descriptions are all included in PR 6; none is a separate PR.
 
 The backend audit below describes the original baseline. Linear observations
-remain research context; the Macro decisions incorporate the user's subsequent
+remain research context; the Rox decisions incorporate the user's subsequent
 feedback.
 
 ## 1. Backend audit
@@ -82,29 +82,29 @@ The hexagonal boundary was checked. Lifecycle and owner-only sharing policy alre
 
 This audit did not execute the existing Rust tests. Existing [service](../../crates/initiative/src/domain/service/test.rs), [router](../../crates/initiative/src/inbound/axum_router/test.rs), and [repository](../../crates/initiative/src/outbound/pg_initiative_repo/test.rs) coverage are starting points for the implementation PRs.
 
-## 2. Linear UI findings and the Macro adaptation
+## 2. Linear UI findings and the Rox adaptation
 
-These observations come from direct Computer Use in Linear's signed-in Macro workspace on September 22, 2026. I inspected the project collection, display controls, a project's Overview/Activity/Issues views, status/priority/date pickers, an issue context menu, and the empty new-project form. No project, issue, property, comment or shared view default was submitted or changed. The inspected collection's initial Timeline layout was restored after viewing List.
+These observations come from direct Computer Use in Linear's signed-in Rox workspace on September 22, 2026. I inspected the project collection, display controls, a project's Overview/Activity/Issues views, status/priority/date pickers, an issue context menu, and the empty new-project form. No project, issue, property, comment or shared view default was submitted or changed. The inspected collection's initial Timeline layout was restored after viewing List.
 
 Primary UI references: [project collection](https://linear.app/macro-eng/projects/all), [project overview](https://linear.app/macro-eng/project/tasks-06c6935d9fc4/overview), [activity](https://linear.app/macro-eng/project/tasks-06c6935d9fc4/activity), [issues](https://linear.app/macro-eng/project/tasks-06c6935d9fc4/issues). These links require workspace access.
 
-| Area | Observed Linear decision | Macro implementation decision |
+| Area | Observed Linear decision | Rox implementation decision |
 | --- | --- | --- |
 | Collection navigation | Projects has All projects plus saved My Projects and Active projects views; a prominent New project action, filter and display controls. | Keep a separate **Projects** section above Saved views in Tasks, with **My projects**, **All projects**, and **Created by me**. My projects matches Assignees; Created by me matches the owner. Replace individual-project shortcuts, and use one Projects picker on mobile. |
 | List layout | Compact horizontal rows; name/icon dominate the left, properties align in columns on the right. Collapsible groups have counts and a local create action. This workspace groups by status and subgroups by Linear initiative. | Use the Tasks view's density and tokens. Columns: name, status, priority, assignees, due date, task progress. Default to status grouping, with None available. Reuse column alignment and inline property controls. |
 | Display options | List, Board and Timeline; grouping, subgrouping, ordering, closed-project visibility and per-property visibility. | Implement the required list with sorting/grouping and sensible responsive columns. Board, Timeline, saved custom views and nested portfolio grouping are separate scope, not dependencies for this checklist. |
-| Detail navigation | Breadcrumb, project name, favorite/actions controls; Overview, Activity and Issues tabs; collapsible project details sidebar. | Native view within Tasks with project breadcrumbs and **Overview / Tasks** tabs in the top bar. Borrow channel tab positioning while retaining existing Macro tab styling. Put the existing Share menu and side-panel controls in the header; restore project identity and tab from navigation. |
+| Detail navigation | Breadcrumb, project name, favorite/actions controls; Overview, Activity and Issues tabs; collapsible project details sidebar. | Native view within Tasks with project breadcrumbs and **Overview / Tasks** tabs in the top bar. Borrow channel tab positioning while retaining existing Rox tab styling. Put the existing Share menu and side-panel controls in the header; restore project identity and tab from navigation. |
 | Overview hierarchy | Editable title and summary, compact property strip, description/resources/milestones below. Large screens also show a properties/progress/activity sidebar. | Use the task detail layout and side panel. Overview contains the editable title, task-style properties, description and shared task discussion component. The Tasks tab starts directly with its list. Add description editing last within the frontend PR; omit resources/milestone scaffolding. |
-| Inline status | Searchable popover with Backlog, Planned, In Progress, Completed, Canceled in this workspace; keyboard shortcut hint. | Copy the interaction, using Macro's existing task status definitions and icons. Do not silently install Linear's status vocabulary. |
-| Inline priority | Searchable No priority / Urgent / High / Medium / Low menu with icon cues. | Reuse Macro's priority property editor, including clearing the value. Keep row, detail and create controls consistent. |
+| Inline status | Searchable popover with Backlog, Planned, In Progress, Completed, Canceled in this workspace; keyboard shortcut hint. | Copy the interaction, using Rox's existing task status definitions and icons. Do not silently install Linear's status vocabulary. |
+| Inline priority | Searchable No priority / Urgent / High / Medium / Low menu with icon cues. | Reuse Rox's priority property editor, including clearing the value. Keep row, detail and create controls consistent. |
 | People | Linear distinguishes a single Lead from multiple Members. | Honor the requested multi-user **Assignees** field. Keep access collaborators in the Share flow; do not create an extra Lead requirement. |
-| Dates | Text parsing and a calendar; target dates can be a day, month, quarter, half-year or year. | Reuse Macro's task due-date semantics and date picker. Support set/clear and overdue styling; coarse planning dates and start dates can come later. |
+| Dates | Text parsing and a calendar; target dates can be a day, month, quarter, half-year or year. | Reuse Rox's task due-date semantics and date picker. Support set/clear and overdue styling; coarse planning dates and start dates can come later. |
 | Create flow | A focused modal includes name, optional summary/description, compact property controls, team selection and one Create project button. | Use a composer closely matching the task composer. Focus name on open; reuse status, priority, assignees and due-date controls with team sharing enabled by default. Submit once, retain values on error and open the created view on success. Description input belongs to the final frontend step. |
 | Project tasks | The Issues tab is the familiar issue list scoped to the project, with status groups, filter/display controls and group-level create. | Embed a project-scoped task-list composition. New task supplies the project; Add existing tasks uses the same assignment command as context menus. Opening a task uses existing task detail navigation. |
 | Task assignment menu | The issue context menu has Project alongside status, priority, assignee and due date, with a submenu and shortcut hint. | Add **Set project…** with current selection, searchable accessible destinations and **No project**. Share the picker with the task chip and bulk actions. The submenu's selection behavior was not changed during inspection. |
 | Activity and comments | Activity contains a Comment/Update composer above a date-grouped stream; system changes are compact actor/action/time rows. Sidebar shows a short activity preview with See all. | Reuse the task discussion component below the Overview description. Comments run oldest-first with the composer beneath them. Keep activity recording on the backend; defer the merged activity/discussion view and health updates. |
-| Sharing | The inspected header exposes copy URL and notification controls; properties expose lead/members. | Use Macro's actual permissions model and explicit Share menu. Do not infer that copying Linear's membership UI implements Macro sharing. |
-| Visual treatment | Dense type, subtle separators, muted metadata and restrained color on status/priority/avatars; properties open in place. | Use Macro semantic tokens, shared controls and focus styling. Keep navigation, editor state and scroll stable through mutations and background refresh. |
+| Sharing | The inspected header exposes copy URL and notification controls; properties expose lead/members. | Use Rox's actual permissions model and explicit Share menu. Do not infer that copying Linear's membership UI implements Rox sharing. |
+| Visual treatment | Dense type, subtle separators, muted metadata and restrained color on status/priority/avatars; properties open in place. | Use Rox semantic tokens, shared controls and focus styling. Keep navigation, editor state and scroll stable through mutations and background refresh. |
 
 The user request takes precedence over Linear differences: Macro Projects live under Tasks, use task-style assignees/due dates, have default team sharing, and are native views. No Linear-style portfolio initiatives, milestones, dependencies, health updates, charts or roadmap views are required for the first complete release.
 
@@ -232,7 +232,7 @@ the common message transport or add the frontend presentation.
 
 ### PR 4 — Backend activity
 
-Record initiative lifecycle, property and task-membership changes in Macro's
+Record initiative lifecycle, property and task-membership changes in Rox's
 activity system. Include actor attribution, stable event identities, replay
 handling, source/destination invalidation on moves, current-audience delivery
 and authorized history through the domain boundary. Preserve task visibility

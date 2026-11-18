@@ -1,4 +1,4 @@
-//! A stateful fake of the Google APIs Macro's email, calendar and sign-in
+//! A stateful fake of the Google APIs Rox's email, calendar and sign-in
 //! code call.
 //!
 //! [`GmailEmulator::start`] listens on a `127.0.0.1` port and serves, for any

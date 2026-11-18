@@ -85,7 +85,7 @@ export const E_SNAPSHOT_NODE: ElementTransformer = {
     // Export as a document link similar to DocumentMention
     const hostname =
       window.location.hostname === 'localhost'
-        ? 'dev.macro.com'
+        ? 'dev.rox.one'
         : window.location.hostname.replace('www.', '').toLowerCase();
     const documentUrl = `https://${hostname}/app/${blockName}/${documentId}`;
     return `[${documentName}](${documentUrl})`;

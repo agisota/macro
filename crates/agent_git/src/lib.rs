@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 //! Agent workspace repos: exactly one bare git repo per agent user, served
-//! over smart HTTP behind Macro auth.
+//! over smart HTTP behind Rox auth.
 //!
 //! - **domain**: models, ports and [`domain::service::AgentGitServiceImpl`],
 //!   which owns every access decision (repo token, team admin, size cap,

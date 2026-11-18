@@ -54,7 +54,7 @@ const thread: EmailEntity = {
   type: 'email',
   id: threadId,
   name: 'hello from my outlook to your outlook',
-  ownerId: 'macro|teo@macro.com',
+  ownerId: 'macro|teo@rox.one',
   isRead: true,
   isDraft: false,
   isImportant: true,

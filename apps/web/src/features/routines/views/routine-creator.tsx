@@ -20,7 +20,7 @@ export function RoutineCreatorView(props: {
   defaultModel: string;
   /** Decisions are answered by the classifier behind trigger conditions. */
   decisionsEnabled: boolean;
-  /** Macro's built-in templates are offered (`enable-routine-starter-templates`). */
+  /** Rox's built-in templates are offered (`enable-routine-starter-templates`). */
   templatesEnabled: boolean;
   /** The scheduler's catalog routines. */
   catalog: RoutineTemplate[];

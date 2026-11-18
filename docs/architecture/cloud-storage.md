@@ -38,7 +38,7 @@ shacleantrigger(Sha Cleanup Trigger Lambda)
 shacleanworker(Sha Cleanup Worker)
 docx_upload[(Docx Upload Bucket)]
 doc_storage[(Doc Storage Bucket)]
-db[(MacroDB)]
+db[(RoxDB)]
 cache[(Cloud Storage Cache)]
 docmapping(Document Mapping Table)
 docperms(Document Permissions Table)

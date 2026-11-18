@@ -133,11 +133,11 @@ fn configured_control_hosts_are_added_to_the_loopback_allowlist() {
 
 #[test]
 fn a_dropped_host_is_restored_only_from_an_allowed_forwarded_name() {
-    let allowed = mcp_allowed_hosts(vec!["dev-gateway.macro.com".into()]);
+    let allowed = mcp_allowed_hosts(vec!["dev-gateway.rox.one".into()]);
     let mut headers = HeaderMap::new();
-    headers.insert("x-forwarded-host", "dev-gateway.macro.com".parse().unwrap());
+    headers.insert("x-forwarded-host", "dev-gateway.rox.one".parse().unwrap());
     restore_dropped_host(&mut headers, &"/preview/mcp".parse().unwrap(), &allowed);
-    assert_eq!(headers[header::HOST], "dev-gateway.macro.com");
+    assert_eq!(headers[header::HOST], "dev-gateway.rox.one");
 
     let mut headers = HeaderMap::new();
     headers.insert("x-forwarded-host", "attacker.test".parse().unwrap());

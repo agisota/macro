@@ -89,7 +89,7 @@ impl harnesses::domain::ports::ComputerTeamAgents for PgComputerAgents {
         rows.into_iter()
             .map(|row| {
                 let agent = MacroUserIdStr::try_from(row.agent_user_id).map_err(|_| {
-                    PgComputerError::Corrupt("agent_user_id is not a Macro user id".to_owned())
+                    PgComputerError::Corrupt("agent_user_id is not a Rox user id".to_owned())
                 })?;
                 Ok((ComputerId::new_from_uuid(row.id), agent))
             })
@@ -120,7 +120,7 @@ impl ComputerAgents for PgComputerAgents {
         agent
             .map(|agent| {
                 MacroUserIdStr::try_from(agent).map_err(|_| {
-                    PgComputerError::Corrupt("agent_user_id is not a Macro user id".to_owned())
+                    PgComputerError::Corrupt("agent_user_id is not a Rox user id".to_owned())
                 })
             })
             .transpose()

@@ -3069,7 +3069,7 @@ async fn truncation_that_empties_the_series_retires_the_local_source() {
 
 /// A third-party conference is replaced or detached like any other once the
 /// request is explicit: the caller asked, and deleting the event outright —
-/// which Macro already allows — destroys strictly more. What protects such a
+/// which Rox already allows — destroys strictly more. What protects such a
 /// conference is that omitting the field leaves it untouched, covered below.
 #[tokio::test]
 async fn conference_changes_reach_the_provider_for_any_conference() {

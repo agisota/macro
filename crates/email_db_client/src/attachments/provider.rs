@@ -65,7 +65,7 @@ pub async fn insert_attachments(
         .cloned()
         .collect();
 
-    // Refresh Outlook metadata without changing the Macro attachment identity.
+    // Refresh Outlook metadata without changing the Rox attachment identity.
     let new_attachments: Vec<_> = db_attachments
         .into_iter()
         .filter(|attachment| {

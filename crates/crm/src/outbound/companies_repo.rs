@@ -1,4 +1,4 @@
-//! Implementation of [`CompaniesRepository`] backed by MacroDB.
+//! Implementation of [`CompaniesRepository`] backed by RoxDB.
 
 #[cfg(test)]
 pub(crate) mod test;

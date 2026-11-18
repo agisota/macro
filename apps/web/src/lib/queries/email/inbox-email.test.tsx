@@ -21,7 +21,7 @@ vi.mock('@queries/soup/normalized-cache', () => ({
   invalidateAllSoup: vi.fn(),
 }));
 vi.mock('@core/context/user', () => ({
-  useEmail: () => () => 'login@macro.com',
+  useEmail: () => () => 'login@rox.one',
   useIsAuthenticated: () => () => true,
   useUserId: () => () => VIEWER,
 }));
@@ -85,7 +85,7 @@ describe('useInboxEmail', () => {
     await vi.waitFor(() => expect(viewer()).toBe('owner@tenant.example.com'));
   });
 
-  it('is unknown, not the Macro login, while offline with no cached inboxes', async () => {
+  it('is unknown, not the Rox login, while offline with no cached inboxes', async () => {
     onlineManager.setOnline(false);
     getLinksMock.mockResolvedValue(ok({ links: [outlook] }));
     const { viewer } = mount('outlook');
@@ -95,7 +95,7 @@ describe('useInboxEmail', () => {
     await vi.waitFor(() => expect(viewer()).toBe('owner@tenant.example.com'));
   });
 
-  it('is unknown, not the Macro login, when the inbox list fails to load', async () => {
+  it('is unknown, not the Rox login, when the inbox list fails to load', async () => {
     getLinksMock.mockResolvedValue(
       err([{ code: 'HTTP_ERROR' as const, message: 'unavailable' }])
     );

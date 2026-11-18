@@ -131,7 +131,7 @@ fn is_generic_email_domain_is_case_insensitive() {
 
 #[test]
 fn is_generic_email_domain_allows_company_domains() {
-    assert!(!is_generic_email_domain("macro.com"));
+    assert!(!is_generic_email_domain("rox.one"));
     assert!(!is_generic_email_domain("example.org"));
     assert!(!is_generic_email_domain("gmail.com.evil.com"));
 }

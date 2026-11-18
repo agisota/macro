@@ -4,11 +4,11 @@
 //! choose from (`gen_ai.tool.definitions`). A sandboxed harness learns those
 //! by dialing the MCP servers it was handed in `session/new`; this lists the
 //! same servers the same way, in process through the egress proxy, so the
-//! definitions on the span are the ones the agent saw - Macro's own tools and
+//! definitions on the span are the ones the agent saw - Rox's own tools and
 //! the owner's connected apps alike, under the names the harness calls them
-//! by. Which is also why Macro's server is *not* skipped here the way
+//! by. Which is also why Rox's server is *not* skipped here the way
 //! [`dialable_servers`](crate::domain::mcp::dialable_servers) skips it for the
-//! in-process runtime's own toolset: every other harness reaches Macro's tools
+//! in-process runtime's own toolset: every other harness reaches Rox's tools
 //! over that server, and the listing has to say so.
 
 #[cfg(test)]

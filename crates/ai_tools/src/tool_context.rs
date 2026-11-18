@@ -479,7 +479,7 @@ pub type ToolCalendarReadService = calendar_events::domain::service::CalendarSer
 pub type ToolCalendarMutationService =
     calendar_events::outbound::calendar_service_mutations::CalendarServiceMutations;
 
-/// Type alias for the meeting-link provider used by AI tools. Macro calls
+/// Type alias for the meeting-link provider used by AI tools. Rox calls
 /// attached to events are minted through the same call service the call
 /// tools run on, owned by the requesting user.
 pub type ToolCalendarMeetingLinks =
@@ -515,7 +515,7 @@ pub fn build_team_calendar_tool_context(
 
 /// Build the calendar AI tool context: reads query the local occurrence
 /// projections from `pool`; mutations call the calendar service at
-/// `calendar_service_url` with the shared internal API key; Macro calls
+/// `calendar_service_url` with the shared internal API key; Rox calls
 /// attached to new events are minted through `call_service` and linked on
 /// `app_url`, the browser origin users open meetings on.
 /// `shared_event_copies` lets the agent add copies of channel-shared events.
@@ -551,7 +551,7 @@ pub fn build_calendar_tool_context(
 pub type ToolBookingLinkService = calendar_scheduling::domain::service::Service<
     calendar_scheduling::outbound::postgres::PostgresRepository,
     (),
-    calendar_scheduling::outbound::macro_services::MacroDirectory<ToolTeamService>,
+    calendar_scheduling::outbound::macro_services::RoxDirectory<ToolTeamService>,
 >;
 /// Booking-link tool dependencies.
 pub type ToolBookingLinkToolContext =
@@ -565,13 +565,13 @@ pub fn build_booking_link_tool_context(
         service: Arc::new(calendar_scheduling::domain::service::Service::new(
             calendar_scheduling::outbound::postgres::PostgresRepository::new(pool.clone()),
             (),
-            calendar_scheduling::outbound::macro_services::MacroDirectory(TeamRepositoryImpl::new(
+            calendar_scheduling::outbound::macro_services::RoxDirectory(TeamRepositoryImpl::new(
                 pool,
             )),
         )),
         public_origin: match environment {
-            macro_env::Environment::Production => "https://macro.com",
-            macro_env::Environment::Develop => "https://dev.macro.com",
+            macro_env::Environment::Production => "https://rox.one",
+            macro_env::Environment::Develop => "https://dev.rox.one",
             macro_env::Environment::Local => "",
         }
         .into(),
@@ -592,8 +592,8 @@ pub fn build_booking_management_tool_context(
     calendar_scheduling::inbound::toolset::BookingManagementToolContext {
         service: Arc::new(calendar_scheduling::outbound::administration_client::SchedulingAdministrationClient::new(calendar_url.to_string(), internal_api_key)),
         public_origin: match environment {
-            macro_env::Environment::Production => "https://macro.com",
-            macro_env::Environment::Develop => "https://dev.macro.com",
+            macro_env::Environment::Production => "https://rox.one",
+            macro_env::Environment::Develop => "https://dev.rox.one",
             macro_env::Environment::Local => "",
         }.into(),
     }
@@ -679,7 +679,7 @@ pub fn build_pipeline_tool_context(
 }
 
 /// CRM CSV imports and exports over the pipeline workflows, the CRM's
-/// records and Macro documents.
+/// records and Rox documents.
 pub type ToolCrmTransferService = crm::domain::crm_transfer::CrmTransferServiceImpl<
     ToolPipelineWorkflows,
     crm::domain::crm_transfer::CrmTransferRecords<ToolCrmService, ToolEntityAccessService>,
@@ -1599,13 +1599,13 @@ pub type ToolChatToolContext = ChatToolContext<ToolChatService, ToolEntityAccess
 
 /// What an imported document holds.
 pub(crate) enum ImportedContent {
-    /// Macro markdown.
+    /// Rox markdown.
     Markdown(String),
     /// A Notion page, converted by lexical-service.
     Notion(documents::domain::notion_markdown::NotionMarkdown),
 }
 
-/// Creates the Macro entities the import pipeline's fixed mapping calls for
+/// Creates the Rox entities the import pipeline's fixed mapping calls for
 /// (linear → task, notion → md, slack → channel), reusing the same document
 /// creator and channel service the other AI tools run on. Task system
 /// properties (status, priority, due date, assignee) and channel teammate
@@ -2074,7 +2074,7 @@ impl import::domain::ports::EntityCreator for ToolEntityCreator {
     }
 }
 
-/// The connector backends (Pipedream, plus Macro Connect when configured):
+/// The connector backends (Pipedream, plus Rox Connect when configured):
 /// `None` on deployments where Pipedream isn't configured (its toolsets then
 /// come up empty).
 pub type ToolPipedreamConnection =
@@ -2312,7 +2312,7 @@ impl FromRef<ToolServiceContext> for ToolDocumentToolContext {
 
 impl ToolServiceContext {
     /// Run the mutating tools as `actor`, delegated for the requesting user,
-    /// instead of the default Macro AI bot. Hosts running a specific agent
+    /// instead of the default Rox AI bot. Hosts running a specific agent
     /// call this once when they build the context for that agent's session.
     pub fn with_actor(mut self, actor: bot_id::BotId) -> Self {
         self.document_tool_context = self.document_tool_context.with_actor(actor);
@@ -2332,8 +2332,8 @@ impl ToolServiceContext {
 
     /// Run the tools for `caller`, as the public MCP authenticated it: an
     /// agent writes as itself, under its own name; an MCP client writes as the
-    /// Macro bot with its name on the post, shown as the author ("Claude Code ·
-    /// Agent"); a pasted API key writes as the Macro bot.
+    /// Rox bot with its name on the post, shown as the author ("Claude Code ·
+    /// Agent"); a pasted API key writes as the Rox bot.
     pub async fn for_caller(self, caller: &ai_toolset::ToolCaller) -> Self {
         match caller {
             ai_toolset::ToolCaller::Agent(agent) => {

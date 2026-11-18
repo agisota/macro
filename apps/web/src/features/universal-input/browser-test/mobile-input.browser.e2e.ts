@@ -206,7 +206,7 @@ test('uses live global search filters on mobile and opens a filtered hit directl
   await expect(results.getByRole('option')).toHaveCount(1);
   await expect(results).toContainText('Julia shared the budget');
   await expect(page.getByTestId('global-search-requests')).toContainText(
-    '"sender_ids":["macro|julia@macro.com"]'
+    '"sender_ids":["macro|julia@rox.one"]'
   );
   await expect(page.getByTestId('global-search-requests')).toContainText(
     '"channel_ids":["sales-channel"]'

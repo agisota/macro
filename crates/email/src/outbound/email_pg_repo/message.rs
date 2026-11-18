@@ -172,9 +172,9 @@ pub(super) async fn attachments_by_message_ids(
         WHERE ea.message_id = ANY($1)
             AND (message.is_sent OR (
                 NOT EXISTS (SELECT 1 FROM email_draft_attachment_removals r WHERE r.message_id = message.id AND (r.provider_id = ea.provider_attachment_id OR trim(both '<>' from r.content_id) = trim(both '<>' from ea.content_id)))
-                AND NOT EXISTS (SELECT 1 FROM email_attachments_drafts d WHERE d.draft_id = message.id AND trim(both '<>' from ea.content_id) = COALESCE(trim(both '<>' from d.content_id),d.id::text || '@attachments.macro.com'))
+                AND NOT EXISTS (SELECT 1 FROM email_attachments_drafts d WHERE d.draft_id = message.id AND trim(both '<>' from ea.content_id) = COALESCE(trim(both '<>' from d.content_id),d.id::text || '@attachments.rox.one'))
                 AND NOT EXISTS (SELECT 1 FROM email_attachments_fwd f JOIN email_attachments original ON original.id = f.attachment_id
-                    WHERE f.message_id = message.id AND (trim(both '<>' from ea.content_id) = f.attachment_id::text || '@attachments.macro.com' OR trim(both '<>' from ea.content_id) = trim(both '<>' from original.content_id)))))
+                    WHERE f.message_id = message.id AND (trim(both '<>' from ea.content_id) = f.attachment_id::text || '@attachments.rox.one' OR trim(both '<>' from ea.content_id) = trim(both '<>' from original.content_id)))))
         ORDER BY ea.message_id, ea.filename NULLS LAST
         "#,
         message_ids,

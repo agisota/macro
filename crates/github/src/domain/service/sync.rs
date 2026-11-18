@@ -561,7 +561,7 @@ impl<
     }
 
     /// Create or refresh foreign entity rows for a pull request, scoped to the
-    /// Macro source (team or user) associated with the GitHub App installation.
+    /// Rox source (team or user) associated with the GitHub App installation.
     #[tracing::instrument(skip(self, event))]
     async fn upsert_pull_request_foreign_entities(
         &self,
@@ -857,7 +857,7 @@ impl<
             .ok();
     }
 
-    /// Update task statuses for all resolved task doc IDs, crediting the Macro
+    /// Update task statuses for all resolved task doc IDs, crediting the Rox
     /// user linked to the webhook sender (for a merge, the person who merged).
     #[tracing::instrument(skip(self, event, doc_ids))]
     async fn update_task_statuses(
@@ -1127,7 +1127,7 @@ impl<
 
         // The state is a bearer token carried through GitHub in a URL, so it
         // must not be honored on signature and expiry alone: require the
-        // GitHub account completing the flow to be linked to the Macro user
+        // GitHub account completing the flow to be linked to the Rox user
         // the state was minted for. This stops a leaked or attacker-minted
         // state from binding someone else's installation to a foreign source.
         let github_user_id = self
@@ -1217,8 +1217,8 @@ fn dedupe_task_ids(task_ids: Vec<MacroTaskId>) -> Vec<MacroTaskId> {
 /// Creates a macro task comment given the document name and id
 fn create_macro_task_comment_link(name: &str, id: &str) -> String {
     let url = match macro_env::Environment::new_or_prod() {
-        macro_env::Environment::Production => "https://macro.com/app/task",
-        macro_env::Environment::Develop => "https://dev.macro.com/app/task",
+        macro_env::Environment::Production => "https://rox.one/app/task",
+        macro_env::Environment::Develop => "https://dev.rox.one/app/task",
         macro_env::Environment::Local => {
             let port = FrontendPort::new()
                 .map(|port| port.to_string())

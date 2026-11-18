@@ -20,14 +20,13 @@ from livekit.agents import (
     JobProcess,
     StopResponse,
     cli,
-    inference,
     llm,
     room_io,
     stt as stt_pkg,
     utils,
     WorkerOptions,
 )
-from livekit.plugins import silero
+from livekit.plugins import groq, silero
 
 # `resemblyzer` imports `webrtcvad`, which currently emits a noisy setuptools
 # `pkg_resources` deprecation warning once per worker process. It is not
@@ -42,10 +41,18 @@ from resemblyzer import VoiceEncoder, preprocess_wav
 
 load_dotenv()
 
-logger = logging.getLogger("macro-transcriber")
+logger = logging.getLogger("rox-transcriber")
 
 MACRO_API_URL = os.environ.get("MACRO_API_URL", "http://localhost:8080")
 INTERNAL_CALL_SECRET = os.environ.get("INTERNAL_CALL_SECRET", "")
+GROQ_STT_MODEL = "whisper-large-v3-turbo"
+GROQ_DEFAULT_API_BASE = "https://api.groq.com/openai/v1"
+
+
+def groq_api_base() -> str:
+    """Groq OpenAI-compatible base. `GROQ_API_BASE` overrides the public address."""
+    base = os.environ.get("GROQ_API_BASE", "").strip()
+    return base or GROQ_DEFAULT_API_BASE
 
 # Cosine distance threshold for in-call Resemblyzer speaker clustering.
 # Lower = stricter / more new diarized ids; higher = looser / more reuse.
@@ -159,23 +166,12 @@ class Transcriber(Agent):
     ):
         super().__init__(
             instructions="Transcribe user speech.",
-            stt=inference.STT(
-                "deepgram/nova-3",
-                language="multi",
-                extra_kwargs={
-                    # ms of silence before Deepgram finalizes an utterance.
-                    # Library default is 25ms, which cuts hesitant speakers mid-thought.
-                    "endpointing": 400,
-                    "smart_format": False,
-                    "punctuate": True,
-                    "filler_words": True,
-                    "numerals": True,
-                    "interim_results": True,
-                    "no_delay": True,
-                    # Keep provider speaker labels as a fallback for very short
-                    # turns where Resemblyzer cannot produce a stable embedding.
-                    "diarize": True,
-                },
+            stt=groq.STT(
+                model=GROQ_STT_MODEL,
+                base_url=groq_api_base(),
+                # Meetings are not pinned to English. The plugin reads
+                # GROQ_API_KEY itself; the key is never passed here.
+                detect_language=True,
             ),
         )
         self.participant_identity = participant_identity
@@ -606,7 +602,7 @@ if __name__ == "__main__":
         WorkerOptions(
             entrypoint_fnc=entrypoint,
             prewarm_fnc=prewarm,
-            agent_name="macro-transcriber",
+            agent_name="rox-transcriber",
             # Each prewarmed process loads Silero + Resemblyzer and is expected
             # to sit around ~3 GiB RSS. Keep fewer warm processes and raise the
             # warning threshold so healthy workers do not spam logs every 5s.

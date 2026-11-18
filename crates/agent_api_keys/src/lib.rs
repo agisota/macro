@@ -3,7 +3,7 @@
 //!
 //! An in-memory agent on an Anthropic or OpenAI model can have one key, for
 //! its model's provider. While the agent still fits the key and its owner is
-//! on a paid plan, every turn of the agent runs on the key instead of Macro's
+//! on a paid plan, every turn of the agent runs on the key instead of Rox's
 //! allowance, and usage on it is recorded against the key without counting.
 //!
 //! Keys live in `agent_api_keys`, one row per agent, encrypted with the

@@ -26,7 +26,7 @@ function mentionUser(bot: Bot, offline: boolean): IUser {
  * a connection prompt in the thread when setup is needed. The built-in
  * Cursor entry follows the Cursor rollout flag.
  *
- * A disconnected macrod runtime is different from unfinished setup, and is
+ * A disconnected roxd runtime is different from unfinished setup, and is
  * marked: no harness is listening, so the mention would go unanswered rather
  * than prompt for anything.
  */

@@ -40,7 +40,7 @@ each run.
   /scheduled-actions/drafts`, AI drafting a routine, a step to add, or a
   change to a code step from the person's words (Draft it and the step
   boxes in the web editor). The draft runs in a hidden agent session
-  (`RoutineSessions`) of the in-process Macro agent: the person's own
+  (`RoutineSessions`) of the in-process Rox agent: the person's own
   (source `user`, origin `requested`) but hidden, a background session
   (`AgentSession::is_background`) that notifies nobody and
   only the scheduler may delete, never counted as a routine's run. It runs
@@ -75,12 +75,12 @@ each run.
   how to use found and left items (`finding/items.md`: a trigger filter by
   id, a code step's text knob by exact name, Ask AI instructions or a
   condition by name and id; a new item the request asks for is created
-  once and used by id), the code-step guide, the catalog's code
+  once and used by id), the code-step guide, Rox's catalog code
   routines marked `example`, and the reference of the routines and `ai` areas.
   They are the same for every draft on one model with the same mix of
   code and conditions, so the agent puts them in its cached prompt prefix
   (`PrepareRoutineSession::instructions`). A code step never messages or
-  emails the routine's owner (Macro refuses a message to oneself): telling
+  emails the routine's owner (Rox refuses a message to oneself): telling
   the owner something is an Ask AI step's job. The prompt carries only the
   request, the owner and time, the found and left items, and the reference
   of the areas named, or of the commonest ones when the SDK has none of
@@ -235,7 +235,7 @@ each run.
   shape); the session's surfaces. `GET /scheduled-actions/suggestions?surface=`
   never generates: per surface, drafted routines, then catalog picks (each
   best first, a second with the same catalog title or name left out), then
-  catalog routines marked `suggest` as Macro's templates (stable ids,
+  catalog routines marked `suggest` as Rox's templates (stable ids,
   `template_id`) to `PER_SURFACE`, showing only open AI suggestions and
   skipping dismissed templates (permanent, `.../{id}/dismiss` for either
   kind) and templates saved from (`scheduled_action.suggestion_id`); its
@@ -389,7 +389,7 @@ that listener is ready. Cancellation can stop the gate before startup finishes.
   one on a self-hosted runtime. `TargetValidation` authorizes it on save
   without contacting the runtime; `RoutineSessions::prepare` reauthorizes on
   every run, and an offline runtime fails that run in its history.
-- Macro events store only ids, plus the GitHub pull request and account behind
+- Rox events store only ids, plus the GitHub pull request and account behind
   a task status change (`change_source`), and are read again, as the owner, at
   dispatch.
   GitHub deliveries can't be read again, so their event runs keep the bounded

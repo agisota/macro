@@ -3,7 +3,7 @@
 ## What it is
 
 Observability: a Cloudflare Worker that turns GoAlert outgoing webhooks into
-Macro Alerts channel posts, one thread per alert, through the Macro SDK.
+Rox Alerts channel posts, one thread per alert, through the Rox SDK.
 
 ## Start here
 

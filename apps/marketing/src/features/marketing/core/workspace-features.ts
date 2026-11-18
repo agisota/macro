@@ -36,18 +36,18 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       'A high performance, agent-native spreadsheet that works with Excel, Google Sheets and CSV.',
     heading: '@mention anything in a cell.',
     detail:
-      'It’s a normal spreadsheet: formulas, number formats, fill down, everything you’d expect from Excel or Google Sheets. The difference is it’s linked to everything else. Type @ in a cell to mention a person, a document from Macro Docs, an email from Macro Mail, or a task from Macro Tasks.',
+      'It’s a normal spreadsheet: formulas, number formats, fill down, everything you’d expect from Excel or Google Sheets. The difference is it’s linked to everything else. Type @ in a cell to mention a person, a document from Rox Docs, an email from Rox Mail, or a task from Rox Tasks.',
     sceneTitle: 'Launch budget',
     rows: [],
     message: '',
     sections: [
       {
-        title: 'Macro Agents edit the sheet, like teammates.',
+        title: 'Rox Agents edit the sheet, like teammates.',
         description:
           'Agents can edit the sheet too, including external agents like ChatGPT or Claude. Ask one to add up the spend by team, or build a forecast for next quarter, and watch its cursor move through the cells as it works. You can all collaborate in the same sheet.',
       },
       {
-        title: 'Tightly integrated with Macro CRM.',
+        title: 'Tightly integrated with Rox CRM.',
         description:
           'Mention a company or a contact in a cell, and it’s the same record you work from in your CRM. See the stage, the owner, the last email, and the next call right from the sheet, or open the record. Your customer list and your CRM stop being two things to keep in sync.',
       },
@@ -59,16 +59,16 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       {
         title: 'Bring your Excel files.',
         description:
-          'Upload an Excel workbook or CSV and choose Edit in Macro to make an editable copy. Export the workbook with its formulas and formatting, or download one sheet as CSV.',
+          'Upload an Excel workbook or CSV and choose Edit in Rox to make an editable copy. Export the workbook with its formulas and formatting, or download one sheet as CSV.',
       },
     ],
     faq: [
       {
         q: 'Will importing change the original file?',
-        a: 'No. Edit in Macro creates a separate editable copy. You can also import a workbook into an open spreadsheet as new sheets or as a replacement.',
+        a: 'No. Edit in Rox creates a separate editable copy. You can also import a workbook into an open spreadsheet as new sheets or as a replacement.',
       },
       {
-        q: 'Do Excel macros run in Macro?',
+        q: 'Do Excel macros run in Rox?',
         a: 'No. Macros are removed when you import an .xlsm file.',
       },
       {
@@ -86,7 +86,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       'Edit records together with your team and agents. Switch between tables, boards, and timelines.',
     heading: '@mention anything in a column.',
     detail:
-      'Each row is a record, and each column is a field, like text, numbers, dates, a dropdown, or a checkbox. Because it’s Macro, a column can also hold an @mention of people, tasks, documents, emails, or companies. Add another table and link the two together. Responses from Macro Forms land here as rows.',
+      'Each row is a record, and each column is a field, like text, numbers, dates, a dropdown, or a checkbox. Because it’s Rox, a column can also hold an @mention of people, tasks, documents, emails, or companies. Add another table and link the two together. Responses from Rox Forms land here as rows.',
     sceneTitle: 'Launch projects',
     rows: [],
     message: 'I added the launch tasks to the table.',
@@ -97,7 +97,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
           'Keep records in the view that makes sense for the work. Saved views are shared, so your team opens the same view of the database.',
       },
       {
-        title: 'Ask Macro Agents to edit your records.',
+        title: 'Ask Rox Agents to edit your records.',
         description:
           'Attach the database to an agent conversation to ask questions or edit records, columns, and tables. Use a routine for updates you want to happen again.',
       },
@@ -129,9 +129,9 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
     tone: 'chat',
     description:
       'Draw diagrams and plan with your team. Add shapes, notes, and images alongside live mentions of docs and tasks.',
-    heading: '@mention Macro Tasks, Macro Docs, and Macro Mail.',
+    heading: '@mention Rox Tasks, Rox Docs, and Rox Mail.',
     detail:
-      'Mention a task, a document from Macro Docs, an email, or a call directly on the canvas. Task mentions show current status and priority, and open the original when you need the details.',
+      'Mention a task, a document from Rox Docs, an email, or a call directly on the canvas. Task mentions show current status and priority, and open the original when you need the details.',
     sceneTitle: 'Website launch',
     rows: [
       'Brief → Design → Build',
@@ -158,7 +158,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       },
       {
         q: 'Can I find a canvas later?',
-        a: 'Canvases appear in unified search. You can also mention a canvas elsewhere in Macro or download it as a file.',
+        a: 'Canvases appear in unified search. You can also mention a canvas elsewhere in Rox or download it as a file.',
       },
     ],
   },
@@ -182,7 +182,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       {
         title: 'Insert snippets wherever you write.',
         description:
-          'Type ; in Macro Docs or Macro Chat to insert a saved snippet. Snippets also work in Macro Tasks, Macro Canvas text boxes, and agent instructions. Search by name and insert the snippet with its formatting intact.',
+          'Type ; in Rox Docs or Rox Chat to insert a saved snippet. Snippets also work in Rox Tasks, Rox Canvas text boxes, and agent instructions. Search by name and insert the snippet with its formatting intact.',
       },
       {
         title: 'Keep your team’s templates together.',
@@ -218,17 +218,17 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       {
         title: 'Find a time with your team.',
         description:
-          'Ask an agent in Macro Chat to find a time for the team to meet. It checks everyone’s availability and finds a time that works. Teammates who share busy blocks show when they’re busy, not what.',
+          'Ask an agent in Rox Chat to find a time for the team to meet. It checks everyone’s availability and finds a time that works. Teammates who share busy blocks show when they’re busy, not what.',
       },
       {
-        title: 'Let Macro Agents send and edit invites.',
+        title: 'Let Rox Agents send and edit invites.',
         description:
-          'Ask an agent to invite your team, move a meeting, or update the guest list, and review the details before it changes your calendar. The invite shows up right in the channel as a calendar pill, and you can @mention events anywhere in Macro.',
+          'Ask an agent to invite your team, move a meeting, or update the guest list, and review the details before it changes your calendar. The invite shows up right in the channel as a calendar pill, and you can @mention events anywhere in Rox.',
       },
       {
-        title: 'Let guests book with Macro Booking Links.',
+        title: 'Let guests book with Rox Booking Links.',
         description:
-          'Send a booking link and guests pick from your open times in their own time zone, without a Macro account. Busy times on your connected calendars are left out, and the meeting lands on your calendar with an invitation for everyone.',
+          'Send a booking link and guests pick from your open times in their own time zone, without a Rox account. Busy times on your connected calendars are left out, and the meeting lands on your calendar with an invitation for everyone.',
       },
     ],
     faq: [
@@ -242,7 +242,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       },
       {
         q: 'Can I send someone my available times?',
-        a: 'Copy your open times into a reply in Macro Mail, with your time zone included. Set working hours, or use a booking link so the other person can choose a time.',
+        a: 'Copy your open times into a reply in Rox Mail, with your time zone included. Set working hours, or use a booking link so the other person can choose a time.',
       },
       {
         q: 'Can I link an event to other work?',
@@ -250,7 +250,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       },
       {
         q: 'What happens if I disconnect?',
-        a: 'Macro removes its local calendar copy and permissions. Your calendar stays with Google or Microsoft, and email can keep syncing.',
+        a: 'Rox removes its local calendar copy and permissions. Your calendar stays with Google or Microsoft, and email can keep syncing.',
       },
     ],
   },
@@ -259,7 +259,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
     product: 'Booking links',
     title: 'Team booking links.',
     tone: 'calls',
-    description: 'Let guests book an open time. No Macro account needed.',
+    description: 'Let guests book an open time. No Rox account needed.',
     heading: 'Book one teammate or the whole team.',
     detail:
       'Find a time when everyone is free, or use round robin to book one available teammate. Set working hours, time between meetings, minimum notice, and a daily booking limit.',
@@ -305,9 +305,9 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
     tone: 'email',
     description:
       'Files from email, chat, and uploads, automatically tagged and searchable for your team and agents.',
-    heading: 'Files from Macro Chat and Macro Mail land here.',
+    heading: 'Files from Rox Chat and Rox Mail land here.',
     detail:
-      'Your files are usually split across Slack, Google Drive, and your computer. In Macro, everything shared in channels, DMs, and email attachments is siphoned into one system and organized for you automatically.',
+      'Your files are usually split across Slack, Google Drive, and your computer. In Rox, everything shared in channels, DMs, and email attachments is siphoned into one system and organized for you automatically.',
     sceneTitle: 'Launch / Files',
     rows: [
       'Website launch plan.md',
@@ -320,35 +320,35 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       {
         title: '@mention a file to share it.',
         description:
-          '@mention any file in a channel in Macro Chat and it’s shared with everyone in that channel. Join a channel, gain access. You can also mention any file to an agent, in a doc, or on a canvas.',
+          '@mention any file in a channel in Rox Chat and it’s shared with everyone in that channel. Join a channel, gain access. You can also mention any file to an agent, in a doc, or on a canvas.',
       },
       {
         title: 'Open pretty much any file type.',
         description:
-          'Photoshop, Illustrator, Figma, PowerPoint, Word, PDFs, and video: open them right in Macro, without leaving your workspace. Notes open in Macro Docs, sheets in Macro Spreadsheets, and whiteboards in Macro Canvas.',
+          'Photoshop, Illustrator, Figma, PowerPoint, Word, PDFs, and video: open them right in Rox, without leaving your workspace. Notes open in Rox Docs, sheets in Rox Spreadsheets, and whiteboards in Rox Canvas.',
       },
       {
-        title: 'Macro Agents can read everything in Drive.',
+        title: 'Rox Agents can read everything in Drive.',
         description:
           'Just ask a question and get an answer from your files. @mention files yourself, or let the agent search your Drive for what it needs. It’s available to your own agents over MCP too, like Claude and ChatGPT, with full-text search.',
       },
       {
-        title: 'Folders and Macro Databases, side by side.',
+        title: 'Folders and Rox Databases, side by side.',
         description:
           'Folders are good for compatibility and sharing, and databases are good when you want to track and sort things by their properties. Drag files onto a folder to upload them, and narrow any list by type, tag, or creator.',
       },
       {
-        title: 'Auto-organized with Macro Tags.',
+        title: 'Auto-organized with Rox Tags.',
         description:
           'Files are tagged by customer, project, or topic as they arrive, with the same tags you use on emails and tasks. Filter Drive by a tag to pull up everything for a customer, wherever it came from.',
       },
       {
-        title: 'Files show up on Macro CRM records.',
+        title: 'Files show up on Rox CRM records.',
         description:
-          'Every file a customer sends is on their company record, under Files, next to their emails and calls. @mention a file in Macro Tasks and it’s attached to the work it belongs to.',
+          'Every file a customer sends is on their company record, under Files, next to their emails and calls. @mention a file in Rox Tasks and it’s attached to the work it belongs to.',
       },
       {
-        title: 'Macro Skills and Macro Snippets live here too.',
+        title: 'Rox Skills and Rox Snippets live here too.',
         description:
           'Skills and snippets are documents in Drive, so you organize and share them like any other file. Keep your contract-review skill in the same folder as the contracts it reviews.',
       },
@@ -384,9 +384,9 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
     message: 'Send me the open launch blockers each morning.',
     sections: [
       {
-        title: 'Run Macro Agents when your work changes.',
+        title: 'Run Rox Agents when your work changes.',
         description:
-          'Start a routine when email arrives in Macro Mail, a task changes in Macro Tasks, or a call ends in Macro Calls. A call-ended routine gets the participants and transcript, so it can work from what was discussed.',
+          'Start a routine when email arrives in Rox Mail, a task changes in Rox Tasks, or a call ends in Rox Calls. A call-ended routine gets the participants and transcript, so it can work from what was discussed.',
       },
       {
         title: 'Review what each agent run did.',
@@ -434,14 +434,14 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
     message: 'Use /release-notes to draft this week’s update.',
     sections: [
       {
-        title: 'Tell Macro Agents when to use it.',
+        title: 'Tell Rox Agents when to use it.',
         description:
           'Give the skill a clear name and describe when it should and shouldn’t be used. Agents can find a matching skill themselves, or you can attach one from the / menu.',
       },
       {
         title: 'Edit a skill like a document.',
         description:
-          'Skills are documents in Macro Drive. Share them like any other document so your team can maintain the same instructions.',
+          'Skills are documents in Rox Drive. Share them like any other document so your team can maintain the same instructions.',
       },
     ],
     faq: [
@@ -455,7 +455,7 @@ export const workspaceFeatures: Record<string, WorkspaceFeature> = {
       },
       {
         q: 'Can other agents use my skills?',
-        a: 'Agents connected through Macro’s MCP server can list, search, and read skills they have access to.',
+        a: 'Agents connected through Rox’s MCP server can list, search, and read skills they have access to.',
       },
     ],
   },

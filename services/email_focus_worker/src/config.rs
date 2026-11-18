@@ -6,8 +6,8 @@ pub use macro_env::Environment;
 use macro_env_var::{env_vars, maybe_env_vars};
 
 env_vars! {
-    /// The connection URL for the Macro database.
-    pub struct MacroDbUrl;
+    /// The connection URL for the Rox database.
+    pub struct RoxDbUrl;
     /// Comma-separated Kafka bootstrap servers for the macro event broker.
     pub struct KafkaBrokers;
     /// PostHog project key: names the project whose flag definitions the
@@ -30,8 +30,8 @@ pub struct Config {
     /// The environment we are in.
     #[macro_config_default(Environment::new_or_prod())]
     pub environment: Environment,
-    /// The connection URL for the Macro database.
-    pub macro_db_url: MacroDbUrl,
+    /// The connection URL for the Rox database.
+    pub macro_db_url: RoxDbUrl,
     /// Kafka bootstrap servers; the worker reads `macro.email`.
     pub kafka_brokers: KafkaBrokers,
     /// Authenticates the worker's pushes to the connection gateway.

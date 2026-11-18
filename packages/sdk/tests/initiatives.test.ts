@@ -7,7 +7,7 @@ const initiativeId = '01a17930-ca75-7cd0-97e5-233140b4e491';
 const otherId = '01a1793c-85f8-7961-885a-1718b0f00de5';
 const rootId = '01a19e94-0140-7500-b685-6089ecb38db1';
 const replyId = '01a19e94-0140-7500-b685-6089ecb38db2';
-const userId = 'macro|owner@macro.com';
+const userId = 'macro|owner@rox.one';
 
 afterEach(() => {
   globalThis.fetch = originalFetch;

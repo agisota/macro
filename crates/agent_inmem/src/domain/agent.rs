@@ -1,6 +1,6 @@
 //! The agent side of ACP, served over an in-process channel.
 //!
-//! One agent task serves one Macro session ([`RuntimeAttachment::solo`] on
+//! One agent task serves one Rox session ([`RuntimeAttachment::solo`] on
 //! the harness side), so the surface is small: `initialize`, `session/new`
 //! or `session/resume`, `session/prompt`, `session/set_config_option`, and
 //! `session/cancel`. Prompts run through the [`TurnEngine`] and stream back
@@ -123,7 +123,7 @@ struct TurnInput {
 
 /// Everything one agent task serves its session from.
 pub struct AgentState {
-    /// The Macro session this agent runs.
+    /// The Rox session this agent runs.
     pub session_id: AgentSessionId,
     /// The session's owner; turns run on their behalf.
     pub owner: Owner,
@@ -138,7 +138,7 @@ pub struct AgentState {
     /// Current model permissions for the trusted session owner.
     pub model_access: Arc<dyn InMemModelAccess>,
     /// Agents' own API keys, which the session's agent's turns run on
-    /// instead of the owner's Macro allowance when it has a usable one.
+    /// instead of the owner's Rox allowance when it has a usable one.
     pub agent_keys: Arc<dyn AgentKeys>,
     /// Conversation state, shared with the manager so it survives reattach.
     pub store: Arc<SessionStore>,
@@ -324,7 +324,7 @@ impl AgentState {
 
     /// The agent's own key this turn runs on, decrypted for it, if the
     /// session's agent has a usable one. A key for a provider other than
-    /// `model`'s refuses the turn rather than quietly billing Macro.
+    /// `model`'s refuses the turn rather than quietly billing Rox.
     async fn turn_agent_key(&self, model: &str) -> Result<Option<UsableAgentKey>, AcpError> {
         let (Some(bot), Some(user)) = (self.agent_bot(), self.owner.as_user()) else {
             return Ok(None);
@@ -446,7 +446,7 @@ struct AcpUserInputRequester {
 }
 
 /// The key under `_meta.macro` naming the user tool an elicitation reviews,
-/// so a Macro client can render the tool's own composer instead of the form.
+/// so a Rox client can render the tool's own composer instead of the form.
 const USER_TOOL_META_KEY: &str = "userTool";
 
 /// The custom property type carrying the whole edited draft as a JSON string
@@ -459,7 +459,7 @@ impl UserToolReviewer for AcpUserInputRequester {
         let _waiting = self.awaiting.begin();
         let scope = ElicitationSessionScope::new(self.session_id.clone())
             .tool_call_id(ToolCallId::new(request.tool_call_id.as_str()));
-        // The name lets a Macro client pick the tool's composer; the draft
+        // The name lets a Rox client pick the tool's composer; the draft
         // rides along so the fold has it even when the call the review is
         // scoped to is not one it opened.
         let mut ours = serde_json::Map::new();
@@ -505,7 +505,7 @@ impl UserToolReviewer for AcpUserInputRequester {
 
 /// A review form as ACP's restricted schema. Fields are the draft's flat
 /// arguments with their current values as defaults; the draft field is the
-/// `_macro/json` extension a Macro client fills from its own composer.
+/// `_macro/json` extension a Rox client fills from its own composer.
 fn review_form_schema(form: &ReviewForm) -> ElicitationSchema {
     let mut schema = ElicitationSchema::new().title(form.title.clone());
     for field in &form.fields {
@@ -973,7 +973,7 @@ async fn run_turn(
         .map(|session| session.model.clone())
         .unwrap_or_default();
     // An agent with its own usable key runs every turn on it, never on the
-    // owner's allowance; one without runs on Macro usage.
+    // owner's allowance; one without runs on Rox usage.
     let agent_key = tokio::select! {
         biased;
         _ = cancel.cancelled() => return Ok(StopReason::Cancelled),
@@ -1496,7 +1496,7 @@ fn tool_title(name: &str, mcp: Option<&McpInfo>) -> String {
         .unwrap_or_else(|| name.to_owned())
 }
 
-/// A coarse [`ToolKind`] for a Macro tool name, for client iconography only.
+/// A coarse [`ToolKind`] for a Rox tool name, for client iconography only.
 fn tool_kind(name: &str) -> ToolKind {
     let name = name.to_ascii_lowercase();
     if name.contains("search") {

@@ -70,7 +70,7 @@ vi.mock('@queries/harnesses/harnesses', () => ({
 const harness = (overrides: Partial<Harness> = {}): Harness => ({
   allow_permission_bypass: false,
   id: '0198a4cc-e138-7670-a308-a6b766602732',
-  kind: 'macrod',
+  kind: 'roxd',
   name: 'Mac mini',
   owner: { type: 'user', user_id: 'macro|owner@x.test' },
   access: 'owner',

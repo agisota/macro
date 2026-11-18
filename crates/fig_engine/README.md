@@ -304,7 +304,7 @@ offset, and id) are read into `Props`, edited with `Op::SetExports`,
 `Op::SetLayoutGrids`, and `Op::SetGuides` (`edit::flags::EXPORTS`,
 `LAYOUT_GRIDS`, `GUIDES`), shared like every other field, and saved over the
 record's own entries, so fields the engine does not model (a preset's color
-profile, variables bound to a grid's values) survive. Designs made in Macro
+profile, variables bound to a grid's values) survive. Designs made in Rox
 before these fields existed get Figma's types, by name, when an edit needs
 them. Grids and guides are never drawn by the renderer or exports;
 `inspect::layout_aids` hands them to the canvas overlay.

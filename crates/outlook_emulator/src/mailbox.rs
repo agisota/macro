@@ -267,7 +267,7 @@ pub(crate) struct Change {
     pub(crate) etag: String,
 }
 
-/// The delegated permissions a seeded mailbox has already granted Macro:
+/// The delegated permissions a seeded mailbox has already granted Rox:
 /// the ones a mail and calendar consent asks for.
 pub(crate) const SEEDED_SCOPES: [&str; 7] = [
     "User.Read",

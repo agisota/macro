@@ -48,7 +48,7 @@ const harnessesQueryOptions = queryOptions({
 });
 
 /**
- * The macrod harnesses registered for the signed-in user (and their team).
+ * The roxd harnesses registered for the signed-in user (and their team).
  * Refetched on a short interval so the connected indicator tracks the daemon
  * heartbeat without a manual refresh.
  */

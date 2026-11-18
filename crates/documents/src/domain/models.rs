@@ -110,7 +110,7 @@ pub struct TeamTaskNumber {
     pub task_num: i32,
 }
 
-/// What names a task outside Macro: its title, short id, and team number.
+/// What names a task outside Rox: its title, short id, and team number.
 #[derive(Eq, PartialEq, Debug, Clone)]
 pub struct TaskIdentity {
     /// The task document id.
@@ -483,6 +483,8 @@ pub enum FileTypeUpdate {
 
 /// Arguments for editing a document in the repository.
 pub struct EditDocumentRepoArgs {
+    /// Authenticated actor, used only for the credential-free audit row.
+    pub actor_id: String,
     /// The document ID to edit.
     pub document_id: String,
     /// New document name (None = no change).

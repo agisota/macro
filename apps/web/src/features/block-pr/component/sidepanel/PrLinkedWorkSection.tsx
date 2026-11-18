@@ -21,7 +21,7 @@ import { useAgentSessionLabel } from './PrAgentSessionsSection';
 function LinkRow(props: {
   icon?: Component<{ class?: string }>;
   leading?: JSX.Element;
-  /** The item to open, or a handler for one that opens outside Macro. */
+  /** The item to open, or a handler for one that opens outside Rox. */
   content: SplitContent | (() => void);
   children: JSX.Element;
   class?: string;
@@ -64,7 +64,7 @@ function SessionOriginRow(props: { origin: PrOrigin; sessionId: string }) {
 }
 
 /**
- * Where the pull request was started: the Macro agent session by name, the
+ * Where the pull request was started: the Rox agent session by name, the
  * external session link, or just the tool when nothing links to it.
  */
 function OriginRow(props: { origin: PrOrigin }) {

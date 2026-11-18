@@ -24,7 +24,7 @@ pub struct MacroAuthJwtValidator {
 }
 
 impl MacroAuthJwtValidator {
-    /// Create a validator with resolved Macro authentication configuration.
+    /// Create a validator with resolved Rox authentication configuration.
     pub fn new(jwt_validation_args: JwtValidationArgs) -> Self {
         Self {
             jwt_validation_args,

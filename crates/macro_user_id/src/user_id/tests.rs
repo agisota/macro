@@ -5,7 +5,7 @@ use super::*;
 #[test]
 fn it_should_parse() {
     let valid_emails = [
-        "macro|sean@macro.com",
+        "macro|sean@rox.one",
         "macro|sean+testing.thing@example.gc.ca",
         "macro|###hello###+weird@something-strange.world.tour",
     ];
@@ -20,13 +20,13 @@ fn it_should_parse() {
 #[test]
 fn it_should_fail() {
     let invalid_emails = [
-        "macro|sean@macro.com ",
-        "macro| sean@macro.com",
-        "macro|sean@macro.com\n",
-        "macro|\nsean@macro.com",
-        "macro|sean..aye@macro.com",
-        "macro|sean@@macro.com",
-        "schmacro|sean@macro.com",
+        "macro|sean@rox.one ",
+        "macro| sean@rox.one",
+        "macro|sean@rox.one\n",
+        "macro|\nsean@rox.one",
+        "macro|sean..aye@rox.one",
+        "macro|sean@@rox.one",
+        "schmacro|sean@rox.one",
     ];
     invalid_emails
         .iter()
@@ -96,22 +96,22 @@ fn casing_ignored_for_email() {
 
 #[test]
 fn debug_output_is_simple_string() {
-    let id = MacroUserId::parse_from_str("macro|hutch@macro.com").unwrap();
-    assert_eq!(format!("{:?}", id), "macro|hutch@macro.com");
+    let id = MacroUserId::parse_from_str("macro|hutch@rox.one").unwrap();
+    assert_eq!(format!("{:?}", id), "macro|hutch@rox.one");
 
-    let id_str = MacroUserIdStr::parse_from_str("macro|hutch@macro.com").unwrap();
-    assert_eq!(format!("{:?}", id_str), "macro|hutch@macro.com");
+    let id_str = MacroUserIdStr::parse_from_str("macro|hutch@rox.one").unwrap();
+    assert_eq!(format!("{:?}", id_str), "macro|hutch@rox.one");
 }
 
 #[test]
 fn macro_com_users_are_staff() {
-    let id = MacroUserIdStr::parse_from_str("macro|teo@macro.com").unwrap();
+    let id = MacroUserIdStr::parse_from_str("macro|teo@rox.one").unwrap();
     assert!(id.is_macro_staff());
 }
 
 #[test]
 fn macro_com_plus_aliases_are_staff() {
-    let id = MacroUserIdStr::parse_from_str("macro|teo+notify@macro.com").unwrap();
+    let id = MacroUserIdStr::parse_from_str("macro|teo+notify@rox.one").unwrap();
     assert!(id.is_macro_staff());
 }
 

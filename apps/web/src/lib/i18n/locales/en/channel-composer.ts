@@ -9,7 +9,7 @@ export default {
   newPoll: 'New poll',
   newForm: 'New form',
   newDocument: 'New document',
-  askMacro: 'Ask Macro',
+  askMacro: 'Ask Rox',
   joinCall: 'Join call',
   startCall: 'Start a call',
 };

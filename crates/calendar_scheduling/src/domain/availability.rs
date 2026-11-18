@@ -88,7 +88,7 @@ pub fn validate_profile(profile: &Profile, team: bool) -> Result<(), Error> {
             return invalid("Scheduling type does not match the profile");
         }
         if event.macro_call && event.google_meet {
-            return invalid("Choose either a Macro call or Google Meet");
+            return invalid("Choose either a Rox call or Google Meet");
         }
         if event.questions.len() > 20
             || event

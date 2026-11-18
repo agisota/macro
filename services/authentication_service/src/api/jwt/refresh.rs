@@ -23,7 +23,7 @@ use model::response::UserTokensResponse;
 use std::{sync::Arc, time::Duration};
 use tower_cookies::Cookies;
 
-/// Minimum age of a token without the Macro claims before it is refreshed. A newer one most
+/// Minimum age of a token without the Rox claims before it is refreshed. A newer one most
 /// likely came from a refresh whose populate lambda just failed, and while the lambda keeps
 /// failing, every client retry (websocket reconnects refresh on each attempt) would otherwise be
 /// another FusionAuth refresh and lambda run.
@@ -73,7 +73,7 @@ impl IntoResponse for RefreshError {
             (status = 200, body = UserTokensResponse),
             (status = 400, body=String),
             (status = 401, body=String),
-            (status = 429, body=String, description = "Refresh already in progress for this user, or the access token lacks the Macro claims and was issued too recently to refresh"),
+            (status = 429, body=String, description = "Refresh already in progress for this user, or the access token lacks the Rox claims and was issued too recently to refresh"),
             (status = 500, body=String),
         )
     )]
@@ -94,7 +94,7 @@ pub async fn handler(
             }));
         }
         Err(MacroAuthError::JwtExpired) => {}
-        // FusionAuth issues the token without the Macro claims when the JWT populate lambda
+        // FusionAuth issues the token without the Rox claims when the JWT populate lambda
         // fails; refreshing runs the lambda again.
         Err(e) => {
             match validate_fusionauth_access_token_allow_expired(&token_context.access_token, &jwt)

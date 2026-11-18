@@ -148,7 +148,7 @@ enum EventContent {
     Document {
         document: DocumentBasic,
         properties: Vec<EntityPropertyInfo>,
-        /// Body of Macro's own documents, when lexical could render it.
+        /// Body of Rox's own documents, when lexical could render it.
         markdown: Option<String>,
     },
     /// The ended call; None once its record has been deleted.
@@ -193,7 +193,7 @@ where
             EventAccessCapability::GithubInstallation { .. } => match event.source() {
                 EventSource::Github(delivery) => Ok(EventContent::Github(delivery.clone())),
                 EventSource::Entity { .. } => Err(rootcause::report!(
-                    "an external capability was minted for a Macro event"
+                    "an external capability was minted for a Rox event"
                 )),
             },
         }
@@ -311,7 +311,7 @@ where
             .get_entity_properties(receipt)
             .await
             .map_err(|error| Report::new(error).into_dynamic())?;
-        // Lexical renders only Macro's own documents; tasks are among them.
+        // Lexical renders only Rox's own documents; tasks are among them.
         // The body is an excerpt: without it, the name and properties remain.
         let markdown = if document.file_type.as_deref() == Some(MARKDOWN_FILE_TYPE) {
             self.markdown
@@ -378,11 +378,11 @@ fn content_json(event: &EventReference, content: &EventContent) -> Value {
     }
 }
 
-/// The Macro entity a Macro event names.
+/// The Rox entity a Rox event names.
 fn entity_id(event: &EventReference) -> Result<Uuid, Report> {
     event
         .entity_id()
-        .ok_or_else(|| rootcause::report!("a Macro event without its entity"))
+        .ok_or_else(|| rootcause::report!("a Rox event without its entity"))
 }
 
 fn github_json(delivery: &GithubWebhookReceived) -> Value {

@@ -14,13 +14,13 @@ use mcp_toolset::RemoteMcpToolSet;
 #[cfg(test)]
 mod test;
 
-/// The name the harness gives Macro's own MCP server in the ACP list.
+/// The name the harness gives Rox's own MCP server in the ACP list.
 ///
 /// Restated from `agent_harness::MACRO_MCP_NAME` rather than imported - this
 /// crate is a runtime the harness drives, not a dependant of it - and pinned
-/// equal by a test in the composition root, which sees both. Macro's tools are
+/// equal by a test in the composition root, which sees both. Rox's tools are
 /// native here (see [`ai_tools::all_tools`]), so the entry is skipped: dialing
-/// it would give the model every Macro tool twice.
+/// it would give the model every Rox tool twice.
 pub const MACRO_MCP_NAME: &str = "macro";
 
 /// The name the harness gives its internal MCP server (code mode, reviews),
@@ -29,7 +29,7 @@ pub const MACRO_MCP_NAME: &str = "macro";
 pub const MACRO_INTERNAL_MCP_NAME: &str = "macro_internal";
 
 /// The servers this runtime should dial out of an ACP server list: HTTP
-/// entries other than Macro's own, each name once. SSE and stdio entries are
+/// entries other than Rox's own, each name once. SSE and stdio entries are
 /// not something an in-process runtime can serve and are dropped with a
 /// warning.
 ///

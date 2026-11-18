@@ -31,9 +31,9 @@ use sqlx::PgPool;
 use std::sync::Arc;
 use uuid::Uuid;
 
-const OWNER: &str = "macro|pipeline-owner@macro.com";
-const MEMBER: &str = "macro|pipeline-member@macro.com";
-const OUTSIDER: &str = "macro|pipeline-outsider@macro.com";
+const OWNER: &str = "macro|pipeline-owner@rox.one";
+const MEMBER: &str = "macro|pipeline-member@rox.one";
+const OUTSIDER: &str = "macro|pipeline-outsider@rox.one";
 type Access = EntityAccessServiceImpl<PgAccessRepository>;
 type DatabaseService = PgDatabasesService<NoOpTableEventPublisher, NoopMacroEventBroker, Access>;
 type Service = PipelineServiceImpl<
@@ -1104,7 +1104,7 @@ async fn queried_rows_filter_and_sort_before_paging_and_retain_hidden_records(po
 
 /// A user no other test shares, so cached source ids cannot leak across tests.
 async fn fresh_user(pool: &PgPool, team: Option<Uuid>) -> String {
-    let id = format!("macro|sharing-{}@macro.com", Uuid::now_v7());
+    let id = format!("macro|sharing-{}@rox.one", Uuid::now_v7());
     let uid = Uuid::now_v7();
     sqlx::query!(
         "INSERT INTO macro_user (id, username, email, stripe_customer_id) VALUES ($1,$2,$2,$2)",

@@ -35,11 +35,11 @@ const FollowupDemo = lazy(loadFollowup);
 const faqItems = [
   {
     q: 'How do I start using CRM?',
-    a: 'Open Customers in Macro. Your team needs CRM enabled; a new team can enable it from CRM settings. You can then add companies, contacts, and pipelines.',
+    a: 'Open Customers in Rox. Your team needs CRM enabled; a new team can enable it from CRM settings. You can then add companies, contacts, and pipelines.',
   },
   {
     q: 'How are companies and contacts added?',
-    a: 'Macro creates company and contact records from your team’s primary connected email accounts. You can also add records manually or import a CSV. Personal email domains do not become companies.',
+    a: 'Rox creates company and contact records from your team’s primary connected email accounts. You can also add records manually or import a CSV. Personal email domains do not become companies.',
   },
   {
     q: 'Can I track deals in a board or table?',
@@ -47,7 +47,7 @@ const faqItems = [
   },
   {
     q: 'What does automatic enrichment add?',
-    a: 'Macro uses a company’s domain to add public company information. Deal details such as stage, owner, and revenue come from you or your agents.',
+    a: 'Rox uses a company’s domain to add public company information. Deal details such as stage, owner, and revenue come from you or your agents.',
   },
   {
     q: 'What customer context can my agent use?',
@@ -55,7 +55,7 @@ const faqItems = [
       <>
         Agents can read accessible customer emails, calls, chats, files, and
         tasks to draft follow-ups and identify next steps. They can also update
-        CRM fields. See <a href="/agents">Macro Agents</a> or{' '}
+        CRM fields. See <a href="/agents">Rox Agents</a> or{' '}
         <a href="/docs/AI/mcp/overview">connect an AI client through MCP</a>.
       </>
     ),
@@ -82,7 +82,7 @@ const faqItems = [
     q: 'Where can I check pricing and CRM access?',
     a: (
       <>
-        See <a href="/pricing">Macro’s current plans and limits</a>. If you need
+        See <a href="/pricing">Rox’s current plans and limits</a>. If you need
         help enabling CRM for your team,{' '}
         <a href={DEMO_BOOKING_URL}>talk to us</a>.
       </>
@@ -92,7 +92,7 @@ const faqItems = [
 
 export function RouteCrm() {
   setPageSeo({
-    title: 'Macro CRM — Hands-free CRM',
+    title: 'Rox CRM — Hands-free CRM',
     description:
       'CRM is built into the core workspace. It updates automatically and is always one block away, alongside email, tasks, docs, and channels.',
     path: '/crm',
@@ -102,7 +102,7 @@ export function RouteCrm() {
       <ProductHero
         product="CRM"
         title="CRM that keeps itself up to date."
-        description="Macro CRM stays up to date from your email and team chat. No separate tool to maintain."
+        description="Rox CRM stays up to date from your email and team chat. No separate tool to maintain."
         cta="crm_hero_get_started"
         tutorial="crm"
       />
@@ -112,7 +112,7 @@ export function RouteCrm() {
           tone: 'crm',
         }}
         title="Records build and update themselves."
-        description="Most CRMs get out of date, because updating them is a chore. Macro creates records from your team’s email and enriches every one with public sources. Agents blend that with your team’s emails and calls into a summary at the top of every company."
+        description="Most CRMs get out of date, because updating them is a chore. Rox creates records from your team’s email and enriches every one with public sources. Agents blend that with your team’s emails and calls into a summary at the top of every company."
       >
         <DemoInteractionBoundary
           class="feature-page-visual"
@@ -134,7 +134,7 @@ export function RouteCrm() {
       </FeaturePageSection>
       <FeaturePageSection
         id="crm-databases"
-        title="Pipelines are just Macro Databases."
+        title="Pipelines are just Rox Databases."
         description="A pipeline is a database of companies or contacts, so it’s much more flexible than most CRMs. Add your own fields of any type, write formulas, filter and sort into saved views, and create as many pipelines as you need."
       >
         <PaperFeatureGraphic
@@ -150,8 +150,8 @@ export function RouteCrm() {
         demo={{
           tone: 'crm',
         }}
-        title="Macro Mail and Macro Calls on every record."
-        description="Open a customer email right from their record, in the same email client you already use. @mention a company or contact from a channel, a document, or a task in Macro Tasks, and the record links back to it. No separate tool your team won’t check, and no deciding who gets CRM seats."
+        title="Rox Mail and Rox Calls on every record."
+        description="Open a customer email right from their record, in the same email client you already use. @mention a company or contact from a channel, a document, or a task in Rox Tasks, and the record links back to it. No separate tool your team won’t check, and no deciding who gets CRM seats."
       >
         <span id="crm-tasks" />
         <DemoInteractionBoundary
@@ -164,7 +164,7 @@ export function RouteCrm() {
         demo={{
           tone: 'crm',
         }}
-        title="Every record gets a Macro Chat."
+        title="Every record gets a Rox Chat."
         description="Comments on companies and contacts use the same threading system as your channels, so the conversation about a deal is on the record instead of lost in Slack. @mention a teammate and they get a ping just like in a channel; it all goes into one inbox."
       >
         <DemoInteractionBoundary
@@ -177,7 +177,7 @@ export function RouteCrm() {
         demo={{
           tone: 'crm',
         }}
-        title="Macro Agents can do everything you can."
+        title="Rox Agents can do everything you can."
         description="Our MCP support is just as important to us as the user interface. Ask your agent to update a deal, draft a follow-up from the customer’s emails, calls, and notes, or set up a routine that moves the deal to the right stage every time a call ends."
       >
         <DemoInteractionBoundary
@@ -196,7 +196,7 @@ export function RouteCrm() {
       <FeaturePageFaq
         guide={{ href: '/crm#guide', label: 'CRM' }}
         id="crm-faq-title"
-        title="Questions about Macro CRM"
+        title="Questions about Rox CRM"
         items={faqItems}
       />
       <HomepageClosing />

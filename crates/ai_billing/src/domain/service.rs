@@ -646,11 +646,11 @@ where
             None => {
                 let description = match kind {
                     CreditReloadKind::Automatic => format!(
-                        "Macro AI credits, automatic reload of {}",
+                        "Rox AI credits, automatic reload of {}",
                         dollars(reload.amount_cents)
                     ),
                     CreditReloadKind::Purchase => {
-                        format!("Macro AI credits, {}", dollars(reload.amount_cents))
+                        format!("Rox AI credits, {}", dollars(reload.amount_cents))
                     }
                 };
                 match self

@@ -46,7 +46,7 @@ plus the owner-grant policy for what access that owner implies.
 ## Checks
 
 - `cargo test -p entity_registry` (`SQLX_OFFLINE` unset; requires local
-  MacroDB — `just setup_macrodb`).
+  RoxDB — `just setup_macrodb`).
 
 - `ExternalChat` is a registered kind; adding a chat records the human owner and direct owner grant in one transaction.
 

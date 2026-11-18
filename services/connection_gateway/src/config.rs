@@ -5,7 +5,7 @@ use macro_env_var::env_vars;
 use secretsmanager_client::LocalOrRemoteSecret;
 
 env_vars! {
-    pub struct MacroDbUrl;
+    pub struct RoxDbUrl;
     pub struct RedisHost;
 }
 
@@ -26,7 +26,7 @@ pub struct Config {
     #[macro_config_default(Environment::new_or_prod())]
     pub environment: Environment,
     pub redis_host: RedisHost,
-    pub macro_db_url: LocalOrRemoteSecret<MacroDbUrl>,
+    pub macro_db_url: LocalOrRemoteSecret<RoxDbUrl>,
     /// The internal api key
     pub internal_api_key: InternalApiKey,
 }

@@ -1,4 +1,4 @@
-//! The inbox against MacroDB: receiving, ordering, deduping, superseding,
+//! The inbox against RoxDB: receiving, ordering, deduping, superseding,
 //! leasing, retrying and dead-lettering, driven through `InboxService`.
 
 use std::collections::HashMap;

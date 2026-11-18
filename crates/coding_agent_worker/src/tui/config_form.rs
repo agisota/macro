@@ -1,4 +1,4 @@
-//! Focused, comment-preserving edits to `macrod.toml`.
+//! Focused, comment-preserving edits to `roxd.toml`.
 
 use std::path::{Path, PathBuf};
 
@@ -17,10 +17,10 @@ mod environment {
     }
 }
 
-const DEFAULT_CONFIG: &str = include_str!("../../default.macrod.toml");
-const DEV_API_URL: &str = "https://dev-gateway.macro.com/agent-harness";
-const DEV_STORAGE_URL: &str = "https://dev-gateway.macro.com/dss";
-const DEV_WEB_URL: &str = "https://dev.macro.com/app";
+const DEFAULT_CONFIG: &str = include_str!("../../default.roxd.toml");
+const DEV_API_URL: &str = "https://dev-gateway.rox.one/agent-harness";
+const DEV_STORAGE_URL: &str = "https://dev-gateway.rox.one/dss";
+const DEV_WEB_URL: &str = "https://dev.rox.one/app";
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Deployment {
@@ -133,7 +133,7 @@ impl ConfigForm {
         }
         let doc = DEFAULT_CONFIG
             .parse::<DocumentMut>()
-            .expect("the embedded macrod config template must be valid TOML");
+            .expect("the embedded roxd config template must be valid TOML");
         let mut form = Self {
             path: path.to_owned(),
             doc,
@@ -166,7 +166,7 @@ impl ConfigForm {
                 .storage_path
                 .as_ref()
                 .map(|path| path.display().to_string())
-                .unwrap_or_else(|| "Automatic (~/.macrod/herdr)".to_owned()),
+                .unwrap_or_else(|| "Automatic (~/.roxd/herdr)".to_owned()),
             Setting::HerdrFocus => if config.herdr.focus {
                 "Foreground"
             } else {
@@ -340,7 +340,7 @@ impl ConfigForm {
         self.save()
     }
 
-    /// Remove keys older releases wrote that macrod no longer reads: `[identity]`
+    /// Remove keys older releases wrote that roxd no longer reads: `[identity]`
     /// and `scope` in `[credentials]` (now set on the web), and the webhook
     /// `[server]` table. Setup runs where no one can edit the file by hand, so
     /// it drops them instead of failing on them.

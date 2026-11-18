@@ -1,5 +1,5 @@
 # The agent teammate (packages/starter-agent on packages/muppet): one agent
-# per computer. `macrod enroll` writes the agent's environment to
+# per computer. `roxd enroll` writes the agent's environment to
 # `agentEnvironment` when the enrollment carries an agent and rewrites it on
 # re-enrollment; without an agent the file is absent and nothing runs.
 #
@@ -18,7 +18,7 @@ let
   json = pkgs.formats.json { };
   user = config.users.users.macro;
   uid = toString user.uid;
-  agentEnvironment = "/var/lib/macrod/agent.env";
+  agentEnvironment = "/var/lib/roxd/agent.env";
   # HOME for the agent: its Claude Code settings and git config are its own.
   home = "${user.home}/agent";
   workspace = "${home}/workspace";
@@ -229,12 +229,12 @@ let
   agentUnit = {
     wants = [
       "network-online.target"
-      "macrod-enroll.service"
+      "roxd-enroll.service"
     ]
     ++ desktopUnits;
     after = [
       "network-online.target"
-      "macrod-enroll.service"
+      "roxd-enroll.service"
     ]
     ++ desktopUnits;
     path = runtimePath ++ [
@@ -387,7 +387,7 @@ in
     };
 
     systemd.services.macro-agent = agentUnit // {
-      description = "Macro agent teammate";
+      description = "Rox agent teammate";
       wantedBy = [ "multi-user.target" ];
       serviceConfig = hardening // {
         WorkingDirectory = home;

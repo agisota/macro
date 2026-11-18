@@ -16,7 +16,7 @@ export function SyncStatus(props: { syncing: boolean }) {
           </span>
           <span class="text-xs text-ink-muted">
             Events are being imported. This may take a while. You can keep using
-            Macro as normal.
+            Rox as normal.
           </span>
         </div>
       </div>

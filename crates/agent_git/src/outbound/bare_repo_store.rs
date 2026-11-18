@@ -14,8 +14,8 @@ use crate::outbound::repo_directories::{RepoDirectories, git_command};
 /// Branch every repo starts on.
 const INITIAL_BRANCH: &str = "main";
 /// Author of the initial commit.
-const INITIAL_AUTHOR_NAME: &str = "Macro";
-const INITIAL_AUTHOR_EMAIL: &str = "agents@macro.com";
+const INITIAL_AUTHOR_NAME: &str = "Rox";
+const INITIAL_AUTHOR_EMAIL: &str = "agents@rox.one";
 const INITIAL_COMMIT_MESSAGE: &str = "Initial workspace";
 
 /// Errors from [`BareRepoStore`].

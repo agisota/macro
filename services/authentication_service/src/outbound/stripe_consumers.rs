@@ -156,7 +156,7 @@ where
     Reader: StripeReader,
 {
     /// Whether Stripe deleted the customer; its subscriptions change
-    /// nothing in Macro.
+    /// nothing in Rox.
     async fn customer_deleted(&self, customer: &CustomerId) -> Result<bool, ApplyError> {
         Ok(self
             .customers
@@ -165,7 +165,7 @@ where
             .is_some_and(|customer| customer.deleted))
     }
 
-    /// The Macro account of a Stripe customer: by its stored customer id;
+    /// The Rox account of a Stripe customer: by its stored customer id;
     /// only a customer no account names is read from Stripe once and matched
     /// by its email.
     async fn customer_user(
@@ -661,7 +661,7 @@ where
         Ok(())
     }
 
-    /// Macro's own one-off invoices: AI overage chunks and automatic credit
+    /// Rox's own one-off invoices: AI overage chunks and automatic credit
     /// reloads. Their outcome decides whether the payer keeps overage or
     /// automatic reloads; they never touch plan roles.
     #[tracing::instrument(skip_all, fields(invoice_id = %invoice.id, paid = invoice.paid, purpose), err)]

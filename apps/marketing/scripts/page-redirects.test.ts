@@ -34,7 +34,7 @@ describe('consolidated website redirects', () => {
         const response = handler({
           request: {
             uri,
-            headers: { host: { value: 'www.macro.com' } },
+            headers: { host: { value: 'www.rox.one' } },
             cookies: {},
             querystring: {
               tag: { multiValue: [{ value: 'a' }, { value: 'b%20c' }] },
@@ -43,7 +43,7 @@ describe('consolidated website redirects', () => {
         });
         expect(response.statusCode).toBe(308);
         expect(response.headers.location.value).toBe(
-          `https://macro.com${to}?tag=a&tag=b%20c`
+          `https://rox.one${to}?tag=a&tag=b%20c`
         );
       }
     }
@@ -52,7 +52,7 @@ describe('consolidated website redirects', () => {
     const response = handler({
       request: {
         uri: '/tasks',
-        headers: { host: { value: 'macro.com' } },
+        headers: { host: { value: 'rox.one' } },
         cookies: {},
         querystring: {},
       },

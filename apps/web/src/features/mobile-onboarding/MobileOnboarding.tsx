@@ -1,6 +1,6 @@
 import { useAnalytics } from '@app/lib/analytics/analytics-context';
 import { useIsAuthenticated } from '@core/context/user';
-import LogoIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import { useNavigate } from '@solidjs/router';
 import { Button, Surface } from '@ui';
 import { Stepper } from '@ui/components/Stepper';
@@ -69,7 +69,7 @@ export function MobileOnboarding() {
     <div class="relative flex size-full overflow-hidden px-4 pt-[calc(var(--safe-top)+2rem)] pb-[calc(var(--safe-bottom)+2rem)]">
       <Surface depth={1} class="flex flex-col mt-(--mobile-content-inset-top)">
         <div class="flex shrink-0 items-center justify-center pt-8 pb-4">
-          <LogoIcon class="size-16 text-ink" />
+          <RoxMark class="size-16" />
         </div>
 
         <div class="min-h-0 grow overflow-y-auto px-6">

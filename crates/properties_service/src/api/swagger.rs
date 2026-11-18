@@ -18,7 +18,7 @@ use utoipa::OpenApi;
 #[derive(OpenApi)]
 #[openapi(
     info(
-        terms_of_service = "https://macro.com/terms",
+        terms_of_service = "https://rox.one/terms",
     ),
     paths(
         // Property definitions
@@ -88,7 +88,7 @@ use utoipa::OpenApi;
         )
     ),
     tags(
-        (name = "properties service", description = "Macro Properties Service")
+        (name = "properties service", description = "Rox Properties Service")
     )
 )]
 pub struct ApiDoc;

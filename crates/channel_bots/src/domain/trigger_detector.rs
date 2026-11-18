@@ -22,12 +22,12 @@ use super::sender_label;
 /// Detects both explicit `@`-mention triggers and inferred triggers.
 ///
 /// A message that mentions bots triggers exactly those bots. A message that
-/// mentions none is considered for an inferred Macro AI trigger, which fires
+/// mentions none is considered for an inferred Rox AI trigger, which fires
 /// only when all of the following hold:
 ///
 /// * the message is a thread reply (never a top-level message),
-/// * the thread already contains a Macro AI message of its own (not a post a
-///   user made as Macro AI through a client, such as an MCP client),
+/// * the thread already contains a Rox AI message of its own (not a post a
+///   user made as Rox AI through a client, such as an MCP client),
 /// * the classifier judges that the message expects an agent response.
 ///
 /// Attributed bot messages trigger like a person's, within the agent hop
@@ -138,7 +138,7 @@ where
         true
     }
 
-    /// Macro AI never infers a reply to its own message.
+    /// Rox AI never infers a reply to its own message.
     async fn infer(&self, candidate: &MessagePostedMetadata) -> Option<BotInvocation> {
         if candidate.sender.as_bot().map(|sender| sender.bot_id()) == Some(bot_id::MACRO_AI_BOT_ID)
         {
@@ -183,11 +183,11 @@ where
     }
 }
 
-/// Macro AI's messages are the agent's; other bots go by their public name.
+/// Rox AI's messages are the agent's; other bots go by their public name.
 ///
 /// A post a user made through a client, such as an MCP client, is sent as
-/// Macro AI's bot but is that client's: it goes by the client's name and does
-/// not make the thread Macro AI's, so replies to it never pull Macro AI in.
+/// Rox AI's bot but is that client's: it goes by the client's name and does
+/// not make the thread Rox AI's, so replies to it never pull Rox AI in.
 fn transcript_message(message: &Message) -> TranscriptMessage {
     let is_macro_bot =
         message.sender_id.as_bot().map(|bot| bot.bot_id()) == Some(bot_id::MACRO_AI_BOT_ID);

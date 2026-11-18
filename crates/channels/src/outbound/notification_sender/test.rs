@@ -114,7 +114,7 @@ async fn invite_delivery_preserves_dm_context_for_email_and_push() {
         assert_eq!(
             email_content["subject"],
             if is_dm {
-                "sender@example.com sent you a message on Macro"
+                "sender@example.com sent you a message on Rox"
             } else {
                 "sender@example.com has invited you to join #general"
             }

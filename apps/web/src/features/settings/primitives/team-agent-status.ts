@@ -21,7 +21,7 @@ import {
 /**
  * Whether the agent teammate `userId` names can answer, from the same
  * sources as its row in Members: the team's agents (its computer's state)
- * and the harness list (whether macrod is connected). `agent` is undefined
+ * and the harness list (whether roxd is connected). `agent` is undefined
  * for anyone who is not one of the team's agent teammates.
  */
 export function useTeamAgentStatus(userId: Accessor<string | undefined>) {

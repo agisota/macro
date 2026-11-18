@@ -173,7 +173,7 @@ export function Harness(
     if (disconnectCursor.isPending) return;
     const confirmed = await confirmDialog({
       title: 'Disconnect Cursor?',
-      body: "Remove your Cursor connection from Macro? This removes Macro's copy of the API key but does not revoke it in Cursor.",
+      body: "Remove your Cursor connection from Rox? This removes Rox's copy of the API key but does not revoke it in Cursor.",
       confirmLabel: 'Disconnect',
       tone: 'danger',
     });
@@ -194,9 +194,7 @@ export function Harness(
           <SettingsPage
             title="Machines"
             description="Providers and machines your agents can run on."
-            signpost={
-              <TutorialPill tutorial="macrod" class="mt-1 self-start" />
-            }
+            signpost={<TutorialPill tutorial="roxd" class="mt-1 self-start" />}
             onBack={props.onBack}
             backLabel={props.backLabel ?? 'Agents'}
             actions={
@@ -216,7 +214,7 @@ export function Harness(
               harnesses={
                 harnessesQuery.isSuccess
                   ? harnessesQuery.data.filter(
-                      // A Macro computer is listed once, under Macro computers;
+                      // A Rox computer is listed once, under Rox computers;
                       // with that section off it stays an ordinary machine.
                       // An agent teammate's computer is never one: people
                       // message the agent instead.
@@ -266,8 +264,8 @@ export function Harness(
                       </span>
                     </div>
                     <p class="mt-1 text-sm text-ink-muted">
-                      Macro in house fast and powerful agent. Uses official
-                      Macro tools and MCPs to get the job done.
+                      Rox in house fast and powerful agent. Uses official Rox
+                      tools and MCPs to get the job done.
                     </p>
                   </div>
                 </MachineSection>
@@ -288,7 +286,7 @@ export function Harness(
                       </Show>
                     </div>
                     <p class="mt-1 text-sm text-ink-muted">
-                      Bring your own Cursor subscription to Macro. Manage Cursor
+                      Bring your own Cursor subscription to Rox. Manage Cursor
                       Cloud sessions directly in the app.
                     </p>
 
@@ -344,8 +342,8 @@ export function Harness(
                               </Button>
                             </div>
                             <p class="text-xs text-ink-extra-muted">
-                              Create an API key in Cursor and paste it here.
-                              Macro stores it encrypted.
+                              Create an API key in Cursor and paste it here. Rox
+                              stores it encrypted.
                             </p>
                           </div>
                         }
@@ -366,8 +364,8 @@ export function Harness(
 
                         <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
                           <p class="flex-1 basis-56 text-xs text-ink-extra-muted">
-                            Disconnecting removes Macro's copy of the key but
-                            does not revoke it in Cursor.
+                            Disconnecting removes Rox's copy of the key but does
+                            not revoke it in Cursor.
                           </p>
                           <Button
                             type="button"
@@ -531,7 +529,7 @@ function HarnessRemoveDialog(props: {
         <Panel.Body class="p-5">
           <Dialog.Description class="text-sm leading-5 text-ink-muted">
             Agents using this machine will stop running until it's reconnected.
-            macrod on it will need to pair again.
+            roxd on it will need to pair again.
           </Dialog.Description>
         </Panel.Body>
         <Panel.Footer class="justify-end gap-2 px-5 py-3">

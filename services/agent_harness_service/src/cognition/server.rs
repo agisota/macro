@@ -519,7 +519,7 @@ pub async fn build(
     );
     let user_permissions_service = Arc::new(
         roles_and_permissions::domain::service::UserRolesAndPermissionsServiceImpl::new(
-            roles_and_permissions::outbound::pgpool::MacroDB::new(db.clone()),
+            roles_and_permissions::outbound::pgpool::RoxDB::new(db.clone()),
         ),
     );
 
@@ -652,9 +652,9 @@ pub async fn build(
                             .filter(|origin| !origin.is_empty())
                             .collect(),
                         None => match config.environment {
-                            Environment::Production => vec!["https://macro.com".to_owned()],
+                            Environment::Production => vec!["https://rox.one".to_owned()],
                             Environment::Develop => vec![
-                                "https://dev.macro.com".to_owned(),
+                                "https://dev.rox.one".to_owned(),
                                 "http://localhost:3000".to_owned(),
                             ],
                             Environment::Local => vec!["http://localhost:3000".to_owned()],
@@ -673,7 +673,7 @@ pub async fn build(
             None
         }
     };
-    // Macro Connect beside Pipedream: a user the `macro-connect` rollout is
+    // Rox Connect beside Pipedream: a user the `macro-connect` rollout is
     // on for is on Connect alone; everyone else stays on Pipedream.
     let connect_adapter = ai_tools::connect_adapter(config.connect_customer_key.value())?;
     let rollout = ai_tools::macro_connect_rollout(

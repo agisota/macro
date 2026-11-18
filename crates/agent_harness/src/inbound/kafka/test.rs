@@ -57,7 +57,7 @@ fn links() -> StaticFileLinks {
 }
 
 fn user() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("asker@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("asker@rox.one").expect("a valid user id")
 }
 
 /// A channel post in the channel-only shape channel triggers travel in.

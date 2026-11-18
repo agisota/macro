@@ -39,7 +39,7 @@ pub enum AuthenticationEvent {
 pub enum AuthenticationError {
     #[cfg(mobile)]
     #[error(
-        "This device cannot complete WhatsApp authentication. Use Macro desktop with Bluetooth and your phone nearby."
+        "This device cannot complete WhatsApp authentication. Use Rox desktop with Bluetooth and your phone nearby."
     )]
     Unsupported,
     #[error("This connection request is no longer valid. Start connecting again.")]

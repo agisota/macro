@@ -15,6 +15,10 @@ declare global {
   interface Env {
     /** Datadog API key for the OTLP traces intake. Unset in local dev. */
     DD_API_KEY?: string;
+    /** Ingestion origin. Unset means this worker does not forward. */
+    POSTHOG_HOST?: string;
+    /** Project key. An empty value means this worker does not forward. */
+    POSTHOG_API_KEY?: string;
     /** Server-side copy enabled only in the dev proxy. */
     GRAFANA_OTLP_ENDPOINT?: string;
     GRAFANA_OTLP_TOKEN?: string;
@@ -22,7 +26,12 @@ declare global {
 }
 
 const POSTHOG_PREFIX = '/i/ph';
-const POSTHOG_ORIGIN = 'https://us.i.posthog.com';
+function configuredPosthogOrigin(env: Env): string | null {
+  const host = env.POSTHOG_HOST?.trim().replace(/\/$/, '');
+  const key = env.POSTHOG_API_KEY?.trim();
+  if (!host || !key) return null;
+  return host;
+}
 // Privacy filter lists block the upstream filename; keep the browser-facing
 // alias opaque and restore the real filename only for the upstream request.
 const POSTHOG_RECORDER_SCRIPT_NAME = 'posthog-recorder.js';
@@ -201,13 +210,16 @@ app.all(`${OTLP_PREFIX}/*`, async (c) => {
 });
 
 app.all(`${POSTHOG_PREFIX}/*`, (c) => {
+  const origin = configuredPosthogOrigin(c.env);
+  if (!origin) return c.body(null, 204);
+
   const url = new URL(c.req.url);
   const proxyPath = url.pathname.slice(POSTHOG_PREFIX.length) || '/';
   const path =
     proxyPath === `/static/${POSTHOG_RECORDER_PROXY_SCRIPT_NAME}`
       ? `/static/${POSTHOG_RECORDER_SCRIPT_NAME}`
       : proxyPath;
-  return handleProxy(c.req.raw, POSTHOG_ORIGIN, path + url.search);
+  return handleProxy(c.req.raw, origin, path + url.search);
 });
 
 app.notFound((c) => c.text('Not found', 404));

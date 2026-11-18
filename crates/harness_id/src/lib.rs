@@ -2,8 +2,8 @@
 
 //! Harness identity primitives.
 //!
-//! A harness is a user-run agent runtime (a macrod daemon) registered with
-//! Macro. Its id is shared by the registration API, the authorization layer,
+//! A harness is a user-run agent runtime (a roxd daemon) registered with
+//! Rox. Its id is shared by the registration API, the authorization layer,
 //! and the runtime gateway, so the newtype lives in this leaf crate the way
 //! [`bot_id`](https://docs.rs) does for bots, keeping those crates decoupled.
 
@@ -18,7 +18,7 @@ mod test;
 /// `agent_configs.harness` keeps holding the runtime slug for built-in
 /// runtimes; agents bound to a registered harness store this sentinel plus
 /// the harness row id.
-pub const MACROD_HARNESS_SLUG: &str = "macrod";
+pub const ROXD_HARNESS_SLUG: &str = "roxd";
 
 /// A harness id UUID.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]

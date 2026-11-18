@@ -51,7 +51,7 @@ pub struct CompanyListItem {
     /// pipeline entry's stage.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stage: Option<ToolCompanyStage>,
-    /// Macro user id of the company's owner, if set.
+    /// Rox user id of the company's owner, if set.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub owner_user_id: Option<String>,
     /// The company's revenue (dollars), if set.
@@ -90,9 +90,9 @@ pub struct ListCompanies {
     #[serde(default)]
     pub stage: Option<String>,
 
-    /// Filter to companies owned by this Macro user id.
+    /// Filter to companies owned by this Rox user id.
     #[schemars(
-        description = "Filter to companies whose Owner property is this Macro user id (e.g. \"macro|user@example.com\"). Use ListTeamMembers to find user ids."
+        description = "Filter to companies whose Owner property is this Rox user id (e.g. \"macro|user@example.com\"). Use ListTeamMembers to find user ids."
     )]
     #[serde(default)]
     pub owner_user_id: Option<String>,

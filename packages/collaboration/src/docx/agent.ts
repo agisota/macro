@@ -747,13 +747,13 @@ export async function runDocxAgentRequest(
   if (request.action === 'read')
     return { content: describeDocx(state, request) };
   // The first collaborative format predates tracked changes and Word
-  // comments here; opening the document in Macro upgrades it.
+  // comments here; opening the document in Rox upgrades it.
   const tracked =
     request.trackChanges ??
     tracksRevisions(state.parts.get('word/settings.xml'));
   if (tracked || request.operations.some((o) => o.type === 'addComment'))
     throw new DocxAgentError(
-      "This Word document is still in Macro's previous editor format, which cannot record tracked changes or Word comments. Ask the user to open it once in Macro (that upgrades it), then try again; or pass trackChanges false to edit it directly without comments."
+      "This Word document is still in Rox's previous editor format, which cannot record tracked changes or Word comments. Ask the user to open it once in Rox (that upgrades it), then try again; or pass trackChanges false to edit it directly without comments."
     );
 
   const result = applyDocxOperations(state, request.operations);

@@ -26,7 +26,7 @@ remote image URLs through an authenticated, SSRF-guarded fetch.
 
 - Owns: fetching and streaming back a remote image URL on behalf of an
   authenticated caller, with SSRF and resource-exhaustion protections.
-- Not here: resizing/transcoding Macro's own stored images →
+- Not here: resizing/transcoding Rox's own stored images →
   `image_optimizer`.
 
 ## Checks

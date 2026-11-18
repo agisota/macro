@@ -6,7 +6,7 @@
 
 import type { CommandRunner } from './interfaces';
 
-/** Macro dev shell baked into the image at build time (see the Dockerfile);
+/** Rox dev shell baked into the image at build time (see the Dockerfile);
  * absent on images built without the github_token secret. */
 const REPO_ENV_FILE = '/env/repo-dev-env.sh';
 const SIDECAR_LOG = '/tmp/acp-sidecar.log';

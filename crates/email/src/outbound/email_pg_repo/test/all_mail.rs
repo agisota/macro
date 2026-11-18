@@ -261,7 +261,7 @@ async fn all_mail_excludes_synced_macro_drafts_in_junk_and_trash(
             .await?;
         assert!(projections[0].previews.all.is_none());
         let draft = &projections[0].draft_state.as_ref().unwrap().drafts[0];
-        assert!(draft.macro_draft, "synced drafts retain Macro ownership");
+        assert!(draft.macro_draft, "synced drafts retain Rox ownership");
         assert!(draft.facts.latest_non_spam_message_ts.is_none());
 
         let clean = Uuid::now_v7();

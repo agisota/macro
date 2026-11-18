@@ -2,7 +2,7 @@ import { GO_TO_COMMAND_SCOPE, GO_TO_LEADER_KEY } from '@app/constants/hotkeys';
 import { getIconConfig } from '@core/component/EntityIcon';
 import { createHotkeyGroup, registerHotkey } from '@core/hotkey/hotkeys';
 import type { ValidHotkey } from '@core/hotkey/types';
-import MacroIcon from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import GearIcon from '@icon/system/regular/gear.svg';
 import PlusIcon from '@icon/system/regular/plus.svg';
 import { cn, HoverCard } from '@ui';
@@ -159,7 +159,7 @@ export function MockAppChrome(props: MockAppChromeProps) {
       `}</style>
       <div class="flex size-full bg-surface rounded-sm border border-edge-muted">
         <div class="px-2 shrink-0 bg-panel flex flex-col items-center py-3 gap-1">
-          <MacroIcon class="size-5 text-accent mb-3" />
+          <RoxMark class="size-5 mb-3" />
           <button
             type="button"
             class={cn(
@@ -288,7 +288,7 @@ export function MockAppChrome(props: MockAppChromeProps) {
               when={sidebarFilter() !== 'empty'}
               fallback={
                 <div class="flex items-center justify-center size-full">
-                  <MacroIcon class="size-10 text-ink/10" />
+                  <RoxMark class="size-10" />
                 </div>
               }
             >

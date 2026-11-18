@@ -3,6 +3,7 @@
  */
 
 import { Model } from '@core/component/AI/constant/model';
+import { displayName } from '@core/constant/brand';
 import { useAgentModelsQueries } from '@queries/agents/models';
 import { useRunnableHarnessesQuery } from '@queries/harnesses/harnesses';
 import type { LoadAgentModelsResponse } from '@service-agent-harness/generated/schemas';
@@ -363,10 +364,10 @@ beforeEach(() => {
   };
 });
 
-const MACROD_HARNESS = {
+const ROXD_HARNESS = {
   allow_permission_bypass: false,
   id: '3f1c9d2e-8a4b-4c5d-9e6f-1a2b3c4d5e6f',
-  kind: 'macrod',
+  kind: 'roxd',
   name: 'Dev box',
   owner: { type: 'user', user_id: 'macro|user@example.com' },
   created_by: 'macro|user@example.com',
@@ -473,12 +474,12 @@ describe('Agents', () => {
     }
   );
 
-  it('lists the built-in global Macro agent as a team agent', () => {
+  it('lists the built-in global Rox agent as a team agent', () => {
     render(() => <Agents {...agentsPageProps} />);
 
     const list = screen.getByRole('region', { name: 'Your agents' });
 
-    expect(within(list).getByText('Macro')).toBeTruthy();
+    expect(within(list).getByText(displayName)).toBeTruthy();
     expect(
       within(list)
         .getAllByText(/^@/)
@@ -486,13 +487,13 @@ describe('Agents', () => {
     ).toEqual(['@macro']);
     expect(within(list).getByText('Team')).toBeTruthy();
     expect(
-      within(list).getByText('In Macro · Sonnet 5.5 · All channels')
+      within(list).getByText(`In ${displayName} · Sonnet 5.5 · All channels`)
     ).toBeTruthy();
     expect(
-      within(list).queryByRole('button', { name: 'Delete Macro' })
+      within(list).queryByRole('button', { name: `Delete ${displayName}` })
     ).toBeNull();
     expect(
-      within(list).queryByRole('button', { name: 'Edit Macro' })
+      within(list).queryByRole('button', { name: `Edit ${displayName}` })
     ).toBeNull();
   });
 
@@ -542,7 +543,7 @@ describe('Agents', () => {
     view.unmount();
 
     cursorMocks.status.data.registered = true;
-    harnessMocks.query.data = [MACROD_HARNESS];
+    harnessMocks.query.data = [ROXD_HARNESS];
     render(() => (
       <Agents
         onCursor={onCursor}
@@ -602,7 +603,7 @@ describe('Agents', () => {
 
     const list = screen.getByRole('region', { name: 'Your agents' });
 
-    // Macro first, then team agents, then private agents.
+    // Rox first, then team agents, then private agents.
     expect(
       within(list)
         .getAllByText(/^@/)
@@ -615,20 +616,24 @@ describe('Agents', () => {
       ?.parentElement as HTMLElement;
     expect(within(releaseRow).getByText('Team')).toBeTruthy();
     expect(
-      within(releaseRow).getByText('In Macro · Sonnet 5.5 · #engineering')
+      within(releaseRow).getByText(
+        `In ${displayName} · Sonnet 5.5 · #engineering`
+      )
     ).toBeTruthy();
 
     const bugFixerRow = within(list).getByText('Bug fixer').parentElement
       ?.parentElement as HTMLElement;
     expect(within(bugFixerRow).getByText('Private')).toBeTruthy();
     expect(
-      within(bugFixerRow).getByText('In Macro · Sonnet 5.5 · All channels')
+      within(bugFixerRow).getByText(
+        `In ${displayName} · Sonnet 5.5 · All channels`
+      )
     ).toBeTruthy();
   });
 
   it('says where each listed agent runs', () => {
     cursorMocks.status.data.registered = true;
-    harnessMocks.query.data = [MACROD_HARNESS];
+    harnessMocks.query.data = [ROXD_HARNESS];
     const owner = { type: 'user', user_id: 'macro|user@example.com' };
     agentMocks.query.data = [
       {
@@ -648,7 +653,7 @@ describe('Agents', () => {
       },
       {
         bot: {
-          id: 'agent-macrod',
+          id: 'agent-roxd',
           kind: 'owned',
           owner,
           name: 'Harness helper',
@@ -656,8 +661,8 @@ describe('Agents', () => {
           has_agent: true,
         },
         instructions: '',
-        harness: 'macrod',
-        harness_id: MACROD_HARNESS.id,
+        harness: 'roxd',
+        harness_id: ROXD_HARNESS.id,
         default_model: 'codex',
         channel_scope: 'all',
         channel_ids: [],
@@ -672,7 +677,7 @@ describe('Agents', () => {
           has_agent: true,
         },
         instructions: '',
-        harness: 'macrod',
+        harness: 'roxd',
         harness_id: 'removed-harness',
         default_model: 'codex',
         channel_scope: 'all',
@@ -1185,7 +1190,7 @@ describe('Agents', () => {
     expect(within(dialog).queryByLabelText('Description')).toBeNull();
     expect(within(dialog).getByLabelText('Instructions')).toBeTruthy();
     expect(
-      within(dialog).getByRole('radio', { name: 'In Macro' })
+      within(dialog).getByRole('radio', { name: `In ${displayName}` })
     ).toHaveProperty('checked', true);
     expect(
       within(dialog).getByRole('radio', { name: 'In Cursor' })
@@ -1220,7 +1225,7 @@ describe('Agents', () => {
       within(dialog).getByRole('button', { name: 'Connect Cursor' })
     ).toBeTruthy();
     expect(
-      within(dialog).getByRole('radio', { name: 'In Macro' })
+      within(dialog).getByRole('radio', { name: `In ${displayName}` })
     ).toHaveProperty('checked', true);
   });
 
@@ -1368,7 +1373,9 @@ describe('Agents', () => {
     const dialog = screen.getByRole('region', { name: /^(New|Edit) agent$/ });
     expect(within(dialog).queryByLabelText('Anthropic API key')).toBeNull();
     expect(
-      within(dialog).getByText('Runs on Macro usage unless you add one.')
+      within(dialog).getByText(
+        `Runs on ${displayName} usage unless you add one.`
+      )
     ).toBeTruthy();
 
     fireEvent.click(within(dialog).getByRole('button', { name: 'Add key' }));
@@ -1516,14 +1523,14 @@ describe('Agents', () => {
     );
   });
 
-  it('opens the create form on a requested Macro computer', () => {
+  it('opens the create form on a requested Rox computer', () => {
     const computer = {
-      ...MACROD_HARNESS,
+      ...ROXD_HARNESS,
       id: 'computer-harness',
       name: 'Agent Box',
       computer_id: 'computer-1',
     };
-    harnessMocks.query.data = [MACROD_HARNESS, computer];
+    harnessMocks.query.data = [ROXD_HARNESS, computer];
     requestCreateAgent('computer-harness');
 
     render(() => <Agents {...agentsPageProps} />);
@@ -1533,20 +1540,20 @@ describe('Agents', () => {
     expect(where.dataset.harnessId).toBe('computer-harness');
     expect(where.dataset.checked).toBe('true');
     expect(
-      within(dialog).getByRole('radio', { name: 'In Macro' })
+      within(dialog).getByRole('radio', { name: `In ${displayName}` })
     ).toHaveProperty('checked', false);
     expect(agentSettingsRequest()).toBeUndefined();
   });
 
-  it('offers registered macrod harnesses in the harness picker', () => {
-    harnessMocks.query.data = [MACROD_HARNESS];
+  it('offers registered roxd harnesses in the harness picker', () => {
+    harnessMocks.query.data = [ROXD_HARNESS];
 
     render(() => <Agents {...agentsPageProps} />);
     fireEvent.click(screen.getByRole('button', { name: 'Add agent' }));
 
     const dialog = screen.getByRole('region', { name: /^(New|Edit) agent$/ });
     expect(
-      within(dialog).getByRole('radio', { name: 'In Macro' })
+      within(dialog).getByRole('radio', { name: `In ${displayName}` })
     ).toHaveProperty('checked', true);
     expect(
       within(dialog).getByRole('radio', { name: 'In Cursor' })
@@ -1574,16 +1581,16 @@ describe('Agents', () => {
     });
     const queryKey = ['refreshed-harnesses'];
     const fetchHarnesses = vi.fn(
-      async (): Promise<Harness[]> => [{ ...MACROD_HARNESS }]
+      async (): Promise<Harness[]> => [{ ...ROXD_HARNESS }]
     );
     vi.mocked(useRunnableHarnessesQuery).mockImplementationOnce(() =>
       useQuery(() => ({
         queryKey,
         queryFn: fetchHarnesses,
-        initialData: [MACROD_HARNESS],
+        initialData: [ROXD_HARNESS],
       }))
     );
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels([
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels([
       { id: 'codex-model', name: 'Codex model' },
     ]);
     const view = render(() => (
@@ -1623,8 +1630,8 @@ describe('Agents', () => {
     await waitFor(() =>
       expect(agentMocks.create).toHaveBeenCalledWith(
         expect.objectContaining({
-          harness: 'macrod',
-          harnessId: MACROD_HARNESS.id,
+          harness: 'roxd',
+          harnessId: ROXD_HARNESS.id,
           defaultModel: 'codex-model',
         })
       )
@@ -1639,11 +1646,11 @@ describe('Agents', () => {
       updatedAt: '2026-08-27T12:00:00Z',
     };
     const loadingHarness = {
-      ...MACROD_HARNESS,
+      ...ROXD_HARNESS,
       id: '4f1c9d2e-8a4b-4c5d-9e6f-1a2b3c4d5e70',
       name: 'Loading box',
     };
-    harnessMocks.query.data = [MACROD_HARNESS, loadingHarness];
+    harnessMocks.query.data = [ROXD_HARNESS, loadingHarness];
     const retry = vi.fn();
     modelMocks.queries['cursor:'] = {
       isPending: false,
@@ -1651,14 +1658,14 @@ describe('Agents', () => {
       isSuccess: false,
       refetch: retry,
     };
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = {
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = {
       data: { status: 'unsupported', models: [] },
       isPending: false,
       isError: false,
       isSuccess: true,
       refetch: vi.fn(),
     };
-    modelMocks.queries[`macrod:${loadingHarness.id}`] = {
+    modelMocks.queries[`roxd:${loadingHarness.id}`] = {
       isPending: true,
       isError: false,
       isSuccess: false,
@@ -1695,9 +1702,9 @@ describe('Agents', () => {
     expect(within(dialog).getByText('Loading models…')).toBeTruthy();
   });
 
-  it('uses the discovered model selector for macrod harnesses', () => {
-    harnessMocks.query.data = [MACROD_HARNESS];
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels(
+  it('uses the discovered model selector for roxd harnesses', () => {
+    harnessMocks.query.data = [ROXD_HARNESS];
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels(
       [
         { id: 'claude-code', name: 'Claude Code' },
         { id: 'codex', name: 'Codex' },
@@ -1720,8 +1727,8 @@ describe('Agents', () => {
   });
 
   it('falls back to the first advertised model when current is absent', () => {
-    harnessMocks.query.data = [MACROD_HARNESS];
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels(
+    harnessMocks.query.data = [ROXD_HARNESS];
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels(
       [
         { id: 'claude-code', name: 'Claude Code' },
         { id: 'codex', name: 'Codex' },
@@ -1743,8 +1750,8 @@ describe('Agents', () => {
   });
 
   it('shows the current model when an available catalog has no options', () => {
-    harnessMocks.query.data = [MACROD_HARNESS];
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels(
+    harnessMocks.query.data = [ROXD_HARNESS];
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels(
       [],
       'provider-default'
     );
@@ -1768,9 +1775,9 @@ describe('Agents', () => {
     ).toBeTruthy();
   });
 
-  it('submits macrod agents with the macrod slug and harness id', async () => {
-    harnessMocks.query.data = [MACROD_HARNESS];
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels(
+  it('submits roxd agents with the roxd slug and harness id', async () => {
+    harnessMocks.query.data = [ROXD_HARNESS];
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels(
       [{ id: 'claude-code', name: 'Claude Code' }],
       'claude-code'
     );
@@ -1798,8 +1805,8 @@ describe('Agents', () => {
         channelScope: 'all',
         defaultModel: 'claude-code',
         handle: 'bug-fixer',
-        harness: 'macrod',
-        harnessId: MACROD_HARNESS.id,
+        harness: 'roxd',
+        harnessId: ROXD_HARNESS.id,
         name: 'Bug fixer',
         instructions: '',
         mcp: { scope: 'owner_connections' },
@@ -1809,8 +1816,8 @@ describe('Agents', () => {
   });
 
   it('seeds the coding choice from the runtime and lets the user override it', async () => {
-    harnessMocks.query.data = [MACROD_HARNESS];
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels(
+    harnessMocks.query.data = [ROXD_HARNESS];
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels(
       [{ id: 'claude-code', name: 'Claude Code' }],
       'claude-code'
     );
@@ -1823,7 +1830,7 @@ describe('Agents', () => {
       target: { value: 'Chatty' },
     });
     fireEvent.click(within(dialog).getByRole('button', { name: 'Show' }));
-    // Macro's in-memory runtime chats; a macrod harness codes.
+    // Rox's in-memory runtime chats; a roxd harness codes.
     expect(within(dialog).getByLabelText('Chat agent')).toHaveProperty(
       'checked',
       true
@@ -1842,7 +1849,7 @@ describe('Agents', () => {
 
     await waitFor(() => {
       expect(agentMocks.create).toHaveBeenCalledWith(
-        expect.objectContaining({ harness: 'macrod', isCoding: false })
+        expect.objectContaining({ harness: 'roxd', isCoding: false })
       );
     });
   });
@@ -1889,9 +1896,9 @@ describe('Agents', () => {
     ).toBeTruthy();
   });
 
-  it('preselects the bound macrod harness when editing', () => {
-    harnessMocks.query.data = [MACROD_HARNESS];
-    modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels([
+  it('preselects the bound roxd harness when editing', () => {
+    harnessMocks.query.data = [ROXD_HARNESS];
+    modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels([
       { id: 'default', name: 'Harness default' },
     ]);
     agentMocks.query.data = [
@@ -1908,8 +1915,8 @@ describe('Agents', () => {
           updated_at: '2026-08-27T12:00:00Z',
         },
         instructions: 'Fix the root cause.',
-        harness: 'macrod',
-        harness_id: MACROD_HARNESS.id,
+        harness: 'roxd',
+        harness_id: ROXD_HARNESS.id,
         default_model: 'default',
         channel_scope: 'all',
         channel_ids: [],
@@ -2087,8 +2094,8 @@ describe('Agents', () => {
 });
 
 it('requires prompts unless the harness operator permits bypass', async () => {
-  harnessMocks.query.data = [MACROD_HARNESS];
-  modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels([
+  harnessMocks.query.data = [ROXD_HARNESS];
+  modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels([
     { id: 'claude-code', name: 'Claude Code' },
   ]);
   render(() => <Agents {...agentsPageProps} />);
@@ -2107,10 +2114,10 @@ it('requires prompts unless the harness operator permits bypass', async () => {
 
 it('offers bypass only after harness consent and resets the choice on harness change', async () => {
   harnessMocks.query.data = [
-    { ...MACROD_HARNESS, allow_permission_bypass: true },
-    { ...MACROD_HARNESS, id: 'prompt-only', name: 'Prompt only' },
+    { ...ROXD_HARNESS, allow_permission_bypass: true },
+    { ...ROXD_HARNESS, id: 'prompt-only', name: 'Prompt only' },
   ];
-  modelMocks.queries[`macrod:${MACROD_HARNESS.id}`] = successfulModels([
+  modelMocks.queries[`roxd:${ROXD_HARNESS.id}`] = successfulModels([
     { id: 'claude-code', name: 'Claude Code' },
   ]);
   render(() => <Agents {...agentsPageProps} />);
@@ -2154,7 +2161,7 @@ it.each(['in-memory', 'cursor'])(
     fireEvent.click(
       within(dialog).getByRole('radio', {
         name: {
-          'in-memory': 'In Macro',
+          'in-memory': `In ${displayName}`,
           cursor: 'In Cursor',
         }[harness]!,
       })

@@ -127,7 +127,7 @@ allows it, and answer with `rsvp`; changing the title, time, description, locati
 recurrence or conference fails because the organizer doesn't let guests change the \
 event.\n\
 \n\
-`addMacroCall` switches the event to a Macro call in place, so never delete and recreate an \
+`addMacroCall` switches the event to a Rox call in place, so never delete and recreate an \
 event to change its meeting link. It creates the call, adds its join link to the description \
 (and to `location` when no physical location is set), and removes any Google Meet or other \
 conference, in the one update attendees are notified of. The returned event's `macroCallUrl` \
@@ -235,15 +235,15 @@ pub struct UpdateCalendarEvent {
                        supported provider; \"google_meet\" or \"microsoft_teams\" selects one explicitly. \
                        \"remove\" detaches the conference only where supported. Check ListCalendars \
                        capabilities first. Omit to preserve the current conference. To switch \
-                       to a Macro call use `addMacroCall` instead."
+                       to a Rox call use `addMacroCall` instead."
     )]
     #[serde(default)]
     pub conference: Option<ConferenceChangeInput>,
 
-    /// Whether to switch the event to a Macro call.
+    /// Whether to switch the event to a Rox call.
     #[schemars(
-        description = "Switch the event to a Macro call, replacing any Google Meet or other \
-                       conference. An event already holding a Macro call keeps it. Mutually \
+        description = "Switch the event to a Rox call, replacing any Google Meet or other \
+                       conference. An event already holding a Rox call keeps it. Mutually \
                        exclusive with `conference`."
     )]
     #[serde(default)]
@@ -253,7 +253,7 @@ pub struct UpdateCalendarEvent {
     #[schemars(
         description = "Replacement notification reminders. `useDefault: true` follows the \
                        calendar's own defaults; otherwise `overrides` replaces the whole list \
-                       with entries of `method` \"popup\" (a Macro notification) or \"email\" \
+                       with entries of `method` \"popup\" (a Rox notification) or \"email\" \
                        and `minutes` before the start — an empty list silences the event. \
                        Omit to keep the current reminders."
     )]
@@ -325,7 +325,7 @@ where
                 description: "`addMacroCall` and `conference` are mutually exclusive; pick one."
                     .to_string(),
                 internal_error: anyhow::Error::from_boxed(
-                    rootcause::report!("both Macro call and provider conference requested")
+                    rootcause::report!("both Rox call and provider conference requested")
                         .into_boxed_error(),
                 ),
             });

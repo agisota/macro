@@ -1,4 +1,4 @@
-/// A user's GitHub access token from their Macro account link.
+/// A user's GitHub access token from their Rox account link.
 #[derive(serde::Serialize, serde::Deserialize)]
 pub struct GithubAccessToken {
     /// The linked account's access token

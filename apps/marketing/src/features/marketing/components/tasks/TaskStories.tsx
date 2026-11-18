@@ -43,7 +43,7 @@ export function TaskAgentChannelDemo() {
   const [typing, setTyping] = createSignal(false);
   const [thinking, setThinking] = createSignal(false);
   const firstRequest =
-    '@Macro make tasks for this proposal. Eric drafts it; I’ll review the pricing.';
+    '@Rox make tasks for this proposal. Eric drafts it; I’ll review the pricing.';
   const secondRequest =
     'Wolf will draft the proposal instead. Can you update the task?';
   w.setData('channels', 0, 'messages', []);
@@ -83,7 +83,7 @@ export function TaskAgentChannelDemo() {
         id: 'make-tasks',
         person: 'peter',
         time: '9:20 AM',
-        body: '@[Macro](demo-mention:macro) make tasks for this proposal. Eric drafts it; I’ll review the pricing.',
+        body: '@[Rox](demo-mention:macro) make tasks for this proposal. Eric drafts it; I’ll review the pricing.',
       },
     ]);
     w.setChannelThread('make-tasks');
@@ -215,7 +215,7 @@ export function TaskAgentChannelDemo() {
   return (
     <ProductDemo
       ref={(el) => (root = el)}
-      label="Ask Macro to create tasks and change an owner"
+      label="Ask Rox to create tasks and change an owner"
       onInteract={pause}
       height={560}
       mobileHeight={620}
@@ -235,7 +235,7 @@ export function TaskAgentChannelDemo() {
                 <div class="task-agent-thinking" data-agent-typing>
                   <img src={homepagePeople.macro.photo} alt="" />
                   <div role="status" aria-live="polite">
-                    <span>Macro is thinking</span>
+                    <span>Rox is thinking</span>
                     <span aria-hidden="true">
                       <span class="animate-typing-dot">.</span>
                       <span

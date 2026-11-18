@@ -2,7 +2,7 @@
 
 ## What it is
 
-Belongs to shared infrastructure: the database client crate for MacroDB
+Belongs to shared infrastructure: the database client crate for RoxDB
 (Postgres), owning its migrations and most of the compile-time-checked
 queries used across Rust services.
 
@@ -10,13 +10,13 @@ queries used across Rust services.
 
 - `src/lib.rs`: the module list — one module per table/feature area
   (`user.rs`, `document.rs`, `organization.rs`, `team/`, `item_access/`, ...).
-- `migrations/`: MacroDB's SQLx-generated migrations, 500+
-  files; the only place MacroDB schema changes are made.
+- `migrations/`: RoxDB's SQLx-generated migrations, 500+
+  files; the only place RoxDB schema changes are made.
 - `tests/`: cross-table integration tests (e.g. `add_forms.rs`).
 
 ## Scope
 
-- Owns: MacroDB's schema (`migrations/`) and the `sqlx::query!` call sites for
+- Owns: RoxDB's schema (`migrations/`) and the `sqlx::query!` call sites for
   the tables listed in `src/lib.rs`.
 - Not here: domain logic, authorization decisions, or caching built on top of
   these queries — those live in the owning domain crate/service that calls in.
@@ -65,7 +65,7 @@ lists and content save responses retain the stored appearance alongside ordinary
 
 ## Checks
 
-- `cargo test -p macro_db_client` (`SQLX_OFFLINE` unset; requires local MacroDB
+- `cargo test -p macro_db_client` (`SQLX_OFFLINE` unset; requires local RoxDB
   — `just setup_macrodb`).
 - After schema or query changes: `nix develop --command just prepare_db` from
   the repo root, then commit the regenerated root `.sqlx/`.
@@ -115,7 +115,7 @@ data checks and explicit vault purge. It does not depend on a successful item.
   an address cursor and sent/received pass; old thread-cursor columns remain for
   rolling compatibility. `crm_email_backfill_outbox_due` orders durable recovery
   signals by `(requested_at, team_id, user_id)`; it adds no email-table index.
-
+- Claimed mailbox handles use `macro_user.username` plus `mailbox_handle_claimed_at` and a partial `lower(username)` unique index; legacy usernames stay untouched until claimed. `email_links.is_primary` is an explicit fact backfilled from legacy ownership, not a generated address predicate.
 - `user::get_user_name::get_user_names_with_email` is shared by authentication and bounded contact-directory enrichment; preserve viewer-only address-book fallback and keep its IDs/names off tracing spans.
 - `contacts_connections` keeps its raw forward/reverse paging indexes; upstream migration `20261101055556` owns `idx_contacts_connections_user2_user1`, so do not add a duplicate branch migration. Migrations `20261105044718` and `20261105044750` add `(raw viewer, lower(peer COLLATE "C"))` point-lookup indexes with a strict peer `macro|` prefix predicate. They preserve stored rows, edge constraints and cursor order; bounded directory reads belong to `crates/contacts`. Apply both before new readers, with a short session `lock_timeout` (for SQLx CLI, e.g. `PGOPTIONS='-c lock_timeout=5s'`). An interrupted concurrent build must be inspected/repaired before retrying; these migrations do not hide an existing invalid index with `IF NOT EXISTS`.
 

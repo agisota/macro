@@ -12,7 +12,7 @@ fn update(status: SystemStatus, minutes_ago: i64) -> StatusUpdate {
     StatusUpdate {
         id: Uuid::now_v7(),
         status,
-        user_id: MacroUserIdStr::parse_from_str("macro|oncall@macro.com").unwrap(),
+        user_id: MacroUserIdStr::parse_from_str("macro|oncall@rox.one").unwrap(),
         created_at: Utc::now() - Duration::minutes(minutes_ago),
     }
 }
@@ -34,7 +34,7 @@ async fn updates_round_trip_newest_first(pool: PgPool) {
     let repo = PgSystemStatusRepo::new(pool);
     let outage = update(
         SystemStatus::MajorOutage {
-            message: message("Macro is down"),
+            message: message("Rox is down"),
         },
         30,
     );
@@ -71,7 +71,7 @@ async fn updates_round_trip_newest_first(pool: PgPool) {
 async fn schema_rejects_operational_with_message_and_outage_without(pool: PgPool) {
     let insert = |status: &'static str, message: Option<&'static str>| {
         sqlx::query!(
-            "INSERT INTO system_status (id, status, message, user_id) VALUES ($1, $2, $3, 'macro|oncall@macro.com')",
+            "INSERT INTO system_status (id, status, message, user_id) VALUES ($1, $2, $3, 'macro|oncall@rox.one')",
             Uuid::now_v7(),
             status,
             message,

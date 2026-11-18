@@ -1,4 +1,4 @@
-//! Walkthrough artifacts: what Cursor wrote, what Macro re-hosted, and the
+//! Walkthrough artifacts: what Cursor wrote, what Rox re-hosted, and the
 //! markdown that puts them in the conversation.
 //!
 //! Cursor's agents save screenshots and screen recordings to an agent-scoped
@@ -127,7 +127,7 @@ pub fn mime_type(name: &str, served: Option<&str>) -> String {
 /// differently on reload is a bug the reader sees.
 ///
 /// Images inline as markdown; videos use the editor's `<m-video>` block,
-/// which is what Macro's document format renders a player from; text files
+/// which is what Rox's document format renders a player from; text files
 /// whose body we kept become a fenced `txt` code block; everything else is
 /// a link, which is the honest rendering of a file nobody can preview.
 #[must_use]
@@ -143,7 +143,7 @@ pub fn artifact_markdown(artifacts: &[CollectedArtifact]) -> String {
     markdown
 }
 
-/// The `<m-video>` payload the Macro editor reads: a URL and how to read it.
+/// The `<m-video>` payload the Rox editor reads: a URL and how to read it.
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 struct VideoBlock<'a> {
@@ -241,7 +241,7 @@ mod test {
             key: format!("artifacts/{name}@2026-09-16T00:00:00Z"),
             name: name.to_owned(),
             mime_type: mime_type.to_owned(),
-            uri: format!("https://files.macro.com/{name}"),
+            uri: format!("https://files.rox.one/{name}"),
             size_bytes: 12,
             text: text.map(str::to_owned),
         }
@@ -257,10 +257,10 @@ mod test {
         ]);
         assert_eq!(
             markdown,
-            "\n\n![shot.png](https://files.macro.com/shot.png)\
-             \n\n<m-video>{\"url\":\"https://files.macro.com/walkthrough.mp4\",\"srcType\":\"url\"}</m-video>\
+            "\n\n![shot.png](https://files.rox.one/shot.png)\
+             \n\n<m-video>{\"url\":\"https://files.rox.one/walkthrough.mp4\",\"srcType\":\"url\"}</m-video>\
              \n\n```txt\nhello\nworld\n```\
-             \n\n[bundle.zip](https://files.macro.com/bundle.zip)"
+             \n\n[bundle.zip](https://files.rox.one/bundle.zip)"
         );
     }
 
@@ -268,7 +268,7 @@ mod test {
     fn a_text_file_without_a_kept_body_stays_a_link() {
         assert_eq!(
             artifact_markdown(&[collected("notes.txt", "text/plain")]),
-            "\n\n[notes.txt](https://files.macro.com/notes.txt)"
+            "\n\n[notes.txt](https://files.rox.one/notes.txt)"
         );
     }
 

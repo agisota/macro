@@ -10,11 +10,11 @@ mod test;
 /// The tools this service runs for a turn, as one dispatchable set.
 pub(crate) type SelectedTools<Context> = Arc<dyn ai_toolset::ToolSet<Context> + Send + Sync>;
 
-/// Database-only agent instructions: the base prompt and how Macro databases
+/// Database-only agent instructions: the base prompt and how Rox databases
 /// work, from `DatabaseNamespace`'s `@agent` guidance.
 static DATABASE_TOOL_USE_PROMPT: LazyLock<String> = LazyLock::new(|| {
     format!(
-        "{}# Macro databases\n{}\n",
+        "{}# Rox databases\n{}\n",
         prompt::BASE_PROMPT,
         agent_code_mode::domain::entity_guide("databases").unwrap_or_default()
     )

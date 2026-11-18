@@ -6,7 +6,7 @@
  */
 
 /**
- * Bot id of the coding agent the computer came with; null until macrod
+ * Bot id of the coding agent the computer came with; null until roxd
 first connects. It can name an agent the team since deleted.
  */
 export type ComputerStatusDefaultAgentId = string | null;

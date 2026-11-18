@@ -157,7 +157,7 @@ function SpreadsheetBlockContent(props: { share?: string }) {
                     <HeaderActionGroup label="Spreadsheet actions">
                       <ChatWithAgentButton
                         grouped
-                        label="Ask Macro"
+                        label="Ask Rox"
                         disabled={!store.ready()}
                         entity={{
                           type: 'document',

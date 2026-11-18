@@ -76,14 +76,14 @@ export function RuntimeSetupSteps(props: { children: JSX.Element }) {
     <>
       <Show when={isDesktopPlatform()}>
         <p class="mb-6 rounded-lg border border-edge-muted bg-ink/[0.025] px-3 py-2 text-sm text-ink-muted">
-          Setting up this computer? The desktop app bundles macrod — use the{' '}
+          Setting up this computer? The desktop app bundles roxd — use the{' '}
           <span class="font-medium text-ink">This computer</span> card on the
           Machines page instead; no download or pairing code needed. The steps
           below connect a different machine.
         </p>
       </Show>
       <ol aria-label="Machine setup steps" class="list-none">
-        <SetupStep number={1} title="Install macrod">
+        <SetupStep number={1} title="Install roxd">
           <p>On macOS or Linux, run in a terminal:</p>
           <SetupCommand
             prompt="$"
@@ -94,18 +94,18 @@ export function RuntimeSetupSteps(props: { children: JSX.Element }) {
             prompt=">"
             command={`irm ${INSTALL_SCRIPT_BASE}/install.ps1 | iex`}
           />
-          <p>Run it again later to update macrod.</p>
+          <p>Run it again later to update roxd.</p>
         </SetupStep>
-        <SetupStep number={2} title="Run macrod">
+        <SetupStep number={2} title="Run roxd">
           <p>
-            Open a terminal in the folder where macrod should keep its
+            Open a terminal in the folder where roxd should keep its
             configuration and run:
           </p>
-          <SetupCommand prompt="$" command="macrod" />
+          <SetupCommand prompt="$" command="roxd" />
           <p>
             Choose your agent, workspace, and access in Quickstart, then select{' '}
             <span class="font-medium text-ink">Create and pair</span>. Keep
-            macrod running.
+            roxd running.
           </p>
         </SetupStep>
         <SetupStep number={3} title="Enter your pairing code">

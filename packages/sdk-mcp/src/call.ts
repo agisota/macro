@@ -195,7 +195,7 @@ export function describeError(error: unknown): {
       .otherwise(() => 'internal');
     // A 5xx body can describe server internals; a 4xx explains the request.
     const message =
-      error.status >= 500 ? `Macro API error ${error.status}` : error.message;
+      error.status >= 500 ? `Rox API error ${error.status}` : error.message;
     return { code, message };
   }
   if (error instanceof MacroError)

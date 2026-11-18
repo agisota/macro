@@ -27,7 +27,7 @@ pub enum PgTeamAgentsError {
     MalformedUserId,
 }
 
-/// Agent teammate storage in MacroDB.
+/// Agent teammate storage in RoxDB.
 #[derive(Clone)]
 pub struct PgTeamAgentsRepo {
     pool: PgPool,

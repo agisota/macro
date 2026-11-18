@@ -150,7 +150,7 @@ pub struct InProgressUserLink {
     pub email_provider: String,
     pub macro_user_id: Uuid,
     pub linked_email: Option<String>,
-    /// Scopes Macro placed on the authorization request.
+    /// Scopes Rox placed on the authorization request.
     pub requested_google_scopes: Vec<String>,
     /// Actual scopes returned by Google's token exchange.
     pub granted_google_scopes: Vec<String>,

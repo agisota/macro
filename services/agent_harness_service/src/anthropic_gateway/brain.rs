@@ -1,4 +1,4 @@
-//! Agent teammates' brains call the gateway with the agent's own Macro API
+//! Agent teammates' brains call the gateway with the agent's own Rox API
 //! key under `/brain/anthropic/*`; usage counts against the agent account.
 
 use std::{future::Future, pin::Pin, sync::Arc};

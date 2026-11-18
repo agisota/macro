@@ -75,7 +75,7 @@ async fn a_long_self_reported_name_is_cut_to_a_label() {
 async fn a_stored_name_registered_before_the_rules_is_held_to_them() {
     let registry = Arc::new(FakeClientRegistry::default());
     for (client_id, client_name) in [
-        ("reserved", "Macro Support"),
+        ("reserved", "Rox Support"),
         ("bidi", "Claude\u{202e} Code"),
     ] {
         registry

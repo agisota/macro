@@ -19,7 +19,7 @@ pub enum PropertyTargetEntityType {
     Chat,
     /// CRM company.
     Company,
-    /// Row of a Macro database table.
+    /// Row of a Rox database table.
     DatabaseRow,
     /// Document, including tasks and snippets.
     Document,

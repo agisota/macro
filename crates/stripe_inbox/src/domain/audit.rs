@@ -46,7 +46,7 @@ pub enum MismatchKind {
     TeamBilling,
     /// A person's plan roles disagree with their subscription.
     PersonalPlan,
-    /// Macro's side of a subscription could not be read, so it was not
+    /// Rox's side of a subscription could not be read, so it was not
     /// checked.
     Unchecked,
 }
@@ -60,7 +60,7 @@ pub struct Mismatch {
     pub object_id: String,
     /// Stripe's side.
     pub stripe_value: Option<serde_json::Value>,
-    /// Macro's side.
+    /// Rox's side.
     pub macro_value: Option<serde_json::Value>,
 }
 
@@ -289,7 +289,7 @@ where
                 mismatches.extend(self.domains.check(facts, last_invoice_failed).await?);
             }
 
-            // Page on the raw objects, so a page Macro cannot read is not
+            // Page on the raw objects, so a page Rox cannot read is not
             // mistaken for the end of the list.
             if !page.has_more {
                 return Ok(mismatches);

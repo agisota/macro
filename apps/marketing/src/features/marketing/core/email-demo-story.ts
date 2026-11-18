@@ -12,8 +12,8 @@ export const meetingReply =
 export const meetingDraft = {
   subject: 'Re: Thursday demo',
   to: 'Austin Barron <austin@example.com>',
-  cc: 'Julia <julia@macro.com>',
-  body: 'Hi Austin Barron,\n\nThursday at 9 works. Here’s the setup plan and Macro overview. I’ve copied Julia, who can help with setup.\n\nSee you Thursday,\nJacob',
+  cc: 'Julia <julia@rox.one>',
+  body: 'Hi Austin Barron,\n\nThursday at 9 works. Here’s the setup plan and Rox overview. I’ve copied Julia, who can help with setup.\n\nSee you Thursday,\nJacob',
 };
 
 /** Three populated, fictional inboxes, isolated to the Mail page. */

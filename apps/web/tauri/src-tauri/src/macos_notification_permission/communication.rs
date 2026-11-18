@@ -35,7 +35,7 @@ static AVATAR_CLIENT: LazyLock<reqwest::Client> = LazyLock::new(|| {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Sender {
-    /// Stable identifier, such as a Macro user id or an agent's name.
+    /// Stable identifier, such as a Rox user id or an agent's name.
     id: String,
     name: String,
     avatar_url: Option<String>,

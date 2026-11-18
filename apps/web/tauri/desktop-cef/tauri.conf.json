@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Macro",
+  "productName": "Rox",
   "version": "../../package.json",
   "identifier": "com.macro.app.prod",
   "build": {
@@ -18,7 +18,7 @@
   "app": {
     "windows": [
       {
-        "title": "Macro",
+        "title": "Rox",
         "width": 800,
         "height": 600,
         "resizable": true,
@@ -79,7 +79,7 @@
           "appLink": false
         },
         {
-          "host": "macro.com",
+          "host": "rox.one",
           "path": [
             "/app"
           ],
@@ -88,7 +88,7 @@
           ]
         },
         {
-          "host": "dev.macro.com",
+          "host": "dev.rox.one",
           "path": [
             "/app"
           ],
@@ -97,7 +97,7 @@
           ]
         },
         {
-          "host": "staging.macro.com",
+          "host": "staging.rox.one",
           "path": [
             "/app"
           ],

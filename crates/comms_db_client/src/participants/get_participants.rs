@@ -22,7 +22,7 @@ impl From<DbParticipantRole> for channels::domain::models::ParticipantRole {
     }
 }
 
-// XXX: This is a shim until we correctly implement https://macro.com/app/task/019ed710-f261-7059-b890-5ade6e11f4cd
+// XXX: This is a shim until we correctly implement https://rox.one/app/task/019ed710-f261-7059-b890-5ade6e11f4cd
 fn validate_participant_user_id(user_id: &str) -> Result<(), sqlx::Error> {
     ChannelSender::parse_from_str(user_id)
         .map(|_| ())

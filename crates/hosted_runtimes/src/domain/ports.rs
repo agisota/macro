@@ -232,7 +232,7 @@ pub trait ComputerRepo: Send + Sync + 'static {
         harness_id: HarnessId,
     ) -> impl Future<Output = Result<(), Self::Err>> + Send;
 
-    /// Record the first macrod connection; later calls keep the first time.
+    /// Record the first roxd connection; later calls keep the first time.
     fn mark_enrolled(
         &self,
         computer_id: ComputerId,
@@ -329,8 +329,8 @@ pub trait ComputerRepo: Send + Sync + 'static {
         now: DateTime<Utc>,
     ) -> impl Future<Output = Result<Option<Computer>, Self::Err>> + Send;
 
-    /// Give healthy computers' macrod timers a fresh grace after startup, scoped to the host.
-    fn postpone_macrod_timers(
+    /// Give healthy computers' roxd timers a fresh grace after startup, scoped to the host.
+    fn postpone_roxd_timers(
         &self,
         host: HostId,
         deadline: DateTime<Utc>,
@@ -518,8 +518,8 @@ pub trait Fleet: Send + Sync + 'static {
         &self,
         computer_id: ComputerId,
     ) -> impl Future<Output = Result<(), Self::Err>> + Send;
-    /// Restart macrod without rebooting the guest.
-    fn restart_macrod(
+    /// Restart roxd without rebooting the guest.
+    fn restart_roxd(
         &self,
         computer_id: ComputerId,
     ) -> impl Future<Output = Result<(), Self::Err>> + Send;
@@ -529,7 +529,7 @@ pub trait Fleet: Send + Sync + 'static {
         computer_id: ComputerId,
     ) -> impl Future<Output = Result<(), Self::Err>> + Send;
 
-    /// Delete the one-time enrollment once macrod has used it.
+    /// Delete the one-time enrollment once roxd has used it.
     fn clear_enrollment(
         &self,
         computer_id: ComputerId,
@@ -666,7 +666,7 @@ pub trait SetupNotices: Send + Sync + 'static {
     fn send(&self, notice: SetupNotice) -> impl Future<Output = Result<(), Self::Err>> + Send;
 }
 
-/// The harness registry macrod pairs with.
+/// The harness registry roxd pairs with.
 pub trait Harnesses: Send + Sync + 'static {
     /// Adapter failure type.
     type Err: std::error::Error + Send + Sync + 'static;

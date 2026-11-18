@@ -56,7 +56,7 @@ pub struct CallRecordArchivedMetadata {
     pub duration_ms: Option<i64>,
     /// Number of distinct participants over the call's lifetime.
     pub participant_count: usize,
-    /// Macro accounts that joined the call over its lifetime. Empty in events
+    /// Rox accounts that joined the call over its lifetime. Empty in events
     /// published before this field existed.
     #[serde(default)]
     pub participants: Vec<MacroUserIdStr<'static>>,
@@ -121,7 +121,7 @@ pub struct CallRecordingReadyMetadata {
 pub struct CallRecordImportedMetadata {
     /// Identifier of the created or refreshed call record.
     pub call_id: Uuid,
-    /// Connected Macro user who owns the imported record.
+    /// Connected Rox user who owns the imported record.
     pub owner: MacroUserIdStr<'static>,
 }
 

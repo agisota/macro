@@ -12,20 +12,20 @@ SUITE = json.loads(Path(__file__).with_name("baseline.json").read_text())
 class BaselineComparisonTests(unittest.TestCase):
     def test_aliases_resolve_without_requiring_real_accounts(self):
         fields = compare_fields(
-            {"intent": "message", "recipients": ["julia@macro.com"], "body": "I'm going to be late"},
+            {"intent": "message", "recipients": ["julia@rox.one"], "body": "I'm going to be late"},
             "message", {"recipients": ["Julia"], "body": "I'm going to be late"}, SUITE,
         )
         self.assertTrue(all(field["pass"] for field in fields.values()))
 
     def test_invitee_order_and_case_do_not_change_the_result(self):
         fields = compare_fields(
-            {"guests": ["julia@macro.com", "teo@macro.com"]},
+            {"guests": ["julia@rox.one", "teo@rox.one"]},
             "calendar", {"guests": ["TEO", "Julia"]}, SUITE,
         )
         self.assertTrue(fields["guests"]["pass"])
 
     def test_email_cc_does_not_count_as_a_to_recipient(self):
-        expected = {"recipients": ["julia@macro.com"], "cc": ["teo@macro.com"]}
+        expected = {"recipients": ["julia@rox.one"], "cc": ["teo@rox.one"]}
         correct = compare_fields(expected, "email", {"recipients": ["Julia"], "cc": ["Teo"]}, SUITE)
         combined = compare_fields(expected, "email", {"recipients": ["Julia", "Teo"], "cc": []}, SUITE)
         self.assertTrue(all(field["pass"] for field in correct.values()))

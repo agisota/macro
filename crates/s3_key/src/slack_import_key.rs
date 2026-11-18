@@ -60,7 +60,7 @@ impl SlackImportKey {
         Ok(key)
     }
 
-    /// Owning Macro team.
+    /// Owning Rox team.
     pub fn team(&self) -> Uuid {
         self.team
     }

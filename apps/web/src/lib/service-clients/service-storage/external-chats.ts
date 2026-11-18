@@ -33,7 +33,7 @@ function write<T extends ObjectLike>(path: string, body: BodyInit) {
 }
 export const externalChatsClient = {
   list: () => dssFetch<ExternalChatSummary[]>(root),
-  /** Adds one of the caller's provider chats to Macro. */
+  /** Adds one of the caller's provider chats to Rox. */
   add: (request: ExternalChatAdd) =>
     write<ExternalChatAdded>(root, JSON.stringify(request)),
   detail: (id: string) => dssFetch<ExternalChatDetail>(chat(id)),

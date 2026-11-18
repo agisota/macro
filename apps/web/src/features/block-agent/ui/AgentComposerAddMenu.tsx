@@ -148,7 +148,7 @@ export function AgentComposerAddMenu(props: {
         {
           id: 'connect',
           label: 'Add connections',
-          description: 'Connect more apps to Macro',
+          description: 'Connect more apps to Rox',
           icon: <PlusIcon />,
           onSelect: () => openTarget({ kind: 'overview', mode: 'discover' }),
         },

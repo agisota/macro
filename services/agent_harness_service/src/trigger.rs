@@ -109,7 +109,7 @@ pub struct TriggerServices {
     /// for; `None` when `TYPESAFE_API_KEY` is unset, so only mentions and
     /// explicit replies reach agents.
     pub classifier: Option<Arc<TriggerClassifier>>,
-    /// Admission gate for Macro-funded inference.
+    /// Admission gate for Rox-funded inference.
     pub admission: Arc<dyn ai_billing::AiAdmissionService>,
     /// Message service used to announce task assignments.
     pub messages: Arc<dyn MessageServiceApi>,

@@ -21,7 +21,7 @@ fn secondary_calendar(provider_calendar_id: &str, access_role: &str) -> Provider
 }
 
 /// One copy of an event organized by `organizer` that lists the inbox's own
-/// address as its guest, as Macro wrote events on secondary calendars
+/// address as its guest, as Rox wrote events on secondary calendars
 /// before October 2026.
 fn copy_of(
     owner_id: &str,
@@ -432,7 +432,7 @@ async fn a_sync_of_the_organizers_copy_leaves_content_to_the_invitation(pool: Pg
     let meeting =
         SecondaryMeeting::new(&pool, &repo, "macro|organizer-calendar-sync@example.com").await;
 
-    // A change made outside Macro reaches the organizer's copy by sync.
+    // A change made outside Rox reaches the organizer's copy by sync.
     repo.upsert_event_fixture(meeting.edited(meeting.secondary_id, 10))
         .await
         .unwrap();

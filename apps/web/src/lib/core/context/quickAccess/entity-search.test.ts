@@ -13,7 +13,7 @@ function items(...names: string[]): UserItem[] {
     searchText: name,
     sortTimestamp: 0,
     timestamps: {},
-    data: { id: String(index), name, email: `${index}@macro.com` },
+    data: { id: String(index), name, email: `${index}@rox.one` },
   }));
 }
 
@@ -22,7 +22,7 @@ describe('pending Quick Access matches', () => {
     const ranked = items(
       'Seamus snip',
       'seamus todo',
-      'seamus@macro.com taskium'
+      'seamus@rox.one taskium'
     );
     for (const query of ['seam', 'seamu', 'seamus', 'seamu']) {
       const matches = filterQuickAccessItems(ranked, query);

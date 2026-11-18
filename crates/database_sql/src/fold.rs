@@ -4,7 +4,7 @@
 //! filter, groups and aggregates or projects, drops repeats for `DISTINCT`,
 //! then sorts. SQL semantics where SQL has an opinion (`NULL` compares
 //! false, `COUNT(column)` skips empty cells, `SUM` of nothing is `NULL`, a
-//! join on a `NULL` matches nothing); Macro's where SQL does not (`LIKE`
+//! join on a `NULL` matches nothing); Rox's where SQL does not (`LIKE`
 //! ignores case, empty cells sort last, select values sort in option order,
 //! a multi-valued join column matches by membership).
 

@@ -1,6 +1,6 @@
 use super::*;
 
-/// An invitation to join a call directly, without creating a Macro account.
+/// An invitation to join a call directly, without creating a Rox account.
 #[derive(Debug, Clone, Serialize, Deserialize, Template)]
 #[template(path = "invite_to_call.html")]
 pub struct CallInvite {

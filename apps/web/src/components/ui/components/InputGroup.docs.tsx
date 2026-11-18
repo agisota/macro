@@ -38,7 +38,7 @@ function AddonsDemo() {
       <InputGroup>
         <InputGroup.Input
           type="email"
-          value="team@macro.com"
+          value="team@rox.one"
           aria-label="Team email"
         />
         <InputGroup.Addon align="inline-start">
@@ -51,7 +51,7 @@ function AddonsDemo() {
 
       <InputGroup>
         <InputGroup.Addon align="inline-start">https://</InputGroup.Addon>
-        <InputGroup.Input placeholder="macro.com" aria-label="Website" />
+        <InputGroup.Input placeholder="rox.one" aria-label="Website" />
         <InputGroup.Addon align="inline-end">
           <InputGroup.Button size="icon-md" aria-label="Open website">
             <ArrowRightIcon class="size-4" />

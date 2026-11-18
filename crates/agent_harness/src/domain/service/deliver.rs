@@ -7,7 +7,7 @@ use super::*;
 /// dial stops restoring it.
 const IDLE_SESSION_AFTER: chrono::TimeDelta = chrono::TimeDelta::hours(1);
 
-/// When Macro or the runtime last saw activity in `session`. `modified_at`
+/// When Rox or the runtime last saw activity in `session`. `modified_at`
 /// moves when a turn starts, runs, is stopped or blocks, never when it ends,
 /// so an unfinished turn is read from the turn projection instead.
 /// `runtime_activity` is the runtime's own `updatedAt` for it, when its
@@ -122,7 +122,7 @@ where
                     session_id,
                 )));
             };
-            if session.harness == harness_id::MACROD_HARNESS_SLUG {
+            if session.harness == harness_id::ROXD_HARNESS_SLUG {
                 attachment = attachment.initial_model(session.model.clone());
             }
             let egress = self
@@ -179,7 +179,7 @@ where
     /// dial time: a command in flight here, a turn the durable projection
     /// shows unfinished (still open, or open when the session disconnected,
     /// on any replica), or a durable queue nobody else dispatches. A session
-    /// that Macro or the runtime (its listed `updatedAt`) saw active in the
+    /// that Rox or the runtime (its listed `updatedAt`) saw active in the
     /// last hour is restored if the dial's eager cap has room.
     /// Everything else binds on its next prompt or delivery, which reconnects
     /// a detached session anyway; durable notifications and conversation

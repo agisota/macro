@@ -48,7 +48,7 @@ mod threads;
 
 // Constants
 // auth based constants
-pub const MACRO_INTERNAL_USER_ID: &str = "macro|INTERNAL@macro.com";
+pub const MACRO_INTERNAL_USER_ID: &str = "macro|INTERNAL@rox.one";
 
 pub(crate) async fn setup_and_serve(state: ApiContext) -> anyhow::Result<()> {
     let sync_sessions = state.sync_sessions.clone();
@@ -72,6 +72,9 @@ pub(crate) async fn setup_and_serve(state: ApiContext) -> anyhow::Result<()> {
                 ))
                 .layer(
                     macro_cors::cors_layer_with_headers(vec![
+                        // The vault's CSRF marker under its current name and
+                        // the one clients sent before the rename.
+                        axum::http::HeaderName::from_static("x-rox-passwords"),
                         axum::http::HeaderName::from_static("x-macro-passwords"),
                         axum::http::HeaderName::from_static(middleware::crm_access::REQUEST_HEADER),
                         axum::http::HeaderName::from_static(

@@ -75,7 +75,7 @@ impl<Service: DatabasesService, EntityAccess: EntityAccessService>
     }
 
     /// Run the tools as `actor`, delegated for the requesting user, instead
-    /// of the default Macro AI bot.
+    /// of the default Rox AI bot.
     pub fn with_actor(mut self, actor: BotId) -> Self {
         self.actor = actor;
         self
@@ -311,7 +311,7 @@ pub enum ColumnType {
     SelectNumber,
     /// A user- or team-scoped colored label. Always multi-valued.
     Tag,
-    /// A reference to a Macro entity, stored as a typed id.
+    /// A reference to a Rox entity, stored as a typed id.
     Entity,
 }
 
@@ -422,7 +422,7 @@ pub struct ToolColumn {
     pub options: Vec<ToolOption>,
     /// Whether SQL may write to this column.
     pub writable: bool,
-    /// A database-row relationship; distinct from a Macro entity reference.
+    /// A database-row relationship; distinct from a Rox entity reference.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub relation: Option<ToolRelation>,
     /// A derived column's formula: SQL reads its values, nothing writes

@@ -14,7 +14,7 @@ touches, in order, with the existing code to copy.
 | A Kafka topic, event, or consumer | [add-kafka-event.md](add-kafka-event.md) |
 | GitHub App webhook subscriptions and permissions | [GitHub registration guide](../../crates/github/README.md) |
 | A bot that searches and posts to channels through the SDK | [bots.md](bots.md) |
-| A MacroDB table, column, or query | [database guide](../development/database.md) |
+| A RoxDB table, column, or query | [database guide](../development/database.md) |
 | An AI tool | [`create-ai-tool` skill](../../.agents/skills/create-ai-tool/SKILL.md) |
 | A backend endpoint to the TypeScript SDK | [`add-sdk-endpoint` skill](../../.agents/skills/add-sdk-endpoint/SKILL.md) |
 | A feature flag (web or backend) | [`feature-flags` skill](../../.agents/skills/feature-flags/SKILL.md) |

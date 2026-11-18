@@ -166,7 +166,7 @@ pub async fn handler(
     if let Err(e) = ctx
         .ses_client
         .send_email(
-            "auth@macro.com",
+            "auth@rox.one",
             req.email.trim(),
             DESKTOP_EMAIL_SUBJECT,
             &desktop_email_html(&url),
@@ -212,7 +212,7 @@ pub async fn handler(
     Ok(Json(SendMobileWelcomeEmailResponse { sent: true }))
 }
 
-/// Gmail domains accepted despite being generic: Macro connects Gmail inboxes,
+/// Gmail domains accepted despite being generic: Rox connects Gmail inboxes,
 /// so a Gmail lead can finish signing up on desktop.
 const ALLOWED_PERSONAL_DOMAINS: &[&str] = &["gmail.com", "googlemail.com"];
 
@@ -304,7 +304,7 @@ fn desktop_email_html(url: &str) -> String {
   </head>
   <body style="margin:0;padding:0;width:100%;background-color:#f5f5f4;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">
-      Open this link on desktop to finish signing up for Macro.
+      Open this link on desktop to finish signing up for Rox.
     </div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f5f5f4" style="font-family:Arial,Helvetica,sans-serif;color:#222222;">
       <tr>
@@ -312,11 +312,11 @@ fn desktop_email_html(url: &str) -> String {
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
             <tr>
               <td bgcolor="#ffffff" style="padding:36px 40px 40px;border:1px solid #e7e7e5;border-radius:12px;">
-                <a href="https://macro.com" style="text-decoration:none;">
-                  <img src="https://macro.com/app/macro-email-icon.png" width="48" height="48" alt="Macro" style="display:block;border:0;" />
+                <a href="https://rox.one" style="text-decoration:none;">
+                  <img src="https://rox.one/app/macro-email-icon.png" width="48" height="48" alt="Rox" style="display:block;border:0;" />
                 </a>
                 <h1 style="margin:36px 0 16px;font-size:28px;line-height:36px;font-weight:600;letter-spacing:-0.5px;color:#222222;">{DESKTOP_EMAIL_SUBJECT}</h1>
-                <p style="margin:0 0 20px;font-size:16px;line-height:26px;color:#525252;">Macro is a better experience on desktop. Open this link to finish signing up — it only takes a minute.</p>
+                <p style="margin:0 0 20px;font-size:16px;line-height:26px;color:#525252;">Rox is a better experience on desktop. Open this link to finish signing up — it only takes a minute.</p>
                 <table role="presentation" cellpadding="0" cellspacing="0" style="margin:28px 0 8px;">
                   <tr>
                     <td bgcolor="#222222" style="border-radius:6px;text-align:center;">
@@ -329,7 +329,7 @@ fn desktop_email_html(url: &str) -> String {
             </tr>
             <tr>
               <td style="padding:24px 16px 0;text-align:center;font-size:12px;line-height:20px;color:#737373;">
-                Need a hand? <a href="mailto:support@macro.com" style="color:#525252;text-decoration:underline;">Contact support</a>
+                Need a hand? <a href="mailto:support@rox.one" style="color:#525252;text-decoration:underline;">Contact support</a>
               </td>
             </tr>
           </table>
@@ -355,10 +355,10 @@ mod tests {
 
     #[test]
     fn desktop_link_points_at_signup() {
-        let prod = url::Url::parse("https://macro.com/app").unwrap();
+        let prod = url::Url::parse("https://rox.one/app").unwrap();
         assert_eq!(
             desktop_signup_url(&prod, &MobileWelcomeAttribution::default()),
-            "https://macro.com/app/signup?signup_flow=mobile_email"
+            "https://rox.one/app/signup?signup_flow=mobile_email"
         );
         let local = url::Url::parse("http://localhost:3000").unwrap();
         assert_eq!(
@@ -369,7 +369,7 @@ mod tests {
 
     #[test]
     fn desktop_link_keeps_ad_parameters_from_the_capture_page() {
-        let prod = url::Url::parse("https://macro.com/app").unwrap();
+        let prod = url::Url::parse("https://rox.one/app").unwrap();
         let url = desktop_signup_url(
             &prod,
             &MobileWelcomeAttribution {
@@ -400,7 +400,7 @@ mod tests {
 
     #[test]
     fn desktop_link_drops_values_that_cannot_be_a_query_parameter() {
-        let prod = url::Url::parse("https://macro.com/app").unwrap();
+        let prod = url::Url::parse("https://rox.one/app").unwrap();
         let url = desktop_signup_url(
             &prod,
             &MobileWelcomeAttribution {
@@ -433,7 +433,7 @@ mod tests {
         assert_eq!(parsed.attribution.utm_source.as_deref(), Some("facebook"));
         assert_eq!(parsed.attribution.fbclid.as_deref(), Some("x"));
         let url = desktop_signup_url(
-            &url::Url::parse("https://macro.com/app").unwrap(),
+            &url::Url::parse("https://rox.one/app").unwrap(),
             &parsed.attribution,
         );
         let has_mobile_email_flow = query(&url)
@@ -448,8 +448,8 @@ mod tests {
 
     #[test]
     fn desktop_email_links_to_signup() {
-        let html = desktop_email_html("https://macro.com/app/signup");
-        assert!(html.contains(r#"href="https://macro.com/app/signup""#));
+        let html = desktop_email_html("https://rox.one/app/signup");
+        assert!(html.contains(r#"href="https://rox.one/app/signup""#));
         assert!(html.contains(DESKTOP_EMAIL_SUBJECT));
     }
 
@@ -460,7 +460,7 @@ mod tests {
         assert!(!is_personal_email("someone@googlemail.com"));
         assert!(is_personal_email("someone@icloud.com"));
         assert!(is_personal_email(" Someone@Yahoo.com "));
-        assert!(!is_personal_email("someone@macro.com"));
+        assert!(!is_personal_email("someone@rox.one"));
         assert!(!is_personal_email("someone@acme.co"));
     }
 }

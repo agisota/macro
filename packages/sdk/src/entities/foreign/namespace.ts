@@ -44,7 +44,7 @@ function withoutNullLogin({
 }
 
 /**
- * @routing Use when looking up, favoriting or muting an item linked into Macro from another system, such as a GitHub pull request, by its id in that system; not items created in Macro.
+ * @routing Use when looking up, favoriting or muting an item linked into Rox from another system, such as a GitHub pull request, by its id in that system; not items created in Rox.
  */
 export class ForeignEntityNamespace {
   constructor(private readonly client: MacroClient) {}

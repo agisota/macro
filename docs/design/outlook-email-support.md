@@ -30,7 +30,7 @@ Implementation details hardened during review:
   grants belonging to deleted accounts. Collection preserves mailbox, custodian,
   and in-flight initialization references and continues while new linking is off.
 - Graph message/attachment identifiers remain provider-specific storage facts;
-  Macro identifiers and normalized mail state remain the public product contract.
+  Rox identifiers and normalized mail state remain the public product contract.
   Folder ancestry changes trigger trash re-evaluation even with an unchanged ETag.
 - Import completion durably schedules attachment eligibility re-evaluation after
   all correspondence is ingested, including a repeated import or expired cursor.
@@ -92,13 +92,13 @@ configuration must be available in the test environment. The available Doppler
 credential cannot register the email-service values; an authorized configuration
 owner must finish that step before hosted testing.
 
-Verify each account family against a Gmail inbox in the same Macro account:
+Verify each account family against a Gmail inbox in the same Rox account:
 
 1. Link and import folders, categories, contacts, native drafts, attachments, and
    older mail; compare folder and message counts with Outlook. Repeat an import.
 2. Receive, reply, reply-all, forward, compose, schedule, cancel, and send. Exercise
    inline images, large attachments, changing the sender inbox, and simultaneous
-   draft edits in Outlook and Macro.
+   draft edits in Outlook and Rox.
 3. Read/star/archive/trash/restore, category assignment, and sender policies from
    both clients. Move/delete folders, reconnect, disconnect, revoke consent, and
    check that identities, permissions, search, and collaboration remain intact.
@@ -116,7 +116,7 @@ Real-provider results, account entitlements, and throughput remain release gates
 automated fixtures cannot establish those outcomes. The calendar replacement,
 attendee Outlook action, and cloud-reference attachment differences are approved.
 
-Add personal Outlook.com and individual Microsoft 365 mailboxes to Macro using
+Add personal Outlook.com and individual Microsoft 365 mailboxes to Rox using
 the existing email domain, provider interfaces, and message pipeline. Hutch's
 work supplies the provider abstraction, Microsoft account linking, and encrypted
 grant storage. The remaining work is a Graph provider implementation and reliable
@@ -129,17 +129,17 @@ should prove those contracts on test mailboxes before enabling a full-parity rel
 
 ## Release scope
 
-The release target is parity with Macro's existing Gmail experience for personal
+The release target is parity with Rox's existing Gmail experience for personal
 Outlook.com and individual Microsoft 365 accounts. Development can proceed in
 vertical slices, but a reduced email MVP is not a shipping milestone. Parity means
-the features Macro currently offers, not every feature of Outlook or Gmail itself.
+the features Rox currently offers, not every feature of Outlook or Gmail itself.
 
 The first release supports:
 
-- Existing Macro users connecting personal Outlook.com accounts or individual
+- Existing Rox users connecting personal Outlook.com accounts or individual
   Microsoft 365 mailboxes in the Microsoft public cloud, including organizations
-  other than Macro's own tenant.
-- Multiple Gmail and Outlook inboxes in the same Macro account.
+  other than Rox's own tenant.
+- Multiple Gmail and Outlook inboxes in the same Rox account.
 - Initial import and continuing sync of Inbox, Sent Items, Drafts, Archive,
   Deleted Items, Junk Email, and ordinary user-created mail folders.
 - Existing thread display, search, attachment downloads, inline images, and
@@ -156,13 +156,13 @@ The first release supports:
 The agreed initial account scope excludes Microsoft shared/delegated mailboxes:
 for example, a team support inbox or a mailbox another person lets you access.
 This provider-level permission model is separate from sharing an already-linked
-inbox or thread inside Macro; preserve Macro's existing collaboration behavior.
+inbox or thread inside Rox; preserve Rox's existing collaboration behavior.
 Application-wide tenant access, on-premises Exchange, sovereign clouds, and
 separate online archive mailboxes remain outside the proposed account scope.
 Microsoft sign-in as a new Macro login method is separate from connecting a mailbox.
 
 Folders and categories need explicit semantics for the organization controls
-Macro actually exposes. Do not declare parity by hiding a Gmail feature for
+Rox actually exposes. Do not declare parity by hiding a Gmail feature for
 Outlook. Where Microsoft APIs cannot reproduce a behavior, investigate an
 equivalent implementation and bring any material limitation back for a product
 decision. Capability errors must be explicit, including missing consent.
@@ -175,7 +175,7 @@ remain unverified until the appropriate personal and organizational accounts exi
 ## Recommended solution
 
 **Build one provider-neutral email product contract and migrate Gmail through it
-before enabling Outlook.** Retain the existing viewer, composer, Macro IDs, and
+before enabling Outlook.** Retain the existing viewer, composer, Rox IDs, and
 domain ownership. Complete the abstractions where Gmail semantics still leak.
 The following decisions are the recommended implementation, subject to the
 specific live-provider verification gates below.
@@ -183,7 +183,7 @@ specific live-provider verification gates below.
 | Area | Recommended decision | Why this fits the existing foundation |
 | --- | --- | --- |
 | Public API | Shared domain requests/results behind GraphQL and active REST routes. | Reuses current clients without making an unrelated transport migration a prerequisite. |
-| Mailbox state | Explicit normalized state plus separately stored folders, tags, and provider metadata. | Removes label-string assumptions without discarding information or changing Macro identities. |
+| Mailbox state | Explicit normalized state plus separately stored folders, tags, and provider metadata. | Removes label-string assumptions without discarding information or changing Rox identities. |
 | Actions | Typed intentions and durable operation records. | Makes retries, optimistic state, and provider failures consistent. |
 | Sync | One durable coordinator; provider-specific streams and checkpoint formats. | Shares correctness machinery while respecting different provider protocols. |
 | Backfill | Initial enumeration feeds the same ingestion service as incremental sync. | Avoids separate normalization and side-effect implementations drifting apart. |
@@ -193,14 +193,14 @@ specific live-provider verification gates below.
 
 **1. Public API: keep one contract across transports.**
 
-Keep current GraphQL thread/message fields and Macro UUIDs. Add OUTLOOK to the
+Keep current GraphQL thread/message fields and Rox UUIDs. Add OUTLOOK to the
 account provider enum and add normalized organization/state fields and operation
 status. REST handlers and GraphQL resolvers call the same email domain services;
 neither implements a second version of policy. Use GraphQL for new app-facing
 state/actions where the client already uses it; retain active REST attachment,
 upload, settings, and compatibility routes.
 
-Clients select a mailbox by Macro link ID, never by access token or a provider
+Clients select a mailbox by Rox link ID, never by access token or a provider
 name that could override the stored binding. User operations pass the existing
 typed access receipt or authenticated actor to the domain. The server resolves
 the mailbox and authorization. Add generic connection initiation with an
@@ -222,7 +222,7 @@ Preserve independent read, flagged, draft, sent, inbox, trash, and junk facts.
 Do not replace them with one mutually exclusive folder-state enum: a sent copy
 can also appear in an inbox. Keep actual folder membership and sent-by-mailbox
 provenance separate; moving a sent message must not erase its sending history.
-Store typed organization entries with stable Macro IDs and kinds: folder or tag.
+Store typed organization entries with stable Rox IDs and kinds: folder or tag.
 Gmail user labels and Outlook categories are tags; Outlook folders retain their
 own identity, parent, and well-known role. The same display name never merges a
 folder with a tag. Preserve raw provider values in a private binding record.
@@ -236,7 +236,7 @@ compare old/new query results before switching readers.
 During migration, derive legacy responses from the normalized projection and
 update any still-required compatibility columns in the same transaction. Avoid
 two independently writable representations. Preserve unique mailbox-scoped
-provider bindings, existing Macro foreign keys, and stable cursor pagination.
+provider bindings, existing Rox foreign keys, and stable cursor pagination.
 
 For Signal/Noise, preserve the current decision order, including sender overrides,
 known-contact rules, drafts/sent behavior, and system-message exclusions. Extract
@@ -307,7 +307,7 @@ separate provider/live/import rate budgets.
 
 Every provider removal is reconciled before it becomes a mailbox deletion.
 Outlook uses immutable message IDs scoped to the mailbox; a folder removal can
-be the old half of a move. Preserve Macro IDs, local metadata, and recoverable
+be the old half of a move. Preserve Rox IDs, local metadata, and recoverable
 tombstones. Expired cursors rebuild affected streams without blanking the inbox.
 [Immutable identifiers](https://learn.microsoft.com/en-us/graph/outlook-immutable-id).
 
@@ -322,7 +322,7 @@ For Gmail, keep its efficient enumeration during migration, capture a starting
 history checkpoint before enumeration, and replay changes after it. For Outlook,
 initial folder deltas become the incremental streams. Prioritize Inbox and Sent,
 then cover every scoped folder. Do not truncate history to make a recent-mail
-preview look like a completed import. Group messages into Macro threads using
+preview look like a completed import. Group messages into Rox threads using
 mailbox-scoped provider conversation identity.
 
 The public progress object reports phase, processed message count, nullable
@@ -364,7 +364,7 @@ and returns silently. Only the `AADSTS` code is logged.
 
 **7. Drafts and delivery: preserve edits and model uncertainty.**
 
-Use Macro as the authoritative store for active draft edits, with revision checks
+Use Rox as the authoritative store for active draft edits, with revision checks
 and existing attachment storage. A provider-imported draft has a separate last
 observed remote snapshot. The first local edit creates a local revision; sync
 cannot overwrite it. Concurrent remote changes preserve both versions and
@@ -394,11 +394,11 @@ not recipient delivery. A deliberate resend is a new command, as already agreed.
 | Feature | Recommended implementation | Specific validation |
 | --- | --- | --- |
 | Contacts and suggestions | Import address-book contacts by folder delta; feed existing mail-derived contacts/CRM. Build correspondent suggestions from shared interaction data rather than requiring a Google other-contacts clone. | Contact edits/deletions, multiple email addresses, photos, autocomplete, and duplicate identities. |
-| Sender blocking | Persist sender policy; create a tracked Outlook inbox rule matching the exact sender and moving incoming mail to Deleted Items. Reconcile rules and distinguish Macro-managed from external rules. | Rule ordering, pre-existing rules, external edits, account quotas, and both account families. |
+| Sender blocking | Persist sender policy; create a tracked Outlook inbox rule matching the exact sender and moving incoming mail to Deleted Items. Reconcile rules and distinguish Rox-managed from external rules. | Rule ordering, pre-existing rules, external edits, account quotas, and both account families. |
 | Tags/categories | Map the existing user-label experience to Outlook categories while storing folders separately. Track stable local organization IDs and provider bindings. | Assignment, removal, catalog deletion, and external changes; category rename is a migration if an exposed feature needs it. |
 | Calendar and invitations | Add provider-neutral calendar ports in calendar_events and a Graph adapter in calendar_service. Reuse current event views, permissions, reminders, and invitation resolution. | All calendars, RSVP, recurring exceptions, time zones/DST, reminder updates, and cancellation. |
 | Conferencing and out-of-office | Model requested behavior independently from Google Meet and Google's out-of-office schema. Select supported conference creation for the target calendar; map ordinary availability to Outlook out-of-office. | Provider account limitations, conference removal, recurrence edits, and automatic invitation decline. These require verified equivalents before claiming parity. |
-| Macro collaboration and attachments | Keep Macro access policy, sharing, search, notifications, storage, and rendering shared. Download/forward attachments through selected provider ports. | Mixed accounts, identical-looking provider IDs, inline images, forwarded files, shared threads, and reconnect. |
+| Rox collaboration and attachments | Keep Rox access policy, sharing, search, notifications, storage, and rendering shared. Download/forward attachments through selected provider ports. | Mixed accounts, identical-looking provider IDs, inline images, forwarded files, shared threads, and reconnect. |
 
 The rule API supports delegated personal and work accounts with mailbox-settings
 permission; exact-sender conditions and move actions are documented. Keep policy
@@ -411,7 +411,7 @@ conflict requiring reconciliation, not a successful block.
 
 Graph exposes contact-folder deltas. Category names cannot be renamed in place
 through the documented API, so do not promise that a display-name update is a
-single PATCH. Existing Macro label routes expose create/delete; avoid inventing
+single PATCH. Existing Rox label routes expose create/delete; avoid inventing
 extra label features as part of parity.
 [Contact delta](https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0),
 [category behavior](https://learn.microsoft.com/en-us/graph/api/resources/outlookcategory).
@@ -466,9 +466,9 @@ claim about a newer deployment.
 
 | Layer | What is reusable | What still needs work |
 | --- | --- | --- |
-| GraphQL thread/message reads | Macro IDs, mailbox link IDs, body, recipients, attachments, read/starred/draft state, pagination, and access checks. | Labels still carry provider IDs. Some underlying classification/filter logic relies on Gmail label names. |
+| GraphQL thread/message reads | Rox IDs, mailbox link IDs, body, recipients, attachments, read/starred/draft state, pagination, and access checks. | Labels still carry provider IDs. Some underlying classification/filter logic relies on Gmail label names. |
 | GraphQL mailbox catalogs | User-scoped links, settings, labels, and coarse sync status go through email domain ports. | `GraphqlEmailProvider` accepts only Gmail. Label types/visibility reflect Gmail; there is no distinct folder/category contract. |
-| GraphQL mutations | Seen/unread/archive and draft inputs already express useful Macro operations. | The domain still resolves INBOX/UNREAD labels and enqueues Gmail label operations. A generic input does not imply generic execution. |
+| GraphQL mutations | Seen/unread/archive and draft inputs already express useful Rox operations. | The domain still resolves INBOX/UNREAD labels and enqueues Gmail label operations. A generic input does not imply generic execution. |
 | REST and frontend client | Most routes and response objects use email/thread/message/link terminology. GraphQL messages map into the existing viewer model. | The app uses both REST and GraphQL. Backfill listing calls `/email/backfill/gmail`; older unread and trash flows look up literal provider label IDs. |
 | Frontend sync notifications | Upsert/delete/label refresh, link IDs, cache invalidation, and coarse status can be reused. | Progress requires `completed_threads` and `total_threads`, and ETA assumes a known total. Healthy status is derived mainly from initial backfill and grant flags. |
 | Provider client ports | Normalized messages, attachments, errors, and injected token/rate-limit services. | Thread count/listing, label operations, Gmail-only cursors, and send-result assumptions need extension. Production composition selects only Gmail. |
@@ -508,7 +508,7 @@ Gmail labels and Outlook folders/categories translate at the provider boundary;
 do not scatter Outlook branches through readers, composers, or list rendering.
 
 **Acceptance gate:** the same public contract and frontend action tests run
-against both providers, with mixed-provider mailboxes in one Macro account.
+against both providers, with mixed-provider mailboxes in one Rox account.
 Cover GraphQL and still-active REST paths, inbox/trash/signal classification,
 attachments/drafts, reconnect, progress with unknown totals, and delivery outcomes.
 This is a focused refactor of real contracts plus a new provider implementation,
@@ -563,7 +563,7 @@ The runtime path is:
 
 ```mermaid
 flowchart LR
-    UI[Macro clients] --> Edge[HTTP adapters]
+    UI[Rox clients] --> Edge[HTTP adapters]
     Jobs[Queue and timer adapters] --> Domain[Email domain services]
     Edge --> Domain
     Domain --> Store[Email repository ports]
@@ -591,7 +591,7 @@ lifecycle. Email workers receive short-lived access tokens through an internal
 service port.**
 
 Use a server-side authorization-code flow with PKCE, a nonce, expiring random
-state, and a pending link bound to the initiating Macro actor. Consume the callback
+state, and a pending link bound to the initiating Rox actor. Consume the callback
 and completed link exactly once with retry-safe state transitions. Persist the
 provider and actual granted scopes so email initialization cannot interpret an
 Outlook callback as a Google grant. Preserve return-URL validation and native
@@ -630,7 +630,7 @@ immediately revoke the old token on refresh; recovery must reflect that behavior
 Disconnect disables local use immediately, invalidates token caches and jobs,
 then retries remote subscription cleanup. Delete grant material through its auth
 owner once it has no authorized consumers. Never transfer a grant merely because
-two Macro users present the same email address.
+two Rox users present the same email address.
 
 **Gate:** simultaneous refreshes, reconnect during refresh, disconnect during
 refresh, callback replay, wrong actor, wrong issuer, insufficient consent, and
@@ -648,7 +648,7 @@ separate archive mailbox has different identity behavior.
 [Immutable IDs](https://learn.microsoft.com/en-us/graph/outlook-immutable-id).
 
 Use `(link_id, provider_message_id)` as the provider message identity and
-`(link_id, conversation_id)` for Outlook thread grouping. Preserve Macro's UUIDs
+`(link_id, conversation_id)` for Outlook thread grouping. Preserve Rox's UUIDs
 and local metadata across refreshes and moves. Keep RFC Message-ID as distinct
 threading metadata. Recover the parent provider-message identifier work in #5749
 for replies. Avoid global deduplication by RFC Message-ID or subject.
@@ -657,30 +657,30 @@ Graph exposes `parentFolderId`, categories, read state, flags, and conversation
 identity as distinct message properties. Preserve those facts in conversion.
 [Message model](https://learn.microsoft.com/en-us/graph/api/resources/message?view=graph-rest-1.0).
 
-| Macro intent | Proposed Outlook behavior |
+| Rox intent | Proposed Outlook behavior |
 | --- | --- |
 | Read/unread | Set the message read state. |
 | Star/unstar | Set or clear the follow-up flag. |
 | Archive | Move Inbox messages to the mailbox's Archive folder; leave already-filed messages in their folders. |
 | Trash | Move to Deleted Items. |
 | Restore | Move to Inbox; label the action accordingly rather than implying recovery of the original folder. |
-| User folder/category | Preserve distinct provider identities and kinds; implement the organization actions present in Macro's Gmail experience. |
+| User folder/category | Preserve distinct provider identities and kinds; implement the organization actions present in Rox's Gmail experience. |
 
 Domain commands describe intent, such as `SetRead` or `MoveToTrash`, and expand
 thread actions into the relevant messages. The Gmail adapter can translate the
 same commands to its existing label operations. A single capability model drives
 the server and UI; unavailable permissions never pass through no-op providers.
 
-Macro-authored drafts remain local while being edited; a provider draft is
+Rox-authored drafts remain local while being edited; a provider draft is
 created when delivery preparation starts. Imported Outlook-authored drafts use
 the local-revision and separate remote-snapshot model proposed above. Preserve
 concurrent edits and require verified version checks for destructive remote
 cleanup. Read-only imported drafts would be a parity gap. Correlate
-Macro-created provider drafts back to the local draft so sync does not display a
+Rox-created provider drafts back to the local draft so sync does not display a
 duplicate. External changes to a prepared draft require reconciliation before
 submission; they must not silently change the frozen send payload.
 
-**Gate:** moving a message preserves its Macro identity, links, attachments, and
+**Gate:** moving a message preserves its Rox identity, links, attachments, and
 thread state. A folder and a category with the same display name stay distinct.
 
 ## Durable import and synchronization
@@ -791,7 +791,7 @@ ownership checks, due-time checks, and cancellation before submission begins.
 copy was reconciled. Neither state claims delivery to the recipient. Only a
 definitive rejection enters `Failed`.
 
-Create a Graph draft with a Macro correlation identifier using a supported
+Create a Graph draft with a Rox correlation identifier using a supported
 extended property. Verify lookup, reply-draft compatibility, and persistence into
 Sent Items in the spike. Use provider reply/reply-all/forward operations where
 needed to preserve conversation semantics. Prepare inline and regular attachments
@@ -834,10 +834,10 @@ Review the proposed decisions above before enabling their dependent features.
 | 0. Validate provider behavior | Disposable personal and Microsoft 365 mailboxes; small Graph/OAuth spikes; sanitized fixtures; final capability and identity contracts. | Prove cross-tenant consent, folder moves/deltas, immutable IDs, draft correlation, reply grouping, and send reconciliation. Revise this design where evidence disagrees. |
 | 1. Provider boundary and schema | Typed mailbox gateway, intent/capability model, provider-tagged pending links, additive sync/delivery storage, fresh migrations. | Gmail contract tests pass; mixed-provider routing and incompatible bindings are covered. No Outlook rows exposed to incompatible deployed readers. |
 | 2. Auth lifecycle | Grant service, runtime token endpoint/client, refresh coordination, reconnect/disconnect, issuer validation. | Credential gate passes, including concurrent refresh and lifecycle races. |
-| 3. Import and read path | Graph reads/conversion, folder catalog, durable delta work, shared message/attachment ingestion. | A connected mailbox imports into existing Macro threads and search; crash/replay tests pass. |
+| 3. Import and read path | Graph reads/conversion, folder catalog, durable delta work, shared message/attachment ingestion. | A connected mailbox imports into existing Rox threads and search; crash/replay tests pass. |
 | 4. Continuous sync | Webhook ingress, renewal/cleanup workers, periodic sweeps, cursor recovery, current/error status. | Folder moves, offline edits, missed notifications, and expired subscriptions converge. |
 | 5. Mailbox writes and delivery | Intent-based mutations, durable Graph drafts/send outcomes, attachment preparation, scheduled sends. | Mutation and send gates pass with injected failures and real test-account round trips. |
-| 6. Feature parity | Existing calendar/invitation and contacts behavior, sender policies, organization actions, imported drafts, and Macro collaboration. | Every current Gmail product feature has a tested counterpart or an explicitly resolved provider limitation. |
+| 6. Feature parity | Existing calendar/invitation and contacts behavior, sender policies, organization actions, imported drafts, and Rox collaboration. | Every current Gmail product feature has a tested counterpart or an explicitly resolved provider limitation. |
 | 7. Product integration and rollout | Outlook connect option, capability-aware UI, sync/reconnect/ambiguous-send states, native return tests, dashboards and rollout controls. | Full-parity mixed-inbox testing and a monitored canary meet the release criteria. |
 
 Phase 0 should be timeboxed to roughly 2–4 engineering days once test accounts and

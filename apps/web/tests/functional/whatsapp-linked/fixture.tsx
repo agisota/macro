@@ -54,7 +54,7 @@ document.documentElement.dataset.touchDevice = String(isTouchDevice());
 
 /** The production adapter and real queries; only the network is the test's. */
 /**
- * `?passkey=native` stands in for Macro desktop's authenticator, which a
+ * `?passkey=native` stands in for Rox desktop's authenticator, which a
  * browser can't run: it shows the caBLE QR event and waits for the phone.
  */
 const nativePasskey: PasskeyCapability = {
@@ -211,7 +211,7 @@ render(
           <UserContextProvider>
             <Suspense fallback={<p>Loading identity…</p>}>
               <EmailLinksContextProvider>
-                {/* The app root provides Macro's items; the composer's `@` menu
+                {/* The app root provides Rox's items; the composer's `@` menu
                     reads them. An external chat offers only its people. */}
                 <ChannelsContextProvider>
                   <QuickAccessContextProvider value={noQuickAccess}>

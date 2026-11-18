@@ -75,7 +75,7 @@ export type RunEditArgs = {
   prompt: string;
   models: ResolvedModels;
   mode?: EditMode;
-  /** Names the cursors; absent, they read `Macro (AI)`. */
+  /** Names the cursors; absent, they read `Rox (AI)`. */
   editor?: Editor;
   /** Snippet runner — QuickJS sandbox in prod, `new Function` in local dev. */
   runner?: CodeRunner;

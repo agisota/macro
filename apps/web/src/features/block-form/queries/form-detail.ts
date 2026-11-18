@@ -292,7 +292,7 @@ export function toSubmitOutcome(outcome: SubmissionOutcome): SubmitOutcome {
     .exhaustive(() => ({
       kind: 'stopped',
       sectionId: '',
-      message: 'Update Macro to see whether your response was submitted.',
+      message: 'Update Rox to see whether your response was submitted.',
     }));
 }
 

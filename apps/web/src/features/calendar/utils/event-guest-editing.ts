@@ -138,7 +138,7 @@ export function guestListHidden(event: CalendarEvent): boolean {
 /**
  * Why the viewer's guest list cannot grow, when it is worth saying. Google
  * would let a guest the organizer lets invite add guests to a hidden list,
- * but Macro cannot, since a guest's copy of that list is incomplete.
+ * but Rox cannot, since a guest's copy of that list is incomplete.
  */
 export function guestInvitesRestrictedReason(
   event: CalendarEvent

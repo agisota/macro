@@ -15,6 +15,7 @@ import type { Link as EmailLink } from '@service-email/generated/schemas';
 import { Button, Tabs, ToggleSwitch } from '@ui';
 import { For, Show, Suspense } from 'solid-js';
 import { EmailCard } from './Email';
+import { RoxMailboxSettings } from './email-rox-mailbox';
 import {
   SettingsCard,
   SettingsPage,
@@ -37,17 +38,20 @@ export function EmailSettings(props: { displayOptions: boolean }) {
     >
       <SettingsSection
         title="Accounts"
-        description="Connect email accounts and manage their sync with Macro."
+        description="Connect email accounts and manage their sync with Rox."
       >
-        <Suspense
-          fallback={
-            <p role="status" class="text-sm text-ink-muted">
-              Loading accounts…
-            </p>
-          }
-        >
-          <EmailCard />
-        </Suspense>
+        <div class="flex flex-col gap-2" aria-label="Mail accounts">
+          <Suspense
+            fallback={
+              <p role="status" class="text-sm text-ink-muted">
+                Loading accounts…
+              </p>
+            }
+          >
+            <EmailCard />
+          </Suspense>
+          <RoxMailboxSettings />
+        </div>
       </SettingsSection>
       <Show when={props.displayOptions}>
         <SettingsSection

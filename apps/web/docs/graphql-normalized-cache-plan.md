@@ -1350,7 +1350,7 @@ Remaining ranking end-to-end validation and whole-app acceptance are tracked in
 Ordinary entity/name scoring remains corpus-independent. Personal suggestions use
 policy 5: exact names, all-word prefixes, then literal contains, then address
 terms, recent-first with
-identity ties. Complete addresses and Macro IDs cannot match display-name aliases.
+identity ties. Complete addresses and Rox IDs cannot match display-name aliases.
 Command keywords keep their separate matcher; reference evidence stays policy 4.
 
 The core's new person-policy API stores local DM recency/command-target and

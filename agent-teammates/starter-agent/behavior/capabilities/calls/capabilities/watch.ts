@@ -23,7 +23,7 @@ type Live = {
  * The calls you could be on right now: live calls and meetings, the one
  * you're in, calls waiting to be placed, and open asks to come.
  *
- * Read-only, and asks Macro afresh. `wants` is what would seat you if you
+ * Read-only, and asks Rox afresh. `wants` is what would seat you if you
  * were free, by the arbiter's standing rules (a DM, your owner's meeting, a listed
  * channel); calls nobody rang you for are decided separately, and
  * `callDecisions` shows how. `joins` are your call processes alive on this

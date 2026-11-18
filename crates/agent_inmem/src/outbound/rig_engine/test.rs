@@ -216,7 +216,7 @@ fn instructions_are_a_delimited_section_after_the_standing_prompt() {
         prompt.contains(&format!(
             "{TOOLS}\n<session_instructions>\nbe terse\n</session_instructions>"
         )),
-        "the static Macro prompt sits immediately before session instructions"
+        "the static Rox prompt sits immediately before session instructions"
     );
     assert!(prompt.ends_with(&format!(
         "\n<session_instructions>\nbe terse\n</session_instructions>\n<agent_session>\nThis \
@@ -388,7 +388,7 @@ fn memory_follows_instructions_rather_than_preceding_them() {
     assert!(instructions < memory);
 }
 
-/// Sessions of every agent differ only after the static Macro prompt, so
+/// Sessions of every agent differ only after the static Rox prompt, so
 /// the part before it is cached once for all of them.
 #[test]
 fn sessions_share_everything_before_their_identity() {
@@ -552,7 +552,7 @@ async fn a_summary_turns_closed_opener_has_no_verdict() {
 fn opening_transcript_leaves_out_the_hidden_agent_context() {
     let messages = vec![agent::types::ChatMessage {
         content: agent::types::ChatMessageContent::Text(
-            "<m-agent-context>{\"version\":1,\"text\":\"<session owner=\\\"wolf@macro.com\\\"/>\"}</m-agent-context>\n\nwhat is going on in my workspace".to_owned(),
+            "<m-agent-context>{\"version\":1,\"text\":\"<session owner=\\\"wolf@rox.one\\\"/>\"}</m-agent-context>\n\nwhat is going on in my workspace".to_owned(),
         ),
         role: agent::types::Role::User,
         attachments: None,

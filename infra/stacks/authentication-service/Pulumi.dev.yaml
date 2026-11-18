@@ -17,7 +17,7 @@ config:
   authentication-service:macro_cache_secret_key: macro-cache-dev
   authentication-service:jwt_secret_key: fusionauth-jwt-secret-dev
   authentication-service:fusionauth_client_id: fusionauth-client-id-key-dev
-  authentication-service:fusionauth_issuer: fusionauth-dev.macro.com
+  authentication-service:fusionauth_issuer: fusionauth-dev.rox.one
   authentication-service:google_client_id: google-client-id-dev
   authentication-service:google_client_secret_key: google-client-secret-dev
   authentication-service:macro_api_token_private_secret_key: macro-api-token-private-key-dev

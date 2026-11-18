@@ -83,7 +83,7 @@ const PUNCTUATION = /[!-/:-?[-`{-~]/g;
  * Received text as literal Markdown text: every punctuation mark becomes a
  * numeric character reference, which the Markdown importer decodes back to
  * the character after it has looked for syntax. No sender-written Markdown,
- * HTML or Macro tag (`<m-user-mention>`, `[[…]]`, `$$…$$`) can take effect.
+ * HTML or Rox tag (`<m-user-mention>`, `[[…]]`, `$$…$$`) can take effect.
  */
 function literal(text: string): string {
   return text.replace(
@@ -109,7 +109,7 @@ function macroEmail(userId: string): string | undefined {
 }
 
 /**
- * A mentioned person: a verified Macro user becomes Chat's mention chip,
+ * A mentioned person: a verified Rox user becomes Chat's mention chip,
  * anyone else their WhatsApp name or number in bold, the way WhatsApp shows
  * it. The chip's JSON escapes `<` and `>`, so a name can't close the tag.
  */
@@ -142,7 +142,7 @@ function plainText(text: string, mentions: Mention[]): string {
 
 /**
  * Characters a code span may hold. The importer neither decodes nor
- * transforms inside a code span, so it must hold nothing a Macro tag, link,
+ * transforms inside a code span, so it must hold nothing a Rox tag, link,
  * citation or equation could start with.
  */
 const SAFE_CODE = /^[\p{L}\p{N}\s.,;?'"()+\-=/#%@^{}|]+$/u;
@@ -191,7 +191,7 @@ function whatsappLine(line: string, mentions: Mention[]): string {
  * A received WhatsApp body as Markdown for the shared message renderer.
  * Only what this function writes is Markdown: WhatsApp's own formatting,
  * links for bare http(s) URLs, and a mention chip for each `@<token>` that
- * DSS matched to a verified Macro user. Everything else is literal text.
+ * DSS matched to a verified Rox user. Everything else is literal text.
  */
 export function whatsappToMarkdown(
   text: string,

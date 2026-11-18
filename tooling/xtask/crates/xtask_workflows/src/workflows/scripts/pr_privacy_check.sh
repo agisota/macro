@@ -40,8 +40,8 @@ scan() {
   # Links to workspace items (channels, documents, chats, emails). Tasks are
   # the issue tracker and may be linked like GitHub issues; agent sessions are
   # the provenance coding agents link from the pull requests they open.
-  report "$source" "Macro workspace link" "$(grep -oiE 'https?://([a-z0-9-]+\.)?macro\.com/app/[a-z-]+/[A-Za-z0-9-]+[^[:space:])>`]*' <<<"$text" \
-    | grep -viE '^https?://([a-z0-9-]+\.)?macro\.com/app/(tasks?|agent)/' || true)"
+  report "$source" "Macro workspace link" "$(grep -oiE 'https?://([a-z0-9-]+\.)?rox\.one/app/[a-z-]+/[A-Za-z0-9-]+[^[:space:])>`]*' <<<"$text" \
+    | grep -viE '^https?://([a-z0-9-]+\.)?rox\.one/app/(tasks?|agent)/' || true)"
   # `@scope/package` names end in a slash and are not mentions.
   report "$source" "@mention" "$(grep -oE '(^|[[:space:](])@[A-Za-z0-9][A-Za-z0-9-]*/?' <<<"$prose" \
     | sed -E 's/^[[:space:](]*//' | grep -v '/$' \

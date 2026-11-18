@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
-//! Agent teammates: AI members of a team, each a real Macro account with its
-//! own Macro computer and workspace repository.
+//! Agent teammates: AI members of a team, each a real Rox account with its
+//! own Rox computer and workspace repository.
 //!
 //! Inviting one creates its account (no sign-in), joins it to the team with
 //! an included seat, creates its workspace repository, and buys its computer

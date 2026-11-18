@@ -39,16 +39,15 @@ pub struct PostHogFeatureFlags {
 
 impl PostHogFeatureFlags {
     /// Validate configuration and create the shared client.
-    ///
-    /// `host` must be an HTTP(S) origin (for example `https://us.i.posthog.com`),
-    /// without credentials, a path, query, or fragment. Use the ingestion origin
-    /// for the project's region. `project_key` must be nonblank and `timeout`
-    /// nonzero. There is no disabled mode: missing configuration is an error.
+    /// `host` must be an HTTP(S) origin for the project's region, without
+    /// credentials, a path, query, or fragment. `project_key` must be
+    /// nonblank and `timeout` nonzero. There is no disabled mode: missing
+    /// configuration is an error.
     /// Redirects and automatic retries are disabled. The timeout bounds the
     /// entire load, including reading the response body.
     ///
     /// Every load sends `environment` (`prod`, `dev`, or `local`) as a person
-    /// property, so a flag can target one deployment even though the same Macro
+    /// property, so a flag can target one deployment even though the same Rox
     /// user ID exists in each.
     pub fn new(
         host: &str,

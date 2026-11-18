@@ -93,7 +93,7 @@ export class DatabaseView {
   }
 
   /**
-   * This view's URL in the Macro web app: the database, opened on this
+   * This view's URL in the Rox web app: the database, opened on this
    * view's table and this view. Hand it to users as the link to a view you
    * built.
    *

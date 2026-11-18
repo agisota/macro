@@ -29,11 +29,11 @@ export type PairingFlow = {
   /** The last start (or the dialog's retry) failed. */
   startFailed: Accessor<boolean>;
   start: () => Promise<void>;
-  /** Shows a pairing started elsewhere, e.g. handed off to Macro desktop. */
+  /** Shows a pairing started elsewhere, e.g. handed off to Rox desktop. */
   resume: (pairingId: string) => void;
   pairingId: Accessor<string | undefined>;
   passkey: Accessor<PasskeyCeremony>;
-  /** The pairing continues in Macro desktop; closing here leaves it running. */
+  /** The pairing continues in Rox desktop; closing here leaves it running. */
   handOff: () => void;
   /** Answers WhatsApp's passkey challenge on this device. */
   confirmPasskey: () => Promise<void>;

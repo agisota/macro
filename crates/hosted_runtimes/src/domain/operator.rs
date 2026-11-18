@@ -1,5 +1,5 @@
 //! The control plane: carries out fleet effects, fires timers, reconciles
-//! the fleet with the rows and turns macrod presence into lifecycle events. Runs in agent_harness_service, next to the fleet.
+//! the fleet with the rows and turns roxd presence into lifecycle events. Runs in agent_harness_service, next to the fleet.
 
 use harness_id::HarnessId;
 
@@ -11,7 +11,7 @@ use crate::domain::claude_sign_in::{self, ClaudeSignInNotices, ClaudeSignInPass,
 use crate::domain::enrollment::{Enrollment, EnrollmentGeneration, EnrollmentIssueError};
 use crate::domain::ids::{ComputerId, PairingId};
 use crate::domain::lifecycle::{
-    Backoff, Effect, EffectWorker, Event, Failure, HostId, MACROD_GRACE, Phase, TimerKind, backoff,
+    Backoff, Effect, EffectWorker, Event, Failure, HostId, ROXD_GRACE, Phase, TimerKind, backoff,
 };
 use crate::domain::models::{Computer, ComputerRecord};
 use crate::domain::ports::{
@@ -138,7 +138,7 @@ where
         match registration {
             Ok(host) => {
                 self.repo
-                    .postpone_macrod_timers(host.id, self.clock.now() + MACROD_GRACE)
+                    .postpone_roxd_timers(host.id, self.clock.now() + ROXD_GRACE)
                     .await
                     .map_err(internal)?;
                 tracing::info!(host_id = %host.id, host = %host.name, healthy = true,
@@ -398,16 +398,16 @@ where
             Effect::Restart { .. } => {
                 fleet_completion(self.fleet.start(computer_id).await, None, Failure::Power)
             }
-            Effect::RestartMacrod { .. } => {
+            Effect::RestartRoxd { .. } => {
                 let computer = self.computer(computer_id).await?;
-                if computer.state.macrod_connected
-                    || computer.state.macrod_misses < crate::domain::lifecycle::MAX_MACROD_MISSES
+                if computer.state.roxd_connected
+                    || computer.state.roxd_misses < crate::domain::lifecycle::MAX_ROXD_MISSES
                     || !matches!(computer.state.phase, Phase::Booting | Phase::Running)
                 {
                     return Ok(None);
                 }
                 fleet_completion(
-                    self.fleet.restart_macrod(computer_id).await,
+                    self.fleet.restart_roxd(computer_id).await,
                     None,
                     Failure::Power,
                 )
@@ -469,7 +469,7 @@ where
         let count = due.len();
         for timer in due {
             let computer_id = timer.computer_id;
-            let instance_status = if timer.kind == TimerKind::MacrodMissing {
+            let instance_status = if timer.kind == TimerKind::RoxdMissing {
                 self.fleet
                     .instances()
                     .await
@@ -679,14 +679,14 @@ where
         };
         let computer = self.computer(computer_id).await?;
         use tracing::Instrument;
-        let span = tracing::info_span!("computer.macrod.connected", computer_id = %computer.id, team_id = %computer.team_id, first = computer.enrolled_at.is_none());
+        let span = tracing::info_span!("computer.roxd.connected", computer_id = %computer.id, team_id = %computer.team_id, first = computer.enrolled_at.is_none());
         super::telemetry::adopt(&span, &computer.state);
-        self.record_macrod_connected(harness_id, computer)
+        self.record_roxd_connected(harness_id, computer)
             .instrument(span)
             .await
     }
 
-    async fn record_macrod_connected(
+    async fn record_roxd_connected(
         &self,
         harness_id: HarnessId,
         computer: Computer,
@@ -701,7 +701,7 @@ where
             .await
             .map_err(internal)?;
         self.repo
-            .apply(computer.id, Event::MacrodConnected, now)
+            .apply(computer.id, Event::RoxdConnected, now)
             .await
             .map_err(internal)?;
         let mut connected = MacrodConnected::Computer;
@@ -778,12 +778,12 @@ where
         Ok(outcome)
     }
 
-    /// Record a lost macrod connection for the guest harness.
+    /// Record a lost roxd connection for the guest harness.
     #[tracing::instrument(skip(self), err)]
-    pub async fn macrod_disconnected(&self, harness_id: HarnessId) -> Result<(), ComputerError> {
+    pub async fn roxd_disconnected(&self, harness_id: HarnessId) -> Result<(), ComputerError> {
         if let Some(computer_id) = self.computer_of(harness_id).await? {
             self.repo
-                .apply(computer_id, Event::MacrodDisconnected, self.clock.now())
+                .apply(computer_id, Event::RoxdDisconnected, self.clock.now())
                 .await
                 .map_err(internal)?;
         }
@@ -848,7 +848,7 @@ fn effect_failure(effect: &Effect) -> Option<Failure> {
         Effect::Start { .. }
         | Effect::Stop { .. }
         | Effect::Restart { .. }
-        | Effect::RestartMacrod { .. }
+        | Effect::RestartRoxd { .. }
         | Effect::Destroy { .. }
         | Effect::RevokeHarness
         | Effect::PageOperator { .. }
@@ -870,7 +870,7 @@ fn effect_host(effect: &Effect) -> Option<HostId> {
         | Effect::Start { host }
         | Effect::Stop { host }
         | Effect::Restart { host }
-        | Effect::RestartMacrod { host }
+        | Effect::RestartRoxd { host }
         | Effect::Destroy { host } => Some(*host),
         Effect::RemoveBillingItem { .. }
         | Effect::RevokeHarness

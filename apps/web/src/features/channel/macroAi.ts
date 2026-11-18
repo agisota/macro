@@ -10,7 +10,7 @@ import { MACRO_AGENT_NAME } from '@core/constant/macroAgent';
 import { MACRO_NEW_PRINCIPAL_ID } from '@core/constant/macroNew';
 import type { IUser } from '@core/user/types';
 
-// Re-export the shared Macro identity under the names used in this package.
+// Re-export the shared Rox identity under the names used in this package.
 export {
   isMacroAgentId as isMacroAiId,
   MACRO_AGENT_BOT_ID as MACRO_AI_BOT_ID,
@@ -22,14 +22,14 @@ export { isMacroCoderId } from '@core/constant/macroCoder';
 export { isMacroNewId } from '@core/constant/macroNew';
 
 /**
- * The single synthetic [`IUser`] entry for Macro in the channel `@`-mention
+ * The single synthetic [`IUser`] entry for Rox in the channel `@`-mention
  * typeahead. The mention rides the existing user-mention machinery and is
  * re-tagged as a bot mention at send time (see `authoredMentions`). `email` is set
- * to the display name so the typeahead shows just "Macro". The id uses the
+ * to the display name so the typeahead shows just "Rox". The id uses the
  * canonical `bot|<uuid>` principal form so persisted mention content matches
  * bot sender/participant ids.
  *
- * `@macro` opens an agent session.
+ * `@macro` opens an agent session. Only ever one entry, named "Rox".
  */
 export function macroMentionUser(): IUser {
   return {

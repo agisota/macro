@@ -16,7 +16,7 @@ use calendar_events::domain::{
 use chrono::TimeZone;
 use rootcause::Report;
 
-const URL: &str = "https://macro.com/app/meet/join/0123456789abcdef0123456789abcdef";
+const URL: &str = "https://rox.one/app/meet/join/0123456789abcdef0123456789abcdef";
 const HOST: &str = "macro|host@example.com";
 const HOST_EMAIL: &str = "host@example.com";
 const PRIMARY: Uuid = Uuid::from_u128(0x1);

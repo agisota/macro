@@ -1,9 +1,9 @@
-//! Macro computers on a local stack: which fleet `agent_harness_service`'s
+//! Rox computers on a local stack: which fleet `agent_harness_service`'s
 //! computer control plane drives, the `COMPUTERS_*` env it reads, and the
 //! macro-box image the Docker fleet runs.
 //!
 //! - `docker`: computers are privileged `macro-box` containers on this
-//!   machine's daemon, joined to the instance's `services` network so macrod
+//!   machine's daemon, joined to the instance's `services` network so roxd
 //!   dials the stack in-network. The harness already mounts the Docker socket
 //!   for local sandboxes; it also gets the enrollment directory at the same
 //!   absolute path, because the daemon resolves the bind sources it creates.
@@ -48,10 +48,10 @@ pub const INCUS_PORT: u16 = 8443;
 /// Label `hosted_runtimes::outbound::docker_fleet` puts on every computer.
 pub const COMPUTER_ID_LABEL: &str = "macro.computer_id";
 
-/// The `OVERRIDE_*` service URLs macrod's enrollment needs, with the host port
-/// a box dials over Tailscale. The app origin has no port: macrod
+/// The `OVERRIDE_*` service URLs roxd's enrollment needs, with the host port
+/// a box dials over Tailscale. The app origin has no port: roxd
 /// only prints links to it, which open in the developer's browser.
-const MACROD_SERVICES: &[(&str, Option<Port>)] = &[
+const ROXD_SERVICES: &[(&str, Option<Port>)] = &[
     ("OVERRIDE_API_GATEWAY_URL", Some(Port::ComputerGateway)),
     (
         "OVERRIDE_AGENT_HARNESS_EGRESS_URL",
@@ -86,7 +86,7 @@ const MACROD_SERVICES: &[(&str, Option<Port>)] = &[
     ("OVERRIDE_APP_SERVICE_URL", None),
 ];
 
-/// Which fleet runs a stack's Macro computers.
+/// Which fleet runs a stack's Rox computers.
 #[derive(clap::ValueEnum, Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum Fleet {
@@ -100,7 +100,7 @@ pub enum Fleet {
 
 #[derive(Args, Clone, Default)]
 pub struct ComputersArgs {
-    /// Which fleet runs Macro computers. Defaults to `docker` for
+    /// Which fleet runs Rox computers. Defaults to `docker` for
     /// `run_local` and `off` for `stack up`.
     #[arg(long, value_enum)]
     pub computers: Option<Fleet>,
@@ -163,7 +163,7 @@ impl Computers {
 
     /// Unique service host ports the runtime may dial on the devbox tailnet.
     pub fn service_ports(&self) -> Vec<u16> {
-        MACROD_SERVICES
+        ROXD_SERVICES
             .iter()
             .filter_map(|(_, port)| port.map(|port| self.instance.port(port)))
             .fold(Vec::new(), |mut ports, port| {
@@ -204,7 +204,7 @@ impl Computers {
     }
 
     fn docker_env(&self, env: &BTreeMap<String, String>) -> Result<BTreeMap<String, String>> {
-        let overrides = MACROD_SERVICES
+        let overrides = ROXD_SERVICES
             .iter()
             .map(|(name, _)| {
                 let url = if *name == "OVERRIDE_API_GATEWAY_URL" {
@@ -248,7 +248,7 @@ impl Computers {
         image: &str,
         agent_image: &str,
     ) -> Result<BTreeMap<String, String>> {
-        let overrides = MACROD_SERVICES
+        let overrides = ROXD_SERVICES
             .iter()
             .map(|(name, port)| {
                 let url = match port {
@@ -341,7 +341,7 @@ impl Computers {
             }
             return Ok(());
         }
-        stage.run_step("Building the Macro computer image", || {
+        stage.run_step("Building the Rox computer image", || {
             load_image(&stage.quiet(), &REGULAR_BUILD)
         })?;
         stage.run_step("Building the agent teammate computer image", || {

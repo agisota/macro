@@ -1,4 +1,4 @@
-export const MACRO_MCP_URL = 'https://mcp-server.macro.com/mcp';
+export const MACRO_MCP_URL = 'https://mcp-server.rox.one/mcp';
 
 export const MACRO_MCP_CONFIG = JSON.stringify(
   {

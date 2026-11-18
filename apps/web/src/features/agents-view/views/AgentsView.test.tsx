@@ -250,7 +250,7 @@ const [composerDraft, setComposerDraft] = createSignal('');
 state.draft.read = composerDraft;
 state.draft.write = setComposerDraft;
 
-/** The Agents entry an Ask Macro action opens, seeding the composer with `draft`. */
+/** The Agents entry an Ask Rox action opens, seeding the composer with `draft`. */
 function composerEntry(request: string, draft: string): FakeEntry {
   return {
     content: {
@@ -363,7 +363,7 @@ it.each(['restored', 'selected'])(
   }
 );
 
-it('does not restore a sent Ask Macro draft when Back mounts the composer again', () => {
+it('does not restore a sent Ask Rox draft when Back mounts the composer again', () => {
   const asked = composerEntry('request-1', '@message ');
   state.entry.current = () => asked;
   render(() => <AgentsView />);
@@ -378,7 +378,7 @@ it('does not restore a sent Ask Macro draft when Back mounts the composer again'
   expect(composer().value).toBe('');
 });
 
-it('does not restore a sent Ask Macro draft when Back returns to the mounted composer', () => {
+it('does not restore a sent Ask Rox draft when Back returns to the mounted composer', () => {
   const asked = composerEntry('request-1', '@message ');
   const session: FakeEntry = {
     content: {
@@ -402,7 +402,7 @@ it('does not restore a sent Ask Macro draft when Back returns to the mounted com
   expect(composer().value).toBe('');
 });
 
-it('seeds a new Ask Macro draft but not an earlier one reached by Back', () => {
+it('seeds a new Ask Rox draft but not an earlier one reached by Back', () => {
   const first = composerEntry('request-1', '@first ');
   const [current, setCurrent] = createSignal(first);
   state.entry.current = current;
@@ -428,7 +428,7 @@ it('seeds a new Ask Macro draft but not an earlier one reached by Back', () => {
   expect(composer().value).toBe('');
 });
 
-it('does not restore a sent Ask Macro draft when a stacked pane remounts without leaving its entry', () => {
+it('does not restore a sent Ask Rox draft when a stacked pane remounts without leaving its entry', () => {
   const asked = composerEntry('request-1', '@message ');
   state.entry.current = () => asked;
   render(() => <AgentsView />);

@@ -8,9 +8,9 @@
  *   placeRules  someone wants a call placed        -> refuse, or queue it for `rules`
  *   judgeRules  a call nobody rang it for          -> stay out with a reason, or go to the model
  *
- * One call because Macro allows one: a token request removes the agent from
+ * One call because Rox allows one: a token request removes the agent from
  * whatever it is in. So nothing joins while another join is alive, and every
- * join asks Macro to fail rather than switch (`onOtherCall: "fail"`), for the
+ * join asks Rox to fail rather than switch (`onOtherCall: "fail"`), for the
  * joins this function never saw.
  */
 import { after, elapsed, placePrefix } from "./config.ts";
@@ -32,7 +32,7 @@ import type {
 const minute = 60_000;
 const hour = 60 * minute;
 
-/** Macro's web client rings for 30 s. */
+/** Rox's web client rings for 30 s. */
 export const ringMs = 40_000;
 /** A placed call still waiting for the agent to be free after this is stale. */
 export const placedTtlMs = 15 * minute;
@@ -49,7 +49,7 @@ export const maxMovesPerHour = 3;
 export const askGapMs = 2 * minute;
 /** Judgments per call. */
 export const maxWeighs = 3;
-/** After Macro says the agent is rate limited, how long before the next try. */
+/** After Rox says the agent is rate limited, how long before the next try. */
 export const rateLimitedMs = 5 * minute;
 const maxReason = 200;
 
@@ -155,7 +155,7 @@ export const joinErrorRules: readonly {
 	{ refusal: "flag_off", next: "retry" },
 ];
 
-/** How the next join of a call that Macro keeps refusing asks to be seated. */
+/** How the next join of a call that Rox keeps refusing asks to be seated. */
 export type Insist = {
 	readonly onOtherCall?: "switch";
 	readonly replace?: boolean;
@@ -163,7 +163,7 @@ export type Insist = {
 
 /**
  * A process killed without leaving is a ghost: the agent stays "in" that call until
- * Macro's webhook clears it, and every other join is refused. After three of
+ * Rox's webhook clears it, and every other join is refused. After three of
  * the same refusal (at once for a call that moves it), the next join says
  * to switch, or to replace its dead connection.
  */

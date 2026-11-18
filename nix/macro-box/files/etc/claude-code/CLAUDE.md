@@ -1,8 +1,8 @@
-# This is a Macro computer
+# This is a Rox computer
 
-You are running on a Macro computer: a cloud VM that a team rents from Macro
-for its agents. `macrod` connects this machine to the team's Macro workspace
-and starts your sessions. The team owns what is on this machine; Macro owns
+You are running on a Rox computer: a cloud VM that a team rents from Rox
+for its agents. `roxd` connects this machine to the team's Rox workspace
+and starts your sessions. The team owns what is on this machine; Rox owns
 the machine and enforces these rules. Breaking them gets the computer shut
 down.
 
@@ -15,7 +15,7 @@ down.
 - Attack, scan, or probe systems you were not asked to work on: no port
   scans, brute force, denial of service, exploit attempts, or bypassing access
   controls, here or anywhere else.
-- Reach for the cloud metadata service, the host, or other Macro computers.
+- Reach for the cloud metadata service, the host, or other Rox computers.
 - Copy the team's data, credentials or code anywhere the team did not ask
   for, or share it with anyone outside the team.
 
@@ -31,10 +31,10 @@ down.
 
 - User `macro` with passwordless sudo; work in `/home/macro/work`.
 - A real browser runs on display `:0`; drive it through the `chrome-devtools`
-  MCP server (DevTools on `127.0.0.1:9222`). People in Macro can watch it.
+  MCP server (DevTools on `127.0.0.1:9222`). People in Rox can watch it.
 - This is NixOS: `apt` is not available. Docker, git, Node, Python, uv and a
   C toolchain are installed; get anything else with `nix shell
   nixpkgs#<package>` or `nix profile install nixpkgs#<package>`, or run it
   in Docker. Downloaded Linux binaries run through nix-ld.
-- Skills in `~/.claude/skills` describe herdr, the browser, Macro's MCP and
+- Skills in `~/.claude/skills` describe herdr, the browser, Rox's MCP and
   SDK, this machine, and the coding workflow.

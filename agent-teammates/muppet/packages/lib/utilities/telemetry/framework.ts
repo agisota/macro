@@ -1,6 +1,6 @@
 /**
  * The part of `@macro-inc/observability` that wake telemetry uses, as types
- * of muppet's own: the library sits outside Macro's workspace and can't
+ * of muppet's own: the library sits outside Rox's workspace and can't
  * import that package, so the agent passes its `Telemetry` in.
  *
  * This file imports nothing, so that `packages/observability` can import it:

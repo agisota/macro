@@ -7,7 +7,7 @@
 
 export type ListBookingLinksParams = {
   /**
-   * Existing Macro team; omit for personal links.
+   * Existing Rox team; omit for personal links.
    */
   teamId?: string;
   /**

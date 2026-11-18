@@ -9,7 +9,7 @@ import {
 const computerHarness: Harness = {
   allow_permission_bypass: false,
   id: 'harness-ada',
-  kind: 'macrod',
+  kind: 'roxd',
   name: "Ada's computer",
   owner: { type: 'user', user_id: 'macro|ada@agents.macro.invalid' },
   access: 'owner',
@@ -31,13 +31,13 @@ const pairedHarness: Harness = {
 };
 
 describe('agentComputerHarness', () => {
-  it("finds the runtime macrod enrolled on the agent's computer", () => {
+  it("finds the runtime roxd enrolled on the agent's computer", () => {
     expect(
       agentComputerHarness('computer-ada', [pairedHarness, computerHarness])
     ).toBe(computerHarness);
   });
 
-  it('has none before the computer is bought or before macrod enrolls', () => {
+  it('has none before the computer is bought or before roxd enrolls', () => {
     expect(
       agentComputerHarness(null, [pairedHarness, computerHarness])
     ).toBeUndefined();
@@ -55,7 +55,7 @@ describe('agentClaudeState', () => {
     expect(agentClaudeState(undefined, now)).toBe('loading');
   });
 
-  it('runs on Macro credits without a sign-in', () => {
+  it('runs on Rox credits without a sign-in', () => {
     expect(agentClaudeState({ mode: 'macro_credits' }, now)).toBe('credits');
   });
 
@@ -120,7 +120,7 @@ describe('agentClaudeMode', () => {
 
   it("reads the sign-in's expiry while the harness uses its own account", () => {
     expect(agentClaudeMode('own_account', login)).toBe(login);
-    // The login is still loading, or was cached from Macro credits.
+    // The login is still loading, or was cached from Rox credits.
     expect(agentClaudeMode('own_account', undefined)).toEqual({
       mode: 'own_account',
     });

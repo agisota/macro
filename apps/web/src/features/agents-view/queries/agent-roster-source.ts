@@ -18,7 +18,7 @@ export type AgentRosterSource = {
 };
 
 /**
- * Joins the saved agents, the registered macrod runtimes, and the Cursor
+ * Joins the saved agents, the registered roxd runtimes, and the Cursor
  * connection into one roster. Model defaults for the first-party personas
  * come from model discovery, so their pills can name what they will run on.
  */

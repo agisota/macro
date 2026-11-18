@@ -187,7 +187,7 @@ impl Client {
         }
         tracing::info!("successfully authenticated");
         self.mark_connect_success();
-        // Macro addition: the login span covers the post-login requests
+        // Rox addition: the login span covers the post-login requests
         // below and ends when `Connected` is dispatched.
         let login = crate::client::lock(&self.pending_login)
             .take()
@@ -280,7 +280,7 @@ impl Client {
     }
 }
 
-/// Macro addition: whether a stream error isn't the 515 restart.
+/// Rox addition: whether a stream error isn't the 515 restart.
 fn code_is_not_515(node: &Node) -> bool {
     node.attrs
         .get("code")

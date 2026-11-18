@@ -80,7 +80,7 @@ can be authorized.
 Channel messages, reactions, typing, and catch-up reads live only on the
 `/messages/channel/{id}` routes. The `/channels/{id}` router keeps channel metadata,
 membership, lists, inbox activity, attachments, and the bot webhook. The channel bot
-webhook, the agent's `SendChannelMessage` tool, the Macro AI reply loop, and the
+webhook, the agent's `SendChannelMessage` tool, the Rox AI reply loop, and the
 support-channel welcome message post through the shared `MessageCommands`. Channel
 reads filter `comms_messages` and `comms_attachments` by the parent columns; the legacy
 `channel_id` columns are written only by the transition trigger until the schema-drop
@@ -98,7 +98,7 @@ and never turns the committed write into an error:
   topic. Payloads carry the parent, message and root ids, sender, and the same
   fields as the channel-only events, minus `channel_type`.
 - The local built-in agent queue: every human-authored post, on either parent, is
-  handed to the in-process Macro AI detector (see Agents below). Bot posts never
+  handed to the in-process Rox AI detector (see Agents below). Bot posts never
   enter it, so bots cannot trigger each other.
 - Parent delivery. For channels, `ChannelMessageDelivery` shares the referenced
   items with participants, dispatches `ChannelEvent::MessagePosted` for new posts
@@ -144,7 +144,7 @@ editing from document commenting or editing; the session owner keeps explicit
 ownership, and other collaborators lose inherited access when the document grant is
 revoked. Realtime session frames are addressed through the same current access.
 
-Classic `@Macro` runs in the storage service on the local agent queue for both
+Classic `@Rox` runs in the storage service on the local agent queue for both
 parents. It rechecks the invoking user's write access before reading context, posts a
 silent thinking message as the bot on that user's capability, and patches it into the
 answer with normal notification delivery. A deleted placeholder or revoked access

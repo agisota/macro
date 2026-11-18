@@ -22,7 +22,7 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock('@core/util/webOrigin', () => ({
-  getWebOrigin: () => 'https://macro.com',
+  getWebOrigin: () => 'https://rox.one',
 }));
 vi.mock('@core/component/Toast/Toast', () => ({
   toast: { failure: mocks.failure, alert: mocks.alert },
@@ -95,7 +95,7 @@ const savedEvent: CalendarEvent = {
   calendarId: 'calendar-1',
   calendar: { id: 'calendar-1', name: 'Calendar', color: '#336699' },
   visibleCalendars: [],
-  location: 'https://macro.com/app/meet/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF',
+  location: 'https://rox.one/app/meet/8m8mGwzHqxzYjeIN5-nJRquRbzyTEhGF',
 };
 
 beforeEach(() => {
@@ -211,7 +211,7 @@ describe('editing event times', () => {
       form.setField('title', 'A new point call');
       await editor.save(form.submitValues()!);
       expect(editor.saveError()).toBe(
-        'Give this event a duration before adding a Macro call.'
+        'Give this event a duration before adding a Rox call.'
       );
       expect(editor.pending()).toBe(false);
       expect(mocks.updateEvent).not.toHaveBeenCalled();
@@ -365,7 +365,7 @@ describe('editing event times', () => {
       location: 'Meeting room',
       description: '<p>Deploy checklist</p>',
     },
-    { label: 'Macro call', location: savedEvent.location },
+    { label: 'Rox call', location: savedEvent.location },
   ])('sends only reminders on an invited $label event', async (overrides) => {
     const { editor, form, onSaved, dispose } = editorFor({
       ...overrides,
@@ -435,7 +435,7 @@ describe('editing event times', () => {
   );
 });
 
-describe('scheduling a Macro call', () => {
+describe('scheduling a Rox call', () => {
   it.each(['off', 'loading'] as const)(
     'saves a calendar event without creating a call when the flag is %s',
     async (state) => {
@@ -469,7 +469,7 @@ describe('scheduling a Macro call', () => {
     }
   );
 
-  it('creates the event with its Macro call in a single write', async () => {
+  it('creates the event with its Rox call in a single write', async () => {
     const saved = vi.fn();
     const [editor, dispose] = createRoot(
       (dispose) =>
@@ -531,7 +531,7 @@ describe('scheduling a Macro call', () => {
   });
 
   it.each(['off', 'loading'] as const)(
-    'preserves an existing Macro link without syncing it while %s',
+    'preserves an existing Rox link without syncing it while %s',
     async (state) => {
       mocks.quickCalls = state === 'loading';
       mocks.quickCallsLoading = state === 'loading';
@@ -660,7 +660,7 @@ describe('scheduling a Macro call', () => {
   });
 
   it.each(['none', 'google_meet'] as const)(
-    'does not attach a Macro call when %s is selected',
+    'does not attach a Rox call when %s is selected',
     async (conferenceChoice) => {
       const saved = vi.fn();
       const [editor, dispose] = createRoot(
@@ -697,11 +697,11 @@ describe('scheduling a Macro call', () => {
   );
 
   it.each(['none', 'google_meet'] as const)(
-    'removes a saved Macro link when changed to %s',
+    'removes a saved Rox link when changed to %s',
     async (conferenceChoice) => {
       const event = {
         ...savedEvent,
-        description: `<p>Roadmap discussion</p><p>Join Macro call: <a href="${savedEvent.location}">${savedEvent.location}</a></p>`,
+        description: `<p>Roadmap discussion</p><p>Join Rox call: <a href="${savedEvent.location}">${savedEvent.location}</a></p>`,
       };
       const [editor, dispose] = createRoot(
         (dispose) =>
@@ -740,7 +740,7 @@ describe('scheduling a Macro call', () => {
     }
   );
 
-  it('adds a Macro call when an event without a call switches to Macro', async () => {
+  it('adds a Rox call when an event without a call switches to Rox', async () => {
     const event = { ...savedEvent, location: 'Meeting room' };
     const [editor, dispose] = createRoot(
       (dispose) =>
@@ -761,7 +761,7 @@ describe('scheduling a Macro call', () => {
       await editor.save(values);
       expect(mocks.createMeeting).toHaveBeenCalledOnce();
       expect(mocks.updateEvent.mock.lastCall?.[0].patch.description).toContain(
-        'Join Macro call'
+        'Join Rox call'
       );
     } finally {
       dispose();
@@ -906,7 +906,7 @@ describe('scheduling a Macro call', () => {
 
   it('retries a failed create from scratch instead of patching a saved event', async () => {
     mocks.createEvent.mockRejectedValueOnce(
-      new Error('the Macro call for the event could not be created')
+      new Error('the Rox call for the event could not be created')
     );
     const saved = vi.fn();
     const [editor, dispose] = createRoot(
@@ -924,7 +924,7 @@ describe('scheduling a Macro call', () => {
     try {
       await editor.save(values);
       expect(mocks.failure).toHaveBeenCalledWith('Failed to create event', {
-        subtext: 'the Macro call for the event could not be created',
+        subtext: 'the Rox call for the event could not be created',
       });
       expect(editor.saveError()).toBeUndefined();
       expect(saved).not.toHaveBeenCalled();

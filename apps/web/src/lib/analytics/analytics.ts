@@ -132,6 +132,9 @@ interface PageViewOptions {
 }
 
 const GA_ID = 'G-52HPEL3FTV';
+/** Local product builds do not load the company Google tag or pixel. */
+const companyPixelsEnabled =
+  !LOCAL_ONLY && import.meta.env.VITE_LOCAL_STACK !== 'true';
 
 // Meta Pixel distinguishes standard events (fbq('track', ...)) from custom
 // events (fbq('trackCustom', ...)). Calling `track` with a non-standard name
@@ -182,13 +185,19 @@ function setFlagEnvironment(
   );
 }
 
-const initializePosthog = (instance: PostHog) => {
-  const key = import.meta.env.VITE_POSTHOG_API_KEY;
-  if (!key) return;
+function posthogSettings(): { key: string; host: string } | undefined {
+  const key = import.meta.env.VITE_POSTHOG_API_KEY?.trim();
+  const host = import.meta.env.VITE_POSTHOG_HOST?.trim();
+  if (!key || !host) return undefined;
+  return { key, host };
+}
 
-  instance.init(key, {
-    api_host: 'https://macro-prox.macroverse.workers.dev/i/ph',
-    ui_host: 'https://us.posthog.com',
+const initializePosthog = (instance: PostHog) => {
+  const settings = posthogSettings();
+  if (!settings) return;
+
+  instance.init(settings.key, {
+    api_host: settings.host,
     defaults: '2026-01-30',
     // Scroll depth listens to every scroll in the app (capture phase) and
     // reads window geometry, forcing a layout per scroll. The app shell never
@@ -258,7 +267,7 @@ const createAnalytics = () => {
   const initializeProviders = () => {
     if (disabled) return;
 
-    if (!isPrivateCallPage()) {
+    if (!isPrivateCallPage() && companyPixelsEnabled) {
       tryInitialize(initializeGoogleAnalytics);
       if (metaPixelEnabled) tryInitialize(initializeMetaPixel);
     }
@@ -284,10 +293,11 @@ const createAnalytics = () => {
     try {
       match(provider)
         .with('ga', () => {
+          if (!companyPixelsEnabled) return;
           gtag('event', event, enriched);
         })
         .with('meta-pixel', () => {
-          if (!metaPixelEnabled) return;
+          if (!companyPixelsEnabled || !metaPixelEnabled) return;
           const fbqMethod = META_STANDARD_EVENTS.has(event)
             ? 'track'
             : 'trackCustom';
@@ -366,7 +376,7 @@ const createAnalytics = () => {
     action: GoogleConversionAction,
     data?: { value?: number; currency?: string; transaction_id?: string }
   ) => {
-    if (disabled) return;
+    if (disabled || !companyPixelsEnabled) return;
 
     try {
       gtag('event', 'conversion', {
@@ -426,17 +436,19 @@ const createAnalytics = () => {
     };
 
     try {
-      gtag('config', GA_ID, {
-        user_id: userID,
-        ...(email && { email }),
-        ...(rest.os && { os: rest.os }),
-      });
-
-      if (metaPixelEnabled) {
-        fbq('init', '639142540393286', {
-          external_id: userID,
-          em: email || undefined,
+      if (companyPixelsEnabled) {
+        gtag('config', GA_ID, {
+          user_id: userID,
+          ...(email && { email }),
+          ...(rest.os && { os: rest.os }),
         });
+
+        if (metaPixelEnabled) {
+          fbq('init', '639142540393286', {
+            external_id: userID,
+            em: email || undefined,
+          });
+        }
       }
 
       if (setOnce && Object.keys(setOnce).length > 0) {
@@ -526,7 +538,7 @@ const createAnalytics = () => {
     if (disabled) return;
 
     try {
-      gtag('config', GA_ID, { user_id: undefined });
+      if (companyPixelsEnabled) gtag('config', GA_ID, { user_id: undefined });
 
       // `posthog.reset()` clears the persisted groups.
       syncedTeamGroupKey = undefined;
@@ -553,20 +565,22 @@ const createAnalytics = () => {
     const environment = getEnvironment();
 
     try {
-      gtag('event', 'page_view', {
-        [DEVICE_PROPERTY]: deviceType,
-        [ENVIRONMENT_PROPERTY]: environment,
-        page_title: pageTitle,
-        page_location: pageLocation,
-        page_path: pagePath,
-      });
-
-      if (metaPixelEnabled) {
-        fbq('track', 'PageView', {
+      if (companyPixelsEnabled) {
+        gtag('event', 'page_view', {
           [DEVICE_PROPERTY]: deviceType,
           [ENVIRONMENT_PROPERTY]: environment,
-          content_name: pageTitle,
+          page_title: pageTitle,
+          page_location: pageLocation,
+          page_path: pagePath,
         });
+
+        if (metaPixelEnabled) {
+          fbq('track', 'PageView', {
+            [DEVICE_PROPERTY]: deviceType,
+            [ENVIRONMENT_PROPERTY]: environment,
+            content_name: pageTitle,
+          });
+        }
       }
 
       posthog.capture('$pageview', {

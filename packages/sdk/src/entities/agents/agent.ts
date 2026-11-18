@@ -20,7 +20,7 @@ export type AgentPatch = {
   /** New instructions, whole. */
   instructions?: string;
   /**
-   * New runtime: `in-memory`, `cursor`, or `macrod` with the registered
+   * New runtime: `in-memory`, `cursor`, or `roxd` with the registered
    * `host` that serves it. The current model may not exist on the new
    * runtime, so usually pass `defaultModel` with it.
    */
@@ -127,7 +127,7 @@ export class Agent extends MacroEntity<AgentRecord> {
 
   /**
    * Runtime its sessions run on: `in-memory` (Macro), `cursor`,
-   * `codex-cloud`, or `macrod` (a registered machine, named by
+   * `codex-cloud`, or `roxd` (a registered machine, named by
    * {@link Agent.host}).
    */
   readonly harness = this.field('harness');

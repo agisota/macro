@@ -68,7 +68,7 @@ function validateFilter(expression: unknown, path: string): void {
 /**
  * @internal
  *
- * @mcp-exclude Internal query-building helper, not reachable from the `Macro` client.
+ * @mcp-exclude Internal query-building helper, not reachable from the `Rox` client.
  */
 export class WorkspaceQuery {
   private tagSets?: Promise<TagSetResponse[]>;

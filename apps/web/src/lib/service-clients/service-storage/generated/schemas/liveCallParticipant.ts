@@ -25,6 +25,6 @@ export interface LiveCallParticipant {
   kind: LiveParticipantKind;
   /** Published media tracks. */
   tracks: LiveCallTrack[];
-  /** Macro account identifier, if this is a user. */
+  /** Rox account identifier, if this is a user. */
   userId?: LiveCallParticipantUserId;
 }

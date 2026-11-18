@@ -86,7 +86,7 @@ export const variables = {
   restart: 'MUPPET_RESTART_FILE',
   /** Stdio MCP servers for every wake, as `{ name: { command, args?, env? } }`. */
   mcpServers: 'MUPPET_MCP_SERVERS_JSON',
-  /** Set only in a script's process: the agent's relay to Macro, its capability, and the credentials' names. */
+  /** Set only in a script's process: the agent's relay to Rox, its capability, and the credentials' names. */
   relayUrl: 'MUPPET_RELAY_URL',
   relayToken: 'MUPPET_RELAY_TOKEN',
   credentialNames: 'MUPPET_CREDENTIAL_NAMES',
@@ -108,7 +108,7 @@ export type CredentialSource =
       readonly url: string;
       readonly token: string;
       readonly names: readonly string[];
-      /** How Claude Code reaches Anthropic from here: through the parent's relay, in Macro-credits mode. */
+      /** How Claude Code reaches Anthropic from here: through the parent's relay, in Rox-credits mode. */
       readonly claude: Readonly<Record<string, string>>;
     };
 

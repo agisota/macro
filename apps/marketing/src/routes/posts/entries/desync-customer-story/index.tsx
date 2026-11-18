@@ -3,9 +3,9 @@ import type { PostMeta } from '../../registry';
 
 export const postMeta: PostMeta = {
   slug: 'desync-customer-story',
-  title: 'Desync switches to Macro',
+  title: 'Desync switches to Rox',
   description:
-    'Mark Evgenev, founder and CEO of Desync, on getting organized with Macro.',
+    'Mark Evgenev, founder and CEO of Desync, on getting organized with Rox.',
   category: 'Customer stories',
   tags: ['customer stories'],
   showTOC: false,
@@ -15,7 +15,7 @@ export default function DesyncCustomerStory() {
   return (
     <article>
       <blockquote>
-        “Macro did not help us get organized. Macro is why we are organized.”
+        “Rox did not help us get organized. Rox is why we are organized.”
       </blockquote>
       <p>Mark Evgenev, Founder/CEO, Desync</p>
       <video

@@ -12,7 +12,7 @@ use crate::domain::voice::VoiceConfig;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateRepoRequest {
-    /// The agent's Macro user.
+    /// The agent's Rox user.
     pub agent_user_id: MacroUserIdStr<'static>,
     /// The team whose admins may read the repo.
     pub team_id: Uuid,
@@ -61,7 +61,7 @@ impl std::fmt::Debug for EnsureRepoRequest {
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreatedRepoResponse {
-    /// The agent's Macro user.
+    /// The agent's Rox user.
     pub agent_user_id: MacroUserIdStr<'static>,
     /// Repo token: the HTTP Basic password for clone and push.
     pub token: RepoToken,

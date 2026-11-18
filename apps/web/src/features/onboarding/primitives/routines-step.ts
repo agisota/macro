@@ -45,7 +45,7 @@ export type SuggestionStatus = 'idle' | 'enabling' | 'enabled' | 'failed';
 /**
  * The last step. While AI is suggesting, only its suggestions show, as they
  * land. After {@link SUGGESTION_WAIT_MS}, surfaces it left empty fill with
- * Macro's templates; once AI is done, every surface is topped up to the
+ * Rox's templates; once AI is done, every surface is topped up to the
  * server's three. Each has a switch, off unless the scheduler marks it on by
  * default. Finishing creates the switched-on ones; those that fail stay on
  * their rows and finishing again retries only them, so nothing is created
@@ -58,7 +58,7 @@ export function createRoutinesStep(
   const now = options.now ?? (() => performance.now());
   const step = context.createRoutinesStep();
   const startedAt = now();
-  // When the wait runs out, the surfaces AI left empty fill with Macro's
+  // When the wait runs out, the surfaces AI left empty fill with Rox's
   // templates. They stay filled: rows don't vanish as AI catches up.
   const [filled, setFilled] = createSignal<readonly Surface[]>();
   const timer = setTimeout(

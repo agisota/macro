@@ -8,7 +8,7 @@ import type { State } from '../../context/state.ts';
 /** The owner of calls' state directories. */
 export const owner = 'calls';
 
-/** The agent's voice, in its repository: `{ "model": "aura-2-<voice>-<language>" }`, which Macro's agent settings write. */
+/** The agent's voice, in its repository: `{ "model": "aura-2-<voice>-<language>" }`, which Rox's agent settings write. */
 export const voiceFile = 'config/voice.json';
 
 /** A placed call is seated under this prefix and its ledger id, because its call id doesn't exist until it rings. */

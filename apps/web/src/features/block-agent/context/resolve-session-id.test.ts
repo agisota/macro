@@ -492,7 +492,7 @@ it.each(['Describe this', ''])(
     create.adopted.mockClear();
     const attachments = [
       {
-        uri: 'https://static.macro.com/file/image-id',
+        uri: 'https://static.rox.one/file/image-id',
         name: 'pasted.png',
         mimeType: 'image/png',
       },

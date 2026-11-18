@@ -46,7 +46,7 @@ for (const environment of ['dev', 'prod'] as const) {
       name: `${label}: accounts without an owner`,
       type: 'log alert',
       query: `logs("${HEALTH} ${env}").index("*").rollup("min", "@accounts_unowned").last("10m") > 0`,
-      message: `{{value}} connected accounts have had no replica holding their lease for ten minutes, so their groups receive and send nothing. Check replica count, MAX_ACCOUNTS headroom, and the lock connection (DATABASE_URL must be the direct MacroDB instance endpoint).\n${context(environment)}`,
+      message: `{{value}} connected accounts have had no replica holding their lease for ten minutes, so their groups receive and send nothing. Check replica count, MAX_ACCOUNTS headroom, and the lock connection (DATABASE_URL must be the direct RoxDB instance endpoint).\n${context(environment)}`,
       monitorThresholds: { critical: '0' },
       // Health events stop when the service is not deployed; that is not zero.
       onMissingData: 'resolve',
@@ -89,7 +89,7 @@ for (const environment of ['dev', 'prod'] as const) {
       name: `${label}: oldest unprocessed inbound event`,
       type: 'log alert',
       query: `logs("${HEALTH} ${env}").index("*").rollup("max", "@oldest_unprocessed_inbound_seconds").last("10m") > 300`,
-      message: `An inbound WhatsApp event has waited {{value}}s for ingestion. Messages are reaching the replica but not the channel; check the ingestion spans and MacroDB latency.\n${context(environment)}`,
+      message: `An inbound WhatsApp event has waited {{value}}s for ingestion. Messages are reaching the replica but not the channel; check the ingestion spans and RoxDB latency.\n${context(environment)}`,
       monitorThresholds: { critical: '300', warning: '60' },
       onMissingData: 'resolve',
     },

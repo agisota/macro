@@ -60,7 +60,7 @@ export default function HomepageEmailCompose(
     props.draft?.to ?? 'Austin Barron <austin@example.com>'
   );
   const [cc, setCc] = createSignal(
-    props.draft?.cc ?? 'Julia <julia@macro.com>'
+    props.draft?.cc ?? 'Julia <julia@rox.one>'
   );
   const [bcc, setBcc] = createSignal(props.draft?.bcc ?? '');
   const draftValue = () => ({
@@ -100,7 +100,7 @@ export default function HomepageEmailCompose(
                 label={item.label}
                 description={
                   item.kind === 'pdf'
-                    ? 'Macro product overview and pricing, shared after the demo.'
+                    ? 'Rox product overview and pricing, shared after the demo.'
                     : 'The setup steps and owners for Austin Barron’s team.'
                 }
                 href={

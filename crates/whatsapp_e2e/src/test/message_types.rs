@@ -781,7 +781,7 @@ async fn polls_places_cards_events_mentions_pins_and_calls_arrive_structured(poo
         assert_eq!(row.kind, expected, "{}", row.source_id);
     }
 
-    // Alice mentions the customer from Macro.
+    // Alice mentions the customer from Rox.
     let text = format!("@{} on it", world.customer.lid().user);
     let send = world
         .external

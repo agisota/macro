@@ -109,7 +109,7 @@ on the connected account's permissions (including `users:read.email`).
   than retrying indefinitely. No exact upstream error text is asserted here.
 - Missing/null profile or email, bots, deleted users, duplicate user IDs, and
   member IDs absent from the directory. Do not manufacture email addresses or
-  invite unmatched users; use the existing Macro team-roster matcher.
+  invite unmatched users; use the existing Rox team-roster matcher.
 - Public/private/IM/MPIM flags and archived channels. Never stage unsupported
   kinds simply because their ID begins with `C`; private channels may use it too.
 - Large directories and long-running actions: enforce time/output budgets and
@@ -244,7 +244,7 @@ gates, not successful observations:
   Public classification requires explicit `is_private: false`; missing/null or
   malformed visibility is omitted. Where supported, listing tools are requested
   with only the `public_channel` filter.
-  Public Slack channels become Macro Team channels, not public Macro channels.
+  Public Slack channels become Rox Team channels, not public Rox channels.
   Any connected team member may import; the importer owns the new channel.
 - This is channel shape only: no messages, files, ongoing membership sync, or
   invitation flow. The ZIP-archive feature's authorization and behavior remain

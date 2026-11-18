@@ -15,9 +15,9 @@ use uuid::Uuid;
 #[cfg(test)]
 mod test;
 
-const JACOB_EMAIL: &str = "jacob@macro.com";
-const JULIA_EMAIL: &str = "julia@macro.com";
-const TEO_EMAIL: &str = "teo@macro.com";
+const JACOB_EMAIL: &str = "jacob@rox.one";
+const JULIA_EMAIL: &str = "julia@rox.one";
+const TEO_EMAIL: &str = "teo@rox.one";
 
 /// The channel operation required to post a new user's welcome messages.
 pub trait SupportChannelMessageGateway: Send + Sync {
@@ -67,14 +67,14 @@ impl<A: EntityAccessService> SupportChannelMessageGateway for AuthorizedSupportC
         self.messages
             .post(access, request)
             .await
-            .context("failed to post Macro support welcome message")?;
+            .context("failed to post Rox support welcome message")?;
         Ok(())
     }
 }
 
 fn support_user(email: &str) -> Result<MacroUserIdStr<'static>, Report> {
     Ok(MacroUserIdStr::try_from_email(email)
-        .context_with(|| format!("invalid Macro support user email: {email}"))?)
+        .context_with(|| format!("invalid Rox support user email: {email}"))?)
 }
 
 /// Post Julia's welcome message in a newly created support channel.
@@ -94,7 +94,7 @@ pub async fn post_support_channel_welcome(
     let welcome = format!(
         "Hey {new_user_mention},\n\
 \n\
-Welcome to Macro, we're excited for you to try it out.\n\
+Welcome to Rox, we're excited for you to try it out.\n\
 \n\
 This is your own personal support Channel, with {} (ceo) and {} (cto) and me (julia).\n\
 \n\

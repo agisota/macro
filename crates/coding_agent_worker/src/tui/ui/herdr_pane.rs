@@ -1,4 +1,4 @@
-//! Rendering for `macrod herdr-pane`. Pure: reads [`PaneView`], draws frames.
+//! Rendering for `roxd herdr-pane`. Pure: reads [`PaneView`], draws frames.
 
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Direction, Layout, Rect};
@@ -49,7 +49,7 @@ fn render_header(frame: &mut Frame, view: &PaneView, area: Rect) {
     };
     let mut spans = vec![
         Span::styled(
-            " ◆ Macro agent ",
+            " ◆ Rox agent ",
             Style::new().fg(THEME.accent_text).bg(ACCENT).bold(),
         ),
         Span::raw("  "),
@@ -209,7 +209,7 @@ fn render_transcript(frame: &mut Frame, view: &PaneView, area: Rect) {
     if lines.is_empty() {
         frame.render_widget(
             Paragraph::new(Line::from(Span::styled(
-                "Waiting for the first prompt. Type below, or prompt this agent from Macro.",
+                "Waiting for the first prompt. Type below, or prompt this agent from Rox.",
                 Style::new().fg(DIM),
             ))),
             inner,
@@ -250,7 +250,7 @@ fn render_permission(frame: &mut Frame, pending: &PendingPermission, area: Rect)
         ]));
     }
     lines.push(Line::from(Span::styled(
-        "Approve or deny it in Macro; a machine cannot answer its own request.",
+        "Approve or deny it in Rox; a machine cannot answer its own request.",
         Style::new().fg(DIM),
     )));
     frame.render_widget(Paragraph::new(lines).block(block), area);
@@ -295,7 +295,7 @@ fn render_input(frame: &mut Frame, view: &PaneView, area: Rect) {
 
 fn render_footer(frame: &mut Frame, view: &PaneView, area: Rect) {
     let hints = if view.permission.is_some() {
-        "waiting for approval in Macro · esc interrupt"
+        "waiting for approval in Rox · esc interrupt"
     } else if view.state == AgentState::Idle {
         "enter send · pgup/pgdn scroll · ctrl+c close"
     } else {

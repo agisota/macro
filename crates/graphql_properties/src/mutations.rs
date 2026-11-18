@@ -251,7 +251,7 @@ pub enum GraphqlPropertyTargetEntityType {
     Chat,
     /// CRM company target.
     Company,
-    /// Row of a Macro database table.
+    /// Row of a Rox database table.
     DatabaseRow,
     /// Document target, including tasks and snippets.
     Document,
@@ -748,7 +748,7 @@ mod tests {
             definition: models_properties::service::property_definition::PropertyDefinition {
                 id: property_definition_id,
                 owner: models_properties::PropertyOwner::User {
-                    user_id: "macro|austin@macro.com".to_owned(),
+                    user_id: "macro|austin@rox.one".to_owned(),
                 },
                 display_name: "Tags".to_owned(),
                 data_type: models_properties::DataType::Tag,

@@ -6,7 +6,7 @@
 //! Pipedream that the account exists and was connected for this user before
 //! any local record is written.
 //!
-//! Apps Macro Connect serves connect through Connect instead, when the
+//! Apps Rox Connect serves connect through Connect instead, when the
 //! `macro-connect` rollout is on for the user: [`start_connect_session`]
 //! picks the backend and [`complete_connect_connection`] records the
 //! connection once Connect confirms it.

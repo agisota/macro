@@ -144,7 +144,7 @@ async fn disappearing_and_community_groups_are_added_like_any_other(pool: PgPool
         ["see you"]
     );
 
-    // Macro's sends carry the group's timer.
+    // Rox's sends carry the group's timer.
     linked
         .chats
         .send_reply(

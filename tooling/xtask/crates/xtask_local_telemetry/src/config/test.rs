@@ -35,13 +35,13 @@ fn enabled_false_turns_it_off_without_an_endpoint() {
 
 #[test]
 fn the_environment_switch() {
-    assert_eq!(Switch::parse(None, false), Switch::Default);
+    assert_eq!(Switch::parse(None, false), Switch::Off);
     assert_eq!(Switch::parse(Some("off"), false), Switch::Off);
     assert_eq!(Switch::parse(Some("0"), false), Switch::Off);
     assert_eq!(Switch::parse(None, true), Switch::Off);
     assert_eq!(Switch::parse(Some("on"), true), Switch::On);
     assert_eq!(Switch::parse(Some("off"), true), Switch::Off);
-    assert_eq!(Switch::parse(Some("maybe"), false), Switch::Default);
+    assert_eq!(Switch::parse(Some("maybe"), false), Switch::Off);
 }
 
 #[test]

@@ -30,14 +30,14 @@ fn update_request_has_no_description_field() {
 fn create_request_deserializes_camel_case() {
     let request: CreateInitiativeRequest = serde_json::from_value(serde_json::json!({
         "name": "Launch",
-        "memberIds": ["macro|a@macro.com"],
+        "memberIds": ["macro|a@rox.one"],
         "shareWithTeam": true
     }))
     .expect("request");
     assert_eq!(request.name, "Launch");
     assert_eq!(
         request.member_ids.as_deref(),
-        Some(["macro|a@macro.com".to_string()].as_slice())
+        Some(["macro|a@rox.one".to_string()].as_slice())
     );
     assert_eq!(request.share_with_team, Some(true));
 }

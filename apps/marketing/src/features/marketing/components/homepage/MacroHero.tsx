@@ -2,7 +2,7 @@ import { routePhoneToMobileSignup } from '../../core/navigation';
 import './macro-hero.css';
 
 const homepageDescription =
-  'Macro replaces 27+ apps with one connected system designed for humans and agents.';
+  'Rox replaces 27+ apps with one connected system designed for humans and agents.';
 
 /** Centered homepage introduction. */
 export function MacroHero() {

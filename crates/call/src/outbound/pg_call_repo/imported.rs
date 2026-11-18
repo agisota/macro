@@ -17,7 +17,7 @@ use crate::domain::models::{
 use crate::domain::records::CallProvider;
 
 /// The name a guest shows under: their display name, else their email.
-/// A guest who joined a Macro call always gave a name; an imported attendee
+/// A guest who joined a Rox call always gave a name; an imported attendee
 /// may have only an email, or neither.
 pub(super) fn guest_name(display_name: Option<String>, email: Option<String>) -> String {
     display_name
@@ -26,7 +26,7 @@ pub(super) fn guest_name(display_name: Option<String>, email: Option<String>) ->
 }
 
 /// Imported attendees, shown as guests: they carry provider identity hints
-/// (name, email) but never a Macro account.
+/// (name, email) but never a Rox account.
 pub(super) async fn imported_guests(
     conn: &mut PgConnection,
     call_ids: &[Uuid],

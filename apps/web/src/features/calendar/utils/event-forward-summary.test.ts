@@ -91,7 +91,7 @@ describe('eventForwardSummary', () => {
   });
 
   it('leaves out the guest list and every join link', () => {
-    const callUrl = 'https://macro.com/app/meet/AbCdEfGhIjKlMnOpQr';
+    const callUrl = 'https://rox.one/app/meet/AbCdEfGhIjKlMnOpQr';
     const summary = eventForwardSummary(
       event({
         attendees: [
@@ -112,7 +112,7 @@ describe('eventForwardSummary', () => {
       '12-hour'
     );
 
-    expect(summary).not.toMatch(/guest|meet\.google|macro\.com\/app\/meet/i);
+    expect(summary).not.toMatch(/guest|meet\.google|rox\.one\/app\/meet/i);
     expect(summary.endsWith('\n\nNotes')).toBe(true);
   });
 });

@@ -162,7 +162,7 @@ impl AgentSessionRepo for FixedBotSessions {
             task_id: None,
             id,
             owner_id: model_owner::Owner::User(
-                MacroUserIdStr::try_from("macro|owner@macro.com".to_owned())
+                MacroUserIdStr::try_from("macro|owner@rox.one".to_owned())
                     .expect("valid user id"),
             ),
             thread_id: None,
@@ -519,7 +519,7 @@ async fn external_teardown_is_a_no_op_and_resume_still_refuses() {
         sandbox.clone(),
         cursor.clone(),
         codex.clone(),
-        FixedBotSessions(BotId::TEST_A, harness_id::MACROD_HARNESS_SLUG),
+        FixedBotSessions(BotId::TEST_A, harness_id::ROXD_HARNESS_SLUG),
     );
 
     let session = AgentSessionId::new();

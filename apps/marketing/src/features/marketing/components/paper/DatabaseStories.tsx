@@ -44,7 +44,7 @@ export function DatabaseStories() {
         title={sections[1].title}
         description={sections[1].description}
       >
-        <PaperFeatureGraphic label="Ask Macro to chart database records by stage and see the results as a bar chart.">
+        <PaperFeatureGraphic label="Ask Rox to chart database records by stage and see the results as a bar chart.">
           <PaperDatabaseQuery />
         </PaperFeatureGraphic>
       </FeaturePageSection>

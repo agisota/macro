@@ -27,8 +27,8 @@ pub enum GtmInviteError {
     /// No link exists for the given token or id.
     #[error("invite link not found")]
     NotFound,
-    /// The caller is not Macro staff.
-    #[error("only Macro staff can manage invite links")]
+    /// The caller is not Rox staff.
+    #[error("only Rox staff can manage invite links")]
     Forbidden,
     /// The link's 48-hour window has passed.
     #[error("this invite link has expired")]
@@ -143,7 +143,7 @@ pub struct GtmInviteConfig {
     pub free_months: u8,
 }
 
-/// What Macro staff supply to create a link.
+/// What Rox staff supply to create a link.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CreateInviteLink {
     /// The recipient's first name, shown on the welcome page.

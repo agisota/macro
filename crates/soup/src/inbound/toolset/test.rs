@@ -20,7 +20,7 @@ fn test_list_entities_schema_validation() {
     assert!(
         validated
             .description
-            .contains("Browse the user's Macro workspace"),
+            .contains("Browse the user's Rox workspace"),
         "Description should contain expected text"
     );
 }
@@ -32,7 +32,7 @@ fn test_list_entities_schema_guides_macro_task_queries() {
 
     assert!(
         schema_json.contains("prefer this tool over external task trackers such as Linear"),
-        "schema should prefer Macro tasks over Linear for unqualified task requests"
+        "schema should prefer Rox tasks over Linear for unqualified task requests"
     );
     assert!(
         schema_json.contains("00000001-0000-0000-0000-000000000001"),

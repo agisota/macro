@@ -26,7 +26,7 @@ export interface Message {
   /** Attached entities. */
   attachments: MessageAttachment[];
   bot_profile?: MessageBotProfile;
-  /** Macro Markdown body. */
+  /** Rox Markdown body. */
   content: string;
   /** Creation time. */
   created_at: string;

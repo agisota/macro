@@ -10,7 +10,7 @@ it('keeps two panels on screen at once as separate choices', () => {
       <AudiencePanel
         audience="members"
         canChange
-        respondLink="https://macro.com/app/form/form-1/respond"
+        respondLink="https://rox.one/app/form/form-1/respond"
         onCopyFailure={() => {}}
         pending={false}
         onChange={() => {}}
@@ -18,7 +18,7 @@ it('keeps two panels on screen at once as separate choices', () => {
       <AudiencePanel
         audience="public"
         canChange
-        respondLink="https://macro.com/app/form/form-1/respond"
+        respondLink="https://rox.one/app/form/form-1/respond"
         onCopyFailure={() => {}}
         pending={false}
         onChange={() => {}}
@@ -43,7 +43,7 @@ it('stays on the saved audience when a change is refused, claiming nothing it di
     <AudiencePanel
       audience="members"
       canChange
-      respondLink="https://macro.com/app/form/form-1/respond"
+      respondLink="https://rox.one/app/form/form-1/respond"
       onCopyFailure={() => {}}
       pending={false}
       onChange={(audience) => asked.push(audience)}

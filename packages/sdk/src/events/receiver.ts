@@ -22,7 +22,7 @@ import { verifySignature } from './verify';
 
 type AnyHandler = (event: unknown) => void | Promise<void>;
 
-/** Sent by Macro when validating a newly registered endpoint; acked, never dispatched. */
+/** Sent by Rox when validating a newly registered endpoint; acked, never dispatched. */
 const VALIDATION_EVENT = 'webhook.validation.test';
 
 /** Options for {@link MacroEvents.listen}. */

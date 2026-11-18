@@ -1,4 +1,4 @@
-# The Macro computer guest as a NixOS module: macrod, harnessd, Claude Code, herdr,
+# The Rox computer guest as a NixOS module: roxd, harnessd, Claude Code, herdr,
 # Chromium on an Xvnc display, Docker and nix-ld. `_image.nix` adds the Incus
 # VM image on top; `_vm-test.nix` boots this module alone.
 {
@@ -12,11 +12,11 @@ let
   json = pkgs.formats.json { };
   home = config.users.users.macro.home;
   workspace = "${home}/work";
-  macrodConfig = "${home}/.macrod/macrod.toml";
-  # macrod writes "<computer id>\n<generation>" here when enrollment succeeds.
-  enrolledMarker = "/var/lib/macrod/enrolled";
-  # /var/lib/macrod links here when there is a data disk.
-  persistentMacrodState = if cfg.dataDisk == null then "/var/lib/macrod" else "/home/.system/macrod";
+  roxdConfig = "${home}/.roxd/roxd.toml";
+  # roxd writes "<computer id>\n<generation>" here when enrollment succeeds.
+  enrolledMarker = "/var/lib/roxd/enrolled";
+  # /var/lib/roxd links here when there is a data disk.
+  persistentRoxdState = if cfg.dataDisk == null then "/var/lib/roxd" else "/home/.system/roxd";
   # harnessd's state: the agents' credentials. On the data disk when there
   # is one, so a sign-in survives image updates.
   harnessdState = if cfg.dataDisk == null then "/var/lib/harnessd" else "/home/.system/harnessd";
@@ -27,12 +27,12 @@ let
     credential = "${cfg.harnessd.stateDirectory}/claude/credential.json";
   };
   herdr = pkgs.callPackage "${cfg.herdrSource}/nix/package.nix" { };
-  adapterDirectory = "${home}/.macrod/adapters/${cfg.claudeAgentAcp.adapterDirectory}";
+  adapterDirectory = "${home}/.roxd/adapters/${cfg.claudeAgentAcp.adapterDirectory}";
   display = ":0";
   waitForDisplay = pkgs.writeShellScript "wait-for-display" ''
     until [ -S /tmp/.X11-unix/X0 ]; do sleep 0.2; done
   '';
-  # Agents macrod starts look tools up on PATH, as in a login shell.
+  # Agents roxd starts look tools up on PATH, as in a login shell.
   systemPath = [
     "/run/wrappers"
     "/run/current-system/sw"
@@ -95,9 +95,9 @@ in
   imports = [ ./_agent.nix ];
 
   options.macro.box = {
-    macrod = lib.mkOption {
+    roxd = lib.mkOption {
       type = lib.types.package;
-      description = "The macrod package.";
+      description = "The roxd package.";
     };
     harnessd.package = lib.mkOption {
       type = lib.types.package;
@@ -121,7 +121,7 @@ in
     claudeAgentAcp = lib.mkOption {
       type = lib.types.package;
       default = import ./_claude-agent-acp.nix { inherit pkgs; };
-      description = "The Claude Code ACP adapter at macrod's pin.";
+      description = "The Claude Code ACP adapter at roxd's pin.";
     };
     chromeDevtoolsMcp = lib.mkOption {
       type = lib.types.package;
@@ -135,7 +135,7 @@ in
     enrollFrom = lib.mkOption {
       type = lib.types.str;
       default = "incus";
-      description = "`macrod enroll --from`: `incus` or `file:<path>`.";
+      description = "`roxd enroll --from`: `incus` or `file:<path>`.";
     };
     agentMode = lib.mkOption {
       type = lib.types.bool;
@@ -151,7 +151,7 @@ in
       default = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_incus_data";
       description = ''
         Block device mounted at /home, formatted on first boot. It keeps
-        homes and macrod's state across image updates; null keeps them on
+        homes and roxd's state across image updates; null keeps them on
         the root disk.
       '';
     };
@@ -221,21 +221,21 @@ in
     };
     systemd.tmpfiles.settings."05-macro-box-state" = lib.mkIf (cfg.dataDisk != null) {
       # The enrollment marker.
-      "/var/lib/macrod"."L+".argument = persistentMacrodState;
+      "/var/lib/roxd"."L+".argument = persistentRoxdState;
     };
 
     systemd.tmpfiles.settings."10-macro-box" = {
-      ${persistentMacrodState}.d.mode = "0755";
+      ${persistentRoxdState}.d.mode = "0755";
       ${cfg.harnessd.stateDirectory}.d = macroOwner // {
         mode = "0700";
       };
       ${workspace}.d = macroDirectory;
       "${home}/.config".d = macroDirectory;
       "${home}/.config/chromium".d = macroDirectory;
-      "${home}/.macrod".d = macroDirectory;
-      "${home}/.macrod/adapters".d = macroDirectory;
-      "${home}/.macrod/adapters/@agentclientprotocol".d = macroDirectory;
-      # Where macrod installs the ACP adapter, so it never runs npm.
+      "${home}/.roxd".d = macroDirectory;
+      "${home}/.roxd/adapters".d = macroDirectory;
+      "${home}/.roxd/adapters/@agentclientprotocol".d = macroDirectory;
+      # Where roxd installs the ACP adapter, so it never runs npm.
       ${adapterDirectory}."L+".argument = "${cfg.claudeAgentAcp}";
       "${home}/.claude".d = macroDirectory;
       # Copied once, like useradd copies /etc/skel for a new user.
@@ -250,7 +250,7 @@ in
     };
 
     environment.systemPackages = [
-      cfg.macrod
+      cfg.roxd
       cfg.harnessd.package
       # The pinned Claude Code behind the credential wrapper; harnessd runs
       # the unwrapped one.
@@ -357,7 +357,7 @@ in
     # `#!/bin/bash` and `#!/usr/bin/python3` shebangs resolve through PATH.
     services.envfs.enable = true;
 
-    systemd.services.macrod-enroll = {
+    systemd.services.roxd-enroll = {
       description = "Join this computer to Macro";
       wantedBy = [ "multi-user.target" ];
       wants = [ "network-online.target" ];
@@ -365,8 +365,8 @@ in
         "network-online.target"
         "incus-agent.service"
       ];
-      before = [ "macrod.service" ];
-      # Runs on every boot: `macrod enroll` re-enrolls for a newer
+      before = [ "roxd.service" ];
+      # Runs on every boot: `roxd enroll` re-enrolls for a newer
       # generation and keeps the existing enrollment otherwise.
       unitConfig.StartLimitIntervalSec = 0;
       path = systemPath;
@@ -379,7 +379,7 @@ in
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
-        # macrod requires it; keep trying until the source shows up.
+        # roxd requires it; keep trying until the source shows up.
         Restart = "on-failure";
         RestartSec = 10;
         ExecStartPre = lib.getExe (
@@ -392,27 +392,27 @@ in
             text = builtins.readFile ./files/check-enrollment-source;
           }
         );
-        ExecStart = "${lib.getExe' cfg.macrod "macrod"} enroll --from \${MACRO_ENROLL_FROM} --config ${macrodConfig}";
-        # A retry that succeeds after boot gave up on macrod still starts it.
+        ExecStart = "${lib.getExe' cfg.roxd "roxd"} enroll --from \${MACRO_ENROLL_FROM} --config ${roxdConfig}";
+        # A retry that succeeds after boot gave up on roxd still starts it.
         # (OnSuccess= never fires: with RemainAfterExit the unit stays active.)
-        ExecStartPost = "${lib.getExe' config.systemd.package "systemctl"} --no-block start macrod.service";
+        ExecStartPost = "${lib.getExe' config.systemd.package "systemctl"} --no-block start roxd.service";
         StandardOutput = "journal+console";
         StandardError = "journal+console";
       };
     };
 
-    systemd.services.macrod = {
-      description = "Macro agent daemon";
+    systemd.services.roxd = {
+      description = "Rox agent daemon";
       wantedBy = [ "multi-user.target" ];
       # Wants, not Requires: a first enroll attempt that fails must not fail
-      # macrod's start for good; the enroll retry starts it once enrolled.
+      # roxd's start for good; the enroll retry starts it once enrolled.
       wants = [
         "network-online.target"
-        "macrod-enroll.service"
+        "roxd-enroll.service"
       ];
       after = [
         "network-online.target"
-        "macrod-enroll.service"
+        "roxd-enroll.service"
       ];
       path = systemPath;
       environment.HOME = home;
@@ -426,7 +426,7 @@ in
         Group = "macro";
         WorkingDirectory = workspace;
         # --ignore-stdin-eof: systemd's closed stdin must not stop the daemon.
-        ExecStart = "${lib.getExe' cfg.macrod "macrod"} service --ignore-stdin-eof --config ${macrodConfig} --workspace ${workspace}";
+        ExecStart = "${lib.getExe' cfg.roxd "roxd"} service --ignore-stdin-eof --config ${roxdConfig} --workspace ${workspace}";
         Restart = "always";
         RestartSec = 1;
         RestartSteps = 5;
@@ -454,12 +454,12 @@ in
     };
 
     systemd.user.services.macro-display =
-      userService "Macro computer display (Xvnc :0 on 127.0.0.1:5900)"
+      userService "Rox computer display (Xvnc :0 on 127.0.0.1:5900)"
         {
           ExecStart = "${pkgs.tigervnc}/bin/Xvnc ${display} -geometry 1920x1080 -depth 24 -rfbport 5900 -interface 127.0.0.1 -localhost -SecurityTypes None -UseBlacklist 0 -AlwaysShared -nolisten tcp -nolisten local";
         };
     systemd.user.services.macro-openbox =
-      userService "Openbox window manager on the Macro display" {
+      userService "Openbox window manager on the Rox display" {
         ExecStartPre = waitForDisplay;
         ExecStart = lib.getExe' pkgs.openbox "openbox";
       }
@@ -469,7 +469,7 @@ in
         environment.DISPLAY = display;
       };
     systemd.user.services.macro-chromium =
-      userService "Chromium on the Macro display, DevTools on 127.0.0.1:9222" {
+      userService "Chromium on the Rox display, DevTools on 127.0.0.1:9222" {
         ExecStartPre = waitForDisplay;
         ExecStart = "${lib.getExe pkgs.chromium} --user-data-dir=%h/.config/chromium --remote-debugging-port=9222 --no-first-run --no-default-browser-check --disable-dev-shm-usage --password-store=basic --start-maximized";
       }

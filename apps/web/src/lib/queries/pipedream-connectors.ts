@@ -244,7 +244,7 @@ function pipedreamCatalogIconsQueryOptions() {
 
 /**
  * App logos by slug, from one full-size catalog page. Connection records carry
- * only a slug. That covers all of Macro Connect's catalog, and Pipedream's most
+ * only a slug. That covers all of Rox Connect's catalog, and Pipedream's most
  * popular apps; a connector outside it keeps its fallback icon.
  */
 export function usePipedreamCatalogIconsQuery() {
@@ -327,10 +327,10 @@ let pipedreamUnsupported = false;
  * An overlaid app (see {@link usePipedreamOverlaysQuery}) never goes through
  * Pipedream: it authorizes its own MCP server with the native MCP OAuth flow
  * in a new tab instead, and is connected once that server is authorized.
- * GitHub's server is authorized by the Macro GitHub account link, so GitHub
+ * GitHub's server is authorized by the Rox GitHub account link, so GitHub
  * links the account instead.
  *
- * With the `macro-connect` flag, the backend may route the app through Macro
+ * With the `macro-connect` flag, the backend may route the app through Rox
  * Connect instead of Pipedream: consent then runs on Connect's page in a
  * popup (web) or the system browser (native), and the connection is
  * recorded once Connect confirms it.
@@ -354,7 +354,7 @@ export async function connectPipedreamApp(args: {
   const cachedOverlay = queryClient
     .getQueryData<PipedreamOverlayResponse[]>(KEYS.overlays)
     ?.find((overlay) => overlay.app_slug === args.appSlug);
-  // A Macro Connect consent page also needs its tab reserved now; it is
+  // A Rox Connect consent page also needs its tab reserved now; it is
   // closed again if the backend answers with a Pipedream token.
   const popup =
     (cachedOverlay && !linksGithub(cachedOverlay)) ||
@@ -580,7 +580,7 @@ const MACRO_CONNECT_POLL_MS = 2000;
 const MACRO_CONNECT_TIMEOUT_MS = 10 * 60 * 1000;
 
 /**
- * Run Macro Connect's consent page in `popup` (or the system browser), then
+ * Run Rox Connect's consent page in `popup` (or the system browser), then
  * ask the backend to record the connection until Connect confirms it, the
  * tab is closed, or the session expires. Connect's redirect page cannot
  * message this tab, so completion is polled, as for overlaid apps.

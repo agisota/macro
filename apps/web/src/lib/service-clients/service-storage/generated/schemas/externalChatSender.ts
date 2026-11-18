@@ -18,6 +18,6 @@ export interface ExternalChatSender {
   /** Their profile picture as the chat owner's account sees it: a static
 file id; `null` when hidden, unset or not fetched yet. */
   pictureFileId?: ExternalChatSenderPictureFileId;
-  /** Verified Macro user association, if present. */
+  /** Verified Rox user association, if present. */
   userId?: ExternalChatSenderUserId;
 }

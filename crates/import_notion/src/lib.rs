@@ -1,4 +1,4 @@
-//! Reading a user's Notion workspace for import into Macro.
+//! Reading a user's Notion workspace for import into Rox.
 //!
 //! The domain is the importer's view of Notion: typed pages, data sources and
 //! property values, the [`domain::ports::NotionApi`] port, and the

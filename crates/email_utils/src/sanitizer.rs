@@ -50,7 +50,7 @@ pub fn sanitize_html_fragment(raw_html: &str) -> String {
     sanitize_style_blocks(&CLEANER.clean(raw_html).to_string())
 }
 
-/// Sanitizes an HTML body composed inside Macro (draft save / send).
+/// Sanitizes an HTML body composed inside Rox (draft save / send).
 ///
 /// Same allowlist as provider-fetched mail, plus the editor's own round-trip
 /// markers (`data-*` attributes, `<li value>`, checklist tags) so reopening a

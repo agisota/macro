@@ -69,7 +69,7 @@ where
 /// A single email recipient for a call invitation.
 #[derive(serde::Deserialize, utoipa::ToSchema)]
 pub struct InviteMeetingRequest {
-    /// Recipient email; no Macro account is required.
+    /// Recipient email; no Rox account is required.
     pub email: String,
 }
 

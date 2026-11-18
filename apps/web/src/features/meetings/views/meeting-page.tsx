@@ -216,7 +216,7 @@ export function MeetingPage(props: {
                   class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink-muted hover:bg-hover focus-visible:outline-2 focus-visible:outline-accent"
                 >
                   <ArrowLeft class="size-4" />
-                  Back to Macro
+                  Back to Rox
                 </a>
               </Show>
             }
@@ -227,7 +227,7 @@ export function MeetingPage(props: {
               class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink-muted hover:bg-hover focus-visible:outline-2 focus-visible:outline-accent"
             >
               <ArrowLeft class="size-4" />
-              Back to Macro
+              Back to Rox
             </button>
           </Show>
           <Show
@@ -236,7 +236,7 @@ export function MeetingPage(props: {
               <div class="flex items-center gap-3">
                 <Phone class="size-6 text-accent" />
                 <div>
-                  <p class="text-xs font-medium text-ink-muted">Macro Calls</p>
+                  <p class="text-xs font-medium text-ink-muted">Rox Calls</p>
                   <h1 class="text-lg font-semibold">
                     {ready()?.title || 'Call'}
                   </h1>
@@ -295,7 +295,7 @@ export function MeetingPage(props: {
           <div class="m-auto max-w-md text-center">
             <h2 class="text-2xl font-semibold">{ready()?.title || 'Call'}</h2>
             <p class="mt-3 text-ink-muted">
-              This call is for Macro members. Sign in to join.
+              This call is for Rox members. Sign in to join.
             </p>
             <Button
               variant="ghost"
@@ -417,7 +417,7 @@ export function MeetingPage(props: {
                         : 'Join call'}
                 </Button>
                 <p class="text-xs text-ink-muted">
-                  Calls are recorded and transcribed for the organizer and Macro
+                  Calls are recorded and transcribed for the organizer and Rox
                   participants.
                 </p>
               </form>

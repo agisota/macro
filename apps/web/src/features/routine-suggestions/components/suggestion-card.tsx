@@ -40,7 +40,7 @@ export type SuggestionCardModel = {
   picked: boolean;
   /** A drafted routine, reviewed before it's saved. */
   drafted: boolean;
-  /** One of Macro's templates. */
+  /** One of Rox's templates. */
   template: boolean;
   /** Why AI picked it. */
   reason?: string;

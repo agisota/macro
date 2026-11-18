@@ -118,7 +118,7 @@ const FIXTURE_MODELS: ModelOption[] = [
 ];
 
 /**
- * A Macro Agent catalog: the in-memory harness keeps no display names, so
+ * A Rox Agent catalog: the in-memory harness keeps no display names, so
  * every option arrives named after its own slug.
  */
 const FIXTURE_INMEM_MODELS: ModelOption[] = [
@@ -335,7 +335,7 @@ const TOOL_REPLAY_PARTS: MessagePart[] = [
     status: 'failed',
     detail: {
       kind: 'fetch',
-      output: 'Could not reach status.macro.com/api: connection refused.',
+      output: 'Could not reach status.rox.one/api: connection refused.',
     },
   },
   {
@@ -705,7 +705,7 @@ const FIXTURE_MESSAGE: FoldedMessage = {
         error: null,
       },
     },
-    // A Macro MCP call whose payload does not fit the registered renderer:
+    // A Rox MCP call whose payload does not fit the registered renderer:
     // keep its summary visible without exposing the raw exchange.
     {
       kind: 'tool_use',
@@ -726,13 +726,13 @@ const FIXTURE_MESSAGE: FoldedMessage = {
           messages: [
             {
               id: '01a0b16e-95d9-79a8-ace0-2dc075b7d49f',
-              sender: 'macro|gab@macro.com',
+              sender: 'macro|gab@rox.one',
               text: 'references for agents so i know where they were dispatched from',
               sentAt: '2026-09-17T22:41:03Z',
             },
             {
               id: '01a0b17a-db3f-75d1-86d9-0d8e86b5106b',
-              sender: 'macro|gab@macro.com',
+              sender: 'macro|gab@rox.one',
               text: 'would be nice to be able to scroll context/copy the entire thing',
               sentAt: '2026-09-17T22:47:19Z',
             },
@@ -979,7 +979,7 @@ function PromptAuthorDemo() {
       />
       <Message
         message={prompt(
-          'macro|wolf@macro.com',
+          'macro|wolf@rox.one',
           'And run the snapshot tests after.'
         )}
         inFlight={false}
@@ -1126,7 +1126,7 @@ function ElicitationFormDemo() {
   const [values, setValues] = createStore(initialValues(FIXTURE_ELICITATION));
   const errors = () => validate(FIXTURE_ELICITATION, values);
   return (
-    <ToolCard title="Macro Coder is asking" status="running" defaultOpen>
+    <ToolCard title="Rox Coder is asking" status="running" defaultOpen>
       <ElicitationForm
         schema={FIXTURE_ELICITATION}
         values={values}
@@ -1463,7 +1463,7 @@ export default function AgentUiGallery() {
 
           <Item label="AgentInput with model selector (slug-named catalog)">
             <p class="text-xs text-ink-muted">
-              What Macro Agent reports: names that are only ids, shown as names
+              What Rox Agent reports: names that are only ids, shown as names
               with their provider's logo.
             </p>
             <ModelSelectorDemo

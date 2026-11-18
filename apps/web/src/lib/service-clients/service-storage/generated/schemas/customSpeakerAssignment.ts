@@ -14,7 +14,7 @@ expected to parse as a `MacroUserId` (e.g. `macro|alice@example.com`);
 the service layer rejects malformed values with `400 Bad Request`.
  */
 export interface CustomSpeakerAssignment {
-  /** Macro user id to attribute matching rows to, or `None` to clear. */
+  /** Rox user id to attribute matching rows to, or `None` to clear. */
   customSpeaker: string;
   /** The diarization label whose rows this assignment targets. */
   diarizedSpeakerId: string;

@@ -37,8 +37,8 @@ use model_owner::{CreationPrincipal, Owner};
 use serde_json::json;
 use std::sync::Mutex;
 
-pub(crate) const USER: &str = "macro|routine-owner@macro.com";
-const FOREIGN_USER: &str = "macro|other@macro.com";
+pub(crate) const USER: &str = "macro|routine-owner@rox.one";
+const FOREIGN_USER: &str = "macro|other@rox.one";
 
 #[derive(Default)]
 pub(crate) struct FakeRepo {

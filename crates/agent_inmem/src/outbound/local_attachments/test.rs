@@ -150,7 +150,7 @@ fn request(messages: Vec<ChatMessage>) -> TurnRequest {
         purpose: crate::domain::engine::TurnPurpose::Conversation,
         session_id: agent_session::domain::model::AgentSessionId::new(),
         awaiting: std::sync::Arc::default(),
-        owner: Owner::from_principal_str("macro|test@macro.com").expect("user"),
+        owner: Owner::from_principal_str("macro|test@rox.one").expect("user"),
         model: "test-model".to_owned(),
         reasoning_effort: agent::ReasoningEffort::default(),
         speed: agent::ModelSpeed::Standard,
@@ -197,7 +197,7 @@ async fn historical_images_are_inlined_and_original_content_is_preserved() {
     assert_eq!(requests[0].messages[1].content.message_text(), "try again");
     assert_eq!(
         *state.calls.lock().expect("calls lock"),
-        vec![("macro|test@macro.com".to_owned(), FILE_ID.to_owned())]
+        vec![("macro|test@rox.one".to_owned(), FILE_ID.to_owned())]
     );
 }
 

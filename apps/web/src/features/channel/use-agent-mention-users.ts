@@ -22,9 +22,9 @@ import {
  * follow their rollout flags. Mentions are re-tagged as bot mentions at send
  * time.
  *
- * Macro gets exactly one entry. Both Macro bots are dropped from the incoming
+ * Rox gets exactly one entry. Both Rox bots are dropped from the incoming
  * list first, so a stray participant or channel-bot row cannot put a second
- * "Macro" in the menu; the rollout then decides which id that one entry
+ * "Rox" in the menu; the rollout then decides which id that one entry
  * carries.
  */
 export function useAgentMentionUsers(

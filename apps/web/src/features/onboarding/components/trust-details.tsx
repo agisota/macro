@@ -22,19 +22,19 @@ const GOOGLE_QUESTIONS: TrustQuestion[] = [
     title: 'Why does Google ask for these permissions?',
     answer: (
       <>
-        Gmail access lets Macro read, send, organize, and move messages to
-        trash. Contacts help suggest recipients; mail settings support your
-        signature and filters. When you connect Calendar, its permissions let
-        Macro show your calendars and create or update events. Google shows the
-        exact permissions before you approve.
+        Gmail access lets Rox read, send, organize, and move messages to trash.
+        Contacts help suggest recipients; mail settings support your signature
+        and filters. When you connect Calendar, its permissions let Rox show
+        your calendars and create or update events. Google shows the exact
+        permissions before you approve.
       </>
     ),
   },
   {
-    title: 'Does Macro get my Google password?',
+    title: 'Does Rox get my Google password?',
     answer: (
       <>
-        No. You sign in and approve access on Google. Google gives Macro
+        No. You sign in and approve access on Google. Google gives Rox
         authorization for the permissions you approve; your Google password
         stays with Google.
       </>
@@ -45,7 +45,7 @@ const GOOGLE_QUESTIONS: TrustQuestion[] = [
     answer: (
       <>
         Data received through Google Workspace APIs is not used to develop or
-        train generalized AI models. Macro also maintains zero data retention
+        train generalized AI models. Rox also maintains zero data retention
         agreements with OpenAI and Anthropic for model processing.
       </>
     ),
@@ -54,11 +54,11 @@ const GOOGLE_QUESTIONS: TrustQuestion[] = [
     title: 'How do I revoke access?',
     answer: (
       <>
-        You can disconnect in Macro’s Settings or revoke access from your Google
-        account. Revoking access and deleting data already stored in Macro are
+        You can disconnect in Rox’s Settings or revoke access from your Google
+        account. Revoking access and deleting data already stored in Rox are
         separate actions. You can request account and data deletion as described
         in our{' '}
-        <EvidenceLink href="https://macro.com/privacy/">
+        <EvidenceLink href="https://rox.one/privacy/">
           Privacy Policy
         </EvidenceLink>
         .
@@ -70,12 +70,12 @@ const GOOGLE_QUESTIONS: TrustQuestion[] = [
 /** Microsoft sign-in is identity-only; Outlook access is its own consent. */
 const MICROSOFT_QUESTIONS: TrustQuestion[] = [
   {
-    title: 'What does Microsoft sign-in share with Macro?',
+    title: 'What does Microsoft sign-in share with Rox?',
     answer: (
       <>
         Only your identity: your name, email address, and Microsoft account ID.
         Microsoft may describe this as signing you in, viewing your basic
-        profile, and keeping that access. Sign-in alone doesn’t give Macro your
+        profile, and keeping that access. Sign-in alone doesn’t give Rox your
         mail or calendar.
       </>
     ),
@@ -84,22 +84,22 @@ const MICROSOFT_QUESTIONS: TrustQuestion[] = [
     title: 'Why does Outlook ask for more permissions?',
     answer: (
       <>
-        After you sign in, Macro asks Microsoft separately for Outlook access.
-        Mail access lets Macro read, send, and organize messages; contacts help
+        After you sign in, Rox asks Microsoft separately for Outlook access.
+        Mail access lets Rox read, send, and organize messages; contacts help
         suggest recipients; mailbox settings support your inbox rules and time
-        zone; calendar access lets Macro show your calendars and create or
-        update events. Microsoft shows the exact permissions before you approve,
-        and you can skip this step and connect later in Settings.
+        zone; calendar access lets Rox show your calendars and create or update
+        events. Microsoft shows the exact permissions before you approve, and
+        you can skip this step and connect later in Settings.
       </>
     ),
   },
   {
-    title: 'What if my organization needs an admin to approve Macro?',
+    title: 'What if my organization needs an admin to approve Rox?',
     answer: (
       <>
         Some work and school accounts let only an administrator approve apps. If
         that stops Microsoft sign-in, continue with your email instead. If it
-        stops the Outlook connection, skip it for now; your Macro account still
+        stops the Outlook connection, skip it for now; your Rox account still
         works, and you can connect once an admin approves.
       </>
     ),
@@ -114,8 +114,8 @@ const SECURITY_QUESTIONS: TrustQuestion[] = [
         When you use an agent, information needed for your request is processed
         by its model provider. Our agreements with OpenAI and Anthropic provide
         zero data retention and no training on that data. This concerns model
-        processing: Macro still stores the workspace content needed to provide
-        the service.
+        processing: Rox still stores the workspace content needed to provide the
+        service.
       </>
     ),
   },
@@ -135,11 +135,11 @@ const SECURITY_QUESTIONS: TrustQuestion[] = [
       <>
         Yes. Our security program includes SOC 2, ISO 27001, and Google CASA
         Tier 2, with external audits and penetration testing. Visit our{' '}
-        <EvidenceLink href="https://security.macro.com">
+        <EvidenceLink href="https://security.rox.one">
           Trust Center
         </EvidenceLink>{' '}
         for security information. Our{' '}
-        <EvidenceLink href="https://macro.com/dpa">
+        <EvidenceLink href="https://rox.one/dpa">
           Data Processing Agreement
         </EvidenceLink>{' '}
         describes confidentiality, safeguards, subprocessors, and data return or
@@ -148,10 +148,10 @@ const SECURITY_QUESTIONS: TrustQuestion[] = [
     ),
   },
   {
-    title: 'Is Macro open source?',
+    title: 'Is Rox open source?',
     answer: (
       <>
-        Macro is open source: you can inspect our{' '}
+        Rox is open source: you can inspect our{' '}
         <EvidenceLink href="https://github.com/macro-inc/macro">
           code on GitHub
         </EvidenceLink>
@@ -161,7 +161,7 @@ const SECURITY_QUESTIONS: TrustQuestion[] = [
   },
 ];
 
-/** Optional reading, grounded in Macro's privacy policy, DPA, and security material. */
+/** Optional reading, grounded in Rox's privacy policy, DPA, and security material. */
 export function OnboardingTrustDetails(props: {
   topic: 'security' | 'google';
   /**
@@ -204,8 +204,8 @@ export function OnboardingTrustDetails(props: {
           fallback={
             <>
               <p>
-                Macro stores your workspace content to provide the service. We
-                do not sell your data.
+                Rox stores your workspace content to provide the service. We do
+                not sell your data.
               </p>
               <p>
                 Your data is encrypted in transit and at rest. Production access
@@ -213,7 +213,7 @@ export function OnboardingTrustDetails(props: {
                 in a separate environment.
               </p>
               <p>
-                Macro is open source. Our security program includes independent
+                Rox is open source. Our security program includes independent
                 audits and penetration testing. The FAQs below link to our code,
                 security information, and data policies.
               </p>
@@ -221,19 +221,19 @@ export function OnboardingTrustDetails(props: {
           }
         >
           <p>
-            Macro requests Google account access to read, send, and organize
-            email and manage connected calendars. Google lists the permissions
-            before you approve the connection.
+            Rox requests Google account access to read, send, and organize email
+            and manage connected calendars. Google lists the permissions before
+            you approve the connection.
           </p>
           <p>
-            Macro’s email agents show you the draft and ask for your approval
+            Rox’s email agents show you the draft and ask for your approval
             before sending.
           </p>
           <p>
-            You sign in through Google. Macro does not receive your Google
-            password. Your Macro sign-in stays the same; adding a personal
-            account is optional. You can disconnect in Macro’s Settings or
-            revoke access from your Google account.
+            You sign in through Google. Rox does not receive your Google
+            password. Your Rox sign-in stays the same; adding a personal account
+            is optional. You can disconnect in Rox’s Settings or revoke access
+            from your Google account.
           </p>
         </Show>
       </div>
@@ -244,7 +244,7 @@ export function OnboardingTrustDetails(props: {
         <div class="space-y-5">
           <p>
             Signing in with Microsoft asks only for your identity: your name,
-            email address, and Microsoft account ID. It doesn’t give Macro your
+            email address, and Microsoft account ID. It doesn’t give Rox your
             mail or calendar.
           </p>
           <p>
@@ -253,9 +253,9 @@ export function OnboardingTrustDetails(props: {
             approve, and you can skip it and connect later.
           </p>
           <p>
-            Macro does not receive your Microsoft password. You can disconnect
-            Outlook in Macro’s Settings or remove Macro’s access from your
-            Microsoft account.
+            Rox does not receive your Microsoft password. You can disconnect
+            Outlook in Rox’s Settings or remove Rox’s access from your Microsoft
+            account.
           </p>
         </div>
       </Show>
@@ -280,11 +280,11 @@ export function OnboardingTrustDetails(props: {
       </div>
       <p class="mt-8 text-xs leading-6 text-ink-extra-muted">
         More detail in our{' '}
-        <EvidenceLink href="https://macro.com/privacy/">
+        <EvidenceLink href="https://rox.one/privacy/">
           Privacy Policy
         </EvidenceLink>{' '}
         and{' '}
-        <EvidenceLink href="https://security.macro.com">
+        <EvidenceLink href="https://security.rox.one">
           Trust Center
         </EvidenceLink>
         .

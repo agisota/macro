@@ -43,7 +43,7 @@ mod signal;
 mod subagent;
 /// Tool calls.
 mod tool;
-/// Macro user tools.
+/// Rox user tools.
 mod user_tool;
 
 pub use agent_runtime_protocol::domain::turn::{FailureLink, FailureNotice, FailureNoticeKind};

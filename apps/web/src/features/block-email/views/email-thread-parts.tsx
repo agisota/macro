@@ -140,7 +140,7 @@ export function EmailThreadHeaderActions(props: {
   );
 }
 
-/** Ask Macro and Create task, shown before Share in a desktop thread header. */
+/** Ask Rox and Create task, shown before Share in a desktop thread header. */
 export function EmailThreadActions(props: {
   title: string;
   onCreateTask: () => void;

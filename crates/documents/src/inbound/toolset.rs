@@ -149,7 +149,7 @@ pub struct DocumentToolContext<
     pub recorder: Arc<dyn ai_usage::UsageRecorder>,
 
     /// The bot these tools act as, on behalf of the requesting user. Defaults
-    /// to Macro AI; hosts running a specific agent set it with [`Self::with_actor`].
+    /// to Rox AI; hosts running a specific agent set it with [`Self::with_actor`].
     pub actor: BotId,
 
     /// The display name of [`Self::actor`] as the host knows it, set with

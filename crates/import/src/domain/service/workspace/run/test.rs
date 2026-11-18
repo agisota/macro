@@ -623,7 +623,7 @@ async fn a_run_that_keeps_stopping_is_given_up_with_its_rows_back_in_staged(pool
     assert_eq!(report.waiting, 2, "both can be imported again");
 }
 
-/// A Macro user on `team`, which is made on first use.
+/// A Rox user on `team`, which is made on first use.
 async fn teammate(pool: &PgPool, label: &str, team: Uuid) -> MacroUserIdStr<'static> {
     let id = Uuid::now_v7();
     let email = format!("{label}@example.com");

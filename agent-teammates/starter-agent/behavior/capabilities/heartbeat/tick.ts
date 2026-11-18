@@ -112,7 +112,7 @@ export const tickPrompt = ({
 
 const macroId = /macro\|[\w.+-]+@[\w.-]+/g;
 
-/** Every Macro id a snapshot names, the owner first. */
+/** Every Rox id a snapshot names, the owner first. */
 export const mentionedIds = (text: string, owner: string): readonly string[] =>
 	[...new Set(text.match(macroId) ?? [])].sort((a, b) =>
 		a === owner ? -1 : b === owner ? 1 : 0,

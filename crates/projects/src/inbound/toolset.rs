@@ -80,7 +80,7 @@ where
     /// Duplicate capability for databases.
     pub database_duplicate_service: Arc<DbSvc>,
     /// The bot these tools act as, on behalf of the requesting user. Defaults
-    /// to Macro AI; hosts running a specific agent set it with [`Self::with_actor`].
+    /// to Rox AI; hosts running a specific agent set it with [`Self::with_actor`].
     pub actor: BotId,
 }
 

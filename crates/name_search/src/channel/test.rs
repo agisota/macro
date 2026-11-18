@@ -372,7 +372,7 @@ async fn every_term_must_match_the_stored_name_or_some_other_participant(
         &pool,
         &user(MEMBER),
         ChannelNameSearchScope::default(),
-        "Macro Plan".to_string(),
+        "Rox Plan".to_string(),
         false,
         10,
         None,

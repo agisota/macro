@@ -24,7 +24,7 @@ import {
   RoutineEventScopeLabel,
 } from './routine-event-scope';
 
-/** The Macro entity kind a trigger narrows to; GitHub has none. */
+/** The Rox entity kind a trigger narrows to; GitHub has none. */
 function entityKind(trigger: EventTriggerDraft) {
   const kind = eventScopeKind(trigger);
   return kind === 'GITHUB' ? undefined : kind;

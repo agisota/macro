@@ -53,7 +53,7 @@ impl ReadReceiptToken {
     }
 }
 
-/// Absolute URL every Macro pixel starts with, e.g. `https://gateway.macro.com/email/opens/`.
+/// Absolute URL every Rox pixel starts with, e.g. `https://gateway.rox.one/email/opens/`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PixelUrlPrefix(String);
 
@@ -66,7 +66,7 @@ impl PixelUrlPrefix {
         ))
     }
 
-    /// The prefix as a string, for clients that hide Macro's own pixels.
+    /// The prefix as a string, for clients that hide Rox's own pixels.
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -152,7 +152,7 @@ impl<R: ReadReceiptRepository> ReadReceiptService<R> {
         Self { repo, prefix }
     }
 
-    /// The HTML body to hand the provider. Macro pixels quoted from earlier
+    /// The HTML body to hand the provider. Rox pixels quoted from earlier
     /// messages are always removed so a reply never reports opens of its
     /// ancestors. When the inbox has tracking on, this message's pixel is appended.
     /// Plain-text-only messages are not tracked, and tracking failures never
@@ -187,7 +187,7 @@ impl<R: ReadReceiptRepository> ReadReceiptService<R> {
         })
     }
 
-    /// The HTML body with any Macro pixel removed, for drafts that are not being sent.
+    /// The HTML body with any Rox pixel removed, for drafts that are not being sent.
     pub fn untracked_html(&self, html: Option<&str>) -> Option<String> {
         html.map(|html| strip_pixels(html, &self.prefix))
     }
@@ -254,7 +254,7 @@ pub(crate) fn append_pixel(html: &str, url: &str) -> String {
     }
 }
 
-/// Remove every `<img>` whose source is a Macro pixel; any other content is untouched.
+/// Remove every `<img>` whose source is a Rox pixel; any other content is untouched.
 pub(crate) fn strip_pixels(html: &str, prefix: &PixelUrlPrefix) -> String {
     if !html.contains(prefix.as_str()) {
         return html.to_owned();

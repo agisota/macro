@@ -1,11 +1,11 @@
 import { MacroError } from '../../utils';
 import type { MacroClient } from '../../utils/client';
 
-/** Hosts a Macro app link may name, besides the client's own web app. */
-const MACRO_HOSTS = ['macro.com', 'dev.macro.com', 'staging.macro.com'];
+/** Hosts a Rox app link may name, besides the client's own web app. */
+const MACRO_HOSTS = ['rox.one', 'dev.rox.one', 'staging.rox.one'];
 
 /**
- * A Macro app link, reduced to the app path it opens: a list view such as
+ * A Rox app link, reduced to the app path it opens: a list view such as
  * Tasks or Mail, or an item. Made by `macro.ui.link(url)`; it keeps no origin.
  *
  * @mcp-exclude Only `macro.ui.open` takes it, which MCP leaves out.
@@ -18,7 +18,7 @@ export class AppLink {
   ) {}
 
   /**
-   * Parse a Macro app link (`https://macro.com/app/...`). Throws on anything
+   * Parse a Rox app link (`https://rox.one/app/...`). Throws on anything
    * else: another site, a path outside `/app`, or a link with a fragment.
    */
   static parse(client: MacroClient, url: string): AppLink {
@@ -26,7 +26,7 @@ export class AppLink {
     try {
       parsed = new URL(url);
     } catch {
-      throw new MacroError(`Not a Macro app link: ${url}`);
+      throw new MacroError(`Not a Rox app link: ${url}`);
     }
 
     const own = new URL(client.webAppUrl);
@@ -42,7 +42,7 @@ export class AppLink {
         own.protocol === 'http:' &&
         host === ownHost);
     if (!macroHost || !appPath || !secure || parsed.hash !== '') {
-      throw new MacroError(`Not a Macro app link: ${url}`);
+      throw new MacroError(`Not a Rox app link: ${url}`);
     }
 
     const path = parsed.pathname.slice('/app'.length) || '/';

@@ -1,6 +1,6 @@
 # Agent teammates
 
-Agents that work in Macro as users of their own: they talk in channels and
+Agents that work in Rox as users of their own: they talk in channels and
 DMs, join calls with a voice, share a screen, keep their own memory, and can
 change their own code.
 

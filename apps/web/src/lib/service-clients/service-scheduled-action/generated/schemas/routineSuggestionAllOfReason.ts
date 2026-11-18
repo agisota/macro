@@ -7,6 +7,6 @@
  */
 
 /**
- * Why it fits this person, in a line; absent on Macro's templates.
+ * Why it fits this person, in a line; absent on Rox's templates.
  */
 export type RoutineSuggestionAllOfReason = string | null;

@@ -33,7 +33,7 @@ impl<P> Clone for UserPermissionsState<P> {
 /// Axum extractor resolving the requesting user's model entitlement from their
 /// permissions.
 ///
-/// Free users may use only [`FREE_MODEL`] (Gemini Flash); professional (paid)
+/// Free users may use only [`FREE_MODEL`] (Rox R1 Max); professional (paid)
 /// users may use every chat model. Backed by [`ModelAccessServiceImpl`].
 ///
 /// Type parameter `Auth` is the authorization service implementation and `P`
@@ -167,7 +167,7 @@ mod test {
     #[test]
     fn professional_user_defaults_to_smart_and_has_everything() {
         let pro = access(&[PermissionId::ReadProfessionalFeatures]);
-        assert_eq!(pro.best_model(), "anthropic/claude-sonnet-5-5");
+        assert_eq!(pro.best_model(), "groq/gpt-oss-120b");
         assert!(pro.has_access("anthropic/claude-sonnet-5-5"));
         assert!(pro.has_access("anthropic/claude-opus-5-5"));
         assert!(pro.has_access(FREE_MODEL));

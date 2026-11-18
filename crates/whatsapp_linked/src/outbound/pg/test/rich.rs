@@ -184,7 +184,7 @@ async fn a_re_imported_placeholder_gains_its_content_and_mentions_read_as_names(
         50,
         CUSTOMER_JID,
         "PLACE",
-        "Sent something Macro can't show yet",
+        "Sent something Rox can't show yet",
     );
     if let InboundKind::Message(message) = &mut placeholder.kind {
         message.kind = MessageKind::Unsupported;

@@ -9,6 +9,6 @@
  * A single email recipient for a call invitation.
  */
 export interface InviteMeetingRequest {
-  /** Recipient email; no Macro account is required. */
+  /** Recipient email; no Rox account is required. */
   email: string;
 }

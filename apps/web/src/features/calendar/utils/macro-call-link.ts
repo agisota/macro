@@ -4,7 +4,7 @@ interface CalendarCallContent {
   description?: string | null;
 }
 
-/** Accept only Macro meeting links, including local development links. */
+/** Accept only Rox meeting links, including local development links. */
 export function macroCallUrl(value: string): string | undefined {
   try {
     const url = new URL(value);
@@ -15,8 +15,8 @@ export function macroCallUrl(value: string): string | undefined {
     if (
       (url.protocol !== 'https:' && !(local && url.protocol === 'http:')) ||
       (!local &&
-        url.hostname !== 'macro.com' &&
-        url.hostname !== 'dev.macro.com') ||
+        url.hostname !== 'rox.one' &&
+        url.hostname !== 'dev.rox.one') ||
       url.username ||
       url.password ||
       !/^\/(?:app\/)?meet\/(?:join\/)?[A-Za-z0-9_-]{16,128}\/?$/.test(
@@ -67,8 +67,13 @@ export function removeCalendarMacroCall(
             .replace(/&amp;/g, '&')
             .trim();
           const linkedUrl = calendarMacroCallUrl({ description: paragraph });
-          const textUrl = text.match(/^Join Macro call:\s*(\S+)$/i)?.[1];
+          // Invitations saved by earlier releases say "Join Macro call"; keep
+          // reading that wording so old events still lose their generated line.
+          const textUrl = text.match(
+            /^Join (?:Macro|Rox) call:\s*(\S+)$/i
+          )?.[1];
           const generated =
+            text === 'Join Rox call' ||
             text === 'Join Macro call' ||
             (textUrl !== undefined && macroCallUrl(textUrl) === linkedUrl);
           return generated && linkedUrl ? '' : paragraph;
@@ -79,7 +84,7 @@ export function removeCalendarMacroCall(
   };
 }
 
-/** The location event details show: empty when it is only the meeting's Macro call link. */
+/** The location event details show: empty when it is only the meeting's Rox call link. */
 export function calendarEventLocation(event: CalendarCallContent) {
   return removeCalendarMacroCall(
     { location: event.location },
@@ -95,7 +100,7 @@ export function attachCalendarMacroCall(
 ) {
   const clean = removeCalendarMacroCall(content, existingUrl ?? url);
   return {
-    description: `${clean.description}${clean.description ? '\n' : ''}<p>Join Macro call: <a href="${url}">${url}</a></p>`,
+    description: `${clean.description}${clean.description ? '\n' : ''}<p>Join Rox call: <a href="${url}">${url}</a></p>`,
     location: clean.location.trim() ? clean.location : url,
   };
 }

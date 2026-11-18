@@ -70,14 +70,22 @@ pub struct ParsedUserMention<'a> {
 impl ParsedUserMention<'_> {
     /// Display name for a mentioned bot. Prefers the names written into the
     /// tag by the composer, then the first-party bot registry, so a bot never
-    /// renders under another bot's name.
+    /// renders under another bot's name. A tag written before the rename names
+    /// the same bot the registry knows, so it shows the bot's current name.
     fn bot_display_name(&self, bot: &BotIdStr<'_>) -> &str {
-        [self.display_name.as_deref(), self.email.as_deref()]
+        let system = bot_id::system_bot(bot.bot_id());
+        let stored = [self.display_name.as_deref(), self.email.as_deref()]
             .into_iter()
             .flatten()
-            .find(|name| !name.trim().is_empty())
-            .or_else(|| bot_id::system_bot(bot.bot_id()).map(|system| system.name))
-            .unwrap_or("Bot")
+            .find(|name| !name.trim().is_empty());
+        match (stored, system) {
+            (Some(name), Some(system)) if bot_id::is_legacy_display_name(system, name) => {
+                system.name
+            }
+            (Some(name), _) => name,
+            (None, Some(system)) => system.name,
+            (None, None) => "Bot",
+        }
     }
 }
 
@@ -266,7 +274,7 @@ impl<'de> XmlTaggedParsed<'de> for ParsedAgentSessionMention<'de> {
 #[serde(rename_all = "camelCase")]
 #[non_exhaustive]
 pub struct ParsedPullRequestMention<'a> {
-    /// The Macro foreign entity id. Empty when an agent mentioned the PR by
+    /// The Rox foreign entity id. Empty when an agent mentioned the PR by
     /// its GitHub `url` alone.
     #[serde(borrow, default)]
     pub id: Cow<'a, str>,

@@ -6,6 +6,6 @@
  */
 
 /**
- * Verified Macro user association, if present.
+ * Verified Rox user association, if present.
  */
 export type ExternalChatSenderUserId = string | null;

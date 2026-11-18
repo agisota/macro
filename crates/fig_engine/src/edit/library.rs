@@ -8,7 +8,7 @@ use crate::error::Result;
 use crate::library::{
     AssetKind, LIBRARIES_KEY, Manifest, ManifestAsset, PUBLISHED_KEY, hash, local_assets,
 };
-use crate::model::library::MacroData;
+use crate::model::library::RoxData;
 use crate::model::{LibraryLink, Props};
 use std::sync::Arc;
 
@@ -21,7 +21,7 @@ fn with_value(
     entries: Option<&[(Arc<str>, Arc<str>)]>,
     key: &str,
     value: Option<&str>,
-) -> Option<MacroData> {
+) -> Option<RoxData> {
     let mut list: Vec<(Arc<str>, Arc<str>)> = entries.unwrap_or_default().to_vec();
     match (list.iter().position(|(k, _)| k.as_ref() == key), value) {
         (Some(at), Some(v)) => list[at].1 = v.into(),
@@ -49,7 +49,7 @@ impl Txn<'_> {
         }
     }
 
-    /// Sets (or removes) one of Macro's values on node `i`.
+    /// Sets (or removes) one of Rox's values on node `i`.
     pub(super) fn set_macro_value(&mut self, i: NodeIdx, key: &str, value: Option<&str>) {
         let current = self.doc.props(i).macro_data.clone();
         let next = with_value(current.as_deref(), key, value);

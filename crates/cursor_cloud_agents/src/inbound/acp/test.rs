@@ -5,7 +5,7 @@
 //! production frame takes — the SDK's parse, our handler, the SDK's response
 //! — rather than a dispatch function called directly. One test drives the
 //! byte-stream transport instead, because that is what the binary and the
-//! Macro harness actually serve over, and it is where the frame-ordering
+//! Rox harness actually serve over, and it is where the frame-ordering
 //! guarantee (a turn's updates precede its own response) is observable.
 
 use super::*;
@@ -415,7 +415,7 @@ where
 
 /// The byte-stream transport carries a whole conversation, and in order.
 ///
-/// This is the transport the binary and the Macro harness actually serve
+/// This is the transport the binary and the Rox harness actually serve
 /// over: newline-delimited JSON on a byte pipe. The frame order is the other
 /// half of the point — the turn's `session/update` notification has to
 /// precede the `session/prompt` response, which holds because notifications
@@ -723,7 +723,7 @@ async fn the_initialize_response_is_pinned_whole() {
 }
 
 /// `session/load` finds a restored session and refuses an unknown one. The
-/// restored path is what a Macro harness restart walks: restore, load, then
+/// restored path is what a Rox harness restart walks: restore, load, then
 /// prompt the existing agent.
 #[tokio::test]
 async fn session_load_answers_for_restored_sessions_only() {

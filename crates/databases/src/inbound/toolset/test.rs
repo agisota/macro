@@ -29,7 +29,7 @@ mod schemas;
 mod views;
 use crate::domain::models::{Column, ColumnDetail, Database, Table, TableDetail, TableVersion};
 
-const USER: &str = "macro|wolf@macro.com";
+const USER: &str = "macro|wolf@rox.one";
 
 fn user() -> MacroUserIdStr<'static> {
     MacroUserIdStr::parse_from_str(USER).expect("valid user id")

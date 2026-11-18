@@ -1,7 +1,7 @@
 //! Components and instances: making a component (⌥⌘K), placing instances
 //! of one, and detaching an instance (⌥⌘B) into ordinary layers.
 //!
-//! An instance placed in Macro has no layout Figma derived for it, so the
+//! An instance placed in Rox has no layout Figma derived for it, so the
 //! scene draws the component's own layers in it; edits to the component
 //! show in its instances.
 

@@ -14,11 +14,11 @@ use crate::ContactsGraphqlContext;
 pub struct GraphqlContact {
     /// Stable identity of the viewer/person pair. Names do not affect this key.
     id: ID,
-    /// Target user identifier, also used for people who have not joined Macro.
+    /// Target user identifier, also used for people who have not joined Rox.
     user_id: ID,
     /// Email address derived from the target user identifier.
     email: String,
-    /// Macro profile name, then this viewer's address-book name; null means use email fallback.
+    /// Rox profile name, then this viewer's address-book name; null means use email fallback.
     name: Option<String>,
 }
 

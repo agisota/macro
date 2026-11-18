@@ -69,7 +69,7 @@ export class MeNamespace {
   /**
    * Your current profile picture, read fresh from the auth service.
    *
-   * @returns A `StaticImage` for a picture set through Macro (usable with
+   * @returns A `StaticImage` for a picture set through Rox (usable with
    * {@link MeNamespace.update}), an `ExternalProfilePicture` for an older
    * picture stored as a bare URL, or `undefined` if you have none.
    *

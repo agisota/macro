@@ -3,7 +3,7 @@
 The legacy migration imports version 1 Canvas records into the Canvas Next
 version 2 document model. The old editor and downgrade path are not available. It belongs to the Canvas application layer, not
 `@macro-inc/graphics`, because it understands old schemas, Lexical payloads,
-Macro entities, and product rollout policy.
+Rox entities, and product rollout policy.
 
 ## Contract
 
@@ -15,7 +15,7 @@ Macro entities, and product rollout policy.
 - Keep the original payload available until compatibility is established.
 
 The first supported slice should cover common shapes, groups, free connectors,
-bound connectors, text, images, videos, and Macro entity references. Rich-text
+bound connectors, text, images, videos, and Rox entity references. Rich-text
 details, unusual transforms, unknown node kinds, and legacy-only behaviors require
 fixtures and an explicit fallback policy.
 

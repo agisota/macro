@@ -35,7 +35,7 @@ use crate::inbound::axum_router::casts::column_conversion_handler;
 use crate::inbound::axum_router::ops::apply_ops_handler;
 use crate::inbound::axum_router::{DatabasesRouterState, databases_router};
 
-pub(super) const USER: &str = "macro|ops-router@macro.com";
+pub(super) const USER: &str = "macro|ops-router@rox.one";
 pub(super) const AGENT: BotId = bot_id::MACRO_AI_BOT_ID;
 
 /// Accepts the bearer token `valid` as [`USER`], and `agent`: [`USER`]'s SDK

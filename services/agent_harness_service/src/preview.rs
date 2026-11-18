@@ -1,4 +1,4 @@
-//! Replicated SSH/HTTP preview gateway, isolated from Macro's browser cookie domain.
+//! Replicated SSH/HTTP preview gateway, isolated from Rox's browser cookie domain.
 mod adapters;
 pub mod config;
 use agent_preview::{

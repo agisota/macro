@@ -305,7 +305,7 @@ function DiscardScenario() {
       >
         <MobileDrawer.Portal>
           <MobileDrawer.Overlay />
-          <MobileDrawer.Content aria-label="Share to Macro" targetHeight={80}>
+          <MobileDrawer.Content aria-label="Share to Rox" targetHeight={80}>
             <MobileDrawer.Handle />
             <div class="h-40 px-6">
               <Button onClick={() => press('Send')}>Send</Button>

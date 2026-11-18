@@ -28,7 +28,7 @@ import { DatabaseGrid } from './component/DatabaseGrid';
 import { renameDatabase } from './queries/rename-database';
 import { toViewColumn } from './queries/table-rows';
 
-/** The Macro database editor hosted in markdown, without a nested app block. */
+/** The Rox database editor hosted in markdown, without a nested app block. */
 export function DocumentDatabase(props: {
   databaseId: string;
   name: string;

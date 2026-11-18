@@ -7,11 +7,11 @@ import {
 } from './desktopDownloads';
 
 const macos = {
-  name: 'Macro-2.5.0-aarch64-darwin.dmg',
+  name: 'Rox-2.5.0-aarch64-darwin.dmg',
   browser_download_url: 'https://example.com/mac.dmg',
 };
 const linux = {
-  name: 'Macro-2.5.0-x86_64-linux.AppImage',
+  name: 'Rox-2.5.0-x86_64-linux.AppImage',
   browser_download_url: 'https://example.com/linux.AppImage',
 };
 
@@ -37,7 +37,7 @@ describe('desktopReleaseVersion', () => {
     );
     expect(
       desktopReleaseVersion(
-        'https://github.com/macro-inc/macro/releases/download/v2026.10.7.0/Macro-2.5.0-x86_64-linux.AppImage'
+        'https://github.com/macro-inc/macro/releases/download/v2026.10.7.0/Rox-2.5.0-x86_64-linux.AppImage'
       )
     ).toBe('v2026.10.7.0');
     expect(
@@ -53,7 +53,7 @@ describe('releaseDownloadUrls', () => {
         {
           assets: [
             {
-              name: 'macrod-v2026.10.6.1-macos-aarch64.tar.gz',
+              name: 'roxd-v2026.10.6.1-macos-aarch64.tar.gz',
               browser_download_url: 'https://example.com/cli.tar.gz',
             },
           ],

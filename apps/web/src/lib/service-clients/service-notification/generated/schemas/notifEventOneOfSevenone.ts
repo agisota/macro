@@ -8,11 +8,11 @@ import type { AgentSignInExpiryMetadata } from './agentSignInExpiryMetadata';
 import type { NotifEventOneOfSevenoneTag } from './notifEventOneOfSevenoneTag';
 
 /**
- * An agent's sign-in on one of the team's Macro computers is about
+ * An agent's sign-in on one of the team's Rox computers is about
 to expire, expired, or was rejected.
  */
 export type NotifEventOneOfSevenone = {
-  /** An agent's sign-in on one of the team's Macro computers is about
+  /** An agent's sign-in on one of the team's Rox computers is about
 to expire, expired, or was rejected. */
   content: AgentSignInExpiryMetadata;
   tag: NotifEventOneOfSevenoneTag;

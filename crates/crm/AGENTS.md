@@ -67,7 +67,7 @@ tools/HTTP/GraphQL surfaces over them.
 
 ## Checks
 
-- `cargo test -p crm` (`SQLX_OFFLINE` unset; needs a local MacroDB — see
+- `cargo test -p crm` (`SQLX_OFFLINE` unset; needs a local RoxDB — see
   `.agents/rules/rust/guardrails.md`). After query/migration changes, run
   `just sqlx::prepare_db "$DATABASE_URL"` from the repository root inside Nix,
   using the same isolated database as the tests.

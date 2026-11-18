@@ -46,7 +46,7 @@ export function AttachmentChip(props: {
 
 /**
  * A WhatsApp file that isn't stored yet (still importing, failed, or of a
- * kind Macro can't keep), or one whose file can't be fetched. Every state is
+ * kind Rox can't keep), or one whose file can't be fetched. Every state is
  * the same height, so the channel doesn't jump when it resolves.
  */
 export function InboundAttachmentPlaceholder(props: {
@@ -77,7 +77,7 @@ export function InboundAttachmentPlaceholder(props: {
         <Match when={props.state === 'unsupported'}>
           <WarningIcon class="size-4 shrink-0" aria-hidden="true" />
           <span class="min-w-0 truncate">
-            {props.fileName} can't be shown in Macro
+            {props.fileName} can't be shown in Rox
           </span>
         </Match>
       </Switch>

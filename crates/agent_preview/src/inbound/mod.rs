@@ -1,5 +1,5 @@
 //! Transport adapters for preview use cases.
-/// Authenticated Macro control routes.
+/// Authenticated Rox control routes.
 pub mod control;
 /// Root-mounted HTTP and WebSocket gateway.
 pub mod http;

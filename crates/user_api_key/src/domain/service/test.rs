@@ -13,8 +13,8 @@ use crate::domain::models::{
 };
 use crate::domain::ports::{UserApiKeyService, UserApiKeysRepo};
 
-const USER_A: &str = "macro|user-a@macro.com";
-const USER_B: &str = "macro|user-b@macro.com";
+const USER_A: &str = "macro|user-a@rox.one";
+const USER_B: &str = "macro|user-b@rox.one";
 
 fn user(id: &str) -> MacroUserIdStr<'_> {
     MacroUserIdStr::parse_from_str(id).expect("valid user id")

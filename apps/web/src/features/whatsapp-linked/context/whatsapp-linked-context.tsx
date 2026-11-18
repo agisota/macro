@@ -48,7 +48,7 @@ export type PasskeyCeremony =
 export type PasskeyFailure = { kind: 'passkey-failed'; message: string };
 
 /**
- * Answering WhatsApp's passkey challenge. Only Macro desktop can; a browser
+ * Answering WhatsApp's passkey challenge. Only Rox desktop can; a browser
  * hands the pairing off to it by id.
  */
 export type PasskeyCapability =
@@ -63,7 +63,7 @@ export type PasskeyCapability =
     }
   | {
       kind: 'handoff';
-      /** Opens this pairing in Macro desktop; carries only the pairing id. */
+      /** Opens this pairing in Rox desktop; carries only the pairing id. */
       desktopUrl: (pairingId: string) => string;
     }
   | { kind: 'unsupported' };
@@ -94,7 +94,7 @@ export type WhatsAppLinkedCapabilities = {
   disconnect: (
     generation: number
   ) => ResultAsync<{ remoteUnlinkRequested: boolean }, RequestFailure>;
-  /** One click: the Macro chat takes the WhatsApp chat's name and follows it. */
+  /** One click: the Rox chat takes the WhatsApp chat's name and follows it. */
   add: (
     chat: Pick<WhatsAppChat, 'jid' | 'kind'>
   ) => ResultAsync<{ chatId: string }, AddFailure>;
@@ -107,7 +107,7 @@ export type WhatsAppLinkedCapabilities = {
   ) => ResultAsync<{ chatId: string }, NewChatFailure>;
   isConnecting: Accessor<boolean>;
   isDisconnecting: Accessor<boolean>;
-  /** Host action: open a chat in Macro. */
+  /** Host action: open a chat in Rox. */
   openChat: (chatId: string) => void;
   /** The chat list's folded sections, remembered per person. */
   sections: OpenSections;

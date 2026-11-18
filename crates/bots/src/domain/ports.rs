@@ -496,7 +496,7 @@ pub trait BotProfilePublisher: Send + Sync + 'static {
 }
 
 /// The harness an agent was being bound to was deleted first, e.g. by its
-/// Macro computer's release. Repositories return it inside their error.
+/// Rox computer's release. Repositories return it inside their error.
 #[derive(Debug, thiserror::Error)]
 #[error("that runtime was removed; choose another one")]
 pub struct HarnessRemoved;

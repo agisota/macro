@@ -6,6 +6,6 @@
  */
 
 /**
- * Profile image, when available for a Macro member.
+ * Profile image, when available for a Rox member.
  */
 export type MeetingParticipantAvatarUrl = string | null;

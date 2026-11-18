@@ -1,10 +1,10 @@
 /**
  * Transformers that read Notion's enhanced markdown (the `GET
- * /v1/pages/{id}/markdown` and `notion-fetch` dialect) into Macro's Lexical
+ * /v1/pages/{id}/markdown` and `notion-fetch` dialect) into Rox's Lexical
  * nodes. Run them ahead of {@link ALL_TRANSFORMERS}, which handle the
  * standard markdown in between.
  *
- * Every Notion construct becomes a real node where Macro has one (document,
+ * Every Notion construct becomes a real node where Rox has one (document,
  * user and date mentions, tables, check lists, equations, images) and
  * readable text where it has none (callouts become quotes, toggles and
  * columns flatten into their content). No Notion tag survives as raw text.
@@ -96,7 +96,7 @@ function $replaceWithLink(
   return text;
 }
 
-/** A page or database reference: a mention of the Macro document it became, else a link back to Notion. */
+/** A page or database reference: a mention of the Rox document it became, else a link back to Notion. */
 function $replaceWithPageReference(
   node: TextNode,
   links: NotionLinks,

@@ -2,7 +2,7 @@
 //!
 //! A channel member who sees a meeting only through the channel share asks
 //! the person who shared it to add them as a guest. The request lives in
-//! Macro until the sharer answers it through the mutation service, which
+//! Rox until the sharer answers it through the mutation service, which
 //! adds the guest with the same invite operation a guest uses, so Google
 //! sends the invitation. Whether the sharer could do that is read from the
 //! capability model on their copy, exactly as the invite path checks it.
@@ -66,7 +66,7 @@ pub struct CalendarJoinRequest {
     pub id: Uuid,
     /// The sharer's event entity that was shared with the channel.
     pub event_id: Uuid,
-    /// Macro user asking to join.
+    /// Rox user asking to join.
     pub requester_id: String,
     /// Address the sharer invites when accepting.
     pub requester_email: String,
@@ -210,7 +210,7 @@ where
                 title,
             } => (sharer_id, sharer_link_id, title),
         };
-        // Invite the inbox whose calendar Macro syncs, the one an added copy
+        // Invite the inbox whose calendar Rox syncs, the one an added copy
         // would land on, so the mention resolves to the invitation.
         let email = self
             .repository
@@ -245,7 +245,7 @@ where
 }
 
 /// The address a requester without a connected calendar is invited at: their
-/// Macro account address, which the user id carries.
+/// Rox account address, which the user id carries.
 fn account_email(requester_id: &str) -> &str {
     requester_id.strip_prefix("macro|").unwrap_or(requester_id)
 }

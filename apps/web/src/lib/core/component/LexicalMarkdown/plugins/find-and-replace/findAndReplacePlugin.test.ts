@@ -143,7 +143,7 @@ describe('findAndReplacePlugin mention chips', () => {
       () =>
         $createUserMentionNode({
           userId: 'user-1',
-          email: 'wolf@macro.com',
+          email: 'wolf@rox.one',
           displayName: 'refs',
         }),
       '@refs'
@@ -191,7 +191,7 @@ describe('findAndReplacePlugin mention chips', () => {
         paragraph.append(
           $createUserMentionNode({
             userId: 'user-1',
-            email: 'wolf@macro.com',
+            email: 'wolf@rox.one',
             displayName: 'refs',
           }),
           $createTextNode(' today')

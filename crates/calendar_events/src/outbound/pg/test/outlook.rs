@@ -2106,7 +2106,7 @@ fn unanswered(email: &str, is_organizer: bool) -> CalendarAttendee {
 async fn the_organizer_repair_stores_outlook_organizers_as_holding_their_meetings(pool: PgPool) {
     let (repo, link, _) = mailbox(&pool).await;
     let lease = calendar(&repo).await;
-    // How sync stored a series Macro created before October 2026: the
+    // How sync stored a series Rox created before October 2026: the
     // organizer unanswered on the series and on its one exception.
     let mut stored = upsert(&lease, "made-by-macro@example.com");
     stored.event.organizer_email = Some("owner@example.com".into());

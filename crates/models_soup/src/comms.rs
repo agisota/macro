@@ -195,7 +195,7 @@ pub struct SoupMessageSender {
 #[serde(rename_all = "snake_case")]
 #[cfg_attr(feature = "schema", derive(utoipa::ToSchema))]
 pub enum SoupMessageSenderType {
-    /// Macro user sender.
+    /// Rox user sender.
     User,
     /// Bot sender.
     Bot,

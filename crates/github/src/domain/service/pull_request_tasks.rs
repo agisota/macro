@@ -1,4 +1,4 @@
-//! Linking a pull request to a Macro task from outside the webhook.
+//! Linking a pull request to a Rox task from outside the webhook.
 //!
 //! The webhook links a pull request to the tasks its text references; a coding
 //! session that knows both its task and its pull request links them directly.

@@ -3,7 +3,7 @@ import { Dynamic } from 'solid-js/web';
 
 /**
  * A session reference uses the same underline treatment as other mentions,
- * with the brand mark of the agent running it (Claude, Codex, Cursor, Macro).
+ * with the brand mark of the agent running it (Claude, Codex, Cursor, Rox).
  */
 export function AgentSessionMentionLabel(props: {
   label: string;

@@ -133,7 +133,7 @@ pub fn map_db_message_to_message_to_send(
         body_text: db_message.body_text,
         body_html: db_message.body_html_sanitized,
         body_macro: db_message.body_macro,
-        // we don't currently support sending attachments - they get converted to macro.com links on the FE before sending
+        // we don't currently support sending attachments - they get converted to rox.one links on the FE before sending
         attachments: None,
         headers_json: db_message.headers_jsonb,
         send_time: None,

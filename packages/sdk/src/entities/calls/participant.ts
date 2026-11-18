@@ -22,7 +22,7 @@ export class CallParticipant {
   /** Published tracks and mute state. */
   readonly tracks: LiveCallParticipant['tracks'];
 
-  /** Macro account handle, when one is present. */
+  /** Rox account handle, when one is present. */
   readonly user?: User;
 
   /** Build a roster handle from a live participant record. */

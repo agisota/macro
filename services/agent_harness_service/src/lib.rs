@@ -30,6 +30,7 @@ mod computers;
 mod config;
 mod containers;
 mod conversation_admission;
+mod enterprise_policy;
 mod external_session_requests;
 mod harness_bindings;
 mod internal_mcp;
@@ -176,7 +177,7 @@ use mcp_client::domain::models::AesKey;
 use mcp_client::outbound::NativeServerStore;
 use mcp_client::outbound::pg_server_repo::PgServerRepo;
 use model_providers::{
-    CursorModels, InMemoryModels, MacrodModels, PgKnownModels, VisibleHarnessAccess,
+    CursorModels, InMemoryModels, RoxdModels, PgKnownModels, VisibleHarnessAccess,
 };
 use permission_policy::PgPermissionPolicySource;
 use pipedream_mcp::outbound::api::{PipedreamClient, PipedreamConfig};
@@ -410,6 +411,8 @@ pub async fn run() -> anyhow::Result<()> {
     // and the agent session log stream.
     let redis = redis::Client::open(config.redis_uri.as_ref())
         .context("failed to create the shared Redis client")?;
+    let session_admission: Arc<dyn enterprise::domain::AgentSessionAdmission> =
+        Arc::new(enterprise_policy::runtime_policy(pool.clone()));
     let sessions = AgentSessionServiceImpl::new(
         session_repo.clone(),
         FoldedMessageService::new(session_repo.clone()),
@@ -446,7 +449,8 @@ pub async fn run() -> anyhow::Result<()> {
         turn_observer.clone(),
         lifecycle_publisher.clone(),
         replica,
-    );
+    )
+    .with_session_admission(session_admission.clone());
 
     // Sessions with a command admitted but not yet resolved - shared with
     // every provider whose idle reaper closes a session's transport on its
@@ -514,7 +518,7 @@ pub async fn run() -> anyhow::Result<()> {
     // closed and drained on shutdown so nothing is dropped mid-publish.
     let event_broker_tracker = tokio_util::task::TaskTracker::new();
     // MCP connections: the same rows the chat tool path reads, so an app
-    // connected in Macro is an app the sandbox can reach, with nothing to
+    // connected in Rox is an app the sandbox can reach, with nothing to
     // keep in sync. The rows hold no secrets - Pipedream owns the grants.
     let mcp_connections = Arc::new(PgConnectionRepo::new(pool.clone()));
     // Custom MCP servers - the ones a person added by URL - in the same rows
@@ -543,7 +547,7 @@ pub async fn run() -> anyhow::Result<()> {
         allowed_origins: Vec::new(),
     })
     .context("failed to build Pipedream client")?;
-    // Grants held by Macro Connect are reached through its MCP gateway; a
+    // Grants held by Rox Connect are reached through its MCP gateway; a
     // user on Connect alone gets no Pipedream grant.
     let mut connectors = ConnectorBackends::new(
         Arc::new(pipedream),
@@ -563,7 +567,7 @@ pub async fn run() -> anyhow::Result<()> {
         mcp_client::outbound::guarded_http::AddressPolicy::for_environment(config.environment);
     let mcp_http = mcp_client::outbound::guarded_http::McpHttp::new(mcp_address_policy)?;
 
-    // Every session's MCP servers: Macro's own under the reserved `macro`
+    // Every session's MCP servers: Rox's own under the reserved `macro`
     // slug, the owner's custom servers by URL key, then the owner's Pipedream
     // connections. The `macro` credential is signed inline with the same key
     // authentication_service holds; what this process hands out is always
@@ -867,7 +871,7 @@ pub async fn run() -> anyhow::Result<()> {
     )
     .await
     .context("failed to compose public MCP")?;
-    // Session tasks are read as the owner through the same services Macro's own tools use.
+    // Session tasks are read as the owner through the same services Rox's own tools use.
     let task_directory = agent_harness::outbound::session_tasks::DocumentTaskDirectory::new(
         tool_context.document_tool_context.service.clone(),
         tool_context
@@ -1074,7 +1078,7 @@ pub async fn run() -> anyhow::Result<()> {
     // Cold attaches (fresh spawns and post-restart resumes) rebuild
     // their model context from the same log every frame lands in.
     let frames = Arc::new(LogFrameSource::new(session_repo.clone()));
-    let permissions_repo = roles_and_permissions::outbound::pgpool::MacroDB::new(pool.clone());
+    let permissions_repo = roles_and_permissions::outbound::pgpool::RoxDB::new(pool.clone());
     let inmem_model_access: Arc<dyn agent_inmem::domain::model_access::InMemModelAccess> = Arc::new(
         agent_inmem::domain::model_access::PermissionModelAccess::new(
             roles_and_permissions::domain::service::UserRolesAndPermissionsServiceImpl::new(
@@ -1121,6 +1125,7 @@ pub async fn run() -> anyhow::Result<()> {
         lifecycle_publisher.clone(),
         replica,
     )
+    .with_session_admission(session_admission.clone())
     .with_tool_catalog(Arc::clone(&tool_catalog));
     let sandbox_and_inmem = RoutedContainers::new(sandbox, Some(inmem), inmem_sessions);
 
@@ -1181,7 +1186,7 @@ pub async fn run() -> anyhow::Result<()> {
     )
     // Cursor's own artifact links expire in fifteen minutes, so a
     // walkthrough's screenshots and recordings are re-hosted where every
-    // other user-visible blob in Macro lives.
+    // other user-visible blob in Rox lives.
     .with_artifact_store(
         cursor_cloud_agents::outbound::static_file_artifacts::StaticFileArtifactStore::new(
             static_file_service_client::StaticFileServiceClient::new(
@@ -1414,8 +1419,8 @@ pub async fn run() -> anyhow::Result<()> {
     // Each dial also reports which sessions its runtime still serves, which
     // the harness loads once it exists below.
     let (live_sessions, mut live_session_reports) = tokio::sync::mpsc::unbounded_channel();
-    // Macro computers: the fleet operator (when this deployment drives a
-    // fleet) and presence that turns macrod connects into lifecycle events.
+    // Rox computers: the fleet operator (when this deployment drives a
+    // fleet) and presence that turns roxd connects into lifecycle events.
     let computer_operator = computers::operator(
         &config,
         computer_fleet,
@@ -1691,8 +1696,8 @@ pub async fn run() -> anyhow::Result<()> {
         }
     });
     let model_probe_timeout = std::time::Duration::from_secs(10);
-    let macrod_models =
-        MacrodModels::new(Arc::clone(&runtimes), redis.clone(), model_probe_timeout);
+    let roxd_models =
+        RoxdModels::new(Arc::clone(&runtimes), redis.clone(), model_probe_timeout);
 
     // Capture only the session's linked GitHub pull request, for every harness.
     let changes_extractor = PullRequestChanges::new(GithubPullRequestChangesetStore::new(
@@ -1759,7 +1764,7 @@ pub async fn run() -> anyhow::Result<()> {
         ),
     ));
     held_tool_calls.bind(harness.clone());
-    let runtime_command_models = macrod_models.clone();
+    let runtime_command_models = roxd_models.clone();
     let runtime_command_redis = redis.clone();
     let runtime_command_harness = harness.clone();
     let runtime_command_runtimes = Arc::clone(&runtimes);
@@ -1828,7 +1833,7 @@ pub async fn run() -> anyhow::Result<()> {
                         Arc::clone(&inmem_model_access),
                     ),
                     CursorModels::new(cursor_keys.clone(), cursor_api_base_url()),
-                    macrod_models.clone(),
+                    roxd_models.clone(),
                     model_probe_timeout,
                 ),
             ),
@@ -1843,7 +1848,7 @@ pub async fn run() -> anyhow::Result<()> {
             inmem_model_access,
         ),
         CursorModels::new(cursor_keys, cursor_api_base_url()),
-        macrod_models,
+        roxd_models,
         PgKnownModels::new(pool.clone()),
         model_probe_timeout,
     ));
@@ -1869,6 +1874,7 @@ pub async fn run() -> anyhow::Result<()> {
             lifecycle_publisher,
             ReplicaId::mint(),
         )
+        .with_session_admission(session_admission)
         .with_view_access(Arc::new(
             agent_session::domain::audience::EntityAccessSessionView::new((*entity_access).clone()),
         )),

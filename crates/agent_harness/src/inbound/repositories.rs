@@ -45,7 +45,7 @@ pub struct AgentRepositoryDto {
 #[derive(Debug, Serialize, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct AgentRepositoriesResponse {
-    /// Every repository the caller reaches through Macro's GitHub App, sorted
+    /// Every repository the caller reaches through Rox's GitHub App, sorted
     /// by `owner/name`. Empty when the App is installed nowhere the caller
     /// has a claim to.
     pub repositories: Vec<AgentRepositoryDto>,

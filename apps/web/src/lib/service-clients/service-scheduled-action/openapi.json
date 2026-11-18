@@ -3,7 +3,7 @@
   "info": {
     "title": "scheduled_action",
     "description": "API for managing scheduled actions",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -236,7 +236,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Macro's routines, with schedules in the given zone; code steps only where code can be saved",
+            "description": "Rox's routines, with schedules in the given zone; code steps only where code can be saved",
             "content": {
               "application/json": {
                 "schema": {
@@ -683,7 +683,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Per surface, the routines AI suggested for the caller, then Macro's templates; reading never generates",
+            "description": "Per surface, the routines AI suggested for the caller, then Rox's templates; reading never generates",
             "content": {
               "application/json": {
                 "schema": {
@@ -3076,7 +3076,7 @@
             }
           }
         ],
-        "description": "A routine may run on one trigger or any of several schedules and Macro events."
+        "description": "A routine may run on one trigger or any of several schedules and Rox events."
       },
       "AgentMcpServer": {
         "type": "object",
@@ -3095,7 +3095,7 @@
       },
       "AgentStep": {
         "type": "object",
-        "description": "Hand the run to a model running as Macro, or to an agent.",
+        "description": "Hand the run to a model running as Rox, or to an agent.",
         "required": ["instructions"],
         "properties": {
           "agent": {
@@ -3132,7 +3132,7 @@
               },
               {
                 "$ref": "#/components/schemas/AgentTaskAgent",
-                "description": "Absent when using Macro's agent-session runtime with a selected model."
+                "description": "Absent when using Rox's agent-session runtime with a selected model."
               }
             ]
           },
@@ -3214,7 +3214,7 @@
         "oneOf": [
           {
             "type": "object",
-            "description": "A stable name from Macro's original, distinct icon catalog.",
+            "description": "A stable name from Rox's original, distinct icon catalog.",
             "required": ["name", "kind"],
             "properties": {
               "kind": {
@@ -3264,7 +3264,7 @@
       },
       "CatalogEntry": {
         "type": "object",
-        "description": "One of Macro's routines, ready to start a new routine from.",
+        "description": "One of Rox's routines, ready to start a new routine from.",
         "required": [
           "key",
           "surfaces",
@@ -3445,7 +3445,7 @@
       },
       "CodeStep": {
         "type": "object",
-        "description": "TypeScript written against Macro's SDK, usually by the AI that built the\nroutine. It is type-checked before it is saved and runs with its owner's\naccess.",
+        "description": "TypeScript written against Rox's SDK, usually by the AI that built the\nroutine. It is type-checked before it is saved and runs with its owner's\naccess.",
         "required": ["title", "source"],
         "properties": {
           "id": {
@@ -4126,7 +4126,7 @@
               },
               {
                 "$ref": "#/components/schemas/AppearanceIcon",
-                "description": "A custom Macro glyph or a native emoji."
+                "description": "A custom Rox glyph or a native emoji."
               }
             ]
           }
@@ -4166,7 +4166,7 @@
       },
       "EventFilter": {
         "type": "object",
-        "description": "An event name AND an entity ID must match within the same filter. A\ncondition further requires the event's content to answer it with yes.\n\n`github` comes from outside Macro and carries its payload: it stands\nalone in its filter, takes no ids, and may require\nexact payload values with `match`. A `github` filter narrows deliveries\nwith its `github` selector.",
+        "description": "An event name AND an entity ID must match within the same filter. A\ncondition further requires the event's content to answer it with yes.\n\n`github` comes from outside Rox and carries its payload: it stands\nalone in its filter, takes no ids, and may require\nexact payload values with `match`. A `github` filter narrows deliveries\nwith its `github` selector.",
         "required": ["events"],
         "properties": {
           "condition": {
@@ -4503,7 +4503,7 @@
           },
           "includeBots": {
             "type": "boolean",
-            "description": "Also run for deliveries caused by bots and apps, including Macro's own."
+            "description": "Also run for deliveries caused by bots and apps, including Rox's own."
           },
           "repositories": {
             "type": "array",
@@ -4943,7 +4943,7 @@
             "items": {
               "$ref": "#/components/schemas/CheckedStepProblems"
             },
-            "description": "Code steps that don't type-check against Macro's SDK."
+            "description": "Code steps that don't type-check against Rox's SDK."
           }
         }
       },
@@ -5096,7 +5096,7 @@
         "properties": {
           "dangerously_operate_as_user": {
             "type": "boolean",
-            "description": "Code steps write as the owner, with no agent badge: their posts,\ncomments and emails appear written by the owner. Set only when the\nowner explicitly asked for the routine to act or send as them; by\ndefault code steps' writes are attributed to Macro's agent acting for\nthe owner. Agent (\"Ask AI\") steps keep their own agent attribution\neither way: an agent session speaking as a person is a different\nchange. A single agent task has no code steps, so it never applies."
+            "description": "Code steps write as the owner, with no agent badge: their posts,\ncomments and emails appear written by the owner. Set only when the\nowner explicitly asked for the routine to act or send as them; by\ndefault code steps' writes are attributed to Rox's agent acting for\nthe owner. Agent (\"Ask AI\") steps keep their own agent attribution\neither way: an agent session speaking as a person is a different\nchange. A single agent task has no code steps, so it never applies."
           },
           "mcp_servers": {
             "type": "array",
@@ -5166,7 +5166,7 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/CodeStep",
-                "description": "Run TypeScript against Macro's SDK, as the routine owner."
+                "description": "Run TypeScript against Rox's SDK, as the routine owner."
               },
               {
                 "type": "object",
@@ -5179,7 +5179,7 @@
                 }
               }
             ],
-            "description": "Run TypeScript against Macro's SDK, as the routine owner."
+            "description": "Run TypeScript against Rox's SDK, as the routine owner."
           },
           {
             "allOf": [
@@ -5214,7 +5214,7 @@
             "properties": {
               "from": {
                 "$ref": "#/components/schemas/SuggestionFrom",
-                "description": "Who suggests it: AI, for this person, or Macro, as a template."
+                "description": "Who suggests it: AI, for this person, or Rox, as a template."
               },
               "id": {
                 "type": "string",
@@ -5232,7 +5232,7 @@
               },
               "reason": {
                 "type": ["string", "null"],
-                "description": "Why it fits this person, in a line; absent on Macro's templates."
+                "description": "Why it fits this person, in a line; absent on Rox's templates."
               },
               "surfaces": {
                 "type": "array",
@@ -5284,7 +5284,7 @@
             "items": {
               "$ref": "#/components/schemas/RoutineSuggestion"
             },
-            "description": "Per surface, AI's first, best first, then Macro's templates, so each\nsurface has at least one and ideally three. A suggestion with\nseveral surfaces appears once."
+            "description": "Per surface, AI's first, best first, then Rox's templates, so each\nsurface has at least one and ideally three. A suggestion with\nseveral surfaces appears once."
           }
         }
       },

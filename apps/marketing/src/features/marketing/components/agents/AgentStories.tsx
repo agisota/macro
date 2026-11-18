@@ -6,7 +6,7 @@ import { createSignal, For, onCleanup, Show } from 'solid-js';
 import { ProductDemo } from '../product/ProductPage';
 import './agent-stories.css';
 
-const MCP_URL = 'https://mcp-server.macro.com/mcp';
+const MCP_URL = 'https://mcp-server.rox.one/mcp';
 const MCP_CONFIG = JSON.stringify(
   { mcpServers: { macro: { type: 'http', url: MCP_URL } } },
   null,
@@ -125,11 +125,11 @@ export function AgentMcpSetup() {
   );
 }
 
-/** Settings → "Macro MCP server" with McpSetupCards; Claude Code open. */
+/** Settings → "Rox MCP server" with McpSetupCards; Claude Code open. */
 export function AgentMcpDemo() {
   return (
     <ProductDemo
-      label="Connect an MCP client to Macro"
+      label="Connect an MCP client to Rox"
       height={420}
       mobileHeight={500}
     >
@@ -137,10 +137,10 @@ export function AgentMcpDemo() {
         <div class="agent-mcp-page">
           <header class="agent-mcp-header">
             <span class="text-2xl/tight font-medium text-ink">
-              Macro MCP server
+              Rox MCP server
             </span>
             <p class="text-sm text-ink-muted">
-              Connect other agents and tools to your Macro workspace.
+              Connect other agents and tools to your Rox workspace.
             </p>
           </header>
           <AgentMcpSetup />

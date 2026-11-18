@@ -26,7 +26,7 @@ clear_ios_push = []
 default = ["kafka"]
 docs = ["dep:aquamarine"]
 # The Kafka publishers and consumer. Off for crates that only need the
-# notification ports, so librdkafka stays out of the self-hosted `macrod`.
+# notification ports, so librdkafka stays out of the self-hosted `roxd`.
 kafka = ["dep:kafka_util", "dep:rdkafka", "macro_event_broker/outbound"]
 redis-tests = []
 schema = ["dep:utoipa", "macro_user_id/schema", "notification_state/schema"]

@@ -16,7 +16,7 @@ pub(super) struct Theme {
     pub(super) error: Color,
 }
 
-// Macro orange is the product's `--color-orange` token (#f97316). Keeping the
+// Rox orange is the product's `--color-orange` token (#f97316). Keeping the
 // complete palette here makes a future brand or contrast adjustment one edit.
 pub(super) const THEME: Theme = Theme {
     background: Color::Rgb(21, 17, 14),

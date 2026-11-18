@@ -108,7 +108,7 @@ function Fixture() {
 }
 
 document.documentElement.dataset.touchDevice = String(isTouchDevice());
-applyTheme('Macro Light');
+applyTheme('Rox Light');
 const root = document.getElementById('root');
 if (!root) throw new Error('Fixture root missing');
 render(() => <Fixture />, root);

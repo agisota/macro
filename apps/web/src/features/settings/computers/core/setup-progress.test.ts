@@ -86,7 +86,7 @@ describe('setupStages', () => {
     ).toBe('current');
   });
 
-  it('keeps the sign-in in the list for an agent on Macro credits, marked skipped', () => {
+  it('keeps the sign-in in the list for an agent on Rox credits, marked skipped', () => {
     const stages = setupStages(computer, {
       signIn: 'skipped',
       connected: false,
@@ -102,7 +102,7 @@ describe('setupStages', () => {
     expect(stages[4]).toMatchObject({
       state: 'skipped',
       label: 'Sign in to Claude · skipped',
-      detail: 'Not needed: the agent runs on Macro credits.',
+      detail: 'Not needed: the agent runs on Rox credits.',
     });
   });
 
@@ -115,7 +115,7 @@ describe('setupStages', () => {
       ['Billing updated', 'done'],
       ['Computer created', 'done'],
       ['Started up', 'done'],
-      ['Connected to Macro', 'done'],
+      ['Connected to Rox', 'done'],
       ['Signed in to Claude', 'done'],
     ]);
   });

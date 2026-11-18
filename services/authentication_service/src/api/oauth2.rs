@@ -97,7 +97,7 @@ impl CallbackState {
 /// Why a consent screen came back without an authorization code.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(in crate::api) enum ConsentFailure {
-    /// The directory lets only an administrator consent to Macro's permissions.
+    /// The directory lets only an administrator consent to Rox's permissions.
     AdminConsentRequired,
     /// The person on the consent screen declined or closed it.
     Cancelled,

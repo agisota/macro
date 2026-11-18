@@ -1,5 +1,5 @@
 //! Postgres adapter for every WhatsApp repository port. DSS and the session
-//! service each build one over the shared MacroDB pool. It writes the
+//! service each build one over the shared RoxDB pool. It writes the
 //! generic `external_chat*` tables with `external_chat`'s helpers.
 
 use crate::domain::{events::SessionScope, models::*};
@@ -29,7 +29,7 @@ mod test;
 
 use crate::signals;
 
-/// Repository over MacroDB.
+/// Repository over RoxDB.
 #[derive(Clone)]
 pub struct PgWhatsAppRepository {
     pool: PgPool,

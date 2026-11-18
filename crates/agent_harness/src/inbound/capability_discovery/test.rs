@@ -12,15 +12,15 @@ fn target_request_maps_all_supported_harnesses() {
     .unwrap();
     assert_eq!(in_memory.harness, CapabilityHarness::InMemory);
 
-    let macrod_id = Uuid::new_v4();
-    let macrod = DiscoverAgentCapabilities::try_from(DiscoverAgentCapabilitiesRequest {
-        harness: CapabilityHarnessDto::Macrod,
-        harness_id: Some(macrod_id),
+    let roxd_id = Uuid::new_v4();
+    let roxd = DiscoverAgentCapabilities::try_from(DiscoverAgentCapabilitiesRequest {
+        harness: CapabilityHarnessDto::Roxd,
+        harness_id: Some(roxd_id),
         model: None,
     })
     .unwrap();
-    assert_eq!(macrod.harness, CapabilityHarness::Macrod);
-    assert_eq!(macrod.harness_id.unwrap().as_uuid(), macrod_id);
+    assert_eq!(roxd.harness, CapabilityHarness::Roxd);
+    assert_eq!(roxd.harness_id.unwrap().as_uuid(), roxd_id);
 }
 
 #[test]

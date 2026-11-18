@@ -25,11 +25,11 @@ respond.
   posts sends nothing and trashes the poll. Everyone who can vote sees the
   counts. **Share responses with team** lets everyone who
   can vote open that table. **Anonymous** makes votes anonymous to everyone
-  in Macro, the poll's owner included: the server keeps who voted apart from
+  in Rox, the poll's owner included: the server keeps who voted apart from
   what they chose, so each person still votes once, but no vote can be
   traced to them. An anonymous poll's table has no Respondent column, its
   vote times keep only the day, and a vote can't be changed.
-- Asked for a poll, or for a form for a channel, the Macro agent makes a poll
+- Asked for a poll, or for a form for a channel, the Rox agent makes a poll
   and posts it as its card in one message (its channel reply), the same card
   `/poll` posts. A form the agent made for the request and presented as a card
   in its reply's steps is shared with the channel the same way, so everyone in
@@ -157,11 +157,11 @@ saying why, once anyone has responded), Confirmation message, **Branding**, and 
 share dialog, which also shows the audience panel). Branding (editors) sets a
 logo (**Upload**/**Replace**/**Remove**, shown above the title), a cover image
 (a banner across the top of the respond page) and an accent color (color
-swatch or `#rrggbb` field, **Reset** for Macro's accent) that colors the
+swatch or `#rrggbb` field, **Reset** for Rox's accent) that colors the
 respond page's buttons and selected answers. Images must be PNG, JPEG,
-WebP or GIF uploaded by the person setting them; nothing set keeps Macro's
+WebP or GIF uploaded by the person setting them; nothing set keeps Rox's
 look, and inline form cards in channels never show branding. Anyone with the link: visitors who aren't signed in respond anonymously;
-people signed in to Macro respond as themselves. Roles: View can respond; when responses are shared it also reads the linked database (view only). Edit can change
+people signed in to Rox respond as themselves. Roles: View can respond; when responses are shared it also reads the linked database (view only). Edit can change
 questions and also edits the linked database (its response rows and columns)
 through derived access; Owner can also change the audience, close and trash.
 Posting a form in a channel grants that channel View, which means it can
@@ -223,7 +223,7 @@ discovers an existing response but cannot load its receipt, **Try again** reload
 that response without submitting another one.
 
 When the form ends with a booking step, the last action reads **Continue to
-booking**. After the server accepts the response and its gates, Macro's
+booking**. After the server accepts the response and its gates, Rox's
 time picker appears. Booking opens `/app/booking/<id>#<private-token>`; retain
 that private link for cancellation or rescheduling. A returning signed-in
 respondent can use **Book a time** on their receipt if their saved answers still

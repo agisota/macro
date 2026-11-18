@@ -13,7 +13,7 @@ pub(super) async fn insert_harness(
         r#"
         INSERT INTO harnesses
             (id, kind, name, owner_user_id, created_by, allow_permission_bypass, computer_id)
-        VALUES ($1, 'macrod', $2, $3, $4, $5, $6)
+        VALUES ($1, 'roxd', $2, $3, $4, $5, $6)
         "#,
         harness.id.as_uuid(),
         harness.name,

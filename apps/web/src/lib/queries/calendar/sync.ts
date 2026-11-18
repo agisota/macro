@@ -27,7 +27,7 @@ export function invalidateCalendarViews(): void {
 
 /**
  * Handles `refresh_calendar` websocket events: a provider sync run — or a
- * Macro-originated mutation, which nudges every viewer of the link
+ * Rox-originated mutation, which nudges every viewer of the link
  * including the acting tab — committed changes for one of the viewer's
  * (owned or delegated) inboxes, so mounted calendar viewports refetch. The
  * calendar list is invalidated too, since a sync discovers new calendars

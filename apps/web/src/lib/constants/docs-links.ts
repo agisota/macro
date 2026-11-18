@@ -1,7 +1,7 @@
 import type { ListView } from '@app/constants/list-views';
 
 /** Base URL for the public documentation site. */
-export const DOCS_BASE = 'https://docs.macro.com';
+export const DOCS_BASE = 'https://docs.rox.one';
 
 /**
  * Public documentation page for each list view. Views without an entry have no

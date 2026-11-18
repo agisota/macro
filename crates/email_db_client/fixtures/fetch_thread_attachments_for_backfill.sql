@@ -12,11 +12,11 @@
 -- Common: links + threads
 ------------------------------------------------------------
 
--- Link A: user email is user@macro.com
+-- Link A: user email is user@rox.one
 INSERT INTO email_links (id, macro_id, fusionauth_user_id, email_address, provider, is_sync_active, created_at,
                          updated_at)
-VALUES ('00000000-0000-0000-0000-00000000001a', 'macro|user@macro.com', '00000000-0000-0000-0000-00000000001a',
-        'user@macro.com', 'GMAIL', true, '2025-11-11 17:48:26.664688 +00:00',
+VALUES ('00000000-0000-0000-0000-00000000001a', 'macro|user@rox.one', '00000000-0000-0000-0000-00000000001a',
+        'user@rox.one', 'GMAIL', true, '2025-11-11 17:48:26.664688 +00:00',
         '2025-11-11 17:48:26.664688 +00:00');
 
 -- Thread 1: used for condition 1 (is_sent = true)
@@ -101,11 +101,11 @@ VALUES ('00000000-0000-0000-0000-0000000a0001',
 -- Contacts
 ------------------------------------------------------------
 
--- Contact with same domain as user@macro.com
+-- Contact with same domain as user@rox.one
 INSERT INTO email_contacts (id, link_id, email_address, created_at, updated_at)
 VALUES ('00000000-0000-0000-0000-0000000c0001',
         '00000000-0000-0000-0000-00000000001a',
-        'sender_same@macro.com',
+        'sender_same@rox.one',
         NOW(),
         NOW());
 
@@ -129,7 +129,7 @@ VALUES ('00000000-0000-0000-0000-0000000c0003',
 INSERT INTO email_contacts (id, link_id, email_address, created_at, updated_at)
 VALUES ('00000000-0000-0000-0000-0000000c0004',
         '00000000-0000-0000-0000-00000000001a',
-        'foo@notmacro.com',
+        'foo@notrox.one',
         NOW(),
         NOW());
 

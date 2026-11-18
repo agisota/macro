@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of Macro Databases. The typed write vocabulary: ops, cell/column/view
+Part of Rox Databases. The typed write vocabulary: ops, cell/column/view
 types, the cast rule, and fractional-index position keys — shared by the SQL
 engine (which also runs in the browser via wasm), the HTTP API, and the
 domain.

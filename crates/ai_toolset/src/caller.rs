@@ -19,7 +19,7 @@ pub enum ToolCaller {
         /// The client's registered name, such as "Claude Code".
         name: Option<String>,
     },
-    /// A Macro API key the user pasted into a client, which names no client.
+    /// A Rox API key the user pasted into a client, which names no client.
     ApiKey,
 }
 

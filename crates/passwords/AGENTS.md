@@ -4,7 +4,7 @@
 
 Team credential vault hosted by document_storage_service. Postgres stores metadata
 and grants; OpenBao stores credential values and TOTP keys. Server-side decryption
-means this is a Macro-managed team vault.
+means this is a Rox-managed team vault.
 
 ## Start here
 
@@ -27,7 +27,7 @@ Do not add plaintext values to any metadata record, errors or tracing fields.
 
 ## Checks
 
-- `cargo test -p passwords` with a migrated disposable MacroDB, `SQLX_OFFLINE` unset.
+- `cargo test -p passwords` with a migrated disposable RoxDB, `SQLX_OFFLINE` unset.
 - `cargo check -p document_storage_service` verifies composition and OpenAPI registration.
 - `just prepare_db` refreshes root SQLx metadata after query changes.
 - `python3 -m unittest discover -s infra/local/openbao -p 'test_*.py'`

@@ -6,9 +6,9 @@ import './RouteDownload.css';
 
 export function RouteDownload() {
   setPageSeo({
-    title: 'Download Macro',
+    title: 'Download Rox',
     description:
-      'Use Macro in your browser or on iOS. Desktop apps for macOS and Linux are coming soon.',
+      'Use Rox in your browser or on iOS. Desktop apps for macOS and Linux are coming soon.',
     path: '/download',
   });
   return (
@@ -18,21 +18,21 @@ export function RouteDownload() {
           <div class="downloads-app-icon" aria-hidden="true">
             <MacroLogo />
           </div>
-          <h1>Get Macro.</h1>
-          <p>Use Macro in your browser or on your iPhone.</p>
+          <h1>Get Rox.</h1>
+          <p>Use Rox in your browser or on your iPhone.</p>
         </header>
         <article class="documentation-body">
           <h2 id="web">Web</h2>
           <p>
-            <a href="/app">Open Macro</a> in a modern browser. No installation
+            <a href="/app">Open Rox</a> in a modern browser. No installation
             needed.
           </p>
           <h2 id="ios">iOS</h2>
           <p>
             <a href="https://apps.apple.com/us/app/macro-app/id6743133649">
-              Download Macro from the App Store
+              Download Rox from the App Store
             </a>
-            . You can also open <strong>Settings → Mobile App</strong> in Macro
+            . You can also open <strong>Settings → Mobile App</strong> in Rox
             and scan the QR code.
           </p>
           <p>
@@ -42,8 +42,8 @@ export function RouteDownload() {
           </p>
           <h2 id="desktop">Desktop</h2>
           <p>
-            The Macro desktop app is coming soon for macOS and Linux. Use the
-            web app in the meantime.
+            The Rox desktop app is coming soon for macOS and Linux. Use the web
+            app in the meantime.
           </p>
           <p>
             For self-hosting, see the{' '}

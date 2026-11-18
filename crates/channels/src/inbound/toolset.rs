@@ -72,7 +72,7 @@ where
     /// Entity access service used to ensure the caller is a channel member.
     pub entity_access_service: Arc<AccessSvc>,
     /// The bot these tools act as, on behalf of the requesting user. Defaults
-    /// to Macro AI; hosts running a specific agent set it with [`Self::with_actor`].
+    /// to Rox AI; hosts running a specific agent set it with [`Self::with_actor`].
     pub actor: BotId,
     /// The client the requesting user works through, labelled on posts.
     pub via: Option<String>,

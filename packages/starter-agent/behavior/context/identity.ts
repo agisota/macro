@@ -35,7 +35,7 @@ export const noIdentity: Environment = {
  * pushes and PRs are its own and not the machine user's. Its identity lives
  * only here, never in any git config, which every session on the machine
  * shares. Git always commits as the agent; pushes authenticate through the
- * launcher's credential helper for its Macro repository. gh gets a login
+ * launcher's credential helper for its Rox repository. gh gets a login
  * only from the agent's own GitHub token, and fails closed without one.
  */
 export const agentEnvironment = async ({

@@ -67,7 +67,7 @@ impl Modify for SecurityAddon {
 #[derive(OpenApi)]
 #[openapi(
     modifiers(&SecurityAddon),
-    info(terms_of_service = "https://macro.com/terms"),
+    info(terms_of_service = "https://rox.one/terms"),
     paths(
         crate::voice_gateway::catalog,
         crate::voice_gateway::sample,
@@ -231,7 +231,7 @@ impl Modify for SecurityAddon {
         (name = "agent-models", description = "Fresh provider model discovery"),
         (name = "agent-repositories", description = "Repositories a coding session can work on"),
         (name = "agent-mode-choice", description = "Whether a composer prompt goes to a chat or a coding agent"),
-        (name = "computers", description = "Claude sign-in on Macro computers"),
+        (name = "computers", description = "Claude sign-in on Rox computers"),
         (name = "voices", description = "Voices agent teammates speak with on calls")
     )
 )]

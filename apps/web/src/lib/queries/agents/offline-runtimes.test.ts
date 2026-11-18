@@ -6,9 +6,9 @@ function agent(botId: string, harness: string, harnessId?: string) {
 }
 
 describe('offlineAgentBotIds', () => {
-  it('marks macrod agents whose runtime is disconnected', () => {
+  it('marks roxd agents whose runtime is disconnected', () => {
     const offline = offlineAgentBotIds(
-      [agent('away', 'macrod', 'h1'), agent('here', 'macrod', 'h2')],
+      [agent('away', 'roxd', 'h1'), agent('here', 'roxd', 'h2')],
       [
         { id: 'h1', connected: false },
         { id: 'h2', connected: true },
@@ -34,7 +34,7 @@ describe('offlineAgentBotIds', () => {
 
   it('counts an agent bound to a runtime it cannot see as offline', () => {
     const offline = offlineAgentBotIds(
-      [agent('orphan', 'macrod', 'removed'), agent('unbound', 'macrod')],
+      [agent('orphan', 'roxd', 'removed'), agent('unbound', 'roxd')],
       [{ id: 'h1', connected: true }]
     );
 

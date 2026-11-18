@@ -1,4 +1,4 @@
-//! Non-seat items (Macro computers) on a team's subscription: one item, at a
+//! Non-seat items (Rox computers) on a team's subscription: one item, at a
 //! price of its own, per computer.
 
 use crate::domain::model::{

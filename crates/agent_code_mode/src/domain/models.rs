@@ -77,7 +77,7 @@ pub enum ExecutionStatus {
 pub struct RecordedToolCall {
     /// Stable, execution-scoped component identity.
     pub id: String,
-    /// Canonical Macro tool name from the allowlisted registry.
+    /// Canonical Rox tool name from the allowlisted registry.
     pub name: String,
     /// Arguments passed to the actual tool.
     pub input: Value,

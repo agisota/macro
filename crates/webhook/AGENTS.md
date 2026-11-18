@@ -2,7 +2,7 @@
 
 ## What it is
 
-Part of the integrations feature — lets external systems subscribe to Macro
+Part of the integrations feature — lets external systems subscribe to Rox
 events. Outbound webhook management, Kafka event ingestion, FIFO SQS
 fan-out, and tracked HTTP delivery. `README.md` has the full contract (event
 names, filter semantics, delivery retry schedule, queue config) — read it

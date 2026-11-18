@@ -1,5 +1,5 @@
 /**
- * Macro's calls, behind a small port, so everything that decides about calls
+ * Rox's calls, behind a small port, so everything that decides about calls
  * can be run against a fake. `sdkCalls` is the thin adapter over the
  * supported SDK surface (`@macro-inc/sdk`, and `@macro-inc/sdk/calls/node`
  * for the room): `calls.byId(id).join()` can't create a call, and
@@ -28,9 +28,9 @@ export type Connection = {
   readonly room: string;
   /** Whether this request created the call, which is what rings people. */
   readonly started: boolean;
-  /** Connects a LiveKit room with this seat, as Macro's app does (DTX off). */
+  /** Connects a LiveKit room with this seat, as Rox's app does (DTX off). */
   readonly connect: () => Promise<Room>;
-  /** Leaves this exact call. Safe to call twice: Macro's 404 for the second is swallowed. */
+  /** Leaves this exact call. Safe to call twice: Rox's 404 for the second is swallowed. */
   readonly leave: () => Promise<void>;
 };
 
@@ -61,7 +61,7 @@ export type MessageFacts = {
 export type CallApi = {
   /** Whose account this is. */
   readonly me: () => Promise<string>;
-  /** One attempt at a seat; `retry` adds the deadline and the retries. Throws what Macro said; `refusal` reads it. */
+  /** One attempt at a seat; `retry` adds the deadline and the retries. Throws what Rox said; `refusal` reads it. */
   readonly join: (request: JoinRequest) => Promise<Connection>;
   /** Live calls in channels this account is in. */
   readonly activeCalls: () => Promise<readonly ActiveCall[]>;
@@ -80,9 +80,9 @@ export type CallApi = {
     channelId: string,
     since: Temporal.Instant
   ) => Promise<readonly ChannelMessage[]>;
-  /** Macro's own record of a message: the only thing that says who wrote it. */
+  /** Rox's own record of a message: the only thing that says who wrote it. */
   readonly message: (channelId: string, id: string) => Promise<MessageFacts>;
-  /** The Macro ids of a channel's members. */
+  /** The Rox ids of a channel's members. */
   readonly members: (channelId: string) => Promise<readonly string[]>;
   /** The DM channel with a user, opened if needed. Opening one is itself contact. */
   readonly dmChannel: (userId: string) => Promise<string>;
@@ -99,7 +99,7 @@ export type CallApi = {
     options?: { readonly fps?: number }
   ) => Promise<ScreenShare>;
   /**
-   * Calls `changed` whenever Macro says something about a call changed, and
+   * Calls `changed` whenever Rox says something about a call changed, and
    * `up` as the stream comes and goes. Best effort: events are missed while
    * the stream is down, so the watcher still polls. Returns the stop.
    */
@@ -127,7 +127,7 @@ const field = (error: unknown, name: 'name' | 'status'): unknown =>
     : undefined;
 
 /**
- * What Macro's refusal to seat the agent means, by the error's name and status.
+ * What Rox's refusal to seat the agent means, by the error's name and status.
  * Null for anything else (a network failure, a timeout), which is worth
  * another try.
  */
@@ -144,7 +144,7 @@ export const refusal = (error: unknown): Refusal | null => {
   return null;
 };
 
-/** The exit code of a join that Macro refused, so the watcher knows why without reading its log. `ended` is a clean exit: the call is over. */
+/** The exit code of a join that Rox refused, so the watcher knows why without reading its log. `ended` is a clean exit: the call is over. */
 export const refusalExits: Readonly<Record<Refusal, number>> = {
   in_other_call: 76,
   already_connected: 77,

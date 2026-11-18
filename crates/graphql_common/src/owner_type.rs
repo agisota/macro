@@ -6,7 +6,7 @@ use model_owner::OwnerType;
 /// bot id, or a team id depending on this discriminator.
 #[derive(Enum, Copy, Clone, Eq, PartialEq, Hash)]
 pub enum GraphqlOwnerType {
-    /// A Macro user.
+    /// A Rox user.
     User,
     /// A bot.
     Bot,

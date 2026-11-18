@@ -25,7 +25,7 @@ type Needs<Keys extends keyof ToolsContext> = Pick<ToolsContext, Keys>;
  * A service's credentials are named <SERVICE>_<WHAT>, e.g.
  * EXAMPLE_API_KEY. Nothing gives you a value. Something you can't do for
  * want of a credential says which one: ask your owner to add it to your
- * credentials (on a Macro computer, its enrollment); you can't store one.
+ * credentials (on a Rox computer, its enrollment); you can't store one.
  */
 export const listCredentials = ({
   credentials,

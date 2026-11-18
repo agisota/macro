@@ -40,7 +40,7 @@ use documents::domain::events::{
 };
 use macro_event_broker::{Event, EventBrokerError, MacroEvent as _, MessageParts};
 use macro_event_topics::{
-    MacroCalendarTopic, MacroCallsTopic, MacroChannelsTopic, MacroChatsTopic, MacroDocumentsTopic,
+    MacroCalendarTopic, MacroCallsTopic, MacroChannelsTopic, MacroChatsTopic, RoxDocumentsTopic,
     MacroEmailTopic, MacroProjectsTopic, MacroPropertiesTopic, Topic as _,
 };
 use macro_user_id::user_id::MacroUserIdStr;
@@ -1397,7 +1397,7 @@ fn subscribes_to_declared_search_processing_topics_with_durable_group() {
     assert!(topics.contains(&MacroCallsTopic::TOPIC_STR));
     assert!(topics.contains(&MacroChannelsTopic::TOPIC_STR));
     assert!(topics.contains(&MacroChatsTopic::TOPIC_STR));
-    assert!(topics.contains(&MacroDocumentsTopic::TOPIC_STR));
+    assert!(topics.contains(&RoxDocumentsTopic::TOPIC_STR));
     assert!(topics.contains(&MacroEmailTopic::TOPIC_STR));
     assert!(topics.contains(&MacroProjectsTopic::TOPIC_STR));
     assert!(topics.contains(&MacroPropertiesTopic::TOPIC_STR));
@@ -1598,7 +1598,7 @@ fn bot_owned_document_event_preserves_the_principal_for_indexing() {
     const BOT_PRINCIPAL: &str = "bot|00000000-0000-0000-0000-00000000a1a1";
 
     let message = TestMessage {
-        topic: MacroDocumentsTopic::TOPIC_STR,
+        topic: RoxDocumentsTopic::TOPIC_STR,
         key: Some(DOCUMENT_ID.to_string()),
         payload: Some(
             br#"{
@@ -1949,7 +1949,7 @@ fn exact_macro_documents_envelopes_decode_into_document_events() {
 
     for (payload, expected) in cases {
         let message = TestMessage {
-            topic: MacroDocumentsTopic::TOPIC_STR,
+            topic: RoxDocumentsTopic::TOPIC_STR,
             key: Some(DOCUMENT_ID.to_string()),
             payload: Some(payload.to_vec()),
         };
@@ -2722,7 +2722,7 @@ fn non_email_events_shard_by_their_producer_key() {
     assert_eq!(ordering_key(&call), CALL_ID.to_string());
 
     let message = encoded_message(
-        MacroDocumentsTopic::TOPIC_STR,
+        RoxDocumentsTopic::TOPIC_STR,
         DOCUMENT_ID,
         Event::new(DocumentTopicEvent::Purged(DocumentPurgedMetadata {
             document_id: DOCUMENT_ID.to_string(),

@@ -159,7 +159,7 @@ test('applyEdits sends the batch with its revision and links the result', async 
     );
 
   expect(edited.revision).toBe('r2');
-  expect(edited.webUrl).toBe('https://macro.com/app/spreadsheet/doc-1');
+  expect(edited.webUrl).toBe('https://rox.one/app/spreadsheet/doc-1');
   expect(new URL(requests[0].url).pathname).toBe(
     '/documents/doc-1/spreadsheet/edits',
   );
@@ -244,11 +244,11 @@ test('createSpreadsheet returns a spreadsheet handle in the project', async () =
     project: macro().projects.byId('0199a1b2-0000-7000-8000-000000000001'),
   });
 
-  expect(sheet.webUrl()).toBe('https://macro.com/app/spreadsheet/doc-2');
+  expect(sheet.webUrl()).toBe('https://rox.one/app/spreadsheet/doc-2');
   expect(JSON.parse(JSON.stringify({ spreadsheet: sheet }))).toEqual({
     spreadsheet: {
       id: 'doc-2',
-      url: 'https://macro.com/app/spreadsheet/doc-2',
+      url: 'https://rox.one/app/spreadsheet/doc-2',
     },
   });
   expect(new URL(requests[0].url).pathname).toBe(
@@ -286,7 +286,7 @@ test('edit sends instructions to the spreadsheet writer and links the result', a
     .edit('Add a Total row that sums the Cost column.');
 
   expect(edited.changes[0].range).toBe('A21:D21');
-  expect(edited.webUrl).toBe('https://macro.com/app/spreadsheet/doc-1');
+  expect(edited.webUrl).toBe('https://rox.one/app/spreadsheet/doc-1');
   expect(new URL(requests[0].url).pathname).toBe(
     '/documents/doc-1/spreadsheet/ai-edit',
   );

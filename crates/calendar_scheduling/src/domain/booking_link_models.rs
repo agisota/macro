@@ -19,9 +19,9 @@ pub struct BookingLinkEvent {
     pub duration_minutes: u16,
     /// Meeting location.
     pub location: String,
-    /// Attach a Macro call when someone books. A join link is created for that
+    /// Attach a Rox call when someone books. A join link is created for that
     /// booking and written onto the calendar invitation. Mutually exclusive
-    /// with `googleMeet`. Set it when the user wants a Macro call; omit or false when
+    /// with `googleMeet`. Set it when the user wants a Rox call; omit or false when
     /// the link should use Google Meet or no video. False is omitted so drafts
     /// saved before this field still round-trip unchanged.
     #[serde(default, skip_serializing_if = "is_false")]
@@ -32,7 +32,7 @@ pub struct BookingLinkEvent {
     pub enabled: bool,
     /// Host assignment policy.
     pub mode: SchedulingMode,
-    /// Current Macro user identities selected as hosts.
+    /// Current Rox user identities selected as hosts.
     pub hosts: Vec<String>,
     /// Protected time before a meeting.
     pub before_minutes: u16,

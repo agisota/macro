@@ -91,7 +91,7 @@ function recordingClient() {
   return { client, requests };
 }
 
-describe('switching an event to a Macro call', () => {
+describe('switching an event to a Rox call', () => {
   test('update asks the service for the call', async () => {
     const { client: recording, requests } = recordingClient();
 

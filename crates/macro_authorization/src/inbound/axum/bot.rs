@@ -18,7 +18,7 @@ use super::{
 pub use macro_auth::credential::BOT_TOKEN_HEADER;
 /// Header carrying the access scope for a bot-authorized request.
 pub const BOT_SCOPE_HEADER: &str = "x-macro-bot-scope";
-/// Header carrying the Macro user ID a bot claims to act for.
+/// Header carrying the Rox user ID a bot claims to act for.
 pub const BOT_FOR_MACRO_USER_ID_HEADER: &str = "x-macro-bot-for-macro-user-id";
 /// Header carrying the FusionAuth user ID a bot claims to act for.
 pub const BOT_FOR_FUSIONAUTH_USER_ID_HEADER: &str = "x-macro-bot-for-fusionauth-user-id";

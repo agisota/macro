@@ -11,7 +11,7 @@ use crate::domain::models::{
 };
 use crate::domain::ports::{ChannelLabelsRepo, ChannelLabelsService};
 
-const USER_ID: &str = "macro|labels-user@macro.com";
+const USER_ID: &str = "macro|labels-user@rox.one";
 
 #[derive(Clone, Debug, PartialEq)]
 enum RepoCall {
@@ -481,7 +481,7 @@ async fn users_without_teams_create_private_labels() {
 #[test]
 fn cannot_use_another_users_team_receipt() {
     let actor = MacroUserIdStr::try_from(USER_ID.to_owned()).unwrap();
-    let other = MacroUserIdStr::try_from("macro|other@macro.com".to_owned()).unwrap();
+    let other = MacroUserIdStr::try_from("macro|other@rox.one".to_owned()).unwrap();
     let access =
         entity_access::domain::models::EntityAccessReceipt::dangerously_assert_authenticated_user(
             other,
@@ -640,7 +640,7 @@ async fn scope_transfer_uses_one_atomic_repo_call_and_checks_actor() {
         }]
     );
     let other = ChannelLabelsReceipt::from_access(
-        MacroUserIdStr::try_from("macro|other@macro.com".to_owned()).unwrap(),
+        MacroUserIdStr::try_from("macro|other@rox.one".to_owned()).unwrap(),
         None,
         None,
     )

@@ -1,10 +1,10 @@
-//! Routine suggestions: routines AI suggests for one person, and Macro's
+//! Routine suggestions: routines AI suggests for one person, and Rox's
 //! catalog routines filling in.
 //!
 //! Hidden routines sessions of the person's generations (onboarding and
 //! nightly, run by the `suggestion_generation` crate, which also runs their
 //! suggestions sessions) are told what [`RoutineSuggestionApi::brief`] says: the
-//! person's newest mail and connected apps as untrusted data, Macro's
+//! person's newest mail and connected apps as untrusted data, Rox's
 //! catalog, and what they dismissed. Each hands back suggestions through
 //! `macro.routines.suggest` ([`RoutineSuggestionApi::suggest`]), which only the
 //! person's own open routines sessions may call. A suggestion is a catalog
@@ -15,7 +15,7 @@
 //! Every kept and retired suggestion is logged in `suggestion_change`.
 //!
 //! A read serves, per surface, AI's open suggestions best first, then
-//! catalog routines marked `suggest` as Macro's templates, to
+//! catalog routines marked `suggest` as Rox's templates, to
 //! [`PER_SURFACE`], skipping what the person dismissed or saved a routine
 //! from. Dismissal is permanent and later generations are told.
 //!
@@ -65,7 +65,7 @@ mod test;
 pub const ROUTINE_SUGGESTIONS_FLAG: &str = "enable-routine-suggestions";
 /// Inbox messages a brief holds.
 pub const INBOX_MESSAGES: u16 = 100;
-/// Suggestions shown per surface: AI's, then Macro's templates.
+/// Suggestions shown per surface: AI's, then Rox's templates.
 pub const PER_SURFACE: usize = 3;
 /// AI's catalog picks onboarding shows switched on, at most.
 pub const MAX_ON_BY_DEFAULT: usize = 2;
@@ -73,7 +73,7 @@ pub const MAX_ON_BY_DEFAULT: usize = 2;
 pub const ON_BY_DEFAULT_KEEP: f32 = 0.6;
 /// Suggestions one session may keep.
 pub const MAX_KEPT_PER_SESSION: u32 = 12;
-/// Names Macro's templates' ids, per person and catalog key.
+/// Names Rox's templates' ids, per person and catalog key.
 const TEMPLATE_NAMESPACE: Uuid = Uuid::from_u128(0x7c1f_0b5e_3d2a_4e9b_9a41_5f6c_2d8e_a017);
 
 /// What routines sessions are told to write routines with.
@@ -97,7 +97,7 @@ pub(crate) const ALL_SURFACES: [Surface; 9] = [
     Surface::Agents,
 ];
 
-/// The id of catalog routine `key` as Macro's template for `user`: the
+/// The id of catalog routine `key` as Rox's template for `user`: the
 /// same on every read, so it can be dismissed and saved from.
 pub fn template_id(user: &MacroUserIdStr<'_>, key: &str) -> Uuid {
     Uuid::new_v5(
@@ -225,7 +225,7 @@ where
         Ok((user, session, surfaces))
     }
 
-    /// The person's suggestions, per surface AI's then Macro's templates.
+    /// The person's suggestions, per surface AI's then Rox's templates.
     async fn answer(
         &self,
         user: &MacroUserIdStr<'static>,
@@ -482,7 +482,7 @@ where
             .filter(|created| *created >= report.started_at)
             .min()
             .map(|first| (first - report.started_at).num_milliseconds().max(0) as u64);
-        // Surfaces AI filled with at least one open suggestion; Macro's
+        // Surfaces AI filled with at least one open suggestion; Rox's
         // templates fill the rest.
         let mut filled = 0;
         for surface in &ALL_SURFACES {
@@ -694,7 +694,7 @@ where
 }
 
 /// What suggestion `id`, made to `user`, was: one of AI's in `stored`, or
-/// one of Macro's templates.
+/// one of Rox's templates.
 fn origin_of(
     stored: &[StoredSuggestion],
     user: &MacroUserIdStr<'_>,
@@ -727,7 +727,7 @@ fn template_origin(surfaces: &[Surface]) -> SuggestionOrigin {
     }
 }
 
-/// [`SuggestionOrigins`] from the stored suggestions and Macro's catalog.
+/// [`SuggestionOrigins`] from the stored suggestions and Rox's catalog.
 pub struct StoredSuggestionOrigins<Repo>(pub Arc<Repo>);
 
 #[async_trait::async_trait]
@@ -771,7 +771,7 @@ fn rejected(problems: Vec<String>) -> SuggestOutcome {
 }
 
 /// Per surface (only `surface`, when given), AI's open suggestions best
-/// first, then catalog routines marked `suggest` as Macro's templates, to
+/// first, then catalog routines marked `suggest` as Rox's templates, to
 /// [`PER_SURFACE`]. Skips AI's suggestions that aren't open, and a template
 /// the person dismissed, saved a routine from (`saved_from`) or AI already
 /// picked. Each suggestion appears once, in the order its first surface
@@ -785,7 +785,7 @@ pub fn fill(
 ) -> Vec<RoutineSuggestion> {
     let saved: HashSet<&Uuid> = saved_from.iter().collect();
     // Catalog keys AI picked (open, dismissed or saved) never show again as
-    // Macro's templates.
+    // Rox's templates.
     let picked: HashSet<&str> = stored
         .iter()
         .filter_map(|suggestion| match &suggestion.pick {

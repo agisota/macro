@@ -288,7 +288,7 @@ async fn macro_ai_bot_profile_is_builtin_without_context_lookup() {
     let profile = service
         .bot_profile_for_message(&message)
         .await
-        .expect("Macro AI should have a built-in profile");
+        .expect("Rox AI should have a built-in profile");
 
     assert_eq!(profile.name, bot_id::MACRO_AI_NAME);
     assert_eq!(profile.avatar_url, None);
@@ -362,7 +362,7 @@ async fn non_macro_bot_profile_uses_context_lookup() {
     let profile = service
         .bot_profile_for_message(&message)
         .await
-        .expect("non-Macro bot profile should come from context");
+        .expect("non-Rox bot profile should come from context");
 
     assert_eq!(profile.name, "Test Bot");
     assert_eq!(*lookup_count.lock().unwrap(), 1);
@@ -1160,14 +1160,14 @@ fn contact_sync_system_channel_created_with_subject() {
         on_behalf_of: Some(user("owner@example.com")),
         channel_type: ChannelType::Private,
         channel_name: Some("Macro Support x owner".to_string()),
-        participant_user_ids: users(&["owner@example.com", "teo@macro.com"]),
+        participant_user_ids: users(&["owner@example.com", "teo@rox.one"]),
     };
 
     let contact_users = contact_sync_users_for_event(&event).unwrap();
 
     assert_eq!(contact_users.len(), 2);
     assert!(contact_users.contains(&user("owner@example.com")));
-    assert!(contact_users.contains(&user("teo@macro.com")));
+    assert!(contact_users.contains(&user("teo@rox.one")));
 }
 
 #[test]
@@ -1268,12 +1268,12 @@ fn macro_ai_user_mention_is_not_a_user_recipient() {
     )));
     assert!(!is_bot_user_mention(&mention(
         "user",
-        "macro|teo@macro.com"
+        "macro|teo@rox.one"
     )));
     assert!(is_bot_principal(
         bot_id::MACRO_AI_BOT_ID.into_storage_id().as_ref()
     ));
-    assert!(!is_bot_principal("macro|teo@macro.com"));
+    assert!(!is_bot_principal("macro|teo@rox.one"));
 }
 
 #[derive(Clone, Default)]

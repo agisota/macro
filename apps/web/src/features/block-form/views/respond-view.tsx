@@ -93,7 +93,7 @@ export function RespondView(props: {
   });
 
   const form = () => props.detail.form;
-  // An inline card stays in Macro's look; the page wears the owner's.
+  // An inline card stays in Rox's look; the page wears the owner's.
   const branding = () => (props.compact ? undefined : form().branding);
   const brandingImage = (
     fileId: string | null | undefined,
@@ -485,7 +485,7 @@ export function RespondView(props: {
                     <p class="px-1 text-xs text-ink-muted">
                       Stored as a row in a database the form owner controls.{' '}
                       {props.detail.form.anonymous
-                        ? 'This form is anonymous: nobody in Macro, its owner included, can see which response is yours, and it can’t be changed.'
+                        ? 'This form is anonymous: nobody in Rox, its owner included, can see which response is yours, and it can’t be changed.'
                         : props.detail.form.responsesVisible
                           ? 'Everyone who can open this form sees your answers and your name.'
                           : 'Your answers are visible to the form’s editors.'}
@@ -561,7 +561,7 @@ export function RespondView(props: {
                                 columnFacts().kind,
                                 question.widget
                               );
-                            // Files and Macro pickers need an account; an
+                            // Files and Rox pickers need an account; an
                             // anonymous visitor is told so, not shown a dead end.
                             const needsSignIn = () => {
                               if (signedIn()) return undefined;
@@ -569,7 +569,7 @@ export function RespondView(props: {
                                 return 'asks for a file';
                               const kind = columnFacts().kind.type;
                               return kind === 'entity' || kind === 'relation'
-                                ? 'picks from Macro'
+                                ? 'picks from Rox'
                                 : undefined;
                             };
                             return (

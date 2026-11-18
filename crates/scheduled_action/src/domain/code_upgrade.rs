@@ -182,7 +182,7 @@ async fn rewrite(
             .map_err(|reason| {
                 (
                     format!(
-                        "\"{}\" doesn't work with Macro's current SDK, and it couldn't be updated: {reason}",
+                        "\"{}\" doesn't work with Rox's current SDK, and it couldn't be updated: {reason}",
                         step.title.trim()
                     ),
                     None,
@@ -198,7 +198,7 @@ async fn rewrite(
     // A rewrite keeps the step's knobs, so it must still read every one.
     if let Err(error) = program.validate() {
         return Err(failed(format!(
-            "The routine's code was updated for Macro's current SDK, but the update {error}"
+            "The routine's code was updated for Rox's current SDK, but the update {error}"
         )));
     }
     // Checked together: a rewrite that changes what one step returns must
@@ -209,7 +209,7 @@ async fn rewrite(
         .map_err(|unavailable| failed(unavailable.0))?;
     if let Some(step) = still.first() {
         return Err(failed(format!(
-            "\"{}\" was updated for Macro's current SDK, but the update doesn't type-check:\n{}",
+            "\"{}\" was updated for Rox's current SDK, but the update doesn't type-check:\n{}",
             step.title,
             step.problems
                 .first()
@@ -248,7 +248,7 @@ async fn rewrite(
             .await;
         if let Err(error) = outcome.result {
             return Err(failed(format!(
-                "\"{}\" was updated for Macro's current SDK, but the update failed a dry run: {error}",
+                "\"{}\" was updated for Rox's current SDK, but the update failed a dry run: {error}",
                 step.title.trim()
             )));
         }

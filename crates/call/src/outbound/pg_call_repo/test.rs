@@ -20,8 +20,31 @@ use models_permissions::share_permission::channel_share_permission::{
     UpdateChannelSharePermission, UpdateOperation,
 };
 use models_permissions::share_permission::{LinkShare, UpdateSharePermissionRequestV2};
-use sqlx::{Pool, Postgres};
+use sqlx::{Pool, Postgres, Row};
 use uuid::Uuid;
+
+async fn migrate_for_test(pool: &Pool<Postgres>) {
+    // Keep both colliding migration bodies in the isolated test database,
+    // remapping only the mailbox migration's in-memory version.
+    let migrations = MACRO_DB_MIGRATIONS
+        .iter()
+        .map(|migration| {
+            let mut migration = migration.clone();
+            if migration.version == 20261110150956 && migration.description == "rox mailbox handles"
+            {
+                migration.version = 20261110150959;
+            }
+            migration
+        })
+        .collect::<Vec<_>>();
+    sqlx::migrate::Migrator {
+        migrations: std::borrow::Cow::Owned(migrations),
+        ..sqlx::migrate::Migrator::DEFAULT
+    }
+    .run(pool)
+    .await
+    .unwrap();
+}
 
 fn attended_filter(b: bool) -> LiteralTree<CallLiteral> {
     Some(Arc::new(Expr::Literal(CallLiteral::Attended(b))))
@@ -2298,6 +2321,125 @@ async fn set_stored_share_permission(
     Ok(())
 }
 
+#[sqlx::test(migrations = false)]
+async fn share_link_enable_writes_one_audit_and_repeated_enable_does_not_duplicate(
+    pool: Pool<Postgres>,
+) {
+    migrate_for_test(&pool).await;
+    sqlx::raw_sql(include_str!("../../../fixtures/call_repo.sql"))
+        .execute(&pool)
+        .await
+        .unwrap();
+    let repo = repo(pool.clone());
+    let enable_link = || EditCallRecordRepoArgs {
+        actor_id: Some(USER_A.deref().copied()),
+        share_permission: Some(UpdateSharePermissionRequestV2 {
+            link_share: Some(Some(LinkShare::Public)),
+            link_share_access_level: Some(Some(AccessLevel::Edit)),
+            team_share_access_level: None,
+            channel_share_permissions: None,
+        }),
+        team_share: None,
+        live_share_with_team: None,
+        custom_name: None,
+    };
+
+    repo.patch_call_record(&CALL_ARCHIVED, &enable_link())
+        .await
+        .unwrap();
+    repo.patch_call_record(&CALL_ARCHIVED, &enable_link())
+        .await
+        .unwrap();
+
+    let audits = sqlx::query(
+        "SELECT actor_id, action, resource_id, result FROM enterprise_audit WHERE resource_id = $1",
+    )
+    .bind(CALL_ARCHIVED.to_string())
+    .fetch_all(&pool)
+    .await
+    .unwrap();
+    assert_eq!(audits.len(), 1);
+    assert_eq!(audits[0].get::<String, _>("actor_id"), USER_A.as_ref());
+    assert_eq!(audits[0].get::<String, _>("action"), "share_link_create");
+    assert_eq!(
+        audits[0].get::<String, _>("resource_id"),
+        CALL_ARCHIVED.to_string()
+    );
+    assert_eq!(audits[0].get::<String, _>("result"), "success");
+}
+
+#[sqlx::test(migrations = false)]
+async fn concurrent_first_enable_writes_only_one_audit(pool: Pool<Postgres>) {
+    migrate_for_test(&pool).await;
+    sqlx::raw_sql(include_str!("../../../fixtures/call_repo.sql"))
+        .execute(&pool)
+        .await
+        .unwrap();
+    let repo = repo(pool.clone());
+    let enable_link = || EditCallRecordRepoArgs {
+        actor_id: Some(USER_A.deref().copied()),
+        share_permission: Some(UpdateSharePermissionRequestV2 {
+            link_share: Some(Some(LinkShare::Public)),
+            link_share_access_level: Some(Some(AccessLevel::Edit)),
+            team_share_access_level: None,
+            channel_share_permissions: None,
+        }),
+        team_share: None,
+        live_share_with_team: None,
+        custom_name: None,
+    };
+
+    let mut call_ids = Vec::new();
+    for _ in 0..16 {
+        let call_id = Uuid::now_v7();
+        let share_permission_id = call_id.to_string();
+        sqlx::query(r#"INSERT INTO "SharePermission" (id) VALUES ($1)"#)
+            .bind(&share_permission_id)
+            .execute(&pool)
+            .await
+            .unwrap();
+        sqlx::query(
+            "INSERT INTO call_records (id, room_name, created_by, started_at, duration_ms, share_permission_id) VALUES ($1, 'concurrent-race', $2, now(), 0, $3)",
+        )
+        .bind(call_id)
+        .bind(USER_A.as_ref())
+        .bind(&share_permission_id)
+        .execute(&pool)
+        .await
+        .unwrap();
+        call_ids.push(call_id);
+    }
+
+    let outcomes = futures::future::join_all(call_ids.iter().map(|call_id| async {
+        let first_args = enable_link();
+        let second_args = enable_link();
+        tokio::join!(
+            repo.patch_call_record(call_id, &first_args),
+            repo.patch_call_record(call_id, &second_args)
+        )
+    }))
+    .await;
+    for (call_id, (first, second)) in call_ids.iter().zip(outcomes) {
+        first.unwrap_or_else(|error| panic!("first enable failed for {call_id}: {error:?}"));
+        second.unwrap_or_else(|error| panic!("second enable failed for {call_id}: {error:?}"));
+    }
+
+    for call_id in call_ids {
+        let audits = sqlx::query(
+            "SELECT actor_id, action, resource_id, result FROM enterprise_audit WHERE resource_id = $1 AND action = 'share_link_create'",
+        )
+        .bind(call_id.to_string())
+        .fetch_all(&pool)
+        .await
+        .unwrap();
+        assert_eq!(
+            audits.len(),
+            1,
+            "concurrent first enable for {call_id} did not write exactly one audit: {audits:?}"
+        );
+    }
+}
+
 #[sqlx::test(
     fixtures(path = "../../../fixtures", scripts("call_repo")),
     migrator = "MACRO_DB_MIGRATIONS"
@@ -2310,6 +2452,7 @@ async fn patch_call_record_sets_public_link_and_defaults_level_to_view(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: Some(UpdateSharePermissionRequestV2 {
                 link_share: Some(Some(LinkShare::Public)),
                 link_share_access_level: None,
@@ -2341,6 +2484,7 @@ async fn patch_call_record_sets_team_link_and_explicit_level(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: Some(UpdateSharePermissionRequestV2 {
                 link_share: Some(Some(LinkShare::Team)),
                 link_share_access_level: Some(Some(AccessLevel::Edit)),
@@ -2373,6 +2517,7 @@ async fn patch_call_record_explicit_null_disables_link_sharing(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: Some(UpdateSharePermissionRequestV2 {
                 link_share: Some(None),
                 link_share_access_level: Some(Some(AccessLevel::Edit)),
@@ -2410,6 +2555,7 @@ async fn patch_call_record_level_only_update_updates_link_share_access_level(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: Some(UpdateSharePermissionRequestV2 {
                 link_share: None,
                 link_share_access_level: Some(Some(AccessLevel::Comment)),
@@ -2445,6 +2591,7 @@ async fn patch_call_record_adds_channel_share_permission(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: Some(UpdateSharePermissionRequestV2 {
                 link_share: None,
                 link_share_access_level: None,
@@ -2522,6 +2669,7 @@ async fn patch_call_record_removes_channel_share_permission(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: Some(UpdateSharePermissionRequestV2 {
                 link_share: None,
                 link_share_access_level: None,
@@ -2568,6 +2716,7 @@ async fn patch_call_record_empty_share_permission_update_is_noop(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: Some(UpdateSharePermissionRequestV2 {
                 link_share: None,
                 link_share_access_level: None,
@@ -2600,6 +2749,7 @@ async fn patch_call_record_sets_custom_name_on_archived_record(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: None,
             team_share: None,
             live_share_with_team: None,
@@ -2644,6 +2794,7 @@ async fn patch_call_record_custom_name_overwrites_existing(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: None,
             team_share: None,
             live_share_with_team: None,
@@ -2682,6 +2833,7 @@ async fn patch_call_record_custom_name_empty_string_clears_existing(
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: None,
             team_share: None,
             live_share_with_team: None,
@@ -2718,6 +2870,7 @@ async fn patch_call_record_custom_name_none_is_noop(pool: Pool<Postgres>) -> any
     repo.patch_call_record(
         &CALL_ARCHIVED,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: None,
             team_share: None,
             live_share_with_team: None,
@@ -3033,7 +3186,7 @@ async fn get_call_record_people_includes_meeting_owner_and_calendar_invitees(
         .execute(&pool)
         .await?;
     // The fixture's archived call ran 2024-01-01 10:00-10:05.
-    const LINK: &str = "https://macro.com/app/meet/join/tok-crm-link";
+    const LINK: &str = "https://rox.one/app/meet/join/tok-crm-link";
     insert_calendar_event_with_attendees(
         &pool,
         USER_C.deref().as_ref(),
@@ -3466,7 +3619,7 @@ async fn standalone_meeting_archives_guest_names_and_preserves_invitation(
     let record = repo.get_call_record_by_call_id(&call.id).await?.unwrap();
     assert_eq!(record.channel_id, None);
     assert_eq!(record.custom_name.as_deref(), Some("Design review"));
-    // Guests archive as their own rows; participant tables stay Macro-only.
+    // Guests archive as their own rows; participant tables stay Rox-only.
     assert!(record.participants.is_empty());
     assert_eq!(record.guests.len(), 1);
     assert_eq!(record.guests[0].id, guest_id);
@@ -3706,6 +3859,7 @@ async fn standalone_archive_never_translates_pending_intent_into_team_memory(
     repo.patch_call_record(
         &call.id,
         &EditCallRecordRepoArgs {
+            actor_id: Some(USER_A.deref().copied()),
             share_permission: None,
             custom_name: None,
             team_share: None,

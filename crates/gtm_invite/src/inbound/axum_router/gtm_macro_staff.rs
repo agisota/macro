@@ -1,4 +1,4 @@
-//! Extractor that admits only authenticated Macro staff.
+//! Extractor that admits only authenticated Rox staff.
 
 use std::marker::PhantomData;
 
@@ -15,21 +15,21 @@ use macro_user_id::user_id::MacroUserIdStr;
 
 use crate::domain::models::GtmInviteError;
 
-/// Authenticated Macro staff principal for GTM invite staff endpoints.
+/// Authenticated Rox staff principal for GTM invite staff endpoints.
 pub struct GtmMacroStaffExtractor<Auth> {
     /// The authenticated staff user's id.
     pub macro_user_id: MacroUserIdStr<'static>,
     _auth: PhantomData<fn() -> Auth>,
 }
 
-/// Rejection returned when the Macro staff check fails.
+/// Rejection returned when the Rox staff check fails.
 #[derive(Debug, thiserror::Error)]
 pub enum GtmMacroStaffRejection {
     /// The request could not be authorized.
     #[error("authorization failed")]
     Authorization(#[from] MacroAuthorizationRejection),
-    /// The authenticated user is not Macro staff.
-    #[error("only Macro staff can manage invite links")]
+    /// The authenticated user is not Rox staff.
+    #[error("only Rox staff can manage invite links")]
     NotStaff,
 }
 

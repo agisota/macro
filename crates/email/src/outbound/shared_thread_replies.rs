@@ -1,4 +1,4 @@
-//! Shared-thread reply access backed by MacroDB and the entity-access service.
+//! Shared-thread reply access backed by RoxDB and the entity-access service.
 
 use entity_access::domain::{
     models::{AccessError, EditAccessLevel},

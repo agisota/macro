@@ -7,7 +7,7 @@
 import type { AppearanceIconOneOfKind } from './appearanceIconOneOfKind';
 
 /**
- * A stable name from Macro's original, distinct icon catalog.
+ * A stable name from Rox's original, distinct icon catalog.
  */
 export type AppearanceIconOneOf = {
   kind: AppearanceIconOneOfKind;

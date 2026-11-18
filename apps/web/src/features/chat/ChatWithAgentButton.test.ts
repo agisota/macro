@@ -1,4 +1,11 @@
 import type { SplitHandle } from '@components/app/split-layout/layoutManager';
+import { createHeadlessEditor } from '@lexical/headless';
+import {
+  $convertFromMarkdownString,
+  $convertToMarkdownString,
+} from '@lexical/markdown';
+import { SupportedNodeTypes } from '@macro-inc/lexical-core/node-list';
+import { ALL_TRANSFORMERS } from '@macro-inc/lexical-core/transformers';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mocks = vi.hoisted(() => ({
@@ -62,6 +69,50 @@ describe('Ask Agent sessions', () => {
     expect(mocks.openWithSplit).not.toHaveBeenCalled();
     expect(mocks.startPendingSession).not.toHaveBeenCalled();
     expect(mocks.failure).toHaveBeenCalledWith('Unable to open chat');
+  });
+  it.each([
+    { type: 'email' as const, id: 'email-id', name: 'Subject' },
+    { type: 'project' as const, id: 'project-id', name: 'Launch' },
+    { type: 'chat' as const, id: 'chat-id', name: 'Old chat' },
+    {
+      type: 'channel' as const,
+      id: 'channel-id',
+      name: 'Team',
+      channelType: 'public' as const,
+    },
+  ])('preserves context for $type actions', async (entity) => {
+    await openChatWithAgent(entity);
+    expect(mocks.startPendingSession).not.toHaveBeenCalled();
+    const draft: string = mocks.openAgentComposer.mock.calls[0][2].draft;
+    expect(draft).toContain(entity.id);
+    expect(draft).toContain(entity.name);
+    if (entity.type === 'chat')
+      expect(draft).toContain('"blockName":"chat"');
+    if (entity.type === 'channel')
+      expect(draft).toContain('"channelType":"public"');
+  });
+
+  it('attaches a pull request by its Rox id and URL', async () => {
+    await openChatWithAgent({
+      type: 'pr',
+      id: 'pr-entity-id',
+      url: 'https://github.com/macro-inc/macro/pull/42',
+    });
+    const input: string = mocks.openAgentComposer.mock.calls[0][2].draft;
+    expect(input).toBe(
+      '<m-pr-mention>{"id":"pr-entity-id","url":"https://github.com/macro-inc/macro/pull/42","label":""}</m-pr-mention> '
+    );
+    const editor = createHeadlessEditor({ nodes: SupportedNodeTypes });
+    editor.update(() => $convertFromMarkdownString(input, ALL_TRANSFORMERS), {
+      discrete: true,
+    });
+    editor.getEditorState().read(() => {
+      const serialized = $convertToMarkdownString(ALL_TRANSFORMERS);
+      expect(serialized).toContain('"id":"pr-entity-id"');
+      expect(serialized).toContain(
+        '"url":"https://github.com/macro-inc/macro/pull/42"'
+      );
+    });
   });
   it('hands a submitted query to the agent as the first prompt', async () => {
     await openChatWithMessage('Find my latest invoices');

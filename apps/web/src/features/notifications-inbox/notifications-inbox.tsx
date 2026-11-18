@@ -58,7 +58,7 @@ function senderName(notification: UnifiedNotification): string | undefined {
   ) {
     return metadata.content.senderDisplayName;
   }
-  // GitHub senders keep their GitHub login, even when linked to Macro.
+  // GitHub senders keep their GitHub login, even when linked to Rox.
   if (isGithubNotificationType(metadata.tag)) {
     return getGithubSenderLogin(notification);
   }

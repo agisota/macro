@@ -219,7 +219,7 @@ vi.mock('@core/component/Toast/Toast', () => ({
 const REGISTERED_HARNESS = {
   id: '3f1c9d2e-8a4b-4c5d-9e6f-1a2b3c4d5e6f',
   allow_permission_bypass: false,
-  kind: 'macrod',
+  kind: 'roxd',
   name: 'Dev box',
   owner: { type: 'user', user_id: 'macro|user@example.com' },
   access: 'owner',
@@ -341,13 +341,13 @@ describe('Harness', () => {
     }
   );
 
-  it('lists Macro Agent and Cursor in the harness list', () => {
+  it('lists Rox Agent and Cursor in the harness list', () => {
     render(() => <Harness />);
 
-    expect(screen.getByRole('heading', { name: 'Macro Agent' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Rox Agent' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Cursor' })).toBeTruthy();
     expect(
-      screen.getByText(/Uses official Macro tools and MCPs to get the job done/)
+      screen.getByText(/Uses official Rox tools and MCPs to get the job done/)
     ).toBeTruthy();
   });
 
@@ -640,7 +640,7 @@ describe('Harness', () => {
     expect(invalidateHarnesses).toHaveBeenCalled();
   });
 
-  it('lists a Macro computer only under Macro computers, without Remove or Rename', () => {
+  it('lists a Rox computer only under Rox computers, without Remove or Rename', () => {
     harnessMocks.query.data = [
       { ...REGISTERED_HARNESS, access: 'owner', computer_id: 'computer-1' },
     ];
@@ -651,7 +651,7 @@ describe('Harness', () => {
     expect(screen.queryByRole('button', { name: 'Rename' })).toBeNull();
   });
 
-  it('never offers Share or Remove on a Macro computer, even with computers off', () => {
+  it('never offers Share or Remove on a Rox computer, even with computers off', () => {
     teamComputers.enabled = false;
     harnessMocks.query.data = [
       { ...REGISTERED_HARNESS, access: 'owner', computer_id: 'computer-1' },

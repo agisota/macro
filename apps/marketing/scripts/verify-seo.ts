@@ -7,7 +7,7 @@ import baseline from '../seo/migration-baseline.json';
 import redirects from '../seo/page-redirects.json';
 
 const directory = path.resolve(import.meta.dirname, '../dist');
-const origin = (process.env.VITE_APP_BASE_URL || 'https://macro.com').replace(
+const origin = (process.env.VITE_APP_BASE_URL || 'https://rox.one').replace(
   /\/$/,
   ''
 );
@@ -25,15 +25,15 @@ const typesIn = (html: string) =>
 
 // Intentional copy updates; retain the captured migration baseline unchanged.
 const updatedTitles: Record<string, string> = {
-  '/email': 'Macro Mail — Brilliantly fast email',
-  '/crm': 'Macro CRM — Hands-free CRM',
-  '/github': 'GitHub in Macro | Pull Requests, Code Changes, and Tasks',
-  '/agents': 'Macro Agents — Bring your favorite agents',
-  '/calls': 'Macro Calls — Team-level memory',
-  '/channels': 'Macro Chat — Focused team chat',
-  '/documents': 'Macro Docs | Write With Your Team and Your Agents',
-  '/download': 'Download Macro',
-  '/tasks': 'Macro Tasks — Task management for people and agents',
+  '/email': 'Rox Mail — Brilliantly fast email',
+  '/crm': 'Rox CRM — Hands-free CRM',
+  '/github': 'GitHub in Rox | Pull Requests, Code Changes, and Tasks',
+  '/agents': 'Rox Agents — Bring your favorite agents',
+  '/calls': 'Rox Calls — Team-level memory',
+  '/channels': 'Rox Chat — Focused team chat',
+  '/documents': 'Rox Docs | Write With Your Team and Your Agents',
+  '/download': 'Download Rox',
+  '/tasks': 'Rox Tasks — Task management for people and agents',
 };
 
 const linksByRoute = new Map<string, string[]>();
@@ -305,7 +305,7 @@ for (const route of [
 const robots = fs.readFileSync(path.join(directory, 'robots.txt'), 'utf8');
 assert(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
 assert(
-  origin === 'https://macro.com'
+  origin === 'https://rox.one'
     ? robots.includes('Allow: /') && !/^Disallow: \/$/m.test(robots)
     : /^Disallow: \/$/m.test(robots),
   'Wrong environment crawl policy'

@@ -111,7 +111,7 @@ const withheld = 'credentials stay with the agent';
 /**
  * Credentials as a script sees them when it runs in a process of its own:
  * their names, and no values. The agent's process keeps every value, and
- * reaches Macro for the script through its relay.
+ * reaches Rox for the script through its relay.
  */
 export const withheldCredentials = (names: readonly string[]): Credentials => ({
   get: async (key) => {

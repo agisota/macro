@@ -75,7 +75,7 @@ impl ImportedCallRepository for PgImportedCallRepository {
                 .as_ref()
                 .and_then(|e| e.metadata.get("sourceTitle"))
                 .and_then(|v| v.as_str());
-            // Preserve a title edited in Macro instead of clobbering it on sync.
+            // Preserve a title edited in Rox instead of clobbering it on sync.
             sqlx::query!(
                 r#"UPDATE call_entities SET title = CASE WHEN title IS NOT DISTINCT FROM $7 THEN $2 ELSE title END,
                 started_at = $3, ended_at = $4, duration_ms = $5, updated_at = now()
@@ -84,7 +84,7 @@ impl ImportedCallRepository for PgImportedCallRepository {
             ).execute(tx.as_mut()).await?;
         }
         // Keep call-local participant IDs stable across edits. These email values
-        // are provider identity hints only; they never create Macro-user grants.
+        // are provider identity hints only; they never create Rox-user grants.
         let old_ids: Vec<Uuid> = existing
             .as_ref()
             .and_then(|e| e.metadata.get("participantIds"))

@@ -4,7 +4,7 @@ use super::*;
 fn reads_a_companies_export() {
     let table = parse_csv(
         "\u{feff}\"Company\",\"Domains\",\"Stage\",\"Owner\",\"Revenue\"\r\n\
-         \"Acme\",\"acme.com; acme.io\",\"Lead\",\"jane@macro.com\",\"\"\r\n\
+         \"Acme\",\"acme.com; acme.io\",\"Lead\",\"jane@rox.one\",\"\"\r\n\
          \"'=Formula\",\"https://www.formula.co/about\",\"\",\"\",\"\"\r\n\
          \"No domain\",\"\",\"Lead\",\"\",\"\"\r\n\
          \"Acme again\",\"ACME.com\",\"\",\"\",\"\"\r\n",
@@ -21,7 +21,7 @@ fn reads_a_companies_export() {
                 key: "acme.com".into(),
                 values: vec![
                     ("Stage".into(), "Lead".into()),
-                    ("Owner".into(), "jane@macro.com".into()),
+                    ("Owner".into(), "jane@rox.one".into()),
                 ],
             },
             RecordRow {

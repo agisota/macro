@@ -202,7 +202,7 @@ export function buildEntityData(
         'initiative',
         (): undefined => undefined
       )
-      // PRs are virtual blocks backed by GitHub, not Macro entities.
+      // PRs are virtual blocks backed by GitHub, not Rox entities.
       .with('pr', (): undefined => undefined)
       .with('agent', (): EntityData | undefined =>
         args.botId

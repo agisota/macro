@@ -194,7 +194,7 @@ pub trait DatabasesRepo: Send + Sync + 'static {
     ) -> impl Future<Output = Result<Vec<JournaledRowChange>, Self::Error>> + Send;
 }
 
-/// Reusable database storage without a Macro entity, owner grant, or trash state.
+/// Reusable database storage without a Rox entity, owner grant, or trash state.
 /// Callers are trusted domain services: each consumer must authorize its own
 /// resource and validate writes before using this port. Macro database requests
 /// use [`CellStore`] to enforce the app entity's lifecycle in the transaction.

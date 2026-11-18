@@ -36,7 +36,7 @@ fn mention_bot_id(entity_id: &str) -> Option<BotId> {
 
 /// Whether a `user`-tagged mention actually targets a bot (and so must not be
 /// treated as a user recipient). Real user ids are `macro|<email>` strings,
-/// never `bot|<uuid>` principals, so this only matches the Macro AI bot
+/// never `bot|<uuid>` principals, so this only matches the Rox AI bot
 /// surfaced through the user-mention UI.
 fn is_bot_user_mention(mention: &SimpleMention) -> bool {
     mention.entity_type == "user"
@@ -684,7 +684,7 @@ where
             (Vec::new(), Vec::new()),
             |(mut users, mut docs), mention| {
                 match mention.entity_type.as_str() {
-                    // The Macro AI bot is mentioned via the user-mention UI; it
+                    // The Rox AI bot is mentioned via the user-mention UI; it
                     // is handled as a bot trigger, not a user notification.
                     "user" if !is_bot_user_mention(&mention) => users.push(mention.entity_id),
                     "document" => docs.push(mention.entity_id),

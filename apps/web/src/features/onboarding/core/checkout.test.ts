@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { onboardingCheckoutRequest, parseCheckoutReturn } from './checkout';
 
-const ONBOARDING = 'https://macro.com/app/onboarding';
+const ONBOARDING = 'https://rox.one/app/onboarding';
 
 describe('onboardingCheckoutRequest', () => {
   it('returns both checkout legs to the onboarding flow with the plan', () => {

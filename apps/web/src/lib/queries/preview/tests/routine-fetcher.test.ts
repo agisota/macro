@@ -22,7 +22,7 @@ it('previews a routine the viewer can read, a deleted one as gone, and a hidden 
     okAsync({
       id: 'standup',
       name: 'Daily standup',
-      owner: 'macro|wolf@macro.com',
+      owner: 'macro|wolf@rox.one',
       updated_at: '2026-10-01T09:00:00Z',
       appearance: { icon: null, color: 'blue' },
     })
@@ -38,7 +38,7 @@ it('previews a routine the viewer can read, a deleted one as gone, and a hidden 
     loading: false,
     rawName: 'Daily standup',
     name: 'Daily standup',
-    owner: 'macro|wolf@macro.com',
+    owner: 'macro|wolf@rox.one',
     updatedAt: '2026-10-01T09:00:00Z',
     appearance: { icon: null, color: 'blue' },
   });

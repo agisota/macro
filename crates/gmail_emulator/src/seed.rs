@@ -66,7 +66,7 @@ impl Seed {
 pub struct PushConfig {
     /// The webhook URL each notification is posted to.
     pub endpoint: String,
-    /// The `aud` claim of the signed token. Defaults to Macro's webhook audience.
+    /// The `aud` claim of the signed token. Defaults to Rox's webhook audience.
     #[serde(default = "default_audience")]
     pub audience: String,
 }
@@ -101,7 +101,7 @@ pub struct SeedMailbox {
     /// `refresh-<email>`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub refresh_token: Option<String>,
-    /// The scopes of the grant. Defaults to the scopes Macro requests.
+    /// The scopes of the grant. Defaults to the scopes Rox requests.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub scopes: Option<Vec<String>>,
     /// The history id before any seeded message. Defaults to 1000.

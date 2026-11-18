@@ -1,7 +1,7 @@
 /**
  * The agent's context: the one place the outside world is touched.
  * Everything else in its behavior is given these and does no IO of its own, so it can
- * be run against a fake disk, clock, shell or Macro.
+ * be run against a fake disk, clock, shell or Rox.
  */
 import {
 	appendFile,
@@ -29,7 +29,7 @@ import { timedOut } from "./shell.ts";
 import { sopsCredentials } from "./sops.ts";
 import { type State, state as makeState } from "./state.ts";
 
-/** The credential holding the key of the agent's own Macro account. */
+/** The credential holding the key of the agent's own Rox account. */
 export const macroKey = "MACRO_API_KEY";
 
 export type Base = {
@@ -44,7 +44,7 @@ export type Base = {
 	readonly log: Log;
 	/** Joins path parts. Injected so nothing else imports a path library. */
 	readonly join: (...parts: readonly string[]) => string;
-	/** The agent in Macro, as its own account. Connects on first use. */
+	/** The agent in Rox, as its own account. Connects on first use. */
 	readonly macro: () => Promise<Macro>;
 	/** The environment that makes a child process act as the agent. */
 	readonly environment: () => Promise<

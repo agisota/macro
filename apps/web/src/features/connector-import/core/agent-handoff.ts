@@ -44,13 +44,13 @@ function ledgerSteps(provider: ImportProvider): string[] {
 }
 
 /**
- * Notion runs Macro's workspace importer: the agent asks who should see the
+ * Notion runs Rox's workspace importer: the agent asks who should see the
  * import, plans it with ImportFromNotion, and presents the plan for review.
  */
 const NOTION_WORKSPACE_HANDOFF: AgentImportHandoff = {
-  input: 'Import my Notion workspace into Macro.',
+  input: 'Import my Notion workspace into Rox.',
   instructions: [
-    "The user started this from Macro's import dialog and has just connected Notion.",
+    "The user started this from Rox's import dialog and has just connected Notion.",
     'Import their workspace with ImportFromNotion: ask who should see it if the tool says to, plan it, and present the plan for review right away.',
     'Never recreate Notion pages with CreateDocument or ImportNotionPage, and never edit or delete anything in Notion.',
   ].join(' '),
@@ -63,9 +63,9 @@ export function agentImportHandoff(
   if (provider.ledger === 'notion') return NOTION_WORKSPACE_HANDOFF;
   if (provider.ledger === 'linear' || provider.ledger === 'jira') {
     return {
-      input: `Import my ${provider.name} workspace into Macro.`,
+      input: `Import my ${provider.name} workspace into Rox.`,
       instructions: [
-        `The user started this from Macro's import dialog and has just connected ${provider.name}.`,
+        `The user started this from Rox's import dialog and has just connected ${provider.name}.`,
         `Use ImportFrom${provider.name} to plan their workspace, ask who should see it if required, and present the import review right away.`,
         `Never recreate plan items with other tools, and never edit or delete anything in ${provider.name}.`,
       ].join(' '),
@@ -74,7 +74,7 @@ export function agentImportHandoff(
   return {
     input: `Import my most recent ${config.items} from ${provider.name} into ${config.destination}.`,
     instructions: [
-      `The user started this from Macro's import dialog and has just connected ${provider.name}.`,
+      `The user started this from Rox's import dialog and has just connected ${provider.name}.`,
       `Use the ${provider.name} connector tools to find their most relevant recent ${config.items}.`,
       ...ledgerSteps(provider),
       `Before creating anything, show a short numbered list and ask which ones to bring over.`,

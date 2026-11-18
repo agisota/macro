@@ -6,7 +6,7 @@ import {
 import { MACRO_AGENT_PRINCIPAL_ID } from '@core/constant/macroAgent';
 import { MACRO_CODER_PRINCIPAL_ID } from '@core/constant/macroCoder';
 import { MACRO_NEW_PRINCIPAL_ID } from '@core/constant/macroNew';
-import MacroLogo from '@icon/macro-logo.svg';
+import { RoxMark } from '@core/component/RoxMark';
 import CodexIcon from '@icon/wide-codex-ide.svg';
 import CursorIcon from '@icon/wide-cursor-ide.svg';
 import { cleanup, render } from '@solidjs/testing-library';
@@ -38,14 +38,14 @@ vi.mock('@core/signal/profilePicture', () => ({
 afterEach(cleanup);
 
 describe('firstPartyBotMark', () => {
-  it('gives both Macro bots and the coder the Macro logo', () => {
+  it('gives both Rox bots and the coder the Rox logo', () => {
     for (const id of [
       MACRO_AGENT_PRINCIPAL_ID,
       MACRO_NEW_PRINCIPAL_ID,
       MACRO_CODER_PRINCIPAL_ID,
     ]) {
       expect(firstPartyBotMark(id)).toEqual({
-        Icon: MacroLogo,
+        Icon: RoxMark,
         tone: 'accent',
       });
     }
@@ -61,7 +61,7 @@ describe('firstPartyBotMark', () => {
     expect(
       firstPartyBotMark('bot|11111111-2222-3333-4444-555555555555')
     ).toBeUndefined();
-    expect(firstPartyBotMark('macro|peter@macro.com')).toBeUndefined();
+    expect(firstPartyBotMark('macro|peter@rox.one')).toBeUndefined();
     expect(firstPartyBotMark(undefined)).toBeUndefined();
   });
 });
@@ -97,12 +97,13 @@ describe('UserIcon for first-party bots', () => {
     expect(svgOf(cursor)?.innerHTML).toBe(svgOf(reference)?.innerHTML);
   });
 
-  it('draws the Macro logo for the agent-session Macro bot', () => {
+  it('draws the Rox eye for the agent-session Rox bot', () => {
     const { container: macro } = render(() => (
       <UserIcon id={MACRO_NEW_PRINCIPAL_ID} />
     ));
-    const { container: reference } = render(() => <MacroLogo />);
-    expect(svgOf(macro)?.innerHTML).toBe(svgOf(reference)?.innerHTML);
+    expect(macro.querySelector('img')?.getAttribute('src')).toContain(
+      'rox-mark.png'
+    );
   });
 
   it('keeps the generic robot for a team bot without an avatar', () => {

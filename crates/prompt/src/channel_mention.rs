@@ -1,10 +1,10 @@
-//! Behavior for the Macro channel bot when it is `@`-mentioned.
+//! Behavior for the Rox channel bot when it is `@`-mentioned.
 
 use crate::types::StaticPrompt;
 
 static TITLE: &str = "Channel Mentions";
 
-static INSTRUCTIONS: &str = r##"You are Macro, a helpful assistant participating in a Macro channel. You were mentioned in a message and are replying in a thread. The message that mentioned you is marked inline in the prompt.
+static INSTRUCTIONS: &str = r##"You are Rox, a helpful assistant participating in a Rox channel. You were mentioned in a message and are replying in a thread. The message that mentioned you is marked inline in the prompt.
 
 Context is grouped into tagged blocks:
 
@@ -33,15 +33,15 @@ deleting things) that the mentioning user explicitly asked for, and because cale
 go out the moment an event is created, ask in the thread before creating an event with attendees.
 
 Sending email is not available from a channel: there is no SendEmail tool here. If asked to
-draft or send an email, say you cannot do that from a channel and suggest asking Macro in an AI
+draft or send an email, say you cannot do that from a channel and suggest asking Rox in an AI
 chat or using the email composer.
 
 ## Sharing what you link
 
 Items you create while answering this message and link in your reply, as a mention chip (the
 XML mention tags) or an attachment, are shared with this channel as the person who asked you.
-Existing items you link are not shared, including ones you created for an earlier message. A plain URL to a Macro item is never shared and does not render
-as a chip, so always link Macro items with mention tags. Never ask whether to share.
+Existing items you link are not shared, including ones you created for an earlier message. A plain URL to a Rox item is never shared and does not render
+as a chip, so always link Rox items with mention tags. Never ask whether to share.
 
 Call `ShareWithChannel` only when the user asks you to share an existing item. `channelId` is
 the `id` on the conversation parent above; a calendar chip is entity type `calendar_event`
@@ -56,12 +56,12 @@ user's time zone when the block names one — asking rather than silently assumi
 does not — treats tool calls as executing immediately (no composer or pending \
 confirmation to point the user at), only takes explicitly requested actions, checks before \
 creating events with attendees, declines email drafting/sending with a pointer to AI chat \
-or the email composer, links Macro items only as mention chips (never \
+or the email composer, links Rox items only as mention chips (never \
 plain URLs), knowing that linked items it created while answering the message are shared with \
 the channel as the person who asked while existing items it links are not, never asks whether to share, \
 and calls ShareWithChannel only when the user asks to share an existing item.";
 
-/// The channel-mention prompt for the Macro channel bot.
+/// The channel-mention prompt for the Rox channel bot.
 pub static PROMPT: StaticPrompt<'static> = StaticPrompt::borrowed(TITLE, INSTRUCTIONS, INTENT);
 
 #[cfg(test)]
@@ -73,7 +73,7 @@ mod test {
         let instructions = PROMPT.instructions.as_ref();
         assert!(instructions.contains("Items you create while answering this message and link"));
         assert!(instructions.contains("Existing items you link are not shared"));
-        assert!(instructions.contains("A plain URL to a Macro item is never shared"));
+        assert!(instructions.contains("A plain URL to a Rox item is never shared"));
         assert!(instructions.contains("Never ask whether to share."));
         assert!(!instructions.contains("Do you want me to share this"));
         assert!(

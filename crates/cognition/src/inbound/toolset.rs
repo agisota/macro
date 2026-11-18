@@ -45,7 +45,7 @@ pub fn cognition_toolset() -> AsyncToolCollection<CognitionToolContext> {
 #[serde(transparent)]
 #[schemars(
     title = "GenerateObject",
-    description = "Generate a JSON object from supplied text using a JSON Schema. Use for extraction, rewriting, or summarizing already-fetched context. This completion cannot search, read, or edit Macro data: include the necessary source text in prompt. Omit model for the default, or use an accessible provider/model ID. Returns {object}. Generation is metered to the requesting user; preserve source IDs and verify uncertain extracted facts."
+    description = "Generate a JSON object from supplied text using a JSON Schema. Use for extraction, rewriting, or summarizing already-fetched context. This completion cannot search, read, or edit Rox data: include the necessary source text in prompt. Omit model for the default, or use an accessible provider/model ID. Returns {object}. Generation is metered to the requesting user; preserve source IDs and verify uncertain extracted facts."
 )]
 pub struct GenerateObject(GenerateObjectRequest);
 

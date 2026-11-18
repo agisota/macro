@@ -1,6 +1,6 @@
 # Agent guidance per SDK area
 
-How an agent learns the rules of an area of Macro (databases, CRM, email,
+How an agent learns the rules of an area of Rox (databases, CRM, email,
 calendar, channels, tasks, routines, documents, coding agents, search): one
 source in the SDK's TSDoc, delivered inline or per turn.
 

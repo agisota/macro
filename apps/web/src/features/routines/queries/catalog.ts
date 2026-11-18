@@ -29,7 +29,7 @@ export function routineCatalogQueryOptions(timezone: string) {
 }
 
 /**
- * Macro's catalog routines, with schedules in this browser's zone, or
+ * Rox's catalog routines, with schedules in this browser's zone, or
  * undefined until they first load; kept through a failed refetch (FE-48).
  */
 export function useLoadedRoutineCatalog(): () => RoutineTemplate[] | undefined {
@@ -40,7 +40,7 @@ export function useLoadedRoutineCatalog(): () => RoutineTemplate[] | undefined {
 }
 
 /**
- * Macro's catalog routines; empty until they first load, so the routines
+ * Rox's catalog routines; empty until they first load, so the routines
  * list never waits on them.
  */
 export function useRoutineCatalog(): () => RoutineTemplate[] {

@@ -81,7 +81,7 @@ export const Decision = Verdict.extend({
 export type Decision = z.infer<typeof Decision>;
 
 export type JudgePorts = {
-	/** The evidence about a call, from Macro. */
+	/** The evidence about a call, from Rox. */
 	readonly gather: (call: Pending) => Promise<Candidate>;
 	readonly judge: (candidate: Candidate) => Promise<Verdict>;
 	/** The latest decision on disk, so a restarted watcher doesn't decide twice. */
@@ -102,7 +102,7 @@ export const saysNothing = (candidate: Candidate): string | null =>
 export const decisionKey = (candidate: Candidate): string =>
 	`free|${candidate.title}|${candidate.messages.at(-1)?.id ?? ""}`;
 
-const prompt = `You decide whether an AI agent joins a live call in Macro that nobody rang it for. Reply with one JSON object and nothing else: {"join": true or false, "reason": "one plain sentence, under 15 words"}.
+const prompt = `You decide whether an AI agent joins a live call in Rox that nobody rang it for. Reply with one JSON object and nothing else: {"join": true or false, "reason": "one plain sentence, under 15 words"}.
 
 Join only when the agent would be useful: the title, attendees, or chat around the call show it's about something the agent works on (see <about_the_agent> and <working_on>), or someone there asks for it. Stay out of anything personal, meetings between other people about their own work, and anything where the evidence doesn't say what the call is about. Unsure means no.
 

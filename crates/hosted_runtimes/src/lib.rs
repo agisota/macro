@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! Macro computers: team-owned hosted VMs that run macrod.
+//! Rox computers: team-owned hosted VMs that run roxd.
 //!
 //! The pure lifecycle in [`domain::lifecycle`] decides what a computer does
 //! next; ports in [`domain::ports`] carry those decisions to Postgres, the

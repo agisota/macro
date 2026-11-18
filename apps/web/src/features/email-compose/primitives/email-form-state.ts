@@ -54,7 +54,7 @@ export type DraftFormAttachment =
     }
   | {
       /**
-       * A Macro document attached by reference; the backend fetches its file
+       * A Rox document attached by reference; the backend fetches its file
        * when the email is sent. Used by the AI draft composer, whose email has
        * no draft row to upload into until it is sent.
        */
@@ -234,7 +234,7 @@ export function createEmailFormState(
       ...(message?.attachments_forwarded.map((a) => a.attachment_id) ?? []),
     ]);
     const representedCids = new Set(
-      [...representedIds].map((id) => `${id}@attachments.macro.com`)
+      [...representedIds].map((id) => `${id}@attachments.rox.one`)
     );
     for (const file of message?.attachments_draft ?? [])
       if (file.content_id) representedCids.add(file.content_id);

@@ -17,7 +17,7 @@ export async function readMarkdownPages(directory: string) {
 
 /**
  * One SDK entity: when to use it, the compact index of what it declares, and
- * the `@agent` guidance its declarations carry about how that area of Macro
+ * the `@agent` guidance its declarations carry about how that area of Rox
  * works, when they carry any.
  */
 export type EntityDocs = {

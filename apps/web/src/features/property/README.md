@@ -1,6 +1,6 @@
 # Property
 
-Composable property component library for Macro.
+Composable property component library for Rox.
 
 Mirrors `src/features/entity`: small extractors (`Property.Icon`, `Property.Text`,
 `Property.Chips`, ...) compose under a `Property.Root` to render property values

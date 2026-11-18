@@ -3,7 +3,7 @@
   "info": {
     "title": "Document Cognition Service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": "Proprietary",
       "identifier": "Proprietary"
@@ -1609,7 +1609,7 @@
     "/import/notion/pages": {
       "post": {
         "tags": ["import"],
-        "summary": "Import one Notion page as a Macro document through the caller's Notion\nconnection, deduplicated against the ledger. Notion databases are not\nimported; a whole workspace goes through a reviewed import instead.",
+        "summary": "Import one Notion page as a Rox document through the caller's Notion\nconnection, deduplicated against the ledger. Notion databases are not\nimported; a whole workspace goes through a reviewed import instead.",
         "operationId": "import_notion_page",
         "requestBody": {
           "content": {
@@ -2055,11 +2055,11 @@
     "/mcp/servers/auth/client-metadata": {
       "get": {
         "tags": ["mcp"],
-        "summary": "Return Macro's public OAuth Client ID Metadata Document.",
+        "summary": "Return Rox's public OAuth Client ID Metadata Document.",
         "operationId": "mcp_oauth_client_metadata",
         "responses": {
           "200": {
-            "description": "Macro OAuth client metadata document"
+            "description": "Rox OAuth client metadata document"
           }
         }
       }
@@ -2604,7 +2604,7 @@
     "/pipedream/mcp/connect/complete": {
       "post": {
         "tags": ["pipedream-mcp"],
-        "summary": "Record an app the user connected through Macro Connect.",
+        "summary": "Record an app the user connected through Rox Connect.",
         "description": "Answers 404 until Connect lists an active connection for this user and\napp, so the frontend can poll it while the consent window is open.",
         "operationId": "complete_pipedream_mcp_connect",
         "requestBody": {
@@ -2938,7 +2938,7 @@
       "post": {
         "tags": ["pipedream-mcp"],
         "summary": "Start a connect flow for the authenticated user.",
-        "description": "By default, a short-lived Pipedream Connect token: the frontend opens\nPipedream's hosted Connect UI with it, and the user picks (or is\ndeep-linked into) an app and authorizes it there. When the body names an\napp Macro Connect serves and the `macro-connect` rollout is on for the\nuser, a Connect URL instead.",
+        "description": "By default, a short-lived Pipedream Connect token: the frontend opens\nPipedream's hosted Connect UI with it, and the user picks (or is\ndeep-linked into) an app and authorizes it there. When the body names an\napp Rox Connect serves and the `macro-connect` rollout is on for the\nuser, a Connect URL instead.",
         "operationId": "create_pipedream_mcp_token",
         "requestBody": {
           "content": {
@@ -5249,7 +5249,7 @@
               "id": {
                 "type": "string",
                 "format": "uuid",
-                "description": "The Macro document ID."
+                "description": "The Rox document ID."
               },
               "type": {
                 "type": "string",
@@ -5520,11 +5520,11 @@
           },
           "entity_id": {
             "type": ["string", "null"],
-            "description": "The Macro entity it became, once imported."
+            "description": "The Rox entity it became, once imported."
           },
           "entity_type": {
             "type": ["string", "null"],
-            "description": "The Macro entity type (`task` | `md` | `channel`), once imported."
+            "description": "The Rox entity type (`task` | `md` | `channel`), once imported."
           },
           "foreign_id": {
             "type": "string",
@@ -5957,7 +5957,7 @@
           },
           "entityId": {
             "type": "string",
-            "description": "The Macro entity it became."
+            "description": "The Rox entity it became."
           },
           "entityType": {
             "type": "string",
@@ -6024,7 +6024,7 @@
             "items": {
               "$ref": "#/components/schemas/NotionImporter"
             },
-            "description": "Who imported the objects already in Macro, most first."
+            "description": "Who imported the objects already in Rox, most first."
           },
           "alreadyInMacro": {
             "type": "integer",
@@ -6117,7 +6117,7 @@
           "projects": {
             "type": "integer",
             "format": "int32",
-            "description": "Tracker groups written as Macro projects.",
+            "description": "Tracker groups written as Rox projects.",
             "minimum": 0
           },
           "reviewId": {
@@ -6482,7 +6482,7 @@
       },
       "PipedreamConnectCompleteRequest": {
         "type": "object",
-        "description": "Request body for recording a finished Macro Connect flow.",
+        "description": "Request body for recording a finished Rox Connect flow.",
         "required": ["app_slug"],
         "properties": {
           "app_slug": {
@@ -6559,13 +6559,13 @@
         "properties": {
           "app_slug": {
             "type": ["string", "null"],
-            "description": "The app to connect, by Pipedream slug. With it, an app Macro Connect\nserves can answer with a Connect URL instead of a Pipedream token."
+            "description": "The app to connect, by Pipedream slug. With it, an app Rox Connect\nserves can answer with a Connect URL instead of a Pipedream token."
           }
         }
       },
       "PipedreamTokenResponse": {
         "type": "object",
-        "description": "Response from starting a connect flow: a Pipedream Connect token, or for\n`provider = connect` a Macro Connect URL.",
+        "description": "Response from starting a connect flow: a Pipedream Connect token, or for\n`provider = connect` a Rox Connect URL.",
         "required": ["provider"],
         "properties": {
           "connect_link_url": {
@@ -6574,7 +6574,7 @@
           },
           "connect_url": {
             "type": ["string", "null"],
-            "description": "URL to open in a popup or browser tab for Macro Connect's consent\nflow; once it finishes, call `/pipedream/mcp/connect/complete`.\nConnect only."
+            "description": "URL to open in a popup or browser tab for Rox Connect's consent\nflow; once it finishes, call `/pipedream/mcp/connect/complete`.\nConnect only."
           },
           "expires_at": {
             "type": ["string", "null"],
@@ -7061,7 +7061,7 @@
             "items": {
               "$ref": "#/components/schemas/SlackParticipant"
             },
-            "description": "Slack members matched to the Macro team roster when discovery resolved membership."
+            "description": "Slack members matched to the Rox team roster when discovery resolved membership."
           },
           "purpose": {
             "type": ["string", "null"],
@@ -7621,7 +7621,7 @@
         "properties": {
           "entityId": {
             "type": ["string", "null"],
-            "description": "The Macro entity created from the item; required when `status` is\n`imported`."
+            "description": "The Rox entity created from the item; required when `status` is\n`imported`."
           },
           "foreignId": {
             "type": "string",

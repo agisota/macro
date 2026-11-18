@@ -42,7 +42,7 @@ LLM.
 
 - `cargo test -p task_dedup` (`SQLX_OFFLINE` unset).
 - `just crates/task_dedup/eval` — real OpenAI/Anthropic/Cohere calls against
-  the labeled corpus; needs local MacroDB plus `OPENAI_API_KEY`,
+  the labeled corpus; needs local RoxDB plus `OPENAI_API_KEY`,
   `ANTHROPIC_API_KEY`, `CEREBRAS_API_KEY`. Costs money and is noisy; read
   before running (see `justfile`).
 

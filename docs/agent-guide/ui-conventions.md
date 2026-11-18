@@ -50,7 +50,7 @@ belongs to its view's mobile view, which lists every island it shows. A new one
 shows Back, the title (tap it for the title menu), and Info, with other actions
 in the title menu, as the email thread's does. A header split from a shared one
 keeps what it had: a document's or task's also shows the access badge, the sync
-indicator, and Ask Macro; a task's dispatch actions are under Code Actions in
+indicator, and Ask Rox; a task's dispatch actions are under Code Actions in
 its title menu at every touch width. A touch view that shows an item beside its list hosts that
 same header in the pane, so it does not change between a split of its own and
 a preview. Other touch headers keep
@@ -375,8 +375,8 @@ write shows failure feedback and leaves the card open for retry.
 
 Actions live in the top bar immediately before Share, with consistent compact
 buttons (labels collapse on narrow headers). There are no Actions sections in
-information panels. Markdown/tasks include Ask Macro and document/task dispatch; email
-includes Ask Macro and Create task; PDF, calls, and pull requests include Ask Macro. Native
+information panels. Markdown/tasks include Ask Rox and document/task dispatch; email
+includes Ask Rox and Create task; PDF, calls, and pull requests include Ask Rox. Native
 projects put Delete in the `Project actions` menu after the project title.
 
 Standard metadata appears at the top of each panel, before the interactive
@@ -400,7 +400,7 @@ contents, with `edge-muted` dividers between sections. Its height is capped at
 the block height with internal scrolling. At every width it starts closed and
 acts as a split-local overlay menu on desktop. The top-right sidebar icon, rotated
 180 degrees, opens it, and clicking outside dismisses it. On touch devices the
-control uses the Macro info-circle icon and opens the standard bottom drawer
+control uses the Rox info-circle icon and opens the standard bottom drawer
 with a drag handle, scrollable sections, and safe-area/keyboard-aware spacing.
 Dismiss the drawer by swiping down or tapping its backdrop. Opening is never
 restored from saved preferences or triggered by the global chrome shortcut. The 320px bubble enters
@@ -413,7 +413,7 @@ and contact views (both inside the CRM workspace and in standalone blocks).
 
 ## Interface icon review
 
-Interface glyphs use the original Macro SVG family. Open `/app/debug/icon-gallery`
+Interface glyphs use the original Rox SVG family. Open `/app/debug/icon-gallery`
 to review regular, filled, and bold variants at 14/16/20/24 px in light and dark
 themes. The Original icons tab is the default; Legacy animated icons remains
 available. Interface icons never animate on press or hover. Control layouts and

@@ -14,7 +14,7 @@ fn session_new() -> Value {
                 {
                     "type": "http",
                     "name": "macro_internal",
-                    "url": "https://dev-gateway.macro.com/agent-harness-egress/mcp/internal",
+                    "url": "https://dev-gateway.rox.one/agent-harness-egress/mcp/internal",
                     "headers": [{ "name": "Authorization", "value": "Bearer egress-token" }]
                 }
             ],
@@ -31,7 +31,7 @@ fn sessions_point_claude_code_at_the_gateway_of_the_sessions_internal_mcp() {
         frame["params"]["_meta"]["claudeCode"]["options"]["env"],
         json!({
             "KEEP": "me",
-            "ANTHROPIC_BASE_URL": "https://dev-gateway.macro.com/agent-harness-egress/anthropic",
+            "ANTHROPIC_BASE_URL": "https://dev-gateway.rox.one/agent-harness-egress/anthropic",
             "ANTHROPIC_AUTH_TOKEN": "egress-token",
             "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
         })
@@ -84,7 +84,7 @@ fn computer_sessions_use_the_guest_workspace_and_egress_route() {
         frame["method"] = json!(method);
         frame["params"]["cwd"] = json!("/workspace");
         frame["params"]["mcpServers"].as_array_mut().unwrap().push(json!({
-            "type": "http", "name": "macro-preview", "url": "https://dev-gateway.macro.com/agent-harness-egress/mcp-preview", "headers": []
+            "type": "http", "name": "macro-preview", "url": "https://dev-gateway.rox.one/agent-harness-egress/mcp-preview", "headers": []
         }));
         prepare_session(
             &mut frame,

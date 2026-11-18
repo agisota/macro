@@ -13,13 +13,13 @@ import type { PipedreamTokenResponseToken } from './pipedreamTokenResponseToken'
 
 /**
  * Response from starting a connect flow: a Pipedream Connect token, or for
-`provider = connect` a Macro Connect URL.
+`provider = connect` a Rox Connect URL.
  */
 export interface PipedreamTokenResponse {
   /** Shareable link that opens the same connect flow in a browser tab.
 Pipedream only. */
   connect_link_url?: PipedreamTokenResponseConnectLinkUrl;
-  /** URL to open in a popup or browser tab for Macro Connect's consent
+  /** URL to open in a popup or browser tab for Rox Connect's consent
 flow; once it finishes, call `/pipedream/mcp/connect/complete`.
 Connect only. */
   connect_url?: PipedreamTokenResponseConnectUrl;

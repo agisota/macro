@@ -69,7 +69,7 @@ async fn transfer_preserves_uploads_and_fences_old_saves_deletes_and_delivery(db
     assert_eq!(moved.attachments[0].s3_key, "shared-object");
     assert_eq!(
         moved.attachments[0].content_id,
-        Some(format!("{upload}@attachments.macro.com"))
+        Some(format!("{upload}@attachments.rox.one"))
     );
     let TransferPreparation::Completed(replayed) =
         repo.begin_transfer(ACTOR, &request).await.unwrap()

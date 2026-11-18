@@ -29,7 +29,7 @@ use crate::{
 #[derive(OpenApi)]
 #[openapi(
         info(
-            terms_of_service = "https://macro.com/terms",
+            terms_of_service = "https://rox.one/terms",
         ),
         paths(
                 /// /health
@@ -121,7 +121,7 @@ use crate::{
                 ),
         ),
         tags(
-            (name = "notification service", description = "Macro Notification Service")
+            (name = "notification service", description = "Rox Notification Service")
         )
     )]
 pub struct ApiDoc;

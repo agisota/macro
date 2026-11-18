@@ -1,4 +1,4 @@
-//! GitHub's MCP server, authorized by the user's Macro GitHub account link.
+//! GitHub's MCP server, authorized by the user's Rox GitHub account link.
 //!
 //! The account link and GitHub's MCP server use the same GitHub App, so the
 //! link's token is a valid bearer there. Rather than ask the user to

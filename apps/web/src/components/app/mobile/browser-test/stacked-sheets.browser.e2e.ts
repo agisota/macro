@@ -40,7 +40,7 @@ test('a sheet its owner keeps open returns into view after a drag down', async (
   page,
 }) => {
   await page.goto('/?scenario=discard');
-  const share = page.getByRole('dialog', { name: 'Share to Macro' });
+  const share = page.getByRole('dialog', { name: 'Share to Rox' });
   await settled(share);
 
   await dragDown(page, share);

@@ -108,7 +108,7 @@ pub struct GetCompanyResponse {
     /// pipeline entry's stage.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stage: Option<ToolCompanyStage>,
-    /// Macro user id of the company's owner, if set.
+    /// Rox user id of the company's owner, if set.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub owner_user_id: Option<String>,
     /// The company's revenue (dollars), if set.

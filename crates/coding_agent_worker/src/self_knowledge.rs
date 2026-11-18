@@ -1,8 +1,8 @@
-//! Tells each new session's agent what macrod is and what it can do from
+//! Tells each new session's agent what roxd is and what it can do from
 //! here. The first `session/prompt` of a session the agent created gains a
 //! leading text block describing this runtime; loaded and resumed sessions
-//! already carry it from their first turn. General Macro guidance stays in
-//! the Macro MCP server's `SelfKnowledge` tool.
+//! already carry it from their first turn. General Rox guidance stays in
+//! the Rox MCP server's `SelfKnowledge` tool.
 
 use std::collections::HashMap;
 
@@ -17,9 +17,9 @@ mod test;
 pub(crate) struct SessionFacts {
     /// The directory the agent works in.
     pub(crate) workspace: String,
-    /// Names of the MCP servers Macro forwarded to this session.
+    /// Names of the MCP servers Rox forwarded to this session.
     pub(crate) mcp_servers: Vec<String>,
-    /// Whether Macro approves the agent's tool permission requests itself.
+    /// Whether Rox approves the agent's tool permission requests itself.
     pub(crate) permission_bypass: bool,
 }
 
@@ -118,11 +118,11 @@ fn session_facts(params: &Value) -> SessionFacts {
 /// The runtime section, listing only what this session actually has.
 pub(crate) fn render(facts: &SessionFacts) -> String {
     let mut lines = vec![
-        "<macrod-runtime>".to_owned(),
+        "<roxd-runtime>".to_owned(),
         format!(
-            "You are running through macrod {}, the Macro agent daemon on the operator's own {} machine. \
-             Macro users reach you from Macro (channels, documents, agent sessions); each prompt arrives \
-             through macrod, and your replies stream back to Macro.",
+            "You are running through roxd {}, the Rox agent daemon on the operator's own {} machine. \
+             Rox users reach you from Rox (channels, documents, agent sessions); each prompt arrives \
+             through roxd, and your replies stream back to Rox.",
             env!("CARGO_PKG_VERSION"),
             std::env::consts::OS,
         ),
@@ -135,18 +135,18 @@ pub(crate) fn render(facts: &SessionFacts) -> String {
     }
     if !facts.mcp_servers.is_empty() {
         lines.push(format!(
-            "- MCP servers forwarded from Macro: {}. Use them to read and act in the Macro workspace; \
-             for questions about Macro itself, call its SelfKnowledge tool.",
+            "- MCP servers forwarded from Rox: {}. Use them to read and act in the Rox workspace; \
+             for questions about Rox itself, call its SelfKnowledge tool.",
             facts.mcp_servers.join(", ")
         ));
     }
     if facts.permission_bypass {
         lines.push(
-            "- Permission bypass: Macro approves your tool permission requests automatically; \
+            "- Permission bypass: Rox approves your tool permission requests automatically; \
              no one is asked before you run commands or edit files."
                 .to_owned(),
         );
     }
-    lines.push("</macrod-runtime>".to_owned());
+    lines.push("</roxd-runtime>".to_owned());
     lines.join("\n")
 }

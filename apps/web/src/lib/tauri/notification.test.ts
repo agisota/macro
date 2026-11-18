@@ -192,7 +192,7 @@ describe('desktop notification delivery', () => {
       MacOSNotificationUpdateRequiredError
     );
     await expect(delivery).rejects.toMatchObject({
-      message: 'Update Macro to receive desktop notifications.',
+      message: 'Update Rox to receive desktop notifications.',
       cause: missingCommand,
     });
     expect(mocks.sendNotification).not.toHaveBeenCalled();
@@ -207,7 +207,7 @@ describe('desktop notification delivery', () => {
     const adapter = createTauriNotificationInterface(vi.fn());
 
     await expect(adapter.showNotification(notification)).rejects.toThrow(
-      'Update Macro to receive desktop notifications.'
+      'Update Rox to receive desktop notifications.'
     );
     expect(mocks.isPermissionGranted).toHaveBeenCalledOnce();
     expect(mocks.sendNotification).not.toHaveBeenCalled();
@@ -413,7 +413,7 @@ describe('desktop notification delivery', () => {
         MacOSNotificationUpdateRequiredError
       );
       await expect(delivery).rejects.toMatchObject({
-        message: 'Update Macro to receive desktop notifications.',
+        message: 'Update Rox to receive desktop notifications.',
         cause: missingCommand,
       });
       expect(mocks.sendNotification).not.toHaveBeenCalled();

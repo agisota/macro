@@ -40,9 +40,9 @@ fn expected_welcome() -> String {
         concat!(
             "Hey {new_user},\n",
             "\n",
-            "Welcome to Macro, we're excited for you to try it out.\n",
+            "Welcome to Rox, we're excited for you to try it out.\n",
             "\n",
-            "This is your own personal support Channel, with <m-user-mention>{{\"userId\":\"macro|jacob@macro.com\",\"email\":\"jacob@macro.com\"}}</m-user-mention> (ceo) and <m-user-mention>{{\"userId\":\"macro|teo@macro.com\",\"email\":\"teo@macro.com\"}}</m-user-mention> (cto) and me (julia).\n",
+            "This is your own personal support Channel, with <m-user-mention>{{\"userId\":\"macro|jacob@rox.one\",\"email\":\"jacob@rox.one\"}}</m-user-mention> (ceo) and <m-user-mention>{{\"userId\":\"macro|teo@rox.one\",\"email\":\"teo@rox.one\"}}</m-user-mention> (cto) and me (julia).\n",
             "\n",
             "If you have any feedback or find any bugs let us know here.",
         ),
@@ -69,7 +69,7 @@ async fn posts_the_welcome_message() {
     };
 
     assert_eq!(welcome.channel_id, channel_id);
-    assert_eq!(welcome.actor.as_user(), Some(&user_id("julia@macro.com")));
+    assert_eq!(welcome.actor.as_user(), Some(&user_id("julia@rox.one")));
     assert_eq!(welcome.request.content, expected_welcome());
     assert_eq!(
         welcome.request.mentions,

@@ -153,7 +153,7 @@
             }
           },
           "503": {
-            "description": "Transient provider failure, or the Macro call could not be created",
+            "description": "Transient provider failure, or the Rox call could not be created",
             "content": {
               "application/json": {
                 "schema": {
@@ -349,7 +349,7 @@
             }
           },
           "503": {
-            "description": "Transient provider failure, or the Macro call could not be created",
+            "description": "Transient provider failure, or the Rox call could not be created",
             "content": {
               "application/json": {
                 "schema": {
@@ -965,7 +965,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Existing Macro team; omit for personal bookings.",
+            "description": "Existing Rox team; omit for personal bookings.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1159,7 +1159,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Existing Macro team; omit for the caller's personal booking links.",
+            "description": "Existing Rox team; omit for the caller's personal booking links.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1206,7 +1206,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Existing Macro team; omit for personal links.",
+            "description": "Existing Rox team; omit for personal links.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1247,7 +1247,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Existing Macro team; omit for the caller's personal booking links.",
+            "description": "Existing Rox team; omit for the caller's personal booking links.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1307,7 +1307,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Existing Macro team; omit for the caller's personal booking links.",
+            "description": "Existing Rox team; omit for the caller's personal booking links.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1360,7 +1360,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Existing Macro team; omit for the caller's personal booking links.",
+            "description": "Existing Rox team; omit for the caller's personal booking links.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1395,7 +1395,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Existing Macro team; omit for the caller's personal booking links.",
+            "description": "Existing Rox team; omit for the caller's personal booking links.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1797,7 +1797,7 @@
           },
           "googleMeet": {
             "type": "boolean",
-            "description": "Generate a Google Meet conference. Mutually exclusive with a Macro call."
+            "description": "Generate a Google Meet conference. Mutually exclusive with a Rox call."
           },
           "horizonDays": {
             "type": "integer",
@@ -1810,7 +1810,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Current Macro user identities selected as hosts."
+            "description": "Current Rox user identities selected as hosts."
           },
           "id": {
             "type": "string",
@@ -1829,7 +1829,7 @@
           },
           "macroCall": {
             "type": "boolean",
-            "description": "Generate a Macro call and attach its join link when someone books.\nMutually exclusive with Google Meet. Omitted on links saved before\nMacro calls were a booking option, which keep their previous conference."
+            "description": "Generate a Rox call and attach its join link when someone books.\nMutually exclusive with Google Meet. Omitted on links saved before\nMacro calls were a booking option, which keep their previous conference."
           },
           "mode": {
             "$ref": "#/components/schemas/SchedulingMode",
@@ -2015,7 +2015,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Current Macro user identities selected as hosts."
+            "description": "Current Rox user identities selected as hosts."
           },
           "intervalMinutes": {
             "type": "integer",
@@ -2029,7 +2029,7 @@
           },
           "macroCall": {
             "type": "boolean",
-            "description": "Attach a Macro call when someone books. A join link is created for that\nbooking and written onto the calendar invitation. Mutually exclusive\nwith `googleMeet`. Set it when the user wants a Macro call; omit or false when\nthe link should use Google Meet or no video. False is omitted so drafts\nsaved before this field still round-trip unchanged."
+            "description": "Attach a Rox call when someone books. A join link is created for that\nbooking and written onto the calendar invitation. Mutually exclusive\nwith `googleMeet`. Set it when the user wants a Rox call; omit or false when\nthe link should use Google Meet or no video. False is omitted so drafts\nsaved before this field still round-trip unchanged."
           },
           "mode": {
             "$ref": "#/components/schemas/SchedulingMode",
@@ -2443,7 +2443,7 @@
       },
       "CalendarEvent": {
         "type": "object",
-        "description": "A stable, first-class Macro calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy.",
+        "description": "A stable, first-class Rox calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy.",
         "required": [
           "id",
           "ownerId",
@@ -2523,7 +2523,7 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "Macro entity identifier."
+            "description": "Rox entity identifier."
           },
           "isReadOnly": {
             "type": "boolean",
@@ -2547,7 +2547,7 @@
           },
           "ownerId": {
             "type": "string",
-            "description": "Macro user who owns this event entity."
+            "description": "Rox user who owns this event entity."
           },
           "recurrenceLines": {
             "type": "array",
@@ -2722,7 +2722,7 @@
           },
           "requesterId": {
             "type": "string",
-            "description": "Macro user asking to join."
+            "description": "Rox user asking to join."
           },
           "status": {
             "$ref": "#/components/schemas/CalendarJoinRequestStatus",
@@ -2969,7 +2969,7 @@
           },
           "macroCall": {
             "type": "boolean",
-            "description": "Mint a Macro call and write its join link into the description and\nlocation before creating the event, so the invitation carries it.\nCannot be combined with `conference`."
+            "description": "Mint a Rox call and write its join link into the description and\nlocation before creating the event, so the invitation carries it.\nCannot be combined with `conference`."
           },
           "outOfOffice": {
             "oneOf": [
@@ -3660,7 +3660,7 @@
           },
           "macroCall": {
             "type": "boolean",
-            "description": "Switch the event to a Macro call in this write: mint one, write its\njoin link into the description and location, and detach any provider\nconference. An event already holding a Macro call keeps it. Cannot be\ncombined with `conference`."
+            "description": "Switch the event to a Rox call in this write: mint one, write its\njoin link into the description and location, and detach any provider\nconference. An event already holding a Rox call keeps it. Cannot be\ncombined with `conference`."
           },
           "outOfOffice": {
             "oneOf": [
@@ -3830,7 +3830,7 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "Persisted Macro calendar identifier."
+            "description": "Persisted Rox calendar identifier."
           },
           "isPrimary": {
             "type": "boolean",
@@ -3863,7 +3863,7 @@
   "tags": [
     {
       "name": "calendar_events",
-      "description": "Macro Calendar Service"
+      "description": "Rox Calendar Service"
     },
     {
       "name": "scheduling",

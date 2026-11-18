@@ -27,7 +27,7 @@ const SENT_NOTES: i64 = 100;
 /// Characters of each sent message read.
 const SENT_NOTE_CHARS: i32 = 2_000;
 
-/// Focus storage on the Macro database.
+/// Focus storage on the Rox database.
 #[derive(Clone)]
 pub struct FocusPgRepository(pub PgPool);
 

@@ -825,7 +825,7 @@ async fn configure_agent_translates_scoped_selections() {
 
     let response = ConfigureAgent {
         bot_id: Uuid::new_v4(),
-        harness: Some(AgentHarnessOption::Macrod),
+        harness: Some(AgentHarnessOption::Roxd),
         harness_id: Some(harness_id),
         channel_ids: Some(vec![channel_id]),
         mcp_servers: Some(vec![AgentMcpServerSummary {
@@ -848,7 +848,7 @@ async fn configure_agent_translates_scoped_selections() {
     assert_eq!(
         patch.harness,
         Some(AgentHarnessSelection {
-            harness: "macrod".to_string(),
+            harness: "roxd".to_string(),
             harness_id: Some(HarnessId::new_from_uuid(harness_id)),
         })
     );

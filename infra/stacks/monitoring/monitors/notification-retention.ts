@@ -183,7 +183,7 @@ export const notificationRetentionDashboard = new datadog.Dashboard(
       },
       {
         timeseriesDefinition: {
-          title: 'MacroDB CPU during rollout',
+          title: 'RoxDB CPU during rollout',
           requests: [
             {
               q: 'max:aws.rds.cpuutilization{name:macro-db-dev OR name:macro-db-prod} by {name}',

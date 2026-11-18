@@ -77,7 +77,7 @@ impl McpCredentials for &SpyInner {
         destination: &McpDestination,
     ) -> Result<McpResolution, EgressError> {
         let McpDestination::Connected(slug) = destination else {
-            unreachable!("the decorator answers Macro's own destination itself");
+            unreachable!("the decorator answers Rox's own destination itself");
         };
         self.asked.lock().expect("lock").push(slug.to_string());
         Err(EgressError::UnknownServer(slug.clone()))
@@ -85,7 +85,7 @@ impl McpCredentials for &SpyInner {
 }
 
 fn macro_url() -> Url {
-    Url::parse("https://mcp.macro.com/mcp").expect("url")
+    Url::parse("https://mcp.rox.one/mcp").expect("url")
 }
 
 #[tokio::test]
@@ -104,13 +104,13 @@ async fn answers_macros_own_destination_with_a_minted_token() {
         .await
         .expect("resolved")
     else {
-        panic!("Macro's own server is always connected");
+        panic!("Rox's own server is always connected");
     };
 
-    assert_eq!(call.url().as_str(), "https://mcp.macro.com/mcp");
+    assert_eq!(call.url().as_str(), "https://mcp.rox.one/mcp");
     assert!(
         inner.asked.lock().expect("lock").is_empty(),
-        "Macro's own destination must never consult the owner's rows"
+        "Rox's own destination must never consult the owner's rows"
     );
 }
 
@@ -202,7 +202,7 @@ async fn every_other_slug_delegates_to_the_inner_resolver() {
     assert_eq!(tokens.minted.load(Ordering::SeqCst), 0);
 }
 
-/// A deployed environment pointing Macro's own MCP server at cleartext is
+/// A deployed environment pointing Rox's own MCP server at cleartext is
 /// misconfigured; it must fail at boot, not at the first tool call.
 #[tokio::test]
 async fn refuses_a_cleartext_url_unless_local_dev_permits_it() {
@@ -226,7 +226,7 @@ async fn refuses_a_cleartext_url_unless_local_dev_permits_it() {
         .await
         .expect("resolved")
     else {
-        panic!("Macro's own server is always connected");
+        panic!("Rox's own server is always connected");
     };
     assert_eq!(call.url().as_str(), "http://mcp-service:8080/mcp");
 }

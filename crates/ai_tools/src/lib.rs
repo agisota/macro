@@ -143,7 +143,7 @@ pub fn database_read_only_tools() -> AiToolSet {
 
 pub struct ToolSetWithPrompt {
     pub toolset: Arc<AiToolSet>,
-    /// The prompt with how each area of Macro works inline, generated from the
+    /// The prompt with how each area of Rox works inline, generated from the
     /// SDK's `@agent` guidance.
     pub prompt: Box<dyn std::fmt::Display + Send + Sync>,
     /// The prompt for turns that route SDK entities, whose selected entities
@@ -219,7 +219,7 @@ pub enum AiHost {
     /// frontend can render (scheduled agents, memory generation): composer
     /// cards finish deferred user tools there, after the turn.
     Chat,
-    /// Macro's in-process agent serving an agent session: the same toolset
+    /// Rox's in-process agent serving an agent session: the same toolset
     /// as [`AiHost::Chat`], but its user tools are reviewed in the turn - the
     /// agent loop's finisher puts the call to the user over ACP and the tool
     /// returns the outcome - so the prompt describes a review card the agent
@@ -275,7 +275,7 @@ pub fn tools_for(host: AiHost) -> ToolSetWithPrompt {
     tools_for_inner(host, false)
 }
 
-/// Direct tools retained when an agent can use the full Macro SDK through code.
+/// Direct tools retained when an agent can use the full Rox SDK through code.
 /// Filtering happens before discovery and prompt construction, so lazy loading
 /// cannot reintroduce the hidden SDK methods as direct tools.
 pub fn tools_for_agent_code_mode() -> ToolSetWithPrompt {
@@ -312,7 +312,7 @@ fn tools_for_inner(host: AiHost, code_mode_direct: bool) -> ToolSetWithPrompt {
     let toolset = toolset
         .add_subtoolset::<ToolImportToolContext>(import_toolset())
         .add_subtoolset::<ToolCodingAgentToolContext>(coding_agent_toolset());
-    // Only Macro's own agents connect servers for the user.
+    // Only Rox's own agents connect servers for the user.
     let toolset = match host {
         AiHost::Chat | AiHost::AgentSession => {
             toolset.add_subtoolset::<ToolMcpServerToolContext>(mcp_server_toolset::<

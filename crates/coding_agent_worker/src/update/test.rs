@@ -5,7 +5,7 @@ fn only_release_builds_update() {
     assert!(updates_enabled(Some("v2026.10.28.1"), true, None));
     assert!(!updates_enabled(None, true, None));
     assert!(!updates_enabled(
-        Some("wolf/macrod-self-update"),
+        Some("wolf/roxd-self-update"),
         true,
         None
     ));

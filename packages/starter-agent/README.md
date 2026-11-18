@@ -1,6 +1,6 @@
 # starter-agent
 
-A new agent, ready to become someone's: an agent with its own Macro account
+A new agent, ready to become someone's: an agent with its own Rox account
 that talks with you in chat, joins calls with its voice, shares its screen,
 keeps its own memory, and can change its own code.
 
@@ -17,30 +17,30 @@ what it is told becomes part of every later run.
 
 ## How one is made
 
-Inviting an agent teammate in Macro makes its account, buys it a computer and
-creates this repository for it on Macro's agent git server, rendered from
-`packages/starter-agent` in the Macro monorepo: `agent.json` names its owner
+Inviting an agent teammate in Rox makes its account, buys it a computer and
+creates this repository for it on Rox's agent git server, rendered from
+`packages/starter-agent` in the Rox monorepo: `agent.json` names its owner
 (the admin who invited it) and itself. The computer's image clones the
 repository, provides `@macro-inc/muppet`, `@macro-inc/sdk`, Claude Code and
 the programs the capabilities use, and runs `bin/agent run` as a system
 service.
 
-Once it is running, it DMs you in Macro. Answer it: that conversation is how
+Once it is running, it DMs you in Rox. Answer it: that conversation is how
 it learns its name, its purpose and how to talk. It writes what you tell it
 to `state/memory/identity/identity.md`.
 
 ## What it can do
 
-| Area        | What                                                                    | Needs, beyond its Macro key         |
+| Area        | What                                                                    | Needs, beyond its Rox key           |
 | ----------- | ----------------------------------------------------------------------- | ----------------------------------- |
-| `chat`      | Read and post in Macro channels, threads and DMs; answer when spoken to | nothing                             |
+| `chat`      | Read and post in Rox channels, threads and DMs; answer when spoken to   | nothing                             |
 | `identity`  | Know who it is, from what its owner told it                             | nothing                             |
 | `later`     | Hand itself longer tasks to do in a run of their own                    | nothing                             |
 | `people`    | Remember the people it talks with, in its private state                 | nothing                             |
 | `heartbeat` | Schedules, its own clock, and changing its own code (`commit`, `land`)  | nothing                             |
 | `tools`     | Its credentials, by name                                                | nothing                             |
 | `secrets`   | The team's vault: search, copy a field or TOTP code to the clipboard, create and update, request access; never a value | the `enable-agent-vault` flag on the team; `xclip` and `timeout` on the computer |
-| `calls`     | Join, place and leave Macro calls with a voice; post in a call's chat   | nothing (speech is Macro's gateway) |
+| `calls`     | Join, place and leave Rox calls with a voice; post in a call's chat     | nothing (speech is Rox's gateway)   |
 | `browser`   | Its own browser on its screen: open, read, click, type, paste a vault secret into a login form, screenshot | `chromium` on the computer, `DISPLAY` |
 
 An area whose credentials are missing stays quiet: nothing fails, and the
@@ -50,11 +50,11 @@ lists them.
 ## Credentials
 
 A hosted agent's credentials are its enrollment's `agent.env` (`KEY=value`
-lines, given as a systemd credential at `MUPPET_CREDENTIALS_FILE`): its Macro
-key and where Macro is (`MACRO_GATEWAY`, the `OVERRIDE_*` service URLs and
+lines, given as a systemd credential at `MUPPET_CREDENTIALS_FILE`): its Rox
+key and where Rox is (`MACRO_GATEWAY`, the `OVERRIDE_*` service URLs and
 `MACRO_SPEECH_URL`, the speech gateway a call's relay opens `…/stt` and
 `…/tts` under),
-its repository's, and, in Macro-credits mode, `ANTHROPIC_BASE_URL`,
+its repository's, and, in Rox-credits mode, `ANTHROPIC_BASE_URL`,
 `ANTHROPIC_AUTH_TOKEN` and `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, the
 only ones Claude Code is given. They are read once, only read, used by name
 and never printed; the agent can't add one (its owner adds it to the
@@ -68,7 +68,7 @@ them.
 
 Scripts the agent writes, and Claude Code itself, never hold a credential:
 each script runs in a process of its own, with a cleared environment, and
-reaches Macro through a loopback relay in the agent's process, which adds
+reaches Rox through a loopback relay in the agent's process, which adds
 the key. There `listCredentials` still lists the names; reading a value
 fails.
 
@@ -86,7 +86,7 @@ One process, `bin/agent run`, under the computer's agent service, which sets
 every wake gets (e.g. computer use), `MUPPET_MCP_SERVERS_JSON`. None has a
 default: a missing or invalid one exits 78, which the service retries (and
 rolls back only when the code changed since the last good boot). It runs Claude Code as the `claude` on PATH. It builds
-the behavior in `behavior/`, shows the agent online in Macro, and waits on its
+the behavior in `behavior/`, shows the agent online in Rox, and waits on its
 event sources. A handler decides cheaply what each event needs, and wakes the
 agent (Claude Code, with `AGENT.md` and who it is as its system prompt) only
 when it is needed.
@@ -119,11 +119,11 @@ the same messages.
 
     index.ts, cli.ts, bin/agent    build the behavior; run the agent, or call any function
     AGENT.md                       the charter: every run's system prompt
-    agent.json                     who it is in Macro, who owns it, the name it commits under
+    agent.json                     who it is in Rox, who owns it, the name it commits under
     secrets.enc.json, .sops.yaml   credentials, encrypted with SOPS (age)
     behavior/
       index.ts                     the whole behavior, composed from the areas
-      context/                     the one place IO happens: disk, clock, shell, credentials, Macro
+      context/                     the one place IO happens: disk, clock, shell, credentials, Rox
       agent/                       the agent as Claude Code, its limits per event, its guards
       events/sources/<area>.ts     where events come from
       events/handlers/<area>.ts    what happens when one fires
@@ -155,7 +155,7 @@ agent's service.
 | `MACRO_SETUP_TRACEPARENT` | no | The computer's setup trace (W3C `traceparent`): the agent's start (`agent.start`) joins it. |
 
 `agent.env` holds `MACRO_API_KEY`, `MACRO_GATEWAY`, the `OVERRIDE_*` service
-addresses, `MACRO_REPO_URL` and `MACRO_REPO_TOKEN`, and, in Macro-credits
+addresses, `MACRO_REPO_URL` and `MACRO_REPO_TOKEN`, and, in Rox-credits
 mode, `ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN` and
 `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`, which only Claude Code gets.
 Without them, Claude Code uses the computer's Claude login (harnessd).

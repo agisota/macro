@@ -11,14 +11,14 @@ fn target_request_maps_all_supported_harnesses() {
     .unwrap();
     assert_eq!(in_memory.harness, ModelHarness::InMemory);
 
-    let macrod_id = Uuid::new_v4();
-    let macrod = LoadAgentModels::try_from(LoadAgentModelsRequest {
-        harness: ModelHarnessDto::Macrod,
-        harness_id: Some(macrod_id),
+    let roxd_id = Uuid::new_v4();
+    let roxd = LoadAgentModels::try_from(LoadAgentModelsRequest {
+        harness: ModelHarnessDto::Roxd,
+        harness_id: Some(roxd_id),
     })
     .unwrap();
-    assert_eq!(macrod.harness, ModelHarness::Macrod);
-    assert_eq!(macrod.harness_id.unwrap().as_uuid(), macrod_id);
+    assert_eq!(roxd.harness, ModelHarness::Roxd);
+    assert_eq!(roxd.harness_id.unwrap().as_uuid(), roxd_id);
 }
 
 #[test]

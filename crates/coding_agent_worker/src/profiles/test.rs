@@ -45,10 +45,10 @@ fn a_folder_without_a_config_is_left_alone() {
     let home = tempfile::tempdir().expect("home");
     let folder = tempfile::tempdir().expect("folder");
 
-    let adopted = adopt_folder_config(folder.path(), &MacrodHome::at(home.path())).expect("adopt");
+    let adopted = adopt_folder_config(folder.path(), &RoxdHome::at(home.path())).expect("adopt");
 
     assert_eq!(adopted, None);
-    assert!(!home.path().join("macrod.toml").exists());
+    assert!(!home.path().join("roxd.toml").exists());
 }
 
 #[test]
@@ -57,37 +57,37 @@ fn a_folder_config_becomes_the_default_when_there_is_none() {
     let workspace = tempfile::tempdir().expect("workspace");
     let folder = workspace.path().join("project");
     std::fs::create_dir(&folder).expect("folder");
-    std::fs::write(folder.join("macrod.toml"), PAIRED_CONFIG).expect("folder config");
+    std::fs::write(folder.join("roxd.toml"), PAIRED_CONFIG).expect("folder config");
 
-    let adopted = adopt_folder_config(&folder, &MacrodHome::at(home.path()))
+    let adopted = adopt_folder_config(&folder, &RoxdHome::at(home.path()))
         .expect("adopt")
         .expect("moved");
 
     assert_eq!(
         adopted,
         AdoptedFolderConfig {
-            from: folder.join("macrod.toml"),
+            from: folder.join("roxd.toml"),
             selection: ConfigSelection {
-                path: home.path().join("macrod.toml"),
+                path: home.path().join("roxd.toml"),
                 profile: None,
             },
         }
     );
     assert_eq!(
-        std::fs::read_to_string(home.path().join("macrod.toml")).expect("moved config"),
+        std::fs::read_to_string(home.path().join("roxd.toml")).expect("moved config"),
         PAIRED_CONFIG
     );
-    assert!(!folder.join("macrod.toml").exists());
-    assert!(!folder.join("macrod.toml.lock").exists());
+    assert!(!folder.join("roxd.toml").exists());
+    assert!(!folder.join("roxd.toml.lock").exists());
     assert!(
         adopted
             .announcement()
-            .ends_with("and is serving it; from now on run `macrod` from any folder")
+            .ends_with("and is serving it; from now on run `roxd` from any folder")
     );
     #[cfg(unix)]
     {
         use std::os::unix::fs::PermissionsExt as _;
-        let mode = std::fs::metadata(home.path().join("macrod.toml"))
+        let mode = std::fs::metadata(home.path().join("roxd.toml"))
             .expect("metadata")
             .permissions()
             .mode();
@@ -98,13 +98,13 @@ fn a_folder_config_becomes_the_default_when_there_is_none() {
 #[test]
 fn a_folder_config_becomes_a_profile_named_after_the_folder_when_a_default_exists() {
     let home = tempfile::tempdir().expect("home");
-    std::fs::write(home.path().join("macrod.toml"), UNPAIRED_CONFIG).expect("default config");
+    std::fs::write(home.path().join("roxd.toml"), UNPAIRED_CONFIG).expect("default config");
     let workspace = tempfile::tempdir().expect("workspace");
     let folder = workspace.path().join("My Project");
     std::fs::create_dir(&folder).expect("folder");
-    std::fs::write(folder.join("macrod.toml"), PAIRED_CONFIG).expect("folder config");
+    std::fs::write(folder.join("roxd.toml"), PAIRED_CONFIG).expect("folder config");
 
-    let adopted = adopt_folder_config(&folder, &MacrodHome::at(home.path()))
+    let adopted = adopt_folder_config(&folder, &RoxdHome::at(home.path()))
         .expect("adopt")
         .expect("moved");
 
@@ -121,21 +121,21 @@ fn a_folder_config_becomes_a_profile_named_after_the_folder_when_a_default_exist
         PAIRED_CONFIG
     );
     assert_eq!(
-        std::fs::read_to_string(home.path().join("macrod.toml")).expect("default config"),
+        std::fs::read_to_string(home.path().join("roxd.toml")).expect("default config"),
         UNPAIRED_CONFIG
     );
-    assert!(!folder.join("macrod.toml").exists());
+    assert!(!folder.join("roxd.toml").exists());
     assert!(
         adopted
             .announcement()
-            .ends_with("from now on run `macrod --profile my-project` from any folder")
+            .ends_with("from now on run `roxd --profile my-project` from any folder")
     );
 }
 
 #[test]
 fn a_folder_profile_whose_name_is_taken_gets_the_next_number() {
     let home = tempfile::tempdir().expect("home");
-    std::fs::write(home.path().join("macrod.toml"), UNPAIRED_CONFIG).expect("default config");
+    std::fs::write(home.path().join("roxd.toml"), UNPAIRED_CONFIG).expect("default config");
     std::fs::create_dir(home.path().join("profiles")).expect("profiles");
     std::fs::write(
         home.path().join("profiles").join("project.toml"),
@@ -145,9 +145,9 @@ fn a_folder_profile_whose_name_is_taken_gets_the_next_number() {
     let workspace = tempfile::tempdir().expect("workspace");
     let folder = workspace.path().join("project");
     std::fs::create_dir(&folder).expect("folder");
-    std::fs::write(folder.join("macrod.toml"), PAIRED_CONFIG).expect("folder config");
+    std::fs::write(folder.join("roxd.toml"), PAIRED_CONFIG).expect("folder config");
 
-    let adopted = adopt_folder_config(&folder, &MacrodHome::at(home.path()))
+    let adopted = adopt_folder_config(&folder, &RoxdHome::at(home.path()))
         .expect("adopt")
         .expect("moved");
 
@@ -163,15 +163,15 @@ fn a_folder_profile_whose_name_is_taken_gets_the_next_number() {
 }
 
 #[test]
-fn a_folder_config_becomes_a_profile_while_another_macrod_holds_the_missing_default() {
+fn a_folder_config_becomes_a_profile_while_another_roxd_holds_the_missing_default() {
     let home = tempfile::tempdir().expect("home");
-    let _quickstarting = config::lock(&home.path().join("macrod.toml")).expect("default lock");
+    let _quickstarting = config::lock(&home.path().join("roxd.toml")).expect("default lock");
     let workspace = tempfile::tempdir().expect("workspace");
     let folder = workspace.path().join("project");
     std::fs::create_dir(&folder).expect("folder");
-    std::fs::write(folder.join("macrod.toml"), PAIRED_CONFIG).expect("folder config");
+    std::fs::write(folder.join("roxd.toml"), PAIRED_CONFIG).expect("folder config");
 
-    let adopted = adopt_folder_config(&folder, &MacrodHome::at(home.path()))
+    let adopted = adopt_folder_config(&folder, &RoxdHome::at(home.path()))
         .expect("adopt")
         .expect("moved");
 
@@ -179,45 +179,45 @@ fn a_folder_config_becomes_a_profile_while_another_macrod_holds_the_missing_defa
         adopted.selection.path,
         home.path().join("profiles").join("project.toml")
     );
-    assert!(!home.path().join("macrod.toml").exists());
+    assert!(!home.path().join("roxd.toml").exists());
 }
 
 #[test]
 fn the_default_config_itself_is_not_a_folder_config() {
     let home = tempfile::tempdir().expect("home");
-    std::fs::write(home.path().join("macrod.toml"), PAIRED_CONFIG).expect("default config");
+    std::fs::write(home.path().join("roxd.toml"), PAIRED_CONFIG).expect("default config");
 
-    let adopted = adopt_folder_config(home.path(), &MacrodHome::at(home.path())).expect("adopt");
+    let adopted = adopt_folder_config(home.path(), &RoxdHome::at(home.path())).expect("adopt");
 
     assert_eq!(adopted, None);
     assert_eq!(
-        std::fs::read_to_string(home.path().join("macrod.toml")).expect("default config"),
+        std::fs::read_to_string(home.path().join("roxd.toml")).expect("default config"),
         PAIRED_CONFIG
     );
 }
 
 #[test]
-fn a_folder_config_another_macrod_serves_stays_put() {
+fn a_folder_config_another_roxd_serves_stays_put() {
     let home = tempfile::tempdir().expect("home");
     let folder = tempfile::tempdir().expect("folder");
-    std::fs::write(folder.path().join("macrod.toml"), PAIRED_CONFIG).expect("folder config");
-    let _served = config::lock(&folder.path().join("macrod.toml")).expect("folder lock");
+    std::fs::write(folder.path().join("roxd.toml"), PAIRED_CONFIG).expect("folder config");
+    let _served = config::lock(&folder.path().join("roxd.toml")).expect("folder lock");
 
-    let error = adopt_folder_config(folder.path(), &MacrodHome::at(home.path()))
+    let error = adopt_folder_config(folder.path(), &RoxdHome::at(home.path()))
         .expect_err("a served folder config is not moved");
 
     assert!(matches!(error, AdoptError::Served { .. }));
-    assert!(folder.path().join("macrod.toml").exists());
-    assert!(!home.path().join("macrod.toml").exists());
+    assert!(folder.path().join("roxd.toml").exists());
+    assert!(!home.path().join("roxd.toml").exists());
 }
 
 #[test]
 fn a_second_runtime_is_offered_the_host_name_numbered_from_two() {
     let home = tempfile::tempdir().expect("home");
-    let macrod_home = MacrodHome::at(home.path());
+    let roxd_home = RoxdHome::at(home.path());
 
     assert_eq!(
-        macrod_home.suggested_profile("Build-Box.local").to_string(),
+        roxd_home.suggested_profile("Build-Box.local").to_string(),
         "build-box-local-2"
     );
 
@@ -228,15 +228,15 @@ fn a_second_runtime_is_offered_the_host_name_numbered_from_two() {
     )
     .expect("taken profile");
     assert_eq!(
-        macrod_home.suggested_profile("Build-Box.local").to_string(),
+        roxd_home.suggested_profile("Build-Box.local").to_string(),
         "build-box-local-3"
     );
-    assert_eq!(macrod_home.suggested_profile("???").to_string(), "macrod-2");
+    assert_eq!(roxd_home.suggested_profile("???").to_string(), "roxd-2");
 }
 
 #[test]
 fn a_profile_pairs_under_the_machine_name_and_the_profile() {
-    let home = MacrodHome::at(Path::new("/home/someone/.macrod"));
+    let home = RoxdHome::at(Path::new("/home/someone/.roxd"));
 
     assert_eq!(
         ConfigSelection::default_in(&home).pairing_name("build-box"),
@@ -249,13 +249,13 @@ fn a_profile_pairs_under_the_machine_name_and_the_profile() {
     );
     assert_eq!(
         ConfigSelection::profile_in(&home, "work".parse().expect("profile name")).path,
-        PathBuf::from("/home/someone/.macrod/profiles/work.toml")
+        PathBuf::from("/home/someone/.roxd/profiles/work.toml")
     );
 }
 
 #[test]
 fn the_profile_prompt_takes_the_suggestion_a_valid_name_or_gives_up_at_end_of_input() {
-    let served = Path::new("/home/someone/.macrod/macrod.toml");
+    let served = Path::new("/home/someone/.roxd/roxd.toml");
     let suggestion: ProfileName = "build-box-2".parse().expect("profile name");
 
     let mut output = Vec::new();
@@ -264,7 +264,7 @@ fn the_profile_prompt_takes_the_suggestion_a_valid_name_or_gives_up_at_end_of_in
     assert_eq!(chosen, Some(suggestion.clone()));
     assert_eq!(
         String::from_utf8(output).expect("utf-8"),
-        "Another macrod is already running with /home/someone/.macrod/macrod.toml.\n\
+        "Another roxd is already running with /home/someone/.roxd/roxd.toml.\n\
          Start another machine on this computer under a new profile (Ctrl-C to cancel).\n\
          Profile name [build-box-2]: "
     );
@@ -292,7 +292,7 @@ fn the_profile_prompt_takes_the_suggestion_a_valid_name_or_gives_up_at_end_of_in
 #[test]
 fn profiles_lists_the_default_and_each_profile_with_pairing_and_whether_it_runs() {
     let home = tempfile::tempdir().expect("home");
-    std::fs::write(home.path().join("macrod.toml"), PAIRED_CONFIG).expect("default config");
+    std::fs::write(home.path().join("roxd.toml"), PAIRED_CONFIG).expect("default config");
     let profiles = home.path().join("profiles");
     std::fs::create_dir(&profiles).expect("profiles");
     std::fs::write(profiles.join("work.toml"), UNPAIRED_CONFIG).expect("work profile");
@@ -301,14 +301,14 @@ fn profiles_lists_the_default_and_each_profile_with_pairing_and_whether_it_runs(
     std::fs::write(profiles.join("notes.txt"), "").expect("stray file");
     let _running = config::lock(&profiles.join("work.toml")).expect("work lock");
 
-    let listed = list(&MacrodHome::at(home.path())).expect("list");
+    let listed = list(&RoxdHome::at(home.path())).expect("list");
 
     assert_eq!(
         listed,
         vec![
             ListedConfig {
                 profile: None,
-                path: home.path().join("macrod.toml"),
+                path: home.path().join("roxd.toml"),
                 pairing: Pairing::Paired(HarnessId::TEST_A),
                 serving: Serving::Stopped,
             },
@@ -333,13 +333,13 @@ fn profiles_renders_an_aligned_table() {
     let rendered = render(&[
         ListedConfig {
             profile: None,
-            path: PathBuf::from("/home/someone/.macrod/macrod.toml"),
+            path: PathBuf::from("/home/someone/.roxd/roxd.toml"),
             pairing: Pairing::NoConfig,
             serving: Serving::Stopped,
         },
         ListedConfig {
             profile: Some("work".parse().expect("profile name")),
-            path: PathBuf::from("/home/someone/.macrod/profiles/work.toml"),
+            path: PathBuf::from("/home/someone/.roxd/profiles/work.toml"),
             pairing: Pairing::Paired(HarnessId::TEST_A),
             serving: Serving::Running,
         },
@@ -347,8 +347,8 @@ fn profiles_renders_an_aligned_table() {
 
     assert_eq!(
         rendered,
-        "PROFILE    MACROD   HARNESS                               CONFIG\n\
-         (default)  stopped  no config                             /home/someone/.macrod/macrod.toml\n\
-         work       running  00000000-0000-0000-0000-0000004a125a  /home/someone/.macrod/profiles/work.toml\n"
+        "PROFILE    ROXD     HARNESS                               CONFIG\n\
+         (default)  stopped  no config                             /home/someone/.roxd/roxd.toml\n\
+         work       running  00000000-0000-0000-0000-0000004a125a  /home/someone/.roxd/profiles/work.toml\n"
     );
 }

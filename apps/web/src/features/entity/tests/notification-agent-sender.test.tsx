@@ -11,7 +11,7 @@ import type { Notification } from '../types/notification';
 
 vi.mock('@core/user', () => ({
   getDisplayNameParts: (id: string) => ({
-    firstName: id === 'macro|peter@macro.com' ? 'Peter' : 'Ana',
+    firstName: id === 'macro|peter@rox.one' ? 'Peter' : 'Ana',
     fullName: '',
   }),
   tryMacroId: (id: string) => id,
@@ -64,19 +64,19 @@ describe('getNotificationAgentSender', () => {
     expect(
       getNotificationAgentSender(
         commentNotification({
-          senderDisplayName: 'Macro',
+          senderDisplayName: 'Rox',
           senderProfilePictureUrl: 'https://cdn/macro.png',
         })
       )
-    ).toEqual({ name: 'Macro', avatarUrl: 'https://cdn/macro.png' });
+    ).toEqual({ name: 'Rox', avatarUrl: 'https://cdn/macro.png' });
   });
 
   it('ignores human senders and notifications without an agent name', () => {
     expect(
       getNotificationAgentSender(
         commentNotification({
-          senderId: 'macro|peter@macro.com',
-          senderDisplayName: 'Macro',
+          senderId: 'macro|peter@rox.one',
+          senderDisplayName: 'Rox',
         })
       )
     ).toBeUndefined();
@@ -88,7 +88,7 @@ describe('getNotificationAgentSender', () => {
       getNotificationAgentSender(
         commentNotification({
           tag: 'channel_mention',
-          senderDisplayName: 'Macro',
+          senderDisplayName: 'Rox',
         })
       )
     ).toBeUndefined();
@@ -97,11 +97,11 @@ describe('getNotificationAgentSender', () => {
   it('deduplicates agents across a stack by name', () => {
     expect(
       getUniqueAgentSenders([
-        commentNotification({ senderDisplayName: 'Macro' }),
-        commentNotification({ senderDisplayName: 'Macro' }),
+        commentNotification({ senderDisplayName: 'Rox' }),
+        commentNotification({ senderDisplayName: 'Rox' }),
         commentNotification({ senderDisplayName: 'Helper' }),
       ]).map((agent) => agent.name)
-    ).toEqual(['Macro', 'Helper']);
+    ).toEqual(['Rox', 'Helper']);
   });
 });
 
@@ -109,31 +109,31 @@ describe('agent-authored comment notifications', () => {
   it('names the agent before the action', () => {
     const { container } = render(() => (
       <NotificationDescription
-        notification={commentNotification({ senderDisplayName: 'Macro' })}
+        notification={commentNotification({ senderDisplayName: 'Rox' })}
       />
     ));
-    expect(container.textContent).toBe('Macro replied to a comment');
+    expect(container.textContent).toBe('Rox replied to a comment');
   });
 
   it('shows the agent icon in the sender slot', () => {
     const { getByTestId } = render(() => (
       <NotificationSenderIcon
         notification={commentNotification({
-          senderDisplayName: 'Macro',
+          senderDisplayName: 'Rox',
           senderProfilePictureUrl: 'https://cdn/macro.png',
         })}
       />
     ));
     const icon = getByTestId('bot-icon');
-    expect(icon.textContent).toBe('Macro');
+    expect(icon.textContent).toBe('Rox');
     expect(icon.dataset.avatar).toBe('https://cdn/macro.png');
   });
 
   it('counts the agent as a sender in a stack', () => {
     const stack = stackOf([
-      commentNotification({ senderId: 'macro|peter@macro.com' }),
-      commentNotification({ senderDisplayName: 'Macro' }),
-      commentNotification({ senderDisplayName: 'Macro' }),
+      commentNotification({ senderId: 'macro|peter@rox.one' }),
+      commentNotification({ senderDisplayName: 'Rox' }),
+      commentNotification({ senderDisplayName: 'Rox' }),
     ]);
     const { container, getAllByTestId } = render(() => (
       <>
@@ -141,7 +141,7 @@ describe('agent-authored comment notifications', () => {
         <NotificationSenderIcon stack={stack} />
       </>
     ));
-    expect(container.textContent).toContain('3 replies from Peter and Macro');
+    expect(container.textContent).toContain('3 replies from Peter and Rox');
     expect(getAllByTestId('user-icon')).toHaveLength(1);
     expect(getAllByTestId('bot-icon')).toHaveLength(1);
   });
@@ -150,11 +150,11 @@ describe('agent-authored comment notifications', () => {
     const { container } = render(() => (
       <NotificationDescription
         stack={stackOf([
-          commentNotification({ senderDisplayName: 'Macro' }),
-          commentNotification({ senderDisplayName: 'Macro' }),
+          commentNotification({ senderDisplayName: 'Rox' }),
+          commentNotification({ senderDisplayName: 'Rox' }),
         ])}
       />
     ));
-    expect(container.textContent).toBe('Macro: 2 replies');
+    expect(container.textContent).toBe('Rox: 2 replies');
   });
 });

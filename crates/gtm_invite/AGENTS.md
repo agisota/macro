@@ -2,7 +2,7 @@
 
 ## What it is
 
-Belongs to growth/GTM tooling: personal, time-limited signup links Macro
+Belongs to growth/GTM tooling: personal, time-limited signup links Rox
 staff create for prospects. Redeeming one attributes the new account to the
 staff member and carries a promotional first month of Premium through
 checkout.
@@ -13,7 +13,7 @@ checkout.
 - `src/domain/ports.rs` + `src/domain/models.rs`: the repo port and link model.
 - `src/inbound/axum_router/`: one file per route (`create_link`, `get_offer`,
   `redeem_link`, `resolve_link`, `revoke_link`, `list_links`); `gtm_macro_staff.rs`
-  gates routes to Macro staff.
+  gates routes to Rox staff.
 - `src/outbound/pg_gtm_invite_repo.rs`: the Postgres adapter.
 
 ## Scope

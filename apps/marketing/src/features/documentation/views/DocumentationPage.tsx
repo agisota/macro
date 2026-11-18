@@ -54,8 +54,8 @@ export default function DocumentationPage() {
   });
   createRenderEffect(() =>
     setPageSeo({
-      title: `${page()?.title ?? 'Guide not found'} · Macro`,
-      description: page()?.description ?? 'Browse the Macro documentation.',
+      title: `${page()?.title ?? 'Guide not found'} · Rox`,
+      description: page()?.description ?? 'Browse the Rox documentation.',
       path: page()?.href ?? location.pathname,
       noindex: !page(),
     })

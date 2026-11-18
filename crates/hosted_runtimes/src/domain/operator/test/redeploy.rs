@@ -163,7 +163,7 @@ async fn shutdown_before_a_pass_does_not_lease() {
 }
 
 #[tokio::test]
-async fn timer_delivery_consults_fleet_before_applying_missing_macrod() {
+async fn timer_delivery_consults_fleet_before_applying_missing_roxd() {
     for observed in [
         Some(InstanceStatus::Running),
         Some(InstanceStatus::Stopped),
@@ -192,7 +192,7 @@ async fn timer_delivery_consults_fleet_before_applying_missing_macrod() {
             .unwrap()
             .push(crate::domain::ports::DueTimer {
                 computer_id: id,
-                kind: TimerKind::MacrodMissing,
+                kind: TimerKind::RoxdMissing,
                 fire_at: now(),
             });
         operator.fire_timers().await.unwrap();
@@ -221,7 +221,7 @@ async fn timer_delivery_consults_fleet_before_applying_missing_macrod() {
         );
         assert!(operator.repo.events.lock().unwrap().contains(&(
             id,
-            Event::MacrodMissing {
+            Event::RoxdMissing {
                 instance_status: observed
             }
         )));
@@ -283,15 +283,15 @@ async fn daemon_restart_effect_is_ignored_after_reconnection() {
             .get_mut(&id)
             .unwrap()
             .state
-            .macrod_misses = crate::domain::lifecycle::MAX_MACROD_MISSES;
+            .roxd_misses = crate::domain::lifecycle::MAX_ROXD_MISSES;
         if reconnected {
-            operator.macrod_connected(HARNESS).await.unwrap();
+            operator.roxd_connected(HARNESS).await.unwrap();
         }
         operator.fleet.calls.lock().unwrap().clear();
         operator.repo.effects.lock().unwrap().push(PendingEffect {
             id: 30,
             computer_id: id,
-            effect: Effect::RestartMacrod { host: HOST },
+            effect: Effect::RestartRoxd { host: HOST },
             attempts: 0,
         });
         operator.run_fleet_effects().await.unwrap();
@@ -300,7 +300,7 @@ async fn daemon_restart_effect_is_ignored_after_reconnection() {
             if reconnected {
                 vec![]
             } else {
-                vec![format!("restart_macrod {id}")]
+                vec![format!("restart_roxd {id}")]
             }
         );
     }

@@ -64,7 +64,7 @@ async fn a_disappearing_group_is_kept_in_macro_and_macro_sends_disappear(pool: P
     assert_eq!(
         world.timeline(&binding, &gone).await,
         ["this vanishes on phones"],
-        "Macro keeps it"
+        "Rox keeps it"
     );
 
     let send = world.send(ALICE, &binding, "kept in Macro").await;
@@ -82,7 +82,7 @@ async fn a_disappearing_group_is_kept_in_macro_and_macro_sends_disappear(pool: P
         .wait_send(send, &["accepted", "sent", "delivered", "read"])
         .await;
 
-    // Turning it off reaches Macro live, and sends stop carrying a timer.
+    // Turning it off reaches Rox live, and sends stop carrying a timer.
     world.whatsapp.change_group(
         &world.group,
         Some(&world.customer),

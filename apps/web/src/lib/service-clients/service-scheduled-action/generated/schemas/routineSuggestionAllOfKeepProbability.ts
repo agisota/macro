@@ -8,6 +8,6 @@
 
 /**
  * AI's estimate, from 0 to 1, that the person keeps it on; absent on
-Macro's templates.
+Rox's templates.
  */
 export type RoutineSuggestionAllOfKeepProbability = number | null;

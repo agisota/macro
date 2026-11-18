@@ -820,7 +820,7 @@ export class Sdk extends HeyApiClient {
     }
 
     /**
-     * Forget the computer's Claude credential and return it to Macro credits.
+     * Forget the computer's Claude credential and return it to Rox credits.
      */
     public claudeSignOut<ThrowOnError extends boolean = false>(options: Options<ClaudeSignOutData, ThrowOnError>): RequestResult<ClaudeSignOutResponses, ClaudeSignOutErrors, ThrowOnError> {
         return (options.client ?? this.client).post<ClaudeSignOutResponses, ClaudeSignOutErrors, ThrowOnError>({ url: '/harnesses/{harness_id}/claude-sign-out', ...options });

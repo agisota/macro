@@ -291,7 +291,7 @@ fn call_snapshot(call_id: Uuid, record: CallRecord) -> Result<CallSnapshot, Repo
     })
 }
 
-/// Everyone who joined: Macro accounts first, then guests by their own names.
+/// Everyone who joined: Rox accounts first, then guests by their own names.
 pub(super) fn call_participants(record: &CallRecord) -> Vec<ContextPerson> {
     record
         .participants

@@ -16,16 +16,16 @@ export type CodingAgent = {
   description: string | undefined;
   /** Saved guidance on its repositories and specialties; empty for built-ins. */
   instructions: string;
-  /** Runtime its sessions run on, e.g. `cursor` or `macrod`. */
+  /** Runtime its sessions run on, e.g. `cursor` or `roxd`. */
   harness: string;
   /** Default model, absent when the runtime chooses. */
   model: string | undefined;
 };
 
 /**
- * Agent personas: the built-in ones Macro ships and the agents the user configures.
+ * Agent personas: the built-in ones Rox ships and the agents the user configures.
  *
- * @routing Use when the user wants to pick, read or change one of their Macro agent personas: its instructions, model, runtime, channels, apps or hosts; not any request the user asks you, the agent, to carry out.
+ * @routing Use when the user wants to pick, read or change one of their Rox agent personas: its instructions, model, runtime, channels, apps or hosts; not any request the user asks you, the agent, to carry out.
  */
 export class AgentNamespace {
   constructor(private readonly client: MacroClient) {}

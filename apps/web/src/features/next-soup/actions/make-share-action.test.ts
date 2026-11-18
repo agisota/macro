@@ -22,7 +22,7 @@ import type { EntityActionListState } from './entity-action-context';
 import { makeShareAction } from './make-share-action';
 
 const row = (type: EntityData['type'], id: string) =>
-  ({ type, id, name: id, ownerId: 'macro|me@macro.com' }) as EntityData;
+  ({ type, id, name: id, ownerId: 'macro|me@rox.one' }) as EntityData;
 
 const spec = row('document', 'spec');
 const notes = row('chat', 'notes');

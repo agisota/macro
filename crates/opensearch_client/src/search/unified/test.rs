@@ -15,7 +15,7 @@ fn author_only_channel_match_without_highlight_keeps_deep_link() {
             serde_json::json!({
                 "entity_id": channel_id, "message_id": message_id,
                 "thread_id": thread.unwrap_or(message_id), "channel_type": "private",
-                "sender_id": "macro|system@macro.com", "mentions": [],
+                "sender_id": "macro|system@rox.one", "mentions": [],
                 "imported_author": "quartzarchivebot"
             }),
         )
@@ -35,7 +35,7 @@ fn author_only_channel_match_without_highlight_keeps_deep_link() {
         };
         assert_eq!(goto.channel_message_id, message_id);
         assert_eq!(goto.thread_id, thread);
-        assert_eq!(goto.sender_id, "macro|system@macro.com");
+        assert_eq!(goto.sender_id, "macro|system@rox.one");
     }
 }
 
@@ -145,7 +145,7 @@ fn test_deserialization() -> anyhow::Result<()> {
             "_score": 27.399992,
             "_source": {
               "cc": [
-                "hutch@macro.com",
+                "hutch@rox.one",
                 "review_requested@noreply.github.com"
               ],
               "bcc": [],
@@ -163,7 +163,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "thread_id": "019a5a07-a1ed-7342-93a7-861582b59a55",
               "sent_at_millis": 1762447040000_i64,
               "sender": "notifications@github.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1762447044000_i64,
               "recipients": [
                 "macro-api@noreply.github.com"
@@ -201,10 +201,10 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1759266586,
               "sent_at_millis": 1759241406000_i64,
               "sender": "events@pulumi.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1759266586000_i64,
               "recipients": [
-                "hutch@macro.com"
+                "hutch@rox.one"
               ]
             },
             "highlight": {
@@ -224,7 +224,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1752523635,
               "updated_at_millis": 1752523635000_i64,
               "file_type": "pdf",
-              "owner_id": "macro|teo@macro.com",
+              "owner_id": "macro|teo@rox.one",
               "document_id": "013021c7-5e14-4aab-855e-01413fff85dc",
               "document_version_id": 10091,
               "entity_id": "013021c7-5e14-4aab-855e-01413fff85dc",
@@ -261,7 +261,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1761742084,
               "sent_at_millis": 1761742081000_i64,
               "sender": "noreply@github.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1761742084000_i64,
               "recipients": [
                 "will@thehutchery.com"
@@ -285,7 +285,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1752522588,
               "updated_at_millis": 1752522588000_i64,
               "file_type": "pdf",
-              "owner_id": "macro|teo@macro.com",
+              "owner_id": "macro|teo@rox.one",
               "document_id": "71ff8822-b421-4cab-b23e-f65355bf90d4",
               "document_version_id": 511386,
               "entity_id": "71ff8822-b421-4cab-b23e-f65355bf90d4",
@@ -306,7 +306,7 @@ fn test_deserialization() -> anyhow::Result<()> {
             "_score": 17.500538,
             "_source": {
               "cc": [
-                "hutch@macro.com",
+                "hutch@rox.one",
                 "review_requested@noreply.github.com"
               ],
               "bcc": [],
@@ -326,7 +326,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1761313391,
               "sent_at_millis": 1761313387000_i64,
               "sender": "notifications@github.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1761313391000_i64,
               "recipients": [
                 "macro-api@noreply.github.com"
@@ -348,7 +348,7 @@ fn test_deserialization() -> anyhow::Result<()> {
             "_score": 17.168581,
             "_source": {
               "cc": [
-                "hutch@macro.com",
+                "hutch@rox.one",
                 "review_requested@noreply.github.com"
               ],
               "bcc": [],
@@ -368,7 +368,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1761848053,
               "sent_at_millis": 1761848050000_i64,
               "sender": "notifications@github.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1761848053000_i64,
               "recipients": [
                 "macro-api@noreply.github.com"
@@ -390,7 +390,7 @@ fn test_deserialization() -> anyhow::Result<()> {
             "_score": 17.127216,
             "_source": {
               "cc": [
-                "hutch@macro.com",
+                "hutch@rox.one",
                 "comment@noreply.github.com"
               ],
               "bcc": [],
@@ -410,7 +410,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1761252711,
               "sent_at_millis": 1761252648000_i64,
               "sender": "notifications@github.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1761252711000_i64,
               "recipients": [
                 "macro-api@noreply.github.com"
@@ -430,7 +430,7 @@ fn test_deserialization() -> anyhow::Result<()> {
             "_score": 17.092716,
             "_source": {
               "cc": [
-                "hutch@macro.com",
+                "hutch@rox.one",
                 "review_requested@noreply.github.com"
               ],
               "bcc": [],
@@ -449,7 +449,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1761833465,
               "sent_at_millis": 1761833460000_i64,
               "sender": "notifications@github.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1761833465000_i64,
               "recipients": [
                 "macro-api@noreply.github.com"
@@ -471,7 +471,7 @@ fn test_deserialization() -> anyhow::Result<()> {
             "_score": 17.033447,
             "_source": {
               "cc": [
-                "hutch@macro.com",
+                "hutch@rox.one",
                 "review_requested@noreply.github.com"
               ],
               "bcc": [],
@@ -491,7 +491,7 @@ fn test_deserialization() -> anyhow::Result<()> {
               "updated_at": 1761753548,
               "sent_at_millis": 1761753544000_i64,
               "sender": "notifications@github.com",
-              "user_id": "macro|hutch@macro.com",
+              "user_id": "macro|hutch@rox.one",
               "updated_at_millis": 1761753548000_i64,
               "recipients": [
                 "macro-api@noreply.github.com"

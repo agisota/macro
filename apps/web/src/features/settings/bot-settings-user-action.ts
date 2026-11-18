@@ -21,7 +21,7 @@ type BotSettingsDestination =
 /**
  * The user card's way into Settings for an agent or bot: the agent's editor
  * when the viewer can configure it, the bot's page under Bots otherwise, and
- * the Agents list for Macro, which has no editor of its own.
+ * the Agents list for Rox, which has no editor of its own.
  */
 export function createBotSettingsUserCardAction(
   principalId: Accessor<string | undefined>

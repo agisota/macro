@@ -23,7 +23,7 @@ pub use uuid::Uuid as EventUuid;
 
 pub use domain::models::{Event, EventBrokerError, MacroEvent, MessageWrapper, TopicEvent};
 pub use macro_event_topics::{
-    MacroChannelsTopic, MacroDocumentsTopic, MacroEmailTopic, MacroExampleTopic,
+    MacroChannelsTopic, RoxDocumentsTopic, MacroEmailTopic, MacroExampleTopic,
     MacroProjectsTopic, Topic,
 };
 

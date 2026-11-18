@@ -162,7 +162,7 @@ test("ghost refusals: a call that moves the agent escalates at once, and other r
 	expect(insist(join, undefined)).toEqual({});
 });
 
-// Calls it places. They come from the ledger, not Macro's list, because wanted skips calls it created.
+// Calls it places. They come from the ledger, not Rox's list, because wanted skips calls it created.
 const placed = (id: string, over: Partial<Placed> = {}): Placed => ({
 	id,
 	channelId: `ch-${id}`,
@@ -337,7 +337,7 @@ test("joins the owner's meetings by share token", () => {
 	]);
 });
 
-// Macro holds a user in one call at a time, and a token request for a second
+// Rox holds a user in one call at a time, and a token request for a second
 // call can remove the agent from the first: so it never asks for two.
 
 test("two live DM calls: it joins one and stays for the whole minute", () => {
@@ -1106,7 +1106,7 @@ test("a blocked placed call waits, and goes stale at the TTL", () => {
 });
 
 test("a call it placed is never taken for an inbound one", () => {
-	// Macro lists it under the agent, even after it left and they stayed.
+	// Rox lists it under the agent, even after it left and they stayed.
 	const own = arbitrate(
 		base({
 			calls: [room({ channelId: "ch-a", createdBy: assistant, dm: true })],

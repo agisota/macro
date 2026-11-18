@@ -157,7 +157,7 @@ struct WrittenDocument {
     dates: Option<SourceDates>,
 }
 
-/// Records what the import asks Macro to create. `fail_at_batch` makes that
+/// Records what the import asks Rox to create. `fail_at_batch` makes that
 /// database write (counting from 0) fail, the way a crash part way would
 /// leave it.
 #[derive(Default)]
@@ -246,7 +246,7 @@ impl WorkspaceWriter for FakeWriter {
         dates: Option<SourceDates>,
     ) -> anyhow::Result<String> {
         let mut documents = self.documents.lock().unwrap();
-        // Like Macro: a document id already in use is the earlier attempt's.
+        // Like Rox: a document id already in use is the earlier attempt's.
         if !documents.iter().any(|document| document.id == id) {
             documents.push(WrittenDocument {
                 id,

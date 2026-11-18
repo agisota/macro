@@ -184,7 +184,7 @@ fn bot_authentication() -> BotAuthentication {
             agent_via: None,
             routine_id: None,
             macro_user_id: MacroUserIdStr::try_from("macro|acting@example.com".to_string())
-                .expect("valid Macro user id"),
+                .expect("valid Rox user id"),
             user_context: UserContext {
                 user_id: "macro|acting@example.com".to_string(),
                 fusion_user_id: "fusion-acting-user".to_string(),

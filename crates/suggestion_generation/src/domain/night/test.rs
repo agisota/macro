@@ -6,7 +6,7 @@ use macro_user_id::cowlike::CowLike as _;
 use super::*;
 
 fn user(n: u32) -> MacroUserIdStr<'static> {
-    MacroUserIdStr::parse_from_str(&format!("macro|night{n}@macro.com"))
+    MacroUserIdStr::parse_from_str(&format!("macro|night{n}@rox.one"))
         .unwrap()
         .into_owned()
 }

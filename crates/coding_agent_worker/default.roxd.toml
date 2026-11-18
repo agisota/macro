@@ -1,0 +1,16 @@
+# roxd configuration. Pairing adds a bearer token here; keep this file private.
+# Name, ownership, and permission bypass are set on the web at
+# Settings → Machines.
+
+# Development overrides; every key defaults to production.
+# [macro]
+# api_url = "https://gateway.rox.one/agent-harness"
+# storage_url = "https://gateway.rox.one/dss"
+# web_url = "https://rox.one/app"
+
+[harness]
+command = "hermes"
+args = ["acp"]
+
+[workspace]
+path = "."

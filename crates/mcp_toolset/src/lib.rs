@@ -1,7 +1,7 @@
 #![deny(missing_docs)]
 //! An [`ai_toolset::ToolSet`] over already-connected MCP servers.
 //!
-//! Every MCP-backed toolset in Macro needs the same three things once it has
+//! Every MCP-backed toolset in Rox needs the same three things once it has
 //! live sessions in hand: list each server's tools, expose them under
 //! provider-safe mangled names (`mcp__<server>__<tool>`), and route a call by
 //! that name back to the right peer with the tool's real name. This crate is
@@ -23,7 +23,7 @@ use rmcp::model::{ClientConfig, Implementation, ProtocolVersion};
 use rmcp::service::RunningService;
 
 /// Our MCP client publishes this name to servers on-connect.
-pub const MCP_CLIENT_NAME: &str = "Macro";
+pub const MCP_CLIENT_NAME: &str = "Rox";
 
 /// A connected MCP server session.
 pub type McpServer = RunningService<RoleClient, ClientConfig>;

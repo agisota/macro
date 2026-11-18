@@ -227,7 +227,7 @@ async fn an_owner_approval_cannot_execute_after_the_original_turn_is_superseded(
     assert!(!service.forward.was_called());
 }
 
-/// Macro's own tools write as the agent the session row is bound to. A bot
+/// Rox's own tools write as the agent the session row is bound to. A bot
 /// the agent names in its arguments never reaches the credential.
 #[tokio::test]
 async fn macro_tools_are_attributed_to_the_sessions_agent_not_one_the_caller_names() {

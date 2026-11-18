@@ -47,7 +47,7 @@ describe('childEnvironment', () => {
 describe('claudeAccess', () => {
   const relay = { url: 'http://127.0.0.1:41234', token: 'capability' };
 
-  test('in Macro-credits mode, Claude reaches the gateway through the relay, never with the real token', () => {
+  test('in Rox-credits mode, Claude reaches the gateway through the relay, never with the real token', () => {
     const access = claudeAccess(
       {
         MACRO_API_KEY: 'mak_secret',
@@ -72,7 +72,7 @@ describe('claudeAccess', () => {
 });
 
 describe('anthropicUpstream', () => {
-  test('is the gateway and its token in Macro-credits mode, and nothing otherwise', () => {
+  test('is the gateway and its token in Rox-credits mode, and nothing otherwise', () => {
     expect(
       anthropicUpstream({
         ANTHROPIC_BASE_URL: 'https://egress/brain/anthropic',

@@ -1,4 +1,4 @@
-//! Deleting a Macro user removes their WhatsApp data and leaves others' intact.
+//! Deleting a Rox user removes their WhatsApp data and leaves others' intact.
 use super::*;
 
 fn text_reply(text: &str) -> SendReply {

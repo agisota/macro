@@ -314,7 +314,7 @@ After`);
 });
 
 describe('Notion markdown to a Loro snapshot', () => {
-  it('returns the snapshot with its Macro markdown, mentions included', async () => {
+  it('returns the snapshot with its Rox markdown, mentions included', async () => {
     const result = await notionMarkdownToLoroSnapshot(
       'See <mention-page url="https://www.notion.so/3fb607323e2e80629886fc0c028d50a7">Roadmap</mention-page>',
       LINKS

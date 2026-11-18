@@ -781,7 +781,7 @@ it.each([undefined, 'Describe what you want to build'])(
         selector={<button>Model</button>}
       />
     ));
-    expect(screen.getByTestId('editor').textContent).toBe('Message Macro AI');
+    expect(screen.getByTestId('editor').textContent).toBe('Message Rox AI');
   }
 );
 

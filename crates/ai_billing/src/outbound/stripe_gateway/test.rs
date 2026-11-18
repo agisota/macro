@@ -65,7 +65,7 @@ async fn open_credit_reload_invoice_keeps_create_stable_and_updates_current_rout
             reload_id: Uuid::from_u128(1),
             payer: payer(),
             amount_cents: 2_500,
-            description: "Macro AI credits, automatic reload".to_string(),
+            description: "Rox AI credits, automatic reload".to_string(),
             scope: SubscriptionScope::Personal,
         })
         .await
@@ -250,7 +250,7 @@ async fn open_credit_reload_invoice_rejects_distinct_subscription_methods_withou
             reload_id: Uuid::from_u128(2),
             payer: payer(),
             amount_cents: 2_500,
-            description: "Macro AI credits, automatic reload".to_string(),
+            description: "Rox AI credits, automatic reload".to_string(),
             scope: SubscriptionScope::Personal,
         })
         .await
@@ -1171,7 +1171,7 @@ fn reload(scope: SubscriptionScope, reload_id: u128) -> CreditReloadRequest {
         reload_id: Uuid::from_u128(reload_id),
         payer: payer(),
         amount_cents: 2_500,
-        description: "Macro AI credits, automatic reload".to_string(),
+        description: "Rox AI credits, automatic reload".to_string(),
         scope,
     }
 }

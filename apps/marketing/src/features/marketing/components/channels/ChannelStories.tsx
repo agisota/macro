@@ -45,7 +45,7 @@ export function ChannelHero() {
       <WorkspaceDesktopDemo
         heroFrame
         view="messages"
-        label="Explore Macro Chat"
+        label="Explore Rox Chat"
         initialData={unwrap(w.data)}
         initialChannelThread="start"
         chatSplits
@@ -499,7 +499,7 @@ export function ChannelThreadDemo() {
   );
 }
 
-/** Macro creates the task; Eric brings Cursor into the same thread to investigate. */
+/** Rox creates the task; Eric brings Cursor into the same thread to investigate. */
 export function ChannelAgentDemo() {
   const [sessionOpen, setSessionOpen] = createSignal(false);
   let root!: HTMLDivElement;
@@ -524,7 +524,7 @@ export function ChannelAgentDemo() {
       id: 'follow-up-request',
       person: 'peter' as const,
       time: '9:28 AM',
-      body: '@[Macro](demo-mention:macro) make that a task for Eric',
+      body: '@[Rox](demo-mention:macro) make that a task for Eric',
     },
   ];
   w.setData('channels', (c) => c.id === 'launch', 'messages', initial);

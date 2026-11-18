@@ -12,7 +12,7 @@ mod test;
 #[derive(macro_config::MacroConfig)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub struct Config {
-    /// MacroDB URL. It must reach the database instance, not RDS Proxy: the
+    /// RoxDB URL. It must reach the database instance, not RDS Proxy: the
     /// advisory-lock connection and `LISTEN` open from it too.
     pub database_url: DatabaseUrl,
 }

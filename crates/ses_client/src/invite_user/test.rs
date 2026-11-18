@@ -12,12 +12,12 @@ fn escapes_organization_html() {
 }
 
 #[test]
-fn logo_keeps_the_png_aspect_ratio() {
+fn header_uses_the_rox_text_wordmark() {
     let result = build_user_invite_message("Acme", "prod");
     let result = result.split_whitespace().collect::<Vec<_>>().join(" ");
-    assert!(result.contains(
-        r#"src="https://static-file-service.macro.com/file/b911aba9-94a6-435c-aa16-8404739f13b0" width="54" height="36""#
-    ));
+    assert!(result.contains(r#"<a href="https://rox.one""#));
+    assert!(result.contains("<span>Rox</span>"));
+    assert!(!result.contains("b911aba9-94a6-435c-aa16-8404739f13b0"));
 }
 
 #[test]
@@ -27,7 +27,7 @@ fn preserves_organization_text_and_environment_links() {
 
         assert!(result.contains("<strong>Acme's \"Team\" – 東京</strong>"));
         assert!(result.contains(&format!(
-            "href=\"https://{prefix}macro.com/app/?login=true\""
+            "href=\"https://{prefix}rox.one/app/?login=true\""
         )));
         assert!(!result.contains("{ORG_NAME}"));
         assert!(!result.contains("{PREFIX}"));

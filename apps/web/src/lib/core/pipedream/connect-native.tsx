@@ -34,7 +34,7 @@ export function openNativePipedreamConnectUI(
   let closed = false;
   const [openFailed, setOpenFailed] = createSignal(false);
   const launch = async () => {
-    // This hosted /app page must bypass Macro's ordinary in-app link routing.
+    // This hosted /app page must bypass Rox's ordinary in-app link routing.
     const result = await ResultAsync.fromPromise(
       invoke('plugin:opener|open_url', { url: url.href }),
       () => undefined
@@ -48,7 +48,7 @@ export function openNativePipedreamConnectUI(
           <Dialog.Title>Finish connecting in your browser</Dialog.Title>
           <Dialog.Description>
             Authorize the connection in your browser, then come back here. If
-            Macro did not pick it up, choose Done and Macro will check for it.
+            Rox did not pick it up, choose Done and Rox will check for it.
           </Dialog.Description>
           <Show when={openFailed()}>
             <p role="alert">

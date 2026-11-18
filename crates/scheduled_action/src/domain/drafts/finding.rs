@@ -210,7 +210,7 @@ impl FindingPrompts {
         let ask_ai = format!("an Ask AI step ({{type: 'agent', model: '{model}', instructions}})");
         let steps = if code {
             format!(
-                "Steps run in order. Prefer a code step whenever code can do the job: acting, deciding with macro.ai.decide, and writing text with macro.ai.structuredCompletion all fit in one. {ask_ai} hands open-ended work to AI with tools; a routine has at most one, last.\n\nA code step runs with its owner's access, and Macro refuses a message from someone to themselves: a code step never messages or emails the routine's owner. When the routine's job is to tell its owner something (a reminder, a digest, news from a channel), write an Ask AI step whose instructions say what to tell them, and Macro's agent messages them.\n\nHow to write a code step:\n{CODE_STEPS}\n\nThe type of `main`'s argument:\n```ts\n{STEP_CONTEXT}```\n\n{}",
+                "Steps run in order. Prefer a code step whenever code can do the job: acting, deciding with macro.ai.decide, and writing text with macro.ai.structuredCompletion all fit in one. {ask_ai} hands open-ended work to AI with tools; a routine has at most one, last.\n\nA code step runs with its owner's access, and Rox refuses a message from someone to themselves: a code step never messages or emails the routine's owner. When the routine's job is to tell its owner something (a reminder, a digest, news from a channel), write an Ask AI step whose instructions say what to tell them, and Rox's agent messages them.\n\nHow to write a code step:\n{CODE_STEPS}\n\nThe type of `main`'s argument:\n```ts\n{STEP_CONTEXT}```\n\n{}",
                 super::catalog_examples(conditions)
             )
         } else {

@@ -38,7 +38,7 @@ export type PlotChartLayout = {
   palette: readonly string[];
 };
 
-/** Hover tips in Macro's menu surface; the pie's tip copies these values. */
+/** Hover tips in Rox's menu surface; the pie's tip copies these values. */
 export const CHART_TIP = {
   fill: 'var(--color-menu)',
   stroke: 'var(--color-edge)',

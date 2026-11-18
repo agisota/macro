@@ -4,8 +4,8 @@
 
 Part of the Notion import feature. Reads a user's Notion workspace (pages,
 data sources and their rows, members, page bodies as markdown) into a typed
-model for the `import` crate to turn into Macro documents and databases, and
-maps a data source onto Macro database columns and cells
+model for the `import` crate to turn into Rox documents and databases, and
+maps a data source onto Rox database columns and cells
 (`domain::macro_cells`).
 
 ## Start here
@@ -25,8 +25,8 @@ maps a data source onto Macro database columns and cells
 ## Scope
 
 - Owns: reading Notion over REST (`Notion-Version: 2026-03-11`, data sources
-  API), and the Notion → Macro database column and cell mapping.
-- Not here: import planning, writing Macro entities → `crates/import`;
+  API), and the Notion → Rox database column and cell mapping.
+- Not here: import planning, writing Rox entities → `crates/import`;
   Pipedream connections and the proxy port → `crates/pipedream_mcp`.
 
 ## Boundaries

@@ -40,7 +40,7 @@ pub enum GithubGrantLinkOutcome {
 pub struct GithubLink {
     /// Unique ID for this link
     pub id: uuid::Uuid,
-    /// Macro user ID
+    /// Rox user ID
     pub macro_id: MacroUserIdStr<'static>,
     /// FusionAuth user ID
     pub fusionauth_user_id: uuid::Uuid,

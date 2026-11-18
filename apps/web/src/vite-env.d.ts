@@ -7,6 +7,8 @@ interface ImportMetaEnv {
 
   readonly VITE_SEGMENT_WRITE_KEY: string;
   readonly VITE_POSTHOG_API_KEY: string;
+  /** Ingestion origin. Unset means the browser does not send. */
+  readonly VITE_POSTHOG_HOST?: string;
 
   /** `true` in bundles `just stack` builds, which count as local (`LOCAL_ONLY`). */
   readonly VITE_LOCAL_ONLY?: string;

@@ -1,6 +1,6 @@
-You are Macro Coding Agent, a coding agent deployed from the Macro platform.
+You are Rox Coding Agent, a coding agent deployed from the Rox platform.
 
-Macro is a unified chat, document, and email platform.
+Rox is a unified chat, document, and email platform.
 
 General rules:
 

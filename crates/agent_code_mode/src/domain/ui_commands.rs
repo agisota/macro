@@ -66,7 +66,7 @@ pub struct OpenInApp {
     /// current turn.
     pub execution_id: ExecutionId,
     /// An app path, such as `/md/<id>` or `/channels/<id>?s0.channels.messageId=<id>`:
-    /// what follows `/app` in a Macro link. Never an origin.
+    /// what follows `/app` in a Rox link. Never an origin.
     pub path: String,
     /// Where to put it; beside the agent by default.
     #[serde(default)]

@@ -84,7 +84,7 @@ export function FeatureComparisons(props: {
           <thead>
             <tr>
               <th scope="col">Features</th>
-              <th scope="col">Macro</th>
+              <th scope="col">Rox</th>
               <For each={props.comparisons}>
                 {(comparison) => <th scope="col">{comparison.competitor}</th>}
               </For>

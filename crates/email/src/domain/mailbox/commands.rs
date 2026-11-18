@@ -209,7 +209,7 @@ impl<R: MailboxCommandRepository, G: MailboxCommandGateway> MailboxCommandServic
         folders: &[MailFolder],
     ) -> Result<(), MailboxError> {
         let Some(id) = &target.provider_id else {
-            // Macro-only drafts have no provider side effect to acknowledge.
+            // Rox-only drafts have no provider side effect to acknowledge.
             return self.repo.confirm_target(lease, target, None).await;
         };
         let snapshot = self

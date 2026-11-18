@@ -1,6 +1,6 @@
 //! Starting a computer's Claude sign-in before anyone opens it, so the link
 //! is ready the moment the guided setup asks for it. harnessd hands the
-//! waiting URL to the first Start; choosing Macro credits signs out, which
+//! waiting URL to the first Start; choosing Rox credits signs out, which
 //! closes it.
 
 use std::sync::Arc;
@@ -21,7 +21,7 @@ mod test;
 ///
 /// While nobody chose yet (setup unfinished) and nothing is signed in, or
 /// once the computer's own credential has expired. After the team chose
-/// Macro credits at setup, never: no one will use it. A sign-in already
+/// Rox credits at setup, never: no one will use it. A sign-in already
 /// waiting needs nothing.
 pub(crate) fn wants_sign_in(status: &Response, setup_completed: bool, now: DateTime<Utc>) -> bool {
     match status {

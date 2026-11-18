@@ -6,7 +6,7 @@ use super::*;
 
 const TEAM: &str = "0195d6b1-7a8f-7c3e-9a51-2a2b3c4d5e6f";
 
-/// Historical prices Macro still bills subscribers at.
+/// Historical prices Rox still bills subscribers at.
 const MACRO_WEB_PRICE: &str = "price_1PnRu9JaD7zvQeOBbExpFxPX";
 const PROFESSIONAL_PRICE: &str = "price_1KnR08JaD7zvQeOB7S30pQ0C";
 /// A price neither sold nor on the legacy list.

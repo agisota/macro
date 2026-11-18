@@ -72,7 +72,7 @@ describe('describeInboxRow', () => {
     expect(action({ kind: 'agent', name: 'Builder' })).toBe(
       'Builder assigned you a task'
     );
-    expect(action({ kind: 'macro' })).toBe('Macro assigned you a task');
+    expect(action({ kind: 'macro' })).toBe('Rox assigned you a task');
   });
 
   it('keeps the sender a notification names itself, such as a GitHub login', () => {
@@ -481,17 +481,17 @@ describe('describeInboxCard', () => {
           tag: 'agent_session_settled',
           content: {
             sessionName: 'Build the tracker',
-            botName: 'Macro',
+            botName: 'Rox',
             excerpt: `Update ${id}`,
           },
         },
       }) as unknown as UnifiedNotification;
     const row: NotificationInboxRow = {
       ...stack('agent', [settled('2'), settled('1')]),
-      actor: { kind: 'agent', name: 'Macro' },
+      actor: { kind: 'agent', name: 'Rox' },
     };
     expect(describeInboxCard(row, people)).toEqual({
-      who: 'Macro finished',
+      who: 'Rox finished',
       what: 'Build the tracker',
       body: 'Update 2',
     });

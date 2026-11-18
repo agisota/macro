@@ -1,6 +1,6 @@
 //! `Deploy Website` — builds the public site (`apps/marketing`) and publishes
 //! it through the `website-infra` pulumi stack (`infra/stacks/website`), which
-//! also owns the macro.com CloudFront distribution that fronts `/app`.
+//! also owns the rox.one CloudFront distribution that fronts `/app`.
 //! Generated into `deploy_website.yml`.
 //!
 //! Push to `main` (path-gated) auto-deploys `dev`; prod deploys come through
@@ -122,6 +122,7 @@ fn build_deploy() -> Job {
         .add_step(steps::setup_nix())
         // The build prerenders every page and checks homepage hydration in Chromium.
         .add_step(steps::setup_reqs_web("Setup", true))
+        .add_step(check())
         .add_step(build())
         .add_step(install_infra_dependencies())
         .add_step(configure_aws_credentials())
@@ -150,6 +151,17 @@ fn verify_lfs_videos() -> Step<Run> {
         .working_directory(xtask_paths::repo_dir!("apps/marketing"))
 }
 
+/// `bun run build` only proves the site compiles. The marketing suite and the
+/// type-check are what catch a broken rename or a stale copy string, so they run
+/// before the deploy spends four minutes building and publishing.
+fn check() -> Step<Run> {
+    Step::new("Type-check and test")
+        // Same env scrubbing as the build: the dev shell's glibc-linked libs
+        // break Bun's subprocesses.
+        .run("env -u LD_LIBRARY_PATH -u BASH_ENV bun run type-check && env -u LD_LIBRARY_PATH -u BASH_ENV bun run test")
+        .working_directory(xtask_paths::repo_dir!("apps/marketing"))
+}
+
 fn build() -> Step<Run> {
     Step::new("Build")
         // The dev shell's Linux LD_LIBRARY_PATH makes Playwright's glibc-linked Chromium load Nix
@@ -159,11 +171,11 @@ fn build() -> Step<Run> {
         // Canonical URLs, sitemap and robots are baked in at build time.
         .add_env(Env::new(
             "VITE_APP_BASE_URL",
-            "${{ matrix.environment == 'prod' && 'https://macro.com' || 'https://dev.macro.com' }}",
+            "${{ matrix.environment == 'prod' && 'https://rox.one' || 'https://dev.rox.one' }}",
         ))
         .add_env(Env::new(
             "VITE_GOOGLE_SSO_URL",
-            "${{ matrix.environment == 'prod' && 'https://gateway.macro.com/auth/login/sso?idp_name=google_gmail' || 'https://dev-gateway.macro.com/auth/login/sso?idp_name=google_gmail' }}",
+            "${{ matrix.environment == 'prod' && 'https://gateway.rox.one/auth/login/sso?idp_name=google_gmail' || 'https://dev-gateway.rox.one/auth/login/sso?idp_name=google_gmail' }}",
         ))
 }
 

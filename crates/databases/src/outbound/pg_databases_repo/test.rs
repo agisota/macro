@@ -50,7 +50,7 @@ mod view_paging;
 #[cfg(feature = "gateway")]
 mod views;
 
-const USER: &str = "macro|databases-a@macro.com";
+const USER: &str = "macro|databases-a@rox.one";
 
 /// Row statements the repository tests drive directly; the service writes
 /// rows only through the cell store's batches.

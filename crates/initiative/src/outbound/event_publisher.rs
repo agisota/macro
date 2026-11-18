@@ -1,4 +1,4 @@
-//! Initiative event publication through Macro's shared event broker.
+//! Initiative event publication through Rox's shared event broker.
 
 use macro_event_broker::MacroEventBroker;
 use std::{future::Future, pin::Pin};

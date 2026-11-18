@@ -363,6 +363,7 @@ vi.mock('@queries/messages/typing', () => ({
   usePostTypingUpdateMutation: () => ({ mutate: vi.fn() }),
 }));
 
+import { MACRO_AGENT_NAME } from '@core/constant/macroAgent';
 import { MACRO_NEW_PRINCIPAL_ID } from '@core/constant/macroNew';
 import { codexMentionUser, cursorMentionUser } from '../../macroAi';
 import { ThreadReplyChannelInput } from '../../Thread/ThreadReplyChannelInput';
@@ -525,7 +526,7 @@ describe('Input slots', () => {
     );
   });
 
-  it('offers one Macro entry in call chat', () => {
+  it('offers one Rox entry in call chat', () => {
     render(() => (
       <ChannelInput
         input={baseInput}
@@ -538,7 +539,9 @@ describe('Input slots', () => {
     ));
     const users = editorMocks.mentionUsers?.() ?? [];
     expect(
-      users.filter((user) => user.name === 'Macro').map((user) => user.id)
+      users
+        .filter((user) => user.name === MACRO_AGENT_NAME)
+        .map((user) => user.id)
     ).toEqual([MACRO_NEW_PRINCIPAL_ID]);
     expect(users.map((user) => user.id)).toEqual(
       expect.arrayContaining(['bot|owned', 'bot|team'])
@@ -548,12 +551,14 @@ describe('Input slots', () => {
   it('offers a single Macro mention aimed at the agent bot', () => {
     render(() => <ChannelInput input={baseInput} />);
     expect(
-      editorMocks.mentionUsers?.().filter((user) => user.name === 'Macro')
+      editorMocks
+        .mentionUsers?.()
+        .filter((user) => user.name === MACRO_AGENT_NAME)
     ).toEqual([
       {
         id: MACRO_NEW_PRINCIPAL_ID,
-        name: 'Macro',
-        email: 'Macro',
+        name: MACRO_AGENT_NAME,
+        email: MACRO_AGENT_NAME,
       },
     ]);
   });

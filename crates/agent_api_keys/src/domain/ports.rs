@@ -63,7 +63,7 @@ pub trait KeyPlans: Send + Sync + 'static {
 /// A key counts only while the agent is an in-memory agent whose model's
 /// provider matches the key, its owner's plan includes keys, and the session
 /// is its owner's: the person's own for a personal agent, a current member's
-/// for a team agent. Otherwise the agent runs on Macro usage as if it had
+/// for a team agent. Otherwise the agent runs on Rox usage as if it had
 /// none, so nobody else spends a person's or a team's key.
 #[async_trait::async_trait]
 pub trait AgentKeys: Send + Sync + 'static {
@@ -82,7 +82,7 @@ pub trait AgentKeys: Send + Sync + 'static {
     ) -> Result<Option<UsableAgentKey>>;
 }
 
-/// A deployment where no agent has a key: every turn runs on Macro usage.
+/// A deployment where no agent has a key: every turn runs on Rox usage.
 #[derive(Debug, Clone, Copy, Default)]
 pub struct NoAgentKeys;
 

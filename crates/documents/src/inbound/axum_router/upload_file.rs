@@ -1,7 +1,7 @@
 //! Handler for `POST /documents/upload`: create a document from the request's
 //! raw bytes, through the same upload use case as the UploadFile tool.
 //!
-//! Callers that can only reach Macro hosts, such as code-mode programs, cannot
+//! Callers that can only reach Rox hosts, such as code-mode programs, cannot
 //! PUT to the presigned object-storage URL `POST /documents` returns, so this
 //! route takes the bytes itself and uploads them server side.
 

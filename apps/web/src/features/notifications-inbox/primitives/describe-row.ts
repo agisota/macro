@@ -36,7 +36,7 @@ export type InboxCardDisplay = {
 type Names = Pick<NotificationsInboxContext, 'userName' | 'senderName'>;
 
 /**
- * The name a row shows for who it is from. A row from no one in Macro names
+ * The name a row shows for who it is from. A row from no one in Rox names
  * the sender its notification carries; an unknown kind of actor names no one.
  */
 function actorName(
@@ -58,7 +58,7 @@ function actorName(
       { kind: 'agent' },
       (actor) => actor.name ?? getNotificationSenderFallbackName(latest)
     )
-    .with({ kind: 'macro' }, () => 'Macro')
+    .with({ kind: 'macro' }, () => 'Rox')
     .with({ kind: 'other' }, () => undefined)
     .exhaustive();
 }
@@ -213,7 +213,7 @@ function describeNotification(
       subject: metadata.content.itemName,
     }))
     .with({ tag: 'ai_response' }, () => ({
-      action: 'Macro responded',
+      action: 'Rox responded',
       subject: content ?? entityName,
     }))
     .with(

@@ -100,7 +100,7 @@ async fn computer_route_access(
         Box::pin(async move {
             Ok(Some(Harness {
                 id,
-                kind: "macrod".to_owned(),
+                kind: "roxd".to_owned(),
                 name: "Computer".to_owned(),
                 owner: HarnessOwner::User {
                     user_id: "macro|owner@example.com".to_owned(),
@@ -559,7 +559,7 @@ async fn claude_sign_in_follows_the_computer_teams_admins_not_its_buyer() {
         Box::pin(async move {
             Ok(Some(Harness {
                 id,
-                kind: "macrod".to_owned(),
+                kind: "roxd".to_owned(),
                 name: "Computer".to_owned(),
                 // "owner" bought it, then left the team.
                 owner: HarnessOwner::User {

@@ -5,7 +5,7 @@
 ECS service for `services/whatsapp_session_service`: personal WhatsApp linked
 devices, one outbound websocket per account, leased between replicas with
 Postgres advisory locks. Nothing calls it: no load balancer, no gateway route,
-no service URL. Egress is 443 (WhatsApp, AWS APIs, Datadog) and 5432 (MacroDB).
+no service URL. Egress is 443 (WhatsApp, AWS APIs, Datadog) and 5432 (RoxDB).
 
 ## Start here
 
@@ -16,7 +16,7 @@ no service URL. Egress is 443 (WhatsApp, AWS APIs, Datadog) and 5432 (MacroDB).
 ## Config (Doppler project `whatsapp-session-service`, `dev` and `prd`)
 
 The only key is `DATABASE_URL` = `${global_databases.<config>.DATABASE_URL}`,
-set with the Doppler CLI. That URL is the MacroDB **instance** endpoint
+set with the Doppler CLI. That URL is the RoxDB **instance** endpoint
 (`macro-db-<stack>`), which the advisory-lock connection needs; never the RDS
 Proxy (`macrodb-proxy-<stack>`).
 
@@ -34,7 +34,7 @@ From `infra/`: `bun run check`, `bunx biome check stacks/whatsapp-session-servic
 - Session advisory locks and `LISTEN` live on one Postgres session. RDS Proxy
   multiplexes, pins, and closes idle client connections (`IdleClientTimeout`);
   losing that session silently drops every lock the replica holds. Keep the
-  lock connection outside transactions too: MacroDB sets
+  lock connection outside transactions too: RoxDB sets
   `idle_in_transaction_session_timeout` to 5 minutes.
 - Budget connections: each replica holds its pool plus the direct lock
   connection; during a deploy (`maximumPercent: 200`) double the replicas.
@@ -50,7 +50,7 @@ From `infra/`: `bun run check`, `bunx biome check stacks/whatsapp-session-servic
   task count is `desiredCount` in `service.ts`: 2 in prod, so a deploy hands
   leases to a running replica instead of dropping them, and 1 in dev. Prod
   deploys with each published release (`release-production.yml` →
-  `deploy_all_services.yml`, after the MacroDB migrations); dev on merge.
+  `deploy_all_services.yml`, after the RoxDB migrations); dev on merge.
 - The KMS key only answers calls whose encryption context has
   `macro:purpose = whatsapp-session` (`crates/whatsapp_store_pg/src/kms.rs`).
   Changing that string strands every stored session.

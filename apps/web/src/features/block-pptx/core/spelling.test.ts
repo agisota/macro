@@ -136,7 +136,7 @@ describe('tokens', () => {
 
   it('skips web addresses, e-mail addresses, and file names', () => {
     const words = tokenize(
-      'See https://macro.com/x, www.example.org, ann@example.com, deck.pptx now'
+      'See https://rox.one/x, www.example.org, ann@example.com, deck.pptx now'
     ).map((t) => t.word);
     expect(words).toEqual(['See', 'now']);
   });

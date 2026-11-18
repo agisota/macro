@@ -149,7 +149,7 @@ impl CalendarLabels {
 /// and has not declined it: invited to it, or organizing it with guests on a
 /// copy they can change. This is what keeps a meeting busy on a calendar the
 /// user turned off for availability. An event with no one else on it is an
-/// entry on that calendar, though Macro lists the inbox as its organizer on a
+/// entry on that calendar, though Rox lists the inbox as its organizer on a
 /// primary calendar, and Microsoft Graph names the mailbox owner as organizer
 /// on every event of a read-only calendar, so neither counts. Nor does a
 /// snapshot, a copy of a shared event whose guest row is the calendar it was

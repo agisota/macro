@@ -25,7 +25,7 @@ import { PipelineNamespace } from './pipelines';
  * @agent
  * ## How CRM pipelines work
  *
- * A pipeline is a board of deals. Each entry tracks one CRM company or contact and has its own fields: usually Stage, Owner and Revenue, plus any the team added. "Deal", "opportunity", "lead", "the pipeline", "move Acme to Negotiation" and "who's in Demo" all refer to pipeline entries. A pipeline is not a Macro database: work with it through the CRM pipeline methods, never database queries or SQL.
+ * A pipeline is a board of deals. Each entry tracks one CRM company or contact and has its own fields: usually Stage, Owner and Revenue, plus any the team added. "Deal", "opportunity", "lead", "the pipeline", "move Acme to Negotiation" and "who's in Demo" all refer to pipeline entries. A pipeline is not a Rox database: work with it through the CRM pipeline methods, never database queries or SQL.
  *
  * Create a pipeline with its stages and fields in one `crm.pipelines.create` call. Work with entries by name through the pipeline's own methods: `find` (filters by field name and stage label, with per-stage counts and number totals such as Revenue), `addRecords`, `updateEntries` (a stage by its label, a person as `'me'`), `removeRecords`, and `edit` for fields and stage options. `importCsv` / `exportCsv` move entries through CSV, and `crm.importCompaniesCsv` loads a companies list. `crm.pipelines.entriesFor` and `searchEntries` find a company's deals across pipelines. Reach for `applyOps` and column ids only for what these cannot express.
  *

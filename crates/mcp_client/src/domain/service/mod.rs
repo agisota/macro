@@ -1,4 +1,4 @@
-/// GitHub's MCP server, authorized by the Macro GitHub account link.
+/// GitHub's MCP server, authorized by the Rox GitHub account link.
 pub mod linked_github;
 /// Write-through OAuth credential store for MCP connections.
 pub mod persisting_credential_store;

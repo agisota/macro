@@ -62,7 +62,7 @@ enum PartialGrantDisposition {
     Keep,
 }
 
-/// Google's revocation endpoint revokes the account's whole grant to Macro,
+/// Google's revocation endpoint revokes the account's whole grant to Rox,
 /// not only the token it is handed. An inbox that still works on that
 /// account's grant would lose its mail and calendar sync, so its grant is kept
 /// and only the refusal stands. An inbox whose grant already stopped yielding

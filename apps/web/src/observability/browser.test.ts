@@ -136,7 +136,7 @@ it('drops browser and extension noise from window errors but reports app errors'
   onError(
     new ErrorEvent('error', {
       message: 'boom',
-      filename: 'https://macro.com/app/app-gifhAVYj.js',
+      filename: 'https://rox.one/app/app-gifhAVYj.js',
       error: appError,
     })
   );

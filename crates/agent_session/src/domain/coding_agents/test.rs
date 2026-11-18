@@ -99,7 +99,7 @@ fn candidate(is_coding: bool, available: bool) -> CodingAgentCandidate {
             name: "Repository maintainer".into(),
             description: Some("Maintains the web app".into()),
             instructions: "Work in the product repository".into(),
-            harness: "macrod".into(),
+            harness: "roxd".into(),
             model: Some("configured-default".into()),
         },
         is_coding,

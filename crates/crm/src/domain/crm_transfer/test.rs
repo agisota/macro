@@ -340,7 +340,7 @@ async fn a_companies_export_restores_stage_and_owner_on_a_new_private_pipeline()
                 name: "Macro Customers Oct 16 2026".into(),
                 text: "Company,Domains,Stage,Owner,Revenue,Last interaction\n\
                        Acme,acme.com,Lead,,,2026-10-16\n\
-                       Beta,beta.io,Churned,jane@macro.com,,2026-10-15\n\
+                       Beta,beta.io,Churned,jane@rox.one,,2026-10-15\n\
                        Gamma,gamma.dev,,,,2026-10-14\n\
                        Gmail,gmail.com,Lead,,,2026-10-13\n"
                     .into(),
@@ -380,7 +380,7 @@ async fn a_companies_export_restores_stage_and_owner_on_a_new_private_pipeline()
         added[1].set,
         [
             ("Stage".to_owned(), FieldInput::One("Churned".into())),
-            ("Owner".to_owned(), FieldInput::One("jane@macro.com".into())),
+            ("Owner".to_owned(), FieldInput::One("jane@rox.one".into())),
         ]
     );
 }
@@ -770,7 +770,7 @@ async fn an_export_writes_people_as_emails_and_reimports() {
             ("Stage".into(), FieldValue::Labels(vec!["Lead".into()])),
             (
                 "Owner".into(),
-                FieldValue::References(vec!["macro|jane@macro.com".into()]),
+                FieldValue::References(vec!["macro|jane@rox.one".into()]),
             ),
             ("Revenue".into(), FieldValue::Number(48000.1234)),
             (
@@ -795,7 +795,7 @@ async fn an_export_writes_people_as_emails_and_reimports() {
     assert_eq!(saved[0].0, "Deals");
     assert_eq!(
         saved[0].1,
-        "Company,Domain,Stage,Owner,Revenue,Proposal,Revenue currency,Contract period\n'=Acme,acme.com,Lead,jane@macro.com,48000.1234,,EUR,2026-11-01T00:00:00Z/2026-11-30T00:00:00Z\n"
+        "Company,Domain,Stage,Owner,Revenue,Proposal,Revenue currency,Contract period\n'=Acme,acme.com,Lead,jane@rox.one,48000.1234,,EUR,2026-11-01T00:00:00Z/2026-11-30T00:00:00Z\n"
     );
     let table = parse_csv(&saved[0].1).unwrap();
     let rows = record_rows(&table, PipelineRecordType::Company).unwrap();

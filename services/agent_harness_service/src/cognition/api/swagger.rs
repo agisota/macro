@@ -67,7 +67,7 @@ use utoipa::OpenApi;
         info(
             title = "Document Cognition Service",
             version = "1.0.0",
-            terms_of_service = "https://macro.com/terms",
+            terms_of_service = "https://rox.one/terms",
             license(name = "Proprietary", identifier = "Proprietary"),
         ),
         paths(

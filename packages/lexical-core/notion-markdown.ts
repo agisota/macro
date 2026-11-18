@@ -52,7 +52,7 @@ export function notionMarkdownToSerializedEditorState(
   return editor.getEditorState().toJSON();
 }
 
-/** A new document's snapshot, and the same content as Macro markdown. */
+/** A new document's snapshot, and the same content as Rox markdown. */
 export type NotionSnapshot = {
   snapshot: Uint8Array;
   markdown: string;
@@ -60,7 +60,7 @@ export type NotionSnapshot = {
 
 /**
  * Converts Notion enhanced markdown to a Loro snapshot for a new document,
- * along with that document's Macro markdown (for mention tracking).
+ * along with that document's Rox markdown (for mention tracking).
  */
 export async function notionMarkdownToLoroSnapshot(
   markdown: string,

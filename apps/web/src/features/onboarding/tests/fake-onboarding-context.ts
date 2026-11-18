@@ -34,6 +34,7 @@ export type FakeOnboardingWorld = {
   viewer: {
     id: string;
     email: string;
+    handle?: string;
     tutorialComplete: boolean;
     licensed: boolean;
   } | null;
@@ -102,6 +103,7 @@ export function defaultFakeWorld(): FakeOnboardingWorld {
     viewer: {
       id: FAKE_VIEWER_ID,
       email: 'ada@acme.com',
+      handle: 'ada',
       tutorialComplete: false,
       licensed: false,
     },
@@ -230,7 +232,10 @@ export function createFakeOnboarding(
     !viewerSettled()
       ? { t: 'loading' }
       : world.viewer
-        ? { t: 'signed-in', viewer: { ...world.viewer } }
+        ? {
+            t: 'signed-in',
+            viewer: { ...world.viewer, handle: world.viewer.handle },
+          }
         : { t: 'signed-out' };
 
   const context: OnboardingContext = {
@@ -246,6 +251,12 @@ export function createFakeOnboarding(
         });
       return viewerState();
     },
+    claimHandle: async (handle) => {
+      call(`claimHandle:${handle}`);
+      update((draft) => {
+        if (draft.viewer) draft.viewer.handle = handle;
+      });
+    },
     createOnboardingRecord: () => () => loadable('record', () => world.record),
     createEmailAccounts: () => ({
       accounts: () => loadable('emailAccounts', () => world.emailAccounts),
@@ -259,7 +270,7 @@ export function createFakeOnboarding(
           if (!address) return;
           draft.emailAccounts.push({
             address,
-            isPrimary: draft.emailAccounts.length === 0,
+            isPrimary: false,
             ownerId: draft.viewer?.id ?? FAKE_VIEWER_ID,
           });
         })

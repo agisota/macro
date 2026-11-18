@@ -3,7 +3,7 @@
 //! Replaces the Pulumi-driven local FusionAuth configuration with a single
 //! declarative kickstart that FusionAuth applies once against an empty DB:
 //! API key, HS256 signing key, the (unlicensed) populate-JWT lambda, and the
-//! tenant and Macro application with fixed ids + a fixed client secret. Every
+//! tenant and Rox application with fixed ids + a fixed client secret. Every
 //! id/secret is fixed (see `identity`) so services and FusionAuth always agree
 //! without any API read-back or patch step. The admin user is provisioned last
 //! (after the app it registers against exists); passwordless login auto-creates
@@ -293,9 +293,9 @@ pub fn build(
             "url": format!("/api/email/template/{template_id}"),
             "body": { "emailTemplate": {
                 "name": "Passwordless Login (local)",
-                "defaultSubject": "Your Macro login code",
-                "defaultHtmlTemplate": "<p>Your Macro login code:</p><h1>${code}</h1>",
-                "defaultTextTemplate": "Your Macro login code: ${code}",
+                "defaultSubject": "Your Rox login code",
+                "defaultHtmlTemplate": "<p>Your Rox login code:</p><h1>${code}</h1>",
+                "defaultTextTemplate": "Your Rox login code: ${code}",
                 "fromEmail": identity::MAIL_FROM,
             }}
         }),
@@ -311,7 +311,7 @@ pub fn build(
             "method": "PATCH",
             "url": format!("/api/tenant/{tenant_id}"),
             "body": { "tenant": {
-                "name": "Macro Local",
+                "name": "Rox Local",
                 "issuer": identity::ISSUER,
                 // Enable the events the create/delete user webhooks consume, so
                 // FusionAuth notifies auth-service to register new users for the
@@ -334,7 +334,7 @@ pub fn build(
                     "port": 1025,
                     "security": "NONE",
                     "defaultFromEmail": identity::MAIL_FROM,
-                    "defaultFromName": "Macro Local",
+                    "defaultFromName": "Rox Local",
                     "passwordlessEmailTemplateId": template_id,
                 },
                 // Make the passwordless code a 6-digit number (matches the dev
@@ -354,7 +354,7 @@ pub fn build(
             "url": format!("/api/application/{app_id}"),
             "tenantId": tenant_id,
             "body": { "application": {
-                "name": "Macro",
+                "name": "Rox",
                 "tenantId": tenant_id,
                 // The passwordless /login endpoint issues a refresh token based
                 // on loginConfiguration.generateRefreshTokens; without it FA omits
@@ -383,7 +383,7 @@ pub fn build(
                     "refreshTokenExpirationPolicy": "SlidingWindow",
                 },
                 "lambdaConfiguration": { "accessTokenPopulateId": lambda_id },
-                // Macro logs users in with email codes; enable passwordless.
+                // Rox logs users in with email codes; enable passwordless.
                 "passwordlessConfiguration": { "enabled": true },
             }}
         }),
@@ -393,7 +393,7 @@ pub fn build(
             "url": "/api/user/registration",
             "body": {
                 "user": {
-                    "email": "admin@macro.com",
+                    "email": "admin@rox.one",
                     "password": "macroIsGreat!",
                 },
                 "registration": {
@@ -403,7 +403,7 @@ pub fn build(
             }
         }),
         // 7. Webhooks: on user.create FusionAuth calls auth-service, which
-        // registers the new user for the Macro app (so passwordless completes
+        // registers the new user for the Rox app (so passwordless completes
         // with 200). `x-internal-auth-key` must equal the services'
         // INTERNAL_API_SECRET_KEY (set to "local" in local mode).
         json!({
@@ -438,12 +438,10 @@ pub fn build(
         }),
     ];
 
-    // Google OIDC identity providers — only when a real Google client is
-    // configured (see `GoogleIdp::from_env`). Mirrors the dev instance's IdP
-    // config field-for-field (generic OIDC, NOT FusionAuth's built-in Google
-    // type: auth-service and the IdP must share the same OAuth client, and the
-    // endpoints stay per-IdP config). Appended last: `applicationConfiguration`
-    // references the application, which must already exist.
+    // Mailbox and calendar linking only, and only with a real Google client.
+    // The plain `google` login provider is not created: local sign-in is an
+    // emailed code. `applicationConfiguration` references the application,
+    // which must already exist.
     if let Some(google) = google {
         let oauth2_base = |scope: &str| {
             json!({
@@ -461,7 +459,7 @@ pub fn build(
             })
         };
         let app_config = json!({
-            identity::APPLICATION_ID: { "enabled": true, "createRegistration": true }
+            identity::APPLICATION_ID: { "enabled": true, "createRegistration": false }
         });
         requests.push(json!({
             "method": "POST",
@@ -472,20 +470,6 @@ pub fn build(
                 "type": "OpenIDReconcile",
                 "enabled": true,
                 "body": reconcile_lambda_body,
-            }}
-        }));
-        requests.push(json!({
-            "method": "POST",
-            "url": format!("/api/identity-provider/{}", identity::GOOGLE_IDP_ID),
-            "body": { "identityProvider": {
-                "type": "OpenIDConnect",
-                "name": "google",
-                "enabled": true,
-                "debug": true,
-                "buttonText": "Google",
-                "linkingStrategy": "LinkByEmail",
-                "oauth2": oauth2_base("openid profile email"),
-                "applicationConfiguration": app_config.clone(),
             }}
         }));
         requests.push(json!({

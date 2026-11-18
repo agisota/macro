@@ -100,7 +100,7 @@ pub trait BotDirectory: Send + Sync + 'static {
     ) -> impl Future<Output = Result<bool>> + Send;
 }
 
-/// A persona selected for a session started from Macro, by whoever runs it.
+/// A persona selected for a session started from Rox, by whoever runs it.
 #[derive(Debug, Clone)]
 pub enum SelectedPersona {
     /// This deployment provisions the runtime.
@@ -932,7 +932,7 @@ pub struct SessionToolDefinition {
 /// Best-effort by contract: a listing that fails, or takes too long, costs
 /// a span its tool definitions and nothing else. The one production
 /// implementation dials the same egress-proxy URLs the agent is handed, in
-/// process, so what it lists is what the agent sees - Macro's own tools and
+/// process, so what it lists is what the agent sees - Rox's own tools and
 /// the owner's connected apps alike. A harness's built-in tools (its shell,
 /// its file editor) are not on any server and are not listed; the
 /// convention does not require them.

@@ -47,7 +47,7 @@ use std::path::{Path, PathBuf};
 use std::process::ExitCode;
 use std::time::{Duration, Instant};
 
-/// The `Macro Coder` system bot, seeded by migration, which owns agent
+/// The `Rox Coder` system bot, seeded by migration, which owns agent
 /// sessions unless the caller names a different bot.
 const MACRO_CODER_BOT_ID: &str = "00000000-0000-0000-0000-00000000a9e7";
 
@@ -66,7 +66,7 @@ struct Args {
     database_url: String,
 
     /// User who owns the dedicated agent channel the session creates.
-    #[arg(long, default_value = "macro|dev@macro.com")]
+    #[arg(long, default_value = "macro|dev@rox.one")]
     owner: String,
 
     /// Bot the session runs as.
@@ -105,7 +105,7 @@ enum SeedError {
         #[source]
         source: serde_json::Error,
     },
-    /// The owner was not a valid Macro user id.
+    /// The owner was not a valid Rox user id.
     #[error("invalid owner id")]
     Owner(#[source] anyhow::Error),
     /// Postgres could not be reached.
@@ -199,7 +199,7 @@ fn parse_line(
         .transpose()
         .map_err(|_| SeedError::Frame {
             line: line_number,
-            source: serde::de::Error::custom("user_id is not a Macro user id"),
+            source: serde::de::Error::custom("user_id is not a Rox user id"),
         })?;
     Ok(AgentSessionLog {
         agent_session_id: session,

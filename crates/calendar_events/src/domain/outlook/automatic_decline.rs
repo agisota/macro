@@ -20,7 +20,7 @@ pub struct AwayOccurrence {
     pub cancelled: bool,
     /// Owner's current invitation response.
     pub response: AttendeeResponseStatus,
-    /// Explicit Macro policy, present only while the event is still out of office.
+    /// Explicit Rox policy, present only while the event is still out of office.
     pub policy: Option<AutomaticDeclinePolicy>,
 }
 /// Persisted identities are candidates only; fresh provider facts decide actions.

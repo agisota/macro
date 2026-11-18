@@ -3,8 +3,8 @@ import type { ChatProvider } from '../providers';
 import type { ChatMessage } from './chat';
 
 /**
- * A chat message in the shape the shared channel rows render. Macro users
- * show as themselves (Macro name and avatar); everyone else by their
+ * A chat message in the shape the shared channel rows render. Rox users
+ * show as themselves (Rox name and avatar); everyone else by their
  * provider name and picture.
  */
 export function chatMessageData(
@@ -30,7 +30,7 @@ export function chatMessageData(
     // Attachments are static files the view renders itself: media inline,
     // other files as chips that open them.
     attachments: [],
-    // Macro users react as themselves; anyone else by their provider name.
+    // Rox users react as themselves; anyone else by their provider name.
     reactions: message.reactions.map((reaction) => {
       const names: Record<string, string> = {};
       const users = reaction.reactors.map((reactor, index) => {

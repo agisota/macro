@@ -187,7 +187,7 @@ impl KeyedAgent {
     }
 }
 
-/// Whether `harness` is Macro's in-memory runtime, the only one that runs
+/// Whether `harness` is Rox's in-memory runtime, the only one that runs
 /// model calls on an agent's key.
 #[must_use]
 pub fn runs_in_memory(harness: &str) -> bool {

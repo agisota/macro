@@ -60,7 +60,7 @@ impl JwtValidationArgs {
         })
     }
 
-    /// Build an isolated Macro JWT verifier with fixture keys.
+    /// Build an isolated Rox JWT verifier with fixture keys.
     #[cfg(feature = "testing")]
     pub fn testing_macro_token(issuer: &'static str, public_key: &'static str) -> Self {
         Self {
@@ -189,7 +189,7 @@ struct FusionAuthAccessToken {
 }
 
 /// Checks that a token was issued by FusionAuth for this application (signature, audience and
-/// issuer) without checking expiry or the Macro claims, and returns when it was issued.
+/// issuer) without checking expiry or the Rox claims, and returns when it was issued.
 /// FusionAuth still issues an access token when the JWT populate lambda fails, just without
 /// those claims.
 pub fn validate_fusionauth_access_token_allow_expired(
@@ -470,18 +470,18 @@ CwIDAQAB
     fn test_handler_macro_access_token() -> anyhow::Result<()> {
         let jwt_validation_args = JwtValidationArgs {
             audience: Audience::new_testing("test_audience"),
-            issuer: Issuer::new_testing("test.macro.com"),
+            issuer: Issuer::new_testing("test.rox.one"),
             jwt_secret: LocalOrRemoteSecret::Local(JwtSecretKey::new_testing("super_secret_key")),
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(PUBLIC_KEY),
             ),
-            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.macro.com"),
+            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.rox.one"),
         };
 
         let token = create_test_jwt(
             "test_audience",
-            "test.macro.com",
-            "test@macro.com",
+            "test.rox.one",
+            "test@rox.one",
             "super_secret_key",
             None,
         );
@@ -502,17 +502,17 @@ CwIDAQAB
     fn test_handler_macro_api_token() -> anyhow::Result<()> {
         let jwt_validation_args = JwtValidationArgs {
             audience: Audience::new_testing("test_audience"),
-            issuer: Issuer::new_testing("test.macro.com"),
+            issuer: Issuer::new_testing("test.rox.one"),
             jwt_secret: LocalOrRemoteSecret::Local(JwtSecretKey::new_testing("super_secret_key")),
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(PUBLIC_KEY),
             ),
-            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.macro.com"),
+            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.rox.one"),
         };
 
         let token = create_test_macro_api_token_jwt(
-            "test.macro.com",
-            "macro|test@macro.com",
+            "test.rox.one",
+            "macro|test@rox.one",
             "fusionauth_user_id",
             None,
             PRIVATE_KEY,
@@ -535,7 +535,7 @@ CwIDAQAB
     fn test_validate_macro_access_token_jwt_token() -> anyhow::Result<()> {
         let jwt_validation_args = JwtValidationArgs {
             audience: Audience::new_testing("test_audience"),
-            issuer: Issuer::new_testing("test.macro.com"),
+            issuer: Issuer::new_testing("test.rox.one"),
             jwt_secret: LocalOrRemoteSecret::Local(JwtSecretKey::new_testing("super_secret_key")),
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(""),
@@ -545,8 +545,8 @@ CwIDAQAB
 
         let token = create_test_jwt(
             "test_audience",
-            "test.macro.com",
-            "test@macro.com",
+            "test.rox.one",
+            "test@rox.one",
             "super_secret_key",
             None,
         );
@@ -559,7 +559,7 @@ CwIDAQAB
             &jwt_validation_args.issuer,
         )?;
 
-        assert_eq!(result.email, "test@macro.com");
+        assert_eq!(result.email, "test@rox.one");
 
         Ok(())
     }
@@ -568,7 +568,7 @@ CwIDAQAB
     fn test_validate_macro_access_token_jwt_token_invalid_audience() -> anyhow::Result<()> {
         let jwt_validation_args = JwtValidationArgs {
             audience: Audience::new_testing("test_audience"),
-            issuer: Issuer::new_testing("test.macro.com"),
+            issuer: Issuer::new_testing("test.rox.one"),
             jwt_secret: LocalOrRemoteSecret::Local(JwtSecretKey::new_testing("super_secret_key")),
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(""),
@@ -578,8 +578,8 @@ CwIDAQAB
 
         let token = create_test_jwt(
             "bad",
-            "test.macro.com",
-            "test@macro.com",
+            "test.rox.one",
+            "test@rox.one",
             "super_secret_key",
             None,
         );
@@ -603,7 +603,7 @@ CwIDAQAB
     fn test_validate_macro_access_token_jwt_token_invalid_issuer() -> anyhow::Result<()> {
         let jwt_validation_args = JwtValidationArgs {
             audience: Audience::new_testing("test_audience"),
-            issuer: Issuer::new_testing("test.macro.com"),
+            issuer: Issuer::new_testing("test.rox.one"),
             jwt_secret: LocalOrRemoteSecret::Local(JwtSecretKey::new_testing("super_secret_key")),
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(""),
@@ -613,8 +613,8 @@ CwIDAQAB
 
         let token = create_test_jwt(
             "test_audience",
-            "bad.macro.com",
-            "test@macro.com",
+            "bad.rox.one",
+            "test@rox.one",
             "super_secret_key",
             None,
         );
@@ -638,7 +638,7 @@ CwIDAQAB
     fn test_validate_macro_access_token_jwt_token_expired() -> anyhow::Result<()> {
         let jwt_validation_args = JwtValidationArgs {
             audience: Audience::new_testing("test_audience"),
-            issuer: Issuer::new_testing("test.macro.com"),
+            issuer: Issuer::new_testing("test.rox.one"),
             jwt_secret: LocalOrRemoteSecret::Local(JwtSecretKey::new_testing("super_secret_key")),
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(""),
@@ -648,8 +648,8 @@ CwIDAQAB
 
         let token = create_test_jwt(
             "test_audience",
-            "bad.macro.com",
-            "test@macro.com",
+            "bad.rox.one",
+            "test@rox.one",
             "super_secret_key",
             Some(
                 SystemTime::now()
@@ -684,12 +684,12 @@ CwIDAQAB
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(PUBLIC_KEY),
             ),
-            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.macro.com"),
+            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.rox.one"),
         };
 
         let token = create_test_macro_api_token_jwt(
-            "test.macro.com",
-            "macro|test@macro.com",
+            "test.rox.one",
+            "macro|test@rox.one",
             "fusionauth_user_id",
             None,
             PRIVATE_KEY,
@@ -703,7 +703,7 @@ CwIDAQAB
             &jwt_validation_args.macro_api_token_issuer,
         )?;
 
-        assert_eq!(result.macro_user_id, "macro|test@macro.com");
+        assert_eq!(result.macro_user_id, "macro|test@rox.one");
 
         Ok(())
     }
@@ -717,12 +717,12 @@ CwIDAQAB
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(PUBLIC_KEY),
             ),
-            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.macro.com"),
+            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.rox.one"),
         };
 
         let token = create_test_macro_api_token_jwt(
-            "bad.macro.com",
-            "macro|test@macro.com",
+            "bad.rox.one",
+            "macro|test@rox.one",
             "fusionauth_user_id",
             None,
             PRIVATE_KEY,
@@ -752,12 +752,12 @@ CwIDAQAB
             macro_api_token_public_key: LocalOrRemoteSecret::Local(
                 MacroApiTokenPublicKey::new_testing(PUBLIC_KEY),
             ),
-            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.macro.com"),
+            macro_api_token_issuer: MacroApiTokenIssuer::new_testing("test.rox.one"),
         };
 
         let token = create_test_macro_api_token_jwt(
-            "test.macro.com",
-            "macro|test@macro.com",
+            "test.rox.one",
+            "macro|test@rox.one",
             "fusionauth_user_id",
             None,
             PRIVATE_KEY,

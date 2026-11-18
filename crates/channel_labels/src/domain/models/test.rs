@@ -15,7 +15,7 @@ fn shared_labels_accept_only_channels_owned_by_their_team() {
 
 #[test]
 fn private_labels_accept_team_channels_and_reject_direct_messages() {
-    let user_id = MacroUserIdStr::try_from("macro|labels@macro.com".to_owned()).unwrap();
+    let user_id = MacroUserIdStr::try_from("macro|labels@rox.one".to_owned()).unwrap();
     let scope = ChannelLabelsScope::User(user_id);
 
     assert!(scope.can_label_channel("team", Some(Uuid::now_v7())));
@@ -24,7 +24,7 @@ fn private_labels_accept_team_channels_and_reject_direct_messages() {
 
 #[test]
 fn personal_scope_accepts_visible_channel_types_except_dms() {
-    let user = MacroUserIdStr::try_from("macro|personal@macro.com".to_owned()).unwrap();
+    let user = MacroUserIdStr::try_from("macro|personal@rox.one".to_owned()).unwrap();
     let scope = ChannelLabelsScope::User(user);
     for channel_type in ["team", "public", "private"] {
         assert!(scope.can_label_channel(channel_type, None));

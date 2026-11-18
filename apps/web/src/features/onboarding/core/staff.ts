@@ -1,8 +1,8 @@
 import { emailDomain } from './team';
 
-const MACRO_STAFF_DOMAIN = 'macro.com';
+const MACRO_STAFF_DOMAIN = 'rox.one';
 
-/** Whether the address belongs to a Macro staff account (`@macro.com`). */
+/** Whether the address belongs to a Rox staff account (`@rox.one`). */
 export function isMacroStaffEmail(address: string | undefined): boolean {
   return emailDomain(address) === MACRO_STAFF_DOMAIN;
 }

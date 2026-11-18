@@ -264,7 +264,7 @@ test.describe('discussion', () => {
 test('phones offer no wide mode', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'Phone only');
   await openDocument(page);
-  await expect(page.getByRole('button', { name: 'Ask Macro' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ask Rox' })).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Turn on wide mode' })
   ).toHaveCount(0);

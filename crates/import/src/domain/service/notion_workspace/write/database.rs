@@ -67,7 +67,7 @@ pub(in super::super) struct PendingRelation {
 pub(in super::super) struct WrittenDatabase {
     /// The ledger row it was written for.
     pub import_id: Uuid,
-    /// The Macro database.
+    /// The Rox database.
     pub database_id: Uuid,
     /// The data source's table in it.
     pub table: Option<TableId>,

@@ -131,7 +131,7 @@ insert_local_fusionauth_variables:
 
   # Static (known values for local FusionAuth)
   patch_var JWT_SECRET_KEY "super-secret-jwt-signing-key-for-local-development-only"
-  patch_var ISSUER "local.macro.com"
+  patch_var ISSUER "local.rox.one"
   patch_var FUSIONAUTH_BASE_URL "http://fusionauth:9011"
   patch_var FUSIONAUTH_API_KEY_SECRET_KEY "$API_KEY"
   patch_var FUSIONAUTH_OAUTH_REDIRECT_URI "http://localhost:8080/oauth/redirect"

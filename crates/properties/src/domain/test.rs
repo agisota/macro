@@ -2653,13 +2653,13 @@ async fn check_notifications(test_case: NotificationTestCase) {
 async fn test_handle_task_assignee_notifications_sends_to_new_assignees_only() {
     check_notifications(NotificationTestCase {
         task_id: Uuid::from_u128(0x12345678_1234_1234_1234_123456789abc),
-        assigned_by: "macro|assigner@macro.com".to_string(),
+        assigned_by: "macro|assigner@rox.one".to_string(),
         assignees: vec![
-            MacroUserIdStr::parse_from_str("macro|user1@macro.com").unwrap(),
-            MacroUserIdStr::parse_from_str("macro|user2@macro.com").unwrap(),
-            MacroUserIdStr::parse_from_str("macro|user3@macro.com").unwrap(), // existing, should not get notification
+            MacroUserIdStr::parse_from_str("macro|user1@rox.one").unwrap(),
+            MacroUserIdStr::parse_from_str("macro|user2@rox.one").unwrap(),
+            MacroUserIdStr::parse_from_str("macro|user3@rox.one").unwrap(), // existing, should not get notification
         ],
-        existing_assignees: vec!["macro|user3@macro.com".to_string()],
+        existing_assignees: vec!["macro|user3@rox.one".to_string()],
         expected_notification_count: 2, // user1 and user2, but not user3 (existing) or assigner
         expected_recipient_ids: None,
         notification_service_available: true,
@@ -2671,14 +2671,14 @@ async fn test_handle_task_assignee_notifications_sends_to_new_assignees_only() {
 async fn test_handle_task_assignee_notifications_filters_out_assigner() {
     check_notifications(NotificationTestCase {
         task_id: Uuid::from_u128(0x12345678_1234_1234_1234_123456789abc),
-        assigned_by: "macro|assigner@macro.com".to_string(),
+        assigned_by: "macro|assigner@rox.one".to_string(),
         assignees: vec![
-            MacroUserIdStr::parse_from_str("macro|user1@macro.com").unwrap(),
-            MacroUserIdStr::parse_from_str("macro|assigner@macro.com").unwrap(),
+            MacroUserIdStr::parse_from_str("macro|user1@rox.one").unwrap(),
+            MacroUserIdStr::parse_from_str("macro|assigner@rox.one").unwrap(),
         ],
         existing_assignees: vec![],
         expected_notification_count: 1, // only user1, not assigner
-        expected_recipient_ids: Some(vec!["macro|user1@macro.com".to_string()]),
+        expected_recipient_ids: Some(vec!["macro|user1@rox.one".to_string()]),
         notification_service_available: true,
     })
     .await;
@@ -2688,9 +2688,9 @@ async fn test_handle_task_assignee_notifications_filters_out_assigner() {
 async fn test_handle_task_assignee_notifications_no_new_assignees() {
     check_notifications(NotificationTestCase {
         task_id: Uuid::from_u128(0x12345678_1234_1234_1234_123456789abc),
-        assigned_by: "macro|assigner@macro.com".to_string(),
-        assignees: vec![MacroUserIdStr::parse_from_str("macro|user1@macro.com").unwrap()],
-        existing_assignees: vec!["macro|user1@macro.com".to_string()],
+        assigned_by: "macro|assigner@rox.one".to_string(),
+        assignees: vec![MacroUserIdStr::parse_from_str("macro|user1@rox.one").unwrap()],
+        existing_assignees: vec!["macro|user1@rox.one".to_string()],
         expected_notification_count: 0, // no new assignees
         expected_recipient_ids: None,
         notification_service_available: true,
@@ -2702,8 +2702,8 @@ async fn test_handle_task_assignee_notifications_no_new_assignees() {
 async fn test_handle_task_assignee_notifications_no_service() {
     check_notifications(NotificationTestCase {
         task_id: Uuid::from_u128(0x12345678_1234_1234_1234_123456789abc),
-        assigned_by: "macro|assigner@macro.com".to_string(),
-        assignees: vec![MacroUserIdStr::parse_from_str("macro|user1@macro.com").unwrap()],
+        assigned_by: "macro|assigner@rox.one".to_string(),
+        assignees: vec![MacroUserIdStr::parse_from_str("macro|user1@rox.one").unwrap()],
         existing_assignees: vec![],
         expected_notification_count: 0,
         expected_recipient_ids: None,
@@ -2716,7 +2716,7 @@ async fn test_handle_task_assignee_notifications_no_service() {
 async fn test_handle_task_assignee_notifications_empty_assignees() {
     check_notifications(NotificationTestCase {
         task_id: Uuid::from_u128(0x12345678_1234_1234_1234_123456789abc),
-        assigned_by: "macro|assigner@macro.com".to_string(),
+        assigned_by: "macro|assigner@rox.one".to_string(),
         assignees: vec![],
         existing_assignees: vec![],
         expected_notification_count: 0,
@@ -2739,7 +2739,7 @@ async fn test_handle_task_assignee_notifications_internal_write_skips() {
     service
         .handle_task_assignee_notifications(
             Uuid::from_u128(0x12345678_1234_1234_1234_123456789abc),
-            &[MacroUserIdStr::parse_from_str("macro|user1@macro.com").unwrap()],
+            &[MacroUserIdStr::parse_from_str("macro|user1@rox.one").unwrap()],
             None,
         )
         .await
@@ -2758,10 +2758,10 @@ async fn test_handle_task_assignees_property_calls_both_handlers() {
 
     let task_id = Uuid::from_u128(0x12345678_1234_1234_1234_123456789abc);
     let entity_id = task_id.to_string();
-    let assigned_by = "macro|assigner@macro.com".to_string();
+    let assigned_by = "macro|assigner@rox.one".to_string();
     let assignees = [
-        MacroUserIdStr::parse_from_str("macro|user1@macro.com").unwrap(),
-        MacroUserIdStr::parse_from_str("macro|user2@macro.com").unwrap(),
+        MacroUserIdStr::parse_from_str("macro|user1@rox.one").unwrap(),
+        MacroUserIdStr::parse_from_str("macro|user2@rox.one").unwrap(),
     ];
 
     let value = Some(
@@ -2821,7 +2821,7 @@ async fn test_handle_task_assignees_property_clearing_assignees() {
         .handle_task_assignees_property(
             &entity_id,
             None,
-            Some(&MacroUserIdStr::parse_from_str("macro|assigner@macro.com").unwrap()),
+            Some(&MacroUserIdStr::parse_from_str("macro|assigner@rox.one").unwrap()),
         )
         .await
         .unwrap();

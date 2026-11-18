@@ -133,7 +133,7 @@ it.each([null, 'view'] as const)(
     vi.mocked(fetchAccessRequestState).mockResolvedValue({
       canReview: true,
       accessLevel,
-      owner: 'macro|owner@macro.com',
+      owner: 'macro|owner@rox.one',
       supportedLevels: ['view', 'comment', 'edit'],
       requests: [],
       pendingCount: 1,
@@ -201,7 +201,7 @@ it.each([null, 'view'] as const)(
     expect(traces[2].errors).toHaveLength(accessLevel === null ? 0 : 1);
     expect(traces.every((span) => span.finished)).toBe(true);
     expect(JSON.stringify(traces)).not.toContain('Private document');
-    expect(JSON.stringify(traces)).not.toContain('macro|owner@macro.com');
+    expect(JSON.stringify(traces)).not.toContain('macro|owner@rox.one');
   }
 );
 

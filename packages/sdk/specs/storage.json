@@ -3,7 +3,7 @@
   "info": {
     "title": "document_storage_service",
     "description": "",
-    "termsOfService": "https://macro.com/terms",
+    "termsOfService": "https://rox.one/terms",
     "license": {
       "name": ""
     },
@@ -31319,7 +31319,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness the agent runs on, when `harness` is `macrod`."
+                "description": "Registered harness the agent runs on, when `harness` is `roxd`."
               }
             ]
           },
@@ -31399,12 +31399,12 @@
       },
       "AgentHarnessSelection": {
         "type": "object",
-        "description": "The runtime an agent runs on: a harness slug and, for `macrod`, the\nregistered harness serving it. Travel together because one without the\nother is never a valid choice.",
+        "description": "The runtime an agent runs on: a harness slug and, for `roxd`, the\nregistered harness serving it. Travel together because one without the\nother is never a valid choice.",
         "required": ["harness"],
         "properties": {
           "harness": {
             "type": "string",
-            "description": "Harness slug, e.g. `in-memory`, `cursor`, or `macrod`."
+            "description": "Harness slug, e.g. `in-memory`, `cursor`, or `roxd`."
           },
           "harness_id": {
             "oneOf": [
@@ -31413,7 +31413,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness to run on. Required when `harness` is `macrod`,\nforbidden otherwise."
+                "description": "Registered harness to run on. Required when `harness` is `roxd`,\nforbidden otherwise."
               }
             ]
           }
@@ -32781,7 +32781,7 @@
         "oneOf": [
           {
             "type": "object",
-            "description": "A stable name from Macro's original, distinct icon catalog.",
+            "description": "A stable name from Rox's original, distinct icon catalog.",
             "required": ["name", "kind"],
             "properties": {
               "kind": {
@@ -33295,7 +33295,7 @@
       },
       "BookingTarget": {
         "type": "object",
-        "description": "An existing native Macro scheduling event offered after an accepted response.",
+        "description": "An existing native Rox scheduling event offered after an accepted response.",
         "required": ["profileId", "eventTypeId"],
         "properties": {
           "eventTypeId": {
@@ -33762,7 +33762,7 @@
       },
       "CalendarEvent": {
         "type": "object",
-        "description": "A stable, first-class Macro calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy.",
+        "description": "A stable, first-class Rox calendar event entity.\n\nContent fields hold the canonical source's values: the account's primary\ncalendar copy when one is synced, else the freshest remaining copy.",
         "required": [
           "id",
           "ownerId",
@@ -33842,7 +33842,7 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "Macro entity identifier."
+            "description": "Rox entity identifier."
           },
           "isReadOnly": {
             "type": "boolean",
@@ -33866,7 +33866,7 @@
           },
           "ownerId": {
             "type": "string",
-            "description": "Macro user who owns this event entity."
+            "description": "Rox user who owns this event entity."
           },
           "recurrenceLines": {
             "type": "array",
@@ -34060,7 +34060,7 @@
           },
           "requesterId": {
             "type": "string",
-            "description": "Macro user asking to join."
+            "description": "Rox user asking to join."
           },
           "status": {
             "$ref": "#/components/schemas/CalendarJoinRequestStatus",
@@ -34914,7 +34914,7 @@
           },
           "userId": {
             "type": "string",
-            "description": "The Macro user id."
+            "description": "The Rox user id."
           }
         }
       },
@@ -35614,7 +35614,7 @@
           },
           {
             "type": "object",
-            "description": "References to Macro entities of the kind the column points at; at\nmost one for a single-valued column.",
+            "description": "References to Rox entities of the kind the column points at; at\nmost one for a single-valued column.",
             "required": ["value", "type"],
             "properties": {
               "type": {
@@ -35626,7 +35626,7 @@
                 "items": {
                   "$ref": "#/components/schemas/EntityRef"
                 },
-                "description": "References to Macro entities of the kind the column points at; at\nmost one for a single-valued column."
+                "description": "References to Rox entities of the kind the column points at; at\nmost one for a single-valued column."
               }
             }
           },
@@ -36908,7 +36908,7 @@
       },
       "ClaudeMode": {
         "type": "string",
-        "description": "How Claude Code on a Macro computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Macro credits.",
+        "description": "How Claude Code on a Rox computer is paid for: its own Claude account\nwhen it has an active Claude login, otherwise Rox credits.",
         "enum": ["macro_credits", "own_account"]
       },
       "CloudStorageItemType": {
@@ -37532,7 +37532,7 @@
           },
           {
             "type": "object",
-            "description": "References to Macro entities.",
+            "description": "References to Rox entities.",
             "required": ["target", "multi", "type"],
             "properties": {
               "multi": {
@@ -37951,7 +37951,7 @@
       },
       "ConversationKind": {
         "type": "string",
-        "description": "Slack conversation kind. Public Slack channels map to Macro Team, never Public.",
+        "description": "Slack conversation kind. Public Slack channels map to Rox Team, never Public.",
         "enum": [
           "public_channel",
           "private_channel",
@@ -37973,7 +37973,7 @@
         "properties": {
           "archived": {
             "type": "boolean",
-            "description": "Source archived flag (does not silently archive a reused Macro target)."
+            "description": "Source archived flag (does not silently archive a reused Rox target)."
           },
           "createdAt": {
             "oneOf": [
@@ -38074,7 +38074,7 @@
           },
           "name": {
             "type": "string",
-            "description": "Persisted source display name, never the reused Macro target's name."
+            "description": "Persisted source display name, never the reused Rox target's name."
           },
           "partCount": {
             "type": ["integer", "null"],
@@ -38291,7 +38291,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness to run on. Required when `harness` is `macrod`,\nforbidden otherwise."
+                "description": "Registered harness to run on. Required when `harness` is `roxd`,\nforbidden otherwise."
               }
             ]
           },
@@ -40116,7 +40116,7 @@
         "properties": {
           "customSpeaker": {
             "type": "string",
-            "description": "Macro user id to attribute matching rows to, or `None` to clear."
+            "description": "Rox user id to attribute matching rows to, or `None` to clear."
           },
           "diarizedSpeakerId": {
             "type": "string",
@@ -40217,7 +40217,7 @@
       "DatabaseId": {
         "type": "string",
         "format": "uuid",
-        "description": "Identifier of reusable database storage. Its optional Macro entity uses\nthe same identity, so existing routes and grants keep their IDs."
+        "description": "Identifier of reusable database storage. Its optional Rox entity uses\nthe same identity, so existing routes and grants keep their IDs."
       },
       "DatabaseOp": {
         "oneOf": [
@@ -41873,7 +41873,7 @@
             }
           }
         ],
-        "description": "Events that can be published to [`MacroDocumentsTopic`]."
+        "description": "Events that can be published to [`RoxDocumentsTopic`]."
       },
       "DocumentUpdatedMetadata": {
         "type": "object",
@@ -46152,7 +46152,7 @@
               },
               {
                 "$ref": "#/components/schemas/AppearanceIcon",
-                "description": "A custom Macro glyph or a native emoji."
+                "description": "A custom Rox glyph or a native emoji."
               }
             ]
           }
@@ -46237,7 +46237,7 @@
       },
       "EntityKind": {
         "type": "string",
-        "description": "A kind of Macro entity a reference column can point at.",
+        "description": "A kind of Rox entity a reference column can point at.",
         "enum": [
           "USER",
           "DOCUMENT",
@@ -46344,7 +46344,7 @@
       },
       "EntityRef": {
         "type": "object",
-        "description": "A reference to one Macro entity.",
+        "description": "A reference to one Rox entity.",
         "required": ["entityType", "entityId"],
         "properties": {
           "entityId": {
@@ -47370,7 +47370,7 @@
           },
           "viewOnce": {
             "type": "boolean",
-            "description": "Sent as view-once; Macro shows it like any media."
+            "description": "Sent as view-once; Rox shows it like any media."
           }
         }
       },
@@ -47424,7 +47424,7 @@
       },
       "ExternalChatParticipant": {
         "type": "object",
-        "description": "Someone in an external chat; Macro access is a separate grant.",
+        "description": "Someone in an external chat; Rox access is a separate grant.",
         "required": ["jid", "name", "admin"],
         "properties": {
           "admin": {
@@ -47456,7 +47456,7 @@
       },
       "ExternalChatPersonRef": {
         "type": "object",
-        "description": "A person named in a message: a Macro user when verified, else their name\nat the provider, else their phone number.",
+        "description": "A person named in a message: a Rox user when verified, else their name\nat the provider, else their phone number.",
         "required": ["name"],
         "properties": {
           "name": {
@@ -47470,7 +47470,7 @@
           },
           "userId": {
             "type": ["string", "null"],
-            "description": "Verified Macro user, if any."
+            "description": "Verified Rox user, if any."
           }
         }
       },
@@ -47844,7 +47844,7 @@
           },
           "userId": {
             "type": ["string", "null"],
-            "description": "Verified Macro user association, if present."
+            "description": "Verified Rox user association, if present."
           }
         }
       },
@@ -51490,7 +51490,7 @@
           },
           "claude_mode": {
             "$ref": "#/components/schemas/ClaudeMode",
-            "description": "How Claude Code on this machine is paid for, derived from whether\nit has an active Claude login. Only meaningful for Macro computers."
+            "description": "How Claude Code on this machine is paid for, derived from whether\nit has an active Claude login. Only meaningful for Rox computers."
           },
           "computer_id": {
             "oneOf": [
@@ -51499,7 +51499,7 @@
               },
               {
                 "$ref": "#/components/schemas/ComputerId",
-                "description": "The Macro computer (hosted VM) this harness runs on; absent for a\nmachine the user paired themselves."
+                "description": "The Rox computer (hosted VM) this harness runs on; absent for a\nmachine the user paired themselves."
               }
             ]
           },
@@ -51522,7 +51522,7 @@
           },
           "kind": {
             "type": "string",
-            "description": "Runtime kind. Currently always `macrod`."
+            "description": "Runtime kind. Currently always `roxd`."
           },
           "last_connected_at": {
             "type": ["string", "null"],
@@ -52573,7 +52573,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "Recipient email; no Macro account is required."
+            "description": "Recipient email; no Rox account is required."
           }
         }
       },
@@ -53071,7 +53071,7 @@
           },
           "userId": {
             "type": ["string", "null"],
-            "description": "Macro account identifier, if this is a user."
+            "description": "Rox account identifier, if this is a user."
           }
         }
       },
@@ -53373,7 +53373,7 @@
         "properties": {
           "avatarUrl": {
             "type": ["string", "null"],
-            "description": "Profile image, when available for a Macro member."
+            "description": "Profile image, when available for a Rox member."
           },
           "displayName": {
             "type": "string",
@@ -53470,7 +53470,7 @@
           },
           "content": {
             "type": "string",
-            "description": "Macro Markdown body."
+            "description": "Rox Markdown body."
           },
           "created_at": {
             "type": "string",
@@ -53979,7 +53979,7 @@
         "properties": {
           "content": {
             "type": "string",
-            "description": "Macro Markdown body."
+            "description": "Rox Markdown body."
           },
           "created_at": {
             "type": "string",
@@ -54205,7 +54205,7 @@
           },
           "content": {
             "type": "string",
-            "description": "Macro Markdown body after the patch."
+            "description": "Rox Markdown body after the patch."
           },
           "edited_at": {
             "type": ["string", "null"],
@@ -54261,7 +54261,7 @@
           },
           "content": {
             "type": "string",
-            "description": "Macro Markdown body."
+            "description": "Rox Markdown body."
           },
           "created_at": {
             "type": "string",
@@ -55755,7 +55755,7 @@
           },
           "userId": {
             "type": "string",
-            "description": "Authenticated Macro user identity; never a provider credential."
+            "description": "Authenticated Rox user identity; never a provider credential."
           }
         }
       },
@@ -58518,7 +58518,7 @@
           },
           "content": {
             "type": "string",
-            "description": "Macro Markdown body."
+            "description": "Rox Markdown body."
           },
           "id": {
             "type": ["string", "null"],
@@ -61472,7 +61472,7 @@
           },
           "ownerId": {
             "type": "string",
-            "description": "Macro user who added the chat and shared it."
+            "description": "Rox user who added the chat and shared it."
           }
         }
       },
@@ -61951,7 +61951,7 @@
               "pullRequestId": {
                 "type": ["string", "null"],
                 "format": "uuid",
-                "description": "The linked pull request's Macro entity, when visible to the viewer."
+                "description": "The linked pull request's Rox entity, when visible to the viewer."
               },
               "pullRequestState": {
                 "oneOf": [
@@ -62243,7 +62243,7 @@
           },
           "ownerId": {
             "type": "string",
-            "description": "Owning Macro user."
+            "description": "Owning Rox user."
           },
           "status": {
             "type": "string",
@@ -62315,7 +62315,7 @@
           },
           "userId": {
             "type": "string",
-            "description": "The Macro user id."
+            "description": "The Rox user id."
           }
         }
       },
@@ -62926,7 +62926,7 @@
             }
           }
         ],
-        "description": "A row of a Macro database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
+        "description": "A row of a Rox database table in the Soup feed. Its cells are its\nentity properties; access is its database's."
       },
       "SoupDocumentSubType": {
         "oneOf": [
@@ -63299,7 +63299,7 @@
       },
       "SoupHarness": {
         "type": "object",
-        "description": "A paired runtime (a macrod machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.",
+        "description": "A paired runtime (a roxd machine), listed only by attention feeds: its\naccess requests and removals are notifications filed under it, and it has\nno page of its own, so Settings → Machines opens it.",
         "required": ["id", "name", "ownerId", "createdAt", "updatedAt"],
         "properties": {
           "createdAt": {
@@ -64066,7 +64066,7 @@
             }
           }
         ],
-        "description": "Source identity supplied when creating a job. One binding per Macro team in v1."
+        "description": "Source identity supplied when creating a job. One binding per Rox team in v1."
       },
       "SpreadsheetAiEditRequest": {
         "type": "object",
@@ -65360,7 +65360,7 @@
       },
       "SqlEntityKind": {
         "type": "string",
-        "description": "What an entity column's references point at: a kind of Macro entity, or\nthe rows of another table for a relation.\n\nSpelled as the properties system spells entity types (`USER`,\n`DATABASE_ROW`), on the wire and in SQL, where it parses\ncase-insensitively.",
+        "description": "What an entity column's references point at: a kind of Rox entity, or\nthe rows of another table for a relation.\n\nSpelled as the properties system spells entity types (`USER`,\n`DATABASE_ROW`), on the wire and in SQL, where it parses\ncase-insensitively.",
         "enum": [
           "USER",
           "DOCUMENT",
@@ -65677,7 +65677,7 @@
         "properties": {
           "how_to_guide_id": {
             "type": "string",
-            "description": "Id of the user's \"Macro how to guide\"."
+            "description": "Id of the user's \"Rox how to guide\"."
           }
         }
       },
@@ -65764,7 +65764,7 @@
       },
       "StoredGithubPullRequest": {
         "type": "object",
-        "description": "A GitHub pull request as Macro stores it, read through one of the caller's records.",
+        "description": "A GitHub pull request as Rox stores it, read through one of the caller's records.",
         "required": [
           "id",
           "githubKey",
@@ -66437,7 +66437,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Who chose it, as Macro user ids in submission order: present only\nfor the form's editors, or its viewers when it shares its responses,\nand never when it hides respondents. Rows no signed-in respondent\nsubmitted count without a voter."
+            "description": "Who chose it, as Rox user ids in submission order: present only\nfor the form's editors, or its viewers when it shares its responses,\nand never when it hides respondents. Rows no signed-in respondent\nsubmitted count without a voter."
           }
         }
       },
@@ -66737,7 +66737,7 @@
           },
           "userId": {
             "type": "string",
-            "description": "Macro user identifier."
+            "description": "Rox user identifier."
           }
         }
       },
@@ -66796,7 +66796,7 @@
           },
           "userId": {
             "type": "string",
-            "description": "Macro identifier of the included person."
+            "description": "Rox identifier of the included person."
           }
         }
       },
@@ -66816,7 +66816,7 @@
           },
           "ownerId": {
             "type": "string",
-            "description": "Macro user id of the teammate who is out."
+            "description": "Rox user id of the teammate who is out."
           },
           "time": {
             "$ref": "#/components/schemas/EventTime",
@@ -67644,7 +67644,7 @@
               },
               {
                 "$ref": "#/components/schemas/HarnessId",
-                "description": "Registered harness to run on. Required when `harness` is `macrod`,\nforbidden otherwise."
+                "description": "Registered harness to run on. Required when `harness` is `roxd`,\nforbidden otherwise."
               }
             ]
           },
@@ -69110,7 +69110,7 @@
       },
       "WhatsAppCannotAdd": {
         "type": "string",
-        "description": "Why a chat can't be added to Macro; the app words it from the code.",
+        "description": "Why a chat can't be added to Rox; the app words it from the code.",
         "enum": ["not_in_group", "community", "own_chat", "not_in_chat_list"]
       },
       "WhatsAppChat": {
@@ -69668,11 +69668,11 @@
   "tags": [
     {
       "name": "macro cloud storage service",
-      "description": "Macro Cloud Storage Service"
+      "description": "Rox Cloud Storage Service"
     },
     {
       "name": "forms",
-      "description": "Macro Forms: questionnaires over a database table"
+      "description": "Rox Forms: questionnaires over a database table"
     }
   ]
 }

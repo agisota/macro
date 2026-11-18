@@ -141,7 +141,7 @@ fn rewrites_read_the_declarations_the_errors_name() {
         "TS2345 [ERROR]: Argument of type 'string' is not assignable to parameter of type 'Macro<MacroOpts>'.".into(),
         "TS2339 [ERROR]: Property 'create' does not exist on type 'TaskNamespace'.".into(),
     ]);
-    assert_eq!(names, ["create", "TaskNamespace", "string", "Macro"]);
+    assert_eq!(names, ["create", "TaskNamespace", "string", "Rox"]);
     let declarations = sdk_declarations(
         &names.iter().map(String::as_str).collect::<Vec<_>>(),
         REWRITE_DECLARATION_BYTES,
@@ -279,7 +279,7 @@ async fn a_step_waits_for_a_free_slot_before_its_credential_and_gives_up_after_f
     assert_eq!(
         busy.result,
         Err(
-            "Macro was busy running other routines; this run waited 5 minutes for a turn."
+            "Rox was busy running other routines; this run waited 5 minutes for a turn."
                 .to_owned()
         )
     );
@@ -919,7 +919,7 @@ fn a_draft_reads_the_symbols_it_names_then_the_types_they_name() {
     assert!(properties.contains("## `EntityPropertyWithDefinition`\n"));
     assert!(properties.contains("## `properties.PropertyValue`\n"));
     assert!(reference.ends_with(
-        "Macro's SDK has none of these; use what the indexes and references name instead: `UserNamespace.list`\n"
+        "Rox's SDK has none of these; use what the indexes and references name instead: `UserNamespace.list`\n"
     ));
     assert!(reference.len() <= DRAFT_REFERENCE_BYTES + 256);
     assert_eq!(symbol_references(&[], "", DRAFT_REFERENCE_BYTES), "");
@@ -1018,6 +1018,6 @@ fn an_import_line_gives_the_generated_names_it_takes() {
         .is_empty()
     );
     // Only the generated clients' types: the SDK's own come with its areas.
-    assert!(generated_imports("import type { Macro } from '../../macro';").is_empty());
+    assert!(generated_imports("import type { Rox } from '../../macro';").is_empty());
     assert!(generated_imports("import * as all from '../generated/x';").is_empty());
 }

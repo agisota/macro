@@ -5,11 +5,11 @@ export function DesktopAppDownload() {
   return (
     <SettingsPage
       title="Desktop App (Alpha)"
-      description="Get Macro Alpha for your computer."
+      description="Get Rox Alpha for your computer."
     >
       <SettingsCard>
         <SettingsRow
-          label="Download Macro Alpha"
+          label="Download Rox Alpha"
           description="Get the latest release for macOS or Linux."
           stackOnNarrow
         >

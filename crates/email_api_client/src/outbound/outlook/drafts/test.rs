@@ -92,8 +92,8 @@ async fn a_parent_that_refuses_native_replies_gets_a_standalone_draft_with_its_c
         .await;
     Mock::given(method("POST"))
         .and(path("/v1.0/me/messages/standalone/attachments"))
-        .and(body_partial_json(json!({"name":"notes.txt","contentId":"notes@attachments.macro.com","contentBytes":"bm90ZXM="})))
-        .respond_with(ResponseTemplate::new(201).set_body_json(json!({"id":"attachment","name":"notes.txt","size":5,"contentId":"notes@attachments.macro.com","isInline":false})))
+        .and(body_partial_json(json!({"name":"notes.txt","contentId":"notes@attachments.rox.one","contentBytes":"bm90ZXM="})))
+        .respond_with(ResponseTemplate::new(201).set_body_json(json!({"id":"attachment","name":"notes.txt","size":5,"contentId":"notes@attachments.rox.one","isInline":false})))
         .expect(1)
         .mount(&server)
         .await;
@@ -105,7 +105,7 @@ async fn a_parent_that_refuses_native_replies_gets_a_standalone_draft_with_its_c
         AttachmentContent {
             name: "notes.txt",
             content_type: "text/plain",
-            content_id: "notes@attachments.macro.com",
+            content_id: "notes@attachments.rox.one",
             inline: false,
             data: b"notes",
         },

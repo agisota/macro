@@ -69,7 +69,7 @@ it('lists readable chats with unread counts and marks read-only ones', () => {
     />
   ));
   const nav = within(
-    screen.getByRole('navigation', { name: 'WhatsApp chats in Macro' })
+    screen.getByRole('navigation', { name: 'WhatsApp chats in Rox' })
   );
   const design = nav.getByRole('button', { name: /Design Crit/ });
   expect(within(design).getByLabelText('3 unread messages')).toBeTruthy();

@@ -7,12 +7,12 @@ Its alert links the **Routine suggestions** dashboard.
 When a person's inbox connects (onboarding), each night in their time zone,
 and when they ask for fresh suggestions (manual), agent-harness-service runs
 a generation (`crates/suggestion_generation`):
-a suggestions session and routines sessions of the in-process Macro agent (three
+a suggestions session and routines sessions of the in-process Rox agent (three
 at onboarding, each suggesting for some of the nine surfaces, and otherwise
 one for all of them, once a week; nightly runs are for people on a paid plan) through
 `macro.routines.suggest`. A nightly or manual routines session also reviews and retires
 earlier suggestions and adds at most two. At onboarding a routines session that suggests
-nothing is retried once. Surfaces AI leaves empty show Macro's templates.
+nothing is retried once. Surfaces AI leaves empty show Rox's templates.
 Routine suggestions are behind the `enable-routine-suggestions` flag.
 
 Each generation is one trace, and logs one `routine_suggestions.generated`
@@ -35,7 +35,7 @@ metrics and the alert below count onboarding runs only.
 ## Generations failing
 
 More than 10% of the generations that finished in the last hour, plus two,
-failed: no session suggested anything, so those people see Macro's templates
+failed: no session suggested anything, so those people see Rox's templates
 only. It notifies; it does not page.
 
 - Open a failed generation's trace and read its session spans.
@@ -55,6 +55,6 @@ only. It notifies; it does not page.
   span) at zero means the inbox was empty or could not be read, so the
   sessions had little to suggest from. Look for `could not read the inbox to
   suggest routines` warnings and email-service health.
-- Levers: a person keeps Macro's templates either way. Onboarding runs once
+- Levers: a person keeps Rox's templates either way. Onboarding runs once
   per person; their nightly runs keep trying. To stop new routines sessions,
   turn off `enable-routine-suggestions`.

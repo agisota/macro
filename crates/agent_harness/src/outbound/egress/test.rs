@@ -128,7 +128,7 @@ async fn lists_enabled_app_slugs_verbatim() {
             connection("Not A Slug!", true),
         ])),
         Arc::new(FixedServers(vec![])),
-        "https://egress.macro.com",
+        "https://egress.rox.one",
     );
 
     let provisioned = provisioner
@@ -156,7 +156,7 @@ async fn restore_wraps_an_existing_token_in_a_fresh_listing() {
     let provisioner = EgressProvisioner::new(
         Arc::new(FixedConnections(vec![connection("linear", true)])),
         Arc::new(FixedServers(vec![])),
-        "https://egress.macro.com",
+        "https://egress.rox.one",
     );
 
     let restored = provisioner
@@ -201,7 +201,7 @@ async fn a_selected_list_is_advertised_regardless_of_connections() {
             connection("linear", false),
         ])),
         Arc::new(FixedServers(vec![])),
-        "https://egress.macro.com",
+        "https://egress.rox.one",
     );
 
     let provisioned = provisioner
@@ -244,7 +244,7 @@ async fn an_empty_selection_offers_nothing_of_the_owners() {
     let provisioner = EgressProvisioner::new(
         Arc::new(FixedConnections(vec![connection("datadog", true)])),
         Arc::new(FixedServers(vec![])),
-        "https://egress.macro.com",
+        "https://egress.rox.one",
     );
 
     let provisioned = provisioner
@@ -260,7 +260,7 @@ async fn an_empty_selection_offers_nothing_of_the_owners() {
 
 fn egress(slugs: &[&str]) -> SandboxEgress {
     SandboxEgress {
-        base_url: "https://egress.macro.com".to_owned(),
+        base_url: "https://egress.rox.one".to_owned(),
         session_token: "session-token".to_owned(),
         mcp_servers: slugs.iter().map(|name| slug(name)).collect(),
         custom_servers: Vec::new(),
@@ -286,7 +286,7 @@ async fn lists_the_owners_enabled_custom_servers_by_key() {
             custom_server("https://wiki.example.com/mcp", "Internal wiki", true),
             custom_server("https://old.example.com/mcp", "Retired", false),
         ])),
-        "https://egress.macro.com",
+        "https://egress.rox.one",
     );
 
     let provisioned = provisioner
@@ -330,7 +330,7 @@ async fn a_selected_list_carries_none_of_the_owners_custom_servers() {
             "Internal wiki",
             true,
         )])),
-        "https://egress.macro.com",
+        "https://egress.rox.one",
     );
 
     let provisioned = provisioner
@@ -347,7 +347,7 @@ async fn a_selected_list_carries_none_of_the_owners_custom_servers() {
 
 /// Custom servers are advertised after the apps, on the proxy's custom
 /// route, under a name reduced to what tool namespaces tolerate - and a
-/// name that would repeat an earlier entry, Macro's own included, is made
+/// name that would repeat an earlier entry, Rox's own included, is made
 /// unique with a piece of the server's key rather than dropped or allowed
 /// to shadow.
 #[test]
@@ -386,7 +386,7 @@ fn custom_servers_are_advertised_under_unique_sanitized_names() {
             key("https://d.example.com/mcp"),
         ),
     ]
-    .map(|(name, key)| (name, format!("https://egress.macro.com/mcp-custom/{key}")));
+    .map(|(name, key)| (name, format!("https://egress.rox.one/mcp-custom/{key}")));
     assert_eq!(entries[4..], expected_tail);
 
     let mut names: Vec<&String> = entries.iter().map(|(name, _)| name).collect();
@@ -401,7 +401,7 @@ fn custom_servers_are_advertised_under_unique_sanitized_names() {
 }
 
 /// Every server points at the proxy and carries the session token rather than
-/// any upstream credential; Macro's own server leads the list on its own
+/// any upstream credential; Rox's own server leads the list on its own
 /// route.
 #[test]
 fn points_every_acp_server_at_the_proxy() {
@@ -432,34 +432,34 @@ fn points_every_acp_server_at_the_proxy() {
         [
             (
                 "macro".to_owned(),
-                "https://egress.macro.com/mcp-macro".to_owned(),
+                "https://egress.rox.one/mcp-macro".to_owned(),
                 authorization.clone(),
             ),
             (
                 "macro_internal".to_owned(),
-                "https://egress.macro.com/mcp/internal".to_owned(),
+                "https://egress.rox.one/mcp/internal".to_owned(),
                 authorization.clone(),
             ),
             (
                 "macro-preview".to_owned(),
-                "https://egress.macro.com/mcp-preview".to_owned(),
+                "https://egress.rox.one/mcp-preview".to_owned(),
                 authorization.clone(),
             ),
             (
                 "datadog".to_owned(),
-                "https://egress.macro.com/mcp/datadog".to_owned(),
+                "https://egress.rox.one/mcp/datadog".to_owned(),
                 authorization.clone(),
             ),
             (
                 "linear".to_owned(),
-                "https://egress.macro.com/mcp/linear".to_owned(),
+                "https://egress.rox.one/mcp/linear".to_owned(),
                 authorization,
             ),
         ]
     );
 }
 
-/// An owner with no connected apps still gets Macro's own server.
+/// An owner with no connected apps still gets Rox's own server.
 #[test]
 fn an_owner_with_no_connected_apps_still_gets_the_macro_server() {
     let entries: Vec<(String, String)> = egress(&[]).server_entries().collect();
@@ -469,15 +469,15 @@ fn an_owner_with_no_connected_apps_still_gets_the_macro_server() {
         [
             (
                 "macro".to_owned(),
-                "https://egress.macro.com/mcp-macro".to_owned()
+                "https://egress.rox.one/mcp-macro".to_owned()
             ),
             (
                 "macro_internal".to_owned(),
-                "https://egress.macro.com/mcp/internal".to_owned()
+                "https://egress.rox.one/mcp/internal".to_owned()
             ),
             (
                 "macro-preview".to_owned(),
-                "https://egress.macro.com/mcp-preview".to_owned()
+                "https://egress.rox.one/mcp-preview".to_owned()
             )
         ]
     );
@@ -491,7 +491,7 @@ fn the_egress_environment_does_not_print_its_secrets() {
 
     let printed = format!("{egress:?}");
     assert!(!printed.contains("session-token"), "{printed}");
-    assert!(printed.contains("https://egress.macro.com"), "{printed}");
+    assert!(printed.contains("https://egress.rox.one"), "{printed}");
 
     let environment: Vec<String> = egress
         .environment()
@@ -536,7 +536,7 @@ fn external_runtime_uses_host_reachable_urls_with_the_existing_session_credentia
         assert_eq!(server.name, name);
         assert_eq!(server.headers[0].value, sandbox.authorization_header());
     }
-    assert_eq!(sandbox.base_url, "https://egress.macro.com");
+    assert_eq!(sandbox.base_url, "https://egress.rox.one");
 }
 
 #[tokio::test]
@@ -554,7 +554,7 @@ async fn native_provider_wins_without_hiding_other_hosted_apps() {
             connection("slack_v2", true),
         ])),
         Arc::new(FixedServers(vec![native])),
-        "https://egress.macro.com",
+        "https://egress.rox.one",
     );
     let provisioned = provisioner
         .provision(
@@ -600,7 +600,7 @@ async fn a_selected_overlaid_app_is_advertised_as_its_native_server_once_connect
         let provisioner = EgressProvisioner::new(
             Arc::new(FixedConnections(vec![connection("sentry", true)])),
             Arc::new(FixedServers(servers)),
-            "https://egress.macro.com",
+            "https://egress.rox.one",
         );
         let provisioned = provisioner
             .provision(

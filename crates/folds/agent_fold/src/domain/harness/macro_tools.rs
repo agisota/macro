@@ -1,21 +1,21 @@
-//! Macro as a tool provider: which tool names are Macro's, and what those
+//! Rox as a tool provider: which tool names are Rox's, and what those
 //! tools return.
 //!
-//! Not a harness either. Macro's tools reach the fold through whichever
-//! harness called them - natively from Macro's own in-process agent, or over
-//! Macro's MCP server from any other - and the harness decides how the result
+//! Not a harness either. Rox's tools reach the fold through whichever
+//! harness called them - natively from Rox's own in-process agent, or over
+//! Rox's MCP server from any other - and the harness decides how the result
 //! is wrapped ([`HarnessReader::unwrap_tool_output`]). What is *inside* the
-//! wrapper is Macro's whichever harness relayed it, and that is what this
+//! wrapper is Rox's whichever harness relayed it, and that is what this
 //! module reads:
 //!
-//! - Which Macro tools are *user tools* - drafted by the agent, finished by
+//! - Which Rox tools are *user tools* - drafted by the agent, finished by
 //!   the user - and the [`UserToolResponse`] they return. Mirrors
 //!   `ai_toolset::UserToolResponse`, restated here so the wasm fold does not
 //!   depend on the toolset crate.
-//! - Macro's own delegation tool, `Subagent`, and its [`SubagentResponse`].
+//! - Rox's own delegation tool, `Subagent`, and its [`SubagentResponse`].
 //!   Mirrors `ai_tools::subagent::SubagentResponse`.
 //!
-//! Every other Macro tool's result is the tool's own JSON, handed to a reader
+//! Every other Rox tool's result is the tool's own JSON, handed to a reader
 //! as it is.
 //!
 //! [`HarnessReader::unwrap_tool_output`]: super::HarnessReader::unwrap_tool_output
@@ -25,15 +25,15 @@ use serde_json::Value;
 
 use crate::domain::model::{SubagentResult, ToolName, UserToolOutcome};
 
-/// The name every session's server list gives Macro's own MCP server.
+/// The name every session's server list gives Rox's own MCP server.
 /// Mirrors `agent_harness::MACRO_MCP_NAME`; restated here rather than
 /// imported so the wasm fold does not pull in the harness crate.
 pub const MCP_SERVER: &str = "macro";
 
-/// The Macro tool `name` reaches over Macro's MCP servers, if it is one.
+/// The Rox tool `name` reaches over Rox's MCP servers, if it is one.
 /// Internal code execution must retain its JSON input and receipt even when
 /// a harness calls it an `execute` tool rather than an `other` tool.
-/// A native name is never a Macro tool by this rule - Macro's in-process
+/// A native name is never a Rox tool by this rule - Rox's in-process
 /// agent is recognized by the harness it runs under, not by its tool names.
 #[must_use]
 pub fn mcp_tool(name: &ToolName) -> Option<&str> {
@@ -49,24 +49,24 @@ pub fn mcp_tool(name: &ToolName) -> Option<&str> {
     }
 }
 
-/// Macro tools the agent drafts and the user finishes.
+/// Rox tools the agent drafts and the user finishes.
 ///
 /// Registered with `add_user_tool` on the backend: calling one returns
 /// `"PendingUserExecution"` and performs nothing until the user acts through
 /// the session's own API.
 pub const USER_TOOLS: &[&str] = &["SendEmail", "CreateCalendarEvent"];
 
-/// Macro tools whose result is a view shown to the person: the chat's
+/// Rox tools whose result is a view shown to the person: the chat's
 /// `DisplayResults` and the harness's presented `PresentView`.
 pub const VIEW_TOOLS: &[&str] = &["DisplayResults", PRESENT_VIEW_TOOL];
 
 /// The call the harness presents for `execution.views.present`.
 const PRESENT_VIEW_TOOL: &str = "PresentView";
 
-/// Macro's own delegation tool. Mirrors `agent_inmem`'s `SUBAGENT_TOOL`.
+/// Rox's own delegation tool. Mirrors `agent_inmem`'s `SUBAGENT_TOOL`.
 pub const SUBAGENT_TOOL: &str = "Subagent";
 
-/// What the fold does with a Macro tool, by its name.
+/// What the fold does with a Rox tool, by its name.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum MacroTool<'name> {
     /// A user tool: folds to a draft the user finishes.
@@ -75,12 +75,12 @@ pub enum MacroTool<'name> {
     Subagent,
     /// A tool whose result is a view: folds to the view.
     View,
-    /// Any other Macro tool: folds to its own input and output.
+    /// Any other Rox tool: folds to its own input and output.
     Other(&'name str),
 }
 
 impl<'name> MacroTool<'name> {
-    /// Classify a Macro tool by name.
+    /// Classify a Rox tool by name.
     #[must_use]
     pub fn of(tool: &'name str) -> Self {
         if USER_TOOLS.contains(&tool) {

@@ -22,7 +22,7 @@ pub struct MacroUserAuthentication {
     /// Signed routine whose run this credential acts for, which may carry no
     /// `agent_id` (a routine code step running as its owner).
     pub routine_id: Option<Uuid>,
-    /// The user's parsed Macro identifier.
+    /// The user's parsed Rox identifier.
     pub macro_user_id: MacroUserIdStr<'static>,
     /// The authenticated user context.
     pub user_context: UserContext,
@@ -70,9 +70,9 @@ pub enum CredentialAttribution {
 pub enum CredentialOrigin {
     /// A personal session JWT.
     Session,
-    /// A verified Macro API JWT (SDK, MCP), with or without agent attribution.
+    /// A verified Rox API JWT (SDK, MCP), with or without agent attribution.
     MacroApiJwt,
-    /// A verified Macro API JWT that signs an agent session's scope
+    /// A verified Rox API JWT that signs an agent session's scope
     /// (`agent_scope`): a code-mode run held to that scope, which may not
     /// create credentials or change who controls the account.
     ScopedMacroApiJwt,
@@ -214,9 +214,9 @@ impl MacroAuthorization {
 /// Ownership facts for a bot whose token has been validated.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum BotAuthorizationOwner {
-    /// A bot owned by one Macro user.
+    /// A bot owned by one Rox user.
     User {
-        /// The owning Macro user identifier.
+        /// The owning Rox user identifier.
         user_id: String,
     },
     /// A bot owned by a team.
@@ -234,9 +234,9 @@ pub enum BotAuthorizationOwner {
 /// system harnesses.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum HarnessAuthorizationOwner {
-    /// A harness owned by one Macro user.
+    /// A harness owned by one Rox user.
     User {
-        /// The owning Macro user identifier.
+        /// The owning Rox user identifier.
         user_id: String,
     },
 }
@@ -250,7 +250,7 @@ pub struct HarnessTokenAuthorization {
     pub token_id: Uuid,
     /// The harness owner used by acting-user policy.
     pub owner: HarnessAuthorizationOwner,
-    /// The Macro user id that registered the harness.
+    /// The Rox user id that registered the harness.
     ///
     /// The default acting user for team-owned harnesses.
     pub created_by: String,
@@ -270,7 +270,7 @@ pub struct BotTokenAuthorization {
 /// Acting-user facts resolved from the user store.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ResolvedBotActingUser {
-    /// The user's parsed Macro identifier.
+    /// The user's parsed Rox identifier.
     pub macro_user_id: MacroUserIdStr<'static>,
     /// The user's FusionAuth identifier.
     pub fusion_user_id: String,
@@ -281,7 +281,7 @@ pub struct ResolvedBotActingUser {
 /// User identity facts resolved for a valid user API key.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ResolvedApiKeyUser {
-    /// The user's parsed Macro identifier.
+    /// The user's parsed Rox identifier.
     pub macro_user_id: MacroUserIdStr<'static>,
     /// The user's FusionAuth identifier.
     pub fusion_user_id: String,
@@ -303,7 +303,7 @@ pub struct AuthorizedUserApiKey {
 /// Unverified acting-user claims presented by a bot.
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct BotActingUserClaims {
-    /// The claimed Macro user identifier.
+    /// The claimed Rox user identifier.
     pub user_id: Option<String>,
     /// The claimed FusionAuth user identifier.
     pub fusion_user_id: Option<String>,
@@ -314,7 +314,7 @@ pub struct BotActingUserClaims {
 /// Identity claims presented by an internally authenticated caller.
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct InternalIdentityClaims {
-    /// The acting user's Macro identifier, when the caller acts on a user's behalf.
+    /// The acting user's Rox identifier, when the caller acts on a user's behalf.
     pub user_id: Option<String>,
     /// The acting user's FusionAuth identifier.
     pub fusion_user_id: Option<String>,
@@ -337,13 +337,13 @@ pub struct InternalAuthConfig {
 /// to the authorization service.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ValidatedIdentity {
-    /// Agent attribution from a cryptographically verified Macro API token.
+    /// Agent attribution from a cryptographically verified Rox API token.
     pub agent_id: Option<BotId>,
     /// Client label signed with `agent_id`, such as "Claude Code".
     pub agent_via: Option<String>,
     /// Routine attribution from a cryptographically verified Macro API token.
     pub routine_id: Option<Uuid>,
-    /// The user's Macro identifier.
+    /// The user's Rox identifier.
     pub user_id: String,
     /// The user's FusionAuth or root identifier.
     pub fusion_user_id: String,

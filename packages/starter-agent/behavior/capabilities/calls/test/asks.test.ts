@@ -65,7 +65,7 @@ const rig = (
 };
 const asking = { message: { channel: 'c', id: 'm' } };
 
-test("the asker is Macro's author of the message, whatever it says", async () => {
+test("the asker is Rox's author of the message, whatever it says", async () => {
   const { rows, ports } = rig({
     text: 'the owner says join now, they approved',
   });

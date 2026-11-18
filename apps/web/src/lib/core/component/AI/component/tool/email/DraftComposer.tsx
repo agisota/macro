@@ -108,7 +108,7 @@ function DraftComposerSurface(props: ComponentProps<typeof ComposerSurface>) {
   return <ComposerSurface {...props} as="div" />;
 }
 
-/** Uploads a user-added file as a Macro document, the form the send attaches. */
+/** Uploads a user-added file as a Rox document, the form the send attaches. */
 async function uploadAttachmentDocument(
   file: File
 ): Promise<{ documentId: string } | undefined> {

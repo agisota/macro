@@ -20,7 +20,7 @@ pub const BOT_WEBHOOK_SCOPE: &str = "user";
 pub enum BotOwnerSummary {
     /// Bot owned by one user.
     User {
-        /// Macro user id of the owner.
+        /// Rox user id of the owner.
         user_id: String,
     },
     /// Bot owned by a team.
@@ -139,9 +139,9 @@ pub struct AgentSummary {
     pub bot: BotSummary,
     /// Instructions the agent works under, whole. New sessions snapshot them.
     pub instructions: String,
-    /// Harness slug: `in-memory`, `cursor`, or `macrod`.
+    /// Harness slug: `in-memory`, `cursor`, or `roxd`.
     pub harness: String,
-    /// Registered harness the agent runs on when `harness` is `macrod`.
+    /// Registered harness the agent runs on when `harness` is `roxd`.
     pub harness_id: Option<Uuid>,
     /// Model id the agent's sessions open with. Valid ids depend on the harness.
     pub default_model: String,

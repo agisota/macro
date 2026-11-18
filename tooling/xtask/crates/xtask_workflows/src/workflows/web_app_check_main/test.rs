@@ -564,7 +564,7 @@ printf '%s\n' "$@" | awk '$0 ~ ENVIRON["NATIVE_TREE_EXCLUDE"]'
         .args([
             "bash",
             "src-tauri/src/desktop.rs",
-            "src-tauri/src/desktop/macrod.rs",
+            "src-tauri/src/desktop/roxd.rs",
             "src-tauri/src/desktop_update/desktop.rs",
             "src-tauri/src/desktop_update/desktop/test.rs",
             "src-tauri/capabilities/desktop.json",
@@ -588,7 +588,7 @@ printf '%s\n' "$@" | awk '$0 ~ ENVIRON["NATIVE_TREE_EXCLUDE"]'
             .collect::<Vec<_>>(),
         [
             "src-tauri/src/desktop.rs",
-            "src-tauri/src/desktop/macrod.rs",
+            "src-tauri/src/desktop/roxd.rs",
             "src-tauri/src/desktop_update/desktop.rs",
             "src-tauri/src/desktop_update/desktop/test.rs",
             "src-tauri/capabilities/desktop.json",

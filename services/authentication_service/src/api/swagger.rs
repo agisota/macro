@@ -77,7 +77,7 @@ use model::user::{
 #[derive(OpenApi)]
 #[openapi(
         info(
-                terms_of_service = "https://macro.com/terms",
+                terms_of_service = "https://rox.one/terms",
         ),
         paths(
                 /// /health
@@ -89,6 +89,10 @@ use model::user::{
 
                 /// /login
                 login::passwordless::handler,
+                login::passkey::lookup,
+                login::passkey::challenge,
+                login::passkey::register_passkey,
+                login::passkey::assert_passkey,
                 login::sso::handler,
                 login::password::handler,
                 login::apple::handler,
@@ -150,6 +154,7 @@ use model::user::{
                 user::put_profile_picture_file::create_upload_handler,
                 user::put_profile_picture_file::handler,
                 user::agent_setup::handler,
+                user::claim_handle::handler,
                 user::put_name::handler,
                 user::get_name::handler,
                 user::patch_user_group::handler,
@@ -217,6 +222,10 @@ use model::user::{
                 teams::inbound::axum_router::get_user_teams::handler::<crate::api::context::TeamsServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
                 teams::inbound::axum_router::remove_user_from_team::handler::<crate::api::context::TeamsServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
                 teams::inbound::axum_router::patch_team_member_plan::handler::<crate::api::context::TeamsServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
+                enterprise::inbound::axum_router::disable_member::<crate::outbound::enterprise::EnterpriseServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
+                enterprise::inbound::axum_router::enable_member::<crate::outbound::enterprise::EnterpriseServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
+                enterprise::inbound::axum_router::set_runtime_allowlist::<crate::outbound::enterprise::EnterpriseServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
+                enterprise::inbound::axum_router::clear_runtime_allowlist::<crate::outbound::enterprise::EnterpriseServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
                 teams::inbound::axum_router::delete_team_invite::handler::<crate::api::context::TeamsServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
                 teams::inbound::axum_router::invite_link::get_handler::<crate::api::context::TeamsServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
                 teams::inbound::axum_router::invite_link::create_handler::<crate::api::context::TeamsServiceType, crate::api::context::EntityAccessServiceType, crate::api::context::AuthorizationService>,
@@ -268,6 +277,8 @@ use model::user::{
                         crate::api::user::put_profile_picture_file::CreateProfilePictureUploadRequest,
                         crate::api::user::put_profile_picture_file::ProfilePictureUpload,
                         crate::api::user::agent_setup::AgentSetupResponse,
+                        crate::api::user::claim_handle::ClaimHandleRequest,
+                        crate::api::user::claim_handle::ClaimHandleResponse,
                         PutUserNameQueryParams,
                         UserName,
                         UserLanguage,
@@ -379,6 +390,9 @@ use model::user::{
                         InviteToTeamRequest,
                         PatchTeamRequest,
                         PatchTeamMemberPlanRequest,
+                        enterprise::domain::DisableMemberReport,
+                        enterprise::domain::RuntimePreset,
+                        enterprise::domain::RuntimePresetAllowlist,
                         PatchTeamUserRole,
                         PatchTeamCrmSettingsRequest,
                         PatchTeamCrmSettingsResponse,
@@ -422,7 +436,7 @@ use model::user::{
                 ),
         ),
         tags(
-            (name = "auth service", description = "Macro Authentication Service")
+            (name = "auth service", description = "Rox Authentication Service")
         )
     )]
 pub struct ApiDoc;
@@ -586,6 +600,72 @@ mod tests {
             response_properties
                 .get("participantGithubUserIds")
                 .is_some()
+        );
+    }
+
+    #[test]
+    fn enterprise_admin_openapi_includes_mounted_paths_and_schemas() {
+        let openapi = serde_json::to_value(ApiDoc::openapi()).unwrap();
+
+        for (path, method, operation_id) in [
+            (
+                "/team/members/{member_user_id}/disable",
+                "post",
+                "disable_team_member",
+            ),
+            (
+                "/team/members/{member_user_id}/enable",
+                "post",
+                "enable_team_member",
+            ),
+            ("/team/runtime-presets", "put", "set_team_runtime_presets"),
+            (
+                "/team/runtime-presets",
+                "delete",
+                "clear_team_runtime_presets",
+            ),
+        ] {
+            assert_eq!(
+                openapi["paths"][path][method]["operationId"].as_str(),
+                Some(operation_id),
+                "missing mounted enterprise operation {method} {path}"
+            );
+        }
+
+        let disable = &openapi["paths"]["/team/members/{member_user_id}/disable"]["post"];
+        assert_eq!(
+            disable["responses"]["200"]["content"]["application/json"]["schema"]["$ref"].as_str(),
+            Some("#/components/schemas/DisableMemberReport")
+        );
+        let enable = &openapi["paths"]["/team/members/{member_user_id}/enable"]["post"];
+        assert!(enable["responses"].get("204").is_some());
+
+        let set = &openapi["paths"]["/team/runtime-presets"]["put"];
+        assert_eq!(
+            set["requestBody"]["content"]["application/json"]["schema"]["$ref"].as_str(),
+            Some("#/components/schemas/RuntimePresetAllowlist")
+        );
+        assert_eq!(
+            set["responses"]["200"]["content"]["application/json"]["schema"]["$ref"].as_str(),
+            Some("#/components/schemas/RuntimePresetAllowlist")
+        );
+        assert!(
+            openapi["paths"]["/team/runtime-presets"]["delete"]["responses"]
+                .get("204")
+                .is_some()
+        );
+
+        let schemas = &openapi["components"]["schemas"];
+        for schema in [
+            "DisableMemberReport",
+            "RuntimePresetAllowlist",
+            "RuntimePreset",
+        ] {
+            assert!(schemas.get(schema).is_some(), "missing schema {schema}");
+        }
+        assert_eq!(
+            schemas["RuntimePreset"]["enum"],
+            serde_json::json!(["opencode", "claude-code", "codex", "omp"])
         );
     }
 }

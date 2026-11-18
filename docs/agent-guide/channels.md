@@ -96,7 +96,7 @@ the first paragraph must receive the format too. A range ending at the start of
 the following paragraph leaves that following paragraph unchanged.
 Typing `> ` creates a quote. Pasting text with paragraph breaks into that quote
 keeps all pasted paragraphs quoted, including HTML and text copied from another
-Macro editor. Inline formatting survives. Verify an empty quote and a selection
+Rox editor. Inline formatting survives. Verify an empty quote and a selection
 within a quote, then type after the paste and save the message; every pasted
 paragraph must still have the quote styling.
 Selections across adjacent quoted paragraphs preserve quoting too. A selection
@@ -119,7 +119,7 @@ new page cursor before deciding whether to request another page.
 ## Empty direct messages
 
 An empty human DM shows the centered conversations illustration and “Say hello”
-above the composer. The copy explains that recipients without a Macro account
+above the composer. The copy explains that recipients without a Rox account
 receive the message by email. Opening the DM sends nothing.
 
 Opening a person you have no DM with shows this same empty DM, with their name
@@ -171,7 +171,7 @@ the picker reads on until a page matches or the directory ends. Add all teammate
 uses the current team roster, never just the visible suggestion page.
 
 The first message in a DM to an unregistered recipient sends an email saying
-`<sender email> sent you a message on Macro`, with the message and a **View message**
+`<sender email> sent you a message on Rox`, with the message and a **View message**
 button leading to signup. It must not invite the recipient to `#<their own name>`.
 Named-channel invites still show `#<channel name>` and **Join channel**.
 Verify both emails in local Mailpit using distinct, unregistered test addresses;
@@ -190,14 +190,14 @@ menu, chips and earlier messages follow, on desktop and at phone width.
 
 ## Private conversations with an agent
 
-Agent DM discovery is on in development builds (dev.macro.com and `bun run dev`)
+Agent DM discovery is on in development builds (dev.rox.one and `bun run dev`)
 and off in production; there is no PostHog flag. Override it with
 `VITE_ENABLE_AGENT_DMS=true` or `false` before starting Vite or building the
 frontend. Disabling discovery does not delete existing conversations or cancel
 their work.
 
 Choose an agent in **Create → Message**, or click **Message** in its settings or
-bot profile. The picker offers your agents, eligible team agents, and Macro.
+bot profile. The picker offers your agents, eligible team agents, and Rox.
 Choosing an agent removes other recipients. Reopening the same persona returns
 to your existing private channel. Team ownership of an agent does not share
 your DM with teammates. Calls and additional participants are unavailable.
@@ -330,7 +330,7 @@ owner or admin; its upload screen links to Slack's export instructions. Files
 and attachments are excluded. The second opens a dedicated channel import flow:
 it reuses an enabled Pipedream Slack connection or requests authorization, then
 automatically discovers public channels. Select channels and click **Import N
-channels** to create their names and matching Macro teammates. It requires no
+channels** to create their names and matching Rox teammates. It requires no
 Slack admin role, but workspace app-approval policies still apply. Neither method
 sets up ongoing message sync. Previous ZIP imports are collapsed under a disclosure.
 Only explicitly selected Slack IDs create work. Slack public
@@ -405,7 +405,7 @@ session-specific.
 
 A session transcript shows each tool call as a collapsible row (consecutive calls
 fold into a `Used N tools` group; click it to see the rows). A tool reached over
-an MCP server - Macro's own (`ReadContent`) from a Cursor, Claude, or
+an MCP server - Rox's own (`ReadContent`) from a Cursor, Claude, or
 Codex session, or a third-party server (`ask_question`) - is titled by
 the tool's own name, without a server or workspace label, never by the harness's dispatcher
 (`mcp`). Clicking the row expands the exchange: a `Request` section with the
@@ -430,7 +430,7 @@ and use the lightbox toolbar instead. Videos have their own toolbar; see
 
 ## Reading channel attachments through MCP
 
-When an agent reads a channel through Macro MCP, `ReadChannelMessages`,
+When an agent reads a channel through Rox MCP, `ReadChannelMessages`,
 `ReadChannelThread`, and `ReadChannelMessageContext` include download URLs for
 image and video attachments, including attachments in replies and previews.
 Up to eight distinct images per response are also returned as inline images.
@@ -442,14 +442,14 @@ verify that its tool response includes the matching attachment URLs.
 ## Messages sent through an MCP client
 
 A message, comment, or thread reply a user's MCP client (Claude Code, Cursor,
-ChatGPT) posts through Macro MCP, with a direct tool such as
+ChatGPT) posts through Rox MCP, with a direct tool such as
 `SendChannelMessage` or from code mode (`ExecuteCode`), shows the client as its
 sender: **Claude Code · Agent** with the client's initial as its avatar and a
 **from <user>** pill underneath. The client is the name it registered with
-Macro's OAuth broker, or "MCP client" if it registered none. Notifications name
+Rox's OAuth broker, or "MCP client" if it registered none. Notifications name
 the client as the sender too. A self-hosted agent's message shows the agent as
-the sender with **from <user>**, and a message sent with a pasted Macro API key
-shows the Macro bot with **from <user>**. To check this, connect an MCP client
+the sender with **from <user>**, and a message sent with a pasted Rox API key
+shows the Rox bot with **from <user>**. To check this, connect an MCP client
 over OAuth, ask it to post in a channel and to comment on a document, and
 confirm both show the client and the user on desktop and at phone width.
 
@@ -527,7 +527,7 @@ Both the expanded and collapsed composers start with a `+` button (`Add`). It
 opens a menu on desktop and a bottom drawer on mobile: `Mention` (opens the `@` typeahead), `Attach files` (the file
 picker; the iOS media picker on iOS), `GIF` (the same picker as `/gif`), then under `Create` the same actions as
 `/task`, `/poll`, `/form` and `/document` (poll and form only with forms on),
-then `Ask Macro` (inserts an `@Macro` mention) and, in a channel, `Start a call`
+then `Ask Rox` (inserts an `@Rox` mention) and, in a channel, `Start a call`
 (`Join call` while one is live). On phones, starting a new call opens a
 confirmation sheet with centered participant avatars, notification copy, and a
 full-width green **Start call** button, without a divider or close/cancel buttons.
@@ -598,7 +598,7 @@ away from the composer.
 Trending GIFs show first, with the large search field focused on both desktop
 and phones. Search keeps the composer expanded, and tapping anywhere in the
 search field keeps focus there. Tap a GIF to download its original animated bytes
-and upload them to Macro's static-file service before insertion, without sending
+and upload them to Rox's static-file service before insertion, without sending
 the draft. The picker shows upload progress and prevents duplicate selections;
 a failure removes the unused upload and leaves the picker open for retry. Closing
 the picker, changing the draft, or losing edit permission prevents a late insertion.
@@ -659,7 +659,7 @@ message; ordinary Markdown blockquotes remain presentation-only and do not count
 The composer always keeps an editable empty line after a block reference, including after
 the user deletes that line, so clicking below the reference can restore the text caret.
 
-The mention menu offers a single `@Macro`, which opens an agent session. The classic
+The mention menu offers a single `@Rox`, which opens an agent session. The classic
 in-channel bot, which the menu no longer offers, answers in the thread. Its tool calls execute immediately — there is
 no composer or pending-confirmation card in a channel, so asking it to create a calendar
 event without attendees creates the event right away (unlike an agent session, where
@@ -679,7 +679,7 @@ calendar event can only be shared by someone who holds it on their own calendar.
 The bot's prompt carries the current date and time in the mentioning user's
 own time zone (their primary calendar's), so it resolves relative times ("tomorrow at 4",
 "EOD") without asking; when no calendar is connected the prompt falls back to UTC and the
-bot asks before scheduling a specific clock time. Within the rollout, `@Macro` — plus
+bot asks before scheduling a specific clock time. Within the rollout, `@Rox` — plus
 `@cursor` / `@codex` when available — opens
 an agent session; follow-up
 `@` mentions of that bot in the same thread route to it.
@@ -689,7 +689,7 @@ replies (at most 8, no duplicates); follow-ups carry only their own files.
 Files elsewhere in the channel appear only as `<attachment>` entries in its
 context. To check, post an image on a thread root, mention an agent in a
 reply without attaching anything, and confirm it describes the image.
-Macro Coding Agent (`@coder`) is unavailable in mention suggestions, including
+Rox Coding Agent (`@coder`) is unavailable in mention suggestions, including
 when it appears among existing participants or bots. Check with the agents
 rollout both enabled and disabled.
 
@@ -704,13 +704,13 @@ ordinary edits are not. Agents handing the thread back and forth stop after 128
 agent turns (64 round trips) with no person writing in between; the next agent
 message is logged and triggers nothing, before any classifier runs. The invoked session's
 prompt reads "Started by <agent> for <person>" (or "Asked by" on a follow-up).
-To verify, ask session-backed `@Macro` to post a mention of `@cursor`, then have
-Cursor post a mention of session-backed Macro in the same thread. Check that the
-first mention opens Cursor and the return mention continues Macro's existing
+To verify, ask session-backed `@Rox` to post a mention of `@cursor`, then have
+Cursor post a mention of session-backed Rox in the same thread. Check that the
+first mention opens Cursor and the return mention continues Rox's existing
 session. Repeat with revoked channel access and confirm no new work starts.
 
 When the backend is configured with AI usage enforcement, a rejected classic
-`@Macro` request gets a thread reply explaining the allowance failure (for example,
+`@Rox` request gets a thread reply explaining the allowance failure (for example,
 `ai_allowance_exhausted`) or temporary validation failure (`ai_billing_unavailable`),
 without a lingering thinking placeholder. This also applies in document discussions.
 Optional unmentioned follow-up inference, including attached-image descriptions,
@@ -735,7 +735,7 @@ The lower row shows either a full-width PR preview with available line diff coun
 one truncated line of agent output. Failure explanations replace that preview; tool
 commands and other secondary details stay inside the session. There are no tooltips.
 Click the card or **Open session** to read the full response or answer a question;
-click the PR to open its Macro split (GitHub until its entity has synced). While the
+click the PR to open its Rox split (GitHub until its entity has synced). While the
 synced PR is open, not a draft, and every check on its head commit has finished
 with a success, skipped, or neutral conclusion, a green **Merge** button sits at
 the end of the PR row. It asks
@@ -777,7 +777,7 @@ original mention is not replayed - mention `@cursor` again after connecting.
 
 Cursor sessions choose a repository from the mentioning user's linked GitHub App
 installations on their first prompt. A session without a repository can still use
-Macro and connected MCP tools, but cannot use the Git proxy. For a PR smoke test,
+Rox and connected MCP tools, but cannot use the Git proxy. For a PR smoke test,
 link the GitHub account and App installation in the same environment first, then
 name the repository explicitly in a new session's prompt.
 
@@ -792,16 +792,16 @@ A tool call explicitly acting as the session owner in a turn somebody else
 prompted, held for that owner’s approval reads `Waiting for approval`; only the owner approves it, in the session.
 
 Coding agents use `macro_internal.set_pull_request` to register an existing or
-new GitHub PR with their session. Macro Internal MCP is hosted by the harness
+new GitHub PR with their session. Rox Internal MCP is hosted by the harness
 service at `/mcp/internal` on its egress listener, separately from workspace MCP.
-Cursor, sandbox, and macrod sessions receive session-scoped credentials; the
+Cursor, sandbox, and roxd sessions receive session-scoped credentials; the
 model supplies only the URL. The tool records the link, not the GitHub PR itself,
 and returns the session's `/app/agent/<id>` URL.
-Macro Internal MCP's server instructions ask coding agents to register PRs with
+Rox Internal MCP's server instructions ask coding agents to register PRs with
 it, to link the returned session URL in the PR description (the PR block reads
 that link as the PR's origin), to open them ready for review rather than as
 drafts, and to get CI passing before handing off. External MCP clients get the
-ready-for-review rule in Macro's MCP instructions, and in-app agents tell coding
+ready-for-review rule in Rox's MCP instructions, and in-app agents tell coding
 agents they dispatch. It is not prepended
 to individual user messages. Cursor
 enables automatic PR creation when a repository is selected. Its returned URL
@@ -819,7 +819,7 @@ refreshes mounted chips without a new conversation message. Codex checks provide
 PR metadata every 20 seconds while attached. Viewing a disconnected Codex session
 reads saved history; sending a message reattaches the runtime. Refresh requires its original
 ChatGPT connection to remain connected. The link remains
-usable while the webhook mapping is loading or absent, then becomes a Macro PR
+usable while the webhook mapping is loading or absent, then becomes a Rox PR
 entity link once synced. On narrow chips, long PR names truncate with an
 ellipsis; hover the link to inspect the full title. Codex delayed-link discovery,
 duplicate and changed metadata updates, and opening the exact PR URL were verified
@@ -839,7 +839,7 @@ later — the reply includes an `<m-document-mention>` task chip, not a URL or
 When the agent stops to ask a question the question takes the area in the passage's
 place, cropped and expandable the same way: the prompt, then what is asked - a form's
 fields (choice rows with an accent box, an `Other` row when the agent allows a free-text
-answer, text and number inputs, a yes/no), a URL request's host and address, or a Macro
+answer, text and number inputs, a yes/no), a URL request's host and address, or a Rox
 user tool's draft (`SendEmail`, `CreateCalendarEvent`) in the tool's own composer - the
 same email compose or calendar event form the session shows, editable in place; expand
 the area to reach its `Send`/`Create`, which answers with the edited draft. A row at the
@@ -924,7 +924,7 @@ Press `Escape` to clear selection; the parent Home shortcut is then available
 again. Typing `e` in the composer or inline editor should still enter text.
 Verify a message link in a fresh browser tab as well as inside an open channel:
 the initial page should center the requested message, including older history.
-On a cold notification open, the destination shows the three-block Macro loader
+On a cold notification open, the destination shows the three-block Rox loader
 while channel metadata and the targeted message window load in parallel. It
 must not briefly fetch or display the latest messages before resolving an
 uncached message link. Explicit thread replies load their parent window and
@@ -1655,7 +1655,7 @@ in, while they are connected to the call; see [Calls](calls.md) for what a guest
 can do and see. Each call session has one persistent message thread;
 signed-in participants use the
 shared message composer, attachments, reactions, and message actions. The `@`
-menu offers Macro and available owned and team agents. Mention an agent and send
+menu offers Rox and available owned and team agents. Mention an agent and send
 to invoke it in the call thread; follow-up mentions use the same thread. Reply
 on your own or another participant’s message inserts a quote into the bottom
 composer while preserving its draft and attachments. Enter sends; subsequent
@@ -1735,7 +1735,7 @@ cancellation, and focus restoration before sending invites.
 Inset tabs sit in the channel header:
 `Messages` / `Attachments` / `Calls` / `Participants`.
 `Invite` and `Call` actions remain in channel headers, with the
-live-phone-call exceptions described above. `Ask Macro` lives in the channel
+live-phone-call exceptions described above. `Ask Rox` lives in the channel
 title menu (the `...` after the name, or the split title's menu) on every
 platform. On narrow desktop panes, the tabs collapse from text labels to icons. Standalone mobile channels
 keep view selection in the title menu. In both a single channel and an adjacent
@@ -1743,7 +1743,7 @@ channel split, the message composer stays fully visible at the bottom. The
 `Calls` tab lists
 recordings for that channel
 (same rows as the Calls soup view, filtered to this channel). The live `Call` tab
-appears while a call is in progress. `Ask Macro` opens a new chat pane with the channel
+appears while a call is in progress. `Ask Rox` opens a new chat pane with the channel
 already @mentioned as context (see ai-chat.md). On touch, at every width, the title menu is a
 drawer (`SoupEntityActionsSheet`) with the view choices above the actions. Clicking the radio input can time out — click the adjacent label text
 instead.
@@ -1758,12 +1758,12 @@ right-clicking the conversation's rail row: `Open in new split` (when available)
 `Rename`, `Set channel picture`,
 `Remove channel picture` (only when the channel has one),
 `Favorite`/`Unfavorite`, `Mute notifications`/`Unmute notifications`,
-`Remind me`, `Copy Link`, `Copy ID`, then `Ask Macro`. A channel can
+`Remind me`, `Copy Link`, `Copy ID`, then `Ask Rox`. A channel can
 therefore be favorited or given a picture without finding its row, from Chat and from every view that
 opens one inline. The menu appears once the conversation itself has loaded,
 reusing a cached conversation without another activation fetch. Opening the
 conversation still refreshes its unread notifications. The split's own title
-`...` menu offers the same picture actions and `Ask Macro`.
+`...` menu offers the same picture actions and `Ask Rox`.
 
 `Calls` tab: recordings, transcriptions, and summaries for this channel. Click a
 row to open the call. The search field above the list matches call names and
@@ -1839,7 +1839,7 @@ without declining.
 
 ## Onboarding channel
 
-New users get `Macro Support x <name>` seeded with a welcome message that @mentions them —
+New users get `Rox Support x <name>` seeded with a welcome message that @mentions them —
 useful as a guaranteed-existing channel in tests.
 
 Locally sent channel messages and thread replies enter with a brief upward slide

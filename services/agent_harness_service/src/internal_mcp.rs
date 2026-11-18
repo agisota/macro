@@ -1,4 +1,4 @@
-//! Macro Internal MCP: session tools served by the harness, separate from workspace MCP.
+//! Rox Internal MCP: session tools served by the harness, separate from workspace MCP.
 
 use agent_code_mode::{domain::SessionCodeMode, inbound::toolset::CodeModeToolContext};
 use agent_code_mode::{domain::reviews::ReviewService, inbound::reviews::ReviewToolContext};
@@ -66,8 +66,8 @@ pub(super) fn router<A: AgentSessionRepo + 'static>(
     hosts.extend([
         "localhost".into(),
         "127.0.0.1".into(),
-        "gateway.macro.com".into(),
-        "dev-gateway.macro.com".into(),
+        "gateway.rox.one".into(),
+        "dev-gateway.rox.one".into(),
     ]);
     let mut config = StreamableHttpServerConfig::default().with_allowed_hosts(hosts);
     config.legacy_session_mode = false;
@@ -95,7 +95,7 @@ pub(super) struct InternalTools {
     pub(super) cognition: Option<Arc<dyn Cognition>>,
     pub(super) reviews: Arc<OnceLock<ReviewService>>,
     pub(super) gate: Arc<dyn agent_inmem::domain::tool_gate::NativeToolGate>,
-    /// Macro app origin, for links back to the calling session.
+    /// Rox app origin, for links back to the calling session.
     pub(super) app_url: Arc<str>,
 }
 
@@ -106,7 +106,7 @@ impl ServerHandler for InternalTools {
             agent_harness::domain::model::INTERNAL_MCP_NAME,
             env!("CARGO_PKG_VERSION"),
         )
-        .with_title("Macro Internal MCP");
+        .with_title("Rox Internal MCP");
         info.instructions = Some(prompt::pull_requests::internal_mcp_instructions());
         info.instructions.as_mut().expect("instructions are set").push_str(
             " macro_internal.PresentReview presents editable email/calendar draft stacks or questions through the shared session stream. It completes immediately as Presented to the user and never waits for approval. Later account-holder decisions deliver typed review.decided and review.settled system events. GetReview reads saved drafts and outcomes by reviewId. DecideReview uses the same claim/execute path and requires a real request from the review’s account holder in the current turn; system notifications never authorize decisions. After presenting an import plan, ask \"Should I kick it off?\"; when the review’s account holder says yes, submit it with macro_internal.DecideReview. These tools are available even when code mode is disabled.",

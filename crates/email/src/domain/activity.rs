@@ -75,7 +75,7 @@ impl ActivitySource for EmailTopicEvent {
         };
 
         match self {
-            // Sent counts only when the user sent from Macro; a send synced
+            // Sent counts only when the user sent from Rox; a send synced
             // from another client (provider_sync) still carries the actor
             // but is not an act performed here.
             EmailTopicEvent::MessageSent(m) => match (&m.actor, &m.origin) {

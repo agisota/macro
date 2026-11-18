@@ -1,4 +1,4 @@
-//! Agents' creators from MacroDB's `team_agents` rows.
+//! Agents' creators from RoxDB's `team_agents` rows.
 
 use macro_user_id::cowlike::CowLike;
 use macro_user_id::user_id::MacroUserIdStr;

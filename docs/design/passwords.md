@@ -1,6 +1,6 @@
 # Passwords
 
-Passwords is a Macro-managed **team vault**. Macro servers decrypt values to
+Passwords is a Rox-managed **team vault**. Rox servers decrypt values to
 serve authorized humans. This is not a zero-knowledge personal password manager:
 the service, its operators, and its infrastructure are inside the trust boundary.
 The `enable-passwords-v1` PostHog flag controls discovery and backend admission; authorization remains
@@ -115,7 +115,7 @@ identify TOTP keys. The provider chooses
 the namespace from the authenticated team's identity, never a caller-supplied
 provider path. The bootstrap script provisions mounts and JWT roles idempotently.
 
-Macro-issued JWTs use a dedicated audience, short expiry, and a team claim bound
+Rox-issued JWTs use a dedicated audience, short expiry, and a team claim bound
 by the namespace's JWT role. Value-role policy allows only the required KV/TOTP
 paths; the separate lifecycle role permits exact-team namespace read/delete.
 The service reuses each team's value-role token in memory until 20 seconds before
@@ -155,12 +155,12 @@ retains typed provider causes and secret-wrapped messages while ordinary error
 formatting, source chains and tracing expose only safe categories. The adapter
 maps those causes to sanitized domain failures; only a true CAS mismatch becomes
 a version conflict.
-OpenBao's audit device and Macro's activity records complement each other; a
+OpenBao's audit device and Rox's activity records complement each other; a
 failed audit write must not silently produce an unaudited disclosure.
 
 ## Logos
 
-Browsers fetch authenticated Macro image-proxy `/logos?domain=…` responses.
+Browsers fetch authenticated Rox image-proxy `/logos?domain=…` responses.
 The initial request uses HTTPS `/favicon.ico`; bounded redirects may use HTTP
 or HTTPS and other paths. Every hop checks public IPs before requests and at
 DNS resolution. Fetches bound time and body size and reject non-raster media.

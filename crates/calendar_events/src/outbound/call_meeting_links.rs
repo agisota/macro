@@ -1,8 +1,8 @@
 //! Meeting-link adapter over the call domain service.
 //!
-//! Mints standalone Macro meetings owned by the requester, the same ones the
+//! Mints standalone Rox meetings owned by the requester, the same ones the
 //! calendar UI creates through `POST /call/meetings`, and renders the join
-//! URL the frontend recognizes as a Macro call.
+//! URL the frontend recognizes as a Rox call.
 
 use std::sync::Arc;
 
@@ -26,7 +26,7 @@ pub struct CallServiceMeetingLinks<S: CallService> {
 
 impl<S: CallService> CallServiceMeetingLinks<S> {
     /// Wrap the call service. `app_origin` is the browser origin join links
-    /// are built on, e.g. `https://macro.com`; a trailing slash is ignored.
+    /// are built on, e.g. `https://rox.one`; a trailing slash is ignored.
     pub fn new(service: Arc<S>, app_origin: impl Into<String>) -> Self {
         Self {
             service,

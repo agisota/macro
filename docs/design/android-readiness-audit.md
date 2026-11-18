@@ -68,7 +68,7 @@ Test Gboard and Samsung Keyboard, composition/non-Latin input, dictation, emoji,
 
 ### 6. Fix App Links and unify the WebView origin — P0, medium
 
-**Confirmed:** [assetlinks.json](../../apps/web/tauri/src-tauri/.well-known/assetlinks.json) names `com.tauri.dev`; the application ID is `com.macro.app.prod`. Intent filters already exist for macro.com, dev.macro.com, and staging.macro.com, but the deployed association files were not verified. The native-app service's dynamic verification model currently supplies iOS association data only.
+**Confirmed:** [assetlinks.json](../../apps/web/tauri/src-tauri/.well-known/assetlinks.json) names `com.tauri.dev`; the application ID is `com.macro.app.prod`. Intent filters already exist for rox.one, dev.rox.one, and staging.rox.one, but the deployed association files were not verified. The native-app service's dynamic verification model currently supplies iOS association data only.
 
 There is also a concrete configuration mismatch to resolve: [lib.rs](../../apps/web/tauri/src-tauri/src/lib.rs) passes `https://tauri.localhost` to the custom protocol on Android, while its navigation allowlist includes only the HTTP form. [tauri.conf.json](../../apps/web/tauri/src-tauri/tauri.conf.json) does not enable `useHttpsScheme` (false by default in the pinned Tauri code), and [backend CORS](../../crates/macro_cors/src/lib.rs) includes HTTP, not HTTPS. This needs an actual device test to identify each failing request, but the inconsistent definitions are visible in source.
 
@@ -90,7 +90,7 @@ There is also a concrete configuration mismatch to resolve: [lib.rs](../../apps/
 
 **Do:** support Android share intents for text, URLs, images, and files; stage `content://` resources while permission grants remain valid; handle multiple files, MIME types, size limits, cancellation, cleanup, cold start, and an authentication detour. Reuse the destination picker/upload logic after removing iOS-specific assumptions. Scope FileProvider paths to the data actually shared.
 
-**Done when:** sharing from Photos, Files, a browser, and another messaging app opens Macro and successfully sends to the selected destination without replaying old shares.
+**Done when:** sharing from Photos, Files, a browser, and another messaging app opens Rox and successfully sends to the selected destination without replaying old shares.
 
 ### 9. Verify and complete attachments, clipboard, downloads, and outgoing sharing — P1, medium
 

@@ -13,7 +13,7 @@ use std::sync::Mutex;
 use url::Url;
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id")
 }
 
 fn empty_body() -> ProxyBody {
@@ -894,7 +894,7 @@ async fn strips_hop_by_hop_headers_from_the_response() {
     assert_eq!(names(response.headers()), ["mcp-session-id"]);
 }
 
-/// Egress is open to every session owner, not only Macro staff: an outside
+/// Egress is open to every session owner, not only Rox staff: an outside
 /// owner's call resolves against their own connections and goes through.
 #[tokio::test]
 async fn a_session_owned_outside_macro_is_proxied_with_its_owners_credentials() {
@@ -1287,7 +1287,7 @@ async fn preview_uses_only_the_authenticated_session_token_at_a_fixed_destinatio
 }
 
 fn asker() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from_email("asker@macro.com").expect("a valid user id")
+    MacroUserIdStr::try_from_email("asker@rox.one").expect("a valid user id")
 }
 
 /// A grant whose running turn `prompter` prompted.
@@ -1466,7 +1466,7 @@ async fn a_tool_call_in_a_turn_a_bot_prompted_is_held_too() {
     assert_eq!(service.approvals.held.lock().unwrap().len(), 1);
 }
 
-/// Macro's own server is gated like any connected app, under its own name.
+/// Rox's own server is gated like any connected app, under its own name.
 #[tokio::test]
 async fn a_tool_call_to_macros_own_server_is_held_under_its_name() {
     let service = gated(prompted_by(Some(asker())), SpyCredentials::knowing());
@@ -1479,7 +1479,7 @@ async fn a_tool_call_to_macros_own_server_is_held_under_its_name() {
         .await
         .expect("held");
     let held = service.approvals.held.lock().unwrap();
-    assert_eq!((held[0].0.as_str(), held[0].1.as_str()), ("macro", "Macro"));
+    assert_eq!((held[0].0.as_str(), held[0].1.as_str()), ("macro", "Rox"));
 }
 
 fn google_drive() -> EgressTarget {

@@ -3,7 +3,7 @@
 ## What it is
 
 Part of the notifications feature. Query-only client for the notification
-tables in MacroDB: devices, user notifications, email-sent/unsubscribe
+tables in RoxDB: devices, user notifications, email-sent/unsubscribe
 records, and mute state.
 
 ## Start here
@@ -37,7 +37,7 @@ records, and mute state.
 ## Checks
 
 - `cargo test -p notification_db_client` (`SQLX_OFFLINE` unset; requires
-  local MacroDB — `just setup_macrodb`).
+  local RoxDB — `just setup_macrodb`).
 
 ## Related
 

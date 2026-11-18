@@ -37,7 +37,7 @@ fn support_channel_name_uses_email_local_part() {
 
     assert_eq!(
         support_channel_name(&email),
-        "Macro Support x new.user+trial"
+        "Rox Support x new.user+trial"
     );
 }
 

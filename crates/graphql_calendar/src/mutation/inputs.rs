@@ -275,7 +275,7 @@ pub struct CreateCalendarEventInput {
     pub reminders: Option<CalendarRemindersInput>,
     /// Conference to attach; omit to create the event without one.
     pub conference: Option<GraphqlCalendarConferenceChange>,
-    /// Mint a Macro call and write its join link into the description and
+    /// Mint a Rox call and write its join link into the description and
     /// location before creating the event, so the invitation carries it.
     /// Cannot be combined with `conference`.
     #[graphql(default)]

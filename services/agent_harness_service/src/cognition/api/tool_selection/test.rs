@@ -13,7 +13,7 @@ async fn none_does_not_load_or_dispatch_any_tools() {
     .await;
     assert!(tools.request_schemas().is_none());
     assert!(tools.searchable_catalog().is_empty());
-    let caller = MacroUserIdStr::try_from_email("test@macro.com").unwrap();
+    let caller = MacroUserIdStr::try_from_email("test@rox.one").unwrap();
     let error = tools
         .try_tool_call(
             (),

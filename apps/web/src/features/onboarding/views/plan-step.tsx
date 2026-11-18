@@ -3,7 +3,7 @@ import { fireAndForget } from '@core/util/fireAndForget';
 import { Button } from '@ui';
 import { type Accessor, type JSX, Show } from 'solid-js';
 import { match } from 'ts-pattern';
-import { ContinueButton } from '../components/controls';
+import { ContinueButton, SecondaryButton } from '../components/controls';
 import {
   type InviteOffer,
   useOnboardingContext,
@@ -105,6 +105,22 @@ export function PlanStep(props: {
                         ? 'Start 30 day trial'
                         : 'Get Pro'
             )}
+          // Free is always an exit from the offer, including when the lookup
+          // fails or an invite is still loading: Pro must never be the only way
+          // into the workspace.
+          secondary={
+            <Show
+              when={
+                plan.state().t === 'offer' && !trial.existingSubscription()
+              }
+            >
+              <SecondaryButton
+                label="Continue with Free"
+                disabled={props.finishing || trial.managing()}
+                onClick={props.onContinueFree}
+              />
+            </Show>
+          }
           // Until the invite lookup settles, starting a trial could skip it.
           disabled={
             plan.state().t === 'confirming' ||
@@ -147,6 +163,7 @@ export function PlanStep(props: {
       >
         <div role="alert" class="mt-4 text-center text-sm text-ink-muted">
           <p>Couldn't confirm your Pro offer.</p>
+          <p>You can continue with Free instead.</p>
           <Button variant="ghost" size="sm" onClick={trial.retry}>
             Try again
           </Button>

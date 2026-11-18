@@ -10,7 +10,7 @@ import { Macro } from '../../../packages/sdk/src/macro';
 
 export type Stack = {
   instance: string;
-  /** The stack's MacroDB, for reading what a run changed. */
+  /** The stack's RoxDB, for reading what a run changed. */
   postgres: string;
   /** The checkout that started the stack: its compose files live there. */
   owner: string;
@@ -102,7 +102,7 @@ export function searchIndexer(at: Stack): { url: string; key: string } {
   return { url: `http://localhost:${port}`, key };
 }
 
-/** A Macro API token for `email`, through local passwordless login. */
+/** A Rox API token for `email`, through local passwordless login. */
 export async function login(at: Stack, email: string): Promise<string> {
   for (let attempt = 0; ; attempt++) {
     try {

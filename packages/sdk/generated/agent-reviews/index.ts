@@ -48,7 +48,7 @@ export type CreateCalendarEvent_Deserialize = {
 	calendarId?: string | null,
 	/**  Reminder configuration. */
 	reminders?: EventRemindersInput | null,
-	/**  Whether to attach a Macro meeting link. */
+	/**  Whether to attach a Rox meeting link. */
 	addMacroCall?: boolean,
 	/**  Kind of event to create. */
 	eventType?: CalendarEventTypeInput,
@@ -82,7 +82,7 @@ export type CreateCalendarEvent_Serialize = {
 	calendarId: string | null,
 	/**  Reminder configuration. */
 	reminders: EventRemindersInput | null,
-	/**  Whether to attach a Macro meeting link. */
+	/**  Whether to attach a Rox meeting link. */
 	addMacroCall: boolean,
 	/**  Whether to attach the calendar provider's meeting conference. */
 	addConference: boolean,
@@ -137,10 +137,10 @@ export type DraftList<Draft> = Draft[];
 /**  An address that passes [`is_valid_email`]; decoding rejects any other string. */
 export type EmailAddress = string;
 
-/**  A Macro document attached to an outgoing email as a file. */
+/**  A Rox document attached to an outgoing email as a file. */
 export type EmailAttachment = {
 	/**
-	 *  The id of the Macro document to attach. It must be a stored file -
+	 *  The id of the Rox document to attach. It must be a stored file -
 	 *  an uploaded PDF, image, spreadsheet, Word document, or other upload -
 	 *  that the user can view. A Macro-native document (one written in the
 	 *  editor) has no file to attach; link to it in the body instead.
@@ -158,7 +158,7 @@ export type EmailRecipient = {
 
 /**  One reminder override supplied to a calendar tool. */
 export type EventReminderOverrideInput = {
-	/**  Provider reminder method. `popup` creates a Macro notification. */
+	/**  Provider reminder method. `popup` creates a Rox notification. */
 	method: string,
 	/**  Minutes before the event start. */
 	minutes: number,
@@ -288,7 +288,7 @@ export type NotionImportReport_Deserialize = {
 	warnings?: string[],
 	/**  Tracker issues in the plan. */
 	issues?: number,
-	/**  Tracker groups written as Macro projects. */
+	/**  Tracker groups written as Rox projects. */
 	projects?: number,
 	/**
 	 *  The run's state: `running` while planning, `ready` once a plan is
@@ -348,7 +348,7 @@ export type NotionImportReport_Deserialize = {
 	 *  they link to that copy and are not counted as copies.
 	 */
 	alreadyInMacro?: number,
-	/**  Who imported the objects already in Macro, most first. */
+	/**  Who imported the objects already in Rox, most first. */
 	alreadyImportedBy?: NotionImporter[],
 	/**  The review the plan is tied to, once presented. */
 	reviewId?: string | null,
@@ -364,7 +364,7 @@ export type NotionImportReport_Serialize = {
 	warnings?: string[],
 	/**  Tracker issues in the plan. */
 	issues: number,
-	/**  Tracker groups written as Macro projects. */
+	/**  Tracker groups written as Rox projects. */
 	projects: number,
 	/**
 	 *  The run's state: `running` while planning, `ready` once a plan is
@@ -424,7 +424,7 @@ export type NotionImportReport_Serialize = {
 	 *  they link to that copy and are not counted as copies.
 	 */
 	alreadyInMacro: number,
-	/**  Who imported the objects already in Macro, most first. */
+	/**  Who imported the objects already in Rox, most first. */
 	alreadyImportedBy: NotionImporter[],
 	/**  The review the plan is tied to, once presented. */
 	reviewId?: string | null,
@@ -755,7 +755,7 @@ export type SendEmail = {
 	 */
 	includeSignature?: boolean | null,
 	/**
-	 *  Macro documents to attach as files (optional). Each must be an
+	 *  Rox documents to attach as files (optional). Each must be an
 	 *  uploaded file the user can view; together they may total 18 MB.
 	 */
 	attachments?: EmailAttachment[],
@@ -774,7 +774,7 @@ export type SendEmailResponse = ({ sent: {
 /**  A calendar event as returned by the create and update tools. */
 export type ToolCalendarEvent = {
 	/**
-	 *  Macro calendar event id, used by UpdateCalendarEvent and
+	 *  Rox calendar event id, used by UpdateCalendarEvent and
 	 *  DeleteCalendarEvent.
 	 */
 	eventId: string,
@@ -810,7 +810,7 @@ export type ToolCalendarEvent = {
 	/**  Conference join URL, when a conference is attached. */
 	conferenceUrl: string | null,
 	/**
-	 *  Join URL of the event's Macro call, when CreateCalendarEvent or
+	 *  Join URL of the event's Rox call, when CreateCalendarEvent or
 	 *  UpdateCalendarEvent was asked for one.
 	 */
 	macroCallUrl: string | null,

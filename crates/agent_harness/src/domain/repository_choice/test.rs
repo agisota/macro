@@ -72,7 +72,7 @@ impl RepositoryChoiceModel for Model {
 }
 
 fn owner() -> MacroUserIdStr<'static> {
-    MacroUserIdStr::try_from("macro|owner@macro.com".to_owned()).unwrap()
+    MacroUserIdStr::try_from("macro|owner@rox.one".to_owned()).unwrap()
 }
 
 fn admission(result: Result<(), AiAdmissionError>) -> Arc<Admission> {

@@ -8,7 +8,11 @@ import DummyWorkspaceView from '../workspace/DummyWorkspace';
 import { AgentMcpDemo } from './AgentStories';
 import { NorthwindCollaboration } from './NorthwindCollaboration';
 import { NorthwindSession, NorthwindStory } from './NorthwindSession';
-import { createNorthwindAccessTask, NORTHWIND_PLAN } from './northwindScenario';
+import {
+  createNorthwindAccessTask,
+  NORTHWIND_COLLAB_PLAN,
+  NORTHWIND_PLAN,
+} from './northwindScenario';
 
 let intersections: IntersectionObserverCallback[];
 let reduced = false;
@@ -86,7 +90,9 @@ it('keeps the completed reduced-motion scene in one pane', () => {
   reduced = true;
   vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1000);
   const view = render(() => <NorthwindStory scene="actions" />);
-  expect(view.getByRole('button', { name: 'SSO verification' })).toBeTruthy();
+  expect(
+    view.getByRole('button', { name: 'sign-in verification' })
+  ).toBeTruthy();
   expect(view.queryByRole('region', { name: 'Opened item' })).toBeNull();
 });
 
@@ -100,10 +106,10 @@ it('opens the hero on the completed job and keeps task edits when reopened', () 
     />
   ));
   const log = within(view.getByRole('log', { name: 'Northwind rollout' }));
-  fireEvent.click(log.getByRole('button', { name: 'SSO verification' }));
+  fireEvent.click(log.getByRole('button', { name: 'sign-in verification' }));
   const opened = within(view.getByRole('region', { name: 'Opened item' }));
   expect(opened.getByRole('textbox', { name: 'Task title' }).textContent).toBe(
-    'Verify Northwind SSO before the pilot'
+    'Verify Northwind sign-in before the pilot'
   );
   const title = opened.getByRole('textbox', { name: 'Task title' });
   title.textContent = 'Send the revised pricing';
@@ -113,7 +119,7 @@ it('opens the hero on the completed job and keeps task edits when reopened', () 
   });
   fireEvent.blur(title);
   fireEvent.click(view.getByRole('button', { name: 'Close opened item' }));
-  fireEvent.click(log.getByRole('button', { name: 'SSO verification' }));
+  fireEvent.click(log.getByRole('button', { name: 'sign-in verification' }));
   expect(view.getByRole('textbox', { name: 'Task title' }).textContent).toBe(
     'Send the revised pricing'
   );
@@ -237,12 +243,16 @@ it('updates the plan and task ownership without falsely completing the access ch
   expect(
     view.getByRole('button', { name: 'Training for 40 people' })
   ).toBeTruthy();
-  expect(view.queryByRole('button', { name: 'SSO verification' })).toBeNull();
+  expect(
+    view.queryByRole('button', { name: 'sign-in verification' })
+  ).toBeNull();
   expect(w.data.tasks.find((t) => t.id === 'northwind-training')?.owner).toBe(
     'julia'
   );
   vi.advanceTimersByTime(1300);
-  expect(view.getByRole('button', { name: 'SSO verification' })).toBeTruthy();
+  expect(
+    view.getByRole('button', { name: 'sign-in verification' })
+  ).toBeTruthy();
   expect(w.data.tasks.find((t) => t.id === 'northwind-sso')).toMatchObject({
     owner: 'teo',
     status: 'Not Started',
@@ -252,12 +262,20 @@ it('updates the plan and task ownership without falsely completing the access ch
   expect(w.data.tasks.filter((t) => t.id === 'northwind-sso')).toHaveLength(1);
 });
 
+it('removes unsupported SSO claims and produces a collaboration checklist', () => {
+  expect(NORTHWIND_PLAN).not.toContain('SSO');
+  expect(NORTHWIND_COLLAB_PLAN).toContain('- [ ]');
+  expect(NORTHWIND_COLLAB_PLAN).not.toContain('SSO');
+});
+
 it('shows both collaborators’ edits and preserves a visitor’s later writing', () => {
   const view = render(() => <NorthwindCollaboration />);
   visible();
   vi.advanceTimersByTime(3900);
   const body = view.getByRole('textbox', { name: 'Document body' });
-  expect(body.textContent).toContain('Teo verifies SSO before the pilot.');
+  expect(body.textContent).toContain(
+    'Teo verifies sign-in before the Friday pilot can start.'
+  );
   expect(body.textContent).toContain(
     'Marcus will send the names of the 10 pilot participants today.'
   );
@@ -289,7 +307,7 @@ it('lists the real MCP command and does not report copy success on failure', asy
   const view = render(() => <AgentMcpDemo />);
   expect(
     view.getByText(
-      'claude mcp add --transport http macro https://mcp-server.macro.com/mcp'
+      'claude mcp add --transport http macro https://mcp-server.rox.one/mcp'
     )
   ).toBeTruthy();
   Object.defineProperty(navigator, 'clipboard', {
@@ -355,7 +373,7 @@ it('keeps the created task linked to the same rollout plan and source discussion
       embedded
     />
   ));
-  fireEvent.click(view.getByRole('button', { name: 'SSO verification' }));
+  fireEvent.click(view.getByRole('button', { name: 'sign-in verification' }));
   const pane = within(view.getByRole('region', { name: 'Opened item' }));
   expect(
     pane.getByRole('button', { name: 'Northwind rollout plan' })
@@ -364,5 +382,7 @@ it('keeps the created task linked to the same rollout plan and source discussion
     pane.queryByRole('button', { name: 'Website launch plan' })
   ).toBeNull();
   fireEvent.click(pane.getByRole('button', { name: 'From customers' }));
-  expect(view.getByText(/Northwind now needs 40 seats and SSO/)).toBeTruthy();
+  expect(
+    view.getByText(/Northwind now needs 40 seats and sign-in/)
+  ).toBeTruthy();
 });

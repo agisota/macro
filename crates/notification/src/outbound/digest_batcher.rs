@@ -134,7 +134,7 @@ impl DigestBatcher for RedisDigestBatcher {
         }
 
         // Discard stale digests older than 48 hours to avoid sending a backlog
-        // of accumulated notifications (e.g. after removing the macro.com domain gate)
+        // of accumulated notifications (e.g. after removing the rox.one domain gate)
         const STALENESS_THRESHOLD: Duration = Duration::from_hours(48);
         let age_secs = now - score as i64;
         if age_secs > STALENESS_THRESHOLD.as_secs() as i64 {

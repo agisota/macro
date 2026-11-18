@@ -7,7 +7,8 @@ import { ClaudeSignInDialog } from '../computers/views/claude-sign-in-dialog';
 /**
  * Connect an agent teammate to the team's Claude plan. Opened from the
  * agent's row in Members or from its ready notification, once its computer
- * is connected; always closable, and the agent runs on Macro credits until
+ * is connected, never as a step of the invite, and always closable; the
+ * agent runs on Rox credits until
  * then.
  */
 export function AgentClaudeDialog(props: {

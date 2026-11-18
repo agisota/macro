@@ -1,11 +1,11 @@
-//! Which config a macrod serves. One machine runs one runtime per config: the
-//! default `~/.macrod/macrod.toml`, and named profiles at
-//! `~/.macrod/profiles/<name>.toml` (`--profile <name>`). `--config <path>`
+//! Which config a roxd serves. One machine runs one runtime per config: the
+//! default `~/.roxd/roxd.toml`, and named profiles at
+//! `~/.roxd/profiles/<name>.toml` (`--profile <name>`). `--config <path>`
 //! names any other file.
 //!
-//! Releases before the shared config read `./macrod.toml` from the folder the
+//! Releases before the shared config read `./roxd.toml` from the folder the
 //! control panel started in. [`adopt_folder_config`] moves such a file into
-//! `~/.macrod` the first time `macrod` starts there, so the runtime it paired
+//! `~/.roxd` the first time `roxd` starts there, so the runtime it paired
 //! keeps serving instead of being swapped for another.
 
 use std::fmt;
@@ -20,14 +20,14 @@ use crate::config::{self, Config, HarnessCredentials, LockError};
 #[cfg(test)]
 mod test;
 
-/// The config file name, in `~/.macrod` and in the folders older releases
+/// The config file name, in `~/.roxd` and in the folders older releases
 /// read it from.
-const CONFIG_FILE: &str = "macrod.toml";
-/// Where named profiles live inside `~/.macrod`.
+const CONFIG_FILE: &str = "roxd.toml";
+/// Where named profiles live inside `~/.roxd`.
 const PROFILES_DIRECTORY: &str = "profiles";
 const PROFILE_EXTENSION: &str = "toml";
 /// The profile name used when a folder or host name has no usable characters.
-const UNNAMED_PROFILE: &str = "macrod";
+const UNNAMED_PROFILE: &str = "roxd";
 
 /// A profile's name: lowercase letters, digits, `-`, and `_`.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -87,16 +87,16 @@ impl ProfileName {
     }
 }
 
-/// `~/.macrod`: the default config and the profiles beside it.
+/// `~/.roxd`: the default config and the profiles beside it.
 #[derive(Debug, Clone)]
-pub struct MacrodHome {
+pub struct RoxdHome {
     directory: PathBuf,
 }
 
-impl MacrodHome {
-    /// This user's `~/.macrod`.
+impl RoxdHome {
+    /// This user's `~/.roxd`.
     pub fn locate() -> rootcause::Result<Self> {
-        config::macrod_directory()
+        config::roxd_directory()
             .map(|directory| Self { directory })
             .ok_or_else(|| {
                 rootcause::report!(
@@ -105,7 +105,7 @@ impl MacrodHome {
             })
     }
 
-    /// A macrod directory at `directory`.
+    /// A roxd directory at `directory`.
     #[cfg(test)]
     pub fn at(directory: &Path) -> Self {
         Self {
@@ -113,7 +113,7 @@ impl MacrodHome {
         }
     }
 
-    /// `~/.macrod/macrod.toml`.
+    /// `~/.roxd/roxd.toml`.
     pub fn default_config(&self) -> PathBuf {
         self.directory.join(CONFIG_FILE)
     }
@@ -122,7 +122,7 @@ impl MacrodHome {
         self.directory.join(PROFILES_DIRECTORY)
     }
 
-    /// `~/.macrod/profiles/<name>.toml`.
+    /// `~/.roxd/profiles/<name>.toml`.
     pub fn profile_config(&self, name: &ProfileName) -> PathBuf {
         self.profiles_directory()
             .join(format!("{name}.{PROFILE_EXTENSION}"))
@@ -174,7 +174,7 @@ impl MacrodHome {
     }
 }
 
-/// The config one macrod serves, and the profile it is, if any.
+/// The config one roxd serves, and the profile it is, if any.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ConfigSelection {
     /// The config file.
@@ -196,21 +196,21 @@ impl ConfigSelection {
                 path,
                 profile: None,
             }),
-            (None, Some(profile)) => Ok(Self::profile_in(&MacrodHome::locate()?, profile)),
-            (None, None) => Ok(Self::default_in(&MacrodHome::locate()?)),
+            (None, Some(profile)) => Ok(Self::profile_in(&RoxdHome::locate()?, profile)),
+            (None, None) => Ok(Self::default_in(&RoxdHome::locate()?)),
         }
     }
 
-    /// `~/.macrod/macrod.toml`.
-    pub fn default_in(home: &MacrodHome) -> Self {
+    /// `~/.roxd/roxd.toml`.
+    pub fn default_in(home: &RoxdHome) -> Self {
         Self {
             path: home.default_config(),
             profile: None,
         }
     }
 
-    /// `~/.macrod/profiles/<profile>.toml`.
-    pub fn profile_in(home: &MacrodHome, profile: ProfileName) -> Self {
+    /// `~/.roxd/profiles/<profile>.toml`.
+    pub fn profile_in(home: &RoxdHome, profile: ProfileName) -> Self {
         Self {
             path: home.profile_config(&profile),
             profile: Some(profile),
@@ -229,13 +229,13 @@ impl ConfigSelection {
     /// The command that starts the control panel on this config again.
     pub fn command(&self) -> String {
         match &self.profile {
-            Some(profile) => format!("macrod --profile {profile}"),
-            None => "macrod".to_owned(),
+            Some(profile) => format!("roxd --profile {profile}"),
+            None => "roxd".to_owned(),
         }
     }
 }
 
-/// A folder's `macrod.toml`, moved into `~/.macrod` and served from there.
+/// A folder's `roxd.toml`, moved into `~/.roxd` and served from there.
 #[derive(Debug, PartialEq, Eq)]
 pub struct AdoptedFolderConfig {
     /// Where the file was.
@@ -256,12 +256,12 @@ impl AdoptedFolderConfig {
     }
 }
 
-/// Why a folder's `macrod.toml` could not be moved into `~/.macrod`.
+/// Why a folder's `roxd.toml` could not be moved into `~/.roxd`.
 #[derive(Debug, thiserror::Error)]
 pub enum AdoptError {
-    /// A macrod started with `--config` is serving the folder's file.
+    /// A roxd started with `--config` is serving the folder's file.
     #[error(
-        "another macrod is running with {path}; stop it first, or run `macrod --config {path}`"
+        "another roxd is running with {path}; stop it first, or run `roxd --config {path}`"
     )]
     Served {
         /// The folder's config.
@@ -280,22 +280,22 @@ pub enum AdoptError {
     },
 }
 
-/// Move `<folder>/macrod.toml`, the config older releases read from the
+/// Move `<folder>/roxd.toml`, the config older releases read from the
 /// folder they started in, into `home` and select it.
 ///
 /// It becomes the default config when there is none yet; otherwise a profile
 /// named after the folder (numbered when that name is taken), so the runtime it
 /// paired keeps its identity. Nothing happens when the folder has no
-/// `macrod.toml` or it is the default config itself.
+/// `roxd.toml` or it is the default config itself.
 pub fn adopt_folder_config(
     folder: &Path,
-    home: &MacrodHome,
+    home: &RoxdHome,
 ) -> Result<Option<AdoptedFolderConfig>, AdoptError> {
     let from = folder.join(CONFIG_FILE);
     if !from.is_file() || is_same_file(&from, &home.default_config()) {
         return Ok(None);
     }
-    // Held across the move: a macrod already serving this file with
+    // Held across the move: a roxd already serving this file with
     // `--config` keeps it.
     let folder_lock = match config::lock(&from) {
         Ok(lock) => lock,
@@ -329,7 +329,7 @@ pub fn adopt_folder_config(
 /// The default config when nothing has it yet, else a new profile.
 fn choose_destination(
     folder: &Path,
-    home: &MacrodHome,
+    home: &RoxdHome,
     from: &Path,
 ) -> Result<ConfigSelection, AdoptError> {
     let default_config = home.default_config();
@@ -397,7 +397,7 @@ pub fn ask_for_profile(
 ) -> std::io::Result<Option<ProfileName>> {
     writeln!(
         output,
-        "Another macrod is already running with {}.",
+        "Another roxd is already running with {}.",
         served.display()
     )?;
     writeln!(
@@ -422,7 +422,7 @@ pub fn ask_for_profile(
     }
 }
 
-/// One config `macrod profiles` lists.
+/// One config `roxd profiles` lists.
 #[derive(Debug, PartialEq, Eq)]
 pub struct ListedConfig {
     /// `None` for the default config.
@@ -431,7 +431,7 @@ pub struct ListedConfig {
     pub path: PathBuf,
     /// What the file says about pairing.
     pub pairing: Pairing,
-    /// Whether a macrod holds it right now.
+    /// Whether a roxd holds it right now.
     pub serving: Serving,
 }
 
@@ -444,14 +444,14 @@ pub enum Pairing {
     NotPaired,
     /// Paired to this harness.
     Paired(HarnessId),
-    /// The file does not load; `macrod` on it shows why.
+    /// The file does not load; `roxd` on it shows why.
     Invalid,
 }
 
-/// Whether a macrod is serving a listed config.
+/// Whether a roxd is serving a listed config.
 #[derive(Debug, PartialEq, Eq)]
 pub enum Serving {
-    /// A macrod holds its lock.
+    /// A roxd holds its lock.
     Running,
     /// Nothing holds it.
     Stopped,
@@ -460,7 +460,7 @@ pub enum Serving {
 }
 
 /// The default config and every profile, in that order.
-pub fn list(home: &MacrodHome) -> std::io::Result<Vec<ListedConfig>> {
+pub fn list(home: &RoxdHome) -> std::io::Result<Vec<ListedConfig>> {
     let default = std::iter::once((None, home.default_config()));
     let profiles = home.profiles()?.into_iter().map(|profile| {
         let path = home.profile_config(&profile);
@@ -496,7 +496,7 @@ fn pairing_of(path: &Path) -> Pairing {
     }
 }
 
-/// `macrod profiles` output: one aligned row per config, under a header.
+/// `roxd profiles` output: one aligned row per config, under a header.
 pub fn render(configs: &[ListedConfig]) -> String {
     let rows: Vec<[String; 4]> = configs
         .iter()
@@ -524,7 +524,7 @@ pub fn render(configs: &[ListedConfig]) -> String {
         .collect();
     let header = [
         "PROFILE".to_owned(),
-        "MACROD".to_owned(),
+        "ROXD".to_owned(),
         "HARNESS".to_owned(),
         "CONFIG".to_owned(),
     ];

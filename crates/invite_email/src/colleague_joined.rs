@@ -4,11 +4,11 @@ use super::*;
 /// organization and that signing up with their work email joins it. It is an informational,
 /// one-time notice that names who set the team up rather than announcing a sign-up.
 #[derive(Debug, Clone, Serialize, Deserialize, Template)]
-#[template(path = "colleague_joined_macro.html")]
+#[template(path = "colleague_joined_rox.html")]
 pub struct ColleagueJoinedMacro {
     /// The team the recipient joins automatically when they sign up.
     pub team_name: String,
-    /// The colleague who joined Macro.
+    /// The colleague who joined Rox.
     pub joined_by: MacroUserIdStr<'static>,
     /// The colleague's display name from an untrusted source. It is shown on one line, capped,
     /// and escaped.

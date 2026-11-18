@@ -47,7 +47,7 @@ describe('admin approval dialog', () => {
     ));
     expect(
       screen.getByText(
-        'Your organization requires an IT admin to approve Macro before you can connect this account.'
+        'Your organization requires an IT admin to approve Rox before you can connect this account.'
       )
     ).toBeTruthy();
     await fireEvent.click(

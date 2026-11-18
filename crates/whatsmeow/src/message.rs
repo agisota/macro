@@ -387,7 +387,7 @@ impl Client {
         )
     )]
     async fn decrypt_messages(self: &Arc<Self>, info: &mut MessageInfo, node: &Node) {
-        // Macro addition: counts and ack latency on this span.
+        // Rox addition: counts and ack latency on this span.
         let received = tokio::time::Instant::now();
         let receive_span = tracing::Span::current();
         let mut decrypted_count = 0_usize;
@@ -875,7 +875,7 @@ impl Client {
             let Some(notification) = notification else {
                 break;
             };
-            // Macro addition: one span per history sync notification.
+            // Rox addition: one span per history sync notification.
             let span = tracing::info_span!(
                 "whatsmeow.history_sync.process",
                 sync_type = notification.sync_type,
@@ -1119,7 +1119,7 @@ impl Client {
         {
             let request_type = response.peer_data_operation_request_type;
             if request_type == Some(PeerDataOperationRequestType::PlaceholderMessageResend as i32) {
-                // Boxed (Macro addition): parsing and dispatching the resent
+                // Boxed (Rox addition): parsing and dispatching the resent
                 // message nests deep in decryption; inline it overflows a
                 // 2 MiB stack in debug builds.
                 ok = Box::pin(self.handle_placeholder_resend_response(response)).await && ok;
@@ -1565,7 +1565,7 @@ pub fn pad_message(mut plaintext: Vec<u8>) -> Vec<u8> {
     plaintext
 }
 
-/// Macro addition: records a decrypt's outcome on its debug span and counts
+/// Rox addition: records a decrypt's outcome on its debug span and counts
 /// it on the message's receive span.
 fn record_decrypt_outcome<Value>(
     decrypt_span: &tracing::Span,
@@ -1595,7 +1595,7 @@ fn record_decrypt_outcome<Value>(
     }
 }
 
-/// Macro addition: the time from handling a message to acking it.
+/// Rox addition: the time from handling a message to acking it.
 fn record_ack_latency(span: &tracing::Span, received: tokio::time::Instant) {
     span.record(
         "ack_ms",

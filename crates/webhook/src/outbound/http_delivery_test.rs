@@ -100,14 +100,24 @@ fn builds_signed_request_with_exact_broker_envelope() {
     assert_eq!(request.headers()[EVENT_ID_HEADER], event.event_id);
     assert_eq!(request.headers()[TIMESTAMP_HEADER], timestamp);
     assert_eq!(request.headers()[SIGNATURE_HEADER], signature);
+    // An endpoint written against the pre-rename names verifies the same pair.
+    assert_eq!(request.headers()[LEGACY_EVENT_HEADER], event.event_name);
+    assert_eq!(request.headers()[LEGACY_EVENT_ID_HEADER], event.event_id);
+    assert_eq!(request.headers()[LEGACY_TIMESTAMP_HEADER], timestamp);
+    assert_eq!(request.headers()[LEGACY_SIGNATURE_HEADER], signature);
     assert_eq!(request.headers()["authorization"], "Bearer secret");
     assert!(request.headers()[SIGNATURE_HEADER].is_sensitive());
+    assert!(request.headers()[LEGACY_SIGNATURE_HEADER].is_sensitive());
     assert!(request.headers()["authorization"].is_sensitive());
 }
 
 #[test]
 fn rejects_reserved_headers_case_insensitively() {
     for name in [
+        "X-Rox-Event",
+        "x-rox-event-id",
+        "X-ROX-TIMESTAMP",
+        "x-Rox-Signature",
         "X-Macro-Event",
         "x-macro-event-id",
         "X-MACRO-TIMESTAMP",
@@ -120,7 +130,7 @@ fn rejects_reserved_headers_case_insensitively() {
 
         assert_eq!(
             delivery_headers(&webhook, &event(), "123", "v1=signature"),
-            Err("reserved Macro headers cannot be overridden")
+            Err("reserved Rox headers cannot be overridden")
         );
     }
 }
@@ -264,7 +274,7 @@ async fn reserved_header_configuration_is_permanent_without_dns_lookup() {
     assert_eq!(details.error_kind.as_deref(), Some("header_configuration"));
     assert_eq!(
         details.error_message.as_deref(),
-        Some("reserved Macro headers cannot be overridden")
+        Some("reserved Rox headers cannot be overridden")
     );
 }
 

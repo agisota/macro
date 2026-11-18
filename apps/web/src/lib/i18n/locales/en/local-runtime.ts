@@ -1,7 +1,7 @@
 export default {
   title: 'Run agents on this computer',
   description:
-    'Macro runs the coding agents you already have, like Claude Code and Codex, right here with your own subscriptions and files.',
+    'Rox runs the coding agents you already have, like Claude Code and Codex, right here with your own subscriptions and files.',
   scanning: 'Looking for agents on this computer…',
   found: 'Found {{agent}} on this computer.',
   noAgents:
@@ -21,7 +21,7 @@ export default {
   stepDetect: 'Find an agent',
   stepDetectDone: 'Found {{agent}}',
   stepConnect: 'Connect this computer',
-  stepConnectStarting: 'Starting Macro on this computer…',
+  stepConnectStarting: 'Starting Rox on this computer…',
   stepConnectInstalling: 'Installing the {{agent}} connector…',
   stepConnectPairing: 'Linking this computer to your account…',
   stepAgent: 'Create your agent',
@@ -29,7 +29,7 @@ export default {
   tryAgain: 'Try again',
   readyTitle: '@{{handle}} is ready',
   readyDescription:
-    'Mention it in any channel or start a session. It runs on this computer while Macro is open.',
+    'Mention it in any channel or start a session. It runs on this computer while Rox is open.',
   readyWorkspace: 'Sessions run in {{workspace}}.',
   startSession: 'Start a session',
   done: 'Done',
@@ -37,5 +37,5 @@ export default {
   later: 'Not now',
   promptTitle: 'Run agents on this computer',
   promptBody:
-    'Use Claude Code, Codex, and other agents you have installed from Macro, in one click.',
+    'Use Claude Code, Codex, and other agents you have installed from Rox, in one click.',
 };

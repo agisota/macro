@@ -7,7 +7,7 @@ use macro_env_var::{env_vars, maybe_env_vars};
 pub struct Config {
     /// Database connection URL.
     pub database_url: String,
-    /// The domain to search for in HTML content (e.g., "static-file-service.macro.com").
+    /// The domain to search for in HTML content (e.g., "static-file-service.rox.one").
     pub sfs_domain: String,
     /// Path to the file storing message IDs.
     pub message_ids_file: String,
@@ -78,7 +78,7 @@ impl Config {
                 .to_string(),
             sfs_domain: SfsDomain::new()
                 .map(|value| value.to_string())
-                .unwrap_or_else(|| "static-file-service.macro.com".to_string()),
+                .unwrap_or_else(|| "static-file-service.rox.one".to_string()),
             message_ids_file: MessageIdsFile::new()
                 .map(|value| value.to_string())
                 .unwrap_or_else(|| "message_ids.txt".to_string()),

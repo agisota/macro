@@ -158,7 +158,7 @@ current selection, or all content when nothing is selected. The zoom menu keeps
 **Zoom to fit** for all content and adds **Zoom to fit selection**, disabled with
 no selection. Verify one item and multiple selected items, then deselect and
 check that **.** fits everything again.
-Canvas **Ask Macro**, including the Drive detail header, attaches the open canvas to the existing agent composer on
+Canvas **Ask Rox**, including the Drive detail header, attaches the open canvas to the existing agent composer on
 desktop and mobile. Ask it to create or edit a diagram: `ReadCanvas` reads the
 current live scene and `EditCanvas` applies bounded commands through the same
 collaborative room. Expand the tool result to inspect its outcome; edits appear
@@ -168,11 +168,11 @@ If an edit is cancelled or loses its acknowledgement, inspect the canvas before
 repeating the request because earlier snippets may already have applied.
 
 To verify AI editing, open the same canvas as an owner, a second editor and a
-viewer. Use **Ask Macro** to create two labeled boxes and a bound arrow. Confirm
+viewer. Use **Ask Rox** to create two labeled boxes and a bound arrow. Confirm
 all three see the changes, the viewer's edit request is refused, and a second
 editor's unrelated shape/style edits survive. Move an endpoint shape and check
 the connector follows it. Reload both editing sessions and inspect the tool's
-expandable result. At phone width, tap the document title to open its file menu for Ask Macro; the floating zoom/inspector sits below that header. Use the responsive action
+expandable result. At phone width, tap the document title to open its file menu for Ask Rox; the floating zoom/inspector sits below that header. Use the responsive action
 and verify the composer attachment and result disclosure remain usable.
 
 All canvases open in Canvas Next, including drive details and Markdown embeds;
@@ -220,7 +220,7 @@ its document; selecting the rest of the card leaves the canvas in place.
 Verify the backlink on the target, duplicate cards retaining one reference, and
 removing the final card followed by undo/redo. Reload must preserve tracking.
 Existing untracked cards register on their next content save.
-Pasting a same-host Macro file URL uses the same link resolver as Markdown and
+Pasting a same-host Rox file URL uses the same link resolver as Markdown and
 inserts a reference card at the viewport center, including nested Drive routes
 and copied split layouts (the rightmost pane). Legacy `/app/md/<id>` links still
 work. Verify a `/app/drive/md/<id>` paste becomes a card and registers a backlink;
@@ -413,7 +413,7 @@ From Files the new workbook opens inline in the open folder or tab
 (`/app/drive/.../spreadsheet/<uuid>`) without reloading Drive.
 `/app/spreadsheet/<uuid>` links redirect into Drive on desktop. Native workbooks
 use the normal document
-title bar with **Ask Macro** and **Share** at the top right. The **File actions**
+title bar with **Ask Rox** and **Share** at the top right. The **File actions**
 ellipsis beside the title uses the same menu as documents, including rename,
 favorite, move, copy, and permission-appropriate file actions. Native spreadsheets
 use a green grid icon in file lists and search. The grid fills
@@ -424,7 +424,7 @@ real cell text before reading values. Once it loads, the grid takes keyboard foc
 with A1 selected, so typing immediately edits A1 and arrow keys move the selection;
 it does not take focus from a dialog or control reached while loading, nor in an
 inline preview or when the sheet was opened by J/K list navigation. They have the `.spreadsheet` file type; uploading an
-Excel (`.xlsx`, `.xlsm`) or CSV file in Files or a channel opens a read-only spreadsheet preview, including existing `/app/unknown/<uuid>` links and CSV code routes. Review **Import notes**, then choose **Edit in Macro** to create a collaborative native copy. The original file and its link remain intact. Conversion waits for a durable save before opening the copy; a failed save can be retried without creating another copy. The normal document download action retrieves the original; the spreadsheet footer exports the imported representation.
+Excel (`.xlsx`, `.xlsm`) or CSV file in Files or a channel opens a read-only spreadsheet preview, including existing `/app/unknown/<uuid>` links and CSV code routes. Review **Import notes**, then choose **Edit in Rox** to create a collaborative native copy. The original file and its link remain intact. Conversion waits for a durable save before opening the copy; a failed save can be retried without creating another copy. The normal document download action retrieves the original; the spreadsheet footer exports the imported representation.
 
 You can also open a native spreadsheet and use the bottom-right **Import and export → Import…** menu to import its sheets. A large workbook shows a progress bar on **Import workbook** while it is written; the page stays responsive, and one undo removes the whole import.
 
@@ -602,7 +602,7 @@ with `=` and may refer to cells or ranges, for example `=SUM(B2:B5)`. Check both
 the rendered result and formula bar: a formula's displayed result differs from
 its stored input. Paste a rectangular selection copied from another spreadsheet
 to populate multiple cells. The toolbar offers number formatting, bold, undo,
-and redo; sharing uses the same document permissions as other Macro files.
+and redo; sharing uses the same document permissions as other Rox files.
 
 On a phone, tap once to select and tap the same cell again promptly to edit.
 Swiping the grid scrolls without extending selection. Drag **Move selection start**
@@ -658,7 +658,7 @@ the last row and column.
 Only nearby rows are mounted. Use **Go to cell** or keyboard navigation to reach
 off-screen cells; verify the target is visible below the sticky column header.
 
-Copy within Macro and paste elsewhere to translate relative references: copying
+Copy within Rox and paste elsewhere to translate relative references: copying
 `=B4-C4` down becomes `=B5-C5`, while `$B$4` stays fixed. Drag the small handle
 at the selection's bottom-right corner to fill down/up or right/left. Select a
 range and use **Format and data → Fill down / Fill right** or **Cmd/Ctrl+D** /
@@ -741,7 +741,7 @@ Select data without its header when sorting. A concurrent edit cancels a pending
 sort; references elsewhere in the sheet are not rewritten to follow sorted rows.
 
 The footer's bottom-right **Import and export → Import…** accepts `.csv` and `.xlsx`.
-Right-click a row number or column letter for Macro's contextual menu: clipboard actions,
+Right-click a row number or column letter for Rox's contextual menu: clipboard actions,
 clear, hide/unhide, resize and fit-to-data; columns also offer whole-sheet sorting.
 The menu keeps an existing whole-row/column selection when opened within it.
 Insert/delete shifts cells, references and named ranges in local workbooks and in
@@ -750,16 +750,16 @@ is offline or reconnecting. A collaborator's change that arrives while the cells
 are being moved cancels the insert/delete. Adding blank rows at the bottom
 remains available. Hidden cells are skipped by keyboard navigation.
 
-Cells support Macro mentions without Markdown formatting. Type `@` in a cell or
+Cells support Rox mentions without Markdown formatting. Type `@` in a cell or
 the formula bar to search people, documents, channels, email and dates, then choose an
-item with the pointer or keyboard. Pasting a Macro app link renders a document
+item with the pointer or keyboard. Pasting a Rox app link renders a document
 pill. Legacy links retain navigation parameters. Routed links retain compatible
 block targets, but not workspace paths or pane-local search. Formulas still use
 `@` inside a formula or email address does not start mention search. Other Markdown
 is literal text. Mentions remain attached through copy/fill, undo and collaboration;
 Excel/CSV export uses their display text. Plain URLs and email addresses are clickable;
 web links use the same hover preview as channel messages. Click the surrounding cell
-or use the formula bar to edit link text. AI `set_cells` accepts Macro URLs or the
+or use the formula bar to edit link text. AI `set_cells` accepts Rox URLs or the
 same `<m-user-mention>` / `<m-document-mention>` / `<m-date-mention>` encoding as docs.
 Formula references to mention cells use literal labels, never execute a label as a formula.
 
@@ -798,7 +798,7 @@ protection). Choose
 **Insert new sheets** to keep existing work, or **Replace workbook** to replace it
 in one undoable operation. Names must be unique when inserting sheets. Canceling
 leaves the workbook untouched; a replacement is blocked if the workbook changed
-while the preview was open. Encrypted files are rejected. Macro-enabled `.xlsm`
+while the preview was open. Encrypted files are rejected. Rox-enabled `.xlsm`
 workbooks import like `.xlsx` (here and as uploads), without their macros: VBA
 projects, Excel 4.0 macro sheets and form/ActiveX controls are dropped with an
 import note, and **Download as Excel** writes a macro-free `.xlsx`; an uploaded
@@ -808,7 +808,7 @@ is rejected here with a hint to upload it instead; uploads convert it (see
 
 **Import and export → Download as Excel (.xlsx)** (also the header's "…" file
 menu **Download** submenu, beside **Download as CSV**) exports every sheet with formulas,
-current formula result caches, precise numeric values, custom Excel number formats, fonts, borders, and column widths. Named ranges, named constants, and names defined by formulas are retained and calculate. Imported legacy formulas keep Excel's implicit intersection, shown with `@` as current Excel shows it; 3-D references such as `SUM('Jan:Dec'!B2)` are listed sheet by sheet. Imported merged ranges, hidden sheets/rows/columns, row heights, filters, and frozen panes are retained for export. Macro hides imported rows and columns, shows hidden sheets and individual cells of merged ranges; editing a covered merged cell omits that merge during export with a warning so the edit is preserved. Imported charts, images, shapes, text boxes, pivot tables, conditional formatting, validation and notes are written back. Structured table formulas and rich text are not fully supported; review import notes before conversion.
+current formula result caches, precise numeric values, custom Excel number formats, fonts, borders, and column widths. Named ranges, named constants, and names defined by formulas are retained and calculate. Imported legacy formulas keep Excel's implicit intersection, shown with `@` as current Excel shows it; 3-D references such as `SUM('Jan:Dec'!B2)` are listed sheet by sheet. Imported merged ranges, hidden sheets/rows/columns, row heights, filters, and frozen panes are retained for export. Rox hides imported rows and columns, shows hidden sheets and individual cells of merged ranges; editing a covered merged cell omits that merge during export with a warning so the edit is preserved. Imported charts, images, shapes, text boxes, pivot tables, conditional formatting, validation and notes are written back. Structured table formulas and rich text are not fully supported; review import notes before conversion.
 CSV imports preserve long identifiers and leading zeros as text and never execute formula-like strings.
 **Download as CSV** in the same menu exports only the active sheet's current
 calculated values. Clipboard menu actions use the browser clipboard; if access is
@@ -829,7 +829,7 @@ sheet, to avoid breaking those references; `INDIRECT` text cannot be checked thi
 The 10-sheet limit applies to local additions/imports; concurrent offline additions
 can merge above it without hiding another user's work.
 
-Ribbon dropdowns, the import/export menu, and sheet actions use the shared Macro
+Ribbon dropdowns, the import/export menu, and sheet actions use the shared Rox
 menu styling. Verify keyboard navigation, checkbox toggles, Escape, and restoring
 editor focus after menu actions or Escape and after Find/rename dialogs close.
 Clicking outside a ribbon menu onto the address or formula input should keep
@@ -877,7 +877,7 @@ iPhone WebKit projects. Chromium uses trusted touch drags; WebKit uses native ta
 and mouse-pointer handle drags. A reduced test viewport only checks layout; verify
 actual keyboard resizing and iOS gesture behavior in the simulator or on a device.
 
-Right-click a cell for the Macro cell menu: Cut, Copy, Paste, Paste values only,
+Right-click a cell for the Rox cell menu: Cut, Copy, Paste, Paste values only,
 Clear values, Clear formatting, Fill down/right, and Comment on saved workbooks.
 Right-click inside a selected range to act on that range; outside it targets the
 clicked cell. **Shift + F10** or the keyboard context-menu key opens the same menu
@@ -923,9 +923,9 @@ Comment-only access can post/reply; view-only access can read. Edit/delete appli
 to the author's own comments, and failures retain the input draft. Draft demos
 must be saved before persistent comments are available.
 
-## Ask Macro about a spreadsheet
+## Ask Rox about a spreadsheet
 
-**Ask Macro** sits immediately left of **Share**. Select the relevant cells, then
+**Ask Rox** sits immediately left of **Share**. Select the relevant cells, then
 click it to open the agent composer in a split beside the workbook. The composer starts
 with the workbook mention followed by one space; nothing sends automatically.
 The mention captures the active sheet ID/name and normalized selected range at
@@ -935,7 +935,7 @@ On phones and tablets the header has neither Ask Macro nor Comments: Ask Macro
 is the first row of the title menu, and it attaches the active sheet and
 selection as the button does.
 
-In the local spreadsheet demo, Ask Macro first saves the entire workbook and
+In the local spreadsheet demo, Ask Rox first saves the entire workbook and
 waits for acknowledgement. A failed save leaves the draft editable and supports
 retry, without opening an empty chat. This path needs the updated native-document
 backend, just like Share.
@@ -959,7 +959,7 @@ engine, and `macro.documents.createSpreadsheet()` creates a blank workbook.
 described change to the editing worker's writer model, which saves one batch;
 it is billed as an AI edit, and the result lists the changes and warnings.
 
-Verify with a saved workbook: select B4:E9, click Ask Macro, check the adjacent
+Verify with a saved workbook: select B4:E9, click Ask Rox, check the adjacent
 chat's mention and trailing space, and ask for a total or a what-if calculation.
 The workbook should stay unchanged for scratch calculations. Ask for an edit and
 check both source/formula and displayed result in the sheet and another connected
@@ -1000,7 +1000,7 @@ on the server: `.doc` → `.docx`, `.ppt` → `.pptx`, `.xls` → `.xlsx`. This 
 applies to files inside an uploaded folder. The document keeps its id and name;
 its file type changes and the converted file becomes its latest version.
 Converted Word files then go through the regular DOCX pipeline, and converted
-workbooks open in the uploaded-workbook preview, where **Edit in Macro** imports
+workbooks open in the uploaded-workbook preview, where **Edit in Rox** imports
 them into a native spreadsheet.
 
 While a legacy file uploaded in the last 10 minutes is converting, its view shows
@@ -1448,8 +1448,8 @@ Layout and test hooks:
   whole link around the caret; at a bare caret it inserts the "Text to
   display" (`pptx-link-text`) as linked text. With shapes selected (not their
   text) it links the shapes themselves. Link to: Web Page or File
-  (`pptx-link-kind-web`, address `pptx-link-address`; `macro.com` becomes
-  `https://macro.com`), Place in This Document (`pptx-link-kind-place`:
+  (`pptx-link-kind-web`, address `pptx-link-address`; `rox.one` becomes
+  `https://rox.one`), Place in This Document (`pptx-link-kind-place`:
   `pptx-link-place-nextslide` and the other jumps, or
   `pptx-link-place-slide-<n>`, with a preview `pptx-link-preview`), or E-mail
   Address (`pptx-link-kind-email`, `pptx-link-email`, `pptx-link-subject`).
@@ -1531,9 +1531,9 @@ and as colored dots on the thumbnails of slides they are on. A viewer who opens
 a deck nobody has shared yet, or anyone when the sync service is unreachable,
 gets the stored file read-only.
 
-**Ask Macro**, in the header beside **Share**, opens the agent composer in a
+**Ask Rox**, in the header beside **Share**, opens the agent composer in a
 split with the deck mentioned (nothing sends automatically).
-Macro AI reads decks with `ReadPresentation` (slides, layouts, theme colors,
+Rox AI reads decks with `ReadPresentation` (slides, layouts, theme colors,
 sections, transitions, header and footer, and every shape with its id, kind,
 placeholder role, position in points, text, table cells with merges and style,
 chart type and data, picture crop and adjustments, and shadow, glow, soft edge,
@@ -1622,7 +1622,7 @@ version from before such a replacement) starts the shared design over on
 it, dropping the changes made on the file it replaced; people still in the
 design get a **Reload** bar and their copy turns read-only.
 
-Macro AI reads designs with `ReadDesign` (`ReadContent` returns the same
+Rox AI reads designs with `ReadDesign` (`ReadContent` returns the same
 description; attaching a design points the agent at it): the pages, numbered
 from 1, each page's top-level frames and sections with ids, sizes and
 positions, the text in each frame in reading order (instances' text
@@ -1638,7 +1638,7 @@ Layout and test hooks:
 
 - **Opening a design**: download, collaboration connection, and decoding use
   the same editor-shaped loading shell (`fig-opening`), without a floating
-  thumbnail or Macro spinner. Its canvas has the same bounds as the editor.
+  thumbnail or Rox spinner. Its canvas has the same bounds as the editor.
   The canvas status (`fig-loading-status`) clears when content is first drawn
   or an empty page is ready; the surrounding controls need not wait for tiles.
 - **Dragging layers with composited effects**: when a layer cannot be moved
@@ -1746,12 +1746,12 @@ Layout and test hooks:
   click elsewhere ends editing; rectangles, ellipses, and the like become
   vectors when their points change. ⌘C also puts the selection on the system
   clipboard as Figma does (HTML whose comments carry `(figmeta)` and the
-  layers as a `(figma)` `.fig` document, plus Macro's `(macroimages)`), so
+  layers as a `(figma)` `.fig` document, plus Rox's `(macroimages)`), so
   layers paste into other designs and tabs, and layers copied in Figma paste
   here (their images arrive as gray placeholders, since Figma's clipboard
   does not carry them). Pasted instances whose component is not in the file
   are detached. In a live design, the others receive pasted layers as the
-  properties Macro models, so fields it does not model (prototype links,
+  properties Rox models, so fields it does not model (prototype links,
   plugin data, and the like) survive only while the person who pasted is
   the one storing the file. Paste places layers by Figma's rules: into a selected frame
   (where they were if that is inside it, else centered), beside a selected
@@ -2125,7 +2125,7 @@ the flag off the block offers the file for download. The file is read,
 composited, and edited by the Rust `psd_engine` compiled to WebAssembly, in
 one worker. The canvas draws 512 px tiles from a pyramid of scales (the
 nearest one shows while zooming, then it sharpens) and redraws only what an
-edit changed. How Macro AI and search read these files is under
+edit changed. How Rox AI and search read these files is under
 [Photoshop and Illustrator documents](#photoshop-and-illustrator-documents).
 
 People with edit access get the editor; others get the same view read-only
@@ -2408,7 +2408,7 @@ block and image attachments for the agent skip it. The backend reads these
 documents with the Rust `psd_engine` and `ai_engine`, the same engines the
 browser editors run as WebAssembly.
 
-Macro AI reads them with `ReadPhotoshopDocument` and
+Rox AI reads them with `ReadPhotoshopDocument` and
 `ReadIllustratorDocument` (`ReadContent` returns the same description, and
 attaching one points the agent at its tool):
 
@@ -2435,7 +2435,7 @@ documents beyond 256 MB of decoded pixels) are indexed by name only.
 
 ## Create and type
 
-Pasting a Macro `/app/agents/<uuid>` session URL into a Markdown editor converts
+Pasting a Rox `/app/agents/<uuid>` session URL into a Markdown editor converts
 it to an agent mention, just like the legacy `/app/agent/<uuid>` URL. Link query
 parameters are retained, except for referral codes.
 
@@ -2449,13 +2449,13 @@ and agent chat links also convert to their respective entity mentions.
 
 Pasting a bare GitHub pull request URL (`github.com/<owner>/<repo>/pull/<n>`,
 including subpages such as `/files`) inserts a link that becomes a PR mention
-once Macro finds the synced PR, usually within a moment. Hovering the mention
+once Rox finds the synced PR, usually within a moment. Hovering the mention
 shows its status, diff size, comments, and checks; clicking opens the PR on
 GitHub (a new tab, or the system browser in the desktop app). A PR mention
 always stays on one line: a long title truncates with an
 ellipsis before the `#N`, so read the full title from the hover card. In a sent
 message, a mention an agent wrote by URL alone shows `owner/repo#N` until its
-title loads and keeps the same width either way. A PR Macro has not synced
+title loads and keeps the same width either way. A PR Rox has not synced
 stays an ordinary link, and pasting over a selection keeps the default
 behavior.
 
@@ -2551,12 +2551,12 @@ their relative depths and order.
 
 With CRM enabled, type `@` followed by a company name or domain in an editor or
 composer. Companies and contacts appear together under **Contacts & Companies**;
-**People** holds Macro users and groups only. Selecting a CRM contact inserts
-its record link, including when its email matches a Macro user. User-only pickers
+**People** holds Rox users and groups only. Selecting a CRM contact inserts
+its record link, including when its email matches a Rox user. User-only pickers
 exclude CRM records. On mobile, the single list includes both CRM record types, while only
-Macro people and groups are pinned. The PostHog `disable-crm-contact-search`
+Rox people and groups are pinned. The PostHog `disable-crm-contact-search`
 kill switch removes contact results and disables their search while leaving
-companies and Macro users available; existing contact mentions still work.
+companies and Rox users available; existing contact mentions still work.
 Override locally with `VITE_DISABLE_CRM_CONTACT_SEARCH=true`. Results include cached companies even if they are
 absent from the first 500 companies in the REST Quick Access feed; the REST feed
 remains a fallback. Cache search covers synchronized companies, not the entire CRM.
@@ -2668,7 +2668,7 @@ The `@` menu includes `Recent agent sessions` after Channels and before
 Companies. Search by session or persona name within the 500 most recently
 updated accessible sessions. Menu rows show the
 session title followed by a muted persona name, including `@Cursor` and
-`@Macro` for built-in personas. Names from the session API take precedence;
+`@Rox` for built-in personas. Names from the session API take precedence;
 older responses use the shared built-in name resolver or cached custom bots.
 Selecting one inserts an
 inline reference showing the shared agent icon and an underlined session title.
@@ -2741,7 +2741,7 @@ Status and detail slots share one TaskPropertiesPreviewProvider per card:
 GraphQL preview data is reused, and REST fallback property/access queries are
 owned once, not separately by each slot. Non-task cards do not load task properties.
 Use the title to open the referenced document and the
-actions menu for the same applicable actions as a mention: Copy Link, Ask Macro
+actions menu for the same applicable actions as a mention: Copy Link, Ask Rox
 for supported document types outside chat, Copy Branch Name for tasks, and
 Open in New Split when the reference is not already open. Editable cards also
 offer Convert to Inline Mention and Delete; these actions update when the editor
@@ -2767,7 +2767,7 @@ access to the title and property controls.
    empty or whitespace-only prompt, black with a white arrow in light mode once
    an instruction is entered (inverted for dark mode), on desktop and mobile.
 3. While running, the button row shows a `Stop` button (a11y text `Stop AI edit`), and the
-   live cursor walking the text is labelled with the editor's name: `Macro (AI)` for an
+   live cursor walking the text is labelled with the editor's name: `Rox (AI)` for an
    inline edit, or the name of the agent or persona whose session asked for the edit
    (e.g. `Grunk (AI)`). Edits stream directly into the document — there is no
    accept/reject step. The editor can insert the same `@` mention chips a person can:
@@ -2999,7 +2999,7 @@ When `enable-docx-editor` is on, uploaded `.docx` files open at
 `/app/write/<id>` in an editor instead of the PDF preview. The flag is a
 PostHog flag that is on by default in dev mode; set `VITE_ENABLE_DOCX_EDITOR`
 to override it locally. The header label has a **Beta** badge. Pages are laid
-out and drawn by Macro's own DOCX engine (Rust compiled to wasm, in a worker)
+out and drawn by Rox's own DOCX engine (Rust compiled to wasm, in a worker)
 as `<canvas>` sheets with Word's pagination, so the document's text is not
 in the DOM. Edits sync through the sync service as you type: every open copy
 updates live and shows each collaborator's caret with their name
@@ -3092,7 +3092,7 @@ updates live and shows each collaborator's caret with their name
   read-only cards (`[data-docx-word-comment="<id>"]`): author, date, text and
   replies, marked `In the document` (and `Resolved` when done). Their text is
   highlighted too (`[data-docx-comment-highlight="word:<id>"]`). They stay in
-  the file on download; reply with a Macro comment.
+  the file on download; reply with a Rox comment.
 - Threads whose text was deleted are listed under `Comments on text that has
   changed`, above the `Discussion` composer.
 - AI `CommentOnText` works on DOCX by quote. The editor pins each quote to
@@ -3103,12 +3103,12 @@ updates live and shows each collaborator's caret with their name
   name rather than to the agent. Its comments are written into the file, so
   they appear as `In the document` cards and travel with the download.
 - `Download` exports the current collaborative state with every edit,
-  including headers, footers and tracked changes. Macro comment threads are
+  including headers, footers and tracked changes. Rox comment threads are
   not written into the file; Word comments (including the agent's
   `addComment` ones) are.
 - The stored upload is not rewritten yet. Search, the PDF export and AI
   `ReadContent` still see the original file.
-- **Ask Macro**, in the header beside **Share**, opens the agent composer in
+- **Ask Rox**, in the header beside **Share**, opens the agent composer in
   a split with the document mentioned (nothing sends automatically).
 - AI `ReadWordDocument` and `EditWordDocument` read and edit the live copy, so
   open editors patch agent edits in as they land. `ReadWordDocument` lists
@@ -3139,7 +3139,7 @@ edits show the agent's name, and other AI-editor writes show
 
 Right side of a doc (toggle with `Hide/Show Side Panel`):
 
-- `Actions` → `Ask Macro` (opens a doc-scoped AI chat, see ai-chat.md), and on
+- `Actions` → `Ask Rox` (opens a doc-scoped AI chat, see ai-chat.md), and on
   desktop a `Copy as prompt` pill for documents and tasks. Its primary button
   runs the last-used agent action; the `Agent options` caret lists `Copy as
   prompt`, `MCP setup instructions`, and an `Open in` group (Claude Code Web,

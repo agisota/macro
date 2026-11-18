@@ -1,4 +1,4 @@
-//! Claude Code sign-in on a Macro computer, run by harnessd on it.
+//! Claude Code sign-in on a Rox computer, run by harnessd on it.
 //!
 //! Each route sends one request to harnessd through [`Harnessd`], which
 //! records the computer's Claude login from harnessd's status under the
@@ -145,7 +145,7 @@ pub struct ClaudeSignedIn {
 pub struct ClaudeModeResponse {
     /// How Claude Code is paid for.
     pub mode: ClaudeMode,
-    /// The active Claude sign-in; absent on Macro credits.
+    /// The active Claude sign-in; absent on Rox credits.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub account: Option<ClaudeAccountStatus>,
 }
@@ -155,7 +155,7 @@ pub struct ClaudeModeResponse {
 #[derive(Debug, serde::Serialize, utoipa::ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct ClaudeAccountStatus {
-    /// Who signed it in through Macro; absent once that user is deleted or
+    /// Who signed it in through Rox; absent once that user is deleted or
     /// when it was signed in on the computer itself.
     #[schema(value_type = Option<String>)]
     pub signed_in_by: Option<MacroUserIdStr<'static>>,
@@ -272,7 +272,7 @@ where
     }
 }
 
-/// Forget the computer's Claude credential and return it to Macro credits.
+/// Forget the computer's Claude credential and return it to Rox credits.
 #[utoipa::path(
     post,
     tag = "computers",
@@ -399,7 +399,7 @@ where
     }
 
     /// The computer behind the harness, when the caller has `access` and it
-    /// is a Macro computer.
+    /// is a Rox computer.
     async fn authorize_computer(
         &self,
         caller: MacroAuthorizationExtractor<Auth, UserOrInternal>,
@@ -419,7 +419,7 @@ where
             .await?;
         let Some(computer_id) = harness.computer_id else {
             return Err(ComputerRouteError::BadRequest(
-                "this runtime is not a Macro computer".to_owned(),
+                "this runtime is not a Rox computer".to_owned(),
             ));
         };
         self.fleet_attachment.require_attached()?;
@@ -437,7 +437,7 @@ pub enum ComputerRouteError {
     #[error("you cannot do that on this computer")]
     Forbidden,
     /// The per-user computer rollout is off or unavailable.
-    #[error("Macro computers are not enabled for this user")]
+    #[error("Rox computers are not enabled for this user")]
     RolloutDisabled,
     /// Hosted computers have no fleet attached in this environment.
     #[error(transparent)]

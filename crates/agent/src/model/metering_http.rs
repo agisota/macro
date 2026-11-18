@@ -3,7 +3,7 @@
 //! each send here also accounts for `GenericEventSource` reconnect executions.
 //! No GenAI spans or aggregate analytics are emitted by this adapter; it only
 //! adds the provider's stop reason to Rig's streaming span, which Rig drops,
-//! logs responses that mean Macro's provider account is suspended or out of
+//! logs responses that mean Rox's provider account is suspended or out of
 //! credit ([`genai_telemetry::provider_account`]), and drops interim usage
 //! from Gemini streams so Rig's span records the final counts
 //! ([`interim_usage`]).
@@ -40,8 +40,8 @@ pub struct MeteredHttpClient<H = http_client::ReqwestClient> {
     inner: H,
     provider: String,
     protocol: WireProtocol,
-    /// Whether the key is Macro's own, so a suspended or out-of-credit
-    /// response is a Macro outage worth alerting on.
+    /// Whether the key is Rox's own, so a suspended or out-of-credit
+    /// response is a Rox outage worth alerting on.
     macro_account: bool,
 }
 
@@ -93,13 +93,13 @@ impl<H> MeteredHttpClient<H> {
     }
 
     /// This client authenticating with an agent's own key: its account
-    /// failures are the agent owner's billing, not a Macro outage.
+    /// failures are the agent owner's billing, not a Rox outage.
     pub fn with_agent_api_key(mut self) -> Self {
         self.macro_account = false;
         self
     }
 
-    /// Log a response that means Macro's account with the provider is
+    /// Log a response that means Rox's account with the provider is
     /// suspended or out of credit (see [`genai_telemetry::provider_account`]).
     fn report_account_failure<T>(&self, result: &http_client::Result<T>) {
         if !self.macro_account {

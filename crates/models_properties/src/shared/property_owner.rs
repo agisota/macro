@@ -12,7 +12,7 @@ pub enum PropertyOwner {
     User { user_id: String },
     /// Team-scoped property.
     Team { team_id: Uuid },
-    /// Database-scoped property: the definition is a column of one Macro
+    /// Database-scoped property: the definition is a column of one Rox
     /// database and is invisible to the shared user/team property namespace.
     Database { database_id: Uuid },
     /// System-owned property (no user, team, or database owner).

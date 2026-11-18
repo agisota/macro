@@ -42,7 +42,7 @@ export function mobileMarkdownHeaderMenu(
 
 /**
  * A Markdown document's header on touch: the title with its menu, sync state,
- * Ask Macro, and Info. Its block shows it, and so does a touch view that shows
+ * Ask Rox, and Info. Its block shows it, and so does a touch view that shows
  * the document beside its list (inside a `SplitHeaderScope`), so the header is
  * the same in both and at every width. It reads the document from its context,
  * not from a legacy Block.

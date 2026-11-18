@@ -24,9 +24,9 @@ mod test;
 
 // An application-owned named MAPI property persists when a draft becomes sent.
 pub(super) const CORRELATION_PROPERTY: &str =
-    "String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name MacroDraftId";
+    "String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name RoxDraftId";
 const REVISION_PROPERTY: &str =
-    "String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name MacroDraftRevision";
+    "String {2f537ed4-4b85-4bbb-b231-b7f36d3769e2} Name RoxDraftRevision";
 const DRAFT_SELECT: &str =
     "id,conversationId,isDraft,subject,body,from,toRecipients,ccRecipients,bccRecipients,replyTo";
 const SMALL_ATTACHMENT_LIMIT: usize = 3_000_000;

@@ -2,11 +2,8 @@ import {
   clearSignupDraft,
   Onboarding,
   OnboardingPending,
-  OnboardingSignup,
 } from '@app/features/onboarding/onboarding';
-import { useFeatureFlag } from '@app/lib/analytics/posthog';
 import { LoadingBlock } from '@core/component/LoadingBlock';
-import { enableMicrosoftSignup } from '@core/constant/featureFlags';
 import { isMobile } from '@core/mobile/isMobile';
 import { isNativeMobilePlatform } from '@core/mobile/isNativeMobilePlatform';
 import { virtualKeyboardVisible } from '@core/mobile/virtualKeyboard';
@@ -36,7 +33,6 @@ export function Login(props: { signupMode?: boolean }) {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const email = typeof params.email === 'string' ? params.email : undefined;
-  const microsoftSignup = useFeatureFlag(enableMicrosoftSignup);
   const desktopSignup = () =>
     props.signupMode === true && !isMobile() && !isNativeMobilePlatform();
   return (
@@ -44,7 +40,6 @@ export function Login(props: { signupMode?: boolean }) {
       <AuthView
         intent={props.signupMode ? 'signup' : 'login'}
         showApple={getNativeMobilePlatform() === 'ios'}
-        showMicrosoft={microsoftSignup().enabled}
         compact={virtualKeyboardVisible()}
         initialEmail={email}
         // Dev persona links (`?email=`) sign straight in against a local backend.
@@ -59,11 +54,6 @@ export function Login(props: { signupMode?: boolean }) {
           );
           if (referral) window.location.href = `/app?referral=${referral}`;
         }}
-        signupJourney={
-          desktopSignup()
-            ? (slots) => <OnboardingSignup {...slots} />
-            : undefined
-        }
         onSignIn={() => navigate('/login')}
         onAgentSignup={() => navigate('/signup/agent')}
         // Desktop sign-up resolves into onboarding's frame either way.
@@ -80,7 +70,7 @@ export function Login(props: { signupMode?: boolean }) {
 }
 
 /**
- * /signup/agent: Google or an emailed code, without the opening slides. An
+ * /signup/agent: an emailed code, without the opening slides. An
  * agent invite links here with `team_invite`, which an existing account still
  * has to accept; a new agent joins the team during setup.
  */

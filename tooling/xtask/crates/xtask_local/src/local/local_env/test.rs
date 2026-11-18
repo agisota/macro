@@ -252,12 +252,12 @@ fn internal_auth_values_are_authoritative_local_env() {
 
 /// Local must never point at real dev/prod infrastructure: endpoints are docker
 /// aliases / localhost, and creds are the LocalStack dummies. (Note `ISSUER` is
-/// the local `local.macro.com` JWT issuer — a value, not an endpoint — so we
-/// match the *deployed* markers specifically, not a bare `.macro.com`.)
+/// the local `local.rox.one` JWT issuer — a value, not an endpoint — so we
+/// match the *deployed* markers specifically, not a bare `.rox.one`.)
 #[test]
 fn values_are_local_only() {
     for (key, value) in local_env() {
-        for marker in ["amazonaws.com", "-dev.macro.com", ".workers.dev"] {
+        for marker in ["amazonaws.com", "-dev.rox.one", ".workers.dev"] {
             assert!(
                 !value.contains(marker),
                 "{key} points at deployed infra ({marker}): {value}"

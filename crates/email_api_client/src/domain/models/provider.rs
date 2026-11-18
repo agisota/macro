@@ -10,7 +10,7 @@ use super::{EmailApiError, MessageWithCalendarParts};
 /// Identity required to acquire a credential for a persisted mailbox.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct MailboxAccess {
-    /// Macro mailbox link, resolved and authorized by the owning email domain.
+    /// Rox mailbox link, resolved and authorized by the owning email domain.
     pub link_id: uuid::Uuid,
     /// Mailbox binding generation, also changed when credential custody moves.
     pub sync_generation: i64,

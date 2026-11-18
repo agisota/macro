@@ -1,6 +1,6 @@
-# Macro interface icons
+# Rox interface icons
 
-Original SVG drawings for Macro's interface. The source of truth is the SVG
+Original SVG drawings for Rox's interface. The source of truth is the SVG
 files in this directory. These drawings were authored on a blank coordinate
 grid, except `regular/speaker-slash.svg`, which retains Phosphor's regular
 geometry and MIT notice for the recording mute state. No Apple, OpenAI, or
@@ -26,7 +26,7 @@ or a guarantee of non-infringement. Apple's supplied images have separate
   light regular stroke is about 1.42 px. Colors and filled silhouettes stay
   unchanged. Theme-scoped variables also support the gallery's nested themes.
 - Rounded joins and terminals, restrained 2–3 unit corner radii, open counters,
-  and few internal details. Macro's diagonal rhythm appears in folds, tails,
+  and few internal details. Rox's diagonal rhythm appears in folds, tails,
   branches, and the angular four-point agent mark.
 - Active navigation variants keep their regular counterpart's optical center
   and silhouette. Cutouts are transparent, never theme-colored.
@@ -176,7 +176,7 @@ pickers on their existing status and priority treatments.
 Apple's [interface icon guidance](https://developer.apple.com/design/human-interface-guidelines/icons)
 informs the review: match the perceived weight of adjacent text, simplify detail,
 and adjust each glyph's dimensions and padding for optical balance. The 24-unit
-grid and stroke values above are Macro's drawing choices, not Apple requirements.
+grid and stroke values above are Rox's drawing choices, not Apple requirements.
 Center the visible shape, not only its bounding box; inspect its baseline and cap
 height relationship when it sits beside a label.
 
@@ -198,7 +198,7 @@ spinners keep spinning.
 
 Open `/app/debug/icon-gallery` in the running app. The original family is the
 default view; the legacy animated gallery remains available. Review the actual
-14/16/20/24 px drawings on both Macro themes, then check the affected app view.
+14/16/20/24 px drawings on both Rox themes, then check the affected app view.
 Do not judge a toolbar icon solely from a large preview. Use the weight tabs
 and navigation buttons to check emphasis without a size or position jump.
 

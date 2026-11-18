@@ -22,25 +22,25 @@ import { Dynamic } from 'solid-js/web';
 import './product-mention.css';
 
 const products = [
-  { name: 'Macro Mail', href: '/email', icon: MailIcon },
-  { name: 'Macro CRM', href: '/crm', icon: CrmIcon },
-  { name: 'Macro Chat', href: '/channels', icon: ChatIcon },
-  { name: 'Macro Tasks', href: '/tasks', icon: TasksIcon },
-  { name: 'Macro Docs', href: '/documents', icon: DocsIcon },
-  { name: 'Macro Calls', href: '/calls', icon: CallsIcon },
-  { name: 'Macro Agents', href: '/agents', icon: AgentsIcon },
-  { name: 'Macro Calendar', href: '/calendar', icon: CalendarIcon },
-  { name: 'Macro Databases', href: '/databases', icon: DatabaseIcon },
-  { name: 'Macro Booking Links', href: '/booking-links', icon: LinkIcon },
-  { name: 'Macro Drive', href: '/drive', icon: DriveIcon },
-  { name: 'Macro Forms', href: '/forms', icon: FormsIcon },
-  { name: 'Macro Spreadsheets', href: '/spreadsheets', icon: SpreadsheetsIcon },
-  { name: 'Macro Canvas', href: '/canvas', icon: CanvasIcon },
-  { name: 'Macro Routines', href: '/routines', icon: RoutinesIcon },
-  { name: 'Macro Skills', href: '/skills', icon: SkillsIcon },
-  { name: 'Macro Snippets', href: '/snippets', icon: SnippetsIcon },
-  { name: 'Macro GitHub', href: '/github', icon: GitHubIcon },
-  { name: 'Macro Tags', href: '/docs/product/tagging', icon: TagsIcon },
+  { name: 'Rox Mail', href: '/email', icon: MailIcon },
+  { name: 'Rox CRM', href: '/crm', icon: CrmIcon },
+  { name: 'Rox Chat', href: '/channels', icon: ChatIcon },
+  { name: 'Rox Tasks', href: '/tasks', icon: TasksIcon },
+  { name: 'Rox Docs', href: '/documents', icon: DocsIcon },
+  { name: 'Rox Calls', href: '/calls', icon: CallsIcon },
+  { name: 'Rox Agents', href: '/agents', icon: AgentsIcon },
+  { name: 'Rox Calendar', href: '/calendar', icon: CalendarIcon },
+  { name: 'Rox Databases', href: '/databases', icon: DatabaseIcon },
+  { name: 'Rox Booking Links', href: '/booking-links', icon: LinkIcon },
+  { name: 'Rox Drive', href: '/drive', icon: DriveIcon },
+  { name: 'Rox Forms', href: '/forms', icon: FormsIcon },
+  { name: 'Rox Spreadsheets', href: '/spreadsheets', icon: SpreadsheetsIcon },
+  { name: 'Rox Canvas', href: '/canvas', icon: CanvasIcon },
+  { name: 'Rox Routines', href: '/routines', icon: RoutinesIcon },
+  { name: 'Rox Skills', href: '/skills', icon: SkillsIcon },
+  { name: 'Rox Snippets', href: '/snippets', icon: SnippetsIcon },
+  { name: 'Rox GitHub', href: '/github', icon: GitHubIcon },
+  { name: 'Rox Tags', href: '/docs/product/tagging', icon: TagsIcon },
 ];
 const productNames = new RegExp(
   `(${products.map((product) => product.name).join('|')})`,
@@ -74,7 +74,7 @@ export function ProductCopy(props: { text: string }) {
             <span class="product-mention-line">
               <a class="product-mention" href={product().href}>
                 <Dynamic component={product().icon} aria-hidden="true" />
-                <span>{product().name.replace('Macro ', '')}</span>
+                <span>{product().name.replace('Rox ', '')}</span>
               </a>
               {part.text}
             </span>

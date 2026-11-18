@@ -40,7 +40,7 @@ it('opens a searchable documentation sidebar on click and restores focus on Esca
     ).getAttribute('href')
   ).toBe('/docs/AI/mcp/overview');
   expect(
-    within(nav).queryByRole('link', { name: 'Welcome to Macro' })
+    within(nav).queryByRole('link', { name: 'Welcome to Rox' })
   ).toBeNull();
   fireEvent.keyDown(search, { key: 'Escape' });
   expect(search).toHaveProperty('value', '');

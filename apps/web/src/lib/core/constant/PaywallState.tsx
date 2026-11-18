@@ -27,7 +27,7 @@ export const PaywallMessages: Record<PaywallKey, PaywallMessageMetadata> = {
     title: 'Folder limit reached',
     description:
       'Upgrade to create more folders and keep organizing your workspace.',
-    learnMoreUrl: 'https://docs.macro.com/product/drive',
+    learnMoreUrl: 'https://docs.rox.one/product/drive',
     learnMoreSubject: 'folders',
   },
   [PaywallKey.FILE_LIMIT]: {
@@ -38,51 +38,51 @@ export const PaywallMessages: Record<PaywallKey, PaywallMessageMetadata> = {
     title: 'Chat limit reached',
     description:
       'Upgrade to keep creating agent chats with access to every AI model.',
-    learnMoreUrl: 'https://docs.macro.com/product/agents',
+    learnMoreUrl: 'https://docs.rox.one/product/agents',
     learnMoreSubject: 'agents',
   },
   [PaywallKey.IMAGE_LIMIT]: {
     title: 'Image processing limit reached',
     description: `You’ve used ${DAILY_LIMIT} AI image processing requests today. Upgrade for higher limits.`,
-    learnMoreUrl: 'https://docs.macro.com/product/agents',
+    learnMoreUrl: 'https://docs.rox.one/product/agents',
     learnMoreSubject: 'agents',
   },
   [PaywallKey.O1_LIMIT]: {
     title: 'Smart models require Pro or Max',
-    description: 'Upgrade to use Macro’s most capable AI models.',
-    learnMoreUrl: 'https://docs.macro.com/product/agents',
+    description: 'Upgrade to use Rox’s most capable AI models.',
+    learnMoreUrl: 'https://docs.rox.one/product/agents',
     learnMoreSubject: 'agents',
   },
   [PaywallKey.CANVAS_CLIKED]: {
     title: 'AI canvases require Pro or Max',
     description:
       'Upgrade to generate diagrams, whiteboards, and visual drafts with AI.',
-    learnMoreUrl: 'https://docs.macro.com/product/canvas',
+    learnMoreUrl: 'https://docs.rox.one/product/canvas',
     learnMoreSubject: 'canvases',
   },
   [PaywallKey.SAVED_PROMPT]: {
     title: 'Saved prompts require Pro or Max',
     description: 'Upgrade to save reusable prompts for faster workflows.',
-    learnMoreUrl: 'https://docs.macro.com/product/snippets',
+    learnMoreUrl: 'https://docs.rox.one/product/snippets',
     learnMoreSubject: 'saved prompts',
   },
   [PaywallKey.REMOVE_SIGNATURE]: {
-    title: 'Remove the Macro signature',
-    description: 'Upgrade to send emails without the Macro signature.',
-    learnMoreUrl: 'https://docs.macro.com/product/email',
+    title: 'Remove the Rox signature',
+    description: 'Upgrade to send emails without the Rox signature.',
+    learnMoreUrl: 'https://docs.rox.one/product/email',
     learnMoreSubject: 'email',
   },
   [PaywallKey.MULTI_INBOX]: {
     title: 'Connect more inboxes',
     description: 'Upgrade your plan to connect more than two inboxes.',
-    learnMoreUrl: 'https://docs.macro.com/product/home',
+    learnMoreUrl: 'https://docs.rox.one/product/home',
     learnMoreSubject: 'multiple inboxes',
   },
   [PaywallKey.TEAMS]: {
     title: 'Collaborate with your team',
     description:
       'Upgrade to create a team, invite members, and manage access together.',
-    learnMoreUrl: 'https://docs.macro.com/account/teams',
+    learnMoreUrl: 'https://docs.rox.one/account/teams',
     learnMoreSubject: 'teams',
   },
 };

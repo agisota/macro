@@ -21,7 +21,7 @@ export class ExternalProfilePicture {
 }
 
 /**
- * A user's profile picture. Pictures set through Macro are a
+ * A user's profile picture. Pictures set through Rox are a
  * {@link StaticImage}; older pictures stored as a bare URL are an
  * {@link ExternalProfilePicture}. Narrow with `instanceof StaticImage`; both
  * have a `url`.

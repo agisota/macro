@@ -441,7 +441,7 @@ pub enum CellValue {
     /// Options of a select or tag column; at most one for a single-valued
     /// column.
     Options(Vec<OptionRef>),
-    /// References to Macro entities of the kind the column points at; at
+    /// References to Rox entities of the kind the column points at; at
     /// most one for a single-valued column.
     Entities(Vec<EntityRef>),
     /// Rows of the table a relation column points at.
@@ -463,7 +463,7 @@ pub enum OptionRef {
     Label(String),
 }
 
-/// A reference to one Macro entity.
+/// A reference to one Rox entity.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, utoipa::ToSchema, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct EntityRef {
@@ -473,7 +473,7 @@ pub struct EntityRef {
     pub entity_id: String,
 }
 
-/// A kind of Macro entity a reference column can point at.
+/// A kind of Rox entity a reference column can point at.
 #[cfg_attr(feature = "schema", derive(schemars::JsonSchema))]
 #[derive(
     Debug,
@@ -550,7 +550,7 @@ pub enum ColumnKind {
     },
     /// Colored labels; always several per cell.
     Tag,
-    /// References to Macro entities.
+    /// References to Rox entities.
     Entity {
         /// What the references point at.
         target: EntityKind,

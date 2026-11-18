@@ -6,7 +6,7 @@
 //! with the pieces `ai_toolset` exposes for exactly that: `is_valid_tool` to
 //! check edited arguments and `try_user_tool_call` to run the wrapped tool.
 //! Chat does so after the turn, over HTTP, from its composer. A host that can
-//! reach its user *during* the turn - Macro's in-process agent, whose ACP
+//! reach its user *during* the turn - Rox's in-process agent, whose ACP
 //! client renders elicitations - does it here, through the
 //! [`UserToolReviewer`] port, before the model reads the result.
 //!

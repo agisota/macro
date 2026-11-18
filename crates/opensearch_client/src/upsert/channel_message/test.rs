@@ -9,7 +9,7 @@ fn message_args() -> UpsertChannelMessageArgs {
         org_id: None,
         message_id: message_id.clone(),
         thread_id: message_id,
-        sender_id: "macro|system@macro.com".into(),
+        sender_id: "macro|system@rox.one".into(),
         imported_author: Some("quartzarchivebot".into()),
         mentions: vec![],
         content: "Historical message body".into(),
@@ -26,7 +26,7 @@ fn author_is_text_not_content_or_sender() {
         let value = serde_json::to_value(&args).unwrap();
         assert_eq!(value["imported_author"], json!(author));
         assert_eq!(value["content"], "Historical message body");
-        assert_eq!(value["sender_id"], "macro|system@macro.com");
+        assert_eq!(value["sender_id"], "macro|system@rox.one");
         assert_eq!(value["entity_id"], args.channel_id);
         assert_eq!(value["message_id"], args.message_id);
     }

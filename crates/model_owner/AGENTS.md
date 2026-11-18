@@ -3,7 +3,7 @@
 ## What it is
 
 Shared infrastructure used by nearly every domain crate with typed
-ownership. A typed owner reference (`Owner`/`OwnerType`) for Macro entities
+ownership. A typed owner reference (`Owner`/`OwnerType`) for Rox entities
 — a user, bot, or team principal, distinct from the acting user.
 
 ## Start here

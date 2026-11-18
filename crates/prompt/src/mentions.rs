@@ -1,7 +1,7 @@
 //! Rules for mentioning entities with XML mention tags, and the scope of
-//! Macro's shared Markdown rendering.
+//! Rox's shared Markdown rendering.
 //!
-//! These rules apply everywhere the model authors Markdown in Macro: its own
+//! These rules apply everywhere the model authors Markdown in Rox: its own
 //! conversational replies (AI chat and agent session transcripts),
 //! `SendChannelMessage` content, `SendEmail` bodies, and
 //! `CreateDocument`/`EditDocument` content for Markdown (`.md`) documents.
@@ -18,16 +18,16 @@ use crate::types::StaticPrompt;
 
 static TITLE: &str = "Mentioning documents, people, dates, agent sessions, and other chips";
 
-static INSTRUCTIONS: &str = r##"These rules apply everywhere you author Markdown in Macro: your own conversational replies (AI chat and agent session transcripts), `SendChannelMessage` content, `SendEmail` bodies, and `CreateDocument`/`EditDocument` or SDK document-write content for Markdown (`.md`) documents. They do NOT apply to non-Markdown documents created via `CreateDocument` (e.g. PDF, CSV, PNG, XLSX, DOCX) — those are raw file bytes, never parsed as Markdown, and must never contain mention tags or Markdown syntax.
+static INSTRUCTIONS: &str = r##"These rules apply everywhere you author Markdown in Rox: your own conversational replies (AI chat and agent session transcripts), `SendChannelMessage` content, `SendEmail` bodies, and `CreateDocument`/`EditDocument` or SDK document-write content for Markdown (`.md`) documents. They do NOT apply to non-Markdown documents created via `CreateDocument` (e.g. PDF, CSV, PNG, XLSX, DOCX) — those are raw file bytes, never parsed as Markdown, and must never contain mention tags or Markdown syntax.
 
-When referencing a Macro item, person, date/time, agent session, or other mentionable chip, use XML mention tags with a JSON payload. They render as clickable chips; never use plain Markdown links or bare names instead. Empty names and labels are fine; the frontend fills them in.
+When referencing a Rox item, person, date/time, agent session, or other mentionable chip, use XML mention tags with a JSON payload. They render as clickable chips; never use plain Markdown links or bare names instead. Empty names and labels are fine; the frontend fills them in.
 
 ### Documents, channels, and similar items
 
 Use `<m-document-mention>` with the right `blockName` (and `blockParams` when needed):
 
 - Document mention: `<m-document-mention>{"documentId":"{id}","documentName":"","blockName":"md","blockParams":{}}</m-document-mention>`
-- Image document mention (a picture stored as a Macro document, such as an uploaded image file): `<m-document-mention>{"documentId":"{id}","documentName":"","blockName":"image","blockParams":{}}</m-document-mention>`
+- Image document mention (a picture stored as a Rox document, such as an uploaded image file): `<m-document-mention>{"documentId":"{id}","documentName":"","blockName":"image","blockParams":{}}</m-document-mention>`
 - Canvas mention: `<m-document-mention>{"documentId":"{id}","documentName":"","blockName":"canvas","blockParams":{}}</m-document-mention>`
 - Channel mention: `<m-document-mention>{"documentId":"{id}","documentName":"","blockName":"channel","blockParams":{}}</m-document-mention>`
 - Channel message mention: `<m-document-mention>{"documentId":"{channel_id}","documentName":"","blockName":"channel","blockParams":{"channel_message_id":"{message_id}"}}</m-document-mention>`
@@ -69,11 +69,11 @@ These use their own tags — never wrap them in `<m-document-mention>`:
 - Group: `<m-group-mention>{"groupAlias":"{alias}"}</m-group-mention>`
 - Date/time: `<m-date-mention>{"date":"{iso_datetime}","displayFormat":"{label}"}</m-date-mention>`
 - Agent session: `<m-agent-session-mention>{"id":"{session_id}","label":""}</m-agent-session-mention>`
-- GitHub pull request: `<m-pr-mention>{"url":"https://github.com/{owner}/{repo}/pull/{number}","label":""}</m-pr-mention>`, or `<m-pr-mention>{"id":"{id}","label":""}</m-pr-mention>` when a tool returned the PR's Macro id
+- GitHub pull request: `<m-pr-mention>{"url":"https://github.com/{owner}/{repo}/pull/{number}","label":""}</m-pr-mention>`, or `<m-pr-mention>{"id":"{id}","label":""}</m-pr-mention>` when a tool returned the PR's Rox id
 - Booking link: `<m-booking-link-mention>{"profileId":"{profile_id}","slug":"{slug}","url":"{booking_url}","label":""}</m-booking-link-mention>` (`slug` optional when linking the profile page)
 
 - Dates: prefer a date chip to a typed date. The tag body is always the JSON object, never a bare date. For a whole day, its `date` field is the local calendar date (`2025-12-01`), never midnight UTC, which reads as the previous day west of Greenwich; for a moment, it is a full ISO 8601 timestamp with the user's UTC offset. `displayFormat` is the label shown (e.g. "Mon, Dec 1, 2025", "Today", "3:00 PM"). Resolve "today" and other relative dates from the `<current_time>` your prompt carries when it has one, never from a guess.
-- Pull requests and booking links: always a chip, never a Markdown link or bare URL. Leave `label` empty and do not repeat the number, title, or URL beside it. A PR chip takes any github.com pull request URL; a booking chip takes the shareable URL plus the `profileId` and `slug` from its `/app/book/{profileId}/{slug}` path. A PR chip you receive carries the PR's URL in `url` and, when it has one, its Macro id in `id`; read that PR's diff with the SDK's `macro.githubPullRequests.byId(id)`. Issues, commits, and other GitHub pages stay Markdown links.
+- Pull requests and booking links: always a chip, never a Markdown link or bare URL. Leave `label` empty and do not repeat the number, title, or URL beside it. A PR chip takes any github.com pull request URL; a booking chip takes the shareable URL plus the `profileId` and `slug` from its `/app/book/{profileId}/{slug}` path. A PR chip you receive carries the PR's URL in `url` and, when it has one, its Rox id in `id`; read that PR's diff with the SDK's `macro.githubPullRequests.byId(id)`. Issues, commits, and other GitHub pages stay Markdown links.
 - Agent sessions: only ids a tool returned. Add `"expanded":true` to insert the live card (Magic Chip) instead of the compact title.
 - Connecting apps: when a tool result hands you an `<m-connect-app>{"appSlug":"...","name":"..."}</m-connect-app>` tag, include it verbatim; it renders a connect button. Never invent one. In agent sessions the button resumes the conversation once connected, so just tell the user to connect; elsewhere, ask them to say when they have.
 
@@ -85,7 +85,7 @@ Only the tags listed here exist. Never invent a tag or put an id in the wrong on
 static INTENT: &str = "Entities, people, dates, agent sessions, and other chips are referenced \
 with the matching XML mention tag (m-document-mention with the right blockName/blockParams, \
 m-user-mention, m-date-mention, m-agent-session-mention, m-pr-mention for GitHub pull \
-requests by URL, m-booking-link-mention for Macro booking links by URL, and the other \
+requests by URL, m-booking-link-mention for Rox booking links by URL, and the other \
 listed chip tags) across every Markdown surface (AI chat replies, agent session replies, channel messages, \
 email bodies, and Markdown documents) — never inside non-Markdown documents, and never for \
 ids outside the listed types (a calendar id from ListCalendars is not mentionable; \

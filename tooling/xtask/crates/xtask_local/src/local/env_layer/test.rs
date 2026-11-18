@@ -10,6 +10,16 @@ fn keeps_resolved_database_url_when_shell_has_local_default() {
         "DATABASE_URL",
         "postgres://user:password@postgres:5432/macrodb"
     ));
+    // The published port a host-side `sqlx`/`prepare_db` run exports reaches
+    // this container's own loopback, so it must not displace the in-network URL.
+    assert!(!should_overlay_process_env(
+        "DATABASE_URL",
+        "postgresql://user:password@127.0.0.1:24200/macrodb"
+    ));
+    assert!(!should_overlay_process_env(
+        "DATABASE_URL",
+        "postgres://user:password@[::1]:24200/macrodb"
+    ));
 }
 
 #[test]

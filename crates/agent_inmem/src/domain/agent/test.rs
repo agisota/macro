@@ -181,7 +181,7 @@ async fn record<Engine: TurnEngine, Out>(
         delivery: crate::domain::engine::ReplyDelivery::Streamed,
         session_id,
         owner: model_owner::Owner::User(
-            MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id"),
+            MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id"),
         ),
         engine,
         admission,
@@ -361,7 +361,7 @@ async fn direct_acp_denials_preserve_history_and_allow_retry() {
                 .lock()
                 .unwrap()
                 .iter()
-                .all(|(user, feature)| user == "macro|owner@macro.com"
+                .all(|(user, feature)| user == "macro|owner@rox.one"
                     && *feature == ai_usage::AiFeature::AgentSession)
         );
     }
@@ -1873,7 +1873,7 @@ async fn serve_with_mcp(
         delivery: crate::domain::engine::ReplyDelivery::Streamed,
         session_id,
         owner: model_owner::Owner::User(
-            MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id"),
+            MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id"),
         ),
         engine,
         admission: Arc::new(DisabledAiAdmissionService),
@@ -1914,7 +1914,7 @@ async fn serve_with_mcp(
 }
 
 /// The servers `session/new` carries are dialed in the background, minus
-/// Macro's own, whose tools this runtime already has natively.
+/// Rox's own, whose tools this runtime already has natively.
 #[tokio::test]
 async fn session_new_dials_the_advertised_servers_except_macros_own() {
     use agent_client_protocol::schema::v1::{HttpHeader, McpServer as AcpMcpServer, McpServerHttp};
@@ -1933,7 +1933,7 @@ async fn session_new_dials_the_advertised_servers_except_macros_own() {
         delivery: crate::domain::engine::ReplyDelivery::Streamed,
         session_id,
         owner: model_owner::Owner::User(
-            MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id"),
+            MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id"),
         ),
         engine: Arc::new(ScriptedEngine::new(Vec::new())),
         admission: Arc::new(DisabledAiAdmissionService),
@@ -2026,7 +2026,7 @@ async fn first_prompt_waits_for_background_mcp_connect() {
         delivery: crate::domain::engine::ReplyDelivery::Streamed,
         session_id,
         owner: model_owner::Owner::User(
-            MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id"),
+            MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id"),
         ),
         engine: Arc::clone(&engine) as Arc<dyn TurnEngine>,
         admission: Arc::new(DisabledAiAdmissionService),
@@ -2134,7 +2134,7 @@ where
         delivery: crate::domain::engine::ReplyDelivery::Streamed,
         session_id,
         owner: model_owner::Owner::User(
-            MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id"),
+            MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id"),
         ),
         engine,
         admission: Arc::new(DisabledAiAdmissionService),
@@ -2516,7 +2516,7 @@ impl TurnEngine for ReviewingEngine {
 }
 
 /// A user tool's review goes out as a tool-call-scoped form elicitation the
-/// fold and a Macro client can recognize: the draft's flat fields with their
+/// fold and a Rox client can recognize: the draft's flat fields with their
 /// values as defaults, the `_macro/json` draft field, and `_meta.macro.userTool`
 /// naming the tool. The accepted content comes back as submitted.
 #[tokio::test]
@@ -2577,7 +2577,7 @@ async fn a_user_tool_review_is_a_tool_scoped_form_elicitation_naming_the_tool() 
     assert_eq!(
         user_tool.get("name").and_then(|name| name.as_str()),
         Some("CreateCalendarEvent"),
-        "a Macro client learns which tool's composer to show"
+        "a Rox client learns which tool's composer to show"
     );
     assert_eq!(
         user_tool.get("draft"),
@@ -3116,7 +3116,7 @@ async fn turns_redial_a_session_whose_connect_lacks_code_mode_tools() {
         delivery: crate::domain::engine::ReplyDelivery::Streamed,
         session_id,
         owner: model_owner::Owner::User(
-            MacroUserIdStr::try_from_email("owner@macro.com").expect("a valid user id"),
+            MacroUserIdStr::try_from_email("owner@rox.one").expect("a valid user id"),
         ),
         engine: Arc::new(ScriptedEngine::new(Vec::new())),
         admission: Arc::new(DisabledAiAdmissionService),

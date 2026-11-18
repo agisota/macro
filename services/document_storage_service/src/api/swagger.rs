@@ -230,7 +230,7 @@ use email_policy::EmailPolicySchemas;
 #[derive(OpenApi)]
 #[openapi(
     info(
-        terms_of_service = "https://macro.com/terms",
+        terms_of_service = "https://rox.one/terms",
     ),
     modifiers(&FormsApiAddon, &EmailPolicySchemas),
     paths(
@@ -1332,7 +1332,7 @@ use email_policy::EmailPolicySchemas;
         ),
     ),
     tags(
-            (name = "macro cloud storage service", description = "Macro Cloud Storage Service")
+            (name = "macro cloud storage service", description = "Rox Cloud Storage Service")
     )
 )]
 pub struct ApiDoc;

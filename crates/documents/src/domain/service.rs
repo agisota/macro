@@ -111,7 +111,7 @@ pub struct DocumentServiceImpl<
     pub entity_access_management_service: Eam,
     /// Foreign entity service
     pub foreign_entity_service: F,
-    /// Macro event broker for publishing document lifecycle events
+    /// Rox event broker for publishing document lifecycle events
     pub macro_event_broker: B,
 }
 
@@ -1890,6 +1890,11 @@ impl<
 
         self.repo
             .edit_document(EditDocumentRepoArgs {
+                actor_id: entity_access_receipt
+                    .get_authenticated_user()
+                    .map_err(|_| DocumentError::Unauthorized)?
+                    .as_ref()
+                    .to_owned(),
                 document_id: entity_access_receipt.entity().entity_id.clone(),
                 document_name: document_name.clone(),
                 project_id: args.project_id.clone(),

@@ -57,7 +57,7 @@ Every `Message` returned to a guest is redacted so no account identity leaves:
   guest `sender_id` and `guest_name`.
 - Reactions: account reactor ids are replaced with the same opaque ids, and their names
   are returned in `CountedReaction.names?: Record<string, string>`, keyed by the
-  opaque reactor id, as external-chat reactions do for people outside Macro.
+  opaque reactor id, as external-chat reactions do for people outside Rox.
 - `mentions`, `attachments`, `triggered_by` and any other account or entity references
   are emptied.
 - Message content is rewritten for guests (`guest_text`): web links stay links, every

@@ -7,7 +7,7 @@ use super::proxy::{self, ProxyParams};
 #[derive(OpenApi)]
 #[openapi(
     info(
-        terms_of_service = "https://macro.com/terms",
+        terms_of_service = "https://rox.one/terms",
     ),
     paths(
         health::health_handler,

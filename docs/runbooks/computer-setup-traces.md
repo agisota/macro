@@ -1,4 +1,4 @@
-# Macro computer setup traces
+# Rox computer setup traces
 
 Use this to find where the time goes between Buy computer and the computer
 being Ready.
@@ -6,7 +6,7 @@ being Ready.
 ## What one trace contains
 
 The purchase request is the root. Every later step joins it while first setup
-runs ([Macro computers: Observability](../architecture/macro-computers.md#observability)):
+runs ([Rox computers: Observability](../architecture/macro-computers.md#observability)):
 
 | Span | Service | Meaning |
 | --- | --- | --- |
@@ -15,11 +15,11 @@ runs ([Macro computers: Observability](../architecture/macro-computers.md#observ
 | `computer.billing.effect` | authentication_service | Delayed payment recovery, when the normal path did not finish. |
 | `computer.setup.create` | agent_harness_service | Confirmation until the guest boots: outbox wait, fleet create, capacity wait (`capacity_waited`). |
 | `computer.fleet.work` → `incus_fleet.create` / `docker_fleet.create` → `computer.enrollment.issue` | agent_harness_service | The fleet create effect itself. |
-| `computer.setup.boot` | agent_harness_service | Guest boot until macrod first connects (boot, `macrod enroll`, harness claim, connect). |
-| `claim_pairing` | document_storage_service | macrod claiming its harness (its request carries the setup `traceparent`). |
-| `computer.macrod.connected` | agent_harness_service | The first connection being recorded. |
-| `computer.setup` | agent_harness_service | Total, reservation until macrod first connected. |
-| `run_enroll`, `macrod.enroll.claim` | macrod | Guest-side detail, only when the guest has `OTEL_EXPORTER_OTLP_ENDPOINT`. |
+| `computer.setup.boot` | agent_harness_service | Guest boot until roxd first connects (boot, `roxd enroll`, harness claim, connect). |
+| `claim_pairing` | document_storage_service | roxd claiming its harness (its request carries the setup `traceparent`). |
+| `computer.roxd.connected` | agent_harness_service | The first connection being recorded. |
+| `computer.setup` | agent_harness_service | Total, reservation until roxd first connected. |
+| `run_enroll`, `roxd.enroll.claim` | roxd | Guest-side detail, only when the guest has `OTEL_EXPORTER_OTLP_ENDPOINT`. |
 
 The control-plane wait spans are exported with their recorded start and end
 times when the next milestone arrives, so a still-running wait is not visible

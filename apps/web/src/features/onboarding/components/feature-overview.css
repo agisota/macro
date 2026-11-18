@@ -21,7 +21,7 @@
   color: var(--color-ink);
 
 }
-.feature-flow-core svg { width: 43px; height: 43px; }
+.feature-flow-core :is(svg, img) { width: 43px; height: 43px; }
 .feature-flow-node { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; }
 .feature-flow-node > span { position: absolute; top: calc(100% + 12px); font-size: 13px; color: var(--color-ink-muted); white-space: nowrap; }
 .feature-flow-icon {
@@ -49,7 +49,7 @@
 @media (max-width: 639px) {
   .feature-flow { height: 280px; }
   .feature-flow-core { width: 66px; height: 66px; }
-  .feature-flow-core svg { width: 33px; height: 33px; }
+  .feature-flow-core :is(svg, img) { width: 33px; height: 33px; }
   .feature-flow-icon { width: 54px; height: 54px; }
   .feature-flow-icon svg { width: 21px; height: 21px; }
   .feature-flow-node > span { font-size: 11px; top: calc(100% + 9px); }

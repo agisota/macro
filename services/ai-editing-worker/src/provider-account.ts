@@ -9,7 +9,7 @@ import {
 export type ProviderModel = Parameters<typeof wrapLanguageModel>[0]['model'];
 
 /**
- * Why a provider refused to serve Macro's account: it suspended the account,
+ * Why a provider refused to serve Rox's account: it suspended the account,
  * or the account ran out of credit or reached its spending limit. Mirrors
  * `genai_telemetry::provider_account` in Rust, which documents each pattern;
  * keep the two in step.
@@ -73,7 +73,7 @@ function report(provider: string, error: unknown): void {
   span.end();
 }
 
-/** `model`, recording a span whenever its provider refuses Macro's account. */
+/** `model`, recording a span whenever its provider refuses Rox's account. */
 export function reportingAccountFailures(
   provider: string,
   model: ProviderModel

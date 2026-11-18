@@ -78,7 +78,7 @@ export function CallOverlay(props: {
   showChat?: boolean;
   /** Host-owned action aligned to the left of the media controls. */
   footerLeading?: JSXElement;
-  /** A guest has no account, so nothing may look up Macro profiles. */
+  /** A guest has no account, so nothing may look up Rox profiles. */
   accessMode?: 'guest' | 'member';
   /** The host's discussion for this call. */
   discussion?: {
